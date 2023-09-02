@@ -91,6 +91,7 @@
 
 	.counter-digits {
 		position: absolute;
+		font-family: var(--font-mono);
 		width: 100%;
 		height: 100%;
 	}

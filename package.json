@@ -18,5 +18,11 @@
 		"husky": "^8.0.3",
 		"svelte": "^4.0.5",
 		"vite": "^4.4.2"
+	},
+	"type": "module",
+	"dependencies": {
+		"@fontsource-variable/source-code-pro": "^5.0.9",
+		"@fontsource/source-sans-pro": "^5.0.8",
+		"@fontsource/source-serif-pro": "^5.0.8"
 	}
 }
