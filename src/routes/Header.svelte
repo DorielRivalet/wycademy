@@ -124,6 +124,6 @@
 	}
 
 	a:hover {
-		color: var(--color-theme-1);
+		color: var(--ctp-mocha-red);
 	}
 </style>

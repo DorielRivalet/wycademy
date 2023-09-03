@@ -2,6 +2,11 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import {
+    Theme,
+    RadioButtonGroup,
+    RadioButton,
+  } from "carbon-components-svelte";
 </script>
 
 <svelte:head>

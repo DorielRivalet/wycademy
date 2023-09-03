@@ -125,12 +125,6 @@ Labels	Hex	RGB	HSL
 	--font-mono: 'Source Code Pro Variable', monospace;
 	--font-gothic: 'MS UI Gothic', 'MS Gothic';
 	--font-serif: 'Source Serif Pro', sans-serif;
-	--color-bg-0: var(--ctp-mocha-base);
-	--color-bg-1: var(--ctp-mocha-mantle);
-	--color-bg-2: var(--ctp-mocha-crust);
-	--color-theme-1: var(--ctp-mocha-red);
-	--color-theme-2: var(--ctp-mocha-green);
-	--color-text: var(--ctp-mocha-text);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
@@ -141,14 +135,7 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	background-attachment: fixed;
-	background-color: var(--color-bg-1);
 	background-size: 100vw 100vh;
-	background-image: radial-gradient(
-			50% 50% at 50% 50%,
-			rgba(30, 30, 46, 0.75) 0%,
-			rgba(30, 30, 46, 0) 100%
-		),
-		linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
 }
 
 h1,
@@ -162,7 +149,6 @@ p {
 }
 
 a {
-	color: var(--color-theme-1);
 	text-decoration: none;
 }
 
@@ -187,7 +173,6 @@ pre {
 	box-shadow: 2px 2px 6px rgb(30, 30, 46 / 25%);
 	padding: 0.5em;
 	overflow-x: auto;
-	color: var(--color-text);
 }
 
 .text-column {
