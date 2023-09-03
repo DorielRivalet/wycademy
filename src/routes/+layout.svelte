@@ -11,6 +11,7 @@
   let theme = "g100";
 	let tokens = {};
 
+	// removed white
 	const themeOptions = [
     { value: "g10", labelText: "Catppuccin Latte" },
     { value: "g80", labelText: "Catppuccin Frappé" },
@@ -57,7 +58,6 @@ tokens={tokens}/>
 </div>
 
 <style>
-
 	@import "carbon-components-svelte/css/all.css";
 
 	.app {

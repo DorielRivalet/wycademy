@@ -4,6 +4,14 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
+		<script>
+			// Retrieve the stored theme from localStorage
+			const storedTheme = localStorage.getItem('__carbon-theme');
+			const theme = storedTheme || 'g100'; // Default to g100 if no theme is stored
+	
+			// Set the theme directly in the head of the document
+			document.documentElement.setAttribute('theme', theme);
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
