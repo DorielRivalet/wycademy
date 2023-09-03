@@ -15,4 +15,35 @@ type Direction = typeof ODirection[keyof typeof ODirection];
 function run(dir: Direction) {}
 
 run(ODirection.Right);
+
+
+public enum FrontierWeaponType
+{
+    GreatSword,
+    HeavyBowgun,
+    Hammer,
+    Lance,
+    SwordAndShield,
+    LightBowgun,
+    DualSwords,
+    LongSword,
+    HuntingHorn,
+    Gunlance,
+    Bow,
+    Tonfa,
+    SwitchAxeF,
+    MagnetSpike,
+}
+
+public enum FrontierSharpness
+{
+    Red,
+    Orange,
+    Yellow,
+    Green,
+    Blue,
+    White,
+    Purple,
+    Cyan,
+}
 */
