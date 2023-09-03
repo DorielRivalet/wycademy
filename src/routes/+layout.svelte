@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Header from './Header.svelte';
 	import './styles.css';
 	import {Button} from 'carbon-components-svelte';
@@ -7,6 +7,7 @@
     RadioButtonGroup,
     RadioButton,
   } from "carbon-components-svelte";
+  import { themeTokens } from '$lib/themes/tokens.ts';
 
   let theme = "g100";
 	let tokens = {};
@@ -20,20 +21,7 @@
   ];
 
 	$: {
-		if (theme === "g100") {
-			tokens = {
-				"interactive-01": "var(--ctp-mocha-green)",
-				"hover-primary": "#ee5396",
-				"active-primary": "#9f1853",
-			};
-		} else {
-			// Update the tokens values for other themes
-			tokens = {
-				"interactive-01": "#ffffff",
-				"hover-primary": "#ffffff",
-				"active-primary": "#ffffff",
-			};
-		}
+		tokens = themeTokens[theme] || themeTokens.default;
 	}
 </script>
 
