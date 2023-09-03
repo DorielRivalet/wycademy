@@ -2,9 +2,6 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
-	import { frontierMath } from '$lib/frontierMath.js';
-
-  let sum = frontierMath.add(10, 2);
 </script>
 
 <svelte:head>
@@ -25,7 +22,7 @@
 	</h1>
 
 	<h2>
-		try editing {sum} <strong>src/routes/+page.svelte</strong>
+		try editing <strong>src/routes/+page.svelte</strong>
 	</h2>
 
 	<Counter />

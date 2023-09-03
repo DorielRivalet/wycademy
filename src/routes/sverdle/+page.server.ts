@@ -1,7 +1,8 @@
 import { fail } from '@sveltejs/kit';
 import { Game } from './game';
+import type { PageServerLoad, Actions } from './$types';
 
-export const load = ({ cookies }) => {
+export const load = (({ cookies }) => {
 	const game = new Game(cookies.get('sverdle'));
 
 	return {
@@ -21,7 +22,7 @@ export const load = ({ cookies }) => {
 		 */
 		answer: game.answers.length >= 6 ? game.answer : null
 	};
-};
+}) satisfies PageServerLoad;
 
 export const actions = {
 	/**
@@ -53,7 +54,7 @@ export const actions = {
 		const game = new Game(cookies.get('sverdle'));
 
 		const data = await request.formData();
-		const guess = (data.getAll('guess'));
+		const guess = data.getAll('guess') as string[];
 
 		if (!game.enter(guess)) {
 			return fail(400, { badGuess: true });
@@ -65,4 +66,4 @@ export const actions = {
 	restart: async ({ cookies }) => {
 		cookies.delete('sverdle');
 	}
-};
+} satisfies Actions;
