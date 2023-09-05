@@ -1,12 +1,19 @@
 <script>
 	import Counter from '$lib/client/components/Counter.svelte';
+	import logo from '$lib/client/images/logo.png';
 	import welcome from '$lib/client/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/client/images/svelte-welcome.png';
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Frontier Compendium - Home</title>
+	<meta name="description" content="A compendium of resources for Monster Hunter Frontier Z." />
+	<!--https://stackoverflow.com/questions/59335731/how-to-create-own-embed-site-for-discord-->
+	<meta content="Frontier Compendium" property="og:title" />
+	<meta content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet." property="og:description" />
+	<meta content="https://frontier-compendium.vercel.app/" property="og:url" />
+	<meta content={logo} property="og:image" />
+	<meta content="#FFFFFF" data-react-helmet="true" name="theme-color" />
 </svelte:head>
 
 <section>
