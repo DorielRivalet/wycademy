@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import logo from '$lib/images/logo.png';
-	import github from '$lib/images/github.svg';
-	import github_light from '$lib/images/github-light.svg';
+	import logo from '$lib/client/images/logo.png';
+	import github from '$lib/client/images/github.svg';
+	import github_light from '$lib/client/images/github-light.svg';
 	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
 
 	let settingsFill = "#000000";
@@ -73,12 +73,6 @@
 		justify-content: center;
 		width: 100%;
 		height: 100%;
-	}
-
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
 	}
 
 	.logo {
