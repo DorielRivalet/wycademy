@@ -1,6 +1,15 @@
+<script>
+		import logo from '$lib/client/images/logo.png';
+</script>
+
 <svelte:head>
-	<title>About</title>
-	<meta name="description" content="About Frontier Compendium" />
+	<title>Frontier Compendium - About</title>
+	<meta content="Frontier Compendium - About" property="og:title" />
+	<meta content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet." property="og:description" />
+	<meta name="description" content="A compendium of resources for Monster Hunter Frontier Z by Dorial Rivalet." />
+	<meta content="https://frontier-compendium.vercel.app/about" property="og:url" />
+	<meta content={logo} property="og:image" />
+	<meta content="#94e2d5" data-react-helmet="true" name="theme-color" />
 </svelte:head>
 
 <div class="text-column">

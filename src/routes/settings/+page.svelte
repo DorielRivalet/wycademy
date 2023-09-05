@@ -1,5 +1,6 @@
 <script lang="ts">	
 	import { getThemeIcon, setTheme } from '$lib/client/stores/theme.js';
+	import logo from '$lib/client/images/logo.png';
 	import {
 		Dropdown,
   } from "carbon-components-svelte";
@@ -7,8 +8,13 @@
 </script>
 
 <svelte:head>
-	<title>Settings</title>
-	<meta name="settings" content="Settings" />
+	<title>Frontier Compendium - Settings</title>
+	<meta content="Frontier Compendium - Settings" property="og:title" />
+	<meta content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet." property="og:description" />
+	<meta name="description" content="A compendium of resources for Monster Hunter Frontier Z by Dorial Rivalet." />
+	<meta content="https://frontier-compendium.vercel.app/settings" property="og:url" />
+	<meta content={logo} property="og:image" />
+	<meta content="#94e2d5" data-react-helmet="true" name="theme-color" />
 </svelte:head>
 
 <div>

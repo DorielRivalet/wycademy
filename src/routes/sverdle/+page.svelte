@@ -3,6 +3,7 @@
 	import { enhance } from '$app/forms';
 	import type { PageData, ActionData } from './$types';
 	import { reduced_motion } from './reduced-motion';
+	import logo from '$lib/client/images/logo.png';
 
 	export let data: PageData;
 
@@ -84,8 +85,13 @@
 <svelte:window on:keydown={keydown} />
 
 <svelte:head>
-	<title>Sverdle</title>
-	<meta name="description" content="A Wordle clone written in SvelteKit" />
+	<title>Frontier Compendium - Sverdle</title>
+	<meta content="Frontier Compendium - Sverdle" property="og:title" />
+	<meta content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet." property="og:description" />
+	<meta name="description" content="A compendium of resources for Monster Hunter Frontier Z by Dorial Rivalet." />
+	<meta content="https://frontier-compendium.vercel.app/sverdle" property="og:url" />
+	<meta content={logo} property="og:image" />
+	<meta content="#94e2d5" data-react-helmet="true" name="theme-color" />
 </svelte:head>
 
 <h1 class="visually-hidden">Sverdle</h1>

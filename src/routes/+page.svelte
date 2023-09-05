@@ -6,14 +6,14 @@
 </script>
 
 <svelte:head>
-	<title>Frontier Compendium - Home</title>
-	<meta name="description" content="A compendium of resources for Monster Hunter Frontier Z." />
 	<!--https://stackoverflow.com/questions/59335731/how-to-create-own-embed-site-for-discord-->
-	<meta content="Frontier Compendium" property="og:title" />
+	<title>Frontier Compendium - Home</title>
+	<meta content="Frontier Compendium - Home" property="og:title" />
 	<meta content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet." property="og:description" />
+	<meta name="description" content="A compendium of resources for Monster Hunter Frontier Z by Dorial Rivalet." />
 	<meta content="https://frontier-compendium.vercel.app/" property="og:url" />
 	<meta content={logo} property="og:image" />
-	<meta content="#FFFFFF" data-react-helmet="true" name="theme-color" />
+	<meta content="#94e2d5" data-react-helmet="true" name="theme-color" />
 </svelte:head>
 
 <section>
