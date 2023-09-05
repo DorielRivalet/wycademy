@@ -13,7 +13,7 @@
 	<meta name="description" content="A compendium of resources for Monster Hunter Frontier Z by Dorial Rivalet." />
 	<meta content="https://frontier-compendium.vercel.app/" property="og:url" />
 	<meta content={logo} property="og:image" />
-	<meta content="#94e2d5" data-react-helmet="true" name="theme-color" />
+	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
 </svelte:head>
 
 <section>
