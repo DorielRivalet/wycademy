@@ -3,10 +3,10 @@
 	import Header from './Header.svelte';
 	import './styles.css';
 	import {Button} from 'carbon-components-svelte';
+	import github from '$lib/images/github.svg';
+	import github_light from '$lib/images/github-light.svg';
 	import {
     Theme,
-    RadioButtonGroup,
-    RadioButton,
 		Dropdown,
   } from "carbon-components-svelte";
   import { themeTokens } from '$lib/themes/tokens.js';
@@ -28,20 +28,23 @@
 	}
 
 	function changeTheme(event: any){
-		switch (event.selectedId) {
+		let selectedThemeId:CarbonTheme = "g100";
+		switch (event.detail.selectedId) {
 			case "0":
-				theme = "g10";
+				selectedThemeId = "g10";
 				break;
 			case "1":
-				theme = "g80";
+				selectedThemeId = "g80";
 				break;
 			case "2":
-				theme = "g90";
+				selectedThemeId = "g90";
 				break;
 			case "3":
-				theme = "g100";
+				selectedThemeId = "g100";
 				break;
 		}
+
+		theme = selectedThemeId;
 	}
 
 	$: {
@@ -55,11 +58,6 @@ tokens={tokens}/>
 <div class="app">
 	<Header />
 	<div>
-		<RadioButtonGroup legendText="Color theme" bind:selected={theme}>
-			{#each themeOptions as option}
-				<RadioButton labelText={option.labelText} value={option.value} />
-			{/each}
-		</RadioButtonGroup>
 		<Dropdown
 			titleText="Theme"
 			hideLabel
@@ -84,7 +82,9 @@ tokens={tokens}/>
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<a href="https://github.com/DorielRivalet/frontier-compendium">
+			<img src={github} alt="GitHub" title="Go to GitHub repository"/>
+		</a>
 		<Button>Primary button</Button>
 	</footer>
 </div>

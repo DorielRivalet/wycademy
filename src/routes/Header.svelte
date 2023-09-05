@@ -1,13 +1,34 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
+	import logo from '$lib/images/logo.png';
 	import github from '$lib/images/github.svg';
+	import github_light from '$lib/images/github-light.svg';
+	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
+
+	let settingsFill = "#000000";
+
+	function getGitHubIcon(themeId: string) {
+		switch (themeId) {
+			case "0":
+				return github_light;
+			default:
+				return github;
+		}
+	}
+
+	function getSettingsFill(themeId: string): string {
+		return "ff0000";
+	}
+
+	$:{
+		settingsFill = getSettingsFill("themeId");
+	}
 </script>
 
 <header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
+	<div class="logo">
+		<a href="/">
+			<img src={logo} alt="Home" title="Home"/>
 		</a>
 	</div>
 
@@ -16,9 +37,6 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">About</a>
 			</li>
@@ -32,8 +50,8 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
+		<a href="/settings">
+			<Settings title="Settings" fill={settingsFill}/>
 		</a>
 	</div>
 </header>
@@ -60,6 +78,25 @@
 	.corner img {
 		width: 2em;
 		height: 2em;
+		object-fit: contain;
+	}
+
+	.logo {
+		width: 5em;
+		height: 5em;
+	}
+
+	.logo a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+	}
+
+	.logo img {
+		width: 4em;
+		height: 4em;
 		object-fit: contain;
 	}
 
