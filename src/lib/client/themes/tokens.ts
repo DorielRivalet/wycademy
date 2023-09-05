@@ -401,7 +401,7 @@ export const themeTokens = {
     "disabled-02": "var(--ctp-mocha-overlay1)",
     "disabled-03": "var(--ctp-mocha-overlay2)",
   },
-};
+} as const;
 
 /*
 Core color tokens

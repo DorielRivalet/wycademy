@@ -5,6 +5,9 @@
 		Dropdown,
   } from "carbon-components-svelte";
 	import { themeOptions } from '$lib/client/themes/options.js';
+	import Dot from '$lib/client/components/Dot.svelte';
+	import { frontierColorNames } from '$lib/client/themes/frontierColorNames';
+
 </script>
 
 <svelte:head>
@@ -35,13 +38,19 @@
 		<strong>{item.text}</strong>
 	</div>
 	</Dropdown>
+
+	<div class="color-grid-container">
+		{#each frontierColorNames as colorName}
+				<Dot color={colorName.var} name={colorName.name}/>
+			{/each}
+	</div>
 </div> 
 
-<div class="text-column">
-	<h1>Settings</h1>
-
-	<p>
-		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
-		using it with JavaScript disabled!
-	</p>
-</div>
+<style>
+	.color-grid-container {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		margin-top: 5%;
+		gap: 10px; /* Adjust the gap value as needed */
+	}
+</style>

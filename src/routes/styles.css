@@ -2,6 +2,7 @@
 @import '@fontsource/source-sans-pro';
 @import '@fontsource/source-serif-pro';
 @import '@fontsource-variable/source-code-pro';
+@import '$lib/client/styles/frontier.css';
 @import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
 
 /*

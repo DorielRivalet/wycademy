@@ -45,6 +45,7 @@
 		"sass": "^1.66.1",
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
+		"svelte-grid": "^5.1.2",
 		"svelte-preprocess": "^5.0.4",
 		"svelte-preprocess-import-assets": "^1.0.1",
 		"tslib": "^2.4.1",
