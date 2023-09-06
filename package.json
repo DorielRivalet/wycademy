@@ -37,6 +37,7 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.30.0",
+		"mdsvex": "^0.11.0",
 		"postcss": "^8.4.29",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",
@@ -59,6 +60,7 @@
 		"@fontsource-variable/source-code-pro": "^5.0.9",
 		"@fontsource/source-sans-pro": "^5.0.8",
 		"@fontsource/source-serif-pro": "^5.0.8",
-		"carbon-components": "^10.58.10"
+		"carbon-components": "^10.58.10",
+		"shiki": "^0.14.4"
 	}
 }

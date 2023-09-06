@@ -1,28 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import logo from '$lib/client/images/logo.png';
-	import github from '$lib/client/images/github.svg';
-	import github_light from '$lib/client/images/github-light.svg';
 	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
-
-	let settingsFill = "#000000";
-
-	function getGitHubIcon(themeId: string) {
-		switch (themeId) {
-			case "0":
-				return github_light;
-			default:
-				return github;
-		}
-	}
-
-	function getSettingsFill(themeId: string): string {
-		return "ff0000";
-	}
-
-	$:{
-		settingsFill = getSettingsFill("themeId");
-	}
+	import { LogoGithub } from 'carbon-icons-svelte';
+  import { Link } from "carbon-components-svelte";
 </script>
 
 <header>
@@ -49,9 +30,12 @@
 		</svg>
 	</nav>
 
-	<div class="corner">
+	<div class="cornerOptions">
+		<a href="https://github.com/DorielRivalet/frontier-compendium">
+			<LogoGithub title="GitHub"/>		
+		</a>
 		<a href="/settings">
-			<Settings title="Settings" fill={settingsFill}/>
+			<Settings title="Settings"/>
 		</a>
 	</div>
 </header>
@@ -62,17 +46,13 @@
 		justify-content: space-between;
 	}
 
-	.corner {
-		width: 3em;
-		height: 3em;
+	.cornerOptions {
+		padding-block: .5rem;
+		margin: 5px;
 	}
 
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
+	.cornerOptions > a {
+		margin: 10px;
 	}
 
 	.logo {
@@ -156,5 +136,9 @@
 
 	a:hover {
 		color: var(--ctp-mocha-red);
+	}
+
+	a {
+		color: inherit;  /* Make the link color inherit from the parent element */
 	}
 </style>

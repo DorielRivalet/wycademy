@@ -10,7 +10,7 @@
 	<title>Frontier Compendium - Home</title>
 	<meta content="Frontier Compendium - Home" property="og:title" />
 	<meta content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet." property="og:description" />
-	<meta name="description" content="A compendium of resources for Monster Hunter Frontier Z by Dorial Rivalet." />
+	<meta name="description" content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet." />
 	<meta content="https://frontier-compendium.vercel.app/" property="og:url" />
 	<meta content={logo} property="og:image" />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
