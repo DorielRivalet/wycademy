@@ -2,8 +2,8 @@
 	import { page } from '$app/stores';
 	import logo from '$lib/client/images/logo.png';
 	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
-	import { LogoGithub } from 'carbon-icons-svelte';
-  import { Link } from "carbon-components-svelte";
+	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
+  import Link from "carbon-components-svelte/src/Link/Link.svelte";
 </script>
 
 <header>

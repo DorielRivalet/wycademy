@@ -1,9 +1,7 @@
 <script lang="ts">	
 	import { getThemeIcon, setTheme } from '$lib/client/stores/theme.js';
 	import logo from '$lib/client/images/logo.png';
-	import {
-		Dropdown,
-  } from "carbon-components-svelte";
+	import Dropdown from "carbon-components-svelte/src/Dropdown/Dropdown.svelte";
 	import { themeOptions } from '$lib/client/themes/options.js';
 	import ColorDot from '$lib/client/components/ColorDot.svelte';
 	import { frontierColorNames } from '$lib/client/themes/frontierColorNames';
