@@ -3,7 +3,7 @@
 	import logo from '$lib/client/images/logo.png';
 	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
 	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
-  import Link from "carbon-components-svelte/src/Link/Link.svelte";
+	import Link from "carbon-components-svelte/src/Link/Link.svelte";
 </script>
 
 <header>
@@ -30,13 +30,17 @@
 		</svg>
 	</nav>
 
-	<div class="cornerOptions">
-		<a href="https://github.com/DorielRivalet/frontier-compendium">
-			<LogoGithub title="GitHub"/>		
-		</a>
-		<a href="/settings">
-			<Settings title="Settings"/>
-		</a>
+	<div class="container-links">
+		<div class="container-link">
+			<Link href="https://github.com/DorielRivalet/frontier-compendium">
+				<LogoGithub title="GitHub" size='24'/>		
+			</Link>
+		</div>
+		<div class="container-link">
+			<Link href="/site-settings" class="link">
+				<Settings title="Site Settings" size='24'/>
+			</Link>
+		</div>	
 	</div>
 </header>
 
@@ -46,13 +50,15 @@
 		justify-content: space-between;
 	}
 
-	.cornerOptions {
+	.container-link{
 		padding-block: .5rem;
-		margin: 5px;
 	}
 
-	.cornerOptions > a {
-		margin: 10px;
+	.container-links {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-right: .5rem;
 	}
 
 	.logo {

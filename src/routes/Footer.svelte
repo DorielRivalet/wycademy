@@ -1,8 +1,7 @@
 <script lang="ts">
-	import * as config from '$lib/config.js';
+	import * as config from '$lib/constants';
 	import './styles.css';
 	import Link from "carbon-components-svelte/src/Link/Link.svelte";
-
 </script>
 
 <footer>

@@ -3,8 +3,8 @@
 	import Footer from './Footer.svelte';
 	import './styles.css';
 	import Theme from "carbon-components-svelte/src/Theme/Theme.svelte";
-	import { theme } from '$lib/client/stores/theme.js';
-  import { themeTokens } from '$lib/client/themes/tokens.js';
+	import { theme } from '$lib/client/stores/theme';
+  import { themeTokens } from '$lib/client/themes/tokens';
 
 	let tokens = themeTokens[$theme]; // needed?
 

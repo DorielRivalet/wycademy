@@ -6,7 +6,6 @@ import type { CarbonTheme } from 'carbon-components-svelte/types/Theme/Theme.sve
 
 const defaultValue:CarbonTheme = "g100";
 const initialValue:CarbonTheme = browser ? window.localStorage.getItem('__carbon-theme') as CarbonTheme ?? defaultValue : defaultValue;
-
 export const theme = writable<CarbonTheme>(initialValue);
 
 theme.subscribe((value) => {

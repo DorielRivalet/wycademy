@@ -137,7 +137,7 @@ body {
 	margin: 0;
 	background-attachment: fixed;
 	background-size: 100vw 100vh;
-	transition: background-color .5s ease, color .5s ease;
+	transition: background-color .25s ease, color .25s ease;
 }
 
 h1,
