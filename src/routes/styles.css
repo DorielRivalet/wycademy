@@ -132,6 +132,11 @@ Labels	Hex	RGB	HSL
 	color: var(--color-text);
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: .2s;
+}
+
 body {
 	min-height: 100vh;
 	margin: 0;
@@ -199,6 +204,14 @@ button:focus:not(:focus-visible) {
 @media (min-width: 720px) {
 	h1 {
 		font-size: 2.4rem;
+	}
+}
+
+@media (prefers-reduced-motion) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
 	}
 }
 

@@ -1,32 +1,28 @@
 <script lang="ts">
+	import './styles.css';
 	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
-	import './styles.css';
+	import ViewTransition from './Navigation.svelte'
 	import Theme from "carbon-components-svelte/src/Theme/Theme.svelte";
 	import { theme } from '$lib/client/stores/theme';
   import { themeTokens } from '$lib/client/themes/tokens';
 
-	let tokens = themeTokens[$theme]; // needed?
-
-	$: {
-		tokens = themeTokens[$theme] || themeTokens.default;
-	}
+	$: tokens = themeTokens[$theme] || themeTokens.default;
 </script>
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme"
 {tokens}/>
-
 <div class="app">
+	<ViewTransition />
 	<Header />
-
 	<main>
 		<slot />	
 	</main>
-
 	<Footer/>
 </div>
 
 <style>
+	/* TODO do i put this here or somewhere else?*/
 	@import "carbon-components-svelte/css/all.css";
 
 	.app {
