@@ -1,9 +1,9 @@
 <!--
 @component
-Shows a section heading (excluding level 1) with the following options:
+Shows a section heading (excluding level 1) with the following optional values:
 
-- Clickable URI fragment icon.
-- Horizontal line separator.
+- Show clickable URI fragment icon. Default: true.
+- Show horizontal line separator. Default: true.
 
 ### Example usage
 
@@ -12,7 +12,7 @@ Shows a section heading (excluding level 1) with the following options:
     import SectionHeading from "$lib/components/SectionHeading.svelte";
 </script>
 
-<SectionHeading title="Gear" level={3} withIcon withSeparator/>
+<SectionHeading title="Gear" level={3} withIcon={false} withSeparator={false}/>
 ```
 -->
 <script lang='ts'>
@@ -23,18 +23,25 @@ Shows a section heading (excluding level 1) with the following options:
 	export let title: string;
 	/** The level of the section heading*/
   export let level: 2 | 3 | 4 | 5 | 6;
+	export let withIcon: boolean = true;
+	export let withSeparator: boolean = true;
 	const tag = 'h'+level;
+	let titleClass = withIcon ? 'title-text' : '';
 </script>
 
 <svelte:element this={tag} id={slugify(title, {lower: true})} class="section-heading">
-	<a href={"#"+slugify(title, {lower: true})} class="permalink">
-		<LinkIcon />
-	</a>
-	<span class="title-text">
+	{#if withIcon}
+		<a href={"#"+slugify(title, {lower: true})} class="permalink">
+			<LinkIcon />
+		</a>
+	{/if}
+	<span class={titleClass}>
 		{title}
 	</span>
 </svelte:element>
-<hr>
+{#if withSeparator}
+	<hr>
+{/if}
 
 <style>
 	.section-heading {
