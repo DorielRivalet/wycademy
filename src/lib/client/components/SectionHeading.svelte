@@ -1,8 +1,27 @@
+<!--
+@component
+Shows a section heading (excluding level 1) with the following options:
+
+- Clickable URI fragment icon.
+- Horizontal line separator.
+
+### Example usage
+
+```svelte
+<script>
+    import SectionHeading from "$lib/components/SectionHeading.svelte";
+</script>
+
+<SectionHeading title="Gear" level={3} withIcon withSeparator/>
+```
+-->
 <script lang='ts'>
 	// https://stackoverflow.com/questions/61303237/how-to-set-dynamic-html-tag-according-to-props-in-svelte
 	import slugify from 'slugify';
 	import LinkIcon from "carbon-icons-svelte/lib/Link.svelte";
+	/** The name of the section heading*/
 	export let title: string;
+	/** The level of the section heading*/
   export let level: 2 | 3 | 4 | 5 | 6;
 	const tag = 'h'+level;
 </script>
@@ -43,7 +62,7 @@
   }
 
 	h2, h3, h4, h5, h6{
-		margin-top: 1rem;
+		margin-top: 2rem;
 	}
 
 	a {
@@ -51,6 +70,6 @@
 	}
 
 	hr {
-		opacity: .5;
+		opacity: .25;
 	}
 </style>

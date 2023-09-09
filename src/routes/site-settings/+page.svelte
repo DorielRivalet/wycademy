@@ -71,15 +71,7 @@
 	<div>
 		{#each frontierColorNames as colorName, i}
 		<section>
-			<h2 id={slugify(colorName.name, {lower: true})} class='header-title'>
-				<a href={"#"+slugify(colorName.name, {lower: true})} class="permalink">
-					<LinkIcon />
-				</a>
-				<span class="title-text">
-					{colorName.name}
-				</span>
-			</h2>
-			<hr>
+			<SectionHeading title={colorName.name} level={2}/>
 			<div class="container-color-grid">
 				{#each frontierColorNames[i].values as colorValue}
 					<ColorDot color={colorValue.var} name={colorValue.name}/>
@@ -90,11 +82,11 @@
 	</div>
 
 	<section>
-		<h3>Monster EHP Formula</h3>
+		<SectionHeading title={'Monster EHP Formula'} level={3}/>
 		{@html monsterHPFormula}
 	</section>
 	<section>
-		<h3>Monster EHP Values</h3>
+		<SectionHeading title={'Monster EHP Values'} level={3}/>
 		{@html display(EHP)}
 	</section>
 	<Button on:click={increaseMonsterHP}>Increase monster True HP</Button>
