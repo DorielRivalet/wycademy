@@ -16,7 +16,6 @@
 	"devDependencies": {
 		"@carbon/charts-svelte": "^1.11.21",
 		"@carbon/styles": "^1.37.0",
-		"@fontsource/fira-mono": "^4.5.10",
 		"@neoconfetti/svelte": "^1.0.0",
 		"@playwright/test": "^1.28.1",
 		"@rollup/plugin-typescript": "^11.1.3",
@@ -57,14 +56,11 @@
 	"type": "module",
 	"dependencies": {
 		"@carbon/layout": "^11.19.0",
-		"@fontsource-variable/source-code-pro": "^5.0.9",
-		"@fontsource/source-sans-pro": "^5.0.8",
-		"@fontsource/source-serif-pro": "^5.0.8",
+		"@ibm/plex": "^6.3.0",
 		"carbon-components": "^10.58.10",
 		"mathjs": "^11.11.0",
 		"mathlifier": "^1.3.4",
 		"mermaid": "^10.4.0",
-		"shiki": "^0.14.4",
 		"slugify": "^1.6.6"
 	}
 }

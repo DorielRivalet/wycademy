@@ -18,22 +18,20 @@
   import NotificationOff from "carbon-icons-svelte/lib/NotificationOff.svelte";
   import VolumeUp from "carbon-icons-svelte/lib/VolumeUp.svelte";
   import VolumeMute from "carbon-icons-svelte/lib/VolumeMute.svelte";
-  import { InlineNotification } from "carbon-components-svelte";
+  import { InlineNotification, LocalStorage } from "carbon-components-svelte";
 	import { onMount } from 'svelte';
 	import mermaid from 'mermaid';
+	import { soundStore, pushNotificationsStore, onNotificationToggle, onSoundToggle } from '$lib/client/stores/toggles';
+	import { onVolumeChange, volumeStore } from '$lib/client/stores/volume';
 
 	onMount(() => {
-        mermaid.initialize({ startOnLoad: true, flowchart: { useMaxWidth: false, }, });
-				mermaid.contentLoaded();
-    });
+		mermaid.initialize({ startOnLoad: true, flowchart: { useMaxWidth: false, }, fontFamily: 'IBM Plex Sans'});
+		mermaid.contentLoaded();
+	});
 
 	const monsterHPFormula = display('EHP = \\frac{THP}{DEF}');
 	let monsterHP = 30_000;
 	let defrate = 0.03;
-
-	// TODO
-	let notificationPushEnabled = false;
-	let soundEnabled = false;
 
 	function calculateEHP(): string {
 		let ans = divide(monsterHP, defrate);
@@ -47,14 +45,6 @@
 	function increaseMonsterDefrate() {
 		// https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
 		defrate = parseFloat((defrate + 0.01).toFixed(14));
-	}
-
-	function onNotificationToggle(e: { detail: { toggled: boolean; }; }){
-		notificationPushEnabled = !notificationPushEnabled;
-	}
-
-	function onSoundToggle(e: { detail: { toggled: boolean; }; }){
-		soundEnabled = !soundEnabled;
 	}
 
 	$: EHP = `{${calculateEHP()}} = \\frac{${monsterHP}}{${defrate}}`;
@@ -71,7 +61,7 @@
 </svelte:head>
 
 <div>
-	<h1>Site Settings</h1>
+	<h1>Site Preferences</h1>
 	<InlineNotification
   lowContrast
 	hideCloseButton
@@ -138,25 +128,25 @@
 
 	<div class="setting-container">
 		<div>
-			{#if notificationPushEnabled}
+			{#if $pushNotificationsStore}
 				<Notification size={32}/>
 			{:else}
 				<NotificationOff size={32}/>
 			{/if}
 		</div>
-		<Toggle labelText="Push notifications" on:toggle={onNotificationToggle}/>
+		<Toggle labelText="Push notifications" bind:toggled={$pushNotificationsStore} on:toggle={onNotificationToggle}/>
 	</div>
 
 	<div class="setting-container">
 		<div>
-			{#if soundEnabled}
+			{#if $soundStore || $volumeStore === 0}
 				<VolumeUp size={32}/>
 			{:else}
 				<VolumeMute size={32}/>
 			{/if}
 		</div>
-		<Toggle labelText="Sound" on:toggle={onSoundToggle}/>
-		<Slider labelText="Volume" value={0}/>
+		<Toggle labelText="Sound" on:toggle={onSoundToggle} bind:toggled={$soundStore}/>
+		<Slider labelText="Volume" required on:change={onVolumeChange} value={$volumeStore}/>
 	</div>
 	<pre><code class="mermaid">
 		graph TD;
@@ -207,7 +197,11 @@
 				ms8--> ms9[Magnet Gun];
 				ms9--> ms10[Lure monster to wall];
 	</code></pre>
-</div> 
+</div>
+
+<LocalStorage bind:value={$soundStore} key="__sound-enabled" />
+<LocalStorage bind:value={$pushNotificationsStore} key="__push-notifications-enabled" />
+<LocalStorage bind:value={$volumeStore} key="__volume" />
 
 <style>
 	.setting-container{

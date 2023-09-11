@@ -210,10 +210,6 @@
 		flex: 1;
 	}
 
-	.how-to-play {
-		color: var(--color-text);
-	}
-
 	.how-to-play::before {
 		content: 'i';
 		display: inline-block;
@@ -223,7 +219,7 @@
 		height: 1em;
 		padding: 0.2em;
 		line-height: 1;
-		border: 1.5px solid var(--color-text);
+		border: 1.5px solid #000000;
 		border-radius: 50%;
 		text-align: center;
 		margin: 0 0.5em 0 0;

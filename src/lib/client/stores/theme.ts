@@ -8,11 +8,27 @@ const defaultValue:CarbonTheme = "g100";
 const initialValue:CarbonTheme = browser ? window.localStorage.getItem('__carbon-theme') as CarbonTheme ?? defaultValue : defaultValue;
 export const theme = writable<CarbonTheme>(initialValue);
 
-theme.subscribe((value) => {
-  if (browser){
-    window.localStorage.setItem('__carbon-theme', value);
-  }
-});
+// im using persist in theme component instead. so this is not needed.
+// theme.subscribe((value) => {
+//   if (browser){
+//     window.localStorage.setItem('__carbon-theme', value);
+//   }
+// });
+/* 
+Use this instead for components, as an example:
+
+  export let theme = "white";
+
+  // Set to `true` to persist the theme using window.localStorage
+  export let persist = false;
+
+  // Specify the local storage key 
+  export let persistKey = "theme";
+
+{#if persist}
+  <LocalStorage bind:value="{theme}" key="{persistKey}" />
+{/if}
+*/
 
 export function getThemeIcon(themeId: string) {
   switch (themeId) {

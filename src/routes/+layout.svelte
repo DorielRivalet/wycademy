@@ -22,9 +22,6 @@
 </div>
 
 <style>
-	/* TODO do i put this here or somewhere else?*/
-	@import "carbon-components-svelte/css/all.css";
-
 	.app {
 		display: flex;
 		flex-direction: column;
@@ -41,5 +38,4 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
-
 </style>
