@@ -193,7 +193,7 @@
 			force: 0.7,
 			stageWidth: window.innerWidth,
 			stageHeight: window.innerHeight,
-			colors: ['#ff3e00', '#40b3ff', '#676778']
+			colors: ['#f38ba8', '#a6e3a1', '#89b4fa']
 		}}
 	/>
 {/if}

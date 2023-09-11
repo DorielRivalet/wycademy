@@ -9,7 +9,7 @@
 <header>
 	<div class="logo">
 		<a href="/">
-			<img src={logo} alt="Home" title="Home"/>
+			<img src={logo} alt="Home"/>
 		</a>
 	</div>
 
@@ -33,12 +33,12 @@
 	<div class="container-links">
 		<div class="container-link">
 			<Link href="https://github.com/DorielRivalet/frontier-compendium">
-				<LogoGithub title="GitHub" size='24'/>		
+				<LogoGithub size='24'/>		
 			</Link>
 		</div>
 		<div class="container-link">
-			<Link href="/site-settings" class="link">
-				<Settings title="Site Settings" size='24'/>
+			<Link href="/site-preferences" class="link">
+				<Settings size='24'/>
 			</Link>
 		</div>	
 	</div>

@@ -14,6 +14,8 @@ Shows a section heading (excluding level 1) with the following optional values:
 
 <SectionHeading title="Gear" level={3} withIcon={false} withSeparator={false}/>
 ```
+
+See also: `https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web#fragment`
 -->
 <script lang='ts'>
 	// https://stackoverflow.com/questions/61303237/how-to-set-dynamic-html-tag-according-to-props-in-svelte

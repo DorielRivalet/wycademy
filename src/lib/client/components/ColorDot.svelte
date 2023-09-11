@@ -1,17 +1,32 @@
 <script lang="ts">
+  import { Popover } from "carbon-components-svelte";
+
   export let color: string;
   export let name: string;
+
+  let showPopover = false;
 
   function copyColorToClipboard() {
     const styles = getComputedStyle(document.documentElement);
     const colorValue = styles.getPropertyValue(color);
     navigator.clipboard.writeText(colorValue);
+
+    showPopover = true;
+
+    setTimeout(function() {
+      showPopover = false;
+    }, 2000);
   }
 </script>
 
 <div class="container">
   <p class="title">{name}</p>
-  <button on:click={copyColorToClipboard} title="Click to copy color to clipboard" class="dot" style="background-color: var({color})"/>
+  <div>
+    <button on:click={copyColorToClipboard} type="button" class="dot" aria-label={name} style="background-color: var({color})"/>
+    <Popover caret relative open={showPopover}>
+      <div style="padding: var(--cds-spacing-03)">Copied to clipboard!</div>
+    </Popover>
+  </div>
 </div>
 
 <style>

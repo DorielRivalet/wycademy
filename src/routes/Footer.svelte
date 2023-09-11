@@ -1,12 +1,12 @@
 <script lang="ts">
-	import * as config from '$lib/constants';
+	import * as constant from '$lib/constants';
 	import './styles.css';
 	import Link from "carbon-components-svelte/src/Link/Link.svelte";
 </script>
 
 <footer>
 	<div class="copyright">
-		<Link href="{config.authorGitHub}">{config.author} &copy {new Date().getUTCFullYear()}</Link>
+		<Link href="{constant.authorGitHub}">{constant.author} &copy {new Date().getUTCFullYear()}</Link>
 	</div>
 </footer>
 
