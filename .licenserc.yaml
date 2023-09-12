@@ -24,6 +24,7 @@ header:
     - '.prettierignore'
     - '.eslintignore'
     - 'images/'
+    - '.npmrc'
 
   license-location-threshold: 80 # <10>
 
