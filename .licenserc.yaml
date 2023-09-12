@@ -1,0 +1,25 @@
+header:
+  license:
+    spdx-id: MIT
+    copyright-owner: Doriel Rivalet
+    software-name: frontier-compendium
+    
+  paths-ignore:
+    - 'dist'
+    - 'licenses'
+    - '**/*.md'
+    - 'LICENSE'
+    - 'NOTICE'
+    - 'node_modules/'
+    - 'docs/'
+    - 'static/'
+    - '.sveltekit/'
+
+  license-location-threshold: 80 # <10>
+
+  comment: on-failure
+
+# If you don't want to check dependencies' license compatibility, remove the following part
+dependency:
+  files:
+    - package.json      # If this is a npm project.
