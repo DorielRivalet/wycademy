@@ -1,0 +1,48 @@
+name: Add License Headers
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"  # Run every Sunday at midnight UTC
+
+jobs:
+  add-license-header:
+    runs-on: ubuntu-latest
+    name: Automatically add missing license headers
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Check if commit was made by github-actions[bot]
+        id: check_last_commit_author
+        run: |
+          LAST_COMMIT_AUTHOR=$(git log -1 --format="%cn")
+          echo "Last commit author: $LAST_COMMIT_AUTHOR"
+          if [ "$LAST_COMMIT_AUTHOR" = "github-actions[bot]" ]; then
+            echo "Last commit was already made by github-actions[bot]. Cancelling the workflow."
+            exit 1
+          fi
+        shell: bash
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Run licenser script
+        run: bun ./scripts/licenser.js
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'style(bot): add license headers'
+          title: 'Add license headers'
+          reviewers: DorielRivalet
+          branch: create-pull-request/add-license-headers
