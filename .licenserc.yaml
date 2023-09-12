@@ -27,6 +27,8 @@ header:
     - '.npmrc'
     - '.prettierrc'
     - '*.json'
+    - '*.svg'
+    - '.github/'
 
   license-location-threshold: 80 # <10>
 
