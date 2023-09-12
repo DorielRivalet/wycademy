@@ -26,8 +26,7 @@ header:
     - 'images/'
     - '.npmrc'
     - '.prettierrc'
-    - 'package-lock.json'
-    - 'package.json'
+    - '*.json'
 
   license-location-threshold: 80 # <10>
 
