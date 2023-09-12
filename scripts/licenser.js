@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+console.log('Running licenser script...');
 import bun from 'bun';
 import { promises, createReadStream } from 'fs';
 import { join, extname } from 'path';
 const { ArrayBufferSink, } = bun;
-
+console.log('Setting up values...');
 const author = 'Doriel Rivalet'
 const licenseMessageLine1 = `© ${new Date().getUTCFullYear()} ${author}.`
 const licenseMessageLine2 = 'Use of this source code is governed by a MIT license that can be';
@@ -74,3 +75,5 @@ async function processFile(filePath) {
 processDirectory('.').catch(error => {
   console.error(`An error occurred: ${error.message}`);
 });
+
+console.log('Finishing script');
