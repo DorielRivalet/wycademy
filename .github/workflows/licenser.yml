@@ -12,7 +12,6 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
-      actions: write
       
     steps:
       - name: Check out repo
