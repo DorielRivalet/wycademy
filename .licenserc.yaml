@@ -29,6 +29,10 @@ header:
     - '**/*.json'
     - '**/*.svg'
     - '.github/'
+    - '**/*.txt'
+    - '**/*.toml'
+    - '**/*.adoc'
+    - '**/*.svx'
 
   license-location-threshold: 80 # <10>
 
