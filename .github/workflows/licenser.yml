@@ -11,6 +11,7 @@ jobs:
     name: Automatically add missing license headers
     permissions:
       pull-requests: write
+      contents: write
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -46,3 +47,6 @@ jobs:
           title: 'Add license headers'
           reviewers: DorielRivalet
           branch: create-pull-request/add-license-headers
+          add-paths: |
+            ./
+  
