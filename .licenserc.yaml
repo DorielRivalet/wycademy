@@ -1,8 +1,11 @@
 header:
-  license:
-    spdx-id: MIT
-    copyright-owner: Doriel Rivalet
-    software-name: frontier-compendium
+  - license:
+      content: |
+          © [year] [owner]
+          Use of this source code is governed by a MIT license that can be
+          found in the LICENSE file.
+      copyright-owner: 'Doriel Rivalet'
+      software-name: frontier-compendium
     
   paths-ignore:
     - 'dist'
