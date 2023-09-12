@@ -25,6 +25,9 @@ header:
     - '.eslintignore'
     - 'images/'
     - '.npmrc'
+    - '.prettierrc'
+    - 'package-lock.json'
+    - 'package.json'
 
   license-location-threshold: 80 # <10>
 
