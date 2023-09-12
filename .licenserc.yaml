@@ -17,6 +17,13 @@ header:
     - 'docs/'
     - 'static/'
     - '.sveltekit/'
+    - '.gitattributes'
+    - '.gitignore'
+    - '.eslintignore'
+    - 'CODEOWNERS'
+    - '.prettierignore'
+    - '.eslintignore'
+    - 'images/'
 
   license-location-threshold: 80 # <10>
 
