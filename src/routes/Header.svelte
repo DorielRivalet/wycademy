@@ -1,15 +1,26 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import logo from '$lib/client/images/logo.png';
+	import logoAlt from '$lib/client/images/logo_alternative.png';
 	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
 	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
 	import Link from "carbon-components-svelte/src/Link/Link.svelte";
+
+	let imgSrc = logo;
+
+	function handleMouseEnter() {
+		imgSrc = logoAlt;
+	}
+
+	function handleMouseLeave() {
+		imgSrc = logo;
+	}
 </script>
 
 <header>
 	<div class="logo">
 		<a href="/">
-			<img src={logo} alt="Home"/>
+			<img src={imgSrc} on:mouseenter={handleMouseEnter} on:mouseleave={handleMouseLeave} alt="Logo" />
 		</a>
 	</div>
 
@@ -30,7 +41,7 @@
 		</svg>
 	</nav>
 
-	<div class="container-links">
+	<nav class="container-links">
 		<div class="container-link">
 			<Link href="https://github.com/DorielRivalet/frontier-compendium">
 				<LogoGithub size='24'/>		
@@ -38,13 +49,23 @@
 		</div>
 		<div class="container-link">
 			<Link href="/site-preferences" class="link">
-				<Settings size='24'/>
+				<div class="settings-icon">
+					<Settings size='24' />
+				</div>
 			</Link>
 		</div>	
-	</div>
+	</nav>
 </header>
 
 <style>
+	.settings-icon {
+    transition: transform 1s ease-in-out;
+  }
+
+  .settings-icon:hover {
+    transform: rotate(-45deg);
+  }
+
 	header {
 		display: flex;
 		justify-content: space-between;

@@ -77,8 +77,4 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	a {
 		color: inherit;  /* Make the link color inherit from the parent element */
 	}
-
-	hr {
-		opacity: .25;
-	}
 </style>

@@ -1,3 +1,4 @@
+/** Full list at https://github.com/DorielRivalet/mhfz-overlay/blob/main/docs/palette.md */
 export const frontierColorNames = [
   { 
     name: "Sharpness",
@@ -26,6 +27,19 @@ export const frontierColorNames = [
       { var: "--fz-rare-10", name: "10",},
       { var: "--fz-rare-11", name: "11",},
       { var: "--fz-rare-12", name: "12",},
+    ],
+  },
+
+  {
+    name: "Text", 
+    values: [
+      { var: "--fz-text-red", name: "Red",},
+      { var: "--fz-text-cyan", name: "Cyan",},
+      { var: "--fz-text-green", name: "Green",},
+      { var: "--fz-text-yellow", name: "Yellow",},
+      { var: "--fz-text-blue", name: "Blue",},
+      { var: "--fz-text-brown", name: "Brown",},
+      { var: "--fz-text-pink", name: "Pink",},
     ],
   },
 ];

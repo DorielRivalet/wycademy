@@ -1,12 +1,8 @@
-
+import { format } from 'mathjs';
 
 export const frontierMath = {
-  add: (a: number, b: number) => a + b,
-  subtract: (a: number, b: number) => a - b,
-  multiply: (a:number, b: number) => a * b,
-  divide: (a:number, b: number) => a / b,
+	calculateEHP: (monsterHP: number, defrate: number) => format(monsterHP / defrate, {precision: 0, notation: 'fixed'}),
 } as const;
-
 /*
 TODO
 

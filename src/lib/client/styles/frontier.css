@@ -17,4 +17,12 @@
   --fz-rare-10: #68ecec;
   --fz-rare-11: #cba6fa;
   --fz-rare-12: #ff435d;
+  --fz-text-red: #ff435d;
+  --fz-text-green: #56ff56;
+  --fz-text-yellow: #ffff50;
+  --fz-text-cyan: #57ffff;
+  --fz-text-blue: #4040ff;
+  --fz-text-pink: #ff84ff;
+  --fz-text-brown: #bf6464;
+  --font-game: 'MS Gothic', 'MS UI Gothic', Arial, sans-serif;
 }

@@ -39,6 +39,22 @@ export function getThemeIcon(themeId: string) {
   }
 }
 
+export function getThemeId(themeName: CarbonTheme) {
+  switch (themeName) {
+    case "g10":
+    case "white":
+      return "0";
+    case "g80":
+      return "1";
+    case "g90":
+      return "2";
+    case "g100":
+      return "3";
+    default:
+      return undefined;
+  }
+}
+
 export function setTheme(selectedId: string){
   let selectedThemeId:CarbonTheme = "g100";
   switch (selectedId) {

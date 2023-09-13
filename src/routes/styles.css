@@ -176,3 +176,7 @@ body {
 	width: 1px;
 	white-space: nowrap;
 }
+
+hr {
+	opacity: .25;
+}
