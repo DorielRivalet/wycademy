@@ -19,6 +19,7 @@ header:
     - '.sveltekit/'
     - '.gitattributes'
     - '.gitignore'
+    - '.gitkeep'
     - '.eslintignore'
     - 'CODEOWNERS'
     - '.prettierignore'
@@ -34,7 +35,7 @@ header:
     - '**/*.adoc'
     - '**/*.svx'
 
-  license-location-threshold: 80 # <10>
+  license-location-threshold: 80
 
   comment: on-failure
 
