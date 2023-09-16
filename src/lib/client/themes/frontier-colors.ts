@@ -40,6 +40,7 @@ export const frontierColorNames = [
       { var: "--fz-text-blue", name: "Blue",},
       { var: "--fz-text-brown", name: "Brown",},
       { var: "--fz-text-pink", name: "Pink",},
+      { var: "--fz-text-orange", name: "Orange",},
     ],
   },
 ];

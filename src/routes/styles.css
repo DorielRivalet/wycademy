@@ -1,7 +1,6 @@
-@import '$lib/client/styles/frontier.css';
 @import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
 @import "carbon-components-svelte/css/all.css";
-
+@import '$lib/client/styles/frontier.css';
 /*TODO: motion and spacing variables*/
 
 /*

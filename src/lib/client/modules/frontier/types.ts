@@ -16,4 +16,5 @@ export type FrontierWeaponSharpness = [
   White: number,
   Purple: number,
   Cyan: number,
-]
+];
+export type UICornerStyle = 0 | 1 | 2 | 3;

@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import { WeaponTypes } from "$lib/client/modules/frontier-objects";
+  import { WeaponTypes } from "$lib/client/modules/frontier/objects";
   import type { 
     FrontierElement, 
     FrontierEquipmentRank, 
@@ -7,9 +7,10 @@
     FrontierStatus, 
     FrontierWeaponID, 
     FrontierWeaponLength, 
-    FrontierWeaponSharpness,} from "$lib/client/modules/frontier-types";
+    FrontierWeaponSharpness,} from "$lib/client/modules/frontier/types";
 
   import FrontierWeaponSharpnessBar from "$lib/client/components/frontier/SharpnessBar.svelte";
+  import DecoratedBorder from "./DecoratedBorder.svelte";
 
   /** Truncated to 18 characters.*/
   export let name: string = 'Name';
@@ -48,30 +49,33 @@
   // TODO gou/automatic
 </script>
 
-<div class='container'>
-  <div class='page-1'>
-    <div class='header'>
-      <img src={WeaponTypes[weaponType].icon} alt='Weapon icon'/>
-      <div>
-        <div>{name}</div>
-        <div class='weapon-level'>Lv. {level}</div>
+<DecoratedBorder>
+  <div class='container'>
+    <div class='page-1'>
+      <div class='header'>
+        <img src={WeaponTypes[weaponType].icon} alt='Weapon icon'/>
+        <div>
+          <div>{name}</div>
+          <div class='weapon-level'>Lv. {level}</div>
+        </div>
       </div>
+      <div class='attack'>
+        <span class='text-yellow'>Attack: </span>{attack}
+      </div>
+      <div class='length'><span class='text-yellow'>Length: </span>{length}</div>
+      <div class='sharpness'>Sharpness</div>
+      <div class='bar'>
+        <FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost}/>
+        <div class='text-cyan'>{sharpnessBoostValue}</div>
+      </div>
+      <div class='element'>{elementType}: {element}</div>
+      <div class='zenith'>«{zenithSkill}»</div>
+      <div class='status'>{statusType}: {status}</div>
+      <div class='pages'>1/6</div>
     </div>
-    <div class='attack'>
-      <span class='text-yellow'>Attack: </span>{attack}
-    </div>
-    <div class='length'><span class='text-yellow'>Length: </span>{length}</div>
-    <div class='sharpness'>Sharpness</div>
-    <div class='bar'>
-      <FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost}/>
-      <div class='text-cyan'>{sharpnessBoostValue}</div>
-    </div>
-    <div class='element'>{elementType}: {element}</div>
-    <div class='zenith'>«{zenithSkill}»</div>
-    <div class='status'>{statusType}: {status}</div>
-    <div class='pages'>1/6</div>
   </div>
-</div>
+</DecoratedBorder>
+
 
 <style>
 
