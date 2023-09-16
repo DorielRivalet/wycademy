@@ -15,7 +15,7 @@
 	},
 	"devDependencies": {
 		"@carbon/charts-svelte": "^1.11.21",
-		"@carbon/styles": "^1.37.0",
+		"@carbon/styles": "^1.38.0",
 		"@neoconfetti/svelte": "^1.0.0",
 		"@playwright/test": "^1.28.1",
 		"@rollup/plugin-typescript": "^11.1.3",
