@@ -24,8 +24,8 @@
 	import { soundStore, pushNotificationsStore, onNotificationToggle, onSoundToggle } from '$lib/client/stores/toggles';
 	import { onVolumeChange, volumeStore } from '$lib/client/stores/volume';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
-	import { frontierMath } from '$lib/client/modules/frontier-functions';
-	import { SharpnessNames } from '$lib/client/modules/frontier-objects';
+	import { frontierMath } from '$lib/client/modules/frontier/functions';
+	import { SharpnessNames } from '$lib/client/modules/frontier/objects';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
   import NumberInput from "carbon-components-svelte/src/NumberInput/NumberInput.svelte";
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';

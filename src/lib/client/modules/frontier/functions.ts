@@ -2,7 +2,14 @@ import { format } from 'mathjs';
 
 export const frontierMath = {
 	calculateEHP: (monsterHP: number, defrate: number) => format(monsterHP / defrate, {precision: 0, notation: 'fixed'}),
+
 } as const;
+
+export const stringReplacements = {
+	chaliceDescription: (weapon: string) => `Awarded to those who obtained the #1 spot on a Z4, Musou, Upper Shiten or Conquest Lv9999 quest with ${weapon} at the end of the month.`,
+	chaliceTitle: (hiden: string, date: string) => `Chalice of the ${hiden} - ${date}`,
+} as const;
+
 /*
 TODO
 
