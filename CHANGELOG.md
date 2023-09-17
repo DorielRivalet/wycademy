@@ -1,5 +1,17 @@
 
 
+## [0.1.0](https://github.com/DorielRivalet/frontier-compendium/compare/0.1.0-alpha...0.1.0) (2023-09-17)
+
+
+### For Developers
+
+* bump version ([244e6a0](https://github.com/DorielRivalet/frontier-compendium/commit/244e6a0fb60b272b77a22fe522c2060826459ba9))
+* **deps:** add alex configuration ([131dddd](https://github.com/DorielRivalet/frontier-compendium/commit/131dddd215ef9b49df1f198456bc7b091b65899b))
+* **plugins:** update conventional-changelog ([aad199f](https://github.com/DorielRivalet/frontier-compendium/commit/aad199f2e59140c660a61d9589f4fd51beab43e6))
+* **plugins:** update conventional-changelog ([e9a4aab](https://github.com/DorielRivalet/frontier-compendium/commit/e9a4aabf53a1d01dc233d0ab3b15c57a608bcc6c))
+* update documentation ([d3fb95d](https://github.com/DorielRivalet/frontier-compendium/commit/d3fb95d34832a2db9efc59202ad7ebcbb4929795))
+* update versioning ([21f8e3c](https://github.com/DorielRivalet/frontier-compendium/commit/21f8e3cd9a44bb0935042552b28e214c5ce3cb7a))
+
 ## 0.1.0-alpha (2023-09-17)
 
 
