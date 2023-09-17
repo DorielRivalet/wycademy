@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm i --save-dev prettier-plugin-svelte prettier
-      - uses: actionsx/prettier@v3
+      - uses: actionsx/prettier@v2
         with:
           args: --check --plugin prettier-plugin-svelte .
