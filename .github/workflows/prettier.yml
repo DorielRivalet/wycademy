@@ -1,0 +1,14 @@
+name: Check files with Prettier
+
+on:
+  push:
+
+jobs:
+  run-prettier:
+    runs-on: ubuntu-latest
+    name: Run prettier
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actionsx/prettier@v2
+        with:
+          args: --check .
