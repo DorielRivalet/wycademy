@@ -3,6 +3,7 @@
 https://stackoverflow.com/questions/48295918/whats-the-point-of-using-enum-in-typescript
 Enums is handy to force type validations (not easy with constants) and it's easy to convert a readable enum to a number and vice a versa.
 
+
 enum Access {
   Read = 1,
   Write = 2,
