@@ -1,3 +1,9 @@
+<!--
+  ~ © 2023 Doriel Rivalet
+  ~ Use of this source code is governed by a MIT license that can be
+  ~ found in the LICENSE file.
+-->
+
 <svg version="1.1" id="svg2" width="64" height="64" viewBox="0 0 64 64">
   <g id="layer1" style="display:inline;opacity:0.994">
     <path

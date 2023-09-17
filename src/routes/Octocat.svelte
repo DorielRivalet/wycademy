@@ -1,3 +1,9 @@
+<!--
+  ~ © 2023 Doriel Rivalet
+  ~ Use of this source code is governed by a MIT license that can be
+  ~ found in the LICENSE file.
+-->
+
 <!-- github-ribbon -->
 <a
   href="https://github.com/DorielRivalet/frontier-compendium"
