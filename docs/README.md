@@ -3,5 +3,5 @@
 ## Versioning
 
 ```bash
-npm run release -- --prerelease=alpha
+npm run release
 ```
