@@ -1,3 +1,9 @@
+/*
+ * © 2023 Doriel Rivalet
+ * Use of this source code is governed by a MIT license that can be
+ * found in the LICENSE file.
+ */
+
 @import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
 @import 'carbon-components-svelte/css/all.css';
 @import '$lib/client/styles/frontier.css';

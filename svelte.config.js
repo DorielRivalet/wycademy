@@ -1,3 +1,9 @@
+/*
+ * © 2023 Doriel Rivalet
+ * Use of this source code is governed by a MIT license that can be
+ * found in the LICENSE file.
+ */
+
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import { importAssets } from 'svelte-preprocess-import-assets';

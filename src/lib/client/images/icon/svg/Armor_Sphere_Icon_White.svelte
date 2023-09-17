@@ -1,3 +1,9 @@
+<!--
+  ~ © 2023 Doriel Rivalet
+  ~ Use of this source code is governed by a MIT license that can be
+  ~ found in the LICENSE file.
+-->
+
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg width="64" height="64" viewBox="0 0 16.933333 16.933334" version="1.1">
