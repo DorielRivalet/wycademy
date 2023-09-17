@@ -1,7 +1,9 @@
 export function generateUsername(): string {
-  return randomChoice(names.types).toLowerCase() +
-  "-" +
-  randomChoice(names.monsters).toLowerCase();
+  return (
+    randomChoice(names.types).toLowerCase() +
+    '-' +
+    randomChoice(names.monsters).toLowerCase()
+  );
 }
 
 function randomChoice(arr: string[]): string {

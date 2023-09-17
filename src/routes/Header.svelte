@@ -1,64 +1,73 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import logo from '$lib/client/images/logo.png';
-	import logoAlt from '$lib/client/images/logo_alternative.png';
-	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
-	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
-	import Link from "carbon-components-svelte/src/Link/Link.svelte";
+  import { page } from '$app/stores';
+  import logo from '$lib/client/images/logo.png';
+  import logoAlt from '$lib/client/images/logo_alternative.png';
+  import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
+  import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
+  import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
-	let imgSrc = logo;
+  let imgSrc = logo;
 
-	function handleMouseEnter() {
-		imgSrc = logoAlt;
-	}
+  function handleMouseEnter() {
+    imgSrc = logoAlt;
+  }
 
-	function handleMouseLeave() {
-		imgSrc = logo;
-	}
+  function handleMouseLeave() {
+    imgSrc = logo;
+  }
 </script>
 
 <header>
-	<div class="logo">
-		<a href="/">
-			<img src={imgSrc} on:mouseenter={handleMouseEnter} on:mouseleave={handleMouseLeave} alt="Logo" />
-		</a>
-	</div>
+  <div class="logo">
+    <a href="/">
+      <img
+        src={imgSrc}
+        on:mouseenter={handleMouseEnter}
+        on:mouseleave={handleMouseLeave}
+        alt="Logo"
+      />
+    </a>
+  </div>
 
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
-	</nav>
+  <nav>
+    <svg viewBox="0 0 2 3" aria-hidden="true">
+      <path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
+    </svg>
+    <ul>
+      <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
+        <a href="/about">About</a>
+      </li>
+      <li
+        aria-current={$page.url.pathname.startsWith('/sverdle')
+          ? 'page'
+          : undefined}
+      >
+        <a href="/sverdle">Sverdle</a>
+      </li>
+    </ul>
+    <svg viewBox="0 0 2 3" aria-hidden="true">
+      <path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
+    </svg>
+  </nav>
 
-	<nav class="container-links">
-		<div class="container-link">
-			<Link href="https://github.com/DorielRivalet/frontier-compendium">
-				<LogoGithub size='24'/>		
-			</Link>
-		</div>
-		<div class="container-link">
-			<Link href="/site-preferences" class="link">
-				<div class="settings-icon">
-					<Settings size='24' />
-				</div>
-			</Link>
-		</div>	
-	</nav>
+  <nav class="container-links">
+    <div class="container-link">
+      <Link href="https://github.com/DorielRivalet/frontier-compendium">
+        <LogoGithub size="24" />
+      </Link>
+    </div>
+    <div class="container-link">
+      <Link href="/site-preferences" class="link">
+        <div class="settings-icon">
+          <Settings size="24" />
+        </div>
+      </Link>
+    </div>
+  </nav>
 </header>
 
 <style>
-	.settings-icon {
+  .settings-icon {
     transition: transform 1s ease-in-out;
   }
 
@@ -66,105 +75,105 @@
     transform: rotate(-45deg);
   }
 
-	header {
-		display: flex;
-		justify-content: space-between;
-	}
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
 
-	.container-link{
-		padding-block: .5rem;
-	}
+  .container-link {
+    padding-block: 0.5rem;
+  }
 
-	.container-links {
-		display: flex;
-		justify-content: space-between;
-		gap: 1rem;
-		margin-right: .5rem;
-	}
+  .container-links {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-right: 0.5rem;
+  }
 
-	.logo {
-		width: 5em;
-		height: 5em;
-	}
+  .logo {
+    width: 5em;
+    height: 5em;
+  }
 
-	.logo a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
+  .logo a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
 
-	.logo img {
-		width: 4em;
-		height: 4em;
-		object-fit: contain;
-	}
+  .logo img {
+    width: 4em;
+    height: 4em;
+    object-fit: contain;
+  }
 
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
+  nav {
+    display: flex;
+    justify-content: center;
+    --background: rgba(255, 255, 255, 0.7);
+  }
 
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
+  svg {
+    width: 2em;
+    height: 3em;
+    display: block;
+  }
 
-	path {
-		fill: var(--background);
-	}
+  path {
+    fill: var(--background);
+  }
 
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
+  ul {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    background: var(--background);
+    background-size: contain;
+  }
 
-	li {
-		position: relative;
-		height: 100%;
-	}
+  li {
+    position: relative;
+    height: 100%;
+  }
 
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
-	}
+  li[aria-current='page']::before {
+    --size: 6px;
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: calc(50% - var(--size));
+    border: var(--size) solid transparent;
+    border-top: var(--size) solid var(--color-theme-1);
+  }
 
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 0.5rem;
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
+  nav a {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 0.5rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: color 0.2s linear;
+  }
 
-	a:hover {
-		color: var(--ctp-mocha-red);
-	}
+  a:hover {
+    color: var(--ctp-mocha-red);
+  }
 
-	a {
-		color: inherit;  /* Make the link color inherit from the parent element */
-	}
+  a {
+    color: inherit; /* Make the link color inherit from the parent element */
+  }
 </style>

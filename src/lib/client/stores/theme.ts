@@ -1,11 +1,14 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
-import latteSquircle  from '$lib/client/images/latte_squircle.png';
-import macchiatoSquircle  from '$lib/client/images/macchiato_squircle.png';
+import latteSquircle from '$lib/client/images/latte_squircle.png';
+import macchiatoSquircle from '$lib/client/images/macchiato_squircle.png';
 import type { CarbonTheme } from 'carbon-components-svelte/types/Theme/Theme.svelte';
 
-const defaultValue:CarbonTheme = "g100";
-const initialValue:CarbonTheme = browser ? window.localStorage.getItem('__carbon-theme') as CarbonTheme ?? defaultValue : defaultValue;
+const defaultValue: CarbonTheme = 'g100';
+const initialValue: CarbonTheme = browser
+  ? (window.localStorage.getItem('__carbon-theme') as CarbonTheme) ??
+    defaultValue
+  : defaultValue;
 export const theme = writable<CarbonTheme>(initialValue);
 
 // im using persist in theme component instead. so this is not needed.
@@ -32,7 +35,7 @@ Use this instead for components, as an example:
 
 export function getThemeIcon(themeId: string) {
   switch (themeId) {
-    case "0":
+    case '0':
       return latteSquircle;
     default:
       return macchiatoSquircle;
@@ -41,34 +44,34 @@ export function getThemeIcon(themeId: string) {
 
 export function getThemeId(themeName: CarbonTheme) {
   switch (themeName) {
-    case "g10":
-    case "white":
-      return "0";
-    case "g80":
-      return "1";
-    case "g90":
-      return "2";
-    case "g100":
-      return "3";
+    case 'g10':
+    case 'white':
+      return '0';
+    case 'g80':
+      return '1';
+    case 'g90':
+      return '2';
+    case 'g100':
+      return '3';
     default:
       return undefined;
   }
 }
 
-export function setTheme(selectedId: string){
-  let selectedThemeId:CarbonTheme = "g100";
+export function setTheme(selectedId: string) {
+  let selectedThemeId: CarbonTheme = 'g100';
   switch (selectedId) {
-    case "0":
-      selectedThemeId = "g10";
+    case '0':
+      selectedThemeId = 'g10';
       break;
-    case "1":
-      selectedThemeId = "g80";
+    case '1':
+      selectedThemeId = 'g80';
       break;
-    case "2":
-      selectedThemeId = "g90";
+    case '2':
+      selectedThemeId = 'g90';
       break;
-    case "3":
-      selectedThemeId = "g100";
+    case '3':
+      selectedThemeId = 'g100';
       break;
   }
 

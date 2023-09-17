@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Popover } from "carbon-components-svelte";
+  import { Popover } from 'carbon-components-svelte';
 
   export let color: string;
   export let name: string;
@@ -13,7 +13,7 @@
 
     showPopover = true;
 
-    setTimeout(function() {
+    setTimeout(function () {
       showPopover = false;
     }, 2000);
   }
@@ -22,7 +22,13 @@
 <div class="container">
   <p class="title">{name}</p>
   <div>
-    <button on:click={copyColorToClipboard} type="button" class="dot" aria-label={name} style="background-color: var({color})"/>
+    <button
+      on:click={copyColorToClipboard}
+      type="button"
+      class="dot"
+      aria-label={name}
+      style="background-color: var({color})"
+    />
     <Popover caret relative open={showPopover}>
       <div style="padding: var(--cds-spacing-03)">Copied to clipboard!</div>
     </Popover>
@@ -30,7 +36,7 @@
 </div>
 
 <style>
-  .container{
+  .container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,10 +55,10 @@
   }
 
   .dot:hover {
-     cursor: pointer;
-   }
+    cursor: pointer;
+  }
 
-  .title{
+  .title {
     font-size: 1em;
   }
 

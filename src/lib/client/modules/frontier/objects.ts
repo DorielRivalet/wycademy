@@ -1,20 +1,24 @@
 // if bitfields are not needed, make an object instead.
 
-import type { FrontierWeaponClass, FrontierWeaponID, FrontierWeaponName } from "./types";
-import GreatSwordIcon from '$lib/client/images/weapon/svg/Great_Sword_Icon_White.svg'
-import LongSwordIcon from '$lib/client/images/weapon/svg/Long_Sword_Icon_White.svg'
-import DualSwordsIcon from '$lib/client/images/weapon/svg/Dual_Blades_Icon_White.svg'
-import SwordAndShieldIcon from '$lib/client/images/weapon/svg/Sword_and_Shield_Icon_White.svg'
-import GunlanceIcon from '$lib/client/images/weapon/svg/Gunlance_Icon_White.svg'
-import LanceIcon from '$lib/client/images/weapon/svg/Lance_Icon_White.svg'
-import HammerIcon from '$lib/client/images/weapon/svg/Hammer_Icon_White.svg'
-import HuntingHornIcon from '$lib/client/images/weapon/svg/Hunting_Horn_Icon_White.svg'
-import LightBowgunIcon from '$lib/client/images/weapon/svg/Light_Bowgun_Icon_White.svg'
-import HeavyBowgunIcon from '$lib/client/images/weapon/svg/Heavy_Bowgun_Icon_White.svg'
-import BowIcon from '$lib/client/images/weapon/svg/Bow_Icon_White.svg'
-import TonfaIcon from '$lib/client/images/weapon/svg/Tonfa_Icon_White.svg'
-import SwitchAxeFIcon from '$lib/client/images/weapon/svg/Switch_Axe_Icon_White.svg'
-import MagnetSpikeIcon from '$lib/client/images/weapon/svg/Magnet_Spike_Icon_White.svg'
+import type {
+  FrontierWeaponClass,
+  FrontierWeaponID,
+  FrontierWeaponName,
+} from './types';
+import GreatSwordIcon from '$lib/client/images/weapon/svg/Great_Sword_Icon_White.svelte';
+import LongSwordIcon from '$lib/client/images/weapon/svg/Long_Sword_Icon_White.svelte';
+import DualSwordsIcon from '$lib/client/images/weapon/svg/Dual_Blades_Icon_White.svelte';
+import SwordAndShieldIcon from '$lib/client/images/weapon/svg/Sword_and_Shield_Icon_White.svelte';
+import GunlanceIcon from '$lib/client/images/weapon/svg/Gunlance_Icon_White.svelte';
+import LanceIcon from '$lib/client/images/weapon/svg/Lance_Icon_White.svelte';
+import HammerIcon from '$lib/client/images/weapon/svg/Hammer_Icon_White.svelte';
+import HuntingHornIcon from '$lib/client/images/weapon/svg/Hunting_Horn_Icon_White.svelte';
+import LightBowgunIcon from '$lib/client/images/weapon/svg/Light_Bowgun_Icon_White.svelte';
+import HeavyBowgunIcon from '$lib/client/images/weapon/svg/Heavy_Bowgun_Icon_White.svelte';
+import BowIcon from '$lib/client/images/weapon/svg/Bow_Icon_White.svelte';
+import TonfaIcon from '$lib/client/images/weapon/svg/Tonfa_Icon_White.svelte';
+import SwitchAxeFIcon from '$lib/client/images/weapon/svg/Switch_Axe_Icon_White.svelte';
+import MagnetSpikeIcon from '$lib/client/images/weapon/svg/Magnet_Spike_Icon_White.svelte';
 
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
@@ -40,98 +44,98 @@ export const Sharpness = {
 
 // TODO svg
 export const WeaponTypes = [
-  { 
+  {
     id: 0 as FrontierWeaponID,
     name: 'Great Sword' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: GreatSwordIcon,
     hiden: 'Sword King',
   },
-  { 
+  {
     id: 1 as FrontierWeaponID,
     name: 'Heavy Bowgun' as FrontierWeaponName,
     class: 'Gunner' as FrontierWeaponClass,
     icon: HeavyBowgunIcon,
     hiden: 'Gun Sage',
   },
-  { 
+  {
     id: 2 as FrontierWeaponID,
     name: 'Hammer' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: HammerIcon,
     hiden: 'Blunt Beast',
   },
-  { 
+  {
     id: 3 as FrontierWeaponID,
     name: 'Lance' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: LanceIcon,
     hiden: 'Heavenly Spear',
   },
-  { 
+  {
     id: 4 as FrontierWeaponID,
     name: 'Sword and Shield' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: SwordAndShieldIcon,
     hiden: 'Sword Saint',
   },
-  { 
+  {
     id: 5 as FrontierWeaponID,
     name: 'Light Bowgun' as FrontierWeaponName,
     class: 'Gunner' as FrontierWeaponClass,
     icon: LightBowgunIcon,
     hiden: 'Gun Prodigy',
   },
-  { 
+  {
     id: 6 as FrontierWeaponID,
     name: 'Dual Swords' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: DualSwordsIcon,
     hiden: 'Dual Dragon',
   },
-  { 
+  {
     id: 7 as FrontierWeaponID,
     name: 'Long Sword' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: LongSwordIcon,
     hiden: 'Katana God',
   },
-  { 
+  {
     id: 8 as FrontierWeaponID,
     name: 'Hunting Horn' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: HuntingHornIcon,
     hiden: 'Flamboyant Emperor',
   },
-  { 
+  {
     id: 9 as FrontierWeaponID,
     name: 'Gunlance' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: GunlanceIcon,
     hiden: 'Cannon Emperor',
   },
-  { 
+  {
     id: 10 as FrontierWeaponID,
     name: 'Bow' as FrontierWeaponName,
     class: 'Gunner' as FrontierWeaponClass,
     icon: BowIcon,
     hiden: 'Bow Demon',
   },
-  { 
+  {
     id: 11 as FrontierWeaponID,
     name: 'Tonfa' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: TonfaIcon,
     hiden: 'Piercing Phoenix',
   },
-  { 
+  {
     id: 12 as FrontierWeaponID,
     name: 'Switch Axe F' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
     icon: SwitchAxeFIcon,
     hiden: 'Edge Marshal',
   },
-  { 
+  {
     id: 13 as FrontierWeaponID,
     name: 'Magnet Spike' as FrontierWeaponName,
     class: 'Blademaster' as FrontierWeaponClass,
