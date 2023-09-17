@@ -1,3 +1,9 @@
+/*
+ * © 2023 Doriel Rivalet
+ * Use of this source code is governed by a MIT license that can be
+ * found in the LICENSE file.
+ */
+
 // put enums here
 /* 
 https://stackoverflow.com/questions/48295918/whats-the-point-of-using-enum-in-typescript

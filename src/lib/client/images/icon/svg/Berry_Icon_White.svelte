@@ -1,3 +1,9 @@
+<!--
+  ~ © 2023 Doriel Rivalet
+  ~ Use of this source code is governed by a MIT license that can be
+  ~ found in the LICENSE file.
+-->
+
 <svg
   xmlns:dc="http://purl.org/dc/elements/1.1/"
   xmlns:cc="http://creativecommons.org/ns#"

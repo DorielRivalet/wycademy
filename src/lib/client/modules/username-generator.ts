@@ -1,3 +1,9 @@
+/*
+ * © 2023 Doriel Rivalet
+ * Use of this source code is governed by a MIT license that can be
+ * found in the LICENSE file.
+ */
+
 export function generateUsername(): string {
   return (
     randomChoice(names.types).toLowerCase() +

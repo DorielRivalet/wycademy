@@ -1,3 +1,9 @@
+<!--
+  ~ © 2023 Doriel Rivalet
+  ~ Use of this source code is governed by a MIT license that can be
+  ~ found in the LICENSE file.
+-->
+
 <svelte:head>
   <title>How to play Sverdle</title>
   <meta name="description" content="How to play Sverdle" />
