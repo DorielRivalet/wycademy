@@ -12,7 +12,7 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - run: bun i prettier-plugin-svelte
+      - run: bun i prettier-plugin-svelte prettier
       - uses: actionsx/prettier@v3
         with:
           args: --check --plugin prettier-plugin-svelte .
