@@ -1,6 +1,6 @@
 {
   "name": "frontier-compendium",
-  "version": "0.0.1-alpha",
+  "version": "0.1.0-alpha",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
