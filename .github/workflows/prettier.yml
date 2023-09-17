@@ -9,7 +9,9 @@ jobs:
     name: Run prettier
     steps:
       - uses: actions/checkout@v4
-      - run: curl -fsSL https://bun.sh/install | bash
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
       - run: bun i prettier-plugin-svelte
       - uses: actionsx/prettier@v3
         with:
