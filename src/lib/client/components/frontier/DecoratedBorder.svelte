@@ -1,15 +1,15 @@
-<script lang='ts'>
-  import type { UICornerStyle } from "$lib/client/modules/frontier/types";
+<script lang="ts">
+  import type { UICornerStyle } from '$lib/client/modules/frontier/types';
   // TODO
-  let cornerStyle: UICornerStyle = 0; 
+  let cornerStyle: UICornerStyle = 0;
 </script>
 
-<div class='corner-decorated-div border'>
-  <div class="corner top-left"></div>
-  <div class="corner top-right"></div>
-  <div class="corner bottom-left"></div>
-  <div class="corner bottom-right"></div>
-  <slot></slot>
+<div class="corner-decorated-div border">
+  <div class="corner top-left" />
+  <div class="corner top-right" />
+  <div class="corner bottom-left" />
+  <div class="corner bottom-right" />
+  <slot />
 </div>
 
 <style>
@@ -26,8 +26,8 @@
 
   .corner {
     position: absolute;
-    width: .6rem; /* Adjust the width and height of your corner images */
-    height: .6rem;
+    width: 0.6rem; /* Adjust the width and height of your corner images */
+    height: 0.6rem;
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -58,5 +58,4 @@
     background-image: url('../../images/ui/svg/corner1.svg');
     transform: rotate(180deg); /* Rotate 180 degrees for bottom right corner */
   }
-
 </style>
