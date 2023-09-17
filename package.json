@@ -39,7 +39,7 @@
     "mdsvex": "^0.11.0",
     "postcss": "^8.4.29",
     "postcss-load-config": "^4.0.1",
-    "prettier": "^2.8.0",
+    "prettier": "^3.0.3",
     "prettier-plugin-svelte": "^2.10.1",
     "pug": "^3.0.2",
     "sass": "^1.67.0",
