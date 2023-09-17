@@ -1,3 +1,9 @@
+/*
+ * © 2023 Doriel Rivalet
+ * Use of this source code is governed by a MIT license that can be
+ * found in the LICENSE file.
+ */
+
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
 export type FrontierWeaponID =
   | 0

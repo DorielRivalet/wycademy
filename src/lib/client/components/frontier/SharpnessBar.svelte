@@ -1,3 +1,9 @@
+<!--
+  ~ © 2023 Doriel Rivalet
+  ~ Use of this source code is governed by a MIT license that can be
+  ~ found in the LICENSE file.
+-->
+
 <script lang="ts">
   import type { FrontierWeaponSharpness } from '$lib/client/modules/frontier/types';
   import { frontierColorNames } from '$lib/client/themes/frontier-colors';

@@ -1,3 +1,9 @@
+<!--
+  ~ © 2023 Doriel Rivalet
+  ~ Use of this source code is governed by a MIT license that can be
+  ~ found in the LICENSE file.
+-->
+
 <script lang="ts">
   import { page } from '$app/stores';
   import logo from '$lib/client/images/logo.png';
