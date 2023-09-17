@@ -9,6 +9,7 @@ jobs:
     name: Run prettier
     steps:
       - uses: actions/checkout@v4
+      - run: npm i --save-dev prettier-plugin-svelte prettier
       - uses: actionsx/prettier@v3
         with:
           args: --check --plugin prettier-plugin-svelte .
