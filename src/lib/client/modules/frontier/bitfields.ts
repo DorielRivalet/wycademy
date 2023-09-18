@@ -5,7 +5,7 @@
  */
 
 // put enums here
-/* 
+/*
 https://stackoverflow.com/questions/48295918/whats-the-point-of-using-enum-in-typescript
 Enums is handy to force type validations (not easy with constants) and it's easy to convert a readable enum to a number and vice a versa.
 
@@ -26,7 +26,7 @@ var myAccess = Access.Read | Access.Execute; //instead of 1 | 4 = 5
 // do I have write access?
 if ( (myAccess & Access.Write) > 0) { /* yes  }
 
-// do I have read and execute 
+// do I have read and execute
 if ( (myAccess & (Access.Read | Access.Execute)) > 0) { /* yes  }
 
 */

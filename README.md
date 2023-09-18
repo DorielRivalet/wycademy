@@ -2,8 +2,6 @@
 
 A compendium of resources for Monster Hunter Frontier Z.
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-
 ## License
 
 [MIT](https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md).
