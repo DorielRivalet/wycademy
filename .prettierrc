@@ -1,8 +1,8 @@
 {
-  "useTabs": false,
-  "semi": true,
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 80,
-  "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+	"useTabs": true,
+	"semi": true,
+	"singleQuote": true,
+	"trailingComma": "all",
+	"printWidth": 80,
+	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
 }

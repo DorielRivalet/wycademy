@@ -7,9 +7,9 @@
 // if bitfields are not needed, make an object instead.
 
 import type {
-  FrontierWeaponClass,
-  FrontierWeaponID,
-  FrontierWeaponName,
+	FrontierWeaponClass,
+	FrontierWeaponID,
+	FrontierWeaponName,
 } from './types';
 import GreatSwordIcon from '$lib/client/images/weapon/svg/Great_Sword_Icon_White.svelte';
 import LongSwordIcon from '$lib/client/images/weapon/svg/Long_Sword_Icon_White.svelte';
@@ -31,123 +31,123 @@ https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
 The biggest argument in favour of this format over TypeScript’s enum is that it keeps your codebase aligned with the state of JavaScript, and when/if enums are added to JavaScript then you can move to the additional syntax.
 */
 export const ODirection = {
-  Up: 0,
-  Down: 1,
-  Left: 2,
-  Right: 3,
+	Up: 0,
+	Down: 1,
+	Left: 2,
+	Right: 3,
 } as const;
 
 export const Sharpness = {
-  Red: 0,
-  Orange: 1,
-  Yellow: 2,
-  Green: 3,
-  Blue: 4,
-  White: 5,
-  Purple: 6,
-  Cyan: 7,
+	Red: 0,
+	Orange: 1,
+	Yellow: 2,
+	Green: 3,
+	Blue: 4,
+	White: 5,
+	Purple: 6,
+	Cyan: 7,
 } as const;
 
 // TODO svg
 export const WeaponTypes = [
-  {
-    id: 0 as FrontierWeaponID,
-    name: 'Great Sword' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: GreatSwordIcon,
-    hiden: 'Sword King',
-  },
-  {
-    id: 1 as FrontierWeaponID,
-    name: 'Heavy Bowgun' as FrontierWeaponName,
-    class: 'Gunner' as FrontierWeaponClass,
-    icon: HeavyBowgunIcon,
-    hiden: 'Gun Sage',
-  },
-  {
-    id: 2 as FrontierWeaponID,
-    name: 'Hammer' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: HammerIcon,
-    hiden: 'Blunt Beast',
-  },
-  {
-    id: 3 as FrontierWeaponID,
-    name: 'Lance' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: LanceIcon,
-    hiden: 'Heavenly Spear',
-  },
-  {
-    id: 4 as FrontierWeaponID,
-    name: 'Sword and Shield' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: SwordAndShieldIcon,
-    hiden: 'Sword Saint',
-  },
-  {
-    id: 5 as FrontierWeaponID,
-    name: 'Light Bowgun' as FrontierWeaponName,
-    class: 'Gunner' as FrontierWeaponClass,
-    icon: LightBowgunIcon,
-    hiden: 'Gun Prodigy',
-  },
-  {
-    id: 6 as FrontierWeaponID,
-    name: 'Dual Swords' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: DualSwordsIcon,
-    hiden: 'Dual Dragon',
-  },
-  {
-    id: 7 as FrontierWeaponID,
-    name: 'Long Sword' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: LongSwordIcon,
-    hiden: 'Katana God',
-  },
-  {
-    id: 8 as FrontierWeaponID,
-    name: 'Hunting Horn' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: HuntingHornIcon,
-    hiden: 'Flamboyant Emperor',
-  },
-  {
-    id: 9 as FrontierWeaponID,
-    name: 'Gunlance' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: GunlanceIcon,
-    hiden: 'Cannon Emperor',
-  },
-  {
-    id: 10 as FrontierWeaponID,
-    name: 'Bow' as FrontierWeaponName,
-    class: 'Gunner' as FrontierWeaponClass,
-    icon: BowIcon,
-    hiden: 'Bow Demon',
-  },
-  {
-    id: 11 as FrontierWeaponID,
-    name: 'Tonfa' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: TonfaIcon,
-    hiden: 'Piercing Phoenix',
-  },
-  {
-    id: 12 as FrontierWeaponID,
-    name: 'Switch Axe F' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: SwitchAxeFIcon,
-    hiden: 'Edge Marshal',
-  },
-  {
-    id: 13 as FrontierWeaponID,
-    name: 'Magnet Spike' as FrontierWeaponName,
-    class: 'Blademaster' as FrontierWeaponClass,
-    icon: MagnetSpikeIcon,
-    hiden: 'Magnetic Star',
-  },
+	{
+		id: 0 as FrontierWeaponID,
+		name: 'Great Sword' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: GreatSwordIcon,
+		hiden: 'Sword King',
+	},
+	{
+		id: 1 as FrontierWeaponID,
+		name: 'Heavy Bowgun' as FrontierWeaponName,
+		class: 'Gunner' as FrontierWeaponClass,
+		icon: HeavyBowgunIcon,
+		hiden: 'Gun Sage',
+	},
+	{
+		id: 2 as FrontierWeaponID,
+		name: 'Hammer' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: HammerIcon,
+		hiden: 'Blunt Beast',
+	},
+	{
+		id: 3 as FrontierWeaponID,
+		name: 'Lance' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: LanceIcon,
+		hiden: 'Heavenly Spear',
+	},
+	{
+		id: 4 as FrontierWeaponID,
+		name: 'Sword and Shield' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: SwordAndShieldIcon,
+		hiden: 'Sword Saint',
+	},
+	{
+		id: 5 as FrontierWeaponID,
+		name: 'Light Bowgun' as FrontierWeaponName,
+		class: 'Gunner' as FrontierWeaponClass,
+		icon: LightBowgunIcon,
+		hiden: 'Gun Prodigy',
+	},
+	{
+		id: 6 as FrontierWeaponID,
+		name: 'Dual Swords' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: DualSwordsIcon,
+		hiden: 'Dual Dragon',
+	},
+	{
+		id: 7 as FrontierWeaponID,
+		name: 'Long Sword' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: LongSwordIcon,
+		hiden: 'Katana God',
+	},
+	{
+		id: 8 as FrontierWeaponID,
+		name: 'Hunting Horn' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: HuntingHornIcon,
+		hiden: 'Flamboyant Emperor',
+	},
+	{
+		id: 9 as FrontierWeaponID,
+		name: 'Gunlance' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: GunlanceIcon,
+		hiden: 'Cannon Emperor',
+	},
+	{
+		id: 10 as FrontierWeaponID,
+		name: 'Bow' as FrontierWeaponName,
+		class: 'Gunner' as FrontierWeaponClass,
+		icon: BowIcon,
+		hiden: 'Bow Demon',
+	},
+	{
+		id: 11 as FrontierWeaponID,
+		name: 'Tonfa' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: TonfaIcon,
+		hiden: 'Piercing Phoenix',
+	},
+	{
+		id: 12 as FrontierWeaponID,
+		name: 'Switch Axe F' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: SwitchAxeFIcon,
+		hiden: 'Edge Marshal',
+	},
+	{
+		id: 13 as FrontierWeaponID,
+		name: 'Magnet Spike' as FrontierWeaponName,
+		class: 'Blademaster' as FrontierWeaponClass,
+		icon: MagnetSpikeIcon,
+		hiden: 'Magnetic Star',
+	},
 ] as const;
 
 export const SharpnessNames = Object.keys(Sharpness) as readonly string[];
