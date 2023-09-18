@@ -186,4 +186,15 @@ body {
 
 hr {
   opacity: 0.25;
+  margin-bottom: var(--cds-spacing-06);
+}
+
+li {
+  margin: var(--cds-spacing-05);
+}
+
+ul li::marker {
+  content: '• ';
+  color: var(--cds-text-01);
+  font-size: 1.5em;
 }

@@ -11,6 +11,10 @@
   import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
   import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
   import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+  import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
+  import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
+  import { goto } from '$app/navigation';
+  import { developmentStage } from '$lib/constants';
 
   let imgSrc = logo;
 
@@ -24,21 +28,34 @@
 </script>
 
 <header>
-  <div class="logo">
-    <a href="/">
-      <img
-        src={imgSrc}
-        on:mouseenter={handleMouseEnter}
-        on:mouseleave={handleMouseLeave}
-        alt="Logo"
-      />
-    </a>
+  <div class="logo-notification">
+    <div class="logo">
+      <a href="/">
+        <img
+          src={imgSrc}
+          on:mouseenter={handleMouseEnter}
+          on:mouseleave={handleMouseLeave}
+          alt="Logo"
+        />
+      </a>
+    </div>
+
+    <InlineNotification
+      lowContrast
+      kind="warning"
+      title="Status:"
+      subtitle="This site is currently in {developmentStage}."
+    >
+      <svelte:fragment slot="actions">
+        <NotificationActionButton
+          on:click={() => goto('/about-development-stages')}
+          >Learn more</NotificationActionButton
+        >
+      </svelte:fragment>
+    </InlineNotification>
   </div>
 
   <nav>
-    <svg viewBox="0 0 2 3" aria-hidden="true">
-      <path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-    </svg>
     <ul>
       <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
         <a href="/about">About</a>
@@ -51,9 +68,6 @@
         <a href="/sverdle">Sverdle</a>
       </li>
     </ul>
-    <svg viewBox="0 0 2 3" aria-hidden="true">
-      <path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-    </svg>
   </nav>
 
   <nav class="container-links">
@@ -73,6 +87,25 @@
 </header>
 
 <style>
+  header > *:nth-child(2) {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 0;
+  }
+
+  header > *:nth-child(3) {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .logo-notification {
+    display: flex;
+    gap: 1rem;
+    margin-left: var(--cds-spacing-02);
+  }
+
   .settings-icon {
     transition: transform 1s ease-in-out;
   }
@@ -119,17 +152,6 @@
   nav {
     display: flex;
     justify-content: center;
-    --background: rgba(255, 255, 255, 0.7);
-  }
-
-  svg {
-    width: 2em;
-    height: 3em;
-    display: block;
-  }
-
-  path {
-    fill: var(--background);
   }
 
   ul {
@@ -141,13 +163,15 @@
     justify-content: center;
     align-items: center;
     list-style: none;
-    background: var(--background);
-    background-size: contain;
   }
 
   li {
     position: relative;
     height: 100%;
+  }
+
+  li::marker {
+    content: none;
   }
 
   li[aria-current='page']::before {
@@ -176,7 +200,7 @@
   }
 
   a:hover {
-    color: var(--ctp-mocha-red);
+    color: var(--cds-link-01);
   }
 
   a {
