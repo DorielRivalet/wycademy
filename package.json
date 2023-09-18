@@ -17,68 +17,6 @@
     "prepare": "husky install",
     "cm": "cz"
   },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release v${version}"
-    },
-    "github": {
-      "release": false
-    },
-    "npm": {
-      "publish": false
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "infile": "CHANGELOG.md",
-        "preset": {
-          "name": "conventionalcommits",
-          "types": [
-            {
-              "type": "feat",
-              "section": "Features"
-            },
-            {
-              "type": "fix",
-              "section": "Bug Fixes"
-            },
-            {
-              "type": "perf",
-              "section": "Performance Improvements"
-            },
-            {
-              "type": "refactor",
-              "section": "For Developers"
-            },
-            {
-              "type": "ci",
-              "section": "For Developers"
-            },
-            {
-              "type": "docs",
-              "section": "For Developers"
-            },
-            {
-              "type": "style",
-              "section": "For Developers"
-            },
-            {
-              "type": "test",
-              "section": "For Developers"
-            },
-            {
-              "type": "build",
-              "section": "For Developers"
-            },
-            {
-              "type": "chore",
-              "section": "For Developers"
-            },
-            {}
-          ]
-        }
-      }
-    }
-  },
   "devDependencies": {
     "@carbon/charts-svelte": "^1.13.0",
     "@carbon/styles": "^1.38.0",
@@ -137,10 +75,5 @@
     "mathlifier": "^1.3.4",
     "mermaid": "^10.4.0",
     "slugify": "^1.6.6"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
