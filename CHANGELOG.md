@@ -1,5 +1,19 @@
 
 
+## [0.2.0](https://github.com/DorielRivalet/frontier-compendium/compare/0.1.0...0.2.0) (2023-09-18)
+
+
+### Features
+
+* add development stages page ([5d51a44](https://github.com/DorielRivalet/frontier-compendium/commit/5d51a44b8fea07338538ee7c04e6b4d7d514332e))
+
+
+### For Developers
+
+* add commit lint ([f6018f5](https://github.com/DorielRivalet/frontier-compendium/commit/f6018f5ec23b71a9b49593a6c3cdfd52ab7a4e3d))
+* add github templates ([861003b](https://github.com/DorielRivalet/frontier-compendium/commit/861003ba94f52673bc9a5c878f6596dbd684fd9a))
+* add release-it configuration file ([0ca3711](https://github.com/DorielRivalet/frontier-compendium/commit/0ca3711f7796eadcf073e54e2a393d44ac23de5c))
+
 ## [0.1.0](https://github.com/DorielRivalet/frontier-compendium/compare/0.1.0-alpha...0.1.0) (2023-09-17)
 
 
