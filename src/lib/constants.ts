@@ -13,3 +13,4 @@ export const authorGitHub = 'https://github.com/DorielRivalet';
 export const url = dev
   ? 'https://localhost:5173'
   : 'https://github.com/DorielRivalet/frontier-compendium';
+export const developmentStage = 'alpha';

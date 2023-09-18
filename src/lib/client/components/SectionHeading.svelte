@@ -93,7 +93,7 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
   h4,
   h5,
   h6 {
-    margin-top: 2rem;
+    margin-top: var(--cds-spacing-07);
   }
 
   a {

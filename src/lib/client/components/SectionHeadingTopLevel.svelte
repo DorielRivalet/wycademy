@@ -18,6 +18,6 @@
 
 <style>
   .container {
-    margin-bottom: 2rem;
+    margin-bottom: var(--cds-spacing-08);
   }
 </style>
