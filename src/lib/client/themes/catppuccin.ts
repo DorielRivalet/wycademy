@@ -174,3 +174,33 @@ export const catppuccinThemeMap: ThemeMap = {
 		'--ctp-crust': '--ctp-latte-crust',
 	},
 };
+
+/** Full list at https://github.com/DorielRivalet/mhfz-overlay/blob/main/docs/palette.md */
+export const catppuccinColorNames = [
+	{ var: '--ctp-rosewater', name: 'Rosewater' },
+	{ var: '--ctp-flamingo', name: 'Flamingo' },
+	{ var: '--ctp-pink', name: 'Pink' },
+	{ var: '--ctp-mauve', name: 'Mauve' },
+	{ var: '--ctp-red', name: 'Red' },
+	{ var: '--ctp-maroon', name: 'Maroon' },
+	{ var: '--ctp-peach', name: 'Peach' },
+	{ var: '--ctp-yellow', name: 'Yellow' },
+	{ var: '--ctp-green', name: 'Green' },
+	{ var: '--ctp-teal', name: 'Teal' },
+	{ var: '--ctp-sky', name: 'Sky' },
+	{ var: '--ctp-sapphire', name: 'Sapphire' },
+	{ var: '--ctp-blue', name: 'Blue' },
+	{ var: '--ctp-lavender', name: 'Lavender' },
+	{ var: '--ctp-text', name: 'Text' },
+	{ var: '--ctp-subtext1', name: 'Subtext 1' },
+	{ var: '--ctp-subtext0', name: 'Subtext 0' },
+	{ var: '--ctp-overlay2', name: 'Overlay 2' },
+	{ var: '--ctp-overlay1', name: 'Overlay 1' },
+	{ var: '--ctp-overlay0', name: 'Overlay 0' },
+	{ var: '--ctp-surface2', name: 'Surface 2' },
+	{ var: '--ctp-surface1', name: 'Surface 1' },
+	{ var: '--ctp-surface0', name: 'Surface 0' },
+	{ var: '--ctp-base', name: 'Base' },
+	{ var: '--ctp-mantle', name: 'Mantle' },
+	{ var: '--ctp-crust', name: 'Crust' },
+];
