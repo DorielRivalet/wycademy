@@ -47,7 +47,10 @@
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
 	import { browser } from '$app/environment';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
+	import {
+		catppuccinColorNames,
+		catppuccinThemeMap,
+	} from '$lib/client/themes/catppuccin';
 
 	onMount(() => {
 		mermaid.initialize({
@@ -229,6 +232,14 @@
 				</div>
 			</section>
 		{/each}
+		<section>
+			<SectionHeading title={'Catppuccin'} level={2} />
+			<div class="container-color-grid">
+				{#each catppuccinColorNames as colorValue}
+					<ColorDot color={colorValue.var} name={colorValue.name} />
+				{/each}
+			</div>
+		</section>
 	</div>
 
 	<section>
