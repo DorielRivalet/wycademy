@@ -49,7 +49,6 @@
 
 	const weaponClass = WeaponTypes[weaponType].class;
 	const weaponTypeName = WeaponTypes[weaponType].name;
-	let sharpnessBoostValue: string = sharpnessBoost ? '+1' : '';
 
 	let nameColor: string = stringReplacements.colorFromRarity(rarity);
 	// TODO size
@@ -91,10 +90,13 @@
 			<div class="sharpness">Sharpness</div>
 			<div class="bar">
 				<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
-				<div class="text-cyan">{sharpnessBoostValue}</div>
 			</div>
 			<div class="element">{elementType}: {element}</div>
-			<div class="zenith">«{zenithSkill}»</div>
+			<div class="zenith">
+				<span class="double-width">«</span>{zenithSkill}<span
+					class="double-width">»</span
+				>
+			</div>
 			<div class="status">{statusType}: {status}</div>
 			<div class="pages">
 				<ArrowIcon style="transform: scaleX(-1);" fill="var(--fz-text-green)" />
@@ -106,6 +108,13 @@
 </DecoratedBorder>
 
 <style>
+	.double-width {
+		transform: scaleX(2);
+		display: inline-block;
+		margin-right: var(--cds-spacing-02);
+		margin-left: var(--cds-spacing-02);
+	}
+
 	div {
 		color: var(--ctp-mocha-text);
 		font-family: var(--font-game);
@@ -115,10 +124,6 @@
 
 	.text-yellow {
 		color: var(--fz-text-yellow);
-	}
-
-	.text-cyan {
-		color: var(--fz-text-cyan);
 	}
 
 	.weapon-icon:nth-child(0) {
@@ -163,8 +168,6 @@
 	.bar {
 		grid-area: bar;
 		display: flex;
-		flex-direction: row;
-		gap: 1rem;
 	}
 
 	.element {
@@ -199,5 +202,6 @@
 		padding: 0.5rem;
 		background-color: #11111b;
 		aspect-ratio: 2.5;
+		font-family: var(--font-mono);
 	}
 </style>

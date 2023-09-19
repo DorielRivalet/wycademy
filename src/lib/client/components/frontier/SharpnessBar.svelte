@@ -14,6 +14,8 @@
 	/** Shows the boost border effect.*/
 	export let sharpnessBoost: boolean = true;
 
+	let sharpnessBoostValue: string = sharpnessBoost ? '+1' : '';
+
 	$: barClassStyle = sharpnessBoost ? 'boostedBar' : 'bar';
 </script>
 
@@ -31,6 +33,7 @@
 	</div>
 	{#if sharpnessBoost}
 		<div class="triangle-right" />
+		<div class="text-cyan">{sharpnessBoostValue}</div>
 	{/if}
 </div>
 
@@ -74,5 +77,10 @@
 		border-left: 10px solid var(--fz-sharpness-cyan);
 		border-bottom: 5px solid transparent;
 		transform: scale(0.5, 2.2);
+	}
+
+	.text-cyan {
+		margin-left: var(--cds-spacing-02);
+		color: var(--fz-text-cyan);
 	}
 </style>
