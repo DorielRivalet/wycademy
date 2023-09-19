@@ -20,23 +20,25 @@
 
 	function setSharpnessWidths(values: FrontierWeaponSharpness) {
 		if (frontierChecks.isValidSharpness(values)) {
-			return frontierMappers.mapSharpnessValues(values);
+			const mappedValues = frontierMappers.mapSharpnessValues(values);
+			let sumSharpness = mappedValues.reduce((acc, val) => acc + val, 0);
+			if (sumSharpness < 400) {
+				return [...mappedValues, 400 - sumSharpness];
+			} else {
+				return [...mappedValues];
+			}
 		} else {
-			return [0, 0, 0, 0, 0, 0, 0, 0];
+			return [170, 0, 0, 0, 0, 30, 50, 100];
 		}
 	}
 
 	$: barClassStyle = sharpnessBoost ? 'boostedBar' : 'bar';
 
 	$: sharpnessWidths = setSharpnessWidths(sharpnessValues);
-
-	$: {
-		let sumSharpness = sharpnessWidths.reduce((a, b) => a + b, 0);
-		if (sumSharpness < 400) {
-			sharpnessWidths = [...sharpnessWidths, 400 - sumSharpness];
-		}
-	}
 </script>
+
+{@debug sharpnessWidths}
+{@debug sharpnessValues}
 
 <div class="container">
 	{#if sharpnessBoost}
