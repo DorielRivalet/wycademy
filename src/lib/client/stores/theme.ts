@@ -64,22 +64,21 @@ export function getThemeId(themeName: CarbonTheme) {
 	}
 }
 
-export function setTheme(selectedId: string) {
-	let selectedThemeId: CarbonTheme = 'g100';
-	switch (selectedId) {
+export function getThemeNameFromId(id: string) {
+	switch (id) {
 		case '0':
-			selectedThemeId = 'g10';
-			break;
+			return 'g10';
 		case '1':
-			selectedThemeId = 'g80';
-			break;
+			return 'g80';
 		case '2':
-			selectedThemeId = 'g90';
-			break;
+			return 'g90';
 		case '3':
-			selectedThemeId = 'g100';
-			break;
+			return 'g100';
+		default:
+			return 'g100';
 	}
+}
 
-	theme.set(selectedThemeId);
+export function setTheme(selectedId: string) {
+	theme.set(getThemeNameFromId(selectedId));
 }

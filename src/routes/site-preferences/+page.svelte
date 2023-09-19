@@ -8,6 +8,7 @@
 	import {
 		getThemeIcon,
 		getThemeId,
+		getThemeNameFromId,
 		setTheme,
 		theme,
 	} from '$lib/client/stores/theme';
@@ -45,6 +46,8 @@
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
+	import { browser } from '$app/environment';
+	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 
 	onMount(() => {
 		mermaid.initialize({
@@ -71,6 +74,21 @@
 	function increaseMonsterDefrate() {
 		// https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
 		defrate = parseFloat((defrate + 0.01).toFixed(14));
+	}
+
+	function changeCatppuccinFlavorCSSVariables(selectedId: string) {
+		if (!browser) return;
+		let themeValue = getThemeNameFromId(selectedId);
+		let cssVarMap =
+			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+	}
+
+	function changeTheme(selectedId: string) {
+		setTheme(selectedId);
+		changeCatppuccinFlavorCSSVariables(selectedId);
 	}
 
 	$: EHP = `{${frontierMath.calculateEHP(
@@ -178,7 +196,7 @@
 					{ id: '2', text: themeOptions[2].labelText },
 					{ id: '3', text: themeOptions[3].labelText },
 				]}
-				on:select={(event) => setTheme(event.detail.selectedId)}
+				on:select={(event) => changeTheme(event.detail.selectedId)}
 				let:item
 			>
 				<div>
@@ -322,6 +340,8 @@
 			</div>
 		</div>
 	</section>
+
+	<p style="color: var(--ctp-red)">Test</p>
 </div>
 
 <style>
