@@ -5,18 +5,37 @@
 -->
 
 <script lang="ts">
+	import {
+		frontierChecks,
+		frontierMappers,
+	} from '$lib/client/modules/frontier/functions';
 	import type { FrontierWeaponSharpness } from '$lib/client/modules/frontier/types';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 
 	export let sharpnessValues: FrontierWeaponSharpness = [
-		10, 20, 30, 40, 50, 60, 70, 80,
+		170, 170, 170, 170, 170, 200, 250, 400,
 	];
 	/** Shows the boost border effect.*/
-	export let sharpnessBoost: boolean = true;
+	export let sharpnessBoost = true;
 
-	let sharpnessBoostValue: string = sharpnessBoost ? '+1' : '';
+	function setSharpnessWidths(values: FrontierWeaponSharpness) {
+		if (frontierChecks.isValidSharpness(values)) {
+			return frontierMappers.mapSharpnessValues(values);
+		} else {
+			return [0, 0, 0, 0, 0, 0, 0, 0];
+		}
+	}
 
 	$: barClassStyle = sharpnessBoost ? 'boostedBar' : 'bar';
+
+	$: sharpnessWidths = setSharpnessWidths(sharpnessValues);
+
+	$: {
+		let sumSharpness = sharpnessWidths.reduce((a, b) => a + b, 0);
+		if (sumSharpness < 400) {
+			sharpnessWidths = [...sharpnessWidths, 400 - sumSharpness];
+		}
+	}
 </script>
 
 <div class="container">
@@ -24,16 +43,17 @@
 		<div class="triangle-left" />
 	{/if}
 	<div class={barClassStyle}>
-		{#each sharpnessValues as value, i}
+		{#each sharpnessWidths as width, i}
 			<div
-				style="background-color: var({frontierColorNames[0].values[i]
-					.var}); width: {value}px; height: 100%"
+				style="background-color: {i <= 7
+					? `var(${frontierColorNames[0].values[i].var}); `
+					: '#000; '} width: {(width * 100) / 400}%; height: 100%"
 			/>
 		{/each}
 	</div>
 	{#if sharpnessBoost}
 		<div class="triangle-right" />
-		<div class="text-cyan">{sharpnessBoostValue}</div>
+		<div class="text-cyan">+1</div>
 	{/if}
 </div>
 
@@ -42,21 +62,23 @@
 		display: flex;
 		align-items: center; /* Vertically center arrows with bars */
 		gap: 0;
+		grid-area: bar;
 	}
 
 	.bar {
 		display: flex;
-		border: 2px solid black;
+		border: var(--cds-spacing-01) solid black;
+
 		height: 100%;
-		width: 100%;
+		width: 18ch;
 	}
 
 	.boostedBar {
 		display: flex;
-		border: 2px solid black;
+		border: var(--cds-spacing-01) solid black;
 		height: 100%;
-		width: 100%;
-		outline: 2px solid var(--fz-sharpness-cyan);
+		width: 18ch;
+		outline: var(--cds-spacing-01) solid var(--fz-text-cyan);
 	}
 
 	.triangle-left {
@@ -64,7 +86,7 @@
 		height: 0;
 		margin-right: -0.05rem;
 		border-top: 5px solid transparent;
-		border-right: 10px solid var(--fz-sharpness-cyan);
+		border-right: 10px solid var(--fz-text-cyan);
 		border-bottom: 5px solid transparent;
 		transform: scale(0.5, 2.2);
 	}
@@ -74,7 +96,7 @@
 		height: 0;
 		margin-left: -0.05rem;
 		border-top: 5px solid transparent;
-		border-left: 10px solid var(--fz-sharpness-cyan);
+		border-left: 10px solid var(--fz-text-cyan);
 		border-bottom: 5px solid transparent;
 		transform: scale(0.5, 2.2);
 	}

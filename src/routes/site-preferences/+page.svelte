@@ -333,7 +333,7 @@
 				<Weapon
 					name={'Name2'}
 					weaponType={3}
-					sharpnessValues={[60, 20, 20, 20, 20, 20, 20, 20]}
+					sharpnessValues={[170, 170, 170, 170, 170, 200, 250, 380]}
 				/>
 			</div>
 			<div class="weapon-sharpness-values">
@@ -351,8 +351,6 @@
 			</div>
 		</div>
 	</section>
-
-	<p style="color: var(--ctp-red)">Test</p>
 </div>
 
 <style>

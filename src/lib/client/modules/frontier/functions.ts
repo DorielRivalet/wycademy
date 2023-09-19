@@ -6,6 +6,7 @@
 
 import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 import { format } from 'mathjs';
+import type { FrontierWeaponSharpness } from './types';
 
 export const frontierMath = {
 	calculateEHP: (monsterHP: number, defrate: number) =>
@@ -22,6 +23,25 @@ export const stringReplacements = {
 			? `${frontierColorNames[1].values[0].var}`
 			: `${frontierColorNames[1].values[rarity - 3].var}`,
 } as const;
+
+export const frontierChecks = {
+	isValidSharpness: (sharpnessValues: FrontierWeaponSharpness) => {
+		const values = frontierMappers.mapSharpnessValues(sharpnessValues);
+		return (
+			values.reduce((acc, currentValue) => acc + currentValue, 0) <= 400 &&
+			values.find((value: number) => value >= 0 && value <= 400) &&
+			values.some((value, index) => index > 0 && value >= values[index - 1])
+		);
+	},
+};
+
+export const frontierMappers = {
+	mapSharpnessValues: (sharpnessValues: FrontierWeaponSharpness) => {
+		return sharpnessValues.map((value, i) =>
+			i === 0 ? value : value - sharpnessValues[i - 1],
+		);
+	},
+};
 
 /*
 TODO

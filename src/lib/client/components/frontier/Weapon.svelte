@@ -32,7 +32,7 @@
 	export let statusType: FrontierStatus = 'Poison';
 	export let length: FrontierWeaponLength = 'V. Long';
 	export let sharpnessValues: FrontierWeaponSharpness = [
-		20, 20, 20, 20, 20, 20, 20, 20,
+		170, 170, 170, 170, 170, 200, 250, 400,
 	];
 	export let sharpnessBoost: boolean = true;
 
@@ -88,9 +88,7 @@
 				<span class="text-yellow">Length: </span>{length}
 			</div>
 			<div class="sharpness">Sharpness</div>
-			<div class="bar">
-				<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
-			</div>
+			<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
 			<div class="element">{elementType}: {element}</div>
 			<div class="zenith">
 				<span class="double-width">«</span>{zenithSkill}<span
@@ -113,13 +111,6 @@
 		display: inline-block;
 		margin-right: var(--cds-spacing-02);
 		margin-left: var(--cds-spacing-02);
-	}
-
-	div {
-		color: var(--ctp-mocha-text);
-		font-family: var(--font-game);
-		font-size: 18px;
-		font-weight: 500;
 	}
 
 	.text-yellow {
@@ -165,11 +156,6 @@
 		grid-area: sharpness;
 	}
 
-	.bar {
-		grid-area: bar;
-		display: flex;
-	}
-
 	.element {
 		grid-area: element;
 	}
@@ -202,6 +188,9 @@
 		padding: 0.5rem;
 		background-color: #11111b;
 		aspect-ratio: 2.5;
-		font-family: var(--font-mono);
+		color: var(--ctp-mocha-text);
+		font-family: var(--font-game);
+		font-size: 18px;
+		font-weight: 500;
 	}
 </style>
