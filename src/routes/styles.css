@@ -129,8 +129,6 @@ Labels	Hex	RGB	HSL
 	--font-mono: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
 		'Bitstream Vera Sans Mono', Courier, monospace;
 	--font-serif: 'IBM Plex Serif', 'Georgia', Times, serif;
-	--column-width: 42rem;
-	--column-margin-top: 4rem;
 	font-family: var(--font-body);
 }
 
