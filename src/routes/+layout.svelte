@@ -12,8 +12,19 @@
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { theme } from '$lib/client/stores/theme';
 	import { themeTokens } from '$lib/client/themes/tokens';
+	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
+	import { onMount } from 'svelte';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
+
+	onMount(() => {
+		let themeValue = $theme;
+		let cssVarMap =
+			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+	});
 </script>
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
