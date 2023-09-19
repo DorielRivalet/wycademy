@@ -31,5 +31,5 @@
 	--fz-text-pink: #ff84ff;
 	--fz-text-brown: #bf6464;
 	--fz-text-orange: #ffc850; /* TODO not sure if correct */
-	--font-game: 'MS Gothic', 'MS UI Gothic', Arial, sans-serif;
+	--font-game: 'MS Gothic', 'MS UI Gothic', Courier, monospace;
 }
