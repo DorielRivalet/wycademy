@@ -333,7 +333,7 @@
 				<Weapon
 					name={'Name2'}
 					weaponType={3}
-					sharpnessValues={[170, 170, 170, 170, 170, 200, 250, 380]}
+					sharpnessValues={[170, 170, 170, 170, 170, 200, 250, 400]}
 				/>
 			</div>
 			<div class="weapon-sharpness-values">
