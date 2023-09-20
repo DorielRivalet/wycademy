@@ -26,20 +26,24 @@ export const stringReplacements = {
 
 export const frontierChecks = {
 	isValidSharpness: (sharpnessValues: FrontierWeaponSharpness) => {
-		const values = frontierMappers.mapSharpnessValues(sharpnessValues);
-		return (
-			values.reduce((acc, currentValue) => acc + currentValue, 0) <= 400 &&
-			values.find((value: number) => value >= 0 && value <= 400) &&
-			values.some((value, index) => index > 0 && value >= values[index - 1])
-		);
+		const mappedValues = frontierMappers.mapSharpnessValues(sharpnessValues);
+		const isValid =
+			mappedValues.reduce((acc, currentValue) => acc + currentValue, 0) <=
+				400 &&
+			mappedValues.every((value: number) => value >= 0 && value <= 400) &&
+			sharpnessValues.some(
+				(value, index) => index > 0 && value >= sharpnessValues[index - 1],
+			);
+		return isValid;
 	},
 };
 
 export const frontierMappers = {
 	mapSharpnessValues: (sharpnessValues: FrontierWeaponSharpness) => {
-		return sharpnessValues.map((value, i) =>
+		const mappedValues = sharpnessValues.map((value, i) =>
 			i === 0 ? value : value - sharpnessValues[i - 1],
 		);
+		return mappedValues;
 	},
 };
 

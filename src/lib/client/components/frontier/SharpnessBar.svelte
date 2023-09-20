@@ -19,26 +19,29 @@
 	export let sharpnessBoost = true;
 
 	function setSharpnessWidths(values: FrontierWeaponSharpness) {
-		if (frontierChecks.isValidSharpness(values)) {
+		const isValid = frontierChecks.isValidSharpness(values);
+		if (isValid) {
 			const mappedValues = frontierMappers.mapSharpnessValues(values);
-			let sumSharpness = mappedValues.reduce((acc, val) => acc + val, 0);
+			const sumSharpness = mappedValues.reduce((acc, val) => acc + val, 0);
 			if (sumSharpness < 400) {
-				return [...mappedValues, 400 - sumSharpness];
+				const result = [...mappedValues, 400 - sumSharpness];
+				return result;
 			} else {
-				return [...mappedValues];
+				const result = [...mappedValues];
+				return result;
 			}
 		} else {
+			console.warn('Could not set sharpness widths, setting default values');
 			return [170, 0, 0, 0, 0, 30, 50, 100];
 		}
 	}
+
+	let sharpnessWidths = setSharpnessWidths(sharpnessValues);
 
 	$: barClassStyle = sharpnessBoost ? 'boostedBar' : 'bar';
 
 	$: sharpnessWidths = setSharpnessWidths(sharpnessValues);
 </script>
-
-{@debug sharpnessWidths}
-{@debug sharpnessValues}
 
 <div class="container">
 	{#if sharpnessBoost}
@@ -48,8 +51,8 @@
 		{#each sharpnessWidths as width, i}
 			<div
 				style="background-color: {i <= 7
-					? `var(${frontierColorNames[0].values[i].var}); `
-					: '#000; '} width: {(width * 100) / 400}%; height: 100%"
+					? `var(${frontierColorNames[0].values[i].var})`
+					: '#000'}; width: {(width * 100) / 400}%; height: 100%"
 			/>
 		{/each}
 	</div>
@@ -70,7 +73,6 @@
 	.bar {
 		display: flex;
 		border: var(--cds-spacing-01) solid black;
-
 		height: 100%;
 		width: 18ch;
 	}

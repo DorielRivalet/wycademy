@@ -65,6 +65,7 @@
 </script>
 
 {@debug sharpnessValues}
+{@debug}
 
 <DecoratedBorder>
 	<div class="container">
