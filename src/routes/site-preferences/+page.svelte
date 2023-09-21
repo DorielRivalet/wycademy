@@ -204,6 +204,7 @@
 			items={[
 				{ id: '1', text: 'Classic' },
 				{ id: '2', text: 'Modern' },
+				{ id: '3', text: 'None' },
 			]}
 			on:select={(event) => changeCursor(event.detail.selectedId)}
 			let:item

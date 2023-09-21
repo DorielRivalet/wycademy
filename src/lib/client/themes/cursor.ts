@@ -20,4 +20,9 @@ export const cursorVars: cursorMap = {
 		'--cursor-icon-pointer': '--cursor-icon-modern-pointer',
 		'--cursor-icon-wait': '--cursor-icon-modern-wait',
 	},
+	None: {
+		'--cursor-icon': '--cursor-icon-none',
+		'--cursor-icon-pointer': '--cursor-icon-none-pointer',
+		'--cursor-icon-wait': '--cursor-icon-none-wait',
+	},
 };

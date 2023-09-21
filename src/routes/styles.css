@@ -130,6 +130,9 @@ Labels	Hex	RGB	HSL
 		'Bitstream Vera Sans Mono', Courier, monospace;
 	--font-serif: 'IBM Plex Serif', 'Georgia', Times, serif;
 	font-family: var(--font-body);
+	--cursor-icon-none: auto;
+	--cursor-icon-none-pointer: pointer;
+	--cursor-icon-none-wait: wait;
 }
 
 ::view-transition-old(root),
@@ -206,6 +209,10 @@ ul li::marker {
 .list-box--disabled,
 .bx--dropdown--disabled > .bx--list-box__field > .bx--list-box__menu-icon {
 	cursor: not-allowed !important;
+}
+
+.bx--label {
+	cursor: var(--cursor-icon);
 }
 
 a,

@@ -8,6 +8,7 @@ import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 import cursor1 from '$lib/client/images/ui/svg/cursor-classic.svg';
 import cursor2 from '$lib/client/images/ui/svg/cursor-modern.svg';
+import cursor3 from '$lib/client/images/ui/svg/cursor-none.svg';
 
 const defaultValue = '1';
 const initialValue = browser
@@ -21,6 +22,8 @@ export function getCursorIcon(id: string) {
 			return cursor1;
 		case '2':
 			return cursor2;
+		case '3':
+			return cursor3;
 		default:
 			return cursor1;
 	}
@@ -32,6 +35,8 @@ export function getCursorId(cursorName: string) {
 			return '1';
 		case 'Modern':
 			return '2';
+		case 'None':
+			return '3';
 		default:
 			return '1';
 	}
@@ -43,6 +48,8 @@ export function getCursorNameFromId(id: string) {
 			return 'Classic';
 		case '2':
 			return 'Modern';
+		case '3':
+			return 'None';
 		default:
 			return 'Classic';
 	}
