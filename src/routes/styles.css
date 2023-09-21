@@ -151,6 +151,28 @@ body {
 	cursor: var(--cursor-icon);
 }
 
+/* https://www.digitalocean.com/community/tutorials/css-scrollbars
+Works on Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--ctp-blue) var(--ctp-crust);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: var(--cds-spacing-03);
+}
+
+*::-webkit-scrollbar-track {
+	background: var(--ctp-crust);
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: var(--ctp-blue);
+	border-radius: 1rem;
+	border: 2px solid var(--ctp-blue);
+}
+
 .text-column {
 	display: flex;
 	max-width: 48rem;
