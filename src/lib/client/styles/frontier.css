@@ -35,12 +35,12 @@
 	--cursor-icon-classic: url('$lib/client/images/ui/svg/cursor-classic.svg'),
 		auto;
 	--cursor-icon-classic-pointer: url('$lib/client/images/ui/svg/cursor-classic-pointer.svg'),
-		auto;
+		pointer;
 	--cursor-icon-classic-wait: url('$lib/client/images/ui/svg/cursor-classic-pointer.svg'),
-		auto;
+		wait;
 	--cursor-icon-modern: url('$lib/client/images/ui/svg/cursor-modern.svg'), auto;
 	--cursor-icon-modern-pointer: url('$lib/client/images/ui/svg/cursor-modern-pointer.svg'),
-		auto;
+		pointer;
 	--cursor-icon-modern-wait: url('$lib/client/images/ui/svg/cursor-modern-wait.svg'),
-		auto;
+		wait;
 }
