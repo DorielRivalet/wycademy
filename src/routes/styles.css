@@ -145,6 +145,7 @@ body {
 	transition:
 		background-color 0.25s ease,
 		color 0.25s ease;
+	cursor: var(--cursor-icon);
 }
 
 .text-column {
@@ -195,4 +196,37 @@ ul li::marker {
 	content: '• ';
 	color: var(--cds-text-01);
 	font-size: 1.5em;
+}
+
+.bx--label--disabled,
+.bx--dropdown--disabled,
+.bx--list-box--disabled,
+.bx--list-box__field[disabled],
+.bx--list-box__field[disabled].bx--list-box__menu-icon,
+.list-box--disabled,
+.bx--dropdown--disabled > .bx--list-box__field > .bx--list-box__menu-icon {
+	cursor: not-allowed !important;
+}
+
+a,
+button,
+[role='button'],
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+.bx--list-box__menu-icon,
+.bx--list-box__menu-item__option,
+.bx--list-box__menu-item,
+.bx--list-box__menu-item--highlighted,
+.bx--slider,
+.bx--toggle-input__label,
+.bx--toggle__text--on,
+.bx--toggle__text--off,
+.bx--toggle__switch {
+	cursor: var(--cursor-icon-pointer) !important;
+}
+
+body.wait,
+body.wait * {
+	cursor: var(--cursor-icon-wait) !important;
 }

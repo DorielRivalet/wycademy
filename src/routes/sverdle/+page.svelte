@@ -10,7 +10,7 @@
 	import type { PageData, ActionData } from './$types';
 	import { reduced_motion } from './reduced-motion';
 	import logo from '$lib/client/images/logo.png';
-
+	import { description as projectDescription } from '$lib/constants';
 	export let data: PageData;
 
 	export let form: ActionData;
@@ -91,14 +91,8 @@
 <svelte:head>
 	<title>Frontier Compendium - Sverdle</title>
 	<meta content="Frontier Compendium - Sverdle" property="og:title" />
-	<meta
-		content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet."
-		property="og:description"
-	/>
-	<meta
-		name="description"
-		content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet."
-	/>
+	<meta content={projectDescription} property="og:description" />
+	<meta name="description" content={projectDescription} />
 	<meta
 		content="https://frontier-compendium.vercel.app/sverdle"
 		property="og:url"

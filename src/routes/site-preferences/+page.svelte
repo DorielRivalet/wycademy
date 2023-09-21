@@ -12,6 +12,12 @@
 		setTheme,
 		theme,
 	} from '$lib/client/stores/theme';
+	import {
+		cursorIcon,
+		getCursorIcon,
+		getCursorNameFromId,
+		setCursor,
+	} from '$lib/client/stores/cursor';
 	import logo from '$lib/client/images/logo.png';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -51,6 +57,10 @@
 		catppuccinColorNames,
 		catppuccinThemeMap,
 	} from '$lib/client/themes/catppuccin';
+	import { description } from '$lib/constants';
+	import Cursor_1 from 'carbon-icons-svelte/lib/Cursor_1.svelte';
+	import { getCursorId } from '$lib/client/stores/cursor';
+	import { cursorVars } from '$lib/client/themes/cursor';
 
 	onMount(() => {
 		mermaid.initialize({
@@ -89,9 +99,23 @@
 		});
 	}
 
+	function changeCursorCSSVariable(selectedId: string) {
+		if (!browser) return;
+		let value = getCursorNameFromId(selectedId);
+		let cssVarMap = cursorVars[value] || cursorVars.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+	}
+
 	function changeTheme(selectedId: string) {
 		setTheme(selectedId);
 		changeCatppuccinFlavorCSSVariables(selectedId);
+	}
+
+	function changeCursor(selectedId: string) {
+		setCursor(selectedId);
+		changeCursorCSSVariable(selectedId);
 	}
 
 	$: EHP = `{${frontierMath.calculateEHP(
@@ -103,14 +127,8 @@
 <svelte:head>
 	<title>Frontier Compendium - Site Preferences</title>
 	<meta content="Frontier Compendium - Site Preferences" property="og:title" />
-	<meta
-		content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet."
-		property="og:description"
-	/>
-	<meta
-		name="description"
-		content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet."
-	/>
+	<meta content={description} property="og:description" />
+	<meta name="description" content={description} />
 	<meta
 		content="https://frontier-compendium.vercel.app/site-preferences"
 		property="og:url"
@@ -125,6 +143,7 @@
 	key="__push-notifications-enabled"
 />
 <LocalStorage bind:value={$volumeStore} key="__volume" />
+<LocalStorage bind:value={$cursorIcon} key="__cursor-icon" />
 
 <div>
 	<SectionHeadingTopLevel title="Site Preferences" />
@@ -176,6 +195,31 @@
 		/>
 	</div>
 
+	<div class="setting-container">
+		<Cursor_1 size={32} />
+		<Dropdown
+			titleText="Cursor Icon"
+			selectedId={getCursorId($cursorIcon)}
+			type="inline"
+			items={[
+				{ id: '1', text: 'Classic' },
+				{ id: '2', text: 'Modern' },
+			]}
+			on:select={(event) => changeCursor(event.detail.selectedId)}
+			let:item
+		>
+			<div>
+				<img
+					alt="Cursor Icon"
+					src={getCursorIcon(item.id)}
+					width="24"
+					height="auto"
+				/>
+				<strong style="vertical-align: top;">{item.text}</strong>
+			</div>
+		</Dropdown>
+	</div>
+
 	<div class="inline-notification-container">
 		<InlineNotification
 			lowContrast
@@ -209,7 +253,7 @@
 						width="24"
 						height="auto"
 					/>
-					<strong>{item.text}</strong>
+					<strong style="vertical-align: center;">{item.text}</strong>
 				</div>
 			</Dropdown>
 		{:else}
@@ -217,139 +261,135 @@
 		{/if}
 	</div>
 
-	<p>
-		Below are some colors and extra elements so you can test your current theme.
-	</p>
-
-	<div>
-		{#each frontierColorNames as colorName, i}
+	<section>
+		<SectionHeading level={2} title={'Theme Preview'} />
+		<p>
+			Below are some colors and extra elements so you can test your current
+			theme.
+		</p>
+		<div>
+			{#each frontierColorNames as colorName, i}
+				<section>
+					<SectionHeading title={colorName.name} level={3} />
+					<div class="container-color-grid">
+						{#each frontierColorNames[i].values as colorValue}
+							<ColorDot color={colorValue.var} name={colorValue.name} />
+						{/each}
+					</div>
+				</section>
+			{/each}
 			<section>
-				<SectionHeading title={colorName.name} level={2} />
+				<SectionHeading title={'Catppuccin'} level={3} />
 				<div class="container-color-grid">
-					{#each frontierColorNames[i].values as colorValue}
+					{#each catppuccinColorNames as colorValue}
 						<ColorDot color={colorValue.var} name={colorValue.name} />
 					{/each}
 				</div>
 			</section>
-		{/each}
-		<section>
-			<SectionHeading title={'Catppuccin'} level={2} />
-			<div class="container-color-grid">
-				{#each catppuccinColorNames as colorValue}
-					<ColorDot color={colorValue.var} name={colorValue.name} />
-				{/each}
-			</div>
-		</section>
-	</div>
-
-	<section>
-		<SectionHeading title={'Monster EHP'} level={2} />
-		<section>
-			<SectionHeading title={'Formula'} level={3} />
-			{@html monsterHPFormula}
-		</section>
-
-		<section>
-			<SectionHeading title={'Calculation'} level={3} />
-			{@html display(EHP)}
-		</section>
-
-		<section class="setting-container">
-			<Button icon={Calculator} on:click={increaseMonsterHP}
-				>Increase monster True HP</Button
-			>
-			<Button icon={Calculator} on:click={increaseMonsterDefrate}
-				>Increase monster Defense Rate</Button
-			>
-		</section>
-	</section>
-
-	<section>
-		<SectionHeading title={'Example Run'} level={2} />
-		<pre><code class="mermaid">
-			graph TD;
-					saf1[Intro with Switch Axe F]-->|Use item| saf2[Shiriagari Fruit];
-					saf2-->|Use item| saf3[All Element Drug];
-					saf3-->|Run| saf4[Before Area Transition];
-					saf4-->saf5[Wait for bomb];
-					ls1[Intro with Long Sword]-->|Use item| ls2[Shiriagari Fruit];
-					ls2-->|Use item| ls3[All Element Drug];
-					ls3-->|Run| ls4[Before Area Transition];
-					ls4-->ls5[Wait for bomb];
-					ms1[Intro with Magnet Spike]-->|Use item| ms2[Shiriagari Fruit];
-					ms2-->|Use item| ms3[All Element Drug];
-					ms3-->|Run| ms4[Before Area Transition];
-					ms4-->ms5[Wait for bomb];
-					hh1[Intro with Hunting Horn]-->|Use item| hh2[Encourage Fruit];
-					hh2-->|Use item| hh3[All Element Drug];
-					hh3-->|Run| hh4[Before Area Transition];
-					hh4-->hh5[Wait for others];
-					hh5-->|Use item| hh6[Small Barrel Bomb];
-					hh6-->|Use item| hh7[Serious Drink];
-					hh7-->|Equip| hh8[Sword Crystals];
-					hh8-->|Hit by bomb| hh9[Change area];
-					hh9--> hh10[Song buffs];
-					hh10--> hh11[Go to wall];
-
-					saf5--> hh6;
-					ls5--> hh6;
-					ms5--> hh6;
-
-					hh6-->|Use item| saf6[Serious Drink]
-					hh6-->|Use item| ls6[Serious Drink]
-					hh6-->|Use item| ms6[Serious Drink]
-
-					saf6-->|Equip| saf7[Sword Crystals];
-					saf7-->|Hit by bomb| saf8[Change area];
-					saf8-->|Use Item| saf9[Starving Wolf Potion];
-					saf9--> saf10[Go to wall];
-
-					ls6-->|Equip| ls7[Sword Crystals];
-					ls7-->|Hit by bomb| ls8[Change area];
-					ls8-->|Use item| ls9[Spirit Drink];
-					ls9-->|Use Item| ls10[Starving Wolf Potion];
-					ls10--> ls11[Go to wall];
-
-					ms6-->|Equip| ms7[Sword Crystals];
-					ms7-->|Hit by bomb| ms8[Change area];
-					ms8--> ms9[Magnet Gun];
-					ms9--> ms10[Lure monster to wall];
-		</code></pre>
-	</section>
-
-	<section>
-		<SectionHeading title={'Weapon Generator'} level={2} />
-		<div class="inline-notification-container">
-			<InlineNotification
-				lowContrast
-				hideCloseButton
-				kind="info"
-				title="Sharpness values:"
-				subtitle="The game uses integers."
-			/>
 		</div>
-		<div class="container-weapon-sharpness">
-			<div class="weapon-sharpness-bar">
-				<Weapon
-					name={'Name2'}
-					weaponType={3}
-					sharpnessValues={[170, 170, 170, 170, 170, 200, 250, 400]}
+
+		<section>
+			<SectionHeading title={'Monster EHP'} level={3} />
+			{@html monsterHPFormula}
+			{@html display(EHP)}
+
+			<section class="calculator-buttons">
+				<Button icon={Calculator} on:click={increaseMonsterHP}
+					>Increase monster True HP</Button
+				>
+				<Button icon={Calculator} on:click={increaseMonsterDefrate}
+					>Increase monster Defense Rate</Button
+				>
+			</section>
+		</section>
+
+		<section>
+			<SectionHeading title={'Example Run'} level={3} />
+			<pre><code class="mermaid">
+				graph TD;
+						saf1[Intro with Switch Axe F]-->|Use item| saf2[Shiriagari Fruit];
+						saf2-->|Use item| saf3[All Element Drug];
+						saf3-->|Run| saf4[Before Area Transition];
+						saf4-->saf5[Wait for bomb];
+						ls1[Intro with Long Sword]-->|Use item| ls2[Shiriagari Fruit];
+						ls2-->|Use item| ls3[All Element Drug];
+						ls3-->|Run| ls4[Before Area Transition];
+						ls4-->ls5[Wait for bomb];
+						ms1[Intro with Magnet Spike]-->|Use item| ms2[Shiriagari Fruit];
+						ms2-->|Use item| ms3[All Element Drug];
+						ms3-->|Run| ms4[Before Area Transition];
+						ms4-->ms5[Wait for bomb];
+						hh1[Intro with Hunting Horn]-->|Use item| hh2[Encourage Fruit];
+						hh2-->|Use item| hh3[All Element Drug];
+						hh3-->|Run| hh4[Before Area Transition];
+						hh4-->hh5[Wait for others];
+						hh5-->|Use item| hh6[Small Barrel Bomb];
+						hh6-->|Use item| hh7[Serious Drink];
+						hh7-->|Equip| hh8[Sword Crystals];
+						hh8-->|Hit by bomb| hh9[Change area];
+						hh9--> hh10[Song buffs];
+						hh10--> hh11[Go to wall];
+
+						saf5--> hh6;
+						ls5--> hh6;
+						ms5--> hh6;
+
+						hh6-->|Use item| saf6[Serious Drink]
+						hh6-->|Use item| ls6[Serious Drink]
+						hh6-->|Use item| ms6[Serious Drink]
+
+						saf6-->|Equip| saf7[Sword Crystals];
+						saf7-->|Hit by bomb| saf8[Change area];
+						saf8-->|Use Item| saf9[Starving Wolf Potion];
+						saf9--> saf10[Go to wall];
+
+						ls6-->|Equip| ls7[Sword Crystals];
+						ls7-->|Hit by bomb| ls8[Change area];
+						ls8-->|Use item| ls9[Spirit Drink];
+						ls9-->|Use Item| ls10[Starving Wolf Potion];
+						ls10--> ls11[Go to wall];
+
+						ms6-->|Equip| ms7[Sword Crystals];
+						ms7-->|Hit by bomb| ms8[Change area];
+						ms8--> ms9[Magnet Gun];
+						ms9--> ms10[Lure monster to wall];
+			</code></pre>
+		</section>
+
+		<section>
+			<SectionHeading title={'Weapon Generator'} level={3} />
+			<div class="inline-notification-container">
+				<InlineNotification
+					lowContrast
+					hideCloseButton
+					kind="info"
+					title="Sharpness values:"
+					subtitle="The game uses integers."
 				/>
 			</div>
-			<div class="weapon-sharpness-values">
-				{#each SharpnessNames as name}
-					<NumberInput
-						size="sm"
-						step={1}
-						min={minimumSharpnessValue}
-						max={maximumSharpnessValue}
-						value={20}
-						invalidText={invalidSharpnessValueText}
-						label={name}
+			<div class="container-weapon-sharpness">
+				<div class="weapon-sharpness-bar">
+					<Weapon
+						name={'Name2'}
+						weaponType={3}
+						sharpnessValues={[170, 170, 170, 170, 170, 200, 250, 350]}
 					/>
-				{/each}
+				</div>
+				<div class="weapon-sharpness-values">
+					{#each SharpnessNames as name}
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumSharpnessValue}
+							max={maximumSharpnessValue}
+							value={20}
+							invalidText={invalidSharpnessValueText}
+							label={name}
+						/>
+					{/each}
+				</div>
 			</div>
-		</div>
+		</section>
 	</section>
 </div>
 
@@ -378,6 +418,14 @@
 		margin-bottom: 1rem;
 		display: flex;
 		gap: 1rem;
+	}
+
+	.calculator-buttons {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
 	}
 
 	.inline-notification-container {
