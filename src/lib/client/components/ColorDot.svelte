@@ -53,15 +53,15 @@
 	.dot {
 		width: 2em;
 		height: 2em;
-		border-color: #11111b7f;
-		border-width: 1px;
+		border-color: var(--ctp-mantle);
+		border-width: 2px;
 		border-radius: 50%;
-		border-style: solid;
-		box-shadow: 0 2px 0 #0000007f;
+		border-style: outset;
+		box-shadow: 0 2px 0 var(--ctp-crust);
 	}
 
 	.dot:hover {
-		cursor: pointer;
+		cursor: var(--cursor-icon-pointer);
 	}
 
 	.title {
@@ -70,6 +70,7 @@
 
 	.dot:active {
 		box-shadow: none;
+		border-style: inset;
 		transform: translateY(2px);
 	}
 </style>

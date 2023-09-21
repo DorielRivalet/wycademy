@@ -32,4 +32,15 @@
 	--fz-text-brown: #bf6464;
 	--fz-text-orange: #ffc850; /* TODO not sure if correct */
 	--font-game: 'MS Gothic', 'MS UI Gothic', Courier, monospace;
+	--cursor-icon-classic: url('$lib/client/images/ui/svg/cursor-classic.svg'),
+		auto;
+	--cursor-icon-classic-pointer: url('$lib/client/images/ui/svg/cursor-classic-pointer.svg'),
+		auto;
+	--cursor-icon-classic-wait: url('$lib/client/images/ui/svg/cursor-classic-pointer.svg'),
+		auto;
+	--cursor-icon-modern: url('$lib/client/images/ui/svg/cursor-modern.svg'), auto;
+	--cursor-icon-modern-pointer: url('$lib/client/images/ui/svg/cursor-modern-pointer.svg'),
+		auto;
+	--cursor-icon-modern-wait: url('$lib/client/images/ui/svg/cursor-modern-wait.svg'),
+		auto;
 }

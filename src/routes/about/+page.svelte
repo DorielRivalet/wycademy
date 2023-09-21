@@ -6,19 +6,14 @@
 
 <script>
 	import logo from '$lib/client/images/logo.png';
+	import { description } from '$lib/constants';
 </script>
 
 <svelte:head>
 	<title>Frontier Compendium - About</title>
 	<meta content="Frontier Compendium - About" property="og:title" />
-	<meta
-		content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet."
-		property="og:description"
-	/>
-	<meta
-		name="description"
-		content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet."
-	/>
+	<meta content={description} property="og:description" />
+	<meta name="description" content={description} />
 	<meta
 		content="https://frontier-compendium.vercel.app/about"
 		property="og:url"

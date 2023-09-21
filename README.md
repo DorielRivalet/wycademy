@@ -1,6 +1,6 @@
 # frontier-compendium
 
-A compendium of resources for Monster Hunter Frontier Z.
+A compendium of resources for Monster Hunter Frontier Z (MHF-Z).
 
 ## License
 

@@ -8,6 +8,7 @@
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import logo from '$lib/client/images/logo.png';
+	import { description } from '$lib/constants';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 </script>
 
@@ -17,14 +18,8 @@
 		content="Frontier Compendium - About Development Stages"
 		property="og:title"
 	/>
-	<meta
-		content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet."
-		property="og:description"
-	/>
-	<meta
-		name="description"
-		content="A compendium of resources for Monster Hunter Frontier Z by Doriel Rivalet."
-	/>
+	<meta content={description} property="og:description" />
+	<meta name="description" content={description} />
 	<meta
 		content="https://frontier-compendium.vercel.app/about-development-stages"
 		property="og:url"

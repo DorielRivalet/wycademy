@@ -64,9 +64,6 @@
 	// TODO gou/automatic
 </script>
 
-{@debug sharpnessValues}
-{@debug}
-
 <DecoratedBorder>
 	<div class="container">
 		<div class="page-1">

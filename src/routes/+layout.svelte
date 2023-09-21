@@ -14,6 +14,8 @@
 	import { themeTokens } from '$lib/client/themes/tokens';
 	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount } from 'svelte';
+	import { cursorIcon } from '$lib/client/stores/cursor';
+	import { cursorVars } from '$lib/client/themes/cursor';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 
@@ -21,6 +23,12 @@
 		let themeValue = $theme;
 		let cssVarMap =
 			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+
+		let cursorValue = $cursorIcon;
+		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
 		Object.keys(cssVarMap).forEach((key) => {
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});

@@ -32,11 +32,9 @@
 			}
 		} else {
 			console.warn('Could not set sharpness widths, setting default values');
-			return [170, 0, 0, 0, 0, 30, 50, 100];
+			return [0, 0, 0, 0, 0, 0, 0, 0];
 		}
 	}
-
-	let sharpnessWidths = setSharpnessWidths(sharpnessValues);
 
 	$: barClassStyle = sharpnessBoost ? 'boostedBar' : 'bar';
 
@@ -52,7 +50,7 @@
 			<div
 				style="background-color: {i <= 7
 					? `var(${frontierColorNames[0].values[i].var})`
-					: '#000'}; width: {(width * 100) / 400}%; height: 100%"
+					: '#000'}; width: {(width * 100) / 400}%; height: 100%;"
 			/>
 		{/each}
 	</div>
