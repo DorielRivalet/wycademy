@@ -34,58 +34,45 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	export let withIcon: boolean = true;
 	export let withSeparator: boolean = true;
 	const tag = 'h' + level;
-	let titleClass = withIcon ? 'title-text' : '';
+	//https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-one-element-is-hovered
 </script>
 
-<svelte:element
-	this={tag}
-	id={slugify(title, { lower: true })}
-	class="section-heading"
->
-	{#if withIcon}
-		<a href={'#' + slugify(title, { lower: true })} class="permalink">
-			<LinkIcon />
-		</a>
-	{/if}
-	<span class={titleClass}>
+<svelte:element this={tag} id={slugify(title, { lower: true })}>
+	<a href={'#' + slugify(title, { lower: true })}>
 		{title}
-	</span>
+		{#if withIcon}
+			<span class="icon">
+				<LinkIcon />
+			</span>
+		{/if}
+	</a>
 </svelte:element>
 {#if withSeparator}
 	<hr />
 {/if}
 
 <style>
-	.section-heading {
-		position: relative;
+	a {
+		text-decoration: none;
 	}
 
-	.permalink {
+	.icon {
+		text-decoration: none; /* Remove underline by default */
 		opacity: 0;
-		transition: hidden 0.11s ease-in-out, transform 0.11s ease-in-out;
-		position: absolute;
-		left: -1rem;
 	}
 
-	.title-text {
-		display: inline-block;
-		transition: transform 0.11s ease-in-out;
-	}
-
-	h2:hover .permalink,
-	h3:hover .permalink,
-	h4:hover .permalink,
-	h5:hover .permalink,
-	h6:hover .permalink {
+	a:hover {
+		text-decoration: underline var(--ctp-text);
 		opacity: 1;
 	}
 
-	h2:hover .title-text,
-	h3:hover .title-text,
-	h4:hover .title-text,
-	h5:hover .title-text,
-	h6:hover .title-text {
-		transform: translateX(0.5rem);
+	a:hover > .icon {
+		opacity: 1;
+	}
+
+	.icon:hover {
+		opacity: 1;
+		cursor: var(--cursor-icon-pointer);
 	}
 
 	h2,
