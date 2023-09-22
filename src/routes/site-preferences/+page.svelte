@@ -72,8 +72,15 @@
 		mermaid.contentLoaded();
 	});
 
+	let mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
+
 	// The default diagram
-	let diagram = `\
+	let diagram = getDiagram(mermaidTheme);
+
+	function getDiagram(mermaidTheme: string) {
+		return `\
+	%%{init: {'theme':'${mermaidTheme}'}}%%
+
 	graph TD;
 						saf1[Intro with Switch Axe F]-->|Use item| saf2[Shiriagari Fruit];
 						saf2-->|Use item| saf3[All Element Drug];
@@ -121,16 +128,18 @@
 						ms7-->|Hit by bomb| ms8[Change area];
 						ms8--> ms9[Magnet Gun];
 						ms9--> ms10[Lure monster to wall];`;
+	}
 
 	let container: { innerHTML: string };
 
-	async function renderDiagram() {
+	async function renderDiagram(siteTheme: string, mermaidTheme: string) {
 		if (!browser) return;
-		const { svg } = await mermaid.render('mermaid', diagram);
+		mermaidTheme = siteTheme === 'g10' ? 'default' : 'dark';
+		const { svg } = await mermaid.render('mermaid', getDiagram(mermaidTheme));
 		container.innerHTML = svg;
 	}
 
-	$: diagram && renderDiagram();
+	$: diagram && renderDiagram($theme, mermaidTheme);
 
 	// TODO put constants in other files
 	const monsterHPFormula = display('EHP = \\frac{THP}{DEF}');
@@ -172,6 +181,10 @@
 	function changeTheme(selectedId: string) {
 		setTheme(selectedId);
 		changeCatppuccinFlavorCSSVariables(selectedId);
+		let oldDiagram = diagram;
+		diagram = '';
+		mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
+		diagram = oldDiagram;
 	}
 
 	function changeCursor(selectedId: string) {
