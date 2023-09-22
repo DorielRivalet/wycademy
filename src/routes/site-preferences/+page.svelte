@@ -61,15 +61,76 @@
 	import Cursor_1 from 'carbon-icons-svelte/lib/Cursor_1.svelte';
 	import { getCursorId } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
+	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 
 	onMount(() => {
 		mermaid.initialize({
-			startOnLoad: true,
+			startOnLoad: false,
 			flowchart: { useMaxWidth: false },
 			fontFamily: 'IBM Plex Sans',
 		});
 		mermaid.contentLoaded();
 	});
+
+	// The default diagram
+	let diagram = `\
+	graph TD;
+						saf1[Intro with Switch Axe F]-->|Use item| saf2[Shiriagari Fruit];
+						saf2-->|Use item| saf3[All Element Drug];
+						saf3-->|Run| saf4[Before Area Transition];
+						saf4-->saf5[Wait for bomb];
+						ls1[Intro with Long Sword]-->|Use item| ls2[Shiriagari Fruit];
+						ls2-->|Use item| ls3[All Element Drug];
+						ls3-->|Run| ls4[Before Area Transition];
+						ls4-->ls5[Wait for bomb];
+						ms1[Intro with Magnet Spike]-->|Use item| ms2[Shiriagari Fruit];
+						ms2-->|Use item| ms3[All Element Drug];
+						ms3-->|Run| ms4[Before Area Transition];
+						ms4-->ms5[Wait for bomb];
+						hh1[Intro with Hunting Horn]-->|Use item| hh2[Encourage Fruit];
+						hh2-->|Use item| hh3[All Element Drug];
+						hh3-->|Run| hh4[Before Area Transition];
+						hh4-->hh5[Wait for others];
+						hh5-->|Use item| hh6[Small Barrel Bomb];
+						hh6-->|Use item| hh7[Serious Drink];
+						hh7-->|Equip| hh8[Sword Crystals];
+						hh8-->|Hit by bomb| hh9[Change area];
+						hh9--> hh10[Song buffs];
+						hh10--> hh11[Go to wall];
+
+						saf5--> hh6;
+						ls5--> hh6;
+						ms5--> hh6;
+
+						hh6-->|Use item| saf6[Serious Drink]
+						hh6-->|Use item| ls6[Serious Drink]
+						hh6-->|Use item| ms6[Serious Drink]
+
+						saf6-->|Equip| saf7[Sword Crystals];
+						saf7-->|Hit by bomb| saf8[Change area];
+						saf8-->|Use Item| saf9[Starving Wolf Potion];
+						saf9--> saf10[Go to wall];
+
+						ls6-->|Equip| ls7[Sword Crystals];
+						ls7-->|Hit by bomb| ls8[Change area];
+						ls8-->|Use item| ls9[Spirit Drink];
+						ls9-->|Use Item| ls10[Starving Wolf Potion];
+						ls10--> ls11[Go to wall];
+
+						ms6-->|Equip| ms7[Sword Crystals];
+						ms7-->|Hit by bomb| ms8[Change area];
+						ms8--> ms9[Magnet Gun];
+						ms9--> ms10[Lure monster to wall];`;
+
+	let container: { innerHTML: string };
+
+	async function renderDiagram() {
+		if (!browser) return;
+		const { svg } = await mermaid.render('mermaid', diagram);
+		container.innerHTML = svg;
+	}
+
+	$: diagram && renderDiagram();
 
 	// TODO put constants in other files
 	const monsterHPFormula = display('EHP = \\frac{THP}{DEF}');
@@ -306,55 +367,11 @@
 
 		<section>
 			<SectionHeading title={'Example Run'} level={3} />
-			<pre><code class="mermaid">
-				graph TD;
-						saf1[Intro with Switch Axe F]-->|Use item| saf2[Shiriagari Fruit];
-						saf2-->|Use item| saf3[All Element Drug];
-						saf3-->|Run| saf4[Before Area Transition];
-						saf4-->saf5[Wait for bomb];
-						ls1[Intro with Long Sword]-->|Use item| ls2[Shiriagari Fruit];
-						ls2-->|Use item| ls3[All Element Drug];
-						ls3-->|Run| ls4[Before Area Transition];
-						ls4-->ls5[Wait for bomb];
-						ms1[Intro with Magnet Spike]-->|Use item| ms2[Shiriagari Fruit];
-						ms2-->|Use item| ms3[All Element Drug];
-						ms3-->|Run| ms4[Before Area Transition];
-						ms4-->ms5[Wait for bomb];
-						hh1[Intro with Hunting Horn]-->|Use item| hh2[Encourage Fruit];
-						hh2-->|Use item| hh3[All Element Drug];
-						hh3-->|Run| hh4[Before Area Transition];
-						hh4-->hh5[Wait for others];
-						hh5-->|Use item| hh6[Small Barrel Bomb];
-						hh6-->|Use item| hh7[Serious Drink];
-						hh7-->|Equip| hh8[Sword Crystals];
-						hh8-->|Hit by bomb| hh9[Change area];
-						hh9--> hh10[Song buffs];
-						hh10--> hh11[Go to wall];
-
-						saf5--> hh6;
-						ls5--> hh6;
-						ms5--> hh6;
-
-						hh6-->|Use item| saf6[Serious Drink]
-						hh6-->|Use item| ls6[Serious Drink]
-						hh6-->|Use item| ms6[Serious Drink]
-
-						saf6-->|Equip| saf7[Sword Crystals];
-						saf7-->|Hit by bomb| saf8[Change area];
-						saf8-->|Use Item| saf9[Starving Wolf Potion];
-						saf9--> saf10[Go to wall];
-
-						ls6-->|Equip| ls7[Sword Crystals];
-						ls7-->|Hit by bomb| ls8[Change area];
-						ls8-->|Use item| ls9[Spirit Drink];
-						ls9-->|Use Item| ls10[Starving Wolf Potion];
-						ls10--> ls11[Go to wall];
-
-						ms6-->|Equip| ms7[Sword Crystals];
-						ms7-->|Hit by bomb| ms8[Change area];
-						ms8--> ms9[Magnet Gun];
-						ms9--> ms10[Lure monster to wall];
-			</code></pre>
+			{#if !browser}
+				<Loading withOverlay={false} />
+			{:else}
+				<pre><code bind:this={container} /></pre>
+			{/if}
 		</section>
 
 		<section>
