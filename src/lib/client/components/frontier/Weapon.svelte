@@ -46,12 +46,17 @@
 	export let description: string = 'Description.';
 	export let rarity: FrontierRarity = 12;
 	export let affinity: number = 0;
+	/** TODO The size of the component. Compact uses icons.*/
+	export let compact = false;
+	/**
+	 * Set theme to light.
+	 */
+	export let light = false;
 
 	const weaponClass = WeaponTypes[weaponType].class;
 	const weaponTypeName = WeaponTypes[weaponType].name;
 
 	let nameColor: string = stringReplacements.colorFromRarity(rarity);
-	// TODO size
 	let weaponIconProps = {
 		rarity: rarity,
 	};
@@ -68,16 +73,19 @@
 	<div class="container">
 		<div class="page-1">
 			<div class="header">
-				<div class="weapon-icon">
-					<svelte:component
-						this={WeaponTypes[weaponType].icon}
-						{...weaponIconProps}
-					/>
-				</div>
-				<div>
-					<div style="color: var({nameColor})">
-						{name}
+				<div class="weapon-icon-container">
+					<div class="weapon-icon">
+						<svelte:component
+							this={WeaponTypes[weaponType].icon}
+							{...weaponIconProps}
+						/>
 					</div>
+					<div class="weapon-rank">G</div>
+				</div>
+				<div class="weapon-name">
+					<div style="color: var({nameColor});">{name}</div>
+				</div>
+				<div class="weapon-level-container">
 					<div class="weapon-level">Lv. {level}</div>
 				</div>
 			</div>
@@ -117,11 +125,36 @@
 		color: var(--fz-text-yellow);
 	}
 
-	.weapon-icon:nth-child(0) {
-		margin: 0;
-		padding: 0;
-		width: auto;
-		height: 25%;
+	.weapon-name {
+		display: flex;
+		align-items: center; /* Center vertically */
+		justify-content: start; /* Center horizontally */
+		height: 100%; /* Ensure the container takes up the full height */
+		width: 100%;
+	}
+
+	.weapon-icon-container {
+		position: relative;
+		display: inline-block;
+	}
+
+	.weapon-icon {
+		position: relative;
+	}
+
+	.weapon-level-container {
+		position: absolute;
+		top: var(--cds-spacing-04);
+		right: var(--cds-spacing-04);
+	}
+
+	.weapon-rank {
+		position: absolute;
+		bottom: 0;
+	}
+
+	.weapon-rank {
+		left: 0;
 	}
 
 	.zenith {

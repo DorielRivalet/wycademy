@@ -151,6 +151,20 @@ export const WeaponTypes = [
 ] as const;
 
 export const SharpnessNames = Object.keys(Sharpness) as readonly string[];
+export const RarityColors = [
+	'#efefe9',
+	'#efefe9',
+	'#efefe9',
+	'#73cb8d',
+	'#ed93a4',
+	'#96b5fd',
+	'#ff985d',
+	'#fffd2e',
+	'#c8ff6a',
+	'#68ecec',
+	'#cba6fa',
+	'#ff435d',
+] as const;
 /*
 // It requires an extra line to pull out the values
 type Direction = typeof ODirection[keyof typeof ODirection];
