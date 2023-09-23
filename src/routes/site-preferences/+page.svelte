@@ -62,6 +62,14 @@
 	import { getCursorId } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
+	import type {
+		FrontierRarity,
+		FrontierWeaponID,
+		FrontierWeaponSharpness,
+	} from '$lib/client/modules/frontier/types';
+	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
+	import Select from 'carbon-components-svelte/src/Select/Select.svelte';
+	import SelectItem from 'carbon-components-svelte/src/Select/SelectItem.svelte';
 
 	onMount(() => {
 		mermaid.initialize({
@@ -144,6 +152,8 @@
 	// TODO put constants in other files
 	const monsterHPFormula = display('EHP = \\frac{THP}{DEF}');
 	const invalidSharpnessValueText = 'Value must be between 0 and 400.';
+	const invalidWeaponLevelText = 'Value must be between 0 and 100.';
+	const invalidWeaponRarityText = 'Value must be between 1 and 12.';
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
 
@@ -157,6 +167,11 @@
 	function increaseMonsterDefrate() {
 		// https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
 		defrate = parseFloat((defrate + 0.01).toFixed(14));
+	}
+
+	function getWeaponType(id: string): FrontierWeaponID {
+		if (parseInt(id) < 0 || parseInt(id) >= 14) return 0;
+		return parseInt(id) as FrontierWeaponID;
 	}
 
 	function changeCatppuccinFlavorCSSVariables(selectedId: string) {
@@ -196,6 +211,15 @@
 		monsterHP,
 		defrate,
 	)}} = \\frac{${monsterHP}}{${defrate}}`;
+
+	let weaponSharpness: FrontierWeaponSharpness = [
+		170, 170, 170, 170, 170, 200, 250, 350,
+	];
+
+	let weaponName = 'Depth Flamepike "Glory"';
+	let weaponLevel = 100;
+	let weaponRarity: FrontierRarity = 12;
+	let weaponTypeId = '3';
 </script>
 
 <svelte:head>
@@ -398,27 +422,80 @@
 					subtitle="The game uses integers."
 				/>
 			</div>
-			<div class="container-weapon-sharpness">
-				<div class="weapon-sharpness-bar">
-					<Weapon
-						name={'Depth Flamepike "Glory"'}
-						weaponType={3}
-						sharpnessValues={[170, 170, 170, 170, 170, 200, 250, 350]}
-						elementValue={1350}
-						statusValue={1200}
-						elementBoost
-						statusBoost
-						rank={'Z'}
-					/>
+			<div class="container-weapon">
+				<div class="weapon-info">
+					{#key weaponRarity}
+						<Weapon
+							name={weaponName}
+							weaponType={getWeaponType(weaponTypeId)}
+							sharpnessValues={weaponSharpness}
+							elementValue={1350}
+							statusValue={1200}
+							elementBoost
+							statusBoost
+							rank={'Z'}
+							level={weaponLevel}
+							rarity={weaponRarity}
+						/>
+					{/key}
+					<div class="weapon-info-values">
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponTypeId}
+							items={[
+								{ id: '0', text: 'Great Sword' },
+								{ id: '7', text: 'Long Sword' },
+								{ id: '4', text: 'Sword and Shield' },
+								{ id: '6', text: 'Dual Swords' },
+								{ id: '2', text: 'Hammer' },
+								{ id: '8', text: 'Hunting Horn' },
+								{ id: '3', text: 'Lance' },
+								{ id: '9', text: 'Gunlance' },
+								{ id: '1', text: 'Heavy Bowgun' },
+								{ id: '5', text: 'Light Bowgun' },
+								{ id: '10', text: 'Bow' },
+								{ id: '11', text: 'Tonfa' },
+								{ id: '12', text: 'Switch Axe F' },
+								{ id: '13', text: 'Magnet Spike' },
+							]}
+						/>
+						<TextInput
+							labelText="Name"
+							placeholder="Enter weapon name"
+							hideLabel
+							bind:value={weaponName}
+						/>
+
+						<NumberInput
+							size="sm"
+							step={1}
+							min={1}
+							max={12}
+							bind:value={weaponRarity}
+							invalidText={invalidWeaponRarityText}
+							label={'Rarity'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={0}
+							max={100}
+							bind:value={weaponLevel}
+							invalidText={invalidWeaponLevelText}
+							label={'Level'}
+						/>
+					</div>
 				</div>
 				<div class="weapon-sharpness-values">
-					{#each SharpnessNames as name}
+					{#each SharpnessNames as name, i}
 						<NumberInput
 							size="sm"
 							step={1}
 							min={minimumSharpnessValue}
 							max={maximumSharpnessValue}
-							value={20}
+							bind:value={weaponSharpness[i]}
 							invalidText={invalidSharpnessValueText}
 							label={name}
 						/>
@@ -430,9 +507,18 @@
 </div>
 
 <style>
-	.weapon-sharpness-bar {
+	.weapon-info {
 		display: flex;
 		flex-direction: row;
+		justify-content: start;
+		gap: var(--cds-spacing-04);
+	}
+
+	.weapon-info-values {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		margin: 1rem;
+		gap: 1rem;
 	}
 
 	.weapon-sharpness-values {
@@ -442,7 +528,7 @@
 		gap: 1rem;
 	}
 
-	.container-weapon-sharpness {
+	.container-weapon {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;

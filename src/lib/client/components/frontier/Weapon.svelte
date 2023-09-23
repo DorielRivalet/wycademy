@@ -104,7 +104,9 @@
 					<div style="color: var({nameColor});">{name}</div>
 				</div>
 				<div class="weapon-level-container">
-					<div class="weapon-level">Lv. {level}</div>
+					<div class="weapon-level">
+						{#if level >= 1 && level <= 100}Lv. {level}{/if}
+					</div>
 				</div>
 			</div>
 			<div class="attack">

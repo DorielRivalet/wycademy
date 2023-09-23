@@ -28,10 +28,15 @@ export function blendColor(source: string, target: string) {
 	return hexArrayToString(result);
 }
 
+// https://stackoverflow.com/questions/10073699/pad-a-number-with-leading-zeros-in-javascript
 function hexArrayToString(hex: number[]) {
-	const str = `#${hex[0].toString(16)}${hex[1].toString(16)}${hex[2].toString(
-		16,
-	)}`;
+	let r = hex[0].toString(16);
+	let g = hex[1].toString(16);
+	let b = hex[2].toString(16);
+	r = r.padStart(2, '0');
+	g = g.padStart(2, '0');
+	b = b.padStart(2, '0');
+	const str = `#${r}${g}${b}`;
 	return str;
 }
 
