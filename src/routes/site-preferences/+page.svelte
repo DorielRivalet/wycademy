@@ -48,7 +48,10 @@
 	import { onVolumeChange, volumeStore } from '$lib/client/stores/volume';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
 	import { frontierMath } from '$lib/client/modules/frontier/functions';
-	import { SharpnessNames } from '$lib/client/modules/frontier/objects';
+	import {
+		SharpnessNames,
+		ZenithSkills,
+	} from '$lib/client/modules/frontier/objects';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
@@ -63,9 +66,14 @@
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import type {
+		FrontierElement,
+		FrontierEquipmentRank,
 		FrontierRarity,
+		FrontierStatus,
 		FrontierWeaponID,
+		FrontierWeaponLength,
 		FrontierWeaponSharpness,
+		FrontierZenithSkill,
 	} from '$lib/client/modules/frontier/types';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import Select from 'carbon-components-svelte/src/Select/Select.svelte';
@@ -154,6 +162,8 @@
 	const invalidSharpnessValueText = 'Value must be between 0 and 400.';
 	const invalidWeaponLevelText = 'Value must be between 0 and 100.';
 	const invalidWeaponRarityText = 'Value must be between 1 and 12.';
+	const invalidWeaponAttackText = 'Value must be between 1 and 65536';
+	const invalidWeaponElementStatusText = 'Value must be between 1 and 2550';
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
 
@@ -207,6 +217,18 @@
 		changeCursorCSSVariable(selectedId);
 	}
 
+	type dropdownItem = { id: string; text: string };
+
+	function getZenithSkills() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		ZenithSkills.forEach((element) => {
+			if (element !== '') {
+				array = [...array, { id: element, text: element }];
+			}
+		});
+		return array;
+	}
+
 	$: EHP = `{${frontierMath.calculateEHP(
 		monsterHP,
 		defrate,
@@ -220,6 +242,17 @@
 	let weaponLevel = 100;
 	let weaponRarity: FrontierRarity = 12;
 	let weaponTypeId = '3';
+	let weaponRank: FrontierEquipmentRank = 'Z';
+	let weaponLength: FrontierWeaponLength = 'V. Long';
+	let weaponElementBoost = true;
+	let weaponStatusBoost = true;
+	let weaponAttackBoost = true;
+	let weaponAttack = 100;
+	let weaponElementValue = 1200;
+	let weaponStatusValue = 1100;
+	let weaponElementType: FrontierElement = 'Fire';
+	let weaponStatusType: FrontierStatus = 'Poison';
+	let weaponZenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
 </script>
 
 <svelte:head>
@@ -427,15 +460,23 @@
 					{#key weaponRarity}
 						<Weapon
 							name={weaponName}
+							length={weaponLength}
 							weaponType={getWeaponType(weaponTypeId)}
+							attack={weaponAttack}
+							attackBoost={weaponAttackBoost}
 							sharpnessValues={weaponSharpness}
-							elementValue={1350}
-							statusValue={1200}
-							elementBoost
-							statusBoost
-							rank={'Z'}
-							level={weaponLevel}
-							rarity={weaponRarity}
+							elementValue={weaponElementValue}
+							statusValue={weaponStatusValue}
+							element={weaponElementType}
+							status={weaponStatusType}
+							elementBoost={weaponElementBoost}
+							statusBoost={weaponStatusBoost}
+							rank={weaponRank}
+							level={weaponLevel >= 0 && weaponLevel <= 100 ? weaponLevel : 0}
+							rarity={weaponRarity >= 1 && weaponRarity <= 12
+								? weaponRarity
+								: 1}
+							zenithSkill={weaponZenithSkill}
 						/>
 					{/key}
 					<div class="weapon-info-values">
@@ -501,6 +542,109 @@
 						/>
 					{/each}
 				</div>
+				<div class="weapon-info-values-bottom">
+					<Dropdown
+						titleText="Rank"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponRank}
+						items={[
+							{ id: '', text: 'None' },
+							{ id: 'G', text: 'G' },
+							{ id: 'Z', text: 'Zenith' },
+						]}
+					/>
+					<Dropdown
+						titleText="Length"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponLength}
+						items={[
+							{ id: 'V. Short', text: 'Very Short' },
+							{ id: 'Short', text: 'Short' },
+							{ id: 'Normal', text: 'Normal' },
+							{ id: 'Long', text: 'Long' },
+							{ id: 'V. Long', text: 'Very Long' },
+						]}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={1}
+						max={65536}
+						bind:value={weaponAttack}
+						invalidText={invalidWeaponAttackText}
+						label={'Attack'}
+					/>
+					<Toggle labelText="Attack Boost" bind:toggled={weaponAttackBoost} />
+					<NumberInput
+						size="sm"
+						step={1}
+						min={1}
+						max={2550}
+						bind:value={weaponElementValue}
+						invalidText={invalidWeaponElementStatusText}
+						label={'Element'}
+					/>
+					<Toggle labelText="Element Boost" bind:toggled={weaponElementBoost} />
+					<NumberInput
+						size="sm"
+						step={1}
+						min={1}
+						max={2550}
+						bind:value={weaponStatusValue}
+						invalidText={invalidWeaponElementStatusText}
+						label={'Status'}
+					/>
+					<Toggle labelText="Status Boost" bind:toggled={weaponStatusBoost} />
+					<Dropdown
+						titleText="Element"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponElementType}
+						items={[
+							{ id: '', text: 'None' },
+							{ id: 'Fire', text: 'Fire' },
+							{ id: 'Water', text: 'Water' },
+							{ id: 'Thunder', text: 'Thunder' },
+							{ id: 'Ice', text: 'Ice' },
+							{ id: 'Dragon', text: 'Dragon' },
+							{ id: 'Light', text: 'Light' },
+							{ id: 'Dark', text: 'Dark' },
+							{ id: 'Blaze', text: 'Blaze' },
+							{ id: 'L. Rod', text: 'Lightning Rod' },
+							{ id: 'Tenshou', text: 'Tenshou' },
+							{ id: 'Okiko', text: 'Okiko' },
+							{ id: 'Music', text: 'Music' },
+							{ id: 'Sound', text: 'Sound' },
+							{ id: 'Wind', text: 'Wind' },
+							{ id: 'B. Flame', text: 'Black Flame' },
+							{ id: 'C. Demon', text: 'Crimson Demon' },
+							{ id: 'E. Roar', text: "Emperor's Roar" },
+							{ id: 'B. Zero', text: 'Burning Zero' },
+						]}
+					/>
+					<Dropdown
+						titleText="Status"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponStatusType}
+						items={[
+							{ id: '', text: 'None' },
+							{ id: 'Poison', text: 'Poison' },
+							{ id: 'Para', text: 'Paralysis' },
+							{ id: 'Sleep', text: 'Sleep' },
+							{ id: 'Blast', text: 'Blast' },
+						]}
+					/>
+					<Dropdown
+						titleText="Zenith Skill"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponZenithSkill}
+						items={getZenithSkills()}
+					/>
+				</div>
 			</div>
 		</section>
 	</section>
@@ -522,6 +666,13 @@
 	}
 
 	.weapon-sharpness-values {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		margin: 1rem;
+		gap: 1rem;
+	}
+
+	.weapon-info-values-bottom {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		margin: 1rem;
