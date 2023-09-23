@@ -48,6 +48,9 @@
 	/** Whether to show the boosted color.*/
 	export let statusBoost: boolean = true;
 
+	/** Whether to show the boosted color.*/
+	export let attackBoost: boolean = true;
+
 	/** The overlay icon in the bottom left corner.*/
 	export let rank: FrontierEquipmentRank = 'G';
 
@@ -93,9 +96,9 @@
 						/>
 					</div>
 					<div class="weapon-rank">
-						{#if rank === 'G'}
+						{#if rank === 'G' && rarity >= 1 && rarity <= 12}
 							<GRankWeaponIcon {rarity} />
-						{:else if rank === 'Z'}
+						{:else if rank === 'Z' && rarity >= 1 && rarity <= 12}
 							<ZenithWeaponIcon {rarity} />
 						{/if}
 					</div>
@@ -110,7 +113,12 @@
 				</div>
 			</div>
 			<div class="attack">
-				<span class="text-yellow">Attack: </span>{attack}
+				<span class="text-yellow">Attack: </span>
+				<span
+					style="color: {attackBoost
+						? 'var(--fz-text-cyan)'
+						: 'var(--ctp-text)'};">{attack}</span
+				>
 			</div>
 			<div class="length">
 				<span class="text-yellow">Length: </span>{length}
@@ -118,25 +126,31 @@
 			<div class="sharpness">Sharpness</div>
 			<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
 			<div class="element">
-				{element}:
-				<span
-					style="color: {elementBoost
-						? 'var(--fz-text-cyan)'
-						: 'var(--ctp-text)'};">{elementValue}</span
-				>
+				{#if element !== ''}
+					{element}:
+					<span
+						style="color: {elementBoost
+							? 'var(--fz-text-cyan)'
+							: 'var(--ctp-text)'};">{elementValue}</span
+					>
+				{/if}
 			</div>
 			<div class="zenith">
-				<span class="double-width">«</span>{zenithSkill}<span
-					class="double-width">»</span
-				>
+				{#if zenithSkill !== ''}
+					<span class="double-width">«</span>{zenithSkill}<span
+						class="double-width">»</span
+					>
+				{/if}
 			</div>
 			<div class="status">
-				{status}:
-				<span
-					style="color: {statusBoost
-						? 'var(--fz-text-cyan)'
-						: 'var(--ctp-text)'};">{statusValue}</span
-				>
+				{#if status !== ''}
+					{status}:
+					<span
+						style="color: {statusBoost
+							? 'var(--fz-text-cyan)'
+							: 'var(--ctp-text)'};">{statusValue}</span
+					>
+				{/if}
 			</div>
 			<div class="pages">
 				<ArrowIcon style="transform: scaleX(-1);" fill="var(--fz-text-green)" />

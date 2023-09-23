@@ -5,7 +5,7 @@
 	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
 	export let rarity: FrontierRarity = 1;
 
-	$: targetColor = RarityColors[rarity - 1] || RarityColors[0];
+	$: targetColor = RarityColors[rarity - 1] ?? RarityColors[0];
 </script>
 
 <svg
