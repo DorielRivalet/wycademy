@@ -401,9 +401,14 @@
 			<div class="container-weapon-sharpness">
 				<div class="weapon-sharpness-bar">
 					<Weapon
-						name={'Name2'}
+						name={'Depth Flamepike "Glory"'}
 						weaponType={3}
 						sharpnessValues={[170, 170, 170, 170, 170, 200, 250, 350]}
+						elementValue={1350}
+						statusValue={1200}
+						elementBoost
+						statusBoost
+						rank={'Z'}
 					/>
 				</div>
 				<div class="weapon-sharpness-values">

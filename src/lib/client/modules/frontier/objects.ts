@@ -11,19 +11,19 @@ import type {
 	FrontierWeaponID,
 	FrontierWeaponName,
 } from './types';
-import GreatSwordIcon from '$lib/client/components/frontier/icon/Great_Sword_Icon_White.svelte';
-import LongSwordIcon from '$lib/client/components/frontier/icon/Long_Sword_Icon_White.svelte';
-import DualSwordsIcon from '$lib/client/components/frontier/icon/Dual_Blades_Icon_White.svelte';
+import GreatSwordIcon from '$lib/client/components/frontier/icon/Great_Sword_Icon_White3.svelte';
+import LongSwordIcon from '$lib/client/components/frontier/icon/Long_Sword_Icon_White2.svelte';
+import DualSwordsIcon from '$lib/client/components/frontier/icon/Dual_Blades_Icon_White2.svelte';
 import SwordAndShieldIcon from '$lib/client/components/frontier/icon/Sword_and_Shield_Icon_White.svelte';
-import GunlanceIcon from '$lib/client/components/frontier/icon/Gunlance_Icon_White.svelte';
-import LanceIcon from '$lib/client/components/frontier/icon/Lance_Icon_White.svelte';
-import HammerIcon from '$lib/client/components/frontier/icon/Hammer_Icon_White.svelte';
-import HuntingHornIcon from '$lib/client/components/frontier/icon/Hunting_Horn_Icon_White.svelte';
-import LightBowgunIcon from '$lib/client/components/frontier/icon/Light_Bowgun_Icon_White.svelte';
-import HeavyBowgunIcon from '$lib/client/components/frontier/icon/Heavy_Bowgun_Icon_White.svelte';
-import BowIcon from '$lib/client/components/frontier/icon/Bow_Icon_White.svelte';
+import GunlanceIcon from '$lib/client/components/frontier/icon/Gunlance_Icon_White2.svelte';
+import LanceIcon from '$lib/client/components/frontier/icon/Lance_Icon_White3.svelte';
+import HammerIcon from '$lib/client/components/frontier/icon/Hammer_Icon_White2.svelte';
+import HuntingHornIcon from '$lib/client/components/frontier/icon/Hunting_Horn_Icon_White2.svelte';
+import LightBowgunIcon from '$lib/client/components/frontier/icon/Light_Bowgun_Icon_White2.svelte';
+import HeavyBowgunIcon from '$lib/client/components/frontier/icon/Heavy_Bowgun_Icon_White2.svelte';
+import BowIcon from '$lib/client/components/frontier/icon/Bow_Icon_White2.svelte';
 import TonfaIcon from '$lib/client/components/frontier/icon/Tonfa_Icon_White.svelte';
-import SwitchAxeFIcon from '$lib/client/components/frontier/icon/Switch_Axe_Icon_White.svelte';
+import SwitchAxeFIcon from '$lib/client/components/frontier/icon/Switch_Axe_Icon_White2.svelte';
 import MagnetSpikeIcon from '$lib/client/components/frontier/icon/Magnet_Spike_Icon_White.svelte';
 
 /*
