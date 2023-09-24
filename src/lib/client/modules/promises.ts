@@ -7,24 +7,37 @@
 // 	}
 // }
 
+const whitelist = [
+	'/',
+	'/about',
+	'/about-development-stages',
+	'/site-preferences',
+];
+
+/**TODO: error handling */
 export const getGitHubDataForPath = async (path: string) => {
-	// console.log(`path: ${path}`);
-	// const encodedPath = path.replace('+', '%2B');
-	// console.log(`encodedPath: ${encodedPath}`);
-	path = '';
-	const res = await fetch(
-		`${path}https://api.github.com/repos/DorielRivalet/frontier-compendium/commits?path=src/routes/%2Bpage.svelte`,
-	);
 	let lastModifiedDate: string = '';
 	let commitLink: string = '#';
+	let timesChanged: number = 0;
+
+	if (!whitelist.includes(path)) {
+		console.warn('Page not on GitHub paths whitelist');
+		return { lastModifiedDate, commitLink, timesChanged };
+	}
+
+	const res = await fetch(
+		`https://api.github.com/repos/DorielRivalet/frontier-compendium/commits?path=src/routes${path}/%2Bpage.svelte`,
+	);
+
 	const commits = await res.json();
-	console.log(`commits: ${await commits}`);
 	const lastCommit = (await commits[0]) ?? undefined;
 	lastModifiedDate = lastCommit?.commit?.author?.date ?? undefined;
 	commitLink = lastCommit?.html_url ?? undefined;
-	console.log(`commits:${await commits?.length}`);
-
-	return { lastModifiedDate, commitLink };
+	timesChanged = (await commits?.length) || 0;
+	if (lastModifiedDate) {
+		lastModifiedDate = stringToCustomDateFormat(lastModifiedDate);
+	}
+	return { lastModifiedDate, commitLink, timesChanged };
 };
 
 // if (whitelist.includes($page.url.pathname)) {
@@ -45,3 +58,6 @@ export const getGitHubDataForPath = async (path: string) => {
 		.substring(0, 16)
 		.replace('T', ' ');
 */
+function stringToCustomDateFormat(date: string): string {
+	return new Date(date).toISOString().substring(0, 16).replace('T', ' ');
+}

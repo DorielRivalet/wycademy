@@ -34,15 +34,6 @@
 	let promise = browser
 		? getGitHubDataForPath($page.url.pathname)
 		: Promise.resolve();
-	$: console.log(`page.url.pathname: ${$page.url.pathname}`);
-
-	// const whitelist = ['routes/+page.svelte', '/about', '/site-preferences'];
-	// whitelist.includes($page.url.pathname)
-	// onMount(() => {
-	// 	let promise = getGitHubDataForPath($page.url.pathname);
-	// });
-
-	// getGitHubDataForPath($page.url.pathname);
 </script>
 
 <footer>
@@ -50,10 +41,16 @@
 		{#await promise}
 			<SkeletonText width={'64px'} />
 		{:then GitHubData}
-			{#if GitHubData?.lastModifiedDate !== undefined}
+			{#if GitHubData?.lastModifiedDate !== undefined && GitHubData?.lastModifiedDate !== '' && GitHubData?.commitLink !== undefined && GitHubData?.commitLink !== '#' && GitHubData?.timesChanged !== undefined && GitHubData?.timesChanged !== 0}
 				<div>Page last modified</div>
 				<Link href={GitHubData?.commitLink}>{GitHubData?.lastModifiedDate}</Link
 				>
+
+				<div>
+					Times changed: <span
+						>{GitHubData?.timesChanged ? GitHubData.timesChanged : ''}</span
+					>
+				</div>
 			{/if}
 		{:catch}
 			<SkeletonText width={'64px'} />
