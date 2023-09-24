@@ -1,11 +1,22 @@
 <script>
 	import { page } from '$app/stores';
 	import cat from '$lib/client/images/error.png';
+
+	const errorTitles = [
+		'The Gargwa took the quest and ran away with it! 🐔',
+		"We've encountered a tiny pawblem! 👀",
+		'Ran out of Mega Dash Juice! 😴',
+		'Meow-gency! ⚠',
+		"Our supply box is empty like a Melynx's treasure trove! 🎒🐱",
+		'It looks like a Bitterbug has wandered into our quest board! 🐛',
+	];
 </script>
 
 <div class="container">
 	<h1>
-		Error {$page.status} - The Gargwa took the quest and ran away with it! 🐔
+		Error {$page.status} - {errorTitles[
+			Math.floor(Math.random() * errorTitles.length)
+		]}
 	</h1>
 
 	<p>Don't fret! Here's what you can do:</p>
