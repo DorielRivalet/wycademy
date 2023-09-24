@@ -5,8 +5,14 @@
 -->
 
 <script>
+	import { goto } from '$app/navigation';
 	import logo from '$lib/client/images/logo.png';
 	import { description } from '$lib/constants';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		goto('/error/404');
+	});
 </script>
 
 <svelte:head>

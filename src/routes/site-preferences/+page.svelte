@@ -78,6 +78,8 @@
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import Select from 'carbon-components-svelte/src/Select/Select.svelte';
 	import SelectItem from 'carbon-components-svelte/src/Select/SelectItem.svelte';
+	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
+	import { SkeletonText } from 'carbon-components-svelte';
 
 	onMount(() => {
 		mermaid.initialize({
@@ -223,7 +225,7 @@
 		weaponRarity = 12;
 		weaponTypeId = '3';
 		weaponRank = 'Z';
-		weaponLength = 'V. Long';
+		weaponLength = 'Very Long';
 		weaponElementBoost = true;
 		weaponStatusBoost = true;
 		weaponAttackBoost = true;
@@ -262,7 +264,7 @@
 	let weaponRarity: FrontierRarity = 12;
 	let weaponTypeId = '3';
 	let weaponRank: FrontierEquipmentRank = 'Z';
-	let weaponLength: FrontierWeaponLength = 'V. Long';
+	let weaponLength: FrontierWeaponLength = 'Very Long';
 	let weaponElementBoost = true;
 	let weaponStatusBoost = true;
 	let weaponAttackBoost = true;
@@ -482,6 +484,11 @@
 					subtitle="The game uses Medium for Magnet Spike and Tonfa."
 				/>
 			</div>
+			<div class="container-weapon-buttons">
+				<Button icon={Restart} on:click={resetWeaponValues}
+					>Restore values</Button
+				>
+			</div>
 			<div class="container-weapon">
 				<div class="weapon-info">
 					{#key weaponRarity}
@@ -630,11 +637,11 @@
 						hideLabel
 						bind:selectedId={weaponLength}
 						items={[
-							{ id: 'V. Short', text: 'Very Short' },
+							{ id: 'Very Short', text: 'Very Short' },
 							{ id: 'Short', text: 'Short' },
 							{ id: 'Medium', text: 'Medium' },
 							{ id: 'Long', text: 'Long' },
-							{ id: 'V. Long', text: 'Very Long' },
+							{ id: 'Very Long', text: 'Very Long' },
 						]}
 					/>
 					<Dropdown
