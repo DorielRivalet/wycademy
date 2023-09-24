@@ -11,6 +11,7 @@
 		FrontierEquipmentRank,
 		FrontierRarity,
 		FrontierStatus,
+		FrontierSwitchAxeFPhial,
 		FrontierWeaponID,
 		FrontierWeaponLength,
 		FrontierWeaponSharpness,
@@ -21,7 +22,7 @@
 	import DecoratedBorder from './DecoratedBorder.svelte';
 	import { stringReplacements } from '$lib/client/modules/frontier/functions';
 	import GRankWeaponIcon from './icon/GRankWeaponIcon.svelte';
-	import ZenithWeaponIcon from './icon/ZenithWeaponIcon.svelte';
+	import ZenithWeaponIcon from './icon/ZenithWeaponIcon2.svelte';
 
 	/** Truncated to 18 characters.*/
 	export let name: string = 'Name';
@@ -68,8 +69,13 @@
 	 */
 	export let light = false;
 
+	export let phial: FrontierSwitchAxeFPhial = 'Power';
+
 	const weaponClass = WeaponTypes[weaponType].class;
 	const weaponTypeName = WeaponTypes[weaponType].name;
+	const maxNameLength = 24;
+	const maxAttackLength = 5;
+	const maxElementStatusLength = 5;
 
 	let nameColor: string = stringReplacements.colorFromRarity(rarity);
 	let weaponIconProps = {
@@ -96,59 +102,76 @@
 						/>
 					</div>
 					<div class="weapon-rank">
-						{#if rank === 'G' && rarity >= 1 && rarity <= 12}
-							<GRankWeaponIcon {rarity} />
-						{:else if rank === 'Z' && rarity >= 1 && rarity <= 12}
-							<ZenithWeaponIcon {rarity} />
+						{#if rank === 'G'}
+							<GRankWeaponIcon />
+						{:else if rank === 'Z'}
+							<ZenithWeaponIcon />
 						{/if}
 					</div>
 				</div>
 				<div class="weapon-name">
-					<div style="color: var({nameColor});">{name}</div>
+					<div
+						style="color: var({nameColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 28ch;"
+					>
+						<span class="text-yellow double-width">:</span>{name.substring(
+							0,
+							maxNameLength,
+						)}
+					</div>
 				</div>
 				<div class="weapon-level-container">
 					<div class="weapon-level">
-						{#if level >= 1 && level <= 100}Lv. {level}{/if}
+						{#if level >= 1 && level <= 100}Lv.{level}{/if}
 					</div>
 				</div>
 			</div>
 			<div class="attack">
-				<span class="text-yellow">Attack: </span>
-				<span
-					style="color: {attackBoost
-						? 'var(--fz-text-cyan)'
-						: 'var(--ctp-text)'};">{attack}</span
-				>
+				<span class="text-yellow"
+					>Attack<span class="text-yellow double-width">:</span><span
+						style="color: {attackBoost
+							? 'var(--fz-text-cyan)'
+							: 'var(--ctp-text)'};"
+						>{attack.toString().substring(0, maxAttackLength)}</span
+					>
+				</span>
 			</div>
 			<div class="length">
-				<span class="text-yellow">Length: </span>{length}
+				<span class="text-yellow"
+					>Length<span class="text-yellow double-width">:</span></span
+				>{length}
 			</div>
 			<div class="sharpness">Sharpness</div>
 			<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
 			<div class="element">
 				{#if element !== ''}
-					{element}:
-					<span
+					{element}<span class="double-width">:</span><span
 						style="color: {elementBoost
 							? 'var(--fz-text-cyan)'
-							: 'var(--ctp-text)'};">{elementValue}</span
+							: 'var(--ctp-text)'};"
+						>{elementValue
+							.toString()
+							.substring(0, maxElementStatusLength)}</span
 					>
 				{/if}
 			</div>
 			<div class="zenith">
 				{#if zenithSkill !== ''}
-					<span class="double-width">«</span>{zenithSkill}<span
-						class="double-width">»</span
+					<span class="double-width-transform">«</span>{zenithSkill}<span
+						class="double-width-transform">»</span
 					>
 				{/if}
 			</div>
 			<div class="status">
-				{#if status !== ''}
-					{status}:
-					<span
+				{#if status === 'Def'}
+					{status}{statusValue >= 0 ? '+' : ''}{statusValue
+						.toString()
+						.substring(0, maxElementStatusLength)}
+				{:else if status !== ''}
+					{status}<span class="double-width">:</span><span
 						style="color: {statusBoost
 							? 'var(--fz-text-cyan)'
-							: 'var(--ctp-text)'};">{statusValue}</span
+							: 'var(--ctp-text)'};"
+						>{statusValue.toString().substring(0, maxElementStatusLength)}</span
 					>
 				{/if}
 			</div>
@@ -162,9 +185,15 @@
 </DecoratedBorder>
 
 <style>
-	.double-width {
+	.double-width-transform {
 		transform: scaleX(2);
 		display: inline-block;
+		margin-right: var(--cds-spacing-02);
+		margin-left: var(--cds-spacing-02);
+	}
+
+	.double-width {
+		width: 2ch;
 		margin-right: var(--cds-spacing-02);
 		margin-left: var(--cds-spacing-02);
 	}
@@ -204,6 +233,7 @@
 		bottom: 0;
 		width: 16px;
 		height: auto;
+		z-index: 2;
 	}
 
 	.weapon-rank {
@@ -225,7 +255,7 @@
 		margin: 0px;
 		padding: 0px;
 		flex-direction: row;
-		gap: 1rem;
+		gap: var(--cds-spacing-01);
 	}
 
 	.attack {
@@ -278,5 +308,6 @@
 		font-family: var(--font-game);
 		font-size: 18px;
 		font-weight: 500;
+		width: 39ch;
 	}
 </style>
