@@ -57,11 +57,17 @@ export type FrontierElement =
 	| 'Wind'
 	| 'B. Zero'
 	| 'E. Roar';
-export type FrontierStatus = '' | 'Poison' | 'Para' | 'Sleep' | 'Blast';
+export type FrontierStatus =
+	| ''
+	| 'Poison'
+	| 'Paralysis'
+	| 'Sleep'
+	| 'Blast'
+	| 'Def';
 export type FrontierWeaponLength =
 	| 'V. Short'
 	| 'Short'
-	| 'Normal'
+	| 'Medium'
 	| 'Long'
 	| 'V. Long';
 export type FrontierWeaponClass = 'Blademaster' | 'Gunner';
@@ -129,3 +135,17 @@ export type FrontierZenithSkill =
 	| 'Soul Up'
 	| 'Ceaseless Up'
 	| 'Rush Up';
+export type FrontierSwitchAxeFPhial = 'Stun' | 'Power' | 'Ele' | 'Status';
+
+/** Does not include pink. */
+export type FrontierHuntingHornWeaponNotes =
+	| ''
+	| 'White'
+	| 'Blue'
+	| 'Red'
+	| 'Green'
+	| 'Yellow'
+	| 'Purple'
+	| 'Cyan';
+
+export type FrontierHuntingHornNotes = FrontierHuntingHornWeaponNotes | 'Pink';

@@ -13,6 +13,7 @@
 	--fz-sharpness-white: #f0f0f0;
 	--fz-sharpness-purple: #de7aff;
 	--fz-sharpness-cyan: #86f4f4;
+	--fz-sharpness-border: #968a63;
 	--fz-rare-1-3: #efefe9;
 	--fz-rare-4: #73cb8d;
 	--fz-rare-5: #ed93a4;
@@ -31,6 +32,7 @@
 	--fz-text-pink: #ff84ff;
 	--fz-text-brown: #bf6464;
 	--fz-text-orange: #ffc850; /* TODO not sure if correct */
+	--fz-text-orange2: #f39506; /* used on G icon*/
 	--font-game: 'MS Gothic', 'MS UI Gothic', Courier, monospace;
 	--cursor-icon-classic: url('$lib/client/images/ui/svg/cursor-classic.svg'),
 		auto;

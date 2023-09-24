@@ -163,7 +163,7 @@
 	const invalidWeaponLevelText = 'Value must be between 0 and 100.';
 	const invalidWeaponRarityText = 'Value must be between 1 and 12.';
 	const invalidWeaponAttackText = 'Value must be between 1 and 65536';
-	const invalidWeaponElementStatusText = 'Value must be between 1 and 2550';
+	const invalidWeaponElementStatusText = 'Value must be between -2550 and 2550';
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
 
@@ -217,6 +217,25 @@
 		changeCursorCSSVariable(selectedId);
 	}
 
+	function resetWeaponValues() {
+		weaponName = 'Depth Flamepike "Glory"';
+		weaponLevel = 100;
+		weaponRarity = 12;
+		weaponTypeId = '3';
+		weaponRank = 'Z';
+		weaponLength = 'V. Long';
+		weaponElementBoost = true;
+		weaponStatusBoost = true;
+		weaponAttackBoost = true;
+		weaponAttack = 100;
+		weaponElementValue = 1200;
+		weaponStatusValue = 1100;
+		weaponElementType = 'Fire';
+		weaponStatusType = 'Poison';
+		weaponZenithSkill = 'Skill Slots Up+1';
+		weaponSharpnessBoost = true;
+	}
+
 	type dropdownItem = { id: string; text: string };
 
 	function getZenithSkills() {
@@ -253,6 +272,7 @@
 	let weaponElementType: FrontierElement = 'Fire';
 	let weaponStatusType: FrontierStatus = 'Poison';
 	let weaponZenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
+	let weaponSharpnessBoost = true;
 </script>
 
 <svelte:head>
@@ -452,7 +472,14 @@
 					hideCloseButton
 					kind="info"
 					title="Sharpness values:"
-					subtitle="The game uses integers."
+					subtitle="The game uses integers. The values here is how it works internally. Defaults to a black bar on invalid values."
+				/>
+				<InlineNotification
+					lowContrast
+					hideCloseButton
+					kind="info"
+					title="Length values:"
+					subtitle="The game uses Medium for Magnet Spike and Tonfa."
 				/>
 			</div>
 			<div class="container-weapon">
@@ -465,6 +492,7 @@
 							attack={weaponAttack}
 							attackBoost={weaponAttackBoost}
 							sharpnessValues={weaponSharpness}
+							sharpnessBoost={weaponSharpnessBoost}
 							elementValue={weaponElementValue}
 							statusValue={weaponStatusValue}
 							element={weaponElementType}
@@ -543,6 +571,13 @@
 					{/each}
 				</div>
 				<div class="weapon-info-values-bottom">
+					<Toggle
+						labelText="Sharpness Boost"
+						bind:toggled={weaponSharpnessBoost}
+					/>
+					<Toggle labelText="Attack Boost" bind:toggled={weaponAttackBoost} />
+					<Toggle labelText="Element Boost" bind:toggled={weaponElementBoost} />
+					<Toggle labelText="Status Boost" bind:toggled={weaponStatusBoost} />
 					<Dropdown
 						titleText="Rank"
 						type="inline"
@@ -554,19 +589,7 @@
 							{ id: 'Z', text: 'Zenith' },
 						]}
 					/>
-					<Dropdown
-						titleText="Length"
-						type="inline"
-						hideLabel
-						bind:selectedId={weaponLength}
-						items={[
-							{ id: 'V. Short', text: 'Very Short' },
-							{ id: 'Short', text: 'Short' },
-							{ id: 'Normal', text: 'Normal' },
-							{ id: 'Long', text: 'Long' },
-							{ id: 'V. Long', text: 'Very Long' },
-						]}
-					/>
+
 					<NumberInput
 						size="sm"
 						step={1}
@@ -576,27 +599,44 @@
 						invalidText={invalidWeaponAttackText}
 						label={'Attack'}
 					/>
-					<Toggle labelText="Attack Boost" bind:toggled={weaponAttackBoost} />
 					<NumberInput
 						size="sm"
-						step={1}
-						min={1}
+						step={10}
+						min={-2550}
 						max={2550}
 						bind:value={weaponElementValue}
 						invalidText={invalidWeaponElementStatusText}
 						label={'Element'}
 					/>
-					<Toggle labelText="Element Boost" bind:toggled={weaponElementBoost} />
 					<NumberInput
 						size="sm"
-						step={1}
-						min={1}
+						step={10}
+						min={-2550}
 						max={2550}
 						bind:value={weaponStatusValue}
 						invalidText={invalidWeaponElementStatusText}
 						label={'Status'}
 					/>
-					<Toggle labelText="Status Boost" bind:toggled={weaponStatusBoost} />
+					<Dropdown
+						titleText="Zenith Skill"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponZenithSkill}
+						items={getZenithSkills()}
+					/>
+					<Dropdown
+						titleText="Length"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponLength}
+						items={[
+							{ id: 'V. Short', text: 'Very Short' },
+							{ id: 'Short', text: 'Short' },
+							{ id: 'Medium', text: 'Medium' },
+							{ id: 'Long', text: 'Long' },
+							{ id: 'V. Long', text: 'Very Long' },
+						]}
+					/>
 					<Dropdown
 						titleText="Element"
 						type="inline"
@@ -632,17 +672,11 @@
 						items={[
 							{ id: '', text: 'None' },
 							{ id: 'Poison', text: 'Poison' },
-							{ id: 'Para', text: 'Paralysis' },
+							{ id: 'Paralysis', text: 'Paralysis' },
 							{ id: 'Sleep', text: 'Sleep' },
 							{ id: 'Blast', text: 'Blast' },
+							{ id: 'Def', text: 'Defense' },
 						]}
-					/>
-					<Dropdown
-						titleText="Zenith Skill"
-						type="inline"
-						hideLabel
-						bind:selectedId={weaponZenithSkill}
-						items={getZenithSkills()}
 					/>
 				</div>
 			</div>

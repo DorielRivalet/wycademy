@@ -1,11 +1,8 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	import { RarityColors } from '$lib/client/modules/frontier/objects';
-	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
-	export let rarity: FrontierRarity = 1;
 
-	$: targetColor = RarityColors[rarity - 1] ?? RarityColors[0];
+	$: targetColor = '#f39506';
 </script>
 
 <svg

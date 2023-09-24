@@ -7,6 +7,7 @@
 // if bitfields are not needed, make an object instead.
 
 import type {
+	FrontierHuntingHornWeaponNotes,
 	FrontierWeaponClass,
 	FrontierWeaponID,
 	FrontierWeaponName,
@@ -221,6 +222,30 @@ export const ZenithSkills = [
 	'Ceaseless Up',
 	'Rush Up',
 ] as const;
+
+export const HuntingHornWeaponNotesCombinations: FrontierHuntingHornWeaponNotes[][] =
+	[
+		['White', 'Blue', 'Red'],
+		['White', 'Yellow', 'Red'],
+		['White', 'Green', 'Red'],
+		['White', 'Cyan', 'Red'],
+		['White', 'Green', 'Yellow'],
+		['White', 'Blue', 'Yellow'],
+		['White', 'Green', 'Cyan'],
+		['White', 'Green', 'Blue'],
+		['White', 'Yellow', 'Cyan'],
+		['White', 'Cyan', 'Blue'],
+		['Purple', 'Blue', 'Red'],
+		['Purple', 'Yellow', 'Red'],
+		['Purple', 'Green', 'Red'],
+		['Purple', 'Cyan', 'Red'],
+		['Purple', 'Green', 'Yellow'],
+		['Purple', 'Blue', 'Yellow'],
+		['Purple', 'Green', 'Blue'],
+		['Purple', 'Green', 'Cyan'],
+		['Purple', 'Yellow', 'Cyan'],
+		['Purple', 'Cyan', 'Blue'],
+	];
 /*
 // It requires an extra line to pull out the values
 type Direction = typeof ODirection[keyof typeof ODirection];

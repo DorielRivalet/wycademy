@@ -17,6 +17,7 @@ export const frontierColorNames = [
 			{ var: '--fz-sharpness-white', name: 'White' },
 			{ var: '--fz-sharpness-purple', name: 'Purple' },
 			{ var: '--fz-sharpness-cyan', name: 'Cyan' },
+			{ var: '--fz-sharpness-border', name: 'Border' },
 		],
 	},
 
@@ -47,6 +48,7 @@ export const frontierColorNames = [
 			{ var: '--fz-text-brown', name: 'Brown' },
 			{ var: '--fz-text-pink', name: 'Pink' },
 			{ var: '--fz-text-orange', name: 'Orange' },
+			{ var: '--fz-text-orange2', name: 'Orange 2' },
 		],
 	},
 ];

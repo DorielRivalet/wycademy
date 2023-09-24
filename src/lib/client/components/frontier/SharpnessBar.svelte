@@ -36,15 +36,20 @@
 		}
 	}
 
-	$: barClassStyle = sharpnessBoost ? 'boostedBar' : 'bar';
-
+	$: barClassStyle = sharpnessBoost ? 'boosted-bar' : 'bar';
+	$: borderClassStyleLeft = sharpnessBoost
+		? 'boosted-border-left'
+		: 'border-left';
+	$: borderClassStyleRight = sharpnessBoost
+		? 'boosted-border-right'
+		: 'border-right';
 	$: sharpnessWidths = setSharpnessWidths(sharpnessValues);
+	$: boostNumberClass = sharpnessBoost ? 'boosted-number' : 'invisible';
 </script>
 
 <div class="container">
-	{#if sharpnessBoost}
-		<div class="triangle-left" />
-	{/if}
+	<div class={borderClassStyleLeft} />
+
 	<div class={barClassStyle}>
 		{#each sharpnessWidths as width, i}
 			<div
@@ -54,10 +59,8 @@
 			/>
 		{/each}
 	</div>
-	{#if sharpnessBoost}
-		<div class="triangle-right" />
-		<div class="text-cyan">+1</div>
-	{/if}
+	<div class={borderClassStyleRight} />
+	<div class={boostNumberClass}>+1</div>
 </div>
 
 <style>
@@ -66,24 +69,46 @@
 		align-items: center; /* Vertically center arrows with bars */
 		gap: 0;
 		grid-area: bar;
+		justify-content: end;
 	}
 
 	.bar {
 		display: flex;
 		border: var(--cds-spacing-01) solid black;
 		height: 100%;
-		width: 18ch;
+		width: 17ch;
+		outline: var(--cds-spacing-01) solid var(--fz-sharpness-border);
 	}
 
-	.boostedBar {
+	.boosted-bar {
 		display: flex;
 		border: var(--cds-spacing-01) solid black;
 		height: 100%;
-		width: 18ch;
+		width: 17ch;
 		outline: var(--cds-spacing-01) solid var(--fz-text-cyan);
 	}
 
-	.triangle-left {
+	.border-left {
+		width: 0;
+		height: 0;
+		margin-right: -0.05rem;
+		border-top: 5px solid transparent;
+		border-right: 10px solid var(--fz-sharpness-border);
+		border-bottom: 5px solid transparent;
+		transform: scale(0.5, 2.2);
+	}
+
+	.border-right {
+		width: 0;
+		height: 0;
+		margin-left: -0.05rem;
+		border-top: 5px solid transparent;
+		border-left: 10px solid var(--fz-sharpness-border);
+		border-bottom: 5px solid transparent;
+		transform: scale(0.5, 2.2);
+	}
+
+	.boosted-border-left {
 		width: 0;
 		height: 0;
 		margin-right: -0.05rem;
@@ -93,7 +118,7 @@
 		transform: scale(0.5, 2.2);
 	}
 
-	.triangle-right {
+	.boosted-border-right {
 		width: 0;
 		height: 0;
 		margin-left: -0.05rem;
@@ -106,5 +131,16 @@
 	.text-cyan {
 		margin-left: var(--cds-spacing-02);
 		color: var(--fz-text-cyan);
+	}
+
+	.boosted-number {
+		margin-left: var(--cds-spacing-02);
+		color: var(--fz-text-cyan);
+	}
+
+	.invisible {
+		margin-left: var(--cds-spacing-02);
+		color: var(--fz-text-cyan);
+		opacity: 0;
 	}
 </style>
