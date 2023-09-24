@@ -72,11 +72,6 @@
 
 	<nav class="container-links">
 		<div class="container-link">
-			<Link href="https://github.com/DorielRivalet/frontier-compendium">
-				<LogoGithub size="24" />
-			</Link>
-		</div>
-		<div class="container-link">
 			<Link href="/site-preferences" class="link">
 				<div class="settings-icon">
 					<Settings size="24" />

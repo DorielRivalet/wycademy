@@ -156,6 +156,7 @@ Works on Firefox */
 * {
 	scrollbar-width: thin;
 	scrollbar-color: var(--ctp-blue) var(--ctp-crust);
+	caret-color: var(--ctp-rosewater);
 }
 
 /* Works on Chrome, Edge, and Safari */
@@ -258,4 +259,8 @@ input[type='button'],
 body.wait,
 body.wait * {
 	cursor: var(--cursor-icon-wait) !important;
+}
+
+::selection {
+	background-color: var(--ctp-surface2);
 }

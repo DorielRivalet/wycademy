@@ -65,11 +65,11 @@ export type FrontierStatus =
 	| 'Blast'
 	| 'Def';
 export type FrontierWeaponLength =
-	| 'V. Short'
+	| 'Very Short'
 	| 'Short'
 	| 'Medium'
 	| 'Long'
-	| 'V. Long';
+	| 'Very Long';
 export type FrontierWeaponClass = 'Blademaster' | 'Gunner';
 export type FrontierEquipmentRank = '' | 'G' | 'Z';
 export type FrontierWeaponSharpness = [

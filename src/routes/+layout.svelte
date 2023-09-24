@@ -16,6 +16,7 @@
 	import { onMount } from 'svelte';
 	import { cursorIcon } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
+	import { page } from '$app/stores';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 
@@ -42,7 +43,9 @@
 	<main>
 		<slot />
 	</main>
-	<Footer />
+	{#key $page.url.pathname}
+		<Footer />
+	{/key}
 </div>
 
 <style>

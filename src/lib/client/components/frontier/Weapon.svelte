@@ -35,7 +35,7 @@
 	export let statusValue: number = 0;
 	export let element: FrontierElement = 'Fire';
 	export let status: FrontierStatus = 'Poison';
-	export let length: FrontierWeaponLength = 'V. Long';
+	export let length: FrontierWeaponLength = 'Very Long';
 	export let sharpnessValues: FrontierWeaponSharpness = [
 		170, 170, 170, 170, 170, 200, 250, 400,
 	];
