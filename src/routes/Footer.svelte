@@ -72,7 +72,7 @@
 
 	<div class="item-container">
 		<Link href="https://github.com/DorielRivalet/frontier-compendium">
-			<LogoGithub size="48" />
+			<LogoGithub size={32} />
 		</Link>
 		<div class="subtle">v{constant.siteVersion}</div>
 	</div>

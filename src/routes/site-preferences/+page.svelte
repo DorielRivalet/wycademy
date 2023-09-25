@@ -51,6 +51,7 @@
 	import {
 		SharpnessNames,
 		ZenithSkills,
+		defaultWeaponComponentValues,
 	} from '$lib/client/modules/frontier/objects';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
@@ -65,21 +66,14 @@
 	import { getCursorId } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
-	import type {
-		FrontierElement,
-		FrontierEquipmentRank,
-		FrontierRarity,
-		FrontierStatus,
-		FrontierWeaponID,
-		FrontierWeaponLength,
-		FrontierWeaponSharpness,
-		FrontierZenithSkill,
-	} from '$lib/client/modules/frontier/types';
+	import type { FrontierWeaponID } from '$lib/client/modules/frontier/types';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import Select from 'carbon-components-svelte/src/Select/Select.svelte';
 	import SelectItem from 'carbon-components-svelte/src/Select/SelectItem.svelte';
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
-	import { SkeletonText } from 'carbon-components-svelte';
+	import { domToWebp } from 'modern-screenshot';
+
+	type dropdownItem = { id: string; text: string };
 
 	onMount(() => {
 		mermaid.initialize({
@@ -90,10 +84,89 @@
 		mermaid.contentLoaded();
 	});
 
-	let mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
+	async function renderDiagram(siteTheme: string, mermaidTheme: string) {
+		if (!browser) return;
+		mermaidTheme = siteTheme === 'g10' ? 'default' : 'dark';
+		const { svg } = await mermaid.render('mermaid', getDiagram(mermaidTheme));
+		container.innerHTML = svg;
+	}
 
-	// The default diagram
-	let diagram = getDiagram(mermaidTheme);
+	function increaseMonsterDefrate() {
+		// https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
+		defrate = parseFloat((defrate + 0.01).toFixed(14));
+	}
+
+	function getWeaponType(id: string): FrontierWeaponID {
+		if (parseInt(id) < 0 || parseInt(id) >= 14) return 0;
+		return parseInt(id) as FrontierWeaponID;
+	}
+
+	function changeCatppuccinFlavorCSSVariables(selectedId: string) {
+		if (!browser) return;
+		let themeValue = getThemeNameFromId(selectedId);
+		let cssVarMap =
+			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+	}
+
+	function changeCursorCSSVariable(selectedId: string) {
+		if (!browser) return;
+		let value = getCursorNameFromId(selectedId);
+		let cssVarMap = cursorVars[value] || cursorVars.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+	}
+
+	function changeTheme(selectedId: string) {
+		setTheme(selectedId);
+		changeCatppuccinFlavorCSSVariables(selectedId);
+		let oldDiagram = diagram;
+		diagram = '';
+		mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
+		diagram = oldDiagram;
+	}
+
+	function changeCursor(selectedId: string) {
+		setCursor(selectedId);
+		changeCursorCSSVariable(selectedId);
+	}
+
+	function resetWeaponValues() {
+		weaponSharpness = defaultWeaponComponentValues.weaponSharpness;
+		weaponName = defaultWeaponComponentValues.weaponName;
+		weaponLevel = defaultWeaponComponentValues.weaponLevel;
+		weaponRarity = defaultWeaponComponentValues.weaponRarity;
+		weaponTypeId = defaultWeaponComponentValues.weaponTypeId;
+		weaponRank = defaultWeaponComponentValues.weaponRank;
+		weaponLength = defaultWeaponComponentValues.weaponLength;
+		weaponElementBoost = defaultWeaponComponentValues.weaponElementBoost;
+		weaponStatusBoost = defaultWeaponComponentValues.weaponStatusBoost;
+		weaponAttackBoost = defaultWeaponComponentValues.weaponAttackBoost;
+		weaponAttack = defaultWeaponComponentValues.weaponAttack;
+		weaponElementValue = defaultWeaponComponentValues.weaponElementValue;
+		weaponStatusValue = defaultWeaponComponentValues.weaponStatusValue;
+		weaponElementType = defaultWeaponComponentValues.weaponElementType;
+		weaponStatusType = defaultWeaponComponentValues.weaponStatusType;
+		weaponZenithSkill = defaultWeaponComponentValues.weaponZenithSkill;
+		weaponSharpnessBoost = defaultWeaponComponentValues.weaponSharpnessBoost;
+	}
+
+	function getZenithSkills() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		ZenithSkills.forEach((element) => {
+			if (element !== '') {
+				array = [...array, { id: element, text: element }];
+			}
+		});
+		return array;
+	}
+
+	function increaseMonsterHP() {
+		monsterHP++;
+	}
 
 	function getDiagram(mermaidTheme: string) {
 		return `\
@@ -148,17 +221,6 @@
 						ms9--> ms10[Lure monster to wall];`;
 	}
 
-	let container: { innerHTML: string };
-
-	async function renderDiagram(siteTheme: string, mermaidTheme: string) {
-		if (!browser) return;
-		mermaidTheme = siteTheme === 'g10' ? 'default' : 'dark';
-		const { svg } = await mermaid.render('mermaid', getDiagram(mermaidTheme));
-		container.innerHTML = svg;
-	}
-
-	$: diagram && renderDiagram($theme, mermaidTheme);
-
 	// TODO put constants in other files
 	const monsterHPFormula = display('EHP = \\frac{THP}{DEF}');
 	const invalidSharpnessValueText = 'Value must be between 0 and 400.';
@@ -169,112 +231,40 @@
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
 
+	let container: { innerHTML: string };
+
+	let mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
+
+	// The default diagram
+	let diagram = getDiagram(mermaidTheme);
+
 	let monsterHP = 30_000;
 	let defrate = 0.03;
 
-	function increaseMonsterHP() {
-		monsterHP++;
-	}
+	let weaponSharpness = defaultWeaponComponentValues.weaponSharpness;
 
-	function increaseMonsterDefrate() {
-		// https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
-		defrate = parseFloat((defrate + 0.01).toFixed(14));
-	}
+	let weaponName = defaultWeaponComponentValues.weaponName;
+	let weaponLevel = defaultWeaponComponentValues.weaponLevel;
+	let weaponRarity = defaultWeaponComponentValues.weaponRarity;
+	let weaponTypeId = defaultWeaponComponentValues.weaponTypeId;
+	let weaponRank = defaultWeaponComponentValues.weaponRank;
+	let weaponLength = defaultWeaponComponentValues.weaponLength;
+	let weaponElementBoost = defaultWeaponComponentValues.weaponElementBoost;
+	let weaponStatusBoost = defaultWeaponComponentValues.weaponStatusBoost;
+	let weaponAttackBoost = defaultWeaponComponentValues.weaponAttackBoost;
+	let weaponAttack = defaultWeaponComponentValues.weaponAttack;
+	let weaponElementValue = defaultWeaponComponentValues.weaponElementValue;
+	let weaponStatusValue = defaultWeaponComponentValues.weaponStatusValue;
+	let weaponElementType = defaultWeaponComponentValues.weaponElementType;
+	let weaponStatusType = defaultWeaponComponentValues.weaponStatusType;
+	let weaponZenithSkill = defaultWeaponComponentValues.weaponZenithSkill;
+	let weaponSharpnessBoost = defaultWeaponComponentValues.weaponSharpnessBoost;
 
-	function getWeaponType(id: string): FrontierWeaponID {
-		if (parseInt(id) < 0 || parseInt(id) >= 14) return 0;
-		return parseInt(id) as FrontierWeaponID;
-	}
-
-	function changeCatppuccinFlavorCSSVariables(selectedId: string) {
-		if (!browser) return;
-		let themeValue = getThemeNameFromId(selectedId);
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-	}
-
-	function changeCursorCSSVariable(selectedId: string) {
-		if (!browser) return;
-		let value = getCursorNameFromId(selectedId);
-		let cssVarMap = cursorVars[value] || cursorVars.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-	}
-
-	function changeTheme(selectedId: string) {
-		setTheme(selectedId);
-		changeCatppuccinFlavorCSSVariables(selectedId);
-		let oldDiagram = diagram;
-		diagram = '';
-		mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
-		diagram = oldDiagram;
-	}
-
-	function changeCursor(selectedId: string) {
-		setCursor(selectedId);
-		changeCursorCSSVariable(selectedId);
-	}
-
-	function resetWeaponValues() {
-		weaponName = 'Depth Flamepike "Glory"';
-		weaponLevel = 100;
-		weaponRarity = 12;
-		weaponTypeId = '3';
-		weaponRank = 'Z';
-		weaponLength = 'Very Long';
-		weaponElementBoost = true;
-		weaponStatusBoost = true;
-		weaponAttackBoost = true;
-		weaponAttack = 100;
-		weaponElementValue = 1200;
-		weaponStatusValue = 1100;
-		weaponElementType = 'Fire';
-		weaponStatusType = 'Poison';
-		weaponZenithSkill = 'Skill Slots Up+1';
-		weaponSharpnessBoost = true;
-	}
-
-	type dropdownItem = { id: string; text: string };
-
-	function getZenithSkills() {
-		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		ZenithSkills.forEach((element) => {
-			if (element !== '') {
-				array = [...array, { id: element, text: element }];
-			}
-		});
-		return array;
-	}
-
+	$: diagram && renderDiagram($theme, mermaidTheme);
 	$: EHP = `{${frontierMath.calculateEHP(
 		monsterHP,
 		defrate,
 	)}} = \\frac{${monsterHP}}{${defrate}}`;
-
-	let weaponSharpness: FrontierWeaponSharpness = [
-		170, 170, 170, 170, 170, 200, 250, 350,
-	];
-
-	let weaponName = 'Depth Flamepike "Glory"';
-	let weaponLevel = 100;
-	let weaponRarity: FrontierRarity = 12;
-	let weaponTypeId = '3';
-	let weaponRank: FrontierEquipmentRank = 'Z';
-	let weaponLength: FrontierWeaponLength = 'Very Long';
-	let weaponElementBoost = true;
-	let weaponStatusBoost = true;
-	let weaponAttackBoost = true;
-	let weaponAttack = 100;
-	let weaponElementValue = 1200;
-	let weaponStatusValue = 1100;
-	let weaponElementType: FrontierElement = 'Fire';
-	let weaponStatusType: FrontierStatus = 'Poison';
-	let weaponZenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
-	let weaponSharpnessBoost = true;
 </script>
 
 <svelte:head>
@@ -492,27 +482,29 @@
 			<div class="container-weapon">
 				<div class="weapon-info">
 					{#key weaponRarity}
-						<Weapon
-							name={weaponName}
-							length={weaponLength}
-							weaponType={getWeaponType(weaponTypeId)}
-							attack={weaponAttack}
-							attackBoost={weaponAttackBoost}
-							sharpnessValues={weaponSharpness}
-							sharpnessBoost={weaponSharpnessBoost}
-							elementValue={weaponElementValue}
-							statusValue={weaponStatusValue}
-							element={weaponElementType}
-							status={weaponStatusType}
-							elementBoost={weaponElementBoost}
-							statusBoost={weaponStatusBoost}
-							rank={weaponRank}
-							level={weaponLevel >= 0 && weaponLevel <= 100 ? weaponLevel : 0}
-							rarity={weaponRarity >= 1 && weaponRarity <= 12
-								? weaponRarity
-								: 1}
-							zenithSkill={weaponZenithSkill}
-						/>
+						<div id="weapon-dom">
+							<Weapon
+								name={weaponName}
+								length={weaponLength}
+								weaponType={getWeaponType(weaponTypeId)}
+								attack={weaponAttack}
+								attackBoost={weaponAttackBoost}
+								sharpnessValues={weaponSharpness}
+								sharpnessBoost={weaponSharpnessBoost}
+								elementValue={weaponElementValue}
+								statusValue={weaponStatusValue}
+								element={weaponElementType}
+								status={weaponStatusType}
+								elementBoost={weaponElementBoost}
+								statusBoost={weaponStatusBoost}
+								rank={weaponRank}
+								level={weaponLevel >= 0 && weaponLevel <= 100 ? weaponLevel : 0}
+								rarity={weaponRarity >= 1 && weaponRarity <= 12
+									? weaponRarity
+									: 1}
+								zenithSkill={weaponZenithSkill}
+							/>
+						</div>
 					{/key}
 					<div class="weapon-info-values">
 						<Dropdown
