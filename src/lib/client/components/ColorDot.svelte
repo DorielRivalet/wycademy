@@ -5,7 +5,7 @@
 -->
 
 <script lang="ts">
-	import { Popover } from 'carbon-components-svelte';
+	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 
 	export let color: string;
 	export let name: string;
