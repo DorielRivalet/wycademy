@@ -183,6 +183,10 @@ Works on Firefox */
 	margin: 0 auto;
 }
 
+.subtle {
+	color: var(--ctp-overlay1);
+}
+
 @media (min-width: 720px) {
 	h1 {
 		font-size: 2.4rem;
@@ -216,6 +220,11 @@ hr {
 
 li {
 	margin: var(--cds-spacing-05);
+}
+
+ul li,
+ol li {
+	font-size: 1rem;
 }
 
 ul li::marker {
