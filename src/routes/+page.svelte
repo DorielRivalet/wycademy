@@ -10,6 +10,7 @@
 	import welcome from '$lib/client/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/client/images/svelte-welcome.png';
 	import { description } from '$lib/constants';
+	console.log('page svelte load');
 </script>
 
 <svelte:head>
