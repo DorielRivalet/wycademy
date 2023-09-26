@@ -17,8 +17,11 @@
 	import { cursorIcon } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
+	import type { LayoutData } from './$types';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
+	export let data: LayoutData;
+	console.log('layout load');
 
 	onMount(() => {
 		let themeValue = $theme;
@@ -44,7 +47,7 @@
 		<slot />
 	</main>
 	{#key $page.url.pathname}
-		<Footer />
+		<Footer githubData={data.github} />
 	{/key}
 </div>
 
