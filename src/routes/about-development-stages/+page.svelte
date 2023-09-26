@@ -36,7 +36,6 @@
 		detail a clear development process so users can know what to expect during
 		each development phase. For the specifics of when a stage finishes and the
 		next one starts, see the milestones <Link
-			inline
 			href="https://github.com/DorielRivalet/frontier-compendium/milestones"
 			>here</Link
 		>.
@@ -45,8 +44,8 @@
 	<section>
 		<SectionHeading title={'Alpha'} level={2} />
 		<p>
-			During alpha, anything in the website can drastically change at any moment
-			and everything is potentially ephemeral.
+			During <em>alpha</em>, anything in the website can drastically change at
+			any moment and everything is potentially ephemeral.
 		</p>
 		<ul>
 			<li>
@@ -89,8 +88,8 @@
 		</ul>
 	</section>
 	<p>
-		The beta stage paves the road for v1.0.0. This phase sacrifices velocity for
-		adaptability.
+		The <em>beta</em> stage paves the road for v1.0.0. This phase sacrifices velocity
+		for adaptability.
 	</p>
 
 	<section>
@@ -117,14 +116,13 @@
 		<SectionHeading title={'Closing Notes'} level={2} />
 		<ul>
 			<li>
-				In the alpha stage, users should expect that the site might be unstable
+				In the <em>alpha</em> stage, users should expect that the site might be unstable
 				and change frequently.
 			</li>
 
 			<li>
-				In the beta stage, users can start using the site for regular
-				activities, but they should still expect some changes and potential
-				issues.
+				In the <em>beta</em> stage, users can start using the site for regular activities,
+				but they should still expect some changes and potential issues.
 			</li>
 
 			<li>
