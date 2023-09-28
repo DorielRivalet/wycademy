@@ -25,20 +25,16 @@
 	</div>
 
 	<div class="item-container">
-		<a href={constant.authorGitHub}>
-			<img
-				class="author-avatar image-with-glow"
-				alt="Author avatar"
-				src="https://avatars.githubusercontent.com/u/100863878?v=4"
-			/>
-		</a>
 		<Link href={constant.authorGitHub}
 			>{constant.author} &copy {new Date().getUTCFullYear()}</Link
 		>
 	</div>
 
 	<div class="item-container">
-		<Link href="https://github.com/DorielRivalet/frontier-compendium">
+		<Link
+			aria-label="GitHub repository"
+			href="https://github.com/DorielRivalet/frontier-compendium"
+		>
 			<LogoGithub size={32} />
 		</Link>
 		<div class="subtle">v{constant.appVersion}</div>
@@ -51,22 +47,6 @@
 		flex-direction: column;
 		gap: 1rem;
 		align-items: center;
-	}
-
-	.author-avatar {
-		width: var(--cds-spacing-09);
-		height: var(--cds-spacing-09);
-		border-radius: 50%;
-		border: var(--cds-spacing-01) solid transparent;
-	}
-
-	.image-with-glow {
-		transition: filter 0.11s ease-in-out; /* Add a smooth transition for the glow effect */
-	}
-
-	.image-with-glow:hover {
-		filter: drop-shadow(0px 0px var(--cds-spacing-03) var(--ctp-sky))
-			saturate(120%);
 	}
 
 	footer {
