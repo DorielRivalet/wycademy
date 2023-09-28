@@ -5,6 +5,7 @@ node_modules
 .svelte-kit/ambient.d.ts
 .svelte-kit/generated/
 .svelte-kit/types/
+.svelte-kit/output/
 /package
 .env
 .env.*
