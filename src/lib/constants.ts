@@ -14,4 +14,4 @@ export const url = dev
 	? 'https://localhost:5173'
 	: 'https://github.com/DorielRivalet/frontier-compendium';
 export const developmentStage = 'alpha';
-export const siteVersion = '0.2.0';
+export const appVersion = '0.2.0';

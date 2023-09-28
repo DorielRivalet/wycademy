@@ -1,7 +1,7 @@
 // export function load() {
 // 	throw new Error('yikes');
 // }
-
+console.log('layout.server.ts');
 import type { GitHubData } from '$lib/types';
 import type { LayoutServerLoad } from './$types';
 
@@ -22,7 +22,6 @@ export const load: LayoutServerLoad = async ({ fetch, url }) => {
 	let commitLink: string = '#';
 	let timesChanged: number = 0;
 	const path = url.pathname;
-	console.log(path);
 	if (!whitelist.includes(path)) {
 		console.warn('Page not on GitHub paths whitelist');
 		return {
