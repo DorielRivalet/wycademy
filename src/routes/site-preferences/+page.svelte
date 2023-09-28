@@ -278,6 +278,10 @@
 	/>
 	<meta content={logo} property="og:image" />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
+	<link
+		rel="canonical"
+		href="https://frontier-compendium.vercel.app/site-preferences"
+	/>
 </svelte:head>
 
 <LocalStorage bind:value={$soundStore} key="__sound-enabled" />

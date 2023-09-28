@@ -21,7 +21,7 @@
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
-	console.log('layout load');
+	console.log('layout.svelte');
 
 	onMount(() => {
 		let themeValue = $theme;
@@ -38,6 +38,10 @@
 		});
 	});
 </script>
+
+<!-- <svelte:head>
+	<title>{$page.data.title}</title>
+</svelte:head> -->
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <div class="app">

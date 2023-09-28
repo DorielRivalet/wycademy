@@ -41,7 +41,7 @@
 		<Link href="https://github.com/DorielRivalet/frontier-compendium">
 			<LogoGithub size={32} />
 		</Link>
-		<div class="subtle">v{constant.siteVersion}</div>
+		<div class="subtle">v{constant.appVersion}</div>
 	</div>
 </footer>
 

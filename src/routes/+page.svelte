@@ -10,7 +10,7 @@
 	import welcome from '$lib/client/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/client/images/svelte-welcome.png';
 	import { description } from '$lib/constants';
-	console.log('page svelte load');
+	console.log('page.svelte');
 </script>
 
 <svelte:head>
@@ -19,9 +19,42 @@
 	<meta content="Frontier Compendium - Home" property="og:title" />
 	<meta content={description} property="og:description" />
 	<meta name="description" content={description} />
-	<meta content="https://frontier-compendium.vercel.app/" property="og:url" />
+	<meta content="https://frontier-compendium.vercel.app" property="og:url" />
 	<meta content={logo} property="og:image" />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
+	<link rel="canonical" href="https://frontier-compendium.vercel.app" />
+	<!-- <script type="application/ld+json">
+		{
+			"@context": "http://schema.org/",
+			"@type": "WebApplication",
+			"browserRequirements": "requires HTML5 support",
+			"applicationCategory": "Wiki",
+			"applicationSubCategory": "Game Wiki",
+			"softwareVersion": "0.2.0",
+			"identifier": "https://vocab.getty.edu/aat/300410446",
+			"about": "Guides for Monster Hunter Frontier Z",
+			"abstract": "A compendium of resources for Monster Hunter Frontier Z (MHF-Z) by Doriel Rivalet",
+			"accessMode": ["textual","visual","chartOnVisual","colorDependent", "diagramOnVisual", "mathOnVisual", "textOnVisual"],
+			"accessibilityHazard": ["unknown"],
+			"acquireLicensePage": "https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md",
+			"alternativeHeadline": "frontier-compendium",
+			"audience": {
+      	"@type": "Audience",
+      	"name": "Gamers"
+     	},
+			"datePublished": "2023/09/02",
+			"headline": "Frontier Compendium",
+			"license": "https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md",
+			"alternateName": "mhfz-compendium",
+			"description": "Your go-to application for all things MHF-Z",
+			"name": "frontier-compendium",
+			"sameAs": "https://frontier-compendium.vercel.app",
+			"url": "https://frontier-compendium.vercel.app",
+			"thumbnailUrl": "https://raw.githubusercontent.com/DorielRivalet/frontier-compendium/main/src/lib/client/images/logo.png",
+			"typicalAgeRange": "13+",
+			"isAccessibleForFree": true
+		}
+	</script> -->
 </svelte:head>
 
 <section>
