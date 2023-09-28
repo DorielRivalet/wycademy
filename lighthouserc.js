@@ -1,5 +1,7 @@
-export const ci = {
-	upload: {
-		target: 'temporary-public-storage',
+module.exports = {
+	ci: {
+		upload: {
+			target: 'temporary-public-storage',
+		},
 	},
 };
