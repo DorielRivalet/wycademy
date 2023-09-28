@@ -6,39 +6,18 @@
 
 <script lang="ts">
 	import { page } from '$app/stores';
-	import logo from '$lib/client/images/logo.png';
-	import logoAlt from '$lib/client/images/logo_alternative.png';
 	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
-	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
 	import { goto } from '$app/navigation';
 	import { developmentStage } from '$lib/constants';
-
-	let imgSrc = logo;
-
-	function handleMouseEnter() {
-		imgSrc = logoAlt;
-	}
-
-	function handleMouseLeave() {
-		imgSrc = logo;
-	}
+	import Logo from '$lib/client/components/Logo.svelte';
 </script>
 
 <header>
 	<div class="logo-notification">
-		<div class="logo">
-			<a href="/">
-				<img
-					src={imgSrc}
-					on:mouseenter={handleMouseEnter}
-					on:mouseleave={handleMouseLeave}
-					alt="Logo"
-				/>
-			</a>
-		</div>
+		<Logo />
 
 		<InlineNotification
 			lowContrast
@@ -72,9 +51,9 @@
 
 	<nav class="container-links">
 		<div class="container-link">
-			<Link href="/site-preferences" class="link">
+			<Link href="/site-preferences" class="link" aria-label="Site preferences">
 				<div class="settings-icon">
-					<Settings size="24" />
+					<Settings size={24} />
 				</div>
 			</Link>
 		</div>
@@ -123,25 +102,6 @@
 		justify-content: space-between;
 		gap: 1rem;
 		margin-right: 0.5rem;
-	}
-
-	.logo {
-		width: 5em;
-		height: 5em;
-	}
-
-	.logo a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
-
-	.logo img {
-		width: 4em;
-		height: 4em;
-		object-fit: contain;
 	}
 
 	nav {

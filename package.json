@@ -1,6 +1,28 @@
 {
+	"type": "module",
 	"name": "frontier-compendium",
 	"version": "0.2.0",
+	"license": "MIT",
+	"description": "A compendium of resources for Monster Hunter Frontier Z (MHF-Z).",
+	"keywords": [
+		"MHF-Z",
+		"MHF",
+		"Monster Hunter",
+		"Monster Hunter Frontier",
+		"Monster Hunter Frontier Z"
+	],
+	"homepage": "https://frontier-compendium.vercel.app/",
+	"bugs": {
+		"url": "https://github.com/DorielRivalet/frontier-compendium/issues"
+	},
+	"author": {
+		"url": "https://github.com/DorielRivalet",
+		"name": "Doriel Rivalet"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DorielRivalet/frontier-compendium.git"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -66,7 +88,6 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.34.5"
 	},
-	"type": "module",
 	"dependencies": {
 		"@carbon/layout": "^11.19.0",
 		"@ibm/plex": "^6.3.0",

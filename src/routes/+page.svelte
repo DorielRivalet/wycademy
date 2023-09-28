@@ -6,9 +6,8 @@
 
 <script>
 	import Counter from '$lib/client/components/Counter.svelte';
+	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import logo from '$lib/client/images/logo.png';
-	import welcome from '$lib/client/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/client/images/svelte-welcome.png';
 	import { description } from '$lib/constants';
 	console.log('page.svelte');
 </script>
@@ -23,7 +22,8 @@
 	<meta content={logo} property="og:image" />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
 	<link rel="canonical" href="https://frontier-compendium.vercel.app" />
-	<!-- <script type="application/ld+json">
+	<!-- Structured Data
+		<script type="application/ld+json">
 		{
 			"@context": "http://schema.org/",
 			"@type": "WebApplication",
@@ -58,20 +58,11 @@
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
+	<SectionHeadingTopLevel title="Welcome" />
 
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
+	<p>
 		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+	</p>
 
 	<Counter />
 </section>
@@ -82,26 +73,5 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
 	}
 </style>
