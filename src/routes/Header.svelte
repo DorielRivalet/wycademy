@@ -52,9 +52,7 @@
 	<nav class="container-links">
 		<div class="container-link">
 			<Link href="/site-preferences" class="link" aria-label="Site preferences">
-				<div class="settings-icon">
-					<Settings size={32} />
-				</div>
+				<Settings size={32} />
 			</Link>
 		</div>
 	</nav>
@@ -80,17 +78,10 @@
 		margin-left: var(--cds-spacing-02);
 	}
 
-	.settings-icon {
-		transition: transform 1s ease-in-out;
-	}
-
-	.settings-icon:hover {
-		transform: rotate(-45deg);
-	}
-
 	header {
 		display: flex;
 		justify-content: space-between;
+		min-height: 10vh;
 	}
 
 	.container-link {
