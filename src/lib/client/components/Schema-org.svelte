@@ -23,7 +23,7 @@ SOFTWARE.
 -->
 
 <script lang="ts">
-	import type { SchemaOrgProps } from './schema-org-props';
+	import type { SchemaOrgProps } from '$lib/schema-org-props';
 
 	export let schemaOrgProps: SchemaOrgProps;
 

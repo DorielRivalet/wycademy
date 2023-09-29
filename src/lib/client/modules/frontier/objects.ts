@@ -56,7 +56,6 @@ export const Sharpness = {
 	Cyan: 7,
 } as const;
 
-// TODO svg
 export const WeaponTypes = [
 	{
 		id: 0 as FrontierWeaponID,

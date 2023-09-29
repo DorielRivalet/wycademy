@@ -78,9 +78,12 @@
 	import Select from 'carbon-components-svelte/src/Select/Select.svelte';
 	import SelectItem from 'carbon-components-svelte/src/Select/SelectItem.svelte';
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
-	import { domToWebp } from 'modern-screenshot';
+	import { domToPng } from 'modern-screenshot';
 	import { page } from '$app/stores';
-	import Head from '../Head.svelte';
+	import Head from '$lib/client/components/Head.svelte';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import slugify from 'slugify';
+	import { frontierMappers } from '$lib/client/modules/frontier/functions';
 
 	type dropdownItem = { id: string; text: string };
 
@@ -144,7 +147,9 @@
 	}
 
 	function resetWeaponValues() {
-		weaponSharpness = defaultWeaponComponentValues.weaponSharpness;
+		// TODO idk why this doesnt work with default
+		weaponSharpness = [170, 170, 170, 170, 170, 200, 250, 350];
+
 		weaponName = defaultWeaponComponentValues.weaponName;
 		weaponLevel = defaultWeaponComponentValues.weaponLevel;
 		weaponRarity = defaultWeaponComponentValues.weaponRarity;
@@ -175,6 +180,22 @@
 
 	function increaseMonsterHP() {
 		monsterHP++;
+	}
+
+	function downloadWeaponImage() {
+		if (!browser) return;
+		let node = document.querySelector('#weapon-dom');
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(
+				`${frontierMappers.getWeaponNameById(
+					weaponTypeId,
+				)}-${weaponName}-${new Date().toISOString()}.png`,
+			)}`;
+			link.href = dataUrl;
+			link.click();
+		});
 	}
 
 	function getDiagram(mermaidTheme: string) {
@@ -458,10 +479,13 @@
 			{@html display(EHP)}
 
 			<section class="calculator-buttons">
-				<Button icon={Calculator} on:click={increaseMonsterHP}
+				<Button kind="tertiary" icon={Calculator} on:click={increaseMonsterHP}
 					>Increase monster True HP</Button
 				>
-				<Button icon={Calculator} on:click={increaseMonsterDefrate}
+				<Button
+					kind="tertiary"
+					icon={Calculator}
+					on:click={increaseMonsterDefrate}
 					>Increase monster Defense Rate</Button
 				>
 			</section>
@@ -495,7 +519,11 @@
 				/>
 			</div>
 			<div class="container-weapon-buttons">
-				<Button icon={Restart} on:click={resetWeaponValues}
+				<Button kind="tertiary" icon={Download} on:click={downloadWeaponImage}
+					>Download</Button
+				>
+
+				<Button kind="tertiary" icon={Restart} on:click={resetWeaponValues}
 					>Restore values</Button
 				>
 			</div>
@@ -737,6 +765,12 @@
 		flex-direction: column;
 		gap: 1rem;
 		margin-top: 2rem;
+	}
+
+	.container-weapon-buttons {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
 	}
 
 	.setting-container {

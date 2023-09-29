@@ -18,7 +18,7 @@
 		website,
 	} from '$lib/constants';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import Head from '../Head.svelte';
+	import Head from '$lib/client/components/Head.svelte';
 	let url = $page.url.toString();
 </script>
 
