@@ -20,10 +20,14 @@
 	<meta content="https://frontier-compendium.vercel.app" property="og:url" />
 	<meta content={description} property="og:description" />
 	<meta name="description" content={description} />
-	<meta content={logo} property="og:image" />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
 	<meta property="og:site_name" content={title} />
 	<meta property="og:type" content="WebApplication" />
+	<meta content={logo} property="og:image" />
+	<meta property="og:image:type" content="image/svg+xml" />
+	<meta property="og:image:width" content="256" />
+	<meta property="og:image:height" content="256" />
+	<meta property="og:image:alt" content="Elzelion holding a book" />
 	<!-- Structured Data
 		<script type="application/ld+json">
 		{
