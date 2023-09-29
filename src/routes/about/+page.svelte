@@ -15,7 +15,7 @@
 		projectName,
 		website,
 	} from '$lib/constants';
-	import Head from '../Head.svelte';
+	import Head from '$lib/client/components/Head.svelte';
 	let url = $page.url.toString();
 </script>
 

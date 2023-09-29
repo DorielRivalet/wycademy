@@ -7,6 +7,7 @@
 import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 import { format } from 'mathjs';
 import type { FrontierWeaponSharpness } from './types';
+import { WeaponTypes } from './objects';
 
 export const frontierMath = {
 	calculateEHP: (monsterHP: number, defrate: number) =>
@@ -44,6 +45,12 @@ export const frontierMappers = {
 			i === 0 ? value : value - sharpnessValues[i - 1],
 		);
 		return mappedValues;
+	},
+	getWeaponNameById: (weaponId: number | string) => {
+		const weapon = WeaponTypes.find(
+			(weapon) => weapon.id.toString() === weaponId.toString(),
+		);
+		return weapon ? weapon.name : null;
 	},
 };
 

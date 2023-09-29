@@ -25,8 +25,8 @@ SOFTWARE.
 <script lang="ts">
 	import type { AuthorType, MainEntity } from '$lib/types';
 	import type { MainEntityType } from '$lib/main-entity-types';
-	import type { SchemaOrgProps } from './schema-org-props';
-	import SchemaOrg from './Schema-org.svelte';
+	import type { SchemaOrgProps } from '$lib/schema-org-props';
+	import SchemaOrg from '$lib/client/components/Schema-org.svelte';
 
 	// Required props
 	export let url: string; // Full URL of the current page
