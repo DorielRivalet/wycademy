@@ -25,16 +25,13 @@
 	</div>
 
 	<div class="item-container">
-		<Link href={constant.authorGitHub}
-			>{constant.author} &copy {new Date().getUTCFullYear()}</Link
+		<Link href={constant.authorUrl}
+			>{constant.authorName} &copy {new Date().getUTCFullYear()}</Link
 		>
 	</div>
 
 	<div class="item-container">
-		<Link
-			aria-label="GitHub repository"
-			href="https://github.com/DorielRivalet/frontier-compendium"
-		>
+		<Link aria-label="GitHub repository" href={constant.projectGitHub}>
 			<LogoGithub size={32} />
 		</Link>
 		<div class="subtle">v{constant.appVersion}</div>

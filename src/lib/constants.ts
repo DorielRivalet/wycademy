@@ -4,14 +4,13 @@
  * found in the LICENSE file.
  */
 
-import { dev } from '$app/environment';
-
-export const title = 'Frontier Compendium';
-export const author = 'Doriel Rivalet';
-export const description = `A compendium of resources for Monster Hunter Frontier Z (MHF-Z) by ${author}`;
-export const authorGitHub = 'https://github.com/DorielRivalet';
-export const url = dev
-	? 'https://localhost:5173'
-	: 'https://github.com/DorielRivalet/frontier-compendium';
+export const projectName = 'Frontier Compendium';
+export const authorName = 'Doriel Rivalet';
+export const description = `A compendium of resources for Monster Hunter Frontier Z (MHF-Z) by ${authorName}`;
+export const authorUrl = 'https://github.com/DorielRivalet';
+export const projectGitHub =
+	'https://github.com/DorielRivalet/frontier-compendium';
 export const developmentStage = 'alpha';
 export const appVersion = '0.2.0';
+export const website = 'https://frontier-compendium.vercel.app';
+export const datePublished = '2023-09-02';

@@ -9,7 +9,7 @@
 	import { enhance } from '$app/forms';
 	import type { PageData, ActionData } from './$types';
 	import { reduced_motion } from './reduced-motion';
-	import logo from '$lib/client/images/logo.png';
+	import logo from '$lib/client/images/logo.webp';
 	import { description as projectDescription } from '$lib/constants';
 	export let data: PageData;
 
