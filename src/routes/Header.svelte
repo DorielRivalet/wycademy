@@ -53,7 +53,7 @@
 		<div class="container-link">
 			<Link href="/site-preferences" class="link" aria-label="Site preferences">
 				<div class="settings-icon">
-					<Settings size={24} />
+					<Settings size={32} />
 				</div>
 			</Link>
 		</div>

@@ -18,7 +18,7 @@
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<a href={link}>
+<a href={link} aria-label="Logo, back to homepage if clickable">
 	<svg
 		role="banner"
 		on:mouseenter={() => (isHovered = true)}
