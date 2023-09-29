@@ -45,6 +45,7 @@ SOFTWARE.
 	export let language: string = 'en';
 	export let authorType: AuthorType = 'Person';
 	export let authorUrl: string = '';
+	export let siteName = '';
 
 	const mainEntity: MainEntity = {
 		type: contentType,
@@ -85,6 +86,14 @@ SOFTWARE.
 	};
 </script>
 
+<!-- <svelte:head> -->
+<!--https://stackoverflow.com/questions/59335731/how-to-create-own-embed-site-for-discord-->
+<!-- <title />
+	<meta content="Home" property="og:title" /> -->
+<!-- Structured Data
+	</script> -->
+<!-- </svelte:head> -->
+
 <svelte:head>
 	<link rel="canonical" href={url} />
 
@@ -92,6 +101,7 @@ SOFTWARE.
 	<title>{title}</title>
 	<meta name="title" content={title} />
 	<meta name="description" content={description} />
+
 	{#if authorName}
 		<meta name="author" content={authorName} />
 	{/if}
@@ -110,7 +120,12 @@ SOFTWARE.
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={image} />
+		<meta property="og:image:alt" content="Elzelion holding a book" />
+		<meta property="og:site_name" content={siteName} />
 	{/if}
+
+	<!-- Discord-->
+	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
 
 	<!-- Twitter Meta Tags -->
 	{#if image}
