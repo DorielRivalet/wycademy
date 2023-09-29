@@ -8,28 +8,28 @@
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import logo from '$lib/client/images/logo.png';
-	import { description } from '$lib/constants';
+	import { description, title } from '$lib/constants';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 </script>
 
 <svelte:head>
-	<title>Frontier Compendium - About Development Stages</title>
-	<meta
-		content="Frontier Compendium - About Development Stages"
-		property="og:title"
-	/>
-	<meta content={description} property="og:description" />
-	<meta name="description" content={description} />
-	<meta
-		content="https://frontier-compendium.vercel.app/about-development-stages"
-		property="og:url"
-	/>
-	<meta content={logo} property="og:image" />
-	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
+	<title>{title} - About Development Stages</title>
+	<meta content="About Development Stages" property="og:title" />
 	<link
 		rel="canonical"
 		href="https://frontier-compendium.vercel.app/about-development-stages"
 	/>
+	<meta
+		content="https://frontier-compendium.vercel.app/about-development-stages"
+		property="og:url"
+	/>
+	<meta content={description} property="og:description" />
+	<meta name="description" content={description} />
+	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
+	<meta property="og:site_name" content={title} />
+	<meta property="og:type" content="WebApplication" />
+	<meta content={logo} property="og:image" />
+	<meta property="og:image:alt" content="Elzelion holding a book" />
 </svelte:head>
 
 <div>
