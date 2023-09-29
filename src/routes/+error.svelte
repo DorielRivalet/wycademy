@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import cat from '$lib/client/images/error.png';
+	import cat from '$lib/client/images/error.webp';
 
 	const errorTitles = [
 		'The Gargwa took the quest and ran away with it! 🐔',

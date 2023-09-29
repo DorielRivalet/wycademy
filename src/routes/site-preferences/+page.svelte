@@ -61,7 +61,7 @@
 		catppuccinColorNames,
 		catppuccinThemeMap,
 	} from '$lib/client/themes/catppuccin';
-	import { description } from '$lib/constants';
+	import { description, title } from '$lib/constants';
 	import Cursor_1 from 'carbon-icons-svelte/lib/Cursor_1.svelte';
 	import { getCursorId } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
@@ -268,20 +268,23 @@
 </script>
 
 <svelte:head>
-	<title>Frontier Compendium - Site Preferences</title>
-	<meta content="Frontier Compendium - Site Preferences" property="og:title" />
-	<meta content={description} property="og:description" />
-	<meta name="description" content={description} />
-	<meta
-		content="https://frontier-compendium.vercel.app/site-preferences"
-		property="og:url"
-	/>
-	<meta content={logo} property="og:image" />
-	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
+	<title>{title} - Site Preferences</title>
+	<meta content="Site Preferences" property="og:title" />
 	<link
 		rel="canonical"
 		href="https://frontier-compendium.vercel.app/site-preferences"
 	/>
+	<meta
+		content="https://frontier-compendium.vercel.app/site-preferences"
+		property="og:url"
+	/>
+	<meta content={description} property="og:description" />
+	<meta name="description" content={description} />
+	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
+	<meta property="og:site_name" content={title} />
+	<meta property="og:type" content="WebApplication" />
+	<meta content={logo} property="og:image" />
+	<meta property="og:image:alt" content="Elzelion holding a book" />
 	<link
 		rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
