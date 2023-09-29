@@ -61,7 +61,14 @@
 		catppuccinColorNames,
 		catppuccinThemeMap,
 	} from '$lib/client/themes/catppuccin';
-	import { description, projectName } from '$lib/constants';
+	import {
+		authorName,
+		authorUrl,
+		datePublished,
+		description,
+		projectName,
+		website,
+	} from '$lib/constants';
 	import Cursor_1 from 'carbon-icons-svelte/lib/Cursor_1.svelte';
 	import { getCursorId } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
@@ -72,6 +79,8 @@
 	import SelectItem from 'carbon-components-svelte/src/Select/SelectItem.svelte';
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
 	import { domToWebp } from 'modern-screenshot';
+	import { page } from '$app/stores';
+	import Head from '../Head.svelte';
 
 	type dropdownItem = { id: string; text: string };
 
@@ -265,26 +274,10 @@
 		monsterHP,
 		defrate,
 	)}} = \\frac{${monsterHP}}{${defrate}}`;
+	let url = $page.url.toString();
 </script>
 
 <svelte:head>
-	<title>{projectName} - Site Preferences</title>
-	<meta content="Site Preferences" property="og:title" />
-	<link
-		rel="canonical"
-		href="https://frontier-compendium.vercel.app/site-preferences"
-	/>
-	<meta
-		content="https://frontier-compendium.vercel.app/site-preferences"
-		property="og:url"
-	/>
-	<meta content={description} property="og:description" />
-	<meta name="description" content={description} />
-	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
-	<meta property="og:site_name" content={projectName} />
-	<meta property="og:type" content="WebApplication" />
-	<meta content={logo} property="og:image" />
-	<meta property="og:image:alt" content="Elzelion holding a book" />
 	<link
 		rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
@@ -292,6 +285,20 @@
 		crossorigin="anonymous"
 	/>
 </svelte:head>
+
+<Head
+	title={'About'}
+	{description}
+	image={logo}
+	{url}
+	{website}
+	{authorName}
+	{datePublished}
+	{authorUrl}
+	contentType="WebPage"
+	name={projectName}
+	siteName={projectName}
+/>
 
 <LocalStorage bind:value={$soundStore} key="__sound-enabled" />
 <LocalStorage

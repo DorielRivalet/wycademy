@@ -5,32 +5,36 @@
 -->
 
 <script>
+	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import logo from '$lib/client/images/logo.webp';
-	import { description, projectName } from '$lib/constants';
+	import {
+		authorName,
+		authorUrl,
+		datePublished,
+		description,
+		projectName,
+		website,
+	} from '$lib/constants';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import Head from '../Head.svelte';
+	let url = $page.url.toString();
 </script>
 
-<svelte:head>
-	<title>{projectName} - About Development Stages</title>
-	<meta content="About Development Stages" property="og:title" />
-	<link
-		rel="canonical"
-		href="https://frontier-compendium.vercel.app/about-development-stages"
-	/>
-	<meta
-		content="https://frontier-compendium.vercel.app/about-development-stages"
-		property="og:url"
-	/>
-	<meta content={description} property="og:description" />
-	<meta name="description" content={description} />
-	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
-	<meta property="og:site_name" content={projectName} />
-	<meta property="og:type" content="WebApplication" />
-	<meta content={logo} property="og:image" />
-	<meta property="og:image:alt" content="Elzelion holding a book" />
-</svelte:head>
+<Head
+	title={'About Development Stages'}
+	{description}
+	image={logo}
+	{url}
+	{website}
+	{authorName}
+	{datePublished}
+	{authorUrl}
+	contentType="WebPage"
+	name={projectName}
+	siteName={projectName}
+/>
 
 <div>
 	<SectionHeadingTopLevel title="About Development Stages" />
