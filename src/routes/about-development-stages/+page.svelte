@@ -7,13 +7,13 @@
 <script>
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import logo from '$lib/client/images/logo.png';
-	import { description, title } from '$lib/constants';
+	import logo from '$lib/client/images/logo.webp';
+	import { description, projectName } from '$lib/constants';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 </script>
 
 <svelte:head>
-	<title>{title} - About Development Stages</title>
+	<title>{projectName} - About Development Stages</title>
 	<meta content="About Development Stages" property="og:title" />
 	<link
 		rel="canonical"
@@ -26,7 +26,7 @@
 	<meta content={description} property="og:description" />
 	<meta name="description" content={description} />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
-	<meta property="og:site_name" content={title} />
+	<meta property="og:site_name" content={projectName} />
 	<meta property="og:type" content="WebApplication" />
 	<meta content={logo} property="og:image" />
 	<meta property="og:image:alt" content="Elzelion holding a book" />

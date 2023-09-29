@@ -5,12 +5,12 @@
 -->
 
 <script>
-	import logo from '$lib/client/images/logo.png';
-	import { description, title } from '$lib/constants';
+	import logo from '$lib/client/images/logo.webp';
+	import { description, projectName } from '$lib/constants';
 </script>
 
 <svelte:head>
-	<title>{title} - About</title>
+	<title>{projectName} - About</title>
 	<meta content="About" property="og:title" />
 	<link rel="canonical" href="https://frontier-compendium.vercel.app/about" />
 	<meta
@@ -20,7 +20,7 @@
 	<meta content={description} property="og:description" />
 	<meta name="description" content={description} />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
-	<meta property="og:site_name" content={title} />
+	<meta property="og:site_name" content={projectName} />
 	<meta property="og:type" content="WebApplication" />
 	<meta content={logo} property="og:image" />
 	<meta property="og:image:alt" content="Elzelion holding a book" />

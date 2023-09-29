@@ -8,13 +8,39 @@
 	import Counter from '$lib/client/components/Counter.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import logo from '$lib/client/images/logo.webp';
-	import { description, title } from '$lib/constants';
+	import {
+		authorName,
+		authorUrl,
+		datePublished,
+		description,
+		projectName,
+		website,
+	} from '$lib/constants';
+	import Head from './Head.svelte';
+	import { page } from '$app/stores';
+	import * as constant from '$lib/constants';
 	console.log('page.svelte');
+
+	let customTitle = `${projectName} - Home`;
+	let url = $page.url.toString();
 </script>
 
-<svelte:head>
-	<!--https://stackoverflow.com/questions/59335731/how-to-create-own-embed-site-for-discord-->
-	<title>{title} - Home</title>
+<Head
+	title={customTitle}
+	{description}
+	image={logo}
+	{url}
+	{website}
+	{authorName}
+	{datePublished}
+	{authorUrl}
+	contentType="SoftwareApplication"
+	name={constant.projectName}
+/>
+
+<!-- <svelte:head> -->
+<!--https://stackoverflow.com/questions/59335731/how-to-create-own-embed-site-for-discord-->
+<!-- <title />
 	<meta content="Home" property="og:title" />
 	<link rel="canonical" href="https://frontier-compendium.vercel.app" />
 	<meta content="https://frontier-compendium.vercel.app" property="og:url" />
@@ -24,8 +50,8 @@
 	<meta property="og:site_name" content={title} />
 	<meta property="og:type" content="WebApplication" />
 	<meta content={logo} property="og:image" />
-	<meta property="og:image:alt" content="Elzelion holding a book" />
-	<!-- Structured Data
+	<meta property="og:image:alt" content="Elzelion holding a book" /> -->
+<!-- Structured Data
 		<script type="application/ld+json">
 		{
 			"@context": "http://schema.org/",
@@ -45,7 +71,7 @@
       	"@type": "Audience",
       	"name": "Gamers"
      	},
-			"datePublished": "2023/09/02",
+			"datePublished": "2023-09-02",
 			"headline": "Frontier Compendium",
 			"license": "https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md",
 			"alternateName": "mhfz-compendium",
@@ -58,7 +84,7 @@
 			"isAccessibleForFree": true
 		}
 	</script> -->
-</svelte:head>
+<!-- </svelte:head> -->
 
 <section>
 	<SectionHeadingTopLevel title="Welcome" />

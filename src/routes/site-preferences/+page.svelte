@@ -18,7 +18,7 @@
 		getCursorNameFromId,
 		setCursor,
 	} from '$lib/client/stores/cursor';
-	import logo from '$lib/client/images/logo.png';
+	import logo from '$lib/client/images/logo.webp';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
@@ -61,7 +61,7 @@
 		catppuccinColorNames,
 		catppuccinThemeMap,
 	} from '$lib/client/themes/catppuccin';
-	import { description, title } from '$lib/constants';
+	import { description, projectName } from '$lib/constants';
 	import Cursor_1 from 'carbon-icons-svelte/lib/Cursor_1.svelte';
 	import { getCursorId } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
@@ -268,7 +268,7 @@
 </script>
 
 <svelte:head>
-	<title>{title} - Site Preferences</title>
+	<title>{projectName} - Site Preferences</title>
 	<meta content="Site Preferences" property="og:title" />
 	<link
 		rel="canonical"
@@ -281,7 +281,7 @@
 	<meta content={description} property="og:description" />
 	<meta name="description" content={description} />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
-	<meta property="og:site_name" content={title} />
+	<meta property="og:site_name" content={projectName} />
 	<meta property="og:type" content="WebApplication" />
 	<meta content={logo} property="og:image" />
 	<meta property="og:image:alt" content="Elzelion holding a book" />
