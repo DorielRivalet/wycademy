@@ -7,7 +7,7 @@
 <script>
 	import Counter from '$lib/client/components/Counter.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import logo from '$lib/client/images/logo.svg';
+	import logo from '$lib/client/images/logo.webp';
 	import { description, title } from '$lib/constants';
 	console.log('page.svelte');
 </script>
@@ -24,9 +24,6 @@
 	<meta property="og:site_name" content={title} />
 	<meta property="og:type" content="WebApplication" />
 	<meta content={logo} property="og:image" />
-	<meta property="og:image:type" content="image/svg+xml" />
-	<meta property="og:image:width" content="256" />
-	<meta property="og:image:height" content="256" />
 	<meta property="og:image:alt" content="Elzelion holding a book" />
 	<!-- Structured Data
 		<script type="application/ld+json">
