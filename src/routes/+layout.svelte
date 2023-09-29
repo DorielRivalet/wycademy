@@ -59,7 +59,6 @@
 	.app {
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
 	}
 
 	main {
@@ -71,5 +70,6 @@
 		max-width: 64rem;
 		margin: 0 auto;
 		box-sizing: border-box;
+		min-height: 90vh;
 	}
 </style>

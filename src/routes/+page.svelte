@@ -8,19 +8,20 @@
 	import Counter from '$lib/client/components/Counter.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import logo from '$lib/client/images/logo.png';
-	import { description } from '$lib/constants';
+	import { description, title } from '$lib/constants';
 	console.log('page.svelte');
 </script>
 
 <svelte:head>
 	<!--https://stackoverflow.com/questions/59335731/how-to-create-own-embed-site-for-discord-->
-	<title>Frontier Compendium - Home</title>
-	<meta content="Frontier Compendium - Home" property="og:title" />
+	<title>{title} - Home</title>
+	<meta content="Home" property="og:title" />
 	<meta content={description} property="og:description" />
 	<meta name="description" content={description} />
 	<meta content="https://frontier-compendium.vercel.app" property="og:url" />
 	<meta content={logo} property="og:image" />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
+	<meta property="og:site_name" content={title} />
 	<link rel="canonical" href="https://frontier-compendium.vercel.app" />
 	<!-- Structured Data
 		<script type="application/ld+json">
