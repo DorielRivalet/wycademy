@@ -34,13 +34,46 @@ SOFTWARE.
 		jsonLd = {
 			'@context': 'https://schema.org',
 			'@type': ['SoftwareApplication', 'WebApplication'],
+			browserRequirements: 'requires HTML5 support',
+			applicationCategory: ['BrowserApplication', 'Wiki'],
+			applicationSubCategory: 'Game Wiki',
+			softwareVersion: '0.2.0',
+			identifier: 'https://vocab.getty.edu/aat/300410446',
+			about: 'Guides for Monster Hunter Frontier Z',
+			abstract:
+				'A compendium of resources for Monster Hunter Frontier Z (MHF-Z) by Doriel Rivalet',
+			accessMode: [
+				'textual',
+				'visual',
+				'chartOnVisual',
+				'colorDependent',
+				'diagramOnVisual',
+				'mathOnVisual',
+				'textOnVisual',
+			],
+			accessibilityHazard: ['unknown'],
+			acquireLicensePage:
+				'https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md',
+			alternativeHeadline: 'frontier-compendium',
+			audience: {
+				'@type': 'Audience',
+				name: 'Gamers',
+			},
+			license:
+				'https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md',
+			alternateName: 'mhfz-compendium',
 			name: mainEntity.name,
+			sameAs: 'https://frontier-compendium.vercel.app',
 			url: mainEntity.url,
 			headline: mainEntity.headline,
 			description: mainEntity.description,
 			image: mainEntity.image,
 			datePublished: mainEntity.datePublished,
 			dateModified: mainEntity.dateModified,
+			thumbnailUrl:
+				'https://raw.githubusercontent.com/DorielRivalet/frontier-compendium/main/src/lib/client/images/logo.webp',
+			typicalAgeRange: '13+',
+			isAccessibleForFree: true,
 			author: {
 				'@type': mainEntity.author.type,
 				name: mainEntity.author.name,
@@ -67,7 +100,6 @@ SOFTWARE.
 				ratingValue: '3',
 				ratingCount: '1',
 			},
-			applicationCategory: 'BrowserApplication',
 			operatingSystem: ['Windows', 'Linux', 'macOS'],
 		};
 	} else {
