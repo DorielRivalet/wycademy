@@ -5,12 +5,14 @@
 -->
 
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import {
 		frontierChecks,
 		frontierMappers,
 	} from '$lib/client/modules/frontier/functions';
 	import type { FrontierWeaponSharpness } from '$lib/client/modules/frontier/types';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
+	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 
 	export let sharpnessValues: FrontierWeaponSharpness = [
 		170, 170, 170, 170, 170, 200, 250, 400,
@@ -36,6 +38,17 @@
 		}
 	}
 
+	function handleFocus() {
+		if (!browser) return;
+
+		open = !open;
+		popoverContent = `Red: ${sharpnessValues[0]} | Orange: ${sharpnessValues[1]} | Yellow: ${sharpnessValues[2]} | Green: ${sharpnessValues[3]} | Blue: ${sharpnessValues[4]} | White: ${sharpnessValues[5]} | Purple: ${sharpnessValues[6]} | Cyan: ${sharpnessValues[7]}`;
+	}
+
+	let open = false;
+	let ref: HTMLDivElement | null = null;
+	let popoverContent = open.toString();
+
 	$: barClassStyle = sharpnessBoost ? 'boosted-bar' : 'bar';
 	$: borderClassStyleLeft = sharpnessBoost
 		? 'boosted-border-left'
@@ -50,7 +63,15 @@
 <div class="container">
 	<div class={borderClassStyleLeft} />
 
-	<div class={barClassStyle}>
+	<div
+		class={barClassStyle}
+		bind:this={ref}
+		style:position="relative"
+		on:click={(e) => handleFocus()}
+		role="button"
+		tabindex="0"
+		on:keypress={(e) => handleFocus()}
+	>
 		{#each sharpnessWidths as width, i}
 			<div
 				style="background-color: {i <= 7
@@ -58,6 +79,19 @@
 					: '#000'}; width: {(width * 100) / 400}%; height: 100%;"
 			/>
 		{/each}
+		<Popover
+			bind:open
+			align="bottom-left"
+			on:click:outside={({ detail }) => {
+				open = ref?.contains(detail.target) || false;
+			}}
+		>
+			<div
+				style="padding: var(--cds-spacing-03); font-family: var(--font-body); font-size: 1rem;"
+			>
+				{popoverContent}
+			</div>
+		</Popover>
 	</div>
 	<div class={borderClassStyleRight} />
 	<div class={boostNumberClass}>+1</div>
