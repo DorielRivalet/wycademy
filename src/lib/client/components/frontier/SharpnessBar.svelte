@@ -47,7 +47,7 @@
 
 	let open = false;
 	let ref: HTMLDivElement | null = null;
-	let popoverContent = open.toString();
+	let popoverContent = '';
 
 	$: barClassStyle = sharpnessBoost ? 'boosted-bar' : 'bar';
 	$: borderClassStyleLeft = sharpnessBoost

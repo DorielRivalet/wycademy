@@ -16,14 +16,13 @@ const whitelist = [
 	'/site-preferences',
 ];
 
-export const load: LayoutServerLoad = async ({ fetch, url }) => {
+export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 	console.log('async layout server load');
 	let lastModified: string = '';
 	let commitLink: string = '#';
 	let timesChanged: number = 0;
 	const path = url.pathname;
 	if (!whitelist.includes(path)) {
-		console.warn('Page not on GitHub paths whitelist');
 		return {
 			github: {
 				commitLink,
@@ -37,6 +36,14 @@ export const load: LayoutServerLoad = async ({ fetch, url }) => {
 		const res = await fetch(
 			`https://api.github.com/repos/DorielRivalet/frontier-compendium/commits?path=src/routes${path}/%2Bpage.svelte`,
 		);
+
+		// public, max-age=60, s-maxage=60
+		const cacheControl = res.headers.get('cache-control');
+
+		if (cacheControl)
+			setHeaders({
+				'cache-control': `max-age=0, s-maxage=${60 * 60}`,
+			});
 
 		if (!res.ok) {
 			console.error('Error fetching data from GitHub');
