@@ -18,10 +18,14 @@
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
+	// import { pwaInfo } from 'virtual:pwa-info';
+
+	// $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
 	console.log('layout.svelte');
+	// console.log(webManifestLink);
 
 	onMount(() => {
 		let themeValue = $theme;
@@ -36,8 +40,13 @@
 		Object.keys(cssVarMap).forEach((key) => {
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
+		// console.log(webManifestLink);
 	});
 </script>
+
+<!-- <svelte:head>
+	{@html webManifestLink}
+</svelte:head> -->
 
 <!-- <svelte:head>
 	<title>{$page.data.title}</title>
