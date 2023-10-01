@@ -39,10 +39,10 @@ header:
     - '**/*.toml'
     - '**/*.adoc'
     - '**/*.svx'
-		- .alexignore
-		- .alexrc
-		- .czrc
-		- .husky/
+		- '.alexignore'
+		- '.alexrc'
+		- '.czrc'
+		- '.husky/'
 
   license-location-threshold: 80
 
