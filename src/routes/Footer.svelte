@@ -28,6 +28,11 @@
 		<Link href={constant.authorUrl}
 			>{constant.authorName} &copy {new Date().getUTCFullYear()}</Link
 		>
+		<div>
+			Powered by <Link href="https://vercel.com/docs">Vercel</Link> and <Link
+				href="https://kit.svelte.dev/docs/introduction">SvelteKit</Link
+			>
+		</div>
 	</div>
 
 	<div class="item-container">

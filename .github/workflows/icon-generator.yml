@@ -1,0 +1,47 @@
+# © 2023 Doriel Rivalet
+# Use of this source code is governed by a MIT license that can be
+# found in the LICENSE file.
+
+name: Add Icons
+
+on:
+  workflow_dispatch:
+
+jobs:
+  add-icons:
+    runs-on: ubuntu-latest
+    name: Automatically add icons
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install scour
+
+      - run: sudo apt-get install optipng
+      - run: sudo apt-get install inkscape
+
+      - run: |
+          echo pwd
+          sudo sh ./scripts/optimized-favicon-generator.sh ./static/site-logo.svg
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'chore(bot): add icons'
+          title: 'Add icons'
+          reviewers: DorielRivalet
+          branch: create-pull-request/add-icons
+          add-paths: |
+            ./

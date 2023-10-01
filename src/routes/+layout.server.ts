@@ -2,6 +2,7 @@
 // 	throw new Error('yikes');
 // }
 console.log('layout.server.ts');
+import { apiCacheTimeouts } from '$lib/constants';
 import type { GitHubData } from '$lib/types';
 import type { LayoutServerLoad } from './$types';
 
@@ -42,7 +43,7 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 
 		if (cacheControl)
 			setHeaders({
-				'cache-control': `max-age=0, s-maxage=${60 * 60}`,
+				'cache-control': `max-age=0, s-maxage=${apiCacheTimeouts.github}`,
 			});
 
 		if (!res.ok) {

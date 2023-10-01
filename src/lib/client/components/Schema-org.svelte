@@ -24,7 +24,7 @@ SOFTWARE.
 
 <script lang="ts">
 	import type { SchemaOrgProps } from '$lib/schema-org-props';
-
+	import * as constant from '$lib/constants';
 	export let schemaOrgProps: SchemaOrgProps;
 
 	const mainEntity = schemaOrgProps.mainEntity;
@@ -37,7 +37,7 @@ SOFTWARE.
 			browserRequirements: 'requires HTML5 support',
 			applicationCategory: ['BrowserApplication', 'Wiki'],
 			applicationSubCategory: 'Game Wiki',
-			softwareVersion: '0.2.0',
+			softwareVersion: `${constant.appVersion}`,
 			identifier: 'https://vocab.getty.edu/aat/300410446',
 			about: 'Guides for Monster Hunter Frontier Z',
 			abstract:
