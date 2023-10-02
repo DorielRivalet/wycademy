@@ -33,26 +33,25 @@
 			<div class="game-container">
 				<div class="left">
 					<div id="score">Score: 0</div>
-					<div id="speed">Speed: 0</div>
+					<div id="speed">Speed: 0m/s</div>
 					<div id="eaten">Eaten: 0</div>
-					<progress id="fireball-meter" max="10" value="0"></progress>
-					<div class="eaten-items-container">
-						<div class="eaten-red">
-								redredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredred
-						</div>
-						<div class="eaten-yellow">
-							yellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellow
-						</div>
-						<div class="eaten-black">
-							blackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblack
-						</div>
+					<div id="roasted">Roasted: 0</div>
+					<div id="timer">00:00.0</div>
+					<progress id="fireball-meter" max="10" value="10"></progress>
+					<canvas width="800" height="800" id="eaten-items"></canvas>
+					<div class="instructions">
+						<div>WASD - Movement</div>
+						<div>F - Fireball</div>
+					</div>
+					<div class="img-container">
+						<img id="sliding-image" src="offline/assets/img/berserk_raviente.webp" alt="Sliding Image"/>
 					</div>
 				</div>
 				<canvas width="800" height="800" id="game"></canvas>
 				<div class="right">
 					<div class="button-container">
 						<button id="game-button">Play</button>
-						<button id="game-button">Sound ON</button>
+						<button id="sound-button">Sound ON</button>
 					</div>
 					<div id="game-console">
 						<div>You are hungry.</div>
