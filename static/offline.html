@@ -1,0 +1,90 @@
+<!--
+  ~ © 2023 Doriel Rivalet
+  ~ Use of this source code is governed by a MIT license that can be
+  ~ found in the LICENSE file.
+-->
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" href="./offline/styles.css" />
+		<script src="./offline/data.js" defer></script>
+		<script src="./offline/snake.js" defer></script>
+	</head>
+	<body>
+		<header>
+			<a
+				href="https://frontier-compendium.vercel.app"
+				aria-label="Logo, back to homepage,"
+			>
+				<img
+					src="logo.svg"
+					alt="Elzelion holding a book"
+					height="100%"
+					width="auto"
+			/></a>
+		</header>
+		<main>
+			<h1>🍡 Your guild food ran out 🍜</h1>
+			<p class="subheader">You are offline 😴</p>
+			<p class="subheader">Why not help Raviente eat some hunters? 🐍</p>
+			<div class="game-container">
+				<div class="left">
+					<div id="score">Score: 0</div>
+					<div id="speed">Speed: 0</div>
+					<div id="eaten">Eaten: 0</div>
+					<progress id="fireball-meter" max="10" value="0"></progress>
+					<div class="eaten-items-container">
+						<div class="eaten-red">
+								redredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredredred
+						</div>
+						<div class="eaten-yellow">
+							yellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellowyellow
+						</div>
+						<div class="eaten-black">
+							blackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblackblack
+						</div>
+					</div>
+				</div>
+				<canvas width="800" height="800" id="game"></canvas>
+				<div class="right">
+					<div class="button-container">
+						<button id="game-button">Play</button>
+						<button id="game-button">Sound ON</button>
+					</div>
+					<div id="game-console">
+						<div>You are hungry.</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<div class="subtle item-container">
+			</div>
+
+			<div class="item-container">
+				<a href="https://github.com/DorielRivalet"
+					id="author-link"></a
+				>
+				<div>
+					Powered by <a href="https://vercel.com/docs">Vercel</a> and <a
+						href="https://kit.svelte.dev/docs/introduction">SvelteKit</a
+					>
+				</div>
+			</div>
+
+			<div class="item-container">
+				<a aria-label="GitHub repository" href=https://github.com/DorielRivalet/frontier-compendium>
+					<img
+					src="github-mark-white.svg"
+					alt="GitHub Octocat"
+					height="48px"
+					width="48px"
+			/>
+				</a>
+			</div>
+		</footer>
+	</body>
+</html>
