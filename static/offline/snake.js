@@ -1,4 +1,3 @@
-// TODO fireball with space. toasty. 10 secs boost.
 const scoreElement = document.getElementById('score');
 const speedElement = document.getElementById('speed');
 const eatenElement = document.getElementById('eaten');
@@ -9,12 +8,29 @@ const soundButton = document.getElementById('sound-button');
 const timerElement = document.getElementById('timer');
 const fireballMeter = document.getElementById('fireball-meter');
 
-const baseFPS = 30;
+const maxSpeed = 50;
+const startingSpeed = 30;
 const redColor = '#f38ba8';
 const yellowColor = '#f9e2af';
 const blackColor = '#6c7086';
 const purpleColor = '#cba6f7';
-const maxFireballs = 10;
+const blueColor = '#89b4fa';
+const orangeColor = '#fab387';
+const startingFireballs = 10;
+
+const toastySound = 'offline/assets/sound/toasty.mp3';
+const gameOverSound =
+	'offline/assets/sound/mixkit-arcade-retro-game-over-213.wav';
+const redHunterSound =
+	'offline/assets/sound/mixkit-quick-jump-arcade-game-239.wav';
+const fireballSound = 'offline/assets/sound/mixkit-wizard-fire-woosh-1326.wav';
+const blackHunterSound = 'offline/assets/sound/mixkit-tech-break-fail-2947.wav';
+const yellowHunterSound =
+	'offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav';
+const startSound =
+	'offline/assets/sound/mixkit-player-boost-recharging-2040.wav';
+const pauseSound = 'offline/assets/sound/mixkit-zippo-fire-close-1334.wav';
+const resumeSound = 'offline/assets/sound/mixkit-quick-lock-sound-2854.wav';
 
 const GAME_STATES = {
 	IDLE: 'idle',
@@ -23,63 +39,27 @@ const GAME_STATES = {
 	GAME_OVER: 'game_over',
 };
 
+const DIRECTIONS = {
+	right: 'right',
+	left: 'left',
+	up: 'up',
+	down: 'down',
+};
+
 let soundEnabled = true;
 let gameState = GAME_STATES.IDLE;
-
-const eaten_replies = {
-	red: [
-		'Please no! I have family!',
-		'This is what happens when no one goes support...',
-		'Sedation when? zZz',
-		'Making this very clear: we are no longer bothering Raviente.',
-		'Halp!',
-		'*Gulp*',
-		'*Nom nom nom*',
-		'Ahhh, fresh meat.',
-		'Yummy!',
-		'This hunter smells like shiriagari fruit.',
-		"I'm going hungry (Going hungry, yeah)",
-		"I guess I'll never get a Z100...",
-		'Looks like this raid is going to fail',
-	],
-	black: [
-		"This hunter's diet was based on Bitterbugs.",
-		"This doesn't taste good.",
-		'Yuck!',
-		'Bleugh!',
-		'I feel nauseous...',
-		"I don't feel so good...",
-		'*Cough Cough*',
-		'My dissappoinment is immeasurable and my day is ruined.',
-		"This hunter was wearing black dragon armor, my gut won't like it...",
-		'Careful, this can give food poisoning!',
-	],
-	yellow: [
-		'A flash of golden white light was dispersed around the area.',
-		'Feeling rejuvenated!',
-		'I have hunger for glory.',
-		"You ate a hunter's shiny weapon. On the back it says: Z100, do not steal.",
-		'This hunter ate a Flashbug on accident.',
-		'Moar fireballs!',
-	],
-	toasty: [
-		'Everyone aboard the Ravi train! 🚂',
-		'All aboard! Hahahahaha... 🚆',
-		'Crispy! 🔥',
-		'A Well-Done Steak is ready! 🍖',
-		'Give me a BBQ Spit! 💢',
-	],
-};
+let lastDirection = DIRECTIONS.right;
 
 const canvas = document.getElementById('game');
 let context = canvas.getContext('2d');
 
-// the canvas width & height, snake x & y, and the apple x & y, all need to be a multiples of the grid size in order for collision detection to work
+// the canvas width & height, snake x & y, and the hunter x & y, all need to be a multiples of the grid size in order for collision detection to work
 // (e.g. 16 * 25 = 400)
 let grid = 32;
 let count = 0;
 let score = 0;
 
+// TODO class
 let snake = {
 	x: 160,
 	y: 160,
@@ -91,25 +71,31 @@ let snake = {
 	// keep track of all grids the snake body occupies
 	cells: [],
 
-	// length of the snake. grows when eating an apple
+	// length of the snake. grows when eating a hunter
 	maxCells: 3,
 
 	extraSpeed: 0,
+
+	running: false,
+
+	maxFireballs: startingFireballs,
 };
 
-let apples = [
+let hunters = [
 	{
 		x: 320,
 		y: 320,
 		age: 0,
+		burned: false,
 	},
 ];
 
 /**Unused */
-let eatenApples = {
+let eatenHunters = {
 	red: 0,
 	black: 0,
-	golden: 0,
+	yellow: 0,
+	orange: 0,
 };
 
 /**For color canvas */
@@ -124,6 +110,8 @@ let tailLeftImage = new Image();
 let hunterBlack = new Image();
 let hunterRed = new Image();
 let hunterYellow = new Image();
+let hunterBlue = new Image();
+let hunterOrange = new Image();
 
 headRightImage.src = 'offline/assets/img/head_right.webp';
 headLeftImage.src = 'offline/assets/img/head_left.webp';
@@ -133,6 +121,8 @@ tailLeftImage.src = 'offline/assets/img/tail_left.webp';
 hunterBlack.src = 'offline/assets/img/hunter_black.webp';
 hunterRed.src = 'offline/assets/img/hunter_red.webp';
 hunterYellow.src = 'offline/assets/img/hunter_yellow.webp';
+hunterBlue.src = 'offline/assets/img/hunter_blue.webp';
+hunterOrange.src = 'offline/assets/img/hunter_orange.webp';
 
 let turns = 0;
 let eaten = 0;
@@ -153,7 +143,63 @@ let eaten_items_canvas_context = eaten_items_canvas.getContext('2d');
 const gridSize = 25;
 const slotSize = canvas.width / gridSize;
 
-// Function to draw a colored slot
+const eaten_replies = {
+	red: [
+		'Please no! I have family!',
+		'This is what happens when no one goes support...',
+		'Sedation when? zZz',
+		'Making this very clear: we are no longer bothering Raviente.',
+		'Halp!',
+		'*Gulp*',
+		'*Nom nom nom*',
+		'Ahhh, fresh meat.',
+		'Yummy!',
+		'This hunter smells like shiriagari fruit.',
+		"I'm going hungry (Going hungry, yeah)",
+		"I guess I'll never get a Z100...",
+		'Looks like this raid is going to fail.',
+	],
+	black: [
+		"This hunter's diet was based on Bitterbugs.",
+		"This doesn't taste good.",
+		'Yuck!',
+		'Bleugh!',
+		'I feel nauseous...',
+		"I don't feel so good...",
+		'*Cough Cough*',
+		'My dissappoinment is immeasurable and my day is ruined.',
+		"This hunter was wearing black dragon armor, my gut won't like it...",
+		'Careful, this can give food poisoning!',
+	],
+	yellow: [
+		'A flash of yellow light was dispersed around the area.',
+		'Feeling rejuvenated!',
+		'I have hunger for glory.',
+		"You ate a hunter's shiny weapon. On the back it says: Z100, do not steal.",
+		'This hunter ate a Flashbug on accident.',
+		'Moar fireballs!',
+	],
+	toasty: [
+		'Everyone aboard the Ravi train! 🚂',
+		'All aboard! Hahahahaha... 🚆',
+		'Crispy! 🔥',
+		'A Well-Done Steak is ready! 🍖',
+		'Give me a BBQ Spit! 💢',
+	],
+	frosty: [
+		'Frosty! ❄️',
+		'This goes well with some iced coffee. ☕',
+		"She's so cold cold cold like an ice cream cone. 🍦",
+		'Frozen meal is ready! 🍽️',
+	],
+	dodged: [
+		'Olé!',
+		'The hunter automatically dodged your attack.',
+		"This hunter has stylish gear, eating him won't be easy.",
+		'This hunter is wearing a white mantle, and manages to escape.',
+	],
+};
+
 function drawSlot(row, col, color) {
 	eaten_items_canvas_context.fillStyle = color;
 	eaten_items_canvas_context.fillRect(
@@ -164,7 +210,6 @@ function drawSlot(row, col, color) {
 	);
 }
 
-// Function to format the time as MM:ss.ff
 function formatTime(time) {
 	const minutes = Math.floor(time / 60000);
 	const seconds = Math.floor((time % 60000) / 1000);
@@ -174,7 +219,6 @@ function formatTime(time) {
 		.padStart(2, '0')}.${hundredths.toString().padStart(2, '0')}`;
 }
 
-// Function to update the timer display
 function updateTimer() {
 	const currentTime = Date.now();
 	elapsedTime += currentTime - startTime;
@@ -187,10 +231,10 @@ function isBoardFull() {
 	for (let i = 0; i < canvas.width; i += grid) {
 		for (let j = 0; j < canvas.height; j += grid) {
 			let collision = snake.cells.some((cell) => cell.x === i && cell.y === j);
-			let appleCollision = apples.some(
-				(apple) => apple.x === i && apple.y === j,
+			let hunterCollision = hunters.some(
+				(hunter) => hunter.x === i && hunter.y === j,
 			);
-			if (!collision && !appleCollision) {
+			if (!collision && !hunterCollision) {
 				full = false;
 				break;
 			}
@@ -202,7 +246,7 @@ function isBoardFull() {
 	return full;
 }
 
-function generateApple() {
+function generateHunter(age = 0) {
 	if (isBoardFull()) {
 		return;
 	}
@@ -214,13 +258,13 @@ function generateApple() {
 
 		let collision = snake.cells.some((cell) => cell.x === x && cell.y === y);
 		if (!collision) {
-			let appleCollision = apples.some(
-				(apple) => apple.x === x && apple.y === y,
+			let hunterCollision = hunters.some(
+				(hunter) => hunter.x === x && hunter.y === y,
 			);
-			if (!appleCollision) break;
+			if (!hunterCollision) break;
 		}
 	}
-	return { x, y, age: 0 };
+	return { x, y, age: age };
 }
 
 /**  get random whole numbers in a specific range
@@ -229,111 +273,165 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function snakeAteApple(cell, fromFireball = false) {
-	for (let i = 0; i < apples.length; i++) {
-		if (cell.x === apples[i].x && cell.y === apples[i].y) {
+function snakeAteHunter(cell, fromFireball = false) {
+	for (let i = 0; i < hunters.length; i++) {
+		if (cell.x === hunters[i].x && cell.y === hunters[i].y) {
 			if (fromFireball) {
-				roasted++;
-			} else {
-				eaten++;
-				snake.maxCells++;
-			}
-
-			turns++;
-
-			eatenElement.textContent = `Eaten: ${eaten}`;
-			roastedElement.textContent = `Roasted: ${roasted}`;
-
-			let newDiv = document.createElement('div');
-
-			if (fromFireball) {
-				score += 2;
-				newDiv.textContent =
-					eaten_replies.toasty[
-						Math.floor(Math.random() * eaten_replies.toasty.length)
-					].toString();
-				eatenItems.push(purpleColor);
-				if (apples[i].age >= 6) {
-					toastyCount++;
+				if (hunters[i].age >= 100 && !hunters[i].burned) {
+					hunters[i].burned = true;
+					sendMessageToConsole(
+						eaten_replies.frosty[
+							Math.floor(Math.random() * eaten_replies.frosty.length)
+						].toString(),
+					);
+					break;
 				} else {
-					toastyCount = 0;
-				}
-				if (toastyCount >= 10) {
-					toastyCount = 0;
-					fireballMeter.value = maxFireballs;
-					toasty();
-					score += 100;
-					let toastyDiv = document.createElement('div');
-					toastyDiv.textContent = 'Toasty! 🍞';
-					consoleElement.appendChild(toastyDiv);
+					roasted++;
+					score += 2;
+
+					sendMessageToConsole(
+						eaten_replies.toasty[
+							Math.floor(Math.random() * eaten_replies.toasty.length)
+						].toString(),
+					);
+
+					eatenItems.push(purpleColor);
+
+					if (hunters[i].age >= 6) {
+						toastyCount++;
+					} else {
+						toastyCount = 0;
+					}
+
+					if (toastyCount >= 10) {
+						toasty();
+					}
 				}
 			} else {
-				if (apples[i].age <= 4 || apples[i].age === 0) {
-					score++;
-					eatenApples.red++;
-					apples.forEach((apple) => {
-						apple.age++;
+				if (hunters[i].burned && !snake.running) {
+					sendMessageToConsole(
+						eaten_replies.dodged[
+							Math.floor(Math.random() * eaten_replies.dodged.length)
+						].toString(),
+					);
+					break;
+				} else if (hunters[i].burned && snake.running) {
+					eaten++;
+					snake.maxCells++;
+					score += 50;
+					snake.extraSpeed += 2;
+					eatenHunters.orange++;
+
+					hunters.forEach((hunter) => {
+						hunter.age = hunter.age >= 1 ? hunter.age - 1 : 0;
 					});
-					newDiv.textContent =
+
+					eatenItems.push(orangeColor);
+					snake.maxFireballs += 10;
+					fireballMeter.max += 10;
+					fireballMeter.value = snake.maxFireballs;
+
+					sendMessageToConsole(
+						`You can now fire ${snake.maxFireballs} fireballs! 🔥`,
+					);
+					// TODO
+					playSound(yellowHunterSound);
+				} else if (hunters[i].age <= 4) {
+					eaten++;
+					snake.maxCells++;
+					score++;
+					eatenHunters.red++;
+					hunters.forEach((hunter) => {
+						hunter.age++;
+					});
+
+					sendMessageToConsole(
 						eaten_replies.red[
 							Math.floor(Math.random() * eaten_replies.red.length)
-						].toString();
+						].toString(),
+					);
+
 					eatenItems.push(redColor);
-				} else if (apples[i].age === 5) {
+					playSound(redHunterSound);
+				} else if (hunters[i].age === 5) {
+					eaten++;
+					snake.maxCells++;
 					score += 10;
-					eatenApples.golden++;
-					apples.forEach((apple) => {
-						apple.age = 0;
+					eatenHunters.yellow++;
+
+					hunters.forEach((hunter) => {
+						hunter.age = hunter.age >= 100 ? hunter.age : 0;
 					});
-					newDiv.textContent =
+
+					sendMessageToConsole(
 						eaten_replies.yellow[
 							Math.floor(Math.random() * eaten_replies.yellow.length)
-						].toString();
+						].toString(),
+					);
+
 					eatenItems.push(yellowColor);
-					fireballMeter.value = maxFireballs;
-				} else if (apples[i].age >= 6) {
+					fireballMeter.value = snake.maxFireballs;
+					playSound(yellowHunterSound);
+				} else if (hunters[i].age >= 6 && hunters[i].age < 100) {
+					eaten++;
+					snake.maxCells++;
 					score--;
 					snake.extraSpeed--;
-					eatenApples.black++;
-					apples.forEach((apple) => {
-						apple.age++;
+					eatenHunters.black++;
+
+					hunters.forEach((hunter) => {
+						hunter.age++;
 					});
-					newDiv.textContent =
+
+					sendMessageToConsole(
 						eaten_replies.black[
 							Math.floor(Math.random() * eaten_replies.black.length)
-						].toString();
+						].toString(),
+					);
+
 					eatenItems.push(blackColor);
+					playSound(blackHunterSound);
+				} else if (hunters[i].age >= 100) {
+					resetGame('blue hunter');
+					break;
 				} else {
-					console.warn(apples);
+					console.warn(hunters);
 				}
 			}
-
-			consoleElement.appendChild(newDiv);
-			consoleElement.scrollTop =
-				consoleElement.scrollHeight - consoleElement.clientHeight;
 
 			drawEatenItems();
 
 			// canvas is 400x400 which is 25x25 grids
-			// apple.x = getRandomInt(0, 25) * grid;
-			// apple.y = getRandomInt(0, 25) * grid;
-			apples.splice(i, 1);
+			// hunter.x = getRandomInt(0, 25) * grid;
+			// hunter.y = getRandomInt(0, 25) * grid;
 
-			apples.push(generateApple());
+			eatenElement.textContent = `Eaten: ${eaten}`;
+			roastedElement.textContent = `Roasted: ${roasted}`;
+
+			hunters.splice(i, 1);
+
+			hunters.push(generateHunter());
 			scoreElement.textContent = `Score: ${score}`;
 
+			turns++;
+
 			if (turns % 5 === 0) {
-				apples.push(generateApple());
-				if (apples[i].age <= 5 && !fromFireball) {
+				hunters.push(generateHunter());
+				if (hunters[i].age <= 5 && !fromFireball) {
 					snake.extraSpeed++;
 				}
 			}
+
+			if (turns % 10 === 0) {
+				hunters.push(generateHunter(100));
+			}
+
 			break;
 		}
 	}
 }
 
-function resetGame(poisoned = false) {
+function resetGame(reason = '') {
 	snake.x = 160;
 	snake.y = 160;
 	snake.cells = [];
@@ -341,13 +439,16 @@ function resetGame(poisoned = false) {
 	snake.dx = grid;
 	snake.dy = 0;
 	snake.extraSpeed = 0;
+	snake.running = false;
+	snake.maxFireballs = startingFireballs;
+	fireballMeter.max = startingFireballs;
 	score = 0;
 	turns = 0;
 	eaten = 0;
 	roasted = 0;
 	toastyCount = 0;
 
-	apples = [
+	hunters = [
 		{
 			x: getRandomInt(0, 25) * grid,
 			y: getRandomInt(0, 25) * grid,
@@ -355,18 +456,19 @@ function resetGame(poisoned = false) {
 		},
 	];
 
-	eatenApples.red = 0;
-	eatenApples.black = 0;
-	eatenApples.golden = 0;
+	eatenHunters.red = 0;
+	eatenHunters.black = 0;
+	eatenHunters.yellow = 0;
+	eatenHunters.orange = 0;
 
 	consoleElement.replaceChildren();
-	let newDiv = document.createElement('div');
-	if (poisoned) {
-		newDiv.textContent = 'You died from food poisoning. 💀';
+	if (reason === 'poison') {
+		sendMessageToConsole('You died from food poisoning. 💀');
+	} else if (reason === 'blue hunter') {
+		sendMessageToConsole('An experienced hunter stopped your massacre. 💀');
 	} else {
-		newDiv.textContent = 'You died. 💀';
+		sendMessageToConsole('You died. 💀');
 	}
-	consoleElement.appendChild(newDiv);
 
 	gameState = GAME_STATES.GAME_OVER;
 	gameButton.textContent = 'Restart';
@@ -376,6 +478,7 @@ function resetGame(poisoned = false) {
 	gameButton.classList.add('game-over');
 
 	clearInterval(timerInterval); // Stop updating the timer
+	playSound(gameOverSound);
 }
 
 function updateFireballs() {
@@ -398,31 +501,17 @@ function updateFireballs() {
 			fireballs.splice(index, 1); // remove fireball
 		}
 
-		// check if fireball hit an apple
-		// apples.forEach(function (apple, appleIndex) {
-		// 	if (
-		// 		fireball.x > apple.x &&
-		// 		fireball.x < apple.x + grid &&
-		// 		fireball.y > apple.y &&
-		// 		fireball.y < apple.y + grid
-		// 	) {
-		// 		// fireball hit apple
-		// 		snakeAteApple({ x: apple.x, y: apple.y }); // treat it as if the snake ate the apple
-		// 		fireballs.splice(index, 1); // remove fireball
-		// 		apples.splice(appleIndex, 1); // remove apple
-		// 	}
-		// });
-		apples.forEach(function (apple, appleIndex) {
+		hunters.forEach(function (hunter, hunterIndex) {
 			if (
-				fireball.x < apple.x + grid &&
-				fireball.x + fireball.width > apple.x &&
-				fireball.y < apple.y + grid &&
-				fireball.y + fireball.height > apple.y
+				fireball.x < hunter.x + grid &&
+				fireball.x + fireball.width > hunter.x &&
+				fireball.y < hunter.y + grid &&
+				fireball.y + fireball.height > hunter.y
 			) {
-				// fireball hit apple
-				snakeAteApple({ x: apple.x, y: apple.y }, true); // treat it as if the snake ate the apple
+				// fireball hit hunter
+				snakeAteHunter({ x: hunter.x, y: hunter.y }, true); // treat it as if the snake ate the hunter
 				fireballs.splice(index, 1); // remove fireball
-				// apples.splice(appleIndex, 1); // remove apple
+				// hunters.splice(hunterIndex, 1); // remove hunter
 			}
 		});
 	});
@@ -430,9 +519,7 @@ function updateFireballs() {
 
 function startingText() {
 	consoleElement.replaceChildren();
-	let newDiv = document.createElement('div');
-	newDiv.textContent = 'You are hungry.';
-	consoleElement.appendChild(newDiv);
+	sendMessageToConsole('You are hungry.');
 	scoreElement.textContent = `Score: ${score}`;
 	speedElement.textContent = `Speed: 0m/s`;
 	eatenElement.textContent = `Eaten: ${eaten}`;
@@ -465,6 +552,53 @@ function drawEatenItems() {
 	}
 }
 
+function playSound(filePath) {
+	if (!soundEnabled) return;
+	const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+	const source = audioContext.createBufferSource();
+
+	fetch(filePath)
+		.then((response) => response.arrayBuffer())
+		.then((data) => audioContext.decodeAudioData(data))
+		.then((buffer) => {
+			source.buffer = buffer;
+			source.connect(audioContext.destination);
+			source.start();
+		})
+		.catch((error) => console.error('Error loading audio:', error));
+}
+
+function toasty() {
+	toastyCount = 0;
+	fireballMeter.value = snake.maxFireballs;
+	score += 100;
+	sendMessageToConsole('Toasty! 🍞');
+	playSound(toastySound);
+	document.getElementById('sliding-image').style.left = `1rem`;
+	setTimeout(function () {
+		document.getElementById('sliding-image').style.left = '-100%';
+	}, 1000);
+}
+
+function toggleSound() {
+	if (soundEnabled) {
+		soundEnabled = false;
+		soundButton.classList.add('off');
+	} else {
+		soundEnabled = true;
+		soundButton.classList.remove('off');
+	}
+	soundButton.textContent = soundEnabled ? 'Sound ON' : 'Sound OFF';
+}
+
+function sendMessageToConsole(message) {
+	let div = document.createElement('div');
+	div.textContent = message;
+	consoleElement.appendChild(div);
+	consoleElement.scrollTop =
+		consoleElement.scrollHeight - consoleElement.clientHeight;
+}
+
 /** game loop*/
 function loop() {
 	if (gameState === GAME_STATES.PAUSED || gameState === GAME_STATES.GAME_OVER) {
@@ -472,22 +606,22 @@ function loop() {
 	}
 	requestAnimationFrame(loop);
 
-	let speed = baseFPS - Math.min(snake.extraSpeed, baseFPS - 1);
-
-	if (baseFPS + (baseFPS - speed) <= 0) {
-		resetGame(true);
+	let snakeTotalSpeed = snake.running
+		? Math.min(startingSpeed + snake.extraSpeed + 10, maxSpeed)
+		: Math.min(startingSpeed + snake.extraSpeed, maxSpeed);
+	if (snakeTotalSpeed <= 0) {
+		resetGame('poison');
 		return;
 	}
 
-	// slow game loop to 15 fps instead of 60 (60/15 = 4)
-	if (++count < speed) {
+	let loopDelay = 60 - snakeTotalSpeed;
+
+	// slow game loop to 30 fps instead of 60 (60/30 = 2)
+	if (++count < 60 / (60 / loopDelay)) {
 		return;
 	}
 
-	speedElement.textContent = `Speed: ${(
-		baseFPS +
-		(baseFPS - speed)
-	).toString()}m/s`;
+	speedElement.textContent = `Speed: ${snakeTotalSpeed}m/s`;
 
 	count = 0;
 	context.clearRect(0, 0, canvas.width, canvas.height);
@@ -518,25 +652,22 @@ function loop() {
 		snake.cells.pop();
 	}
 
-	// draw apple
-	apples.forEach((apple) => {
-		if (apple.age === 5) {
-			context.drawImage(hunterYellow, apple.x, apple.y, grid - 1, grid - 1);
-		} else if (apple.age > 5) {
-			context.drawImage(hunterBlack, apple.x, apple.y, grid - 1, grid - 1);
+	// draw hunter
+	hunters.forEach((hunter) => {
+		if (hunter.burned) {
+			context.drawImage(hunterOrange, hunter.x, hunter.y, grid - 1, grid - 1);
+		} else if (hunter.age === 5) {
+			context.drawImage(hunterYellow, hunter.x, hunter.y, grid - 1, grid - 1);
+		} else if (hunter.age >= 100) {
+			context.drawImage(hunterBlue, hunter.x, hunter.y, grid - 1, grid - 1);
+		} else if (hunter.age > 5) {
+			context.drawImage(hunterBlack, hunter.x, hunter.y, grid - 1, grid - 1);
 		} else {
-			context.drawImage(hunterRed, apple.x, apple.y, grid - 1, grid - 1);
+			context.drawImage(hunterRed, hunter.x, hunter.y, grid - 1, grid - 1);
 		}
 	});
 
 	updateFireballs();
-
-	// if (apples.length === 1) {
-	// 	context.fillStyle = 'red';
-	// 	apples.forEach((apple) => {
-	// 		context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
-	// 	});
-	// }
 
 	// draw snake one cell at a time
 	snake.cells.forEach(function (cell, index) {
@@ -558,10 +689,7 @@ function loop() {
 			}
 		}
 
-		// context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
-
-		// snake ate apple
-		snakeAteApple(cell);
+		snakeAteHunter(cell);
 
 		// check collision with all cells after this one (modified bubble sort)
 		for (var i = index + 1; i < snake.cells.length; i++) {
@@ -573,36 +701,64 @@ function loop() {
 	});
 }
 
+document.addEventListener('keyup', function (e) {
+	if (gameState !== GAME_STATES.RUNNING) {
+		return;
+	}
+
+	const key = e.key.toLowerCase();
+
+	if (key === 'shift' && snake.running) {
+		snake.running = false;
+	}
+});
+
 // listen to keyboard events to move the snake
 document.addEventListener('keydown', function (e) {
 	// prevent snake from backtracking on itself by checking that it's
 	// not already moving on the same axis (pressing left while moving
 	// left won't do anything, and pressing right while moving left
 	// shouldn't let you collide with your own body)
+	if (gameState !== GAME_STATES.RUNNING) {
+		return;
+	}
 
-	// left arrow key
-	if (e.key === 'a' && snake.dx === 0) {
-		snake.dx = -grid;
-		snake.dy = 0;
+	const key = e.key.toLowerCase();
+	if (key === 'shift' && !snake.running) {
+		snake.running = true;
 	}
-	// up arrow key
-	else if (e.key === 'w' && snake.dy === 0) {
-		snake.dy = -grid;
-		snake.dx = 0;
+
+	// Prevent reversing the direction immediately
+	if (
+		(key === 'a' && lastDirection !== 'right' && snake.dx !== -grid) ||
+		(key === 'w' && lastDirection !== 'down' && snake.dy !== -grid) ||
+		(key === 'd' && lastDirection !== 'left' && snake.dx !== grid) ||
+		(key === 's' && lastDirection !== 'up' && snake.dy !== grid)
+	) {
+		// Update the snake's direction
+		if (key === 'a' && snake.dx !== grid) {
+			snake.dx = -grid;
+			snake.dy = 0;
+			lastDirection = 'left';
+		} else if (key === 'w' && snake.dy !== grid) {
+			snake.dy = -grid;
+			snake.dx = 0;
+			lastDirection = 'up';
+		} else if (key === 'd' && snake.dx !== -grid) {
+			snake.dx = grid;
+			snake.dy = 0;
+			lastDirection = 'right';
+		} else if (key === 's' && snake.dy !== -grid) {
+			snake.dy = grid;
+			snake.dx = 0;
+			lastDirection = 'down';
+		}
 	}
-	// right arrow key
-	else if (e.key === 'd' && snake.dx === 0) {
-		snake.dx = grid;
-		snake.dy = 0;
-	}
-	// down arrow key
-	else if (e.key === 's' && snake.dy === 0) {
-		snake.dy = grid;
-		snake.dx = 0;
-	}
+
 	// fireballs
-	else if (e.key === 'f') {
+	if (key === 'f') {
 		if (fireballMeter.value <= 0) {
+			sendMessageToConsole('Ran out of energy! 💨');
 			return;
 		}
 
@@ -616,6 +772,7 @@ document.addEventListener('keydown', function (e) {
 		});
 
 		fireballMeter.value--;
+		playSound(fireballSound);
 	}
 });
 
@@ -628,7 +785,7 @@ gameButton.addEventListener('click', function () {
 			// Start the game
 			startingText();
 			drawEatenItems();
-			fireballMeter.value = maxFireballs;
+			fireballMeter.value = startingFireballs;
 			requestAnimationFrame(loop);
 			gameState = GAME_STATES.RUNNING;
 			gameButton.textContent = 'Pause';
@@ -636,6 +793,7 @@ gameButton.addEventListener('click', function () {
 			gameButton.classList.remove('game-over');
 			startTime = Date.now();
 			timerInterval = setInterval(updateTimer, 100); // Update timer every 10 milliseconds for hundredths of a second
+			playSound(startSound);
 			break;
 		case GAME_STATES.RUNNING:
 			// Pause the game
@@ -643,6 +801,7 @@ gameButton.addEventListener('click', function () {
 			gameState = GAME_STATES.PAUSED;
 			gameButton.textContent = 'Resume';
 			gameButton.classList.remove('paused');
+			playSound(pauseSound);
 			break;
 		case GAME_STATES.PAUSED:
 			// Resume the game
@@ -650,46 +809,9 @@ gameButton.addEventListener('click', function () {
 			gameState = GAME_STATES.RUNNING;
 			gameButton.textContent = 'Pause';
 			gameButton.classList.add('paused');
+			playSound(resumeSound);
 			break;
 	}
 });
-
-function toasty() {
-	if (soundEnabled) {
-		// Create an AudioContext
-		const audioContext = new (window.AudioContext ||
-			window.webkitAudioContext)();
-
-		// Create an audio source
-		const source = audioContext.createBufferSource();
-
-		// Load the audio file
-		fetch('offline/assets/sound/toasty.mp3')
-			.then((response) => response.arrayBuffer())
-			.then((data) => audioContext.decodeAudioData(data))
-			.then((buffer) => {
-				source.buffer = buffer;
-				source.connect(audioContext.destination);
-				source.start();
-			})
-			.catch((error) => console.error('Error loading audio:', error));
-	}
-
-	document.getElementById('sliding-image').style.left = `1rem`;
-	setTimeout(function () {
-		document.getElementById('sliding-image').style.left = '-100%';
-	}, 1000);
-}
-
-function toggleSound() {
-	if (soundEnabled) {
-		soundEnabled = false;
-		soundButton.classList.add('off');
-	} else {
-		soundEnabled = true;
-		soundButton.classList.remove('off');
-	}
-	soundButton.textContent = soundEnabled ? 'Sound ON' : 'Sound OFF';
-}
 
 soundButton.addEventListener('click', toggleSound);
