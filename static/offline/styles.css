@@ -39,7 +39,8 @@ main {
 #speed,
 #timer,
 #eaten,
-#roasted {
+#roasted,
+#zapped {
 	font-family: 'MS Gothic', sans-serif;
 	font-size: 24px;
 	font-weight: bold;
