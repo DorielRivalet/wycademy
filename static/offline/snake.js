@@ -1,3 +1,5 @@
+'use strict';
+
 const scoreElement = document.getElementById('score');
 const speedElement = document.getElementById('speed');
 const eatenElement = document.getElementById('eaten');
@@ -6,32 +8,122 @@ const consoleElement = document.getElementById('game-console');
 const gameButton = document.getElementById('game-button');
 const soundButton = document.getElementById('sound-button');
 const timerElement = document.getElementById('timer');
-const fireballMeter = document.getElementById('fireball-meter');
-
-const maxSpeed = 50;
-const startingSpeed = 30;
-const redColor = '#f38ba8';
-const yellowColor = '#f9e2af';
-const blackColor = '#6c7086';
-const purpleColor = '#cba6f7';
-const blueColor = '#89b4fa';
-const orangeColor = '#fab387';
-const pinkColor = '#f5c2e7';
-const startingFireballs = 10;
+const energyElement = document.getElementById('energy');
+const gameElement = document.getElementById('game');
 
 const toastySound = 'offline/assets/sound/toasty.mp3';
 const gameOverSound =
 	'offline/assets/sound/mixkit-arcade-retro-game-over-213.wav';
-const redHunterSound =
-	'offline/assets/sound/mixkit-quick-jump-arcade-game-239.wav';
 const fireballSound = 'offline/assets/sound/mixkit-wizard-fire-woosh-1326.wav';
-const blackHunterSound = 'offline/assets/sound/mixkit-tech-break-fail-2947.wav';
-const yellowHunterSound =
-	'offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav';
 const startSound =
 	'offline/assets/sound/mixkit-player-boost-recharging-2040.wav';
 const pauseSound = 'offline/assets/sound/mixkit-zippo-fire-close-1334.wav';
 const resumeSound = 'offline/assets/sound/mixkit-quick-lock-sound-2854.wav';
+
+const COLORS = {
+	red: '#f38ba8',
+	yellow: '#f9e2af',
+	black: '#6c7086',
+	white: '#cdd6f4',
+	purple: '#cba6f7',
+	blue: '#89b4fa',
+	orange: '#fab387',
+	pink: '#f5c2e7',
+	maroon: '#eba0ac',
+	border: '#313244',
+};
+
+const fireballColors = {
+	hit: COLORS.maroon,
+	toasty: COLORS.pink,
+};
+
+const consoleMessages = {
+	startingText: 'You are hungry.',
+	noEnergy: 'Ran out of energy! 💨',
+	toasty: 'Toasty! 🍞',
+	paralysis: ['Bzzz! ⚡', 'Zap! ⚡', 'This snake is high voltage! ⚡'],
+	redHunter: [
+		'Please no! I have family!',
+		'This is what happens when no one goes support...',
+		'Sedation when? zZz',
+		'Making this very clear: we are no longer bothering Raviente.',
+		'Halp!',
+		'*Gulp*',
+		'*Nom nom nom*',
+		'Ahhh, fresh meat.',
+		'Yummy!',
+		'This hunter smells like shiriagari fruit.',
+		"I'm going hungry (Going hungry, yeah)",
+		"I guess I'll never get a Z100...",
+		'Looks like this raid is going to fail.',
+		'Ahhh!',
+		'Oh no!',
+		'Run!',
+		'Call reinforcements!',
+		'We need to make a huge dragonator.',
+		'I guess this is it...',
+		'Who let the snake out?',
+		'Taking this quest was a mistake.',
+		'I wish I had a Magnet Spike.',
+	],
+	yellowHunter: [
+		'A flash of yellow light was dispersed around the area.',
+		'Feeling rejuvenated!',
+		'I have hunger for glory.',
+		"You ate a hunter's shiny weapon. On the back it says: Z100, do not steal.",
+		'This hunter ate a Flashbug on accident.',
+		'Moar fireballs!',
+	],
+	blackHunter: [
+		"This hunter's diet was based on Bitterbugs.",
+		"This doesn't taste good.",
+		'Yuck!',
+		'Bleugh!',
+		'I feel nauseous...',
+		"I don't feel so good...",
+		'*Cough Cough*',
+		'My dissappoinment is immeasurable and my day is ruined.',
+		"This hunter was wearing black dragon armor, my gut won't like it...",
+		'Careful, this can give food poisoning!',
+	],
+	// when not using paralysis
+	whiteHunter: [
+		'Olé!',
+		'The hunter automatically dodged your attack.',
+		"This hunter has stylish gear, eating him won't be easy.",
+		'The hunter is wearing a white mantle, and manages to escape.',
+		'Too slow!',
+		'Catch me if you can!',
+		'I have Evasion+4!',
+	],
+	purpleHunterEat: [
+		'We found one of the best hunters the guild has to offer.',
+		'The hunter hit you so hard that it gave you a concussion.',
+		'This is a pretty tough hunter.',
+		'This hunter definitely has solid determination.',
+	],
+	purpleHunterBurn: [
+		"This hunter won't go down without a fight!",
+		'I can do this all day.',
+		"Ow! I'm suffocating.",
+		'Ouch! That burns.',
+	],
+	blueHunter: [
+		'Frosty! ❄️',
+		'This goes well with some iced coffee. ☕',
+		"She's so cold cold cold like an ice cream cone. 🍦",
+		'Frozen meal is ready! 🍽️',
+	],
+	// fireball hit. also orangeHunter
+	fireball: [
+		'Everyone aboard the Ravi train! 🚂',
+		'All aboard! Hahahahaha... 🚆',
+		'Crispy! 🔥',
+		'A Well-Done Steak is ready! 🍖',
+		'Give me a BBQ Spit! 💢',
+	],
+};
 
 const GAME_STATES = {
 	IDLE: 'idle',
@@ -47,9 +139,130 @@ const DIRECTIONS = {
 	down: 'down',
 };
 
+const DEATHS = {
+	poison: 'You died from food poisoning. 💀',
+	blueHunter: 'An experienced hunter stopped your massacre. 💀',
+	blueBorder: 'You hit a fortified barricade. 💀',
+	default: 'You died. 💀',
+};
+
+function createImage(url) {
+	let img = new Image();
+	img.src = url;
+	return img;
+}
+
+const HUNTER_TYPES = {
+	red: {
+		color: COLORS.red,
+		minAge: -Infinity,
+		maxAge: 4,
+		burned: false,
+		score: 1,
+		snakeGrowth: 1,
+		snakeSpeed: 0,
+		turnDelay: 5,
+		sound: 'offline/assets/sound/mixkit-quick-jump-arcade-game-239.wav',
+		image: createImage('offline/assets/img/hunter_red.webp'),
+		messages: consoleMessages.redHunter,
+	},
+	yellow: {
+		color: COLORS.yellow,
+		minAge: 5,
+		maxAge: 5,
+		burned: false,
+		score: 5,
+		snakeGrowth: 2,
+		snakeSpeed: 1,
+		turnDelay: 0,
+		sound:
+			'offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav',
+		image: createImage('offline/assets/img/hunter_yellow.webp'),
+		messages: consoleMessages.yellowHunter,
+	},
+	black: {
+		color: COLORS.black,
+		minAge: 6,
+		maxAge: 49,
+		burned: false,
+		score: -1,
+		snakeGrowth: -1,
+		snakeSpeed: -1,
+		turnDelay: 0,
+		sound: 'offline/assets/sound/mixkit-tech-break-fail-2947.wav',
+		image: createImage('offline/assets/img/hunter_black.webp'),
+		messages: consoleMessages.blackHunter,
+	},
+	white: {
+		// from purple w/ fireball
+		color: COLORS.white,
+		minAge: 50,
+		maxAge: 74,
+		burned: false,
+		score: 10,
+		snakeGrowth: 3,
+		snakeSpeed: 2,
+		turnDelay: 10,
+		// TODO
+		sound:
+			'offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav',
+		image: createImage('offline/assets/img/hunter_white.webp'),
+		messages: consoleMessages.whiteHunter,
+	},
+	purple: {
+		color: COLORS.purple,
+		minAge: 75,
+		maxAge: 99,
+		burned: false,
+		score: -2,
+		snakeGrowth: -2,
+		snakeSpeed: -2,
+		turnDelay: 15,
+		// TODO
+		sound: 'offline/assets/sound/mixkit-tech-break-fail-2947.wav',
+		image: createImage('offline/assets/img/hunter_purple.webp'),
+		messages: consoleMessages.purpleHunter,
+	},
+	blue: {
+		color: COLORS.blue,
+		minAge: 100,
+		maxAge: Infinity,
+		burned: false,
+		score: 0,
+		snakeGrowth: 0,
+		snakeSpeed: 0,
+		turnDelay: 30,
+		// TODO
+		sound: 'offline/assets/sound/mixkit-tech-break-fail-2947.wav',
+		image: createImage('offline/assets/img/hunter_blue.webp'),
+		messages: consoleMessages.blueHunter,
+	},
+	orange: {
+		// from blue w/ fireball
+		color: COLORS.orange,
+		minAge: -Infinity,
+		maxAge: Infinity,
+		burned: true,
+		score: 25,
+		snakeGrowth: 5,
+		snakeSpeed: 3,
+		turnDelay: 0,
+		// TODO
+		sound:
+			'offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav',
+		image: createImage('offline/assets/img/hunter_orange.webp'),
+		messages: consoleMessages.fireball,
+	},
+};
+
+const roastedScoreIncrease = 2;
+
+const maxSpeed = 50;
+const startingSpeed = 30;
+const startingFireballs = 10;
+
 let soundEnabled = true;
 let gameState = GAME_STATES.IDLE;
-let lastDirection = DIRECTIONS.right;
 
 const canvas = document.getElementById('game');
 let context = canvas.getContext('2d');
@@ -81,6 +294,10 @@ let snake = {
 
 	maxFireballs: startingFireballs,
 	firing: false,
+	currentDirection: DIRECTIONS.right,
+	lastDirection: DIRECTIONS.down,
+	paralysis: false,
+	hitBlueBorder: false,
 };
 
 let hunters = [
@@ -95,9 +312,22 @@ let hunters = [
 /**Unused */
 let eatenHunters = {
 	red: 0,
+	yellow: 0,
+	black: 0,
+	white: 0,
+	purple: 0,
+	blue: 0,
+	orange: 0,
+};
+
+let activeHunters = {
+	red: 0,
+	blue: 0,
+	orange: 0,
+	white: 0,
 	black: 0,
 	yellow: 0,
-	orange: 0,
+	purple: 0,
 };
 
 /**For color canvas */
@@ -108,23 +338,14 @@ let headLeftImage = new Image();
 let bodyImage = new Image();
 let tailRightImage = new Image();
 let tailLeftImage = new Image();
-
-let hunterBlack = new Image();
-let hunterRed = new Image();
-let hunterYellow = new Image();
-let hunterBlue = new Image();
-let hunterOrange = new Image();
+let bodyParalysisImage = new Image();
 
 headRightImage.src = 'offline/assets/img/head_right.webp';
 headLeftImage.src = 'offline/assets/img/head_left.webp';
 bodyImage.src = 'offline/assets/img/body.webp';
 tailRightImage.src = 'offline/assets/img/tail_right.webp';
 tailLeftImage.src = 'offline/assets/img/tail_left.webp';
-hunterBlack.src = 'offline/assets/img/hunter_black.webp';
-hunterRed.src = 'offline/assets/img/hunter_red.webp';
-hunterYellow.src = 'offline/assets/img/hunter_yellow.webp';
-hunterBlue.src = 'offline/assets/img/hunter_blue.webp';
-hunterOrange.src = 'offline/assets/img/hunter_orange.webp';
+bodyParalysisImage.src = 'offline/assets/img/body_paralysis.webp';
 
 let turns = 0;
 let eaten = 0;
@@ -145,62 +366,18 @@ let eaten_items_canvas_context = eaten_items_canvas.getContext('2d');
 const gridSize = 25;
 const slotSize = canvas.width / gridSize;
 
-const eaten_replies = {
-	red: [
-		'Please no! I have family!',
-		'This is what happens when no one goes support...',
-		'Sedation when? zZz',
-		'Making this very clear: we are no longer bothering Raviente.',
-		'Halp!',
-		'*Gulp*',
-		'*Nom nom nom*',
-		'Ahhh, fresh meat.',
-		'Yummy!',
-		'This hunter smells like shiriagari fruit.',
-		"I'm going hungry (Going hungry, yeah)",
-		"I guess I'll never get a Z100...",
-		'Looks like this raid is going to fail.',
-	],
-	black: [
-		"This hunter's diet was based on Bitterbugs.",
-		"This doesn't taste good.",
-		'Yuck!',
-		'Bleugh!',
-		'I feel nauseous...',
-		"I don't feel so good...",
-		'*Cough Cough*',
-		'My dissappoinment is immeasurable and my day is ruined.',
-		"This hunter was wearing black dragon armor, my gut won't like it...",
-		'Careful, this can give food poisoning!',
-	],
-	yellow: [
-		'A flash of yellow light was dispersed around the area.',
-		'Feeling rejuvenated!',
-		'I have hunger for glory.',
-		"You ate a hunter's shiny weapon. On the back it says: Z100, do not steal.",
-		'This hunter ate a Flashbug on accident.',
-		'Moar fireballs!',
-	],
-	toasty: [
-		'Everyone aboard the Ravi train! 🚂',
-		'All aboard! Hahahahaha... 🚆',
-		'Crispy! 🔥',
-		'A Well-Done Steak is ready! 🍖',
-		'Give me a BBQ Spit! 💢',
-	],
-	frosty: [
-		'Frosty! ❄️',
-		'This goes well with some iced coffee. ☕',
-		"She's so cold cold cold like an ice cream cone. 🍦",
-		'Frozen meal is ready! 🍽️',
-	],
-	dodged: [
-		'Olé!',
-		'The hunter automatically dodged your attack.',
-		"This hunter has stylish gear, eating him won't be easy.",
-		'This hunter is wearing a white mantle, and manages to escape.',
-	],
-};
+/**https://stackoverflow.com/questions/1740700/how-to-get-hex-color-value-rather-than-rgb-value */
+const rgba2hex = (rgba) =>
+	`#${rgba
+		.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/)
+		.slice(1)
+		.map((n, i) =>
+			(i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n))
+				.toString(16)
+				.padStart(2, '0')
+				.replace('NaN', ''),
+		)
+		.join('')}`;
 
 function drawSlot(row, col, color) {
 	eaten_items_canvas_context.fillStyle = color;
@@ -248,7 +425,7 @@ function isBoardFull() {
 	return full;
 }
 
-function generateHunter(age = 0) {
+function generateHunter(age = 0, burned = false) {
 	if (isBoardFull()) {
 		return;
 	}
@@ -266,7 +443,7 @@ function generateHunter(age = 0) {
 			if (!hunterCollision) break;
 		}
 	}
-	return { x, y, age: age };
+	return { x, y, age: age, burned: burned };
 }
 
 /**  get random whole numbers in a specific range
@@ -275,210 +452,510 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
+/**The fireball and energy effect when eating the hunter */
+function setHunterEatenFireballEffect(hunterType) {
+	switch (hunterType.color) {
+		case COLORS.red:
+		case COLORS.blue:
+			return;
+		case COLORS.black:
+			energyElement.value = Math.max(energyElement.value - 1, 0);
+			break;
+		case COLORS.white:
+			energyElement.value = Math.min(
+				energyElement.value + 1,
+				snake.maxFireballs,
+			);
+			break;
+		case COLORS.purple:
+			energyElement.value = 0;
+			break;
+		case COLORS.yellow:
+			energyElement.value = Math.min(
+				energyElement.value + 10,
+				snake.maxFireballs,
+			);
+			break;
+		case COLORS.orange:
+			snake.maxFireballs += 1;
+			energyElement.max += 1;
+			energyElement.value = snake.maxFireballs;
+
+			sendMessageToConsole(
+				`You can now fire ${snake.maxFireballs} fireballs! 🔥`,
+			);
+			break;
+	}
+}
+
+/**The burn effect when hitting the hunter with fireball*/
+function setHunterBurnEffect(hunter) {
+	let hunterType = getHunterType(hunter);
+
+	if (hunterType.color === COLORS.blue) {
+		hunter.burned = true;
+		sendMessageToConsole(
+			consoleMessages.blueHunter[
+				Math.floor(Math.random() * consoleMessages.blueHunter.length)
+			].toString(),
+		);
+		return;
+	} else {
+		roasted++;
+		score += roastedScoreIncrease;
+
+		sendMessageToConsole(
+			consoleMessages.fireball[
+				Math.floor(Math.random() * consoleMessages.fireball.length)
+			].toString(),
+		);
+
+		eatenItems.push(fireballColors.hit);
+
+		if (hunterType.color === COLORS.black) {
+			toastyCount++;
+		} else {
+			toastyCount = 0;
+		}
+
+		if (toastyCount >= 10) {
+			toasty();
+			eatenItems.push(fireballColors.toasty);
+		}
+	}
+}
+
+/**The age effect when eating the hunter */
+function setHunterAgeEffect(hunterType) {
+	switch (hunterType.color) {
+		case COLORS.blue:
+			return;
+		case COLORS.red:
+		case COLORS.black:
+		case COLORS.white:
+			hunters.forEach((hunter) => {
+				hunter.age += 1;
+			});
+			break;
+		case COLORS.yellow:
+			hunters.forEach((hunter) => {
+				hunter.age = hunter.age <= HUNTER_TYPES.black.maxAge ? 0 : hunter.age;
+			});
+			break;
+		case COLORS.purple:
+			hunters.forEach((hunter) => {
+				hunter.age += 10;
+			});
+			break;
+		case COLORS.orange:
+			hunters.forEach((hunter) => {
+				hunter.age = hunter.age >= 1 ? hunter.age - 1 : 0;
+			});
+			break;
+	}
+}
+
+function getHunterType(hunter) {
+	if (!hunter) {
+		console.error('Hunter not found.');
+	}
+	if (hunter.burned) return HUNTER_TYPES.orange;
+	if (
+		hunter.age >= HUNTER_TYPES.red.minAge &&
+		hunter.age <= HUNTER_TYPES.red.maxAge &&
+		hunter.burned === HUNTER_TYPES.red.burned
+	)
+		return HUNTER_TYPES.red;
+	if (
+		hunter.age >= HUNTER_TYPES.yellow.minAge &&
+		hunter.age <= HUNTER_TYPES.yellow.maxAge &&
+		hunter.burned === HUNTER_TYPES.yellow.burned
+	)
+		return HUNTER_TYPES.yellow;
+	if (
+		hunter.age >= HUNTER_TYPES.black.minAge &&
+		hunter.age <= HUNTER_TYPES.black.maxAge &&
+		hunter.burned === HUNTER_TYPES.black.burned
+	)
+		return HUNTER_TYPES.black;
+	if (
+		hunter.age >= HUNTER_TYPES.white.minAge &&
+		hunter.age <= HUNTER_TYPES.white.maxAge &&
+		hunter.burned === HUNTER_TYPES.white.burned
+	)
+		return HUNTER_TYPES.white;
+	if (
+		hunter.age >= HUNTER_TYPES.purple.minAge &&
+		hunter.age <= HUNTER_TYPES.purple.maxAge &&
+		hunter.burned === HUNTER_TYPES.purple.burned
+	)
+		return HUNTER_TYPES.purple;
+	if (
+		hunter.age >= HUNTER_TYPES.blue.minAge &&
+		hunter.age <= HUNTER_TYPES.blue.maxAge &&
+		hunter.burned === HUNTER_TYPES.blue.burned
+	)
+		return HUNTER_TYPES.blue;
+	console.error('Hunter type not found.');
+	console.error(hunter);
+}
+
+function setHunterTypeSnakeGrowth(hunterType) {
+	switch (hunterType.color) {
+		case COLORS.red:
+			snake.maxCells += HUNTER_TYPES.red.snakeGrowth;
+			break;
+		case COLORS.yellow:
+			snake.maxCells += HUNTER_TYPES.yellow.snakeGrowth;
+			break;
+		case COLORS.black:
+			snake.maxCells += HUNTER_TYPES.black.snakeGrowth;
+			break;
+		case COLORS.white:
+			snake.maxCells += HUNTER_TYPES.white.snakeGrowth;
+			break;
+		case COLORS.purple:
+			snake.maxCells += HUNTER_TYPES.purple.snakeGrowth;
+			break;
+		case COLORS.blue:
+			snake.maxCells += HUNTER_TYPES.blue.snakeGrowth;
+			break;
+		case COLORS.orange:
+			snake.maxCells += HUNTER_TYPES.orange.snakeGrowth;
+			break;
+	}
+}
+
+function setHunterTypeSnakeSpeed(hunterType) {
+	switch (hunterType.color) {
+		case COLORS.red:
+			snake.extraSpeed += HUNTER_TYPES.red.snakeSpeed;
+			break;
+		case COLORS.yellow:
+			snake.extraSpeed += HUNTER_TYPES.yellow.snakeSpeed;
+			break;
+		case COLORS.black:
+			snake.extraSpeed += HUNTER_TYPES.black.snakeSpeed;
+			break;
+		case COLORS.white:
+			snake.extraSpeed += HUNTER_TYPES.white.snakeSpeed;
+			break;
+		case COLORS.purple:
+			snake.extraSpeed += HUNTER_TYPES.purple.snakeSpeed;
+			break;
+		case COLORS.blue:
+			snake.extraSpeed += HUNTER_TYPES.blue.snakeSpeed;
+			break;
+		case COLORS.orange:
+			snake.extraSpeed += HUNTER_TYPES.orange.snakeSpeed;
+			break;
+	}
+}
+
+function setHunterTypeScoreIncrease(hunterType) {
+	switch (hunterType.color) {
+		case COLORS.red:
+			score += HUNTER_TYPES.red.score;
+			break;
+		case COLORS.yellow:
+			score += HUNTER_TYPES.yellow.score;
+			break;
+		case COLORS.black:
+			score += HUNTER_TYPES.black.score;
+			break;
+		case COLORS.white:
+			score += HUNTER_TYPES.white.score;
+			break;
+		case COLORS.purple:
+			score += HUNTER_TYPES.purple.score;
+			break;
+		case COLORS.blue:
+			score += HUNTER_TYPES.blue.score;
+			break;
+		case COLORS.orange:
+			score += HUNTER_TYPES.orange.score;
+			break;
+	}
+}
+
+function setHunterTypeEatenCount(hunterType) {
+	eaten++;
+	eatenItems.push(hunterType.color);
+
+	switch (hunterType.color) {
+		case COLORS.red:
+			eatenHunters.red++;
+			break;
+		case COLORS.yellow:
+			eatenHunters.yellow++;
+			break;
+		case COLORS.black:
+			eatenHunters.black++;
+			break;
+		case COLORS.white:
+			eatenHunters.white++;
+			break;
+		case COLORS.purple:
+			eatenHunters.purple++;
+			break;
+		case COLORS.blue:
+			eatenHunters.blue++;
+			break;
+		case COLORS.orange:
+			eatenHunters.orange++;
+			break;
+	}
+}
+
+function sendHunterTypeMessage(hunterType) {
+	switch (hunterType.color) {
+		case COLORS.red:
+			sendMessageToConsole(
+				consoleMessages.redHunter[
+					Math.floor(Math.random() * consoleMessages.redHunter.length)
+				].toString(),
+			);
+			break;
+		case COLORS.yellow:
+			sendMessageToConsole(
+				consoleMessages.yellowHunter[
+					Math.floor(Math.random() * consoleMessages.yellowHunter.length)
+				].toString(),
+			);
+			break;
+		case COLORS.black:
+			sendMessageToConsole(
+				consoleMessages.blackHunter[
+					Math.floor(Math.random() * consoleMessages.blackHunter.length)
+				].toString(),
+			);
+			break;
+		case COLORS.white:
+			sendMessageToConsole(
+				consoleMessages.whiteHunter[
+					Math.floor(Math.random() * consoleMessages.whiteHunter.length)
+				].toString(),
+			);
+			break;
+		case COLORS.purple:
+			// sendMessageToConsole(
+			// 	consoleMessages.whiteHunter[
+			// 		Math.floor(Math.random() * consoleMessages.whiteHunter.length)
+			// 	].toString(),
+			// );
+			break;
+		case COLORS.blue:
+			sendMessageToConsole(
+				consoleMessages.blueHunter[
+					Math.floor(Math.random() * consoleMessages.blueHunter.length)
+				].toString(),
+			);
+			break;
+		case COLORS.orange:
+			sendMessageToConsole(
+				consoleMessages.fireball[
+					Math.floor(Math.random() * consoleMessages.fireball.length)
+				].toString(),
+			);
+			break;
+	}
+}
+
+function setHunterTypeEatenEffects(hunterType) {
+	setHunterTypeSnakeGrowth(hunterType);
+	setHunterTypeSnakeSpeed(hunterType);
+	setHunterTypeScoreIncrease(hunterType);
+	setHunterTypeEatenCount(hunterType);
+	setHunterAgeEffect(hunterType);
+	setHunterEatenFireballEffect(hunterType);
+	playSound(hunterType.sound);
+	sendHunterTypeMessage(hunterType);
+}
+
+/**The effect when eating the hunter */
+function setHunterEatEffect(hunter) {
+	let hunterType = getHunterType(hunter);
+
+	if (hunterType.color === COLORS.blue) {
+		resetGame(DEATHS.blueHunter);
+		return;
+	}
+
+	if (hunterType.color === COLORS.white && !snake.paralysis) {
+		sendMessageToConsole(
+			consoleMessages.whiteHunter[
+				Math.floor(Math.random() * consoleMessages.whiteHunter.length)
+			].toString(),
+		);
+		return;
+	}
+
+	if (hunterType.color === COLORS.white && snake.paralysis) {
+		setHunterTypeEatenEffects(hunterType);
+		return;
+	}
+
+	// red, yellow, black, purple, orange
+	setHunterTypeEatenEffects(hunterType);
+}
+
+function setExtraHunters(turns, fromFireball, hunter) {
+	if (turns % HUNTER_TYPES.white.turnDelay === 0) {
+		// TODO replace with white hunter
+		hunters.push(generateHunter());
+		// red and yellow
+		if (hunter.age <= HUNTER_TYPES.yellow.maxAge && !fromFireball) {
+			snake.extraSpeed = Math.min(
+				snake.extraSpeed + 1,
+				maxSpeed - startingSpeed,
+			);
+		}
+	}
+
+	if (turns % HUNTER_TYPES.purple.turnDelay === 0) {
+		hunters.push(generateHunter(HUNTER_TYPES.purple.minAge));
+		// TODO spawn sound effects
+	}
+
+	if (turns % HUNTER_TYPES.blue.turnDelay === 0) {
+		hunters.push(generateHunter(HUNTER_TYPES.blue.minAge));
+		gameElement.style.borderColor = COLORS.blue;
+	}
+}
+
+//TODO  eat yellow -> only for <= 49 change to age 0.
 function snakeAteHunter(cell, fromFireball = false) {
 	for (let i = 0; i < hunters.length; i++) {
 		if (cell.x === hunters[i].x && cell.y === hunters[i].y) {
 			if (fromFireball) {
-				if (hunters[i].age >= 100 && !hunters[i].burned) {
-					hunters[i].burned = true;
-					sendMessageToConsole(
-						eaten_replies.frosty[
-							Math.floor(Math.random() * eaten_replies.frosty.length)
-						].toString(),
-					);
-					break;
-				} else {
-					roasted++;
-					score += 2;
-
-					sendMessageToConsole(
-						eaten_replies.toasty[
-							Math.floor(Math.random() * eaten_replies.toasty.length)
-						].toString(),
-					);
-
-					eatenItems.push(purpleColor);
-
-					if (hunters[i].age >= 6) {
-						toastyCount++;
-					} else {
-						toastyCount = 0;
-					}
-
-					if (toastyCount >= 10) {
-						toasty();
-						eatenItems.push(pinkColor);
-					}
-				}
+				setHunterBurnEffect(hunters[i]);
 			} else {
-				if (hunters[i].burned && !snake.running) {
-					sendMessageToConsole(
-						eaten_replies.dodged[
-							Math.floor(Math.random() * eaten_replies.dodged.length)
-						].toString(),
-					);
-					break;
-				} else if (hunters[i].burned && snake.running) {
-					eaten++;
-					snake.maxCells++;
-					score += 50;
-					snake.extraSpeed = Math.min(
-						snake.extraSpeed + 2,
-						maxSpeed - startingSpeed,
-					);
-					eatenHunters.orange++;
-
-					hunters.forEach((hunter) => {
-						hunter.age = hunter.age >= 1 ? hunter.age - 1 : 0;
-					});
-
-					eatenItems.push(orangeColor);
-					snake.maxFireballs += 10;
-					fireballMeter.max += 10;
-					fireballMeter.value = snake.maxFireballs;
-
-					sendMessageToConsole(
-						`You can now fire ${snake.maxFireballs} fireballs! 🔥`,
-					);
-					// TODO
-					playSound(yellowHunterSound);
-				} else if (hunters[i].age <= 4) {
-					eaten++;
-					snake.maxCells++;
-					score++;
-					eatenHunters.red++;
-					hunters.forEach((hunter) => {
-						hunter.age++;
-					});
-
-					sendMessageToConsole(
-						eaten_replies.red[
-							Math.floor(Math.random() * eaten_replies.red.length)
-						].toString(),
-					);
-
-					eatenItems.push(redColor);
-					playSound(redHunterSound);
-				} else if (hunters[i].age === 5) {
-					eaten++;
-					snake.maxCells++;
-					score += 10;
-					eatenHunters.yellow++;
-
-					hunters.forEach((hunter) => {
-						hunter.age = hunter.age >= 100 ? hunter.age : 0;
-					});
-
-					sendMessageToConsole(
-						eaten_replies.yellow[
-							Math.floor(Math.random() * eaten_replies.yellow.length)
-						].toString(),
-					);
-
-					eatenItems.push(yellowColor);
-					fireballMeter.value = snake.maxFireballs;
-					playSound(yellowHunterSound);
-				} else if (hunters[i].age >= 6 && hunters[i].age < 100) {
-					eaten++;
-					snake.maxCells++;
-					score--;
-					snake.extraSpeed--;
-					eatenHunters.black++;
-
-					hunters.forEach((hunter) => {
-						hunter.age++;
-					});
-
-					sendMessageToConsole(
-						eaten_replies.black[
-							Math.floor(Math.random() * eaten_replies.black.length)
-						].toString(),
-					);
-
-					eatenItems.push(blackColor);
-					playSound(blackHunterSound);
-				} else if (hunters[i].age >= 100) {
-					resetGame('blue hunter');
-					break;
-				} else {
-					console.warn(hunters);
-				}
+				setHunterEatEffect(hunters[i]);
 			}
 
-			drawEatenItems();
+			// TODO this needs to handle new fireball function
+			drawDefeatedHunters();
 
 			// canvas is 400x400 which is 25x25 grids
 			// hunter.x = getRandomInt(0, 25) * grid;
 			// hunter.y = getRandomInt(0, 25) * grid;
 
+			scoreElement.textContent = `Score: ${score}`;
 			eatenElement.textContent = `Eaten: ${eaten}`;
 			roastedElement.textContent = `Roasted: ${roasted}`;
 
 			hunters.splice(i, 1);
-
 			hunters.push(generateHunter());
-			scoreElement.textContent = `Score: ${score}`;
 
 			turns++;
-
-			if (turns % 5 === 0) {
-				hunters.push(generateHunter());
-				if (hunters[i].age <= 5 && !fromFireball) {
-					snake.extraSpeed = Math.min(
-						snake.extraSpeed + 1,
-						maxSpeed - startingSpeed,
-					);
-				}
-			}
-
-			if (turns % 10 === 0) {
-				hunters.push(generateHunter(100));
-			}
+			setExtraHunters(turns, fromFireball, hunters[i]);
 
 			break;
 		}
 	}
+
+	countHunters();
 }
 
-function resetGame(reason = '') {
+/**For blue border protection check */
+function countHunters() {
+	let redCount = 0;
+	let blueCount = 0;
+	let yellowCount = 0;
+	let whiteCount = 0;
+	let blackCount = 0;
+	let orangeCount = 0;
+	let purpleCount = 0;
+
+	hunters.forEach((hunter) => {
+		if (getHunterType(hunter)) {
+			switch (getHunterType(hunter).color) {
+				case COLORS.red:
+					redCount++;
+					break;
+				case COLORS.yellow:
+					yellowCount++;
+					break;
+				case COLORS.black:
+					blackCount++;
+					break;
+				case COLORS.white:
+					whiteCount++;
+					break;
+				case COLORS.purple:
+					purpleCount++;
+					break;
+				case COLORS.blue:
+					blueCount++;
+					break;
+				case COLORS.orange:
+					orangeCount++;
+					break;
+			}
+		}
+	});
+
+	activeHunters = {
+		red: redCount,
+		blue: blueCount,
+		orange: orangeCount,
+		white: whiteCount,
+		black: blackCount,
+		yellow: yellowCount,
+		purple: purpleCount,
+	};
+}
+
+function resetGame(deathMessage = DEATHS.default) {
 	snake.x = 160;
 	snake.y = 160;
 	snake.cells = [];
 	snake.maxCells = 3;
 	snake.dx = grid;
 	snake.dy = 0;
+	snake.currentDirection = DIRECTIONS.right;
+	snake.lastDirection = DIRECTIONS.down;
 	snake.extraSpeed = 0;
 	snake.running = false;
 	snake.maxFireballs = startingFireballs;
 	snake.firing = false;
-	fireballMeter.max = startingFireballs;
+	snake.paralysis = false;
+	snake.hitBlueBorder = false;
+	energyElement.max = startingFireballs;
 	score = 0;
 	turns = 0;
 	eaten = 0;
 	roasted = 0;
 	toastyCount = 0;
 
+	activeHunters.red = 0;
+	activeHunters.blue = 0;
+	activeHunters.black = 0;
+	activeHunters.yellow = 0;
+	activeHunters.white = 0;
+	activeHunters.orange = 0;
+	activeHunters.purple = 0;
+
 	hunters = [
 		{
 			x: getRandomInt(0, 25) * grid,
 			y: getRandomInt(0, 25) * grid,
 			age: 0,
+			burned: false,
 		},
 	];
 
 	eatenHunters.red = 0;
+	eatenHunters.blue = 0;
 	eatenHunters.black = 0;
 	eatenHunters.yellow = 0;
+	eatenHunters.white = 0;
 	eatenHunters.orange = 0;
+	eatenHunters.purple = 0;
 
 	consoleElement.replaceChildren();
-	if (reason === 'poison') {
-		sendMessageToConsole('You died from food poisoning. 💀');
-	} else if (reason === 'blue hunter') {
-		sendMessageToConsole('An experienced hunter stopped your massacre. 💀');
-	} else {
-		sendMessageToConsole('You died. 💀');
-	}
+
+	sendMessageToConsole(deathMessage);
 
 	gameState = GAME_STATES.GAME_OVER;
 	gameButton.textContent = 'Restart';
@@ -498,7 +975,7 @@ function updateFireballs() {
 		fireball.y += fireball.dy;
 
 		// draw the fireball
-		context.fillStyle = purpleColor;
+		context.fillStyle = COLORS.purple;
 		context.fillRect(fireball.x, fireball.y, fireball.width, fireball.height);
 
 		// check if fireball hit the edge of the canvas
@@ -529,14 +1006,14 @@ function updateFireballs() {
 
 function startingText() {
 	consoleElement.replaceChildren();
-	sendMessageToConsole('You are hungry.');
+	sendMessageToConsole(consoleMessages.startingText);
 	scoreElement.textContent = `Score: ${score}`;
 	speedElement.textContent = `Speed: 0m/s`;
 	eatenElement.textContent = `Eaten: ${eaten}`;
 	roastedElement.textContent = `Roasted: ${roasted}`;
 }
 
-function drawEatenItems() {
+function drawDefeatedHunters() {
 	let row = 0;
 	let col = 0;
 
@@ -566,13 +1043,16 @@ function playSound(filePath) {
 	if (!soundEnabled) return;
 	const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 	const source = audioContext.createBufferSource();
+	const gainNode = new GainNode(audioContext, { gain: 0.5 }); // Create a GainNode for volume control
+	gainNode.connect(audioContext.destination);
 
 	fetch(filePath)
 		.then((response) => response.arrayBuffer())
 		.then((data) => audioContext.decodeAudioData(data))
 		.then((buffer) => {
 			source.buffer = buffer;
-			source.connect(audioContext.destination);
+			source.connect(gainNode);
+			// Set the volume of the GainNode
 			source.start();
 		})
 		.catch((error) => console.error('Error loading audio:', error));
@@ -580,9 +1060,9 @@ function playSound(filePath) {
 
 function toasty() {
 	toastyCount = 0;
-	fireballMeter.value = snake.maxFireballs;
+	energyElement.value = snake.maxFireballs;
 	score += 100;
-	sendMessageToConsole('Toasty! 🍞');
+	sendMessageToConsole(consoleMessages.toasty);
 	playSound(toastySound);
 	document.getElementById('sliding-image').style.left = `1rem`;
 	setTimeout(function () {
@@ -609,37 +1089,38 @@ function sendMessageToConsole(message) {
 		consoleElement.scrollHeight - consoleElement.clientHeight;
 }
 
-/** game loop*/
-function loop() {
-	if (gameState === GAME_STATES.PAUSED || gameState === GAME_STATES.GAME_OVER) {
-		return;
-	}
-	requestAnimationFrame(loop);
-
-	let snakeTotalSpeed = snake.running
-		? Math.min(startingSpeed + snake.extraSpeed + 10, maxSpeed)
-		: Math.min(startingSpeed + snake.extraSpeed, maxSpeed);
-	if (snakeTotalSpeed <= 0) {
-		resetGame('poison');
-		return;
-	}
-
-	let loopDelay = 60 - snakeTotalSpeed;
-
-	// slow game loop to 30 fps instead of 60 (60/30 = 2)
-	if (++count < 60 / (60 / loopDelay)) {
-		return;
-	}
-
-	speedElement.textContent = `Speed: ${snakeTotalSpeed}m/s`;
-
-	count = 0;
-	context.clearRect(0, 0, canvas.width, canvas.height);
-
+function moveSnake() {
+	// snake.dx = -grid;
+	// snake.dy = 0;
 	// move snake by it's velocity
-	snake.x += snake.dx;
-	snake.y += snake.dy;
+	switch (snake.currentDirection) {
+		case DIRECTIONS.up:
+			snake.x += 0;
+			snake.y += -grid;
+			break;
+		case DIRECTIONS.down:
+			snake.x += 0;
+			snake.y += grid;
+			break;
+		case DIRECTIONS.left:
+			snake.x += -grid;
+			snake.y += 0;
+			break;
+		case DIRECTIONS.right:
+			snake.x += grid;
+			snake.y += 0;
+			break;
+	}
 
+	if (
+		(snake.x < 0 ||
+			snake.y < 0 ||
+			snake.x >= canvas.width ||
+			snake.y >= canvas.height) &&
+		rgba2hex(gameElement.style.borderColor) === COLORS.blue
+	) {
+		snake.hitBlueBorder = true;
+	}
 	// wrap snake position horizontally on edge of screen
 	if (snake.x < 0) {
 		snake.x = canvas.width - grid;
@@ -661,41 +1142,48 @@ function loop() {
 	if (snake.cells.length > snake.maxCells) {
 		snake.cells.pop();
 	}
+}
 
-	// draw hunter
-	hunters.forEach((hunter) => {
-		if (hunter.burned) {
-			context.drawImage(hunterOrange, hunter.x, hunter.y, grid - 1, grid - 1);
-		} else if (hunter.age === 5) {
-			context.drawImage(hunterYellow, hunter.x, hunter.y, grid - 1, grid - 1);
-		} else if (hunter.age >= 100) {
-			context.drawImage(hunterBlue, hunter.x, hunter.y, grid - 1, grid - 1);
-		} else if (hunter.age > 5) {
-			context.drawImage(hunterBlack, hunter.x, hunter.y, grid - 1, grid - 1);
-		} else {
-			context.drawImage(hunterRed, hunter.x, hunter.y, grid - 1, grid - 1);
-		}
-	});
-
-	updateFireballs();
-
+function updateSnake() {
 	// draw snake one cell at a time
 	snake.cells.forEach(function (cell, index) {
 		// drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
 
-		context.drawImage(bodyImage, cell.x, cell.y, grid - 1, grid - 1);
+		let drewHeadTail = false;
 
 		if (snake.cells.length - 1 == index) {
-			if (snake.dx === -grid) {
+			if (
+				snake.currentDirection === DIRECTIONS.left ||
+				snake.lastDirection === DIRECTIONS.left
+			) {
 				context.drawImage(tailLeftImage, cell.x, cell.y, grid - 1, grid - 1);
 			} else {
 				context.drawImage(tailRightImage, cell.x, cell.y, grid - 1, grid - 1);
 			}
+			drewHeadTail = true;
 		} else if (index === 0) {
-			if (snake.dx === -grid) {
+			if (
+				snake.currentDirection === DIRECTIONS.left ||
+				snake.lastDirection === DIRECTIONS.left
+			) {
 				context.drawImage(headLeftImage, cell.x, cell.y, grid - 1, grid - 1);
 			} else {
 				context.drawImage(headRightImage, cell.x, cell.y, grid - 1, grid - 1);
+			}
+			drewHeadTail = true;
+		}
+
+		if (!drewHeadTail) {
+			if (snake.paralysis) {
+				context.drawImage(
+					bodyParalysisImage,
+					cell.x,
+					cell.y,
+					grid - 1,
+					grid - 1,
+				);
+			} else {
+				context.drawImage(bodyImage, cell.x, cell.y, grid - 1, grid - 1);
 			}
 		}
 
@@ -711,6 +1199,108 @@ function loop() {
 	});
 }
 
+function updateHunters() {
+	// draw hunter
+	hunters.forEach((hunter) => {
+		if (getHunterType(hunter)) {
+			if (getHunterType(hunter).color === COLORS.orange) {
+				context.drawImage(
+					HUNTER_TYPES.orange.image,
+					hunter.x,
+					hunter.y,
+					grid - 1,
+					grid - 1,
+				);
+			} else if (getHunterType(hunter).color === COLORS.yellow) {
+				context.drawImage(
+					HUNTER_TYPES.yellow.image,
+					hunter.x,
+					hunter.y,
+					grid - 1,
+					grid - 1,
+				);
+			} else if (getHunterType(hunter).color === COLORS.black) {
+				context.drawImage(
+					HUNTER_TYPES.black.image,
+					hunter.x,
+					hunter.y,
+					grid - 1,
+					grid - 1,
+				);
+			} else if (getHunterType(hunter).color === COLORS.white) {
+				context.drawImage(
+					HUNTER_TYPES.white.image,
+					hunter.x,
+					hunter.y,
+					grid - 1,
+					grid - 1,
+				);
+			} else if (getHunterType(hunter).color === COLORS.purple) {
+				context.drawImage(
+					HUNTER_TYPES.purple.image,
+					hunter.x,
+					hunter.y,
+					grid - 1,
+					grid - 1,
+				);
+			} else if (getHunterType(hunter).color === COLORS.blue) {
+				context.drawImage(
+					HUNTER_TYPES.blue.image,
+					hunter.x,
+					hunter.y,
+					grid - 1,
+					grid - 1,
+				);
+			} else {
+				context.drawImage(
+					HUNTER_TYPES.red.image,
+					hunter.x,
+					hunter.y,
+					grid - 1,
+					grid - 1,
+				);
+			}
+		}
+	});
+}
+
+/** game loop*/
+function loop() {
+	if (gameState === GAME_STATES.PAUSED || gameState === GAME_STATES.GAME_OVER) {
+		return;
+	}
+	requestAnimationFrame(loop);
+
+	let snakeTotalSpeed = snake.running
+		? Math.min(startingSpeed + snake.extraSpeed + 10, maxSpeed)
+		: Math.min(startingSpeed + snake.extraSpeed, maxSpeed);
+	if (snakeTotalSpeed <= 0) {
+		resetGame(DEATHS.poison);
+		return;
+	}
+
+	let loopDelay = 60 - snakeTotalSpeed;
+
+	// slow game loop to 30 fps instead of 60 (60/30 = 2)
+	if (++count < 60 / (60 / loopDelay)) {
+		return;
+	}
+
+	speedElement.textContent = `Speed: ${snakeTotalSpeed}m/s`;
+
+	count = 0;
+	context.clearRect(0, 0, canvas.width, canvas.height);
+
+	moveSnake();
+
+	updateFireballs();
+	updateSnake();
+	if (snake.hitBlueBorder) {
+		resetGame(DEATHS.blueBorder);
+	}
+	updateHunters();
+}
+
 document.addEventListener('keyup', function (e) {
 	if (gameState !== GAME_STATES.RUNNING) {
 		return;
@@ -722,6 +1312,8 @@ document.addEventListener('keyup', function (e) {
 		snake.running = false;
 	} else if (key === 'f' && snake.firing) {
 		snake.firing = false;
+	} else if (key === ' ' && snake.paralysis) {
+		snake.paralysis = false;
 	}
 });
 
@@ -740,51 +1332,109 @@ document.addEventListener('keydown', function (e) {
 		snake.running = true;
 	}
 
-	// Prevent reversing the direction immediately
-	if (
-		(key === 'a' && lastDirection !== 'right' && snake.dx !== -grid) ||
-		(key === 'w' && lastDirection !== 'down' && snake.dy !== -grid) ||
-		(key === 'd' && lastDirection !== 'left' && snake.dx !== grid) ||
-		(key === 's' && lastDirection !== 'up' && snake.dy !== grid)
-	) {
-		// Update the snake's direction
-		if (key === 'a' && snake.dx !== grid) {
-			snake.dx = -grid;
-			snake.dy = 0;
-			lastDirection = 'left';
-		} else if (key === 'w' && snake.dy !== grid) {
-			snake.dy = -grid;
-			snake.dx = 0;
-			lastDirection = 'up';
-		} else if (key === 'd' && snake.dx !== -grid) {
-			snake.dx = grid;
-			snake.dy = 0;
-			lastDirection = 'right';
-		} else if (key === 's' && snake.dy !== -grid) {
-			snake.dy = grid;
-			snake.dx = 0;
-			lastDirection = 'down';
+	if (key === ' ' && !snake.paralysis) {
+		e.preventDefault();
+		snake.paralysis = true;
+		if (energyElement.value <= 0) {
+			sendMessageToConsole(consoleMessages.noEnergy);
+			return;
 		}
+		energyElement.value = 0;
+		//TODO playSound(fireballSound);
 	}
 
 	if (key === 'f' && !snake.firing) {
 		snake.firing = true;
-		if (fireballMeter.value <= 0) {
-			sendMessageToConsole('Ran out of energy! 💨');
+		if (energyElement.value <= 0) {
+			sendMessageToConsole(consoleMessages.noEnergy);
 			return;
 		}
 
-		fireballs.push({
-			x: snake.x,
-			y: snake.y,
-			dx: snake.dx,
-			dy: snake.dy,
-			width: grid,
-			height: grid,
-		});
+		switch (snake.currentDirection) {
+			case DIRECTIONS.down:
+				fireballs.push({
+					x: snake.x,
+					y: snake.y,
+					dx: 0,
+					dy: grid,
+					width: grid,
+					height: grid,
+				});
+				break;
+			case DIRECTIONS.up:
+				fireballs.push({
+					x: snake.x,
+					y: snake.y,
+					dx: 0,
+					dy: -grid,
+					width: grid,
+					height: grid,
+				});
+				break;
+			case DIRECTIONS.right:
+				fireballs.push({
+					x: snake.x,
+					y: snake.y,
+					dx: grid,
+					dy: 0,
+					width: grid,
+					height: grid,
+				});
+				break;
+			case DIRECTIONS.left:
+				fireballs.push({
+					x: snake.x,
+					y: snake.y,
+					dx: -grid,
+					dy: 0,
+					width: grid,
+					height: grid,
+				});
+				break;
+		}
 
-		fireballMeter.value--;
+		energyElement.value--;
 		playSound(fireballSound);
+	}
+
+	// Prevent reversing the direction immediately
+	if (
+		(key === 'a' && snake.currentDirection !== DIRECTIONS.right) ||
+		(key === 'w' && snake.currentDirection !== DIRECTIONS.down) ||
+		(key === 'd' && snake.currentDirection !== DIRECTIONS.left) ||
+		(key === 's' && snake.currentDirection !== DIRECTIONS.up)
+	) {
+		// Update the snake's direction
+		switch (key) {
+			case 'a':
+				// snake.dx = -grid;
+				// snake.dy = 0;
+				snake.lastDirection = snake.currentDirection;
+				snake.currentDirection = DIRECTIONS.left;
+				console.log(snake);
+				break;
+			case 'w':
+				// snake.dy = -grid;
+				// snake.dx = 0;
+				snake.lastDirection = snake.currentDirection;
+				snake.currentDirection = DIRECTIONS.up;
+				console.log(snake);
+				break;
+			case 'd':
+				// snake.dx = grid;
+				// snake.dy = 0;
+				snake.lastDirection = snake.currentDirection;
+				snake.currentDirection = DIRECTIONS.right;
+				console.log(snake);
+				break;
+			case 's':
+				// snake.dy = grid;
+				// snake.dx = 0;
+				snake.lastDirection = snake.currentDirection;
+				snake.currentDirection = DIRECTIONS.down;
+				console.log(snake);
+				break;
+		}
 	}
 });
 
@@ -796,13 +1446,14 @@ gameButton.addEventListener('click', function () {
 		case GAME_STATES.GAME_OVER:
 			// Start the game
 			startingText();
-			drawEatenItems();
-			fireballMeter.value = startingFireballs;
+			drawDefeatedHunters();
+			energyElement.value = startingFireballs;
 			requestAnimationFrame(loop);
 			gameState = GAME_STATES.RUNNING;
 			gameButton.textContent = 'Pause';
 			gameButton.classList.add('paused');
 			gameButton.classList.remove('game-over');
+			gameElement.style.borderColor = COLORS.border;
 			startTime = Date.now();
 			timerInterval = setInterval(updateTimer, 100); // Update timer every 10 milliseconds for hundredths of a second
 			playSound(startSound);

@@ -9,8 +9,40 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<!-- <link rel="canonical" href={url} /> -->
+
+		<title>Raviente's Den</title>
+		<meta name="title" content="Raviente's Den" />
+		<meta name="description" content="Offline - Solitude Island Depths" />
+
+		<meta name="author" content='Doriel Rivalet' />
+
+		<!-- Google / Search Engine Tags -->
+		<meta itemprop="name" content="Raviente's Den" />
+		<meta itemprop="description" content='Offline - Solitude Island Depths' />
+		<meta itemprop="image" content='logo.webp' />
+
+		<!-- Facebook Meta Tags -->
+		<!-- <meta property="og:url" content={url} /> -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Raviente's Den" />
+		<meta property="og:description" content='Offline - Solitude Island Depths' />
+		<meta property="og:image" content='logo.webp' />
+		<meta property="og:image:alt" content="Elzelion holding a book" />
+		<meta property="og:site_name" content='Frontier Compendium' />
+
+		<!-- Discord-->
+		<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+			<!-- <meta property="twitter:domain" content={website} /> -->
+		<!-- <meta property="twitter:url" content={url} /> -->
+		<meta name="twitter:title" content="Raviente's Den" />
+		<meta name="twitter:description" content='Offline' />
+		<meta name="twitter:image" content='logo.webp' />
 		<link rel="stylesheet" href="./offline/styles.css" />
-		<script src="./offline/data.js" defer></script>
+		<script src="./offline/author.js" defer></script>
 		<script src="./offline/snake.js" defer></script>
 	</head>
 	<body>
@@ -37,16 +69,18 @@
 					<div id="speed">Speed: 0m/s</div>
 					<div id="eaten">Eaten: 0</div>
 					<div id="roasted">Roasted: 0</div>
+					<div id="zapped">Zapped: 0</div>
 					<div id="timer">00:00.0</div>
-					<progress id="fireball-meter" max="10" value="10"></progress>
+					<progress id="energy" max="10" value="10"></progress>
+					<div class="img-container">
+						<img id="sliding-image" src="offline/assets/img/berserk_raviente.webp" alt="Sliding Image"/>
+					</div>
 					<canvas width="800" height="800" id="eaten-items"></canvas>
 					<div class="instructions">
 						<div>WASD - Movement</div>
-						<div>F - Fireball</div>
 						<div>Shift - Run</div>
-					</div>
-					<div class="img-container">
-						<img id="sliding-image" src="offline/assets/img/berserk_raviente.webp" alt="Sliding Image"/>
+						<div>F - Fireball</div>
+						<div>Space - Paralysis</div>
 					</div>
 				</div>
 				<canvas width="800" height="800" id="game"></canvas>
