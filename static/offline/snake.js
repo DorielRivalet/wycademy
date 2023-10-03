@@ -16,6 +16,7 @@ const blackColor = '#6c7086';
 const purpleColor = '#cba6f7';
 const blueColor = '#89b4fa';
 const orangeColor = '#fab387';
+const pinkColor = '#f5c2e7';
 const startingFireballs = 10;
 
 const toastySound = 'offline/assets/sound/toasty.mp3';
@@ -79,6 +80,7 @@ let snake = {
 	running: false,
 
 	maxFireballs: startingFireballs,
+	firing: false,
 };
 
 let hunters = [
@@ -305,6 +307,7 @@ function snakeAteHunter(cell, fromFireball = false) {
 
 					if (toastyCount >= 10) {
 						toasty();
+						eatenItems.push(pinkColor);
 					}
 				}
 			} else {
@@ -319,7 +322,10 @@ function snakeAteHunter(cell, fromFireball = false) {
 					eaten++;
 					snake.maxCells++;
 					score += 50;
-					snake.extraSpeed += 2;
+					snake.extraSpeed = Math.min(
+						snake.extraSpeed + 2,
+						maxSpeed - startingSpeed,
+					);
 					eatenHunters.orange++;
 
 					hunters.forEach((hunter) => {
@@ -418,7 +424,10 @@ function snakeAteHunter(cell, fromFireball = false) {
 			if (turns % 5 === 0) {
 				hunters.push(generateHunter());
 				if (hunters[i].age <= 5 && !fromFireball) {
-					snake.extraSpeed++;
+					snake.extraSpeed = Math.min(
+						snake.extraSpeed + 1,
+						maxSpeed - startingSpeed,
+					);
 				}
 			}
 
@@ -441,6 +450,7 @@ function resetGame(reason = '') {
 	snake.extraSpeed = 0;
 	snake.running = false;
 	snake.maxFireballs = startingFireballs;
+	snake.firing = false;
 	fireballMeter.max = startingFireballs;
 	score = 0;
 	turns = 0;
@@ -710,6 +720,8 @@ document.addEventListener('keyup', function (e) {
 
 	if (key === 'shift' && snake.running) {
 		snake.running = false;
+	} else if (key === 'f' && snake.firing) {
+		snake.firing = false;
 	}
 });
 
@@ -755,8 +767,8 @@ document.addEventListener('keydown', function (e) {
 		}
 	}
 
-	// fireballs
-	if (key === 'f') {
+	if (key === 'f' && !snake.firing) {
+		snake.firing = true;
 		if (fireballMeter.value <= 0) {
 			sendMessageToConsole('Ran out of energy! 💨');
 			return;
