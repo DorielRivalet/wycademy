@@ -22,6 +22,7 @@ const startSound =
 	'offline/assets/sound/mixkit-player-boost-recharging-2040.wav';
 const pauseSound = 'offline/assets/sound/mixkit-zippo-fire-close-1334.wav';
 const resumeSound = 'offline/assets/sound/mixkit-quick-lock-sound-2854.wav';
+const winSound = 'offline/assets/sound/mixkit-video-game-win-2016.wav';
 
 const COLORS = {
 	red: '#f38ba8',
@@ -46,6 +47,7 @@ const fireballColors = {
 const paralysisColor = COLORS.rosewater;
 
 const consoleMessages = {
+	win: 'Congratulations! You have successfully completed the game. 🏆',
 	startingText: 'You are hungry.',
 	noEnergy: 'Ran out of energy! 💨',
 	noParalysisEnergy: 'Not enough energy! 💨',
@@ -109,6 +111,10 @@ const consoleMessages = {
 		'The hunter got healed back by a teammate.',
 		'The hunter used transcend just in time.',
 		'The hunter has 300 carts available.',
+		'Your attack was parried.',
+		'The hunter is spamming fade slashes',
+		'The hunter has True Guts.',
+		'The hunter has Soul Revival.',
 	],
 	purpleHunterEat: [
 		'We found one of the best hunters the guild has to offer.',
@@ -182,6 +188,7 @@ let turns = 0;
 let fireballs = [];
 /**If hitting 10 black hunters in a row with fireball, refill meter. */
 let toastyCount = 0;
+let canSpawnHunters = true;
 
 function createImage(url) {
 	let img = new Image();
@@ -206,7 +213,9 @@ function biteEffect(hunterType) {
 			snake.maxCells += HUNTER_TYPES.red.snakeGrowth;
 			snake.extraSpeed += HUNTER_TYPES.red.snakeSpeed;
 			hunters.forEach((hunter) => {
-				hunter.age++;
+				if (hunter) {
+					hunter.age++;
+				}
 			});
 			score += HUNTER_TYPES.red.score;
 			sendMessageToConsole(
@@ -223,7 +232,9 @@ function biteEffect(hunterType) {
 			energyElement.value += HUNTER_TYPES.black.energyGain;
 			energyElement.value = Math.max(energyElement.value, 0);
 			hunters.forEach((hunter) => {
-				hunter.age++;
+				if (hunter) {
+					hunter.age++;
+				}
 			});
 			score += HUNTER_TYPES.black.score;
 			sendMessageToConsole(
@@ -240,7 +251,9 @@ function biteEffect(hunterType) {
 			energyElement.value += HUNTER_TYPES.yellow.energyGain;
 			energyElement.value = Math.max(energyElement.value, energyElement.max);
 			hunters.forEach((hunter) => {
-				hunter.age = hunter.age <= HUNTER_TYPES.black.maxAge ? 0 : hunter.age;
+				if (hunter) {
+					hunter.age = hunter.age <= HUNTER_TYPES.black.maxAge ? 0 : hunter.age;
+				}
 			});
 			score += HUNTER_TYPES.yellow.score;
 			sendMessageToConsole(
@@ -257,7 +270,9 @@ function biteEffect(hunterType) {
 			energyElement.value += HUNTER_TYPES.purple.energyGain;
 			energyElement.value = Math.max(energyElement.value, 0);
 			hunters.forEach((hunter) => {
-				hunter.age += 10;
+				if (hunter) {
+					hunter.age += 10;
+				}
 			});
 			score += HUNTER_TYPES.purple.score;
 			sendMessageToConsole(
@@ -272,8 +287,10 @@ function biteEffect(hunterType) {
 			snake.maxCells += HUNTER_TYPES.orange.snakeGrowth;
 			snake.extraSpeed += HUNTER_TYPES.orange.snakeSpeed;
 			hunters.forEach((hunter) => {
-				hunter.age -= 10;
-				hunter.age = Math.max(0, hunter.age);
+				if (hunter) {
+					hunter.age -= 10;
+					hunter.age = Math.max(0, hunter.age);
+				}
 			});
 			energyElement.max += HUNTER_TYPES.orange.energyMaxGain;
 			energyElement.value += HUNTER_TYPES.orange.energyGain;
@@ -347,7 +364,7 @@ const HUNTER_TYPES = {
 	red: {
 		color: COLORS.red,
 		minAge: -Infinity,
-		maxAge: 1,
+		maxAge: 4,
 		burned: false,
 		score: 1,
 		snakeGrowth: 1,
@@ -375,8 +392,8 @@ const HUNTER_TYPES = {
 	},
 	yellow: {
 		color: COLORS.yellow,
-		minAge: 2,
-		maxAge: 2,
+		minAge: 5,
+		maxAge: 5,
 		burned: false,
 		score: 5,
 		snakeGrowth: 2,
@@ -405,7 +422,7 @@ const HUNTER_TYPES = {
 	},
 	black: {
 		color: COLORS.black,
-		minAge: 3,
+		minAge: 6,
 		maxAge: 49,
 		burned: false,
 		score: -1,
@@ -472,7 +489,7 @@ const HUNTER_TYPES = {
 		score: -10,
 		snakeGrowth: -10,
 		snakeSpeed: -10,
-		turnDelay: 2,
+		turnDelay: 20,
 		// TODO
 		sound: 'offline/assets/sound/mixkit-tech-break-fail-2947.wav',
 		image: createImage('offline/assets/img/hunter_purple.webp'),
@@ -564,7 +581,7 @@ const HUNTER_TYPES = {
 		score: 50,
 		snakeGrowth: 0,
 		snakeSpeed: 0,
-		turnDelay: 5,
+		turnDelay: 60,
 		sound: 'offline/assets/sound/mixkit-quick-jump-arcade-game-239.wav',
 		image: createImage('offline/assets/img/hunter_green.webp'),
 		messages: [''],
@@ -753,6 +770,7 @@ function updateTimer() {
 }
 
 function isBoardFull() {
+	if (!canSpawnHunters) return true;
 	let full = true;
 	for (let i = 0; i < canvas.width; i += grid) {
 		for (let j = 0; j < canvas.height; j += grid) {
@@ -769,6 +787,9 @@ function isBoardFull() {
 			break;
 		}
 	}
+	if (full) {
+		canSpawnHunters = false;
+	}
 	return full;
 }
 
@@ -783,7 +804,7 @@ function generateHunter(
 	climbed = false,
 	climbCellIndex = 0,
 ) {
-	if (isBoardFull()) {
+	if (!canSpawnHunters || isBoardFull()) {
 		return;
 	}
 	let x, y;
@@ -794,8 +815,8 @@ function generateHunter(
 		y = originalMiddleCell.y;
 	} else {
 		while (true) {
-			x = getRandomInt(0, 25) * grid;
-			y = getRandomInt(0, 25) * grid;
+			x = getRandomInt(0, gridSize) * grid;
+			y = getRandomInt(0, gridSize) * grid;
 
 			let collision = snake.cells.some((cell) => cell.x === x && cell.y === y);
 			if (!collision) {
@@ -881,11 +902,21 @@ function updateGameValues() {
 function replaceHunter(action, hunter, i) {
 	hunters.splice(i, 1);
 	hunters.push(generateHunter());
+
 	turns++;
-	setExtraHunters(turns, action, hunter);
+	if (canSpawnHunters) {
+		setExtraHunters(turns, action, hunter);
+	}
 }
 
 function setExtraHunters(turns, action, hunter) {
+	if (!canSpawnHunters) return;
+	for (let i = 0; i < 100; i++) {
+		if (!canSpawnHunters) return;
+		hunters.push(generateHunter(HUNTER_TYPES.red.minAge));
+		if (!canSpawnHunters) return;
+	}
+
 	// red and yellow. also increasing speed.
 	if (
 		turns % extraSpeedDelay === 0 &&
@@ -937,115 +968,117 @@ function setExtraHunters(turns, action, hunter) {
 
 function hitHunter(cell, action = SNAKE_ACTIONS.bite.name) {
 	for (let i = 0; i < hunters.length; i++) {
-		if (cell.x === hunters[i].x && cell.y === hunters[i].y) {
-			let hunterType = getHunterType(hunters[i]);
-			switch (action) {
-				case SNAKE_ACTIONS.fireball.name: {
-					let isRoasted = hunterType.fireballEffect();
-					if (isRoasted) {
-						hunters[i].health--;
-						snake.roasted++;
-						score += roastedScoreIncrease;
-
-						if (toastyCount >= 10) {
-							toasty();
-						} else {
-							sendMessageToConsole(
-								consoleMessages.fireball[
-									Math.floor(Math.random() * consoleMessages.fireball.length)
-								].toString(),
-							);
-							hitHunters.push(fireballColors.hit);
-						}
-
-						replaceHunter(action, hunters[i], i);
-					} else {
-						if (hunterType.color === COLORS.blue) {
+		if (hunters[i]) {
+			if (cell.x === hunters[i].x && cell.y === hunters[i].y) {
+				let hunterType = getHunterType(hunters[i]);
+				switch (action) {
+					case SNAKE_ACTIONS.fireball.name: {
+						let isRoasted = hunterType.fireballEffect();
+						if (isRoasted) {
 							hunters[i].health--;
-							if (hunters[i].health <= 0) {
-								hunters[i].burned = true;
-								sendMessageToConsole(
-									consoleMessages.blueHunterBurned[
-										Math.floor(
-											Math.random() * consoleMessages.blueHunterBurned.length,
-										)
-									].toString(),
-								);
+							snake.roasted++;
+							score += roastedScoreIncrease;
+
+							if (toastyCount >= 10) {
+								toasty();
 							} else {
 								sendMessageToConsole(
-									consoleMessages.blueHunterHit[
+									consoleMessages.fireball[
+										Math.floor(Math.random() * consoleMessages.fireball.length)
+									].toString(),
+								);
+								hitHunters.push(fireballColors.hit);
+							}
+
+							replaceHunter(action, hunters[i], i);
+						} else {
+							if (hunterType.color === COLORS.blue) {
+								hunters[i].health--;
+								if (hunters[i].health <= 0) {
+									hunters[i].burned = true;
+									sendMessageToConsole(
+										consoleMessages.blueHunterBurned[
+											Math.floor(
+												Math.random() * consoleMessages.blueHunterBurned.length,
+											)
+										].toString(),
+									);
+								} else {
+									sendMessageToConsole(
+										consoleMessages.blueHunterHit[
+											Math.floor(
+												Math.random() * consoleMessages.blueHunterHit.length,
+											)
+										].toString(),
+									);
+								}
+								hitHunters.push(hunterType.color);
+							} else if (hunterType.color === COLORS.purple) {
+								hitHunters.push(hunterType.color);
+								hunters[i].age = HUNTER_TYPES.white.minAge;
+
+								sendMessageToConsole(
+									consoleMessages.purpleHunterBurn[
 										Math.floor(
-											Math.random() * consoleMessages.blueHunterHit.length,
+											Math.random() * consoleMessages.purpleHunterBurn.length,
 										)
 									].toString(),
 								);
 							}
-							hitHunters.push(hunterType.color);
-						} else if (hunterType.color === COLORS.purple) {
-							hitHunters.push(hunterType.color);
-							hunters[i].age = HUNTER_TYPES.white.minAge;
-
-							sendMessageToConsole(
-								consoleMessages.purpleHunterBurn[
-									Math.floor(
-										Math.random() * consoleMessages.purpleHunterBurn.length,
-									)
-								].toString(),
-							);
 						}
+						break;
 					}
-					break;
-				}
-				case SNAKE_ACTIONS.bite.name:
-					{
-						let isEaten = hunterType.biteEffect();
-						if (typeof isEaten === 'string') {
-							return isEaten;
-						}
+					case SNAKE_ACTIONS.bite.name:
 						{
-							if (isEaten) {
-								snake.eaten++;
-								hitHunters.push(hunterType.color);
-								replaceHunter(action, hunters[i], i);
-								let snakeDied = updateGreenHunters();
-								if (snakeDied) {
-									return snakeDied;
-								}
+							let isEaten = hunterType.biteEffect();
+							if (typeof isEaten === 'string') {
+								return isEaten;
 							}
-						}
-					}
-					break;
-				case SNAKE_ACTIONS.paralysis.name:
-					{
-						let isParalyzed = hunterType.paralysisEffect();
-						{
-							if (isParalyzed) {
-								snake.zapped++;
-
-								if (
-									hunterType.color === COLORS.white ||
-									hunterType.color === COLORS.green
-								) {
+							{
+								if (isEaten) {
+									snake.eaten++;
 									hitHunters.push(hunterType.color);
-								} else {
-									score += paralyzedScoreIncrease;
-									hitHunters.push(paralysisColor);
+									replaceHunter(action, hunters[i], i);
+									let snakeDied = updateGreenHunters();
+									if (snakeDied) {
+										return snakeDied;
+									}
 								}
-
-								replaceHunter(action, hunters[i], i);
 							}
 						}
-					}
-					break;
-				default:
-					console.error('Unknown action', action);
-					return false;
-			}
+						break;
+					case SNAKE_ACTIONS.paralysis.name:
+						{
+							let isParalyzed = hunterType.paralysisEffect();
+							{
+								if (isParalyzed) {
+									snake.zapped++;
 
-			updateGameValues();
-			drawHitHunters();
-			countHunters();
-			return true;
+									if (
+										hunterType.color === COLORS.white ||
+										hunterType.color === COLORS.green
+									) {
+										hitHunters.push(hunterType.color);
+									} else {
+										score += paralyzedScoreIncrease;
+										hitHunters.push(paralysisColor);
+									}
+
+									replaceHunter(action, hunters[i], i);
+								}
+							}
+						}
+						break;
+					default:
+						console.error('Unknown action', action);
+						return false;
+				}
+
+				updateGameValues();
+				drawHitHunters();
+				countHunters();
+				return true;
+			}
 		}
 	}
 	return false;
@@ -1063,32 +1096,34 @@ function countHunters() {
 	let greenCount = 0;
 
 	hunters.forEach((hunter) => {
-		if (getHunterType(hunter)) {
-			switch (getHunterType(hunter).color) {
-				case COLORS.red:
-					redCount++;
-					break;
-				case COLORS.yellow:
-					yellowCount++;
-					break;
-				case COLORS.black:
-					blackCount++;
-					break;
-				case COLORS.white:
-					whiteCount++;
-					break;
-				case COLORS.purple:
-					purpleCount++;
-					break;
-				case COLORS.blue:
-					blueCount++;
-					break;
-				case COLORS.orange:
-					orangeCount++;
-					break;
-				case COLORS.green:
-					greenCount++;
-					break;
+		if (hunter) {
+			if (getHunterType(hunter)) {
+				switch (getHunterType(hunter).color) {
+					case COLORS.red:
+						redCount++;
+						break;
+					case COLORS.yellow:
+						yellowCount++;
+						break;
+					case COLORS.black:
+						blackCount++;
+						break;
+					case COLORS.white:
+						whiteCount++;
+						break;
+					case COLORS.purple:
+						purpleCount++;
+						break;
+					case COLORS.blue:
+						blueCount++;
+						break;
+					case COLORS.orange:
+						orangeCount++;
+						break;
+					case COLORS.green:
+						greenCount++;
+						break;
+				}
 			}
 		}
 	});
@@ -1106,6 +1141,11 @@ function countHunters() {
 }
 
 function resetGame(deathMessage = DEATHS.default) {
+	let won = false;
+	if (snake.cells.length >= gridSize * gridSize + 1) {
+		won = true;
+	}
+
 	clearInterval(timerInterval); // Stop updating the timer
 
 	snake.x = 160;
@@ -1141,8 +1181,8 @@ function resetGame(deathMessage = DEATHS.default) {
 
 	hunters = [
 		{
-			x: getRandomInt(0, 25) * grid,
-			y: getRandomInt(0, 25) * grid,
+			x: 0,
+			y: 0,
 			age: 0,
 			burned: false,
 			health: 1,
@@ -1153,7 +1193,11 @@ function resetGame(deathMessage = DEATHS.default) {
 
 	consoleElement.replaceChildren();
 
-	sendMessageToConsole(deathMessage);
+	if (won) {
+		sendMessageToConsole(consoleMessages.win);
+	} else {
+		sendMessageToConsole(deathMessage);
+	}
 
 	gameState = GAME_STATES.GAME_OVER;
 	gameButton.textContent = 'Restart';
@@ -1161,8 +1205,13 @@ function resetGame(deathMessage = DEATHS.default) {
 	fireballs = [];
 	hitHunters = [];
 	gameButton.classList.add('game-over');
+	canSpawnHunters = true;
 
-	playSound(gameOverSound);
+	if (won) {
+		playSound(winSound);
+	} else {
+		playSound(gameOverSound);
+	}
 }
 
 function updateFireballs() {
@@ -1293,6 +1342,7 @@ function sendMessageToConsole(message) {
 		consoleElement.scrollHeight - consoleElement.clientHeight;
 }
 
+/**Does not handle drawing. */
 function moveSnake() {
 	// snake.dx = -grid;
 	// snake.dy = 0;
@@ -1362,6 +1412,7 @@ function moveSnake() {
 	return false;
 }
 
+/**Handles drawing. */
 function updateSnake() {
 	let died = false;
 	// draw snake one cell at a time
@@ -1408,7 +1459,8 @@ function updateSnake() {
 
 		let snakeDied = hitHunter(cell);
 		if (typeof snakeDied === 'string') {
-			return snakeDied;
+			died = snakeDied;
+			return;
 		}
 
 		// check collision with all cells after this one (modified bubble sort)
@@ -1429,11 +1481,13 @@ function fireballHitBorder() {}
 function updateGreenHunters() {
 	let result = false;
 	hunters.forEach((hunter) => {
-		if (hunter.climbed) {
-			hunter.climbCellIndex--;
-			if (hunter.climbCellIndex <= 0) {
-				result = DEATHS.greenHunter;
-				return;
+		if (hunter) {
+			if (hunter.climbed) {
+				hunter.climbCellIndex--;
+				if (hunter.climbCellIndex <= 0) {
+					result = DEATHS.greenHunter;
+					return;
+				}
 			}
 		}
 	});
@@ -1441,94 +1495,89 @@ function updateGreenHunters() {
 }
 
 function drawHunters() {
-	hunters.forEach((hunter, index) => {
-		if (getHunterType(hunter)) {
-			if (getHunterType(hunter).color === COLORS.orange) {
-				context.drawImage(
-					HUNTER_TYPES.orange.image,
-					hunter.x,
-					hunter.y,
-					grid - 1,
-					grid - 1,
-				);
-			} else if (getHunterType(hunter).color === COLORS.green) {
-				if (hunter.climbCellIndex > getSnakeMiddleCell()) {
-					hunters.splice(index, 1);
-					// hunter.climbCellIndex = snake.cells.length - 1;
-					// hunter.x = snake.cells[hunter.climbCellIndex].x;
-					// hunter.y = snake.cells[hunter.climbCellIndex].y;
-					// context.drawImage(
-					// 	HUNTER_TYPES.green.image,
-					// 	snake.cells[hunter.climbCellIndex].x,
-					// 	snake.cells[hunter.climbCellIndex].y,
-					// 	grid - 1,
-					// 	grid - 1,
-					// );
-					sendMessageToConsole(consoleMessages.greenHunterFall);
-				} else {
-					hunter.x = snake.cells[hunter.climbCellIndex].x;
-					hunter.y = snake.cells[hunter.climbCellIndex].y;
-					context.drawImage(
-						HUNTER_TYPES.green.image,
-						snake.cells[hunter.climbCellIndex].x,
-						snake.cells[hunter.climbCellIndex].y,
-						grid - 1,
-						grid - 1,
-					);
+	try {
+		hunters.forEach((hunter, index) => {
+			if (hunter) {
+				let hunterType = getHunterType(hunter);
+				if (hunterType) {
+					if (hunterType.color === COLORS.orange) {
+						context.drawImage(
+							HUNTER_TYPES.orange.image,
+							hunter.x,
+							hunter.y,
+							grid - 1,
+							grid - 1,
+						);
+					} else if (hunterType.color === COLORS.green) {
+						if (hunter.climbCellIndex > getSnakeMiddleCell()) {
+							hunters.splice(index, 1);
+							sendMessageToConsole(consoleMessages.greenHunterFall);
+						} else {
+							hunter.x = snake.cells[hunter.climbCellIndex].x;
+							hunter.y = snake.cells[hunter.climbCellIndex].y;
+							context.drawImage(
+								HUNTER_TYPES.green.image,
+								snake.cells[hunter.climbCellIndex].x,
+								snake.cells[hunter.climbCellIndex].y,
+								grid - 1,
+								grid - 1,
+							);
+						}
+					} else if (hunterType.color === COLORS.yellow) {
+						context.drawImage(
+							HUNTER_TYPES.yellow.image,
+							hunter.x,
+							hunter.y,
+							grid - 1,
+							grid - 1,
+						);
+					} else if (hunterType.color === COLORS.black) {
+						context.drawImage(
+							HUNTER_TYPES.black.image,
+							hunter.x,
+							hunter.y,
+							grid - 1,
+							grid - 1,
+						);
+					} else if (hunterType.color === COLORS.white) {
+						context.drawImage(
+							HUNTER_TYPES.white.image,
+							hunter.x,
+							hunter.y,
+							grid - 1,
+							grid - 1,
+						);
+					} else if (hunterType.color === COLORS.purple) {
+						context.drawImage(
+							HUNTER_TYPES.purple.image,
+							hunter.x,
+							hunter.y,
+							grid - 1,
+							grid - 1,
+						);
+					} else if (hunterType.color === COLORS.blue) {
+						context.drawImage(
+							HUNTER_TYPES.blue.image,
+							hunter.x,
+							hunter.y,
+							grid - 1,
+							grid - 1,
+						);
+					} else {
+						context.drawImage(
+							HUNTER_TYPES.red.image,
+							hunter.x,
+							hunter.y,
+							grid - 1,
+							grid - 1,
+						);
+					}
 				}
-			} else if (getHunterType(hunter).color === COLORS.yellow) {
-				context.drawImage(
-					HUNTER_TYPES.yellow.image,
-					hunter.x,
-					hunter.y,
-					grid - 1,
-					grid - 1,
-				);
-			} else if (getHunterType(hunter).color === COLORS.black) {
-				context.drawImage(
-					HUNTER_TYPES.black.image,
-					hunter.x,
-					hunter.y,
-					grid - 1,
-					grid - 1,
-				);
-			} else if (getHunterType(hunter).color === COLORS.white) {
-				context.drawImage(
-					HUNTER_TYPES.white.image,
-					hunter.x,
-					hunter.y,
-					grid - 1,
-					grid - 1,
-				);
-			} else if (getHunterType(hunter).color === COLORS.purple) {
-				context.drawImage(
-					HUNTER_TYPES.purple.image,
-					hunter.x,
-					hunter.y,
-					grid - 1,
-					grid - 1,
-				);
-			} else if (getHunterType(hunter).color === COLORS.blue) {
-				context.drawImage(
-					HUNTER_TYPES.blue.image,
-					hunter.x,
-					hunter.y,
-					grid - 1,
-					grid - 1,
-				);
-			} else {
-				context.drawImage(
-					HUNTER_TYPES.red.image,
-					hunter.x,
-					hunter.y,
-					grid - 1,
-					grid - 1,
-				);
 			}
-		}
-	});
-
-	return false;
+		});
+	} catch (error) {
+		console.error(error);
+	}
 }
 
 /** game loop*/
@@ -1559,20 +1608,25 @@ function loop() {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
 	// TODO is this order correct?
+	let snakeDied = false;
+	let currentDeathReason = '';
 
-	let snakeDied = drawHunters();
-	if (typeof snakeDied === 'string') {
-		resetGame(snakeDied);
-	}
-	updateParalysis();
 	updateFireballs();
+	updateParalysis();
+	//ring of fire
 	snakeDied = moveSnake();
 	if (typeof snakeDied === 'string') {
-		resetGame(snakeDied);
+		currentDeathReason = snakeDied;
 	}
 	snakeDied = updateSnake();
-	if (typeof snakeDied === 'string') {
-		resetGame(snakeDied);
+	if (typeof snakeDied === 'string' && currentDeathReason === '') {
+		currentDeathReason = snakeDied;
+	}
+
+	drawHunters();
+
+	if (currentDeathReason !== '') {
+		resetGame(currentDeathReason);
 	}
 }
 
