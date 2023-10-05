@@ -43,7 +43,8 @@
 		<meta name="twitter:image" content='logo.webp' />
 		<link rel="stylesheet" href="./offline/styles.css" />
 		<script src="./offline/author.js" defer></script>
-		<script src="./offline/snake.js" defer></script>
+		<script src="./offline/modal.js" defer></script>
+		<script type='module' src="./offline/snake.js" defer></script>
 	</head>
 	<body>
 		<header>
@@ -62,36 +63,68 @@
 			<h1>🍡 Your guild food ran out 🍜</h1>
 			<p class="subheader">You are offline 😴</p>
 			<p class="subheader">Why not help Raviente eat some hunters? 🐍</p>
-			<p>Doriel Rivalet's highscore is: </p>
+			<button id="openModalBtn">Instructions</button>
+			<div id="modalBackground" class="modal-background">
+					<div id="modalWrapper" class="modal-wrapper">
+							<div class="modal" id="modal">
+									<span id="closeModalBtn" class="close-button">×</span>
+									<div class="modal-content" id="modalContent">
+										<div class="heading-container">
+											<h2>🐍 Snake Game 🐍</h2>
+											<hr>
+										</div>
+										<p>Your objective is to fill the board completely by eating hunters.</p>
+										<div class="inputs interface">
+											<div>WASD - Movement</div>
+											<div>Shift - Run</div>
+											<div>F - Fireball</div>
+											<div>Space - Paralysis</div>
+										</div>
+										<div class="dev-score">
+											<p>Doriel Rivalet's highscore is: </p>
+											<span id="devHighscore">1000</span>
+										</div>
+										<p>Happy eating!</p>
+									</div>
+							</div>
+					</div>
+			</div>
 			<div class="game-container">
 				<div class="left">
-					<div id="score">Score: 0</div>
-					<div id="speed">Speed: 0m/s</div>
-					<div id="eaten">Eaten: 0</div>
-					<div id="roasted">Roasted: 0</div>
-					<div id="zapped">Zapped: 0</div>
-					<div id="timer">00:00.0</div>
-					<progress id="energy" max="10" value="10"></progress>
+
 					<div class="img-container">
 						<img id="sliding-image" src="offline/assets/img/berserk_raviente.webp" alt="Sliding Image"/>
 					</div>
-					<canvas width="800" height="800" id="eaten-items"></canvas>
-					<div class="instructions">
-						<div>WASD - Movement</div>
-						<div>Shift - Run</div>
-						<div>F - Fireball</div>
-						<div>Space - Paralysis</div>
-					</div>
+					<!--TODO: custom height-->
+					<canvas width="800" height="2400" id="eaten-items" class="interface"></canvas>
+
 				</div>
 				<canvas width="800" height="800" id="game"></canvas>
 				<div class="right">
+
+
 					<div class="button-container">
 						<button id="game-button">Play</button>
 						<button id="sound-button">Sound ON</button>
 					</div>
-					<div id="game-console">
+					<progress id="energy" max="10" value="10"></progress>
+
+					<div class="game-values">
+						<div id="timer">00:00.0</div>
+						<div id="score">Score: 0</div>
+						<div id="speed">0 m/s</div>
+						<div class="hit-hunters">
+							<div id="eaten">0🍖</div>
+							<div id="roasted">0🔥</div>
+							<div id="zapped">0⚡</div>
+							<div id="toasty">0🍞</div>
+						</div>
+					</div>
+
+					<div id="game-console" class="interface">
 						<div>You are hungry.</div>
 					</div>
+
 				</div>
 			</div>
 		</main>
