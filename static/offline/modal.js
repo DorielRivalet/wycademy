@@ -2,9 +2,7 @@ const openModalBtn = document.getElementById('openModalBtn');
 const modalBackground = document.getElementById('modalBackground');
 const modalWrapper = document.getElementById('modalWrapper');
 const closeModalBtn = document.getElementById('closeModalBtn');
-const contents = document.getElementById('modalContent').children;
 
-console.log(contents);
 openModalBtn.addEventListener('click', () => {
 	modalBackground.style.display = 'block';
 	modalBackground.style.pointerEvents = 'auto'; // Make it clickable
