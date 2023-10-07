@@ -84,6 +84,13 @@ hr {
 	transition: transform 0.3s ease; /* Add transition for modal */
 }
 
+.date {
+	font-size: 18px;
+	font-style: italic;
+	font-weight: bold;
+	margin: 1rem;
+}
+
 .modal {
 	background-color: #1e1e2e;
 	border-radius: 8px;

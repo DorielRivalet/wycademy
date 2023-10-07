@@ -14,15 +14,28 @@ const timerElement = document.getElementById('timer');
 const energyElement = document.getElementById('energy');
 const gameElement = document.getElementById('game');
 
-const toastySound = 'offline/assets/sound/toasty.mp3';
-const gameOverSound =
-	'offline/assets/sound/mixkit-arcade-retro-game-over-213.wav';
-const fireballSound = 'offline/assets/sound/mixkit-wizard-fire-woosh-1326.wav';
-const startSound =
-	'offline/assets/sound/mixkit-player-boost-recharging-2040.wav';
-const pauseSound = 'offline/assets/sound/mixkit-zippo-fire-close-1334.wav';
-const resumeSound = 'offline/assets/sound/mixkit-quick-lock-sound-2854.wav';
-const winSound = 'offline/assets/sound/mixkit-video-game-win-2016.wav';
+const SOUNDS = {
+	toasty: 'offline/assets/sound/toasty.mp3',
+	gameOver: 'offline/assets/sound/mixkit-arcade-retro-game-over-213.wav',
+	fireball: 'offline/assets/sound/flame.ogg',
+	fireballHit: 'offline/assets/sound/mixkit-wizard-fire-woosh-1326.wav',
+	start: 'offline/assets/sound/mixkit-player-boost-recharging-2040.wav',
+	pause: 'offline/assets/sound/mixkit-zippo-fire-close-1334.wav',
+	resume: 'offline/assets/sound/mixkit-quick-lock-sound-2854.wav',
+	win: 'offline/assets/sound/mixkit-video-game-win-2016.wav',
+	eat: 'offline/assets/sound/mixkit-quick-jump-arcade-game-239.wav',
+	energyGain:
+		'offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav',
+	energyLoss: 'offline/assets/sound/mixkit-tech-break-fail-2947.wav',
+	paralysis: 'offline/assets/sound/continuousspark.wav',
+	nomnomnom: 'offline/assets/sound/nomnomnom.mp3',
+	ringOfFireStart: 'offline/assets/sound/fire_sound_effect.mp3',
+	blueBorderActive: 'offline/assets/sound/shieldhit.wav',
+	ultimateReady: 'offline/assets/sound/powerup.wav',
+	// poison: '',
+	// hitBorder: '',
+	// burnt: '',
+};
 
 const COLORS = {
 	red: '#f38ba8',
@@ -47,18 +60,26 @@ const fireballColors = {
 const paralysisColor = COLORS.rosewater;
 
 const consoleMessages = {
+	boardFull: 'Board is full!',
 	maxSpeed: 'You are already at maximum speed!',
 	ringOfFireReady: 'You can now unleash your ultimate attack! 🔥',
 	ringOfFireEnabled: 'You activated the ring of fire! 🔥',
 	ringOfFireTouched: 'You gained extra speed! 🔥',
 	ringOfFireDisabled: 'You do not have the proper setup!',
 	ringOfFireFinished: 'Flame on! 🔥',
-	win: 'Congratulations! You have successfully completed the game. 🏆',
+	win: 'Congratulations! You have successfully completed the game. You are now bigger than a Dalamadur. 🏆',
 	startingText: 'You are hungry.',
 	noEnergy: 'Ran out of energy! 💨',
 	missingEnergy: 'Not enough energy! 💨',
 	toasty: 'Toasty! 🍞',
-	paralysis: ['Bzzz! ⚡', 'Zap! ⚡', 'This snake is high voltage! ⚡'],
+	paralysis: [
+		'Bzzz! ⚡',
+		'Zap! ⚡',
+		'This snake is high voltage! ⚡',
+		'Used a lot of energy! ⚡',
+		'Snake microwave! ⚡',
+		'POWER! UNLIMITED POWER! ⚡',
+	],
 	redHunter: [
 		'Please no! I have family!',
 		'This is what happens when no one goes support...',
@@ -188,15 +209,13 @@ const DEATHS = {
 
 const startingCells = 3;
 const poisonedMinimumCells = 3;
-const toastyScoreIncrease = 100;
+const toastyScoreBaseIncrease = 100;
 /** per fireball hit. Also ring of fire. */
 const roastedScoreIncrease = 2;
 /**per paralyzed hunter */
 const paralyzedScoreIncrease = 3;
 /**Per turn. Sets the speed increase delay. */
 const extraSpeedDelay = 5;
-/** TODO How long each paralysis lasts in turns. */
-const paralysisMaxTurns = 3;
 
 // TODO object holding all my const options in OOP format
 
@@ -205,14 +224,20 @@ const startingSpeed = 30;
 const startingEnergy = 10;
 
 let turns = 0;
+
+// tiles
 let fireballs = [];
 let ringOfFire = [];
+let paralysisTiles = [];
+
 /**For color canvas */
 let hitHunters = [];
+
 /**If hitting 10 black hunters in a row with fireball, refill meter. */
 let toastyCount = 0;
 let canSpawnHunters = true;
 let drewRingOfFire = false;
+let drewParalysis = false;
 
 function createImage(url) {
 	let img = new Image();
@@ -294,6 +319,9 @@ function biteEffect(hunterType) {
 					Math.floor(Math.random() * consoleMessages.yellowHunter.length)
 				].toString(),
 			);
+			sendMessageToConsole(
+				`You can now fire ${energyElement.max} fireballs! 🔥`,
+			);
 			playSound(HUNTER_TYPES.yellow.sound);
 			return true;
 		case COLORS.purple:
@@ -307,7 +335,7 @@ function biteEffect(hunterType) {
 			energyElement.value = Math.max(energyElement.value, 0);
 			hunters.forEach((hunter) => {
 				if (hunter) {
-					hunter.age += 10;
+					hunter.age += 5;
 				}
 			});
 			score += HUNTER_TYPES.purple.score;
@@ -356,19 +384,26 @@ function fireballEffect(hunterType) {
 		case COLORS.yellow:
 		case COLORS.orange:
 		case COLORS.green:
-			toastyCount = 0;
+			if (!drewRingOfFire) {
+				toastyCount = 0;
+			}
 			return true;
 		case COLORS.blue:
 		case COLORS.purple:
-			toastyCount = 0;
-			return false;
+			if (!drewRingOfFire) {
+				toastyCount = 0;
+			}
+			return drewRingOfFire;
 		case COLORS.white:
+			if (!drewRingOfFire) {
+				toastyCount = 0;
+			}
+			if (drewRingOfFire) return true;
 			sendMessageToConsole(
 				consoleMessages.whiteHunter[
 					Math.floor(Math.random() * consoleMessages.whiteHunter.length)
 				].toString(),
 			);
-			toastyCount = 0;
 			return false;
 		default:
 			console.error('Could not burn hunter.', hunterType);
@@ -379,7 +414,6 @@ function fireballEffect(hunterType) {
 function paralysisEffect(hunterType) {
 	switch (hunterType.color) {
 		case COLORS.white:
-			snake.paralysisTurns = 0;
 			score += HUNTER_TYPES.white.score;
 			return true;
 		case COLORS.red:
@@ -387,11 +421,11 @@ function paralysisEffect(hunterType) {
 		case COLORS.orange:
 			return true;
 		case COLORS.green:
-			snake.paralysisTurns = 0;
 			score += HUNTER_TYPES.green.score;
 			return true;
 		case COLORS.purple:
 		case COLORS.blue:
+			return true;
 		case COLORS.yellow:
 			return false;
 		default:
@@ -410,7 +444,7 @@ const HUNTER_TYPES = {
 		snakeGrowth: 1,
 		snakeSpeed: 0,
 		turnDelay: 5,
-		sound: 'offline/assets/sound/mixkit-quick-jump-arcade-game-239.wav',
+		sound: SOUNDS.eat,
 		image: createImage('offline/assets/img/hunter_red.webp'),
 		messages: consoleMessages.redHunter,
 		consumable: true,
@@ -439,8 +473,7 @@ const HUNTER_TYPES = {
 		snakeGrowth: 2,
 		snakeSpeed: 1,
 		turnDelay: 0,
-		sound:
-			'offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav',
+		sound: SOUNDS.energyGain,
 		image: createImage('offline/assets/img/hunter_yellow.webp'),
 		messages: consoleMessages.yellowHunter,
 		consumable: true,
@@ -469,7 +502,7 @@ const HUNTER_TYPES = {
 		snakeGrowth: -1,
 		snakeSpeed: -1,
 		turnDelay: 0,
-		sound: 'offline/assets/sound/mixkit-tech-break-fail-2947.wav',
+		sound: SOUNDS.energyLoss,
 		image: createImage('offline/assets/img/hunter_black.webp'),
 		messages: consoleMessages.blackHunter,
 		consumable: true,
@@ -500,8 +533,7 @@ const HUNTER_TYPES = {
 		snakeSpeed: 0,
 		turnDelay: 10,
 		// TODO
-		sound:
-			'offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav',
+		sound: SOUNDS.energyGain,
 		image: createImage('offline/assets/img/hunter_white.webp'),
 		messages: consoleMessages.whiteHunter,
 		consumable: false,
@@ -527,11 +559,11 @@ const HUNTER_TYPES = {
 		maxAge: 99,
 		burned: false,
 		score: -10,
-		snakeGrowth: -10,
-		snakeSpeed: -10,
+		snakeGrowth: -5,
+		snakeSpeed: -5,
 		turnDelay: 20,
 		// TODO
-		sound: 'offline/assets/sound/mixkit-tech-break-fail-2947.wav',
+		sound: SOUNDS.energyLoss,
 		image: createImage('offline/assets/img/hunter_purple.webp'),
 		messages: consoleMessages.purpleHunter,
 		consumable: true,
@@ -561,7 +593,7 @@ const HUNTER_TYPES = {
 		snakeSpeed: 0,
 		turnDelay: 30,
 		// TODO
-		sound: 'offline/assets/sound/mixkit-tech-break-fail-2947.wav',
+		sound: SOUNDS.energyLoss,
 		image: createImage('offline/assets/img/hunter_blue.webp'),
 		messages: consoleMessages.blueHunter,
 		consumable: true, // but u die if u do
@@ -592,8 +624,7 @@ const HUNTER_TYPES = {
 		snakeSpeed: 3,
 		turnDelay: 0,
 		// TODO
-		sound:
-			'offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav',
+		sound: SOUNDS.nomnomnom,
 		image: createImage('offline/assets/img/hunter_orange.webp'),
 		messages: consoleMessages.fireball,
 		consumable: true,
@@ -622,7 +653,7 @@ const HUNTER_TYPES = {
 		snakeGrowth: 0,
 		snakeSpeed: 0,
 		turnDelay: 60,
-		sound: 'offline/assets/sound/mixkit-quick-jump-arcade-game-239.wav',
+		sound: SOUNDS.eat,
 		image: createImage('offline/assets/img/hunter_green.webp'),
 		messages: [''],
 		consumable: false,
@@ -674,7 +705,7 @@ const SNAKE_ACTIONS = {
 	},
 	ringOfFire: {
 		name: 'ring of fire',
-		cost: 15,
+		cost: 20,
 		hotkey: 'r',
 	},
 };
@@ -701,7 +732,6 @@ let snake = {
 	currentDirection: DIRECTIONS.right,
 	lastDirection: DIRECTIONS.down,
 	paralysis: false,
-	paralysisTurns: 0,
 	eaten: 0,
 	roasted: 0,
 	zapped: 0,
@@ -742,6 +772,7 @@ let bodyImage = new Image();
 let tailRightImage = new Image();
 let tailLeftImage = new Image();
 let bodyParalysisImage = new Image();
+let paralysisTileImage = new Image();
 
 headRightImage.src = 'offline/assets/img/head_right.webp';
 headLeftImage.src = 'offline/assets/img/head_left.webp';
@@ -749,6 +780,7 @@ bodyImage.src = 'offline/assets/img/body.webp';
 tailRightImage.src = 'offline/assets/img/tail_right.webp';
 tailLeftImage.src = 'offline/assets/img/tail_left.webp';
 bodyParalysisImage.src = 'offline/assets/img/body_paralysis.webp';
+paralysisTileImage.src = 'offline/assets/img/paralysis.webp';
 
 // Variables to keep track of the timer
 let startTime = 0;
@@ -941,13 +973,13 @@ function replaceHunter(action, hunter, i) {
 	hunters.push(generateHunter());
 
 	turns++;
-	if (canSpawnHunters) {
+	if (canSpawnHunters && !drewRingOfFire) {
 		setExtraHunters(turns, action, hunter);
 	}
 }
 
 function setExtraHunters(turns, action, hunter) {
-	if (!canSpawnHunters) return;
+	if (!canSpawnHunters || drewRingOfFire) return;
 	// for (let i = 0; i < 100; i++) {
 	// 	if (!canSpawnHunters) return;
 	// 	hunters.push(generateHunter(HUNTER_TYPES.red.minAge));
@@ -989,6 +1021,7 @@ function setExtraHunters(turns, action, hunter) {
 		sendMessageToConsole(HUNTER_TYPES.blue.spawnMessage);
 		if (rgba2hex(gameElement.style.borderColor) === COLORS.border) {
 			gameElement.style.borderColor = COLORS.blue;
+			playSound(SOUNDS.blueBorderActive);
 		}
 	}
 
@@ -1008,6 +1041,9 @@ function setExtraHunters(turns, action, hunter) {
 function hitHunter(cell, action = SNAKE_ACTIONS.bite.name) {
 	for (let i = 0; i < hunters.length; i++) {
 		if (hunters[i]) {
+			if (!canSpawnHunters) {
+				hunters[i].age = 0;
+			}
 			if (cell.x === hunters[i].x && cell.y === hunters[i].y) {
 				let hunterType = getHunterType(hunters[i]);
 				switch (action) {
@@ -1104,6 +1140,13 @@ function hitHunter(cell, action = SNAKE_ACTIONS.bite.name) {
 										hitHunters.push(paralysisColor);
 									}
 
+									sendMessageToConsole(
+										consoleMessages.paralysis[
+											Math.floor(
+												Math.random() * consoleMessages.paralysis.length,
+											)
+										].toString(),
+									);
 									replaceHunter(action, hunters[i], i);
 								}
 							}
@@ -1210,9 +1253,6 @@ function resetGame(deathMessage = DEATHS.default) {
 	snake.running = false;
 	snake.firing = false;
 	snake.paralysis = false;
-	energyElement.max = startingEnergy;
-	score = 0;
-	turns = 0;
 	snake.eaten = 0;
 	snake.roasted = 0;
 	snake.zapped = 0;
@@ -1220,6 +1260,9 @@ function resetGame(deathMessage = DEATHS.default) {
 	snake.poisoned = false;
 	snake.canBurnBlueBorder = false;
 	snake.canUseUltimate = false;
+	energyElement.max = startingEnergy;
+	score = 0;
+	turns = 0;
 	toastyCount = 0;
 
 	activeHunters.red = 0;
@@ -1232,6 +1275,15 @@ function resetGame(deathMessage = DEATHS.default) {
 	activeHunters.green = 0;
 
 	hunters = [];
+	fireballs = [];
+	hitHunters = [];
+	ringOfFire = [];
+	paralysisTiles = [];
+	gameButton.classList.add('game-over');
+	canSpawnHunters = true;
+	drewRingOfFire = false;
+	drewParalysis = false;
+
 	let startingHunter = generateHunter();
 	hunters = [...hunters, startingHunter];
 
@@ -1246,16 +1298,10 @@ function resetGame(deathMessage = DEATHS.default) {
 	gameState = GAME_STATES.GAME_OVER;
 	gameButton.textContent = 'Restart';
 
-	fireballs = [];
-	hitHunters = [];
-	ringOfFire = [];
-	gameButton.classList.add('game-over');
-	canSpawnHunters = true;
-	drewRingOfFire = false;
 	if (won) {
-		playSound(winSound);
+		playSound(SOUNDS.win);
 	} else {
-		playSound(gameOverSound);
+		playSound(SOUNDS.gameOver);
 	}
 }
 
@@ -1285,8 +1331,10 @@ function updateFireballs() {
 				gameElement.style.borderColor = fireballColors.hit;
 				snake.canUseUltimate = true;
 				sendMessageToConsole(consoleMessages.ringOfFireReady);
+				playSound(SOUNDS.ultimateReady);
 			}
 		} else if (rgba2hex(gameElement.style.borderColor) === fireballColors.hit) {
+			// wrap fireball position on edge of screen
 			if (fireball.x < 0) {
 				fireball.x = canvas.width - grid;
 				// draw the fireball
@@ -1307,7 +1355,6 @@ function updateFireballs() {
 				);
 			}
 
-			// wrap fireball position vertically on edge of screen
 			if (fireball.y < 0) {
 				fireball.y = canvas.height - grid;
 				// draw the fireball
@@ -1330,6 +1377,7 @@ function updateFireballs() {
 		}
 
 		hunters.forEach(function (hunter) {
+			if (!canSpawnHunters) return;
 			if (
 				fireball.x < hunter.x + grid &&
 				fireball.x + fireball.width > hunter.x &&
@@ -1339,6 +1387,7 @@ function updateFireballs() {
 				// fireball hit hunter
 				hitHunter({ x: hunter.x, y: hunter.y }, SNAKE_ACTIONS.fireball.name); // treat it as if the snake ate the hunter
 				fireballs.splice(index, 1); // remove fireball
+				playSound(SOUNDS.fireballHit);
 				// hunters.splice(hunterIndex, 1); // remove hunter
 			}
 		});
@@ -1346,15 +1395,44 @@ function updateFireballs() {
 }
 
 //TODO
-function updateParalysis() {}
+function updateParalysis() {
+	if (paralysisTiles.length === 0 || !drewParalysis || !canSpawnHunters) return;
+
+	paralysisTiles.forEach((tile, index) => {
+		if (!canSpawnHunters) return;
+		const tileX = tile[0];
+		const tileY = tile[1];
+		hunters.forEach(function (hunter, hunterIndex) {
+			if (!canSpawnHunters) return;
+			if (
+				tileX < hunter.x + grid &&
+				tileX + grid > hunter.x &&
+				tileY < hunter.y + grid &&
+				tileY + grid > hunter.y
+			) {
+				// Paralysis tile hit hunter
+				hitHunter({ x: hunter.x, y: hunter.y }, SNAKE_ACTIONS.paralysis.name); // treat it as if the snake ate the hunter
+				paralysisTiles.splice(index, 1); // remove tile
+			}
+		});
+	});
+}
+
+function drawParalysis() {
+	if (paralysisTiles.length === 0 || drewParalysis) return;
+	paralysisTiles.forEach((tile) => {
+		context.drawImage(paralysisTileImage, tile[0], tile[1], grid - 1, grid - 1);
+		// context.fillRect(tile[0] * grid, tile[1] * grid, grid, grid);
+	});
+	drewParalysis = true;
+}
+
 // TODO
 function updateRingOfFire() {
 	// If the ring of fire is not active, do nothing
 	if (ringOfFire.length === 0 || !drewRingOfFire) {
 		return;
 	}
-
-	console.log(ringOfFire);
 
 	// Determine the current ring of fire
 	const minX = Math.min(...ringOfFire.map((tile) => tile[0]));
@@ -1385,20 +1463,19 @@ function updateRingOfFire() {
 		ringOfFire.push([minX + 1, y]);
 		ringOfFire.push([maxX - 1, y]);
 	}
-
-	console.log(ringOfFire);
 }
 
 function drawRingOfFire() {
-	if (ringOfFire.length === 0) return;
-	console.log(ringOfFire);
+	if (ringOfFire.length === 0 || !canSpawnHunters) return;
 
 	context.fillStyle = fireballColors.hit;
 	ringOfFire.forEach((tile, index) => {
+		if (!canSpawnHunters) return;
 		const tileX = tile[0] * grid;
 		const tileY = tile[1] * grid;
 		context.fillRect(tileX, tileY, grid, grid);
 		hunters.forEach(function (hunter) {
+			if (!canSpawnHunters) return;
 			if (
 				tileX < hunter.x + grid &&
 				tileX + grid > hunter.x &&
@@ -1411,8 +1488,8 @@ function drawRingOfFire() {
 			}
 		});
 	});
-	console.log(ringOfFire);
 	drewRingOfFire = true;
+	playSound(SOUNDS.fireball);
 }
 
 // fireballs.forEach(function (fireball, index) {
@@ -1429,7 +1506,7 @@ function startingText() {
 	eatenElement.textContent = `${snake.eaten}🍖`;
 	roastedElement.textContent = `${snake.roasted}🔥`;
 	zappedElement.textContent = `${snake.zapped}⚡`;
-	toastyElement.textContent = `${snake.zapped}🍞`;
+	toastyElement.textContent = `${snake.toasty}🍞`;
 }
 
 function drawHitHunters() {
@@ -1481,11 +1558,11 @@ function playSound(filePath) {
 function toasty() {
 	toastyCount = 0;
 	energyElement.value = energyElement.max;
-	score += toastyScoreIncrease;
+	score += toastyScoreBaseIncrease + snake.cells.length;
 	snake.toasty++;
 	hitHunters.push(fireballColors.toasty);
 	sendMessageToConsole(consoleMessages.toasty);
-	playSound(toastySound);
+	playSound(SOUNDS.toasty);
 	document.getElementById('sliding-image').style.left = `1rem`;
 	setTimeout(function () {
 		document.getElementById('sliding-image').style.left = '-100%';
@@ -1582,6 +1659,7 @@ function moveSnake() {
 
 	if (snake.poisoned) {
 		snake.maxCells--;
+		score--;
 	}
 
 	// remove cells as we move away from them
@@ -1645,7 +1723,10 @@ function updateSnake() {
 			}
 		}
 
-		let snakeDied = hitHunter(cell);
+		let action = snake.paralysis
+			? SNAKE_ACTIONS.paralysis.name
+			: SNAKE_ACTIONS.bite.name;
+		let snakeDied = hitHunter(cell, action);
 		if (typeof snakeDied === 'string') {
 			died = snakeDied;
 			return;
@@ -1776,13 +1857,53 @@ function enableRingOfFire() {
 		}
 	}
 }
+// paralysisTiles.push([cell.x, cell.y]); TODO handle this in the snake function
+
+// TODO
+function enableParalysis() {
+	snake.cells.forEach((cell, index) => {
+		const extraTiles = [
+			[cell.x - grid, cell.y - grid], // Top-left
+			[cell.x, cell.y - grid], // Top
+			[cell.x + grid, cell.y - grid], // Top-right
+			[cell.x - grid, cell.y], // Left
+			[cell.x + grid, cell.y], // Right
+			[cell.x - grid, cell.y + grid], // Bottom-left
+			[cell.x, cell.y + grid], // Bottom
+			[cell.x + grid, cell.y + grid], // Bottom-right
+		];
+		extraTiles.forEach((tile) => {
+			// Check if the tile is within the grid and is not already a paralysis tile or a snake cell
+			if (
+				tile[0] >= 0 &&
+				tile[0] < grid * gridSize &&
+				tile[1] >= 0 &&
+				tile[1] < grid * gridSize &&
+				!paralysisTiles.some((t) => t[0] === tile[0] && t[1] === tile[1]) &&
+				!snake.cells.some((c) => c.x === tile[0] && c.y === tile[1])
+			) {
+				paralysisTiles.push(tile);
+			}
+		});
+	});
+}
 
 /** game loop*/
 function loop() {
 	if (gameState === GAME_STATES.PAUSED || gameState === GAME_STATES.GAME_OVER) {
 		return;
 	}
+
 	requestAnimationFrame(loop);
+
+	if (drewParalysis) {
+		if (++loopCount < 60 * 2) return;
+		loopCount = 0;
+		drewParalysis = false;
+		snake.paralysis = false;
+		paralysisTiles = [];
+		return;
+	}
 
 	let snakeTotalSpeed = snake.running
 		? Math.min(startingSpeed + snake.extraSpeed + 10, maxSpeed)
@@ -1793,15 +1914,15 @@ function loop() {
 	}
 
 	let loopDelay = 60 - snakeTotalSpeed;
+	let loopDelayTicks = 60 / (60 / loopDelay);
 
 	// slow game loop to 30 fps instead of 60 (60/30 = 2)
-	if (++loopCount < 60 / (60 / loopDelay)) {
+	if (++loopCount < loopDelayTicks) {
 		return;
 	}
 
-	speedElement.textContent = `Speed: ${snakeTotalSpeed}m/s`;
-
 	loopCount = 0;
+	speedElement.textContent = `Speed: ${snakeTotalSpeed}m/s`;
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
 	// TODO is this order correct?
@@ -1809,9 +1930,13 @@ function loop() {
 	let currentDeathReason = '';
 
 	updateFireballs();
+
+	drawParalysis();
 	updateParalysis();
+
 	updateRingOfFire();
 	drawRingOfFire();
+
 	snakeDied = moveSnake();
 	if (typeof snakeDied === 'string') {
 		currentDeathReason = snakeDied;
@@ -1830,6 +1955,10 @@ function loop() {
 
 function checkForFireballInput(key) {
 	if (key === 'f' && !snake.firing) {
+		if (snake.cells.length > 620 || !canSpawnHunters) {
+			sendMessageToConsole(consoleMessages.boardFull);
+			return;
+		}
 		snake.firing = true;
 		if (energyElement.value <= 0) {
 			sendMessageToConsole(consoleMessages.noEnergy);
@@ -1880,12 +2009,16 @@ function checkForFireballInput(key) {
 		}
 
 		energyElement.value--;
-		playSound(fireballSound);
+		playSound(SOUNDS.fireball);
 	}
 }
 
 function checkForRingOfFireInput(key) {
 	if (key === 'r') {
+		if (snake.cells.length > 620 || !canSpawnHunters) {
+			sendMessageToConsole(consoleMessages.boardFull);
+			return;
+		}
 		if (!snake.canUseUltimate) {
 			sendMessageToConsole(consoleMessages.ringOfFireDisabled);
 			return;
@@ -1897,13 +2030,16 @@ function checkForRingOfFireInput(key) {
 			return;
 		} else if (
 			snake.canUseUltimate &&
+			!drewRingOfFire &&
 			energyElement.value >= SNAKE_ACTIONS.ringOfFire.cost &&
 			ringOfFire.length === 0
 		) {
 			energyElement.value -= SNAKE_ACTIONS.ringOfFire.cost;
+			snake.poisoned = false;
 			snake.canUseUltimate = false;
 			gameElement.style.borderColor = COLORS.border;
 			enableRingOfFire();
+			playSound(SOUNDS.ringOfFireStart);
 		}
 	}
 }
@@ -1911,6 +2047,10 @@ function checkForRingOfFireInput(key) {
 function checkForParalysisInput(key, e) {
 	if (key === ' ') {
 		e.preventDefault();
+		if (snake.cells.length > 620 || !canSpawnHunters) {
+			sendMessageToConsole(consoleMessages.boardFull);
+			return;
+		}
 		if (snake.paralysis || energyElement.value <= 0) {
 			sendMessageToConsole(consoleMessages.noEnergy);
 			return;
@@ -1918,14 +2058,18 @@ function checkForParalysisInput(key, e) {
 			sendMessageToConsole(consoleMessages.missingEnergy);
 		} else if (
 			!snake.paralysis &&
-			energyElement.value >= SNAKE_ACTIONS.paralysis.cost &&
-			snake.paralysisTurns <= 0
+			!drewParalysis &&
+			energyElement.value >= SNAKE_ACTIONS.paralysis.cost
 		) {
 			snake.poisoned = false;
 			snake.paralysis = true;
-			snake.paralysisTurns = paralysisMaxTurns;
 			energyElement.value -= SNAKE_ACTIONS.paralysis.cost;
-			//TODO playSound(fireballSound);
+			snake.extraSpeed = Math.max(
+				snake.extraSpeed - 10,
+				startingSpeed - maxSpeed,
+			);
+			enableParalysis();
+			playSound(SOUNDS.paralysis);
 		}
 	}
 }
@@ -1979,8 +2123,6 @@ document.addEventListener('keyup', function (e) {
 		snake.running = false;
 	} else if (key === 'f' && snake.firing) {
 		snake.firing = false;
-	} else if (key === ' ' && snake.paralysis) {
-		snake.paralysis = false;
 	}
 });
 
@@ -2022,8 +2164,9 @@ gameButton.addEventListener('click', function () {
 			gameButton.classList.remove('game-over');
 			gameElement.style.borderColor = COLORS.border;
 			startTime = Date.now();
+			elapsedTime = 0;
 			timerInterval = setInterval(updateTimer, 100); // Update timer every 10 milliseconds for hundredths of a second
-			playSound(startSound);
+			playSound(SOUNDS.start);
 			break;
 		case GAME_STATES.RUNNING:
 			// Pause the game
@@ -2031,7 +2174,7 @@ gameButton.addEventListener('click', function () {
 			gameState = GAME_STATES.PAUSED;
 			gameButton.textContent = 'Resume';
 			gameButton.classList.remove('paused');
-			playSound(pauseSound);
+			playSound(SOUNDS.pause);
 			break;
 		case GAME_STATES.PAUSED:
 			// Resume the game
@@ -2039,7 +2182,7 @@ gameButton.addEventListener('click', function () {
 			gameState = GAME_STATES.RUNNING;
 			gameButton.textContent = 'Pause';
 			gameButton.classList.add('paused');
-			playSound(resumeSound);
+			playSound(SOUNDS.resume);
 			break;
 	}
 });
