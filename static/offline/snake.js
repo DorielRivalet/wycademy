@@ -47,10 +47,16 @@ const fireballColors = {
 const paralysisColor = COLORS.rosewater;
 
 const consoleMessages = {
+	maxSpeed: 'You are already at maximum speed!',
+	ringOfFireReady: 'You can now unleash your ultimate attack! 🔥',
+	ringOfFireEnabled: 'You activated the ring of fire! 🔥',
+	ringOfFireTouched: 'You gained extra speed! 🔥',
+	ringOfFireDisabled: 'You do not have the proper setup!',
+	ringOfFireFinished: 'Flame on! 🔥',
 	win: 'Congratulations! You have successfully completed the game. 🏆',
 	startingText: 'You are hungry.',
 	noEnergy: 'Ran out of energy! 💨',
-	noParalysisEnergy: 'Not enough energy! 💨',
+	missingEnergy: 'Not enough energy! 💨',
 	toasty: 'Toasty! 🍞',
 	paralysis: ['Bzzz! ⚡', 'Zap! ⚡', 'This snake is high voltage! ⚡'],
 	redHunter: [
@@ -180,15 +186,33 @@ const DEATHS = {
 	default: 'You died. 💀',
 };
 
-const startingCells = 30;
+const startingCells = 3;
 const poisonedMinimumCells = 3;
 const toastyScoreIncrease = 100;
+/** per fireball hit. Also ring of fire. */
+const roastedScoreIncrease = 2;
+/**per paralyzed hunter */
+const paralyzedScoreIncrease = 3;
+/**Per turn. Sets the speed increase delay. */
+const extraSpeedDelay = 5;
+/** TODO How long each paralysis lasts in turns. */
+const paralysisMaxTurns = 3;
+
+// TODO object holding all my const options in OOP format
+
+const maxSpeed = 50;
+const startingSpeed = 30;
+const startingEnergy = 10;
 
 let turns = 0;
 let fireballs = [];
+let ringOfFire = [];
+/**For color canvas */
+let hitHunters = [];
 /**If hitting 10 black hunters in a row with fireball, refill meter. */
 let toastyCount = 0;
 let canSpawnHunters = true;
+let drewRingOfFire = false;
 
 function createImage(url) {
 	let img = new Image();
@@ -211,7 +235,10 @@ function biteEffect(hunterType) {
 			return false;
 		case COLORS.red:
 			snake.maxCells += HUNTER_TYPES.red.snakeGrowth;
-			snake.extraSpeed += HUNTER_TYPES.red.snakeSpeed;
+			snake.extraSpeed = Math.min(
+				snake.extraSpeed + HUNTER_TYPES.red.snakeSpeed,
+				maxSpeed - startingSpeed,
+			);
 			hunters.forEach((hunter) => {
 				if (hunter) {
 					hunter.age++;
@@ -227,7 +254,10 @@ function biteEffect(hunterType) {
 			return true;
 		case COLORS.black:
 			snake.maxCells += HUNTER_TYPES.black.snakeGrowth;
-			snake.extraSpeed += HUNTER_TYPES.black.snakeSpeed;
+			snake.extraSpeed = Math.min(
+				snake.extraSpeed + HUNTER_TYPES.black.snakeSpeed,
+				maxSpeed - startingSpeed,
+			);
 			energyElement.max += HUNTER_TYPES.black.energyMaxGain;
 			energyElement.value += HUNTER_TYPES.black.energyGain;
 			energyElement.value = Math.max(energyElement.value, 0);
@@ -246,7 +276,10 @@ function biteEffect(hunterType) {
 			return true;
 		case COLORS.yellow:
 			snake.maxCells += HUNTER_TYPES.yellow.snakeGrowth;
-			snake.extraSpeed += HUNTER_TYPES.yellow.snakeSpeed;
+			snake.extraSpeed = Math.min(
+				snake.extraSpeed + HUNTER_TYPES.yellow.snakeSpeed,
+				maxSpeed - startingSpeed,
+			);
 			energyElement.max += HUNTER_TYPES.yellow.energyMaxGain;
 			energyElement.value += HUNTER_TYPES.yellow.energyGain;
 			energyElement.value = Math.max(energyElement.value, energyElement.max);
@@ -265,7 +298,10 @@ function biteEffect(hunterType) {
 			return true;
 		case COLORS.purple:
 			snake.maxCells += HUNTER_TYPES.purple.snakeGrowth;
-			snake.extraSpeed += HUNTER_TYPES.purple.snakeSpeed;
+			snake.extraSpeed = Math.min(
+				snake.extraSpeed + HUNTER_TYPES.purple.snakeSpeed,
+				maxSpeed - startingSpeed,
+			);
 			energyElement.max += HUNTER_TYPES.purple.energyMaxGain;
 			energyElement.value += HUNTER_TYPES.purple.energyGain;
 			energyElement.value = Math.max(energyElement.value, 0);
@@ -285,7 +321,10 @@ function biteEffect(hunterType) {
 			return true;
 		case COLORS.orange:
 			snake.maxCells += HUNTER_TYPES.orange.snakeGrowth;
-			snake.extraSpeed += HUNTER_TYPES.orange.snakeSpeed;
+			snake.extraSpeed = Math.min(
+				snake.extraSpeed + HUNTER_TYPES.orange.snakeSpeed,
+				maxSpeed - startingSpeed,
+			);
 			hunters.forEach((hunter) => {
 				if (hunter) {
 					hunter.age -= 10;
@@ -307,6 +346,7 @@ function biteEffect(hunterType) {
 	}
 }
 
+/**Also ring of fire */
 function fireballEffect(hunterType) {
 	switch (hunterType.color) {
 		case COLORS.black:
@@ -604,21 +644,6 @@ const HUNTER_TYPES = {
 	},
 };
 
-/** per fireball hit */
-const roastedScoreIncrease = 2;
-/**per paralyzed hunter */
-const paralyzedScoreIncrease = 3;
-/**Per turn. Sets the speed increase delay. */
-const extraSpeedDelay = 5;
-/** How long each paralysis lasts in turns. */
-const paralysisMaxTurns = 3;
-
-// TODO object holding all my const options in a json?
-
-const maxSpeed = 50;
-const startingSpeed = 30;
-const startingEnergy = 10;
-
 let soundEnabled = true;
 let gameState = GAME_STATES.IDLE;
 
@@ -626,23 +651,31 @@ const canvas = document.getElementById('game');
 let context = canvas.getContext('2d');
 
 /**  the canvas width & height, snake x & y, and the hunter x & y, all need to be a multiples of the grid size in order for collision detection to work (e.g. 16 * 25 = 400)*/
-let grid = 32;
+const grid = 32;
 
-let count = 0;
+let loopCount = 0;
 let score = 0;
 
 const SNAKE_ACTIONS = {
 	bite: {
 		name: 'bite',
 		cost: 0,
+		hotkey: '',
 	},
 	fireball: {
 		name: 'fireball',
 		cost: 1,
+		hotkey: 'f',
 	},
 	paralysis: {
 		name: 'paralysis',
 		cost: 10,
+		hotkey: ' ',
+	},
+	ringOfFire: {
+		name: 'ring of fire',
+		cost: 15,
+		hotkey: 'r',
 	},
 };
 
@@ -676,6 +709,8 @@ let snake = {
 	action: SNAKE_ACTIONS.bite.name,
 	/**If eating purple hunter */
 	poisoned: false,
+	canBurnBlueBorder: false,
+	canUseUltimate: false,
 };
 
 let hunters = [
@@ -700,9 +735,6 @@ let activeHunters = {
 	purple: 0,
 	green: 0,
 };
-
-/**For color canvas */
-let hitHunters = [];
 
 let headRightImage = new Image();
 let headLeftImage = new Image();
@@ -793,6 +825,7 @@ function isBoardFull() {
 	return full;
 }
 
+/**ONE LINE */
 function getSnakeMiddleCell() {
 	return Math.ceil((snake.cells.length - 1) / 2);
 }
@@ -894,7 +927,11 @@ function getHunterType(hunter) {
 function updateGameValues() {
 	scoreElement.textContent = `Score: ${score}`;
 	eatenElement.textContent = `${snake.eaten}🍖`;
-	roastedElement.textContent = `${snake.roasted}🔥`;
+	if (drewRingOfFire) {
+		roastedElement.textContent = `${snake.roasted}🔥🔥🔥`;
+	} else {
+		roastedElement.textContent = `${snake.roasted}🔥`;
+	}
 	zappedElement.textContent = `${snake.zapped}⚡`;
 	toastyElement.textContent = `${snake.toasty}🍞`;
 }
@@ -911,11 +948,11 @@ function replaceHunter(action, hunter, i) {
 
 function setExtraHunters(turns, action, hunter) {
 	if (!canSpawnHunters) return;
-	for (let i = 0; i < 100; i++) {
-		if (!canSpawnHunters) return;
-		hunters.push(generateHunter(HUNTER_TYPES.red.minAge));
-		if (!canSpawnHunters) return;
-	}
+	// for (let i = 0; i < 100; i++) {
+	// 	if (!canSpawnHunters) return;
+	// 	hunters.push(generateHunter(HUNTER_TYPES.red.minAge));
+	// 	if (!canSpawnHunters) return;
+	// }
 
 	// red and yellow. also increasing speed.
 	if (
@@ -950,7 +987,9 @@ function setExtraHunters(turns, action, hunter) {
 			),
 		);
 		sendMessageToConsole(HUNTER_TYPES.blue.spawnMessage);
-		gameElement.style.borderColor = COLORS.blue;
+		if (rgba2hex(gameElement.style.borderColor) === COLORS.border) {
+			gameElement.style.borderColor = COLORS.blue;
+		}
 	}
 
 	if (turns % HUNTER_TYPES.green.turnDelay === 0) {
@@ -972,6 +1011,7 @@ function hitHunter(cell, action = SNAKE_ACTIONS.bite.name) {
 			if (cell.x === hunters[i].x && cell.y === hunters[i].y) {
 				let hunterType = getHunterType(hunters[i]);
 				switch (action) {
+					case SNAKE_ACTIONS.ringOfFire.name:
 					case SNAKE_ACTIONS.fireball.name: {
 						let isRoasted = hunterType.fireballEffect();
 						if (isRoasted) {
@@ -1076,12 +1116,20 @@ function hitHunter(cell, action = SNAKE_ACTIONS.bite.name) {
 
 				updateGameValues();
 				drawHitHunters();
-				countHunters();
+				updateBlueBorder(countHunters());
 				return true;
 			}
 		}
 	}
 	return false;
+}
+
+function updateBlueBorder(huntersCount) {
+	if (huntersCount.blue <= 0) {
+		snake.canBurnBlueBorder = true;
+	} else {
+		snake.canBurnBlueBorder = false;
+	}
 }
 
 /**For blue border protection check */
@@ -1138,6 +1186,8 @@ function countHunters() {
 		purple: purpleCount,
 		green: greenCount,
 	};
+
+	return activeHunters;
 }
 
 function resetGame(deathMessage = DEATHS.default) {
@@ -1168,6 +1218,8 @@ function resetGame(deathMessage = DEATHS.default) {
 	snake.zapped = 0;
 	snake.toasty = 0;
 	snake.poisoned = false;
+	snake.canBurnBlueBorder = false;
+	snake.canUseUltimate = false;
 	toastyCount = 0;
 
 	activeHunters.red = 0;
@@ -1179,17 +1231,9 @@ function resetGame(deathMessage = DEATHS.default) {
 	activeHunters.purple = 0;
 	activeHunters.green = 0;
 
-	hunters = [
-		{
-			x: 0,
-			y: 0,
-			age: 0,
-			burned: false,
-			health: 1,
-			climbed: false,
-			climbCellIndex: 0,
-		},
-	];
+	hunters = [];
+	let startingHunter = generateHunter();
+	hunters = [...hunters, startingHunter];
 
 	consoleElement.replaceChildren();
 
@@ -1204,9 +1248,10 @@ function resetGame(deathMessage = DEATHS.default) {
 
 	fireballs = [];
 	hitHunters = [];
+	ringOfFire = [];
 	gameButton.classList.add('game-over');
 	canSpawnHunters = true;
-
+	drewRingOfFire = false;
 	if (won) {
 		playSound(winSound);
 	} else {
@@ -1226,15 +1271,65 @@ function updateFireballs() {
 
 		// check if fireball hit the edge of the canvas
 		if (
-			fireball.x < 0 ||
-			fireball.x > canvas.width ||
-			fireball.y < 0 ||
-			fireball.y > canvas.height
+			rgba2hex(gameElement.style.borderColor) !== fireballColors.hit &&
+			(fireball.x < 0 ||
+				fireball.x > canvas.width ||
+				fireball.y < 0 ||
+				fireball.y > canvas.height)
 		) {
 			fireballs.splice(index, 1); // remove fireball
+			if (
+				snake.canBurnBlueBorder &&
+				rgba2hex(gameElement.style.borderColor) === COLORS.blue
+			) {
+				gameElement.style.borderColor = fireballColors.hit;
+				snake.canUseUltimate = true;
+				sendMessageToConsole(consoleMessages.ringOfFireReady);
+			}
+		} else if (rgba2hex(gameElement.style.borderColor) === fireballColors.hit) {
+			if (fireball.x < 0) {
+				fireball.x = canvas.width - grid;
+				// draw the fireball
+				context.fillRect(
+					fireball.x,
+					fireball.y,
+					fireball.width,
+					fireball.height,
+				);
+			} else if (fireball.x >= canvas.width) {
+				fireball.x = 0;
+				// draw the fireball
+				context.fillRect(
+					fireball.x,
+					fireball.y,
+					fireball.width,
+					fireball.height,
+				);
+			}
+
+			// wrap fireball position vertically on edge of screen
+			if (fireball.y < 0) {
+				fireball.y = canvas.height - grid;
+				// draw the fireball
+				context.fillRect(
+					fireball.x,
+					fireball.y,
+					fireball.width,
+					fireball.height,
+				);
+			} else if (fireball.y >= canvas.height) {
+				fireball.y = 0;
+				// draw the fireball
+				context.fillRect(
+					fireball.x,
+					fireball.y,
+					fireball.width,
+					fireball.height,
+				);
+			}
 		}
 
-		hunters.forEach(function (hunter, hunterIndex) {
+		hunters.forEach(function (hunter) {
 			if (
 				fireball.x < hunter.x + grid &&
 				fireball.x + fireball.width > hunter.x &&
@@ -1250,7 +1345,81 @@ function updateFireballs() {
 	});
 }
 
+//TODO
 function updateParalysis() {}
+// TODO
+function updateRingOfFire() {
+	// If the ring of fire is not active, do nothing
+	if (ringOfFire.length === 0 || !drewRingOfFire) {
+		return;
+	}
+
+	console.log(ringOfFire);
+
+	// Determine the current ring of fire
+	const minX = Math.min(...ringOfFire.map((tile) => tile[0]));
+	const maxX = Math.max(...ringOfFire.map((tile) => tile[0]));
+	const minY = Math.min(...ringOfFire.map((tile) => tile[1]));
+	const maxY = Math.max(...ringOfFire.map((tile) => tile[1]));
+
+	// Clear the current ring of fire
+	ringOfFire = ringOfFire.filter(
+		(tile) =>
+			tile[0] > minX && tile[0] < maxX && tile[1] > minY && tile[1] < maxY,
+	);
+
+	// If the ring of fire has reached the center, stop
+	if (minX + 1 >= maxX || minY + 1 >= maxY) {
+		ringOfFire = [];
+		sendMessageToConsole(consoleMessages.ringOfFireFinished);
+		drewRingOfFire = false;
+		return;
+	}
+
+	// Add the next ring of fire
+	for (let x = minX + 1; x < maxX; x++) {
+		ringOfFire.push([x, minY + 1]);
+		ringOfFire.push([x, maxY - 1]);
+	}
+	for (let y = minY + 1; y < maxY; y++) {
+		ringOfFire.push([minX + 1, y]);
+		ringOfFire.push([maxX - 1, y]);
+	}
+
+	console.log(ringOfFire);
+}
+
+function drawRingOfFire() {
+	if (ringOfFire.length === 0) return;
+	console.log(ringOfFire);
+
+	context.fillStyle = fireballColors.hit;
+	ringOfFire.forEach((tile, index) => {
+		const tileX = tile[0] * grid;
+		const tileY = tile[1] * grid;
+		context.fillRect(tileX, tileY, grid, grid);
+		hunters.forEach(function (hunter) {
+			if (
+				tileX < hunter.x + grid &&
+				tileX + grid > hunter.x &&
+				tileY < hunter.y + grid &&
+				tileY + grid > hunter.y
+			) {
+				// ring of fire tile hit hunter
+				hitHunter({ x: hunter.x, y: hunter.y }, SNAKE_ACTIONS.ringOfFire.name); // treat it as if the snake ate the hunter
+				ringOfFire.splice(index, 1); // remove tile
+			}
+		});
+	});
+	console.log(ringOfFire);
+	drewRingOfFire = true;
+}
+
+// fireballs.forEach(function (fireball, index) {
+// update position
+// fireball.x += fireball.dx;
+// fireball.y += fireball.dy;
+//}
 
 function startingText() {
 	consoleElement.replaceChildren();
@@ -1375,18 +1544,37 @@ function moveSnake() {
 	) {
 		return DEATHS.blueBorder;
 	}
+
+	let hitEdge = false;
+
 	// wrap snake position horizontally on edge of screen
 	if (snake.x < 0) {
 		snake.x = canvas.width - grid;
+		hitEdge = true;
 	} else if (snake.x >= canvas.width) {
 		snake.x = 0;
+		hitEdge = true;
 	}
 
 	// wrap snake position vertically on edge of screen
 	if (snake.y < 0) {
 		snake.y = canvas.height - grid;
+		hitEdge = true;
 	} else if (snake.y >= canvas.height) {
 		snake.y = 0;
+		hitEdge = true;
+	}
+
+	if (
+		hitEdge &&
+		rgba2hex(gameElement.style.borderColor) === fireballColors.hit
+	) {
+		snake.extraSpeed = Math.min(snake.extraSpeed + 1, maxSpeed - startingSpeed);
+		if (snake.extraSpeed >= maxSpeed - startingSpeed) {
+			sendMessageToConsole(consoleMessages.maxSpeed);
+		} else {
+			sendMessageToConsole(consoleMessages.ringOfFireTouched);
+		}
 	}
 
 	// keep track of where snake has been. front of the array is always the head
@@ -1475,8 +1663,6 @@ function updateSnake() {
 
 	return died;
 }
-
-function fireballHitBorder() {}
 
 function updateGreenHunters() {
 	let result = false;
@@ -1580,6 +1766,17 @@ function drawHunters() {
 	}
 }
 
+function enableRingOfFire() {
+	const size = canvas.width / grid;
+	for (let x = 0; x < size; x++) {
+		for (let y = 0; y < size; y++) {
+			if (x === 0 || y === 0 || x === size - 1 || y === size - 1) {
+				ringOfFire.push([x, y]);
+			}
+		}
+	}
+}
+
 /** game loop*/
 function loop() {
 	if (gameState === GAME_STATES.PAUSED || gameState === GAME_STATES.GAME_OVER) {
@@ -1598,13 +1795,13 @@ function loop() {
 	let loopDelay = 60 - snakeTotalSpeed;
 
 	// slow game loop to 30 fps instead of 60 (60/30 = 2)
-	if (++count < 60 / (60 / loopDelay)) {
+	if (++loopCount < 60 / (60 / loopDelay)) {
 		return;
 	}
 
 	speedElement.textContent = `Speed: ${snakeTotalSpeed}m/s`;
 
-	count = 0;
+	loopCount = 0;
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
 	// TODO is this order correct?
@@ -1613,7 +1810,8 @@ function loop() {
 
 	updateFireballs();
 	updateParalysis();
-	//ring of fire
+	updateRingOfFire();
+	drawRingOfFire();
 	snakeDied = moveSnake();
 	if (typeof snakeDied === 'string') {
 		currentDeathReason = snakeDied;
@@ -1630,62 +1828,7 @@ function loop() {
 	}
 }
 
-document.addEventListener('keyup', function (e) {
-	if (gameState !== GAME_STATES.RUNNING) {
-		return;
-	}
-
-	const key = e.key.toLowerCase();
-
-	if (key === 'shift' && snake.running) {
-		snake.running = false;
-	} else if (key === 'f' && snake.firing) {
-		snake.firing = false;
-	} else if (key === ' ' && snake.paralysis) {
-		snake.paralysis = false;
-	}
-});
-
-// listen to keyboard events to move the snake
-document.addEventListener('keydown', function (e) {
-	// prevent snake from backtracking on itself by checking that it's
-	// not already moving on the same axis (pressing left while moving
-	// left won't do anything, and pressing right while moving left
-	// shouldn't let you collide with your own body)
-	if (gameState !== GAME_STATES.RUNNING) {
-		return;
-	}
-
-	const key = e.key.toLowerCase();
-	if (key === 'shift' && !snake.running) {
-		snake.running = true;
-	}
-
-	if (key === ' ') {
-		e.preventDefault();
-		if (!snake.paralysis && energyElement.value <= 0) {
-			sendMessageToConsole(consoleMessages.noEnergy);
-			return;
-		}
-
-		if (
-			!snake.paralysis &&
-			energyElement.value >= SNAKE_ACTIONS.paralysis.cost &&
-			snake.paralysisTurns <= 0
-		) {
-			snake.poisoned = false;
-			snake.paralysis = true;
-			snake.paralysisTurns = paralysisMaxTurns;
-			energyElement.value -= SNAKE_ACTIONS.paralysis.cost;
-			//TODO playSound(fireballSound);
-		} else if (
-			!snake.paralysis &&
-			energyElement.value < SNAKE_ACTIONS.paralysis.cost
-		) {
-			sendMessageToConsole(consoleMessages.noParalysisEnergy);
-		}
-	}
-
+function checkForFireballInput(key) {
 	if (key === 'f' && !snake.firing) {
 		snake.firing = true;
 		if (energyElement.value <= 0) {
@@ -1697,7 +1840,7 @@ document.addEventListener('keydown', function (e) {
 			case DIRECTIONS.down:
 				fireballs.push({
 					x: snake.x,
-					y: snake.y,
+					y: snake.y + grid,
 					dx: 0,
 					dy: grid,
 					width: grid,
@@ -1707,7 +1850,7 @@ document.addEventListener('keydown', function (e) {
 			case DIRECTIONS.up:
 				fireballs.push({
 					x: snake.x,
-					y: snake.y,
+					y: snake.y - grid,
 					dx: 0,
 					dy: -grid,
 					width: grid,
@@ -1716,7 +1859,7 @@ document.addEventListener('keydown', function (e) {
 				break;
 			case DIRECTIONS.right:
 				fireballs.push({
-					x: snake.x,
+					x: snake.x + grid,
 					y: snake.y,
 					dx: grid,
 					dy: 0,
@@ -1726,7 +1869,7 @@ document.addEventListener('keydown', function (e) {
 				break;
 			case DIRECTIONS.left:
 				fireballs.push({
-					x: snake.x,
+					x: snake.x - grid,
 					y: snake.y,
 					dx: -grid,
 					dy: 0,
@@ -1739,7 +1882,55 @@ document.addEventListener('keydown', function (e) {
 		energyElement.value--;
 		playSound(fireballSound);
 	}
+}
 
+function checkForRingOfFireInput(key) {
+	if (key === 'r') {
+		if (!snake.canUseUltimate) {
+			sendMessageToConsole(consoleMessages.ringOfFireDisabled);
+			return;
+		} else if (energyElement.value <= 0) {
+			sendMessageToConsole(consoleMessages.noEnergy);
+			return;
+		} else if (energyElement.value < SNAKE_ACTIONS.ringOfFire.cost) {
+			sendMessageToConsole(consoleMessages.missingEnergy);
+			return;
+		} else if (
+			snake.canUseUltimate &&
+			energyElement.value >= SNAKE_ACTIONS.ringOfFire.cost &&
+			ringOfFire.length === 0
+		) {
+			energyElement.value -= SNAKE_ACTIONS.ringOfFire.cost;
+			snake.canUseUltimate = false;
+			gameElement.style.borderColor = COLORS.border;
+			enableRingOfFire();
+		}
+	}
+}
+
+function checkForParalysisInput(key, e) {
+	if (key === ' ') {
+		e.preventDefault();
+		if (snake.paralysis || energyElement.value <= 0) {
+			sendMessageToConsole(consoleMessages.noEnergy);
+			return;
+		} else if (energyElement.value < SNAKE_ACTIONS.paralysis.cost) {
+			sendMessageToConsole(consoleMessages.missingEnergy);
+		} else if (
+			!snake.paralysis &&
+			energyElement.value >= SNAKE_ACTIONS.paralysis.cost &&
+			snake.paralysisTurns <= 0
+		) {
+			snake.poisoned = false;
+			snake.paralysis = true;
+			snake.paralysisTurns = paralysisMaxTurns;
+			energyElement.value -= SNAKE_ACTIONS.paralysis.cost;
+			//TODO playSound(fireballSound);
+		}
+	}
+}
+
+function checkForMovementInput(key) {
 	// Prevent reversing the direction immediately
 	if (
 		(key === 'a' && snake.currentDirection !== DIRECTIONS.right) ||
@@ -1775,6 +1966,43 @@ document.addEventListener('keydown', function (e) {
 				break;
 		}
 	}
+}
+
+document.addEventListener('keyup', function (e) {
+	if (gameState !== GAME_STATES.RUNNING) {
+		return;
+	}
+
+	const key = e.key.toLowerCase();
+
+	if (key === 'shift' && snake.running) {
+		snake.running = false;
+	} else if (key === 'f' && snake.firing) {
+		snake.firing = false;
+	} else if (key === ' ' && snake.paralysis) {
+		snake.paralysis = false;
+	}
+});
+
+// listen to keyboard events to move the snake
+document.addEventListener('keydown', function (e) {
+	// prevent snake from backtracking on itself by checking that it's
+	// not already moving on the same axis (pressing left while moving
+	// left won't do anything, and pressing right while moving left
+	// shouldn't let you collide with your own body)
+	if (gameState !== GAME_STATES.RUNNING) {
+		return;
+	}
+
+	const key = e.key.toLowerCase();
+	if (key === 'shift' && !snake.running) {
+		snake.running = true;
+	}
+
+	checkForMovementInput(key);
+	checkForFireballInput(key);
+	checkForParalysisInput(key, e);
+	checkForRingOfFireInput(key);
 });
 
 // start the game
