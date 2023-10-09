@@ -30,26 +30,26 @@ const precache_list = [
 precacheAndRoute(precache_list); // this has to run early.
 offlineFallback(); // ONE LINE OF CODE
 
-sw.addEventListener('activate', (event) => {
-	event.waitUntil(
-		caches.keys().then((cacheNames) => {
-			return Promise.all(
-				cacheNames
-					.filter((cacheName) => {
-						return cacheName !== CACHE;
-					})
-					.map((cacheName) => {
-						return caches.delete(cacheName);
-					}),
-			);
-		}),
-	);
-});
+// sw.addEventListener('activate', (event) => {
+// 	event.waitUntil(
+// 		caches.keys().then((cacheNames) => {
+// 			return Promise.all(
+// 				cacheNames
+// 					.filter((cacheName) => {
+// 						return cacheName !== CACHE;
+// 					})
+// 					.map((cacheName) => {
+// 						return caches.delete(cacheName);
+// 					}),
+// 			);
+// 		}),
+// 	);
+// });
 
-sw.addEventListener('fetch', (event) => {
-	event.respondWith(
-		caches.match(event.request).then((response) => {
-			return response || fetch(event.request);
-		}),
-	);
-});
+// sw.addEventListener('fetch', (event) => {
+// 	event.respondWith(
+// 		caches.match(event.request).then((response) => {
+// 			return response || fetch(event.request);
+// 		}),
+// 	);
+// });
