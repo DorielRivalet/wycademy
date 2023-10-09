@@ -229,6 +229,7 @@ let turns = 0;
 let fireballs = [];
 let ringOfFire = [];
 let paralysisTiles = [];
+let keyBuffer = [];
 
 /**For color canvas */
 let hitHunters = [];
@@ -853,6 +854,8 @@ function isBoardFull() {
 	}
 	if (full) {
 		canSpawnHunters = false;
+		// untested
+		gameElement.style.borderColor = COLORS.border;
 	}
 	return full;
 }
@@ -869,7 +872,8 @@ function generateHunter(
 	climbed = false,
 	climbCellIndex = 0,
 ) {
-	if (!canSpawnHunters || isBoardFull()) {
+	// TODO add check for paralysis? remove?
+	if (isBoardFull()) {
 		return;
 	}
 	let x, y;
@@ -979,7 +983,7 @@ function replaceHunter(action, hunter, i) {
 }
 
 function setExtraHunters(turns, action, hunter) {
-	if (!canSpawnHunters || drewRingOfFire) return;
+	if (!canSpawnHunters || drewRingOfFire || drewParalysis) return;
 	// for (let i = 0; i < 100; i++) {
 	// 	if (!canSpawnHunters) return;
 	// 	hunters.push(generateHunter(HUNTER_TYPES.red.minAge));
@@ -1115,6 +1119,11 @@ function hitHunter(cell, action = SNAKE_ACTIONS.bite.name) {
 									snake.eaten++;
 									hitHunters.push(hunterType.color);
 									replaceHunter(action, hunters[i], i);
+									if (startingSpeed + snake.extraSpeed <= 10) {
+										speedElement.style.color = COLORS.red;
+									} else {
+										speedElement.style.color = COLORS.white;
+									}
 									let snakeDied = updateGreenHunters();
 									if (snakeDied) {
 										return snakeDied;
@@ -1394,7 +1403,6 @@ function updateFireballs() {
 	});
 }
 
-//TODO
 function updateParalysis() {
 	if (paralysisTiles.length === 0 || !drewParalysis || !canSpawnHunters) return;
 
@@ -1427,7 +1435,6 @@ function drawParalysis() {
 	drewParalysis = true;
 }
 
-// TODO
 function updateRingOfFire() {
 	// If the ring of fire is not active, do nothing
 	if (ringOfFire.length === 0 || !drewRingOfFire) {
@@ -1588,11 +1595,28 @@ function sendMessageToConsole(message) {
 		consoleElement.scrollHeight - consoleElement.clientHeight;
 }
 
+/**For snake movement */
+function isOppositeDirection(dir1, dir2) {
+	return (
+		(dir1 === DIRECTIONS.up && dir2 === DIRECTIONS.down) ||
+		(dir1 === DIRECTIONS.down && dir2 === DIRECTIONS.up) ||
+		(dir1 === DIRECTIONS.left && dir2 === DIRECTIONS.right) ||
+		(dir1 === DIRECTIONS.right && dir2 === DIRECTIONS.left)
+	);
+}
+
 /**Does not handle drawing. */
 function moveSnake() {
 	// snake.dx = -grid;
 	// snake.dy = 0;
 	// move snake by it's velocity
+	let direction = keyBuffer.shift();
+
+	// If there is a new direction and it's not opposite to the current direction, update the snake's direction
+	if (direction && !isOppositeDirection(snake.currentDirection, direction)) {
+		snake.currentDirection = direction;
+	}
+
 	switch (snake.currentDirection) {
 		case DIRECTIONS.up:
 			snake.x += 0;
@@ -1859,7 +1883,6 @@ function enableRingOfFire() {
 }
 // paralysisTiles.push([cell.x, cell.y]); TODO handle this in the snake function
 
-// TODO
 function enableParalysis() {
 	snake.cells.forEach((cell, index) => {
 		const extraTiles = [
@@ -2074,41 +2097,30 @@ function checkForParalysisInput(key, e) {
 	}
 }
 
+/**https://stackoverflow.com/questions/43032014/prevent-snake-from-going-in-reverse-direction */
+function handleKeyPress(direction) {
+	// Prevent the same direction from being added to the buffer consecutively
+	if (keyBuffer[keyBuffer.length - 1] !== direction) {
+		keyBuffer = keyBuffer.slice(-1).concat(direction);
+	}
+}
+
 function checkForMovementInput(key) {
 	// Prevent reversing the direction immediately
-	if (
-		(key === 'a' && snake.currentDirection !== DIRECTIONS.right) ||
-		(key === 'w' && snake.currentDirection !== DIRECTIONS.down) ||
-		(key === 'd' && snake.currentDirection !== DIRECTIONS.left) ||
-		(key === 's' && snake.currentDirection !== DIRECTIONS.up)
-	) {
-		// Update the snake's direction
-		switch (key) {
-			case 'a':
-				// snake.dx = -grid;
-				// snake.dy = 0;
-				snake.lastDirection = snake.currentDirection;
-				snake.currentDirection = DIRECTIONS.left;
-				break;
-			case 'w':
-				// snake.dy = -grid;
-				// snake.dx = 0;
-				snake.lastDirection = snake.currentDirection;
-				snake.currentDirection = DIRECTIONS.up;
-				break;
-			case 'd':
-				// snake.dx = grid;
-				// snake.dy = 0;
-				snake.lastDirection = snake.currentDirection;
-				snake.currentDirection = DIRECTIONS.right;
-				break;
-			case 's':
-				// snake.dy = grid;
-				// snake.dx = 0;
-				snake.lastDirection = snake.currentDirection;
-				snake.currentDirection = DIRECTIONS.down;
-				break;
-		}
+	// Update the snake's direction
+	switch (key) {
+		case 'a':
+			handleKeyPress(DIRECTIONS.left);
+			break;
+		case 'w':
+			handleKeyPress(DIRECTIONS.up);
+			break;
+		case 'd':
+			handleKeyPress(DIRECTIONS.right);
+			break;
+		case 's':
+			handleKeyPress(DIRECTIONS.down);
+			break;
 	}
 }
 
@@ -2132,11 +2144,29 @@ document.addEventListener('keydown', function (e) {
 	// not already moving on the same axis (pressing left while moving
 	// left won't do anything, and pressing right while moving left
 	// shouldn't let you collide with your own body)
+	const key = e.key.toLowerCase();
+
+	if (key === 'p') {
+		if (gameState === GAME_STATES.RUNNING) {
+			gameState = GAME_STATES.PAUSED;
+			gameButton.textContent = 'Resume';
+			gameButton.classList.remove('paused');
+			playSound(SOUNDS.pause);
+			return;
+		} else if (gameState === GAME_STATES.PAUSED) {
+			requestAnimationFrame(loop);
+			gameState = GAME_STATES.RUNNING;
+			gameButton.textContent = 'Pause';
+			gameButton.classList.add('paused');
+			playSound(SOUNDS.resume);
+			return;
+		}
+	}
+
 	if (gameState !== GAME_STATES.RUNNING) {
 		return;
 	}
 
-	const key = e.key.toLowerCase();
 	if (key === 'shift' && !snake.running) {
 		snake.running = true;
 	}

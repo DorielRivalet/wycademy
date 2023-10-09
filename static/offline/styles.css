@@ -199,13 +199,13 @@ hr {
 	align-items: center;
 }
 
-.eaten-items-container {
+/* .eaten-items-container {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	max-height: 600px;
 	max-width: 250px;
-}
+} */
 
 .eaten-red,
 .eaten-black,
