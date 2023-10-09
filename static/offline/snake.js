@@ -13,6 +13,7 @@ const soundButton = document.getElementById('sound-button');
 const timerElement = document.getElementById('timer');
 const energyElement = document.getElementById('energy');
 const gameElement = document.getElementById('game');
+const downloadLogsButton = document.getElementById('download-log');
 
 const SOUNDS = {
 	toasty: 'offline/assets/sound/toasty.mp3',
@@ -209,7 +210,6 @@ const DEATHS = {
 
 const startingCells = 3;
 const poisonedMinimumCells = 3;
-const toastyScoreBaseIncrease = 100;
 /** per fireball hit. Also ring of fire. */
 const roastedScoreIncrease = 2;
 /**per paralyzed hunter */
@@ -230,6 +230,7 @@ let fireballs = [];
 let ringOfFire = [];
 let paralysisTiles = [];
 let keyBuffer = [];
+let historyLogs = [];
 
 /**For color canvas */
 let hitHunters = [];
@@ -437,6 +438,7 @@ function paralysisEffect(hunterType) {
 
 const HUNTER_TYPES = {
 	red: {
+		name: 'red',
 		color: COLORS.red,
 		minAge: -Infinity,
 		maxAge: 4,
@@ -466,6 +468,7 @@ const HUNTER_TYPES = {
 		energyMaxGain: 0,
 	},
 	yellow: {
+		name: 'yellow',
 		color: COLORS.yellow,
 		minAge: 5,
 		maxAge: 5,
@@ -495,6 +498,7 @@ const HUNTER_TYPES = {
 		energyMaxGain: 1,
 	},
 	black: {
+		name: 'black',
 		color: COLORS.black,
 		minAge: 6,
 		maxAge: 49,
@@ -524,6 +528,7 @@ const HUNTER_TYPES = {
 		energyMaxGain: 0,
 	},
 	white: {
+		name: 'white',
 		/**from purple w/ fireball */
 		color: COLORS.white,
 		minAge: 50,
@@ -555,6 +560,7 @@ const HUNTER_TYPES = {
 		energyMaxGain: 0,
 	},
 	purple: {
+		name: 'purple',
 		color: COLORS.purple,
 		minAge: 75,
 		maxAge: 99,
@@ -585,6 +591,7 @@ const HUNTER_TYPES = {
 		energyMaxGain: 0,
 	},
 	blue: {
+		name: 'blue',
 		color: COLORS.blue,
 		minAge: 100,
 		maxAge: Infinity,
@@ -615,6 +622,7 @@ const HUNTER_TYPES = {
 		energyMaxGain: 0,
 	},
 	orange: {
+		name: 'orange',
 		/**from blue w/ fireball */
 		color: COLORS.orange,
 		minAge: -Infinity,
@@ -646,6 +654,7 @@ const HUNTER_TYPES = {
 		energyMaxGain: 5,
 	},
 	green: {
+		name: 'green',
 		color: COLORS.green,
 		minAge: -Infinity, // unused
 		maxAge: Infinity,
@@ -716,11 +725,6 @@ let snake = {
 	x: 160,
 	y: 160,
 
-	/**snake velocity. moves one grid length every frame in either the x or y direction */
-	dx: grid,
-	/**snake velocity. moves one grid length every frame in either the x or y direction */
-	dy: 0,
-
 	/**keep track of all grids the snake body occupies */
 	cells: [],
 
@@ -731,7 +735,6 @@ let snake = {
 	running: false,
 	firing: false,
 	currentDirection: DIRECTIONS.right,
-	lastDirection: DIRECTIONS.down,
 	paralysis: false,
 	eaten: 0,
 	roasted: 0,
@@ -984,11 +987,6 @@ function replaceHunter(action, hunter, i) {
 
 function setExtraHunters(turns, action, hunter) {
 	if (!canSpawnHunters || drewRingOfFire || drewParalysis) return;
-	// for (let i = 0; i < 100; i++) {
-	// 	if (!canSpawnHunters) return;
-	// 	hunters.push(generateHunter(HUNTER_TYPES.red.minAge));
-	// 	if (!canSpawnHunters) return;
-	// }
 
 	// red and yellow. also increasing speed.
 	if (
@@ -1169,6 +1167,8 @@ function hitHunter(cell, action = SNAKE_ACTIONS.bite.name) {
 				updateGameValues();
 				drawHitHunters();
 				updateBlueBorder(countHunters());
+				let timestamp = formatTime(elapsedTime);
+				historyLogs.push(`${timestamp} ${action} ${hunterType.name}`);
 				return true;
 			}
 		}
@@ -1254,10 +1254,7 @@ function resetGame(deathMessage = DEATHS.default) {
 	snake.y = 160;
 	snake.cells = [];
 	snake.maxCells = startingCells;
-	snake.dx = grid;
-	snake.dy = 0;
 	snake.currentDirection = DIRECTIONS.right;
-	snake.lastDirection = DIRECTIONS.down;
 	snake.extraSpeed = 0;
 	snake.running = false;
 	snake.firing = false;
@@ -1430,7 +1427,6 @@ function drawParalysis() {
 	if (paralysisTiles.length === 0 || drewParalysis) return;
 	paralysisTiles.forEach((tile) => {
 		context.drawImage(paralysisTileImage, tile[0], tile[1], grid - 1, grid - 1);
-		// context.fillRect(tile[0] * grid, tile[1] * grid, grid, grid);
 	});
 	drewParalysis = true;
 }
@@ -1499,12 +1495,6 @@ function drawRingOfFire() {
 	playSound(SOUNDS.fireball);
 }
 
-// fireballs.forEach(function (fireball, index) {
-// update position
-// fireball.x += fireball.dx;
-// fireball.y += fireball.dy;
-//}
-
 function startingText() {
 	consoleElement.replaceChildren();
 	sendMessageToConsole(consoleMessages.startingText);
@@ -1528,6 +1518,13 @@ function drawHitHunters() {
 		eaten_items_canvas.height,
 	);
 
+	// If the grid is full, reset hitHunters
+	if (hitHunters.length >= gridSize * gridSize * 3) {
+		hitHunters = [];
+		row = 0;
+		col = 0;
+	}
+
 	for (let i = 0; i < hitHunters.length; i++) {
 		drawSlot(row, col, hitHunters[i]);
 
@@ -1547,7 +1544,7 @@ function playSound(filePath) {
 	if (!soundEnabled) return;
 	const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 	const source = audioContext.createBufferSource();
-	const gainNode = new GainNode(audioContext, { gain: 0.5 }); // Create a GainNode for volume control
+	const gainNode = new GainNode(audioContext, { gain: 0.5 });
 	gainNode.connect(audioContext.destination);
 
 	fetch(filePath)
@@ -1556,7 +1553,6 @@ function playSound(filePath) {
 		.then((buffer) => {
 			source.buffer = buffer;
 			source.connect(gainNode);
-			// Set the volume of the GainNode
 			source.start();
 		})
 		.catch((error) => console.error('Error loading audio:', error));
@@ -1565,7 +1561,7 @@ function playSound(filePath) {
 function toasty() {
 	toastyCount = 0;
 	energyElement.value = energyElement.max;
-	score += toastyScoreBaseIncrease + snake.cells.length;
+	score += snake.cells.length;
 	snake.toasty++;
 	hitHunters.push(fireballColors.toasty);
 	sendMessageToConsole(consoleMessages.toasty);
@@ -1607,8 +1603,6 @@ function isOppositeDirection(dir1, dir2) {
 
 /**Does not handle drawing. */
 function moveSnake() {
-	// snake.dx = -grid;
-	// snake.dy = 0;
 	// move snake by it's velocity
 	let direction = keyBuffer.shift();
 
@@ -1712,20 +1706,14 @@ function updateSnake() {
 		let drewHeadTail = false;
 
 		if (snake.cells.length - 1 == index) {
-			if (
-				snake.currentDirection === DIRECTIONS.left ||
-				snake.lastDirection === DIRECTIONS.left
-			) {
+			if (snake.currentDirection === DIRECTIONS.left) {
 				context.drawImage(tailLeftImage, cell.x, cell.y, grid - 1, grid - 1);
 			} else {
 				context.drawImage(tailRightImage, cell.x, cell.y, grid - 1, grid - 1);
 			}
 			drewHeadTail = true;
 		} else if (index === 0) {
-			if (
-				snake.currentDirection === DIRECTIONS.left ||
-				snake.lastDirection === DIRECTIONS.left
-			) {
+			if (snake.currentDirection === DIRECTIONS.left) {
 				context.drawImage(headLeftImage, cell.x, cell.y, grid - 1, grid - 1);
 			} else {
 				context.drawImage(headRightImage, cell.x, cell.y, grid - 1, grid - 1);
@@ -1881,7 +1869,6 @@ function enableRingOfFire() {
 		}
 	}
 }
-// paralysisTiles.push([cell.x, cell.y]); TODO handle this in the snake function
 
 function enableParalysis() {
 	snake.cells.forEach((cell, index) => {
@@ -2105,6 +2092,26 @@ function handleKeyPress(direction) {
 	}
 }
 
+function padTo2Digits(num) {
+	return num.toString().padStart(2, '0');
+}
+
+function formatDate(date) {
+	return (
+		[
+			date.getFullYear(),
+			padTo2Digits(date.getMonth() + 1), // +1 because getMonth() is zero-based
+			padTo2Digits(date.getDate()),
+		].join('-') +
+		'-' +
+		[
+			padTo2Digits(date.getHours()),
+			padTo2Digits(date.getMinutes()),
+			padTo2Digits(date.getSeconds()),
+		].join('-')
+	);
+}
+
 function checkForMovementInput(key) {
 	// Prevent reversing the direction immediately
 	// Update the snake's direction
@@ -2138,7 +2145,6 @@ document.addEventListener('keyup', function (e) {
 	}
 });
 
-// listen to keyboard events to move the snake
 document.addEventListener('keydown', function (e) {
 	// prevent snake from backtracking on itself by checking that it's
 	// not already moving on the same axis (pressing left while moving
@@ -2177,13 +2183,11 @@ document.addEventListener('keydown', function (e) {
 	checkForRingOfFireInput(key);
 });
 
-// start the game
-//requestAnimationFrame(loop);
 gameButton.addEventListener('click', function () {
 	switch (gameState) {
 		case GAME_STATES.IDLE:
 		case GAME_STATES.GAME_OVER:
-			// Start the game
+			historyLogs = [];
 			startingText();
 			drawHitHunters();
 			energyElement.value = startingEnergy;
@@ -2195,19 +2199,16 @@ gameButton.addEventListener('click', function () {
 			gameElement.style.borderColor = COLORS.border;
 			startTime = Date.now();
 			elapsedTime = 0;
-			timerInterval = setInterval(updateTimer, 100); // Update timer every 10 milliseconds for hundredths of a second
+			timerInterval = setInterval(updateTimer, 100);
 			playSound(SOUNDS.start);
 			break;
 		case GAME_STATES.RUNNING:
-			// Pause the game
-			// requestAnimationFrame(loop(true));
 			gameState = GAME_STATES.PAUSED;
 			gameButton.textContent = 'Resume';
 			gameButton.classList.remove('paused');
 			playSound(SOUNDS.pause);
 			break;
 		case GAME_STATES.PAUSED:
-			// Resume the game
 			requestAnimationFrame(loop);
 			gameState = GAME_STATES.RUNNING;
 			gameButton.textContent = 'Pause';
@@ -2218,3 +2219,15 @@ gameButton.addEventListener('click', function () {
 });
 
 soundButton.addEventListener('click', toggleSound);
+downloadLogsButton.addEventListener('click', function () {
+	let text = historyLogs.join('\n'); // create a string from the historyLogs array, with each log on a new line
+	let blob = new Blob([text], { type: 'text/plain' }); // create a new Blob object representing the data in the specified formats
+	let url = URL.createObjectURL(blob); // create a URL representing the Blob object
+
+	let a = document.createElement('a'); // create a new <a> element
+	a.href = url; // set the href of the <a> element to the URL
+	a.download = `frontier-compendium-snek-history-logs-${formatDate(
+		new Date(),
+	)}.txt`; // set the download attribute, so clicking the link will download the text file
+	a.click(); // programmatically click the <a> element to trigger the download
+});

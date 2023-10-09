@@ -101,6 +101,8 @@ hr {
 	text-align: center;
 	transform: translateY(-20px); /* Start slightly above the center */
 	transition: transform 0.3s ease; /* Add transition for modal slide-in */
+	max-height: 50vh;
+	overflow-y: auto;
 }
 
 .close-button {
