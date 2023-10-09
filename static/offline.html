@@ -15,36 +15,39 @@
 		<meta name="title" content="Raviente's Den" />
 		<meta name="description" content="Offline - Solitude Island Depths" />
 
-		<meta name="author" content='Doriel Rivalet' />
+		<meta name="author" content="Doriel Rivalet" />
 
 		<!-- Google / Search Engine Tags -->
 		<meta itemprop="name" content="Raviente's Den" />
-		<meta itemprop="description" content='Offline - Solitude Island Depths' />
-		<meta itemprop="image" content='logo.webp' />
+		<meta itemprop="description" content="Offline - Solitude Island Depths" />
+		<meta itemprop="image" content="logo.webp" />
 
 		<!-- Facebook Meta Tags -->
 		<!-- <meta property="og:url" content={url} /> -->
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="Raviente's Den" />
-		<meta property="og:description" content='Offline - Solitude Island Depths' />
-		<meta property="og:image" content='logo.webp' />
+		<meta
+			property="og:description"
+			content="Offline - Solitude Island Depths"
+		/>
+		<meta property="og:image" content="logo.webp" />
 		<meta property="og:image:alt" content="Elzelion holding a book" />
-		<meta property="og:site_name" content='Frontier Compendium' />
+		<meta property="og:site_name" content="Frontier Compendium" />
 
 		<!-- Discord-->
 		<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
 
 		<!-- Twitter Meta Tags -->
 		<meta name="twitter:card" content="summary_large_image" />
-			<!-- <meta property="twitter:domain" content={website} /> -->
+		<!-- <meta property="twitter:domain" content={website} /> -->
 		<!-- <meta property="twitter:url" content={url} /> -->
 		<meta name="twitter:title" content="Raviente's Den" />
-		<meta name="twitter:description" content='Offline' />
-		<meta name="twitter:image" content='logo.webp' />
+		<meta name="twitter:description" content="Offline" />
+		<meta name="twitter:image" content="logo.webp" />
 		<link rel="stylesheet" href="./offline/styles.css" />
 		<script src="./offline/author.js" defer></script>
 		<script src="./offline/modal.js" defer></script>
-		<script type='module' src="./offline/snake.js" defer></script>
+		<script type="module" src="./offline/snake.js" defer></script>
 	</head>
 	<body>
 		<header>
@@ -65,43 +68,55 @@
 			<p class="subheader">Why not help Raviente eat some hunters? 🐍</p>
 			<button id="openModalBtn">Instructions</button>
 			<div id="modalBackground" class="modal-background">
-					<div id="modalWrapper" class="modal-wrapper">
-							<div class="modal" id="modal">
-									<span id="closeModalBtn" class="close-button">×</span>
-									<div class="modal-content" id="modalContent">
-										<div class="heading-container">
-											<h2>🐍 Snake Game 🐍</h2>
-											<hr>
-										</div>
-										<p>Your objective is to fill the board completely by eating hunters.</p>
-										<div class="inputs interface">
-											<div>WASD - Movement</div>
-											<div>Shift - Run</div>
-											<div>F - Fireball</div>
-											<div>Space - Paralysis</div>
-											<div>R - Ring of fire</div>
-											<div>P - Pause/Resume</div>
-										</div>
-										<p>You cannot use any abilities on the very last 5 tiles left.</p>
-										<div class="dev-score">
-											<p>Doriel Rivalet's highscore is: </p>
-											<span id="devHighscore">8813</span>
-											<div class="subtle date">2023/10/09</div>
-										</div>
-										<p>Happy eating!</p>
-										<i>Tip: Make a toast out of those hunters!</i>
-									</div>
+				<div id="modalWrapper" class="modal-wrapper">
+					<div class="modal" id="modal">
+						<span id="closeModalBtn" class="close-button">×</span>
+						<div class="modal-content" id="modalContent">
+							<div class="heading-container">
+								<h2>🐍 Snake Game 🐍</h2>
+								<hr />
 							</div>
+							<p>
+								Your objective is to fill the board completely by eating
+								hunters.
+							</p>
+							<div class="inputs interface">
+								<div>WASD - Movement</div>
+								<div>Shift - Run</div>
+								<div>F - Fireball</div>
+								<div>Space - Paralysis</div>
+								<div>R - Ring of fire</div>
+								<div>P - Pause/Resume</div>
+							</div>
+							<p>You cannot use any abilities on the very last 5 tiles left.</p>
+							<div class="dev-score">
+								<p>Doriel Rivalet's highscore is:</p>
+								<span id="devHighscore">8813</span>
+								<div class="subtle date">2023/10/09</div>
+							</div>
+							<p>Happy eating!</p>
+							<i>Tip: Make a toast out of those hunters!</i>
+						</div>
 					</div>
+				</div>
 			</div>
 			<div class="game-container">
 				<div class="left">
 					<button id="download-log">Download History Logs</button>
 
 					<div class="img-container">
-						<img id="sliding-image" src="offline/assets/img/berserk_raviente.webp" alt="Sliding Image"/>
+						<img
+							id="sliding-image"
+							src="offline/assets/img/berserk_raviente.webp"
+							alt="Sliding Image"
+						/>
 					</div>
-					<canvas width="800" height="2400" id="eaten-items" class="interface"></canvas>
+					<canvas
+						width="800"
+						height="2400"
+						id="eaten-items"
+						class="interface"
+					></canvas>
 				</div>
 				<canvas width="800" height="800" id="game"></canvas>
 				<div class="right">
@@ -126,33 +141,31 @@
 					<div id="game-console" class="interface">
 						<div>You are hungry.</div>
 					</div>
-
 				</div>
 			</div>
 		</main>
 		<footer>
-			<div class="subtle item-container">
-			</div>
+			<div class="subtle item-container"></div>
 
 			<div class="item-container">
-				<a href="https://github.com/DorielRivalet"
-					id="author-link"></a
-				>
+				<a href="https://github.com/DorielRivalet" id="author-link"></a>
 				<div>
-					Powered by <a href="https://vercel.com/docs">Vercel</a> and <a
-						href="https://kit.svelte.dev/docs/introduction">SvelteKit</a
-					>
+					Powered by <a href="https://vercel.com/docs">Vercel</a> and
+					<a href="https://kit.svelte.dev/docs/introduction">SvelteKit</a>
 				</div>
 			</div>
 
 			<div class="item-container">
-				<a aria-label="GitHub repository" href=https://github.com/DorielRivalet/frontier-compendium>
+				<a
+					aria-label="GitHub repository"
+					href="https://github.com/DorielRivalet/frontier-compendium"
+				>
 					<img
-					src="github-mark-white.svg"
-					alt="GitHub Octocat"
-					height="48px"
-					width="48px"
-			/>
+						src="github-mark-white.svg"
+						alt="GitHub Octocat"
+						height="48px"
+						width="48px"
+					/>
 				</a>
 			</div>
 		</footer>
