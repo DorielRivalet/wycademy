@@ -4,7 +4,7 @@
  * found in the LICENSE file.
  */
 
-@import url('https://unpkg.com/@catppuccin/palette@0.2.0/css/catppuccin.css');
+@import '$lib/client/styles/catppuccin.css';
 
 /* TODO: sass for optimization. but only when i know every component im going to use.*/
 @import 'carbon-components-svelte/css/all.css';
