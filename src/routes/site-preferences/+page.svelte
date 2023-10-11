@@ -68,6 +68,7 @@
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import { page } from '$app/stores';
 	import Head from '$lib/client/components/Head.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	onMount(() => {
 		mermaid.initialize({
@@ -405,7 +406,10 @@
 
 		<section>
 			<SectionHeading title={'Weapon Generator'} level={3} />
-			<p>The content was moved to<a href="/item-generator">here</a></p>
+			<p>
+				The content was moved to <Link href="/item-generator#weapon">here.</Link
+				>
+			</p>
 		</section>
 	</section>
 </div>

@@ -32,6 +32,7 @@
 	} from '$lib/constants';
 	import logo from '$lib/client/images/logo.webp';
 	import { page } from '$app/stores';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 
 	type dropdownItem = { id: string; text: string };
 
@@ -116,6 +117,10 @@
 	let weaponSharpnessBoost = defaultWeaponComponentValues.weaponSharpnessBoost;
 
 	let url = $page.url.toString();
+	let currentWeaponPage = 1;
+	let currentArmorPage = 1;
+	let weaponDescription =
+		"Unparalleled ferocity and flame, a truly awe-inspiring addition to any hunter's arsenal.";
 </script>
 
 <Head
@@ -135,226 +140,279 @@
 <div>
 	<SectionHeadingTopLevel title="Item Generator" />
 
-	<div class="inline-notification-container">
-		<InlineNotification
-			lowContrast
-			hideCloseButton
-			kind="info"
-			title="Sharpness values:"
-			subtitle="The game uses integers. The values here is how it works internally. Defaults to a black bar on invalid values."
-		/>
-		<InlineNotification
-			lowContrast
-			hideCloseButton
-			kind="info"
-			title="Length values:"
-			subtitle="The game uses Medium for Magnet Spike and Tonfa."
-		/>
-	</div>
-	<div class="container-weapon-buttons">
-		<Button kind="tertiary" icon={Download} on:click={downloadWeaponImage}
-			>Download</Button
-		>
+	<section>
+		<SectionHeading title="Weapon" level={2} />
+		<div class="inline-notification-container">
+			<InlineNotification
+				lowContrast
+				hideCloseButton
+				kind="info"
+				title="Sharpness:"
+				subtitle="The game uses integers. The values here is how it works internally. Defaults to a black bar on invalid values."
+			/>
+			<InlineNotification
+				lowContrast
+				hideCloseButton
+				kind="info"
+				title="Length:"
+				subtitle="The game uses Medium for Magnet Spike and Tonfa."
+			/>
+			<InlineNotification
+				lowContrast
+				hideCloseButton
+				kind="info"
+				title="Points:"
+				subtitle="The game uses values between -127 and 127 for skill and sigil points."
+			/>
+		</div>
+		<div class="container-weapon-buttons">
+			<Button kind="tertiary" icon={Download} on:click={downloadWeaponImage}
+				>Download</Button
+			>
 
-		<Button kind="tertiary" icon={Restart} on:click={resetWeaponValues}
-			>Restore values</Button
-		>
-	</div>
-	<div class="container-weapon">
-		<div class="weapon-info">
-			{#key weaponRarity}
-				<div id="weapon-dom">
-					<Weapon
-						name={weaponName}
-						length={weaponLength}
-						weaponType={getWeaponType(weaponTypeId)}
-						attack={weaponAttack}
-						attackBoost={weaponAttackBoost}
-						sharpnessValues={weaponSharpness}
-						sharpnessBoost={weaponSharpnessBoost}
-						elementValue={weaponElementValue}
-						statusValue={weaponStatusValue}
-						element={weaponElementType}
-						status={weaponStatusType}
-						elementBoost={weaponElementBoost}
-						statusBoost={weaponStatusBoost}
-						rank={weaponRank}
-						level={weaponLevel >= 0 && weaponLevel <= 100 ? weaponLevel : 0}
-						rarity={weaponRarity >= 1 && weaponRarity <= 12 ? weaponRarity : 1}
-						zenithSkill={weaponZenithSkill}
+			<Button kind="tertiary" icon={Restart} on:click={resetWeaponValues}
+				>Restore values</Button
+			>
+		</div>
+		<div class="container-weapon">
+			<div class="weapon-info">
+				{#key weaponRarity}
+					<div id="weapon-dom">
+						<Weapon
+							bind:currentPage={currentWeaponPage}
+							name={weaponName}
+							length={weaponLength}
+							weaponType={getWeaponType(weaponTypeId)}
+							attack={weaponAttack}
+							attackBoost={weaponAttackBoost}
+							sharpnessValues={weaponSharpness}
+							sharpnessBoost={weaponSharpnessBoost}
+							elementValue={weaponElementValue}
+							statusValue={weaponStatusValue}
+							element={weaponElementType}
+							status={weaponStatusType}
+							elementBoost={weaponElementBoost}
+							statusBoost={weaponStatusBoost}
+							rank={weaponRank}
+							level={weaponLevel >= 0 && weaponLevel <= 100 ? weaponLevel : 0}
+							rarity={weaponRarity >= 1 && weaponRarity <= 12
+								? weaponRarity
+								: 1}
+							zenithSkill={weaponZenithSkill}
+							description={weaponDescription}
+						/>
+					</div>
+				{/key}
+				<div class="weapon-info-values">
+					<Dropdown
+						titleText="Type"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponTypeId}
+						items={[
+							{ id: '0', text: 'Great Sword' },
+							{ id: '7', text: 'Long Sword' },
+							{ id: '4', text: 'Sword and Shield' },
+							{ id: '6', text: 'Dual Swords' },
+							{ id: '2', text: 'Hammer' },
+							{ id: '8', text: 'Hunting Horn' },
+							{ id: '3', text: 'Lance' },
+							{ id: '9', text: 'Gunlance' },
+							{ id: '1', text: 'Heavy Bowgun' },
+							{ id: '5', text: 'Light Bowgun' },
+							{ id: '10', text: 'Bow' },
+							{ id: '11', text: 'Tonfa' },
+							{ id: '12', text: 'Switch Axe F' },
+							{ id: '13', text: 'Magnet Spike' },
+						]}
+					/>
+					<TextInput
+						labelText="Name"
+						placeholder="Enter weapon name"
+						hideLabel
+						bind:value={weaponName}
+					/>
+
+					<NumberInput
+						size="sm"
+						step={1}
+						min={1}
+						max={12}
+						bind:value={weaponRarity}
+						invalidText={invalidWeaponRarityText}
+						label={'Rarity'}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={0}
+						max={100}
+						bind:value={weaponLevel}
+						invalidText={invalidWeaponLevelText}
+						label={'Level'}
 					/>
 				</div>
-			{/key}
-			<div class="weapon-info-values">
-				<Dropdown
-					titleText="Type"
-					type="inline"
-					hideLabel
-					bind:selectedId={weaponTypeId}
-					items={[
-						{ id: '0', text: 'Great Sword' },
-						{ id: '7', text: 'Long Sword' },
-						{ id: '4', text: 'Sword and Shield' },
-						{ id: '6', text: 'Dual Swords' },
-						{ id: '2', text: 'Hammer' },
-						{ id: '8', text: 'Hunting Horn' },
-						{ id: '3', text: 'Lance' },
-						{ id: '9', text: 'Gunlance' },
-						{ id: '1', text: 'Heavy Bowgun' },
-						{ id: '5', text: 'Light Bowgun' },
-						{ id: '10', text: 'Bow' },
-						{ id: '11', text: 'Tonfa' },
-						{ id: '12', text: 'Switch Axe F' },
-						{ id: '13', text: 'Magnet Spike' },
-					]}
-				/>
-				<TextInput
-					labelText="Name"
-					placeholder="Enter weapon name"
-					hideLabel
-					bind:value={weaponName}
-				/>
-
-				<NumberInput
-					size="sm"
-					step={1}
-					min={1}
-					max={12}
-					bind:value={weaponRarity}
-					invalidText={invalidWeaponRarityText}
-					label={'Rarity'}
-				/>
-				<NumberInput
-					size="sm"
-					step={1}
-					min={0}
-					max={100}
-					bind:value={weaponLevel}
-					invalidText={invalidWeaponLevelText}
-					label={'Level'}
-				/>
 			</div>
-		</div>
-		<div class="weapon-sharpness-values">
-			{#each SharpnessNames as name, i}
-				<NumberInput
-					size="sm"
-					step={1}
-					min={minimumSharpnessValue}
-					max={maximumSharpnessValue}
-					bind:value={weaponSharpness[i]}
-					invalidText={invalidSharpnessValueText}
-					label={name}
-				/>
-			{/each}
-		</div>
-		<div class="weapon-info-values-bottom">
-			<Toggle labelText="Sharpness Boost" bind:toggled={weaponSharpnessBoost} />
-			<Toggle labelText="Attack Boost" bind:toggled={weaponAttackBoost} />
-			<Toggle labelText="Element Boost" bind:toggled={weaponElementBoost} />
-			<Toggle labelText="Status Boost" bind:toggled={weaponStatusBoost} />
-			<Dropdown
-				titleText="Rank"
-				type="inline"
-				hideLabel
-				bind:selectedId={weaponRank}
-				items={[
-					{ id: '', text: 'None' },
-					{ id: 'G', text: 'G' },
-					{ id: 'Z', text: 'Zenith' },
-				]}
-			/>
+			{#if currentWeaponPage === 1}
+				<div class="page-1">
+					<div class="weapon-sharpness-values">
+						{#each SharpnessNames as name, i}
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSharpnessValue}
+								max={maximumSharpnessValue}
+								bind:value={weaponSharpness[i]}
+								invalidText={invalidSharpnessValueText}
+								label={name}
+							/>
+						{/each}
+					</div>
+					<div class="weapon-info-values-bottom">
+						<Toggle
+							labelText="Sharpness Boost"
+							bind:toggled={weaponSharpnessBoost}
+						/>
+						<Toggle labelText="Attack Boost" bind:toggled={weaponAttackBoost} />
+						<Toggle
+							labelText="Element Boost"
+							bind:toggled={weaponElementBoost}
+						/>
+						<Toggle labelText="Status Boost" bind:toggled={weaponStatusBoost} />
+						<Dropdown
+							titleText="Rank"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponRank}
+							items={[
+								{ id: '', text: 'None' },
+								{ id: 'G', text: 'G' },
+								{ id: 'Z', text: 'Zenith' },
+							]}
+						/>
 
-			<NumberInput
-				size="sm"
-				step={1}
-				min={1}
-				max={65536}
-				bind:value={weaponAttack}
-				invalidText={invalidWeaponAttackText}
-				label={'Attack'}
-			/>
-			<NumberInput
-				size="sm"
-				step={10}
-				min={-2550}
-				max={2550}
-				bind:value={weaponElementValue}
-				invalidText={invalidWeaponElementStatusText}
-				label={'Element'}
-			/>
-			<NumberInput
-				size="sm"
-				step={10}
-				min={-2550}
-				max={2550}
-				bind:value={weaponStatusValue}
-				invalidText={invalidWeaponElementStatusText}
-				label={'Status'}
-			/>
-			<Dropdown
-				titleText="Zenith Skill"
-				type="inline"
-				hideLabel
-				bind:selectedId={weaponZenithSkill}
-				items={getZenithSkills()}
-			/>
-			<Dropdown
-				titleText="Length"
-				type="inline"
-				hideLabel
-				bind:selectedId={weaponLength}
-				items={[
-					{ id: 'Very Short', text: 'Very Short' },
-					{ id: 'Short', text: 'Short' },
-					{ id: 'Medium', text: 'Medium' },
-					{ id: 'Long', text: 'Long' },
-					{ id: 'Very Long', text: 'Very Long' },
-				]}
-			/>
-			<Dropdown
-				titleText="Element"
-				type="inline"
-				hideLabel
-				bind:selectedId={weaponElementType}
-				items={[
-					{ id: '', text: 'None' },
-					{ id: 'Fire', text: 'Fire' },
-					{ id: 'Water', text: 'Water' },
-					{ id: 'Thunder', text: 'Thunder' },
-					{ id: 'Ice', text: 'Ice' },
-					{ id: 'Dragon', text: 'Dragon' },
-					{ id: 'Light', text: 'Light' },
-					{ id: 'Dark', text: 'Dark' },
-					{ id: 'Blaze', text: 'Blaze' },
-					{ id: 'L. Rod', text: 'Lightning Rod' },
-					{ id: 'Tenshou', text: 'Tenshou' },
-					{ id: 'Okiko', text: 'Okiko' },
-					{ id: 'Music', text: 'Music' },
-					{ id: 'Sound', text: 'Sound' },
-					{ id: 'Wind', text: 'Wind' },
-					{ id: 'B. Flame', text: 'Black Flame' },
-					{ id: 'C. Demon', text: 'Crimson Demon' },
-					{ id: 'E. Roar', text: "Emperor's Roar" },
-					{ id: 'B. Zero', text: 'Burning Zero' },
-				]}
-			/>
-			<Dropdown
-				titleText="Status"
-				type="inline"
-				hideLabel
-				bind:selectedId={weaponStatusType}
-				items={[
-					{ id: '', text: 'None' },
-					{ id: 'Poison', text: 'Poison' },
-					{ id: 'Paralysis', text: 'Paralysis' },
-					{ id: 'Sleep', text: 'Sleep' },
-					{ id: 'Blast', text: 'Blast' },
-					{ id: 'Def', text: 'Defense' },
-				]}
-			/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={1}
+							max={65536}
+							bind:value={weaponAttack}
+							invalidText={invalidWeaponAttackText}
+							label={'Attack'}
+						/>
+						<NumberInput
+							size="sm"
+							step={10}
+							min={-2550}
+							max={2550}
+							bind:value={weaponElementValue}
+							invalidText={invalidWeaponElementStatusText}
+							label={'Element'}
+						/>
+						<NumberInput
+							size="sm"
+							step={10}
+							min={-2550}
+							max={2550}
+							bind:value={weaponStatusValue}
+							invalidText={invalidWeaponElementStatusText}
+							label={'Status'}
+						/>
+						<Dropdown
+							titleText="Zenith Skill"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponZenithSkill}
+							items={getZenithSkills()}
+						/>
+						<Dropdown
+							titleText="Length"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponLength}
+							items={[
+								{ id: 'Very Short', text: 'Very Short' },
+								{ id: 'Short', text: 'Short' },
+								{ id: 'Medium', text: 'Medium' },
+								{ id: 'Long', text: 'Long' },
+								{ id: 'Very Long', text: 'Very Long' },
+							]}
+						/>
+						<Dropdown
+							titleText="Element"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponElementType}
+							items={[
+								{ id: '', text: 'None' },
+								{ id: 'Fire', text: 'Fire' },
+								{ id: 'Water', text: 'Water' },
+								{ id: 'Thunder', text: 'Thunder' },
+								{ id: 'Ice', text: 'Ice' },
+								{ id: 'Dragon', text: 'Dragon' },
+								{ id: 'Light', text: 'Light' },
+								{ id: 'Dark', text: 'Dark' },
+								{ id: 'Blaze', text: 'Blaze' },
+								{ id: 'L. Rod', text: 'Lightning Rod' },
+								{ id: 'Tenshou', text: 'Tenshou' },
+								{ id: 'Okiko', text: 'Okiko' },
+								{ id: 'Music', text: 'Music' },
+								{ id: 'Sound', text: 'Sound' },
+								{ id: 'Wind', text: 'Wind' },
+								{ id: 'B. Flame', text: 'Black Flame' },
+								{ id: 'C. Demon', text: 'Crimson Demon' },
+								{ id: 'E. Roar', text: "Emperor's Roar" },
+								{ id: 'B. Zero', text: 'Burning Zero' },
+							]}
+						/>
+						<Dropdown
+							titleText="Status"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponStatusType}
+							items={[
+								{ id: '', text: 'None' },
+								{ id: 'Poison', text: 'Poison' },
+								{ id: 'Paralysis', text: 'Paralysis' },
+								{ id: 'Sleep', text: 'Sleep' },
+								{ id: 'Blast', text: 'Blast' },
+								{ id: 'Def', text: 'Defense' },
+							]}
+						/>
+					</div>
+				</div>
+			{:else if currentWeaponPage === 2}
+				<div class="page-2">
+					<p>2</p>
+				</div>
+			{:else if currentWeaponPage === 3}
+				<div class="page-3">
+					<p>2</p>
+				</div>
+			{:else if currentWeaponPage === 4}
+				<div class="page-4">
+					<p>2</p>
+				</div>
+			{:else if currentWeaponPage === 5}
+				<div class="page-5">
+					<p>2</p>
+				</div>
+			{:else if currentWeaponPage === 6}
+				<div class="page-6">
+					<p>2</p>
+				</div>
+			{/if}
 		</div>
-	</div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Armor" />
+		<p>WIP</p>
+	</section>
+	<section>
+		<SectionHeading level={2} title="Items" />
+		<p>WIP</p>
+	</section>
 </div>
 
 <style>
