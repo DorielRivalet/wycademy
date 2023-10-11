@@ -71,6 +71,22 @@
 
 	export let phial: FrontierSwitchAxeFPhial = 'Power';
 
+	function nextPage() {
+		if (currentPage >= maxPages) {
+			currentPage = 1;
+		} else {
+			currentPage++;
+		}
+	}
+
+	function previousPage() {
+		if (currentPage >= 2) {
+			currentPage--;
+		} else {
+			currentPage = maxPages;
+		}
+	}
+
 	const weaponClass = WeaponTypes[weaponType].class;
 	const weaponTypeName = WeaponTypes[weaponType].name;
 	const maxNameLength = 24;
@@ -86,105 +102,260 @@
 	// TODO sigils, decos
 	// TODO types
 
-	// TODO defense
 	// TODO gou/automatic
+	let currentPage = 1;
+	let maxPages = 6;
+	$: {
+		console.log('Current page is', currentPage);
+	}
 </script>
 
 <DecoratedBorder>
 	<div class="container">
-		<div class="page-1">
-			<div class="header">
-				<div class="weapon-icon-container">
-					<div class="weapon-icon">
-						<svelte:component
-							this={WeaponTypes[weaponType].icon}
-							{...weaponIconProps}
-						/>
+		{#if currentPage === 1}
+			<div class="page-1">
+				<div class="header">
+					<div class="weapon-icon-container">
+						<div class="weapon-icon">
+							<svelte:component
+								this={WeaponTypes[weaponType].icon}
+								{...weaponIconProps}
+							/>
+						</div>
+						<div class="weapon-rank">
+							{#if rank === 'G'}
+								<GRankWeaponIcon />
+							{:else if rank === 'Z'}
+								<ZenithWeaponIcon />
+							{/if}
+						</div>
 					</div>
-					<div class="weapon-rank">
-						{#if rank === 'G'}
-							<GRankWeaponIcon />
-						{:else if rank === 'Z'}
-							<ZenithWeaponIcon />
-						{/if}
+					<div class="weapon-name">
+						<div
+							style="color: var({nameColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 28ch;"
+						>
+							<span class="text-yellow double-width">:</span>{name.substring(
+								0,
+								maxNameLength,
+							)}
+						</div>
+					</div>
+					<div class="weapon-level-container">
+						<div class="weapon-level">
+							{#if level >= 1 && level <= 100}Lv.{level}{/if}
+						</div>
 					</div>
 				</div>
-				<div class="weapon-name">
-					<div
-						style="color: var({nameColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 28ch;"
-					>
-						<span class="text-yellow double-width">:</span>{name.substring(
-							0,
-							maxNameLength,
-						)}
-					</div>
+				<div class="attack">
+					<span class="text-yellow"
+						>Attack<span class="text-yellow double-width">:</span><span
+							style="color: {attackBoost
+								? 'var(--fz-text-cyan)'
+								: 'var(--ctp-text)'};"
+							>{attack.toString().substring(0, maxAttackLength)}</span
+						>
+					</span>
 				</div>
-				<div class="weapon-level-container">
-					<div class="weapon-level">
-						{#if level >= 1 && level <= 100}Lv.{level}{/if}
-					</div>
+				<div class="length">
+					<span class="text-yellow"
+						>Length<span class="text-yellow double-width">:</span></span
+					>{length}
 				</div>
-			</div>
-			<div class="attack">
-				<span class="text-yellow"
-					>Attack<span class="text-yellow double-width">:</span><span
-						style="color: {attackBoost
-							? 'var(--fz-text-cyan)'
-							: 'var(--ctp-text)'};"
-						>{attack.toString().substring(0, maxAttackLength)}</span
-					>
-				</span>
-			</div>
-			<div class="length">
-				<span class="text-yellow"
-					>Length<span class="text-yellow double-width">:</span></span
-				>{length}
-			</div>
-			<div class="sharpness">Sharpness</div>
-			<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
-			<div class="element">
-				{#if element !== ''}
-					{element}<span class="double-width">:</span><span
-						style="color: {elementBoost
-							? 'var(--fz-text-cyan)'
-							: 'var(--ctp-text)'};"
-						>{elementValue
+				<div class="sharpness">Sharpness</div>
+				<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
+				<div class="element">
+					{#if element !== ''}
+						{element}<span class="double-width">:</span><span
+							style="color: {elementBoost
+								? 'var(--fz-text-cyan)'
+								: 'var(--ctp-text)'};"
+							>{elementValue
+								.toString()
+								.substring(0, maxElementStatusLength)}</span
+						>
+					{/if}
+				</div>
+				<div class="zenith">
+					{#if zenithSkill !== ''}
+						<span class="double-width-transform">«</span>{zenithSkill}<span
+							class="double-width-transform">»</span
+						>
+					{/if}
+				</div>
+				<div class="status">
+					{#if status === 'Def'}
+						{status}{statusValue >= 0 ? '+' : ''}{statusValue
 							.toString()
-							.substring(0, maxElementStatusLength)}</span
+							.substring(0, maxElementStatusLength)}
+					{:else if status !== ''}
+						{status}<span class="double-width">:</span><span
+							style="color: {statusBoost
+								? 'var(--fz-text-cyan)'
+								: 'var(--ctp-text)'};"
+							>{statusValue
+								.toString()
+								.substring(0, maxElementStatusLength)}</span
+						>
+					{/if}
+				</div>
+				<div class="pages">
+					<button
+						class="arrow-icon-button"
+						on:click={previousPage}
+						aria-label="Navigate to previous page"
 					>
-				{/if}
-			</div>
-			<div class="zenith">
-				{#if zenithSkill !== ''}
-					<span class="double-width-transform">«</span>{zenithSkill}<span
-						class="double-width-transform">»</span
+						<ArrowIcon
+							style="transform: scaleX(-1);"
+							fill="var(--fz-text-green)"
+							on:click={previousPage}
+						/>
+					</button>
+					{currentPage}/{maxPages}
+					<button
+						class="arrow-icon-button"
+						on:click={nextPage}
+						aria-label="Navigate to next page"
 					>
-				{/if}
+						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+					</button>
+				</div>
 			</div>
-			<div class="status">
-				{#if status === 'Def'}
-					{status}{statusValue >= 0 ? '+' : ''}{statusValue
-						.toString()
-						.substring(0, maxElementStatusLength)}
-				{:else if status !== ''}
-					{status}<span class="double-width">:</span><span
-						style="color: {statusBoost
-							? 'var(--fz-text-cyan)'
-							: 'var(--ctp-text)'};"
-						>{statusValue.toString().substring(0, maxElementStatusLength)}</span
+		{:else if currentPage === 2}
+			<div class="page-2">
+				<p>2</p>
+				<div class="pages">
+					<button
+						class="arrow-icon-button"
+						on:click={previousPage}
+						aria-label="Navigate to previous page"
 					>
-				{/if}
+						<ArrowIcon
+							style="transform: scaleX(-1);"
+							fill="var(--fz-text-green)"
+							on:click={previousPage}
+						/>
+					</button>
+					{currentPage}/{maxPages}
+					<button
+						class="arrow-icon-button"
+						on:click={nextPage}
+						aria-label="Navigate to next page"
+					>
+						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+					</button>
+				</div>
 			</div>
-			<div class="pages">
-				<ArrowIcon style="transform: scaleX(-1);" fill="var(--fz-text-green)" />
-				1/6
-				<ArrowIcon fill="var(--fz-text-green)" />
+		{:else if currentPage === 3}
+			<div class="page-3">
+				<p>3</p>
+				<div class="pages">
+					<button
+						class="arrow-icon-button"
+						on:click={previousPage}
+						aria-label="Navigate to previous page"
+					>
+						<ArrowIcon
+							style="transform: scaleX(-1);"
+							fill="var(--fz-text-green)"
+							on:click={previousPage}
+						/>
+					</button>
+					{currentPage}/{maxPages}
+					<button
+						class="arrow-icon-button"
+						on:click={nextPage}
+						aria-label="Navigate to next page"
+					>
+						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+					</button>
+				</div>
 			</div>
-		</div>
+		{:else if currentPage === 4}
+			<div class="page-4">
+				<p>4</p>
+				<div class="pages">
+					<button
+						class="arrow-icon-button"
+						on:click={previousPage}
+						aria-label="Navigate to previous page"
+					>
+						<ArrowIcon
+							style="transform: scaleX(-1);"
+							fill="var(--fz-text-green)"
+							on:click={previousPage}
+						/>
+					</button>
+					{currentPage}/{maxPages}
+					<button
+						class="arrow-icon-button"
+						on:click={nextPage}
+						aria-label="Navigate to next page"
+					>
+						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+					</button>
+				</div>
+			</div>
+		{:else if currentPage === 5}
+			<div class="page-5">
+				<p>5</p>
+				<div class="pages">
+					<button
+						class="arrow-icon-button"
+						on:click={previousPage}
+						aria-label="Navigate to previous page"
+					>
+						<ArrowIcon
+							style="transform: scaleX(-1);"
+							fill="var(--fz-text-green)"
+							on:click={previousPage}
+						/>
+					</button>
+					{currentPage}/{maxPages}
+					<button
+						class="arrow-icon-button"
+						on:click={nextPage}
+						aria-label="Navigate to next page"
+					>
+						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+					</button>
+				</div>
+			</div>
+		{:else if currentPage === 6}
+			<div class="page-6">
+				<p>6</p>
+				<div class="pages">
+					<button
+						class="arrow-icon-button"
+						on:click={previousPage}
+						aria-label="Navigate to previous page"
+					>
+						<ArrowIcon
+							style="transform: scaleX(-1);"
+							fill="var(--fz-text-green)"
+							on:click={previousPage}
+						/>
+					</button>
+					{currentPage}/{maxPages}
+					<button
+						class="arrow-icon-button"
+						on:click={nextPage}
+						aria-label="Navigate to next page"
+					>
+						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+					</button>
+				</div>
+			</div>
+		{/if}
 	</div>
 </DecoratedBorder>
 
 <style>
+	.arrow-icon-button {
+		background-color: transparent;
+		border: transparent;
+		margin: 0;
+		padding: 0;
+	}
 	.double-width-transform {
 		transform: scaleX(2);
 		display: inline-block;
