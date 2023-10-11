@@ -10,7 +10,6 @@
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
 	{style}
 	width="14.562618"
