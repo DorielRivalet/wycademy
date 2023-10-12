@@ -6,6 +6,7 @@
 
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
+import logo from '$lib/client/images/logo.webp';
 
 let soundValue = false;
 let pushNotificationsValue = false;
@@ -29,8 +30,27 @@ if (browser) {
 export const soundStore = writable(soundValue);
 export const pushNotificationsStore = writable(pushNotificationsValue);
 
-export function onNotificationToggle(e: { detail: { toggled: boolean } }) {
-	pushNotificationsStore.set(e.detail.toggled);
+export function onNotificationPress() {
+	if (!browser) return;
+	Notification.requestPermission().then((result) => {
+		if (result === 'granted') {
+			pushNotificationsStore.set(true);
+			randomNotification();
+		} else {
+			pushNotificationsStore.set(false);
+		}
+	});
+}
+
+function randomNotification() {
+	const notifBody = `Created by Doriel Rivalet.`;
+	const notifImg = logo;
+	const options = {
+		body: notifBody,
+		icon: notifImg,
+	};
+	new Notification('Frontier Compendium', options);
+	setTimeout(randomNotification, 30000);
 }
 
 export function onSoundToggle(e: { detail: { toggled: boolean } }) {
