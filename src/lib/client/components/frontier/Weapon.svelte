@@ -221,6 +221,8 @@ Does not handle decorations because sigils are optimal.
 						<span class="gunlance-shell"
 							>{gunlanceShell} Shot LV{gunlanceShellLevel}</span
 						>
+					{:else if frontierMappers.getWeaponNameById(weaponID) === 'Switch Axe F'}
+						<span class="saf-phial">{phial} Phial</span>
 					{:else}
 						<span class="text-yellow"
 							>Length<span class="text-yellow double-width">:</span></span
