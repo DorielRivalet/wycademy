@@ -50,7 +50,6 @@ function randomNotification() {
 		icon: notifImg,
 	};
 	new Notification('Frontier Compendium', options);
-	setTimeout(randomNotification, 30000);
 }
 
 export function onSoundToggle(e: { detail: { toggled: boolean } }) {

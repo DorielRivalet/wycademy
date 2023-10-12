@@ -235,6 +235,14 @@
 <div>
 	<SectionHeadingTopLevel title="Site Preferences" />
 
+	<InlineNotification
+		lowContrast
+		hideCloseButton
+		kind="info"
+		title="Notifications:"
+		subtitle="Make sure notifications are also allowed in your operating system for the browser you are using. If you accept the permission, you will receive a notification to confirm it is working."
+	/>
+
 	<div class="setting-container">
 		<Button kind="tertiary" icon={Notification} on:click={onNotificationPress}
 			>Push notifications</Button
