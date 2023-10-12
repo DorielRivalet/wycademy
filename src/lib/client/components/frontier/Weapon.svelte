@@ -82,7 +82,7 @@
 
 	export let skillNames: FrontierArmorSkillTree[] = [
 		'Blazing Grace',
-		'Protection',
+		'Strong Attack',
 		'Determination',
 		'Absolute Defense',
 		'Three Worlds Protection',
@@ -315,17 +315,58 @@
 			</div>
 		{:else if currentPage === 3}
 			<div class="page-3">
-				<p>【Skill Tree: Skill Points】</p>
+				<p class="skill-tree-header">【Skill Tree: Skill Points】</p>
 				<div class="skills">
-					<div class="skill">
-						<div class="skill-name">1</div>
-						<div class="skill-points">+5</div>
-					</div>
-					<div class="skill">1</div>
-					<div class="skill">1</div>
-					<div class="skill">1</div>
+					{#if skillPoints[0] <= 0}
+						<div class="skill">
+							<div class="skill-name-empty">No Skill Points</div>
+							<div class="skill-points">{' '}</div>
+						</div>
+						<div class="skill">
+							<div class="skill-name">{' '}</div>
+							<div class="skill-points">{' '}</div>
+						</div>
+						<div class="skill">
+							<div class="skill-name">{' '}</div>
+							<div class="skill-points">{' '}</div>
+						</div>
+						<div class="skill">
+							<div class="skill-name">{' '}</div>
+							<div class="skill-points">{' '}</div>
+						</div>
+					{:else}
+						<div class="skill">
+							<div class="skill-name">{skillNames[0]}</div>
+							<div class="skill-points">
+								: {#if skillPoints[0] >= 0}+{/if}{skillPoints[0]}
+							</div>
+						</div>
+						<div class="skill">
+							<div class="skill-name">{skillNames[1]}</div>
+							<div class="skill-points">
+								: {#if skillPoints[1] >= 0}+{/if}{skillPoints[1]}
+							</div>
+						</div>
+						<div class="skill">
+							<div class="skill-name">{skillNames[2]}</div>
+							<div class="skill-points">
+								: {#if skillPoints[2] >= 0}+{/if}{skillPoints[2]}
+							</div>
+						</div>
+						<div class="skill">
+							<div class="skill-name">{skillNames[3]}</div>
+							<div class="skill-points">
+								: {#if skillPoints[3] >= 0}+{/if}{skillPoints[3]}
+							</div>
+						</div>
+					{/if}
 					<div class="last-skill">
-						<p>2</p>
+						<div class="skill">
+							<div class="skill-name">{skillNames[4]}</div>
+							<div class="skill-points">
+								: {#if skillPoints[4] >= 0}+{/if}{skillPoints[4]}
+							</div>
+						</div>
 						<div class="pages">
 							<button
 								class="arrow-icon-button"
@@ -620,6 +661,16 @@
 	.skill {
 		display: flex;
 		flex-direction: row;
+	}
+
+	.skill-name {
+		width: 10ch;
+		overflow: hidden;
+		text-wrap: nowrap;
+	}
+
+	.skill-tree-header {
+		font: inherit;
 	}
 
 	.container {
