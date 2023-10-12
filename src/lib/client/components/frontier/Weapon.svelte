@@ -31,6 +31,29 @@ Does not handle decorations because sigils are optimal.
 	import GRankWeaponIcon from './icon/GRankWeaponIcon.svelte';
 	import ZenithWeaponIcon from './icon/ZenithWeaponIcon2.svelte';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
+	import FireIcon from '$lib/client/images/icon/element/fire.png';
+	import WaterIcon from '$lib/client/images/icon/element/water.png';
+	import ThunderIcon from '$lib/client/images/icon/element/thunder.png';
+	import IceIcon from '$lib/client/images/icon/element/ice.png';
+	import DragonIcon from '$lib/client/images/icon/element/dragon.png';
+	import BurningZeroIcon from '$lib/client/images/icon/element/burning_zero.png';
+	import BlackFlameIcon from '$lib/client/images/icon/element/Element_Black_Flame.png';
+	import BlazeIcon from '$lib/client/images/icon/element/Element_Blaze.png';
+	import CrimsonDemonIcon from '$lib/client/images/icon/element/Element_Crimson_Demon.png';
+	import DarkIcon from '$lib/client/images/icon/element/Element_Darkness.png';
+	import EmperorsRoarIcon from "$lib/client/images/icon/element/Element_Emperor's_Roar.png";
+	import OkikoIcon from '$lib/client/images/icon/element/Element_Frozen_Seraphim.png';
+	import WindIcon from '$lib/client/images/icon/element/Element_Golden_Dust.png';
+	import MusicIcon from '$lib/client/images/icon/element/Element_Kanade.png';
+	import LightIcon from '$lib/client/images/icon/element/Element_Light.png';
+	import SoundIcon from '$lib/client/images/icon/element/Element_Sound.png';
+	import LightningRodIcon from '$lib/client/images/icon/element/Element_Thunder_Pole.png';
+	import TenshouIcon from '$lib/client/images/icon/element/Element_Tenshou.png';
+	import SleepIcon from '$lib/client/images/icon/status/sleep2.png';
+	import PoisonIcon from '$lib/client/images/icon/status/poison.png';
+	import ParalysisIcon from '$lib/client/images/icon/status/paralysis.png';
+	import DefenseIcon from '$lib/client/images/icon/defense_icon.png';
+	import BlastIcon from '$lib/client/images/icon/status/blast.png';
 
 	/** Truncated to 18 characters.*/
 	export let name: string = 'Name';
@@ -74,7 +97,7 @@ Does not handle decorations because sigils are optimal.
 	export let rarity: FrontierRarity = 12;
 	export let affinity: number = 0;
 
-	/** TODO Show extra icons.*/
+	/** Show extra icons.*/
 	export let extraIcons = false;
 
 	/**
@@ -94,7 +117,7 @@ Does not handle decorations because sigils are optimal.
 		'Absolute Defense',
 		'Three Worlds Protection',
 	];
-	export let skillPoints: number[] = [10, 20, -30, 40, 50];
+	export let skillPoints: number[] = [0, 20, -30, 40, 50];
 	export let sigils: FrontierSigil[] = [
 		'Attack Slayer',
 		'Elemental Slayer',
@@ -108,7 +131,67 @@ Does not handle decorations because sigils are optimal.
 	];
 	export let sigilPoints: number[] = [15, 20, -30, 40, 50, 15, 15, -15, 12];
 
-	export let weaponType: FrontierWeaponType[] = 'Evolution';
+	export let weaponType: FrontierWeaponType = 'Evolution';
+
+	function getElementIcon(name: FrontierElement) {
+		switch (name) {
+			case 'Fire':
+				return FireIcon;
+			case 'Water':
+				return WaterIcon;
+			case 'Thunder':
+				return ThunderIcon;
+			case 'Ice':
+				return IceIcon;
+			case 'Dragon':
+				return DragonIcon;
+			case 'Light':
+				return LightIcon;
+			case 'Blaze':
+				return BlazeIcon;
+			case 'Tenshou':
+				return TenshouIcon;
+			case 'L. Rod':
+				return LightningRodIcon;
+			case 'Okiko':
+				return OkikoIcon;
+			case 'B. Flame':
+				return BlackFlameIcon;
+			case 'C. Demon':
+				return CrimsonDemonIcon;
+			case 'Dark':
+				return DarkIcon;
+			case 'Music':
+				return MusicIcon;
+			case 'Sound':
+				return SoundIcon;
+			case 'Wind':
+				return WindIcon;
+			case 'B. Zero':
+				return BurningZeroIcon;
+			case 'E. Roar':
+				return EmperorsRoarIcon;
+			default:
+				return FireIcon;
+		}
+	}
+
+	function getStatusIcon(name: FrontierStatus) {
+		switch (name) {
+			case 'Sleep':
+				return SleepIcon;
+			case 'Poison':
+				return PoisonIcon;
+			case 'Paralysis':
+				return ParalysisIcon;
+			case 'Def':
+				return DefenseIcon;
+			case 'Blast':
+				return BlastIcon;
+			default:
+				return PoisonIcon;
+		}
+	}
 
 	function nextPage() {
 		if (currentPage >= maxPages) {
@@ -127,7 +210,6 @@ Does not handle decorations because sigils are optimal.
 	}
 
 	const weaponClass = WeaponTypes[weaponID].class;
-	const weaponIDName = WeaponTypes[weaponID].name;
 	const maxNameLength = 24;
 	const maxAttackLength = 5;
 	const maxElementStatusLength = 5;
@@ -202,7 +284,16 @@ Does not handle decorations because sigils are optimal.
 				<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
 				<div class="element">
 					{#if element !== ''}
-						{element}<span class="double-width">:</span><span
+						{#if extraIcons}
+							<img
+								class="element-icon"
+								alt="Element"
+								src={getElementIcon(element)}
+							/>
+						{:else}
+							{element}
+						{/if}
+						<span class="double-width">:</span><span
 							style="color: {elementBoost
 								? 'var(--fz-text-cyan)'
 								: 'var(--ctp-text)'};"
@@ -221,11 +312,29 @@ Does not handle decorations because sigils are optimal.
 				</div>
 				<div class="status">
 					{#if status === 'Def'}
-						{status}{statusValue >= 0 ? '+' : ''}{statusValue
+						{#if extraIcons}
+							<img
+								class="status-icon"
+								alt="Status"
+								src={getStatusIcon(status)}
+							/>
+						{:else}
+							{status}
+						{/if}
+						{statusValue >= 0 ? '+' : ''}{statusValue
 							.toString()
 							.substring(0, maxElementStatusLength)}
 					{:else if status !== ''}
-						{status}<span class="double-width">:</span><span
+						{#if extraIcons}
+							<img
+								class="status-icon"
+								alt="Status"
+								src={getStatusIcon(status)}
+							/>
+						{:else}
+							{status}
+						{/if}
+						<span class="double-width">:</span><span
 							style="color: {statusBoost
 								? 'var(--fz-text-cyan)'
 								: 'var(--ctp-text)'};"
@@ -384,12 +493,19 @@ Does not handle decorations because sigils are optimal.
 						</div>
 					{/if}
 					<div class="last-skill">
-						<div class="skill">
-							<div class="skill-name">{skillNames[4]}</div>
-							<div class="skill-points">
-								: {#if skillPoints[4] >= 0}+{/if}{skillPoints[4]}
+						{#if skillPoints[0] <= 0}
+							<div class="skill">
+								<div class="skill-name">{' '}</div>
+								<div class="skill-points">{' '}</div>
 							</div>
-						</div>
+						{:else}
+							<div class="skill">
+								<div class="skill-name">{skillNames[4]}</div>
+								<div class="skill-points">
+									: {#if skillPoints[4] >= 0}+{/if}{skillPoints[4]}
+								</div>
+							</div>
+						{/if}
 						<div class="pages">
 							<button
 								class="arrow-icon-button"
@@ -788,5 +904,11 @@ Does not handle decorations because sigils are optimal.
 		font-size: 18px;
 		font-weight: 500;
 		width: 39ch;
+	}
+
+	.element-icon,
+	.status-icon {
+		width: auto;
+		height: 2rem;
 	}
 </style>
