@@ -115,6 +115,7 @@
 	let currentArmorPage = 1;
 	let weaponDescription =
 		'A spear decorated with a rare scarlet jewel from a foreign country.';
+	let weaponExtraIcons = false;
 </script>
 
 <Head
@@ -167,12 +168,14 @@
 			<Button kind="tertiary" icon={Restart} on:click={resetWeaponValues}
 				>Restore values</Button
 			>
+			<Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} />
 		</div>
 		<div class="container-weapon">
 			<div class="weapon-info">
 				{#key weaponRarity}
 					<div id="weapon-dom">
 						<Weapon
+							extraIcons={weaponExtraIcons}
 							bind:currentPage={currentWeaponPage}
 							name={weaponName}
 							length={weaponLength}
