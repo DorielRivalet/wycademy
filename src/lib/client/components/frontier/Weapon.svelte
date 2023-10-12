@@ -14,6 +14,8 @@ Does not handle decorations because sigils are optimal.
 		FrontierArmorSkillTree,
 		FrontierElement,
 		FrontierEquipmentRank,
+		FrontierGunlanceShell,
+		FrontierGunlanceShellLevel,
 		FrontierHuntingHornNote,
 		FrontierHuntingHornWeaponNote,
 		FrontierRarity,
@@ -117,6 +119,9 @@ Does not handle decorations because sigils are optimal.
 
 	export let weaponType: FrontierWeaponType = 'Evolution';
 
+	export let gunlanceShell: FrontierGunlanceShell = 'Normal';
+	export let gunlanceShellLevel: FrontierGunlanceShellLevel = 9;
+
 	// TODO only allow legal combos
 	export let huntingHornNotes: FrontierHuntingHornWeaponNote[] =
 		HuntingHornWeaponNotesCombinations[0];
@@ -151,7 +156,7 @@ Does not handle decorations because sigils are optimal.
 		rarity: rarity,
 	};
 	// TODO gunner
-	// TODO slots
+	// TODO slots icons
 	// TODO hh/etc
 	// TODO gou/automatic
 	let maxPages = 6;
@@ -211,6 +216,10 @@ Does not handle decorations because sigils are optimal.
 							<NoteIcon size={16} color={huntingHornNotes[1]} />
 							<NoteIcon size={16} color={huntingHornNotes[2]} />
 							】</span
+						>
+					{:else if frontierMappers.getWeaponNameById(weaponID) === 'Gunlance'}
+						<span class="gunlance-shell"
+							>{gunlanceShell} Shot LV{gunlanceShellLevel}</span
 						>
 					{:else}
 						<span class="text-yellow"
