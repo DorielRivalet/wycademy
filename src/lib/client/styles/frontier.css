@@ -33,6 +33,14 @@
 	--fz-text-brown: #bf6464;
 	--fz-text-orange: #ffc850; /* TODO not sure if correct */
 	--fz-text-orange2: #f39506; /* used on G icon*/
+	--fz-hh-note-red: #ff0000;
+	--fz-hh-note-green: #00ff00;
+	--fz-hh-note-purple: #ff00ff;
+	--fz-hh-note-white: #ffffff;
+	--fz-hh-note-blue: #0000ff;
+	--fz-hh-note-yellow: #ffff00;
+	--fz-hh-note-cyan: #00ffff;
+	--fz-hh-note-pink: #ff80bf;
 	--font-game: 'MS Gothic', 'MS UI Gothic', Courier, monospace;
 	--cursor-icon-classic: url('$lib/client/images/ui/svg/cursor-classic.svg'),
 		auto;
