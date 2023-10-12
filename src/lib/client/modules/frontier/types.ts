@@ -70,6 +70,43 @@ export type FrontierWeaponLength =
 	| 'Medium'
 	| 'Long'
 	| 'Very Long';
+export type FrontierBowgunReloadSpeed =
+	| 'Very Slow'
+	| 'Slow'
+	| 'Normal'
+	| 'Fast'
+	| 'Very Fast';
+export type FrontierBowgunRecoil = 'Medium' | 'Small' | 'Smaller';
+export type FrontierBowgunAmmo =
+	| 'Norm S.'
+	| 'Pierce S.'
+	| 'Pellet S.'
+	| 'Crag S.'
+	| 'Cluster S.'
+	| 'Rec S.'
+	| 'Psn S.'
+	| 'Para S.'
+	| 'Slp S.'
+	| 'Flaming S'
+	| 'Water S'
+	| 'Thunder S'
+	| 'Freeze S'
+	| 'Dragon S'
+	| 'Tranq S'
+	| 'Paint S'
+	| 'Demon S.'
+	| 'Armor S.'
+	| 'Rapid Fire'
+	| 'Ultra Rapid Fire';
+export type FrontierBowArcShot = 'Wide' | 'Narrow' | 'Bomb' | 'Slicing';
+export type FrontierBowCharge = 'Pierce' | 'Rapid' | 'Scatter' | 'Rising';
+export type FrontierBowCoating =
+	| 'Power'
+	| 'Crit'
+	| 'Poison'
+	| 'Paralysis'
+	| 'Sleep'
+	| 'Impact';
 export type FrontierGunlanceShell = 'Spread' | 'Long' | 'Normal';
 export type FrontierGunlanceShellLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export type FrontierWeaponClass = 'Blademaster' | 'Gunner';
