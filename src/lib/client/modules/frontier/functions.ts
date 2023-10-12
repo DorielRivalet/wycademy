@@ -6,8 +6,36 @@
 
 import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 import { format } from 'mathjs';
-import type { FrontierWeaponID, FrontierWeaponSharpness } from './types';
+import type {
+	FrontierElement,
+	FrontierStatus,
+	FrontierWeaponID,
+	FrontierWeaponSharpness,
+} from './types';
 import { WeaponTypes } from './objects';
+import FireIcon from '$lib/client/images/icon/element/fire.png';
+import WaterIcon from '$lib/client/images/icon/element/water.png';
+import ThunderIcon from '$lib/client/images/icon/element/thunder.png';
+import IceIcon from '$lib/client/images/icon/element/ice.png';
+import DragonIcon from '$lib/client/images/icon/element/dragon.png';
+import BurningZeroIcon from '$lib/client/images/icon/element/burning_zero.png';
+import BlackFlameIcon from '$lib/client/images/icon/element/Element_Black_Flame.png';
+import BlazeIcon from '$lib/client/images/icon/element/Element_Blaze.png';
+import CrimsonDemonIcon from '$lib/client/images/icon/element/Element_Crimson_Demon.png';
+import DarkIcon from '$lib/client/images/icon/element/Element_Darkness.png';
+import EmperorsRoarIcon from "$lib/client/images/icon/element/Element_Emperor's_Roar.png";
+import OkikoIcon from '$lib/client/images/icon/element/Element_Frozen_Seraphim.png';
+import WindIcon from '$lib/client/images/icon/element/Element_Golden_Dust.png';
+import MusicIcon from '$lib/client/images/icon/element/Element_Kanade.png';
+import LightIcon from '$lib/client/images/icon/element/Element_Light.png';
+import SoundIcon from '$lib/client/images/icon/element/Element_Sound.png';
+import LightningRodIcon from '$lib/client/images/icon/element/Element_Thunder_Pole.png';
+import TenshouIcon from '$lib/client/images/icon/element/Element_Tenshou.png';
+import SleepIcon from '$lib/client/images/icon/status/sleep2.png';
+import PoisonIcon from '$lib/client/images/icon/status/poison.png';
+import ParalysisIcon from '$lib/client/images/icon/status/paralysis.png';
+import DefenseIcon from '$lib/client/images/icon/defense_icon.png';
+import BlastIcon from '$lib/client/images/icon/status/blast.png';
 
 export const frontierMath = {
 	calculateEHP: (monsterHP: number, defrate: number) =>
@@ -55,6 +83,64 @@ export const frontierMappers = {
 	getWeaponIdFromString(id: string): FrontierWeaponID {
 		if (parseInt(id) < 0 || parseInt(id) >= 14) return 0;
 		return parseInt(id) as FrontierWeaponID;
+	},
+	getElementIcon(name: FrontierElement) {
+		switch (name) {
+			case 'Fire':
+				return FireIcon;
+			case 'Water':
+				return WaterIcon;
+			case 'Thunder':
+				return ThunderIcon;
+			case 'Ice':
+				return IceIcon;
+			case 'Dragon':
+				return DragonIcon;
+			case 'Light':
+				return LightIcon;
+			case 'Blaze':
+				return BlazeIcon;
+			case 'Tenshou':
+				return TenshouIcon;
+			case 'L. Rod':
+				return LightningRodIcon;
+			case 'Okiko':
+				return OkikoIcon;
+			case 'B. Flame':
+				return BlackFlameIcon;
+			case 'C. Demon':
+				return CrimsonDemonIcon;
+			case 'Dark':
+				return DarkIcon;
+			case 'Music':
+				return MusicIcon;
+			case 'Sound':
+				return SoundIcon;
+			case 'Wind':
+				return WindIcon;
+			case 'B. Zero':
+				return BurningZeroIcon;
+			case 'E. Roar':
+				return EmperorsRoarIcon;
+			default:
+				return FireIcon;
+		}
+	},
+	getStatusIcon(name: FrontierStatus) {
+		switch (name) {
+			case 'Sleep':
+				return SleepIcon;
+			case 'Poison':
+				return PoisonIcon;
+			case 'Paralysis':
+				return ParalysisIcon;
+			case 'Def':
+				return DefenseIcon;
+			case 'Blast':
+				return BlastIcon;
+			default:
+				return PoisonIcon;
+		}
 	},
 };
 

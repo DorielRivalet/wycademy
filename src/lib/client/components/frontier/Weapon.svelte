@@ -14,6 +14,8 @@ Does not handle decorations because sigils are optimal.
 		FrontierArmorSkillTree,
 		FrontierElement,
 		FrontierEquipmentRank,
+		FrontierHuntingHornNote,
+		FrontierHuntingHornWeaponNote,
 		FrontierRarity,
 		FrontierSigil,
 		FrontierStatus,
@@ -27,33 +29,15 @@ Does not handle decorations because sigils are optimal.
 
 	import FrontierWeaponSharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
 	import DecoratedBorder from './DecoratedBorder.svelte';
-	import { stringReplacements } from '$lib/client/modules/frontier/functions';
+	import {
+		frontierMappers,
+		stringReplacements,
+	} from '$lib/client/modules/frontier/functions';
 	import GRankWeaponIcon from './icon/GRankWeaponIcon.svelte';
 	import ZenithWeaponIcon from './icon/ZenithWeaponIcon2.svelte';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
-	import FireIcon from '$lib/client/images/icon/element/fire.png';
-	import WaterIcon from '$lib/client/images/icon/element/water.png';
-	import ThunderIcon from '$lib/client/images/icon/element/thunder.png';
-	import IceIcon from '$lib/client/images/icon/element/ice.png';
-	import DragonIcon from '$lib/client/images/icon/element/dragon.png';
-	import BurningZeroIcon from '$lib/client/images/icon/element/burning_zero.png';
-	import BlackFlameIcon from '$lib/client/images/icon/element/Element_Black_Flame.png';
-	import BlazeIcon from '$lib/client/images/icon/element/Element_Blaze.png';
-	import CrimsonDemonIcon from '$lib/client/images/icon/element/Element_Crimson_Demon.png';
-	import DarkIcon from '$lib/client/images/icon/element/Element_Darkness.png';
-	import EmperorsRoarIcon from "$lib/client/images/icon/element/Element_Emperor's_Roar.png";
-	import OkikoIcon from '$lib/client/images/icon/element/Element_Frozen_Seraphim.png';
-	import WindIcon from '$lib/client/images/icon/element/Element_Golden_Dust.png';
-	import MusicIcon from '$lib/client/images/icon/element/Element_Kanade.png';
-	import LightIcon from '$lib/client/images/icon/element/Element_Light.png';
-	import SoundIcon from '$lib/client/images/icon/element/Element_Sound.png';
-	import LightningRodIcon from '$lib/client/images/icon/element/Element_Thunder_Pole.png';
-	import TenshouIcon from '$lib/client/images/icon/element/Element_Tenshou.png';
-	import SleepIcon from '$lib/client/images/icon/status/sleep2.png';
-	import PoisonIcon from '$lib/client/images/icon/status/poison.png';
-	import ParalysisIcon from '$lib/client/images/icon/status/paralysis.png';
-	import DefenseIcon from '$lib/client/images/icon/defense_icon.png';
-	import BlastIcon from '$lib/client/images/icon/status/blast.png';
+	import NoteIcon from '$lib/client/components/frontier/icon/NoteIcon.svelte';
+	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/objects.ts';
 
 	/** Truncated to 18 characters.*/
 	export let name: string = 'Name';
@@ -133,65 +117,9 @@ Does not handle decorations because sigils are optimal.
 
 	export let weaponType: FrontierWeaponType = 'Evolution';
 
-	function getElementIcon(name: FrontierElement) {
-		switch (name) {
-			case 'Fire':
-				return FireIcon;
-			case 'Water':
-				return WaterIcon;
-			case 'Thunder':
-				return ThunderIcon;
-			case 'Ice':
-				return IceIcon;
-			case 'Dragon':
-				return DragonIcon;
-			case 'Light':
-				return LightIcon;
-			case 'Blaze':
-				return BlazeIcon;
-			case 'Tenshou':
-				return TenshouIcon;
-			case 'L. Rod':
-				return LightningRodIcon;
-			case 'Okiko':
-				return OkikoIcon;
-			case 'B. Flame':
-				return BlackFlameIcon;
-			case 'C. Demon':
-				return CrimsonDemonIcon;
-			case 'Dark':
-				return DarkIcon;
-			case 'Music':
-				return MusicIcon;
-			case 'Sound':
-				return SoundIcon;
-			case 'Wind':
-				return WindIcon;
-			case 'B. Zero':
-				return BurningZeroIcon;
-			case 'E. Roar':
-				return EmperorsRoarIcon;
-			default:
-				return FireIcon;
-		}
-	}
-
-	function getStatusIcon(name: FrontierStatus) {
-		switch (name) {
-			case 'Sleep':
-				return SleepIcon;
-			case 'Poison':
-				return PoisonIcon;
-			case 'Paralysis':
-				return ParalysisIcon;
-			case 'Def':
-				return DefenseIcon;
-			case 'Blast':
-				return BlastIcon;
-			default:
-				return PoisonIcon;
-		}
-	}
+	// TODO only allow legal combos
+	export let huntingHornNotes: FrontierHuntingHornWeaponNote[] =
+		HuntingHornWeaponNotesCombinations[0];
 
 	function nextPage() {
 		if (currentPage >= maxPages) {
@@ -276,9 +204,19 @@ Does not handle decorations because sigils are optimal.
 					</span>
 				</div>
 				<div class="length">
-					<span class="text-yellow"
-						>Length<span class="text-yellow double-width">:</span></span
-					>{length}
+					{#if frontierMappers.getWeaponNameById(weaponID) === 'Hunting Horn'}
+						<span class="hh-notes"
+							>【Notes
+							<NoteIcon size={16} color={huntingHornNotes[0]} />
+							<NoteIcon size={16} color={huntingHornNotes[1]} />
+							<NoteIcon size={16} color={huntingHornNotes[2]} />
+							】</span
+						>
+					{:else}
+						<span class="text-yellow"
+							>Length<span class="text-yellow double-width">:</span></span
+						>{length}
+					{/if}
 				</div>
 				<div class="sharpness">Sharpness</div>
 				<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
@@ -288,7 +226,7 @@ Does not handle decorations because sigils are optimal.
 							<img
 								class="element-icon"
 								alt="Element"
-								src={getElementIcon(element)}
+								src={frontierMappers.getElementIcon(element)}
 							/>
 						{:else}
 							{element}
@@ -316,7 +254,7 @@ Does not handle decorations because sigils are optimal.
 							<img
 								class="status-icon"
 								alt="Status"
-								src={getStatusIcon(status)}
+								src={frontierMappers.getStatusIcon(status)}
 							/>
 						{:else}
 							{status}
@@ -329,7 +267,7 @@ Does not handle decorations because sigils are optimal.
 							<img
 								class="status-icon"
 								alt="Status"
-								src={getStatusIcon(status)}
+								src={frontierMappers.getStatusIcon(status)}
 							/>
 						{:else}
 							{status}
@@ -910,5 +848,12 @@ Does not handle decorations because sigils are optimal.
 	.status-icon {
 		width: auto;
 		height: 2rem;
+	}
+
+	.hh-notes {
+		display: inline-flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.75rem;
 	}
 </style>

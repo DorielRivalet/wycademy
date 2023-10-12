@@ -9,7 +9,7 @@
 import type {
 	FrontierElement,
 	FrontierEquipmentRank,
-	FrontierHuntingHornWeaponNotes,
+	FrontierHuntingHornWeaponNote,
 	FrontierRarity,
 	FrontierStatus,
 	FrontierWeaponClass,
@@ -19,20 +19,20 @@ import type {
 	FrontierWeaponSharpness,
 	FrontierZenithSkill,
 } from './types';
-import GreatSwordIcon from '$lib/client/components/frontier/icon/Great_Sword_Icon_White5.svelte';
-import LongSwordIcon from '$lib/client/components/frontier/icon/Long_Sword_Icon_White4.svelte';
-import DualSwordsIcon from '$lib/client/components/frontier/icon/Dual_Blades_Icon_White4.svelte';
-import SwordAndShieldIcon from '$lib/client/components/frontier/icon/Sword_and_Shield_Icon_White.svelte';
-import GunlanceIcon from '$lib/client/components/frontier/icon/Gunlance_Icon_White4.svelte';
-import LanceIcon from '$lib/client/components/frontier/icon/Lance_Icon_White5.svelte';
-import HammerIcon from '$lib/client/components/frontier/icon/Hammer_Icon_White2.svelte';
-import HuntingHornIcon from '$lib/client/components/frontier/icon/Hunting_Horn_Icon_White4.svelte';
-import LightBowgunIcon from '$lib/client/components/frontier/icon/Light_Bowgun_Icon_White2.svelte';
-import HeavyBowgunIcon from '$lib/client/components/frontier/icon/Heavy_Bowgun_Icon_White2.svelte';
-import BowIcon from '$lib/client/components/frontier/icon/Bow_Icon_White4.svelte';
-import TonfaIcon from '$lib/client/components/frontier/icon/Tonfa_Icon_White.svelte';
-import SwitchAxeFIcon from '$lib/client/components/frontier/icon/Switch_Axe_Icon_White4.svelte';
-import MagnetSpikeIcon from '$lib/client/components/frontier/icon/Magnet_Spike_Icon_White.svelte';
+import GreatSwordIcon from '$lib/client/components/frontier/icon/weapon/Great_Sword_Icon_White5.svelte';
+import LongSwordIcon from '$lib/client/components/frontier/icon/weapon/Long_Sword_Icon_White4.svelte';
+import DualSwordsIcon from '$lib/client/components/frontier/icon/weapon/Dual_Blades_Icon_White4.svelte';
+import SwordAndShieldIcon from '$lib/client/components/frontier/icon/weapon/Sword_and_Shield_Icon_White.svelte';
+import GunlanceIcon from '$lib/client/components/frontier/icon/weapon/Gunlance_Icon_White4.svelte';
+import LanceIcon from '$lib/client/components/frontier/icon/weapon/Lance_Icon_White5.svelte';
+import HammerIcon from '$lib/client/components/frontier/icon/weapon/Hammer_Icon_White2.svelte';
+import HuntingHornIcon from '$lib/client/components/frontier/icon/weapon/Hunting_Horn_Icon_White4.svelte';
+import LightBowgunIcon from '$lib/client/components/frontier/icon/weapon/Light_Bowgun_Icon_White2.svelte';
+import HeavyBowgunIcon from '$lib/client/components/frontier/icon/weapon/Heavy_Bowgun_Icon_White2.svelte';
+import BowIcon from '$lib/client/components/frontier/icon/weapon/Bow_Icon_White4.svelte';
+import TonfaIcon from '$lib/client/components/frontier/icon/weapon/Tonfa_Icon_White.svelte';
+import SwitchAxeFIcon from '$lib/client/components/frontier/icon/weapon/Switch_Axe_Icon_White4.svelte';
+import MagnetSpikeIcon from '$lib/client/components/frontier/icon/weapon/Magnet_Spike_Icon_White.svelte';
 
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
@@ -229,7 +229,7 @@ export const ZenithSkills = [
 	'Rush Up',
 ] as const;
 
-export const HuntingHornWeaponNotesCombinations: FrontierHuntingHornWeaponNotes[][] =
+export const HuntingHornWeaponNotesCombinations: FrontierHuntingHornWeaponNote[][] =
 	[
 		['White', 'Blue', 'Red'],
 		['White', 'Yellow', 'Red'],
