@@ -1016,3 +1016,23 @@ export type FrontierArmorSkill = {
 // 		},
 // 	],
 // };
+
+export type FrontierWeaponType =
+	| 'Standard'
+	| 'SP'
+	| 'HC'
+	| "Master's Mark"
+	| 'Evolution'
+	| 'Gou'
+	| 'Heavenly Storm'
+	| 'Supremacy'
+	| 'G Supremacy'
+	| 'Burst'
+	| 'Origin'
+	| 'G Rank'
+	| 'G Rank Finesse'
+	| 'Tower'
+	| 'Exotic'
+	| 'Prayer'
+	| 'Zenith'
+	| 'Z Finesse';

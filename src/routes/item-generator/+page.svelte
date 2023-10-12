@@ -6,7 +6,6 @@
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
-	import type { FrontierWeaponID } from '$lib/client/modules/frontier/types';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import Select from 'carbon-components-svelte/src/Select/Select.svelte';
 	import SelectItem from 'carbon-components-svelte/src/Select/SelectItem.svelte';
@@ -35,11 +34,6 @@
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 
 	type dropdownItem = { id: string; text: string };
-
-	function getWeaponType(id: string): FrontierWeaponID {
-		if (parseInt(id) < 0 || parseInt(id) >= 14) return 0;
-		return parseInt(id) as FrontierWeaponID;
-	}
 
 	function resetWeaponValues() {
 		// TODO idk why this doesnt work with default
@@ -120,7 +114,7 @@
 	let currentWeaponPage = 1;
 	let currentArmorPage = 1;
 	let weaponDescription =
-		"Unparalleled ferocity and flame, a truly awe-inspiring addition to any hunter's arsenal.";
+		'A spear decorated with a rare scarlet jewel from a foreign country.';
 </script>
 
 <Head
@@ -182,7 +176,7 @@
 							bind:currentPage={currentWeaponPage}
 							name={weaponName}
 							length={weaponLength}
-							weaponType={getWeaponType(weaponTypeId)}
+							weaponID={frontierMappers.getWeaponIdFromString(weaponTypeId)}
 							attack={weaponAttack}
 							attackBoost={weaponAttackBoost}
 							sharpnessValues={weaponSharpness}
