@@ -32,7 +32,6 @@
 	import Language from 'carbon-icons-svelte/lib/Language.svelte';
 	import ColorPalette from 'carbon-icons-svelte/lib/ColorPalette.svelte';
 	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
-	import NotificationOff from 'carbon-icons-svelte/lib/NotificationOff.svelte';
 	import VolumeUp from 'carbon-icons-svelte/lib/VolumeUp.svelte';
 	import VolumeMute from 'carbon-icons-svelte/lib/VolumeMute.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -42,8 +41,8 @@
 	import {
 		soundStore,
 		pushNotificationsStore,
-		onNotificationToggle,
 		onSoundToggle,
+		onNotificationPress,
 	} from '$lib/client/stores/toggles';
 	import { onVolumeChange, volumeStore } from '$lib/client/stores/volume';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
@@ -237,6 +236,12 @@
 	<SectionHeadingTopLevel title="Site Preferences" />
 
 	<div class="setting-container">
+		<Button kind="tertiary" icon={Notification} on:click={onNotificationPress}
+			>Push notifications</Button
+		>
+	</div>
+
+	<div class="setting-container">
 		<Language size={32} />
 		<Dropdown
 			disabled
@@ -244,21 +249,6 @@
 			type="inline"
 			selectedId="0"
 			items={[{ id: '0', text: 'English' }]}
-		/>
-	</div>
-
-	<div class="setting-container">
-		<div class="setting-icon">
-			{#if $pushNotificationsStore}
-				<Notification size={32} />
-			{:else}
-				<NotificationOff size={32} />
-			{/if}
-		</div>
-		<Toggle
-			labelText="Push notifications"
-			bind:toggled={$pushNotificationsStore}
-			on:toggle={onNotificationToggle}
 		/>
 	</div>
 
