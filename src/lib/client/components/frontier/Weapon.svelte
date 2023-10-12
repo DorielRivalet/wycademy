@@ -4,19 +4,24 @@
   ~ found in the LICENSE file.
 -->
 
+<!--
+@component
+Does not handle decorations because sigils are optimal.
+-->
 <script lang="ts">
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
 	import type {
-		FrontierArmorSkillName,
 		FrontierArmorSkillTree,
 		FrontierElement,
 		FrontierEquipmentRank,
 		FrontierRarity,
+		FrontierSigil,
 		FrontierStatus,
 		FrontierSwitchAxeFPhial,
 		FrontierWeaponID,
 		FrontierWeaponLength,
 		FrontierWeaponSharpness,
+		FrontierWeaponType,
 	} from '$lib/client/modules/frontier/types';
 	import ArrowIcon from '$lib/client/components/frontier/icon/ArrowIcon.svelte';
 
@@ -32,7 +37,7 @@
 
 	/** From 1 to 100.*/
 	export let level: number = 100;
-	export let weaponType: FrontierWeaponID = 0;
+	export let weaponID: FrontierWeaponID = 0;
 	export let attack: number = 100;
 	export let elementValue: number = 0;
 	export let statusValue: number = 0;
@@ -69,15 +74,17 @@
 	export let rarity: FrontierRarity = 12;
 	export let affinity: number = 0;
 
-	/** TODO The size of the component. Compact uses icons.*/
-	export let compact = false;
+	/** TODO Show extra icons.*/
+	export let extraIcons = false;
 
 	/**
-	 * Set theme to light.
+	 * TODO Set theme to light.
 	 */
 	export let light = false;
 
+	// TODO
 	export let phial: FrontierSwitchAxeFPhial = 'Power';
+
 	export let currentPage: number;
 
 	export let skillNames: FrontierArmorSkillTree[] = [
@@ -88,6 +95,20 @@
 		'Three Worlds Protection',
 	];
 	export let skillPoints: number[] = [10, 20, -30, 40, 50];
+	export let sigils: FrontierSigil[] = [
+		'Attack Slayer',
+		'Elemental Slayer',
+		'Elemental Slayer',
+		'Attack Slayer',
+		'Attack Slayer',
+		'Attack Slayer',
+		'Elemental Slayer',
+		'Elemental Slayer',
+		'Elemental Slayer',
+	];
+	export let sigilPoints: number[] = [15, 20, -30, 40, 50, 15, 15, -15, 12];
+
+	export let weaponType: FrontierWeaponType[] = 'Evolution';
 
 	function nextPage() {
 		if (currentPage >= maxPages) {
@@ -105,8 +126,8 @@
 		}
 	}
 
-	const weaponClass = WeaponTypes[weaponType].class;
-	const weaponTypeName = WeaponTypes[weaponType].name;
+	const weaponClass = WeaponTypes[weaponID].class;
+	const weaponIDName = WeaponTypes[weaponID].name;
 	const maxNameLength = 24;
 	const maxAttackLength = 5;
 	const maxElementStatusLength = 5;
@@ -120,10 +141,8 @@
 		rarity: rarity,
 	};
 	// TODO gunner
-	// TODO pages
-	// TODO sigils, decos, slots
-	// TODO types
-
+	// TODO slots
+	// TODO hh/etc
 	// TODO gou/automatic
 	let maxPages = 6;
 </script>
@@ -136,7 +155,7 @@
 					<div class="weapon-icon-container">
 						<div class="weapon-icon">
 							<svelte:component
-								this={WeaponTypes[weaponType].icon}
+								this={WeaponTypes[weaponID].icon}
 								{...weaponIconProps}
 							/>
 						</div>
@@ -244,7 +263,7 @@
 					<div class="weapon-icon-container">
 						<div class="weapon-icon">
 							<svelte:component
-								this={WeaponTypes[weaponType].icon}
+								this={WeaponTypes[weaponID].icon}
 								{...weaponIconProps}
 							/>
 						</div>
@@ -258,9 +277,13 @@
 					</div>
 				</div>
 
-				<p class="description">
-					{description}
-				</p>
+				<div class="description">
+					{description}<span class="text-yellow"
+						><span class="double-width-transform">«</span>{weaponType}<span
+							class="double-width-transform">»</span
+						></span
+					>
+				</div>
 
 				<div class="hunterType">
 					<div class="hunter-type">
@@ -393,7 +416,28 @@
 			</div>
 		{:else if currentPage === 4}
 			<div class="page-4">
-				<p>4</p>
+				<p class="p-inherit text-yellow">[1st Sigil]</p>
+				<p class="p-inherit text-orange">
+					<span class="double-width">•</span>Oath Sigil
+				</p>
+				<div class="sigil">
+					<div class="sigil-name">{sigils[0]}</div>
+					<div class="sigil-points">
+						: {#if sigilPoints[0] >= 0}+{/if}{sigilPoints[0]}
+					</div>
+				</div>
+				<div class="sigil">
+					<div class="sigil-name">{sigils[1]}</div>
+					<div class="sigil-points">
+						: {#if sigilPoints[1] >= 0}+{/if}{sigilPoints[1]}
+					</div>
+				</div>
+				<div class="sigil">
+					<div class="sigil-name">{sigils[2]}</div>
+					<div class="sigil-points">
+						: {#if sigilPoints[2] >= 0}+{/if}{sigilPoints[2]}
+					</div>
+				</div>
 				<div class="pages">
 					<button
 						class="arrow-icon-button"
@@ -418,7 +462,28 @@
 			</div>
 		{:else if currentPage === 5}
 			<div class="page-5">
-				<p>5</p>
+				<p class="p-inherit text-yellow">[2nd Sigil]</p>
+				<p class="p-inherit text-orange">
+					<span class="double-width">•</span>Oath Sigil
+				</p>
+				<div class="sigil">
+					<div class="sigil-name">{sigils[3]}</div>
+					<div class="sigil-points">
+						: {#if sigilPoints[3] >= 0}+{/if}{sigilPoints[3]}
+					</div>
+				</div>
+				<div class="sigil">
+					<div class="sigil-name">{sigils[4]}</div>
+					<div class="sigil-points">
+						: {#if sigilPoints[4] >= 0}+{/if}{sigilPoints[4]}
+					</div>
+				</div>
+				<div class="sigil">
+					<div class="sigil-name">{sigils[5]}</div>
+					<div class="sigil-points">
+						: {#if sigilPoints[5] >= 0}+{/if}{sigilPoints[5]}
+					</div>
+				</div>
 				<div class="pages">
 					<button
 						class="arrow-icon-button"
@@ -443,7 +508,28 @@
 			</div>
 		{:else if currentPage === 6}
 			<div class="page-6">
-				<p>6</p>
+				<p class="p-inherit text-yellow">[3rd Sigil]</p>
+				<p class="p-inherit text-orange">
+					<span class="double-width">•</span>Oath Sigil
+				</p>
+				<div class="sigil">
+					<div class="sigil-name">{sigils[6]}</div>
+					<div class="sigil-points">
+						: {#if sigilPoints[6] >= 0}+{/if}{sigilPoints[6]}
+					</div>
+				</div>
+				<div class="sigil">
+					<div class="sigil-name">{sigils[7]}</div>
+					<div class="sigil-points">
+						: {#if sigilPoints[7] >= 0}+{/if}{sigilPoints[7]}
+					</div>
+				</div>
+				<div class="sigil">
+					<div class="sigil-name">{sigils[8]}</div>
+					<div class="sigil-points">
+						: {#if sigilPoints[8] >= 0}+{/if}{sigilPoints[8]}
+					</div>
+				</div>
 				<div class="pages">
 					<button
 						class="arrow-icon-button"
@@ -607,7 +693,6 @@
 		line-height: 1.2em;
 		max-height: 3.5em;
 		overflow: hidden;
-		font-weight: bold;
 	}
 
 	.hunterType {
@@ -658,7 +743,8 @@
 		align-items: end;
 	}
 
-	.skill {
+	.skill,
+	.sigil {
 		display: flex;
 		flex-direction: row;
 	}
@@ -671,6 +757,26 @@
 
 	.skill-tree-header {
 		font: inherit;
+	}
+
+	.p-inherit {
+		font: inherit;
+	}
+
+	.page-4,
+	.page-5,
+	.page-6 {
+		line-height: 1.2em;
+	}
+
+	.text-orange {
+		color: var(--fz-text-orange);
+	}
+
+	.sigil-name {
+		width: 16ch;
+		overflow: hidden;
+		text-wrap: nowrap;
 	}
 
 	.container {

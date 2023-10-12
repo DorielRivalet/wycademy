@@ -6,7 +6,7 @@
 
 import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 import { format } from 'mathjs';
-import type { FrontierWeaponSharpness } from './types';
+import type { FrontierWeaponID, FrontierWeaponSharpness } from './types';
 import { WeaponTypes } from './objects';
 
 export const frontierMath = {
@@ -51,6 +51,10 @@ export const frontierMappers = {
 			(weapon) => weapon.id.toString() === weaponId.toString(),
 		);
 		return weapon ? weapon.name : null;
+	},
+	getWeaponIdFromString(id: string): FrontierWeaponID {
+		if (parseInt(id) < 0 || parseInt(id) >= 14) return 0;
+		return parseInt(id) as FrontierWeaponID;
 	},
 };
 
