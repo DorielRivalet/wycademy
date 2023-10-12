@@ -11,12 +11,12 @@ Does not handle decorations because sigils are optimal.
 <script lang="ts">
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
 	import type {
+		FrontierArmorSkillName,
 		FrontierArmorSkillTree,
 		FrontierElement,
 		FrontierEquipmentRank,
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
-		FrontierHuntingHornNote,
 		FrontierHuntingHornWeaponNote,
 		FrontierRarity,
 		FrontierSigil,
@@ -30,7 +30,7 @@ Does not handle decorations because sigils are optimal.
 	import ArrowIcon from '$lib/client/components/frontier/icon/ArrowIcon.svelte';
 
 	import FrontierWeaponSharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
-	import DecoratedBorder from './DecoratedBorder.svelte';
+	import DecoratedBorder from '$lib/client/components/frontier/DecoratedBorder.svelte';
 	import {
 		frontierMappers,
 		stringReplacements,
@@ -39,7 +39,7 @@ Does not handle decorations because sigils are optimal.
 	import ZenithWeaponIcon from './icon/ZenithWeaponIcon2.svelte';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 	import NoteIcon from '$lib/client/components/frontier/icon/NoteIcon.svelte';
-	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/objects.ts';
+	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/objects';
 
 	/** Truncated to 18 characters.*/
 	export let name: string = 'Name';
@@ -126,6 +126,8 @@ Does not handle decorations because sigils are optimal.
 	export let huntingHornNotes: FrontierHuntingHornWeaponNote[] =
 		HuntingHornWeaponNotesCombinations[0];
 
+	export let automaticSkill: FrontierArmorSkillName = '';
+
 	function nextPage() {
 		if (currentPage >= maxPages) {
 			currentPage = 1;
@@ -157,8 +159,6 @@ Does not handle decorations because sigils are optimal.
 	};
 	// TODO gunner
 	// TODO slots icons
-	// TODO hh/etc
-	// TODO gou/automatic
 	let maxPages = 6;
 </script>
 
@@ -336,11 +336,20 @@ Does not handle decorations because sigils are optimal.
 				</div>
 
 				<div class="description">
-					{description}<span class="text-yellow"
-						><span class="double-width-transform">«</span>{weaponType}<span
-							class="double-width-transform">»</span
-						></span
-					>
+					{description}
+					{#if automaticSkill === ''}
+						<span class="text-yellow"
+							><span class="double-width-transform">«</span>{weaponType}<span
+								class="double-width-transform">»</span
+							></span
+						>
+					{:else}
+						<span class="text-red"
+							><span class="double-width-transform">«</span
+							>{automaticSkill}<span class="double-width-transform">»</span
+							></span
+						>
+					{/if}
 				</div>
 
 				<div class="hunterType">
@@ -836,6 +845,10 @@ Does not handle decorations because sigils are optimal.
 
 	.text-orange {
 		color: var(--fz-text-orange);
+	}
+
+	.text-red {
+		color: var(--fz-text-red);
 	}
 
 	.sigil-name {
