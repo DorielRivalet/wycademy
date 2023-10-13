@@ -41,7 +41,7 @@
 	},
 	"devDependencies": {
 		"@carbon/charts-svelte": "^1.13.6",
-		"@carbon/styles": "^1.39.0",
+		"@carbon/styles": "^1.40.0",
 		"@commitlint/cli": "^17.7.2",
 		"@commitlint/config-conventional": "^17.7.0",
 		"@commitlint/cz-commitlint": "^17.7.2",
