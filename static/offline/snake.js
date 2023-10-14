@@ -3,6 +3,7 @@
 // TODO OOP
 const scoreElement = document.getElementById('score');
 const speedElement = document.getElementById('speed');
+const snakeLengthElement = document.getElementById('snake-length');
 const eatenElement = document.getElementById('eaten');
 const roastedElement = document.getElementById('roasted');
 const zappedElement = document.getElementById('zapped');
@@ -797,6 +798,7 @@ let eaten_items_canvas_context = eaten_items_canvas.getContext('2d');
 const gridSize = 25;
 // TODO adjust if canvas is full
 const slotSize = canvas.width / gridSize;
+const maxSnakeLength = gridSize * gridSize + 1;
 
 /**https://stackoverflow.com/questions/1740700/how-to-get-hex-color-value-rather-than-rgb-value */
 const rgba2hex = (rgba) =>
@@ -1168,7 +1170,9 @@ function hitHunter(cell, action = SNAKE_ACTIONS.bite.name) {
 				drawHitHunters();
 				updateBlueBorder(countHunters());
 				let timestamp = formatTime(elapsedTime);
-				historyLogs.push(`${timestamp} ${action} ${hunterType.name}`);
+				historyLogs.push(
+					`${timestamp} ${snake.cells.length}/${maxSnakeLength}🐍 ${action} ${hunterType.name}`,
+				);
 				return true;
 			}
 		}
@@ -1500,6 +1504,7 @@ function startingText() {
 	sendMessageToConsole(consoleMessages.startingText);
 	scoreElement.textContent = `Score: ${score}`;
 	speedElement.textContent = `0m/s`;
+	snakeLengthElement.textContent = `${snake.cells.length}/${maxSnakeLength}🐍`;
 	eatenElement.textContent = `${snake.eaten}🍖`;
 	roastedElement.textContent = `${snake.roasted}🔥`;
 	zappedElement.textContent = `${snake.zapped}⚡`;
@@ -1933,6 +1938,7 @@ function loop() {
 
 	loopCount = 0;
 	speedElement.textContent = `Speed: ${snakeTotalSpeed}m/s`;
+	snakeLengthElement.textContent = `${snake.cells.length}/${maxSnakeLength}🐍`;
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
 	// TODO is this order correct?
