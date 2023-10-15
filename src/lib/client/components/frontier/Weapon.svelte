@@ -880,4 +880,10 @@ Does not handle decorations because sigils are optimal.
 		align-items: center;
 		gap: 0.75rem;
 	}
+
+	.page-3 .pages {
+		position: absolute;
+		bottom: 0.5rem;
+		right: 0.5rem;
+	}
 </style>
