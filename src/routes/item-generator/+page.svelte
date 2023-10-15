@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {
+		ArmorSkills,
 		SharpnessNames,
 		SigilSkills,
 		ZenithSkills,
@@ -80,6 +81,7 @@
 		weaponSigil7Value = defaultWeaponComponentValues.weaponSigil7Value;
 		weaponSigil8Value = defaultWeaponComponentValues.weaponSigil8Value;
 		weaponSigil9Value = defaultWeaponComponentValues.weaponSigil9Value;
+		weaponAutomaticSkill = defaultWeaponComponentValues.weaponAutomaticSkill;
 	}
 
 	function getZenithSkills() {
@@ -95,6 +97,16 @@
 	function getSigilSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
 		SigilSkills.forEach((element) => {
+			if (element !== '') {
+				array = [...array, { id: element, text: element }];
+			}
+		});
+		return array;
+	}
+
+	function getArmorSkills() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		ArmorSkills.forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -170,6 +182,7 @@
 	let weaponSigil7Value = defaultWeaponComponentValues.weaponSigil7Value;
 	let weaponSigil8Value = defaultWeaponComponentValues.weaponSigil8Value;
 	let weaponSigil9Value = defaultWeaponComponentValues.weaponSigil9Value;
+	let weaponAutomaticSkill = defaultWeaponComponentValues.weaponAutomaticSkill;
 
 	let url = $page.url.toString();
 	let currentWeaponPage = 1;
@@ -234,6 +247,7 @@
 				{#key weaponRarity}
 					<div id="weapon-dom">
 						<Weapon
+							automaticSkill={weaponAutomaticSkill}
 							sigils={[
 								weaponSigil1Id,
 								weaponSigil2Id,
@@ -503,6 +517,13 @@
 						bind:value={weaponAffinity}
 						invalidText={invalidWeaponAffinityText}
 						label={'Affinity'}
+					/>
+					<Dropdown
+						titleText="Automatic Skill"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponAutomaticSkill}
+						items={getArmorSkills()}
 					/>
 				</div>
 			{:else if currentWeaponPage === 3}
