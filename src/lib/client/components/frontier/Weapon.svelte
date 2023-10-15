@@ -13,11 +13,22 @@ Does not handle decorations because sigils are optimal.
 	import type {
 		FrontierArmorSkillName,
 		FrontierArmorSkillTree,
+		FrontierBowArcShot,
+		FrontierBowCharge,
+		FrontierBowChargeLevels,
+		FrontierBowCoating,
+		FrontierBowgunAmmoQuantity,
+		FrontierBowgunAttackLevel,
+		FrontierBowgunRecoil,
+		FrontierBowgunReloadSpeed,
+		FrontierBowgunScope,
 		FrontierElement,
 		FrontierEquipmentRank,
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
+		FrontierHeavyBowgunUpgrade,
 		FrontierHuntingHornWeaponNote,
+		FrontierLightBowgunUpgrade,
 		FrontierRarity,
 		FrontierSigil,
 		FrontierStatus,
@@ -104,6 +115,7 @@ Does not handle decorations because sigils are optimal.
 		'Three Worlds Protection',
 	];
 	export let skillPoints: number[] = [0, 20, -30, 40, 50];
+
 	export let sigils: FrontierSigil[] = [
 		'Attack Slayer',
 		'Elemental Slayer',
@@ -127,6 +139,48 @@ Does not handle decorations because sigils are optimal.
 		HuntingHornWeaponNotesCombinations[0];
 
 	export let automaticSkill: FrontierArmorSkillName = '';
+	export let bowArc: FrontierBowArcShot = 'Narrow';
+	export let bowgunAttackLevel: FrontierBowgunAttackLevel = 5;
+	export let heavyBowgunUpgrade: FrontierHeavyBowgunUpgrade = 'Shield';
+	export let lightBowgunUpgrade: FrontierLightBowgunUpgrade = 'Silencer';
+	export let bowgunScope: FrontierBowgunScope = 'Zoom';
+	export let bowgunReload: FrontierBowgunReloadSpeed = 'Very Fast';
+	export let bowgunRecoil: FrontierBowgunRecoil = 'Smaller';
+
+	export let bowgunAmmo: FrontierBowgunAmmoQuantity[] = [
+		{ type: 'Norm S.', levelQuantity: [1, 2, 3] },
+		{ type: 'Pierce S.', levelQuantity: [1, 2, 3] },
+		{ type: 'Pellet S.', levelQuantity: [1, 2, 3] },
+		{ type: 'Crag S.', levelQuantity: [1, 2, 3] },
+		{ type: 'Cluster S.', levelQuantity: [1, 2, 3] },
+		{ type: 'Rec S.', levelQuantity: [1, 2, 0] },
+		{ type: 'Psn S.', levelQuantity: [1, 2, 0] },
+		{ type: 'Para S.', levelQuantity: [1, 2, 0] },
+		{ type: 'Slp S.', levelQuantity: [1, 2, 0] },
+		{ type: 'Flaming S', levelQuantity: [1, 2, 0] },
+		{ type: 'Water S', levelQuantity: [1, 2, 0] },
+		{ type: 'Thunder S', levelQuantity: [1, 0, 0] },
+		{ type: 'Freeze S', levelQuantity: [1, 0, 0] },
+		{ type: 'Dragon S', levelQuantity: [1, 0, 0] },
+		{ type: 'Tranq S', levelQuantity: [1, 0, 0] },
+		{ type: 'Paint S', levelQuantity: [1, 0, 0] },
+		{ type: 'Demon S.', levelQuantity: [1, 0, 0] },
+		{ type: 'Armor S.', levelQuantity: [1, 0, 0] },
+	];
+
+	export let bowCoatings: FrontierBowCoating[] = [
+		'Power',
+		'Poison',
+		'Para',
+		'Sleep',
+		'Impact',
+	];
+
+	export let bowCharges: FrontierBowChargeLevels[] = [
+		{ type: 'Pierce', level: 3 },
+		{ type: 'Spread', level: 3 },
+		{ type: 'Pierce', level: 4 },
+	];
 
 	function nextPage() {
 		if (currentPage >= maxPages) {
@@ -144,7 +198,6 @@ Does not handle decorations because sigils are optimal.
 		}
 	}
 
-	const weaponClass = WeaponTypes[weaponID].class;
 	const maxNameLength = 24;
 	const maxAttackLength = 5;
 	const maxElementStatusLength = 5;
@@ -159,164 +212,314 @@ Does not handle decorations because sigils are optimal.
 	};
 	// TODO gunner
 	// TODO slots icons
+	$: weaponClass = WeaponTypes[weaponID].class;
+	$: weaponTypeName = WeaponTypes[weaponID].name;
 	$: maxPages = weaponClass === 'Blademaster' ? 6 : 8;
 </script>
 
 <DecoratedBorder>
 	<div class="container">
 		{#if currentPage === 1}
-			<div class="page-1">
-				<div class="header">
-					<div class="weapon-icon-container">
-						<div class="weapon-icon">
-							<svelte:component
-								this={WeaponTypes[weaponID].icon}
-								{...weaponIconProps}
-							/>
+			{#if weaponClass === 'Blademaster'}
+				<div class="page-1-blademaster">
+					<div class="header">
+						<div class="weapon-icon-container">
+							<div class="weapon-icon">
+								<svelte:component
+									this={WeaponTypes[weaponID].icon}
+									{...weaponIconProps}
+								/>
+							</div>
+							<div class="weapon-rank">
+								{#if rank === 'G'}
+									<GRankWeaponIcon />
+								{:else if rank === 'Z'}
+									<ZenithWeaponIcon />
+								{/if}
+							</div>
 						</div>
-						<div class="weapon-rank">
-							{#if rank === 'G'}
-								<GRankWeaponIcon />
-							{:else if rank === 'Z'}
-								<ZenithWeaponIcon />
-							{/if}
+						<div class="weapon-name">
+							<div
+								style="color: var({rarityColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 28ch;"
+							>
+								<span class="text-yellow double-width">:</span>{name.substring(
+									0,
+									maxNameLength,
+								)}
+							</div>
+						</div>
+						<div class="weapon-level-container">
+							<div class="weapon-level">
+								{#if level >= 1 && level <= 100}Lv.{level}{/if}
+							</div>
 						</div>
 					</div>
-					<div class="weapon-name">
-						<div
-							style="color: var({rarityColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 28ch;"
-						>
-							<span class="text-yellow double-width">:</span>{name.substring(
-								0,
-								maxNameLength,
-							)}
-						</div>
-					</div>
-					<div class="weapon-level-container">
-						<div class="weapon-level">
-							{#if level >= 1 && level <= 100}Lv.{level}{/if}
-						</div>
-					</div>
-				</div>
-				<div class="attack">
-					<span class="text-yellow"
-						>Attack<span class="text-yellow double-width">:</span><span
-							style="color: {attackBoost
-								? 'var(--fz-text-cyan)'
-								: 'var(--ctp-text)'};"
-							>{attack.toString().substring(0, maxAttackLength)}</span
-						>
-					</span>
-				</div>
-				<div class="length">
-					{#if frontierMappers.getWeaponNameById(weaponID) === 'Hunting Horn'}
-						<span class="hh-notes"
-							>【Notes
-							<NoteIcon size={16} color={huntingHornNotes[0]} />
-							<NoteIcon size={16} color={huntingHornNotes[1]} />
-							<NoteIcon size={16} color={huntingHornNotes[2]} />
-							】</span
-						>
-					{:else if frontierMappers.getWeaponNameById(weaponID) === 'Gunlance'}
-						<span class="gunlance-shell"
-							>{gunlanceShell} Shot LV{gunlanceShellLevel}</span
-						>
-					{:else if frontierMappers.getWeaponNameById(weaponID) === 'Switch Axe F'}
-						<span class="saf-phial">{phial} Phial</span>
-					{:else}
+					<div class="attack">
 						<span class="text-yellow"
-							>Length<span class="text-yellow double-width">:</span></span
-						>{length}
-					{/if}
-				</div>
-				<div class="sharpness">Sharpness</div>
-				<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
-				<div class="element">
-					{#if element !== ''}
-						{#if extraIcons}
-							<img
-								class="element-icon"
-								alt="Element"
-								src={frontierMappers.getElementIcon(element)}
-							/>
+							>Attack<span class="text-yellow double-width">:</span><span
+								style="color: {attackBoost
+									? 'var(--fz-text-cyan)'
+									: 'var(--ctp-text)'};"
+								>{attack.toString().substring(0, maxAttackLength)}</span
+							>
+						</span>
+					</div>
+					<div class="length">
+						{#if frontierMappers.getWeaponNameById(weaponID) === 'Hunting Horn'}
+							<span class="hh-notes"
+								>【Notes
+								<NoteIcon size={16} color={huntingHornNotes[0]} />
+								<NoteIcon size={16} color={huntingHornNotes[1]} />
+								<NoteIcon size={16} color={huntingHornNotes[2]} />
+								】</span
+							>
+						{:else if frontierMappers.getWeaponNameById(weaponID) === 'Gunlance'}
+							<span class="gunlance-shell"
+								>{gunlanceShell} Shot LV{gunlanceShellLevel}</span
+							>
+						{:else if frontierMappers.getWeaponNameById(weaponID) === 'Switch Axe F'}
+							<span class="saf-phial">{phial} Phial</span>
 						{:else}
-							{element}
+							<span class="text-yellow"
+								>Length<span class="text-yellow double-width">:</span></span
+							>{length}
 						{/if}
-						<span class="double-width">:</span><span
-							style="color: {elementBoost
-								? 'var(--fz-text-cyan)'
-								: 'var(--ctp-text)'};"
-							>{elementValue
+					</div>
+					<div class="sharpness">Sharpness</div>
+					<FrontierWeaponSharpnessBar {sharpnessValues} {sharpnessBoost} />
+					<div class="element">
+						{#if element !== ''}
+							{#if extraIcons}
+								<img
+									class="element-icon"
+									alt="Element"
+									src={frontierMappers.getElementIcon(element)}
+								/>
+							{:else}
+								{element}
+							{/if}
+							<span class="double-width">:</span><span
+								style="color: {elementBoost
+									? 'var(--fz-text-cyan)'
+									: 'var(--ctp-text)'};"
+								>{elementValue
+									.toString()
+									.substring(0, maxElementStatusLength)}</span
+							>
+						{/if}
+					</div>
+					<div class="zenith">
+						{#if zenithSkill !== ''}
+							<span class="double-width-transform">«</span>{zenithSkill}<span
+								class="double-width-transform">»</span
+							>
+						{/if}
+					</div>
+					<div class="status">
+						{#if status === 'Def'}
+							{#if extraIcons}
+								<img
+									class="status-icon"
+									alt="Status"
+									src={frontierMappers.getStatusIcon(status)}
+								/>
+							{:else}
+								{status}
+							{/if}
+							{statusValue >= 0 ? '+' : ''}{statusValue
 								.toString()
-								.substring(0, maxElementStatusLength)}</span
-						>
-					{/if}
-				</div>
-				<div class="zenith">
-					{#if zenithSkill !== ''}
-						<span class="double-width-transform">«</span>{zenithSkill}<span
-							class="double-width-transform">»</span
-						>
-					{/if}
-				</div>
-				<div class="status">
-					{#if status === 'Def'}
-						{#if extraIcons}
-							<img
-								class="status-icon"
-								alt="Status"
-								src={frontierMappers.getStatusIcon(status)}
-							/>
-						{:else}
-							{status}
+								.substring(0, maxElementStatusLength)}
+						{:else if status !== ''}
+							{#if extraIcons}
+								<img
+									class="status-icon"
+									alt="Status"
+									src={frontierMappers.getStatusIcon(status)}
+								/>
+							{:else}
+								{status}
+							{/if}
+							<span class="double-width">:</span><span
+								style="color: {statusBoost
+									? 'var(--fz-text-cyan)'
+									: 'var(--ctp-text)'};"
+								>{statusValue
+									.toString()
+									.substring(0, maxElementStatusLength)}</span
+							>
 						{/if}
-						{statusValue >= 0 ? '+' : ''}{statusValue
-							.toString()
-							.substring(0, maxElementStatusLength)}
-					{:else if status !== ''}
-						{#if extraIcons}
-							<img
-								class="status-icon"
-								alt="Status"
-								src={frontierMappers.getStatusIcon(status)}
-							/>
-						{:else}
-							{status}
-						{/if}
-						<span class="double-width">:</span><span
-							style="color: {statusBoost
-								? 'var(--fz-text-cyan)'
-								: 'var(--ctp-text)'};"
-							>{statusValue
-								.toString()
-								.substring(0, maxElementStatusLength)}</span
-						>
-					{/if}
-				</div>
-				<div class="pages">
-					<button
-						class="arrow-icon-button"
-						on:click={previousPage}
-						aria-label="Navigate to previous page"
-					>
-						<ArrowIcon
-							style="transform: scaleX(-1);"
-							fill="var(--fz-text-green)"
+					</div>
+					<div class="pages">
+						<button
+							class="arrow-icon-button"
 							on:click={previousPage}
-						/>
-					</button>
-					{currentPage}/{maxPages}
-					<button
-						class="arrow-icon-button"
-						on:click={nextPage}
-						aria-label="Navigate to next page"
-					>
-						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
-					</button>
+							aria-label="Navigate to previous page"
+						>
+							<ArrowIcon
+								style="transform: scaleX(-1);"
+								fill="var(--fz-text-green)"
+								on:click={previousPage}
+							/>
+						</button>
+						{currentPage}/{maxPages}
+						<button
+							class="arrow-icon-button"
+							on:click={nextPage}
+							aria-label="Navigate to next page"
+						>
+							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+						</button>
+					</div>
 				</div>
-			</div>
+			{:else}
+				<div class="page-1-gunner">
+					<div class="header">
+						<div class="weapon-icon-container">
+							<div class="weapon-icon">
+								<svelte:component
+									this={WeaponTypes[weaponID].icon}
+									{...weaponIconProps}
+								/>
+							</div>
+							<div class="weapon-rank">
+								{#if rank === 'G'}
+									<GRankWeaponIcon />
+								{:else if rank === 'Z'}
+									<ZenithWeaponIcon />
+								{/if}
+							</div>
+						</div>
+						<div class="weapon-name">
+							<div
+								style="color: var({rarityColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 28ch;"
+							>
+								<span class="text-yellow double-width">:</span>{name.substring(
+									0,
+									maxNameLength,
+								)}
+							</div>
+						</div>
+						<div class="weapon-level-container">
+							<div class="weapon-level">
+								{#if level >= 1 && level <= 100}Lv.{level}{/if}
+							</div>
+						</div>
+					</div>
+					<div class="attack">
+						<span class="text-yellow"
+							>Attack<span class="text-yellow double-width">:</span><span
+								style="color: {attackBoost
+									? 'var(--fz-text-cyan)'
+									: 'var(--ctp-text)'};"
+								>{attack.toString().substring(0, maxAttackLength)}</span
+							>
+						</span>
+					</div>
+					<div class="scope">
+						{#if frontierMappers.getWeaponNameById(weaponID) === 'Bow'}
+							<span class="text-yellow"
+								>Arc<span class="text-yellow double-width">:</span></span
+							>{bowArc}
+						{:else}
+							<span class="scope-type">{bowgunScope} Scope</span>
+						{/if}
+					</div>
+					<div class="reload">
+						{#if weaponTypeName === 'Bow'}
+							<div class="element">
+								{#if element !== ''}
+									{#if extraIcons}
+										<img
+											class="element-icon"
+											alt="Element"
+											src={frontierMappers.getElementIcon(element)}
+										/>
+									{:else}
+										{element}
+									{/if}
+									<span class="double-width">:</span><span
+										style="color: {elementBoost
+											? 'var(--fz-text-cyan)'
+											: 'var(--ctp-text)'};"
+										>{elementValue
+											.toString()
+											.substring(0, maxElementStatusLength)}</span
+									>
+								{/if}
+							</div>
+						{:else}
+							<span class="text-yellow"
+								>Reload<span class="text-yellow double-width">:</span></span
+							>{bowgunReload}
+						{/if}
+					</div>
+					<div class="recoil">
+						{#if weaponTypeName === 'Bow'}
+							<div class="status">
+								{#if status === 'Def'}
+									{#if extraIcons}
+										<img
+											class="status-icon"
+											alt="Status"
+											src={frontierMappers.getStatusIcon(status)}
+										/>
+									{:else}
+										{status}
+									{/if}
+									{statusValue >= 0 ? '+' : ''}{statusValue
+										.toString()
+										.substring(0, maxElementStatusLength)}
+								{/if}
+							</div>
+						{:else}
+							<span class="text-yellow"
+								>Recoil<span class="text-yellow double-width">:</span></span
+							>{bowgunRecoil}
+						{/if}
+					</div>
+					<div class="upgrade">
+						{#if weaponTypeName === 'Heavy Bowgun'}
+							{heavyBowgunUpgrade}
+						{:else if weaponTypeName === 'Light Bowgun'}
+							{lightBowgunUpgrade}
+						{/if}
+					</div>
+					<div class="zenith" style="text-align: left;">
+						{#if zenithSkill !== ''}
+							<span class="double-width-transform">«</span>{zenithSkill}<span
+								class="double-width-transform">»</span
+							>
+						{:else if weaponTypeName !== 'Bow'}
+							<span class="text-yellow"
+								>Attack LV<span class="text-yellow double-width">:</span></span
+							><span style="color: var(--ctp-text);">{bowgunAttackLevel}</span>
+						{/if}
+					</div>
+					<div class="pages">
+						<button
+							class="arrow-icon-button"
+							on:click={previousPage}
+							aria-label="Navigate to previous page"
+						>
+							<ArrowIcon
+								style="transform: scaleX(-1);"
+								fill="var(--fz-text-green)"
+								on:click={previousPage}
+							/>
+						</button>
+						{currentPage}/{maxPages}
+						<button
+							class="arrow-icon-button"
+							on:click={nextPage}
+							aria-label="Navigate to next page"
+						>
+							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+						</button>
+					</div>
+				</div>
+			{/if}
 		{:else if currentPage === 2}
-			<div class="page-2">
+			<div class="page-2-blademaster">
 				<div class="icon">
 					<div class="weapon-icon-container">
 						<div class="weapon-icon">
@@ -404,7 +607,7 @@ Does not handle decorations because sigils are optimal.
 				</div>
 			</div>
 		{:else if currentPage === 3}
-			<div class="page-3">
+			<div class="page-3-blademaster">
 				<p class="skill-tree-header">【Skill Tree: Skill Points】</p>
 				<div class="skills">
 					{#if skillPoints[0] <= 0}
@@ -489,7 +692,7 @@ Does not handle decorations because sigils are optimal.
 				</div>
 			</div>
 		{:else if currentPage === 4}
-			<div class="page-4">
+			<div class="page-4-blademaster">
 				<p class="p-inherit text-yellow">[1st Sigil]</p>
 				<p class="p-inherit text-orange">
 					<span class="double-width">•</span>Oath Sigil
@@ -535,7 +738,7 @@ Does not handle decorations because sigils are optimal.
 				</div>
 			</div>
 		{:else if currentPage === 5}
-			<div class="page-5">
+			<div class="page-5-blademaster">
 				<p class="p-inherit text-yellow">[2nd Sigil]</p>
 				<p class="p-inherit text-orange">
 					<span class="double-width">•</span>Oath Sigil
@@ -581,7 +784,7 @@ Does not handle decorations because sigils are optimal.
 				</div>
 			</div>
 		{:else if currentPage === 6}
-			<div class="page-6">
+			<div class="page-6-blademaster">
 				<p class="p-inherit text-yellow">[3rd Sigil]</p>
 				<p class="p-inherit text-orange">
 					<span class="double-width">•</span>Oath Sigil
@@ -742,7 +945,7 @@ Does not handle decorations because sigils are optimal.
 		grid-area: pages;
 	}
 
-	.page-1 {
+	.page-1-blademaster {
 		display: grid;
 		grid-template-areas:
 			'header header header'
@@ -750,6 +953,34 @@ Does not handle decorations because sigils are optimal.
 			'sharpness bar bar'
 			'element zenith zenith'
 			'status pages pages';
+		gap: 0.5rem;
+	}
+
+	.scope {
+		grid-area: scope;
+		text-align: center;
+	}
+
+	.reload {
+		grid-area: reload;
+	}
+
+	.upgrade {
+		grid-area: upgrade;
+	}
+
+	.recoil {
+		grid-area: recoil;
+	}
+
+	.page-1-gunner {
+		display: grid;
+		grid-template-areas:
+			'header header header'
+			'attack scope scope'
+			'reload reload upgrade'
+			'recoil recoil recoil'
+			'zenith pages pages';
 		gap: 0.5rem;
 	}
 
@@ -776,7 +1007,7 @@ Does not handle decorations because sigils are optimal.
 		justify-content: start;
 	}
 
-	.page-2 p {
+	.page-2-blademaster p {
 		font-weight: bold;
 	}
 
@@ -798,7 +1029,7 @@ Does not handle decorations because sigils are optimal.
 		grid-area: slots;
 	}
 
-	.page-2 {
+	.page-2-blademaster {
 		display: grid;
 		grid-template-areas:
 			'icon description'
@@ -837,9 +1068,9 @@ Does not handle decorations because sigils are optimal.
 		font: inherit;
 	}
 
-	.page-4,
-	.page-5,
-	.page-6 {
+	.page-4-blademaster,
+	.page-5-blademaster,
+	.page-6-blademaster {
 		line-height: 1.2em;
 	}
 
@@ -881,7 +1112,7 @@ Does not handle decorations because sigils are optimal.
 		gap: 0.75rem;
 	}
 
-	.page-3 .pages {
+	.page-3-blademaster .pages {
 		position: absolute;
 		bottom: 0.5rem;
 		right: 0.5rem;
