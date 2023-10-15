@@ -100,11 +100,12 @@ export type FrontierBowgunAmmo =
 	| 'Ultra Rapid Fire';
 export type FrontierBowArcShot = 'Wide' | 'Narrow' | 'Bomb' | 'Slicing';
 export type FrontierBowCharge = 'Pierce' | 'Rapid' | 'Scatter' | 'Rising';
+export type FrontierBowChargeLevel = 1 | 2 | 3 | 4;
 export type FrontierBowCoating =
 	| 'Power'
 	| 'Crit'
 	| 'Poison'
-	| 'Paralysis'
+	| 'Para'
 	| 'Sleep'
 	| 'Impact';
 export type FrontierBowgunScope = 'Fixed' | 'Zoom';
@@ -1087,3 +1088,12 @@ export type FrontierWeaponType =
 	| 'Prayer'
 	| 'Zenith'
 	| 'Z Finesse';
+export type FrontierBowgunAmmoLevel = 1 | 2 | 3;
+export type FrontierBowgunAmmoQuantity = {
+	type: FrontierBowgunAmmo;
+	levelQuantity: [level1: number, level2: number, level3: number];
+};
+export type FrontierBowChargeLevels = {
+	type: FrontierBowCharge;
+	level: FrontierBowChargeLevel;
+};
