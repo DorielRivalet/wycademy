@@ -107,6 +107,17 @@ export type FrontierBowCoating =
 	| 'Paralysis'
 	| 'Sleep'
 	| 'Impact';
+export type FrontierBowgunScope = 'Fixed' | 'Zoom';
+// TODO is level up separate? export type FrontierBowgunUpgrade = '' | 'Level Up'
+export type FrontierHeavyBowgunUpgrade =
+	| ''
+	| 'Shield'
+	| 'Power Barrel'
+	| 'Heavy Barrel'
+	| 'Heat Beam';
+export type FrontierLightBowgunUpgrade = '' | 'Silencer' | 'Long Barrel';
+/**0 Does not show. */
+export type FrontierBowgunAttackLevel = 0 | 1 | 2 | 3 | 4 | 5;
 export type FrontierGunlanceShell = 'Spread' | 'Long' | 'Normal';
 export type FrontierGunlanceShellLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export type FrontierWeaponClass = 'Blademaster' | 'Gunner';
@@ -314,6 +325,7 @@ export type FrontierSigil =
 	| 'Zenith Elemental'
 	| 'Zenith Movement Speed'
 	| 'All Zenith AOEs';
+export type FrontierSigilObject = { id: string; value: number };
 export type FrontierArmorSkillTree =
 	| ''
 	| 'Health'

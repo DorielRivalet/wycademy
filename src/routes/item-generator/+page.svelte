@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {
 		SharpnessNames,
+		SigilSkills,
 		ZenithSkills,
 		defaultWeaponComponentValues,
 	} from '$lib/client/modules/frontier/objects';
@@ -32,6 +33,8 @@
 	import logo from '$lib/client/images/logo.webp';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import type { FrontierWeaponType } from '$lib/client/modules/frontier/types';
+	import type { FrontierSigilObject } from '$lib/client/modules/frontier/types';
 
 	type dropdownItem = { id: string; text: string };
 
@@ -55,6 +58,28 @@
 		weaponStatusType = defaultWeaponComponentValues.weaponStatusType;
 		weaponZenithSkill = defaultWeaponComponentValues.weaponZenithSkill;
 		weaponSharpnessBoost = defaultWeaponComponentValues.weaponSharpnessBoost;
+		weaponDescription = defaultWeaponComponentValues.weaponDescription;
+		weaponExtraIcons = defaultWeaponComponentValues.weaponExtraIcons;
+		weaponType = defaultWeaponComponentValues.weaponType;
+		weaponAffinity = defaultWeaponComponentValues.weaponAffinity;
+		weaponSigil1Id = defaultWeaponComponentValues.weaponSigil1Id;
+		weaponSigil2Id = defaultWeaponComponentValues.weaponSigil2Id;
+		weaponSigil3Id = defaultWeaponComponentValues.weaponSigil3Id;
+		weaponSigil4Id = defaultWeaponComponentValues.weaponSigil4Id;
+		weaponSigil5Id = defaultWeaponComponentValues.weaponSigil5Id;
+		weaponSigil6Id = defaultWeaponComponentValues.weaponSigil6Id;
+		weaponSigil7Id = defaultWeaponComponentValues.weaponSigil7Id;
+		weaponSigil8Id = defaultWeaponComponentValues.weaponSigil8Id;
+		weaponSigil9Id = defaultWeaponComponentValues.weaponSigil9Id;
+		weaponSigil1Value = defaultWeaponComponentValues.weaponSigil1Value;
+		weaponSigil2Value = defaultWeaponComponentValues.weaponSigil2Value;
+		weaponSigil3Value = defaultWeaponComponentValues.weaponSigil3Value;
+		weaponSigil4Value = defaultWeaponComponentValues.weaponSigil4Value;
+		weaponSigil5Value = defaultWeaponComponentValues.weaponSigil5Value;
+		weaponSigil6Value = defaultWeaponComponentValues.weaponSigil6Value;
+		weaponSigil7Value = defaultWeaponComponentValues.weaponSigil7Value;
+		weaponSigil8Value = defaultWeaponComponentValues.weaponSigil8Value;
+		weaponSigil9Value = defaultWeaponComponentValues.weaponSigil9Value;
 	}
 
 	function getZenithSkills() {
@@ -66,6 +91,18 @@
 		});
 		return array;
 	}
+
+	function getSigilSkills() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		SigilSkills.forEach((element) => {
+			if (element !== '') {
+				array = [...array, { id: element, text: element }];
+			}
+		});
+		return array;
+	}
+
+	function getHHNotes() {}
 
 	function downloadWeaponImage() {
 		if (!browser) return;
@@ -88,6 +125,8 @@
 	const invalidWeaponRarityText = 'Value must be between 1 and 12.';
 	const invalidWeaponAttackText = 'Value must be between 1 and 65536';
 	const invalidWeaponElementStatusText = 'Value must be between -2550 and 2550';
+	const invalidWeaponAffinityText = 'Value must be between -2550 and 2550';
+	const invalidWeaponSigilValueText = 'Value must be between -127 and 127';
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
 
@@ -109,17 +148,37 @@
 	let weaponStatusType = defaultWeaponComponentValues.weaponStatusType;
 	let weaponZenithSkill = defaultWeaponComponentValues.weaponZenithSkill;
 	let weaponSharpnessBoost = defaultWeaponComponentValues.weaponSharpnessBoost;
+	let weaponDescription = defaultWeaponComponentValues.weaponDescription;
+	let weaponExtraIcons = defaultWeaponComponentValues.weaponExtraIcons;
+	let weaponType = defaultWeaponComponentValues.weaponType;
+	let weaponAffinity = defaultWeaponComponentValues.weaponAffinity;
+	let weaponSigil1Id = defaultWeaponComponentValues.weaponSigil1Id;
+	let weaponSigil2Id = defaultWeaponComponentValues.weaponSigil2Id;
+	let weaponSigil3Id = defaultWeaponComponentValues.weaponSigil3Id;
+	let weaponSigil4Id = defaultWeaponComponentValues.weaponSigil4Id;
+	let weaponSigil5Id = defaultWeaponComponentValues.weaponSigil5Id;
+	let weaponSigil6Id = defaultWeaponComponentValues.weaponSigil6Id;
+	let weaponSigil7Id = defaultWeaponComponentValues.weaponSigil7Id;
+	let weaponSigil8Id = defaultWeaponComponentValues.weaponSigil8Id;
+	let weaponSigil9Id = defaultWeaponComponentValues.weaponSigil9Id;
+	let weaponSigil1Value = defaultWeaponComponentValues.weaponSigil1Value;
+	let weaponSigil2Value = defaultWeaponComponentValues.weaponSigil2Value;
+	let weaponSigil3Value = defaultWeaponComponentValues.weaponSigil3Value;
+	let weaponSigil4Value = defaultWeaponComponentValues.weaponSigil4Value;
+	let weaponSigil5Value = defaultWeaponComponentValues.weaponSigil5Value;
+	let weaponSigil6Value = defaultWeaponComponentValues.weaponSigil6Value;
+	let weaponSigil7Value = defaultWeaponComponentValues.weaponSigil7Value;
+	let weaponSigil8Value = defaultWeaponComponentValues.weaponSigil8Value;
+	let weaponSigil9Value = defaultWeaponComponentValues.weaponSigil9Value;
 
 	let url = $page.url.toString();
 	let currentWeaponPage = 1;
 	let currentArmorPage = 1;
-	let weaponDescription =
-		'A spear decorated with a rare scarlet jewel from a foreign country.';
-	let weaponExtraIcons = false;
+	//TODO default values
 </script>
 
 <Head
-	title={'About'}
+	title={'Item Generator'}
 	{description}
 	image={logo}
 	{url}
@@ -175,6 +234,28 @@
 				{#key weaponRarity}
 					<div id="weapon-dom">
 						<Weapon
+							sigils={[
+								weaponSigil1Id,
+								weaponSigil2Id,
+								weaponSigil3Id,
+								weaponSigil4Id,
+								weaponSigil5Id,
+								weaponSigil6Id,
+								weaponSigil7Id,
+								weaponSigil8Id,
+								weaponSigil9Id,
+							]}
+							sigilPoints={[
+								weaponSigil1Value,
+								weaponSigil2Value,
+								weaponSigil3Value,
+								weaponSigil4Value,
+								weaponSigil5Value,
+								weaponSigil6Value,
+								weaponSigil7Value,
+								weaponSigil8Value,
+								weaponSigil9Value,
+							]}
 							extraIcons={weaponExtraIcons}
 							bind:currentPage={currentWeaponPage}
 							name={weaponName}
@@ -197,6 +278,8 @@
 								: 1}
 							zenithSkill={weaponZenithSkill}
 							description={weaponDescription}
+							affinity={weaponAffinity}
+							{weaponType}
 						/>
 					</div>
 				{/key}
@@ -251,7 +334,7 @@
 				</div>
 			</div>
 			{#if currentWeaponPage === 1}
-				<div class="page-1">
+				<div class="page-1-blademaster">
 					<div class="weapon-sharpness-values">
 						{#each SharpnessNames as name, i}
 							<NumberInput
@@ -379,24 +462,209 @@
 					</div>
 				</div>
 			{:else if currentWeaponPage === 2}
-				<div class="page-2">
-					<p>2</p>
+				<div class="page-2-blademaster">
+					<TextInput
+						labelText="Description"
+						placeholder="Enter weapon description"
+						hideLabel
+						bind:value={weaponDescription}
+					/>
+					<Dropdown
+						titleText="Type"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponType}
+						items={[
+							{ id: 'Standard', text: 'Standard' },
+							{ id: 'SP', text: 'SP' },
+							{ id: 'HC', text: 'HC' },
+							{ id: "Master's Mark", text: "Master's Mark" },
+							{ id: 'Evolution', text: 'Evolution' },
+							{ id: 'Gou', text: 'Gou' },
+							{ id: 'Heavenly Storm', text: 'Heavenly Storm' },
+							{ id: 'Supremacy', text: 'Supremacy' },
+							{ id: 'G Supremacy', text: 'G Supremacy' },
+							{ id: 'Burst', text: 'Burst' },
+							{ id: 'Origin', text: 'Origin' },
+							{ id: 'G Rank', text: 'G Rank' },
+							{ id: 'G Rank Finesse', text: 'G Rank Finesse' },
+							{ id: 'Tower', text: 'Tower' },
+							{ id: 'Exotic', text: 'Exotic' },
+							{ id: 'Prayer', text: 'Prayer' },
+							{ id: 'Zenith', text: 'Zenith' },
+							{ id: 'Z Finesse', text: 'Z Finesse' },
+						]}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-2550}
+						max={2550}
+						bind:value={weaponAffinity}
+						invalidText={invalidWeaponAffinityText}
+						label={'Affinity'}
+					/>
 				</div>
 			{:else if currentWeaponPage === 3}
-				<div class="page-3">
-					<p>2</p>
-				</div>
+				<div class="page-3-blademaster" />
 			{:else if currentWeaponPage === 4}
-				<div class="page-4">
-					<p>2</p>
+				<div class="page-4-blademaster">
+					<div class="sigils">
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil1Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={weaponSigil1Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 1'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil2Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={weaponSigil2Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 2'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil3Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={weaponSigil3Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 3'}
+						/>
+					</div>
 				</div>
 			{:else if currentWeaponPage === 5}
-				<div class="page-5">
-					<p>2</p>
+				<div class="page-5-blademaster">
+					<div class="sigils">
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil4Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={weaponSigil4Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 4'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil5Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={weaponSigil5Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 5'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil6Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={weaponSigil6Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 6'}
+						/>
+					</div>
 				</div>
 			{:else if currentWeaponPage === 6}
-				<div class="page-6">
-					<p>2</p>
+				<div class="page-6-blademaster">
+					<div class="sigils">
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil7Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={weaponSigil7Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 7'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil8Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={weaponSigil8Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 8'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil9Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={weaponSigil9Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 9'}
+						/>
+					</div>
 				</div>
 			{/if}
 		</div>
@@ -451,6 +719,19 @@
 	.container-weapon-buttons {
 		display: flex;
 		flex-direction: row;
+		gap: 1rem;
+	}
+
+	.page-2-blademaster {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.sigils {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		margin: 1rem;
 		gap: 1rem;
 	}
 </style>

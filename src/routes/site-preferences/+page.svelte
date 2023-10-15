@@ -211,7 +211,7 @@
 </svelte:head>
 
 <Head
-	title={'About'}
+	title={'Site Preferences'}
 	{description}
 	image={logo}
 	{url}
