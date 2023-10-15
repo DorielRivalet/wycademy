@@ -159,7 +159,7 @@ Does not handle decorations because sigils are optimal.
 	};
 	// TODO gunner
 	// TODO slots icons
-	let maxPages = 6;
+	$: maxPages = weaponClass === 'Blademaster' ? 6 : 8;
 </script>
 
 <DecoratedBorder>
