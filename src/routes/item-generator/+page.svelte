@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {
 		ArmorSkills,
+		HuntingHornWeaponNotesCombinations,
 		SharpnessNames,
 		SigilSkills,
 		ZenithSkills,
@@ -34,7 +35,11 @@
 	import logo from '$lib/client/images/logo.webp';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
-	import type { FrontierWeaponType } from '$lib/client/modules/frontier/types';
+	import type {
+		FrontierHuntingHornWeaponNote,
+		FrontierSwitchAxeFPhial,
+		FrontierWeaponType,
+	} from '$lib/client/modules/frontier/types';
 	import type { FrontierSigilObject } from '$lib/client/modules/frontier/types';
 
 	type dropdownItem = { id: string; text: string };
@@ -82,6 +87,11 @@
 		weaponSigil8Value = defaultWeaponComponentValues.weaponSigil8Value;
 		weaponSigil9Value = defaultWeaponComponentValues.weaponSigil9Value;
 		weaponAutomaticSkill = defaultWeaponComponentValues.weaponAutomaticSkill;
+		huntingHornNote1 = defaultWeaponComponentValues.huntingHornNote1;
+		huntingHornNote2 = defaultWeaponComponentValues.huntingHornNote2;
+		huntingHornNote3 = defaultWeaponComponentValues.huntingHornNote3;
+		huntingHornNotes = `${huntingHornNote1} ${huntingHornNote2} ${huntingHornNote3}`;
+		safPhial = defaultWeaponComponentValues.safPhial;
 	}
 
 	function getZenithSkills() {
@@ -114,7 +124,14 @@
 		return array;
 	}
 
-	function getHHNotes() {}
+	function getHHNotes() {
+		let array: dropdownItem[] = [];
+		HuntingHornWeaponNotesCombinations.forEach((element) => {
+			let result = `${element[0]} ${element[1]} ${element[2]}`;
+			array = [...array, { id: result, text: result }];
+		});
+		return array;
+	}
 
 	function downloadWeaponImage() {
 		if (!browser) return;
@@ -183,10 +200,24 @@
 	let weaponSigil8Value = defaultWeaponComponentValues.weaponSigil8Value;
 	let weaponSigil9Value = defaultWeaponComponentValues.weaponSigil9Value;
 	let weaponAutomaticSkill = defaultWeaponComponentValues.weaponAutomaticSkill;
+	let huntingHornNote1: FrontierHuntingHornWeaponNote =
+		defaultWeaponComponentValues.huntingHornNote1;
+	let huntingHornNote2: FrontierHuntingHornWeaponNote =
+		defaultWeaponComponentValues.huntingHornNote2;
+	let huntingHornNote3: FrontierHuntingHornWeaponNote =
+		defaultWeaponComponentValues.huntingHornNote3;
+	let huntingHornNotes = `${huntingHornNote1} ${huntingHornNote2} ${huntingHornNote3}`;
+	let safPhial: FrontierSwitchAxeFPhial = defaultWeaponComponentValues.safPhial;
 
 	let url = $page.url.toString();
 	let currentWeaponPage = 1;
 	let currentArmorPage = 1;
+
+	$: huntingHornNotesArray = [
+		huntingHornNotes.split(' ')[0],
+		huntingHornNotes.split(' ')[1],
+		huntingHornNotes.split(' ')[2],
+	] as FrontierHuntingHornWeaponNote[];
 	//TODO default values
 </script>
 
@@ -247,6 +278,12 @@
 				{#key weaponRarity}
 					<div id="weapon-dom">
 						<Weapon
+							huntingHornNotes={[
+								huntingHornNotesArray[0],
+								huntingHornNotesArray[1],
+								huntingHornNotesArray[2],
+							]}
+							phial={safPhial}
 							automaticSkill={weaponAutomaticSkill}
 							sigils={[
 								weaponSigil1Id,
@@ -474,6 +511,15 @@
 							]}
 						/>
 					</div>
+					{#if frontierMappers.getWeaponNameById(weaponTypeId) === 'Hunting Horn'}
+						<Dropdown
+							titleText="Hunting Horn Notes"
+							type="inline"
+							hideLabel
+							bind:selectedId={huntingHornNotes}
+							items={getHHNotes()}
+						/>
+					{/if}
 				</div>
 			{:else if currentWeaponPage === 2}
 				<div class="page-2-blademaster">

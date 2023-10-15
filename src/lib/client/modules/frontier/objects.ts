@@ -15,6 +15,7 @@ import type {
 	FrontierRarity,
 	FrontierSigil,
 	FrontierStatus,
+	FrontierSwitchAxeFPhial,
 	FrontierWeaponClass,
 	FrontierWeaponID,
 	FrontierWeaponLength,
@@ -937,6 +938,13 @@ export const defaultWeaponComponentValues = {
 	weaponSigil8Value: -8,
 	weaponSigil9Value: 9,
 	weaponAutomaticSkill: '' as FrontierArmorSkillName,
+	huntingHornNote1:
+		HuntingHornWeaponNotesCombinations[0][0] as FrontierHuntingHornWeaponNote,
+	huntingHornNote2:
+		HuntingHornWeaponNotesCombinations[0][1] as FrontierHuntingHornWeaponNote,
+	huntingHornNote3:
+		HuntingHornWeaponNotesCombinations[0][2] as FrontierHuntingHornWeaponNote,
+	safPhial: 'Power' as FrontierSwitchAxeFPhial,
 } as const;
 
 /*
