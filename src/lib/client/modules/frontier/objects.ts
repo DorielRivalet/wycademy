@@ -11,6 +11,8 @@ import type {
 	FrontierArmorSkillName,
 	FrontierElement,
 	FrontierEquipmentRank,
+	FrontierGunlanceShell,
+	FrontierGunlanceShellLevel,
 	FrontierHuntingHornWeaponNote,
 	FrontierRarity,
 	FrontierSigil,
@@ -945,6 +947,8 @@ export const defaultWeaponComponentValues = {
 	huntingHornNote3:
 		HuntingHornWeaponNotesCombinations[0][2] as FrontierHuntingHornWeaponNote,
 	safPhial: 'Power' as FrontierSwitchAxeFPhial,
+	gunlanceShellType: 'Spread' as FrontierGunlanceShell,
+	gunlanceShellLevel: 9 as FrontierGunlanceShellLevel,
 } as const;
 
 /*

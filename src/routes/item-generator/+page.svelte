@@ -36,6 +36,8 @@
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import type {
+		FrontierGunlanceShell,
+		FrontierGunlanceShellLevel,
 		FrontierHuntingHornWeaponNote,
 		FrontierSwitchAxeFPhial,
 		FrontierWeaponType,
@@ -92,6 +94,8 @@
 		huntingHornNote3 = defaultWeaponComponentValues.huntingHornNote3;
 		huntingHornNotes = `${huntingHornNote1} ${huntingHornNote2} ${huntingHornNote3}`;
 		safPhial = defaultWeaponComponentValues.safPhial;
+		gunlanceShellType = defaultWeaponComponentValues.gunlanceShellType;
+		gunlanceShellLevel = defaultWeaponComponentValues.gunlanceShellLevel;
 	}
 
 	function getZenithSkills() {
@@ -156,6 +160,7 @@
 	const invalidWeaponElementStatusText = 'Value must be between -2550 and 2550';
 	const invalidWeaponAffinityText = 'Value must be between -2550 and 2550';
 	const invalidWeaponSigilValueText = 'Value must be between -127 and 127';
+	const invalidGunlanceShellLevelText = 'Value must be between 1 and 9';
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
 
@@ -208,6 +213,10 @@
 		defaultWeaponComponentValues.huntingHornNote3;
 	let huntingHornNotes = `${huntingHornNote1} ${huntingHornNote2} ${huntingHornNote3}`;
 	let safPhial: FrontierSwitchAxeFPhial = defaultWeaponComponentValues.safPhial;
+	let gunlanceShellType: FrontierGunlanceShell =
+		defaultWeaponComponentValues.gunlanceShellType;
+	let gunlanceShellLevel: FrontierGunlanceShellLevel =
+		defaultWeaponComponentValues.gunlanceShellLevel;
 
 	let url = $page.url.toString();
 	let currentWeaponPage = 1;
@@ -278,6 +287,8 @@
 				{#key weaponRarity}
 					<div id="weapon-dom">
 						<Weapon
+							gunlanceShell={gunlanceShellType}
+							{gunlanceShellLevel}
 							huntingHornNotes={[
 								huntingHornNotesArray[0],
 								huntingHornNotesArray[1],
@@ -531,6 +542,27 @@
 								{ id: 'Ele', text: 'Element' },
 								{ id: 'Status', text: 'Status' },
 							]}
+						/>
+					{:else if frontierMappers.getWeaponNameById(weaponTypeId) === 'Gunlance'}
+						<Dropdown
+							titleText="Shell Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={gunlanceShellType}
+							items={[
+								{ id: 'Spread', text: 'Spread' },
+								{ id: 'Long', text: 'Long' },
+								{ id: 'Normal', text: 'Normal' },
+							]}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={1}
+							max={9}
+							bind:value={gunlanceShellLevel}
+							invalidText={invalidGunlanceShellLevelText}
+							label={'Shell Level'}
 						/>
 					{/if}
 				</div>
