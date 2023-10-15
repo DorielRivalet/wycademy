@@ -519,6 +519,19 @@
 							bind:selectedId={huntingHornNotes}
 							items={getHHNotes()}
 						/>
+					{:else if frontierMappers.getWeaponNameById(weaponTypeId) === 'Switch Axe F'}
+						<Dropdown
+							titleText="Switch Axe F Phial"
+							type="inline"
+							hideLabel
+							bind:selectedId={safPhial}
+							items={[
+								{ id: 'Stun', text: 'Stun' },
+								{ id: 'Power', text: 'Power' },
+								{ id: 'Ele', text: 'Element' },
+								{ id: 'Status', text: 'Status' },
+							]}
+						/>
 					{/if}
 				</div>
 			{:else if currentWeaponPage === 2}
