@@ -99,7 +99,7 @@ export type FrontierBowgunAmmo =
 	| 'Rapid Fire'
 	| 'Ultra Rapid Fire';
 export type FrontierBowArcShot = 'Wide' | 'Narrow' | 'Bomb' | 'Slicing';
-export type FrontierBowCharge = 'Pierce' | 'Rapid' | 'Scatter' | 'Rising';
+export type FrontierBowCharge = 'Pierce' | 'Rapid' | 'Spread' | 'Rising';
 export type FrontierBowChargeLevel = 1 | 2 | 3 | 4;
 export type FrontierBowCoating =
 	| 'Power'
@@ -108,6 +108,14 @@ export type FrontierBowCoating =
 	| 'Para'
 	| 'Sleep'
 	| 'Impact';
+export type FrontierBowAvailableCoatings = {
+	power: boolean;
+	// crit: boolean;
+	poison: boolean;
+	para: boolean;
+	sleep: boolean;
+	impact: boolean;
+};
 export type FrontierBowgunScope = 'Fixed' | 'Zoom';
 // TODO is level up separate? export type FrontierBowgunUpgrade = '' | 'Level Up'
 export type FrontierHeavyBowgunUpgrade =
