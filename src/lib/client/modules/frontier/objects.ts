@@ -7,13 +7,21 @@
 // if bitfields are not needed, make an object instead.
 
 import type {
-	FrontierArmorSkill,
 	FrontierArmorSkillName,
+	FrontierBowArcShot,
+	FrontierBowCharge,
+	FrontierBowChargeLevel,
+	FrontierBowgunAttackLevel,
+	FrontierBowgunRecoil,
+	FrontierBowgunReloadSpeed,
+	FrontierBowgunScope,
 	FrontierElement,
 	FrontierEquipmentRank,
 	FrontierGunlanceShell,
 	FrontierGunlanceShellLevel,
+	FrontierHeavyBowgunUpgrade,
 	FrontierHuntingHornWeaponNote,
+	FrontierLightBowgunUpgrade,
 	FrontierRarity,
 	FrontierSigil,
 	FrontierStatus,
@@ -896,6 +904,8 @@ export const HuntingHornWeaponNotesCombinations: FrontierHuntingHornWeaponNote[]
 		['Purple', 'Cyan', 'Blue'],
 	];
 
+type levelQuantity = [level1: number, level2: number, level3: number];
+
 export const defaultWeaponComponentValues = {
 	weaponSharpness: [
 		170, 170, 170, 170, 170, 200, 250, 350,
@@ -949,6 +959,42 @@ export const defaultWeaponComponentValues = {
 	safPhial: 'Power' as FrontierSwitchAxeFPhial,
 	gunlanceShellType: 'Spread' as FrontierGunlanceShell,
 	gunlanceShellLevel: 9 as FrontierGunlanceShellLevel,
+	bowArc: 'Narrow' as FrontierBowArcShot,
+	bowChargeType1: 'Pierce' as FrontierBowCharge,
+	bowChargeLevel1: 3 as FrontierBowChargeLevel,
+	bowChargeType2: 'Spread' as FrontierBowCharge,
+	bowChargeLevel2: 3 as FrontierBowChargeLevel,
+	bowChargeType3: 'Pierce' as FrontierBowCharge,
+	bowChargeLevel3: 4 as FrontierBowChargeLevel,
+	bowPoisonCoatingAvailable: true,
+	bowParalysisCoatingAvailable: true,
+	bowSleepCoatingAvailable: true,
+	bowImpactCoatingAvailable: true,
+	bowPowerCoatingAvailable: true,
+	bowgunReload: 'Very Fast' as FrontierBowgunReloadSpeed,
+	bowgunRecoil: 'Smaller' as FrontierBowgunRecoil,
+	bowgunScope: 'Zoom' as FrontierBowgunScope,
+	lightBowgunUpgrade: 'Silencer' as FrontierLightBowgunUpgrade,
+	heavyBowgunUpgrade: 'Power Barrel' as FrontierHeavyBowgunUpgrade,
+	bowgunAttackLevel: 5 as FrontierBowgunAttackLevel,
+	bowgunNormalAmmo: [9, 9, 12] as levelQuantity,
+	bowgunPierceAmmo: [6, 6, 6] as levelQuantity,
+	bowgunPelletAmmo: [6, 6, 6] as levelQuantity,
+	bowgunCragAmmo: [2, 2, 2] as levelQuantity,
+	bowgunClusterAmmo: [0, 0, 0] as levelQuantity,
+	bowgunRecoveryAmmo: [0, 0, 0] as levelQuantity,
+	bowgunPoisonAmmo: [0, 0, 0] as levelQuantity,
+	bowgunParalysisAmmo: [0, 0, 0] as levelQuantity,
+	bowgunSleepAmmo: [0, 0, 0] as levelQuantity,
+	bowgunFlamingAmmo: [6, 0, 0] as levelQuantity,
+	bowgunWaterAmmo: [0, 0, 0] as levelQuantity,
+	bowgunThunderAmmo: [0, 0, 0] as levelQuantity,
+	bowgunFreezeAmmo: [0, 0, 0] as levelQuantity,
+	bowgunDragonAmmo: [0, 0, 0] as levelQuantity,
+	bowgunTranqAmmo: [2, 0, 0] as levelQuantity,
+	bowgunPaintAmmo: [2, 0, 0] as levelQuantity,
+	bowgunDemonAmmo: [1, 0, 0] as levelQuantity,
+	bowgunArmorAmmo: [1, 0, 0] as levelQuantity,
 } as const;
 
 /*

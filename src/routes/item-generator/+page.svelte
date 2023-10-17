@@ -37,23 +37,11 @@
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import type {
-		FrontierBowArcShot,
-		FrontierBowCharge,
-		FrontierBowChargeLevel,
-		FrontierBowgunAttackLevel,
-		FrontierBowgunRecoil,
-		FrontierBowgunReloadSpeed,
-		FrontierBowgunScope,
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
-		FrontierHeavyBowgunUpgrade,
 		FrontierHuntingHornWeaponNote,
-		FrontierLightBowgunUpgrade,
 		FrontierSwitchAxeFPhial,
-		FrontierWeaponType,
 	} from '$lib/client/modules/frontier/types';
-	import type { FrontierSigilObject } from '$lib/client/modules/frontier/types';
-	import { isFunctionNode } from 'mathjs';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -108,6 +96,47 @@
 		safPhial = defaultWeaponComponentValues.safPhial;
 		gunlanceShellType = defaultWeaponComponentValues.gunlanceShellType;
 		gunlanceShellLevel = defaultWeaponComponentValues.gunlanceShellLevel;
+		bowArc = defaultWeaponComponentValues.bowArc;
+		bowChargeType1 = defaultWeaponComponentValues.bowChargeType1;
+		bowChargeLevel1 = defaultWeaponComponentValues.bowChargeLevel1;
+		bowChargeType2 = defaultWeaponComponentValues.bowChargeType2;
+		bowChargeLevel2 = defaultWeaponComponentValues.bowChargeLevel2;
+		bowChargeType3 = defaultWeaponComponentValues.bowChargeType3;
+		bowChargeLevel3 = defaultWeaponComponentValues.bowChargeLevel3;
+		bowPoisonCoatingAvailable =
+			defaultWeaponComponentValues.bowPoisonCoatingAvailable;
+		bowParalysisCoatingAvailable =
+			defaultWeaponComponentValues.bowParalysisCoatingAvailable;
+		bowSleepCoatingAvailable =
+			defaultWeaponComponentValues.bowSleepCoatingAvailable;
+		bowImpactCoatingAvailable =
+			defaultWeaponComponentValues.bowImpactCoatingAvailable;
+		bowPowerCoatingAvailable =
+			defaultWeaponComponentValues.bowPowerCoatingAvailable;
+		bowgunReload = defaultWeaponComponentValues.bowgunReload;
+		bowgunRecoil = defaultWeaponComponentValues.bowgunRecoil;
+		bowgunScope = defaultWeaponComponentValues.bowgunScope;
+		lightBowgunUpgrade = defaultWeaponComponentValues.lightBowgunUpgrade;
+		heavyBowgunUpgrade = defaultWeaponComponentValues.heavyBowgunUpgrade;
+		bowgunAttackLevel = defaultWeaponComponentValues.bowgunAttackLevel;
+		bowgunNormalAmmo = [9, 9, 12];
+		bowgunPierceAmmo = [6, 6, 6];
+		bowgunPelletAmmo = [6, 6, 6];
+		bowgunCragAmmo = [2, 2, 2];
+		bowgunClusterAmmo = [0, 0, 0];
+		bowgunRecoveryAmmo = [0, 0, 0];
+		bowgunPoisonAmmo = [0, 0, 0];
+		bowgunParalysisAmmo = [0, 0, 0];
+		bowgunSleepAmmo = [0, 0, 0];
+		bowgunFlamingAmmo = [6, 0, 0];
+		bowgunWaterAmmo = [0, 0, 0];
+		bowgunThunderAmmo = [0, 0, 0];
+		bowgunFreezeAmmo = [0, 0, 0];
+		bowgunDragonAmmo = [0, 0, 0];
+		bowgunTranqAmmo = [2, 0, 0];
+		bowgunPaintAmmo = [2, 0, 0];
+		bowgunDemonAmmo = [1, 0, 0];
+		bowgunArmorAmmo = [1, 0, 0];
 	}
 
 	function getZenithSkills() {
@@ -233,24 +262,29 @@
 		defaultWeaponComponentValues.gunlanceShellType;
 	let gunlanceShellLevel: FrontierGunlanceShellLevel =
 		defaultWeaponComponentValues.gunlanceShellLevel;
-	let bowArc: FrontierBowArcShot = 'Narrow';
-	let bowChargeType1: FrontierBowCharge = 'Pierce';
-	let bowChargeLevel1: FrontierBowChargeLevel = 3;
-	let bowChargeType2: FrontierBowCharge = 'Spread';
-	let bowChargeLevel2: FrontierBowChargeLevel = 3;
-	let bowChargeType3: FrontierBowCharge = 'Pierce';
-	let bowChargeLevel3: FrontierBowChargeLevel = 4;
-	let bowPoisonCoatingAvailable = true;
-	let bowParalysisCoatingAvailable = true;
-	let bowSleepCoatingAvailable = true;
-	let bowImpactCoatingAvailable = true;
-	let bowPowerCoatingAvailable = true;
-	let bowgunReload: FrontierBowgunReloadSpeed = 'Very Fast';
-	let bowgunRecoil: FrontierBowgunRecoil = 'Smaller';
-	let bowgunScope: FrontierBowgunScope = 'Zoom';
-	let lightBowgunUpgrade: FrontierLightBowgunUpgrade = 'Silencer';
-	let heavyBowgunUpgrade: FrontierHeavyBowgunUpgrade = 'Power Barrel';
-	let bowgunAttackLevel: FrontierBowgunAttackLevel = 5;
+	let bowArc = defaultWeaponComponentValues.bowArc;
+	let bowChargeType1 = defaultWeaponComponentValues.bowChargeType1;
+	let bowChargeLevel1 = defaultWeaponComponentValues.bowChargeLevel1;
+	let bowChargeType2 = defaultWeaponComponentValues.bowChargeType2;
+	let bowChargeLevel2 = defaultWeaponComponentValues.bowChargeLevel2;
+	let bowChargeType3 = defaultWeaponComponentValues.bowChargeType3;
+	let bowChargeLevel3 = defaultWeaponComponentValues.bowChargeLevel3;
+	let bowPoisonCoatingAvailable =
+		defaultWeaponComponentValues.bowPoisonCoatingAvailable;
+	let bowParalysisCoatingAvailable =
+		defaultWeaponComponentValues.bowParalysisCoatingAvailable;
+	let bowSleepCoatingAvailable =
+		defaultWeaponComponentValues.bowSleepCoatingAvailable;
+	let bowImpactCoatingAvailable =
+		defaultWeaponComponentValues.bowImpactCoatingAvailable;
+	let bowPowerCoatingAvailable =
+		defaultWeaponComponentValues.bowPowerCoatingAvailable;
+	let bowgunReload = defaultWeaponComponentValues.bowgunReload;
+	let bowgunRecoil = defaultWeaponComponentValues.bowgunRecoil;
+	let bowgunScope = defaultWeaponComponentValues.bowgunScope;
+	let lightBowgunUpgrade = defaultWeaponComponentValues.lightBowgunUpgrade;
+	let heavyBowgunUpgrade = defaultWeaponComponentValues.heavyBowgunUpgrade;
+	let bowgunAttackLevel = defaultWeaponComponentValues.bowgunAttackLevel;
 	let bowgunNormalAmmo: levelQuantity = [9, 9, 12];
 	let bowgunPierceAmmo: levelQuantity = [6, 6, 6];
 	let bowgunPelletAmmo: levelQuantity = [6, 6, 6];
