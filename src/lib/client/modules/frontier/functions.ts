@@ -80,6 +80,12 @@ export const frontierMappers = {
 		);
 		return weapon ? weapon.name : null;
 	},
+	getWeaponClassById: (weaponId: number | string) => {
+		const weapon = WeaponTypes.find(
+			(weapon) => weapon.id.toString() === weaponId.toString(),
+		);
+		return weapon ? weapon.class : null;
+	},
 	getWeaponIdFromString(id: string): FrontierWeaponID {
 		if (parseInt(id) < 0 || parseInt(id) >= 14) return 0;
 		return parseInt(id) as FrontierWeaponID;
