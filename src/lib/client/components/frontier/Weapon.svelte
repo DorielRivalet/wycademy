@@ -600,7 +600,7 @@ Does not handle decorations because sigils are optimal.
 							<span class="double-width-transform">«</span>{zenithSkill}<span
 								class="double-width-transform">»</span
 							>
-						{:else if weaponTypeName !== 'Bow'}
+						{:else if weaponTypeName !== 'Bow' && bowgunAttackLevel >= 1}
 							<span class="text-yellow"
 								>Attack LV<span class="text-yellow double-width">:</span></span
 							><span style="color: var(--ctp-text);">{bowgunAttackLevel}</span>
