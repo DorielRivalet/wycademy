@@ -205,15 +205,14 @@ Does not handle decorations because sigils are optimal.
 	const maxAttackLength = 5;
 	const maxElementStatusLength = 5;
 
-	let rarityColor: string = stringReplacements.colorFromRarity(rarity);
-	let affinityColor: string = affinityBoost
-		? frontierColorNames[2].values[1].var
-		: '--ctp-text';
-
 	let weaponIconProps = {
 		rarity: rarity,
 	};
 	// TODO slots icons
+	$: rarityColor = stringReplacements.colorFromRarity(rarity);
+	$: affinityColor = affinityBoost
+		? frontierColorNames[2].values[1].var
+		: '--ctp-text';
 	$: weaponClass = WeaponTypes[weaponID].class;
 	$: weaponTypeName = WeaponTypes[weaponID].name;
 	$: maxPages = weaponClass === 'Blademaster' ? 6 : 8;
