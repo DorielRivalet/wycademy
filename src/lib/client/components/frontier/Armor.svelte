@@ -74,7 +74,7 @@
 		'Absolute Defense',
 		'Three Worlds Protection',
 	];
-	export let skillPoints: FrontierEquipmentSkillPoints = [0, 20, -30, 40, 50];
+	export let skillPoints: FrontierEquipmentSkillPoints = [10, 20, -30, 40, 50];
 
 	export let armorType: FrontierArmorType = 'Zenith';
 
@@ -434,19 +434,28 @@
 						</div>
 						<div class="skill">
 							<div class="skill-name">{skillNames[1]}</div>
-							<div class="skill-points">
+							<div
+								class="skill-points"
+								style={skillPoints[1] === 0 ? 'opacity: 0;' : 'opacity: 1;'}
+							>
 								: {#if skillPoints[1] >= 0}+{/if}{skillPoints[1]}
 							</div>
 						</div>
 						<div class="skill">
 							<div class="skill-name">{skillNames[2]}</div>
-							<div class="skill-points">
+							<div
+								class="skill-points"
+								style={skillPoints[2] === 0 ? 'opacity: 0;' : 'opacity: 1;'}
+							>
 								: {#if skillPoints[2] >= 0}+{/if}{skillPoints[2]}
 							</div>
 						</div>
 						<div class="skill">
 							<div class="skill-name">{skillNames[3]}</div>
-							<div class="skill-points">
+							<div
+								class="skill-points"
+								style={skillPoints[3] === 0 ? 'opacity: 0;' : 'opacity: 1;'}
+							>
 								: {#if skillPoints[3] >= 0}+{/if}{skillPoints[3]}
 							</div>
 						</div>
@@ -460,7 +469,10 @@
 						{:else}
 							<div class="skill">
 								<div class="skill-name">{skillNames[4]}</div>
-								<div class="skill-points">
+								<div
+									class="skill-points"
+									style={skillPoints[4] === 0 ? 'opacity: 0;' : 'opacity: 1;'}
+								>
 									: {#if skillPoints[4] >= 0}+{/if}{skillPoints[4]}
 								</div>
 							</div>
@@ -516,26 +528,35 @@
 							.skill3.points}
 					</div>
 				</div>
-				<div class="pages">
-					<button
-						class="arrow-icon-button"
-						on:click={previousPage}
-						aria-label="Navigate to previous page"
-					>
-						<ArrowIcon
-							style="transform: scaleX(-1);"
-							fill="var(--fz-text-green)"
+				<div class="last-deco-skill">
+					<div class="skill">
+						<div class="skill-name">{decorations.slot1.skill4.name}</div>
+						<div class="skill-points">
+							: {#if decorations.slot1.skill4.points >= 0}+{/if}{decorations
+								.slot1.skill4.points}
+						</div>
+					</div>
+					<div class="pages">
+						<button
+							class="arrow-icon-button"
 							on:click={previousPage}
-						/>
-					</button>
-					{currentPage}/{maxPages}
-					<button
-						class="arrow-icon-button"
-						on:click={nextPage}
-						aria-label="Navigate to next page"
-					>
-						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
-					</button>
+							aria-label="Navigate to previous page"
+						>
+							<ArrowIcon
+								style="transform: scaleX(-1);"
+								fill="var(--fz-text-green)"
+								on:click={previousPage}
+							/>
+						</button>
+						{currentPage}/{maxPages}
+						<button
+							class="arrow-icon-button"
+							on:click={nextPage}
+							aria-label="Navigate to next page"
+						>
+							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+						</button>
+					</div>
 				</div>
 			</div>
 		{:else if currentPage === 5}
@@ -563,6 +584,13 @@
 					<div class="skill-points">
 						: {#if decorations.slot2.skill3.points >= 0}+{/if}{decorations.slot2
 							.skill3.points}
+					</div>
+				</div>
+				<div class="skill">
+					<div class="skill-name">{decorations.slot1.skill4.name}</div>
+					<div class="skill-points">
+						: {#if decorations.slot1.skill4.points >= 0}+{/if}{decorations.slot1
+							.skill4.points}
 					</div>
 				</div>
 				<div class="pages">
@@ -612,6 +640,13 @@
 					<div class="skill-points">
 						: {#if decorations.slot3.skill3.points >= 0}+{/if}{decorations.slot3
 							.skill3.points}
+					</div>
+				</div>
+				<div class="skill">
+					<div class="skill-name">{decorations.slot1.skill4.name}</div>
+					<div class="skill-points">
+						: {#if decorations.slot1.skill4.points >= 0}+{/if}{decorations.slot1
+							.skill4.points}
 					</div>
 				</div>
 				<div class="pages">
@@ -816,6 +851,18 @@
 	.skill {
 		display: flex;
 		flex-direction: row;
+		margin-left: 2rem;
+	}
+
+	.last-deco-skill {
+		display: flex;
+		flex-direction: row;
+		align-items: end;
+		justify-content: space-between;
+	}
+
+	.skills {
+		line-height: 1.5em;
 	}
 
 	.skill-name {

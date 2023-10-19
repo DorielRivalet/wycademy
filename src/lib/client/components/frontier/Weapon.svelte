@@ -1791,6 +1791,10 @@ Does not handle decorations because sigils are optimal.
 		flex-direction: row;
 	}
 
+	.sigil {
+		margin-left: 2rem;
+	}
+
 	.skill-name {
 		width: 10ch;
 		overflow: hidden;
@@ -1799,6 +1803,10 @@ Does not handle decorations because sigils are optimal.
 
 	.skill-name-empty {
 		margin-top: 0.5rem;
+	}
+
+	.skills {
+		line-height: 1.5em;
 	}
 
 	.p-inherit {
