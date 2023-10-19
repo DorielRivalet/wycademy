@@ -39,9 +39,11 @@
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import type {
 		FrontierArmorClass,
+		FrontierArmorGRLevel,
 		FrontierArmorID,
 		FrontierArmorLevel,
 		FrontierArmorSkillName,
+		FrontierArmorSkillTree,
 		FrontierArmorType,
 		FrontierEquipmentDecorations,
 		FrontierEquipmentRank,
@@ -49,7 +51,9 @@
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
 		FrontierHuntingHornWeaponNote,
+		FrontierRarity,
 		FrontierSwitchAxeFPhial,
+		FrontierZenithSkill,
 	} from '$lib/client/modules/frontier/types';
 
 	type dropdownItem = { id: string; text: string };
@@ -148,8 +152,10 @@
 		bowgunArmorAmmo = [1, 0, 0];
 	}
 
+	// TODO
 	function resetArmorValues() {}
 
+	// TODO
 	function resetItemsValues() {}
 
 	function getZenithSkills() {
@@ -207,14 +213,32 @@
 		});
 	}
 
-	function downloadArmorImage() {}
+	function downloadArmorImage() {
+		if (!browser) return;
+		let node = document.querySelector('#armor-dom');
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(
+				`${frontierMappers.getArmorNameById(
+					armorID,
+				)}-${armorName}-${new Date().toISOString()}.png`,
+			)}`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
 
+	// TODO
 	function downloadItemsImage() {}
 
 	const invalidSharpnessValueText = 'Value must be between 0 and 400.';
 	const invalidWeaponLevelText = 'Value must be between 0 and 100.';
 	const invalidWeaponRarityText = 'Value must be between 1 and 12.';
 	const invalidWeaponAttackText = 'Value must be between 1 and 65536';
+	const invalidArmorDefenseText = 'Value must be between -2550 and 2550';
+	const invalidArmorElementalResistanceText =
+		'Value must be between -2550 and 2550';
 	const invalidWeaponElementStatusText = 'Value must be between -2550 and 2550';
 	const invalidWeaponAffinityText = 'Value must be between -2550 and 2550';
 	const invalidWeaponSigilValueText = 'Value must be between -127 and 127';
@@ -326,7 +350,7 @@
 	let currentWeaponPage = 1;
 	let currentArmorPage = 1;
 
-	let armorName = 'Name';
+	let armorName = 'Barb Helmet ZP';
 	let armorLevel: FrontierArmorLevel = 7;
 	let armorGRLevel: FrontierArmorGRLevel = 7;
 	let armorDefense: number = 100;
@@ -338,9 +362,10 @@
 	let armorTransmog = true;
 	let armorClass: FrontierArmorClass = 'Either';
 	let armorID = '0';
-	let armorRank: FrontierEquipmentRank = 'G';
-	let armorZenithSkill: string = 'Skills Slots Up+1';
-	let armorDescription: string = 'Description.';
+	let armorRank: FrontierEquipmentRank = 'Z';
+	let armorZenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
+	let armorDescription: string =
+		'A very very very very very very very very long description.';
 	let armorRarity: FrontierRarity = 12;
 
 	/** TODO Show extra icons.*/
@@ -1909,6 +1934,12 @@
 				{#key armorRarity}
 					<div id="armor-dom">
 						<Armor
+							skillNames={armorSkillNames}
+							GRLevel={armorGRLevel}
+							{armorClass}
+							rank={armorRank}
+							skillPoints={armorSkillPoints}
+							transmog={armorTransmog}
 							automaticSkill={armorAutomaticSkill}
 							decorations={armorDecorations}
 							extraIcons={armorExtraIcons}
@@ -1916,12 +1947,16 @@
 							name={armorName}
 							armorID={frontierMappers.getArmorIdFromString(armorID)}
 							defense={armorDefense}
-							rank={weaponRank}
 							level={armorLevel}
 							rarity={armorRarity >= 1 && armorRarity <= 12 ? armorRarity : 1}
 							zenithSkill={armorZenithSkill}
 							description={armorDescription}
 							{armorType}
+							fireResistance={armorFireResistance}
+							waterResistance={armorWaterResistance}
+							iceResistance={armorIceResistance}
+							dragonResistance={armorDragonResistance}
+							thunderResistance={armorThunderResistance}
 						/>
 					</div>
 				{/key}
@@ -1955,6 +1990,22 @@
 						invalidText={invalidWeaponRarityText}
 						label={'Rarity'}
 					/>
+
+					<Dropdown
+						titleText="Rank"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorRank}
+						items={[
+							{ id: '', text: 'None' },
+							{ id: 'G', text: 'G' },
+							{ id: 'Z', text: 'Zenith' },
+						]}
+					/>
+				</div>
+			</div>
+			{#if currentArmorPage === 1}
+				<div class="page-1-armor">
 					<NumberInput
 						size="sm"
 						step={1}
@@ -1964,8 +2015,128 @@
 						invalidText={invalidArmorLevelText}
 						label={'Level'}
 					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-2550}
+						max={2550}
+						bind:value={armorDefense}
+						invalidText={invalidArmorDefenseText}
+						label={'Defense'}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-2550}
+						max={2550}
+						bind:value={armorFireResistance}
+						invalidText={invalidArmorElementalResistanceText}
+						label={'Fire Resistance'}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-2550}
+						max={2550}
+						bind:value={armorWaterResistance}
+						invalidText={invalidArmorElementalResistanceText}
+						label={'Water Resistance'}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-2550}
+						max={2550}
+						bind:value={armorThunderResistance}
+						invalidText={invalidArmorElementalResistanceText}
+						label={'Thunder Resistance'}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-2550}
+						max={2550}
+						bind:value={armorIceResistance}
+						invalidText={invalidArmorElementalResistanceText}
+						label={'Ice Resistance'}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-2550}
+						max={2550}
+						bind:value={armorDragonResistance}
+						invalidText={invalidArmorElementalResistanceText}
+						label={'Dragon Resistance'}
+					/>
 				</div>
-			</div>
+			{:else if currentArmorPage === 2}
+				<div class="page-2-armor">
+					<TextInput
+						labelText="Description"
+						placeholder="Enter armor description"
+						hideLabel
+						bind:value={armorDescription}
+					/>
+					<Dropdown
+						titleText="Class"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorClass}
+						items={[
+							{ id: 'Either', text: 'Either' },
+							{ id: 'Blademaster', text: 'Blademaster' },
+							{ id: 'Gunner', text: 'Gunner' },
+						]}
+					/>
+					<Dropdown
+						titleText="Type"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorType}
+						items={[
+							{ id: 'Standard', text: 'Standard' },
+							{ id: 'SP', text: 'SP' },
+							{ id: 'HC', text: 'HC' },
+							{ id: 'HS', text: 'HS' },
+							{ id: 'G', text: 'G' },
+							{ id: 'GS', text: 'GS' },
+							{ id: 'GP', text: 'GP' },
+							{ id: 'Gou', text: 'Gou' },
+							{ id: 'Heavenly Storm', text: 'Heavenly Storm' },
+							{ id: 'Supremacy', text: 'Supremacy' },
+							{ id: 'G Supremacy', text: 'G Supremacy' },
+							{ id: 'Burst', text: 'Burst' },
+							{ id: 'Origin', text: 'Origin' },
+							{ id: 'Tower', text: 'Tower' },
+							{ id: 'Exotic', text: 'Exotic' },
+							{ id: 'Zenith', text: 'Zenith' },
+						]}
+					/>
+					<Dropdown
+						titleText="Zenith Skill"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorZenithSkill}
+						items={getZenithSkills()}
+					/>
+					<Dropdown
+						titleText="Automatic Skill"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorAutomaticSkill}
+						items={getArmorSkills()}
+					/>
+				</div>
+			{:else if currentArmorPage === 3}
+				<div class="page-3-armor" />
+			{:else if currentArmorPage === 4}
+				<div class="page-4-armor" />
+			{:else if currentArmorPage === 5}
+				<div class="page-5-armor" />
+			{:else if currentArmorPage === 6}
+				<div class="page-6-armor" />
+			{/if}
 		</div>
 	</section>
 	<section>
@@ -2033,6 +2204,7 @@
 	}
 
 	.page-2-blademaster,
+	.page-2-armor,
 	.bow-coatings {
 		display: flex;
 		flex-direction: column;
@@ -2047,7 +2219,7 @@
 	}
 
 	.sigils,
-	.skills {
+	.armor-decorations {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		margin: 1rem;
@@ -2055,7 +2227,8 @@
 	}
 
 	.page-3-bowgun,
-	.page-4-bowgun {
+	.page-4-bowgun,
+	.page-1-armor {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		margin: 1rem;

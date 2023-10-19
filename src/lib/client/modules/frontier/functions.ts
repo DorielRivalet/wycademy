@@ -13,7 +13,7 @@ import type {
 	FrontierWeaponID,
 	FrontierWeaponSharpness,
 } from './types';
-import { WeaponTypes } from './objects';
+import { ArmorTypes, WeaponTypes } from './objects';
 import FireIcon from '$lib/client/images/icon/element/fire.png';
 import WaterIcon from '$lib/client/images/icon/element/water.png';
 import ThunderIcon from '$lib/client/images/icon/element/thunder.png';
@@ -80,6 +80,12 @@ export const frontierMappers = {
 			(weapon) => weapon.id.toString() === weaponId.toString(),
 		);
 		return weapon ? weapon.name : null;
+	},
+	getArmorNameById: (id: number | string) => {
+		const result = ArmorTypes.find(
+			(obj) => obj.id.toString() === id.toString(),
+		);
+		return result ? result.name : null;
 	},
 	getWeaponClassById: (weaponId: number | string) => {
 		const weapon = WeaponTypes.find(
