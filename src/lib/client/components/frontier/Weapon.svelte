@@ -1797,6 +1797,10 @@ Does not handle decorations because sigils are optimal.
 		text-wrap: nowrap;
 	}
 
+	.skill-name-empty {
+		margin-top: 0.5rem;
+	}
+
 	.p-inherit {
 		font: inherit;
 	}

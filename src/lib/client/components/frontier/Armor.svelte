@@ -341,7 +341,7 @@
 				<div class="description">
 					{description}
 					{#if automaticSkill === ''}
-						<span class="text-yellow"
+						<span class="text-purple"
 							><span class="double-width-transform">«</span>{armorType}<span
 								class="double-width-transform">»</span
 							></span
@@ -357,7 +357,7 @@
 
 				<div class="hunterType">
 					<div class="hunter-type">
-						<p class="text-yellow">Hunter Type:</p>
+						<p class="text-yellow">Equippable:</p>
 					</div>
 					<div class="hunter-class">
 						<p>{armorClass}</p>
@@ -782,8 +782,7 @@
 	}
 
 	.hunter-type,
-	.hunter-class,
-	.rarity {
+	.hunter-class {
 		width: 50%;
 	}
 
@@ -825,6 +824,10 @@
 		text-wrap: nowrap;
 	}
 
+	.skill-name-empty {
+		margin-top: 0.5rem;
+	}
+
 	.p-inherit {
 		font: inherit;
 	}
@@ -841,6 +844,10 @@
 
 	.text-red {
 		color: var(--fz-text-red);
+	}
+
+	.text-purple {
+		color: var(--fz-text-purple);
 	}
 
 	.container {
