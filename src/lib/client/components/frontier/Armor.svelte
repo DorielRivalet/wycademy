@@ -505,33 +505,56 @@
 			<div class="page-4">
 				<p class="p-inherit text-yellow">[Deco 1 Details]</p>
 				<p class="p-inherit text-orange">
-					<span class="double-width">•</span>{decorations.slot1.name}
+					<span class="double-width">•</span>{decorations.slot1.name.substring(
+						0,
+						maxNameLength,
+					)}
 				</p>
 				<div class="skill">
-					<div class="skill-name">{decorations.slot1.skill1.name}</div>
-					<div class="skill-points">
+					<div class="deco-skill-name">{decorations.slot1.skill1.name}</div>
+					<div
+						class="skill-points"
+						style={decorations.slot1.skill1.points === 0
+							? 'opacity: 0;'
+							: 'opacity: 1;'}
+					>
 						: {#if decorations.slot1.skill1.points >= 0}+{/if}{decorations.slot1
 							.skill1.points}
 					</div>
 				</div>
 				<div class="skill">
-					<div class="skill-name">{decorations.slot1.skill2.name}</div>
-					<div class="skill-points">
+					<div class="deco-skill-name">{decorations.slot1.skill2.name}</div>
+					<div
+						class="skill-points"
+						style={decorations.slot1.skill2.points === 0
+							? 'opacity: 0;'
+							: 'opacity: 1;'}
+					>
 						: {#if decorations.slot1.skill2.points >= 0}+{/if}{decorations.slot1
 							.skill2.points}
 					</div>
 				</div>
 				<div class="skill">
-					<div class="skill-name">{decorations.slot1.skill3.name}</div>
-					<div class="skill-points">
+					<div class="deco-skill-name">{decorations.slot1.skill3.name}</div>
+					<div
+						class="skill-points"
+						style={decorations.slot1.skill3.points === 0
+							? 'opacity: 0;'
+							: 'opacity: 1;'}
+					>
 						: {#if decorations.slot1.skill3.points >= 0}+{/if}{decorations.slot1
 							.skill3.points}
 					</div>
 				</div>
 				<div class="last-deco-skill">
 					<div class="skill">
-						<div class="skill-name">{decorations.slot1.skill4.name}</div>
-						<div class="skill-points">
+						<div class="deco-skill-name">{decorations.slot1.skill4.name}</div>
+						<div
+							class="skill-points"
+							style={decorations.slot1.skill4.points === 0
+								? 'opacity: 0;'
+								: 'opacity: 1;'}
+						>
 							: {#if decorations.slot1.skill4.points >= 0}+{/if}{decorations
 								.slot1.skill4.points}
 						</div>
@@ -563,112 +586,162 @@
 			<div class="page-5">
 				<p class="p-inherit text-yellow">[Deco 2 Details]</p>
 				<p class="p-inherit text-orange">
-					<span class="double-width">•</span>{decorations.slot2.name}
+					<span class="double-width">•</span>{decorations.slot2.name.substring(
+						0,
+						maxNameLength,
+					)}
 				</p>
 				<div class="skill">
-					<div class="skill-name">{decorations.slot2.skill1.name}</div>
-					<div class="skill-points">
+					<div class="deco-skill-name">{decorations.slot2.skill1.name}</div>
+					<div
+						class="skill-points"
+						style={decorations.slot2.skill1.points === 0
+							? 'opacity: 0;'
+							: 'opacity: 1;'}
+					>
 						: {#if decorations.slot2.skill1.points >= 0}+{/if}{decorations.slot2
 							.skill1.points}
 					</div>
 				</div>
 				<div class="skill">
-					<div class="skill-name">{decorations.slot2.skill2.name}</div>
-					<div class="skill-points">
+					<div class="deco-skill-name">{decorations.slot2.skill2.name}</div>
+					<div
+						class="skill-points"
+						style={decorations.slot2.skill2.points === 0
+							? 'opacity: 0;'
+							: 'opacity: 1;'}
+					>
 						: {#if decorations.slot2.skill2.points >= 0}+{/if}{decorations.slot2
 							.skill2.points}
 					</div>
 				</div>
 				<div class="skill">
-					<div class="skill-name">{decorations.slot2.skill3.name}</div>
-					<div class="skill-points">
+					<div class="deco-skill-name">{decorations.slot2.skill3.name}</div>
+					<div
+						class="skill-points"
+						style={decorations.slot2.skill3.points === 0
+							? 'opacity: 0;'
+							: 'opacity: 1;'}
+					>
 						: {#if decorations.slot2.skill3.points >= 0}+{/if}{decorations.slot2
 							.skill3.points}
 					</div>
 				</div>
-				<div class="skill">
-					<div class="skill-name">{decorations.slot1.skill4.name}</div>
-					<div class="skill-points">
-						: {#if decorations.slot1.skill4.points >= 0}+{/if}{decorations.slot1
-							.skill4.points}
+				<div class="last-deco-skill">
+					<div class="skill">
+						<div class="deco-skill-name">{decorations.slot2.skill4.name}</div>
+						<div
+							class="skill-points"
+							style={decorations.slot2.skill4.points === 0
+								? 'opacity: 0;'
+								: 'opacity: 1;'}
+						>
+							: {#if decorations.slot2.skill4.points >= 0}+{/if}{decorations
+								.slot2.skill4.points}
+						</div>
 					</div>
-				</div>
-				<div class="pages">
-					<button
-						class="arrow-icon-button"
-						on:click={previousPage}
-						aria-label="Navigate to previous page"
-					>
-						<ArrowIcon
-							style="transform: scaleX(-1);"
-							fill="var(--fz-text-green)"
+					<div class="pages">
+						<button
+							class="arrow-icon-button"
 							on:click={previousPage}
-						/>
-					</button>
-					{currentPage}/{maxPages}
-					<button
-						class="arrow-icon-button"
-						on:click={nextPage}
-						aria-label="Navigate to next page"
-					>
-						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
-					</button>
+							aria-label="Navigate to previous page"
+						>
+							<ArrowIcon
+								style="transform: scaleX(-1);"
+								fill="var(--fz-text-green)"
+								on:click={previousPage}
+							/>
+						</button>
+						{currentPage}/{maxPages}
+						<button
+							class="arrow-icon-button"
+							on:click={nextPage}
+							aria-label="Navigate to next page"
+						>
+							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+						</button>
+					</div>
 				</div>
 			</div>
 		{:else if currentPage === 6}
 			<div class="page-6">
 				<p class="p-inherit text-yellow">[Deco 3 Details]</p>
 				<p class="p-inherit text-orange">
-					<span class="double-width">•</span>{decorations.slot3.name}
+					<span class="double-width">•</span>{decorations.slot3.name.substring(
+						0,
+						maxNameLength,
+					)}
 				</p>
 				<div class="skill">
-					<div class="skill-name">{decorations.slot3.skill1.name}</div>
-					<div class="skill-points">
+					<div class="deco-skill-name">{decorations.slot3.skill1.name}</div>
+					<div
+						class="skill-points"
+						style={decorations.slot3.skill1.points === 0
+							? 'opacity: 0;'
+							: 'opacity: 1;'}
+					>
 						: {#if decorations.slot3.skill1.points >= 0}+{/if}{decorations.slot3
 							.skill1.points}
 					</div>
 				</div>
 				<div class="skill">
-					<div class="skill-name">{decorations.slot3.skill2.name}</div>
-					<div class="skill-points">
+					<div class="deco-skill-name">{decorations.slot3.skill2.name}</div>
+					<div
+						class="skill-points"
+						style={decorations.slot3.skill2.points === 0
+							? 'opacity: 0;'
+							: 'opacity: 1;'}
+					>
 						: {#if decorations.slot3.skill2.points >= 0}+{/if}{decorations.slot3
 							.skill2.points}
 					</div>
 				</div>
 				<div class="skill">
-					<div class="skill-name">{decorations.slot3.skill3.name}</div>
-					<div class="skill-points">
+					<div class="deco-skill-name">{decorations.slot3.skill3.name}</div>
+					<div
+						class="skill-points"
+						style={decorations.slot3.skill3.points === 0
+							? 'opacity: 0;'
+							: 'opacity: 1;'}
+					>
 						: {#if decorations.slot3.skill3.points >= 0}+{/if}{decorations.slot3
 							.skill3.points}
 					</div>
 				</div>
-				<div class="skill">
-					<div class="skill-name">{decorations.slot1.skill4.name}</div>
-					<div class="skill-points">
-						: {#if decorations.slot1.skill4.points >= 0}+{/if}{decorations.slot1
-							.skill4.points}
+				<div class="last-deco-skill">
+					<div class="skill">
+						<div class="deco-skill-name">{decorations.slot3.skill4.name}</div>
+						<div
+							class="skill-points"
+							style={decorations.slot3.skill4.points === 0
+								? 'opacity: 0;'
+								: 'opacity: 1;'}
+						>
+							: {#if decorations.slot3.skill4.points >= 0}+{/if}{decorations
+								.slot3.skill4.points}
+						</div>
 					</div>
-				</div>
-				<div class="pages">
-					<button
-						class="arrow-icon-button"
-						on:click={previousPage}
-						aria-label="Navigate to previous page"
-					>
-						<ArrowIcon
-							style="transform: scaleX(-1);"
-							fill="var(--fz-text-green)"
+					<div class="pages">
+						<button
+							class="arrow-icon-button"
 							on:click={previousPage}
-						/>
-					</button>
-					{currentPage}/{maxPages}
-					<button
-						class="arrow-icon-button"
-						on:click={nextPage}
-						aria-label="Navigate to next page"
-					>
-						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
-					</button>
+							aria-label="Navigate to previous page"
+						>
+							<ArrowIcon
+								style="transform: scaleX(-1);"
+								fill="var(--fz-text-green)"
+								on:click={previousPage}
+							/>
+						</button>
+						{currentPage}/{maxPages}
+						<button
+							class="arrow-icon-button"
+							on:click={nextPage}
+							aria-label="Navigate to next page"
+						>
+							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+						</button>
+					</div>
 				</div>
 			</div>
 		{/if}
@@ -867,6 +940,12 @@
 
 	.skill-name {
 		width: 10ch;
+		overflow: hidden;
+		text-wrap: nowrap;
+	}
+
+	.deco-skill-name {
+		max-width: 24ch;
 		overflow: hidden;
 		text-wrap: nowrap;
 	}
