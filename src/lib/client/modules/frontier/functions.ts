@@ -7,6 +7,7 @@
 import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 import { format } from 'mathjs';
 import type {
+	FrontierArmorID,
 	FrontierElement,
 	FrontierStatus,
 	FrontierWeaponID,
@@ -89,6 +90,10 @@ export const frontierMappers = {
 	getWeaponIdFromString(id: string): FrontierWeaponID {
 		if (parseInt(id) < 0 || parseInt(id) >= 14) return 0;
 		return parseInt(id) as FrontierWeaponID;
+	},
+	getArmorIdFromString(id: string): FrontierArmorID {
+		if (parseInt(id) < 0 || parseInt(id) >= 5) return 0;
+		return parseInt(id) as FrontierArmorID;
 	},
 	getElementIcon(name: FrontierElement) {
 		switch (name) {

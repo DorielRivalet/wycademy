@@ -130,6 +130,74 @@ export type FrontierBowgunAttackLevel = 0 | 1 | 2 | 3 | 4 | 5;
 export type FrontierGunlanceShell = 'Spread' | 'Long' | 'Normal';
 export type FrontierGunlanceShellLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export type FrontierWeaponClass = 'Blademaster' | 'Gunner';
+export type FrontierMaxHiden =
+	| 'Sword King'
+	| 'Gun Sage'
+	| 'Blunt Beast'
+	| 'Heavenly Spear'
+	| 'Sword Saint'
+	| 'Gun Prodigy'
+	| 'Dual Dragon'
+	| 'Katana God'
+	| 'Flamboyant Emperor'
+	| 'Cannon Emperor'
+	| 'Bow Demon'
+	| 'Piercing Phoenix'
+	| 'Edge Marshal'
+	| 'Magnetic Star';
+export type FrontierArmorName = 'Head' | 'Chest' | 'Arms' | 'Waist' | 'Legs';
+export type FrontierArmorClass = 'Either' | 'Blademaster' | 'Gunner';
+export type FrontierArmorID = 0 | 1 | 2 | 3 | 4;
+export type FrontierArmor = {
+	id: FrontierArmorID;
+	name: FrontierArmorName;
+	icon: any;
+};
+/**0 does not show. Shows in 2nd page. */
+export type FrontierArmorGRLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+/**The level shown in the 1st page. */
+export type FrontierArmorLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type FrontierWeapon = {
+	id: FrontierWeaponID;
+	name: FrontierWeaponName;
+	class: FrontierWeaponClass;
+	icon: any;
+	hiden: FrontierMaxHiden;
+};
+export type FrontierEquipmentSkillPoints = [
+	firstSkill: number,
+	secondSkill: number,
+	thirdSkill: number,
+	fourthSkill: number,
+	fifthSkill: number,
+];
+export type FrontierSkillTreePoints = {
+	name: FrontierArmorSkillTree;
+	points: number;
+};
+export type FrontierDecoration = {
+	name: string;
+	skill1: FrontierSkillTreePoints;
+	skill2: FrontierSkillTreePoints;
+	skill3: FrontierSkillTreePoints;
+	skill4: FrontierSkillTreePoints;
+};
+export type FrontierEquipmentDecorations = {
+	slot1: FrontierDecoration;
+	slot2: FrontierDecoration;
+	slot3: FrontierDecoration;
+};
+export type FrontierSigilPoints = [
+	slot1: number,
+	slot2: number,
+	slot3: number,
+	slot4: number,
+	slot5: number,
+	slot6: number,
+	slot7: number,
+	slot8: number,
+	slot9: number,
+];
 export type FrontierEquipmentRank = '' | 'G' | 'Z';
 export type FrontierWeaponSharpness = [
 	Red: number,
@@ -1096,6 +1164,23 @@ export type FrontierWeaponType =
 	| 'Prayer'
 	| 'Zenith'
 	| 'Z Finesse';
+export type FrontierArmorType =
+	| 'Standard'
+	| 'SP'
+	| 'HC'
+	| 'HS'
+	| 'G'
+	| 'GS'
+	| 'GP'
+	| 'Gou'
+	| 'Heavenly Storm'
+	| 'Supremacy'
+	| 'G Supremacy'
+	| 'Burst'
+	| 'Origin'
+	| 'Tower'
+	| 'Exotic'
+	| 'Zenith';
 export type FrontierBowgunAmmoLevel = 1 | 2 | 3;
 export type FrontierBowgunAmmoQuantity = {
 	type: FrontierBowgunAmmo;

@@ -9,6 +9,7 @@
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
+	import Armor from '$lib/client/components/frontier/Armor.svelte';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import Select from 'carbon-components-svelte/src/Select/Select.svelte';
 	import SelectItem from 'carbon-components-svelte/src/Select/SelectItem.svelte';
@@ -37,6 +38,14 @@
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import type {
+		FrontierArmorClass,
+		FrontierArmorID,
+		FrontierArmorLevel,
+		FrontierArmorSkillName,
+		FrontierArmorType,
+		FrontierEquipmentDecorations,
+		FrontierEquipmentRank,
+		FrontierEquipmentSkillPoints,
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
 		FrontierHuntingHornWeaponNote,
@@ -139,6 +148,10 @@
 		bowgunArmorAmmo = [1, 0, 0];
 	}
 
+	function resetArmorValues() {}
+
+	function resetItemsValues() {}
+
 	function getZenithSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
 		ZenithSkills.forEach((element) => {
@@ -194,6 +207,10 @@
 		});
 	}
 
+	function downloadArmorImage() {}
+
+	function downloadItemsImage() {}
+
 	const invalidSharpnessValueText = 'Value must be between 0 and 400.';
 	const invalidWeaponLevelText = 'Value must be between 0 and 100.';
 	const invalidWeaponRarityText = 'Value must be between 1 and 12.';
@@ -205,6 +222,7 @@
 	const invalidBowChargeLevelText = 'Value must be between 1 and 4';
 	const invalidBowgunAttackLevelText = 'Value must be between 0 and 5';
 	const invalidBowgunAmmoText = 'Value must be between 0 and 64';
+	const invalidArmorLevelText = 'Value must be between 1 and 7';
 
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
@@ -307,6 +325,96 @@
 	let url = $page.url.toString();
 	let currentWeaponPage = 1;
 	let currentArmorPage = 1;
+
+	let armorName = 'Name';
+	let armorLevel: FrontierArmorLevel = 7;
+	let armorGRLevel: FrontierArmorGRLevel = 7;
+	let armorDefense: number = 100;
+	let armorFireResistance: number = 0;
+	let armorWaterResistance: number = 0;
+	let armorThunderResistance: number = 0;
+	let armorIceResistance: number = 0;
+	let armorDragonResistance: number = 0;
+	let armorTransmog = true;
+	let armorClass: FrontierArmorClass = 'Either';
+	let armorID = '0';
+	let armorRank: FrontierEquipmentRank = 'G';
+	let armorZenithSkill: string = 'Skills Slots Up+1';
+	let armorDescription: string = 'Description.';
+	let armorRarity: FrontierRarity = 12;
+
+	/** TODO Show extra icons.*/
+	let armorExtraIcons = false;
+
+	let armorSkillNames: FrontierArmorSkillTree[] = [
+		'Blazing Grace',
+		'Strong Attack',
+		'Determination',
+		'Absolute Defense',
+		'Three Worlds Protection',
+	];
+	let armorSkillPoints: FrontierEquipmentSkillPoints = [0, 20, -30, 40, 50];
+	let armorType: FrontierArmorType = 'Zenith';
+	let armorAutomaticSkill: FrontierArmorSkillName = '';
+	let armorDecorations: FrontierEquipmentDecorations = {
+		slot1: {
+			name: 'Zindol BM GX1',
+			skill1: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+			skill2: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+			skill3: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+			skill4: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+		},
+		slot2: {
+			name: 'Zindol BM GX1',
+			skill1: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+			skill2: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+			skill3: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+			skill4: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+		},
+		slot3: {
+			name: 'Zindol BM GX1',
+			skill1: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+			skill2: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+			skill3: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+			skill4: {
+				name: 'Blazing Grace',
+				points: 5,
+			},
+		},
+	};
 
 	$: huntingHornNotesArray = [
 		huntingHornNotes.split(' ')[0],
@@ -1786,23 +1894,107 @@
 
 	<section>
 		<SectionHeading level={2} title="Armor" />
-		<p>WIP</p>
+		<div class="container-armor-buttons">
+			<Button kind="tertiary" icon={Download} on:click={downloadArmorImage}
+				>Download</Button
+			>
+
+			<Button kind="tertiary" icon={Restart} on:click={resetArmorValues}
+				>Restore values</Button
+			>
+			<Toggle labelText="Extra Icons" bind:toggled={armorExtraIcons} />
+		</div>
+		<div class="container-armor">
+			<div class="armor-info">
+				{#key armorRarity}
+					<div id="armor-dom">
+						<Armor
+							automaticSkill={armorAutomaticSkill}
+							decorations={armorDecorations}
+							extraIcons={armorExtraIcons}
+							bind:currentPage={currentArmorPage}
+							name={armorName}
+							armorID={frontierMappers.getArmorIdFromString(armorID)}
+							defense={armorDefense}
+							rank={weaponRank}
+							level={armorLevel}
+							rarity={armorRarity >= 1 && armorRarity <= 12 ? armorRarity : 1}
+							zenithSkill={armorZenithSkill}
+							description={armorDescription}
+							{armorType}
+						/>
+					</div>
+				{/key}
+				<div class="armor-info-values">
+					<Dropdown
+						titleText="Type"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorID}
+						items={[
+							{ id: '0', text: 'Head' },
+							{ id: '1', text: 'Chest' },
+							{ id: '2', text: 'Arms' },
+							{ id: '3', text: 'Waist' },
+							{ id: '4', text: 'Legs' },
+						]}
+					/>
+					<TextInput
+						labelText="Name"
+						placeholder="Enter armor name"
+						hideLabel
+						bind:value={armorName}
+					/>
+
+					<NumberInput
+						size="sm"
+						step={1}
+						min={1}
+						max={12}
+						bind:value={armorRarity}
+						invalidText={invalidWeaponRarityText}
+						label={'Rarity'}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={1}
+						max={7}
+						bind:value={armorLevel}
+						invalidText={invalidArmorLevelText}
+						label={'Level'}
+					/>
+				</div>
+			</div>
+		</div>
 	</section>
 	<section>
 		<SectionHeading level={2} title="Items" />
-		<p>WIP</p>
+		<div class="container-items-buttons">
+			<Button kind="tertiary" icon={Download} on:click={downloadItemsImage}
+				>Download</Button
+			>
+
+			<Button kind="tertiary" icon={Restart} on:click={resetItemsValues}
+				>Restore values</Button
+			>
+		</div>
 	</section>
 </div>
 
 <style>
-	.weapon-info {
+	.weapon-info,
+	.armor-info,
+	.items-info {
 		display: flex;
 		flex-direction: row;
 		justify-content: start;
 		gap: var(--cds-spacing-04);
 	}
 
-	.weapon-info-values {
+	.weapon-info-values,
+	.armor-info-values,
+	.items-info-values {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		margin: 1rem;
@@ -1823,14 +2015,18 @@
 		gap: 1rem;
 	}
 
-	.container-weapon {
+	.container-weapon,
+	.container-armor,
+	.container-items {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
 		margin-top: 2rem;
 	}
 
-	.container-weapon-buttons {
+	.container-weapon-buttons,
+	.container-armor-buttons,
+	.container-items-buttons {
 		display: flex;
 		flex-direction: row;
 		gap: 1rem;
@@ -1850,7 +2046,8 @@
 		gap: 1rem;
 	}
 
-	.sigils {
+	.sigils,
+	.skills {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		margin: 1rem;

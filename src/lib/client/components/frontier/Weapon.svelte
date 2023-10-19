@@ -23,6 +23,7 @@ Does not handle decorations because sigils are optimal.
 		FrontierBowgunScope,
 		FrontierElement,
 		FrontierEquipmentRank,
+		FrontierEquipmentSkillPoints,
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
 		FrontierHeavyBowgunUpgrade,
@@ -30,6 +31,7 @@ Does not handle decorations because sigils are optimal.
 		FrontierLightBowgunUpgrade,
 		FrontierRarity,
 		FrontierSigil,
+		FrontierSigilPoints,
 		FrontierStatus,
 		FrontierSwitchAxeFPhial,
 		FrontierWeaponID,
@@ -45,10 +47,10 @@ Does not handle decorations because sigils are optimal.
 		frontierMappers,
 		stringReplacements,
 	} from '$lib/client/modules/frontier/functions';
-	import GRankWeaponIcon from './icon/GRankWeaponIcon.svelte';
-	import ZenithWeaponIcon from './icon/ZenithWeaponIcon2.svelte';
+	import GRankWeaponIcon from './icon/GRankEquipmentIcon.svelte';
+	import ZenithWeaponIcon from './icon/ZenithEquipmentIcon2.svelte';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
-	import NoteIcon from '$lib/client/components/frontier/icon/NoteIcon.svelte';
+	import NoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
 	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/objects';
 
 	/** Truncated to 18 characters.*/
@@ -101,7 +103,6 @@ Does not handle decorations because sigils are optimal.
 	 */
 	export let light = false;
 
-	// TODO
 	export let phial: FrontierSwitchAxeFPhial = 'Power';
 
 	export let currentPage: number;
@@ -113,7 +114,7 @@ Does not handle decorations because sigils are optimal.
 		'Absolute Defense',
 		'Three Worlds Protection',
 	];
-	export let skillPoints: number[] = [0, 20, -30, 40, 50];
+	export let skillPoints: FrontierEquipmentSkillPoints = [0, 20, -30, 40, 50];
 
 	export let sigils: FrontierSigil[] = [
 		'Attack Slayer',
@@ -126,14 +127,15 @@ Does not handle decorations because sigils are optimal.
 		'Elemental Slayer',
 		'Elemental Slayer',
 	];
-	export let sigilPoints: number[] = [15, 20, -30, 40, 50, 15, 15, -15, 12];
+	export let sigilPoints: FrontierSigilPoints = [
+		15, 20, -30, 40, 50, 15, 15, -15, 12,
+	];
 
 	export let weaponType: FrontierWeaponType = 'Evolution';
 
 	export let gunlanceShell: FrontierGunlanceShell = 'Normal';
 	export let gunlanceShellLevel: FrontierGunlanceShellLevel = 9;
 
-	// TODO only allow legal combos
 	export let huntingHornNotes: FrontierHuntingHornWeaponNote[] =
 		HuntingHornWeaponNotesCombinations[0];
 
@@ -211,7 +213,6 @@ Does not handle decorations because sigils are optimal.
 	let weaponIconProps = {
 		rarity: rarity,
 	};
-	// TODO gunner
 	// TODO slots icons
 	$: weaponClass = WeaponTypes[weaponID].class;
 	$: weaponTypeName = WeaponTypes[weaponID].name;
@@ -825,7 +826,7 @@ Does not handle decorations because sigils are optimal.
 				{/if}
 			{:else}
 				<div class="page-3-blademaster">
-					<p class="skill-tree-header">【Skill Tree: Skill Points】</p>
+					<div class="text-yellow">【Skill Tree: Skill Points】</div>
 					<div class="skills">
 						{#if skillPoints[0] <= 0}
 							<div class="skill">
@@ -1065,7 +1066,7 @@ Does not handle decorations because sigils are optimal.
 		{:else if currentPage === 5}
 			{#if weaponClass === 'Gunner'}
 				<div class="page-5-gunner">
-					<p class="skill-tree-header">【Skill Tree: Skill Points】</p>
+					<div class="text-yellow">【Skill Tree: Skill Points】</div>
 					<div class="skills">
 						{#if skillPoints[0] <= 0}
 							<div class="skill">
@@ -1794,10 +1795,6 @@ Does not handle decorations because sigils are optimal.
 		width: 10ch;
 		overflow: hidden;
 		text-wrap: nowrap;
-	}
-
-	.skill-tree-header {
-		font: inherit;
 	}
 
 	.p-inherit {

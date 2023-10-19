@@ -7,6 +7,7 @@
 // if bitfields are not needed, make an object instead.
 
 import type {
+	FrontierArmor,
 	FrontierArmorSkillName,
 	FrontierBowArcShot,
 	FrontierBowCharge,
@@ -26,6 +27,7 @@ import type {
 	FrontierSigil,
 	FrontierStatus,
 	FrontierSwitchAxeFPhial,
+	FrontierWeapon,
 	FrontierWeaponClass,
 	FrontierWeaponID,
 	FrontierWeaponLength,
@@ -49,6 +51,14 @@ import TonfaIcon from '$lib/client/components/frontier/icon/weapon/Tonfa_Icon_Wh
 import SwitchAxeFIcon from '$lib/client/components/frontier/icon/weapon/Switch_Axe_Icon_White4.svelte';
 import MagnetSpikeIcon from '$lib/client/components/frontier/icon/weapon/Magnet_Spike_Icon_White.svelte';
 
+import ArmorHelmetIcon from '$lib/client/components/frontier/icon/armor/Helmet_Icon_White.svelte';
+import ArmorChestIcon from '$lib/client/components/frontier/icon/armor/Chest_Icon_White.svelte';
+import ArmorArmsIcon from '$lib/client/components/frontier/icon/armor/Arm_Icon_White.svelte';
+import ArmorWaistIcon from '$lib/client/components/frontier/icon/armor/Waist_Icon_White.svelte';
+import ArmorLegsIcon from '$lib/client/components/frontier/icon/armor/Leg_Icon_White.svelte';
+
+// TODO items icons
+
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
 The biggest argument in favour of this format over TypeScript’s enum is that it keeps your codebase aligned with the state of JavaScript, and when/if enums are added to JavaScript then you can move to the additional syntax.
@@ -71,106 +81,138 @@ export const Sharpness = {
 	Cyan: 7,
 } as const;
 
-export const WeaponTypes = [
+export const ArmorTypes: FrontierArmor[] = [
 	{
-		id: 0 as FrontierWeaponID,
-		name: 'Great Sword' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 0,
+		name: 'Head',
+		icon: ArmorHelmetIcon,
+	},
+
+	{
+		id: 1,
+		name: 'Chest',
+		icon: ArmorChestIcon,
+	},
+
+	{
+		id: 2,
+		name: 'Arms',
+		icon: ArmorArmsIcon,
+	},
+
+	{
+		id: 3,
+		name: 'Waist',
+		icon: ArmorWaistIcon,
+	},
+
+	{
+		id: 4,
+		name: 'Legs',
+		icon: ArmorLegsIcon,
+	},
+];
+
+export const WeaponTypes: FrontierWeapon[] = [
+	{
+		id: 0,
+		name: 'Great Sword',
+		class: 'Blademaster',
 		icon: GreatSwordIcon,
 		hiden: 'Sword King',
 	},
 	{
-		id: 1 as FrontierWeaponID,
-		name: 'Heavy Bowgun' as FrontierWeaponName,
-		class: 'Gunner' as FrontierWeaponClass,
+		id: 1,
+		name: 'Heavy Bowgun',
+		class: 'Gunner',
 		icon: HeavyBowgunIcon,
 		hiden: 'Gun Sage',
 	},
 	{
-		id: 2 as FrontierWeaponID,
-		name: 'Hammer' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 2,
+		name: 'Hammer',
+		class: 'Blademaster',
 		icon: HammerIcon,
 		hiden: 'Blunt Beast',
 	},
 	{
-		id: 3 as FrontierWeaponID,
-		name: 'Lance' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 3,
+		name: 'Lance',
+		class: 'Blademaster',
 		icon: LanceIcon,
 		hiden: 'Heavenly Spear',
 	},
 	{
-		id: 4 as FrontierWeaponID,
-		name: 'Sword and Shield' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 4,
+		name: 'Sword and Shield',
+		class: 'Blademaster',
 		icon: SwordAndShieldIcon,
 		hiden: 'Sword Saint',
 	},
 	{
-		id: 5 as FrontierWeaponID,
-		name: 'Light Bowgun' as FrontierWeaponName,
-		class: 'Gunner' as FrontierWeaponClass,
+		id: 5,
+		name: 'Light Bowgun',
+		class: 'Gunner',
 		icon: LightBowgunIcon,
 		hiden: 'Gun Prodigy',
 	},
 	{
-		id: 6 as FrontierWeaponID,
-		name: 'Dual Swords' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 6,
+		name: 'Dual Swords',
+		class: 'Blademaster',
 		icon: DualSwordsIcon,
 		hiden: 'Dual Dragon',
 	},
 	{
-		id: 7 as FrontierWeaponID,
-		name: 'Long Sword' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 7,
+		name: 'Long Sword',
+		class: 'Blademaster',
 		icon: LongSwordIcon,
 		hiden: 'Katana God',
 	},
 	{
-		id: 8 as FrontierWeaponID,
-		name: 'Hunting Horn' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 8,
+		name: 'Hunting Horn',
+		class: 'Blademaster',
 		icon: HuntingHornIcon,
 		hiden: 'Flamboyant Emperor',
 	},
 	{
-		id: 9 as FrontierWeaponID,
-		name: 'Gunlance' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 9,
+		name: 'Gunlance',
+		class: 'Blademaster',
 		icon: GunlanceIcon,
 		hiden: 'Cannon Emperor',
 	},
 	{
-		id: 10 as FrontierWeaponID,
-		name: 'Bow' as FrontierWeaponName,
-		class: 'Gunner' as FrontierWeaponClass,
+		id: 10,
+		name: 'Bow',
+		class: 'Gunner',
 		icon: BowIcon,
 		hiden: 'Bow Demon',
 	},
 	{
-		id: 11 as FrontierWeaponID,
-		name: 'Tonfa' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 11,
+		name: 'Tonfa',
+		class: 'Blademaster',
 		icon: TonfaIcon,
 		hiden: 'Piercing Phoenix',
 	},
 	{
-		id: 12 as FrontierWeaponID,
-		name: 'Switch Axe F' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 12,
+		name: 'Switch Axe F',
+		class: 'Blademaster',
 		icon: SwitchAxeFIcon,
 		hiden: 'Edge Marshal',
 	},
 	{
-		id: 13 as FrontierWeaponID,
-		name: 'Magnet Spike' as FrontierWeaponName,
-		class: 'Blademaster' as FrontierWeaponClass,
+		id: 13,
+		name: 'Magnet Spike',
+		class: 'Blademaster',
 		icon: MagnetSpikeIcon,
 		hiden: 'Magnetic Star',
 	},
-] as const;
+];
 
 export const SharpnessNames = Object.keys(Sharpness) as readonly string[];
 export const RarityColors = [
