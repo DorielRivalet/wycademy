@@ -41,7 +41,6 @@
 	import type {
 		FrontierArmorClass,
 		FrontierArmorGRLevel,
-		FrontierArmorID,
 		FrontierArmorLevel,
 		FrontierArmorSkillName,
 		FrontierArmorSkillTree,
@@ -259,6 +258,7 @@
 	const invalidBowgunAttackLevelText = 'Value must be between 0 and 5';
 	const invalidBowgunAmmoText = 'Value must be between 0 and 64';
 	const invalidArmorLevelText = 'Value must be between 1 and 7';
+	const invalidArmorGRLevelText = 'Value must be between 0 and 7';
 
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
@@ -2091,17 +2091,6 @@
 						bind:value={armorDescription}
 					/>
 					<Dropdown
-						titleText="Class"
-						type="inline"
-						hideLabel
-						bind:selectedId={armorClass}
-						items={[
-							{ id: 'Either', text: 'Either' },
-							{ id: 'Blademaster', text: 'Blademaster' },
-							{ id: 'Gunner', text: 'Gunner' },
-						]}
-					/>
-					<Dropdown
 						titleText="Type"
 						type="inline"
 						hideLabel
@@ -2124,6 +2113,27 @@
 							{ id: 'Exotic', text: 'Exotic' },
 							{ id: 'Zenith', text: 'Zenith' },
 						]}
+					/>
+					<Dropdown
+						titleText="Class"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorClass}
+						items={[
+							{ id: 'Either', text: 'Either' },
+							{ id: 'Blademaster', text: 'Blademaster' },
+							{ id: 'Gunner', text: 'Gunner' },
+						]}
+					/>
+
+					<NumberInput
+						size="sm"
+						step={1}
+						min={0}
+						max={7}
+						bind:value={armorGRLevel}
+						invalidText={invalidArmorGRLevelText}
+						label={'GR Level'}
 					/>
 					<Dropdown
 						titleText="Zenith Skill"

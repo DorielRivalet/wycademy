@@ -41,7 +41,7 @@
 	export let thunderResistance: number = 0;
 	export let iceResistance: number = 0;
 	export let dragonResistance: number = 0;
-	/**Whether to show transmog icon.*/
+	/**TODO Whether to show transmog icon.*/
 	export let transmog = true;
 	export let armorClass: FrontierArmorClass = 'Either';
 	export let armorID: FrontierArmorID = 0;
@@ -161,11 +161,13 @@
 	const maxElementResLength = 5;
 	const maxPages = 6;
 
-	let rarityColor: string = stringReplacements.colorFromRarity(rarity);
-
 	let iconProps = {
 		rarity: rarity,
 	};
+
+	$: rarityColor = stringReplacements.colorFromRarity(rarity);
+	// TODO the colors are different?
+	$: GRLevelColor = stringReplacements.colorFromRarity(GRLevel);
 
 	// TODO slots icons
 </script>
@@ -366,7 +368,11 @@
 
 				<div class="rarity">
 					<p class="text-yellow">
-						Rarity: <span style="color: var({rarityColor});">{rarity}</span>
+						{#if GRLevel <= 0}
+							Rarity: <span style="color: var({rarityColor});">{rarity}</span>
+						{:else}
+							GR: <span style="color: var({GRLevelColor});">{GRLevel}</span>
+						{/if}
 					</p>
 				</div>
 
