@@ -2224,11 +2224,230 @@
 					/>
 				</div>
 			{:else if currentArmorPage === 4}
-				<div class="page-4-armor" />
+				<div class="page-4-armor">
+					<TextInput
+						labelText="Decoration 1 Name"
+						placeholder="Enter decoration name"
+						hideLabel
+						bind:value={armorDecorations.slot1.name}
+					/>
+					<div class="armor-deco-skills">
+						<Dropdown
+							titleText="Decoration Skill 1"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot1.skill1.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot1.skill1.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 1 Points'}
+						/>
+						<Dropdown
+							titleText="Decoration Skill 2"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot1.skill2.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot1.skill2.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 2 Points'}
+						/>
+						<Dropdown
+							titleText="Decoration Skill 3"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot1.skill3.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot1.skill3.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 3 Points'}
+						/>
+						<Dropdown
+							titleText="Decoration Skill 4"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot1.skill4.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot1.skill4.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 4 Points'}
+						/>
+					</div>
+				</div>
 			{:else if currentArmorPage === 5}
-				<div class="page-5-armor" />
+				<div class="page-5-armor">
+					<TextInput
+						labelText="Decoration 2 Name"
+						placeholder="Enter decoration name"
+						hideLabel
+						bind:value={armorDecorations.slot2.name}
+					/>
+					<div class="armor-deco-skills">
+						<Dropdown
+							titleText="Decoration Skill 1"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot2.skill1.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot2.skill1.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 1 Points'}
+						/>
+						<Dropdown
+							titleText="Decoration Skill 2"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot2.skill2.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot2.skill2.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 2 Points'}
+						/>
+						<Dropdown
+							titleText="Decoration Skill 3"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot2.skill3.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot2.skill3.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 3 Points'}
+						/>
+						<Dropdown
+							titleText="Decoration Skill 4"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot2.skill4.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot2.skill4.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 4 Points'}
+						/>
+					</div>
+				</div>
 			{:else if currentArmorPage === 6}
-				<div class="page-6-armor" />
+				<div class="page-6-armor">
+					<TextInput
+						labelText="Decoration 3 Name"
+						placeholder="Enter decoration name"
+						hideLabel
+						bind:value={armorDecorations.slot3.name}
+					/>
+					<div class="armor-deco-skills">
+						<Dropdown
+							titleText="Decoration Skill 1"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot3.skill1.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot3.skill1.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 1 Points'}
+						/>
+						<Dropdown
+							titleText="Decoration Skill 2"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot3.skill2.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot3.skill2.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 2 Points'}
+						/>
+						<Dropdown
+							titleText="Decoration Skill 3"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot3.skill3.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot3.skill3.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 3 Points'}
+						/>
+						<Dropdown
+							titleText="Decoration Skill 4"
+							type="inline"
+							hideLabel
+							bind:selectedId={armorDecorations.slot3.skill4.name}
+							items={getArmorSkillTree()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={-127}
+							max={127}
+							bind:value={armorDecorations.slot3.skill4.points}
+							invalidText={invalidArmorSkillPointsText}
+							label={'Decoration Skill 4 Points'}
+						/>
+					</div>
+				</div>
 			{/if}
 		</div>
 	</section>
@@ -2312,7 +2531,7 @@
 	}
 
 	.sigils,
-	.armor-decorations,
+	.armor-deco-skills,
 	.page-3-armor {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
