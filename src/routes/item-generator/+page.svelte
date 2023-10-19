@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {
+		ArmorSkillTree,
 		ArmorSkills,
 		HuntingHornWeaponNotesCombinations,
 		SharpnessNames,
@@ -188,6 +189,16 @@
 		return array;
 	}
 
+	function getArmorSkillTree() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		ArmorSkillTree.forEach((element) => {
+			if (element !== '') {
+				array = [...array, { id: element, text: element }];
+			}
+		});
+		return array;
+	}
+
 	function getHHNotes() {
 		let array: dropdownItem[] = [];
 		HuntingHornWeaponNotesCombinations.forEach((element) => {
@@ -242,6 +253,7 @@
 	const invalidWeaponElementStatusText = 'Value must be between -2550 and 2550';
 	const invalidWeaponAffinityText = 'Value must be between -2550 and 2550';
 	const invalidWeaponSigilValueText = 'Value must be between -127 and 127';
+	const invalidArmorSkillPointsText = 'Value must be between -127 and 127';
 	const invalidGunlanceShellLevelText = 'Value must be between 1 and 9';
 	const invalidBowChargeLevelText = 'Value must be between 1 and 4';
 	const invalidBowgunAttackLevelText = 'Value must be between 0 and 5';
@@ -371,14 +383,14 @@
 	/** TODO Show extra icons.*/
 	let armorExtraIcons = false;
 
-	let armorSkillNames: FrontierArmorSkillTree[] = [
+	let armorSkillTreeNames: FrontierArmorSkillTree[] = [
 		'Blazing Grace',
 		'Strong Attack',
 		'Determination',
 		'Absolute Defense',
 		'Three Worlds Protection',
 	];
-	let armorSkillPoints: FrontierEquipmentSkillPoints = [0, 20, -30, 40, 50];
+	let armorSkillPoints: FrontierEquipmentSkillPoints = [10, 20, -30, 40, 50];
 	let armorType: FrontierArmorType = 'Zenith';
 	let armorAutomaticSkill: FrontierArmorSkillName = '';
 	let armorDecorations: FrontierEquipmentDecorations = {
@@ -1934,7 +1946,7 @@
 				{#key armorRarity}
 					<div id="armor-dom">
 						<Armor
-							skillNames={armorSkillNames}
+							skillNames={armorSkillTreeNames}
 							GRLevel={armorGRLevel}
 							{armorClass}
 							rank={armorRank}
@@ -2129,7 +2141,88 @@
 					/>
 				</div>
 			{:else if currentArmorPage === 3}
-				<div class="page-3-armor" />
+				<div class="page-3-armor">
+					<Dropdown
+						titleText="Skill 1"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorSkillTreeNames[0]}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-127}
+						max={127}
+						bind:value={armorSkillPoints[0]}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Skill 1 Points'}
+					/>
+					<Dropdown
+						titleText="Skill 2"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorSkillTreeNames[1]}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-127}
+						max={127}
+						bind:value={armorSkillPoints[1]}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Skill 2 Points'}
+					/>
+					<Dropdown
+						titleText="Skill 3"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorSkillTreeNames[2]}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-127}
+						max={127}
+						bind:value={armorSkillPoints[2]}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Skill 3 Points'}
+					/>
+					<Dropdown
+						titleText="Skill 4"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorSkillTreeNames[3]}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-127}
+						max={127}
+						bind:value={armorSkillPoints[3]}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Skill 4 Points'}
+					/>
+					<Dropdown
+						titleText="Skill 5"
+						type="inline"
+						hideLabel
+						bind:selectedId={armorSkillTreeNames[4]}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={-127}
+						max={127}
+						bind:value={armorSkillPoints[4]}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Skill 5 Points'}
+					/>
+				</div>
 			{:else if currentArmorPage === 4}
 				<div class="page-4-armor" />
 			{:else if currentArmorPage === 5}
@@ -2219,7 +2312,8 @@
 	}
 
 	.sigils,
-	.armor-decorations {
+	.armor-decorations,
+	.page-3-armor {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		margin: 1rem;
