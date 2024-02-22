@@ -59,7 +59,7 @@
 		"autoprefixer": "^10.4.16",
 		"carbon-components-svelte": "^0.82.7",
 		"carbon-icons-svelte": "^12.3.0",
-		"carbon-pictograms-svelte": "^12.8.0",
+		"carbon-pictograms-svelte": "^12.10.0",
 		"carbon-preprocess-svelte": "^0.10.0",
 		"commitizen": "^4.3.0",
 		"cz-conventional-changelog": "^3.3.0",
