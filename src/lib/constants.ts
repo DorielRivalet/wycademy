@@ -12,7 +12,7 @@ export const projectGitHub =
 	'https://github.com/DorielRivalet/frontier-compendium';
 export const developmentStage = 'alpha';
 export const appVersion = '0.2.0';
-export const website = 'https://frontier-compendium.vercel.app';
+export const website = 'https://frontier-compendium.netlify.app';
 export const datePublished = '2023-09-02';
 export const apiCacheTimeouts = {
 	github: 60 * 60 * 24,

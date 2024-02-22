@@ -29,7 +29,7 @@
 			>{constant.authorName} &copy {new Date().getUTCFullYear()}</Link
 		>
 		<div>
-			Powered by <Link href="https://vercel.com/docs">Vercel</Link> and <Link
+			Powered by <Link href="https://docs.netlify.com/">Netlify</Link> and <Link
 				href="https://kit.svelte.dev/docs/introduction">SvelteKit</Link
 			>
 		</div>

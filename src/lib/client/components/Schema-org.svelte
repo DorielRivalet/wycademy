@@ -63,7 +63,7 @@ SOFTWARE.
 				'https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md',
 			alternateName: 'mhfz-compendium',
 			name: mainEntity.name,
-			sameAs: 'https://frontier-compendium.vercel.app',
+			sameAs: 'https://frontier-compendium.netlify.app',
 			url: mainEntity.url,
 			headline: mainEntity.headline,
 			description: mainEntity.description,
