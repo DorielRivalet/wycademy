@@ -11,7 +11,7 @@
 		"Monster Hunter Frontier",
 		"Monster Hunter Frontier Z"
 	],
-	"homepage": "https://frontier-compendium.vercel.app/",
+	"homepage": "https://frontier-compendium.netlify.app/",
 	"bugs": {
 		"url": "https://github.com/DorielRivalet/frontier-compendium/issues"
 	},
