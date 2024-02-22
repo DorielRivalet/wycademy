@@ -24,7 +24,7 @@ import BlackFlameIcon from '$lib/client/images/icon/element/Element_Black_Flame.
 import BlazeIcon from '$lib/client/images/icon/element/Element_Blaze.png';
 import CrimsonDemonIcon from '$lib/client/images/icon/element/Element_Crimson_Demon.png';
 import DarkIcon from '$lib/client/images/icon/element/Element_Darkness.png';
-import EmperorsRoarIcon from "$lib/client/images/icon/element/Element_Emperor's_Roar.png";
+import EmperorsRoarIcon from '$lib/client/images/icon/element/Element_Emperors_Roar.png';
 import OkikoIcon from '$lib/client/images/icon/element/Element_Frozen_Seraphim.png';
 import WindIcon from '$lib/client/images/icon/element/Element_Golden_Dust.png';
 import MusicIcon from '$lib/client/images/icon/element/Element_Kanade.png';
