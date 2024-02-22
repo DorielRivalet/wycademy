@@ -6,14 +6,13 @@
 		SharpnessNames,
 		SigilSkills,
 		ZenithSkills,
+		defaultArmorComponentValues,
 		defaultWeaponComponentValues,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
 	import Armor from '$lib/client/components/frontier/Armor.svelte';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
-	import Select from 'carbon-components-svelte/src/Select/Select.svelte';
-	import SelectItem from 'carbon-components-svelte/src/Select/SelectItem.svelte';
 	import Checkbox from 'carbon-components-svelte/src/Checkbox/Checkbox.svelte';
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
 	import { domToPng } from 'modern-screenshot';
@@ -152,8 +151,94 @@
 		bowgunArmorAmmo = [1, 0, 0];
 	}
 
-	// TODO
-	function resetArmorValues() {}
+	function resetArmorValues() {
+		armorName = defaultArmorComponentValues.armorName;
+		armorLevel = defaultArmorComponentValues.armorLevel;
+		armorGRLevel = defaultArmorComponentValues.armorGRLevel;
+		armorDefense = defaultArmorComponentValues.armorDefense;
+		armorFireResistance = defaultArmorComponentValues.armorFireResistance;
+		armorWaterResistance = defaultArmorComponentValues.armorWaterResistance;
+		armorThunderResistance = defaultArmorComponentValues.armorThunderResistance;
+		armorIceResistance = defaultArmorComponentValues.armorIceResistance;
+		armorDragonResistance = defaultArmorComponentValues.armorDragonResistance;
+		armorTransmog = defaultArmorComponentValues.armorTransmog;
+		armorClass = defaultArmorComponentValues.armorClass;
+		armorID = defaultArmorComponentValues.armorID;
+		armorRank = defaultArmorComponentValues.armorRank;
+		armorZenithSkill = defaultArmorComponentValues.armorZenithSkill;
+		armorDescription = defaultArmorComponentValues.armorDescription;
+		armorRarity = defaultArmorComponentValues.armorRarity;
+		armorExtraIcons = defaultArmorComponentValues.armorExtraIcons;
+		armorSkillTreeNames = [
+			'Blazing Grace',
+			'Strong Attack',
+			'Determination',
+			'Absolute Defense',
+			'Three Worlds Protection',
+		];
+		armorSkillPoints = [10, 20, -30, 40, 50];
+		armorType = defaultArmorComponentValues.armorType;
+		armorAutomaticSkill = defaultArmorComponentValues.armorAutomaticSkill;
+		armorDecorations = {
+			slot1: {
+				name: 'Zindol BM GX1',
+				skill1: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill2: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill3: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill4: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+			},
+			slot2: {
+				name: 'Zindol BM GX1',
+				skill1: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill2: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill3: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill4: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+			},
+			slot3: {
+				name: 'Zindol BM GX1',
+				skill1: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill2: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill3: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill4: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+			},
+		};
+	}
 
 	// TODO
 	function resetItemsValues() {}
@@ -1939,7 +2024,7 @@
 			<Button kind="tertiary" icon={Restart} on:click={resetArmorValues}
 				>Restore values</Button
 			>
-			<Toggle labelText="Extra Icons" bind:toggled={armorExtraIcons} />
+			<!-- TODO <Toggle labelText="Extra Icons" bind:toggled={armorExtraIcons} /> -->
 		</div>
 		<div class="container-armor">
 			<div class="armor-info">
