@@ -94,7 +94,7 @@
 		"@carbon/layout": "^11.20.0",
 		"@ibm/plex": "^6.4.0",
 		"alex": "^11.0.1",
-		"carbon-components": "^11.51.0",
+		"carbon-components": "^11.51.1",
 		"ezlion": "^1.1.0",
 		"mathjs": "^12.3.2",
 		"mathlifier": "^1.3.5",
