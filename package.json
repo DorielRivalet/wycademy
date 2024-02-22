@@ -90,7 +90,7 @@
 		"workbox-precaching": "^7.0.0"
 	},
 	"dependencies": {
-		"@carbon/layout": "^11.19.0",
+		"@carbon/layout": "^11.20.0",
 		"@ibm/plex": "^6.3.0",
 		"alex": "^11.0.1",
 		"carbon-components": "^10.58.10",
