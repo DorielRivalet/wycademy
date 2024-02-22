@@ -55,7 +55,7 @@
 		"@types/cookie": "^0.6.0",
 		"@typescript-eslint/eslint-plugin": "^7.0.2",
 		"@typescript-eslint/parser": "^7.0.2",
-		"@vite-pwa/sveltekit": "^0.2.8",
+		"@vite-pwa/sveltekit": "^0.4.0",
 		"autoprefixer": "^10.4.17",
 		"carbon-components-svelte": "^0.82.10",
 		"carbon-icons-svelte": "^12.5.0",
