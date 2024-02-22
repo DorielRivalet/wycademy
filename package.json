@@ -49,7 +49,7 @@
 		"@playwright/test": "^1.41.2",
 		"@release-it/conventional-changelog": "^8.0.1",
 		"@rollup/plugin-typescript": "^11.1.6",
-		"@sveltejs/adapter-auto": "^2.1.1",
+		"@sveltejs/adapter-auto": "^3.1.1",
 		"@sveltejs/adapter-vercel": "^5.1.0",
 		"@sveltejs/kit": "^2.5.1",
 		"@types/cookie": "^0.6.0",
