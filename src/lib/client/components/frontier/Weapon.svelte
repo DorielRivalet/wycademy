@@ -38,6 +38,7 @@ Does not handle decorations because sigils are optimal.
 		FrontierWeaponLength,
 		FrontierWeaponSharpness,
 		FrontierWeaponType,
+		FrontierZenithSkill,
 	} from '$lib/client/modules/frontier/types';
 	import ArrowIcon from '$lib/client/components/frontier/icon/ArrowIcon.svelte';
 
@@ -87,8 +88,7 @@ Does not handle decorations because sigils are optimal.
 	/** The overlay icon in the bottom left corner.*/
 	export let rank: FrontierEquipmentRank = 'G';
 
-	// TODO ids
-	export let zenithSkill: string = 'Skills Slots Up+1';
+	export let zenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
 
 	// page 2
 	export let description: string = 'Description.';
@@ -1426,7 +1426,6 @@ Does not handle decorations because sigils are optimal.
 	.weapon-icon {
 		position: relative;
 		width: var(--cds-spacing-10);
-		height: var(--cds-spacing-9);
 		transform: scale(80%) translateY(-5px) translateX(5px);
 	}
 

@@ -129,7 +129,7 @@ export type FrontierLightBowgunUpgrade = '' | 'Silencer' | 'Long Barrel';
 export type FrontierBowgunAttackLevel = 0 | 1 | 2 | 3 | 4 | 5;
 export type FrontierGunlanceShell = 'Spread' | 'Long' | 'Normal';
 export type FrontierGunlanceShellLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-export type FrontierWeaponClass = 'Blademaster' | 'Gunner';
+export type FrontierWeaponClass = 'Blademaster' | 'Gunner' | 'Both';
 export type FrontierMaxHiden =
 	| 'Sword King'
 	| 'Gun Sage'
@@ -148,6 +148,7 @@ export type FrontierMaxHiden =
 export type FrontierArmorName = 'Head' | 'Chest' | 'Arms' | 'Waist' | 'Legs';
 export type FrontierArmorClass = 'Either' | 'Blademaster' | 'Gunner';
 export type FrontierArmorID = 0 | 1 | 2 | 3 | 4;
+export type FrontierSlot = 0 | 1 | 2 | 3;
 export type FrontierArmor = {
 	id: FrontierArmorID;
 	name: FrontierArmorName;
@@ -187,6 +188,34 @@ export type FrontierEquipmentDecorations = {
 	slot2: FrontierDecoration;
 	slot3: FrontierDecoration;
 };
+export type FrontierItemSlottable = {
+	slot1: FrontierQuantifiedEntity;
+	slot2: FrontierQuantifiedEntity;
+	slot3: FrontierQuantifiedEntity;
+	slot4: FrontierQuantifiedEntity;
+};
+export type FrontierItemColor =
+	| 'White'
+	| 'Red'
+	| 'Green'
+	| 'Yellow'
+	| 'Blue'
+	| 'Purple'
+	| 'Cyan'
+	| 'Pink'
+	| 'Orange'
+	| 'Brown'
+	| 'Gray';
+export type FrontierItemRankType = '' | 'G' | 'Z' | 'T';
+export type FrontierItemType =
+	| 'Decoration'
+	| 'Sigil'
+	| 'Cuff'
+	| 'Zenith Cuff'
+	| 'Hiden Cuff'
+	| 'Tower Sigil'
+	| 'Tower Decoration'
+	| 'Other';
 export type FrontierSigilPoints = [
 	slot1: number,
 	slot2: number,
@@ -402,7 +431,10 @@ export type FrontierSigil =
 	| 'Zenith Elemental'
 	| 'Zenith Movement Speed'
 	| 'All Zenith AOEs';
-export type FrontierSigilObject = { id: string; value: number };
+/**
+ * Generic object.
+ */
+export type FrontierQuantifiedEntity = { name: string; value: number };
 export type FrontierArmorSkillTree =
 	| ''
 	| 'Health'

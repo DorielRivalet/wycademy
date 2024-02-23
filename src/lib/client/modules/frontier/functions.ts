@@ -9,11 +9,12 @@ import { format } from 'mathjs';
 import type {
 	FrontierArmorID,
 	FrontierElement,
+	FrontierItemColor,
 	FrontierStatus,
 	FrontierWeaponID,
 	FrontierWeaponSharpness,
 } from './types';
-import { ArmorTypes, WeaponTypes } from './objects';
+import { ArmorTypes, ItemColors, WeaponTypes } from './objects';
 import FireIcon from '$lib/client/images/icon/element/fire.png';
 import WaterIcon from '$lib/client/images/icon/element/water.png';
 import ThunderIcon from '$lib/client/images/icon/element/thunder.png';
@@ -52,7 +53,9 @@ export const stringReplacements = {
 		rarity <= 3
 			? `${frontierColorNames[1].values[0].var}`
 			: `${frontierColorNames[1].values[rarity - 3].var}`,
-} as const;
+	colorFromName: (name: FrontierItemColor) =>
+		ItemColors.find((item) => item.name === name)?.value ?? '#000000',
+};
 
 export const frontierChecks = {
 	isValidSharpness: (sharpnessValues: FrontierWeaponSharpness) => {

@@ -7,10 +7,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	import { ColorCodes } from '$lib/client/modules/frontier/objects';
-	export let colorCode = 0;
+	export let color = '#000000';
 
-	$: targetColor = ColorCodes[colorCode] ?? ColorCodes[0];
+	$: targetColor = color;
 </script>
 
 <svg width="100%" height="100%" viewBox="0 0 16.933333 16.933334" version="1.1">

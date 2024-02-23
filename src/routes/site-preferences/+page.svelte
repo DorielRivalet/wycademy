@@ -405,8 +405,7 @@
 		<section>
 			<SectionHeading title={'Weapon Generator'} level={3} />
 			<p>
-				The content was moved to <Link href="/item-generator#weapon">here.</Link
-				>
+				The content was moved to <Link href="/smithy#weapon">here.</Link>
 			</p>
 		</section>
 	</section>
