@@ -105,7 +105,7 @@ Does not handle decorations because sigils are optimal.
 
 	export let phial: FrontierSwitchAxeFPhial = 'Power';
 
-	export let currentPage: number;
+	export let currentPage: number = 1;
 
 	export let skillNames: FrontierArmorSkillTree[] = [
 		'Blazing Grace',

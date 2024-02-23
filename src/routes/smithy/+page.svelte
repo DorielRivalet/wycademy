@@ -9,6 +9,7 @@
 		SigilSkills,
 		ZenithSkills,
 		defaultArmorComponentValues,
+		defaultItemComponentValues,
 		defaultWeaponComponentValues,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
@@ -36,7 +37,6 @@
 		projectName,
 		website,
 	} from '$lib/constants';
-	import logo from '$lib/client/images/logo.webp';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import type {
@@ -53,12 +53,18 @@
 		FrontierGunlanceShellLevel,
 		FrontierHuntingHornWeaponNote,
 		FrontierItemColor,
+		FrontierItemDecoration,
 		FrontierItemRankType,
+		FrontierItemSigil,
+		FrontierItemType,
 		FrontierRarity,
+		FrontierSlot,
 		FrontierSwitchAxeFPhial,
+		FrontierWeaponClass,
 		FrontierZenithSkill,
 	} from '$lib/client/modules/frontier/types';
 	import Item from '$lib/client/components/frontier/Item.svelte';
+	import smithy from '$lib/client/images/icon/blacksmith.png';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -246,7 +252,62 @@
 	}
 
 	// TODO
-	function resetItemsValues() {}
+	function resetItemsValues() {
+		itemName = defaultItemComponentValues.itemName;
+		itemDescription = defaultItemComponentValues.itemDescription;
+		itemRarity = defaultItemComponentValues.itemRarity;
+		itemRank = defaultItemComponentValues.itemRank;
+		itemIconName = defaultItemComponentValues.itemIconName;
+		itemColorName = defaultItemComponentValues.itemColorName;
+		itemType = defaultItemComponentValues.itemType;
+		itemZenithSkill = defaultItemComponentValues.itemZenithSkill;
+		itemCuffSkill1 = defaultItemComponentValues.itemCuffSkill1;
+		itemCuffSkill1Points = defaultItemComponentValues.itemCuffSkill1Points;
+		itemCuffSkill2 = defaultItemComponentValues.itemCuffSkill2;
+		itemCuffSkill2Points = defaultItemComponentValues.itemCuffSkill2Points;
+		itemTowerSkill = defaultItemComponentValues.itemTowerSkill;
+		itemArmorClass = defaultItemComponentValues.itemArmorClass;
+		itemWeaponClass = defaultItemComponentValues.itemWeaponClass;
+		itemSlotsRequired = defaultItemComponentValues.itemSlotsRequired;
+
+		itemSigil = {
+			slot1: {
+				name: 'Attack Slayer',
+				value: 8,
+			},
+			slot2: {
+				name: 'Elemental Slayer',
+				value: -8,
+			},
+			slot3: {
+				name: 'Zenith Healing',
+				value: 4,
+			},
+			slot4: {
+				name: 'Affinity Slayer',
+				value: -43,
+			},
+		};
+
+		itemDecoration = {
+			slot1: {
+				name: 'Determination',
+				value: 7,
+			},
+			slot2: {
+				name: 'Attack',
+				value: -58,
+			},
+			slot3: {
+				name: 'Defense',
+				value: 9,
+			},
+			slot4: {
+				name: 'Sharpness',
+				value: 2,
+			},
+		};
+	}
 
 	function getZenithSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
@@ -360,26 +421,55 @@
 		});
 	}
 
-	const invalidSharpnessValueText = 'Value must be between 0 and 400.';
-	const invalidWeaponLevelText = 'Value must be between 0 and 100.';
-	const invalidWeaponRarityText = 'Value must be between 1 and 12.';
-	const invalidWeaponAttackText = 'Value must be between 1 and 65536';
-	const invalidArmorDefenseText = 'Value must be between -2550 and 2550';
-	const invalidArmorElementalResistanceText =
-		'Value must be between -2550 and 2550';
-	const invalidWeaponElementStatusText = 'Value must be between -2550 and 2550';
-	const invalidWeaponAffinityText = 'Value must be between -2550 and 2550';
-	const invalidWeaponSigilValueText = 'Value must be between -127 and 127';
-	const invalidArmorSkillPointsText = 'Value must be between -127 and 127';
-	const invalidGunlanceShellLevelText = 'Value must be between 1 and 9';
-	const invalidBowChargeLevelText = 'Value must be between 1 and 4';
-	const invalidBowgunAttackLevelText = 'Value must be between 0 and 5';
-	const invalidBowgunAmmoText = 'Value must be between 0 and 64';
-	const invalidArmorLevelText = 'Value must be between 1 and 7';
-	const invalidArmorGRLevelText = 'Value must be between 0 and 7';
-
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
+	const minimumWeaponAttack = 1;
+	const maximumWeaponAttack = 65535;
+	const minimumRarity = 1;
+	const maximumRarity = 12;
+	const minimumWeaponLevel = 0;
+	const maximumWeaponLevel = 100;
+	const minimumWeaponElement = -2550;
+	const maximumWeaponElement = 2550;
+	const minimumWeaponStatus = -2550;
+	const maximumWeaponStatus = 2550;
+	const minimumGunlanceShellLevel = 1;
+	const maximumGunlanceShellLevel = 9;
+	const minimumBowgunAttackLevel = 0;
+	const maximumBowgunAttackLevel = 5;
+	const minimumWeaponAffinity = -2250;
+	const maximumWeaponAffinity = 2250;
+	const minimumBowChargeLevel = 1;
+	const maximumBowChargeLevel = 4;
+	const minimumBowgunAmmo = 0;
+	const maximumBowgunAmmo = 64;
+	const minimumSigilPoints = -127;
+	const maximumSigilPoints = 127;
+	const minimumArmorLevel = 0;
+	const maximumArmorLevel = 7;
+	const minimumArmorDefense = 0;
+	const maximumArmorDefense = 65535;
+	const minimumArmorElementResistance = -127;
+	const maximumArmorElementResistance = 127;
+	const minimumArmorSkillPoints = -127;
+	const maximumArmorSkillPoints = 127;
+
+	const invalidSharpnessValueText = `Value must be between ${minimumSharpnessValue} and ${maximumSharpnessValue}.`;
+	const invalidWeaponLevelText = `Value must be between ${minimumWeaponLevel} and ${maximumWeaponLevel}.`;
+	const invalidWeaponRarityText = `Value must be between ${minimumRarity} and ${maximumRarity}.`;
+	const invalidWeaponAttackText = `Value must be between ${minimumWeaponAttack} and ${maximumWeaponAttack}.`;
+	const invalidArmorDefenseText = `Value must be between ${minimumArmorDefense} and ${maximumArmorDefense}.`;
+	const invalidArmorElementalResistanceText = `Value must be between ${minimumArmorElementResistance} and ${maximumArmorElementResistance}.`;
+	const invalidWeaponElementStatusText = `Value must be between ${minimumWeaponElement} and ${maximumWeaponElement}.`;
+	const invalidWeaponAffinityText = `Value must be between ${minimumWeaponAffinity} and ${maximumWeaponAffinity}.`;
+	const invalidWeaponSigilValueText = `Value must be between ${minimumSigilPoints} and ${maximumSigilPoints}.`;
+	const invalidArmorSkillPointsText = `Value must be between ${minimumArmorSkillPoints} and ${maximumArmorSkillPoints}.`;
+	const invalidGunlanceShellLevelText = `Value must be between ${minimumGunlanceShellLevel} and ${maximumGunlanceShellLevel}.`;
+	const invalidBowChargeLevelText = `Value must be between ${minimumBowChargeLevel} and ${maximumBowChargeLevel}.`;
+	const invalidBowgunAttackLevelText = `Value must be between ${minimumBowgunAttackLevel} and ${maximumBowgunAttackLevel}.`;
+	const invalidBowgunAmmoText = `Value must be between ${minimumBowgunAmmo} and ${maximumBowgunAmmo}.`;
+	const invalidArmorLevelText = `Value must be between ${minimumArmorLevel} and ${maximumArmorLevel}.`;
+	const invalidArmorGRLevelText = `Value must be between ${minimumArmorLevel} and ${maximumArmorLevel}.`; // Assuming this is a typo and should be the same as invalidArmorLevelText
 
 	let weaponSharpness = defaultWeaponComponentValues.weaponSharpness;
 
@@ -481,26 +571,32 @@
 	let currentArmorPage = 1;
 	let currentItemPage = 1;
 
-	let armorName = 'Barb Helmet ZP';
-	let armorLevel: FrontierArmorLevel = 7;
-	let armorGRLevel: FrontierArmorGRLevel = 7;
-	let armorDefense: number = 100;
-	let armorFireResistance: number = 0;
-	let armorWaterResistance: number = 0;
-	let armorThunderResistance: number = 0;
-	let armorIceResistance: number = 0;
-	let armorDragonResistance: number = 0;
-	let armorTransmog = true;
-	let armorClass: FrontierArmorClass = 'Either';
-	let armorID = '0';
-	let armorRank: FrontierEquipmentRank = 'Z';
-	let armorZenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
-	let armorDescription: string =
-		'A very very very very very very very very long description.';
-	let armorRarity: FrontierRarity = 12;
+	let armorName = defaultArmorComponentValues.armorName;
+	let armorLevel: FrontierArmorLevel = defaultArmorComponentValues.armorLevel;
+	let armorGRLevel: FrontierArmorGRLevel =
+		defaultArmorComponentValues.armorGRLevel;
+	let armorDefense: number = defaultArmorComponentValues.armorDefense;
+	let armorFireResistance: number =
+		defaultArmorComponentValues.armorFireResistance;
+	let armorWaterResistance: number =
+		defaultArmorComponentValues.armorWaterResistance;
+	let armorThunderResistance: number =
+		defaultArmorComponentValues.armorThunderResistance;
+	let armorIceResistance: number =
+		defaultArmorComponentValues.armorIceResistance;
+	let armorDragonResistance: number =
+		defaultArmorComponentValues.armorDragonResistance;
+	let armorTransmog = defaultArmorComponentValues.armorTransmog;
+	let armorClass: FrontierArmorClass = defaultArmorComponentValues.armorClass;
+	let armorID = defaultArmorComponentValues.armorID;
+	let armorRank: FrontierEquipmentRank = defaultArmorComponentValues.armorRank;
+	let armorZenithSkill: FrontierZenithSkill =
+		defaultArmorComponentValues.armorZenithSkill;
+	let armorDescription: string = defaultArmorComponentValues.armorDescription;
+	let armorRarity: FrontierRarity = defaultArmorComponentValues.armorRarity;
 
 	/** TODO Show extra icons.*/
-	let armorExtraIcons = false;
+	let armorExtraIcons = defaultArmorComponentValues.armorExtraIcons;
 
 	let armorSkillTreeNames: FrontierArmorSkillTree[] = [
 		'Blazing Grace',
@@ -510,8 +606,9 @@
 		'Three Worlds Protection',
 	];
 	let armorSkillPoints: FrontierEquipmentSkillPoints = [10, 20, -30, 40, 50];
-	let armorType: FrontierArmorType = 'Zenith';
-	let armorAutomaticSkill: FrontierArmorSkillName = '';
+	let armorType: FrontierArmorType = defaultArmorComponentValues.armorType;
+	let armorAutomaticSkill: FrontierArmorSkillName =
+		defaultArmorComponentValues.armorAutomaticSkill;
 	let armorDecorations: FrontierEquipmentDecorations = {
 		slot1: {
 			name: 'Zindol BM GX1',
@@ -572,13 +669,67 @@
 		},
 	};
 
-	let itemName = 'Book of Combos';
-	let itemDescription =
-		'A book of Combos. Used for increasing the chance of success when combining items. Bought from the shop.';
-	let itemRarity: FrontierRarity = 5;
-	let itemRank: FrontierItemRankType = 'G';
-	let iconName = 'Armor Sphere';
-	let colorName: FrontierItemColor = 'White';
+	let itemName = defaultItemComponentValues.itemName;
+	let itemDescription = defaultItemComponentValues.itemDescription;
+	let itemRarity: FrontierRarity = defaultItemComponentValues.itemRarity;
+	let itemRank: FrontierItemRankType = defaultItemComponentValues.itemRank;
+	let itemIconName = defaultItemComponentValues.itemIconName;
+	let itemColorName: FrontierItemColor =
+		defaultItemComponentValues.itemColorName;
+	let itemType: FrontierItemType = defaultItemComponentValues.itemType;
+	let itemZenithSkill: FrontierZenithSkill =
+		defaultItemComponentValues.itemZenithSkill;
+	let itemCuffSkill1: FrontierArmorSkillTree =
+		defaultItemComponentValues.itemCuffSkill1;
+	let itemCuffSkill1Points = defaultItemComponentValues.itemCuffSkill1Points;
+	let itemCuffSkill2: FrontierArmorSkillTree =
+		defaultItemComponentValues.itemCuffSkill2;
+	let itemCuffSkill2Points = defaultItemComponentValues.itemCuffSkill2Points;
+	let itemTowerSkill: FrontierArmorSkillName =
+		defaultItemComponentValues.itemTowerSkill;
+	let itemArmorClass: FrontierArmorClass =
+		defaultItemComponentValues.itemArmorClass;
+	let itemWeaponClass: FrontierWeaponClass =
+		defaultItemComponentValues.itemWeaponClass;
+	let itemSlotsRequired: FrontierSlot =
+		defaultItemComponentValues.itemSlotsRequired;
+	let itemSigil: FrontierItemSigil = {
+		slot1: {
+			name: 'Attack Slayer',
+			value: 8,
+		},
+		slot2: {
+			name: 'Elemental Slayer',
+			value: -8,
+		},
+		slot3: {
+			name: 'Zenith Healing',
+			value: 4,
+		},
+		slot4: {
+			name: 'Affinity Slayer',
+			value: -43,
+		},
+	};
+
+	let itemDecoration: FrontierItemDecoration = {
+		slot1: {
+			name: 'Determination',
+			value: 7,
+		},
+		slot2: {
+			name: 'Attack',
+			value: -58,
+		},
+		slot3: {
+			name: 'Defense',
+			value: 9,
+		},
+		slot4: {
+			name: 'Sharpness',
+			value: 2,
+		},
+	};
 
 	$: huntingHornNotesArray = [
 		huntingHornNotes.split(' ')[0],
@@ -591,7 +742,7 @@
 <Head
 	title={'Smithy'}
 	{description}
-	image={logo}
+	image={smithy}
 	{url}
 	{website}
 	{authorName}
@@ -775,8 +926,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={1}
-						max={12}
+						min={minimumRarity}
+						max={maximumRarity}
 						bind:value={weaponRarity}
 						invalidText={invalidWeaponRarityText}
 						label={'Rarity'}
@@ -784,8 +935,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={0}
-						max={100}
+						min={minimumWeaponLevel}
+						max={maximumWeaponLevel}
 						bind:value={weaponLevel}
 						invalidText={invalidWeaponLevelText}
 						label={'Level'}
@@ -833,8 +984,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={1}
-							max={65536}
+							min={minimumWeaponAttack}
+							max={maximumWeaponAttack}
 							bind:value={weaponAttack}
 							invalidText={invalidWeaponAttackText}
 							label={'Attack'}
@@ -842,8 +993,8 @@
 						<NumberInput
 							size="sm"
 							step={10}
-							min={-2550}
-							max={2550}
+							min={minimumWeaponElement}
+							max={maximumWeaponElement}
 							bind:value={weaponElementValue}
 							invalidText={invalidWeaponElementStatusText}
 							label={'Element'}
@@ -851,8 +1002,8 @@
 						<NumberInput
 							size="sm"
 							step={10}
-							min={-2550}
-							max={2550}
+							min={minimumWeaponStatus}
+							max={maximumWeaponStatus}
 							bind:value={weaponStatusValue}
 							invalidText={invalidWeaponElementStatusText}
 							label={'Status'}
@@ -955,8 +1106,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={1}
-							max={9}
+							min={minimumGunlanceShellLevel}
+							max={maximumGunlanceShellLevel}
 							bind:value={gunlanceShellLevel}
 							invalidText={invalidGunlanceShellLevelText}
 							label={'Shell Level'}
@@ -1025,8 +1176,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={5}
+							min={minimumBowgunAttackLevel}
+							max={maximumBowgunAttackLevel}
 							bind:value={bowgunAttackLevel}
 							invalidText={invalidBowgunAttackLevelText}
 							label={'Attack Level'}
@@ -1080,8 +1231,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={1}
-							max={5}
+							min={minimumBowgunAttackLevel}
+							max={maximumBowgunAttackLevel}
 							bind:value={bowgunAttackLevel}
 							invalidText={invalidBowgunAttackLevelText}
 							label={'Attack Level'}
@@ -1125,8 +1276,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-2550}
-						max={2550}
+						min={minimumWeaponAffinity}
+						max={maximumWeaponAffinity}
 						bind:value={weaponAffinity}
 						invalidText={invalidWeaponAffinityText}
 						label={'Affinity'}
@@ -1157,8 +1308,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={1}
-							max={4}
+							min={minimumBowChargeLevel}
+							max={maximumBowChargeLevel}
 							bind:value={bowChargeLevel1}
 							invalidText={invalidBowChargeLevelText}
 							label={'Charge Level 1'}
@@ -1178,8 +1329,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={1}
-							max={4}
+							min={minimumBowChargeLevel}
+							max={maximumBowChargeLevel}
 							bind:value={bowChargeLevel2}
 							invalidText={invalidBowChargeLevelText}
 							label={'Charge Level 2'}
@@ -1199,8 +1350,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={1}
-							max={4}
+							min={minimumBowChargeLevel}
+							max={maximumBowChargeLevel}
 							bind:value={bowChargeLevel3}
 							invalidText={invalidBowChargeLevelText}
 							label={'Charge Level 3'}
@@ -1211,8 +1362,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunNormalAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Normal LV1'}
@@ -1220,8 +1371,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunNormalAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Normal LV2'}
@@ -1229,8 +1380,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunNormalAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Normal LV3'}
@@ -1238,8 +1389,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPierceAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Pierce LV1'}
@@ -1247,8 +1398,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPierceAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Pierce LV2'}
@@ -1256,8 +1407,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPierceAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Pierce LV3'}
@@ -1265,8 +1416,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPelletAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Pellet LV1'}
@@ -1274,8 +1425,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPelletAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Pellet LV2'}
@@ -1283,8 +1434,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPelletAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Pellet LV3'}
@@ -1292,8 +1443,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunCragAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Crag LV1'}
@@ -1301,8 +1452,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunCragAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Crag LV2'}
@@ -1310,8 +1461,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={12647}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunCragAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Crag LV3'}
@@ -1319,8 +1470,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunClusterAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Cluster LV1'}
@@ -1328,8 +1479,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunClusterAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Cluster LV2'}
@@ -1337,8 +1488,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunClusterAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Cluster LV3'}
@@ -1346,8 +1497,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunRecoveryAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Recovery LV1'}
@@ -1355,8 +1506,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunRecoveryAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Recovery LV2'}
@@ -1364,8 +1515,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunRecoveryAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Recovery LV3'}
@@ -1373,8 +1524,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPoisonAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Poison LV1'}
@@ -1382,8 +1533,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPoisonAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Poison LV2'}
@@ -1391,8 +1542,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPoisonAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Poison LV3'}
@@ -1400,8 +1551,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunParalysisAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Paralysis LV1'}
@@ -1409,8 +1560,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunParalysisAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Paralysis LV2'}
@@ -1418,8 +1569,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunParalysisAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Paralysis LV3'}
@@ -1427,8 +1578,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunSleepAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Sleep LV1'}
@@ -1436,8 +1587,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunSleepAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Sleep LV2'}
@@ -1445,8 +1596,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunSleepAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Sleep LV3'}
@@ -1486,8 +1637,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunFlamingAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Flaming LV1'}
@@ -1495,8 +1646,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunFlamingAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Flaming LV2'}
@@ -1504,8 +1655,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunFlamingAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Flaming LV3'}
@@ -1513,8 +1664,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunWaterAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Water LV1'}
@@ -1522,8 +1673,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunWaterAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Water LV2'}
@@ -1531,8 +1682,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunWaterAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Water LV3'}
@@ -1540,8 +1691,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunThunderAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Thunder LV1'}
@@ -1549,8 +1700,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunThunderAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Thunder LV2'}
@@ -1558,8 +1709,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunThunderAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Thunder LV3'}
@@ -1567,8 +1718,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunFreezeAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Freeze LV1'}
@@ -1576,8 +1727,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunFreezeAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Freeze LV2'}
@@ -1585,8 +1736,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={12647}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunFreezeAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Freeze LV3'}
@@ -1594,8 +1745,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunDragonAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Dragon LV1'}
@@ -1603,8 +1754,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunDragonAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Dragon LV2'}
@@ -1612,8 +1763,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunDragonAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Dragon LV3'}
@@ -1621,8 +1772,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunTranqAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Tranq LV1'}
@@ -1630,8 +1781,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunTranqAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Tranq LV2'}
@@ -1639,8 +1790,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunTranqAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Tranq LV3'}
@@ -1648,8 +1799,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPaintAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Paint LV1'}
@@ -1657,8 +1808,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPaintAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Paint LV2'}
@@ -1666,8 +1817,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunPaintAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Paint LV3'}
@@ -1675,8 +1826,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunDemonAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Demon LV1'}
@@ -1684,8 +1835,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunDemonAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Demon LV2'}
@@ -1693,8 +1844,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunDemonAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Demon LV3'}
@@ -1702,8 +1853,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunArmorAmmo[0]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Armor LV1'}
@@ -1711,8 +1862,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunArmorAmmo[1]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Armor LV2'}
@@ -1720,8 +1871,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={0}
-							max={64}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
 							bind:value={bowgunArmorAmmo[2]}
 							invalidText={invalidBowgunAmmoText}
 							label={'Armor LV3'}
@@ -1740,8 +1891,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil1Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 1'}
@@ -1756,8 +1907,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil2Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 2'}
@@ -1772,8 +1923,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil3Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 3'}
@@ -1797,8 +1948,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil4Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 4'}
@@ -1813,8 +1964,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil5Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 5'}
@@ -1829,8 +1980,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil6Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 6'}
@@ -1852,8 +2003,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil1Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 1'}
@@ -1868,8 +2019,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil2Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 2'}
@@ -1884,8 +2035,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil3Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 3'}
@@ -1905,8 +2056,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil7Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 7'}
@@ -1921,8 +2072,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil8Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 8'}
@@ -1937,8 +2088,8 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={-127}
-								max={127}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
 								bind:value={weaponSigil9Value}
 								invalidText={invalidWeaponSigilValueText}
 								label={'Sigil 9'}
@@ -1959,8 +2110,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
 							bind:value={weaponSigil4Value}
 							invalidText={invalidWeaponSigilValueText}
 							label={'Sigil 4'}
@@ -1975,8 +2126,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
 							bind:value={weaponSigil5Value}
 							invalidText={invalidWeaponSigilValueText}
 							label={'Sigil 5'}
@@ -1991,8 +2142,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
 							bind:value={weaponSigil6Value}
 							invalidText={invalidWeaponSigilValueText}
 							label={'Sigil 6'}
@@ -2012,8 +2163,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
 							bind:value={weaponSigil7Value}
 							invalidText={invalidWeaponSigilValueText}
 							label={'Sigil 7'}
@@ -2028,8 +2179,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
 							bind:value={weaponSigil8Value}
 							invalidText={invalidWeaponSigilValueText}
 							label={'Sigil 8'}
@@ -2044,8 +2195,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
 							bind:value={weaponSigil9Value}
 							invalidText={invalidWeaponSigilValueText}
 							label={'Sigil 9'}
@@ -2123,8 +2274,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={1}
-						max={12}
+						min={minimumRarity}
+						max={maximumRarity}
 						bind:value={armorRarity}
 						invalidText={invalidWeaponRarityText}
 						label={'Rarity'}
@@ -2148,8 +2299,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={1}
-						max={7}
+						min={minimumArmorLevel}
+						max={maximumArmorLevel}
 						bind:value={armorLevel}
 						invalidText={invalidArmorLevelText}
 						label={'Level'}
@@ -2157,8 +2308,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-2550}
-						max={2550}
+						min={minimumArmorDefense}
+						max={maximumArmorDefense}
 						bind:value={armorDefense}
 						invalidText={invalidArmorDefenseText}
 						label={'Defense'}
@@ -2166,8 +2317,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-2550}
-						max={2550}
+						min={minimumArmorElementResistance}
+						max={maximumArmorElementResistance}
 						bind:value={armorFireResistance}
 						invalidText={invalidArmorElementalResistanceText}
 						label={'Fire Resistance'}
@@ -2175,8 +2326,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-2550}
-						max={2550}
+						min={minimumArmorElementResistance}
+						max={maximumArmorElementResistance}
 						bind:value={armorWaterResistance}
 						invalidText={invalidArmorElementalResistanceText}
 						label={'Water Resistance'}
@@ -2184,8 +2335,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-2550}
-						max={2550}
+						min={minimumArmorElementResistance}
+						max={maximumArmorElementResistance}
 						bind:value={armorThunderResistance}
 						invalidText={invalidArmorElementalResistanceText}
 						label={'Thunder Resistance'}
@@ -2193,8 +2344,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-2550}
-						max={2550}
+						min={minimumArmorElementResistance}
+						max={maximumArmorElementResistance}
 						bind:value={armorIceResistance}
 						invalidText={invalidArmorElementalResistanceText}
 						label={'Ice Resistance'}
@@ -2202,8 +2353,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-2550}
-						max={2550}
+						min={minimumArmorElementResistance}
+						max={maximumArmorElementResistance}
 						bind:value={armorDragonResistance}
 						invalidText={invalidArmorElementalResistanceText}
 						label={'Dragon Resistance'}
@@ -2256,8 +2407,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={0}
-						max={7}
+						min={minimumArmorLevel}
+						max={maximumArmorLevel}
 						bind:value={armorGRLevel}
 						invalidText={invalidArmorGRLevelText}
 						label={'GR Level'}
@@ -2289,8 +2440,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-127}
-						max={127}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
 						bind:value={armorSkillPoints[0]}
 						invalidText={invalidArmorSkillPointsText}
 						label={'Skill 1 Points'}
@@ -2305,8 +2456,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-127}
-						max={127}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
 						bind:value={armorSkillPoints[1]}
 						invalidText={invalidArmorSkillPointsText}
 						label={'Skill 2 Points'}
@@ -2321,8 +2472,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-127}
-						max={127}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
 						bind:value={armorSkillPoints[2]}
 						invalidText={invalidArmorSkillPointsText}
 						label={'Skill 3 Points'}
@@ -2337,8 +2488,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-127}
-						max={127}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
 						bind:value={armorSkillPoints[3]}
 						invalidText={invalidArmorSkillPointsText}
 						label={'Skill 4 Points'}
@@ -2353,8 +2504,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={-127}
-						max={127}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
 						bind:value={armorSkillPoints[4]}
 						invalidText={invalidArmorSkillPointsText}
 						label={'Skill 5 Points'}
@@ -2379,8 +2530,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot1.skill1.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 1 Points'}
@@ -2395,8 +2546,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot1.skill2.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 2 Points'}
@@ -2411,8 +2562,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot1.skill3.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 3 Points'}
@@ -2427,8 +2578,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot1.skill4.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 4 Points'}
@@ -2454,8 +2605,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot2.skill1.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 1 Points'}
@@ -2470,8 +2621,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot2.skill2.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 2 Points'}
@@ -2486,8 +2637,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot2.skill3.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 3 Points'}
@@ -2502,8 +2653,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot2.skill4.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 4 Points'}
@@ -2529,8 +2680,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot3.skill1.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 1 Points'}
@@ -2545,8 +2696,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot3.skill2.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 2 Points'}
@@ -2561,8 +2712,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot3.skill3.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 3 Points'}
@@ -2577,8 +2728,8 @@
 						<NumberInput
 							size="sm"
 							step={1}
-							min={-127}
-							max={127}
+							min={minimumArmorSkillPoints}
+							max={maximumArmorSkillPoints}
 							bind:value={armorDecorations.slot3.skill4.points}
 							invalidText={invalidArmorSkillPointsText}
 							label={'Decoration Skill 4 Points'}
@@ -2610,8 +2761,20 @@
 							name={itemName}
 							description={itemDescription}
 							rarity={itemRarity >= 1 && itemRarity <= 12 ? itemRarity : 1}
-							{iconName}
-							{colorName}
+							iconName={itemIconName}
+							colorName={itemColorName}
+							{itemType}
+							zenithSkill={itemZenithSkill}
+							cuffSkill1={itemCuffSkill1}
+							cuffSkill1Points={itemCuffSkill1Points}
+							cuffSkill2={itemCuffSkill2}
+							cuffSkill2Points={itemCuffSkill2Points}
+							towerSkill={itemTowerSkill}
+							armorClass={itemArmorClass}
+							weaponClass={itemWeaponClass}
+							slotsRequired={itemSlotsRequired}
+							sigil={itemSigil}
+							decoration={itemDecoration}
 						/>
 					</div>
 				{/key}
@@ -2620,14 +2783,14 @@
 						titleText="Item Icon"
 						type="inline"
 						hideLabel
-						bind:selectedId={iconName}
+						bind:selectedId={itemIconName}
 						items={getItemTypes()}
 					/>
 					<Dropdown
 						titleText="Item Color"
 						type="inline"
 						hideLabel
-						bind:selectedId={colorName}
+						bind:selectedId={itemColorName}
 						items={getItemColors()}
 					/>
 					<TextInput
@@ -2660,8 +2823,8 @@
 					<NumberInput
 						size="sm"
 						step={1}
-						min={1}
-						max={12}
+						min={minimumRarity}
+						max={maximumRarity}
 						bind:value={itemRarity}
 						invalidText={invalidWeaponRarityText}
 						label={'Rarity'}
@@ -2669,11 +2832,28 @@
 				</div>
 			</div>
 			{#if currentItemPage === 1}
-				<div class="page-1-item"></div>
+				<div class="page-1-item">
+					<Dropdown
+						titleText="Sigil Slot 1"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemSigil.slot1.name}
+						items={getSigilSkills()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemSigil.slot1.value}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Sigil Slot 1 Points'}
+					/>
+				</div>
 			{:else if currentItemPage === 2}
-				<div class="page-2-armor"></div>
+				<div class="page-2-item"></div>
 			{:else if currentItemPage === 3}
-				<div class="page-3-armor"></div>
+				<div class="page-3-item"></div>
 			{/if}
 		</div>
 	</section>

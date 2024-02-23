@@ -23,14 +23,10 @@
 	import ArrowIcon from '$lib/client/components/frontier/icon/ArrowIcon.svelte';
 
 	import DecoratedBorder from '$lib/client/components/frontier/DecoratedBorder.svelte';
-	import {
-		frontierMappers,
-		stringReplacements,
-	} from '$lib/client/modules/frontier/functions';
+	import { stringReplacements } from '$lib/client/modules/frontier/functions';
 	import GRankEquipmentIcon from './icon/GRankEquipmentIcon.svelte';
 	import ZenithEquipmentIcon from './icon/ZenithEquipmentIcon2.svelte';
 	//TODO Transmog icon
-	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 
 	/** Truncated to 18 characters.*/
 	export let name = 'Name';
@@ -65,7 +61,7 @@
 	 */
 	export let light = false;
 
-	export let currentPage: number;
+	export let currentPage: number = 1;
 
 	// TODO
 	export let skillNames: FrontierArmorSkillTree[] = [

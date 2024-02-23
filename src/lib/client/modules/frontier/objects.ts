@@ -30,12 +30,18 @@ import type {
 	FrontierHeavyBowgunUpgrade,
 	FrontierHuntingHornWeaponNote,
 	FrontierItemColor,
+	FrontierItemDecoration,
+	FrontierItemRankType,
+	FrontierItemSigil,
+	FrontierItemType,
 	FrontierLightBowgunUpgrade,
 	FrontierRarity,
 	FrontierSigil,
+	FrontierSlot,
 	FrontierStatus,
 	FrontierSwitchAxeFPhial,
 	FrontierWeapon,
+	FrontierWeaponClass,
 	FrontierWeaponLength,
 	FrontierWeaponSharpness,
 	FrontierWeaponType,
@@ -1754,6 +1760,62 @@ export const defaultArmorComponentValues = {
 			},
 		},
 	} as FrontierEquipmentDecorations,
+} as const;
+
+export const defaultItemComponentValues = {
+	itemName: 'Book of Combos',
+	itemDescription:
+		'A book of Combos. Used for increasing the chance of success when combining items. Bought from the shop.',
+	itemRarity: 1 as FrontierRarity,
+	itemRank: 'Z' as FrontierItemRankType,
+	itemIconName: 'Book',
+	itemColorName: 'Red' as FrontierItemColor,
+	itemType: 'Other' as FrontierItemType,
+	itemZenithSkill: 'Skill Slots Up+1' as FrontierZenithSkill,
+	itemCuffSkill1: 'Vampirism' as FrontierArmorSkillTree,
+	itemCuffSkill1Points: 0,
+	itemCuffSkill2: 'Determination' as FrontierArmorSkillTree,
+	itemCuffSkill2Points: 0,
+	itemTowerSkill: 'Lone Wolf' as FrontierArmorSkillName,
+	itemArmorClass: 'Either' as FrontierArmorClass,
+	itemWeaponClass: 'Both' as FrontierWeaponClass,
+	itemSlotsRequired: 0 as FrontierSlot,
+	itemSigil: {
+		slot1: {
+			name: 'Attack Slayer',
+			value: 8,
+		},
+		slot2: {
+			name: 'Elemental Slayer',
+			value: -8,
+		},
+		slot3: {
+			name: 'Zenith Healing',
+			value: 4,
+		},
+		slot4: {
+			name: 'Affinity Slayer',
+			value: -43,
+		},
+	} as FrontierItemSigil,
+	itemDecoration: {
+		slot1: {
+			name: 'Determination',
+			value: 7,
+		},
+		slot2: {
+			name: 'Attack',
+			value: -58,
+		},
+		slot3: {
+			name: 'Defense',
+			value: 9,
+		},
+		slot4: {
+			name: 'Sharpness',
+			value: 2,
+		},
+	} as FrontierItemDecoration,
 } as const;
 
 /*

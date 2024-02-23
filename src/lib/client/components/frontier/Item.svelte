@@ -13,10 +13,11 @@
 		FrontierWeaponClass,
 		FrontierSlot,
 		FrontierZenithSkill,
-		FrontierItemSlottable,
 		FrontierItemType,
 		FrontierItemRankType,
 		FrontierItemColor,
+		FrontierItemDecoration,
+		FrontierItemSigil,
 	} from '$lib/client/modules/frontier/types';
 	import ArrowIcon from '$lib/client/components/frontier/icon/ArrowIcon.svelte';
 
@@ -40,11 +41,12 @@
 	 * tower or cuff
 	 */
 	export let zenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
-	export let extraSkill: FrontierArmorSkillTree = 'Vampirism';
-	export let extraSkillPoints = 10;
+	export let cuffSkill1: FrontierArmorSkillTree = 'Vampirism';
+	export let cuffSkill1Points = 10;
+	export let cuffSkill2: FrontierArmorSkillTree = 'Determination';
+	export let cuffSkill2Points = 12;
 	export let towerSkill: FrontierArmorSkillName = 'Kickboxing King';
 
-	// page 2
 	export let description: string = 'Description.';
 	export let rarity: FrontierRarity = 12;
 	export let armorClass: FrontierArmorClass = 'Either';
@@ -52,20 +54,15 @@
 	export let slotsRequired: FrontierSlot = 1;
 
 	/**
-	 * sigils dont count
-	 */
-	export let equippable: boolean = false;
-
-	/**
 	 * TODO Set theme to light.
 	 */
 	export let light = false;
 
-	export let currentPage: number;
+	export let currentPage: number = 1;
 
 	export let colorName: FrontierItemColor = 'White';
 
-	export let sigil: FrontierItemSlottable = {
+	export let sigil: FrontierItemSigil = {
 		slot1: {
 			name: '',
 			value: 0,
@@ -84,7 +81,7 @@
 		},
 	};
 
-	export let decoration: FrontierItemSlottable = {
+	export let decoration: FrontierItemDecoration = {
 		slot1: {
 			name: '',
 			value: 0,
@@ -123,7 +120,7 @@
 	const requirementText = '(Tower Weapon)';
 
 	$: rarityColor = stringReplacements.colorFromRarity(rarity);
-	$: maxPages = equippable ? 3 : 1;
+	$: maxPages = itemType === 'Other' || itemType === 'Sigil' ? 1 : 3;
 	$: icon =
 		ItemTypes.find((item) => item.name === iconName)?.icon ??
 		QuestionMarkIconWhite;
@@ -135,8 +132,8 @@
 
 <DecoratedBorder>
 	<div class="container">
-		{#if currentPage === 1}
-			{#if itemType === 'Other'}
+		{#if itemType === 'Other'}
+			{#if currentPage === 1}
 				<div class="page-1-other">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -164,149 +161,173 @@
 					</div>
 
 					<div class="description">{description}</div>
-
-					{#if maxPages > 1 || !(currentPage === 1 && maxPages === 1)}
-						<div class="pages">
-							<button
-								class="arrow-icon-button"
-								on:click={previousPage}
-								aria-label="Navigate to previous page"
-							>
-								<ArrowIcon
-									style="transform: scaleX(-1);"
-									fill="var(--fz-text-green)"
-									on:click={previousPage}
-								/>
-							</button>
-							{currentPage}/{maxPages}
-							<button
-								class="arrow-icon-button"
-								on:click={nextPage}
-								aria-label="Navigate to next page"
-							>
-								<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
-							</button>
+				</div>
+			{:else}
+				<div class="page-extra-nonequippable">
+					<div class="icon">
+						<div class="item-icon-container">
+							<div class="item-icon">
+								<svelte:component this={icon} {...iconProps} />
+							</div>
+							<div class="item-rank">
+								{#if itemRankType === 'G'}
+									<GRankEquipmentIcon />
+								{:else if itemRankType === 'Z'}
+									<ZenithEquipmentIcon />
+								{:else if itemRankType === 'T'}
+									<TowerEquipmentIcon />
+								{/if}
+							</div>
 						</div>
-					{/if}
+					</div>
+
+					<!-- <div class="hunterType">
+						<div class="hunter-type">
+							<p class="text-yellow">Equippable:</p>
+						</div>
+						<div class="hunter-class">
+							<p>{armorClass}</p>
+						</div>
+					</div> -->
+
+					<div class="rarity">
+						<div
+							style="color: var({rarityColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 7ch;"
+						>
+							<span>RARE-</span>{rarity}
+						</div>
+					</div>
+
+					<!-- <div class="zenith">
+						{#if zenithSkill !== ''}
+							<span class="double-width-transform">«</span>{zenithSkill}<span
+								class="double-width-transform">»</span
+							>
+						{/if}
+					</div> -->
+
+					<!-- <div class="slots">
+						<p class="text-yellow">Slots</p>
+					</div> -->
+
+					<div class="pages">
+						<button
+							class="arrow-icon-button"
+							on:click={previousPage}
+							aria-label="Navigate to previous page"
+						>
+							<ArrowIcon
+								style="transform: scaleX(-1);"
+								fill="var(--fz-text-green)"
+								on:click={previousPage}
+							/>
+						</button>
+						{currentPage}/{maxPages}
+						<button
+							class="arrow-icon-button"
+							on:click={nextPage}
+							aria-label="Navigate to next page"
+						>
+							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+						</button>
+					</div>
 				</div>
 			{/if}
-		{:else if currentPage === 2}
-			<div class="page-2">
-				<div class="icon">
-					<div class="item-icon-container">
-						<div class="item-icon">
-							<svelte:component this={icon} {...iconProps} />
+		{:else if itemType === 'Sigil'}
+			{#if currentPage === 1}
+				<div class="page-1-sigil">
+					<div class="icon">
+						<div class="item-icon-container">
+							<div class="item-icon">
+								<svelte:component this={icon} {...iconProps} />
+							</div>
+							<div class="item-rank">
+								{#if itemRankType === 'G'}
+									<GRankEquipmentIcon />
+								{:else if itemRankType === 'Z'}
+									<ZenithEquipmentIcon />
+								{:else if itemRankType === 'T'}
+									<TowerEquipmentIcon />
+								{/if}
+							</div>
 						</div>
-						<div class="item-rank">
-							{#if itemRankType === 'G'}
-								<GRankEquipmentIcon />
-							{:else if itemRankType === 'Z'}
-								<ZenithEquipmentIcon />
-							{:else if itemRankType === 'T'}
-								<TowerEquipmentIcon />
-							{/if}
-						</div>
 					</div>
-				</div>
 
-				<div class="hunterType">
-					<div class="hunter-type">
-						<p class="text-yellow">Equippable:</p>
-					</div>
-					<div class="hunter-class">
-						<p>{armorClass}</p>
-					</div>
-				</div>
-
-				<div class="rarity">
-					<div
-						style="color: var({rarityColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 7ch;"
-					>
-						<span>RARE-</span>{rarity}
-					</div>
-				</div>
-
-				<div class="zenith">
-					{#if zenithSkill !== ''}
-						<span class="double-width-transform">«</span>{zenithSkill}<span
-							class="double-width-transform">»</span
+					<div class="rarity">
+						<div
+							style="color: var({rarityColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 7ch;"
 						>
-					{/if}
-				</div>
-
-				<div class="slots">
-					<p class="text-yellow">Slots</p>
-				</div>
-
-				<div class="pages">
-					<button
-						class="arrow-icon-button"
-						on:click={previousPage}
-						aria-label="Navigate to previous page"
-					>
-						<ArrowIcon
-							style="transform: scaleX(-1);"
-							fill="var(--fz-text-green)"
-							on:click={previousPage}
-						/>
-					</button>
-					{currentPage}/{maxPages}
-					<button
-						class="arrow-icon-button"
-						on:click={nextPage}
-						aria-label="Navigate to next page"
-					>
-						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
-					</button>
-				</div>
-			</div>
-		{:else if currentPage === 3}
-			<div class="page-3">
-				<div class="icon">
-					<div class="item-icon-container">
-						<div class="item-icon">
-							<svelte:component this={icon} {...iconProps} />
-						</div>
-						<div class="item-rank">
-							{#if itemRankType === 'G'}
-								<GRankEquipmentIcon />
-							{:else if itemRankType === 'Z'}
-								<ZenithEquipmentIcon />
-							{:else if itemRankType === 'T'}
-								<TowerEquipmentIcon />
-							{/if}
+							<span>RARE-</span>{rarity}
 						</div>
 					</div>
-				</div>
-				<div class="rarity">
-					<div
-						style="color: var({rarityColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 7ch;"
-					>
-						<span>RARE-</span>{rarity}
+
+					<div class="slot1">
+						{sigil.slot1.name}: {sigil.slot1.value > 0 ? '+' : ''}{sigil.slot1
+							.value}
+					</div>
+					<div class="slot2">
+						{sigil.slot2.name}: {sigil.slot2.value > 0 ? '+' : ''}{sigil.slot1
+							.value}
+					</div>
+					<div class="slot3">
+						{sigil.slot3.name}: {sigil.slot3.value > 0 ? '+' : ''}{sigil.slot1
+							.value}
+					</div>
+					<div class="slot4">
+						{sigil.slot4.name}: {sigil.slot4.value > 0 ? '+' : ''}{sigil.slot1
+							.value}
 					</div>
 				</div>
-				<div class="pages">
-					<button
-						class="arrow-icon-button"
-						on:click={previousPage}
-						aria-label="Navigate to previous page"
-					>
-						<ArrowIcon
-							style="transform: scaleX(-1);"
-							fill="var(--fz-text-green)"
+			{:else}
+				<div class="page-extra-nonequippable">
+					<div class="icon">
+						<div class="item-icon-container">
+							<div class="item-icon">
+								<svelte:component this={icon} {...iconProps} />
+							</div>
+							<div class="item-rank">
+								{#if itemRankType === 'G'}
+									<GRankEquipmentIcon />
+								{:else if itemRankType === 'Z'}
+									<ZenithEquipmentIcon />
+								{:else if itemRankType === 'T'}
+									<TowerEquipmentIcon />
+								{/if}
+							</div>
+						</div>
+					</div>
+
+					<div class="rarity">
+						<div
+							style="color: var({rarityColor}); overflow: hidden;white-space: nowrap; text-overflow: clip; max-width: 7ch;"
+						>
+							<span>RARE-</span>{rarity}
+						</div>
+					</div>
+
+					<div class="pages">
+						<button
+							class="arrow-icon-button"
 							on:click={previousPage}
-						/>
-					</button>
-					{currentPage}/{maxPages}
-					<button
-						class="arrow-icon-button"
-						on:click={nextPage}
-						aria-label="Navigate to next page"
-					>
-						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
-					</button>
+							aria-label="Navigate to previous page"
+						>
+							<ArrowIcon
+								style="transform: scaleX(-1);"
+								fill="var(--fz-text-green)"
+								on:click={previousPage}
+							/>
+						</button>
+						{currentPage}/{maxPages}
+						<button
+							class="arrow-icon-button"
+							on:click={nextPage}
+							aria-label="Navigate to next page"
+						>
+							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
+						</button>
+					</div>
 				</div>
-			</div>
+			{/if}
 		{/if}
 	</div>
 </DecoratedBorder>
@@ -318,19 +339,6 @@
 		margin: 0;
 		padding: 0;
 	}
-
-	.double-width-transform {
-		transform: scaleX(2);
-		display: inline-block;
-		margin-right: var(--cds-spacing-02);
-		margin-left: var(--cds-spacing-02);
-	}
-
-	/* .double-width {
-		width: 2ch;
-		margin-right: var(--cds-spacing-02);
-		margin-left: var(--cds-spacing-02);
-	} */
 
 	.text-yellow {
 		color: var(--fz-text-yellow);
@@ -379,11 +387,27 @@
 		grid-area: pages;
 	}
 
+	.slot1 {
+		grid-area: slot1;
+	}
+
+	.slot2 {
+		grid-area: slot2;
+	}
+
+	.slot3 {
+		grid-area: slot3;
+	}
+	
+	.slot4 {
+		grid-area: slot4;
+	}
+
 	.page-1-sigil {
 		display: grid;
 		grid-template-areas:
-			'icon points points'
-			'icon points points'
+			'icon slot1 slot2'
+			'icon slot3 slot4'
 			'rarity empty empty';
 		gap: 0.5rem;
 	}
@@ -394,6 +418,15 @@
 			'icon description description'
 			'icon description description'
 			'rarity description description';
+		gap: 0.5rem;
+	}
+
+	.page-extra-nonequippable {
+		display: grid;
+		grid-template-areas:
+			'icon empty empty'
+			'icon empty empty'
+			'rarity empty pages';
 		gap: 0.5rem;
 	}
 
@@ -433,22 +466,6 @@
 		margin: 0px;
 		padding: 0px;
 		margin-top: var(--cds-spacing-03);
-	}
-
-	.hunterType {
-		grid-area: hunterType;
-		display: flex;
-		flex-direction: row;
-		justify-content: start;
-	}
-
-	.page-2 p {
-		font-weight: bold;
-	}
-
-	.hunter-type,
-	.hunter-class {
-		width: 50%;
 	}
 
 	.rarity {
@@ -511,22 +528,6 @@
 		margin-top: 0.5rem;
 	}
 
-	.p-inherit {
-		font: inherit;
-	}
-
-	.text-orange {
-		color: var(--fz-text-orange);
-	}
-
-	.text-red {
-		color: var(--fz-text-red);
-	}
-
-	.text-purple {
-		color: var(--fz-text-purple);
-	} */
-
 	.container {
 		padding: 0.5rem;
 		background-color: #11111b;
@@ -536,11 +537,5 @@
 		font-size: 18px;
 		font-weight: 500;
 		width: 39ch;
-	}
-
-	.page-3 .pages {
-		position: absolute;
-		bottom: 0.5rem;
-		right: 0.5rem;
 	}
 </style>

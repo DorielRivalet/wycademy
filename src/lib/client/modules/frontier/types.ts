@@ -188,11 +188,17 @@ export type FrontierEquipmentDecorations = {
 	slot2: FrontierDecoration;
 	slot3: FrontierDecoration;
 };
-export type FrontierItemSlottable = {
-	slot1: FrontierQuantifiedEntity;
-	slot2: FrontierQuantifiedEntity;
-	slot3: FrontierQuantifiedEntity;
-	slot4: FrontierQuantifiedEntity;
+export type FrontierItemSigil = {
+	slot1: FrontierSigilSlot;
+	slot2: FrontierSigilSlot;
+	slot3: FrontierSigilSlot;
+	slot4: FrontierSigilSlot;
+};
+export type FrontierItemDecoration = {
+	slot1: FrontierDecorationSlot;
+	slot2: FrontierDecorationSlot;
+	slot3: FrontierDecorationSlot;
+	slot4: FrontierDecorationSlot;
 };
 export type FrontierItemColor =
 	| 'White'
@@ -431,10 +437,12 @@ export type FrontierSigil =
 	| 'Zenith Elemental'
 	| 'Zenith Movement Speed'
 	| 'All Zenith AOEs';
-/**
- * Generic object.
- */
-export type FrontierQuantifiedEntity = { name: string; value: number };
+export type FrontierSigilSlot = { name: FrontierSigil; value: number };
+export type Range = { name: string; minimum: number; maximum: number };
+export type FrontierDecorationSlot = {
+	name: FrontierArmorSkillTree;
+	value: number;
+};
 export type FrontierArmorSkillTree =
 	| ''
 	| 'Health'
