@@ -60,7 +60,10 @@
 			id="path1280-5"
 		/>
 		<path
-			style="opacity:0.999;fill:#d0d0d0;fill-opacity:1;stroke:#000000;stroke-width:0.52916667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+			style="opacity:0.999;fill:{blendColor(
+				'#d0d0d0',
+				targetColor,
+			)};fill-opacity:1;stroke:#000000;stroke-width:0.52916667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
 			d="M 3.5887762,7.5682654 H 2.9970486 L 2.0119049,6.516 4.0707587,4.4120966 6.1796717,6.516 H 10.749198 L 12.858111,4.4120966 14.916322,6.516 13.93118,7.5682654 13.34905,7.5682061 12.249668,6.5159405 11.140018,7.5682061 5.7978081,7.5683247 4.6881581,6.5159998 Z"
 			id="path1319"
 		/>
