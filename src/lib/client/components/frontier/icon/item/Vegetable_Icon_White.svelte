@@ -5,10 +5,9 @@
 -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	import { ColorCodes } from '$lib/client/modules/frontier/objects';
-	export let colorCode = 0;
+	export let color = '#000000';
 
-	$: targetColor = ColorCodes[colorCode] ?? ColorCodes[0];
+	$: targetColor = color;
 </script>
 
 <svg version="1.1" id="svg2" width="100%" height="100%" viewBox="0 0 64 64">

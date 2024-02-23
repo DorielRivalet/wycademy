@@ -1,10 +1,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	import { ColorCodes } from '$lib/client/modules/frontier/objects';
-	export let colorCode = 0;
+	export let color = '#000000';
 
-	$: targetColor = ColorCodes[colorCode] ?? ColorCodes[0];
+	$: targetColor = color;
 </script>
 
 <svg
@@ -14,27 +13,11 @@
 	version="1.1"
 	id="svg5"
 	xml:space="preserve"
-	inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-	sodipodi:docname="tower_sigil.svg"
-	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
 	xmlns="http://www.w3.org/2000/svg"
-	xmlns:svg="http://www.w3.org/2000/svg"
-	><g
-		inkscape:label="Layer 1"
-		inkscape:groupmode="layer"
-		id="layer1"
-		transform="translate(-60.895907,-110.26638)"
-	/><g
-		inkscape:groupmode="layer"
+	><g id="layer1" transform="translate(-60.895907,-110.26638)" /><g
 		id="layer2"
-		inkscape:label="Layer 2"
 		transform="translate(-17.219405,25.000929)"
-	/><g
-		inkscape:groupmode="layer"
-		id="layer3"
-		inkscape:label="Layer 3"
-		transform="translate(-17.219405,25.000929)"
+	/><g id="layer3" transform="translate(-17.219405,25.000929)"
 		><g
 			id="g40204"
 			transform="matrix(3.7155242,0,0,3.7155242,22.733997,88.20371)"
@@ -126,7 +109,6 @@
 				style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1"
 				d="m 46.887643,117.00157 0.28112,-2.53254 1.940558,-0.0165 v -0.91206 h 1.660412 v -0.63142 h 1.777342 v -0.65481 h 1.543482 c 0.28269,1.49286 0.384577,2.98572 0.496094,4.47858"
 				id="path14019"
-				sodipodi:nodetypes="cccccccccc"
 				transform="translate(-43.676502,-135.26731)"
 			/><path
 				style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1"
@@ -187,7 +169,6 @@
 				style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1"
 				d="m 47.744417,114.21863 c 0.169969,-0.63433 0.314193,-4.14051 0.314193,-4.14051 l 1.728907,-0.11576 v 0.56127 h 1.637026 l 0.32332,0.56 h 1.71127 v 1.12379"
 				id="path14047"
-				sodipodi:nodetypes="cccccccc"
 				transform="translate(-43.676502,-135.26731)"
 			/><path
 				style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1"

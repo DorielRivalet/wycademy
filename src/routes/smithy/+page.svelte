@@ -3,6 +3,8 @@
 		ArmorSkillTree,
 		ArmorSkills,
 		HuntingHornWeaponNotesCombinations,
+		ItemColors,
+		ItemTypes,
 		SharpnessNames,
 		SigilSkills,
 		ZenithSkills,
@@ -50,10 +52,13 @@
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
 		FrontierHuntingHornWeaponNote,
+		FrontierItemColor,
+		FrontierItemRankType,
 		FrontierRarity,
 		FrontierSwitchAxeFPhial,
 		FrontierZenithSkill,
 	} from '$lib/client/modules/frontier/types';
+	import Item from '$lib/client/components/frontier/Item.svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -292,6 +297,22 @@
 		return array;
 	}
 
+	function getItemColors() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		ItemColors.forEach((element, i) => {
+			array = [...array, { id: element.name, text: element.name }];
+		});
+		return array;
+	}
+
+	function getItemTypes() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		ItemTypes.forEach((element, i) => {
+			array = [...array, { id: element.name, text: element.name }];
+		});
+		return array;
+	}
+
 	function downloadWeaponImage() {
 		if (!browser) return;
 		let node = document.querySelector('#weapon-dom');
@@ -325,7 +346,19 @@
 	}
 
 	// TODO
-	function downloadItemsImage() {}
+	function downloadItemsImage() {
+		if (!browser) return;
+		let node = document.querySelector('#item-dom');
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(
+				`${itemName}-${new Date().toISOString()}.png`,
+			)}`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
 
 	const invalidSharpnessValueText = 'Value must be between 0 and 400.';
 	const invalidWeaponLevelText = 'Value must be between 0 and 100.';
@@ -446,6 +479,7 @@
 	let url = $page.url.toString();
 	let currentWeaponPage = 1;
 	let currentArmorPage = 1;
+	let currentItemPage = 1;
 
 	let armorName = 'Barb Helmet ZP';
 	let armorLevel: FrontierArmorLevel = 7;
@@ -538,6 +572,14 @@
 		},
 	};
 
+	let itemName = 'Book of Combos';
+	let itemDescription =
+		'A book of Combos. Used for increasing the chance of success when combining items. Bought from the shop.';
+	let itemRarity: FrontierRarity = 5;
+	let itemRank: FrontierItemRankType = 'G';
+	let iconName = 'Armor Sphere';
+	let colorName: FrontierItemColor = 'White';
+
 	$: huntingHornNotesArray = [
 		huntingHornNotes.split(' ')[0],
 		huntingHornNotes.split(' ')[1],
@@ -547,7 +589,7 @@
 </script>
 
 <Head
-	title={'Item Generator'}
+	title={'Smithy'}
 	{description}
 	image={logo}
 	{url}
@@ -561,7 +603,7 @@
 />
 
 <div>
-	<SectionHeadingTopLevel title="Item Generator" />
+	<SectionHeadingTopLevel title="Smithy" />
 
 	<section>
 		<SectionHeading title="Weapon" level={2} />
@@ -2547,8 +2589,8 @@
 		</div>
 	</section>
 	<section>
-		<SectionHeading level={2} title="Items" />
-		<div class="container-items-buttons">
+		<SectionHeading level={2} title="Item" />
+		<div class="container-item-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadItemsImage}
 				>Download</Button
 			>
@@ -2557,13 +2599,90 @@
 				>Restore values</Button
 			>
 		</div>
+
+		<div class="container-item">
+			<div class="item-info">
+				{#key itemRarity}
+					<div id="item-dom">
+						<Item
+							itemRankType={itemRank}
+							bind:currentPage={currentItemPage}
+							name={itemName}
+							description={itemDescription}
+							rarity={itemRarity >= 1 && itemRarity <= 12 ? itemRarity : 1}
+							{iconName}
+							{colorName}
+						/>
+					</div>
+				{/key}
+				<div class="item-info-values">
+					<Dropdown
+						titleText="Item Icon"
+						type="inline"
+						hideLabel
+						bind:selectedId={iconName}
+						items={getItemTypes()}
+					/>
+					<Dropdown
+						titleText="Item Color"
+						type="inline"
+						hideLabel
+						bind:selectedId={colorName}
+						items={getItemColors()}
+					/>
+					<TextInput
+						labelText="Name"
+						placeholder="Enter item name"
+						hideLabel
+						bind:value={itemName}
+					/>
+
+					<TextInput
+						labelText="Description"
+						placeholder="Enter item description"
+						hideLabel
+						bind:value={itemDescription}
+					/>
+
+					<NumberInput
+						size="sm"
+						step={1}
+						min={1}
+						max={12}
+						bind:value={itemRarity}
+						invalidText={invalidWeaponRarityText}
+						label={'Rarity'}
+					/>
+
+					<Dropdown
+						titleText="Rank"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemRank}
+						items={[
+							{ id: '', text: 'None' },
+							{ id: 'G', text: 'G' },
+							{ id: 'Z', text: 'Zenith' },
+							{ id: 'T', text: 'Tower' },
+						]}
+					/>
+				</div>
+			</div>
+			{#if currentItemPage === 1}
+				<div class="page-1-item"></div>
+			{:else if currentItemPage === 2}
+				<div class="page-2-armor"></div>
+			{:else if currentItemPage === 3}
+				<div class="page-3-armor"></div>
+			{/if}
+		</div>
 	</section>
 </div>
 
 <style>
 	.weapon-info,
 	.armor-info,
-	.items-info {
+	.item-info {
 		display: flex;
 		flex-direction: row;
 		justify-content: start;
@@ -2572,7 +2691,7 @@
 
 	.weapon-info-values,
 	.armor-info-values,
-	.items-info-values {
+	.item-info-values {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		margin: 1rem;
@@ -2595,7 +2714,7 @@
 
 	.container-weapon,
 	.container-armor,
-	.container-items {
+	.container-item {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
@@ -2604,7 +2723,7 @@
 
 	.container-weapon-buttons,
 	.container-armor-buttons,
-	.container-items-buttons {
+	.container-item-buttons {
 		display: flex;
 		flex-direction: row;
 		gap: 1rem;

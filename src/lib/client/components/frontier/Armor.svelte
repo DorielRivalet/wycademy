@@ -18,6 +18,7 @@
 		FrontierArmorType,
 		FrontierEquipmentSkillPoints,
 		FrontierArmorID,
+		FrontierZenithSkill,
 	} from '$lib/client/modules/frontier/types';
 	import ArrowIcon from '$lib/client/components/frontier/icon/ArrowIcon.svelte';
 
@@ -50,7 +51,7 @@
 	export let rank: FrontierEquipmentRank = 'G';
 
 	// TODO ids
-	export let zenithSkill: string = 'Skills Slots Up+1';
+	export let zenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
 
 	// page 2
 	export let description: string = 'Description.';
@@ -795,7 +796,6 @@
 	.armor-icon {
 		position: relative;
 		width: var(--cds-spacing-10);
-		height: var(--cds-spacing-9);
 		transform: scale(80%) translateY(-5px) translateX(5px);
 	}
 
