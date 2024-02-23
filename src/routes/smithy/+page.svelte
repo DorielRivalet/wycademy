@@ -2644,16 +2644,6 @@
 						bind:value={itemDescription}
 					/>
 
-					<NumberInput
-						size="sm"
-						step={1}
-						min={1}
-						max={12}
-						bind:value={itemRarity}
-						invalidText={invalidWeaponRarityText}
-						label={'Rarity'}
-					/>
-
 					<Dropdown
 						titleText="Rank"
 						type="inline"
@@ -2665,6 +2655,16 @@
 							{ id: 'Z', text: 'Zenith' },
 							{ id: 'T', text: 'Tower' },
 						]}
+					/>
+
+					<NumberInput
+						size="sm"
+						step={1}
+						min={1}
+						max={12}
+						bind:value={itemRarity}
+						invalidText={invalidWeaponRarityText}
+						label={'Rarity'}
 					/>
 				</div>
 			</div>

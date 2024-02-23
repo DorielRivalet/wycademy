@@ -26,7 +26,10 @@
 			id="path5865"
 		/>
 		<path
-			style="display:inline;opacity:1;vector-effect:none;fill:#d0d0d0;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
+				'#d0d0d0',
+				targetColor,
+			)};fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
 			d="m 4.7625007,288.66561 h 7.4083343 v 5.02709 H 4.7625007 Z"
 			id="path5859"
 		/>

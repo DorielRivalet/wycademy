@@ -34,7 +34,10 @@
 			id="path868"
 		/>
 		<path
-			style="fill:#d0d0d0;fill-opacity:1;stroke:none;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			style="fill:{blendColor(
+				'#d0d0d0',
+				targetColor,
+			)};fill-opacity:1;stroke:none;stroke-width:0.5291667;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
 			d="m 5.3786985,289.82939 h 6.2686205 l -2.9737295,4.52542 h -0.413854 z"
 			id="path866"
 		/>

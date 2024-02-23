@@ -37,12 +37,18 @@
 			id="path912"
 		/>
 		<path
-			style="fill:#d0d0d0;fill-opacity:1;stroke:#000000;stroke-width:0.52890209;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+			style="fill:{blendColor(
+				'#d0d0d0',
+				targetColor,
+			)};fill-opacity:1;stroke:#000000;stroke-width:0.52890209;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
 			d="m 13.229167,294.04771 -1.852083,1.85208 h 3.704167 z"
 			id="path912-4"
 		/>
 		<path
-			style="fill:#d0d0d0;fill-opacity:1;stroke:#000000;stroke-width:0.52890209;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+			style="fill:{blendColor(
+				'#d0d0d0',
+				targetColor,
+			)};fill-opacity:1;stroke:#000000;stroke-width:0.52890209;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
 			d="m 3.7041654,294.04771 -1.852083,1.85208 h 3.7041671 z"
 			id="path912-4-8"
 		/>
