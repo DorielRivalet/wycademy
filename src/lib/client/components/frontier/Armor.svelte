@@ -989,12 +989,6 @@
 		width: 39ch;
 	}
 
-	.element-icon,
-	.status-icon {
-		width: auto;
-		height: 2rem;
-	}
-
 	.page-3 .pages {
 		position: absolute;
 		bottom: 0.5rem;

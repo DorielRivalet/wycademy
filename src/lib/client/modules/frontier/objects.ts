@@ -168,7 +168,7 @@ export const ItemColors: { name: FrontierItemColor; value: string }[] = [
 	{ name: 'Gray', value: '#7f7f7f' },
 ];
 
-export const ItemTypes: { name: string; icon: any }[] = [
+export const ItemIcons: { name: string; icon: any }[] = [
 	{
 		name: 'Armor Sphere',
 		icon: ArmorSphereIconWhite,
