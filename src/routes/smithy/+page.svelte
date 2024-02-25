@@ -4,7 +4,7 @@
 		ArmorSkills,
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
-		ItemTypes,
+		ItemIcons,
 		SharpnessNames,
 		SigilSkills,
 		ZenithSkills,
@@ -251,7 +251,6 @@
 		};
 	}
 
-	// TODO
 	function resetItemsValues() {
 		itemName = defaultItemComponentValues.itemName;
 		itemDescription = defaultItemComponentValues.itemDescription;
@@ -366,9 +365,9 @@
 		return array;
 	}
 
-	function getItemTypes() {
+	function getItemIcons() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		ItemTypes.forEach((element, i) => {
+		ItemIcons.forEach((element, i) => {
 			array = [...array, { id: element.name, text: element.name }];
 		});
 		return array;
@@ -406,7 +405,6 @@
 		});
 	}
 
-	// TODO
 	function downloadItemsImage() {
 		if (!browser) return;
 		let node = document.querySelector('#item-dom');
@@ -453,6 +451,8 @@
 	const maximumArmorElementResistance = 127;
 	const minimumArmorSkillPoints = -127;
 	const maximumArmorSkillPoints = 127;
+	const minimumArmorGRLevel = 0;
+	const maximumArmorGRLevel = 7;
 
 	const invalidSharpnessValueText = `Value must be between ${minimumSharpnessValue} and ${maximumSharpnessValue}.`;
 	const invalidWeaponLevelText = `Value must be between ${minimumWeaponLevel} and ${maximumWeaponLevel}.`;
@@ -469,7 +469,7 @@
 	const invalidBowgunAttackLevelText = `Value must be between ${minimumBowgunAttackLevel} and ${maximumBowgunAttackLevel}.`;
 	const invalidBowgunAmmoText = `Value must be between ${minimumBowgunAmmo} and ${maximumBowgunAmmo}.`;
 	const invalidArmorLevelText = `Value must be between ${minimumArmorLevel} and ${maximumArmorLevel}.`;
-	const invalidArmorGRLevelText = `Value must be between ${minimumArmorLevel} and ${maximumArmorLevel}.`; // Assuming this is a typo and should be the same as invalidArmorLevelText
+	const invalidArmorGRLevelText = `Value must be between ${minimumArmorGRLevel} and ${maximumArmorGRLevel}.`;
 
 	let weaponSharpness = defaultWeaponComponentValues.weaponSharpness;
 
@@ -2780,11 +2780,27 @@
 				{/key}
 				<div class="item-info-values">
 					<Dropdown
+						titleText="Item Type"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemType}
+						items={[
+							{ id: 'Decoration', text: 'Decoration' },
+							{ id: 'Sigil', text: 'Sigil' },
+							{ id: 'Cuff', text: 'Cuff' },
+							{ id: 'Zenith Cuff', text: 'Zenith Cuff' },
+							{ id: 'Hiden Cuff', text: 'Hiden Cuff' },
+							{ id: 'Tower Sigil', text: 'Tower Sigil' },
+							{ id: 'Tower Decoration', text: 'Tower Decoration' },
+							{ id: 'Other', text: 'Other' },
+						]}
+					/>
+					<Dropdown
 						titleText="Item Icon"
 						type="inline"
 						hideLabel
 						bind:selectedId={itemIconName}
-						items={getItemTypes()}
+						items={getItemIcons()}
 					/>
 					<Dropdown
 						titleText="Item Color"
@@ -2848,6 +2864,54 @@
 						bind:value={itemSigil.slot1.value}
 						invalidText={invalidArmorSkillPointsText}
 						label={'Sigil Slot 1 Points'}
+					/>
+					<Dropdown
+						titleText="Sigil Slot 2"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemSigil.slot2.name}
+						items={getSigilSkills()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemSigil.slot2.value}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Sigil Slot 2 Points'}
+					/>
+					<Dropdown
+						titleText="Sigil Slot 3"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemSigil.slot3.name}
+						items={getSigilSkills()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemSigil.slot3.value}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Sigil Slot 3 Points'}
+					/>
+					<Dropdown
+						titleText="Sigil Slot 4"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemSigil.slot4.name}
+						items={getSigilSkills()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemSigil.slot4.value}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Sigil Slot 4 Points'}
 					/>
 				</div>
 			{:else if currentItemPage === 2}
@@ -2917,7 +2981,8 @@
 		gap: 1rem;
 	}
 
-	.page-3-bow {
+	.page-3-bow,
+	.page-1-item {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		margin: 1rem;

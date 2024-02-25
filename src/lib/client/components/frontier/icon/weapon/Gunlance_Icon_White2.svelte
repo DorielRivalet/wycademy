@@ -8,12 +8,7 @@
 	$: targetColor = RarityColors[rarity - 1] ?? RarityColors[0];
 </script>
 
-<svg
-	width="100%"
-	height="auto"
-	viewBox="0 0 16.961652 19.038166"
-	version="1.1"
-	id="svg4846"
+<svg width="100%" viewBox="0 0 16.961652 19.038166" version="1.1" id="svg4846"
 	><g id="layer1" transform="translate(-19.968959,-276.82553)"
 		><path
 			style="opacity:0.557927;fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1"

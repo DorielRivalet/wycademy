@@ -300,7 +300,7 @@
 					alt="Cursor Icon"
 					src={getCursorIcon(item.id)}
 					width="24"
-					height="auto"
+
 				/>
 				<strong style="vertical-align: top;">{item.text}</strong>
 			</div>
@@ -338,7 +338,7 @@
 						alt="Theme Icon"
 						src={getThemeIcon(item.id)}
 						width="24"
-						height="auto"
+
 					/>
 					<strong style="vertical-align: center;">{item.text}</strong>
 				</div>

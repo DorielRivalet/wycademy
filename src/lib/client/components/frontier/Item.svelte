@@ -25,7 +25,7 @@
 	import { stringReplacements } from '$lib/client/modules/frontier/functions';
 	import GRankEquipmentIcon from './icon/GRankEquipmentIcon.svelte';
 	import ZenithEquipmentIcon from './icon/ZenithEquipmentIcon2.svelte';
-	import { ItemTypes } from '$lib/client/modules/frontier/objects';
+	import { ItemIcons } from '$lib/client/modules/frontier/objects';
 	import TowerEquipmentIcon from './icon/TowerEquipmentIcon.svelte';
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
 
@@ -122,7 +122,7 @@
 	$: rarityColor = stringReplacements.colorFromRarity(rarity);
 	$: maxPages = itemType === 'Other' || itemType === 'Sigil' ? 1 : 3;
 	$: icon =
-		ItemTypes.find((item) => item.name === iconName)?.icon ??
+		ItemIcons.find((item) => item.name === iconName)?.icon ??
 		QuestionMarkIconWhite;
 
 	$: iconProps = {
@@ -398,7 +398,7 @@
 	.slot3 {
 		grid-area: slot3;
 	}
-	
+
 	.slot4 {
 		grid-area: slot4;
 	}
@@ -526,7 +526,7 @@
 
 	.skill-name-empty {
 		margin-top: 0.5rem;
-	}
+	} */
 
 	.container {
 		padding: 0.5rem;

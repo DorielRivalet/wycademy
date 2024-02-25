@@ -52,7 +52,7 @@ export const stringReplacements = {
 	colorFromRarity: (rarity: number) =>
 		rarity <= 3
 			? `${frontierColorNames[1].values[0].var}`
-			: `${frontierColorNames[1].values[rarity - 3].var}`,
+			: `${frontierColorNames[1].values[rarity - 3]?.var ?? '--fz-sharpness-white'}`,
 	colorFromName: (name: FrontierItemColor) =>
 		ItemColors.find((item) => item.name === name)?.value ?? '#000000',
 };
