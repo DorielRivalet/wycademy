@@ -9,10 +9,15 @@
 Does not handle decorations because sigils are optimal.
 -->
 <script lang="ts">
+	import ezlion, {
+		type FrontierArmorSkillName,
+		type FrontierArmorSkillTree,
+		type FrontierSigil,
+		type FrontierWeaponID,
+		type FrontierZenithSkill,
+	} from 'ezlion';
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
 	import type {
-		FrontierArmorSkillName,
-		FrontierArmorSkillTree,
 		FrontierBowArcShot,
 		FrontierBowAvailableCoatings,
 		FrontierBowChargeLevels,
@@ -30,15 +35,12 @@ Does not handle decorations because sigils are optimal.
 		FrontierHuntingHornWeaponNote,
 		FrontierLightBowgunUpgrade,
 		FrontierRarity,
-		FrontierSigil,
 		FrontierSigilPoints,
 		FrontierStatus,
 		FrontierSwitchAxeFPhial,
-		FrontierWeaponID,
 		FrontierWeaponLength,
 		FrontierWeaponSharpness,
 		FrontierWeaponType,
-		FrontierZenithSkill,
 	} from '$lib/client/modules/frontier/types';
 	import ArrowIcon from '$lib/client/components/frontier/icon/ArrowIcon.svelte';
 
@@ -53,6 +55,7 @@ Does not handle decorations because sigils are optimal.
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 	import NoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
 	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/objects';
+	import type { _4K } from 'carbon-icons-svelte';
 
 	/** Truncated to 18 characters.*/
 	export let name: string = 'Name';
@@ -88,7 +91,7 @@ Does not handle decorations because sigils are optimal.
 	/** The overlay icon in the bottom left corner.*/
 	export let rank: FrontierEquipmentRank = 'G';
 
-	export let zenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
+	export let zenithSkill: FrontierZenithSkill = ezlion.SkillZenith[1];
 
 	// page 2
 	export let description: string = 'Description.';
@@ -108,24 +111,24 @@ Does not handle decorations because sigils are optimal.
 	export let currentPage: number = 1;
 
 	export let skillNames: FrontierArmorSkillTree[] = [
-		'Blazing Grace',
-		'Strong Attack',
-		'Determination',
-		'Absolute Defense',
-		'Three Worlds Protection',
+		ezlion.SkillArmorPriority[5],
+		ezlion.SkillArmorPriority[25],
+		ezlion.SkillArmorPriority[35],
+		ezlion.SkillArmorPriority[55],
+		ezlion.SkillArmorPriority[65],
 	];
 	export let skillPoints: FrontierEquipmentSkillPoints = [0, 20, -30, 40, 50];
 
 	export let sigils: FrontierSigil[] = [
-		'Attack Slayer',
-		'Elemental Slayer',
-		'Elemental Slayer',
-		'Attack Slayer',
-		'Attack Slayer',
-		'Attack Slayer',
-		'Elemental Slayer',
-		'Elemental Slayer',
-		'Elemental Slayer',
+		ezlion.SkillSigil[25],
+		ezlion.SkillSigil[5],
+		ezlion.SkillSigil[15],
+		ezlion.SkillSigil[5],
+		ezlion.SkillSigil[15],
+		ezlion.SkillSigil[5],
+		ezlion.SkillSigil[15],
+		ezlion.SkillSigil[5],
+		ezlion.SkillSigil[15],
 	];
 	export let sigilPoints: FrontierSigilPoints = [
 		15, 20, -30, 40, 50, 15, 15, -15, 12,

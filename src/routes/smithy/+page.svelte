@@ -1,13 +1,9 @@
 <script lang="ts">
 	import {
-		ArmorSkillTree,
-		ArmorSkills,
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
 		ItemIcons,
 		SharpnessNames,
-		SigilSkills,
-		ZenithSkills,
 		defaultArmorComponentValues,
 		defaultItemComponentValues,
 		defaultWeaponComponentValues,
@@ -43,8 +39,6 @@
 		FrontierArmorClass,
 		FrontierArmorGRLevel,
 		FrontierArmorLevel,
-		FrontierArmorSkillName,
-		FrontierArmorSkillTree,
 		FrontierArmorType,
 		FrontierEquipmentDecorations,
 		FrontierEquipmentRank,
@@ -61,13 +55,40 @@
 		FrontierSlot,
 		FrontierSwitchAxeFPhial,
 		FrontierWeaponClass,
-		FrontierZenithSkill,
 	} from '$lib/client/modules/frontier/types';
 	import Item from '$lib/client/components/frontier/Item.svelte';
 	import smithy from '$lib/client/images/icon/blacksmith.png';
+	import ezlion, {
+		type FrontierArmorSkillName,
+		type FrontierArmorSkillTree,
+		type FrontierZenithSkill,
+	} from 'ezlion';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
+
+	// // Assuming componentState is an object containing the state of your component
+	// function generateURL() {
+	// 	const queryString = Object.entries(componentsState)
+	// 		.map(
+	// 			([key, value]) =>
+	// 				`${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
+	// 		)
+	// 		.join('&');
+	// 	const updatedHref = `${$page.url.origin}${$page.url.pathname}?${queryString}`;
+	// 	copyToClipboard(updatedHref);
+	// }
+
+	// function copyToClipboard(text: string) {
+	// 	navigator.clipboard.writeText(text).then(
+	// 		function () {
+	// 			console.log('Copying to clipboard was successful!');
+	// 		},
+	// 		function (err) {
+	// 			console.error('Could not copy text: ', err);
+	// 		},
+	// 	);
+	// }
 
 	function resetWeaponValues() {
 		// TODO idk why this doesnt work with default
@@ -310,7 +331,7 @@
 
 	function getZenithSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		ZenithSkills.forEach((element) => {
+		Object.values(ezlion.SkillZenith).forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -320,7 +341,7 @@
 
 	function getSigilSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		SigilSkills.forEach((element) => {
+		Object.values(ezlion.SkillSigil).forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -330,7 +351,7 @@
 
 	function getArmorSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		ArmorSkills.forEach((element) => {
+		Object.values(ezlion.SkillArmor).forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -340,7 +361,7 @@
 
 	function getArmorSkillTree() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		ArmorSkillTree.forEach((element) => {
+		Object.values(ezlion.SkillTree).forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -419,6 +440,11 @@
 		});
 	}
 
+	let url = $page.url.toString();
+	let currentWeaponPage = 1;
+	let currentArmorPage = 1;
+	let currentItemPage = 1;
+
 	const minimumSharpnessValue = 0;
 	const maximumSharpnessValue = 400;
 	const minimumWeaponAttack = 1;
@@ -475,7 +501,6 @@
 	const invalidSlotsText = `Value must be between ${minimumSlots} and ${maximumSlots}.`;
 
 	let weaponSharpness = defaultWeaponComponentValues.weaponSharpness;
-
 	let weaponName = defaultWeaponComponentValues.weaponName;
 	let weaponLevel = defaultWeaponComponentValues.weaponLevel;
 	let weaponRarity = defaultWeaponComponentValues.weaponRarity;
@@ -568,11 +593,6 @@
 	let bowgunPaintAmmo: levelQuantity = [2, 0, 0];
 	let bowgunDemonAmmo: levelQuantity = [1, 0, 0];
 	let bowgunArmorAmmo: levelQuantity = [1, 0, 0];
-
-	let url = $page.url.toString();
-	let currentWeaponPage = 1;
-	let currentArmorPage = 1;
-	let currentItemPage = 1;
 
 	let armorName = defaultArmorComponentValues.armorName;
 	let armorLevel: FrontierArmorLevel = defaultArmorComponentValues.armorLevel;
@@ -739,7 +759,6 @@
 		huntingHornNotes.split(' ')[1],
 		huntingHornNotes.split(' ')[2],
 	] as FrontierHuntingHornWeaponNote[];
-	//TODO default values
 </script>
 
 <Head
@@ -792,6 +811,7 @@
 			<Button kind="tertiary" icon={Restart} on:click={resetWeaponValues}
 				>Restore values</Button
 			>
+
 			<Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} />
 		</div>
 		<div class="container-weapon">
