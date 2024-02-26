@@ -365,3 +365,181 @@ export type FrontierCaravanSkillMultipliedAttack =
 	| 1.025
 	| 1.05
 	| 1.1;
+export type FrontierPassiveItemMultipliedAttack = 0 | 6 | 9 | 15;
+export type FrontierFoodConsumablesMultipliedAttack = 0 | 3 | 5 | 10 | 15;
+export type FrontierSeedFlutesCatMultipliedAttack =
+	| 0
+	| 10
+	| 20
+	| 25
+	| 30
+	| 40
+	| 50
+	| 60;
+export type FrontierLanceHBGMultipliedAttack = 0 | 20 | 50;
+export type FrontierLoneWolfMultipliedAttack = 0 | 100;
+export type FrontierStylishAssaultMultipliedAttack =
+	| 0
+	| 100
+	| 120
+	| 140
+	| 160
+	| 180
+	| 200
+	| 220;
+export type FrontierConsumptionSlayerMultipliedAttack = 0 | 100;
+export type FrontierObscurityMultipliedAttack =
+	| 0
+	| 20
+	| 30
+	| 40
+	| 60
+	| 80
+	| 90
+	| 100
+	| 110
+	| 120
+	| 130
+	| 140
+	| 150
+	| 160
+	| 165
+	| 175
+	| 180
+	| 195
+	| 200
+	| 210
+	| 220
+	| 225
+	| 240
+	| 260
+	| 270
+	| 280
+	| 300;
+export type FrontierRushMultipliedAttack = 0 | 50 | 130 | 200;
+export type FrontierFuriousMultipliedAttack = 0 | 70 | 100 | 180;
+export type FrontierFuriousElementMultiplier = 1 | 1.05 | 1.1 | 1.2;
+export type FrontierFuriousAffinity = 0 | 10 | 25 | 40;
+export type FrontierShiriagariMinutes = 0 | 1 | 3 | 5 | 10 | 15 | 20;
+export type FrontierShiriagariMultipliedAttack =
+	| 0
+	| 20
+	| 50
+	| 80
+	| 130
+	| 180
+	| 200;
+export type FrontierIncitementMultipliedAttack = 0 | 40;
+export type FrontierRoadAttackMultipliedAttack = 0 | 10 | 20 | 30 | 50 | 70;
+export type FrontierRoadAdvancementMultipliedAttack = 0 | 20 | 40 | 60;
+export type FrontierRoadLastStandMultipliedAttack = 0 | 80 | 120;
+export type FrontierDuremudiraAttackMultipliedAttack =
+	| 0
+	| 50
+	| 75
+	| 100
+	| 150
+	| 200;
+export type FrontierConquestAttackMedicineMultipliedAttack = 0 | 100;
+
+export type FrontierHuntingHornSongAttackMultiplier = 1 | 1.1 | 1.15 | 1.2;
+export type FrontierAdrenalineVigorousMultiplier = 1 | 0.7 | 1.15 | 1.3 | 1.5;
+export type FrontierVigorousUpAttack = 0 | 50 | 100;
+export type FrontierHidenSkillAttackMultiplier = 1 | 1.2 | 1.3 | 1.4;
+export type FrontierWeaponMechanicAttackMultiplier =
+	| 1
+	| 1.03
+	| 1.05
+	| 1.1
+	| 1.15
+	| 1.2
+	| 1.2375
+	| 1.3
+	| 1.4
+	| 1.5
+	| 1.6;
+export type FrontierCombatSupremacyAttackMultiplier = 1 | 1.2;
+
+export type FrontierArmorFlatAttack = 0 | 15 | 30 | 45 | 60 | 80;
+export type FrontierOriginArmorFlatAttack = 0 | 20 | 40 | 60 | 80 | 110;
+export type FrontierGRankArmor3PiecesFlatAttack = 0 | 30;
+export type FrontierSecretTechniqueFlatAttack = 0 | 320;
+export type FrontierRedSoulFlatAttack = 0 | 15 | 30 | 100;
+export type FrontierAssistanceFlatAttack = 0 | 20;
+export type FrontierMaleHunterBondFlatAttack = 0 | 5;
+export type FrontierPartnyaaBondFlatAttack = 0 | 10 | 20 | 30;
+
+export type FrontierFireElementMultiplier = 1 | 1.1 | 1.2 | 1.21 | 1.33;
+export type FrontierWaterElementMultiplier = 1 | 1.1 | 1.2 | 1.21 | 1.33;
+export type FrontierIceElementMultiplier = 1 | 1.1 | 1.2 | 1.21 | 1.33;
+export type FrontierThunderElementMultiplier = 1 | 1.1 | 1.2 | 1.21 | 1.33;
+export type FrontierDragonElementMultiplier = 1 | 1.1 | 1.2 | 1.21 | 1.33;
+export type FrontierElementalAttackMultiplier = 1 | 1.2 | 1.32;
+export type FrontierHuntingHornElementalUpSongAttackMultiplier = 1 | 1.1;
+
+export type FrontierDrugKnowledgeStatusMultiplier = 0.38 | 0.42;
+export type FrontierStatusAttackUpStatusMultiplier = 1 | 1.125;
+export type FrontierGuildPoogieStatusAttackUpStatusMultiplier = 1 | 1.125;
+export type FrontierStatusSigilStatusMultiplier = 1 | 1.1 | 1.5 | 1.65;
+export type FrontierWeaponModifierStatusMultiplier = 1 | 1.2 | 1.3;
+
+export type FrontierAreaOfEffectSigilStack = 0 | 1 | 2 | 3 | 4;
+export type FrontierSharpnessAttackMultiplier =
+	| 0.6
+	| 0.85
+	| 1.1
+	| 1.325
+	| 1.45
+	| 1.6
+	| 1.7
+	| 1.8;
+export type FrontierLanceImpactAttackMultiplier = 1 | 0.72;
+export type FrontierTranscendAttackMultiplier = 1 | 1.13;
+export type FrontierPowerSwordCrystalAttackMultiplier = 1 | 1.2;
+
+/**replaces weapon element*/
+export type FrontierElementalSwordCrystalsElementValue = 0 | 500 | 700 | 900;
+export type FrontierGR600ElementalSwordCrystalsElementValue =
+	| 0
+	| 1300
+	| 1500
+	| 2100;
+export type FrontierWeaponTypeExclusiveElementMultiplier = 1 | 1.3 | 2 | 2.6;
+
+export type FrontierMonsterAfflictedStatusAttackMultiplier = 1 | 1.1 | 3;
+
+export type FrontierThunderCladRawHitzoneAddition = 0 | 5;
+export type FrontierExploitWeaknessRawHitzoneAddition = 0 | 5;
+export type FrontierPointBreakthroughRawHitzoneAddition = 0 | 2 | 5;
+export type FrontierAcidShotRawHitzoneAddition = 0 | 10;
+export type FrontierAcidShotElementHitzoneAddition = 0 | 10;
+export type FrontierHuntingHornDebuffRawHitzone = 0 | 2;
+export type FrontierHuntingHornDebuffElementHitzone = 0 | 4;
+export type FrontierCriticalDistanceRawHitzoneAddition = 0 | 5;
+
+export type FrontierAbsoluteDefenseAttackMultiplier = 1 | 0.8;
+export type FrontierCourseBonusAttackMultiplier = 1 | 1.25;
+
+export type FrontierGunnerDistanceAttackMultiplier =
+	| 1
+	| 1.1
+	| 1.2
+	| 1.3
+	| 1.4
+	| 1.5
+	| 1.6
+	| 1.7
+	| 1.8
+	| 1.9
+	| 2
+	| 2.1
+	| 2.15
+	| 2.2
+	| 2.3
+	| 2.4
+	| 2.45
+	| 2.5
+	| 2.55
+	| 2.6;
+export type FrontierBulletAttackModifier = 1 | 1.1 | 1.3;
+export type FrontierShotAttackMultiplier = 0.5 | 0.6 | 0.73 | 1 | 1.3 | 1.4 | 2;
