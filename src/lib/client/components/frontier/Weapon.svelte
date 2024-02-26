@@ -55,7 +55,6 @@ Does not handle decorations because sigils are optimal.
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 	import NoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
 	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/objects';
-	import type { _4K } from 'carbon-icons-svelte';
 
 	/** Truncated to 18 characters.*/
 	export let name: string = 'Name';
