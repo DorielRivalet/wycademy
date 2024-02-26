@@ -822,7 +822,7 @@
 						>
 					</div>
 
-					<div class="info">You may only attach 2 cuffs total.</div>
+					<div class="cuff-limit-info">You may only attach 2 cuffs total.</div>
 
 					<div class="pages">
 						<button
@@ -1059,7 +1059,8 @@
 						>
 					</span>
 
-					<span class="info">You may only attach 2 cuffs total.</span>
+					<span class="cuff-limit-info">You may only attach 2 cuffs total.</span
+					>
 
 					<div class="pages">
 						<button
@@ -1297,7 +1298,8 @@
 						>
 					</span>
 
-					<span class="info">You may only attach 2 cuffs total.</span>
+					<span class="cuff-limit-info">You may only attach 2 cuffs total.</span
+					>
 
 					<div class="pages">
 						<button
@@ -1945,6 +1947,10 @@
 		margin-top: var(--cds-spacing-02);
 	}
 
+	.cuff-limit-info {
+		grid-area: cuff-limit-info;
+	}
+
 	.info {
 		grid-area: info;
 		margin-top: var(--cds-spacing-02);
@@ -2039,7 +2045,7 @@
 		display: grid;
 		grid-template-areas:
 			'icon requirement requirement'
-			'icon info info'
+			'icon cuff-limit-info cuff-limit-info'
 			'rarity pages pages';
 		gap: 0.5rem;
 	}

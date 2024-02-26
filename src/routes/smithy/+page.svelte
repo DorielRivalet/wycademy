@@ -453,6 +453,8 @@
 	const maximumArmorSkillPoints = 127;
 	const minimumArmorGRLevel = 0;
 	const maximumArmorGRLevel = 7;
+	const minimumSlots = 0;
+	const maximumSlots = 3;
 
 	const invalidSharpnessValueText = `Value must be between ${minimumSharpnessValue} and ${maximumSharpnessValue}.`;
 	const invalidWeaponLevelText = `Value must be between ${minimumWeaponLevel} and ${maximumWeaponLevel}.`;
@@ -470,6 +472,7 @@
 	const invalidBowgunAmmoText = `Value must be between ${minimumBowgunAmmo} and ${maximumBowgunAmmo}.`;
 	const invalidArmorLevelText = `Value must be between ${minimumArmorLevel} and ${maximumArmorLevel}.`;
 	const invalidArmorGRLevelText = `Value must be between ${minimumArmorGRLevel} and ${maximumArmorGRLevel}.`;
+	const invalidSlotsText = `Value must be between ${minimumSlots} and ${maximumSlots}.`;
 
 	let weaponSharpness = defaultWeaponComponentValues.weaponSharpness;
 
@@ -2915,9 +2918,155 @@
 					/>
 				</div>
 			{:else if currentItemPage === 2}
-				<div class="page-2-item"></div>
+				<div class="page-2-item">
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumSlots}
+						max={maximumSlots}
+						bind:value={itemSlotsRequired}
+						invalidText={invalidSlotsText}
+						label={'Slots required'}
+					/>
+					<Dropdown
+						titleText="Armor Class"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemArmorClass}
+						items={[
+							{ id: 'Either', text: 'Either' },
+							{ id: 'Blademaster', text: 'Blademaster' },
+							{ id: 'Gunner', text: 'Gunner' },
+						]}
+					/>
+					<Dropdown
+						titleText="Weapon Class"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemWeaponClass}
+						items={[
+							{ id: 'Both', text: 'Both' },
+							{ id: 'Blademaster', text: 'Blademaster' },
+							{ id: 'Gunner', text: 'Gunner' },
+						]}
+					/>
+				</div>
 			{:else if currentItemPage === 3}
-				<div class="page-3-item"></div>
+				<div class="page-3-item">
+					<Dropdown
+						titleText="Skill 1"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemDecoration.slot1.name}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemDecoration.slot1.value}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Skill 1 Points'}
+					/>
+					<Dropdown
+						titleText="Skill 2"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemDecoration.slot2.name}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemDecoration.slot2.value}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Skill 2 Points'}
+					/>
+					<Dropdown
+						titleText="Skill 3"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemDecoration.slot3.name}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemDecoration.slot3.value}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Skill 3 Points'}
+					/>
+					<Dropdown
+						titleText="Skill 4"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemDecoration.slot4.name}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemDecoration.slot4.value}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Skill 4 Points'}
+					/>
+
+					<Dropdown
+						titleText="Cuff Skill 1"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemCuffSkill1}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemCuffSkill1Points}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Cuff Skill 1 Points'}
+					/>
+
+					<Dropdown
+						titleText="Cuff Skill 2"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemCuffSkill2}
+						items={getArmorSkillTree()}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumArmorSkillPoints}
+						max={maximumArmorSkillPoints}
+						bind:value={itemCuffSkill2Points}
+						invalidText={invalidArmorSkillPointsText}
+						label={'Cuff Skill 2 Points'}
+					/>
+
+					<Dropdown
+						titleText="Zenith Skill"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemZenithSkill}
+						items={getZenithSkills()}
+					/>
+					<Dropdown
+						titleText="Tower Skill"
+						type="inline"
+						hideLabel
+						bind:selectedId={itemTowerSkill}
+						items={getArmorSkills()}
+					/>
+				</div>
 			{/if}
 		</div>
 	</section>
@@ -2991,7 +3140,8 @@
 
 	.sigils,
 	.armor-deco-skills,
-	.page-3-armor {
+	.page-3-armor,
+	.page-3-item {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		margin: 1rem;
@@ -3000,7 +3150,8 @@
 
 	.page-3-bowgun,
 	.page-4-bowgun,
-	.page-1-armor {
+	.page-1-armor,
+	.page-2-item {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		margin: 1rem;
