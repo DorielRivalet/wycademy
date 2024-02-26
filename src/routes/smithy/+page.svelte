@@ -358,7 +358,7 @@
 	}
 
 	function getItemColors() {
-		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		let array: dropdownItem[] = [];
 		ItemColors.forEach((element, i) => {
 			array = [...array, { id: element.name, text: element.name }];
 		});
@@ -366,7 +366,7 @@
 	}
 
 	function getItemIcons() {
-		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		let array: dropdownItem[] = [];
 		ItemIcons.forEach((element, i) => {
 			array = [...array, { id: element.name, text: element.name }];
 		});

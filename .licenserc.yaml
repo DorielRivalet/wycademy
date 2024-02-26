@@ -43,6 +43,7 @@ header:
     - '.alexrc'
     - '.czrc'
     - '.husky/'
+		- '.webmanifest'
 
   license-location-threshold: 80
 
