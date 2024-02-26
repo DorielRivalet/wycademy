@@ -1,12 +1,8 @@
 <script lang="ts">
 	import {
-		ArmorSkillTree,
-		ArmorSkills,
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
 		ItemIcons,
-		SigilSkills,
-		ZenithSkills,
 	} from '$lib/client/modules/frontier/objects';
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
 	import { domToPng } from 'modern-screenshot';
@@ -28,14 +24,14 @@
 		website,
 	} from '$lib/constants';
 	import { page } from '$app/stores';
-	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import pageThumbnail from '$lib/client/images/icon/pvp.png';
+	import ezlion from 'ezlion';
 
 	type dropdownItem = { id: string; text: string };
 
 	function getZenithSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		ZenithSkills.forEach((element) => {
+		Object.keys(ezlion.SkillZenith).forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -45,7 +41,7 @@
 
 	function getSigilSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		SigilSkills.forEach((element) => {
+		Object.keys(ezlion.SkillSigil).forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -55,7 +51,7 @@
 
 	function getArmorSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		ArmorSkills.forEach((element) => {
+		Object.keys(ezlion.SkillArmor).forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -65,7 +61,7 @@
 
 	function getArmorSkillTree() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		ArmorSkillTree.forEach((element) => {
+		Object.keys(ezlion.SkillTree).forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}
