@@ -11,7 +11,6 @@ import type {
 	FrontierElement,
 	FrontierItemColor,
 	FrontierStatus,
-	FrontierWeaponID,
 	FrontierWeaponSharpness,
 } from './types';
 import { ArmorTypes, ItemColors, WeaponTypes } from './objects';
@@ -38,6 +37,7 @@ import PoisonIcon from '$lib/client/images/icon/status/poison.png';
 import ParalysisIcon from '$lib/client/images/icon/status/paralysis.png';
 import DefenseIcon from '$lib/client/images/icon/defense_icon.png';
 import BlastIcon from '$lib/client/images/icon/status/blast.png';
+import type { FrontierWeaponID } from 'ezlion';
 
 export const frontierMath = {
 	calculateEHP: (monsterHP: number, defrate: number) =>
