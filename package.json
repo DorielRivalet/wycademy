@@ -58,7 +58,7 @@
 		"@typescript-eslint/parser": "^7.0.2",
 		"@vite-pwa/sveltekit": "^0.4.0",
 		"autoprefixer": "^10.4.17",
-		"carbon-components-svelte": "^0.82.10",
+		"carbon-components-svelte": "^0.82.11",
 		"carbon-icons-svelte": "^12.5.0",
 		"carbon-pictograms-svelte": "^12.10.0",
 		"carbon-preprocess-svelte": "^0.10.0",
