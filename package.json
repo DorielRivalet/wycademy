@@ -11,7 +11,7 @@
 		"Monster Hunter Frontier",
 		"Monster Hunter Frontier Z"
 	],
-	"homepage": "https://frontier-compendium.netlify.app/",
+	"homepage": "https://frontier-compendium.pages.dev/",
 	"bugs": {
 		"url": "https://github.com/DorielRivalet/frontier-compendium/issues"
 	},
@@ -50,6 +50,7 @@
 		"@release-it/conventional-changelog": "^8.0.1",
 		"@rollup/plugin-typescript": "^11.1.6",
 		"@sveltejs/adapter-auto": "^3.1.1",
+		"@sveltejs/adapter-cloudflare": "^4.1.0",
 		"@sveltejs/adapter-netlify": "^4.1.0",
 		"@sveltejs/kit": "^2.5.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",

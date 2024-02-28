@@ -94,7 +94,7 @@
 	<meta content={projectDescription} property="og:description" />
 	<meta name="description" content={projectDescription} />
 	<meta
-		content="https://frontier-compendium.netlify.app/sverdle"
+		content="https://frontier-compendium.pages.dev/sverdle"
 		property="og:url"
 	/>
 	<meta content={logo} property="og:image" />

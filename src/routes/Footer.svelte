@@ -29,8 +29,10 @@
 			>{constant.authorName} &copy {new Date().getUTCFullYear()}</Link
 		>
 		<div>
-			Powered by <Link href="https://docs.netlify.com/">Netlify</Link> and <Link
-				href="https://kit.svelte.dev/docs/introduction">SvelteKit</Link
+			Powered by <Link href="https://developers.cloudflare.com/pages/"
+				>Cloudflare Pages</Link
+			> and <Link href="https://kit.svelte.dev/docs/introduction"
+				>SvelteKit</Link
 			>
 		</div>
 	</div>
