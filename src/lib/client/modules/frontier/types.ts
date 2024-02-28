@@ -136,12 +136,15 @@ export type FrontierArmor = {
 export type FrontierArmorGRLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 /**The level shown in the 1st page. */
 export type FrontierArmorLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type FrontierWeaponMultiplier = 1.4 | 4.8 | 5.2 | 2.3 | 5.4 | 1.8 | 1.2;
+export type FrontierTonfaMode = 'Long' | 'Short';
 export type FrontierWeapon = {
 	id: FrontierWeaponID;
 	name: FrontierWeaponName;
 	class: FrontierWeaponClass;
 	icon: any;
 	hiden: FrontierMaxHiden;
+	bloatAttackMultiplier: FrontierWeaponMultiplier;
 };
 export type FrontierEquipmentSkillPoints = [
 	firstSkill: number,
