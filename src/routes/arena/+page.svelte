@@ -82,9 +82,8 @@
 
 	let weaponElementValue = 0;
 
-	function getDisplayAttack(weapon: FrontierWeapon, trueRaw: number) {
-		() => Math.floor(trueRaw * weapon.multiplier);
-	}
+	const getDisplayAttack = (weapon: FrontierWeapon, trueRaw: number) =>
+		Math.floor(trueRaw * weapon.bloatAttackMultiplier);
 
 	// Function to calculate the final true attack value
 	function calculateFinalTrueAttack() {
