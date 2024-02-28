@@ -464,6 +464,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: GreatSwordIcon,
 		hiden: 'Sword King',
+		bloatAttackMultiplier: 4.8,
 	},
 	{
 		id: 1,
@@ -471,6 +472,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Gunner',
 		icon: HeavyBowgunIcon,
 		hiden: 'Gun Sage',
+		bloatAttackMultiplier: 1.2,
 	},
 	{
 		id: 2,
@@ -478,6 +480,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: HammerIcon,
 		hiden: 'Blunt Beast',
+		bloatAttackMultiplier: 5.2,
 	},
 	{
 		id: 3,
@@ -485,6 +488,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: LanceIcon,
 		hiden: 'Heavenly Spear',
+		bloatAttackMultiplier: 2.3,
 	},
 	{
 		id: 4,
@@ -492,6 +496,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: SwordAndShieldIcon,
 		hiden: 'Sword Saint',
+		bloatAttackMultiplier: 1.4,
 	},
 	{
 		id: 5,
@@ -499,6 +504,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Gunner',
 		icon: LightBowgunIcon,
 		hiden: 'Gun Prodigy',
+		bloatAttackMultiplier: 1.2,
 	},
 	{
 		id: 6,
@@ -506,6 +512,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: DualSwordsIcon,
 		hiden: 'Dual Dragon',
+		bloatAttackMultiplier: 1.4,
 	},
 	{
 		id: 7,
@@ -513,6 +520,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: LongSwordIcon,
 		hiden: 'Katana God',
+		bloatAttackMultiplier: 4.8,
 	},
 	{
 		id: 8,
@@ -520,6 +528,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: HuntingHornIcon,
 		hiden: 'Flamboyant Emperor',
+		bloatAttackMultiplier: 5.2,
 	},
 	{
 		id: 9,
@@ -527,6 +536,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: GunlanceIcon,
 		hiden: 'Cannon Emperor',
+		bloatAttackMultiplier: 2.3,
 	},
 	{
 		id: 10,
@@ -534,6 +544,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Gunner',
 		icon: BowIcon,
 		hiden: 'Bow Demon',
+		bloatAttackMultiplier: 1.2,
 	},
 	{
 		id: 11,
@@ -541,6 +552,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: TonfaIcon,
 		hiden: 'Piercing Phoenix',
+		bloatAttackMultiplier: 1.8,
 	},
 	{
 		id: 12,
@@ -548,6 +560,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: SwitchAxeFIcon,
 		hiden: 'Edge Marshal',
+		bloatAttackMultiplier: 5.4,
 	},
 	{
 		id: 13,
@@ -555,6 +568,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		class: 'Blademaster',
 		icon: MagnetSpikeIcon,
 		hiden: 'Magnetic Star',
+		bloatAttackMultiplier: 5.4,
 	},
 ];
 
@@ -929,6 +943,9 @@ export const defaultItemComponentValues = {
 		},
 	} as FrontierItemDecoration,
 } as const;
+
+// dmg calc
+
 
 /*
 // It requires an extra line to pull out the values

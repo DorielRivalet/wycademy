@@ -4,6 +4,8 @@
 		ItemColors,
 		ItemIcons,
 	} from '$lib/client/modules/frontier/objects';
+	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
+
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
 	import { domToPng } from 'modern-screenshot';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
@@ -25,9 +27,121 @@
 	} from '$lib/constants';
 	import { page } from '$app/stores';
 	import pageThumbnail from '$lib/client/images/icon/pvp.png';
-	import ezlion from 'ezlion';
+	import ezlion, { type FrontierWeaponClass } from 'ezlion';
+	import type {
+		FrontierStarvingWolfAffinity,
+		FrontierWeapon,
+		FrontierWeaponType,
+	} from '$lib/client/modules/frontier/types';
+	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
+	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 
 	type dropdownItem = { id: string; text: string };
+
+	const maxTrueRaw = 8_000;
+
+	let attackA = 0;
+	let attackB = 0;
+	let huntingHornBuff = 0;
+	let multipliers = 0;
+	let additional = 0;
+	let displayedElemental = 0;
+	let hybridModifiers = 0;
+	let baseShotPower = 0;
+	let hitCount = 0;
+	let motion = 0;
+	let affinity = 0;
+	let sharpness = 0;
+	let weaponModifier = 0;
+	let sweetSpot = 0;
+	let statusMulti = 0;
+	let hitbox = 0;
+	let defenseRate = 0;
+	let shotPower = 0;
+	let criticalDistanceMultiplier = 0;
+	let coatingModifier = 0;
+	let shotModifier = 0;
+	let shotTypeMulti = 0;
+	let weaponClass: FrontierWeaponClass = 'Blademaster';
+	let weaponType: FrontierWeaponType = 'Sword and Shield';
+	// let rangedWeaponType;
+	let elemental = 0;
+	let elementHitbox = 0;
+	let hybridModifier = 0;
+	let statusValue = 0;
+	let hitboxAfterModifiers = 0;
+	let weaponTrueRaw = 0;
+	let starvingWolfAffinity: FrontierStarvingWolfAffinity = 0;
+	let ceaselessAffinity: FrontierCeaselessAffinity = 0;
+	let furiousAffinity: FrontierFuriousAffinity = 0;
+	let aoeAffinity = 0;
+
+	const minimumWeaponElement = 0;
+	const maximumWeaponElement = 10;
+	const invalidWeaponElementStatusText = 'Invalid weapon element or status';
+
+	let weaponElementValue = 0;
+
+	function getDisplayAttack(weapon: FrontierWeapon, trueRaw: number) {
+		() => Math.floor(trueRaw * weapon.multiplier);
+	}
+
+	// Function to calculate the final true attack value
+	function calculateFinalTrueAttack() {
+		return (
+			((weaponTrueRaw + attackA) * huntingHornBuff + attackB) * multipliers +
+			additional
+		);
+	}
+
+	// Function to calculate elemental values
+	function calculateElementalValue() {
+		return Math.floor((displayedElemental / 10) * hybridModifiers);
+	}
+
+	// Function to calculate bowgun damage
+	function calculateBowgunDamage(bowgunType, hitCount) {
+		// ... logic for different bowgun types
+	}
+
+	// Function to calculate melee weapon damage
+	function calculateMeleeDamage(
+		weaponClass,
+		weaponType,
+		motion,
+		affinity,
+		sharpness,
+		weaponModifier,
+		sweetSpot,
+		statusMulti,
+		hitbox,
+		defenseRate,
+	) {
+		// ... logic for different weapon classes and types
+	}
+
+	// Function to calculate ranged weapon damage
+	function calculateRangedDamage(
+		weaponClass,
+		weaponType,
+		rangedWeaponType,
+		elemental,
+		elementHitbox,
+		hybridModifier,
+		defenseRate,
+	) {
+		// ... logic for different weapon classes and types
+	}
+
+	// Function to calculate status values
+	function calculateStatusValue(displayedStatus) {
+		return displayedStatus / 10;
+	}
+
+	// Function to calculate the final hitbox value after modifiers
+	function calculateHitboxAfterModifiers() {
+		// ... logic for calculating hitbox after modifiers
+	}
 
 	function getZenithSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
@@ -139,6 +253,582 @@
 
 		<!-- <Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} /> -->
 	</div>
+
+	<Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/>
+	<Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/>
+	<Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/>
+	<Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/>
+	<Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/><Dropdown
+		titleText="Status"
+		type="inline"
+		hideLabel
+		bind:selectedId={weaponTrueRaw}
+		items={[{ id: '', text: 'None' }]}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
+	<NumberInput
+		size="sm"
+		step={10}
+		min={minimumWeaponElement}
+		max={maximumWeaponElement}
+		bind:value={weaponElementValue}
+		invalidText={invalidWeaponElementStatusText}
+		label={'Element'}
+	/>
 </div>
 
 <style>
