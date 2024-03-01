@@ -40,7 +40,7 @@
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
-	import { Save } from 'carbon-icons-svelte';
+	import Save from 'carbon-icons-svelte/lib/Save.svelte';
 
 	type dropdownItem = { id: string; text: string };
 
