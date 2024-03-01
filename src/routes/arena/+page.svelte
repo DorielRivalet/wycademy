@@ -40,6 +40,7 @@
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
+	import { Save } from 'carbon-icons-svelte';
 
 	type dropdownItem = { id: string; text: string };
 
@@ -255,10 +256,16 @@
 
 	<div class="container-body">
 		<div class="container-buttons">
+			<Button kind="tertiary" icon={Save} on:click={(e) => console.log('Save')}
+				>Save</Button
+			>
+			<Button kind="tertiary" icon={Save} on:click={(e) => console.log('Load')}
+				>Load</Button
+			>
 			<Button
 				kind="tertiary"
-				icon={Download}
-				on:click={(e) => console.log('Download')}>Download</Button
+				icon={Restart}
+				on:click={(e) => console.log('Restart')}>Restart Values</Button
 			>
 
 			<!-- <Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} /> -->
@@ -1486,6 +1493,8 @@
 
 	.container-buttons {
 		grid-area: container-buttons;
+		gap: 1rem;
+		display: flex;
 	}
 
 	.number-input-container {
