@@ -96,7 +96,7 @@
 		flex-direction: column;
 		padding: 1rem;
 		width: 100%;
-		max-width: 64rem;
+		max-width: 70vw;
 		margin: 0 auto;
 		box-sizing: border-box;
 		min-height: 90vh;

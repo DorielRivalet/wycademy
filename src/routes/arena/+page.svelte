@@ -16,6 +16,7 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import Head from '$lib/client/components/Head.svelte';
+	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import {
 		authorName,
@@ -27,19 +28,24 @@
 	} from '$lib/constants';
 	import { page } from '$app/stores';
 	import pageThumbnail from '$lib/client/images/icon/pvp.png';
-	import ezlion, { type FrontierWeaponClass } from 'ezlion';
+	import ezlion from 'ezlion';
+	import type { FrontierWeaponClass, FrontierWeaponID } from 'ezlion';
 	import type {
+		FrontierCeaselessAffinity,
+		FrontierRarity,
 		FrontierStarvingWolfAffinity,
 		FrontierWeapon,
 		FrontierWeaponType,
 	} from '$lib/client/modules/frontier/types';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
 
 	type dropdownItem = { id: string; text: string };
 
 	const maxTrueRaw = 8_000;
 
+	let weaponID: FrontierWeaponID = 6;
 	let attackA = 0;
 	let attackB = 0;
 	let huntingHornBuff = 0;
@@ -75,6 +81,10 @@
 	let ceaselessAffinity: FrontierCeaselessAffinity = 0;
 	let furiousAffinity: FrontierFuriousAffinity = 0;
 	let aoeAffinity = 0;
+	let rarity: FrontierRarity = 1;
+	let weaponIconProps = {
+		rarity: rarity,
+	};
 
 	const minimumWeaponElement = 0;
 	const maximumWeaponElement = 10;
@@ -243,597 +253,1360 @@
 <div>
 	<SectionHeadingTopLevel title="Arena" />
 
-	<div class="container-buttons">
-		<Button
-			kind="tertiary"
-			icon={Download}
-			on:click={(e) => console.log('Download')}>Download</Button
-		>
+	<div class="container-body">
+		<div class="container-buttons">
+			<Button
+				kind="tertiary"
+				icon={Download}
+				on:click={(e) => console.log('Download')}>Download</Button
+			>
 
-		<!-- <Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} /> -->
+			<!-- <Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} /> -->
+		</div>
+
+		<div class="stats">
+			<div class="small-header">Internal Values and Final Displayed Attack</div>
+			<div class="stats-values">
+				<div class="fire">🔥 {100}</div>
+				<div class="water">💧 {100}</div>
+				<div class="ice">❄️ {100}</div>
+				<div class="thunder">⚡ {100}</div>
+				<div class="dragon">🐲 {100}</div>
+				<div class="total-attack">True Raw: {100}</div>
+				<div class="my-missions">My Missions: {100}</div>
+				<div class="status">Status: {100}</div>
+				<div class="attack-ceiling">Attack Ceiling: {100}</div>
+				<div class="attack">Attack: {100}</div>
+				<div class="affinity">Affinity: {100}</div>
+			</div>
+		</div>
+
+		<div class="inputs-left">
+			<div class="small-header">Affinity</div>
+			<Dropdown
+				titleText="Style Rank Affinity"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<Dropdown
+				titleText="Melee Sharpness"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<Dropdown
+				titleText="Expert Skills"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<Dropdown
+				titleText="Flash Conversion"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Issen Skills"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Ceaseless"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Starving Wolf"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Affinity Items"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="GS Active Feature"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Multiplied Base</div>
+			<Dropdown
+				titleText="Attack Skills"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Caravan Skills"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Passive Items"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Food / Consumables"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<Dropdown
+				titleText="Seeds, Flutes, Cat"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Lance / HBG"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Lone Wolf"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Crit Conversion"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Crit Conversion'}
+				/>
+			</div>
+			<Dropdown
+				titleText="Stylish Assault"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Consumption Slayer"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Vampirism'}
+				/>
+			</div>
+
+			<Dropdown
+				titleText="Obscurity"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Rush"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Furious"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Shiriagari"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Incitement"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Length Up"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Road Attack"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Road Adv. (Lv/Flr)"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Road Last Stand"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Duremudira Attack"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Conquest Attack'}
+				/>
+			</div>
+			<Dropdown
+				titleText="Attack Medicine"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Multipliers</div>
+
+			<Dropdown
+				titleText="HH Attack Songs"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Adrenaline/Vigorous"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Vigorous Up"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Hiden Skills"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Weapon Specific"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Combat Supremacy"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Flat Additions</div>
+			<Dropdown
+				titleText="Armor 1"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Origin Armor"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="G Armor Pieces"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="GSR999 Secret Tech."
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Red Soul"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Assistance"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Bond (Male Hunter)"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Partnyaa Bond"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Elemental Skills</div>
+
+			<Dropdown
+				titleText="Fire Multipliers"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Water Multipliers"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Thunder Multipliers"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Ice Multipliers"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Dragon Multipliers"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Elemental Attack"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="HH Elemental Up"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Status Skills</div>
+
+			<Dropdown
+				titleText="Abnormality"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Drug Knowledge"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<Dropdown
+				titleText="Status Assault"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Status Attack Up"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Guild Poogie"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Status Sigil"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Weapon Modifiers"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Arbitrary Custom Motion Value</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Total Motion Value'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Hit Count'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Elemental Multiplier'}
+				/>
+			</div>
+		</div>
+
+		<div class="inputs-middle">
+			<div class="small-header">Weapon Stats</div>
+
+			<Dropdown
+				titleText="Weapon Type"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Attack Value'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'True Raw'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Unlimited Sigil'}
+				/>
+			</div>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'SR Attack'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Sigil 1 Attack'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Sigil 2 Attack'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Sigil 3 Attack'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Zenith Attack Sigil'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'AoE Attack Sigil'}
+				/>
+			</div>
+
+			<Dropdown
+				titleText="AoE Attack Sigil"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Natural Affinity'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Sigil 1 Affinity'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Sigil 2 Affinity'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Sigil 3 Affinity'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'AoE Affinity Sigil'}
+				/>
+			</div>
+
+			<Dropdown
+				titleText="AoE Affinity Sigil"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Crit Multiplier'}
+				/>
+			</div>
+
+			<Dropdown
+				titleText="Crit Mode"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Blademaster</div>
+
+			<Dropdown
+				titleText="Sharpness"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Fencing"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Lance Impact Multiplier'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Transcend Raw Multiplier'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Raviente Power Sword Crystals'}
+				/>
+			</div>
+
+			<div class="small-header">Gunner</div>
+
+			<Dropdown
+				titleText="Distance Multiplier"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Bullet Modifier"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Shot Multiplier"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="HBG Charge Shot"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Compressed Shot'}
+				/>
+			</div>
+			<Dropdown
+				titleText="Compressed Shot"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Bow Coatings Multiplier"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<Dropdown
+				titleText="Consumption Slayer"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<Dropdown
+				titleText="Charge Multiplier"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+			<Dropdown
+				titleText="Quick Shot"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Element</div>
+
+			<Dropdown
+				titleText="Element"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Element'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Sigil 1 Element'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Sigil 2 Element'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Sigil 3 Element'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Zenith Element Sigil'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'AoE Element Sigil'}
+				/>
+			</div>
+
+			<Dropdown
+				titleText="AoE Element Sigil"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Weapon Multipliers"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Status</div>
+
+			<Dropdown
+				titleText="Status"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Status'}
+				/>
+			</div>
+
+			<div class="small-header">Other</div>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Additional'}
+				/>
+			</div>
+		</div>
+
+		<div class="inputs-right">
+			<div class="small-header">Monster</div>
+
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Defense Rate'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Rage Modifier'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Hardcore Modifier'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Raw Hitzone'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Fire Hitzone'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Water Hitzone'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Thunder Hitzone'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Ice Hitzone'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={minimumWeaponElement}
+					max={maximumWeaponElement}
+					bind:value={weaponElementValue}
+					invalidText={invalidWeaponElementStatusText}
+					label={'Dragon Hitzone'}
+				/>
+			</div>
+
+			<Dropdown
+				titleText="Monster Status"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Hitzone Value Modifiers</div>
+
+			<Dropdown
+				titleText="Thunder Clad"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Exploit Weakness"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Point Breakthrough"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Acid Shots"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Elemental Exploiter"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Hunting Horn Debuff"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Precison / Sniper / Crit S."
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<div class="small-header">Other</div>
+
+			<Dropdown
+				titleText="Absolute Defense"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<Dropdown
+				titleText="Premium Boost"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+		</div>
+
+		<!--TODO animations-->
+		<div class="motion-values">
+			<Dropdown
+				titleText="Weapon Motion Values Section"
+				type="inline"
+				bind:selectedId={weaponTrueRaw}
+				items={[{ id: '', text: 'None' }]}
+			/>
+
+			<DataTable
+				sortable
+				zebra
+				size="short"
+				stickyHeader
+				headers={[
+					{ key: 'name', value: 'Name' },
+					{ key: 'motion', value: 'Motion Value' },
+					{ key: 'raw', value: 'Raw' },
+					{ key: 'element', value: 'Element' },
+					{ key: 'fire', value: '🔥' },
+					{ key: 'water', value: '💧' },
+					{ key: 'thunder', value: '⚡' },
+					{ key: 'ice', value: '❄️' },
+					{ key: 'dragon', value: '🐲' },
+				]}
+				rows={[
+					{
+						id: 'a',
+						name: 'Load Balancer 3',
+						protocol: 'HTTP',
+						port: 3000,
+						rule: 100,
+					},
+					{
+						id: 'b',
+						name: 'Load Balancer 1',
+						protocol: 'HTTP',
+						port: 443,
+						rule: 100,
+					},
+					{
+						id: 'c',
+						name: 'Load Balancer 2',
+						protocol: 'HTTP',
+						port: 80,
+						rule: 'DNS delegation',
+					},
+					{
+						id: 'd',
+						name: 'Load Balancer 6',
+						protocol: 'HTTP',
+						port: 3000,
+						rule: 100,
+					},
+					{
+						id: 'e',
+						name: 'Load Balancer 4',
+						protocol: 'HTTP',
+						port: 443,
+						rule: 100,
+					},
+					{
+						id: 'f',
+						name: 'Load Balancer 5',
+						protocol: 'HTTP',
+						port: 80,
+						rule: 'DNS delegation',
+					},
+				]}
+			>
+				<span slot="title">
+					<div class="data-table-title">
+						<div class="weapon-icon">
+							<svelte:component
+								this={WeaponTypes[weaponID].icon}
+								{...weaponIconProps}
+							/>
+						</div>
+						<div>Dual Swords</div>
+					</div>
+				</span>
+				<span slot="description"> Extreme Demon Mode </span>
+			</DataTable>
+		</div>
 	</div>
-
-	<Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/>
-	<Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/>
-	<Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/>
-	<Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/>
-	<Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/><Dropdown
-		titleText="Status"
-		type="inline"
-		hideLabel
-		bind:selectedId={weaponTrueRaw}
-		items={[{ id: '', text: 'None' }]}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
-	<NumberInput
-		size="sm"
-		step={10}
-		min={minimumWeaponElement}
-		max={maximumWeaponElement}
-		bind:value={weaponElementValue}
-		invalidText={invalidWeaponElementStatusText}
-		label={'Element'}
-	/>
 </div>
 
 <style>
-	.container-buttons {
+	.data-table-title {
 		display: flex;
-		flex-direction: row;
 		gap: 1rem;
+		align-items: center;
+	}
+
+	.weapon-icon {
+		width: var(--cds-spacing-09);
+	}
+
+	.container-buttons {
+		grid-area: container-buttons;
+	}
+
+	.number-input-container {
+		margin-right: 1rem;
+	}
+
+	.inputs-left {
+		grid-area: inputs-left;
+	}
+
+	.inputs-right {
+		grid-area: inputs-right;
+	}
+
+	.inputs-middle {
+		grid-area: inputs-middle;
+	}
+
+	.inputs-left,
+	.inputs-middle,
+	.inputs-right {
+		display: flex;
+		flex-direction: column;
+		gap: var(--cds-spacing-03);
+		max-height: 48rem;
+		overflow-y: auto;
+		overflow-x: auto;
+	}
+
+	.stats {
+		grid-area: stats;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.motion-values {
+		grid-area: motion-values;
+	}
+
+	.attack {
+		grid-area: attack;
+	}
+
+	.affinity {
+		grid-area: affinity;
+	}
+
+	.total-attack {
+		grid-area: total-attack;
+	}
+
+	.fire {
+		grid-area: fire;
+	}
+
+	.water {
+		grid-area: water;
+	}
+	.thunder {
+		grid-area: thunder;
+	}
+
+	.ice {
+		grid-area: ice;
+	}
+
+	.dragon {
+		grid-area: dragon;
+	}
+
+	.attack-ceiling {
+		grid-area: attack-ceiling;
+	}
+
+	.status {
+		grid-area: status;
+	}
+
+	.my-missions {
+		grid-area: my-missions;
+	}
+
+	.total-attack,
+	.my-missions,
+	.attack-ceiling {
+		font-weight: bold;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.stats-values {
+		display: grid;
+		gap: 1rem;
+		grid-template-areas:
+			'attack affinity total-attack'
+			'fire water total-attack'
+			'thunder ice attack-ceiling'
+			'dragon status my-missions';
+		text-align: center;
+	}
+
+	.small-header {
+		font-weight: bold;
+		margin-top: var(--cds-spacing-06);
+		background-color: var(--ctp-mocha-mantle);
+		text-align: center;
+		padding: var(--cds-spacing-04);
+		border-radius: 10px 10px 10px 10px;
+		border: 1px solid var(--ctp-mocha-surface0);
+	}
+
+	.container-body {
+		display: grid;
+		grid-template-areas:
+			'container-buttons container-buttons container-buttons'
+			'stats stats stats'
+			'motion-values motion-values motion-values'
+			'inputs-left inputs-middle inputs-right';
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: var(--cds-spacing-08);
 	}
 </style>
