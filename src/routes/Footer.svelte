@@ -55,9 +55,8 @@
 
 	footer {
 		border-top: var(--cds-spacing-01) solid var(--ctp-surface0);
-		margin-top: var(--cds-spacing-06);
 		padding: var(--cds-spacing-07);
-		background-color: var(--ctp-mantle);
+		background-color: var(--ctp-crust);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

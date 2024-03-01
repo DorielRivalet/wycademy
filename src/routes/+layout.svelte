@@ -18,14 +18,11 @@
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
-	// import { pwaInfo } from 'virtual:pwa-info';
-
-	// $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+	import { browser } from '$app/environment';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
 	console.log('layout.svelte');
-	// console.log(webManifestLink);
 
 	onMount(() => {
 		let themeValue = $theme;
@@ -40,45 +37,32 @@
 		Object.keys(cssVarMap).forEach((key) => {
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
-		// console.log(webManifestLink);
 	});
 
-	// onMount(async () => {
-	//   if (pwaInfo) {
-	//     const { registerSW } = await import('virtual:pwa-register')
-	//     registerSW({
-	//       immediate: true,
-	//       onRegistered(r) {
-	//         // uncomment following code if you want check for updates
-	//         // r && setInterval(() => {
-	//         //    console.log('Checking for sw update')
-	//         //    r.update()
-	//         // }, 20000 /* 20s for testing purposes */)
-	//         console.log(`SW Registered: ${r}`)
-	//       },
-	//       onRegisterError(error) {
-	//         console.log('SW registration error', error)
-	//       }
-	//     })
-	//   }
-	// })
+	$: bgImage = getBackgroundImage($page.url.pathname);
+	$: bgClass =
+		getBackgroundImage($page.url.pathname) === 'none' ? 'none' : 'background';
+
+	function getBackgroundImage(path: string) {
+		switch (path) {
+			case '/arena': {
+				return "url('/src/lib/client/images/background/bg-arena.png')";
+			}
+			default:
+				return 'none';
+		}
+	}
 </script>
-
-<!-- <svelte:head>
-	{@html webManifestLink}
-</svelte:head> -->
-
-<!-- <svelte:head>
-	<title>{$page.data.title}</title>
-</svelte:head> -->
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <div class="app">
 	<ViewTransition />
 	<Header />
-	<main>
-		<slot />
-	</main>
+	<div class={bgClass} style={`background-image: ${bgImage};`}>
+		<main>
+			<slot />
+		</main>
+	</div>
 	{#key $page.url.pathname}
 		<Footer githubData={data.github} />
 	{/key}
@@ -88,17 +72,35 @@
 	.app {
 		display: flex;
 		flex-direction: column;
+		background-color: var(--ctp-mantle);
 	}
 
 	main {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 1rem;
+		padding: var(--cds-spacing-08);
 		width: 100%;
 		max-width: 70vw;
 		margin: 0 auto;
 		box-sizing: border-box;
 		min-height: 90vh;
+		background-color: var(--ctp-base);
+		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
+		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
+		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		border-radius: 0px 0px 10px 10px;
+	}
+
+	.none {
+		padding-bottom: var(--cds-spacing-08);
+	}
+
+	.background {
+		position: relative;
+		background-attachment: fixed;
+		background-position: top;
+		background-repeat: repeat;
+		padding-bottom: var(--cds-spacing-08);
 	}
 </style>
