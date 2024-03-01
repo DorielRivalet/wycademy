@@ -1,7 +1,7 @@
 {
 	"type": "module",
 	"name": "frontier-compendium",
-	"version": "0.3.0",
+	"version": "0.2.0",
 	"license": "MIT",
 	"description": "A compendium of resources for Monster Hunter Frontier Z (MHF-Z).",
 	"keywords": [
