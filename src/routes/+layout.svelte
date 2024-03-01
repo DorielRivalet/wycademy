@@ -18,7 +18,6 @@
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
-	import { browser } from '$app/environment';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -41,15 +40,37 @@
 
 	$: bgImage = getBackgroundImage($page.url.pathname);
 	$: bgClass =
-		getBackgroundImage($page.url.pathname) === 'none' ? 'none' : 'background';
+		getBackgroundImage($page.url.pathname) === 'none'
+			? 'none'
+			: $theme === 'g10'
+				? 'background-light'
+				: 'background';
 
 	function getBackgroundImage(path: string) {
 		switch (path) {
 			case '/arena': {
-				return "url('/src/lib/client/images/background/bg-arena.png')";
+				return "url('/src/lib/client/images/background/bg-arena.webp')";
+			}
+			case '/bestiary': {
+				return "url('/src/lib/client/images/background/bg-bestiary.webp')";
+			}
+			case '/site-preferences': {
+				return "url('/src/lib/client/images/background/bg-equipment-box.webp')";
+			}
+			case '/smithy': {
+				return "url('/src/lib/client/images/background/bg-smithy.webp')";
+			}
+			case '/support': {
+				return "url('/src/lib/client/images/background/bg-support.webp')";
+			}
+			case '/leaderboards': {
+				return "url('/src/lib/client/images/background/bg-leaderboards.webp')";
+			}
+			case '/hunter-notes': {
+				return "url('/src/lib/client/images/background/bg-hunter-notes.webp')";
 			}
 			default:
-				return 'none';
+				return $theme === 'g10' ? 'none-light' : 'none';
 		}
 	}
 </script>
@@ -76,6 +97,7 @@
 	}
 
 	main {
+		position: relative;
 		flex: 1;
 		display: flex;
 		flex-direction: column;
@@ -93,7 +115,45 @@
 	}
 
 	.none {
+		position: relative;
+		background-attachment: fixed;
+		background-position: top;
+		background-repeat: repeat;
 		padding-bottom: var(--cds-spacing-08);
+	}
+
+	.none:before {
+		content: ' ';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0.9;
+		background-image: url('/src/lib/client/images/background/noise.webp');
+		background-size: 5%;
+	}
+
+	.none-light {
+		position: relative;
+		background-attachment: fixed;
+		background-position: top;
+		background-repeat: repeat;
+		padding-bottom: var(--cds-spacing-08);
+	}
+
+	.none-light:before {
+		content: ' ';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0.9;
+		background-image: url('/src/lib/client/images/background/noise-light.webp');
+		background-size: 5%;
 	}
 
 	.background {
@@ -102,5 +162,43 @@
 		background-position: top;
 		background-repeat: repeat;
 		padding-bottom: var(--cds-spacing-08);
+		background-size: 10%;
+	}
+
+	.background-light {
+		position: relative;
+		background-attachment: fixed;
+		background-position: top;
+		background-repeat: repeat;
+		padding-bottom: var(--cds-spacing-08);
+		background-size: 10%;
+	}
+
+	.background-light:before {
+		content: ' ';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0.9;
+		background-color: #fff;
+		background-image: url('/src/lib/client/images/background/noise-light.webp');
+		background-size: 5%;
+	}
+
+	.background:before {
+		content: ' ';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0.9;
+		background-color: #000;
+		background-image: url('/src/lib/client/images/background/noise.webp');
+		background-size: 5%;
 	}
 </style>
