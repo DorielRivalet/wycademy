@@ -82,6 +82,8 @@
 		display: flex;
 		justify-content: space-between;
 		min-height: 10vh;
+		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		background-color: var(--ctp-crust);
 	}
 
 	.container-link {
