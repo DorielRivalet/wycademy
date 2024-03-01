@@ -944,8 +944,19 @@ export const defaultItemComponentValues = {
 	} as FrontierItemDecoration,
 } as const;
 
-// dmg calc
-
+// TODO dmg calc
+export const affinityMap = {
+	starvingWolf: {
+		true: 50,
+		false: 0,
+	},
+	ceaseless: {
+		1: 35,
+		2: 50,
+		3: 60,
+		default: 0,
+	},
+} as const;
 
 /*
 // It requires an extra line to pull out the values
