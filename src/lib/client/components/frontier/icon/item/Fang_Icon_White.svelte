@@ -6,7 +6,7 @@
 
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	export let color = '#000000';
+	export let color = '#ffffff';
 
 	$: targetColor = color;
 </script>

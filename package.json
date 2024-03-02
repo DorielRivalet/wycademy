@@ -55,7 +55,6 @@
 		"@sveltejs/kit": "^2.5.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/cookie": "^0.6.0",
-		"@types/jquery": "^3.5.29",
 		"@typescript-eslint/eslint-plugin": "^7.1.0",
 		"@typescript-eslint/parser": "^7.1.0",
 		"@vite-pwa/sveltekit": "^0.4.0",
@@ -94,6 +93,7 @@
 	},
 	"dependencies": {
 		"@carbon/layout": "^11.20.0",
+		"@catppuccin/palette": "^1.1.0",
 		"@ibm/plex": "^6.4.0",
 		"alex": "^11.0.1",
 		"carbon-components": "^11.51.1",

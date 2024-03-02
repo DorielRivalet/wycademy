@@ -67,7 +67,6 @@
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import { page } from '$app/stores';
 	import Head from '$lib/client/components/Head.svelte';
-	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	onMount(() => {
 		mermaid.initialize({
@@ -296,12 +295,7 @@
 			let:item
 		>
 			<div>
-				<img
-					alt="Cursor Icon"
-					src={getCursorIcon(item.id)}
-					width="24"
-
-				/>
+				<img alt="Cursor Icon" src={getCursorIcon(item.id)} width="24" />
 				<strong style="vertical-align: top;">{item.text}</strong>
 			</div>
 		</Dropdown>
@@ -334,12 +328,7 @@
 				let:item
 			>
 				<div>
-					<img
-						alt="Theme Icon"
-						src={getThemeIcon(item.id)}
-						width="24"
-
-					/>
+					<img alt="Theme Icon" src={getThemeIcon(item.id)} width="24" />
 					<strong style="vertical-align: center;">{item.text}</strong>
 				</div>
 			</Dropdown>
@@ -400,13 +389,6 @@
 			{:else}
 				<pre><code bind:this={container} /></pre>
 			{/if}
-		</section>
-
-		<section>
-			<SectionHeading title={'Weapon Generator'} level={3} />
-			<p>
-				The content was moved to <Link href="/smithy#weapon">here.</Link>
-			</p>
 		</section>
 	</section>
 </div>
