@@ -49,28 +49,28 @@
 	function getBackgroundImage(path: string) {
 		switch (path) {
 			case '/arena': {
-				return "url('/src/lib/client/images/background/bg-arena.webp')";
+				return "url('$lib/client/images/background/bg-arena.webp')";
 			}
 			case '/bestiary': {
-				return "url('/src/lib/client/images/background/bg-bestiary.webp')";
+				return "url('$lib/client/images/background/bg-bestiary.webp')";
 			}
 			case '/site-preferences': {
-				return "url('/src/lib/client/images/background/bg-equipment-box.webp')";
+				return "url('$lib/client/images/background/bg-equipment-box.webp')";
 			}
 			case '/smithy': {
-				return "url('/src/lib/client/images/background/bg-smithy.webp')";
+				return "url('$lib/client/images/background/bg-smithy.webp')";
 			}
 			case '/support': {
-				return "url('/src/lib/client/images/background/bg-support.webp')";
+				return "url('$lib/client/images/background/bg-support.webp')";
 			}
 			case '/leaderboard': {
-				return "url('/src/lib/client/images/background/bg-leaderboard.webp')";
+				return "url('$lib/client/images/background/bg-leaderboard.webp')";
 			}
 			case '/hunter-notes': {
-				return "url('/src/lib/client/images/background/bg-hunter-notes.webp')";
+				return "url('$lib/client/images/background/bg-hunter-notes.webp')";
 			}
 			case '/user': {
-				return "url('/src/lib/client/images/background/bg-profile.webp')";
+				return "url('$lib/client/images/background/bg-profile.webp')";
 			}
 			default:
 				return $theme === 'g10' ? 'none-light' : 'none';
