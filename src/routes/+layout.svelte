@@ -63,11 +63,14 @@
 			case '/support': {
 				return "url('/src/lib/client/images/background/bg-support.webp')";
 			}
-			case '/leaderboards': {
-				return "url('/src/lib/client/images/background/bg-leaderboards.webp')";
+			case '/leaderboard': {
+				return "url('/src/lib/client/images/background/bg-leaderboard.webp')";
 			}
 			case '/hunter-notes': {
 				return "url('/src/lib/client/images/background/bg-hunter-notes.webp')";
+			}
+			case '/user': {
+				return "url('/src/lib/client/images/background/bg-profile.webp')";
 			}
 			default:
 				return $theme === 'g10' ? 'none-light' : 'none';

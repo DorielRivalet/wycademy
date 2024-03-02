@@ -1,8 +1,52 @@
+import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+import { flavors, flavorEntries } from '@catppuccin/palette';
+
 type ThemeMap = {
 	[key: string]: {
 		[key: string]: string;
 	};
 };
+
+export type CatppuccinFlavorName = 'mocha' | 'macchiato' | 'frappe' | 'latte';
+
+export function getCatppuccinFlavorFromTheme(
+	theme: CarbonTheme,
+): CatppuccinFlavorName {
+	switch (theme) {
+		case 'g100':
+			return 'mocha';
+		case 'g90':
+			return 'macchiato';
+		case 'g80':
+			return 'frappe';
+		case 'g10':
+			return 'latte';
+		default:
+			return 'mocha';
+	}
+}
+
+export function getHexStringFromCatppuccinColor(
+	colorName: string,
+	theme: CarbonTheme,
+): string {
+	// Determine the current flavor based on the theme
+	let flavor: CatppuccinFlavorName = getCatppuccinFlavorFromTheme(theme);
+
+	// Access the flavor object
+	const flavorObject = flavors[flavor];
+
+	// Iterate over the color entries for the current flavor
+	for (const [color, details] of flavorObject.colorEntries) {
+		if (color === colorName) {
+			// Return the hex string for the matching color name
+			return details.hex;
+		}
+	}
+
+	// If the color name is not found, return white
+	return '#ffffff';
+}
 
 export const catppuccinThemeMap: ThemeMap = {
 	default: {

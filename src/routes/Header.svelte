@@ -13,69 +13,120 @@
 	import { goto } from '$app/navigation';
 	import { developmentStage } from '$lib/constants';
 	import Logo from '$lib/client/components/Logo.svelte';
+	import Blacksmith from '$lib/client/components/frontier/icon/Blacksmith.svelte';
+	import UserAvatar from 'carbon-icons-svelte/lib/UserAvatar.svelte';
+	import PvP from '$lib/client/components/frontier/icon/PvP.svelte';
+	import MySupport from '$lib/client/components/frontier/icon/MySupport.svelte';
+	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
+	import MonsterPartIconWhite from '$lib/client/components/frontier/icon/item/Monster_Part_Icon_White.svelte';
+	import TicketIconWhite from '$lib/client/components/frontier/icon/item/Ticket_Icon_White.svelte';
+	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
+	import { theme } from '$lib/client/stores/theme';
+	import NavigationItem from './NavigationItem.svelte';
+	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
+
+	let closed = false;
+	let expanded = false;
+
+	function close() {
+		close = true;
+	}
 </script>
 
 <header>
-	<div class="logo-notification">
+	<div class="left">
 		<Logo />
-
-		<InlineNotification
-			lowContrast
-			kind="warning"
-			title="Status:"
-			subtitle="This site is currently in {developmentStage}."
-		>
-			<svelte:fragment slot="actions">
-				<NotificationActionButton
-					on:click={() => goto('/about-development-stages')}
-					>Learn more</NotificationActionButton
-				>
-			</svelte:fragment>
-		</InlineNotification>
+		<div class="search">
+			<Search
+				expandable
+				bind:expanded
+				autocomplete={'on'}
+				on:expand
+				on:collapse
+			/>
+		</div>
 	</div>
 
-	<nav>
-		<ul>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
-			</li>
-			<li
-				aria-current={$page.url.pathname.startsWith('/sverdle')
-					? 'page'
-					: undefined}
-			>
-				<a href="/sverdle">Sverdle</a>
-			</li>
-		</ul>
-	</nav>
+	<div class="middle">
+		<nav>
+			<ul>
+				<NavigationItem color="yellow" path="/" description="Leaderboard">
+					<TicketIconWhite
+						color={getHexStringFromCatppuccinColor('yellow', $theme)}
+					/>
+				</NavigationItem>
+				<NavigationItem color="peach" path="/" description="Hunter's Notes">
+					<BookIconWhite
+						color={getHexStringFromCatppuccinColor('peach', $theme)}
+					/>
+				</NavigationItem>
+				<NavigationItem color="red" path="/" description="Bestiary">
+					<MonsterPartIconWhite
+						color={getHexStringFromCatppuccinColor('red', $theme)}
+					/>
+				</NavigationItem>
+				<NavigationItem color="mauve" path="/arena" description="Arena">
+					<PvP color={getHexStringFromCatppuccinColor('mauve', $theme)} />
+				</NavigationItem>
+				<NavigationItem color="sky" path="/smithy" description="Smithy">
+					<Blacksmith color={getHexStringFromCatppuccinColor('sky', $theme)} />
+				</NavigationItem>
+				<NavigationItem color="green" path="/" description="Support">
+					<MySupport color={getHexStringFromCatppuccinColor('green', $theme)} />
+				</NavigationItem>
+			</ul>
+		</nav>
 
-	<nav class="container-links">
+		<div class="notification">
+			<InlineNotification
+				lowContrast
+				on:close={() => close()}
+				kind="warning"
+				title="Status:"
+				subtitle="This site is currently in {developmentStage}."
+			>
+				<svelte:fragment slot="actions">
+					<NotificationActionButton
+						on:click={() => goto('/about-development-stages')}
+						>Learn more</NotificationActionButton
+					>
+				</svelte:fragment>
+			</InlineNotification>
+		</div>
+	</div>
+
+	<nav class="right">
 		<div class="container-link">
 			<Link href="/site-preferences" class="link" aria-label="Site preferences">
-				<Settings size={32} />
+				<UserAvatar size={48} />
+			</Link>
+		</div>
+		<div class="container-link">
+			<Link href="/site-preferences" class="link" aria-label="Site preferences">
+				<Settings size={48} />
 			</Link>
 		</div>
 	</nav>
 </header>
 
 <style>
-	header > *:nth-child(2) {
-		position: absolute;
-		left: 50%;
-		right: 50%;
-		top: 0;
-	}
-
-	header > *:nth-child(3) {
-		position: absolute;
-		right: 0;
-		top: 0;
-	}
-
-	.logo-notification {
+	.left {
+		margin-left: var(--cds-spacing-02);
 		display: flex;
 		gap: 1rem;
-		margin-left: var(--cds-spacing-02);
+		align-items: center;
+	}
+
+	.middle {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.right {
+		display: flex;
+		justify-content: space-between;
+		gap: var(--cds-spacing-04);
 	}
 
 	header {
@@ -84,74 +135,24 @@
 		min-height: 10vh;
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 		background-color: var(--ctp-crust);
+		align-items: center;
+		padding: 0.5rem;
 	}
 
 	.container-link {
 		padding-block: 0.5rem;
 	}
 
-	.container-links {
-		display: flex;
-		justify-content: space-between;
-		gap: 1rem;
-		margin-right: 0.5rem;
-	}
-
-	nav {
-		display: flex;
-		justify-content: center;
+	.search {
+		height: fit-content;
 	}
 
 	ul {
 		position: relative;
 		padding: 0;
 		margin: 0;
-		height: 3em;
 		display: flex;
-		justify-content: center;
 		align-items: center;
 		list-style: none;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li::marker {
-		content: none;
-	}
-
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 0.5rem;
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
-
-	a:hover {
-		color: var(--cds-link-01);
-	}
-
-	a {
-		color: inherit; /* Make the link color inherit from the parent element */
 	}
 </style>
