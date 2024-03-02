@@ -3,8 +3,6 @@
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
 const sw = self as unknown as ServiceWorkerGlobalScope;
-// Create a unique cache name for this deployment
-const CACHE = `cache-${version}`;
 
 // /// <reference types='@sveltejs/kit'/>
 // import { build, files, version } from '$service-worker';
@@ -15,6 +13,9 @@ import { offlineFallback } from 'workbox-recipes';
 import { precacheAndRoute } from 'workbox-precaching';
 import { NetworkOnly } from 'workbox-strategies';
 import { setDefaultHandler } from 'workbox-routing';
+
+// Create a unique cache name for this deployment
+const CACHE = `cache-${version}`;
 
 setDefaultHandler(new NetworkOnly());
 
