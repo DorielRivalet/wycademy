@@ -8,7 +8,7 @@ const sw = self as unknown as ServiceWorkerGlobalScope;
 // import { build, files, version } from '$service-worker';
 // import fetchEvent from './fetchEvent';
 // import installEvent from './installEvent';
-import { build, files, prerendered, version } from '$service-worker';
+import { build, files, version } from '$service-worker';
 //import { offlineFallback } from 'workbox-recipes';
 //import { precacheAndRoute } from 'workbox-precaching';
 // import { NetworkOnly } from 'workbox-strategies';
@@ -22,7 +22,7 @@ const CACHE = `cache-${version}`;
 const precache_list = [
 	...build, // the app itself
 	...files, // everything in static folder
-	...prerendered,
+	//	...prerendered,
 ];
 // ].map((file) => ({
 // 	url: file,
