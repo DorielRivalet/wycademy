@@ -38,39 +38,38 @@
 		});
 	});
 
-	$: bgImage = getBackgroundImage($page.url.pathname);
 	$: bgClass =
-		getBackgroundImage($page.url.pathname) === 'none'
+		getBackgroundImageClass($page.url.pathname) === 'none'
 			? 'none'
 			: $theme === 'g10'
-				? 'background-light'
-				: 'background';
+				? `background-light ${getBackgroundImageClass($page.url.pathname)}`
+				: `background ${getBackgroundImageClass($page.url.pathname)}`;
 
-	function getBackgroundImage(path: string) {
+	function getBackgroundImageClass(path: string) {
 		switch (path) {
 			case '/arena': {
-				return "url('$lib/client/images/background/bg-arena.webp')";
+				return 'bg-arena';
 			}
 			case '/bestiary': {
-				return "url('$lib/client/images/background/bg-bestiary.webp')";
+				return 'bg-bestiary';
 			}
 			case '/site-preferences': {
-				return "url('$lib/client/images/background/bg-equipment-box.webp')";
+				return 'bg-equipment-box';
 			}
 			case '/smithy': {
-				return "url('$lib/client/images/background/bg-smithy.webp')";
+				return 'bg-smithy';
 			}
 			case '/support': {
-				return "url('$lib/client/images/background/bg-support.webp')";
+				return 'bg-support';
 			}
 			case '/leaderboard': {
-				return "url('$lib/client/images/background/bg-leaderboard.webp')";
+				return 'bg-leaderboard';
 			}
 			case '/hunter-notes': {
-				return "url('$lib/client/images/background/bg-hunter-notes.webp')";
+				return 'bg-hunter-notes';
 			}
 			case '/user': {
-				return "url('$lib/client/images/background/bg-profile.webp')";
+				return 'bg-profile';
 			}
 			default:
 				return $theme === 'g10' ? 'none-light' : 'none';
@@ -82,7 +81,7 @@
 <div class="app">
 	<ViewTransition />
 	<Header />
-	<div class={bgClass} style={`background-image: ${bgImage};`}>
+	<div class={bgClass}>
 		<main>
 			<slot />
 		</main>
@@ -93,6 +92,34 @@
 </div>
 
 <style>
+	.bg-arena {
+		background-image: url($lib/client/images/background/bg-arena.webp);
+	}
+
+	.bg-profile {
+		background-image: url($lib/client/images/background/bg-profile.webp);
+	}
+
+	.bg-smithy {
+		background-image: url($lib/client/images/background/bg-smithy.webp);
+	}
+
+	.bg-leaderboard {
+		background-image: url($lib/client/images/background/bg-leaderboard.webp);
+	}
+
+	.bg-hunter-notes {
+		background-image: url($lib/client/images/background/bg-hunter-notes.webp);
+	}
+
+	.bg-equipment-box {
+		background-image: url($lib/client/images/background/bg-equipment-box.webp);
+	}
+
+	.bg-bestiary {
+		background-image: url($lib/client/images/background/bg-bestiary.webp);
+	}
+
 	.app {
 		display: flex;
 		flex-direction: column;
