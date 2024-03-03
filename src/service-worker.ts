@@ -23,6 +23,9 @@ const precache_list = [
 	revision: version,
 }));
 
+console.log(files);
+console.log(prerendered);
+
 precacheAndRoute(precache_list); // this has to run early.
 
 setDefaultHandler(new NetworkOnly());
