@@ -227,6 +227,7 @@ li {
 ul li,
 ol li {
 	font-size: 1rem;
+	line-height: var(--cds-spacing-06)
 }
 
 ul li::marker {

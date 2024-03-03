@@ -5,13 +5,8 @@
 -->
 
 <script lang="ts">
-	import { page } from '$app/stores';
 	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
-	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
-	import { goto } from '$app/navigation';
-	import { developmentStage } from '$lib/constants';
 	import Logo from '$lib/client/components/Logo.svelte';
 	import Blacksmith from '$lib/client/components/frontier/icon/Blacksmith.svelte';
 	import UserAvatar from 'carbon-icons-svelte/lib/UserAvatar.svelte';
@@ -76,23 +71,6 @@
 				</NavigationItem>
 			</ul>
 		</nav>
-
-		<div class="notification">
-			<InlineNotification
-				lowContrast
-				on:close={() => close()}
-				kind="warning"
-				title="Status:"
-				subtitle="This site is currently in {developmentStage}."
-			>
-				<svelte:fragment slot="actions">
-					<NotificationActionButton
-						on:click={() => goto('/about-development-stages')}
-						>Learn more</NotificationActionButton
-					>
-				</svelte:fragment>
-			</InlineNotification>
-		</div>
 	</div>
 
 	<nav class="right">

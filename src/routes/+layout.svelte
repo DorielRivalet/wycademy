@@ -18,6 +18,10 @@
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
+	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
+	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
+	import { developmentStage } from '$lib/constants';
+	import { goto } from '$app/navigation';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -81,6 +85,22 @@
 <div class="app">
 	<ViewTransition />
 	<Header />
+	<div class="banner">
+		<InlineNotification
+			lowContrast
+			on:close={() => close()}
+			kind="warning"
+			title="Status:"
+			subtitle="This site is currently in {developmentStage}."
+		>
+			<svelte:fragment slot="actions">
+				<NotificationActionButton
+					on:click={() => goto('/about-development-stages')}
+					>Learn more</NotificationActionButton
+				>
+			</svelte:fragment>
+		</InlineNotification>
+	</div>
 	<div class={bgClass}>
 		<main>
 			<slot />
@@ -92,6 +112,11 @@
 </div>
 
 <style>
+	.banner {
+		display: flex;
+		justify-content: center;
+	}
+
 	.bg-arena {
 		background-image: url($lib/client/images/background/bg-arena.webp);
 	}
