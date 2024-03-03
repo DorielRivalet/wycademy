@@ -23,7 +23,7 @@
 			</div>
 		{:else}
 			<div>Want to play as Raviente?</div>
-			<Link href="/offline.html">Try this game!</Link>
+			<Link href="/offline/offline.html">Try this game!</Link>
 		{/if}
 	</div>
 
