@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import cat from '$lib/client/images/error.webp';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	const errorTitles = [
 		'The Gargwa took the quest and ran away with it! 🐔',
@@ -34,6 +35,8 @@
 			{$page.error.message}
 		</span>
 	{/if}
+	<div>Want to play as Raviente?</div>
+	<Link href="/offline/offline.html">Try this game!</Link>
 </div>
 
 <style>
