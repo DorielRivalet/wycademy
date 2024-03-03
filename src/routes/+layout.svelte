@@ -186,7 +186,7 @@
 		width: 100%;
 		height: 100%;
 		opacity: 0.9;
-		background-image: url('/src/lib/client/images/background/noise.webp');
+		background-image: url($lib/client/images/background/noise.webp);
 		background-size: 5%;
 	}
 
@@ -207,7 +207,7 @@
 		width: 100%;
 		height: 100%;
 		opacity: 0.9;
-		background-image: url('/src/lib/client/images/background/noise-light.webp');
+		background-image: url($lib/client/images/background/noise-light.webp);
 		background-size: 5%;
 	}
 
@@ -239,7 +239,7 @@
 		height: 100%;
 		opacity: 0.9;
 		background-color: #fff;
-		background-image: url('/src/lib/client/images/background/noise-light.webp');
+		background-image: url($lib/client/images/background/noise-light.webp);
 		background-size: 5%;
 	}
 
@@ -253,7 +253,7 @@
 		height: 100%;
 		opacity: 0.9;
 		background-color: #000;
-		background-image: url('/src/lib/client/images/background/noise.webp');
+		background-image: url($lib/client/images/background/noise.webp);
 		background-size: 5%;
 	}
 </style>
