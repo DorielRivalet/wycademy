@@ -115,6 +115,7 @@
 	.banner {
 		display: flex;
 		justify-content: center;
+		background-color: var(--ctp-mantle);
 	}
 
 	.bg-arena {
