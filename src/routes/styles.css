@@ -227,7 +227,7 @@ li {
 ul li,
 ol li {
 	font-size: 1rem;
-	line-height: var(--cds-spacing-06)
+	line-height: var(--cds-spacing-06);
 }
 
 ul li::marker {
@@ -275,4 +275,8 @@ body.wait * {
 
 ::selection {
 	background-color: var(--ctp-surface2);
+}
+
+.bx--modal {
+	background-color: rgba(0, 0, 0, 0.6);
 }
