@@ -50,24 +50,24 @@
 						color={getHexStringFromCatppuccinColor('yellow', $theme)}
 					/>
 				</NavigationItem>
-				<NavigationItem color="peach" path="/" description="Hunter's Notes">
+				<NavigationItem color="rosewater" path="/" description="Hunter's Notes">
 					<BookIconWhite
-						color={getHexStringFromCatppuccinColor('peach', $theme)}
+						color={getHexStringFromCatppuccinColor('rosewater', $theme)}
 					/>
 				</NavigationItem>
-				<NavigationItem color="red" path="/" description="Bestiary">
+				<NavigationItem color="flamingo" path="/" description="Bestiary">
 					<MonsterPartIconWhite
-						color={getHexStringFromCatppuccinColor('red', $theme)}
+						color={getHexStringFromCatppuccinColor('flamingo', $theme)}
 					/>
 				</NavigationItem>
-				<NavigationItem color="mauve" path="/arena" description="Arena">
-					<PvP color={getHexStringFromCatppuccinColor('mauve', $theme)} />
+				<NavigationItem color="pink" path="/arena" description="Arena">
+					<PvP color={getHexStringFromCatppuccinColor('pink', $theme)} />
 				</NavigationItem>
-				<NavigationItem color="sky" path="/smithy" description="Smithy">
-					<Blacksmith color={getHexStringFromCatppuccinColor('sky', $theme)} />
+				<NavigationItem color="mauve" path="/smithy" description="Smithy">
+					<Blacksmith color={getHexStringFromCatppuccinColor('mauve', $theme)} />
 				</NavigationItem>
-				<NavigationItem color="green" path="/" description="Support">
-					<MySupport color={getHexStringFromCatppuccinColor('green', $theme)} />
+				<NavigationItem color="red" path="/" description="Support">
+					<MySupport color={getHexStringFromCatppuccinColor('red', $theme)} />
 				</NavigationItem>
 			</ul>
 		</nav>
