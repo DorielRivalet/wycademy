@@ -18,6 +18,8 @@
 	import Head from '$lib/client/components/Head.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
+	import Play from 'carbon-icons-svelte/lib/Play.svelte';
+
 	import {
 		authorName,
 		authorUrl,
@@ -41,6 +43,12 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
 	import Save from 'carbon-icons-svelte/lib/Save.svelte';
+	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
+	import ToolbarContent from 'carbon-components-svelte/src/DataTable/ToolbarContent.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import Launch from 'carbon-icons-svelte/lib/Launch.svelte';
+	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
+	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 
 	type dropdownItem = { id: string; text: string };
 
@@ -234,7 +242,16 @@
 		});
 	}
 
+	function changeModal(cell) {
+		modalOpen = true;
+		modalTitle = cell.value;
+	}
+
+	let modalTitle = '';
 	let url = $page.url.toString();
+	let modalOpen = false;
+
+	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
 </script>
 
 <Head
@@ -251,7 +268,17 @@
 	siteName={projectName}
 />
 
-<div>
+<Modal
+	passiveModal
+	bind:open={modalOpen}
+	modalHeading={modalTitle}
+	on:open
+	on:close
+>
+	<img src={pageThumbnail} alt={'motion value animation'} />
+</Modal>
+
+<div class={modalBlurClass}>
 	<SectionHeadingTopLevel title="Arena" />
 
 	<div class="container-body">
@@ -1441,29 +1468,22 @@
 		</div>
 		<!--TODO animations-->
 		<div class="motion-values">
-			<Dropdown
-				titleText="Weapon Motion Values Section"
-				type="inline"
-				bind:selectedId={weaponTrueRaw}
-				items={[{ id: '', text: 'None' }]}
-			/>
-
 			<DataTable
 				sortable
 				zebra
 				size="short"
-				stickyHeader
+				useStaticWidth
 				headers={[
-					{ key: 'name', value: 'Name' },
-					{ key: 'motion', value: 'Motion Value' },
-					{ key: 'raw', value: 'Raw' },
-					{ key: 'element', value: 'Element' },
-					{ key: 'total', value: 'Total' },
-					{ key: 'fire', value: '🔥' },
-					{ key: 'water', value: '💧' },
-					{ key: 'thunder', value: '⚡' },
-					{ key: 'ice', value: '❄️' },
-					{ key: 'dragon', value: '🐲' },
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'water', value: '💧', minWidth: '1rem' },
+					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+					{ key: 'ice', value: '❄️', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 				]}
 				rows={[
 					{
@@ -1510,6 +1530,16 @@
 					},
 				]}
 			>
+				<Toolbar>
+					<ToolbarContent>
+						<Dropdown
+							titleText="Weapon Motion Values Section"
+							type="inline"
+							bind:selectedId={weaponTrueRaw}
+							items={[{ id: '', text: 'None' }]}
+						/>
+					</ToolbarContent>
+				</Toolbar>
 				<span slot="title">
 					<div class="data-table-title">
 						<div class="weapon-icon">
@@ -1521,13 +1551,49 @@
 						<div>Dual Swords</div>
 					</div>
 				</span>
-				<span slot="description"> Extreme Demon Mode </span>
+				<svelte:fragment slot="cell" let:row let:cell>
+					{#if cell.key === 'name'}
+						<Button
+							on:click={() => changeModal(cell)}
+							size="small"
+							icon={Image}
+							kind="ghost">{cell.value}</Button
+						>
+					{:else}
+						{cell.value}
+					{/if}
+				</svelte:fragment>
 			</DataTable>
 		</div>
 	</div>
 </div>
 
 <style>
+	.modal-open-noblur {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+		opacity: 1;
+		-webkit-transition:
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+		transition:
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+		transition:
+			filter 500ms ease,
+			opacity 500ms ease;
+		transition:
+			filter 500ms ease,
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+	}
+
+	.modal-open-blur {
+		-webkit-filter: blur(8px);
+		filter: blur(4px);
+		opacity: 1;
+	}
+
 	.data-table-title {
 		display: flex;
 		gap: 1rem;
@@ -1573,6 +1639,7 @@
 
 	.motion-values {
 		grid-area: motion-values;
+		overflow-x: auto;
 	}
 
 	.attack {
@@ -1590,26 +1657,51 @@
 	.fire {
 		grid-area: fire;
 		color: var(--ctp-red);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
 	}
 
 	.water {
 		grid-area: water;
 		color: var(--ctp-blue);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
 	}
 
 	.thunder {
 		grid-area: thunder;
 		color: var(--ctp-yellow);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
 	}
 
 	.ice {
 		grid-area: ice;
 		color: var(--ctp-sky);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
 	}
 
 	.dragon {
 		grid-area: dragon;
 		color: var(--ctp-mauve);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
 	}
 
 	.attack-ceiling {
@@ -1653,6 +1745,8 @@
 			'thunder ice attack-ceiling'
 			'dragon status my-missions';
 		text-align: center;
+		font-weight: bold;
+		font-size: 1.5rem;
 		background-color: var(--ctp-mantle);
 	}
 
