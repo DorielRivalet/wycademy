@@ -40,10 +40,6 @@
 <style>
 	li {
 		margin: var(--cds-spacing-02);
-		position: relative;
-		height: 100%;
-		background-color: var(--ctp-surface0);
-		border-radius: 10%;
 	}
 
 	li::marker {
@@ -63,18 +59,29 @@
 
 	/* Make the icon description visible on hover of the parent <li> */
 	li:hover .icon-description {
-		display: flex; /* or inline, depending on your layout */
 		opacity: 1;
+		display: block;
+	}
+
+	/* Position the icon description absolutely within the list item */
+	.icon-description {
+		position: absolute;
+		top: 3rem; /* Adjust positioning as needed */
+		left: inherit; /* Adjust positioning as needed */
+		display: none; /* Initially hidden */
+		transition: opacity 0.3s ease;
+		z-index: 1; /* Ensure it's above other elements */
+		text-wrap: nowrap;
 	}
 
 	/* Ensure the icon moves up on hover of the list item */
-	a:hover .icon {
-		transform: translateY(-2px); /* Adjust the value as needed */
+	li:hover .icon {
+		transform: translateY(-10px); /* Adjust the value as needed */
 		transition: transform 0.3s ease; /* Smooth transition */
 	}
 
 	/* Apply the shiny effect to the icon container on hover of the parent <li> */
-	a:hover .icon::after {
+	li:hover .icon::after {
 		content: '';
 		position: absolute;
 		top: 0;
@@ -92,7 +99,7 @@
 	}
 
 	/* Animate the shiny effect on hover of the parent <li> */
-	a:hover .icon::after {
+	li:hover .icon::after {
 		transform: scale(1);
 	}
 
@@ -102,10 +109,14 @@
 		position: relative;
 		overflow: visible;
 		width: var(--cds-spacing-09);
+		background-color: var(--ctp-surface0);
+		border: 2px solid var(--ctp-overlay0);
+		border-radius: 10%;
+		display: flex;
+		padding: var(--cds-spacing-01);
 	}
-
 	/* Apply the shiny effect to the icon container on hover */
-	.icon:hover::after {
+	li:hover::after {
 		content: '';
 		position: absolute;
 		top: 0;
@@ -122,52 +133,6 @@
 		z-index: -1;
 	}
 
-	/* Position the icon description absolutely within the list item */
-	.icon-description {
-		position: absolute;
-		top: 3rem; /* Adjust positioning as needed */
-		left: 0; /* Adjust positioning as needed */
-		display: none; /* Initially hidden */
-		transition: opacity 0.3s ease;
-		z-index: 1; /* Ensure it's above other elements */
-		text-wrap: nowrap;
-	}
-
-	.yellow:hover {
-		color: var(--ctp-yellow);
-	}
-
-	.peach:hover {
-		color: var(--ctp-peach);
-	}
-
-	.red:hover {
-		color: var(--ctp-red);
-	}
-
-	.mauve:hover {
-		color: var(--ctp-mauve);
-	}
-
-	.sky:hover {
-		color: var(--ctp-sky);
-	}
-
-	.green:hover {
-		color: var(--ctp-green);
-	}
-
-	/* New effects for the <a> elements */
-	a.icon {
-		position: relative;
-		display: flex;
-		text-align: center;
-		padding: var(--cds-spacing-02);
-		background-color: red;
-		/* color: #666; */
-		transition: 0.5s;
-	}
-
 	a::before {
 		content: '';
 		position: absolute;
@@ -182,14 +147,176 @@
 		z-index: -1;
 	}
 
-	a:hover::before {
+	li:hover .icon::before {
 		transform: scale(1.1);
 		box-shadow: 0 0 5px var(--ctp-blue);
 	}
 
-	a:hover {
+	li:hover .icon {
 		color: var(--ctp-surface1);
 		box-shadow: 0 0 5px var(--ctp-blue);
 		text-shadow: 0 0 5px var(--ctp-blue);
+	}
+
+	.yellow:hover {
+		color: var(--ctp-yellow);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.pink:hover {
+		color: var(--ctp-pink);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.flamingo:hover {
+		color: var(--ctp-flamingo);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.rosewater:hover {
+		color: var(--ctp-rosewater);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.peach:hover {
+		color: var(--ctp-peach);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.red:hover {
+		color: var(--ctp-red);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.mauve:hover {
+		color: var(--ctp-mauve);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.sky:hover {
+		color: var(--ctp-sky);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.green:hover {
+		color: var(--ctp-green);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.yellow {
+		color: var(--ctp-yellow);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.pink {
+		color: var(--ctp-pink);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.flamingo {
+		color: var(--ctp-flamingo);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.rosewater {
+		color: var(--ctp-rosewater);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.peach {
+		color: var(--ctp-peach);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.red {
+		color: var(--ctp-red);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.mauve {
+		color: var(--ctp-mauve);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.sky {
+		color: var(--ctp-sky);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
+	}
+
+	.green {
+		color: var(--ctp-green);
+		text-shadow:
+			-1px -1px 0 #000,
+			1px -1px 0 #000,
+			-1px 1px 0 #000,
+			1px 1px 0 #000;
 	}
 </style>
