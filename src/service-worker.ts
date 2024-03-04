@@ -23,10 +23,9 @@ const precache_list = [
 	revision: version,
 }));
 
-console.log(files);
-console.log(prerendered);
-
-precacheAndRoute(precache_list); // this has to run early.
+console.warn(files);
+console.warn(prerendered);
 
 setDefaultHandler(new NetworkOnly());
+precacheAndRoute(precache_list); // this has to run early.
 offlineFallback();

@@ -36,7 +36,7 @@
 		</span>
 	{/if}
 	<div>Want to play as Raviente?</div>
-	<Link href="/offline/offline.html">Try this game!</Link>
+	<Link href="/solitude-island-depths">Try this game!</Link>
 </div>
 
 <style>

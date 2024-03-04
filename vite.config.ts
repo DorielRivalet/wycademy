@@ -13,7 +13,6 @@ export default defineConfig({
 		'process.env.NODE_ENV':
 			process.env.NODE_ENV === 'production' ? '"production"' : '"development"',
 	},
-	assetsInclude: ['**/offline.html'],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 	},
