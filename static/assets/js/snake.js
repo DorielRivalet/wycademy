@@ -1,13 +1,5 @@
-'use strict';
 
-// TODO OOP
-const scoreElement = document.getElementById('score');
-const speedElement = document.getElementById('speed');
-const snakeLengthElement = document.getElementById('snake-length');
-const eatenElement = document.getElementById('eaten');
-const roastedElement = document.getElementById('roasted');
-const zappedElement = document.getElementById('zapped');
-const toastyElement = document.getElementById('toasty');
+
 const consoleElement = document.getElementById('game-console');
 const gameButton = document.getElementById('game-button');
 const soundButton = document.getElementById('sound-button');
@@ -17,26 +9,23 @@ const gameElement = document.getElementById('game');
 const downloadLogsButton = document.getElementById('download-log');
 
 const SOUNDS = {
-	toasty: '/offline/assets/sound/toasty.mp3',
-	gameOver: '/offline/assets/sound/mixkit-arcade-retro-game-over-213.wav',
-	fireball: '/offline/assets/sound/flame.ogg',
-	fireballHit: '/offline/assets/sound/mixkit-wizard-fire-woosh-1326.wav',
-	start: '/offline/assets/sound/mixkit-player-boost-recharging-2040.wav',
-	pause: '/offline/assets/sound/mixkit-zippo-fire-close-1334.wav',
-	resume: '/offline/assets/sound/mixkit-quick-lock-sound-2854.wav',
-	win: '/offline/assets/sound/mixkit-video-game-win-2016.wav',
-	eat: '/offline/assets/sound/mixkit-quick-jump-arcade-game-239.wav',
+	toasty: 'assets/sound/toasty.mp3',
+	gameOver: 'assets/sound/mixkit-arcade-retro-game-over-213.wav',
+	fireball: 'assets/sound/flame.ogg',
+	fireballHit: 'assets/sound/mixkit-wizard-fire-woosh-1326.wav',
+	start: 'assets/sound/mixkit-player-boost-recharging-2040.wav',
+	pause: 'assets/sound/mixkit-zippo-fire-close-1334.wav',
+	resume: 'assets/sound/mixkit-quick-lock-sound-2854.wav',
+	win: 'assets/sound/mixkit-video-game-win-2016.wav',
+	eat: 'assets/sound/mixkit-quick-jump-arcade-game-239.wav',
 	energyGain:
-		'/offline/assets/sound/mixkit-quick-win-video-game-notification-269.wav',
-	energyLoss: '/offline/assets/sound/mixkit-tech-break-fail-2947.wav',
-	paralysis: '/offline/assets/sound/continuousspark.wav',
-	nomnomnom: '/offline/assets/sound/nomnomnom.mp3',
-	ringOfFireStart: '/offline/assets/sound/fire_sound_effect.mp3',
-	blueBorderActive: '/offline/assets/sound/shieldhit.wav',
-	ultimateReady: '/offline/assets/sound/powerup.wav',
-	// poison: '',
-	// hitBorder: '',
-	// burnt: '',
+		'assets/sound/mixkit-quick-win-video-game-notification-269.wav',
+	energyLoss: 'assets/sound/mixkit-tech-break-fail-2947.wav',
+	paralysis: 'assets/sound/continuousspark.wav',
+	nomnomnom: 'assets/sound/nomnomnom.mp3',
+	ringOfFireStart: 'assets/sound/fire_sound_effect.mp3',
+	blueBorderActive: 'assets/sound/shieldhit.wav',
+	ultimateReady: 'assets/sound/powerup.wav',
 };
 
 const COLORS = {
@@ -449,7 +438,7 @@ const HUNTER_TYPES = {
 		snakeSpeed: 0,
 		turnDelay: 5,
 		sound: SOUNDS.eat,
-		image: createImage('/offline/assets/img/hunter_red.webp'),
+		image: createImage('assets/img/hunter_red.webp'),
 		messages: consoleMessages.redHunter,
 		consumable: true,
 		flammable: true,
@@ -479,7 +468,7 @@ const HUNTER_TYPES = {
 		snakeSpeed: 1,
 		turnDelay: 0,
 		sound: SOUNDS.energyGain,
-		image: createImage('/offline/assets/img/hunter_yellow.webp'),
+		image: createImage('assets/img/hunter_yellow.webp'),
 		messages: consoleMessages.yellowHunter,
 		consumable: true,
 		flammable: true,
@@ -509,7 +498,7 @@ const HUNTER_TYPES = {
 		snakeSpeed: -1,
 		turnDelay: 0,
 		sound: SOUNDS.energyLoss,
-		image: createImage('/offline/assets/img/hunter_black.webp'),
+		image: createImage('assets/img/hunter_black.webp'),
 		messages: consoleMessages.blackHunter,
 		consumable: true,
 		flammable: true,
@@ -541,7 +530,7 @@ const HUNTER_TYPES = {
 		turnDelay: 10,
 		// TODO
 		sound: SOUNDS.energyGain,
-		image: createImage('/offline/assets/img/hunter_white.webp'),
+		image: createImage('assets/img/hunter_white.webp'),
 		messages: consoleMessages.whiteHunter,
 		consumable: false,
 		flammable: false,
@@ -572,7 +561,7 @@ const HUNTER_TYPES = {
 		turnDelay: 20,
 		// TODO
 		sound: SOUNDS.energyLoss,
-		image: createImage('/offline/assets/img/hunter_purple.webp'),
+		image: createImage('assets/img/hunter_purple.webp'),
 		messages: consoleMessages.purpleHunter,
 		consumable: true,
 		flammable: true,
@@ -603,7 +592,7 @@ const HUNTER_TYPES = {
 		turnDelay: 30,
 		// TODO
 		sound: SOUNDS.energyLoss,
-		image: createImage('/offline/assets/img/hunter_blue.webp'),
+		image: createImage('assets/img/hunter_blue.webp'),
 		messages: consoleMessages.blueHunter,
 		consumable: true, // but u die if u do
 		flammable: true,
@@ -635,7 +624,7 @@ const HUNTER_TYPES = {
 		turnDelay: 0,
 		// TODO
 		sound: SOUNDS.nomnomnom,
-		image: createImage('/offline/assets/img/hunter_orange.webp'),
+		image: createImage('assets/img/hunter_orange.webp'),
 		messages: consoleMessages.fireball,
 		consumable: true,
 		flammable: true,
@@ -665,7 +654,7 @@ const HUNTER_TYPES = {
 		snakeSpeed: 0,
 		turnDelay: 60,
 		sound: SOUNDS.eat,
-		image: createImage('/offline/assets/img/hunter_green.webp'),
+		image: createImage('assets/img/hunter_green.webp'),
 		messages: [''],
 		consumable: false,
 		flammable: true,
@@ -779,13 +768,13 @@ let tailLeftImage = new Image();
 let bodyParalysisImage = new Image();
 let paralysisTileImage = new Image();
 
-headRightImage.src = '/offline/assets/img/head_right.webp';
-headLeftImage.src = '/offline/assets/img/head_left.webp';
-bodyImage.src = '/offline/assets/img/body.webp';
-tailRightImage.src = '/offline/assets/img/tail_right.webp';
-tailLeftImage.src = '/offline/assets/img/tail_left.webp';
-bodyParalysisImage.src = '/offline/assets/img/body_paralysis.webp';
-paralysisTileImage.src = '/offline/assets/img/paralysis.webp';
+headRightImage.src = 'assets/img/head_right.webp';
+headLeftImage.src = 'assets/img/head_left.webp';
+bodyImage.src = 'assets/img/body.webp';
+tailRightImage.src = 'assets/img/tail_right.webp';
+tailLeftImage.src = 'assets/img/tail_left.webp';
+bodyParalysisImage.src = 'assets/img/body_paralysis.webp';
+paralysisTileImage.src = 'assets/img/paralysis.webp';
 
 // Variables to keep track of the timer
 let startTime = 0;
