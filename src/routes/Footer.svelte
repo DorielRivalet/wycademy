@@ -9,7 +9,7 @@
 	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
 	import type { GitHubData } from '$lib/types';
 	import * as constant from '$lib/constants';
-	export let githubData: GitHubData;
+	export let githubData: GitHubData = { lastModified: '', commitLink: '', timesChanged: 0};
 	let { lastModified, commitLink, timesChanged } = githubData;
 </script>
 
@@ -23,7 +23,7 @@
 			</div>
 		{:else}
 			<div>Want to play as Raviente?</div>
-			<Link href="/solitude-island-depths">Try this game!</Link>
+			<Link href="/offline">Try this game!</Link>
 		{/if}
 	</div>
 
@@ -57,7 +57,6 @@
 	}
 
 	footer {
-		border-top: var(--cds-spacing-01) solid var(--ctp-surface0);
 		padding: var(--cds-spacing-07);
 		background-color: var(--ctp-crust);
 		display: flex;

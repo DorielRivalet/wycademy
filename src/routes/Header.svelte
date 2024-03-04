@@ -45,17 +45,17 @@
 	<div class="middle">
 		<nav>
 			<ul>
-				<NavigationItem color="yellow" path="/" description="Leaderboard">
+				<NavigationItem color="yellow" path="/leaderboard" description="Leaderboard">
 					<TicketIconWhite
 						color={getHexStringFromCatppuccinColor('yellow', $theme)}
 					/>
 				</NavigationItem>
-				<NavigationItem color="rosewater" path="/" description="Hunter's Notes">
+				<NavigationItem color="rosewater" path="/hunter-notes" description="Hunter's Notes">
 					<BookIconWhite
 						color={getHexStringFromCatppuccinColor('rosewater', $theme)}
 					/>
 				</NavigationItem>
-				<NavigationItem color="flamingo" path="/" description="Bestiary">
+				<NavigationItem color="flamingo" path="/bestiary" description="Bestiary">
 					<MonsterPartIconWhite
 						color={getHexStringFromCatppuccinColor('flamingo', $theme)}
 					/>
@@ -66,7 +66,7 @@
 				<NavigationItem color="mauve" path="/smithy" description="Smithy">
 					<Blacksmith color={getHexStringFromCatppuccinColor('mauve', $theme)} />
 				</NavigationItem>
-				<NavigationItem color="red" path="/" description="Support">
+				<NavigationItem color="red" path="/support" description="Support">
 					<MySupport color={getHexStringFromCatppuccinColor('red', $theme)} />
 				</NavigationItem>
 			</ul>
@@ -111,7 +111,6 @@
 		display: flex;
 		justify-content: space-between;
 		min-height: 10vh;
-		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 		background-color: var(--ctp-crust);
 		align-items: center;
 		padding: 0.5rem;
