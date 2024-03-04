@@ -5,10 +5,10 @@
 -->
 
 <script lang="ts">
-	import './styles.css';
-	import Header from './Header.svelte';
-	import Footer from './Footer.svelte';
-	import ViewTransition from './Navigation.svelte';
+	import '../styles.css';
+	import Header from '../Header.svelte';
+	import Footer from '../Footer.svelte';
+	import ViewTransition from '../Navigation.svelte';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { theme } from '$lib/client/stores/theme';
 	import { themeTokens } from '$lib/client/themes/tokens';
@@ -54,9 +54,9 @@
 			case '/arena': {
 				return 'bg-arena';
 			}
-			case '/bestiary': {
-				return 'bg-bestiary';
-			}
+			// case '/bestiary': {
+			// 	return 'bg-bestiary';
+			// }
 			case '/site-preferences': {
 				return 'bg-equipment-box';
 			}
@@ -69,9 +69,9 @@
 			case '/leaderboard': {
 				return 'bg-leaderboard';
 			}
-			case '/hunter-notes': {
-				return 'bg-hunter-notes';
-			}
+			// case '/hunter-notes': {
+			// 	return 'bg-hunter-notes';
+			// }
 			case '/user': {
 				return 'bg-profile';
 			}
@@ -84,7 +84,10 @@
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <div class="app">
 	<ViewTransition />
-	<Header />
+		<div class="header">
+			<Header />
+
+	</div>
 	<div class="banner">
 		<InlineNotification
 			lowContrast
@@ -107,7 +110,8 @@
 		</main>
 	</div>
 	{#key $page.url.pathname}
-		<Footer githubData={data.github} />
+	<div class="footer">		<Footer githubData={data.github} />
+</div>
 	{/key}
 </div>
 
@@ -116,6 +120,11 @@
 		display: flex;
 		justify-content: center;
 		background-color: var(--ctp-mantle);
+	}
+
+	.footer{
+				border-top: var(--cds-spacing-01) solid var(--ctp-surface0);
+
 	}
 
 	.bg-arena {
@@ -146,6 +155,10 @@
 		background-image: url($lib/client/images/background/bg-bestiary.webp);
 	}
 
+		.bg-support {
+		background-image: url($lib/client/images/background/bg-support.webp);
+	}
+
 	.app {
 		display: flex;
 		flex-direction: column;
@@ -168,6 +181,10 @@
 		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-radius: 0px 0px 10px 10px;
+	}
+
+	.header{
+				border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 	}
 
 	.none {
