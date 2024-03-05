@@ -20,12 +20,7 @@
 	import NavigationItem from './NavigationItem.svelte';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 
-	let closed = false;
 	let expanded = false;
-
-	function close() {
-		close = true;
-	}
 </script>
 
 <header>

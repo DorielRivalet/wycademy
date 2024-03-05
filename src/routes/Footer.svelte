@@ -9,7 +9,11 @@
 	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
 	import type { GitHubData } from '$lib/types';
 	import * as constant from '$lib/constants';
-	export let githubData: GitHubData = { lastModified: '', commitLink: '', timesChanged: 0};
+	export let githubData: GitHubData = {
+		lastModified: '',
+		commitLink: '',
+		timesChanged: 0,
+	};
 	let { lastModified, commitLink, timesChanged } = githubData;
 </script>
 
