@@ -29,7 +29,7 @@
 		website,
 	} from '$lib/constants';
 	import { page } from '$app/stores';
-	import pageThumbnail from '$lib/client/images/icon/pvp.png';
+	import pageThumbnail from '$lib/client/images/icon/pvp.webp';
 	import ezlion from 'ezlion';
 	import type { FrontierWeaponClass, FrontierWeaponID } from 'ezlion';
 	import type {

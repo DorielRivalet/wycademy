@@ -2339,6 +2339,11 @@
 	let modalOpen = false;
 	let gameStateText = 'Play';
 
+	function changeModal(cell) {
+		modalOpen = true;
+	}
+
+	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
 	$: formattedElapsedTime = formatTime(elapsedTime);
 	$: scoreText = `Score: ${score}`;
 	$: eatenText = `${snake.eaten}🍖`;
@@ -2365,9 +2370,38 @@
 	name={projectName}
 	siteName={projectName}
 />
-
+<Modal
+	passiveModal
+	bind:open={modalOpen}
+	modalHeading="🐍 Snake Game 🐍"
+	on:open
+	on:close
+>
+	<div class="modal-content">
+		<p>Your objective is to fill the board completely by eating hunters.</p>
+		<div class="inputs interface">
+			<div><kbd>WASD</kbd> Movement</div>
+			<div><kbd>P</kbd> Pause/Resume</div>
+			<div><kbd>F</kbd> Fireball</div>
+			<div><kbd>R</kbd> Ring of fire</div>
+			<div><kbd>Shift</kbd> Run</div>
+			<div><kbd>Spacebar</kbd> Paralysis</div>
+		</div>
+		<p>
+			You cannot use any abilities on the very last 5 tiles left or when the
+			board is full.
+		</p>
+		<div class="dev-score">
+			<p>Doriel Rivalet's highscore is:</p>
+			<span id="devHighscore">11037 (17:04.70) 540/626🐍</span>
+			<div class="subtle date">2023/10/13</div>
+		</div>
+		<p>Happy eating!</p>
+		<i>Tip: Make a toast out of those hunters!</i>
+	</div>
+</Modal>
 <svelte:window on:keydown={on_key_down} on:keyup={on_key_up} />
-<div>
+<div class={modalBlurClass}>
 	<SectionHeadingTopLevel title="Solitude Island Depths" />
 	<div class="top">
 		<h2>🍡 Your guild food ran out 🍜</h2>
@@ -2375,36 +2409,6 @@
 		<Button icon={Book} kind="tertiary" on:click={() => (modalOpen = true)}
 			>Instructions</Button
 		>
-		<Modal
-			passiveModal
-			bind:open={modalOpen}
-			modalHeading="🐍 Snake Game 🐍"
-			on:open
-			on:close
-		>
-			<div class="modal-content">
-				<p>Your objective is to fill the board completely by eating hunters.</p>
-				<div class="inputs interface">
-					<div><kbd>WASD</kbd> Movement</div>
-					<div><kbd>P</kbd> Pause/Resume</div>
-					<div><kbd>F</kbd> Fireball</div>
-					<div><kbd>R</kbd> Ring of fire</div>
-					<div><kbd>Shift</kbd> Run</div>
-					<div><kbd>Spacebar</kbd> Paralysis</div>
-				</div>
-				<p>
-					You cannot use any abilities on the very last 5 tiles left or when the
-					board is full.
-				</p>
-				<div class="dev-score">
-					<p>Doriel Rivalet's highscore is:</p>
-					<span id="devHighscore">11037 (17:04.70) 540/626🐍</span>
-					<div class="subtle date">2023/10/13</div>
-				</div>
-				<p>Happy eating!</p>
-				<i>Tip: Make a toast out of those hunters!</i>
-			</div>
-		</Modal>
 	</div>
 	<div class="game-container">
 		<div class="left">
@@ -2462,6 +2466,31 @@
 </div>
 
 <style>
+	.modal-open-noblur {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+		opacity: 1;
+		-webkit-transition:
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+		transition:
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+		transition:
+			filter 500ms ease,
+			opacity 500ms ease;
+		transition:
+			filter 500ms ease,
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+	}
+
+	.modal-open-blur {
+		-webkit-filter: blur(8px);
+		filter: blur(4px);
+		opacity: 1;
+	}
+
 	.button-container {
 		display: flex;
 		flex-direction: column;

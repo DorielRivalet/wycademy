@@ -11,7 +11,7 @@ export const authorUrl = 'https://github.com/DorielRivalet';
 export const projectGitHub =
 	'https://github.com/DorielRivalet/frontier-compendium';
 export const developmentStage = 'alpha';
-export const appVersion = '0.2.0';
+export const appVersion = '0.3.0';
 export const website = 'https://frontier-compendium.pages.dev';
 export const datePublished = '2023-09-02';
 export const apiCacheTimeouts = {
