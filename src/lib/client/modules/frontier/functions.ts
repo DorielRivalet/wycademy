@@ -14,29 +14,29 @@ import type {
 	FrontierWeaponSharpness,
 } from './types';
 import { ArmorTypes, ItemColors, WeaponTypes } from './objects';
-import FireIcon from '$lib/client/images/icon/element/fire.png';
-import WaterIcon from '$lib/client/images/icon/element/water.png';
-import ThunderIcon from '$lib/client/images/icon/element/thunder.png';
-import IceIcon from '$lib/client/images/icon/element/ice.png';
-import DragonIcon from '$lib/client/images/icon/element/dragon.png';
-import BurningZeroIcon from '$lib/client/images/icon/element/burning_zero.png';
-import BlackFlameIcon from '$lib/client/images/icon/element/Element_Black_Flame.png';
-import BlazeIcon from '$lib/client/images/icon/element/Element_Blaze.png';
-import CrimsonDemonIcon from '$lib/client/images/icon/element/Element_Crimson_Demon.png';
-import DarkIcon from '$lib/client/images/icon/element/Element_Darkness.png';
-import EmperorsRoarIcon from '$lib/client/images/icon/element/Element_Emperors_Roar.png';
-import OkikoIcon from '$lib/client/images/icon/element/Element_Frozen_Seraphim.png';
-import WindIcon from '$lib/client/images/icon/element/Element_Golden_Dust.png';
-import MusicIcon from '$lib/client/images/icon/element/Element_Kanade.png';
-import LightIcon from '$lib/client/images/icon/element/Element_Light.png';
-import SoundIcon from '$lib/client/images/icon/element/Element_Sound.png';
-import LightningRodIcon from '$lib/client/images/icon/element/Element_Thunder_Pole.png';
-import TenshouIcon from '$lib/client/images/icon/element/Element_Tenshou.png';
-import SleepIcon from '$lib/client/images/icon/status/sleep2.png';
-import PoisonIcon from '$lib/client/images/icon/status/poison.png';
-import ParalysisIcon from '$lib/client/images/icon/status/paralysis.png';
-import DefenseIcon from '$lib/client/images/icon/defense_icon.png';
-import BlastIcon from '$lib/client/images/icon/status/blast.png';
+import FireIcon from '$lib/client/images/icon/element/fire.webp';
+import WaterIcon from '$lib/client/images/icon/element/water.webp';
+import ThunderIcon from '$lib/client/images/icon/element/thunder.webp';
+import IceIcon from '$lib/client/images/icon/element/ice.webp';
+import DragonIcon from '$lib/client/images/icon/element/dragon.webp';
+import BurningZeroIcon from '$lib/client/images/icon/element/burning_zero.webp';
+import BlackFlameIcon from '$lib/client/images/icon/element/Element_Black_Flame.webp';
+import BlazeIcon from '$lib/client/images/icon/element/Element_Blaze.webp';
+import CrimsonDemonIcon from '$lib/client/images/icon/element/Element_Crimson_Demon.webp';
+import DarkIcon from '$lib/client/images/icon/element/Element_Darkness.webp';
+import EmperorsRoarIcon from '$lib/client/images/icon/element/Element_Emperors_Roar.webp';
+import OkikoIcon from '$lib/client/images/icon/element/Element_Frozen_Seraphim.webp';
+import WindIcon from '$lib/client/images/icon/element/Element_Golden_Dust.webp';
+import MusicIcon from '$lib/client/images/icon/element/Element_Kanade.webp';
+import LightIcon from '$lib/client/images/icon/element/Element_Light.webp';
+import SoundIcon from '$lib/client/images/icon/element/Element_Sound.webp';
+import LightningRodIcon from '$lib/client/images/icon/element/Element_Thunder_Pole.webp';
+import TenshouIcon from '$lib/client/images/icon/element/Element_Tenshou.webp';
+import SleepIcon from '$lib/client/images/icon/status/sleep2.webp';
+import PoisonIcon from '$lib/client/images/icon/status/poison.webp';
+import ParalysisIcon from '$lib/client/images/icon/status/paralysis.webp';
+import DefenseIcon from '$lib/client/images/icon/defense_icon.webp';
+import BlastIcon from '$lib/client/images/icon/status/blast.webp';
 import type { FrontierWeaponID } from 'ezlion';
 
 export const frontierMath = {
@@ -70,8 +70,6 @@ export const frontierChecks = {
 		return isValid;
 	},
 };
-
-
 
 export const frontierMappers = {
 	mapSharpnessValues: (sharpnessValues: FrontierWeaponSharpness) => {

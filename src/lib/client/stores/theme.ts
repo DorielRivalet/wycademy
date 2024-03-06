@@ -6,14 +6,14 @@
 
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
-import latteSquircle from '$lib/client/images/latte_squircle.png';
-import macchiatoSquircle from '$lib/client/images/macchiato_squircle.png';
+import latteSquircle from '$lib/client/images/latte_squircle.webp';
+import macchiatoSquircle from '$lib/client/images/macchiato_squircle.webp';
 import type { CarbonTheme } from 'carbon-components-svelte/types/Theme/Theme.svelte';
 
 const defaultValue: CarbonTheme = 'g100';
 const initialValue: CarbonTheme = browser
 	? (window.localStorage.getItem('__carbon-theme') as CarbonTheme) ??
-	  defaultValue
+		defaultValue
 	: defaultValue;
 export const theme = writable<CarbonTheme>(initialValue);
 

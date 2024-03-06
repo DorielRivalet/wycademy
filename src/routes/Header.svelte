@@ -19,6 +19,7 @@
 	import { theme } from '$lib/client/stores/theme';
 	import NavigationItem from './NavigationItem.svelte';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
+	import ThemeChanger from './ThemeChanger.svelte';
 
 	let expanded = false;
 </script>
@@ -40,17 +41,29 @@
 	<div class="middle">
 		<nav>
 			<ul>
-				<NavigationItem color="yellow" path="/leaderboard" description="Leaderboard">
+				<NavigationItem
+					color="yellow"
+					path="/leaderboard"
+					description="Leaderboard"
+				>
 					<TicketIconWhite
 						color={getHexStringFromCatppuccinColor('yellow', $theme)}
 					/>
 				</NavigationItem>
-				<NavigationItem color="rosewater" path="/hunter-notes" description="Hunter's Notes">
+				<NavigationItem
+					color="rosewater"
+					path="/hunter-notes"
+					description="Hunter's Notes"
+				>
 					<BookIconWhite
 						color={getHexStringFromCatppuccinColor('rosewater', $theme)}
 					/>
 				</NavigationItem>
-				<NavigationItem color="flamingo" path="/bestiary" description="Bestiary">
+				<NavigationItem
+					color="flamingo"
+					path="/bestiary"
+					description="Bestiary"
+				>
 					<MonsterPartIconWhite
 						color={getHexStringFromCatppuccinColor('flamingo', $theme)}
 					/>
@@ -59,7 +72,9 @@
 					<PvP color={getHexStringFromCatppuccinColor('pink', $theme)} />
 				</NavigationItem>
 				<NavigationItem color="mauve" path="/smithy" description="Smithy">
-					<Blacksmith color={getHexStringFromCatppuccinColor('mauve', $theme)} />
+					<Blacksmith
+						color={getHexStringFromCatppuccinColor('mauve', $theme)}
+					/>
 				</NavigationItem>
 				<NavigationItem color="red" path="/support" description="Support">
 					<MySupport color={getHexStringFromCatppuccinColor('red', $theme)} />
@@ -69,14 +84,15 @@
 	</div>
 
 	<nav class="right">
+		<ThemeChanger />
 		<div class="container-link">
 			<Link href="/site-preferences" class="link" aria-label="Site preferences">
-				<UserAvatar size={48} />
+				<Settings size={48} />
 			</Link>
 		</div>
 		<div class="container-link">
 			<Link href="/site-preferences" class="link" aria-label="Site preferences">
-				<Settings size={48} />
+				<UserAvatar size={48} />
 			</Link>
 		</div>
 	</nav>
@@ -99,6 +115,7 @@
 	.right {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		gap: var(--cds-spacing-04);
 	}
 
