@@ -134,6 +134,7 @@ import type {
 	FrontierSigil,
 	FrontierZenithSkill,
 } from 'ezlion';
+import MotionSwordAndShieldNoneJumpSlash from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
@@ -953,7 +954,12 @@ export const MotionValues: FrontierMotionValues[] = [
 			{
 				name: 'None',
 				motionValues: [
-					{ name: 'Jump Slash (Unsheathe)', animation: '', values: '13(5)･21' },
+					{
+						name: 'Jump Slash (Unsheathe)',
+						animation: MotionSwordAndShieldNoneJumpSlash,
+						values: '13(5)･21',
+						notes: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+					},
 					{ name: 'Slide Slash', animation: '', values: '21' },
 					{ name: 'Slash 1', animation: '', values: '20' },
 					{ name: 'Slash 2', animation: '', values: '26' },

@@ -549,7 +549,7 @@ export type FrontierShotAttackMultiplier = 0.5 | 0.6 | 0.73 | 1 | 1.3 | 1.4 | 2;
 
 export type FrontierMotionValue = {
 	name: string;
-	animation?: string;
+	animation?: any;
 	values: string; // TODO: to number array?
 	notes?: string;
 };

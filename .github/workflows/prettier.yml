@@ -5,8 +5,9 @@
 name: Check files with Prettier
 
 on:
-  push:
-  pull_request:
+  workflow_dispatch:
+#  push:
+#  pull_request:
 
 jobs:
   run-prettier:

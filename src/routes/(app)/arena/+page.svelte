@@ -3,6 +3,7 @@
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
 		ItemIcons,
+		MotionValues,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 
@@ -19,7 +20,6 @@
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import Play from 'carbon-icons-svelte/lib/Play.svelte';
-
 	import {
 		authorName,
 		authorUrl,
@@ -31,9 +31,14 @@
 	import { page } from '$app/stores';
 	import pageThumbnail from '$lib/client/images/icon/pvp.webp';
 	import ezlion from 'ezlion';
-	import type { FrontierWeaponClass, FrontierWeaponID } from 'ezlion';
+	import type {
+		FrontierWeaponClass,
+		FrontierWeaponID,
+		FrontierWeaponName,
+	} from 'ezlion';
 	import type {
 		FrontierCeaselessAffinity,
+		FrontierMotionValue,
 		FrontierRarity,
 		FrontierStarvingWolfAffinity,
 		FrontierWeapon,
@@ -51,6 +56,45 @@
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 
 	type dropdownItem = { id: string; text: string };
+
+	type DataTableKey = string;
+
+	type DataTableValue = any;
+
+	interface DataTableEmptyHeader {
+		key: DataTableKey;
+		empty: boolean;
+		display?: (item: any, row: DataTableRow) => DataTableValue;
+		sort?: false | ((a: DataTableValue, b: DataTableValue) => 0 | -1 | 1);
+		columnMenu?: boolean;
+		width?: string;
+		minWidth?: string;
+	}
+
+	interface DataTableNonEmptyHeader {
+		key: DataTableKey;
+		value: DataTableValue;
+		display?: (item: any, row: DataTableRow) => DataTableValue;
+		sort?: false | ((a: DataTableValue, b: DataTableValue) => 0 | -1 | 1);
+		columnMenu?: boolean;
+		width?: string;
+		minWidth?: string;
+	}
+
+	type DataTableHeader = DataTableNonEmptyHeader | DataTableEmptyHeader;
+
+	interface DataTableRow {
+		id: any;
+		[key: string]: DataTableValue;
+	}
+
+	type DataTableRowId = any;
+
+	interface DataTableCell {
+		key: DataTableKey;
+		value: DataTableValue;
+		display?: (item: any, row: DataTableRow) => DataTableValue;
+	}
 
 	const maxTrueRaw = 8_000;
 
@@ -95,9 +139,9 @@
 		rarity: rarity,
 	};
 
-	const minimumWeaponElement = 0;
-	const maximumWeaponElement = 10;
-	const invalidWeaponElementStatusText = 'Invalid weapon element or status';
+	const minimumNumberValue = 0;
+	const maximumNumberValue = 99999;
+	const invalidNumberValueText = `Invalid value. Must be between ${minimumNumberValue} and ${maximumNumberValue}`;
 
 	let weaponElementValue = 0;
 
@@ -242,14 +286,238 @@
 		});
 	}
 
-	function changeModal(cell) {
-		modalOpen = true;
-		modalTitle = cell.value;
+	function getWeaponSectionNames(weaponName: FrontierWeaponName) {
+		let result: { id: string; text: string }[] = [];
+
+		let sections = getSectionNamesByWeapon(weaponName);
+
+		sections.forEach((element) => {
+			result.push({ id: element, text: element });
+		});
+
+		return result;
 	}
 
-	let modalTitle = '';
+	function getSectionNamesByWeapon(weaponName: FrontierWeaponName) {
+		// Find the weapon by name
+		const weapon = MotionValues.find((w) => w.name === weaponName);
+		if (!weapon) {
+			// Return an empty array or an error message if the weapon is not found
+			return []; // or throw new Error('Weapon not found');
+		}
+
+		// Map over the sections of the found weapon to extract their names
+		const sectionNames = weapon.sections.map((section) => section.name);
+
+		// Return the array of section names
+		return sectionNames;
+	}
+
+	function getWeaponSectionMotionValues(
+		weaponName: FrontierWeaponName,
+		section: string,
+	) {
+		let defaultResult = [
+			{
+				id: '',
+				name: '',
+				motion: '',
+				raw: '0', // TODO
+				element: '0',
+				total: '0',
+				fire: '0',
+				water: '0',
+				thunder: '0',
+				ice: '0',
+				dragon: '0',
+			},
+		];
+
+		// Find the weapon by name
+		const weaponEntry = MotionValues.find((w) => w.name === weaponName);
+		if (!weaponEntry) {
+			// Return an empty object or an error message if the weapon is not found
+			return defaultResult; // or throw new Error('Weapon not found');
+		}
+
+		// Find the section by name within the found weapon
+		const sectionEntry = weaponEntry.sections.find((s) => s.name === section);
+		if (!sectionEntry) {
+			let result: {
+				id: string;
+				name: string;
+				motion: string;
+				raw: string;
+				element: string;
+				total: string;
+				fire: string;
+				water: string;
+				thunder: string;
+				ice: string;
+				dragon: string;
+			}[] = [];
+
+			weaponEntry.sections[0].motionValues.forEach((element, index) => {
+				result.push({
+					id: index.toString(),
+					name: element.name,
+					motion: element.values,
+					raw: '0',
+					element: '0',
+					total: '0',
+					fire: '0',
+					water: '0',
+					thunder: '0',
+					ice: '0',
+					dragon: '0',
+				});
+			});
+
+			inputWeaponMotionValuesSection = weaponEntry.sections[0].name;
+			return result;
+		}
+
+		let result: {
+			id: string;
+			name: string;
+			motion: string;
+			raw: string;
+			element: string;
+			total: string;
+			fire: string;
+			water: string;
+			thunder: string;
+			ice: string;
+			dragon: string;
+		}[] = [];
+
+		sectionEntry.motionValues.forEach((element, index) => {
+			result.push({
+				id: index.toString(),
+				name: element.name,
+				motion: element.values,
+				raw: '0',
+				element: '0',
+				total: '0',
+				fire: '0',
+				water: '0',
+				thunder: '0',
+				ice: '0',
+				dragon: '0',
+			});
+		});
+
+		return result;
+	}
+
+	function getMotionValue(
+		weapon: FrontierWeaponName,
+		section: string,
+		motionValueName: string,
+	): FrontierMotionValue {
+		let defaultValue = { name: '', animation: '', values: '' };
+
+		// Find the weapon by name
+		const weaponEntry = MotionValues.find((w) => w.name === weapon);
+		if (!weaponEntry) {
+			// Return an empty object or an error message if the weapon is not found
+			return defaultValue; // or throw new Error('Weapon not found');
+		}
+
+		// Find the section by name within the found weapon
+		const sectionEntry = weaponEntry.sections.find((s) => s.name === section);
+		if (!sectionEntry) {
+			// Return an empty object or an error message if the section is not found
+			return defaultValue; // or throw new Error('Section not found');
+		}
+
+		// Find the motion value by name within the found section
+		const motionValue = sectionEntry.motionValues.find(
+			(mv) => mv.name === motionValueName,
+		);
+		if (!motionValue) {
+			// Return an empty object or an error message if the motion value is not found
+			return defaultValue; // or throw new Error('Motion value not found');
+		}
+
+		// Return the found motion value
+		return motionValue;
+	}
+
+	function changeModal(cell: DataTableCell) {
+		modalOpen = true;
+		modalHeading = cell.value;
+		let motionValue = getMotionValue(
+			getWeaponNameById(inputWeaponType),
+			inputWeaponMotionValuesSection,
+			cell.value,
+		);
+		modalLabel = inputWeaponMotionValuesSection || '';
+		modalImage = motionValue.animation || '';
+		modalNotes = motionValue.notes || '';
+	}
+
+	function hasAnimation(
+		weaponName: FrontierWeaponName,
+		cell: DataTableCell,
+		section: string,
+	) {
+		let motionValue = getMotionValue(weaponName, section, cell.value);
+		return motionValue.animation !== '' && motionValue.animation !== undefined;
+	}
+
+	function getWeaponIcon(weaponName: FrontierWeaponName) {
+		let icon = WeaponTypes[4].icon;
+
+		const found = WeaponTypes.find((w) => w.name === weaponName);
+		if (!found) {
+			return icon;
+		}
+
+		return found.icon;
+	}
+
+	function getWeaponNameById(id: string): FrontierWeaponName {
+		switch (id) {
+			case '1':
+				return 'Sword and Shield';
+			case '2':
+				return 'Dual Swords';
+			case '3':
+				return 'Great Sword';
+			case '4':
+				return 'Long Sword';
+			case '5':
+				return 'Hammer';
+			case '6':
+				return 'Hunting Horn';
+			case '7':
+				return 'Lance';
+			case '8':
+				return 'Gunlance';
+			case '9':
+				return 'Tonfa';
+			case '10':
+				return 'Switch Axe F';
+			case '11':
+				return 'Light Bowgun';
+			case '12':
+				return 'Heavy Bowgun';
+			case '13':
+				return 'Bow';
+			case '14':
+				return 'Magnet Spike';
+			default:
+				return 'Sword and Shield';
+		}
+	}
+
+	let modalHeading = '';
+	let modalLabel = '';
 	let url = $page.url.toString();
 	let modalOpen = false;
+	let modalImage = '';
+	let modalNotes = '';
 
 	let inputStyleRankAffinity = '0';
 	let inputMeleeSharpness = '0';
@@ -339,12 +607,61 @@
 	let inputPremiumBoost = '1.0';
 
 	// TODO number inputs
-	let inputNumber = '0';
+	let inputNumberCritConversion = 0;
+	let inputNumberRoadFloor = 0;
+	let inputNumberConquestAttack = 0;
+	let inputNumberVampirism = 0;
+	let inputNumberTotalMotionValue = 0;
+	let inputNumberHitCount = 0;
+	let inputNumberElementalMultiplier = 0;
+	let inputNumberAttackValue = 0;
+	let inputNumberTrueRaw = 0;
+	let inputNumberUnlimitedSigil = 0;
+	let inputNumberStyleRankAttack = 0;
+	let inputNumberSigil1Attack = 0;
+	let inputNumberSigil2Attack = 0;
+	let inputNumberSigil3Attack = 0;
+	let inputNumberZenithAttackSigil = 0;
+	let inputNumberAOEAttackSigil = 0;
+	let inputNumberNaturalAffinity = 0;
+	let inputNumberSigil1Affinity = 0;
+	let inputNumberSigil2Affinity = 0;
+	let inputNumberSigil3Affinity = 0;
+	let inputNumberAOEAffinitySigil = 0;
+	let inputNumberCritMultiplier = 0;
+	let inputNumberLanceImpactMultiplier = 0;
+	let inputNumberTranscendRawMultiplier = 0;
+	let inputNumberRavientePowerSwordCrystalsMultiplier = 0;
+	let inputNumberElementalValue = 0;
+	let inputNumberSigil1Element = 0;
+	let inputNumberSigil2Element = 0;
+	let inputNumberSigil3Element = 0;
+	let inputNumberZenithElementSigil = 0;
+	let inputNumberAOEElementSigil = 0;
+	let inputNumberStatusValue = 0;
+	let inputNumberOtherAdditional = 0;
+	let inputNumberCompressedShot = 0;
+	let inputNumberCompressedElementShot = 0;
+	let inputNumberDefenseRate = 0;
+	let inputNumberMonsterRage = 0;
+	let inputNumberHCModifiers = 0;
+	let inputNumberRawHitbox = 0;
+	let inputNumberFireHitbox = 0;
+	let inputNumberWaterHitbox = 0;
+	let inputNumberThunderHitbox = 0;
+	let inputNumberIceHitbox = 0;
+	let inputNumberDragonHitbox = 0;
 
-	let weaponMotionValuesSection = 'None';
+	let inputWeaponMotionValuesSection = 'None';
 
 	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
-
+	$: weaponTypeName = getWeaponNameById(inputWeaponType);
+	$: weaponSections = getWeaponSectionMotionValues(
+		weaponTypeName,
+		inputWeaponMotionValuesSection,
+	);
+	$: weaponSectionNames = getWeaponSectionNames(weaponTypeName);
+	$: weaponIcon = getWeaponIcon(weaponTypeName);
 	// TODO datatable description having weapon guide link
 </script>
 
@@ -365,11 +682,18 @@
 <Modal
 	passiveModal
 	bind:open={modalOpen}
-	modalHeading={modalTitle}
+	{modalHeading}
+	{modalLabel}
 	on:open
 	on:close
+	hasScrollingContent
 >
-	<img src={pageThumbnail} alt={'motion value animation'} />
+	{#if modalImage !== '' && modalImage}
+		<div class="modal-content">
+			<img src={modalImage} alt={'motion value animation'} />
+			<div>{modalNotes}</div>
+		</div>
+	{/if}
 </Modal>
 
 <div class={modalBlurClass}>
@@ -643,10 +967,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberCritConversion}
+								invalidText={invalidNumberValueText}
 								label={'Crit Conversion'}
 							/>
 						</div>
@@ -678,10 +1002,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberVampirism}
+								invalidText={invalidNumberValueText}
 								label={'Vampirism'}
 							/>
 						</div>
@@ -787,7 +1111,7 @@
 						/>
 
 						<Dropdown
-							titleText="Road Adv. (Lv/Flr)"
+							titleText="Road Advancement"
 							bind:selectedId={inputRoadAdvLvFlr}
 							items={[
 								{ id: '0', text: 'None' },
@@ -796,6 +1120,18 @@
 								{ id: '60', text: 'Lv 3 (+60 / +10)' },
 							]}
 						/>
+
+						<div class="number-input-container">
+							<NumberInput
+								size="sm"
+								step={10}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberRoadFloor}
+								invalidText={invalidNumberValueText}
+								label={'Road Floor'}
+							/>
+						</div>
 
 						<Dropdown
 							titleText="Road Last Stand"
@@ -823,10 +1159,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberConquestAttack}
+								invalidText={invalidNumberValueText}
 								label={'Conquest Attack'}
 							/>
 						</div>
@@ -1170,10 +1506,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberTotalMotionValue}
+								invalidText={invalidNumberValueText}
 								label={'Total Motion Value'}
 							/>
 						</div>
@@ -1181,10 +1517,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberHitCount}
+								invalidText={invalidNumberValueText}
 								label={'Hit Count'}
 							/>
 						</div>
@@ -1192,10 +1528,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberElementalMultiplier}
+								invalidText={invalidNumberValueText}
 								label={'Elemental Multiplier'}
 							/>
 						</div>
@@ -1234,10 +1570,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberAttackValue}
+								invalidText={invalidNumberValueText}
 								label={'Attack Value'}
 							/>
 						</div>
@@ -1245,10 +1581,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberTrueRaw}
+								invalidText={invalidNumberValueText}
 								label={'True Raw'}
 							/>
 						</div>
@@ -1256,10 +1592,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberUnlimitedSigil}
+								invalidText={invalidNumberValueText}
 								label={'Unlimited Sigil'}
 							/>
 						</div>
@@ -1268,10 +1604,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberStyleRankAttack}
+								invalidText={invalidNumberValueText}
 								label={'SR Attack'}
 							/>
 						</div>
@@ -1279,10 +1615,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberSigil1Attack}
+								invalidText={invalidNumberValueText}
 								label={'Sigil 1 Attack'}
 							/>
 						</div>
@@ -1290,10 +1626,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberSigil2Attack}
+								invalidText={invalidNumberValueText}
 								label={'Sigil 2 Attack'}
 							/>
 						</div>
@@ -1301,10 +1637,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberSigil3Attack}
+								invalidText={invalidNumberValueText}
 								label={'Sigil 3 Attack'}
 							/>
 						</div>
@@ -1312,10 +1648,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberZenithAttackSigil}
+								invalidText={invalidNumberValueText}
 								label={'Zenith Attack Sigil'}
 							/>
 						</div>
@@ -1323,10 +1659,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberAOEAttackSigil}
+								invalidText={invalidNumberValueText}
 								label={'AoE Attack Sigil'}
 							/>
 						</div>
@@ -1347,10 +1683,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberNaturalAffinity}
+								invalidText={invalidNumberValueText}
 								label={'Natural Affinity'}
 							/>
 						</div>
@@ -1358,10 +1694,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberSigil1Affinity}
+								invalidText={invalidNumberValueText}
 								label={'Sigil 1 Affinity'}
 							/>
 						</div>
@@ -1369,10 +1705,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberSigil2Affinity}
+								invalidText={invalidNumberValueText}
 								label={'Sigil 2 Affinity'}
 							/>
 						</div>
@@ -1380,10 +1716,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberSigil3Affinity}
+								invalidText={invalidNumberValueText}
 								label={'Sigil 3 Affinity'}
 							/>
 						</div>
@@ -1391,10 +1727,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberAOEAffinitySigil}
+								invalidText={invalidNumberValueText}
 								label={'AoE Affinity Sigil'}
 							/>
 						</div>
@@ -1415,10 +1751,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberCritMultiplier}
+								invalidText={invalidNumberValueText}
 								label={'Crit Multiplier'}
 							/>
 						</div>
@@ -1465,10 +1801,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberLanceImpactMultiplier}
+								invalidText={invalidNumberValueText}
 								label={'Lance Impact Multiplier'}
 							/>
 						</div>
@@ -1476,10 +1812,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberTranscendRawMultiplier}
+								invalidText={invalidNumberValueText}
 								label={'Transcend Raw Multiplier'}
 							/>
 						</div>
@@ -1487,10 +1823,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberRavientePowerSwordCrystalsMultiplier}
+								invalidText={invalidNumberValueText}
 								label={'Raviente Power Sword Crystals'}
 							/>
 						</div>
@@ -1575,11 +1911,13 @@
 							titleText="Shot Multiplier"
 							bind:selectedId={inputShotMultiplier}
 							items={[
-								{ id: '1.0', text: 'Normal / Charge Lv 0' },
-								{ id: '1.15', text: 'Charge Lv 1 (1.15x)' },
-								{ id: '1.3', text: 'Charge Lv 2 (1.3x)' },
-								{ id: '1.5', text: 'Charge Lv 3 (1.5x)' },
-								{ id: '0.95', text: 'Storm Style Lv 0 (0.95x)' },
+								{ id: '1.30', text: 'Just Shot (1.3x)' },
+								{ id: '1.40', text: 'Perfect JS (1.4x)' },
+								{ id: '0.6', text: 'Evade Shot (0.6x)' },
+								{ id: '2.0', text: 'Finishing Shot (2.0x)' },
+								{ id: '1.0', text: 'None (1.0x)' },
+								{ id: '0.5', text: 'Rapid Fire (0.5x)' },
+								{ id: '0.73', text: 'Ultra Rapid Lv 1 Pierce S (0.73x)' },
 							]}
 						/>
 
@@ -1598,10 +1936,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberCompressedShot}
+								invalidText={invalidNumberValueText}
 								label={'Compressed Shot'}
 							/>
 						</div>
@@ -1698,6 +2036,35 @@
 					<div class="small-header">🐲 Element</div>
 					<div class="inputs-group-column">
 						<Dropdown
+							titleText="Compressed Element Shot"
+							bind:selectedId={inputCompressedShot}
+							items={[
+								{ id: '0', text: 'Not Compressed' },
+								{ id: 'compFireS', text: 'Fire Shot' },
+								{ id: 'compWaterS', text: 'Water Shot' },
+								{ id: 'compThunderS', text: 'Thunder Shot' },
+								{ id: 'compIceS', text: 'Ice Shot' },
+								{ id: 'compDragonS', text: 'Dragon Shot' },
+								{ id: 'pcompFireS', text: 'Perfect Fire Shot' },
+								{ id: 'pcompWaterS', text: 'Perfect Water Shot' },
+								{ id: 'pcompThunderS', text: 'Perfect Thunder Shot' },
+								{ id: 'pcompIceS', text: 'Perfect Ice Shot' },
+								{ id: 'pcompDragonS', text: 'Perfect Dragon Shot' },
+							]}
+						/>
+
+						<div class="number-input-container">
+							<NumberInput
+								size="sm"
+								step={10}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberCompressedElementShot}
+								invalidText={invalidNumberValueText}
+								label={'Compressed Element Shot'}
+							/>
+						</div>
+						<Dropdown
 							titleText="Element"
 							bind:selectedId={inputElement}
 							items={[
@@ -1745,10 +2112,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberElementalValue}
+								invalidText={invalidNumberValueText}
 								label={'Element'}
 							/>
 						</div>
@@ -1756,10 +2123,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberSigil1Element}
+								invalidText={invalidNumberValueText}
 								label={'Sigil 1 Element'}
 							/>
 						</div>
@@ -1767,10 +2134,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberSigil2Element}
+								invalidText={invalidNumberValueText}
 								label={'Sigil 2 Element'}
 							/>
 						</div>
@@ -1778,10 +2145,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberSigil3Element}
+								invalidText={invalidNumberValueText}
 								label={'Sigil 3 Element'}
 							/>
 						</div>
@@ -1789,10 +2156,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberZenithElementSigil}
+								invalidText={invalidNumberValueText}
 								label={'Zenith Element Sigil'}
 							/>
 						</div>
@@ -1800,10 +2167,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberAOEElementSigil}
+								invalidText={invalidNumberValueText}
 								label={'AoE Element Sigil'}
 							/>
 						</div>
@@ -1852,10 +2219,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberStatusValue}
+								invalidText={invalidNumberValueText}
 								label={'Status'}
 							/>
 						</div>
@@ -1868,10 +2235,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberOtherAdditional}
+								invalidText={invalidNumberValueText}
 								label={'Additional'}
 							/>
 						</div>
@@ -1889,10 +2256,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberDefenseRate}
+								invalidText={invalidNumberValueText}
 								label={'Defense Rate'}
 							/>
 						</div>
@@ -1900,10 +2267,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberMonsterRage}
+								invalidText={invalidNumberValueText}
 								label={'Rage Modifier'}
 							/>
 						</div>
@@ -1911,10 +2278,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberHCModifiers}
+								invalidText={invalidNumberValueText}
 								label={'Hardcore Modifier'}
 							/>
 						</div>
@@ -1922,10 +2289,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberRawHitbox}
+								invalidText={invalidNumberValueText}
 								label={'Raw Hitzone'}
 							/>
 						</div>
@@ -1933,10 +2300,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberFireHitbox}
+								invalidText={invalidNumberValueText}
 								label={'Fire Hitzone'}
 							/>
 						</div>
@@ -1944,10 +2311,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberWaterHitbox}
+								invalidText={invalidNumberValueText}
 								label={'Water Hitzone'}
 							/>
 						</div>
@@ -1955,10 +2322,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberThunderHitbox}
+								invalidText={invalidNumberValueText}
 								label={'Thunder Hitzone'}
 							/>
 						</div>
@@ -1966,10 +2333,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberIceHitbox}
+								invalidText={invalidNumberValueText}
 								label={'Ice Hitzone'}
 							/>
 						</div>
@@ -1977,10 +2344,10 @@
 							<NumberInput
 								size="sm"
 								step={10}
-								min={minimumWeaponElement}
-								max={maximumWeaponElement}
-								bind:value={weaponElementValue}
-								invalidText={invalidWeaponElementStatusText}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberDragonHitbox}
+								invalidText={invalidNumberValueText}
 								label={'Dragon Hitzone'}
 							/>
 						</div>
@@ -2122,73 +2489,27 @@
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 				]}
-				rows={[
-					{
-						id: 'a',
-						name: 'Load Balancer 3',
-						protocol: 'HTTP',
-						port: 3000,
-						rule: 100,
-					},
-					{
-						id: 'b',
-						name: 'Load Balancer 1',
-						protocol: 'HTTP',
-						port: 443,
-						rule: 100,
-					},
-					{
-						id: 'c',
-						name: 'Load Balancer 2',
-						protocol: 'HTTP',
-						port: 80,
-						rule: 'DNS delegation',
-					},
-					{
-						id: 'd',
-						name: 'Load Balancer 6',
-						protocol: 'HTTP',
-						port: 3000,
-						rule: 100,
-					},
-					{
-						id: 'e',
-						name: 'Load Balancer 4',
-						protocol: 'HTTP',
-						port: 443,
-						rule: 100,
-					},
-					{
-						id: 'f',
-						name: 'Load Balancer 5',
-						protocol: 'HTTP',
-						port: 80,
-						rule: 'DNS delegation',
-					},
-				]}
+				rows={weaponSections}
 			>
 				<Toolbar
 					><div class="toolbar">
 						<Dropdown
 							titleText="Weapon Motion Values Section"
-							bind:selectedId={weaponMotionValuesSection}
-							items={[{ id: 'None', text: 'None' }]}
+							bind:selectedId={inputWeaponMotionValuesSection}
+							items={weaponSectionNames}
 						/>
 					</div>
 				</Toolbar>
 				<span slot="title">
 					<div class="data-table-title">
 						<div class="weapon-icon">
-							<svelte:component
-								this={WeaponTypes[weaponID].icon}
-								{...weaponIconProps}
-							/>
+							<svelte:component this={weaponIcon} {...weaponIconProps} />
 						</div>
-						<div>Dual Swords</div>
+						<div>{weaponTypeName}</div>
 					</div>
 				</span>
 				<svelte:fragment slot="cell" let:row let:cell>
-					{#if cell.key === 'name'}
+					{#if cell.key === 'name' && hasAnimation(weaponTypeName, cell, inputWeaponMotionValuesSection)}
 						<Button
 							on:click={() => changeModal(cell)}
 							size="small"
@@ -2205,6 +2526,20 @@
 </div>
 
 <style>
+	.modal-content {
+		display: flex;
+		gap: var(--cds-spacing-06);
+		flex-direction: column;
+	}
+
+	.modal-content > img {
+		max-width: 60vh;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+	}
+
 	.toolbar {
 		padding: 1rem;
 	}
@@ -2236,7 +2571,7 @@
 
 	.data-table-title {
 		display: flex;
-		gap: 1rem;
+		gap: 2rem;
 		align-items: center;
 	}
 
