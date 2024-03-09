@@ -12,7 +12,6 @@ import type {
 	FrontierArmorClass,
 	FrontierArmorGRLevel,
 	FrontierArmorLevel,
-	FrontierArmorSkillTreeValues,
 	FrontierArmorType,
 	FrontierBowArcShot,
 	FrontierBowCharge,

@@ -8,10 +8,6 @@
 		affinityMap,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
-	import { domToPng } from 'modern-screenshot';
-	import slugify from 'slugify';
-	import { frontierMappers } from '$lib/client/modules/frontier/functions';
-	import { browser } from '$app/environment';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Head from '$lib/client/components/Head.svelte';
@@ -29,19 +25,11 @@
 	} from '$lib/constants';
 	import { page } from '$app/stores';
 	import pageThumbnail from '$lib/client/images/icon/pvp.webp';
-	import ezlion from 'ezlion';
+	import type { FrontierWeaponName } from 'ezlion';
 	import type {
-		FrontierWeaponClass,
-		FrontierWeaponID,
-		FrontierWeaponName,
-	} from 'ezlion';
-	import type {
-		FrontierCeaselessAffinity,
 		FrontierMotionValue,
 		FrontierRarity,
-		FrontierStarvingWolfAffinity,
 		FrontierWeapon,
-		FrontierWeaponType,
 	} from '$lib/client/modules/frontier/types';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
@@ -63,32 +51,10 @@
 
 	type DataTableValue = any;
 
-	interface DataTableEmptyHeader {
-		key: DataTableKey;
-		empty: boolean;
-		display?: (item: any, row: DataTableRow) => DataTableValue;
-		sort?: false | ((a: DataTableValue, b: DataTableValue) => 0 | -1 | 1);
-		columnMenu?: boolean;
-		width?: string;
-		minWidth?: string;
-	}
-
-	interface DataTableNonEmptyHeader {
-		key: DataTableKey;
-		value: DataTableValue;
-		display?: (item: any, row: DataTableRow) => DataTableValue;
-		sort?: false | ((a: DataTableValue, b: DataTableValue) => 0 | -1 | 1);
-		columnMenu?: boolean;
-		width?: string;
-		minWidth?: string;
-	}
-
 	interface DataTableRow {
 		id: any;
 		[key: string]: DataTableValue;
 	}
-
-	type DataTableRowId = any;
 
 	interface DataTableCell {
 		key: DataTableKey;
@@ -98,42 +64,6 @@
 
 	const maxTrueRaw = 8_000;
 
-	let weaponID: FrontierWeaponID = 6;
-	let attackA = 0;
-	let attackB = 0;
-	let huntingHornBuff = 0;
-	let multipliers = 0;
-	let additional = 0;
-	let displayedElemental = 0;
-	let hybridModifiers = 0;
-	let baseShotPower = 0;
-	let hitCount = 0;
-	let motion = 0;
-	let affinity = 0;
-	let sharpness = 0;
-	let weaponModifier = 0;
-	let sweetSpot = 0;
-	let statusMulti = 0;
-	let hitbox = 0;
-	let defenseRate = 0;
-	let shotPower = 0;
-	let criticalDistanceMultiplier = 0;
-	let coatingModifier = 0;
-	let shotModifier = 0;
-	let shotTypeMulti = 0;
-	let weaponClass: FrontierWeaponClass = 'Blademaster';
-	let weaponType: FrontierWeaponType = 'Sword and Shield';
-	// let rangedWeaponType;
-	let elemental = 0;
-	let elementHitbox = 0;
-	let hybridModifier = 0;
-	let statusValue = 0;
-	let hitboxAfterModifiers = 0;
-	let weaponTrueRaw = 0;
-	let starvingWolfAffinity: FrontierStarvingWolfAffinity = 0;
-	let ceaselessAffinity: FrontierCeaselessAffinity = 0;
-	let furiousAffinity: FrontierFuriousAffinity = 0;
-	let aoeAffinity = 0;
 	let rarity: FrontierRarity = 1;
 	let weaponIconProps = {
 		rarity: rarity,
@@ -143,8 +73,6 @@
 	const minimumNumberValue = 0;
 	const maximumNumberValue = 99999;
 	const invalidNumberValueText = `Invalid value. Must be between ${minimumNumberValue} and ${maximumNumberValue}`;
-
-	let weaponElementValue = 0;
 
 	const getDisplayAttack = (weapon: FrontierWeapon, trueRaw: number) =>
 		Math.floor(trueRaw * weapon.bloatAttackMultiplier);
@@ -183,112 +111,6 @@
 		return result;
 	}
 
-	// Function to calculate the final true attack value
-	function calculateFinalTrueAttack() {
-		return (
-			((weaponTrueRaw + attackA) * huntingHornBuff + attackB) * multipliers +
-			additional
-		);
-	}
-
-	// Function to calculate elemental values
-	function calculateElementalValue() {
-		return Math.floor((displayedElemental / 10) * hybridModifiers);
-	}
-
-	// Function to calculate bowgun damage
-	function calculateBowgunDamage(bowgunType, hitCount) {
-		// ... logic for different bowgun types
-	}
-
-	// Function to calculate melee weapon damage
-	function calculateMeleeDamage(
-		weaponClass,
-		weaponType,
-		motion,
-		affinity,
-		sharpness,
-		weaponModifier,
-		sweetSpot,
-		statusMulti,
-		hitbox,
-		defenseRate,
-	) {
-		// ... logic for different weapon classes and types
-	}
-
-	// Function to calculate ranged weapon damage
-	function calculateRangedDamage(
-		weaponClass,
-		weaponType,
-		rangedWeaponType,
-		elemental,
-		elementHitbox,
-		hybridModifier,
-		defenseRate,
-	) {
-		// ... logic for different weapon classes and types
-	}
-
-	// Function to calculate status values
-	function calculateStatusValue(displayedStatus) {
-		return displayedStatus / 10;
-	}
-
-	// Function to calculate the final hitbox value after modifiers
-	function calculateHitboxAfterModifiers() {
-		// ... logic for calculating hitbox after modifiers
-	}
-
-	function getZenithSkills() {
-		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.keys(ezlion.SkillZenith).forEach((element) => {
-			if (element !== '') {
-				array = [...array, { id: element, text: element }];
-			}
-		});
-		return array;
-	}
-
-	function getSigilSkills() {
-		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.keys(ezlion.SkillSigil).forEach((element) => {
-			if (element !== '') {
-				array = [...array, { id: element, text: element }];
-			}
-		});
-		return array;
-	}
-
-	function getArmorSkills() {
-		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.keys(ezlion.SkillArmor).forEach((element) => {
-			if (element !== '') {
-				array = [...array, { id: element, text: element }];
-			}
-		});
-		return array;
-	}
-
-	function getArmorSkillTree() {
-		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.keys(ezlion.SkillTree).forEach((element) => {
-			if (element !== '') {
-				array = [...array, { id: element, text: element }];
-			}
-		});
-		return array;
-	}
-
-	function getHHNotes() {
-		let array: dropdownItem[] = [];
-		HuntingHornWeaponNotesCombinations.forEach((element) => {
-			let result = `${element[0]} ${element[1]} ${element[2]}`;
-			array = [...array, { id: result, text: result }];
-		});
-		return array;
-	}
-
 	function getItemColors() {
 		let array: dropdownItem[] = [];
 		ItemColors.forEach((element, i) => {
@@ -303,22 +125,6 @@
 			array = [...array, { id: element.name, text: element.name }];
 		});
 		return array;
-	}
-
-	function downloadWeaponImage() {
-		if (!browser) return;
-		let node = document.querySelector('#weapon-dom');
-		if (!node) return;
-		domToPng(node, { quality: 1 }).then((dataUrl) => {
-			const link = document.createElement('a');
-			link.download = `${slugify(
-				`${frontierMappers.getWeaponNameById(
-					'',
-				)}-${''}-${new Date().toISOString()}.png`,
-			)}`;
-			link.href = dataUrl;
-			link.click();
-		});
 	}
 
 	function getWeaponSectionNames(weaponName: FrontierWeaponName) {
@@ -503,11 +309,7 @@
 	function changeModal(cell: DataTableCell, section: string) {
 		modalOpen = true;
 		modalHeading = cell.value;
-		let motionValue = getMotionValue(
-			getWeaponNameById(inputWeaponType),
-			section,
-			cell.value,
-		);
+		let motionValue = getMotionValue(inputWeaponType, section, cell.value);
 		modalLabel = section || '';
 		modalImage = motionValue.animation || '';
 		modalNotes = motionValue.notes || '';
@@ -531,41 +333,6 @@
 		}
 
 		return found.icon;
-	}
-
-	function getWeaponNameById(id: string): FrontierWeaponName {
-		switch (id) {
-			case '1':
-				return 'Sword and Shield';
-			case '2':
-				return 'Dual Swords';
-			case '3':
-				return 'Great Sword';
-			case '4':
-				return 'Long Sword';
-			case '5':
-				return 'Hammer';
-			case '6':
-				return 'Hunting Horn';
-			case '7':
-				return 'Lance';
-			case '8':
-				return 'Gunlance';
-			case '9':
-				return 'Tonfa';
-			case '10':
-				return 'Switch Axe F';
-			case '11':
-				return 'Light Bowgun';
-			case '12':
-				return 'Heavy Bowgun';
-			case '13':
-				return 'Bow';
-			case '14':
-				return 'Magnet Spike';
-			default:
-				return 'Sword and Shield';
-		}
 	}
 
 	function saveInputsAsTextFile(input: string) {
@@ -925,7 +692,7 @@
 	let inputGuildPoogie = 'None';
 	let inputStatusSigil = 'None';
 	let inputWeaponModifiers = 'None';
-	let inputWeaponType = 'Sword and Shield';
+	let inputWeaponType: FrontierWeaponName = 'Sword and Shield';
 	let inputAoeAttackSigil = 'None';
 	let inputAoeAffinitySigil = 'None';
 	let inputCritMode = 'All Crits';
@@ -1138,13 +905,13 @@
 	};
 
 	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
-	$: weaponTypeName = getWeaponNameById(inputWeaponType);
 	$: weaponSections = getWeaponSectionMotionValues(
-		weaponTypeName,
+		inputWeaponType,
 		inputWeaponMotionValuesSection,
 	);
-	$: weaponSectionNames = getWeaponSectionNames(weaponTypeName);
-	$: weaponIcon = getWeaponIcon(weaponTypeName);
+	$: console.log(inputWeaponType);
+	$: weaponSectionNames = getWeaponSectionNames(inputWeaponType);
+	$: weaponIcon = getWeaponIcon(inputWeaponType);
 	$: inputTextInputs = prettyPrintJson(inputs);
 
 	$: outputStarvingWolfAffinity =
@@ -3594,11 +3361,11 @@
 							<div class="weapon-icon">
 								<svelte:component this={weaponIcon} {...weaponIconProps} />
 							</div>
-							<div>{weaponTypeName}</div>
+							<div>{inputWeaponType}</div>
 						</div>
 					</span>
-					<svelte:fragment slot="cell" let:row let:cell>
-						{#if cell.key === 'name' && hasAnimation(weaponTypeName, cell, inputWeaponMotionValuesSection)}
+					<svelte:fragment slot="cell" let:cell>
+						{#if cell.key === 'name' && hasAnimation(inputWeaponType, cell, inputWeaponMotionValuesSection)}
 							<Button
 								on:click={() =>
 									changeModal(cell, inputWeaponMotionValuesSection)}
@@ -3642,8 +3409,8 @@
 					<div>Shared Motion Values</div>
 				</div>
 			</span>
-			<svelte:fragment slot="cell" let:row let:cell>
-				{#if cell.key === 'name' && hasAnimation(weaponTypeName, cell, 'Shared')}
+			<svelte:fragment slot="cell" let:cell>
+				{#if cell.key === 'name' && hasAnimation(inputWeaponType, cell, 'Shared')}
 					<Button
 						on:click={() => changeModal(cell, 'Shared')}
 						size="small"

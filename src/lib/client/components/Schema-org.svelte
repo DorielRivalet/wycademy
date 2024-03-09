@@ -60,7 +60,7 @@ SOFTWARE.
 				name: 'Gamers',
 			},
 			license: 'https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md',
-			alternateName: 'mhfz-compendium',
+			alternateName: 'wycademy',
 			name: mainEntity.name,
 			sameAs: 'https://wycademy.pages.dev',
 			url: mainEntity.url,
