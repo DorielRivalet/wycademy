@@ -2401,7 +2401,7 @@
 							/>
 						</div>
 					</div>
-					{#if getWeaponClass(inputWeaponType) !== 'Gunner'}
+					{#if getWeaponClass(inputWeaponType) === 'Blademaster'}
 						<div class="input-section">
 							<div class="small-header">⚔️ Blademaster</div>
 							<div class="inputs-group-column">
@@ -3408,44 +3408,45 @@
 
 	<section>
 		<SectionHeading level={2} title="Shared Motion Values" />
-
-		<DataTable
-			sortable
-			zebra
-			size="short"
-			useStaticWidth
-			headers={[
-				{ key: 'name', value: 'Name', minWidth: '2rem' },
-				{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-				{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-				{ key: 'element', value: 'Element', minWidth: '1rem' },
-				{ key: 'total', value: 'Total', minWidth: '1rem' },
-				{ key: 'fire', value: '🔥', minWidth: '1rem' },
-				{ key: 'water', value: '💧', minWidth: '1rem' },
-				{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-				{ key: 'ice', value: '❄️', minWidth: '1rem' },
-				{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-			]}
-			rows={sharedMotionValues}
-		>
-			<span slot="title">
-				<div class="data-table-title">
-					<div>Shared Motion Values</div>
-				</div>
-			</span>
-			<svelte:fragment slot="cell" let:cell>
-				{#if cell.key === 'name' && hasAnimation(inputWeaponType, cell, 'Shared')}
-					<Button
-						on:click={() => changeModal(cell, 'Shared')}
-						size="small"
-						icon={Image}
-						kind="ghost">{cell.value}</Button
-					>
-				{:else}
-					{cell.value}
-				{/if}
-			</svelte:fragment>
-		</DataTable>
+		<div class="motion-values">
+			<DataTable
+				sortable
+				zebra
+				size="short"
+				useStaticWidth
+				headers={[
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'water', value: '💧', minWidth: '1rem' },
+					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+					{ key: 'ice', value: '❄️', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+				]}
+				rows={sharedMotionValues}
+			>
+				<span slot="title">
+					<div class="data-table-title">
+						<div>Shared Motion Values</div>
+					</div>
+				</span>
+				<svelte:fragment slot="cell" let:cell>
+					{#if cell.key === 'name' && hasAnimation(inputWeaponType, cell, 'Shared')}
+						<Button
+							on:click={() => changeModal(cell, 'Shared')}
+							size="small"
+							icon={Image}
+							kind="ghost">{cell.value}</Button
+						>
+					{:else}
+						{cell.value}
+					{/if}
+				</svelte:fragment>
+			</DataTable>
+		</div>
 	</section>
 </div>
 
