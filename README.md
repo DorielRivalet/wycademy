@@ -1,10 +1,10 @@
-# frontier-compendium
+# wycademy
 
 A compendium of resources for Monster Hunter Frontier Z (MHF-Z).
 
 ## License
 
-[MIT](https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md).
+[MIT](https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md).
 
 ## Acknowledgements
 

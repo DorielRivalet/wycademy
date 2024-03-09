@@ -53,17 +53,16 @@ SOFTWARE.
 			],
 			accessibilityHazard: ['unknown'],
 			acquireLicensePage:
-				'https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md',
-			alternativeHeadline: 'frontier-compendium',
+				'https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md',
+			alternativeHeadline: 'wycademy',
 			audience: {
 				'@type': 'Audience',
 				name: 'Gamers',
 			},
-			license:
-				'https://github.com/DorielRivalet/frontier-compendium/blob/main/LICENSE.md',
+			license: 'https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md',
 			alternateName: 'mhfz-compendium',
 			name: mainEntity.name,
-			sameAs: 'https://frontier-compendium.pages.dev',
+			sameAs: 'https://wycademy.pages.dev',
 			url: mainEntity.url,
 			headline: mainEntity.headline,
 			description: mainEntity.description,
@@ -71,7 +70,7 @@ SOFTWARE.
 			datePublished: mainEntity.datePublished,
 			dateModified: mainEntity.dateModified,
 			thumbnailUrl:
-				'https://raw.githubusercontent.com/DorielRivalet/frontier-compendium/main/src/lib/client/images/logo.webp',
+				'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.webp',
 			typicalAgeRange: '13+',
 			isAccessibleForFree: true,
 			author: {

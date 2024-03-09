@@ -6,10 +6,7 @@
 
 <!-- github-ribbon -->
 
-<a
-	href="https://github.com/DorielRivalet/frontier-compendium"
-	class="github-corner"
->
+<a href="https://github.com/DorielRivalet/wycademy" class="github-corner">
 	<svg
 		width="80"
 		height="80"

@@ -33,6 +33,7 @@ import type {
 	FrontierItemSigil,
 	FrontierItemType,
 	FrontierLightBowgunUpgrade,
+	FrontierMotionValueSection,
 	FrontierMotionValues,
 	FrontierRarity,
 	FrontierSlot,
@@ -947,7 +948,26 @@ export const defaultItemComponentValues = {
 } as const;
 
 // TODO dmg calc
-export const MotionValues: FrontierMotionValues[] = [
+export const sharedWeaponMotionValues: FrontierMotionValueSection = {
+	name: 'Shared',
+	motionValues: [
+		{
+			name: 'Reflect+1',
+			animation: MotionSwordAndShieldNoneJumpSlash,
+			values: '24',
+			notes: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+		},
+		{ name: 'Reflect+2', animation: '', values: '36' },
+		{ name: 'Reflect+3', animation: '', values: '48' },
+		{ name: 'Reflect Up', animation: '', values: '68' },
+		{ name: 'Perfect Guard', animation: '', values: '72' },
+		{ name: 'Perfect Guard Up', animation: '', values: '92' },
+		{ name: 'Stylish Up', animation: '', values: '30' },
+		{ name: 'Custom Motion', animation: '', values: '0' },
+	],
+};
+
+export const weaponMotionValues: FrontierMotionValues[] = [
 	{
 		name: 'Sword and Shield',
 		sections: [

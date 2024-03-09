@@ -10,7 +10,7 @@ header:
         Use of this source code is governed by a MIT license that can be
         found in the LICENSE file.
     copyright-owner: 'Doriel Rivalet'
-    software-name: frontier-compendium
+    software-name: wycademy
 
   paths-ignore:
     - 'dist'

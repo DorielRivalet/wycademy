@@ -89,14 +89,11 @@
 <svelte:window on:keydown={keydown} />
 
 <svelte:head>
-	<title>Frontier Compendium - Sverdle</title>
-	<meta content="Frontier Compendium - Sverdle" property="og:title" />
+	<title>Wycademy - Sverdle</title>
+	<meta content="Wycademy - Sverdle" property="og:title" />
 	<meta content={projectDescription} property="og:description" />
 	<meta name="description" content={projectDescription} />
-	<meta
-		content="https://frontier-compendium.pages.dev/sverdle"
-		property="og:url"
-	/>
+	<meta content="https://wycademy.pages.dev/sverdle" property="og:url" />
 	<meta content={logo} property="og:image" />
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
 </svelte:head>

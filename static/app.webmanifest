@@ -1,9 +1,9 @@
 {
-	"name": "Frontier Compendium",
+	"name": "Wycademy",
 	"short_name": "mhfz-compendium",
 	"description": "A compendium of resources for Monster Hunter Frontier Z (MHF-Z)",
 	"start_url": "/",
-	"id": "frontier-compendium",
+	"id": "wycademy",
 	"display": "standalone",
 	"theme_color": "#cdd6f4",
 	"background_color": "#1e1e2e",
