@@ -41,7 +41,6 @@ import type {
 	FrontierStatus,
 	FrontierSwitchAxeFPhial,
 	FrontierWeapon,
-	FrontierWeaponClass,
 	FrontierWeaponLength,
 	FrontierWeaponSharpness,
 	FrontierWeaponType,
@@ -134,6 +133,7 @@ import type {
 	FrontierArmorSkillName,
 	FrontierArmorSkillTree,
 	FrontierSigil,
+	FrontierWeaponClass,
 	FrontierZenithSkill,
 } from 'ezlion';
 import MotionSwordAndShieldNoneJumpSlash from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';

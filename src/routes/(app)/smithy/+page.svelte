@@ -54,13 +54,13 @@
 		FrontierRarity,
 		FrontierSlot,
 		FrontierSwitchAxeFPhial,
-		FrontierWeaponClass,
 	} from '$lib/client/modules/frontier/types';
 	import Item from '$lib/client/components/frontier/Item.svelte';
 	import smithy from '$lib/client/images/icon/blacksmith.webp';
 	import ezlion, {
 		type FrontierArmorSkillName,
 		type FrontierArmorSkillTree,
+		type FrontierWeaponClass,
 		type FrontierZenithSkill,
 	} from 'ezlion';
 

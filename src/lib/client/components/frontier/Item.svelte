@@ -6,13 +6,9 @@
 
 <script lang="ts">
 	import type {
-		FrontierArmorSkillName,
-		FrontierArmorSkillTree,
 		FrontierArmorClass,
 		FrontierRarity,
-		FrontierWeaponClass,
 		FrontierSlot,
-		FrontierZenithSkill,
 		FrontierItemType,
 		FrontierItemRankType,
 		FrontierItemColor,
@@ -31,6 +27,12 @@
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
 	import { browser } from '$app/environment';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import type {
+		FrontierArmorSkillName,
+		FrontierArmorSkillTree,
+		FrontierWeaponClass,
+		FrontierZenithSkill,
+	} from 'ezlion';
 
 	/** Truncated to 18 characters.*/
 	export let name = 'Name';

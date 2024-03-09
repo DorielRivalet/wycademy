@@ -8,6 +8,7 @@ import type {
 	FrontierArmorSkillName,
 	FrontierArmorSkillTree,
 	FrontierSigil,
+	FrontierWeaponClass,
 	FrontierWeaponID,
 	FrontierWeaponName,
 } from 'ezlion';
@@ -107,7 +108,6 @@ export type FrontierLightBowgunUpgrade = '' | 'Silencer' | 'Long Barrel';
 export type FrontierBowgunAttackLevel = 0 | 1 | 2 | 3 | 4 | 5;
 export type FrontierGunlanceShell = 'Spread' | 'Long' | 'Normal';
 export type FrontierGunlanceShellLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-export type FrontierWeaponClass = 'Blademaster' | 'Gunner' | 'Both';
 export type FrontierMaxHiden =
 	| 'Sword King'
 	| 'Gun Sage'
