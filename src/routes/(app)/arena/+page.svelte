@@ -25,7 +25,7 @@
 	} from '$lib/constants';
 	import { page } from '$app/stores';
 	import pageThumbnail from '$lib/client/images/icon/pvp.webp';
-	import type { FrontierWeaponName } from 'ezlion';
+	import type { FrontierWeaponClass, FrontierWeaponName } from 'ezlion';
 	import type {
 		FrontierMotionValue,
 		FrontierRarity,
@@ -152,6 +152,18 @@
 
 		// Return the array of section names
 		return sectionNames;
+	}
+
+	function getWeaponClass(weaponName: FrontierWeaponName): FrontierWeaponClass {
+		if (
+			weaponName === 'Bow' ||
+			inputWeaponType === 'Light Bowgun' ||
+			inputWeaponType === 'Heavy Bowgun'
+		) {
+			return 'Gunner';
+		} else {
+			return 'Blademaster';
+		}
 	}
 
 	function getWeaponSectionMotionValues(
@@ -2389,445 +2401,457 @@
 							/>
 						</div>
 					</div>
-					<div class="input-section">
-						<div class="small-header">⚔️ Blademaster</div>
-						<div class="inputs-group-column">
-							<Dropdown
-								titleText="Sharpness"
-								bind:selectedId={inputSharpness}
-								items={[
-									{ id: 'Red (0.6x)', text: 'Red (0.6x)' },
-									{ id: 'Orange (0.85x)', text: 'Orange (0.85x)' },
-									{ id: 'Yellow (1.1x)', text: 'Yellow (1.1x)' },
-									{ id: 'Green (1.325x)', text: 'Green (1.325x)' },
-									{ id: 'Blue (1.45x)', text: 'Blue (1.45x)' },
-									{ id: 'White (1.6x)', text: 'White (1.6x)' },
-									{ id: 'Purple (1.7x)', text: 'Purple (1.7x)' },
-									{ id: 'Cyan (1.8x)', text: 'Cyan (1.8x)' },
-								]}
-							/>
-
-							<Dropdown
-								titleText="Fencing"
-								bind:selectedId={inputFencing}
-								items={[
-									{ id: 'None', text: 'None' },
-									{ id: '+2', text: '+2' },
-								]}
-							/>
-
-							<div class="number-input-container">
-								<NumberInput
-									size="sm"
-									step={10}
-									min={minimumNumberValue}
-									max={maximumNumberValue}
-									bind:value={inputNumberLanceImpactMultiplier}
-									invalidText={invalidNumberValueText}
-									label={'Lance Impact Multiplier'}
+					{#if getWeaponClass(inputWeaponType) !== 'Gunner'}
+						<div class="input-section">
+							<div class="small-header">⚔️ Blademaster</div>
+							<div class="inputs-group-column">
+								<Dropdown
+									titleText="Sharpness"
+									bind:selectedId={inputSharpness}
+									items={[
+										{ id: 'Red (0.6x)', text: 'Red (0.6x)' },
+										{ id: 'Orange (0.85x)', text: 'Orange (0.85x)' },
+										{ id: 'Yellow (1.1x)', text: 'Yellow (1.1x)' },
+										{ id: 'Green (1.325x)', text: 'Green (1.325x)' },
+										{ id: 'Blue (1.45x)', text: 'Blue (1.45x)' },
+										{ id: 'White (1.6x)', text: 'White (1.6x)' },
+										{ id: 'Purple (1.7x)', text: 'Purple (1.7x)' },
+										{ id: 'Cyan (1.8x)', text: 'Cyan (1.8x)' },
+									]}
 								/>
-							</div>
-							<div class="number-input-container">
-								<NumberInput
-									size="sm"
-									step={10}
-									min={minimumNumberValue}
-									max={maximumNumberValue}
-									bind:value={inputNumberTranscendRawMultiplier}
-									invalidText={invalidNumberValueText}
-									label={'Transcend Raw Multiplier'}
+
+								<Dropdown
+									titleText="Fencing"
+									bind:selectedId={inputFencing}
+									items={[
+										{ id: 'None', text: 'None' },
+										{ id: '+2', text: '+2' },
+									]}
 								/>
+
+								<div class="number-input-container">
+									<NumberInput
+										size="sm"
+										step={10}
+										min={minimumNumberValue}
+										max={maximumNumberValue}
+										bind:value={inputNumberLanceImpactMultiplier}
+										invalidText={invalidNumberValueText}
+										label={'Lance Impact Multiplier'}
+									/>
+								</div>
+								<div class="number-input-container">
+									<NumberInput
+										size="sm"
+										step={10}
+										min={minimumNumberValue}
+										max={maximumNumberValue}
+										bind:value={inputNumberTranscendRawMultiplier}
+										invalidText={invalidNumberValueText}
+										label={'Transcend Raw Multiplier'}
+									/>
+								</div>
+								<div class="number-input-container">
+									<NumberInput
+										size="sm"
+										step={10}
+										min={minimumNumberValue}
+										max={maximumNumberValue}
+										bind:value={inputNumberRavientePowerSwordCrystalsMultiplier}
+										invalidText={invalidNumberValueText}
+										label={'Raviente Power Sword Crystals'}
+									/>
+								</div>
 							</div>
-							<div class="number-input-container">
-								<NumberInput
-									size="sm"
-									step={10}
-									min={minimumNumberValue}
-									max={maximumNumberValue}
-									bind:value={inputNumberRavientePowerSwordCrystalsMultiplier}
-									invalidText={invalidNumberValueText}
-									label={'Raviente Power Sword Crystals'}
+						</div>
+					{:else}
+						<div class="input-section">
+							<div class="small-header">🏹 Gunner</div>
+							<div class="inputs-group-column">
+								<Dropdown
+									titleText="Distance Multiplier"
+									bind:selectedId={inputDistanceMultiplier}
+									items={[
+										{
+											id: '1.8x LBG & Bow Crit Distance',
+											text: '1.8x LBG & Bow Crit Distance',
+										},
+										{
+											id: '2.3x HBG 1st Half Crit Distance',
+											text: '2.3x HBG 1st Half Crit Distance',
+										},
+										{
+											id: '2.0x HBG 2nd Half Crit Distance',
+											text: '2.0x HBG 2nd Half Crit Distance',
+										},
+										{
+											id: '1.9x LBG & Bow Crit D. & Z Piece',
+											text: '1.9x LBG & Bow Crit D. & Z Piece',
+										},
+										{
+											id: '2.45x HBG 1st Half Crit D. & Zenith',
+											text: '2.45x HBG 1st Half Crit D. & Zenith',
+										},
+										{
+											id: '2.15x HBG 2nd Half Crit D. & Zenith',
+											text: '2.15x HBG 2nd Half Crit D. & Zenith',
+										},
+										{
+											id: '2.4',
+											text: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
+										},
+										{
+											id: '2.10',
+											text: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
+										},
+										{
+											id: '2.1',
+											text: '2.1x 1st Half Crit D. (HBG Active Feature)',
+										},
+										{
+											id: '1.80',
+											text: '1.8x 2nd Half Crit D. (HBG Active Feature)',
+										},
+										{
+											id: '2.0x HBG 1st Half Crit D.',
+											text: '2.0x HBG 1st Half Crit D.',
+										},
+										{
+											id: '1.7x 2nd Half Crit D.',
+											text: '1.7x 2nd Half Crit D.',
+										},
+										{
+											id: '1.5x Bow or LBG Crit D. ',
+											text: '1.5x Bow or LBG Crit D. ',
+										},
+										{ id: '2.2x', text: '2.2x' },
+										{ id: '1.6x', text: '1.6x' },
+										{ id: '1.4x', text: '1.4x' },
+										{ id: '1.3x', text: '1.3x' },
+										{ id: '1.2x', text: '1.2x' },
+										{ id: '1.1x', text: '1.1x' },
+										{ id: '1.0x', text: '1.0x' },
+										{
+											id: '2.3x Step Shot & Z Piece',
+											text: '2.3x Step Shot & Z Piece',
+										},
+										{
+											id: '2.0x Step Shot & Z Piece',
+											text: '2.0x Step Shot & Z Piece',
+										},
+										{
+											id: '1.9',
+											text: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
+										},
+										{
+											id: '1.6',
+											text: '1.6x Standard C. Distance (LBG Active Feature) ',
+										},
+										{
+											id: '2.40',
+											text: '2.4x Step Shot & Z Piece (LBG Active Feature)',
+										},
+										{
+											id: '2.100',
+											text: '2.1x Step Shot & Z Piece (LBG Active Feature)',
+										},
+										{ id: '2.5x', text: '2.5x' },
+										{ id: '2.55x', text: '2.55x' },
+										{ id: '2.60x', text: '2.60x' },
+									]}
+								/>
+
+								<Dropdown
+									titleText="Bullet Modifier"
+									bind:selectedId={inputBulletModifier}
+									items={[
+										{ id: 'None', text: 'None' },
+										{
+											id: 'Steady Hand (All Below)',
+											text: 'Steady Hand (All Below)',
+										},
+										{
+											id: 'Normal / Rapid Up (1.1x)',
+											text: 'Normal / Rapid Up (1.1x)',
+										},
+										{ id: 'Pierce Up (1.1x)', text: 'Pierce Up (1.1x)' },
+										{
+											id: 'Pellet / Scatter Up (1.3x)',
+											text: 'Pellet / Scatter Up (1.3x)',
+										},
+									]}
+								/>
+
+								<Dropdown
+									titleText="Shot Multiplier"
+									bind:selectedId={inputShotMultiplier}
+									items={[
+										{ id: 'Just Shot (1.3x)', text: 'Just Shot (1.3x)' },
+										{ id: 'Perfect JS (1.4x)', text: 'Perfect JS (1.4x)' },
+										{ id: 'Evade Shot (0.6x)', text: 'Evade Shot (0.6x)' },
+										{
+											id: 'Finishing Shot (2.0x)',
+											text: 'Finishing Shot (2.0x)',
+										},
+										{ id: 'None', text: 'None' },
+										{ id: 'Rapid Fire (0.5x)', text: 'Rapid Fire (0.5x)' },
+										{
+											id: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
+											text: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
+										},
+									]}
+								/>
+
+								<Dropdown
+									titleText="HBG Charge Shot"
+									bind:selectedId={inputHbgChargeShot}
+									items={[
+										{
+											id: 'Normal / Charge Lv 0',
+											text: 'Normal / Charge Lv 0',
+										},
+										{ id: 'Charge Lv 1 (1.15x)', text: 'Charge Lv 1 (1.15x)' },
+										{ id: 'Charge Lv 2 (1.3x)', text: 'Charge Lv 2 (1.3x)' },
+										{ id: 'Charge Lv 3 (1.5x)', text: 'Charge Lv 3 (1.5x)' },
+										{
+											id: 'Storm Style Lv 0 (0.95x)',
+											text: 'Storm Style Lv 0 (0.95x)',
+										},
+									]}
+								/>
+								<div class="number-input-container">
+									<NumberInput
+										size="sm"
+										step={10}
+										min={minimumNumberValue}
+										max={maximumNumberValue}
+										bind:value={inputNumberCompressedShot}
+										invalidText={invalidNumberValueText}
+										label={'Compressed Shot'}
+									/>
+								</div>
+								<Dropdown
+									titleText="Compressed Shot"
+									bind:selectedId={inputCompressedShot}
+									items={[
+										{ id: 'Not Compressed', text: 'Not Compressed' },
+										{
+											id: 'Lv1 Norm S. (2.4x Bullets Loaded)',
+											text: 'Lv1 Norm S. (2.4x Bullets Loaded)',
+										},
+										{
+											id: 'Lv2 Norm S. (6.0x Bullets Loaded)',
+											text: 'Lv2 Norm S. (6.0x Bullets Loaded)',
+										},
+										{
+											id: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
+											text: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
+										},
+										{
+											id: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
+											text: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
+										},
+										{
+											id: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
+											text: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
+										},
+										{
+											id: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
+											text: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
+										},
+										{
+											id: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
+											text: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
+										},
+										{
+											id: '18.0',
+											text: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
+										},
+										{
+											id: '21.0',
+											text: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
+										},
+										{
+											id: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
+											text: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
+										},
+										{
+											id: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
+											text: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
+										},
+										{
+											id: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
+											text: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
+										},
+										{
+											id: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
+											text: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
+										},
+										{
+											id: '13.5',
+											text: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
+										},
+										{
+											id: '17.5',
+											text: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
+										},
+										{
+											id: 'Lv1 Norm S. (3.6x Bullets Loaded)',
+											text: 'Lv1 Norm S. (3.6x Bullets Loaded)',
+										},
+										{
+											id: 'Lv2 Norm S. (8.4x Bullets Loaded)',
+											text: 'Lv2 Norm S. (8.4x Bullets Loaded)',
+										},
+										{
+											id: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
+											text: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
+										},
+										{
+											id: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
+											text: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
+										},
+										{
+											id: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
+											text: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
+										},
+										{
+											id: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
+											text: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
+										},
+										{
+											id: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
+											text: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
+										},
+										{
+											id: '25.2',
+											text: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
+										},
+										{
+											id: '29.4',
+											text: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
+										},
+										{
+											id: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
+											text: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
+										},
+										{
+											id: '18.9',
+											text: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
+										},
+										{
+											id: '24.5',
+											text: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
+										},
+									]}
+								/>
+
+								<Dropdown
+									titleText="Bow Coatings Multiplier"
+									bind:selectedId={inputBowCoatingsMultiplier}
+									items={[
+										{ id: 'None', text: 'None' },
+										{ id: 'Power Bottle (1.6x)', text: 'Power Bottle (1.6x)' },
+										{
+											id: 'P. Bottle + Bow Hiden (1.8x)',
+											text: 'P. Bottle + Bow Hiden (1.8x)',
+										},
+										{ id: 'P. + Origin (1.7x)', text: 'P. + Origin (1.7x)' },
+										{
+											id: 'P. + Origin + Hiden (1.9x)',
+											text: 'P. + Origin + Hiden (1.9x)',
+										},
+										{
+											id: 'Status Bottle (1.5x)',
+											text: 'Status Bottle (1.5x)',
+										},
+										{
+											id: 'S. Bottle + Hiden (1.7x)',
+											text: 'S. Bottle + Hiden (1.7x)',
+										},
+										{
+											id: 'S. Bottle + Origin (1.6x)',
+											text: 'S. Bottle + Origin (1.6x)',
+										},
+										{
+											id: 'S. + Origin + Hiden (1.8x)',
+											text: 'S. + Origin + Hiden (1.8x)',
+										},
+										{
+											id: 'Non-G Power Bottle (1.5x)',
+											text: 'Non-G Power Bottle (1.5x)',
+										},
+										{
+											id: 'Choose a level lower for Non-G',
+											text: 'Choose a level lower for Non-G',
+										},
+									]}
+								/>
+
+								<Dropdown
+									titleText="Charge Multiplier"
+									bind:selectedId={inputChargeMultiplier}
+									items={[
+										{ id: 'Lv1 (0.4x / 0.7x)', text: 'Lv1 (0.4x / 0.7x)' },
+										{ id: 'Lv2 (1.0x / 0.95x) ', text: 'Lv2 (1.0x / 0.95x) ' },
+										{ id: 'Lv3 (1.5x / 1.2x)', text: 'Lv3 (1.5x / 1.2x)' },
+										{
+											id: 'Lv4 (1.85x / 1.334x)',
+											text: 'Lv4 (1.85x / 1.334x)',
+										},
+										{
+											id: 'Sniper Lv4 (1.0x / 1.0x)',
+											text: 'Sniper Lv4 (1.0x / 1.0x)',
+										},
+										{
+											id: 'Sniper Lv5 (1.125x / 1.1x)',
+											text: 'Sniper Lv5 (1.125x / 1.1x)',
+										},
+										{
+											id: 'Uncharged Rising Shot (0.4x / 1.0x)',
+											text: 'Uncharged Rising Shot (0.4x / 1.0x)',
+										},
+										{
+											id: 'Charged Rising Shot (1.0x / 1.5x)',
+											text: 'Charged Rising Shot (1.0x / 1.5x)',
+										},
+										{
+											id: 'Crouched Lv1 (0.48x / 0.7x)',
+											text: 'Crouched Lv1 (0.48x / 0.7x)',
+										},
+										{
+											id: 'Crouched Lv2 (1.3x / 0.8x) ',
+											text: 'Crouched Lv2 (1.3x / 0.8x) ',
+										},
+										{
+											id: 'Crouched Lv3 (2.1x / 1.2x)',
+											text: 'Crouched Lv3 (2.1x / 1.2x)',
+										},
+										{
+											id: 'Crouched Lv4 (2.59x / 1.334x)',
+											text: 'Crouched Lv4 (2.59x / 1.334x)',
+										},
+									]}
+								/>
+
+								<Dropdown
+									titleText="Quick Shot"
+									bind:selectedId={inputQuickShot}
+									items={[
+										{ id: 'Normal (All 1.0x)', text: 'Normal (All 1.0x)' },
+										{
+											id: '1',
+											text: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
+										},
+										{
+											id: '2',
+											text: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
+										},
+									]}
 								/>
 							</div>
 						</div>
-					</div>
-					<div class="input-section">
-						<div class="small-header">🏹 Gunner</div>
-						<div class="inputs-group-column">
-							<Dropdown
-								titleText="Distance Multiplier"
-								bind:selectedId={inputDistanceMultiplier}
-								items={[
-									{
-										id: '1.8x LBG & Bow Crit Distance',
-										text: '1.8x LBG & Bow Crit Distance',
-									},
-									{
-										id: '2.3x HBG 1st Half Crit Distance',
-										text: '2.3x HBG 1st Half Crit Distance',
-									},
-									{
-										id: '2.0x HBG 2nd Half Crit Distance',
-										text: '2.0x HBG 2nd Half Crit Distance',
-									},
-									{
-										id: '1.9x LBG & Bow Crit D. & Z Piece',
-										text: '1.9x LBG & Bow Crit D. & Z Piece',
-									},
-									{
-										id: '2.45x HBG 1st Half Crit D. & Zenith',
-										text: '2.45x HBG 1st Half Crit D. & Zenith',
-									},
-									{
-										id: '2.15x HBG 2nd Half Crit D. & Zenith',
-										text: '2.15x HBG 2nd Half Crit D. & Zenith',
-									},
-									{
-										id: '2.4',
-										text: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
-									},
-									{
-										id: '2.10',
-										text: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
-									},
-									{
-										id: '2.1',
-										text: '2.1x 1st Half Crit D. (HBG Active Feature)',
-									},
-									{
-										id: '1.80',
-										text: '1.8x 2nd Half Crit D. (HBG Active Feature)',
-									},
-									{
-										id: '2.0x HBG 1st Half Crit D.',
-										text: '2.0x HBG 1st Half Crit D.',
-									},
-									{
-										id: '1.7x 2nd Half Crit D.',
-										text: '1.7x 2nd Half Crit D.',
-									},
-									{
-										id: '1.5x Bow or LBG Crit D. ',
-										text: '1.5x Bow or LBG Crit D. ',
-									},
-									{ id: '2.2x', text: '2.2x' },
-									{ id: '1.6x', text: '1.6x' },
-									{ id: '1.4x', text: '1.4x' },
-									{ id: '1.3x', text: '1.3x' },
-									{ id: '1.2x', text: '1.2x' },
-									{ id: '1.1x', text: '1.1x' },
-									{ id: '1.0x', text: '1.0x' },
-									{
-										id: '2.3x Step Shot & Z Piece',
-										text: '2.3x Step Shot & Z Piece',
-									},
-									{
-										id: '2.0x Step Shot & Z Piece',
-										text: '2.0x Step Shot & Z Piece',
-									},
-									{
-										id: '1.9',
-										text: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
-									},
-									{
-										id: '1.6',
-										text: '1.6x Standard C. Distance (LBG Active Feature) ',
-									},
-									{
-										id: '2.40',
-										text: '2.4x Step Shot & Z Piece (LBG Active Feature)',
-									},
-									{
-										id: '2.100',
-										text: '2.1x Step Shot & Z Piece (LBG Active Feature)',
-									},
-									{ id: '2.5x', text: '2.5x' },
-									{ id: '2.55x', text: '2.55x' },
-									{ id: '2.60x', text: '2.60x' },
-								]}
-							/>
-
-							<Dropdown
-								titleText="Bullet Modifier"
-								bind:selectedId={inputBulletModifier}
-								items={[
-									{ id: 'None', text: 'None' },
-									{
-										id: 'Steady Hand (All Below)',
-										text: 'Steady Hand (All Below)',
-									},
-									{
-										id: 'Normal / Rapid Up (1.1x)',
-										text: 'Normal / Rapid Up (1.1x)',
-									},
-									{ id: 'Pierce Up (1.1x)', text: 'Pierce Up (1.1x)' },
-									{
-										id: 'Pellet / Scatter Up (1.3x)',
-										text: 'Pellet / Scatter Up (1.3x)',
-									},
-								]}
-							/>
-
-							<Dropdown
-								titleText="Shot Multiplier"
-								bind:selectedId={inputShotMultiplier}
-								items={[
-									{ id: 'Just Shot (1.3x)', text: 'Just Shot (1.3x)' },
-									{ id: 'Perfect JS (1.4x)', text: 'Perfect JS (1.4x)' },
-									{ id: 'Evade Shot (0.6x)', text: 'Evade Shot (0.6x)' },
-									{
-										id: 'Finishing Shot (2.0x)',
-										text: 'Finishing Shot (2.0x)',
-									},
-									{ id: 'None', text: 'None' },
-									{ id: 'Rapid Fire (0.5x)', text: 'Rapid Fire (0.5x)' },
-									{
-										id: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
-										text: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
-									},
-								]}
-							/>
-
-							<Dropdown
-								titleText="HBG Charge Shot"
-								bind:selectedId={inputHbgChargeShot}
-								items={[
-									{ id: 'Normal / Charge Lv 0', text: 'Normal / Charge Lv 0' },
-									{ id: 'Charge Lv 1 (1.15x)', text: 'Charge Lv 1 (1.15x)' },
-									{ id: 'Charge Lv 2 (1.3x)', text: 'Charge Lv 2 (1.3x)' },
-									{ id: 'Charge Lv 3 (1.5x)', text: 'Charge Lv 3 (1.5x)' },
-									{
-										id: 'Storm Style Lv 0 (0.95x)',
-										text: 'Storm Style Lv 0 (0.95x)',
-									},
-								]}
-							/>
-							<div class="number-input-container">
-								<NumberInput
-									size="sm"
-									step={10}
-									min={minimumNumberValue}
-									max={maximumNumberValue}
-									bind:value={inputNumberCompressedShot}
-									invalidText={invalidNumberValueText}
-									label={'Compressed Shot'}
-								/>
-							</div>
-							<Dropdown
-								titleText="Compressed Shot"
-								bind:selectedId={inputCompressedShot}
-								items={[
-									{ id: 'Not Compressed', text: 'Not Compressed' },
-									{
-										id: 'Lv1 Norm S. (2.4x Bullets Loaded)',
-										text: 'Lv1 Norm S. (2.4x Bullets Loaded)',
-									},
-									{
-										id: 'Lv2 Norm S. (6.0x Bullets Loaded)',
-										text: 'Lv2 Norm S. (6.0x Bullets Loaded)',
-									},
-									{
-										id: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
-										text: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
-									},
-									{
-										id: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
-										text: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
-									},
-									{
-										id: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
-										text: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
-									},
-									{
-										id: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
-										text: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
-									},
-									{
-										id: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
-										text: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
-									},
-									{
-										id: '18.0',
-										text: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
-									},
-									{
-										id: '21.0',
-										text: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
-									},
-									{
-										id: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
-										text: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
-									},
-									{
-										id: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
-										text: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
-									},
-									{
-										id: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
-										text: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
-									},
-									{
-										id: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
-										text: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
-									},
-									{
-										id: '13.5',
-										text: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
-									},
-									{
-										id: '17.5',
-										text: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
-									},
-									{
-										id: 'Lv1 Norm S. (3.6x Bullets Loaded)',
-										text: 'Lv1 Norm S. (3.6x Bullets Loaded)',
-									},
-									{
-										id: 'Lv2 Norm S. (8.4x Bullets Loaded)',
-										text: 'Lv2 Norm S. (8.4x Bullets Loaded)',
-									},
-									{
-										id: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
-										text: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
-									},
-									{
-										id: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
-										text: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
-									},
-									{
-										id: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
-										text: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
-									},
-									{
-										id: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
-										text: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
-									},
-									{
-										id: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
-										text: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
-									},
-									{
-										id: '25.2',
-										text: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
-									},
-									{
-										id: '29.4',
-										text: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
-									},
-									{
-										id: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
-										text: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
-									},
-									{
-										id: '18.9',
-										text: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
-									},
-									{
-										id: '24.5',
-										text: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
-									},
-								]}
-							/>
-
-							<Dropdown
-								titleText="Bow Coatings Multiplier"
-								bind:selectedId={inputBowCoatingsMultiplier}
-								items={[
-									{ id: 'None', text: 'None' },
-									{ id: 'Power Bottle (1.6x)', text: 'Power Bottle (1.6x)' },
-									{
-										id: 'P. Bottle + Bow Hiden (1.8x)',
-										text: 'P. Bottle + Bow Hiden (1.8x)',
-									},
-									{ id: 'P. + Origin (1.7x)', text: 'P. + Origin (1.7x)' },
-									{
-										id: 'P. + Origin + Hiden (1.9x)',
-										text: 'P. + Origin + Hiden (1.9x)',
-									},
-									{ id: 'Status Bottle (1.5x)', text: 'Status Bottle (1.5x)' },
-									{
-										id: 'S. Bottle + Hiden (1.7x)',
-										text: 'S. Bottle + Hiden (1.7x)',
-									},
-									{
-										id: 'S. Bottle + Origin (1.6x)',
-										text: 'S. Bottle + Origin (1.6x)',
-									},
-									{
-										id: 'S. + Origin + Hiden (1.8x)',
-										text: 'S. + Origin + Hiden (1.8x)',
-									},
-									{
-										id: 'Non-G Power Bottle (1.5x)',
-										text: 'Non-G Power Bottle (1.5x)',
-									},
-									{
-										id: 'Choose a level lower for Non-G',
-										text: 'Choose a level lower for Non-G',
-									},
-								]}
-							/>
-
-							<Dropdown
-								titleText="Charge Multiplier"
-								bind:selectedId={inputChargeMultiplier}
-								items={[
-									{ id: 'Lv1 (0.4x / 0.7x)', text: 'Lv1 (0.4x / 0.7x)' },
-									{ id: 'Lv2 (1.0x / 0.95x) ', text: 'Lv2 (1.0x / 0.95x) ' },
-									{ id: 'Lv3 (1.5x / 1.2x)', text: 'Lv3 (1.5x / 1.2x)' },
-									{ id: 'Lv4 (1.85x / 1.334x)', text: 'Lv4 (1.85x / 1.334x)' },
-									{
-										id: 'Sniper Lv4 (1.0x / 1.0x)',
-										text: 'Sniper Lv4 (1.0x / 1.0x)',
-									},
-									{
-										id: 'Sniper Lv5 (1.125x / 1.1x)',
-										text: 'Sniper Lv5 (1.125x / 1.1x)',
-									},
-									{
-										id: 'Uncharged Rising Shot (0.4x / 1.0x)',
-										text: 'Uncharged Rising Shot (0.4x / 1.0x)',
-									},
-									{
-										id: 'Charged Rising Shot (1.0x / 1.5x)',
-										text: 'Charged Rising Shot (1.0x / 1.5x)',
-									},
-									{
-										id: 'Crouched Lv1 (0.48x / 0.7x)',
-										text: 'Crouched Lv1 (0.48x / 0.7x)',
-									},
-									{
-										id: 'Crouched Lv2 (1.3x / 0.8x) ',
-										text: 'Crouched Lv2 (1.3x / 0.8x) ',
-									},
-									{
-										id: 'Crouched Lv3 (2.1x / 1.2x)',
-										text: 'Crouched Lv3 (2.1x / 1.2x)',
-									},
-									{
-										id: 'Crouched Lv4 (2.59x / 1.334x)',
-										text: 'Crouched Lv4 (2.59x / 1.334x)',
-									},
-								]}
-							/>
-
-							<Dropdown
-								titleText="Quick Shot"
-								bind:selectedId={inputQuickShot}
-								items={[
-									{ id: 'Normal (All 1.0x)', text: 'Normal (All 1.0x)' },
-									{
-										id: '1',
-										text: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
-									},
-									{
-										id: '2',
-										text: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
-									},
-								]}
-							/>
-						</div>
-					</div>
+					{/if}
 					<div class="input-section">
 						<div class="small-header">🐲 Element</div>
 						<div class="inputs-group-column">
