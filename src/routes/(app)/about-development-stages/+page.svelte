@@ -44,8 +44,7 @@
 		detail a clear development process so users can know what to expect during
 		each development phase. For the specifics of when a stage finishes and the
 		next one starts, see the milestones <Link
-			href="https://github.com/DorielRivalet/frontier-compendium/milestones"
-			>here</Link
+			href="https://github.com/DorielRivalet/wycademy/milestones">here</Link
 		>.
 	</p>
 

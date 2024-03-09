@@ -2329,9 +2329,7 @@
 
 		let a = document.createElement('a'); // create a new <a> element
 		a.href = url; // set the href of the <a> element to the URL
-		a.download = `frontier-compendium-snek-history-logs-${formatDate(
-			new Date(),
-		)}.txt`; // set the download attribute, so clicking the link will download the text file
+		a.download = `wycademy-snek-history-logs-${formatDate(new Date())}.txt`; // set the download attribute, so clicking the link will download the text file
 		a.click(); // programmatically click the <a> element to trigger the download
 	}
 

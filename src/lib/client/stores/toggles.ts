@@ -49,7 +49,7 @@ function randomNotification() {
 		body: notifBody,
 		icon: notifImg,
 	};
-	new Notification('Frontier Compendium', options);
+	new Notification('Wycademy', options);
 }
 
 export function onSoundToggle(e: { detail: { toggled: boolean } }) {

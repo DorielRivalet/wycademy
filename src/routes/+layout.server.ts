@@ -35,7 +35,7 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 
 	try {
 		const res = await fetch(
-			`https://api.github.com/repos/DorielRivalet/frontier-compendium/commits?path=src/routes${path}/%2Bpage.svelte`,
+			`https://api.github.com/repos/DorielRivalet/wycademy/commits?path=src/routes${path}/%2Bpage.svelte`,
 		);
 
 		// public, max-age=60, s-maxage=60

@@ -21,7 +21,7 @@ console.log('page.server.ts');
 
 // export const load: PageServerLoad = async ({ url }) => {
 // 	console.log('async page server load');
-// 	const titleName = `Frontier Compendium - ${deslugify(url.pathname)}`;
+// 	const titleName = `Wycademy - ${deslugify(url.pathname)}`;
 // 	return {
 // 		title: titleName,
 // 	};
