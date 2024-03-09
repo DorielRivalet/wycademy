@@ -563,3 +563,18 @@ export type FrontierMotionValues = {
 	name: FrontierWeaponName;
 	sections: FrontierMotionValueSection[];
 };
+
+export type FrontierArmorSkillTreeValues = {
+	name: FrontierArmorSkillTree;
+	values: FrontierArmorSkillTreeValue[];
+};
+
+export type FrontierArmorSkillTreeValue = {
+	name: FrontierArmorSkillName;
+	value: number;
+};
+
+export type DropdownItemOption = {
+	name: string;
+	value: number;
+};

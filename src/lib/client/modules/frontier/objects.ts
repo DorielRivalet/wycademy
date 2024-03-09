@@ -7,10 +7,12 @@
 // if bitfields are not needed, make an object instead.
 
 import type {
+	DropdownItemOption,
 	FrontierArmor,
 	FrontierArmorClass,
 	FrontierArmorGRLevel,
 	FrontierArmorLevel,
+	FrontierArmorSkillTreeValues,
 	FrontierArmorType,
 	FrontierBowArcShot,
 	FrontierBowCharge,
@@ -2450,18 +2452,948 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 	},
 ];
 
-export const affinityMap = {
-	starvingWolf: {
-		true: 50,
-		false: 0,
+export const affinityMap: DropdownItemOption[] = [
+	{
+		name: 'None (+0 / +0.00x)',
+		value: 0,
 	},
-	ceaseless: {
-		1: 35,
-		2: 50,
-		3: 60,
-		default: 0,
+	{
+		name: 'Starving Wolf+1 (+50% / +0.00x)',
+		value: 50,
 	},
-} as const;
+	{
+		name: 'Starving Wolf+2 (+50% / +0.10x)',
+		value: 50,
+	},
+	{
+		name: 'None (+0)',
+		value: 0,
+	},
+	{
+		name: 'Affinity +20% (+20%)',
+		value: 20,
+	},
+	{
+		name: 'Affinity +24% (+24%)',
+		value: 24,
+	},
+	{
+		name: 'Affinity +26% (+26%)',
+		value: 26,
+	},
+	{
+		name: 'Below Blue or Gunners (+0%)',
+		value: 0,
+	},
+	{
+		name: 'Blue (+5%)',
+		value: 5,
+	},
+	{
+		name: 'White Upwards (+10%)',
+		value: 10,
+	},
+	{
+		name: 'None',
+		value: 0,
+	},
+	{
+		name: 'Expert +1 (+10%)',
+		value: 10,
+	},
+	{
+		name: 'Expert +2 (+20%)',
+		value: 20,
+	},
+	{
+		name: 'Expert +3 (+30%)',
+		value: 30,
+	},
+	{
+		name: 'Expert +4 (+40%)',
+		value: 40,
+	},
+	{
+		name: 'Expert +5 (+50%)',
+		value: 50,
+	},
+	{
+		name: 'Determination (+100%)',
+		value: 100,
+	},
+	{
+		name: 'Critical Conversion (+30%)',
+		value: 30,
+	},
+	{
+		name: 'None or Determination',
+		value: 0,
+	},
+	{
+		name: 'Issen +1 (+5% / +0.10x)',
+		value: 5,
+	},
+	{
+		name: 'Issen +2 (+10% / +0.15x)',
+		value: 10,
+	},
+	{
+		name: 'Issen +3 (+20% / +0.25x)',
+		value: 20,
+	},
+	{
+		name: 'None (+0% / +0.00x)',
+		value: 0,
+	},
+	{
+		name: '1.8x LBG & Bow Crit Distance',
+		value: 1.8,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+	{
+		name: 'inputStarvingWolf',
+		value: 0,
+	},
+] as const;
 
 /*
 // It requires an extra line to pull out the values
