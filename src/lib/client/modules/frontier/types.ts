@@ -18,6 +18,8 @@ import type {
 export type FrontierRarity = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 export type FrontierElement =
 	| ''
+	| 'None'
+	| 'Raw'
 	| 'Fire'
 	| 'Water'
 	| 'Thunder'
@@ -43,6 +45,7 @@ export type FrontierElement =
 	| "Emperor's Roar";
 export type FrontierStatus =
 	| ''
+	| 'None'
 	| 'Poison'
 	| 'Paralysis'
 	| 'Sleep'

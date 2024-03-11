@@ -1039,7 +1039,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13(5)･21',
 					},
 					{ name: 'Evade Slash', animation: '', values: '17' },
-					{ name: 'Sigil Additional	', animation: '', values: '17' },
+					{ name: 'Sigil Additional', animation: '', values: '17' },
 				],
 			},
 		],
@@ -1704,7 +1704,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 				],
 			},
 			{
-				name: 'Charge Attack Up +1',
+				name: 'Long Mode Charge Attack Up +1',
 				motionValues: [
 					{ name: 'Standard 2 Lv1', animation: '', values: '12(8)' },
 					{ name: 'Standard 2 Lv2', animation: '', values: '41(22)' },
@@ -1715,7 +1715,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 				],
 			},
 			{
-				name: 'Charge Attack Up +2',
+				name: 'Long Mode Charge Attack Up +2',
 				motionValues: [
 					{ name: 'Standard 2 Lv1', animation: '', values: '13(8)' },
 					{ name: 'Standard 2 Lv2', animation: '', values: '42(22)' },
@@ -1796,6 +1796,93 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '83 (5 hits) (Orig: 116)',
 					},
+				],
+			},
+
+			{
+				name: 'Short Mode',
+				motionValues: [
+					{ name: 'Unsheathe', animation: '', values: '28(12)' },
+					{ name: 'Standard 1', animation: '', values: '14(6)' },
+					{ name: 'Standard 2 Lv1', animation: '', values: '11(8)' },
+					{ name: 'Standard 2 Lv2', animation: '', values: '38(22)' },
+					{ name: 'Standard 2 Lv3', animation: '', values: '58(32)' },
+					{ name: 'EX Pursuit 1', animation: '', values: '8(7)' },
+					{ name: 'EX Pursuit 2', animation: '', values: '23(20)' },
+					{ name: 'EX Pursuit 3', animation: '', values: '33(30)' },
+					{ name: 'Standard 2 & EX Lv1', animation: '', values: '11(8)･8(7)' },
+					{
+						name: 'Standard 2 & EX Lv2',
+						animation: '',
+						values: '38(8)･23(20)',
+					},
+					{
+						name: 'Standard 2 & EX Lv3',
+						animation: '',
+						values: '58(8)･33(30)',
+					},
+					{ name: 'Standard 3', animation: '', values: '18(6)' },
+					{ name: 'Standard 4', animation: '', values: '9x2(7)' },
+					{ name: 'Continuous Thrust 1', animation: '', values: '11(3)･12(3)' },
+					{ name: 'Continuous Thrust 2', animation: '', values: '10x4(3)' },
+					{ name: 'Continuous Thrust 3', animation: '', values: '40(12)' },
+					{ name: 'EX Evade (Back)', animation: '', values: '34(20)' },
+					{ name: 'EX Evade (Side)', animation: '', values: '20(20)･20(10)' },
+					{ name: 'EX Evade (Forward)', animation: '', values: '24(15)' },
+					{ name: 'Aerial EX Evade', animation: '', values: '16(8)･16(8)' },
+					{
+						name: 'Dash Tonfa Rotation',
+						animation: '',
+						values: '3x4(2)･10x2(4)',
+					},
+					{ name: 'Dash Kick', animation: '', values: '7x2(3)[K]･12(4)･20(4)' },
+					{ name: 'Special 1', animation: '', values: '11x2(2)[K]' },
+					{ name: 'Special 2', animation: '', values: '10(10)' },
+					{ name: 'Special 3', animation: '', values: '9(6)･12(8)' },
+					{ name: 'Special 4', animation: '', values: '26(24)' },
+					{
+						name: 'Special 5',
+						animation: '',
+						values: '16(15)･11x4(13)･24(20)',
+					},
+					{ name: 'Special 6', animation: '', values: '19x2(2)[K]' },
+					{ name: 'Jump Evasion', animation: '', values: '5x2(2)[K]' },
+					{ name: 'Aerial 1', animation: '', values: '15(14)' },
+					{ name: 'Aerial 2', animation: '', values: '10x2(13)' },
+					{ name: 'Aerial 3', animation: '', values: '15(11)[K]･16(11)' },
+					{ name: 'Aerial 1-3 Combo', animation: '', values: '66 (5 hits)' },
+					{ name: 'Glide Kick (Airtime+)', animation: '', values: '14(14)[K]' },
+					{ name: 'Ryuuki', animation: '', values: '1x2･40(2)' },
+					{ name: 'Aerial Ryuuki', animation: '', values: '1x2･30(2)' },
+					{ name: 'Boxing Dance 4 Hits', animation: '', values: '12(2)' },
+					{ name: 'Boxing Dance 8 Hits', animation: '', values: '14(2)' },
+					{ name: 'Boxing Dance 12 Hits', animation: '', values: '16(2)' },
+					{
+						name: 'Boxing Dance 12 Hit Combo',
+						animation: '',
+						values: '168(24)',
+					},
+					{ name: 'Boxing Dance 13 Hits ~', animation: '', values: '28(2)' },
+					{ name: 'Release', animation: '', values: '30(10)' },
+					{ name: '~ Burst ~ 3 Hits', animation: '', values: 'Bomb 50(5)' },
+					{ name: '~ Burst ~ 11 Hits', animation: '', values: 'Bomb 100(5)' },
+					{ name: '~ Burst ~ 12 Hits+', animation: '', values: 'Bomb 200(5)' },
+				],
+			},
+			{
+				name: 'Short Mode Charge Attack Up +1',
+				motionValues: [
+					{ name: 'Standard 2 Lv1', animation: '', values: '12(8)' },
+					{ name: 'Standard 2 Lv2', animation: '', values: '41(22)' },
+					{ name: 'Standard 2 Lv3', animation: '', values: '62(32)' },
+				],
+			},
+			{
+				name: 'Short Mode Charge Attack Up +2',
+				motionValues: [
+					{ name: 'Standard 2 Lv1', animation: '', values: '13(8)' },
+					{ name: 'Standard 2 Lv2', animation: '', values: '42(22)' },
+					{ name: 'Standard 2 Lv3', animation: '', values: '65(32)' },
 				],
 			},
 		],
@@ -2161,12 +2248,6 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		name: 'Light Bowgun',
 		sections: [
 			{
-				name: 'Melee',
-				motionValues: [
-					{ name: 'Melee Attacks', animation: '', values: '5･5･10' },
-				],
-			},
-			{
 				name: 'Shots',
 				motionValues: [
 					{ name: 'LV1 Norm S.', animation: '', values: '6' },
@@ -2273,6 +2354,12 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '1 (Ele Weakness +10)',
 					},
+				],
+			},
+			{
+				name: 'Melee',
+				motionValues: [
+					{ name: 'Melee Attacks', animation: '', values: '5･5･10' },
 				],
 			},
 		],
@@ -2389,18 +2476,6 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		name: 'Bow',
 		sections: [
 			{
-				name: 'Melee',
-				motionValues: [
-					{ name: 'Melee Attacks', animation: '', values: '10･10･18' },
-					{ name: 'Shoryuken', animation: '', values: '12x2･10x2･31･10' },
-					{
-						name: 'Shoryuken (Sigil)',
-						animation: '',
-						values: '17x2･15x2･41･15',
-					},
-				],
-			},
-			{
 				name: 'Shots',
 				motionValues: [
 					{ name: 'Rapid LV1', animation: '', values: '14' },
@@ -2473,6 +2548,18 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Piercing Sniper Shot Lv4',
 						animation: '',
 						values: '10x5･25･10･5･4･2',
+					},
+				],
+			},
+			{
+				name: 'Melee',
+				motionValues: [
+					{ name: 'Melee Attacks', animation: '', values: '10･10･18' },
+					{ name: 'Shoryuken', animation: '', values: '12x2･10x2･31･10' },
+					{
+						name: 'Shoryuken (Sigil)',
+						animation: '',
+						values: '17x2･15x2･41･15',
 					},
 				],
 			},
@@ -2664,10 +2751,6 @@ export const multipliedBaseDropdownItems: DropdownItemOption[] = [
 	},
 	{
 		name: 'None (1x)',
-		value: 1,
-	},
-	{
-		name: 'None (x1 Ele & Status)',
 		value: 1,
 	},
 	{
@@ -2873,15 +2956,15 @@ export const multipliedBaseDropdownItems: DropdownItemOption[] = [
 	},
 	{
 		name: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)', // TODO
-		value: 0,
+		value: 70,
 	},
 	{
 		name: '2nd Stage (+100 / 1.10x Ele & Status / +25% Affinity)',
-		value: 0,
+		value: 100,
 	},
 	{
 		name: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
-		value: 0,
+		value: 180,
 	},
 	{
 		name: '1 Minute (+20)',
@@ -2975,9 +3058,91 @@ export const multipliedBaseDropdownItems: DropdownItemOption[] = [
 		name: 'Active (+100)',
 		value: 100,
 	},
+
+	{ name: 'None', value: 0 }, // TODO
+	{
+		name: '1 Block (+40 / +30 / +20)',
+		value: 1,
+	},
+	{
+		name: '2 Blocks (+80 / +60 / +40)',
+		value: 2,
+	},
+	{
+		name: '3 Blocks (+120 / +90 / +60)',
+		value: 3,
+	},
+	{
+		name: '4 Blocks (+160 / +120 / +80)',
+		value: 4,
+	},
+	{
+		name: '5 Blocks (+200 / +150 / +100)',
+		value: 5,
+	},
+	{
+		name: '6 Blocks (+220 / +165 / +110)',
+		value: 6,
+	},
+	{
+		name: '7 Blocks (+240 / +180 / +120)',
+		value: 7,
+	},
+	{
+		name: '8 Blocks (+260 / +195 / +130)',
+		value: 8,
+	},
+	{
+		name: '9 Blocks (+280 / +210 / +140)',
+		value: 9,
+	},
+	{
+		name: '10 Blocks (+300 / +225 / +150)',
+		value: 10,
+	},
+	{
+		name: '1 Block (+70 / +50 / +30)',
+		value: 11,
+	},
+	{
+		name: '2 Blocks (+140 / +100 / +60)',
+		value: 12,
+	},
+	{
+		name: '3 Blocks (+210 / +150 / +90)',
+		value: 13,
+	},
+	{
+		name: '4 Blocks (+240 / +175 / +110)',
+		value: 14,
+	},
+	{
+		name: '5 Blocks (+270 / +200 / +130)',
+		value: 15,
+	},
+	{
+		name: '6 Blocks (+300 / +225 / +150)',
+		value: 16,
+	},
 ] as const;
 
 export const multipliersDropdownItems: DropdownItemOption[] = [
+	{
+		name: 'None (1x)',
+		value: 1,
+	},
+	{
+		name: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)',
+		value: 1.05,
+	},
+	{
+		name: '2nd Stage (+100 / 1.10x Ele & Status / +25% Affinity)',
+		value: 1.1,
+	},
+	{
+		name: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
+		value: 1.2,
+	},
 	{
 		name: 'G Rank Atk Sm (x1.10)',
 		value: 1.1,
@@ -3090,6 +3255,10 @@ export const multipliersDropdownItems: DropdownItemOption[] = [
 
 export const flatAdditionsDropdownItems: DropdownItemOption[] = [
 	{
+		name: 'None',
+		value: 0,
+	},
+	{
 		name: '1 Storm / Suprem / Burst Piece (+15)',
 		value: 15,
 	},
@@ -3176,6 +3345,10 @@ export const flatAdditionsDropdownItems: DropdownItemOption[] = [
 ] as const;
 
 export const elementalSkillsDropdownItems: DropdownItemOption[] = [
+	{
+		name: 'None (1x)',
+		value: 1,
+	},
 	{
 		name: 'Small or Halk Drink (1.1x)',
 		value: 1.1,
@@ -3281,6 +3454,34 @@ export const blademasterDropdownItems: DropdownItemOption[] = [
 ] as const;
 
 export const gunnerDropdownItems: DropdownItemOption[] = [
+	{ name: 'Not Compressed (0x)', value: 0 },
+	{ name: 'Lv1 Norm S. (2.4x Bullets Loaded)', value: 2.4 },
+	{ name: 'Lv2 Norm S. (6.0x Bullets Loaded)', value: 6.0 },
+	{ name: 'Lv3 Norm S. (6.0x Bullets Loaded x n)', value: 6.0 },
+	{ name: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)', value: 5.0 },
+	{ name: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)', value: 4.5 },
+	{ name: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)', value: 3.5 },
+	{ name: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)', value: 15.0 },
+	{ name: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)', value: 18.0 },
+	{ name: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)', value: 21.0 },
+	{ name: 'Lv1 Pellet S. (3x Bullets Loaded x 3)', value: 9 },
+	{ name: 'Lv2 Pellet S. (3x Bullets Loaded x 4)', value: 12 },
+	{ name: 'Lv3 Pellet S. (3x Bullets Loaded x 5)', value: 15 },
+	{ name: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)', value: 10 },
+	{ name: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)', value: 13.5 },
+	{ name: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)', value: 17.5 },
+	{ name: 'Lv1 Norm S. (3.6x Bullets Loaded)', value: 3.1 },
+	{ name: 'Lv2 Norm S. (8.4x Bullets Loaded)', value: 8.4 },
+	{ name: 'Lv3 Norm S. (8.4x Bullets Loaded x n)', value: 8.4 },
+	{ name: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)', value: 7 },
+	{ name: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)', value: 6.3 },
+	{ name: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)', value: 4.9 },
+	{ name: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)', value: 21 },
+	{ name: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)', value: 25.2 },
+	{ name: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)', value: 29.4 },
+	{ name: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)', value: 14 },
+	{ name: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)', value: 18.9 },
+	{ name: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)', value: 24.5 },
 	{
 		name: '1.8x LBG & Bow Crit Distance',
 		value: 1.8,
@@ -3683,51 +3884,51 @@ export const monsterDropdownOptions: DropdownItemOption[] = [
 
 export const hitzoneValueModifiersDropdownItems: DropdownItemOption[] = [
 	{
-		name: 'Active (+5 on raw hitboxes)',
+		name: 'Active (+5 on raw hitzones)',
 		value: 5,
 	},
 	{
-		name: 'Exploit Weakness (+5 on 35+ raw hitboxes)',
+		name: 'Exploit Weakness (+5 on 35+ raw hitzones)',
 		value: 5,
 	},
 	{
-		name: 'Determination (+5 on raw hitboxes)',
+		name: 'Determination (+5 on raw hitzones)',
 		value: 5,
 	},
 	{
-		name: 'ZZ Exploit Weakness (+5 on 30+ raw hitboxes)',
+		name: 'ZZ Exploit Weakness (+5 on 30+ raw hitzones)',
 		value: 5,
 	},
 	{
-		name: 'Active (+5 Raw Hitboxes)',
+		name: 'Active (+5 Raw Hitzones)',
 		value: 5,
 	},
 	{
-		name: 'Raviente (+2 Raw Hitboxes)',
+		name: 'Raviente (+2 Raw Hitzones)',
 		value: 2,
 	},
 	{
-		name: 'Raw Acid (+10 raw hitboxes)',
+		name: 'Raw Acid (+10 raw hitzones)',
 		value: 10,
 	},
 	{
-		name: 'Elemental Exploit (+X to 20+ ele hitboxes)', // TODO
+		name: 'Elemental Exploit (+X to 20+ ele hitzones)', // TODO
 		value: 0,
 	},
 	{
-		name: 'Dissolver Up (+X to 15+ ele hitboxes)',
+		name: 'Dissolver Up (+X to 15+ ele hitzones)',
 		value: 0,
 	},
 	{
-		name: 'Determination (+X to ele hitboxes)',
+		name: 'Determination (+X to ele hitzones)',
 		value: 0,
 	},
 	{
-		name: 'Raw Weakness (+2 on Raw Hitboxes)',
+		name: 'Raw Weakness (+2 on Raw Hitzones)',
 		value: 2.0,
 	},
 	{
-		name: 'Elemental Weakness (+4 on all Elemental Hitboxes)',
+		name: 'Elemental Weakness (+4 on all Elemental Hitzones)',
 		value: 4.0,
 	},
 	{
@@ -3735,7 +3936,7 @@ export const hitzoneValueModifiersDropdownItems: DropdownItemOption[] = [
 		value: 0,
 	},
 	{
-		name: 'In Crit Distance (+5 on raw hitboxes)',
+		name: 'In Crit Distance (+5 on raw hitzones)',
 		value: 5,
 	},
 ] as const;
