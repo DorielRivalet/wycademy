@@ -13,6 +13,12 @@
 		missionRequirementAttackCeilings,
 		gunlanceShellValues,
 		blademasterDropdownItems,
+		elementalSkillsDropdownItems,
+		otherDropdownItems,
+		elementMultipliers,
+		hitzoneValueModifiersDropdownItems,
+		statusSkillsDropdownItems,
+		gunnerDropdownItems,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -34,9 +40,12 @@
 	import pageThumbnail from '$lib/client/images/icon/pvp.webp';
 	import type { FrontierWeaponClass, FrontierWeaponName } from 'ezlion';
 	import type {
+		FrontierElement,
 		FrontierMotionValue,
 		FrontierRarity,
+		FrontierStatus,
 		FrontierWeapon,
+		FrontierWeaponType,
 	} from '$lib/client/modules/frontier/types';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
@@ -51,8 +60,6 @@
 	import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
 	import DocumentDownload from 'carbon-icons-svelte/lib/DocumentDownload.svelte';
-
-	type dropdownItem = { id: string; text: string };
 
 	type DataTableKey = string;
 
@@ -154,10 +161,66 @@
 		}
 	}
 
+	function getElementMultiplier(
+		elementSlot: FrontierElement,
+		inputElement: FrontierElement,
+	) {
+		switch (elementSlot) {
+			case 'Fire':
+				return (
+					elementMultipliers.find((w) => w.name === inputElement)
+						?.fireMultiplier || 0
+				);
+			case 'Water':
+				return (
+					elementMultipliers.find((w) => w.name === inputElement)
+						?.waterMultiplier || 0
+				);
+			case 'Thunder':
+				return (
+					elementMultipliers.find((w) => w.name === inputElement)
+						?.thunderMultiplier || 0
+				);
+			case 'Ice':
+				return (
+					elementMultipliers.find((w) => w.name === inputElement)
+						?.iceMultiplier || 0
+				);
+			case 'Dragon':
+				return (
+					elementMultipliers.find((w) => w.name === inputElement)
+						?.dragonMultiplier || 0
+				);
+			default:
+				return 0;
+		}
+	}
+
+	function getStatusAssault(
+		weaponType: FrontierWeaponName,
+		statusType: FrontierStatus,
+	) {
+		if (statusType === 'Poison') {
+			return (
+				WeaponTypes.find((w) => w.name === weaponType)?.statusAssaultPoison || 0
+			);
+		} else if (statusType === 'Paralysis') {
+			return (
+				WeaponTypes.find((w) => w.name === weaponType)
+					?.statusAssaultParalysis || 0
+			);
+		} else {
+			return 0;
+		}
+	}
+
 	function getWeaponSectionMotionValues(
 		weaponName: FrontierWeaponName,
 		section: string,
 	) {
+		console.log('hello');
+		let weaponClass = getWeaponClass(weaponName);
+
 		let defaultResult = [
 			{
 				id: '',
@@ -232,22 +295,584 @@
 			dragon: string;
 		}[] = [];
 
+		let outputTotal = 0;
+		let statusUsedSA = 0;
+
+		// hitzone preprocessing
+		let elementHitzoneFireMultiplier = getElementalExploit(
+			weaponClass,
+			inputNumberFireHitzone,
+		);
+		let elementHitzoneWaterMultiplier = getElementalExploit(
+			weaponClass,
+			inputNumberWaterHitzone,
+		);
+		let elementHitzoneThunderMultiplier = getElementalExploit(
+			weaponClass,
+			inputNumberThunderHitzone,
+		);
+		let elementHitzoneIceMultiplier = getElementalExploit(
+			weaponClass,
+			inputNumberIceHitzone,
+		);
+		let elementHitzoneDragonMultiplier = getElementalExploit(
+			weaponClass,
+			inputNumberDragonHitzone,
+		);
+		let rawHitzoneMultiplier = getExploitWeakness(
+			weaponClass,
+			inputNumberRawHitzone,
+		);
+
+		let fireValueMultiplier = 0;
+		let waterValueMultiplier = 0;
+		let thunderValueMultiplier = 0;
+		let iceValueMultiplier = 0;
+		let dragonValueMultiplier = 0;
+		let aoeElement =
+			50 * outputAOEElementCount + inputNumberAOEElementSigil * 50;
+		let zenithElementMultiplier =
+			1 + (1.3 + inputNumberZenithElementSigil) * 0.1;
+		if (inputNumberZenithElementSigil === 0) {
+			zenithElementMultiplier = 1;
+		}
+		if (outputAOEElementCount === 0 || inputNumberAOEElementSigil === 0) {
+			aoeElement = 0;
+		}
+
+		let usedFire = Math.floor(
+			((Math.floor(
+				(inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					outputFireMultiplier *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					fireValueMultiplier,
+			) /
+				10) *
+				outputSharpnessMultiplier *
+				elementHitzoneFireMultiplier) /
+				100,
+		);
+		let usedWater = Math.floor(
+			((Math.floor(
+				(inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					outputWaterMultiplier *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					waterValueMultiplier,
+			) /
+				10) *
+				outputSharpnessMultiplier *
+				elementHitzoneWaterMultiplier) /
+				100,
+		);
+		let usedThunder = Math.floor(
+			((Math.floor(
+				(inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					outputThunderMultiplier *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					thunderValueMultiplier,
+			) /
+				10) *
+				outputSharpnessMultiplier *
+				elementHitzoneThunderMultiplier) /
+				100,
+		);
+		let usedIce = Math.floor(
+			((Math.floor(
+				(inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					outputIceMultiplier *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					iceValueMultiplier,
+			) /
+				10) *
+				outputSharpnessMultiplier *
+				elementHitzoneIceMultiplier) /
+				100,
+		);
+		let usedDragon = Math.floor(
+			((Math.floor(
+				(inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					outputDragonMultiplier *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					dragonValueMultiplier,
+			) /
+				10) *
+				outputSharpnessMultiplier *
+				elementHitzoneDragonMultiplier) /
+				100,
+		);
+
+		let monsterTotalDefense =
+			inputNumberDefenseRate * inputNumberMonsterRage * inputNumberHCModifiers;
+
 		sectionEntry.motionValues.forEach((element, index) => {
+			let motionValue = 0;
+			let hitCount = 1;
+			let elementMultiplier = 1;
+			let critMultiplier = 1;
+			let totalAffinityUsed = 0;
+			let SwordAndShieldSigilAdded = 0;
+			let flagMultiplier = 1;
+			let fireOutput = 0;
+			let waterOutput = 0;
+			let thunderOutput = 0;
+			let iceOutput = 0;
+			let dragonOutput = 0;
+			let statusAssaultMultiplier = 1;
+			let statusValueMultiplier = 1;
+			let additional = 0;
+			let statusAssault = 0;
+
+			// handle motions with additional properties
+			if (element.name === 'Custom Motion') {
+				// TODO
+				motionValue = inputNumberTotalMotionValue;
+				hitCount = inputNumberHitCount;
+				elementMultiplier = inputNumberElementalMultiplier;
+			}
+
+			// Reflect
+			if (inputCritMode === 'No Crits') {
+				critMultiplier = 1.0;
+			} else {
+				if (inputCritMode === 'All Crits') {
+					critMultiplier = inputNumberCritMultiplier;
+					totalAffinityUsed = 100;
+				} else if (inputCritMode === 'Averaged') {
+					totalAffinityUsed =
+						outputIssenAffinity +
+						outputSharpnessAffinity +
+						inputNumberUnlimitedSigil + // TODO?
+						inputNumberSigil1Affinity +
+						inputNumberSigil2Affinity +
+						inputNumberSigil3Affinity +
+						outputStyleRankAffinity +
+						outputExpertAffinity +
+						inputNumberNaturalAffinity +
+						outputFlashConversionAffinity +
+						outputStarvingWolfAffinity +
+						outputCeaselessAffinity;
+					if (totalAffinityUsed > 100) {
+						totalAffinityUsed = 100;
+					} else if (totalAffinityUsed < 0) {
+						totalAffinityUsed = 0;
+					}
+					critMultiplier =
+						(totalAffinityUsed / 100) * inputNumberCritMultiplier +
+						(1 - totalAffinityUsed / 100) * 1;
+				} else {
+					critMultiplier = 1.0;
+					totalAffinityUsed = 0;
+				}
+			}
+
+			// SnS Sigil
+			if (element.name === 'Sigil Additional') {
+				if (inputElement === 'None') {
+					SwordAndShieldSigilAdded = Math.floor(
+						Math.floor(
+							outputTrueRaw *
+								0.025 *
+								outputSharpnessMultiplier *
+								(rawHitzoneMultiplier / 100),
+						) * monsterTotalDefense,
+					);
+					critMultiplier = 1.0;
+					motionValue = 0;
+				} else {
+					motionValue = 0;
+					SwordAndShieldSigilAdded = 0;
+				}
+			} else {
+				SwordAndShieldSigilAdded = 0;
+			}
+
+			// GS Charges
+			// TODO object
+			if (element.name === 'Lv1 Charge') {
+				flagMultiplier = 1.1;
+			} else if (element.name === 'Lv2 Charge') {
+				flagMultiplier = 1.2;
+			} else if (element.name === 'Lv3 Charge') {
+				flagMultiplier = 1.3;
+			} else {
+				flagMultiplier = 1;
+			}
+
+			fireOutput = Math.floor(
+				Math.floor(usedFire * monsterTotalDefense) *
+					hitCount *
+					elementMultiplier *
+					outputFencingMultiplier,
+			);
+
+			waterOutput = Math.floor(
+				Math.floor(usedWater * monsterTotalDefense) *
+					hitCount *
+					elementMultiplier *
+					outputFencingMultiplier,
+			);
+			thunderOutput = Math.floor(
+				Math.floor(usedThunder * monsterTotalDefense) *
+					hitCount *
+					elementMultiplier *
+					outputFencingMultiplier,
+			);
+			iceOutput = Math.floor(
+				Math.floor(usedIce * monsterTotalDefense) *
+					hitCount *
+					elementMultiplier *
+					outputFencingMultiplier,
+			);
+			dragonOutput = Math.floor(
+				Math.floor(usedDragon * monsterTotalDefense) *
+					hitCount *
+					elementMultiplier *
+					outputFencingMultiplier,
+			);
+
+			let totalElementalOutput =
+				fireOutput + waterOutput + thunderOutput + iceOutput + dragonOutput;
+
+			// Additional including status assault
+			// Status active, poison or paralysis
+			if (
+				inputStatusAttackUp === 'On (For Sleep add +10 raw hitbox)' &&
+				inputStatus !== 'None'
+			) {
+				// Check for enough to deal status
+				if (inputNumberStatusValue < 10) {
+					statusAssault = 0;
+
+					// Enough to deal
+				} else if (inputNumberStatusValue >= 10) {
+					// Set status multiplier
+					if (outputDrugKnowledgeMultiplier === 1) {
+						statusValueMultiplier = outputDrugKnowledgeMultiplier;
+					} else {
+						statusValueMultiplier = 1;
+					}
+
+					// Set damage multiplier
+					if (inputStatus === 'Poison') {
+						statusAssaultMultiplier = 1.5;
+					} else {
+						statusAssaultMultiplier = 6;
+					}
+
+					statusUsedSA = Math.floor(
+						Math.floor(
+							(inputNumberStatusValue / 10) *
+								outputStatusAttackUpMultiplier *
+								outputStatusGuildPoogieMultiplier *
+								outputStatusSigilMultiplier *
+								outputWeaponStatusModifiers *
+								outputFuriousMultiplier,
+						) * statusValueMultiplier,
+					);
+
+					// Status assault Poison (1.5 x (Poison + Modifier)) * defrate stuff
+					statusAssault = Math.floor(
+						Math.floor(
+							Math.floor(
+								statusAssaultMultiplier *
+									(statusUsedSA + getStatusAssault(inputWeaponType, 'Poison')),
+							) * monsterTotalDefense,
+						) * outputFencingMultiplier,
+					);
+				}
+			} else {
+				statusAssault = 0;
+			}
+
+			if (element.name === '~ Burst ~ 3 Hits') {
+				additional = Math.floor(50 * monsterTotalDefense);
+			} else if (element.name === '~ Burst ~ 11 Hits') {
+				additional = Math.floor(100 * monsterTotalDefense);
+			} else if (element.name === '~ Burst ~ 12 Hits+') {
+				additional = Math.floor(200 * monsterTotalDefense);
+			} else {
+				additional = 0;
+			}
+
+			outputAdditional =
+				(Math.floor(inputNumberOtherAdditional * monsterTotalDefense) +
+					additional +
+					statusAssault +
+					SwordAndShieldSigilAdded) *
+				hitCount;
+
+			// Raw Output
+			let rawOutput = Math.floor(
+				Math.floor(
+					Math.floor(
+						Math.floor(
+							Math.floor(
+								((Math.floor(motionValue * critMultiplier) / 100) *
+									outputFinalAttackValue *
+									outputSharpnessMultiplier *
+									flagMultiplier *
+									outputSwordAndShieldMultiplier *
+									outputOtherMultipliers * // TODO
+									outputMonsterStatusInflictedMultiplier *
+									rawHitzoneMultiplier) /
+									100,
+							) * monsterTotalDefense,
+						),
+					) * outputAbsoluteDefenseMultiplier,
+				) *
+					outputPremiumCourseMultiplier *
+					outputFencingMultiplier,
+			);
+
+			// Final Ouput
+			outputTotal = totalElementalOutput + rawOutput + outputAdditional;
+
+			// Used Values
+			internalFire = Math.floor(
+				(((inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					getElementMultiplier('Fire', inputElement) *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					fireValueMultiplier) /
+					10) *
+					outputSharpnessMultiplier,
+			);
+
+			console.log('-start-');
+			console.log(
+				inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement,
+			);
+			console.log('-1-');
+
+			console.log(getElementMultiplier('Fire', inputElement));
+			console.log('-2-');
+
+			console.log(zenithElementMultiplier);
+			console.log('-3-');
+
+			console.log(outputElementalAttackMultiplier);
+			console.log('-4-');
+
+			console.log(outputHHElementalSongMultiplier);
+			console.log('-5-');
+
+			console.log(outputWeaponElementMultiplier);
+			console.log('-6-');
+
+			console.log(outputFuriousMultiplier);
+			console.log('-7-');
+
+			console.log(fireValueMultiplier);
+			console.log('-8-');
+
+			console.log(outputSharpnessMultiplier);
+			console.log('-end-');
+
+			internalWater = Math.floor(
+				(((inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					getElementMultiplier('Water', inputElement) *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					waterValueMultiplier) /
+					10) *
+					outputSharpnessMultiplier,
+			);
+			internalThunder = Math.floor(
+				(((inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					getElementMultiplier('Thunder', inputElement) *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					thunderValueMultiplier) /
+					10) *
+					outputSharpnessMultiplier,
+			);
+			internalIce = Math.floor(
+				(((inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					getElementMultiplier('Ice', inputElement) *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					iceValueMultiplier) /
+					10) *
+					outputSharpnessMultiplier,
+			);
+			internalDragon = Math.floor(
+				(((inputNumberElementalValueReplacement +
+					inputNumberSigil1Element * 10 +
+					inputNumberSigil2Element * 10 +
+					inputNumberSigil3Element * 10 +
+					inputNumberUnlimitedSigil * 10 +
+					aoeElement) *
+					getElementMultiplier('Dragon', inputElement) *
+					zenithElementMultiplier *
+					outputElementalAttackMultiplier *
+					outputHHElementalSongMultiplier *
+					outputWeaponElementMultiplier *
+					outputFuriousMultiplier *
+					dragonValueMultiplier) /
+					10) *
+					outputSharpnessMultiplier,
+			);
+			internalAttack = Math.floor(
+				outputFinalAttackValue * // TODO?
+					outputSharpnessMultiplier *
+					outputSwordAndShieldMultiplier *
+					outputOtherMultipliers *
+					outputMonsterStatusInflictedMultiplier,
+			);
+
+			internalAffinity = totalAffinityUsed;
+			internalStatus = 0;
+
+			if (inputDrugKnowledge !== 'None (1x)') {
+				internalStatus = Math.floor(
+					Math.floor(
+						inputNumberStatusValue *
+							outputStatusAttackUpMultiplier *
+							outputStatusGuildPoogieMultiplier *
+							outputStatusSigilMultiplier *
+							outputWeaponStatusModifiers *
+							outputFuriousMultiplier,
+					) * outputDrugKnowledgeMultiplier,
+				);
+
+				outputStatusAssault = Math.floor(
+					(statusUsedSA + getStatusAssault(inputWeaponType, inputStatus)) *
+						0.15 *
+						monsterTotalDefense *
+						inputNumberHitCount,
+				);
+			} else {
+				// 1x
+				internalStatus = Math.floor(
+					Math.floor(
+						inputNumberStatusValue *
+							outputStatusAttackUpMultiplier *
+							outputStatusGuildPoogieMultiplier *
+							outputStatusSigilMultiplier *
+							outputWeaponStatusModifiers *
+							outputFuriousMultiplier,
+					),
+				);
+			}
+
 			result.push({
 				id: index.toString(),
 				name: element.name,
 				motion: element.values,
-				raw: '0',
-				element: '0',
-				total: '0',
-				fire: '0',
-				water: '0',
-				thunder: '0',
-				ice: '0',
-				dragon: '0',
+				raw:
+					internalAttack.toString() === 'NaN' ? '0' : internalAttack.toString(),
+				element:
+					totalElementalOutput.toString() === 'NaN'
+						? '0'
+						: internalAttack.toString(),
+				total: outputTotal.toString() === 'NaN' ? '0' : outputTotal.toString(),
+				fire: internalFire.toString() === 'NaN' ? '0' : internalFire.toString(),
+				water:
+					internalWater.toString() === 'NaN' ? '0' : internalWater.toString(),
+				thunder:
+					internalThunder.toString() === 'NaN'
+						? '0'
+						: internalThunder.toString(),
+				ice: internalIce.toString() === 'NaN' ? '0' : internalIce.toString(),
+				dragon:
+					internalDragon.toString() === 'NaN' ? '0' : internalDragon.toString(),
 			});
 		});
-
+		//  outputStatusAssault = 0;
+		/*		let internalFire = 0;
+	let internalWater = 0;
+	let internalIce = 0;
+	let internalThunder = 0;
+	let internalDragon = 0;
+	let finalTrueRawDisplay = 0;
+	let finalTrueRaw = 0;
+	let missionsNeeded = 0;
+	let internalStatus = 0;
+	let attackCeiling = 0;
+	let internalAttack = 0;
+	let internalAffinity = 0;*/
 		return result;
 	}
 
@@ -401,10 +1026,9 @@
 		// Update individual variables directly
 		inputStyleRankAffinity =
 			newInputs.inputStyleRankAffinity || inputStyleRankAffinity;
-		console.log(newInputs.inputStyleRankAffinity);
-		console.log(inputStyleRankAffinity);
 
-		inputMeleeSharpness = newInputs.inputMeleeSharpness || inputMeleeSharpness;
+		inputMeleeSharpnessAffinity =
+			newInputs.inputMeleeSharpnessAffinity || inputMeleeSharpnessAffinity;
 		inputExpertSkills = newInputs.inputExpertSkills || inputExpertSkills;
 		// Update other variables as needed
 		inputFlashConversion =
@@ -465,8 +1089,9 @@
 		inputIceMultipliers = newInputs.inputIceMultipliers || inputIceMultipliers;
 		inputDragonMultipliers =
 			newInputs.inputDragonMultipliers || inputDragonMultipliers;
-		inputElementalAttack =
-			newInputs.inputElementalAttack || inputElementalAttack;
+		inputElementalAttackMultiplier =
+			newInputs.inputElementalAttackMultiplier ||
+			inputElementalAttackMultiplier;
 		inputHhElementalUp = newInputs.inputHhElementalUp || inputHhElementalUp;
 		inputAbnormality = newInputs.inputAbnormality || inputAbnormality;
 		inputDrugKnowledge = newInputs.inputDrugKnowledge || inputDrugKnowledge;
@@ -474,8 +1099,8 @@
 		inputStatusAttackUp = newInputs.inputStatusAttackUp || inputStatusAttackUp;
 		inputGuildPoogie = newInputs.inputGuildPoogie || inputGuildPoogie;
 		inputStatusSigil = newInputs.inputStatusSigil || inputStatusSigil;
-		inputWeaponModifiers =
-			newInputs.inputWeaponModifiers || inputWeaponModifiers;
+		inputWeaponStatusModifiers =
+			newInputs.inputWeaponStatusModifiers || inputWeaponStatusModifiers;
 		inputWeaponType = newInputs.inputWeaponType || inputWeaponType;
 		inputAoeAttackSigil = newInputs.inputAoeAttackSigil || inputAoeAttackSigil;
 		inputAoeAffinitySigil =
@@ -488,7 +1113,8 @@
 		inputBulletModifier = newInputs.inputBulletModifier || inputBulletModifier;
 		inputShotMultiplier = newInputs.inputShotMultiplier || inputShotMultiplier;
 		inputHbgChargeShot = newInputs.inputHbgChargeShot || inputHbgChargeShot;
-		inputCompressedShot = newInputs.inputCompressedShot || inputCompressedShot;
+		inputCompressedShotMultiplier =
+			newInputs.inputCompressedShotMultiplier || inputCompressedShotMultiplier;
 		inputCompressedElementShot =
 			newInputs.inputCompressedElementShot || inputCompressedElementShot;
 		inputBowCoatingsMultiplier =
@@ -499,8 +1125,8 @@
 		inputElement = newInputs.inputElement || inputElement;
 		inputAoeElementSigil =
 			newInputs.inputAoeElementSigil || inputAoeElementSigil;
-		inputWeaponMultipliers =
-			newInputs.inputWeaponMultipliers || inputWeaponMultipliers;
+		inputWeaponElementMultipliers =
+			newInputs.inputWeaponElementMultipliers || inputWeaponElementMultipliers;
 		inputStatus = newInputs.inputStatus || inputStatus;
 		inputMonsterStatus = newInputs.inputMonsterStatus || inputMonsterStatus;
 		inputThunderClad = newInputs.inputThunderClad || inputThunderClad;
@@ -519,7 +1145,6 @@
 			newInputs.inputAbsoluteDefense || inputAbsoluteDefense;
 		inputPremiumBoost = newInputs.inputPremiumBoost || inputPremiumBoost;
 
-		// TODO number inputs
 		inputNumberCritConversion =
 			newInputs.inputNumberCritConversion || inputNumberCritConversion;
 		inputNumberRoadFloor =
@@ -572,8 +1197,9 @@
 		inputNumberRavientePowerSwordCrystalsMultiplier =
 			newInputs.inputNumberRavientePowerSwordCrystalsMultiplier ||
 			inputNumberRavientePowerSwordCrystalsMultiplier;
-		inputNumberElementalValue =
-			newInputs.inputNumberElementalValue || inputNumberElementalValue;
+		inputNumberElementalValueReplacement =
+			newInputs.inputNumberElementalValueReplacement ||
+			inputNumberElementalValueReplacement;
 		inputNumberSigil1Element =
 			newInputs.inputNumberSigil1Element || inputNumberSigil1Element;
 		inputNumberSigil2Element =
@@ -599,18 +1225,18 @@
 			newInputs.inputNumberMonsterRage || inputNumberMonsterRage;
 		inputNumberHCModifiers =
 			newInputs.inputNumberHCModifiers || inputNumberHCModifiers;
-		inputNumberRawHitbox =
-			newInputs.inputNumberRawHitbox || inputNumberRawHitbox;
-		inputNumberFireHitbox =
-			newInputs.inputNumberFireHitbox || inputNumberFireHitbox;
-		inputNumberWaterHitbox =
-			newInputs.inputNumberWaterHitbox || inputNumberWaterHitbox;
-		inputNumberThunderHitbox =
-			newInputs.inputNumberThunderHitbox || inputNumberThunderHitbox;
-		inputNumberIceHitbox =
-			newInputs.inputNumberIceHitbox || inputNumberIceHitbox;
-		inputNumberDragonHitbox =
-			newInputs.inputNumberDragonHitbox || inputNumberDragonHitbox;
+		inputNumberRawHitzone =
+			newInputs.inputNumberRawHitzone || inputNumberRawHitzone;
+		inputNumberFireHitzone =
+			newInputs.inputNumberFireHitzone || inputNumberFireHitzone;
+		inputNumberWaterHitzone =
+			newInputs.inputNumberWaterHitzone || inputNumberWaterHitzone;
+		inputNumberThunderHitzone =
+			newInputs.inputNumberThunderHitzone || inputNumberThunderHitzone;
+		inputNumberIceHitzone =
+			newInputs.inputNumberIceHitzone || inputNumberIceHitzone;
+		inputNumberDragonHitzone =
+			newInputs.inputNumberDragonHitzone || inputNumberDragonHitzone;
 	}
 
 	function prettyPrintJson(input: string | object) {
@@ -651,44 +1277,26 @@
 		return roadAdvancement;
 	}
 
-	function getFuriousMultiplier(outputFurious: number) {
-		let result = 1;
-		if (outputFurious == 0) {
-			return result;
-		} else if (outputFurious == 70) {
-			return 1.05;
-		} else if (outputFurious == 100) {
-			return 1.1;
-		} else if (outputFurious == 180) {
-			return 1.2;
-		}
-
-		return result;
-	}
-
 	function getDrugKnowledgeAddition(
-		outputDrugKnowledge: number,
-		outputDrugKnowledgeUp: number,
-		outputFurious: number,
-		outputStatusValue: number,
+		outputDrugKnowledgeMultiplier: number,
+		inputStatusValue: number,
 		outputStatusAttack: number,
-		outputStatusGuildPoogie: number,
-		outputStatusSigil: number,
+		outputStatusGuildPoogieMultiplier: number,
+		outputStatusSigilMultiplier: number,
 	) {
 		let drugKnowledgeRaw = 0;
 
-		if (outputDrugKnowledge == 1) {
-			let furious = getFuriousMultiplier(outputFurious) || 1;
+		if (outputDrugKnowledgeMultiplier !== 1) {
 			drugKnowledgeRaw = Math.floor(
 				Math.floor(
-					(outputStatusValue *
-						outputStatusAttack *
-						outputStatusGuildPoogie *
-						outputStatusSigil *
-						furious) /
+					(inputStatusValue * // TODO input?
+						outputStatusAttackUpMultiplier *
+						outputStatusGuildPoogieMultiplier *
+						outputStatusSigilMultiplier *
+						outputFuriousMultiplier) /
 						10,
 				) *
-					outputDrugKnowledgeUp *
+					outputDrugKnowledgeMultiplier *
 					0.658,
 			);
 		}
@@ -703,19 +1311,19 @@
 	) {
 		let result = 0;
 		if (outputCritConversion < 101) {
-			if (outputCritUp == 1) {
+			if (outputCritUp === 1) {
 				result = 0 + Math.floor(Math.sqrt(naturalAffinity) * 5);
-			} else if (outputCritUp == 2) {
+			} else if (outputCritUp === 2) {
 				result = 0 + Math.floor(Math.sqrt(naturalAffinity) * 10);
 			} else {
 				result = 0;
 			}
 		} else {
-			if (outputCritUp == 1) {
+			if (outputCritUp === 1) {
 				result =
 					Math.floor(Math.sqrt(outputCritConversion - 100) * 7) +
 					Math.floor(Math.sqrt(naturalAffinity) * 5);
-			} else if (outputCritUp == 2) {
+			} else if (outputCritUp === 2) {
 				result =
 					Math.floor(Math.sqrt(outputCritConversion - 100) * 7) +
 					Math.floor(Math.sqrt(naturalAffinity) * 10);
@@ -727,13 +1335,14 @@
 		return result;
 	}
 
-	function getLengthAttackValue(outputLengthType: number, trueRaw: number) {
-		let result = 0;
-		if (outputLengthType == 1) {
+	function getLengthAttackValue(outputLengthType: string, trueRaw: number) {
+		let result = trueRaw;
+		if (outputLengthType === 'Active') {
 			result = Math.ceil(trueRaw - (trueRaw * 0.07 + 0.7));
-		} else if (outputLengthType == 2) {
-			result = Math.ceil(trueRaw - (+trueRaw * 0.07 + 1));
-		} else if (outputLengthType == 0) {
+		}
+		// else if (outputLengthType === 2) {
+		// 	result = Math.ceil(trueRaw - (trueRaw * 0.07 + 1));
+		else if (outputLengthType === 'string') {
 			result = trueRaw;
 		}
 
@@ -741,12 +1350,12 @@
 	}
 
 	function getObscurityValue(
-		weaponClass: FrontierWeaponClass,
 		weaponType: FrontierWeaponName,
 		outputObscurityLevel: number,
 	) {
 		let obscurityArray: number[] = [];
 		let obscurity = 0;
+		let weaponClass = getWeaponClass(weaponType);
 
 		if (weaponClass === 'Blademaster') {
 			if (
@@ -840,13 +1449,106 @@
 		return result.toFixed(2);
 	}
 
+	/** Elemental Exploit or Dissolver for melee*/
+	function getElementalExploit(
+		weaponClass: FrontierWeaponClass,
+		hitzone: number,
+	) {
+		// TODO Gunner
+		let result = 0;
+		let modifier = 0;
+		let debuff = 0;
+
+		// TODO to object
+		if (
+			inputWeaponType === 'Sword and Shield' ||
+			inputWeaponType === 'Great Sword' ||
+			inputWeaponType === 'Long Sword' ||
+			inputWeaponType === 'Hammer' ||
+			inputWeaponType === 'Hunting Horn' ||
+			inputWeaponType === 'Lance' ||
+			inputWeaponType === 'Switch Axe F'
+		) {
+			modifier = 15;
+		} else if (
+			inputWeaponType === 'Dual Swords' ||
+			inputWeaponType === 'Gunlance'
+		) {
+			modifier = 10;
+		} else if (inputWeaponType === 'Light Bowgun') {
+			modifier = 10;
+		} else if (inputWeaponType === 'Heavy Bowgun') {
+			modifier = 5;
+		} else if (inputWeaponType === 'Bow') {
+			modifier = 5;
+		}
+
+		if (
+			inputHuntingHornDebuff ===
+				'Elemental Weakness (+4 on all Elemental Hitzones)' ||
+			inputHuntingHornDebuff === 'Both (+4 on Elemental, +2 on Raw)'
+		) {
+			debuff = 4;
+		} else {
+			debuff = 0;
+		}
+
+		if (
+			inputElementalExploiter !== 'Off' &&
+			hitzone + debuff < outputElementalExploiter
+		) {
+			result = debuff + hitzone;
+		} else if (
+			inputElementalExploiter !== 'Off' &&
+			hitzone + debuff >= outputElementalExploiter
+		) {
+			result = debuff + modifier + hitzone;
+		} else if (
+			inputElementalExploiter === 'Determination (+X to ele hitzones)'
+		) {
+			result = debuff + modifier + hitzone;
+		} else {
+			result = debuff + hitzone;
+		}
+		return result;
+	}
+
+	/** Exploit Weakness, Thunder Clad Tonfa Modes*/
+	function getExploitWeakness(
+		weaponClass: FrontierWeaponClass,
+		hitzone: number,
+	) {
+		let modifier =
+			inputHuntingHornDebuff === 'Raw Weakness (+2 on Raw Hitzones)' ||
+			inputHuntingHornDebuff === 'Both (+4 on Elemental, +2 on Raw)'
+				? 2
+				: 0;
+
+		// set initial hitzone
+		let used = hitzone + outputThunderClad + modifier;
+
+		// critical shot, sniper, determination, precision in critical distance
+		if (weaponClass === 'Gunner') {
+			used = used + outputSniper;
+		}
+
+		// check if processed hitzones have been pushed to 35 and then apply Exploit Weakness
+		if (outputExploitWeakness === 5 && (used >= 35 || used >= 30)) {
+			used = used + 5;
+		}
+
+		used = used + outputPointBreakthrough + outputAcidShot;
+
+		return used;
+	}
+
+	/**TODO*/
 	function getFinalAttackValue(
 		additions: number,
 		multipliers: number,
 		weaponTypeMultiplier: number,
 		missionRequirement: Array<number>,
 	) {
-		let lengthUp = 0;
 		let result = Math.floor(additions / multipliers);
 		let bloatedResult = Math.floor(
 			Math.floor(additions + Math.floor(multipliers)) * weaponTypeMultiplier,
@@ -883,6 +1585,11 @@
 			Math.floor(additions + Math.floor(multipliers)) * weaponTypeMultiplier,
 		);
 
+		internalMissionsNeeded = missionsNeededDisplay;
+		internalAttackCeiling = attackCeilingDisplay;
+		internalTrueRawDisplay = bloatedResult;
+		internalTrueRaw = roundedResult;
+
 		return roundedResult;
 	}
 
@@ -896,7 +1603,7 @@
 	let modalNotes = '';
 
 	let inputStyleRankAffinity = 'None';
-	let inputMeleeSharpness = 'Below Blue or Gunners (+0%)';
+	let inputMeleeSharpnessAffinity = 'Below Blue or Gunners (+0%)';
 	let inputExpertSkills = 'None';
 	let inputFlashConversion = 'None';
 	let inputIssenSkills = 'None or Determination';
@@ -944,15 +1651,15 @@
 	let inputThunderMultipliers = 'None (1x)';
 	let inputIceMultipliers = 'None (1x)';
 	let inputDragonMultipliers = 'None (1x)';
-	let inputElementalAttack = 'None (1x)';
+	let inputElementalAttackMultiplier = 'None (1x)';
 	let inputHhElementalUp = 'None (1x)';
 	let inputAbnormality = 'None';
-	let inputDrugKnowledge = 'Standard (0.38x Status)';
+	let inputDrugKnowledge = 'None (1x)';
 	let inputStatusAssault = 'None';
 	let inputStatusAttackUp = 'None (1x)';
 	let inputGuildPoogie = 'None (1x)';
 	let inputStatusSigil = 'None (1x)';
-	let inputWeaponModifiers = 'None (1x)';
+	let inputWeaponStatusModifiers = 'None (1x)';
 	let inputWeaponType: FrontierWeaponName = 'Sword and Shield';
 	let inputAoeAttackSigil = 'None';
 	let inputAoeAffinitySigil = 'None';
@@ -963,15 +1670,15 @@
 	let inputBulletModifier = 'None (1x)';
 	let inputShotMultiplier = 'None (1x)';
 	let inputHbgChargeShot = 'Normal / Charge Lv 0 (x1)';
-	let inputCompressedShot = 'Not Compressed (x1)';
+	let inputCompressedShotMultiplier = 'Not Compressed (0x)';
 	let inputBowCoatingsMultiplier = 'None (1x)';
 	let inputChargeMultiplier = 'Lv4 (1.85x / 1.334x)';
 	let inputQuickShot = 'Normal (All 1.0x)';
 	let inputCompressedElementShot = 'Not Compressed';
-	let inputElement = 'None';
+	let inputElement: FrontierElement = 'None';
 	let inputAoeElementSigil = 'None';
-	let inputWeaponMultipliers = 'None (1x)';
-	let inputStatus = 'None';
+	let inputWeaponElementMultipliers = 'None (1x)';
+	let inputStatus: FrontierStatus = 'None';
 	let inputMonsterStatus = 'None (1x)';
 	let inputThunderClad = 'None';
 	let inputExploitWeakness = 'None';
@@ -983,7 +1690,6 @@
 	let inputAbsoluteDefense = 'Active (1.0x)';
 	let inputPremiumBoost = 'Inactive (1x)';
 
-	// TODO number inputs
 	let inputNumberCritConversion = 0;
 	let inputNumberRoadFloor = 0;
 	let inputNumberConquestAttack = 0;
@@ -1009,7 +1715,7 @@
 	let inputNumberLanceImpactMultiplier = 1;
 	let inputNumberTranscendRawMultiplier = 1;
 	let inputNumberRavientePowerSwordCrystalsMultiplier = 1;
-	let inputNumberElementalValue = 0;
+	let inputNumberElementalValueReplacement = 0;
 	let inputNumberSigil1Element = 0;
 	let inputNumberSigil2Element = 0;
 	let inputNumberSigil3Element = 0;
@@ -1022,18 +1728,36 @@
 	let inputNumberDefenseRate = 0.3;
 	let inputNumberMonsterRage = 1;
 	let inputNumberHCModifiers = 1;
-	let inputNumberRawHitbox = 30;
-	let inputNumberFireHitbox = 30;
-	let inputNumberWaterHitbox = 30;
-	let inputNumberThunderHitbox = 30;
-	let inputNumberIceHitbox = 30;
-	let inputNumberDragonHitbox = 30;
+	let inputNumberRawHitzone = 30;
+	let inputNumberFireHitzone = 30;
+	let inputNumberWaterHitzone = 30;
+	let inputNumberThunderHitzone = 30;
+	let inputNumberIceHitzone = 30;
+	let inputNumberDragonHitzone = 30;
 
 	let inputWeaponMotionValuesSection = 'None';
 
+	let outputAdditional = 0;
+
+	// TODO Reactive
+	let internalFire = 0;
+	let internalWater = 0;
+	let internalIce = 0;
+	let internalThunder = 0;
+	let internalDragon = 0;
+	let internalTrueRawDisplay = 0;
+	let internalTrueRaw = 0;
+	let internalMissionsNeeded = 0;
+	let internalStatus = 0;
+	let internalAttackCeiling = 0;
+	let internalAttack = 0;
+	let internalAffinity = 0;
+
+	let outputStatusAssault = 0;
+
 	$: inputs = {
 		inputStyleRankAffinity: inputStyleRankAffinity,
-		inputMeleeSharpness: inputMeleeSharpness,
+		inputMeleeSharpnessAffinity: inputMeleeSharpnessAffinity,
 		inputExpertSkills: inputExpertSkills,
 		inputFlashConversion: inputFlashConversion,
 		inputIssenSkills: inputIssenSkills,
@@ -1081,7 +1805,7 @@
 		inputThunderMultipliers: inputThunderMultipliers,
 		inputIceMultipliers: inputIceMultipliers,
 		inputDragonMultipliers: inputDragonMultipliers,
-		inputElementalAttack: inputElementalAttack,
+		inputElementalAttackMultiplier: inputElementalAttackMultiplier,
 		inputHhElementalUp: inputHhElementalUp,
 		inputAbnormality: inputAbnormality,
 		inputDrugKnowledge: inputDrugKnowledge,
@@ -1089,7 +1813,7 @@
 		inputStatusAttackUp: inputStatusAttackUp,
 		inputGuildPoogie: inputGuildPoogie,
 		inputStatusSigil: inputStatusSigil,
-		inputWeaponModifiers: inputWeaponModifiers,
+		inputWeaponStatusModifiers: inputWeaponStatusModifiers,
 		inputWeaponType: inputWeaponType,
 		inputAoeAttackSigil: inputAoeAttackSigil,
 		inputAoeAffinitySigil: inputAoeAffinitySigil,
@@ -1100,14 +1824,14 @@
 		inputBulletModifier: inputBulletModifier,
 		inputShotMultiplier: inputShotMultiplier,
 		inputHbgChargeShot: inputHbgChargeShot,
-		inputCompressedShot: inputCompressedShot,
+		inputCompressedShotMultiplier: inputCompressedShotMultiplier,
 		inputCompressedElementShot: inputCompressedElementShot,
 		inputBowCoatingsMultiplier: inputBowCoatingsMultiplier,
 		inputChargeMultiplier: inputChargeMultiplier,
 		inputQuickShot: inputQuickShot,
 		inputElement: inputElement,
 		inputAoeElementSigil: inputAoeElementSigil,
-		inputWeaponMultipliers: inputWeaponMultipliers,
+		inputWeaponElementMultipliers: inputWeaponElementMultipliers,
 		inputStatus: inputStatus,
 		inputMonsterStatus: inputMonsterStatus,
 		inputThunderClad: inputThunderClad,
@@ -1146,7 +1870,7 @@
 		inputNumberTranscendRawMultiplier: inputNumberTranscendRawMultiplier,
 		inputNumberRavientePowerSwordCrystalsMultiplier:
 			inputNumberRavientePowerSwordCrystalsMultiplier,
-		inputNumberElementalValue: inputNumberElementalValue,
+		inputNumberElementalValueReplacement: inputNumberElementalValueReplacement,
 		inputNumberSigil1Element: inputNumberSigil1Element,
 		inputNumberSigil2Element: inputNumberSigil2Element,
 		inputNumberSigil3Element: inputNumberSigil3Element,
@@ -1159,12 +1883,12 @@
 		inputNumberDefenseRate: inputNumberDefenseRate,
 		inputNumberMonsterRage: inputNumberMonsterRage,
 		inputNumberHCModifiers: inputNumberHCModifiers,
-		inputNumberRawHitbox: inputNumberRawHitbox,
-		inputNumberFireHitbox: inputNumberFireHitbox,
-		inputNumberWaterHitbox: inputNumberWaterHitbox,
-		inputNumberThunderHitbox: inputNumberThunderHitbox,
-		inputNumberIceHitbox: inputNumberIceHitbox,
-		inputNumberDragonHitbox: inputNumberDragonHitbox,
+		inputNumberRawHitzone: inputNumberRawHitzone,
+		inputNumberFireHitzone: inputNumberFireHitzone,
+		inputNumberWaterHitzone: inputNumberWaterHitzone,
+		inputNumberThunderHitzone: inputNumberThunderHitzone,
+		inputNumberIceHitzone: inputNumberIceHitzone,
+		inputNumberDragonHitzone: inputNumberDragonHitzone,
 	};
 
 	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
@@ -1172,7 +1896,6 @@
 		inputWeaponType,
 		inputWeaponMotionValuesSection,
 	);
-	$: console.log(inputWeaponType);
 	$: weaponSectionNames = getWeaponSectionNames(inputWeaponType);
 	$: weaponIcon = getWeaponIcon(inputWeaponType);
 	$: inputTextInputs = prettyPrintJson(inputs);
@@ -1180,42 +1903,80 @@
 	$: outputStarvingWolfAffinity =
 		affinityDropdownItems.find((item) => item.name === inputStarvingWolf)
 			?.value || 0;
+
+	$: console.log(`outputStarvingWolfAffinity: ${outputStarvingWolfAffinity}`);
+
 	$: outputCeaselessAffinity =
 		affinityDropdownItems.find((item) => item.name === inputCeaseless)?.value ||
 		0;
+
+	$: console.log(`outputCeaselessAffinity: ${outputCeaselessAffinity}`);
+
 	$: outputFuriousAffinity =
 		affinityDropdownItems.find((item) => item.name === inputFurious)?.value ||
 		0;
+
+	$: console.log(`outputFuriousAffinity: ${outputFuriousAffinity}`);
+
 	$: outputIssenAffinity =
 		affinityDropdownItems.find((item) => item.name === inputIssenSkills)
 			?.value || 0;
+
+	$: console.log(`outputIssenAffinity: ${outputIssenAffinity}`);
+
 	$: outputSharpnessAffinity =
-		affinityDropdownItems.find((item) => item.name === inputSharpness)?.value ||
-		0;
+		affinityDropdownItems.find(
+			(item) => item.name === inputMeleeSharpnessAffinity,
+		)?.value || 0;
+
+	$: console.log(`outputSharpnessAffinity: ${outputSharpnessAffinity}`);
+
 	$: outputStyleRankAffinity =
 		affinityDropdownItems.find((item) => item.name === inputStyleRankAffinity)
 			?.value || 0;
+
+	$: console.log(`outputStyleRankAffinity: ${outputStyleRankAffinity}`);
+
 	$: outputExpertAffinity =
 		affinityDropdownItems.find((item) => item.name === inputExpertSkills)
 			?.value || 0;
+
+	$: console.log(`outputExpertAffinity: ${outputExpertAffinity}`);
+
 	$: outputFlashConversionAffinity =
 		affinityDropdownItems.find((item) => item.name === inputFlashConversion)
 			?.value || 0;
+
+	$: console.log(
+		`outputFlashConversionAffinity: ${outputFlashConversionAffinity}`,
+	);
+
 	$: outputFGSActiveFeatureAffinity =
 		affinityDropdownItems.find((item) => item.name === inputGsActiveFeature)
 			?.value || 0;
+
+	$: console.log(
+		`outputFGSActiveFeatureAffinity: ${outputFGSActiveFeatureAffinity}`,
+	);
+
 	$: outputDrinkAffinity =
 		affinityDropdownItems.find((item) => item.name === inputAffinityItems)
 			?.value || 0;
+
+	$: console.log(`outputDrinkAffinity: ${outputDrinkAffinity}`);
 
 	$: outputAOEAffinityCount =
 		sigilDropdownItems.find((item) => item.name === inputAoeAffinitySigil)
 			?.value || 0;
 
+	$: console.log(`outputAOEAffinityCount: ${outputAOEAffinityCount}`);
+
 	$: outputAOETotalAffinity =
 		outputAOEAffinityCount === 0 || inputNumberAOEAffinitySigil === 0
 			? 0
 			: 20 * outputAOEAffinityCount + outputAOEAffinityCount * 2;
+
+	$: console.log(`outputAOETotalAffinity: ${outputAOETotalAffinity}`);
 
 	$: outputTotalAffinity =
 		outputIssenAffinity +
@@ -1234,32 +1995,51 @@
 		outputFuriousAffinity +
 		outputAOETotalAffinity;
 
+	$: console.log(`outputTotalAffinity: ${outputTotalAffinity}`);
+
 	$: outputWeaponTypeMultiplier =
 		WeaponTypes.find((weaponType) => weaponType.name === inputWeaponType)
 			?.bloatAttackMultiplier || 1.2;
+
+	$: console.log(`outputWeaponTypeMultiplier: ${outputWeaponTypeMultiplier}`);
 
 	$: outputWeaponDisplayedAttack = Math.ceil(
 		inputNumberTrueRaw * outputWeaponTypeMultiplier,
 	);
 
+	$: console.log(`outputWeaponDisplayedAttack: ${outputWeaponDisplayedAttack}`);
+
 	$: outputTrueRaw = Math.ceil(
 		outputWeaponDisplayedAttack / outputWeaponTypeMultiplier,
 	);
 
+	$: console.log(`outputTrueRaw: ${outputTrueRaw}`);
+
 	$: outputRoadAdvLvFlr =
 		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAdvLvFlr)
 			?.value || 0;
+
+	$: console.log(`outputRoadAdvLvFlr: ${outputRoadAdvLvFlr}`);
 
 	$: outputRoadAdvancement = getRoadAdvancementValue(
 		outputRoadAdvLvFlr,
 		inputNumberRoadFloor,
 	);
 
+	$: console.log(`inputNumberRoadFloor: ${inputNumberRoadFloor}`);
+
+	$: console.log(`outputRoadAdvancement: ${outputRoadAdvancement}`);
+
 	$: outputVigorousUp = inputVigorousUp === 'Active (+50 Ranged, +100 Melee)';
+
+	$: console.log(`outputVigorousUp: ${outputVigorousUp}`);
+
 	$: outputAdrenaline =
 		multipliersDropdownItems.find(
 			(item) => item.name === inputAdrenalineVigorous,
 		)?.value || 0;
+
+	$: console.log(`outputAdrenaline: ${outputAdrenaline}`);
 
 	$: outputVigorousAddition =
 		outputVigorousUp && outputAdrenaline === 1.15
@@ -1269,8 +2049,8 @@
 			: 0;
 
 	$: outputCaravanMultiplier =
-		multipliersDropdownItems.find((item) => item.name === inputCaravanSkills)
-			?.value || 0;
+		multipliedBaseDropdownItems.find((item) => item.name === inputCaravanSkills)
+			?.value || 1;
 
 	$: outputCaravanAddition = Math.floor(
 		inputNumberTrueRaw * outputCaravanMultiplier,
@@ -1290,125 +2070,204 @@
 			? 0
 			: 25 * outputAOEAttackCount + inputNumberAOEAttackSigil * 5;
 
+	$: outputAOEElementCount =
+		sigilDropdownItems.find((item) => item.name === inputAoeElementSigil)
+			?.value || 0;
+
 	$: outputRush =
 		multipliedBaseDropdownItems.find((item) => item.name === inputRush)
 			?.value || 0;
+
+	$: console.log(`outputRush: ${outputRush}`);
 
 	$: outputStylishAssault =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputStylishAssault,
 		)?.value || 0;
 
-	$: outputFurious =
+	$: console.log(`outputStylishAssault: ${outputStylishAssault}`);
+
+	$: outputFuriousAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputFurious)
 			?.value || 0;
 
-	$: outputCritConversion =
+	$: console.log(`outputFuriousAttack: ${outputFuriousAttack}`);
+
+	$: outputFuriousMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputFurious)
+			?.value || 1;
+
+	$: console.log(`outputFuriousMultiplier: ${outputFuriousMultiplier}`);
+
+	$: outputCritConversionAttack =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputCritConversion,
 		)?.value || 0;
 
-	$: outputObscurity =
+	$: console.log(`outputCritConversionAttack: ${outputCritConversionAttack}`);
+
+	$: outputObscurityLevel =
 		multipliedBaseDropdownItems.find((item) => item.name === inputObscurity)
 			?.value || 0;
+
+	$: outputObscurityTotal = getObscurityValue(
+		inputWeaponType,
+		outputObscurityLevel,
+	);
+
+	$: console.log(`outputObscurityTotal: ${outputObscurityTotal}`);
 
 	$: outputIncitement =
 		multipliedBaseDropdownItems.find((item) => item.name === inputIncitement)
 			?.value || 0;
+
+	$: outputLengthUpTrueRaw = getLengthAttackValue(inputLengthUp, outputTrueRaw);
+
+	$: console.log(`outputLengthUpTrueRaw: ${outputLengthUpTrueRaw}`);
 
 	/* Rush / Stylish Assault / Vampirism / Flash Conversion / Obscurity / Incitement / Furious / Vigorous Up
 does not get multiplied by horn */
 	$: attackB =
 		outputRush +
 		outputStylishAssault +
-		outputFurious +
+		outputFuriousAttack +
 		outputVigorousAddition +
-		outputCritConversion +
+		outputCritConversionAttack +
 		inputNumberVampirism +
-		outputObscurity +
+		outputObscurityTotal +
 		outputIncitement;
+
+	$: console.log(`attackB: ${attackB}`);
 
 	$: outputAttackMedicine =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputAttackMedicine,
 		)?.value || 0;
 
+	$: console.log(`outputAttackMedicine: ${outputAttackMedicine}`);
+
 	$: outputAttackSkill =
 		multipliedBaseDropdownItems.find((item) => item.name === inputAttackSkills)
 			?.value || 0;
+
+	$: console.log(`outputAttackSkill: ${outputAttackSkill}`);
+
 	$: outputFoodAttack =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputFoodConsumables,
 		)?.value || 0;
+
+	$: console.log(`outputFoodAttack: ${outputFoodAttack}`);
+
 	$: outputSeedAttack =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputSeedsFlutesCat,
 		)?.value || 0;
+
+	$: console.log(`outputSeedAttack: ${outputSeedAttack}`);
+
 	$: outputUnlimitedSigilAttack = 10 * inputNumberUnlimitedSigil; // TODO
 
-	$: outputDrugKnowledge =
-		multipliersDropdownItems.find((item) => item.name === inputDrugKnowledge)
-			?.value || 0;
-	$: outputDrugKnowledgeUp =
-		multipliersDropdownItems.find((item) => item.name === inputDrugKnowledge)
-			?.value || 0;
-	$: outputStatusValue =
-		multipliersDropdownItems.find((item) => item.name === inputStatusAttackUp)
-			?.value || 0;
-	$: outputStatusAttack =
-		multipliersDropdownItems.find((item) => item.name === inputStatusAssault)
-			?.value || 0;
-	$: outputStatusGuildPoogie =
-		multipliersDropdownItems.find((item) => item.name === inputGuildPoogie)
-			?.value || 0;
-	$: outputStatusSigil =
-		multipliersDropdownItems.find((item) => item.name === inputStatusSigil)
+	$: console.log(`outputUnlimitedSigilAttack: ${outputUnlimitedSigilAttack}`);
+
+	$: outputDrugKnowledgeMultiplier =
+		statusSkillsDropdownItems.find((item) => item.name === inputDrugKnowledge)
+			?.value || 1;
+
+	$: console.log(
+		`outputDrugKnowledgeMultiplier: ${outputDrugKnowledgeMultiplier}`,
+	);
+
+	$: outputStatusGuildPoogieMultiplier =
+		statusSkillsDropdownItems.find((item) => item.name === inputGuildPoogie)
+			?.value || 1;
+
+	$: console.log(
+		`outputStatusGuildPoogieMultiplier: ${outputStatusGuildPoogieMultiplier}`,
+	);
+
+	$: outputMonsterStatusInflictedMultiplier =
+		statusSkillsDropdownItems.find((item) => item.name === inputMonsterStatus)
+			?.value || 1;
+
+	$: console.log(
+		`outputMonsterStatusInflictedMultiplier: ${outputMonsterStatusInflictedMultiplier}`,
+	);
+
+	$: outputDrugKnowledgeMultiplierTotal = getDrugKnowledgeAddition(
+		outputDrugKnowledgeMultiplier,
+		inputNumberStatusValue,
+		outputStatusAttackUpMultiplier,
+		outputStatusGuildPoogieMultiplier,
+		outputStatusSigilMultiplier,
+	);
+
+	$: console.log(
+		`outputDrugKnowledgeMultiplierTotal: ${outputDrugKnowledgeMultiplierTotal}`,
+	);
+
+	$: console.log(`outputStatusAssault: ${outputStatusAssault}`);
+
+	// TODO?
+	$: outputStatusAttackUpMultiplier =
+		statusSkillsDropdownItems.find((item) => item.name === inputStatusAttackUp)
+			?.value || 1;
+
+	$: console.log(
+		`outputStatusAttackUpMultiplier: ${outputStatusAttackUpMultiplier}`,
+	);
+
+	$: outputPassives =
+		multipliedBaseDropdownItems.find((item) => item.name === inputPassiveItems)
 			?.value || 0;
 
-	$: outputDrugKnowledgeTotal = getDrugKnowledgeAddition(
-		outputDrugKnowledge,
-		outputDrugKnowledgeUp,
-		outputFurious,
-		outputStatusValue,
-		outputStatusAttack,
-		outputStatusGuildPoogie,
-		outputStatusSigil,
-	);
-	$: outputPassives =
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputAttackMedicine,
-		)?.value || 0;
+	$: console.log(`outputPassives: ${outputPassives}`);
 
 	$: outputLoneWolfAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputLoneWolf)
 			?.value || 0;
 
+	$: console.log(`outputLoneWolfAttack: ${outputLoneWolfAttack}`);
+
 	$: outputDuremudiraAttack =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputDuremudiraAttack,
 		)?.value || 0;
-	$: outputRisingAttack =
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputPrecisionSniperCritS,
-		)?.value || 0;
-	$: outputDrugAttack =
-		multipliedBaseDropdownItems.find((item) => item.name === inputDrugKnowledge)
+
+	$: console.log(`outputDuremudiraAttack: ${outputDuremudiraAttack}`);
+
+	$: outputShiriagariAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputShiriagari)
 			?.value || 0;
+
+	$: console.log(`outputShiriagariAttack: ${outputShiriagariAttack}`);
+
 	$: outputConsumptionSlayerAttack =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputConsumptionSlayer,
 		)?.value || 0;
+
+	$: console.log(
+		`outputConsumptionSlayerAttack: ${outputConsumptionSlayerAttack}`,
+	);
+
 	$: outputRoadLastStandAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputRoadLastStand)
 			?.value || 0;
 
+	$: console.log(`outputRoadLastStandAttack: ${outputRoadLastStandAttack}`);
+
 	$: outputLanceRedPhialAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputLanceHbg)
 			?.value || 0;
-	$: outputTowerAttack =
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputDuremudiraAttack,
-		)?.value || 0;
+
+	$: console.log(`outputLanceRedPhialAttack: ${outputLanceRedPhialAttack}`);
+
+	$: outputRoadTowerAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAttack)
+			?.value || 0;
+
+	$: console.log(`outputRoadTowerAttack: ${outputRoadTowerAttack}`);
 
 	$: attackA =
 		inputNumberTrueRaw +
@@ -1423,76 +2282,115 @@ does not get multiplied by horn */
 		outputSeedAttack +
 		inputNumberStyleRankAttack +
 		inputNumberUnlimitedSigil + // TODO
-		outputDrugKnowledgeTotal +
+		outputDrugKnowledgeMultiplierTotal +
 		outputDuremudiraAttack +
 		outputLoneWolfAttack +
 		outputCaravanAddition +
-		outputRisingAttack +
+		outputShiriagariAttack +
 		outputRoadAdvancement +
-		Math.floor(outputDrugAttack * 0.025) +
+		Math.floor(outputDrugKnowledgeMultiplier * 0.025) +
 		outputConsumptionSlayerAttack +
 		outputRoadLastStandAttack +
 		outputLanceRedPhialAttack +
-		outputTowerAttack +
+		outputRoadTowerAttack +
 		outputZenithTotalAttack +
 		outputAOETotalAttack;
 
+	$: console.log(`attackA: ${attackA}`);
+
 	$: outputHuntingHornMultiplier =
-		multipliedBaseDropdownItems.find((item) => item.name === inputHhAttackSongs)
-			?.value || 0;
+		multipliersDropdownItems.find((item) => item.name === inputHhAttackSongs)
+			?.value || 1;
 
-	$: outputConsumptionSlayerAttackMultiplier =
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputConsumptionSlayer,
-		)?.value || 0;
+	$: console.log(`outputHuntingHornMultiplier: ${outputHuntingHornMultiplier}`);
+
+	$: outputCombatSupremacyAttackMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputCombatSupremacy)
+			?.value || 1;
+
+	$: console.log(
+		`outputCombatSupremacyAttackMultiplier: ${outputCombatSupremacyAttackMultiplier}`,
+	);
+
 	$: outputHidenMultiplier =
-		multipliedBaseDropdownItems.find((item) => item.name === inputHidenSkills)
-			?.value || 0;
-	$: outputHammerMultiplier =
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputChargeMultiplier,
-		)?.value || 0;
+		multipliersDropdownItems.find((item) => item.name === inputHidenSkills)
+			?.value || 1;
 
-	$: outputMultipliers =
+	$: console.log(`outputHidenMultiplier: ${outputHidenMultiplier}`);
+
+	$: outputWeaponSpecificMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputWeaponSpecific)
+			?.value || 1;
+
+	$: console.log(
+		`outputWeaponSpecificMultiplier: ${outputWeaponSpecificMultiplier}`,
+	);
+
+	$: outputHammerMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputChargeMultiplier)
+			?.value || 1;
+
+	$: console.log(`outputHammerMultiplier: ${outputHammerMultiplier}`);
+
+	$: outputMultipliers = Math.floor(
 		Math.floor(attackA * outputHuntingHornMultiplier + attackB) *
-		outputAdrenaline *
-		outputConsumptionSlayerAttackMultiplier *
-		outputWeaponTypeMultiplier *
-		outputHidenMultiplier *
-		outputHammerMultiplier;
+			outputAdrenaline *
+			outputCombatSupremacyAttackMultiplier *
+			outputWeaponSpecificMultiplier *
+			outputHidenMultiplier *
+			outputHammerMultiplier,
+	);
+
+	$: console.log(`outputMultipliers: ${outputMultipliers}`);
 
 	$: outputPartnyaBond =
 		flatAdditionsDropdownItems.find((item) => item.name === inputPartnyaaBond)
 			?.value || 0;
 
+	$: console.log(`outputPartnyaBond: ${outputPartnyaBond}`);
+
 	$: outputHunterBond =
 		flatAdditionsDropdownItems.find((item) => item.name === inputBondMaleHunter)
 			?.value || 0;
+
+	$: console.log(`outputHunterBond: ${outputHunterBond}`);
 
 	$: outputAssist =
 		flatAdditionsDropdownItems.find((item) => item.name === inputAssistance)
 			?.value || 0;
 
+	$: console.log(`outputAssist: ${outputAssist}`);
+
 	$: outputSoul =
 		flatAdditionsDropdownItems.find((item) => item.name === inputRedSoul)
 			?.value || 0;
+
+	$: console.log(`outputSoul: ${outputSoul}`);
 
 	$: outputArmor1 =
 		flatAdditionsDropdownItems.find((item) => item.name === inputArmor1)
 			?.value || 0;
 
+	$: console.log(`outputArmor1: ${outputArmor1}`);
+
 	$: outputArmor2 =
 		flatAdditionsDropdownItems.find((item) => item.name === inputOriginArmor)
 			?.value || 0;
+
+	$: console.log(`outputArmor2: ${outputArmor2}`);
 
 	$: outputArmorG =
 		flatAdditionsDropdownItems.find((item) => item.name === inputGArmorPieces)
 			?.value || 0;
 
+	$: console.log(`outputArmorG: ${outputArmorG}`);
+
 	$: outputSecretTech =
 		flatAdditionsDropdownItems.find(
 			(item) => item.name === inputGsr999SecretTech,
 		)?.value || 0;
+
+	$: console.log(`outputSecretTech: ${outputSecretTech}`);
 
 	$: outputFlatAdditions =
 		outputPartnyaBond +
@@ -1504,20 +2402,22 @@ does not get multiplied by horn */
 		outputArmorG +
 		outputSecretTech;
 
-	$: outputFinalAttackValue = getFinalAttackValue(
-		outputFlatAdditions,
-		outputMultipliers,
-		outputWeaponTypeMultiplier,
-		missionRequirementAttackCeilings,
-	);
+	$: console.log(`outputFlatAdditions: ${outputFlatAdditions}`);
 
-	$: outputCompressedShots =
-		flatAdditionsDropdownItems.find((item) => item.name === inputCompressedShot)
-			?.value || 0;
+	$: outputCompressedShotsMultiplier =
+		gunnerDropdownItems.find(
+			(item) => item.name === inputCompressedShotMultiplier,
+		)?.value || 0; // TODO
+
+	$: console.log(
+		`outputCompressedShotsMultiplier: ${outputCompressedShotsMultiplier}`,
+	);
 
 	$: outputCompressedShotPower = Math.floor(
-		inputNumberCompressedShot * outputCompressedShots,
+		inputNumberCompressedShot * outputCompressedShotsMultiplier,
 	);
+
+	$: console.log(`outputCompressedShotPower: ${outputCompressedShotPower}`);
 
 	$: outputCritValue = getCritValue(
 		outputStarvingWolfAffinity,
@@ -1526,8 +2426,21 @@ does not get multiplied by horn */
 		outputIssenAffinity,
 	);
 
+	$: console.log(`outputCritValue: ${outputCritValue}`);
+
 	$: outputSwordAndShieldMultiplier =
 		inputWeaponType === 'Sword and Shield' ? 1.25 : 1;
+
+	$: console.log(
+		`outputSwordAndShieldMultiplier: ${outputCompressedShotsMultiplier}`,
+	);
+
+	$: outputOtherMultipliers =
+		inputNumberTranscendRawMultiplier *
+		inputNumberLanceImpactMultiplier *
+		inputNumberRavientePowerSwordCrystalsMultiplier;
+
+	$: console.log(`outputOtherMultipliers: ${outputOtherMultipliers}`);
 
 	let inputGunlanceRaw = 1;
 	let inputGunlanceShellType = 2;
@@ -1544,12 +2457,143 @@ does not get multiplied by horn */
 						gunlanceShellValues[outputGunlanceShellType]
 					: 0;
 
+	$: console.log(`outputGunlanceRaw: ${outputGunlanceRaw}`);
+
+	$: console.log(`outputGunlanceShellType: ${outputGunlanceShellType}`);
+
+	$: console.log(`outputGunlanceShellDamage: ${outputGunlanceShellDamage}`);
+
 	$: outputGunlanceShell = Math.floor(outputGunlanceShellDamage);
 	$: outputGunlanceShellBoosted = Math.floor(outputGunlanceShellDamage * 1.5);
+
+	$: console.log(`outputGunlanceShell: ${outputGunlanceShell}`);
+
+	$: console.log(`outputGunlanceShellBoosted: ${outputGunlanceShellBoosted}`);
 
 	$: outputSharpnessMultiplier =
 		blademasterDropdownItems.find((item) => item.name === inputSharpness)
 			?.value || 0;
+
+	$: console.log(`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`);
+
+	$: outputElementalExploiter =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputElementalExploiter,
+		)?.value || 0;
+
+	$: console.log(`outputElementalExploiter: ${outputElementalExploiter}`);
+
+	$: outputThunderClad =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputThunderClad,
+		)?.value || 0;
+	$: console.log(`outputThunderClad: ${outputThunderClad}`);
+
+	$: outputSniper =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputPrecisionSniperCritS,
+		)?.value || 0;
+
+	$: console.log(`outputSniper: ${outputSniper}`);
+
+	$: outputExploitWeakness =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputExploitWeakness,
+		)?.value || 0;
+
+	$: console.log(`outputExploitWeakness: ${outputExploitWeakness}`);
+
+	$: outputAcidShot =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputAcidShots,
+		)?.value || 0;
+
+	$: console.log(`outputAcidShot: ${outputAcidShot}`);
+
+	$: outputPointBreakthrough =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputPointBreakthrough,
+		)?.value || 0;
+
+	$: console.log(`outputPointBreakthrough: ${outputPointBreakthrough}`);
+
+	$: outputAbsoluteDefenseMultiplier =
+		otherDropdownItems.find((item) => item.name === inputAbsoluteDefense)
+			?.value || 1;
+
+	$: console.log(
+		`outputAbsoluteDefenseMultiplier: ${outputAbsoluteDefenseMultiplier}`,
+	);
+
+	$: outputPremiumCourseMultiplier =
+		otherDropdownItems.find((item) => item.name === inputPremiumBoost)?.value ||
+		1;
+
+	$: console.log(
+		`outputPremiumCourseMultiplier: ${outputPremiumCourseMultiplier}`,
+	);
+
+	$: outputFencingMultiplier =
+		blademasterDropdownItems.find((item) => item.name === inputFencing)
+			?.value || 1;
+
+	$: console.log(`outputFencingMultiplier: ${outputFencingMultiplier}`);
+
+	$: outputFireMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputFireMultipliers,
+		)?.value || 1;
+
+	$: outputWaterMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputWaterMultipliers,
+		)?.value || 1;
+
+	$: outputThunderMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputThunderMultipliers,
+		)?.value || 1;
+
+	$: outputIceMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputIceMultipliers,
+		)?.value || 1;
+
+	$: outputDragonMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputDragonMultipliers,
+		)?.value || 1;
+
+	$: outputStatusSigilMultiplier =
+		statusSkillsDropdownItems.find((item) => item.name === inputStatusSigil)
+			?.value || 1;
+
+	$: outputWeaponStatusModifiers =
+		statusSkillsDropdownItems.find(
+			(item) => item.name === inputWeaponStatusModifiers,
+		)?.value || 1;
+
+	$: outputElementalAttackMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputElementalAttackMultiplier,
+		)?.value || 1;
+
+	$: outputHHElementalSongMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputHhElementalUp,
+		)?.value || 1;
+
+	$: outputWeaponElementMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputWeaponElementMultipliers,
+		)?.value || 1;
+
+	$: outputFinalAttackValue = getFinalAttackValue(
+		outputFlatAdditions,
+		outputMultipliers,
+		outputWeaponTypeMultiplier,
+		missionRequirementAttackCeilings,
+	);
 
 	// TODO datatable description having weapon guide link
 </script>
@@ -1648,17 +2692,23 @@ does not get multiplied by horn */
 					Internal Values and Final Displayed Attack
 				</div>
 				<div class="stats-values">
-					<div class="fire">🔥 {100}</div>
-					<div class="water">💧 {100}</div>
-					<div class="ice">❄️ {100}</div>
-					<div class="thunder">⚡ {100}</div>
-					<div class="dragon">🐲 {100}</div>
-					<div class="total-attack">⚔️ True Raw: {100}</div>
-					<div class="my-missions">🎫 My Missions: {100}</div>
-					<div class="status">Status: {100}</div>
-					<div class="attack-ceiling">⚓ Attack Ceiling: {100}</div>
-					<div class="attack">🗡️ Attack: {100}</div>
-					<div class="affinity">✨ Affinity: {100}</div>
+					<div class="fire">🔥 {internalFire}</div>
+					<div class="water">💧 {internalWater}</div>
+					<div class="ice">❄️ {internalIce}</div>
+					<div class="thunder">⚡ {internalThunder}</div>
+					<div class="dragon">🐲 {internalDragon}</div>
+					<div class="total-attack">
+						⚔️ True Raw: {internalTrueRawDisplay} ({internalTrueRaw})
+					</div>
+					<div class="my-missions">
+						🎫 My Missions: {internalMissionsNeeded}
+					</div>
+					<div class="status">Status: {internalStatus} ({inputStatus})</div>
+					<div class="attack-ceiling">
+						⚓ Attack Ceiling: {internalAttackCeiling}
+					</div>
+					<div class="attack">🗡️ Attack: {internalAttack}</div>
+					<div class="affinity">✨ Affinity: {internalAffinity}%</div>
 				</div>
 			</div>
 
@@ -1679,7 +2729,7 @@ does not get multiplied by horn */
 							/>
 							<Dropdown
 								titleText="Melee Sharpness"
-								bind:selectedId={inputMeleeSharpness}
+								bind:selectedId={inputMeleeSharpnessAffinity}
 								items={[
 									{
 										id: 'Below Blue or Gunners (+0%)',
@@ -2656,7 +3706,7 @@ does not get multiplied by horn */
 
 							<Dropdown
 								titleText="Elemental Attack"
-								bind:selectedId={inputElementalAttack}
+								bind:selectedId={inputElementalAttackMultiplier}
 								items={[
 									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: 'Active (1.1x)', text: 'Active (1.1x)' },
@@ -2695,6 +3745,10 @@ does not get multiplied by horn */
 								bind:selectedId={inputDrugKnowledge}
 								items={[
 									{
+										id: 'None (1x)',
+										text: 'None (1x)',
+									},
+									{
 										id: 'Standard (0.38x Status)',
 										text: 'Standard (0.38x Status)',
 									},
@@ -2711,8 +3765,8 @@ does not get multiplied by horn */
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: 'On (For Sleep add +10 raw hitbox)', // TODO
-										text: 'On (For Sleep add +10 raw hitbox)',
+										id: 'On (For Sleep add +10 raw hitzone)', // TODO
+										text: 'On (For Sleep add +10 raw hitzone)',
 									},
 								]}
 							/>
@@ -2748,7 +3802,7 @@ does not get multiplied by horn */
 
 							<Dropdown
 								titleText="Weapon Modifiers"
-								bind:selectedId={inputWeaponModifiers}
+								bind:selectedId={inputWeaponStatusModifiers}
 								items={[
 									{ id: 'None (1x)', text: 'None (1x)' },
 									{
@@ -3070,7 +4124,7 @@ does not get multiplied by horn */
 										max={maximumNumberValue}
 										bind:value={inputNumberLanceImpactMultiplier}
 										invalidText={invalidNumberValueText}
-										label={'Lance Impact Multiplier'}
+										label={'Lance Impact Multiplier (0.72)'}
 									/>
 								</div>
 								<div class="number-input-container">
@@ -3081,7 +4135,7 @@ does not get multiplied by horn */
 										max={maximumNumberValue}
 										bind:value={inputNumberTranscendRawMultiplier}
 										invalidText={invalidNumberValueText}
-										label={'Transcend Raw Multiplier'}
+										label={'Transcend Raw Multiplier (1.13)'}
 									/>
 								</div>
 								<div class="number-input-container">
@@ -3092,7 +4146,7 @@ does not get multiplied by horn */
 										max={maximumNumberValue}
 										bind:value={inputNumberRavientePowerSwordCrystalsMultiplier}
 										invalidText={invalidNumberValueText}
-										label={'Raviente Power Sword Crystals'}
+										label={'Raviente Power Sword Crystals (1.2)'}
 									/>
 								</div>
 							</div>
@@ -3265,9 +4319,9 @@ does not get multiplied by horn */
 								</div>
 								<Dropdown
 									titleText="Compressed Shot"
-									bind:selectedId={inputCompressedShot}
+									bind:selectedId={inputCompressedShotMultiplier}
 									items={[
-										{ id: 'Not Compressed (x1)', text: 'Not Compressed (x1)' },
+										{ id: 'Not Compressed (0x)', text: 'Not Compressed (0x)' },
 										{
 											id: 'Lv1 Norm S. (2.4x Bullets Loaded)',
 											text: 'Lv1 Norm S. (2.4x Bullets Loaded)',
@@ -3588,7 +4642,7 @@ does not get multiplied by horn */
 									step={10}
 									min={minimumNumberValue}
 									max={maximumNumberValue}
-									bind:value={inputNumberElementalValue}
+									bind:value={inputNumberElementalValueReplacement}
 									invalidText={invalidNumberValueText}
 									label={'Element'}
 								/>
@@ -3663,7 +4717,7 @@ does not get multiplied by horn */
 
 							<Dropdown
 								titleText="Weapon Multipliers"
-								bind:selectedId={inputWeaponMultipliers}
+								bind:selectedId={inputWeaponElementMultipliers}
 								items={[
 									{ id: 'None (1x)', text: 'None (1x)' },
 									{
@@ -3771,7 +4825,7 @@ does not get multiplied by horn */
 									step={10}
 									min={minimumNumberValue}
 									max={maximumNumberValue}
-									bind:value={inputNumberRawHitbox}
+									bind:value={inputNumberRawHitzone}
 									invalidText={invalidNumberValueText}
 									label={'Raw Hitzone'}
 								/>
@@ -3782,7 +4836,7 @@ does not get multiplied by horn */
 									step={10}
 									min={minimumNumberValue}
 									max={maximumNumberValue}
-									bind:value={inputNumberFireHitbox}
+									bind:value={inputNumberFireHitzone}
 									invalidText={invalidNumberValueText}
 									label={'Fire Hitzone'}
 								/>
@@ -3793,7 +4847,7 @@ does not get multiplied by horn */
 									step={10}
 									min={minimumNumberValue}
 									max={maximumNumberValue}
-									bind:value={inputNumberWaterHitbox}
+									bind:value={inputNumberWaterHitzone}
 									invalidText={invalidNumberValueText}
 									label={'Water Hitzone'}
 								/>
@@ -3804,7 +4858,7 @@ does not get multiplied by horn */
 									step={10}
 									min={minimumNumberValue}
 									max={maximumNumberValue}
-									bind:value={inputNumberThunderHitbox}
+									bind:value={inputNumberThunderHitzone}
 									invalidText={invalidNumberValueText}
 									label={'Thunder Hitzone'}
 								/>
@@ -3815,7 +4869,7 @@ does not get multiplied by horn */
 									step={10}
 									min={minimumNumberValue}
 									max={maximumNumberValue}
-									bind:value={inputNumberIceHitbox}
+									bind:value={inputNumberIceHitzone}
 									invalidText={invalidNumberValueText}
 									label={'Ice Hitzone'}
 								/>
@@ -3826,7 +4880,7 @@ does not get multiplied by horn */
 									step={10}
 									min={minimumNumberValue}
 									max={maximumNumberValue}
-									bind:value={inputNumberDragonHitbox}
+									bind:value={inputNumberDragonHitzone}
 									invalidText={invalidNumberValueText}
 									label={'Dragon Hitzone'}
 								/>
@@ -3852,8 +4906,8 @@ does not get multiplied by horn */
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: 'Active (+5 on raw hitboxes)',
-										text: 'Active (+5 on raw hitboxes)',
+										id: 'Active (+5 on raw hitzones)',
+										text: 'Active (+5 on raw hitzones)',
 									},
 								]}
 							/>
@@ -3864,16 +4918,16 @@ does not get multiplied by horn */
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: 'Exploit Weakness (+5 on 35+ raw hitboxes)',
-										text: 'Exploit Weakness (+5 on 35+ raw hitboxes)',
+										id: 'Exploit Weakness (+5 on 35+ raw hitzones)',
+										text: 'Exploit Weakness (+5 on 35+ raw hitzones)',
 									},
 									{
-										id: 'Determination (+5 on raw hitboxes)',
-										text: 'Determination (+5 on raw hitboxes)',
+										id: 'Determination (+5 on raw hitzones)',
+										text: 'Determination (+5 on raw hitzones)',
 									},
 									{
-										id: 'ZZ Exploit Weakness (+5 on 30+ raw hitboxes)',
-										text: 'ZZ Exploit Weakness (+5 on 30+ raw hitboxes)',
+										id: 'ZZ Exploit Weakness (+5 on 30+ raw hitzones)',
+										text: 'ZZ Exploit Weakness (+5 on 30+ raw hitzones)',
 									},
 								]}
 							/>
@@ -3884,12 +4938,12 @@ does not get multiplied by horn */
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: 'Active (+5 Raw Hitboxes)',
-										text: 'Active (+5 Raw Hitboxes)',
+										id: 'Active (+5 Raw Hitzones)',
+										text: 'Active (+5 Raw Hitzones)',
 									},
 									{
-										id: 'Raviente (+2 Raw Hitboxes)',
-										text: 'Raviente (+2 Raw Hitboxes)',
+										id: 'Raviente (+2 Raw Hitzones)',
+										text: 'Raviente (+2 Raw Hitzones)',
 									},
 								]}
 							/>
@@ -3900,8 +4954,8 @@ does not get multiplied by horn */
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: 'Raw Acid (+10 raw hitboxes)',
-										text: 'Raw Acid (+10 raw hitboxes)',
+										id: 'Raw Acid (+10 raw hitzones)',
+										text: 'Raw Acid (+10 raw hitzones)',
 									},
 								]}
 							/>
@@ -3912,16 +4966,16 @@ does not get multiplied by horn */
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: 'Elemental Exploit (+X to 20+ ele hitboxes)',
-										text: 'Elemental Exploit (+X to 20+ ele hitboxes)',
+										id: 'Elemental Exploit (+X to 20+ ele hitzones)',
+										text: 'Elemental Exploit (+X to 20+ ele hitzones)',
 									},
 									{
-										id: 'Dissolver Up (+X to 15+ ele hitboxes)',
-										text: 'Dissolver Up (+X to 15+ ele hitboxes)',
+										id: 'Dissolver Up (+X to 15+ ele hitzones)',
+										text: 'Dissolver Up (+X to 15+ ele hitzones)',
 									},
 									{
-										id: 'Determination (+X to ele hitboxes)',
-										text: 'Determination (+X to ele hitboxes)',
+										id: 'Determination (+X to ele hitzones)',
+										text: 'Determination (+X to ele hitzones)',
 									},
 								]}
 							/>
@@ -3932,12 +4986,12 @@ does not get multiplied by horn */
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: 'Raw Weakness (+2 on Raw Hitboxes)',
-										text: 'Raw Weakness (+2 on Raw Hitboxes)',
+										id: 'Raw Weakness (+2 on Raw Hitzones)',
+										text: 'Raw Weakness (+2 on Raw Hitzones)',
 									},
 									{
-										id: 'Elemental Weakness (+4 on all Elemental Hitboxes)',
-										text: 'Elemental Weakness (+4 on all Elemental Hitboxes)',
+										id: 'Elemental Weakness (+4 on all Elemental Hitzones)',
+										text: 'Elemental Weakness (+4 on all Elemental Hitzones)',
 									},
 									{
 										id: 'Both (+4 on Elemental, +2 on Raw)',
@@ -3952,8 +5006,8 @@ does not get multiplied by horn */
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: 'In Crit Distance (+5 on raw hitboxes)',
-										text: 'In Crit Distance (+5 on raw hitboxes)',
+										id: 'In Crit Distance (+5 on raw hitzones)',
+										text: 'In Crit Distance (+5 on raw hitzones)',
 									},
 								]}
 							/>
