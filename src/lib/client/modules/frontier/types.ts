@@ -35,7 +35,12 @@ export type FrontierElement =
 	| 'Sound'
 	| 'Wind'
 	| 'B. Zero'
-	| 'E. Roar';
+	| 'E. Roar'
+	| 'Lightning Rod'
+	| 'Black Flame'
+	| 'Crimson Demon'
+	| 'Burning Zero'
+	| "Emperor's Roar";
 export type FrontierStatus =
 	| ''
 	| 'Poison'
@@ -145,6 +150,9 @@ export type FrontierWeapon = {
 	icon: any;
 	hiden: FrontierMaxHiden;
 	bloatAttackMultiplier: FrontierWeaponMultiplier;
+	statusAssaultPoison: number;
+	statusAssaultParalysis: number;
+	// TODO
 };
 export type FrontierEquipmentSkillPoints = [
 	firstSkill: number,
@@ -577,4 +585,13 @@ export type FrontierArmorSkillTreeValue = {
 export type DropdownItemOption = {
 	name: string;
 	value: number;
+};
+
+export type FrontierElementMultiplier = {
+	name: FrontierElement;
+	fireMultiplier: number;
+	waterMultiplier: number;
+	thunderMultiplier: number;
+	iceMultiplier: number;
+	dragonMultiplier: number;
 };

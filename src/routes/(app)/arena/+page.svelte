@@ -5,7 +5,14 @@
 		ItemIcons,
 		weaponMotionValues,
 		sharedWeaponMotionValues,
-		affinityMap,
+		sigilDropdownItems,
+		affinityDropdownItems,
+		multipliedBaseDropdownItems,
+		multipliersDropdownItems,
+		flatAdditionsDropdownItems,
+		missionRequirementAttackCeilings,
+		gunlanceShellValues,
+		blademasterDropdownItems,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -74,9 +81,6 @@
 	const maximumNumberValue = 99999;
 	const invalidNumberValueText = `Invalid value. Must be between ${minimumNumberValue} and ${maximumNumberValue}`;
 
-	const getDisplayAttack = (weapon: FrontierWeapon, trueRaw: number) =>
-		Math.floor(trueRaw * weapon.bloatAttackMultiplier);
-
 	function getSharedMotionValues() {
 		let result: {
 			id: string;
@@ -109,22 +113,6 @@
 		});
 
 		return result;
-	}
-
-	function getItemColors() {
-		let array: dropdownItem[] = [];
-		ItemColors.forEach((element, i) => {
-			array = [...array, { id: element.name, text: element.name }];
-		});
-		return array;
-	}
-
-	function getItemIcons() {
-		let array: dropdownItem[] = [];
-		ItemIcons.forEach((element, i) => {
-			array = [...array, { id: element.name, text: element.name }];
-		});
-		return array;
 	}
 
 	function getWeaponSectionNames(weaponName: FrontierWeaponName) {
@@ -347,9 +335,9 @@
 		return found.icon;
 	}
 
-	function saveInputsAsTextFile(input: string) {
+	function saveInputsAsJSONFile(input: string) {
 		// Create a Blob object from the string content
-		const blob = new Blob([input], { type: 'text/plain;charset=utf-8' });
+		const blob = new Blob([input], { type: 'application/json;charset=utf-8' });
 
 		// Generate a URL for the Blob
 		const url = URL.createObjectURL(blob);
@@ -359,7 +347,7 @@
 
 		// Set the href and download attributes of the anchor element
 		link.href = url;
-		link.download = 'wycademy-arena-inputs.txt'; // You can customize the filename here
+		link.download = 'wycademy-arena-inputs.json'; // You can customize the filename here
 
 		// Append the anchor element to the document body
 		document.body.appendChild(link);
@@ -374,11 +362,11 @@
 		URL.revokeObjectURL(url);
 	}
 
-	function loadInputsFromTextFile() {
+	function loadInputsFromJSONFile() {
 		// Create an input element to prompt the user to select a file
 		const input = document.createElement('input');
 		input.type = 'file';
-		input.accept = '.txt'; // Accept only text files
+		input.accept = '.json'; // Accept only JSON files
 
 		// Listen for the change event on the input element
 		input.addEventListener('change', (event) => {
@@ -501,6 +489,8 @@
 		inputShotMultiplier = newInputs.inputShotMultiplier || inputShotMultiplier;
 		inputHbgChargeShot = newInputs.inputHbgChargeShot || inputHbgChargeShot;
 		inputCompressedShot = newInputs.inputCompressedShot || inputCompressedShot;
+		inputCompressedElementShot =
+			newInputs.inputCompressedElementShot || inputCompressedElementShot;
 		inputBowCoatingsMultiplier =
 			newInputs.inputBowCoatingsMultiplier || inputBowCoatingsMultiplier;
 		inputChargeMultiplier =
@@ -637,6 +627,265 @@
 		return JSON.stringify(json, null, 2);
 	}
 
+	function getRoadAdvancementValue(lv: number, floor: number) {
+		let advFloors = 0;
+		let roadAdvancement = 0;
+		if (lv !== 0) {
+			if (floor > 10) {
+				if (floor > 26) {
+					advFloors = 21;
+				} else {
+					advFloors = floor - 5;
+				}
+
+				roadAdvancement = lv + Math.floor((advFloors - 1) / 5) * 10;
+			} else if (floor > 5) {
+				roadAdvancement = lv;
+			} else {
+				roadAdvancement = 0;
+			}
+		} else {
+			roadAdvancement = 0;
+		}
+
+		return roadAdvancement;
+	}
+
+	function getFuriousMultiplier(outputFurious: number) {
+		let result = 1;
+		if (outputFurious == 0) {
+			return result;
+		} else if (outputFurious == 70) {
+			return 1.05;
+		} else if (outputFurious == 100) {
+			return 1.1;
+		} else if (outputFurious == 180) {
+			return 1.2;
+		}
+
+		return result;
+	}
+
+	function getDrugKnowledgeAddition(
+		outputDrugKnowledge: number,
+		outputDrugKnowledgeUp: number,
+		outputFurious: number,
+		outputStatusValue: number,
+		outputStatusAttack: number,
+		outputStatusGuildPoogie: number,
+		outputStatusSigil: number,
+	) {
+		let drugKnowledgeRaw = 0;
+
+		if (outputDrugKnowledge == 1) {
+			let furious = getFuriousMultiplier(outputFurious) || 1;
+			drugKnowledgeRaw = Math.floor(
+				Math.floor(
+					(outputStatusValue *
+						outputStatusAttack *
+						outputStatusGuildPoogie *
+						outputStatusSigil *
+						furious) /
+						10,
+				) *
+					outputDrugKnowledgeUp *
+					0.658,
+			);
+		}
+
+		return drugKnowledgeRaw;
+	}
+
+	function getCritConversionValue(
+		outputCritConversion: number,
+		outputCritUp: number,
+		naturalAffinity: number,
+	) {
+		let result = 0;
+		if (outputCritConversion < 101) {
+			if (outputCritUp == 1) {
+				result = 0 + Math.floor(Math.sqrt(naturalAffinity) * 5);
+			} else if (outputCritUp == 2) {
+				result = 0 + Math.floor(Math.sqrt(naturalAffinity) * 10);
+			} else {
+				result = 0;
+			}
+		} else {
+			if (outputCritUp == 1) {
+				result =
+					Math.floor(Math.sqrt(outputCritConversion - 100) * 7) +
+					Math.floor(Math.sqrt(naturalAffinity) * 5);
+			} else if (outputCritUp == 2) {
+				result =
+					Math.floor(Math.sqrt(outputCritConversion - 100) * 7) +
+					Math.floor(Math.sqrt(naturalAffinity) * 10);
+			} else {
+				result = Math.floor(Math.sqrt(outputCritConversion - 100) * 7);
+			}
+		}
+
+		return result;
+	}
+
+	function getLengthAttackValue(outputLengthType: number, trueRaw: number) {
+		let result = 0;
+		if (outputLengthType == 1) {
+			result = Math.ceil(trueRaw - (trueRaw * 0.07 + 0.7));
+		} else if (outputLengthType == 2) {
+			result = Math.ceil(trueRaw - (+trueRaw * 0.07 + 1));
+		} else if (outputLengthType == 0) {
+			result = trueRaw;
+		}
+
+		return result;
+	}
+
+	function getObscurityValue(
+		weaponClass: FrontierWeaponClass,
+		weaponType: FrontierWeaponName,
+		outputObscurityLevel: number,
+	) {
+		let obscurityArray: number[] = [];
+		let obscurity = 0;
+
+		if (weaponClass === 'Blademaster') {
+			if (
+				weaponType === 'Sword and Shield' ||
+				weaponType === 'Lance' ||
+				weaponType === 'Gunlance' ||
+				weaponType === 'Tonfa'
+			) {
+				// Sns, Lance, Gl, Tonfa
+				obscurityArray = [
+					0, 40, 80, 120, 160, 200, 220, 240, 260, 280, 300, 70, 140, 210, 240,
+					270, 300,
+				];
+				obscurity = obscurityArray[outputObscurityLevel];
+			} else if (
+				weaponType === 'Great Sword' ||
+				weaponType === 'Switch Axe F' ||
+				weaponType === 'Magnet Spike'
+			) {
+				// GS, Swaxe, Magnet Spike
+				obscurityArray = [
+					0, 30, 60, 90, 120, 150, 165, 180, 195, 210, 225, 50, 100, 150, 175,
+					200, 225,
+				];
+				obscurity = obscurityArray[outputObscurityLevel];
+			} else if (weaponType === 'Long Sword') {
+				// LS
+				obscurityArray = [
+					0, 20, 40, 60, 80, 100, 110, 120, 130, 140, 150, 30, 60, 90, 110, 130,
+					150,
+				];
+				obscurity = obscurityArray[outputObscurityLevel];
+			} else {
+				obscurity = 0;
+			}
+		} else {
+			obscurity = 0;
+		}
+
+		return obscurity;
+	}
+
+	function setAbnormalityValues(abnormalityToggleValue: boolean) {
+		let drugKnowledgeToggle = false;
+		let statusAssaultToggle = false;
+		let statusStatusAttackMultiplier = 1;
+
+		if (abnormalityToggleValue) {
+			drugKnowledgeToggle = true;
+			statusAssaultToggle = true;
+			statusStatusAttackMultiplier = 1.125;
+		} else {
+			drugKnowledgeToggle = false;
+			statusAssaultToggle = false;
+			statusStatusAttackMultiplier = 1;
+		}
+	}
+
+	function getCritValue(
+		outputStarvingWolfAffinity: number,
+		outputCeaselessAffinity: number,
+		outputExpertAffinity: number,
+		outputIssenAffinity: number,
+	) {
+		let result = 1.25;
+		if (outputStarvingWolfAffinity === 2) {
+			result = result + 0.1;
+		}
+
+		if (outputCeaselessAffinity === 1) {
+			result = result + 0.1;
+		} else if (outputCeaselessAffinity === 2) {
+			result = result + 0.15;
+		} else if (outputCeaselessAffinity === 3) {
+			result = result + 0.2;
+		} else {
+			result = result;
+		}
+
+		if (outputExpertAffinity === 100) {
+			result = result + 0.25;
+			outputIssenAffinity = 0;
+		} else if (outputIssenAffinity === 5) {
+			result = result + 0.1;
+		} else if (outputIssenAffinity === 10) {
+			result = result + 0.15;
+		} else if (outputIssenAffinity === 20) {
+			result = result + 0.25;
+		}
+
+		return result.toFixed(2);
+	}
+
+	function getFinalAttackValue(
+		additions: number,
+		multipliers: number,
+		weaponTypeMultiplier: number,
+		missionRequirement: Array<number>,
+	) {
+		let lengthUp = 0;
+		let result = Math.floor(additions / multipliers);
+		let bloatedResult = Math.floor(
+			Math.floor(additions + Math.floor(multipliers)) * weaponTypeMultiplier,
+		);
+
+		let attackCeiling = Math.ceil(
+			(Math.floor(additions + multipliers) - 800) / 40,
+		);
+
+		let attackCeilingDisplay = 0;
+		let missionsNeededDisplay = 0;
+
+		if (attackCeiling < 0) {
+			attackCeilingDisplay = 0;
+			missionsNeededDisplay = 0;
+		} else if (attackCeiling > 110 && attackCeiling < 180) {
+			attackCeilingDisplay = attackCeiling;
+			missionsNeededDisplay = missionRequirement[attackCeiling - 1];
+		} else if (attackCeiling > 180) {
+			attackCeilingDisplay = 180;
+			result = maxTrueRaw;
+			bloatedResult = Math.floor(maxTrueRaw * weaponTypeMultiplier);
+			missionsNeededDisplay = 249;
+		} else {
+			attackCeilingDisplay = attackCeiling;
+			if (attackCeiling <= 0) {
+				missionsNeededDisplay = 0;
+			} else {
+				missionsNeededDisplay = missionRequirement[attackCeiling - 1];
+			}
+		}
+
+		let roundedResult = Math.floor(
+			Math.floor(additions + Math.floor(multipliers)) * weaponTypeMultiplier,
+		);
+
+		return roundedResult;
+	}
+
 	let inputTextImportData = '';
 
 	let modalHeading = '';
@@ -651,12 +900,12 @@
 	let inputExpertSkills = 'None';
 	let inputFlashConversion = 'None';
 	let inputIssenSkills = 'None or Determination';
-	let inputCeaseless = 'None';
-	let inputStarvingWolf = 'None';
+	let inputCeaseless = 'None (1x)';
+	let inputStarvingWolf = 'None (1x)';
 	let inputAffinityItems = 'None';
 	let inputGsActiveFeature = 'None';
 	let inputAttackSkills = 'None';
-	let inputCaravanSkills = 'None';
+	let inputCaravanSkills = 'None (1x)';
 	let inputPassiveItems = 'None';
 	let inputFoodConsumables = 'None';
 	let inputSeedsFlutesCat = 'None';
@@ -667,7 +916,7 @@
 	let inputConsumptionSlayer = 'None';
 	let inputObscurity = 'None';
 	let inputRush = 'None';
-	let inputFurious = 'None';
+	let inputFurious = 'None (x1 Ele & Status)';
 	let inputShiriagari = 'None';
 	let inputIncitement = 'None';
 	let inputLengthUp = 'None';
@@ -676,12 +925,12 @@
 	let inputRoadLastStand = 'None';
 	let inputDuremudiraAttack = 'None';
 	let inputAttackMedicine = 'None';
-	let inputHhAttackSongs = 'None';
-	let inputAdrenalineVigorous = 'None';
+	let inputHhAttackSongs = 'None (1x)';
+	let inputAdrenalineVigorous = 'None (1x)';
 	let inputVigorousUp = 'None';
-	let inputHidenSkills = 'None';
-	let inputWeaponSpecific = 'None';
-	let inputCombatSupremacy = 'None';
+	let inputHidenSkills = 'None (1x)';
+	let inputWeaponSpecific = 'None (1x)';
+	let inputCombatSupremacy = 'None (1x)';
 	let inputArmor1 = 'None';
 	let inputOriginArmor = 'None';
 	let inputGArmorPieces = '3+ G Rank Pieces (+30)';
@@ -690,20 +939,20 @@
 	let inputAssistance = 'None';
 	let inputBondMaleHunter = 'None';
 	let inputPartnyaaBond = 'None';
-	let inputFireMultipliers = 'None';
-	let inputWaterMultipliers = 'None';
-	let inputThunderMultipliers = 'None';
-	let inputIceMultipliers = 'None';
-	let inputDragonMultipliers = 'None';
-	let inputElementalAttack = 'None';
-	let inputHhElementalUp = 'None';
+	let inputFireMultipliers = 'None (1x)';
+	let inputWaterMultipliers = 'None (1x)';
+	let inputThunderMultipliers = 'None (1x)';
+	let inputIceMultipliers = 'None (1x)';
+	let inputDragonMultipliers = 'None (1x)';
+	let inputElementalAttack = 'None (1x)';
+	let inputHhElementalUp = 'None (1x)';
 	let inputAbnormality = 'None';
 	let inputDrugKnowledge = 'Standard (0.38x Status)';
 	let inputStatusAssault = 'None';
-	let inputStatusAttackUp = 'None';
-	let inputGuildPoogie = 'None';
-	let inputStatusSigil = 'None';
-	let inputWeaponModifiers = 'None';
+	let inputStatusAttackUp = 'None (1x)';
+	let inputGuildPoogie = 'None (1x)';
+	let inputStatusSigil = 'None (1x)';
+	let inputWeaponModifiers = 'None (1x)';
 	let inputWeaponType: FrontierWeaponName = 'Sword and Shield';
 	let inputAoeAttackSigil = 'None';
 	let inputAoeAffinitySigil = 'None';
@@ -711,18 +960,19 @@
 	let inputSharpness = 'Cyan (1.8x)';
 	let inputFencing = 'None';
 	let inputDistanceMultiplier = '1.8x LBG & Bow Crit Distance';
-	let inputBulletModifier = 'None';
-	let inputShotMultiplier = 'None';
-	let inputHbgChargeShot = 'Normal / Charge Lv 0';
-	let inputCompressedShot = 'Not Compressed';
-	let inputBowCoatingsMultiplier = 'None';
+	let inputBulletModifier = 'None (1x)';
+	let inputShotMultiplier = 'None (1x)';
+	let inputHbgChargeShot = 'Normal / Charge Lv 0 (x1)';
+	let inputCompressedShot = 'Not Compressed (x1)';
+	let inputBowCoatingsMultiplier = 'None (1x)';
 	let inputChargeMultiplier = 'Lv4 (1.85x / 1.334x)';
 	let inputQuickShot = 'Normal (All 1.0x)';
+	let inputCompressedElementShot = 'Not Compressed';
 	let inputElement = 'None';
 	let inputAoeElementSigil = 'None';
-	let inputWeaponMultipliers = 'None';
+	let inputWeaponMultipliers = 'None (1x)';
 	let inputStatus = 'None';
-	let inputMonsterStatus = 'None';
+	let inputMonsterStatus = 'None (1x)';
 	let inputThunderClad = 'None';
 	let inputExploitWeakness = 'None';
 	let inputPointBreakthrough = 'None';
@@ -851,6 +1101,7 @@
 		inputShotMultiplier: inputShotMultiplier,
 		inputHbgChargeShot: inputHbgChargeShot,
 		inputCompressedShot: inputCompressedShot,
+		inputCompressedElementShot: inputCompressedElementShot,
 		inputBowCoatingsMultiplier: inputBowCoatingsMultiplier,
 		inputChargeMultiplier: inputChargeMultiplier,
 		inputQuickShot: inputQuickShot,
@@ -927,9 +1178,378 @@
 	$: inputTextInputs = prettyPrintJson(inputs);
 
 	$: outputStarvingWolfAffinity =
-		affinityMap.find((item) => item.name === inputStarvingWolf)?.value || 0;
+		affinityDropdownItems.find((item) => item.name === inputStarvingWolf)
+			?.value || 0;
 	$: outputCeaselessAffinity =
-		affinityMap.find((item) => item.name === inputCeaseless)?.value || 0;
+		affinityDropdownItems.find((item) => item.name === inputCeaseless)?.value ||
+		0;
+	$: outputFuriousAffinity =
+		affinityDropdownItems.find((item) => item.name === inputFurious)?.value ||
+		0;
+	$: outputIssenAffinity =
+		affinityDropdownItems.find((item) => item.name === inputIssenSkills)
+			?.value || 0;
+	$: outputSharpnessAffinity =
+		affinityDropdownItems.find((item) => item.name === inputSharpness)?.value ||
+		0;
+	$: outputStyleRankAffinity =
+		affinityDropdownItems.find((item) => item.name === inputStyleRankAffinity)
+			?.value || 0;
+	$: outputExpertAffinity =
+		affinityDropdownItems.find((item) => item.name === inputExpertSkills)
+			?.value || 0;
+	$: outputFlashConversionAffinity =
+		affinityDropdownItems.find((item) => item.name === inputFlashConversion)
+			?.value || 0;
+	$: outputFGSActiveFeatureAffinity =
+		affinityDropdownItems.find((item) => item.name === inputGsActiveFeature)
+			?.value || 0;
+	$: outputDrinkAffinity =
+		affinityDropdownItems.find((item) => item.name === inputAffinityItems)
+			?.value || 0;
+
+	$: outputAOEAffinityCount =
+		sigilDropdownItems.find((item) => item.name === inputAoeAffinitySigil)
+			?.value || 0;
+
+	$: outputAOETotalAffinity =
+		outputAOEAffinityCount === 0 || inputNumberAOEAffinitySigil === 0
+			? 0
+			: 20 * outputAOEAffinityCount + outputAOEAffinityCount * 2;
+
+	$: outputTotalAffinity =
+		outputIssenAffinity +
+		outputSharpnessAffinity +
+		inputNumberSigil1Affinity +
+		inputNumberSigil2Affinity +
+		inputNumberSigil3Affinity +
+		outputStyleRankAffinity +
+		outputExpertAffinity +
+		inputNumberNaturalAffinity +
+		outputFlashConversionAffinity +
+		outputFGSActiveFeatureAffinity +
+		outputDrinkAffinity +
+		outputStarvingWolfAffinity +
+		outputCeaselessAffinity +
+		outputFuriousAffinity +
+		outputAOETotalAffinity;
+
+	$: outputWeaponTypeMultiplier =
+		WeaponTypes.find((weaponType) => weaponType.name === inputWeaponType)
+			?.bloatAttackMultiplier || 1.2;
+
+	$: outputWeaponDisplayedAttack = Math.ceil(
+		inputNumberTrueRaw * outputWeaponTypeMultiplier,
+	);
+
+	$: outputTrueRaw = Math.ceil(
+		outputWeaponDisplayedAttack / outputWeaponTypeMultiplier,
+	);
+
+	$: outputRoadAdvLvFlr =
+		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAdvLvFlr)
+			?.value || 0;
+
+	$: outputRoadAdvancement = getRoadAdvancementValue(
+		outputRoadAdvLvFlr,
+		inputNumberRoadFloor,
+	);
+
+	$: outputVigorousUp = inputVigorousUp === 'Active (+50 Ranged, +100 Melee)';
+	$: outputAdrenaline =
+		multipliersDropdownItems.find(
+			(item) => item.name === inputAdrenalineVigorous,
+		)?.value || 0;
+
+	$: outputVigorousAddition =
+		outputVigorousUp && outputAdrenaline === 1.15
+			? getWeaponClass(inputWeaponType) === 'Blademaster'
+				? 100
+				: 50
+			: 0;
+
+	$: outputCaravanMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputCaravanSkills)
+			?.value || 0;
+
+	$: outputCaravanAddition = Math.floor(
+		inputNumberTrueRaw * outputCaravanMultiplier,
+	);
+
+	$: outputZenithTotalAttack =
+		inputNumberZenithAttackSigil === 0
+			? 0
+			: 30 + 20 * inputNumberZenithAttackSigil;
+
+	$: outputAOEAttackCount =
+		sigilDropdownItems.find((item) => item.name === inputAoeAttackSigil)
+			?.value || 0;
+
+	$: outputAOETotalAttack =
+		outputAOEAttackCount === 0 || inputNumberAOEAttackSigil === 0
+			? 0
+			: 25 * outputAOEAttackCount + inputNumberAOEAttackSigil * 5;
+
+	$: outputRush =
+		multipliedBaseDropdownItems.find((item) => item.name === inputRush)
+			?.value || 0;
+
+	$: outputStylishAssault =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputStylishAssault,
+		)?.value || 0;
+
+	$: outputFurious =
+		multipliedBaseDropdownItems.find((item) => item.name === inputFurious)
+			?.value || 0;
+
+	$: outputCritConversion =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputCritConversion,
+		)?.value || 0;
+
+	$: outputObscurity =
+		multipliedBaseDropdownItems.find((item) => item.name === inputObscurity)
+			?.value || 0;
+
+	$: outputIncitement =
+		multipliedBaseDropdownItems.find((item) => item.name === inputIncitement)
+			?.value || 0;
+
+	/* Rush / Stylish Assault / Vampirism / Flash Conversion / Obscurity / Incitement / Furious / Vigorous Up
+does not get multiplied by horn */
+	$: attackB =
+		outputRush +
+		outputStylishAssault +
+		outputFurious +
+		outputVigorousAddition +
+		outputCritConversion +
+		inputNumberVampirism +
+		outputObscurity +
+		outputIncitement;
+
+	$: outputAttackMedicine =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputAttackMedicine,
+		)?.value || 0;
+
+	$: outputAttackSkill =
+		multipliedBaseDropdownItems.find((item) => item.name === inputAttackSkills)
+			?.value || 0;
+	$: outputFoodAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputFoodConsumables,
+		)?.value || 0;
+	$: outputSeedAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputSeedsFlutesCat,
+		)?.value || 0;
+	$: outputUnlimitedSigilAttack = 10 * inputNumberUnlimitedSigil; // TODO
+
+	$: outputDrugKnowledge =
+		multipliersDropdownItems.find((item) => item.name === inputDrugKnowledge)
+			?.value || 0;
+	$: outputDrugKnowledgeUp =
+		multipliersDropdownItems.find((item) => item.name === inputDrugKnowledge)
+			?.value || 0;
+	$: outputStatusValue =
+		multipliersDropdownItems.find((item) => item.name === inputStatusAttackUp)
+			?.value || 0;
+	$: outputStatusAttack =
+		multipliersDropdownItems.find((item) => item.name === inputStatusAssault)
+			?.value || 0;
+	$: outputStatusGuildPoogie =
+		multipliersDropdownItems.find((item) => item.name === inputGuildPoogie)
+			?.value || 0;
+	$: outputStatusSigil =
+		multipliersDropdownItems.find((item) => item.name === inputStatusSigil)
+			?.value || 0;
+
+	$: outputDrugKnowledgeTotal = getDrugKnowledgeAddition(
+		outputDrugKnowledge,
+		outputDrugKnowledgeUp,
+		outputFurious,
+		outputStatusValue,
+		outputStatusAttack,
+		outputStatusGuildPoogie,
+		outputStatusSigil,
+	);
+	$: outputPassives =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputAttackMedicine,
+		)?.value || 0;
+
+	$: outputLoneWolfAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputLoneWolf)
+			?.value || 0;
+
+	$: outputDuremudiraAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputDuremudiraAttack,
+		)?.value || 0;
+	$: outputRisingAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputPrecisionSniperCritS,
+		)?.value || 0;
+	$: outputDrugAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputDrugKnowledge)
+			?.value || 0;
+	$: outputConsumptionSlayerAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputConsumptionSlayer,
+		)?.value || 0;
+	$: outputRoadLastStandAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputRoadLastStand)
+			?.value || 0;
+
+	$: outputLanceRedPhialAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputLanceHbg)
+			?.value || 0;
+	$: outputTowerAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputDuremudiraAttack,
+		)?.value || 0;
+
+	$: attackA =
+		inputNumberTrueRaw +
+		outputPassives +
+		(inputNumberSigil1Attack +
+			inputNumberSigil2Attack +
+			inputNumberSigil3Attack) +
+		inputNumberConquestAttack +
+		outputAttackMedicine +
+		outputAttackSkill +
+		outputFoodAttack +
+		outputSeedAttack +
+		inputNumberStyleRankAttack +
+		inputNumberUnlimitedSigil + // TODO
+		outputDrugKnowledgeTotal +
+		outputDuremudiraAttack +
+		outputLoneWolfAttack +
+		outputCaravanAddition +
+		outputRisingAttack +
+		outputRoadAdvancement +
+		Math.floor(outputDrugAttack * 0.025) +
+		outputConsumptionSlayerAttack +
+		outputRoadLastStandAttack +
+		outputLanceRedPhialAttack +
+		outputTowerAttack +
+		outputZenithTotalAttack +
+		outputAOETotalAttack;
+
+	$: outputHuntingHornMultiplier =
+		multipliedBaseDropdownItems.find((item) => item.name === inputHhAttackSongs)
+			?.value || 0;
+
+	$: outputConsumptionSlayerAttackMultiplier =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputConsumptionSlayer,
+		)?.value || 0;
+	$: outputHidenMultiplier =
+		multipliedBaseDropdownItems.find((item) => item.name === inputHidenSkills)
+			?.value || 0;
+	$: outputHammerMultiplier =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputChargeMultiplier,
+		)?.value || 0;
+
+	$: outputMultipliers =
+		Math.floor(attackA * outputHuntingHornMultiplier + attackB) *
+		outputAdrenaline *
+		outputConsumptionSlayerAttackMultiplier *
+		outputWeaponTypeMultiplier *
+		outputHidenMultiplier *
+		outputHammerMultiplier;
+
+	$: outputPartnyaBond =
+		flatAdditionsDropdownItems.find((item) => item.name === inputPartnyaaBond)
+			?.value || 0;
+
+	$: outputHunterBond =
+		flatAdditionsDropdownItems.find((item) => item.name === inputBondMaleHunter)
+			?.value || 0;
+
+	$: outputAssist =
+		flatAdditionsDropdownItems.find((item) => item.name === inputAssistance)
+			?.value || 0;
+
+	$: outputSoul =
+		flatAdditionsDropdownItems.find((item) => item.name === inputRedSoul)
+			?.value || 0;
+
+	$: outputArmor1 =
+		flatAdditionsDropdownItems.find((item) => item.name === inputArmor1)
+			?.value || 0;
+
+	$: outputArmor2 =
+		flatAdditionsDropdownItems.find((item) => item.name === inputOriginArmor)
+			?.value || 0;
+
+	$: outputArmorG =
+		flatAdditionsDropdownItems.find((item) => item.name === inputGArmorPieces)
+			?.value || 0;
+
+	$: outputSecretTech =
+		flatAdditionsDropdownItems.find(
+			(item) => item.name === inputGsr999SecretTech,
+		)?.value || 0;
+
+	$: outputFlatAdditions =
+		outputPartnyaBond +
+		outputHunterBond +
+		outputAssist +
+		outputSoul +
+		outputArmor1 +
+		outputArmor2 +
+		outputArmorG +
+		outputSecretTech;
+
+	$: outputFinalAttackValue = getFinalAttackValue(
+		outputFlatAdditions,
+		outputMultipliers,
+		outputWeaponTypeMultiplier,
+		missionRequirementAttackCeilings,
+	);
+
+	$: outputCompressedShots =
+		flatAdditionsDropdownItems.find((item) => item.name === inputCompressedShot)
+			?.value || 0;
+
+	$: outputCompressedShotPower = Math.floor(
+		inputNumberCompressedShot * outputCompressedShots,
+	);
+
+	$: outputCritValue = getCritValue(
+		outputStarvingWolfAffinity,
+		outputCeaselessAffinity,
+		outputExpertAffinity,
+		outputIssenAffinity,
+	);
+
+	$: outputSwordAndShieldMultiplier =
+		inputWeaponType === 'Sword and Shield' ? 1.25 : 1;
+
+	let inputGunlanceRaw = 1;
+	let inputGunlanceShellType = 2;
+
+	$: outputGunlanceRaw = inputGunlanceRaw / 2.3;
+	$: outputGunlanceShellType = inputGunlanceShellType - 1;
+	$: outputGunlanceShellDamage =
+		outputGunlanceShellType > 18
+			? 0.09 * outputGunlanceRaw + gunlanceShellValues[outputGunlanceShellType]
+			: outputGunlanceShellType > 9
+				? 0.1 * outputGunlanceRaw + gunlanceShellValues[outputGunlanceShellType]
+				: outputGunlanceShellType > 0
+					? 0.11 * outputGunlanceRaw +
+						gunlanceShellValues[outputGunlanceShellType]
+					: 0;
+
+	$: outputGunlanceShell = Math.floor(outputGunlanceShellDamage);
+	$: outputGunlanceShellBoosted = Math.floor(outputGunlanceShellDamage * 1.5);
+
+	$: outputSharpnessMultiplier =
+		blademasterDropdownItems.find((item) => item.name === inputSharpness)
+			?.value || 0;
 
 	// TODO datatable description having weapon guide link
 </script>
@@ -976,6 +1596,16 @@
 			lowContrast
 		/>
 
+		<p>To load your gear from the game:</p>
+		<ol>
+			<li>1. Load the overlay.</li>
+			<li>2. Go into a quest and open overlay settings.</li>
+			<li>
+				3. Go to Hunter's Notes tab, right-click your guild card and select
+				"Copy stats for Wycademy's Arena".
+			</li>
+			<li>4. Paste them here.</li>
+		</ol>
 		<div class="container-arena">
 			<div class="container-buttons">
 				<div class="buttons-top">
@@ -991,7 +1621,7 @@
 					<Button
 						kind="tertiary"
 						icon={Upload}
-						on:click={loadInputsFromTextFile}>Load from file</Button
+						on:click={loadInputsFromJSONFile}>Load from file</Button
 					>
 				</div>
 				<div class="buttons-bottom">
@@ -1006,8 +1636,8 @@
 					<Button
 						kind="tertiary"
 						icon={DocumentDownload}
-						on:click={() => saveInputsAsTextFile(inputTextInputs)}
-						>Save as text file</Button
+						on:click={() => saveInputsAsJSONFile(inputTextInputs)}
+						>Save inputs to file</Button
 					>
 				</div>
 				<!-- <Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} /> -->
@@ -1114,7 +1744,7 @@
 								titleText="Ceaseless"
 								bind:selectedId={inputCeaseless}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'Ceaseless 1st Stage (+35% / +0.10x)',
 										text: 'Ceaseless 1st Stage (+35% / +0.10x)',
@@ -1134,7 +1764,7 @@
 								titleText="Starving Wolf"
 								bind:selectedId={inputStarvingWolf}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'Starving Wolf+1 (+50% / +0.00x)',
 										text: 'Starving Wolf+1 (+50% / +0.00x)',
@@ -1214,7 +1844,7 @@
 								titleText="Caravan Skills"
 								bind:selectedId={inputCaravanSkills}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'Shooting Rampage (x1.1) (Ranged Only)',
 										text: 'Shooting Rampage (x1.1) (Ranged Only)',
@@ -1228,8 +1858,8 @@
 										text: 'Weapons Art Medium (x1.025)',
 									},
 									{
-										id: 'Weapons Art Large (x1.05 )',
-										text: 'Weapons Art Large (x1.05 )',
+										id: 'Weapons Art Large (x1.05)',
+										text: 'Weapons Art Large (x1.05)',
 									},
 								]}
 							/>
@@ -1279,7 +1909,7 @@
 										text: 'Tonfa Body Aura (Ranged Only) (+25)',
 									},
 									{
-										id: '25.00',
+										id: 'Tonfa B. Aura A. Feature (Ranged Only) (+50)',
 										text: 'Tonfa B. Aura A. Feature (Ranged Only) (+50)',
 									},
 									{
@@ -1287,7 +1917,7 @@
 										text: 'Long Sword Attack Up (+10)',
 									},
 									{
-										id: '40',
+										id: 'Long Sword Active Feature Attack Up (+40)',
 										text: 'Long Sword Active Feature Attack Up (+40)',
 									},
 									{
@@ -1303,27 +1933,27 @@
 										text: '(Cat) Demon Horn +2 (+40)',
 									},
 									{
-										id: '20.0',
+										id: '(Cat) D. Horn (No Skill) & Encourage+1 (+20)',
 										text: '(Cat) D. Horn (No Skill) & Encourage+1 (+20)',
 									},
 									{
-										id: '30',
+										id: '(Cat) D. Horn (No Skill) & Encourage+2 (+30)',
 										text: '(Cat) D. Horn (No Skill) & Encourage+2 (+30)',
 									},
 									{
-										id: '30.0',
+										id: '(Cat) Demon Horn+1 & Encourage+1 (+30)',
 										text: '(Cat) Demon Horn+1 & Encourage+1 (+30)',
 									},
 									{
-										id: '50',
+										id: '(Cat) Demon Horn+2 & Encourage+1 (+50)',
 										text: '(Cat) Demon Horn+2 & Encourage+1 (+50)',
 									},
 									{
-										id: '40.00',
+										id: '(Cat) Demon Horn+1 & Encourage+2 (+40)',
 										text: '(Cat) Demon Horn+1 & Encourage+2 (+40)',
 									},
 									{
-										id: '60',
+										id: '(Cat) Demon Horn+2 & Encourage+2 (+60)',
 										text: '(Cat) Demon Horn+2 & Encourage+2 (+60)',
 									},
 								]}
@@ -1432,7 +2062,7 @@
 								titleText="Obscurity"
 								bind:selectedId={inputObscurity}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None', text: 'None' }, // TODO
 									{
 										id: '1 Block (+40 / +30 / +20)',
 										text: '1 Block (+40 / +30 / +20)',
@@ -1518,17 +2148,20 @@
 								titleText="Furious"
 								bind:selectedId={inputFurious}
 								items={[
-									{ id: 'None', text: 'None' },
 									{
-										id: '70',
+										id: 'None (x1 Ele & Status)',
+										text: 'None (x1 Ele & Status)',
+									},
+									{
+										id: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)',
 										text: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)',
 									},
 									{
-										id: '100',
+										id: '2nd Stage (+100 / 1.10x Ele & Status / +25% Affinity)',
 										text: '2nd Stage (+100 / 1.10x Ele & Status / +25% Affinity)',
 									},
 									{
-										id: '180',
+										id: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
 										text: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
 									},
 								]}
@@ -1562,7 +2195,7 @@
 								bind:selectedId={inputLengthUp}
 								items={[
 									{ id: 'None', text: 'None' },
-									{ id: 'Active', text: 'Active' },
+									{ id: 'Active', text: 'Active' }, // TODO
 								]}
 							/>
 
@@ -1689,7 +2322,7 @@
 								titleText="HH Attack Songs"
 								bind:selectedId={inputHhAttackSongs}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'G Rank Atk Sm (x1.10)',
 										text: 'G Rank Atk Sm (x1.10)',
@@ -1713,7 +2346,7 @@
 								titleText="Adrenaline/Vigorous"
 								bind:selectedId={inputAdrenalineVigorous}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: 'Vigorous (x1.15)', text: 'Vigorous (x1.15)' },
 									{ id: 'Worry (x0.70)', text: 'Worry (x0.70)' },
 									{ id: 'Bowguns (x1.3)', text: 'Bowguns (x1.3)' },
@@ -1737,7 +2370,7 @@
 								titleText="Hiden Skills"
 								bind:selectedId={inputHidenSkills}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'Ranged Large Hiden (x1.4)',
 										text: 'Ranged Large Hiden (x1.4)',
@@ -1751,7 +2384,7 @@
 								titleText="Weapon Specific"
 								bind:selectedId={inputWeaponSpecific}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: '1 Sharpen (x1.05)', text: '1 Sharpen (x1.05)' },
 									{ id: '2 Sharpens (x1.10)', text: '2 Sharpens (x1.10)' },
 									{ id: '3 Sharpens (x1.15)', text: '3 Sharpens (x1.15)' },
@@ -1785,7 +2418,7 @@
 								titleText="Combat Supremacy"
 								bind:selectedId={inputCombatSupremacy}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: 'Yes (x1.2)', text: 'Yes (x1.2)' },
 								]}
 							/>
@@ -1920,7 +2553,7 @@
 								titleText="Fire Multipliers"
 								bind:selectedId={inputFireMultipliers}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'Small or Halk Drink (1.1x)',
 										text: 'Small or Halk Drink (1.1x)',
@@ -1941,7 +2574,7 @@
 								titleText="Water Multipliers"
 								bind:selectedId={inputWaterMultipliers}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'Small or Halk Drink (1.1x)',
 										text: 'Small or Halk Drink (1.1x)',
@@ -1962,7 +2595,7 @@
 								titleText="Thunder Multipliers"
 								bind:selectedId={inputThunderMultipliers}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'Small or Halk Drink (1.1x)',
 										text: 'Small or Halk Drink (1.1x)',
@@ -1983,7 +2616,7 @@
 								titleText="Ice Multipliers"
 								bind:selectedId={inputIceMultipliers}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'Small or Halk Drink (1.1x)',
 										text: 'Small or Halk Drink (1.1x)',
@@ -2004,7 +2637,7 @@
 								titleText="Dragon Multipliers"
 								bind:selectedId={inputDragonMultipliers}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'Small or Halk Drink (1.1x)',
 										text: 'Small or Halk Drink (1.1x)',
@@ -2025,7 +2658,7 @@
 								titleText="Elemental Attack"
 								bind:selectedId={inputElementalAttack}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: 'Active (1.1x)', text: 'Active (1.1x)' },
 									{
 										id: 'SnS Active Feature (1.2x)',
@@ -2039,7 +2672,7 @@
 								titleText="HH Elemental Up"
 								bind:selectedId={inputHhElementalUp}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: 'Ele Up Song (1.1x)', text: 'Ele Up Song (1.1x)' },
 								]}
 							/>
@@ -2053,7 +2686,7 @@
 								bind:selectedId={inputAbnormality}
 								items={[
 									{ id: 'None', text: 'None' },
-									{ id: 'On', text: 'On' },
+									{ id: 'On', text: 'On' }, // TODO
 								]}
 							/>
 
@@ -2078,7 +2711,7 @@
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: 'On (For Sleep add +10 raw hitbox)',
+										id: 'On (For Sleep add +10 raw hitbox)', // TODO
 										text: 'On (For Sleep add +10 raw hitbox)',
 									},
 								]}
@@ -2088,7 +2721,7 @@
 								titleText="Status Attack Up"
 								bind:selectedId={inputStatusAttackUp}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: 'On (1.125x)', text: 'On (1.125x)' },
 								]}
 							/>
@@ -2097,7 +2730,7 @@
 								titleText="Guild Poogie"
 								bind:selectedId={inputGuildPoogie}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: 'On (1.125x)', text: 'On (1.125x)' },
 								]}
 							/>
@@ -2106,7 +2739,7 @@
 								titleText="Status Sigil"
 								bind:selectedId={inputStatusSigil}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: 'Normal (1.1x)', text: 'Normal (1.1x)' },
 									{ id: 'Zenith (1.5x)', text: 'Zenith (1.5x)' },
 									{ id: 'Both (1.65x)', text: 'Both (1.65x)' },
@@ -2117,7 +2750,7 @@
 								titleText="Weapon Modifiers"
 								bind:selectedId={inputWeaponModifiers}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
 										id: 'SnS Active Feature (1.2x)',
 										text: 'SnS Active Feature (1.2x)',
@@ -2425,7 +3058,7 @@
 									bind:selectedId={inputFencing}
 									items={[
 										{ id: 'None', text: 'None' },
-										{ id: '+2', text: '+2' },
+										{ id: '+2', text: '+2' }, // TODO
 									]}
 								/>
 
@@ -2497,19 +3130,19 @@
 											text: '2.15x HBG 2nd Half Crit D. & Zenith',
 										},
 										{
-											id: '2.4',
+											id: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
 											text: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
 										},
 										{
-											id: '2.10',
+											id: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
 											text: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
 										},
 										{
-											id: '2.1',
+											id: '2.1x 1st Half Crit D. (HBG Active Feature)',
 											text: '2.1x 1st Half Crit D. (HBG Active Feature)',
 										},
 										{
-											id: '1.80',
+											id: '1.8x 2nd Half Crit D. (HBG Active Feature)',
 											text: '1.8x 2nd Half Crit D. (HBG Active Feature)',
 										},
 										{
@@ -2521,8 +3154,8 @@
 											text: '1.7x 2nd Half Crit D.',
 										},
 										{
-											id: '1.5x Bow or LBG Crit D. ',
-											text: '1.5x Bow or LBG Crit D. ',
+											id: '1.5x Bow or LBG Crit D.',
+											text: '1.5x Bow or LBG Crit D.',
 										},
 										{ id: '2.2x', text: '2.2x' },
 										{ id: '1.6x', text: '1.6x' },
@@ -2540,19 +3173,19 @@
 											text: '2.0x Step Shot & Z Piece',
 										},
 										{
-											id: '1.9',
+											id: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
 											text: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
 										},
 										{
-											id: '1.6',
+											id: '1.6x Standard C. Distance (LBG Active Feature)',
 											text: '1.6x Standard C. Distance (LBG Active Feature) ',
 										},
 										{
-											id: '2.40',
+											id: '2.4x Step Shot & Z Piece (LBG Active Feature)',
 											text: '2.4x Step Shot & Z Piece (LBG Active Feature)',
 										},
 										{
-											id: '2.100',
+											id: '2.1x Step Shot & Z Piece (LBG Active Feature)',
 											text: '2.1x Step Shot & Z Piece (LBG Active Feature)',
 										},
 										{ id: '2.5x', text: '2.5x' },
@@ -2565,10 +3198,10 @@
 									titleText="Bullet Modifier"
 									bind:selectedId={inputBulletModifier}
 									items={[
-										{ id: 'None', text: 'None' },
+										{ id: 'None (1x)', text: 'None (1x)' },
 										{
 											id: 'Steady Hand (All Below)',
-											text: 'Steady Hand (All Below)',
+											text: 'Steady Hand (All Below)', // TODO
 										},
 										{
 											id: 'Normal / Rapid Up (1.1x)',
@@ -2593,7 +3226,7 @@
 											id: 'Finishing Shot (2.0x)',
 											text: 'Finishing Shot (2.0x)',
 										},
-										{ id: 'None', text: 'None' },
+										{ id: 'None (1x)', text: 'None (1x)' },
 										{ id: 'Rapid Fire (0.5x)', text: 'Rapid Fire (0.5x)' },
 										{
 											id: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
@@ -2607,8 +3240,8 @@
 									bind:selectedId={inputHbgChargeShot}
 									items={[
 										{
-											id: 'Normal / Charge Lv 0',
-											text: 'Normal / Charge Lv 0',
+											id: 'Normal / Charge Lv 0 (x1)',
+											text: 'Normal / Charge Lv 0 (x1)',
 										},
 										{ id: 'Charge Lv 1 (1.15x)', text: 'Charge Lv 1 (1.15x)' },
 										{ id: 'Charge Lv 2 (1.3x)', text: 'Charge Lv 2 (1.3x)' },
@@ -2634,7 +3267,7 @@
 									titleText="Compressed Shot"
 									bind:selectedId={inputCompressedShot}
 									items={[
-										{ id: 'Not Compressed', text: 'Not Compressed' },
+										{ id: 'Not Compressed (x1)', text: 'Not Compressed (x1)' },
 										{
 											id: 'Lv1 Norm S. (2.4x Bullets Loaded)',
 											text: 'Lv1 Norm S. (2.4x Bullets Loaded)',
@@ -2664,11 +3297,11 @@
 											text: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
 										},
 										{
-											id: '18.0',
+											id: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
 											text: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
 										},
 										{
-											id: '21.0',
+											id: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
 											text: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
 										},
 										{
@@ -2688,11 +3321,11 @@
 											text: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
 										},
 										{
-											id: '13.5',
+											id: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
 											text: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
 										},
 										{
-											id: '17.5',
+											id: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
 											text: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
 										},
 										{
@@ -2724,11 +3357,11 @@
 											text: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
 										},
 										{
-											id: '25.2',
+											id: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
 											text: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
 										},
 										{
-											id: '29.4',
+											id: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
 											text: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
 										},
 										{
@@ -2736,11 +3369,11 @@
 											text: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
 										},
 										{
-											id: '18.9',
+											id: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
 											text: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
 										},
 										{
-											id: '24.5',
+											id: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
 											text: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
 										},
 									]}
@@ -2750,7 +3383,7 @@
 									titleText="Bow Coatings Multiplier"
 									bind:selectedId={inputBowCoatingsMultiplier}
 									items={[
-										{ id: 'None', text: 'None' },
+										{ id: 'None (1x)', text: 'None (1x)' },
 										{ id: 'Power Bottle (1.6x)', text: 'Power Bottle (1.6x)' },
 										{
 											id: 'P. Bottle + Bow Hiden (1.8x)',
@@ -2784,7 +3417,7 @@
 										{
 											id: 'Choose a level lower for Non-G',
 											text: 'Choose a level lower for Non-G',
-										},
+										}, // TODO
 									]}
 								/>
 
@@ -2820,8 +3453,8 @@
 											text: 'Crouched Lv1 (0.48x / 0.7x)',
 										},
 										{
-											id: 'Crouched Lv2 (1.3x / 0.8x) ',
-											text: 'Crouched Lv2 (1.3x / 0.8x) ',
+											id: 'Crouched Lv2 (1.3x / 0.8x)',
+											text: 'Crouched Lv2 (1.3x / 0.8x)',
 										},
 										{
 											id: 'Crouched Lv3 (2.1x / 1.2x)',
@@ -2840,11 +3473,11 @@
 									items={[
 										{ id: 'Normal (All 1.0x)', text: 'Normal (All 1.0x)' },
 										{
-											id: '1',
+											id: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
 											text: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
-										},
+										}, // TODO
 										{
-											id: '2',
+											id: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
 											text: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
 										},
 									]}
@@ -2857,10 +3490,10 @@
 						<div class="inputs-group-column">
 							<Dropdown
 								titleText="Compressed Element Shot"
-								bind:selectedId={inputCompressedShot}
+								bind:selectedId={inputCompressedElementShot}
 								items={[
 									{ id: 'Not Compressed', text: 'Not Compressed' },
-									{ id: 'Fire Shot', text: 'Fire Shot' },
+									{ id: 'Fire Shot', text: 'Fire Shot' }, // TODO
 									{ id: 'Water Shot', text: 'Water Shot' },
 									{ id: 'Thunder Shot', text: 'Thunder Shot' },
 									{ id: 'Ice Shot', text: 'Ice Shot' },
@@ -2889,7 +3522,7 @@
 								bind:selectedId={inputElement}
 								items={[
 									{ id: 'None', text: 'None' },
-									{ id: 'Fire (火)', text: 'Fire (火)' },
+									{ id: 'Fire (火)', text: 'Fire (火)' }, // TODO
 									{ id: 'Water (水)', text: 'Water (水)' },
 									{ id: 'Thunder (雷)', text: 'Thunder (雷)' },
 									{ id: 'Ice (冰)', text: 'Ice (冰)' },
@@ -3024,7 +3657,7 @@
 									{ id: '1 Sigil', text: '1 Sigil' },
 									{ id: '2 Sigils', text: '2 Sigils' },
 									{ id: '3 Sigils', text: '3 Sigils' },
-									{ id: '4 Sigils', text: '4 Sigils' },
+									{ id: '4 Sigils', text: '4 Sigils' }, // TODO
 								]}
 							/>
 
@@ -3032,9 +3665,9 @@
 								titleText="Weapon Multipliers"
 								bind:selectedId={inputWeaponMultipliers}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{
-										id: '1.3',
+										id: 'Swaxe Sword Mode Elemental Phial (1.3x)',
 										text: 'Swaxe Sword Mode Elemental Phial (1.3x)',
 									},
 									{
@@ -3042,7 +3675,7 @@
 										text: 'Maxed Transcend (2.0x)',
 									},
 									{
-										id: '2.6',
+										id: 'Swaxe Ele Phial & Maxed Transcend (2.6x)',
 										text: 'Swaxe Ele Phial & Maxed Transcend (2.6x)',
 									},
 								]}
@@ -3058,7 +3691,7 @@
 								items={[
 									{ id: 'None', text: 'None' },
 									{ id: 'Poison', text: 'Poison' },
-									{ id: 'Paralysis', text: 'Paralysis' },
+									{ id: 'Paralysis', text: 'Paralysis' }, // TODO
 								]}
 							/>
 
@@ -3203,7 +3836,7 @@
 								titleText="Monster Status"
 								bind:selectedId={inputMonsterStatus}
 								items={[
-									{ id: 'None', text: 'None' },
+									{ id: 'None (1x)', text: 'None (1x)' },
 									{ id: 'Paralysed (1.1x)', text: 'Paralysed (1.1x)' },
 									{ id: 'Sleeping (3.0x)', text: 'Sleeping (3.0x)' },
 								]}
@@ -3231,7 +3864,7 @@
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: '1',
+										id: 'Exploit Weakness (+5 on 35+ raw hitboxes)',
 										text: 'Exploit Weakness (+5 on 35+ raw hitboxes)',
 									},
 									{
@@ -3239,7 +3872,7 @@
 										text: 'Determination (+5 on raw hitboxes)',
 									},
 									{
-										id: '3',
+										id: 'ZZ Exploit Weakness (+5 on 30+ raw hitboxes)',
 										text: 'ZZ Exploit Weakness (+5 on 30+ raw hitboxes)',
 									},
 								]}
@@ -3279,7 +3912,7 @@
 								items={[
 									{ id: 'None', text: 'None' },
 									{
-										id: '20',
+										id: 'Elemental Exploit (+X to 20+ ele hitboxes)',
 										text: 'Elemental Exploit (+X to 20+ ele hitboxes)',
 									},
 									{
@@ -3303,7 +3936,7 @@
 										text: 'Raw Weakness (+2 on Raw Hitboxes)',
 									},
 									{
-										id: 'allelehb',
+										id: 'Elemental Weakness (+4 on all Elemental Hitboxes)',
 										text: 'Elemental Weakness (+4 on all Elemental Hitboxes)',
 									},
 									{
@@ -3447,6 +4080,31 @@
 				</svelte:fragment>
 			</DataTable>
 		</div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Gunlance Shells and Wyvernfire" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Ice Age" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Combos" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Sigils" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Elements" />
+		<div></div>
 	</section>
 </div>
 
