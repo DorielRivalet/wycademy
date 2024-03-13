@@ -9,6 +9,23 @@ type ThemeMap = {
 
 export type CatppuccinFlavorName = 'mocha' | 'macchiato' | 'frappe' | 'latte';
 
+export function getCatppuccinFlavorFromThemeForShiki(
+	theme: CarbonTheme,
+): string {
+	switch (theme) {
+		case 'g100':
+			return 'catppuccin-mocha';
+		case 'g90':
+			return 'catppuccin-macchiato';
+		case 'g80':
+			return 'catppuccin-frappe';
+		case 'g10':
+			return 'catppuccin-latte';
+		default:
+			return 'catppuccin-mocha';
+	}
+}
+
 export function getCatppuccinFlavorFromTheme(
 	theme: CarbonTheme,
 ): CatppuccinFlavorName {

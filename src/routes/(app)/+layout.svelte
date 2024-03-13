@@ -84,9 +84,8 @@
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <div class="app">
 	<ViewTransition />
-		<div class="header">
-			<Header />
-
+	<div class="header">
+		<Header />
 	</div>
 	<div class="banner">
 		<InlineNotification
@@ -110,8 +109,7 @@
 		</main>
 	</div>
 	{#key $page.url.pathname}
-	<div class="footer">		<Footer githubData={data.github} />
-</div>
+		<div class="footer"><Footer githubData={data.github} /></div>
 	{/key}
 </div>
 
@@ -122,9 +120,8 @@
 		background-color: var(--ctp-mantle);
 	}
 
-	.footer{
-				border-top: var(--cds-spacing-01) solid var(--ctp-surface0);
-
+	.footer {
+		border-top: var(--cds-spacing-01) solid var(--ctp-surface0);
 	}
 
 	.bg-arena {
@@ -155,7 +152,7 @@
 		background-image: url($lib/client/images/background/bg-bestiary.webp);
 	}
 
-		.bg-support {
+	.bg-support {
 		background-image: url($lib/client/images/background/bg-support.webp);
 	}
 
@@ -183,8 +180,8 @@
 		border-radius: 0px 0px 10px 10px;
 	}
 
-	.header{
-				border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+	.header {
+		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 	}
 
 	.none {
