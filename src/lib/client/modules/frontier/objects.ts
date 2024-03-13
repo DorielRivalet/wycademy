@@ -3989,6 +3989,14 @@ export const sigilDropdownItems: DropdownItemOption[] = [
 
 export const elementMultipliers: FrontierElementMultiplier[] = [
 	{
+		name: 'None',
+		fireMultiplier: 0,
+		waterMultiplier: 0,
+		thunderMultiplier: 0,
+		iceMultiplier: 0,
+		dragonMultiplier: 0,
+	},
+	{
 		name: 'Fire',
 		fireMultiplier: 1,
 		waterMultiplier: 0,
@@ -4139,6 +4147,14 @@ export const elementMultipliers: FrontierElementMultiplier[] = [
 		thunderMultiplier: 1.5,
 		iceMultiplier: 0,
 		dragonMultiplier: 0.5,
+	},
+	{
+		name: 'Raw',
+		fireMultiplier: 0,
+		waterMultiplier: 0,
+		thunderMultiplier: 0,
+		iceMultiplier: 0,
+		dragonMultiplier: 0,
 	},
 ] as const;
 
