@@ -120,8 +120,6 @@ SOFTWARE.
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={image} />
-		<meta property="og:image:url" content={image} />
-		<meta property="og:image:secure" content={image} />
 		<meta property="og:image:alt" content="Elzelion holding a book" />
 		<meta property="og:site_name" content={siteName} />
 	{/if}
