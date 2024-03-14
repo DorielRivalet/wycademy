@@ -7,7 +7,7 @@
 <script>
 	import Counter from '$lib/client/components/Counter.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import pageThumbnail from '$lib/client/images/logo.webp';
+	import pageThumbnail from '$lib/client/images/logo.png';
 	import {
 		authorName,
 		authorUrl,

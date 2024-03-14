@@ -14,7 +14,7 @@
 	import MySupport from '$lib/client/components/frontier/icon/MySupport.svelte';
 	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 	import MonsterPartIconWhite from '$lib/client/components/frontier/icon/item/Monster_Part_Icon_White.svelte';
-	import TicketIconWhite from '$lib/client/components/frontier/icon/item/Ticket_Icon_White.svelte';
+	import TrophyWhite from '$lib/client/components/frontier/icon/TrophyWhite.svelte';
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
 	import NavigationItem from './NavigationItem.svelte';
@@ -46,7 +46,7 @@
 					path="/leaderboard"
 					description="Leaderboard"
 				>
-					<TicketIconWhite
+					<TrophyWhite
 						color={getHexStringFromCatppuccinColor('yellow', $theme)}
 					/>
 				</NavigationItem>
