@@ -2772,7 +2772,6 @@ does not get multiplied by horn */
 <div class={modalBlurClass}>
 	<section>
 		<SectionHeadingTopLevel title="Arena" />
-
 		<InlineNotification
 			title="Note:"
 			subtitle="Refreshing the page resets all values."
@@ -5225,7 +5224,7 @@ does not get multiplied by horn */
 							<div class="weapon-icon">
 								<svelte:component this={weaponIcon} {...weaponIconProps} />
 							</div>
-							<div>{inputWeaponType}</div>
+							<div>{inputWeaponType} Motion Values</div>
 						</div>
 					</span>
 					<svelte:fragment slot="cell" let:cell>
