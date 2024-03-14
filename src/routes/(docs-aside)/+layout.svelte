@@ -23,6 +23,12 @@
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import Toc from 'svelte-toc';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
+	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
+	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
+	import Move from 'carbon-icons-svelte/lib/Move.svelte';
+	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -42,9 +48,49 @@
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
 	});
+
+	let hide = false;
+	let isPositionedLeft = true;
+
+	function onTOCButtonPress(e: MouseEvent) {
+		hide = !hide;
+	}
+
+	function onTOCMoveButtonPress(e: MouseEvent) {
+		isPositionedLeft = !isPositionedLeft;
+	}
+
+	$: contentsClass = isPositionedLeft ? 'contents' : 'contents-reverse';
 </script>
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
+
+{#if hide}
+	{#if isPositionedLeft}
+		<div class="expand-TOC">
+			<Button
+				iconDescription="Expand TOC"
+				tooltipPosition="right"
+				size="small"
+				kind="ghost"
+				icon={ChevronRight}
+				on:click={onTOCButtonPress}
+			/>
+		</div>
+	{:else}
+		<div class="expand-TOC-reverse">
+			<Button
+				iconDescription="Expand TOC"
+				tooltipPosition="left"
+				size="small"
+				kind="ghost"
+				icon={ChevronLeft}
+				on:click={onTOCButtonPress}
+			/>
+		</div>
+	{/if}
+{/if}
+
 <div class="app">
 	<ViewTransition />
 
@@ -67,15 +113,75 @@
 			</svelte:fragment>
 		</InlineNotification>
 	</div>
-	<main>
-		<slot />
-	</main>
+
+	<div class={contentsClass}>
+		{#if !hide}
+			<div class="table-of-contents">
+				<Toc blurParams={{ duration: 0 }} {hide}>
+					<span slot="title"
+						><div>
+							<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
+								>{isPositionedLeft ? 'Move to right' : 'Move to left'}</Button
+							>
+							<Button kind="ghost" icon={ViewOff} on:click={onTOCButtonPress}
+								>{hide ? 'Show' : 'Hide'}</Button
+							>
+						</div>
+						<h2 class="toc-title toc-exclude">On this page</h2></span
+					>
+				</Toc>
+			</div>
+		{/if}
+
+		<main>
+			<slot />
+		</main>
+	</div>
+
 	{#key $page.url.pathname}
 		<Footer githubData={data.github} />
 	{/key}
 </div>
 
 <style>
+	.expand-TOC {
+		position: fixed; /* Position the button relative to the viewport */
+		top: 50%; /* Position it in the middle vertically */
+		left: 0%; /* Position it at the left edge of the viewport */
+		padding: 0;
+		margin: 0;
+		z-index: 1000; /* Ensure the button is above other content */
+	}
+
+	.expand-TOC-reverse {
+		position: fixed; /* Position the button relative to the viewport */
+		top: 50%; /* Position it in the middle vertically */
+		right: 0%; /* Position it at the left edge of the viewport */
+		padding: 0;
+		margin: 0;
+		z-index: 1000; /* Ensure the button is above other content */
+	}
+
+	.table-of-contents {
+		min-width: 20vw;
+	}
+
+	.contents-reverse {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: flex-start; /* Align items to the start */
+		width: 100%;
+		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+	}
+
+	.contents {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start; /* Align items to the start */
+		width: 100%;
+		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+	}
+
 	.banner {
 		display: flex;
 		justify-content: center;
@@ -86,24 +192,22 @@
 		display: flex;
 		flex-direction: column;
 		background-color: var(--ctp-mantle);
+		max-width: 100vw;
 	}
 
 	main {
-		position: relative;
-		flex: 1;
+		flex: 1; /* This allows the main content to grow and take up the rest of the space */
 		display: flex;
 		flex-direction: column;
 		padding: var(--cds-spacing-08);
-		width: 100%;
-		max-width: 100vw;
 		margin: 0 auto;
+		width: 100%;
 		box-sizing: border-box;
 		min-height: 90vh;
 		background-color: var(--ctp-base);
 		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-radius: 0px 0px 10px 10px;
+		overflow-x: hidden; /* Prevent horizontal scrolling */
 	}
 
 	.header {
