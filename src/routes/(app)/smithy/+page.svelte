@@ -56,7 +56,7 @@
 		FrontierSwitchAxeFPhial,
 	} from '$lib/client/modules/frontier/types';
 	import Item from '$lib/client/components/frontier/Item.svelte';
-	import smithy from '$lib/client/images/icon/blacksmith.png';
+	import pageThumbnail from '$lib/client/images/icon/blacksmith.png';
 	import ezlion, {
 		type FrontierArmorSkillName,
 		type FrontierArmorSkillTree,
@@ -764,7 +764,7 @@
 <Head
 	title={'Smithy'}
 	{description}
-	image={smithy}
+	image={pageThumbnail}
 	{url}
 	{website}
 	{authorName}
