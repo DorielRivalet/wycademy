@@ -8,7 +8,7 @@
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import logo from '$lib/client/images/logo.webp';
+	import pageThumbnail from '$lib/client/images/logo.webp';
 	import {
 		authorName,
 		authorUrl,
@@ -25,7 +25,7 @@
 <Head
 	title={'About Development Stages'}
 	{description}
-	image={logo}
+	image={pageThumbnail}
 	{url}
 	{website}
 	{authorName}

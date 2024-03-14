@@ -6,7 +6,7 @@
 
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/client/images/logo.webp';
+	import pageThumbnail from '$lib/client/images/logo.webp';
 	import {
 		authorName,
 		authorUrl,
@@ -22,7 +22,7 @@
 <Head
 	title={'About'}
 	{description}
-	image={logo}
+	image={pageThumbnail}
 	{url}
 	{website}
 	{authorName}

@@ -7,7 +7,7 @@
 <script>
 	import Counter from '$lib/client/components/Counter.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import logo from '$lib/client/images/logo.webp';
+	import pageThumbnail from '$lib/client/images/logo.webp';
 	import {
 		authorName,
 		authorUrl,
@@ -27,7 +27,7 @@
 <Head
 	title={customTitle}
 	{description}
-	image={logo}
+	image={pageThumbnail}
 	{url}
 	{website}
 	{authorName}
