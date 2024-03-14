@@ -7,7 +7,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import pageThumbnail from '$lib/client/images/logo.webp';
+	import pageThumbnail from '$lib/client/images/icon/berserk_raviente_raid.png';
 	import {
 		authorName,
 		authorUrl,

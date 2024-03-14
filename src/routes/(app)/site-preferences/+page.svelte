@@ -18,7 +18,7 @@
 		getCursorNameFromId,
 		setCursor,
 	} from '$lib/client/stores/cursor';
-	import pageThumbnail from '$lib/client/images/logo.webp';
+	import pageThumbnail from '$lib/client/images/logo.png';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';

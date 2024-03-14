@@ -8,7 +8,7 @@
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import pageThumbnail from '$lib/client/images/logo.webp';
+	import pageThumbnail from '$lib/client/images/logo.png';
 	import {
 		authorName,
 		authorUrl,

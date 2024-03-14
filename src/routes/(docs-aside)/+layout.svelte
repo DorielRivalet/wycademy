@@ -121,7 +121,7 @@
 					<span slot="title"
 						><div>
 							<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
-								>{isPositionedLeft ? 'Move to right' : 'Move to left'}</Button
+								>{isPositionedLeft ? 'Move right' : 'Move left'}</Button
 							>
 							<Button kind="ghost" icon={ViewOff} on:click={onTOCButtonPress}
 								>{hide ? 'Show' : 'Hide'}</Button
