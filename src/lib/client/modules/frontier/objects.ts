@@ -46,7 +46,7 @@ import type {
 	FrontierWeaponLength,
 	FrontierWeaponSharpness,
 	FrontierWeaponType,
-	TagColors,
+	TagColor,
 } from './types';
 import GreatSwordIcon from '$lib/client/components/frontier/icon/weapon/Great_Sword_Icon_White5.svelte';
 import LongSwordIcon from '$lib/client/components/frontier/icon/weapon/Long_Sword_Icon_White4.svelte';
@@ -666,7 +666,7 @@ export const ArmorTypes: FrontierArmor[] = [
 ];
 
 export const TagTypes: {
-	color: TagColors;
+	color: TagColor;
 	icon: any;
 	link: string;
 	values: string[];
