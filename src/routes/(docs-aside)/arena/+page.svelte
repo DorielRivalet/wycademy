@@ -263,6 +263,22 @@
 		return result;
 	}
 
+	function getCSVFromArray(array: Array<object>) {
+		// Check if the array is not empty
+		if (array.length === 0) {
+			return '';
+		}
+
+		// Extract the keys from the first object in the array to use as the header row
+		const header = Object.keys(array[0]).join(',');
+
+		// Convert the array of objects to a CSV string, including the header row
+		const csv = array.map((obj) => Object.values(obj).join(',')).join('\n');
+
+		// Return the CSV string with the header row at the beginning
+		return `${header}\n${csv}`;
+	}
+
 	function getWeaponSectionMotionValues(
 		weaponName: FrontierWeaponName,
 		section: string,
@@ -3300,7 +3316,7 @@ does not get multiplied by horn */
 									/>
 
 									<Dropdown
-										titleText="Crit Conversion"
+										titleText="Crit Conversion Up"
 										bind:selectedId={inputCritConversion}
 										items={[
 											{ id: 'None', text: 'None' },
@@ -5454,8 +5470,8 @@ does not get multiplied by horn */
 								bind:selectedId={inputWeaponMotionValuesSection}
 								items={weaponSectionNames}
 							/>
-							<Button kind="tertiary" icon={Copy} on:click={updateInputs}
-								>Copy as CSV</Button
+							<CopyButton text={getCSVFromArray(weaponSections)}
+								>Copy as CSV</CopyButton
 							>
 						</div>
 					</Toolbar>
@@ -5508,8 +5524,8 @@ does not get multiplied by horn */
 				rows={sharedMotionValues}
 				><Toolbar
 					><div class="toolbar">
-						<Button kind="tertiary" icon={Copy} on:click={updateInputs}
-							>Copy as CSV</Button
+						<CopyButton text={getCSVFromArray(sharedMotionValues)}
+							>Copy as CSV</CopyButton
 						>
 					</div>
 				</Toolbar>
