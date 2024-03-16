@@ -19,6 +19,8 @@
 		hitzoneValueModifiersDropdownItems,
 		statusSkillsDropdownItems,
 		gunnerDropdownItems,
+		ElementIcons,
+		TagTypes,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -67,6 +69,9 @@
 	import { theme } from '$lib/client/stores/theme';
 	import { browser } from '$app/environment';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
+	import GameIconObject from '$lib/client/components/frontier/GameIconObject.svelte';
+	import IconElementFire from '$lib/client/components/frontier/icon/element/Fire.svelte';
+	import { getTag } from '$lib/client/modules/frontier/functions';
 
 	type DataTableKey = string;
 
@@ -2772,6 +2777,103 @@ does not get multiplied by horn */
 <div class={modalBlurClass}>
 	<section>
 		<SectionHeadingTopLevel title="Arena" />
+
+		<p>
+			Welcome to Wycademy's Arena! Here you can calculate various game
+			statistics, such as your total damage, by selecting the gear and weapon
+			values. You can, for example:
+		</p>
+		<ul>
+			<li>
+				Select a weapon type such as
+				<GameIconObject
+					hasPopover
+					popoverImage={WeaponTypes.find((item) => item.name === 'Long Sword')
+						?.icon}
+					link="/smithy"
+					popoverTag1={'Weapon'}
+					popoverTag2={'Blademaster'}
+					popoverTag3={'Long Sword'}
+					popoverTitle={'Long Sword'}
+					popoverSubtitle={'You need good foresight in order to use this weapon'}
+					popoverDescription={'Embrace the blade.'}
+					popoverAlign="right"
+				>
+					<span slot="icon">
+						<svelte:component
+							this={WeaponTypes.find((item) => item.name === 'Long Sword')
+								?.icon}
+						/></span
+					>
+					<span slot="description">Long Sword</span></GameIconObject
+				>
+			</li>
+			<li>
+				Calculate <GameIconObject
+					hasPopover
+					popoverImage={WeaponTypes.find((item) => item.name === 'Gunlance')
+						?.icon}
+					link="/smithy"
+					popoverTag1={'Weapon'}
+					popoverTag2={'Blademaster'}
+					popoverTag3={'Gunlance'}
+					popoverTitle={'Gunlance'}
+					popoverSubtitle={'Your blade needs more heat'}
+					popoverDescription={'Prepare your shells.'}
+					popoverAlign="right"
+				>
+					<span slot="icon">
+						<svelte:component
+							this={WeaponTypes.find((item) => item.name === 'Gunlance')?.icon}
+						/></span
+					>
+					<span slot="description">Gunlance</span></GameIconObject
+				> Shell and Wyvernfire damage.
+			</li>
+			<li>
+				Calculate <GameIconObject
+					hasPopover
+					popoverImage={getTag('Armor Skill').icon}
+					link="/smithy"
+					popoverTag1={'Armor Skill'}
+					popoverTag2={'G Rank'}
+					popoverTag3={'BM/GN'}
+					popoverTitle={'Ice Age'}
+					popoverSubtitle={'Zenith Skill available'}
+					popoverDescription={'Grants Winter General and damage over time on hit.'}
+					popoverAlign="right"
+				>
+					<span slot="icon">
+						<svelte:component this={getTag('Armor Skill').icon} /></span
+					>
+					<span slot="description">Ice Age</span></GameIconObject
+				> damage.
+			</li>
+			<li>View element damage.</li>
+			<li>And much more!</li>
+		</ul>
+
+		<p>
+			Additionally, you can view motion values animations, graphs of armor
+			skills such as <GameIconObject
+				hasPopover
+				popoverImage={getTag('Armor Skill').icon}
+				link="/smithy"
+				popoverTag1={'Armor Skill'}
+				popoverTag2={'G Rank'}
+				popoverTag3={'BM/GN'}
+				popoverTitle={'Flash Conversion'}
+				popoverSubtitle={'Also known as Critical Conversion'}
+				popoverDescription={'Grants extra damage depending on your total affinity.'}
+				popoverAlign="top"
+			>
+				<span slot="icon">
+					<svelte:component this={getTag('Armor Skill').icon} /></span
+				>
+				<span slot="description">Flash Conversion</span></GameIconObject
+			>, and the formulas for your total damage.
+		</p>
+
 		<InlineNotification
 			title="Note:"
 			subtitle="Refreshing the page resets all values."
@@ -2844,18 +2946,21 @@ does not get multiplied by horn */
 					Internal Values and Final Displayed Attack
 				</div>
 				<div class="stats-values">
-					<div class="fire">🔥 {internalFire}</div>
-					<div class="water">💧 {internalWater}</div>
-					<div class="ice">❄️ {internalIce}</div>
-					<div class="thunder">⚡ {internalThunder}</div>
-					<div class="dragon">🐲 {internalDragon}</div>
+					<div class="fire">🔥Fire: {internalFire}</div>
+					<div class="water">💧Water: {internalWater}</div>
+					<div class="ice">❄️Ice: {internalIce}</div>
+					<div class="thunder">⚡Thunder: {internalThunder}</div>
+					<div class="dragon">🐲Dragon: {internalDragon}</div>
 					<div class="total-attack">
 						⚔️ True Raw: {internalTrueRawDisplay} ({internalTrueRaw})
 					</div>
 					<div class="my-missions">
 						🎫 My Missions: {internalMissionsNeeded}
 					</div>
-					<div class="status">Status: {internalStatus} ({inputStatus})</div>
+					<div class="status">
+						Status: {'inputStatusIcon'}{inputStatus}
+						{internalStatus}
+					</div>
 					<div class="attack-ceiling">
 						⚓ Attack Ceiling: {internalAttackCeiling}
 					</div>
@@ -5297,7 +5402,10 @@ does not get multiplied by horn */
 		<SectionHeading level={2} title="Ice Age" />
 		<div></div>
 	</section>
-
+	<section>
+		<SectionHeading level={2} title="Crit Conversion" />
+		<div></div>
+	</section>
 	<section>
 		<SectionHeading level={2} title="Combos" />
 		<div></div>

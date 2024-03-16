@@ -1,5 +1,6 @@
 import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 import { flavors, flavorEntries } from '@catppuccin/palette';
+import type { TagColor, TagColors } from '../modules/frontier/types';
 
 type ThemeMap = {
 	[key: string]: {
@@ -63,6 +64,35 @@ export function getHexStringFromCatppuccinColor(
 
 	// If the color name is not found, return white
 	return '#ffffff';
+}
+
+export function getCatppuccinColorFromTagColor(color: TagColor): string {
+	switch (color) {
+		case 'red':
+			return 'var(--ctp-blue)';
+		case 'green':
+			return 'var(--ctp-blue)';
+		case 'teal':
+			return 'var(--ctp-blue)';
+		case 'blue':
+			return 'var(--ctp-blue)';
+		case 'magenta':
+			return 'var(--ctp-blue)';
+		case 'purple':
+			return 'var(--ctp-blue)';
+		case 'cyan':
+			return 'var(--ctp-blue)';
+		case 'warm-gray':
+			return 'var(--ctp-blue)';
+		case 'cool-gray':
+			return 'var(--ctp-blue)';
+		case 'gray':
+		case 'high-contrast':
+		case 'outline':
+			return 'var(--ctp-blue)';
+		default:
+			return 'var(--ctp-blue)';
+	}
 }
 
 export const catppuccinThemeMap: ThemeMap = {

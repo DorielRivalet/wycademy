@@ -13,7 +13,7 @@ import type {
 	FrontierStatus,
 	FrontierWeaponSharpness,
 } from './types';
-import { ArmorTypes, ItemColors, WeaponTypes } from './objects';
+import { ArmorTypes, ItemColors, TagTypes, WeaponTypes } from './objects';
 import FireIcon from '$lib/client/images/icon/element/fire.webp';
 import WaterIcon from '$lib/client/images/icon/element/water.webp';
 import ThunderIcon from '$lib/client/images/icon/element/thunder.webp';
@@ -163,3 +163,12 @@ export const frontierMappers = {
 		}
 	},
 };
+
+export function getTag(value: string) {
+	for (const tagType of TagTypes) {
+		if (tagType.values.includes(value)) {
+			return tagType;
+		}
+	}
+	return TagTypes[0];
+}
