@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { getTag } from '$lib/client/modules/frontier/functions';
+	import type { PopoverPosition } from '$lib/client/modules/frontier/types';
 	import { getCatppuccinColorFromTagColor } from '$lib/client/themes/catppuccin';
 	import GamePopover from './GamePopover.svelte';
 	export let hasPopover = false;
@@ -12,9 +13,11 @@
 	export let popoverTitle = '';
 	export let popoverSubtitle = '';
 	export let popoverDescription = '';
-	export let popoverAlign = 'top';
-	export let popoverImage;
-	export let color = getCatppuccinColorFromTagColor(getTag(popoverTag1).color);
+	export let popoverAlign: PopoverPosition = 'top';
+	export let popoverImage = undefined;
+	export let color = hasPopover
+		? getCatppuccinColorFromTagColor(getTag(popoverTag1).color)
+		: 'var(--ctp-text);';
 
 	let open = false;
 	let ref: HTMLSpanElement | null = null;
@@ -41,7 +44,9 @@
 				bind:description={popoverDescription}
 				bind:align={popoverAlign}
 				><div slot="image">
-					<svelte:component this={popoverImage} />
+					{#if popoverImage}
+						<svelte:component this={popoverImage} />
+					{/if}
 				</div></GamePopover
 			>
 			<span

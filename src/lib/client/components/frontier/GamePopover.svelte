@@ -4,21 +4,9 @@
 	import Rotate from 'carbon-icons-svelte/lib/Rotate.svelte';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import { getTag } from '$lib/client/modules/frontier/functions';
+	import type { PopoverPosition } from '$lib/client/modules/frontier/types';
 
-	type Position =
-		| 'top'
-		| 'top-left'
-		| 'top-right'
-		| 'bottom'
-		| 'bottom-left'
-		| 'bottom-right'
-		| 'left'
-		| 'left-bottom'
-		| 'left-top'
-		| 'right'
-		| 'right-bottom'
-		| 'right-top';
-	const positions: Position[] = ['top', 'right', 'bottom', 'left'];
+	const positions: PopoverPosition[] = ['top', 'right', 'bottom', 'left'];
 
 	function movePopover() {
 		positionIndex++;
@@ -26,7 +14,7 @@
 		align = positions[positionIndex];
 	}
 
-	export let align: Position = positions[0];
+	export let align: PopoverPosition = positions[0];
 	export let open = false;
 	export let ref: HTMLSpanElement;
 	export let tag1 = '';
