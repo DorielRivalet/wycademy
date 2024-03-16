@@ -8,6 +8,7 @@
 
 import type {
 	DropdownItemOption,
+	FrontierAilment,
 	FrontierArmor,
 	FrontierArmorClass,
 	FrontierArmorGRLevel,
@@ -45,6 +46,7 @@ import type {
 	FrontierWeaponLength,
 	FrontierWeaponSharpness,
 	FrontierWeaponType,
+	TagColors,
 } from './types';
 import GreatSwordIcon from '$lib/client/components/frontier/icon/weapon/Great_Sword_Icon_White5.svelte';
 import LongSwordIcon from '$lib/client/components/frontier/icon/weapon/Long_Sword_Icon_White4.svelte';
@@ -137,6 +139,52 @@ import type {
 	FrontierWeaponClass,
 	FrontierZenithSkill,
 } from 'ezlion';
+
+import IconElementFire from '$lib/client/components/frontier/icon/element/Fire.svelte';
+import IconElementWater from '$lib/client/components/frontier/icon/element/Water.svelte';
+import IconElementThunder from '$lib/client/components/frontier/icon/element/Thunder.svelte';
+import IconElementIce from '$lib/client/components/frontier/icon/element/Ice.svelte';
+import IconElementDragon from '$lib/client/components/frontier/icon/element/Dragon.svelte';
+import IconElementDark from '$lib/client/components/frontier/icon/element/Dark.svelte';
+import IconElementLight from '$lib/client/components/frontier/icon/element/Light.svelte';
+import IconElementLightingRod from '$lib/client/components/frontier/icon/element/LightningRod.svelte';
+import IconElementSound from '$lib/client/components/frontier/icon/element/Sound.svelte';
+import IconElementWind from '$lib/client/components/frontier/icon/element/Wind.svelte';
+import IconElementMusic from '$lib/client/components/frontier/icon/element/Music.svelte';
+import IconElementBlaze from '$lib/client/components/frontier/icon/element/Blaze.svelte';
+import IconElementTenshou from '$lib/client/components/frontier/icon/element/Tenshou.svelte';
+import IconElementOkiko from '$lib/client/components/frontier/icon/element/Okiko.svelte';
+import IconElementBlackFlame from '$lib/client/components/frontier/icon/element/BlackFlame.svelte';
+import IconElementCrimsonDemon from '$lib/client/components/frontier/icon/element/CrimsonDemon.svelte';
+import IconElementEmperorRoar from '$lib/client/components/frontier/icon/element/EmperorRoar.svelte';
+import IconElementBurningZero from '$lib/client/components/frontier/icon/element/BurningZero.svelte';
+
+import IconStatusPoison from '$lib/client/components/frontier/icon/status/Poison.svelte';
+import IconStatusSleep from '$lib/client/components/frontier/icon/status/Sleep.svelte';
+import IconStatusParalysis from '$lib/client/components/frontier/icon/status/Paralysis.svelte';
+import IconStatusBlast from '$lib/client/components/frontier/icon/status/Blast.svelte';
+
+import IconAilmentBleed from '$lib/client/components/frontier/icon/ailment/Bleed.svelte';
+import IconAilmentBlind from '$lib/client/components/frontier/icon/ailment/Blind.svelte';
+import IconAilmentCorruptedPoison from '$lib/client/components/frontier/icon/ailment/CorruptedPoison.svelte';
+import IconAilmentCrystal from '$lib/client/components/frontier/icon/ailment/Crystal.svelte';
+import IconAilmentDracophageErosion from '$lib/client/components/frontier/icon/ailment/DracophageErosion.svelte';
+import IconAilmentExtremeFireblight from '$lib/client/components/frontier/icon/ailment/ExtremeFireblight.svelte';
+import IconAilmentExtremeWaterblight from '$lib/client/components/frontier/icon/ailment/ExtremeWaterblight.svelte';
+import IconAilmentExtremeThunderblight from '$lib/client/components/frontier/icon/ailment/ExtremeThunderblight.svelte';
+import IconAilmentExtremeIceblight from '$lib/client/components/frontier/icon/ailment/ExtremeIceblight.svelte';
+import IconAilmentExtremeDragonblight from '$lib/client/components/frontier/icon/ailment/ExtremeDragonblight.svelte';
+import IconAilmentExtremePoison from '$lib/client/components/frontier/icon/ailment/ExtremePoison.svelte';
+import IconAilmentExtremeSleep from '$lib/client/components/frontier/icon/ailment/ExtremeSleep.svelte';
+import IconAilmentExtremeParalysis from '$lib/client/components/frontier/icon/ailment/ExtremeParalysis.svelte';
+import IconAilmentFatigue from '$lib/client/components/frontier/icon/ailment/Fatigue.svelte';
+import IconAilmentFrostbite from '$lib/client/components/frontier/icon/ailment/Frostbite.svelte';
+import IconAilmentMagnetism from '$lib/client/components/frontier/icon/ailment/Magnetism.svelte';
+import IconAilmentSnowman from '$lib/client/components/frontier/icon/ailment/Snowman.svelte';
+import IconAilmentStench from '$lib/client/components/frontier/icon/ailment/Stench.svelte';
+import IconAilmentStun from '$lib/client/components/frontier/icon/ailment/Stun.svelte';
+import IconAilmentVocalCordParalysis from '$lib/client/components/frontier/icon/ailment/VocalCordParalysis.svelte';
+
 import MotionSwordAndShieldNoneJumpSlash from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 
 /*
@@ -173,6 +221,161 @@ export const ItemColors: { name: FrontierItemColor; value: string }[] = [
 	{ name: 'Pink', value: '#ff84ff' },
 	{ name: 'Brown', value: '#bf6464' }, // unk
 	{ name: 'Gray', value: '#7f7f7f' },
+];
+
+export const StatusIcons: { name: FrontierStatus; icon: any }[] = [
+	{ name: '', icon: '' },
+	{ name: 'None', icon: '' },
+	{ name: 'Def', icon: '' }, // TODO
+	{
+		name: 'Poison',
+		icon: IconStatusPoison,
+	},
+	{
+		name: 'Paralysis',
+		icon: IconStatusParalysis,
+	},
+	{
+		name: 'Sleep',
+		icon: IconStatusSleep,
+	},
+	{
+		name: 'Blast',
+		icon: IconStatusBlast,
+	},
+];
+
+export const AilmentIcons: { name: FrontierAilment; icon: any }[] = [
+	{ name: '', icon: '' },
+	{ name: 'None', icon: '' },
+	{ name: 'Bleed', icon: IconAilmentBleed }, //
+	{ name: 'Blind', icon: IconAilmentBlind },
+	{ name: 'Corrupted Poison', icon: IconAilmentCorruptedPoison },
+	{ name: 'Crystal', icon: IconAilmentCrystal },
+	{ name: 'Dracophage Erosion', icon: IconAilmentDracophageErosion },
+	{ name: 'Extreme Fireblight', icon: IconAilmentExtremeFireblight },
+	{ name: 'Extreme Waterblight', icon: IconAilmentExtremeWaterblight },
+	{ name: 'Extreme Thunderblight', icon: IconAilmentExtremeThunderblight },
+	{ name: 'Extreme Iceblight', icon: IconAilmentExtremeIceblight },
+	{ name: 'Extreme Dragonblight', icon: IconAilmentExtremeDragonblight },
+	{ name: 'Extreme Poison', icon: IconAilmentExtremePoison },
+	{ name: 'Extreme Sleep', icon: IconAilmentExtremeSleep },
+	{ name: 'Extreme Paralysis', icon: IconAilmentExtremeParalysis },
+	{ name: 'Fatigue', icon: IconAilmentFatigue },
+	{ name: 'Frostbite', icon: IconAilmentFrostbite },
+	{ name: 'Magnetism', icon: IconAilmentMagnetism },
+	{ name: 'Snowman', icon: IconAilmentSnowman },
+	{ name: 'Stench', icon: IconAilmentStench },
+	{ name: 'Stun', icon: IconAilmentStun },
+	{ name: 'Vocal Cord Paralysis', icon: IconAilmentVocalCordParalysis },
+];
+
+export const ElementIcons: { name: FrontierElement; icon: any }[] = [
+	{
+		name: '',
+		icon: '',
+	},
+	{
+		name: 'Raw',
+		icon: '',
+	},
+	{
+		name: 'None',
+		icon: '',
+	},
+	{
+		name: 'Fire',
+		icon: IconElementFire,
+	},
+	{
+		name: 'Water',
+		icon: IconElementWater,
+	},
+	{
+		name: 'Thunder',
+		icon: IconElementThunder,
+	},
+	{
+		name: 'Ice',
+		icon: IconElementIce,
+	},
+	{
+		name: 'Dragon',
+		icon: IconElementDragon,
+	},
+	{
+		name: 'Light',
+		icon: IconElementLight,
+	},
+	{
+		name: 'Blaze',
+		icon: IconElementBlaze,
+	},
+	{
+		name: 'Tenshou',
+		icon: IconElementTenshou,
+	},
+	{
+		name: 'Okiko',
+		icon: IconElementOkiko,
+	},
+	{
+		name: 'L. Rod',
+		icon: IconElementLightingRod,
+	},
+	{
+		name: 'Lightning Rod',
+		icon: IconElementLightingRod,
+	},
+	{
+		name: 'B. Flame',
+		icon: IconElementBlackFlame,
+	},
+	{
+		name: 'Black Flame',
+		icon: IconElementBlackFlame,
+	},
+	{
+		name: 'C. Demon',
+		icon: IconElementCrimsonDemon,
+	},
+	{
+		name: 'Crimson Demon',
+		icon: IconElementCrimsonDemon,
+	},
+	{
+		name: 'E. Roar',
+		icon: IconElementEmperorRoar,
+	},
+	{
+		name: "Emperor's Roar",
+		icon: IconElementEmperorRoar,
+	},
+	{
+		name: 'B. Zero',
+		icon: IconElementBurningZero,
+	},
+
+	{
+		name: 'Burning Zero',
+		icon: IconElementBurningZero,
+	},
+	{
+		name: 'Dark',
+		icon: IconElementDark,
+	},
+	{
+		name: 'Music',
+		icon: IconElementMusic,
+	},
+	{
+		name: 'Sound',
+		icon: IconElementSound,
+	},
+	{
+		name: 'Wind',
+		icon: IconElementWind,
+	},
 ];
 
 export const ItemIcons: { name: string; icon: any }[] = [
@@ -459,6 +662,132 @@ export const ArmorTypes: FrontierArmor[] = [
 		id: 4,
 		name: 'Legs',
 		icon: ArmorLegsIcon,
+	},
+];
+
+export const TagTypes: {
+	color: TagColors;
+	icon: any;
+	link: string;
+	values: string[];
+}[] = [
+	{ color: 'outline', icon: QuestionMarkIconWhite, link: '', values: [''] },
+	{
+		color: 'outline',
+		icon: MapIconWhite,
+		link: '/hunter-notes/locations',
+		values: ['Location'],
+	},
+	{
+		color: 'red',
+		icon: MonsterPartIconWhite,
+		link: '/bestiary',
+		values: [
+			'Monster',
+			'Musou',
+			'Hardcore',
+			'Unlimited',
+			'Custom',
+			'Supremacy',
+			'Zenith',
+			'Upper Shiten',
+			'Lower Shiten',
+			'Conquest',
+			'Exotic',
+			'Gou',
+			'Low Rank',
+			'High Rank',
+			'G Rank',
+			'Conquest LV1',
+			'Conquest LV200',
+			'Conquest LV1000',
+			'Conquest LV9999',
+			'Event',
+		],
+	},
+	{
+		color: 'magenta',
+		icon: WhetstoneIconWhite,
+		link: '/hunter-notes/weapons',
+
+		values: [
+			'Weapon',
+			'Sword and Shield',
+			'Dual Swords',
+			'Long Sword',
+			'Great Sword',
+			'Hammer',
+			'Hunting Horn',
+			'Lance',
+			'Gunlance',
+			'Bow',
+			'Heavy Bowgun',
+			'Light Bowgun',
+			'Switch Axe F',
+			'Tonfa',
+			'Magnet Spike',
+		],
+	},
+	{
+		color: 'purple',
+		icon: MantleIconWhite,
+		link: '/hunter-notes',
+
+		values: [
+			'Zenith Skill',
+			'Z Sigil',
+			'Z AOE Sigil',
+			'Style Rank',
+			'Prayer Gem',
+			'Road/Tower',
+			'Halk',
+		],
+	},
+	{
+		color: 'blue',
+		icon: JewelIconWhite,
+		link: '/hunter-notes/armor-skills',
+
+		values: ['Armor Skill', 'Guild Food', 'Caravan Skill', 'Diva Skill'],
+	},
+	{
+		color: 'cyan',
+		icon: ArmorHelmetIcon,
+		link: '/hunter-notes/gear',
+		values: ['Blademaster', 'Gunner', 'BM/GN'],
+	},
+	{ color: 'teal', icon: MapIconWhite, link: '/', values: ['Quest'] },
+	{
+		color: 'green',
+		icon: ArmorChestIcon,
+		link: '/hunter-notes/gear',
+		values: ['Armor', 'Cuff'],
+	},
+	{
+		color: 'gray',
+		icon: SacIconWhite,
+		link: '/hunter-notes/lookup',
+		values: ['Item', 'Sigil', 'Z Sigil', 'Decoration', 'Consumable'],
+	},
+	{
+		color: 'cool-gray',
+		icon: IconElementThunder,
+		link: '/arena#elements',
+		values: ['Element'],
+	},
+	{ color: 'warm-gray', icon: IconStatusBlast, link: '/', values: ['Status'] },
+	{
+		color: 'warm-gray',
+		icon: IconAilmentBleed,
+		link: '/arena#ailments',
+		values: ['Ailment'],
+	},
+	{
+		color: 'high-contrast',
+		icon: OreIconWhite,
+		link: '',
+
+		values: ['NPC', 'Badge', 'Achievement', 'Medal', 'Trophy'],
 	},
 ];
 

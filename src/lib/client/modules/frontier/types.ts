@@ -16,6 +16,30 @@ import type {
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
 
 export type FrontierRarity = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type FrontierAilment = // TODO missing
+
+		| ''
+		| 'None'
+		| 'Bleed'
+		| 'Blind'
+		| 'Corrupted Poison'
+		| 'Crystal'
+		| 'Dracophage Erosion'
+		| 'Extreme Fireblight'
+		| 'Extreme Waterblight'
+		| 'Extreme Thunderblight'
+		| 'Extreme Iceblight'
+		| 'Extreme Dragonblight'
+		| 'Extreme Poison'
+		| 'Extreme Sleep'
+		| 'Extreme Paralysis'
+		| 'Fatigue'
+		| 'Frostbite'
+		| 'Magnetism'
+		| 'Snowman'
+		| 'Stench'
+		| 'Stun'
+		| 'Vocal Cord Paralysis';
 export type FrontierElement =
 	| ''
 	| 'None'
@@ -598,3 +622,18 @@ export type FrontierElementMultiplier = {
 	iceMultiplier: number;
 	dragonMultiplier: number;
 };
+
+export type TagColor =
+	| 'red'
+	| 'magenta'
+	| 'purple'
+	| 'blue'
+	| 'cyan'
+	| 'teal'
+	| 'green'
+	| 'gray'
+	| 'cool-gray'
+	| 'warm-gray'
+	| 'high-contrast'
+	| 'outline'
+	| undefined;
