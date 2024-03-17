@@ -5,7 +5,6 @@
 -->
 
 <script lang="ts">
-	import '../styles.css';
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
@@ -41,17 +40,14 @@
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
 	});
-
-	
 </script>
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <div class="app">
-	<ViewTransition />	
-	
-	<div class="header">
-			<Header />
+	<ViewTransition />
 
+	<div class="header">
+		<Header />
 	</div>
 	<div class="banner">
 		<InlineNotification
@@ -77,7 +73,7 @@
 	{/key}
 </div>
 
-<style>
+<style lang="scss">
 	.banner {
 		display: flex;
 		justify-content: center;
@@ -108,7 +104,7 @@
 		border-radius: 0px 0px 10px 10px;
 	}
 
-	.header{
+	.header {
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 	}
 </style>

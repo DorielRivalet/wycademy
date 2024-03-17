@@ -14,26 +14,31 @@ TODO: popover props passed to the slot and slot props.
 	import { getTag } from '$lib/client/modules/frontier/functions';
 	import type { PopoverPosition } from '$lib/client/modules/frontier/types';
 	import { getCatppuccinColorFromTagColor } from '$lib/client/themes/catppuccin';
+	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 	import GamePopover from './GamePopover.svelte';
-	export let hasPopover = false;
+	export let hasToggletipPopover = false;
 	/**Requires popover*/
-	export let popoverLink = '';
-	export let popoverTag1 = '';
-	export let popoverTag2 = '';
-	export let popoverTag3 = '';
-	export let popoverTitle = '';
-	export let popoverSubtitle = '';
-	export let popoverDescription = '';
-	export let popoverAlign: PopoverPosition = 'top';
-	export let image = undefined;
-	export let popoverImage = undefined;
-	export let popoverComponent = undefined;
-	export let color = hasPopover
-		? getCatppuccinColorFromTagColor(getTag(popoverTag1).color)
+	export let toggletipPopoverLink = '';
+	export let toggletipPopoverTag1 = '';
+	export let toggletipPopoverTag2 = '';
+	export let toggletipPopoverTag3 = '';
+	export let toggletipPopoverTitle = '';
+	export let toggletipPopoverSubtitle = '';
+	export let toggletipPopoverDescription = '';
+	export let toggletipPopoverAlign: PopoverPosition = 'right';
+	export let image: any = undefined;
+	export let toggletipPopoverImage: any = undefined;
+	export let toggletipPopoverComponent: any = undefined;
+	/** Shown as tooltip if not showing a popover*/
+	export let popoverDescription = ''; // TODO separate components?
+	export let color = hasToggletipPopover
+		? getCatppuccinColorFromTagColor(getTag(toggletipPopoverTag1).color)
 		: 'var(--ctp-text);';
 
 	let open = false;
 	let ref: HTMLSpanElement | null = null;
+
+	let open2 = false;
 
 	function handleFocus() {
 		if (!browser) return;
@@ -42,25 +47,31 @@ TODO: popover props passed to the slot and slot props.
 	}
 </script>
 
-{#if hasPopover}
+{#if hasToggletipPopover}
 	<span class="container">
 		<span bind:this={ref} style:position="relative">
 			<GamePopover
 				bind:open
 				bind:ref
-				bind:link={popoverLink}
-				bind:tag1={popoverTag1}
-				bind:tag2={popoverTag2}
-				bind:tag3={popoverTag3}
-				bind:title={popoverTitle}
-				bind:subtitle={popoverSubtitle}
-				bind:description={popoverDescription}
-				bind:align={popoverAlign}
+				bind:link={toggletipPopoverLink}
+				bind:tag1={toggletipPopoverTag1}
+				bind:tag2={toggletipPopoverTag2}
+				bind:tag3={toggletipPopoverTag3}
+				bind:title={toggletipPopoverTitle}
+				bind:subtitle={toggletipPopoverSubtitle}
+				bind:description={toggletipPopoverDescription}
+				bind:align={toggletipPopoverAlign}
 				><div slot="image">
-					{#if popoverComponent}
-						<svelte:component this={popoverComponent} />
-					{:else if popoverImage}
-						<img class="popover-image" src={popoverImage} alt={popoverTitle} />
+					{#if toggletipPopoverComponent !== undefined}
+						{#key toggletipPopoverComponent}
+							<svelte:component this={toggletipPopoverComponent} />
+						{/key}
+					{:else if toggletipPopoverImage}
+						<img
+							class="popover-image"
+							src={toggletipPopoverImage}
+							alt={toggletipPopoverTitle}
+						/>
 					{/if}
 				</div></GamePopover
 			>
@@ -74,7 +85,8 @@ TODO: popover props passed to the slot and slot props.
 				<slot name="icon" />
 			</span>
 
-			{#if image}
+			<!--TODO better logic-->
+			{#if image !== undefined && popoverDescription === ''}
 				<span
 					class="image hoverable"
 					on:click={(e) => handleFocus()}
@@ -87,7 +99,7 @@ TODO: popover props passed to the slot and slot props.
 						width="64"
 						height="auto"
 						src={image}
-						alt={popoverTitle}
+						alt={toggletipPopoverTitle}
 					/>
 				</span>
 			{/if}
@@ -107,27 +119,64 @@ TODO: popover props passed to the slot and slot props.
 	</span>
 {:else}
 	<span class="container">
-		{#if image}
-			<span class="image">
-				<img
-					style="display: inline;"
-					width="64"
-					height="auto"
-					src={image}
-					alt={popoverTitle}
-				/>
+		<span
+			style:position="relative"
+			on:mouseenter={(e) => (open2 = true)}
+			on:mouseleave={(e) => (open2 = false)}
+			role="button"
+			tabindex="0"
+			on:keypress={(e) => open2 != open2}
+		>
+			{#if popoverDescription}
+				<Popover bind:open={open2} caret align={'top'}>
+					<div
+						style="padding: var(--cds-spacing-03); font-family: var(--font-body); font-size: 1rem;"
+					>
+						{popoverDescription}
+					</div></Popover
+				>
+			{/if}
+			{#if image}
+				<span
+					class="image"
+					on:mouseenter={(e) => (open2 = true)}
+					on:mouseleave={(e) => (open2 = false)}
+					role="button"
+					tabindex="0"
+					on:keypress={(e) => open2 != open2}
+				>
+					<img
+						style="display: inline;"
+						width="64"
+						height="auto"
+						src={image}
+						alt={toggletipPopoverTitle}
+					/>
+				</span>
+			{:else}
+				<span class="icon">
+					<slot name="icon" />
+				</span>
+			{/if}
+
+			<span
+				class="description"
+				style="color: {color}; font-weight: bold;"
+				on:mouseenter={(e) => (open2 = true)}
+				on:mouseleave={(e) => (open2 = false)}
+				role="button"
+				tabindex="0"
+				on:keypress={(e) => open2 != open2}
+			>
+				<slot name="description" />
 			</span>
-		{:else}
-			<span class="icon">
-				<slot name="icon" />
-			</span>{/if}
-		<span class="description" style="color: {color}; font-weight: bold;">
-			<slot name="description" />
 		</span>
 	</span>
 {/if}
 
-<style>
+<style lang="scss">
+	@use '@carbon/motion' as motion;
+
 	.icon {
 		display: inline-block;
 		vertical-align: text-bottom;
@@ -156,8 +205,8 @@ TODO: popover props passed to the slot and slot props.
 			-webkit-filter,
 			filter,
 			text-decoration;
-		transition-duration: 0.3s;
-		transition-timing-function: ease-in-out;
+		transition-duration: motion.$duration-fast-02;
+		transition-timing-function: motion.motion(standard, expressive);
 	}
 
 	.underline {

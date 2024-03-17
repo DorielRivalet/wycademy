@@ -42,7 +42,7 @@
 	<slot />
 </div>
 
-<style>
+<style lang="scss">
 	.border {
 		outline: 2px solid #7d7b7b7f; /* TODO adjust for latte flavor */
 		outline-offset: -4px;

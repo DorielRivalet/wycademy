@@ -16,7 +16,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	.container {
 		margin-bottom: var(--cds-spacing-08);
 	}

@@ -751,7 +751,7 @@
 	</div>
 </DecoratedBorder>
 
-<style>
+<style lang="scss">
 	.arrow-icon-button {
 		background-color: transparent;
 		border: transparent;

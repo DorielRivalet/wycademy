@@ -5,7 +5,6 @@
 -->
 
 <script lang="ts">
-	import '../styles.css';
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
@@ -31,6 +30,16 @@
 	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import { tocEnabledStore, tocPositionStore } from '$lib/client/stores/toc';
+	import {
+		durationFast01,
+		durationFast02,
+		durationModerate01,
+		durationModerate02,
+		durationSlow01,
+		durationSlow02,
+		easings,
+		motion,
+	} from '@carbon/motion';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -51,20 +60,67 @@
 		});
 	});
 
-	let enabled = $tocEnabledStore;
-	let isPositionedLeft = $tocPositionStore === 'left';
+	let tocEnabled = $tocEnabledStore;
+	let isTocPositionedLeft = $tocPositionStore === 'left';
+	let isTocMoving = false;
+
+	function millisecondsToDuration(duration: string) {
+		return Number.parseFloat(duration.replace('ms', ''));
+	}
 
 	function onTOCMoveButtonPress(e: MouseEvent) {
-		isPositionedLeft = !isPositionedLeft;
-		tocPositionStore.set(isPositionedLeft ? 'left' : 'right');
+		if (isTocMoving || !tocEnabled) return;
+
+		isTocMoving = true;
+
+		if (isTocPositionedLeft) {
+			tocLeftClass = 'table-of-contents collapsed';
+			setTimeout(() => {
+				isTocPositionedLeft = !isTocPositionedLeft;
+				tocPositionStore.set(isTocPositionedLeft ? 'left' : 'right');
+				tocRightClass = 'table-of-contents';
+				isTocMoving = false;
+			}, millisecondsToDuration(durationFast01));
+		} else {
+			tocRightClass = 'table-of-contents collapsed-right';
+			setTimeout(() => {
+				isTocPositionedLeft = !isTocPositionedLeft;
+				tocPositionStore.set(isTocPositionedLeft ? 'left' : 'right');
+				tocLeftClass = 'table-of-contents';
+				isTocMoving = false;
+			}, millisecondsToDuration(durationFast01));
+		}
 	}
 
 	function onTOCToggleButtonPress(e: MouseEvent) {
-		enabled = !enabled;
-		tocEnabledStore.set(enabled ? true : false);
+		if (isTocMoving) return;
+		isTocMoving = true;
+		tocEnabled = !tocEnabled;
+		tocEnabledStore.set(tocEnabled ? true : false);
+
+		if (tocEnabled) {
+			if (isTocPositionedLeft) {
+				tocLeftClass = 'table-of-contents';
+			} else {
+				tocRightClass = 'table-of-contents';
+			}
+		} else {
+			if (isTocPositionedLeft) {
+				tocLeftClass = 'table-of-contents  collapsed';
+			} else {
+				tocRightClass = 'table-of-contents collapsed-right';
+			}
+		}
+
+		isTocMoving = false;
 	}
 
-	$: contentsClass = isPositionedLeft ? 'contents' : 'contents-reverse';
+	let tocRightClass = isTocPositionedLeft
+		? 'table-of-contents inactive'
+		: 'table-of-contents';
+	let tocLeftClass = isTocPositionedLeft
+		? 'table-of-contents'
+		: 'table-of-contents inactive';
 </script>
 
 <LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
@@ -72,8 +128,8 @@
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 
-{#if !enabled}
-	{#if isPositionedLeft}
+{#if !tocEnabled}
+	{#if isTocPositionedLeft}
 		<div class="expand-TOC">
 			<Button
 				iconDescription="Expand TOC"
@@ -121,30 +177,44 @@
 		</InlineNotification>
 	</div>
 
-	<div class={contentsClass}>
-		{#if enabled}
-			<div class="table-of-contents">
-				<Toc blurParams={{ duration: 0 }} hide={enabled}>
-					<span slot="title"
-						><div>
-							<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
-								>{isPositionedLeft ? 'Move right' : 'Move left'}</Button
-							>
-							<Button
-								kind="ghost"
-								icon={ViewOff}
-								on:click={onTOCToggleButtonPress}>{'Hide'}</Button
-							>
-						</div>
-						<h2 class="toc-title toc-exclude">On this page</h2></span
-					>
-				</Toc>
-			</div>
-		{/if}
-
+	<div class="contents">
+		<div class={tocLeftClass}>
+			<Toc blurParams={{ duration: 0 }} hide={tocEnabled}>
+				<span slot="title"
+					><div>
+						<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
+							>{'Move right'}</Button
+						>
+						<Button
+							kind="ghost"
+							icon={ViewOff}
+							on:click={onTOCToggleButtonPress}>{'Hide'}</Button
+						>
+					</div>
+					<h2 class="toc-title toc-exclude">On this page</h2></span
+				>
+			</Toc>
+		</div>
 		<main>
 			<slot />
 		</main>
+		<div class={tocRightClass}>
+			<Toc blurParams={{ duration: 0 }} hide={tocEnabled}>
+				<span slot="title"
+					><div>
+						<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
+							>{'Move left'}</Button
+						>
+						<Button
+							kind="ghost"
+							icon={ViewOff}
+							on:click={onTOCToggleButtonPress}>{'Hide'}</Button
+						>
+					</div>
+					<h2 class="toc-title toc-exclude">On this page</h2></span
+				>
+			</Toc>
+		</div>
 	</div>
 
 	{#key $page.url.pathname}
@@ -152,7 +222,17 @@
 	{/key}
 </div>
 
-<style>
+<style lang="scss">
+	@use '@carbon/motion' as motion;
+
+	.inactive {
+		display: none;
+	}
+
+	.toc-title {
+		text-align: center;
+	}
+
 	.expand-TOC {
 		position: fixed; /* Position the button relative to the viewport */
 		top: 50%; /* Position it in the middle vertically */
@@ -172,15 +252,18 @@
 	}
 
 	.table-of-contents {
-		min-width: 20vw;
+		flex: 0 0 auto;
+		transition: all motion.$duration-fast-02;
+		transition-timing-function: motion.motion(standard, productive);
+		width: 20vw;
 	}
 
-	.contents-reverse {
-		display: flex;
-		flex-direction: row-reverse;
-		justify-content: flex-start; /* Align items to the start */
-		width: 100%;
-		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+	.table-of-contents.collapsed {
+		margin-left: -20vw;
+	}
+
+	.table-of-contents.collapsed-right {
+		margin-right: -20vw;
 	}
 
 	.contents {
@@ -202,14 +285,15 @@
 		flex-direction: column;
 		background-color: var(--ctp-mantle);
 		max-width: 100vw;
+		overflow-x: hidden;
 	}
 
 	main {
-		flex: 1; /* This allows the main content to grow and take up the rest of the space */
 		display: flex;
 		flex-direction: column;
 		padding: var(--cds-spacing-08);
 		margin: 0 auto;
+		flex: 1 0 0%;
 		width: 100%;
 		box-sizing: border-box;
 		min-height: 90vh;

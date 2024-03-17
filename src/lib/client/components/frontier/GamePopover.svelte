@@ -5,7 +5,16 @@
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import { getTag } from '$lib/client/modules/frontier/functions';
 	import type { PopoverPosition } from '$lib/client/modules/frontier/types';
-
+	import {
+		durationFast01,
+		durationFast02,
+		durationModerate01,
+		durationModerate02,
+		durationSlow01,
+		durationSlow02,
+		easings,
+		motion,
+	} from '@carbon/motion';
 	const positions: PopoverPosition[] = ['top', 'right', 'bottom', 'left'];
 
 	function movePopover() {
@@ -14,7 +23,7 @@
 		align = positions[positionIndex];
 	}
 
-	export let align: PopoverPosition = positions[0];
+	export let align: PopoverPosition = positions[1];
 	export let open = false;
 	export let ref: HTMLSpanElement;
 	export let tag1 = '';
@@ -30,90 +39,130 @@
 	const maxTagLength = 16;
 
 	let positionIndex = positions.findIndex((v) => v === align) ?? 0;
+	let closeTimeout: NodeJS.Timeout;
+	function millisecondsToDuration(duration: string) {
+		return Number.parseFloat(duration.replace('ms', ''));
+	}
+
+	function handleClickOutside({ detail }) {
+		if (ref?.contains(detail.target)) return;
+
+		// Start the fade-out transition
+		popoverClass = 'popover invisible';
+
+		// Set a timeout to close the popover after the transition duration
+		clearTimeout(closeTimeout);
+		closeTimeout = setTimeout(() => {
+			open = false;
+		}, millisecondsToDuration(durationModerate01)); // Adjust this to match your transition duration
+	}
+
+	$: popoverClass = open ? 'popover visible' : 'popover invisible';
 
 	$: tag1Info = getTag(tag1);
 	$: tag2Info = getTag(tag2);
 	$: tag3Info = getTag(tag3);
 </script>
 
-<Popover
-	caret={true}
-	light
-	bind:open
-	bind:align
-	on:click:outside={({ detail }) => {
-		open = ref?.contains(detail.target) || false;
-	}}
->
-	<div class="container">
-		<div class="contents-top">
-			{#if link !== ''}
-				<div class="image">
-					<a href={link}>
+<span class={popoverClass}>
+	<Popover
+		caret={true}
+		light
+		{open}
+		bind:align
+		on:click:outside={handleClickOutside}
+	>
+		<div class="container">
+			<div class="contents-top">
+				{#if link !== ''}
+					<div class="image">
+						<a href={link}>
+							<slot name="image" />
+						</a>
+					</div>
+					<div class="title link">
+						<a href={link}>
+							{title.substring(0, maxTitleLength)}
+						</a>
+					</div>
+				{:else}
+					<div class="image">
 						<slot name="image" />
-					</a>
-				</div>
-				<div class="title link">
-					<a href={link}>
+					</div>
+					<div class="title">
 						{title.substring(0, maxTitleLength)}
-					</a>
-				</div>
-			{:else}
-				<div class="image">
-					<slot name="image" />
-				</div>
-				<div class="title">
-					{title.substring(0, maxTitleLength)}
-				</div>
-			{/if}
+					</div>
+				{/if}
 
-			<div class="button">
-				<Button
-					on:click={() => movePopover()}
-					iconDescription="Rotate"
-					kind="ghost"
-					size="small"
-					icon={Rotate}
-					tooltipPosition="left"
-				/>
+				<div class="button">
+					<Button
+						on:click={() => movePopover()}
+						iconDescription="Rotate"
+						kind="ghost"
+						size="small"
+						icon={Rotate}
+						tooltipPosition="left"
+					/>
+				</div>
+				{#if subtitle !== ''}
+					<div class="subtitle">{subtitle.substring(0, maxSubtitleLength)}</div>
+				{/if}
+				{#if description !== ''}
+					<div class="description">{description}</div>
+				{/if}
 			</div>
-			{#if subtitle !== ''}
-				<div class="subtitle">{subtitle.substring(0, maxSubtitleLength)}</div>
-			{/if}
-			{#if description !== ''}
-				<div class="description">{description}</div>
+			{#if tag1 !== ''}
+				<hr />
+				<div class="contents-bottom">
+					<div class="tag1">
+						<a href={tag1Info.link === '' ? '/' : tag1Info.link}>
+							<Tag icon={tag1Info.icon} type={tag1Info.color} interactive
+								>{tag1.substring(0, maxTagLength)}</Tag
+							></a
+						>
+					</div>
+					{#if tag2 !== ''}<div class="tag2">
+							<a href={tag2Info.link === '' ? '/' : tag2Info.link}>
+								<Tag icon={tag2Info.icon} type={tag2Info.color} interactive
+									>{tag2.substring(0, maxTagLength)}</Tag
+								></a
+							>
+						</div>{/if}
+					{#if tag3 !== ''}<div class="tag3">
+							<a href={tag3Info.link === '' ? '/' : tag3Info.link}>
+								<Tag icon={tag3Info.icon} type={tag3Info.color} interactive
+									>{tag3.substring(0, maxTagLength)}</Tag
+								></a
+							>
+						</div>{/if}
+				</div>
 			{/if}
 		</div>
-		{#if tag1 !== ''}
-			<hr />
-			<div class="contents-bottom">
-				<div class="tag1">
-					<a href={tag1Info.link === '' ? '/' : tag1Info.link}>
-						<Tag icon={tag1Info.icon} type={tag1Info.color} interactive
-							>{tag1.substring(0, maxTagLength)}</Tag
-						></a
-					>
-				</div>
-				{#if tag2 !== ''}<div class="tag2">
-						<a href={tag2Info.link === '' ? '/' : tag2Info.link}>
-							<Tag icon={tag2Info.icon} type={tag2Info.color} interactive
-								>{tag2.substring(0, maxTagLength)}</Tag
-							></a
-						>
-					</div>{/if}
-				{#if tag3 !== ''}<div class="tag3">
-						<a href={tag3Info.link === '' ? '/' : tag3Info.link}>
-							<Tag icon={tag3Info.icon} type={tag3Info.color} interactive
-								>{tag3.substring(0, maxTagLength)}</Tag
-							></a
-						>
-					</div>{/if}
-			</div>
-		{/if}
-	</div>
-</Popover>
+	</Popover>
+</span>
 
-<style>
+<style lang="scss">
+	@use '@carbon/motion' as motion;
+
+	.popover {
+		transition:
+			opacity motion.$duration-moderate-01 motion.motion(entrance, expressive),
+			top motion.$duration-moderate-01 motion.motion(exit, expressive);
+		opacity: 1;
+		position: absolute;
+		top: 8rem;
+	}
+
+	.invisible {
+		opacity: 0;
+		top: 0rem;
+	}
+
+	.visible {
+		opacity: 1;
+		top: 8rem;
+	}
+
 	hr {
 		width: 100%;
 		margin-bottom: 0;
@@ -157,6 +206,7 @@
 		overflow: hidden;
 		grid-area: title;
 		font-weight: bold;
+		height: fit-content;
 	}
 
 	.subtitle {
@@ -173,6 +223,9 @@
 	.title,
 	.subtitle {
 		padding-left: 0.5rem;
+		padding-top: 0;
+		padding-bottom: 0;
+		margin: 0;
 	}
 
 	.tag1,

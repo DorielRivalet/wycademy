@@ -51,7 +51,7 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	<hr />
 {/if}
 
-<style>
+<style lang="scss">
 	a {
 		text-decoration: none;
 	}

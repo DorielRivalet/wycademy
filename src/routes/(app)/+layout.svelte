@@ -5,7 +5,6 @@
 -->
 
 <script lang="ts">
-	import '../styles.css';
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
@@ -113,7 +112,7 @@
 	{/key}
 </div>
 
-<style>
+<style lang="css">
 	.banner {
 		display: flex;
 		justify-content: center;

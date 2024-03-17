@@ -2262,7 +2262,12 @@ export const TagTypes: {
 	link: string;
 	values: string[];
 }[] = [
-	{ color: 'outline', icon: QuestionMarkIconWhite, link: '', values: [''] },
+	{
+		color: 'outline',
+		icon: QuestionMarkIconWhite,
+		link: '/',
+		values: ['None'],
+	},
 	{
 		color: 'outline',
 		icon: MapIconWhite,

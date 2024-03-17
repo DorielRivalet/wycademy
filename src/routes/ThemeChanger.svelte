@@ -37,7 +37,9 @@
 	<img src={icon} alt="theme icon" />
 </button>
 
-<style>
+<style lang="scss">
+	@use '@carbon/motion' as motion;
+
 	button {
 		width: var(--cds-spacing-09);
 		background-color: var(--ctp-surface0);
@@ -45,6 +47,15 @@
 		border-radius: 10%;
 		display: flex;
 		padding: var(--cds-spacing-01);
+		transition:
+			border-color motion.$duration-slow-02 motion.motion(standard, expressive),
+			background-color motion.$duration-slow-02
+				motion.motion(standard, expressive),
+			scrollbar-color motion.$duration-slow-02
+				motion.motion(standard, expressive),
+			opacity motion.$duration-slow-02 motion.motion(standard, expressive),
+			background-image motion.$duration-slow-02
+				motion.motion(standard, expressive);
 	}
 
 	img {

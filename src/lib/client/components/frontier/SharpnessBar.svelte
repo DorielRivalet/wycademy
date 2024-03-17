@@ -97,7 +97,7 @@
 	<div class={boostNumberClass}>+1</div>
 </div>
 
-<style>
+<style lang="scss">
 	.container {
 		display: flex;
 		align-items: center; /* Vertically center arrows with bars */
