@@ -71,7 +71,7 @@
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import GameIconObject from '$lib/client/components/frontier/GameIconObject.svelte';
 	import IconElementFire from '$lib/client/components/frontier/icon/element/Fire.svelte';
-	import { getTag } from '$lib/client/modules/frontier/functions';
+	import { getMonster, getTag } from '$lib/client/modules/frontier/functions';
 	import { Copy } from 'carbon-icons-svelte';
 
 	type DataTableKey = string;
@@ -2808,9 +2808,10 @@ does not get multiplied by horn */
 				Select a weapon type such as
 				<GameIconObject
 					hasPopover
-					popoverImage={WeaponTypes.find((item) => item.name === 'Long Sword')
-						?.icon}
-					link="/smithy"
+					popoverComponent={WeaponTypes.find(
+						(item) => item.name === 'Long Sword',
+					)?.icon}
+					popoverLink="/smithy"
 					popoverTag1={'Weapon'}
 					popoverTag2={'Blademaster'}
 					popoverTag3={'Long Sword'}
@@ -2826,14 +2827,14 @@ does not get multiplied by horn */
 						/></span
 					>
 					<span slot="description">Long Sword</span></GameIconObject
-				>
+				>.
 			</li>
 			<li>
 				Calculate <GameIconObject
 					hasPopover
-					popoverImage={WeaponTypes.find((item) => item.name === 'Gunlance')
+					popoverComponent={WeaponTypes.find((item) => item.name === 'Gunlance')
 						?.icon}
-					link="/smithy"
+					popoverLink="/smithy"
 					popoverTag1={'Weapon'}
 					popoverTag2={'Blademaster'}
 					popoverTag3={'Gunlance'}
@@ -2853,8 +2854,8 @@ does not get multiplied by horn */
 			<li>
 				Calculate <GameIconObject
 					hasPopover
-					popoverImage={getTag('Armor Skill').icon}
-					link="/smithy"
+					popoverComponent={getTag('Armor Skill').icon}
+					popoverLink="/smithy"
 					popoverTag1={'Armor Skill'}
 					popoverTag2={'G Rank'}
 					popoverTag3={'BM/GN'}
@@ -2869,23 +2870,32 @@ does not get multiplied by horn */
 					<span slot="description">Ice Age</span></GameIconObject
 				> damage.
 			</li>
+			<li>
+				Compare your attack values against <GameIconObject
+					hasPopover
+					popoverImage={getMonster('Blinking Nargacuga', '').render}
+					popoverLink="/bestiary"
+					popoverTag1={'Monster'}
+					popoverTag2={'Musou'}
+					popoverTag3={'Historic Site'}
+					popoverTitle={'Blinking Nargacuga'}
+					popoverSubtitle={'Musou'}
+					popoverDescription={'Good luck hunting this monster.'}
+					popoverAlign="top"
+					image={getMonster('Blinking Nargacuga', '').icon}
+				>
+					<span slot="description">Blinking Nargacuga</span></GameIconObject
+				> or <GameIconObject image={getMonster('Rathalos', 'Zenith').icon}>
+					<span slot="description">Zenith Rathalos</span></GameIconObject
+				> defense rate.
+			</li>
 			<li>View element damage.</li>
 			<li>And much more!</li>
 		</ul>
 
 		<p>
 			Additionally, you can view motion values animations, graphs of armor
-			skills such as <GameIconObject
-				popoverImage={getTag('Armor Skill').icon}
-				link="/smithy"
-				popoverTag1={'Armor Skill'}
-				popoverTag2={'G Rank'}
-				popoverTag3={'BM/GN'}
-				popoverTitle={'Flash Conversion'}
-				popoverSubtitle={'Also known as Critical Conversion'}
-				popoverDescription={'Grants extra damage depending on your total affinity.'}
-				popoverAlign="top"
-			>
+			skills such as <GameIconObject>
 				<span slot="icon">
 					<svelte:component this={getTag('Armor Skill').icon} /></span
 				>
@@ -5575,6 +5585,11 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Elements" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Monster Hitzones" />
 		<div></div>
 	</section>
 

@@ -1,5 +1,7 @@
 # wycademy
 
+![banner](./src/lib/client/images/logo-full-alt.svg)
+
 A compendium of resources for Monster Hunter Frontier Z (MHF-Z).
 
 ## License
