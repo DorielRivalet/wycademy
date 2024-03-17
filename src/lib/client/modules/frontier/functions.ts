@@ -13,7 +13,13 @@ import type {
 	FrontierStatus,
 	FrontierWeaponSharpness,
 } from './types';
-import { ArmorTypes, ItemColors, TagTypes, WeaponTypes } from './objects';
+import {
+	ArmorTypes,
+	ItemColors,
+	MonsterIcons,
+	TagTypes,
+	WeaponTypes,
+} from './objects';
 import FireIcon from '$lib/client/images/icon/element/fire.webp';
 import WaterIcon from '$lib/client/images/icon/element/water.webp';
 import ThunderIcon from '$lib/client/images/icon/element/thunder.webp';
@@ -37,7 +43,11 @@ import PoisonIcon from '$lib/client/images/icon/status/poison.webp';
 import ParalysisIcon from '$lib/client/images/icon/status/paralysis.webp';
 import DefenseIcon from '$lib/client/images/icon/defense_icon.webp';
 import BlastIcon from '$lib/client/images/icon/status/blast.webp';
-import type { FrontierWeaponID } from 'ezlion';
+import type {
+	FrontierMonsterName,
+	FrontierRankBand,
+	FrontierWeaponID,
+} from 'ezlion';
 
 export const frontierMath = {
 	calculateEHP: (monsterHP: number, defrate: number) =>
@@ -171,4 +181,23 @@ export function getTag(value: string) {
 		}
 	}
 	return TagTypes[0];
+}
+
+export function getMonster(name: FrontierMonsterName, rank: string) {
+	for (const monster of MonsterIcons) {
+		if (
+			monster.rank.toLowerCase().includes(rank.toLowerCase()) &&
+			monster.name.toLowerCase() === name.toLowerCase()
+		) {
+			return monster;
+		}
+	}
+
+	for (const monster of MonsterIcons) {
+		if (monster.name.toLowerCase() === name.toLowerCase()) {
+			return monster;
+		}
+	}
+
+	return MonsterIcons[0];
 }

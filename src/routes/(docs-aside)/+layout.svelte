@@ -29,6 +29,8 @@
 	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
 	import Move from 'carbon-icons-svelte/lib/Move.svelte';
 	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
+	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
+	import { tocEnabledStore, tocPositionStore } from '$lib/client/stores/toc';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -49,23 +51,28 @@
 		});
 	});
 
-	let hide = false;
-	let isPositionedLeft = true;
-
-	function onTOCButtonPress(e: MouseEvent) {
-		hide = !hide;
-	}
+	let enabled = $tocEnabledStore;
+	let isPositionedLeft = $tocPositionStore === 'left';
 
 	function onTOCMoveButtonPress(e: MouseEvent) {
 		isPositionedLeft = !isPositionedLeft;
+		tocPositionStore.set(isPositionedLeft ? 'left' : 'right');
+	}
+
+	function onTOCToggleButtonPress(e: MouseEvent) {
+		enabled = !enabled;
+		tocEnabledStore.set(enabled ? true : false);
 	}
 
 	$: contentsClass = isPositionedLeft ? 'contents' : 'contents-reverse';
 </script>
 
+<LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
+<LocalStorage bind:value={$tocPositionStore} key="__toc-position" />
+
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 
-{#if hide}
+{#if !enabled}
 	{#if isPositionedLeft}
 		<div class="expand-TOC">
 			<Button
@@ -74,7 +81,7 @@
 				size="small"
 				kind="ghost"
 				icon={ChevronRight}
-				on:click={onTOCButtonPress}
+				on:click={onTOCToggleButtonPress}
 			/>
 		</div>
 	{:else}
@@ -85,7 +92,7 @@
 				size="small"
 				kind="ghost"
 				icon={ChevronLeft}
-				on:click={onTOCButtonPress}
+				on:click={onTOCToggleButtonPress}
 			/>
 		</div>
 	{/if}
@@ -115,16 +122,18 @@
 	</div>
 
 	<div class={contentsClass}>
-		{#if !hide}
+		{#if enabled}
 			<div class="table-of-contents">
-				<Toc blurParams={{ duration: 0 }} {hide}>
+				<Toc blurParams={{ duration: 0 }} hide={enabled}>
 					<span slot="title"
 						><div>
 							<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
 								>{isPositionedLeft ? 'Move right' : 'Move left'}</Button
 							>
-							<Button kind="ghost" icon={ViewOff} on:click={onTOCButtonPress}
-								>{hide ? 'Show' : 'Hide'}</Button
+							<Button
+								kind="ghost"
+								icon={ViewOff}
+								on:click={onTOCToggleButtonPress}>{'Hide'}</Button
 							>
 						</div>
 						<h2 class="toc-title toc-exclude">On this page</h2></span

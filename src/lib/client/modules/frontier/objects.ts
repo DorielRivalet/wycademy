@@ -135,6 +135,8 @@ import WoodIconWhite from '$lib/client/components/frontier/icon/item/Wood_Icon_W
 import type {
 	FrontierArmorSkillName,
 	FrontierArmorSkillTree,
+	FrontierMonsterName,
+	FrontierRankBand,
 	FrontierSigil,
 	FrontierWeaponClass,
 	FrontierZenithSkill,
@@ -186,6 +188,399 @@ import IconAilmentStun from '$lib/client/components/frontier/icon/ailment/Stun.s
 import IconAilmentVocalCordParalysis from '$lib/client/components/frontier/icon/ailment/VocalCordParalysis.svelte';
 
 import MotionSwordAndShieldNoneJumpSlash from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
+
+import IconMonsterRandom from '$lib/client/images/monster/random.webp';
+import IconMonsterRathian from '$lib/client/images/monster/rathian.webp';
+import IconMonsterFatalis from '$lib/client/images/monster/fatalis.webp';
+import IconMonsterKelbi from '$lib/client/images/monster/kelbi.webp';
+import IconMonsterMosswine from '$lib/client/images/monster/mosswine.webp';
+import IconMonsterBullfango from '$lib/client/images/monster/bullfango.webp';
+import IconMonsterYianKutKu from '$lib/client/images/monster/yian_kut-ku.webp';
+import IconMonsterLaoShanLung from '$lib/client/images/monster/lao-shan_lung.webp';
+import IconMonsterCephadrome from '$lib/client/images/monster/cephadrome.webp';
+import IconMonsterFelyne from '$lib/client/images/monster/felyne.webp';
+import IconMonsterRathalos from '$lib/client/images/monster/rathalos.webp';
+import IconMonsterAptonoth from '$lib/client/images/monster/aptonoth.webp';
+import IconMonsterGenprey from '$lib/client/images/monster/genprey.webp';
+import IconMonsterDiablos from '$lib/client/images/monster/diablos.webp';
+import IconMonsterKhezu from '$lib/client/images/monster/khezu.webp';
+import IconMonsterVelociprey from '$lib/client/images/monster/velociprey.webp';
+import IconMonsterGravios from '$lib/client/images/monster/gravios.webp';
+import IconMonsterVespoid from '$lib/client/images/monster/vespoid.webp';
+import IconMonsterGypceros from '$lib/client/images/monster/gypceros.webp';
+import IconMonsterPlesioth from '$lib/client/images/monster/plesioth.webp';
+import IconMonsterBasarios from '$lib/client/images/monster/basarios.webp';
+import IconMonsterMelynx from '$lib/client/images/monster/melynx.webp';
+import IconMonsterHornetaur from '$lib/client/images/monster/hornetaur.webp';
+import IconMonsterApceros from '$lib/client/images/monster/apceros.webp';
+import IconMonsterMonoblos from '$lib/client/images/monster/monoblos.webp';
+import IconMonsterVelocidrome from '$lib/client/images/monster/velocidrome.webp';
+import IconMonsterGendrome from '$lib/client/images/monster/gendrome.webp';
+import IconMonsterIoprey from '$lib/client/images/monster/ioprey.webp';
+import IconMonsterIodrome from '$lib/client/images/monster/iodrome.webp';
+import IconMonsterKirin from '$lib/client/images/monster/kirin.webp';
+import IconMonsterCephalos from '$lib/client/images/monster/cephalos.webp';
+import IconMonsterGiapreyGiadrome from '$lib/client/images/monster/giaprey.webp';
+import IconMonsterCrimsonFatalis from '$lib/client/images/monster/crimson_fatalis.webp';
+import IconMonsterPinkRathian from '$lib/client/images/monster/pink_rathian.webp';
+import IconMonsterBlueYianKutKu from '$lib/client/images/monster/blue_yian_kut-ku.webp';
+import IconMonsterPurpleGypceros from '$lib/client/images/monster/purple_gypceros.webp';
+import IconMonsterYianGaruga from '$lib/client/images/monster/yian_garuga.webp';
+import IconMonsterSilverRathalos from '$lib/client/images/monster/silver_rathalos.webp';
+import IconMonsterGoldRathian from '$lib/client/images/monster/gold_rathian.webp';
+import IconMonsterBlackDiablos from '$lib/client/images/monster/black_diablos.webp';
+import IconMonsterWhiteMonoblos from '$lib/client/images/monster/white_monoblos.webp';
+import IconMonsterRedKhezu from '$lib/client/images/monster/red_khezu.webp';
+import IconMonsterGreenPlesioth from '$lib/client/images/monster/green_plesioth.webp';
+import IconMonsterBlackGravios from '$lib/client/images/monster/black_gravios.webp';
+import IconMonsterDaimyoHermitaur from '$lib/client/images/monster/daimyo_hermitaur.webp';
+import IconMonsterAzureRathalos from '$lib/client/images/monster/azure_rathalos.webp';
+import IconMonsterAshenLaoShanLung from '$lib/client/images/monster/ashen_lao-shan_lung.webp';
+import IconMonsterBlangonga from '$lib/client/images/monster/blangonga.webp';
+import IconMonsterCongalala from '$lib/client/images/monster/congalala.webp';
+import IconMonsterRajang from '$lib/client/images/monster/rajang.webp';
+import IconMonsterKushalaDaora from '$lib/client/images/monster/kushala_daora.webp';
+import IconMonsterShenGaoren from '$lib/client/images/monster/shen_gaoren.webp';
+import IconMonsterGreatThunderbug from '$lib/client/images/monster/great_thunderbug.webp';
+import IconMonsterShakalaka from '$lib/client/images/monster/shakalaka.webp';
+import IconMonsterYamaTsukami from '$lib/client/images/monster/yama_tsukami.webp';
+import IconMonsterChameleos from '$lib/client/images/monster/chameleos.webp';
+import IconMonsterRustedKushalaDaora from '$lib/client/images/monster/rusted_kushala_daora.webp';
+import IconMonsterBlango from '$lib/client/images/monster/blango.webp';
+import IconMonsterConga from '$lib/client/images/monster/conga.webp';
+import IconMonsterRemobra from '$lib/client/images/monster/remobra.webp';
+import IconMonsterLunastra from '$lib/client/images/monster/lunastra.webp';
+import IconMonsterTeostra from '$lib/client/images/monster/teostra.webp';
+import IconMonsterHermitaur from '$lib/client/images/monster/hermitaur.webp';
+import IconMonsterShogunCeanataur from '$lib/client/images/monster/shogun_ceanataur.webp';
+import IconMonsterBulldrome from '$lib/client/images/monster/bulldrome.webp';
+import IconMonsterAnteka from '$lib/client/images/monster/anteka.webp';
+import IconMonsterPopo from '$lib/client/images/monster/popo.webp';
+import IconMonsterWhiteFatalis from '$lib/client/images/monster/white_fatalis.webp';
+import IconMonsterCeanataur from '$lib/client/images/monster/ceanataur.webp';
+import IconMonsterHypnocatrice from '$lib/client/images/monster/hypnoc.webp';
+import IconMonsterLavasioth from '$lib/client/images/monster/lavasioth.webp';
+import IconMonsterTigrex from '$lib/client/images/monster/tigrex.webp';
+import IconMonsterAkantor from '$lib/client/images/monster/akantor.webp';
+import IconMonsterBrightHypnoc from '$lib/client/images/monster/bright_hypnoc.webp';
+import IconMonsterRedLavasioth from '$lib/client/images/monster/red_lavasioth.webp';
+import IconMonsterEspinas from '$lib/client/images/monster/espinas.webp';
+import IconMonsterOrangeEspinas from '$lib/client/images/monster/orange_espinas.webp';
+import IconMonsterSilverHypnoc from '$lib/client/images/monster/silver_hypnoc.webp';
+import IconMonsterAkuraVashimu from '$lib/client/images/monster/akura_vashimu.webp';
+import IconMonsterAkuraJebia from '$lib/client/images/monster/akura_jebia.webp';
+import IconMonsterBerukyurosu from '$lib/client/images/monster/berukyurosu.webp';
+import IconMonsterCactus from '$lib/client/images/monster/cactus.webp';
+import IconMonsterPariapuria from '$lib/client/images/monster/pariapuria.webp';
+import IconMonsterWhiteEspinas from '$lib/client/images/monster/white_espinas.webp';
+import IconMonsterKamuOrugaron from '$lib/client/images/monster/kamu_orugaron.webp';
+import IconMonsterNonoOrugaron from '$lib/client/images/monster/nono_orugaron.webp';
+import IconMonsterRaviente from '$lib/client/images/monster/raviente.webp';
+import IconMonsterDyuragaua from '$lib/client/images/monster/dyuragaua.webp';
+import IconMonsterDoragyurosu from '$lib/client/images/monster/doragyurosu.webp';
+import IconMonsterGurenzeburu from '$lib/client/images/monster/gurenzeburu.webp';
+import IconMonsterBurukku from '$lib/client/images/monster/burukku.webp';
+import IconMonsterErupe from '$lib/client/images/monster/erupe.webp';
+import IconMonsterRukodiora from '$lib/client/images/monster/rukodiora.webp';
+import IconMonsterUNKNOWN from '$lib/client/images/monster/unknown.webp';
+import IconMonsterGogomoa from '$lib/client/images/monster/gogomoa.webp';
+import IconMonsterTaikunZamuza from '$lib/client/images/monster/taikun_zamuza.webp';
+import IconMonsterAbiorugu from '$lib/client/images/monster/abiorugu.webp';
+import IconMonsterKuarusepusu from '$lib/client/images/monster/kuarusepusu.webp';
+import IconMonsterOdibatorasu from '$lib/client/images/monster/odibatorasu.webp';
+import IconMonsterDisufiroa from '$lib/client/images/monster/disufiroa.webp';
+import IconMonsterRebidiora from '$lib/client/images/monster/rebidiora.webp';
+import IconMonsterAnorupatisu from '$lib/client/images/monster/anorupatisu.webp';
+import IconMonsterHyujikiki from '$lib/client/images/monster/hyujikiki.webp';
+import IconMonsterMidogaron from '$lib/client/images/monster/midogaron.webp';
+import IconMonsterGiaorugu from '$lib/client/images/monster/giaorugu.webp';
+import IconMonsterMiRu from '$lib/client/images/monster/mi_ru.webp';
+import IconMonsterFarunokku from '$lib/client/images/monster/farunokku.webp';
+import IconMonsterPokaradon from '$lib/client/images/monster/pokaradon.webp';
+import IconMonsterShantien from '$lib/client/images/monster/shantien.webp';
+import IconMonsterPokara from '$lib/client/images/monster/pokara.webp';
+import IconMonsterGoruganosu from '$lib/client/images/monster/goruganosu.webp';
+import IconMonsterAruganosu from '$lib/client/images/monster/aruganosu.webp';
+import IconMonsterBaruragaru from '$lib/client/images/monster/baruragaru.webp';
+import IconMonsterZerureusu from '$lib/client/images/monster/zerureusu.webp';
+import IconMonsterGougarf from '$lib/client/images/monster/gougarf.webp';
+import IconMonsterUruki from '$lib/client/images/monster/uruki.webp';
+import IconMonsterForokururu from '$lib/client/images/monster/forokururu.webp';
+import IconMonsterMeraginasu from '$lib/client/images/monster/meraginasu.webp';
+import IconMonsterDiorex from '$lib/client/images/monster/diorex.webp';
+import IconMonsterGarubaDaora from '$lib/client/images/monster/garuba_daora.webp';
+import IconMonsterInagami from '$lib/client/images/monster/inagami.webp';
+import IconMonsterVarusaburosu from '$lib/client/images/monster/varusaburosu.webp';
+import IconMonsterPoborubarumu from '$lib/client/images/monster/poborubarumu.webp';
+import IconMonsterDuremudira from '$lib/client/images/monster/duremudira.webp';
+import IconMonsterGureadomosu from '$lib/client/images/monster/gureadomosu.webp';
+import IconMonsterHarudomerugu from '$lib/client/images/monster/harudomerugu.webp';
+import IconMonsterToridcless from '$lib/client/images/monster/toridcless.webp';
+import IconMonsterGasurabazura from '$lib/client/images/monster/gasurabazura.webp';
+import IconMonsterKusubami from '$lib/client/images/monster/kusubami.webp';
+import IconMonsterYamaKurai from '$lib/client/images/monster/yama_kurai.webp';
+import IconMonsterZinogre from '$lib/client/images/monster/zinogre.webp';
+import IconMonsterDeviljho from '$lib/client/images/monster/deviljho.webp';
+import IconMonsterBrachydios from '$lib/client/images/monster/brachydios.webp';
+import IconMonsterBerserkRaviente from '$lib/client/images/monster/berserk_raviente.webp';
+import IconMonsterToaTesukatora from '$lib/client/images/monster/toa_tesukatora.webp';
+import IconMonsterBarioth from '$lib/client/images/monster/barioth.webp';
+import IconMonsterUragaan from '$lib/client/images/monster/uragaan.webp';
+import IconMonsterStygianZinogre from '$lib/client/images/monster/stygian_zinogre.webp';
+import IconMonsterGuanzorumu from '$lib/client/images/monster/guanzorumu.webp';
+import IconMonsterStarvingDeviljho from '$lib/client/images/monster/starving_deviljho.webp';
+import IconMonsterVoljang from '$lib/client/images/monster/voljang.webp';
+import IconMonsterNargacuga from '$lib/client/images/monster/nargacuga.webp';
+import IconMonsterKeoaruboru from '$lib/client/images/monster/keoaruboru.webp';
+import IconMonsterZenaserisu from '$lib/client/images/monster/zenaserisu.webp';
+import IconMonsterGoreMagala from '$lib/client/images/monster/gore_magala.webp';
+import IconMonsterBlinkingNargacuga from '$lib/client/images/monster/blinking_nargacuga.webp';
+import IconMonsterShagaruMagala from '$lib/client/images/monster/shagaru_magala.webp';
+import IconMonsterAmatsu from '$lib/client/images/monster/amatsu.webp';
+import IconMonsterElzelion from '$lib/client/images/monster/elzelion.webp';
+import IconMonsterArrogantDuremudira from '$lib/client/images/monster/arrogant_duremudira.webp';
+import IconMonsterSeregios from '$lib/client/images/monster/seregios.webp';
+import IconMonsterBogabadorumu from '$lib/client/images/monster/zenith_bogabadorumu.gif';
+import IconMonsterBlitzkriegBogabadorumu from '$lib/client/images/monster/blitzkrieg_bogabadorumu.webp';
+import IconMonsterSparklingZerureusu from '$lib/client/images/monster/sparkling_zerureusu.webp';
+import IconMonsterPSO2Rappy from '$lib/client/images/monster/pso2_rappy.webp';
+import IconMonsterKingShakalaka from '$lib/client/images/monster/king_shakalaka.webp';
+
+import IconRenderMonsterRathian from '$lib/client/images/monster/render/rathian.webp';
+import IconRenderMonsterFatalis from '$lib/client/images/monster/render/fatalis.webp';
+import IconRenderMonsterKelbi from '$lib/client/images/monster/render/kelbi.webp';
+import IconRenderMonsterMosswine from '$lib/client/images/monster/render/mosswine.webp';
+import IconRenderMonsterBullfango from '$lib/client/images/monster/render/bullfango.webp';
+import IconRenderMonsterYianKutKu from '$lib/client/images/monster/render/yian_kut-ku.webp';
+import IconRenderMonsterLaoShanLung from '$lib/client/images/monster/render/lao-shan_lung.webp';
+import IconRenderMonsterCephadrome from '$lib/client/images/monster/render/cephadrome.webp';
+import IconRenderMonsterFelyne from '$lib/client/images/monster/render/felyne.webp';
+import IconRenderMonsterRathalos from '$lib/client/images/monster/render/rathalos.webp';
+import IconRenderMonsterAptonoth from '$lib/client/images/monster/render/aptonoth.webp';
+import IconRenderMonsterGenprey from '$lib/client/images/monster/render/genprey.webp';
+import IconRenderMonsterDiablos from '$lib/client/images/monster/render/diablos.webp';
+import IconRenderMonsterKhezu from '$lib/client/images/monster/render/khezu.webp';
+import IconRenderMonsterVelociprey from '$lib/client/images/monster/render/velociprey.webp';
+import IconRenderMonsterGravios from '$lib/client/images/monster/render/gravios.webp';
+import IconRenderMonsterVespoid from '$lib/client/images/monster/render/vespoid.webp';
+import IconRenderMonsterGypceros from '$lib/client/images/monster/render/gypceros.webp';
+import IconRenderMonsterPlesioth from '$lib/client/images/monster/render/plesioth.webp';
+import IconRenderMonsterBasarios from '$lib/client/images/monster/render/basarios.webp';
+import IconRenderMonsterMelynx from '$lib/client/images/monster/render/melynx.webp';
+import IconRenderMonsterHornetaur from '$lib/client/images/monster/render/hornetaur.webp';
+import IconRenderMonsterApceros from '$lib/client/images/monster/render/apceros.webp';
+import IconRenderMonsterMonoblos from '$lib/client/images/monster/render/monoblos.webp';
+import IconRenderMonsterVelocidrome from '$lib/client/images/monster/render/velocidrome.webp';
+import IconRenderMonsterGendrome from '$lib/client/images/monster/render/gendrome.webp';
+import IconRenderMonsterIoprey from '$lib/client/images/monster/render/ioprey.webp';
+import IconRenderMonsterIodrome from '$lib/client/images/monster/render/iodrome.webp';
+import IconRenderMonsterKirin from '$lib/client/images/monster/render/kirin.webp';
+import IconRenderMonsterCephalos from '$lib/client/images/monster/render/cephalos.webp';
+import IconRenderMonsterGiapreyGiadrome from '$lib/client/images/monster/render/giaprey.webp';
+import IconRenderMonsterCrimsonFatalis from '$lib/client/images/monster/render/crimson_fatalis.webp';
+import IconRenderMonsterPinkRathian from '$lib/client/images/monster/render/pink_rathian.webp';
+import IconRenderMonsterBlueYianKutKu from '$lib/client/images/monster/render/blue_yian_kut-ku.webp';
+import IconRenderMonsterPurpleGypceros from '$lib/client/images/monster/render/purple_gypceros.webp';
+import IconRenderMonsterYianGaruga from '$lib/client/images/monster/render/yian_garuga.webp';
+import IconRenderMonsterSilverRathalos from '$lib/client/images/monster/render/silver_rathalos.webp';
+import IconRenderMonsterGoldRathian from '$lib/client/images/monster/render/gold_rathian.webp';
+import IconRenderMonsterBlackDiablos from '$lib/client/images/monster/render/black_diablos.webp';
+import IconRenderMonsterWhiteMonoblos from '$lib/client/images/monster/render/white_monoblos.webp';
+import IconRenderMonsterRedKhezu from '$lib/client/images/monster/render/red_khezu.webp';
+import IconRenderMonsterGreenPlesioth from '$lib/client/images/monster/render/green_plesioth.webp';
+import IconRenderMonsterBlackGravios from '$lib/client/images/monster/render/black_gravios.webp';
+import IconRenderMonsterDaimyoHermitaur from '$lib/client/images/monster/render/daimyo_hermitaur.webp';
+import IconRenderMonsterAzureRathalos from '$lib/client/images/monster/render/azure_rathalos.webp';
+import IconRenderMonsterAshenLaoShanLung from '$lib/client/images/monster/render/ashen_lao-shan_lung.webp';
+import IconRenderMonsterBlangonga from '$lib/client/images/monster/render/blangonga.webp';
+import IconRenderMonsterCongalala from '$lib/client/images/monster/render/congalala.webp';
+import IconRenderMonsterRajang from '$lib/client/images/monster/render/rajang.webp';
+import IconRenderMonsterKushalaDaora from '$lib/client/images/monster/render/kushala_daora.webp';
+import IconRenderMonsterShenGaoren from '$lib/client/images/monster/render/shen_gaoren.webp';
+import IconRenderMonsterGreatThunderbug from '$lib/client/images/monster/render/great_thunderbug.webp';
+import IconRenderMonsterShakalaka from '$lib/client/images/monster/render/shakalaka.webp';
+import IconRenderMonsterYamaTsukami from '$lib/client/images/monster/render/yama_tsukami.webp';
+import IconRenderMonsterChameleos from '$lib/client/images/monster/render/chameleos.webp';
+import IconRenderMonsterRustedKushalaDaora from '$lib/client/images/monster/render/rusted_kushala_daora.webp';
+import IconRenderMonsterBlango from '$lib/client/images/monster/render/blango.webp';
+import IconRenderMonsterConga from '$lib/client/images/monster/render/conga.webp';
+import IconRenderMonsterRemobra from '$lib/client/images/monster/render/remobra.webp';
+import IconRenderMonsterLunastra from '$lib/client/images/monster/render/lunastra.webp';
+import IconRenderMonsterTeostra from '$lib/client/images/monster/render/teostra.webp';
+import IconRenderMonsterHermitaur from '$lib/client/images/monster/render/hermitaur.webp';
+import IconRenderMonsterShogunCeanataur from '$lib/client/images/monster/render/shogun_ceanataur.webp';
+import IconRenderMonsterBulldrome from '$lib/client/images/monster/render/bulldrome.webp';
+import IconRenderMonsterAnteka from '$lib/client/images/monster/render/anteka.webp';
+import IconRenderMonsterPopo from '$lib/client/images/monster/render/popo.webp';
+import IconRenderMonsterWhiteFatalis from '$lib/client/images/monster/render/white_fatalis.webp';
+import IconRenderMonsterCeanataur from '$lib/client/images/monster/render/ceanataur.webp';
+import IconRenderMonsterHypnocatrice from '$lib/client/images/monster/render/hypnoc.webp';
+import IconRenderMonsterLavasioth from '$lib/client/images/monster/render/lavasioth.webp';
+import IconRenderMonsterTigrex from '$lib/client/images/monster/render/tigrex.webp';
+import IconRenderMonsterAkantor from '$lib/client/images/monster/render/akantor.webp';
+import IconRenderMonsterBrightHypnoc from '$lib/client/images/monster/render/bright_hypnoc.webp';
+import IconRenderMonsterRedLavasioth from '$lib/client/images/monster/render/red_lavasioth.webp';
+import IconRenderMonsterEspinas from '$lib/client/images/monster/render/espinas.webp';
+import IconRenderMonsterOrangeEspinas from '$lib/client/images/monster/render/orange_espinas.webp';
+import IconRenderMonsterSilverHypnoc from '$lib/client/images/monster/render/silver_hypnoc.webp';
+import IconRenderMonsterAkuraVashimu from '$lib/client/images/monster/render/akura_vashimu.webp';
+import IconRenderMonsterAkuraJebia from '$lib/client/images/monster/render/akura_jebia.webp';
+import IconRenderMonsterBerukyurosu from '$lib/client/images/monster/render/berukyurosu.webp';
+import IconRenderMonsterCactus from '$lib/client/images/monster/cactus.webp';
+import IconRenderMonsterPariapuria from '$lib/client/images/monster/render/pariapuria.webp';
+import IconRenderMonsterWhiteEspinas from '$lib/client/images/monster/render/white_espinas.webp';
+import IconRenderMonsterKamuOrugaron from '$lib/client/images/monster/render/kamu_orugaron.webp';
+import IconRenderMonsterNonoOrugaron from '$lib/client/images/monster/render/nono_orugaron.webp';
+import IconRenderMonsterRaviente from '$lib/client/images/monster/render/raviente.webp';
+import IconRenderMonsterDyuragaua from '$lib/client/images/monster/render/dyuragaua.webp';
+import IconRenderMonsterDoragyurosu from '$lib/client/images/monster/render/doragyurosu.webp';
+import IconRenderMonsterGurenzeburu from '$lib/client/images/monster/render/gurenzeburu.webp';
+import IconRenderMonsterBurukku from '$lib/client/images/monster/render/burukku.webp';
+import IconRenderMonsterErupe from '$lib/client/images/monster/render/erupe.webp';
+import IconRenderMonsterRukodiora from '$lib/client/images/monster/render/rukodiora.webp';
+import IconRenderMonsterUNKNOWN from '$lib/client/images/monster/render/unknown.webp';
+import IconRenderMonsterGogomoa from '$lib/client/images/monster/render/gogomoa.webp';
+import IconRenderMonsterTaikunZamuza from '$lib/client/images/monster/render/taikun_zamuza.webp';
+import IconRenderMonsterAbiorugu from '$lib/client/images/monster/render/abiorugu.webp';
+import IconRenderMonsterKuarusepusu from '$lib/client/images/monster/render/kuarusepusu.webp';
+import IconRenderMonsterOdibatorasu from '$lib/client/images/monster/render/odibatorasu.webp';
+import IconRenderMonsterDisufiroa from '$lib/client/images/monster/render/disufiroa.webp';
+import IconRenderMonsterRebidiora from '$lib/client/images/monster/render/rebidiora.webp';
+import IconRenderMonsterAnorupatisu from '$lib/client/images/monster/render/anorupatisu.webp';
+import IconRenderMonsterHyujikiki from '$lib/client/images/monster/render/hyujikiki.webp';
+import IconRenderMonsterMidogaron from '$lib/client/images/monster/render/midogaron.webp';
+import IconRenderMonsterGiaorugu from '$lib/client/images/monster/render/giaorugu.webp';
+import IconRenderMonsterMiRu from '$lib/client/images/monster/render/mi_ru.webp';
+import IconRenderMonsterFarunokku from '$lib/client/images/monster/render/farunokku.webp';
+import IconRenderMonsterPokaradon from '$lib/client/images/monster/render/pokaradon.webp';
+import IconRenderMonsterShantien from '$lib/client/images/monster/render/shantien.webp';
+import IconRenderMonsterPokara from '$lib/client/images/monster/render/pokara.webp';
+import IconRenderMonsterGoruganosu from '$lib/client/images/monster/render/goruganosu.webp';
+import IconRenderMonsterAruganosu from '$lib/client/images/monster/render/aruganosu.webp';
+import IconRenderMonsterBaruragaru from '$lib/client/images/monster/render/baruragaru.webp';
+import IconRenderMonsterZerureusu from '$lib/client/images/monster/render/zerureusu.webp';
+import IconRenderMonsterGougarf from '$lib/client/images/monster/render/gougarf.webp';
+import IconRenderMonsterUruki from '$lib/client/images/monster/render/uruki.webp';
+import IconRenderMonsterForokururu from '$lib/client/images/monster/render/forokururu.webp';
+import IconRenderMonsterMeraginasu from '$lib/client/images/monster/render/meraginasu.webp';
+import IconRenderMonsterDiorex from '$lib/client/images/monster/render/diorex.webp';
+import IconRenderMonsterGarubaDaora from '$lib/client/images/monster/render/garuba_daora.webp';
+import IconRenderMonsterInagami from '$lib/client/images/monster/render/inagami.webp';
+import IconRenderMonsterVarusaburosu from '$lib/client/images/monster/render/varusaburosu.webp';
+import IconRenderMonsterPoborubarumu from '$lib/client/images/monster/render/poborubarumu.webp';
+import IconRenderMonsterDuremudira from '$lib/client/images/monster/render/duremudira.webp';
+import IconRenderMonsterGureadomosu from '$lib/client/images/monster/render/gureadomosu.webp';
+import IconRenderMonsterHarudomerugu from '$lib/client/images/monster/render/harudomerugu.webp';
+import IconRenderMonsterToridcless from '$lib/client/images/monster/render/toridcless.webp';
+import IconRenderMonsterGasurabazura from '$lib/client/images/monster/render/gasurabazura.webp';
+import IconRenderMonsterKusubami from '$lib/client/images/monster/render/kusubami.webp';
+import IconRenderMonsterYamaKurai from '$lib/client/images/monster/render/yama_kurai.webp';
+import IconRenderMonsterZinogre from '$lib/client/images/monster/render/zinogre.webp';
+import IconRenderMonsterDeviljho from '$lib/client/images/monster/render/deviljho.webp';
+import IconRenderMonsterBrachydios from '$lib/client/images/monster/render/brachydios.webp';
+import IconRenderMonsterBerserkRaviente from '$lib/client/images/monster/render/berserk_raviente.webp';
+import IconRenderMonsterToaTesukatora from '$lib/client/images/monster/render/toa_tesukatora.webp';
+import IconRenderMonsterBarioth from '$lib/client/images/monster/render/barioth.webp';
+import IconRenderMonsterUragaan from '$lib/client/images/monster/render/uragaan.webp';
+import IconRenderMonsterStygianZinogre from '$lib/client/images/monster/render/stygian_zinogre.webp';
+import IconRenderMonsterGuanzorumu from '$lib/client/images/monster/render/guanzorumu.webp';
+import IconRenderMonsterStarvingDeviljho from '$lib/client/images/monster/render/starving_deviljho.webp';
+import IconRenderMonsterVoljang from '$lib/client/images/monster/render/voljang.webp';
+import IconRenderMonsterNargacuga from '$lib/client/images/monster/render/nargacuga.webp';
+import IconRenderMonsterKeoaruboru from '$lib/client/images/monster/render/keoaruboru.webp';
+import IconRenderMonsterZenaserisu from '$lib/client/images/monster/render/zenaserisu.webp';
+import IconRenderMonsterGoreMagala from '$lib/client/images/monster/render/gore_magala.webp';
+import IconRenderMonsterBlinkingNargacuga from '$lib/client/images/monster/render/blinking_nargacuga.webp';
+import IconRenderMonsterShagaruMagala from '$lib/client/images/monster/render/shagaru_magala.webp';
+import IconRenderMonsterAmatsu from '$lib/client/images/monster/render/amatsu.webp';
+import IconRenderMonsterElzelion from '$lib/client/images/monster/render/elzelion.webp';
+import IconRenderMonsterArrogantDuremudira from '$lib/client/images/monster/render/arrogant_duremudira.webp';
+import IconRenderMonsterSeregios from '$lib/client/images/monster/render/seregios.webp';
+import IconRenderMonsterBogabadorumu from '$lib/client/images/monster/render/zenith_bogabadorumu.webp';
+import IconRenderMonsterBlitzkriegBogabadorumu from '$lib/client/images/monster/render/blitzkrieg_bogabadorumu.webp';
+import IconRenderMonsterSparklingZerureusu from '$lib/client/images/monster/render/sparkling_zerureusu.webp';
+import IconRenderMonsterPSO2Rappy from '$lib/client/images/monster/render/pso2_rappy.webp';
+import IconRenderMonsterKingShakalaka from '$lib/client/images/monster/render/king_shakalaka.webp';
+
+import IconMonsterZenithAkuraVashimu from '$lib/client/images/monster/zenith_akura_vashimu.gif';
+import IconMonsterZenithAnorupatisu from '$lib/client/images/monster/zenith_anorupatisu.gif';
+import IconMonsterZenithBaruragaru from '$lib/client/images/monster/zenith_baruragaru.gif';
+import IconMonsterZenithBlangonga from '$lib/client/images/monster/zenith_blangonga.gif';
+import IconMonsterZenithBogabadorumu from '$lib/client/images/monster/zenith_bogabadorumu.gif';
+import IconMonsterZenithDaimyoHermitaur from '$lib/client/images/monster/zenith_daimyo_hermitaur.gif';
+import IconMonsterZenithDoragyurosu from '$lib/client/images/monster/zenith_doragyurosu.gif';
+import IconMonsterZenithEspinas from '$lib/client/images/monster/zenith_espinas.gif';
+import IconMonsterZenithGasurabazura from '$lib/client/images/monster/zenith_gasurabazura.gif';
+import IconMonsterZenithGiaorugu from '$lib/client/images/monster/zenith_giaorugu.gif';
+import IconMonsterZenithGravios from '$lib/client/images/monster/zenith_gravios.gif';
+import IconMonsterZenithHarudomerugu from '$lib/client/images/monster/zenith_harudomerugu.gif';
+import IconMonsterZenithHypnoc from '$lib/client/images/monster/zenith_hypnoc.gif';
+import IconMonsterZenithHyujikiki from '$lib/client/images/monster/zenith_hyujikiki.gif';
+import IconMonsterZenithInagami from '$lib/client/images/monster/zenith_inagami.gif';
+import IconMonsterZenithKhezu from '$lib/client/images/monster/zenith_khezu.gif';
+import IconMonsterZenithMidogaron from '$lib/client/images/monster/zenith_midogaron.gif';
+import IconMonsterZenithPlesioth from '$lib/client/images/monster/zenith_plesioth.gif';
+import IconMonsterZenithRathalos from '$lib/client/images/monster/zenith_rathalos.gif';
+import IconMonsterZenithRukodiora from '$lib/client/images/monster/zenith_rukodiora.gif';
+import IconMonsterZenithTaikunZamuza from '$lib/client/images/monster/zenith_taikun_zamuza.gif';
+import IconMonsterZenithTigrex from '$lib/client/images/monster/zenith_tigrex.gif';
+import IconMonsterZenithToridcless from '$lib/client/images/monster/zenith_toridcless.gif';
+import IconMonsterConquestFatalis from '$lib/client/images/monster/conquest_fatalis.webp';
+import IconMonsterConquestShantien from '$lib/client/images/monster/conquest_shantien.webp';
+import IconMonsterConquestCrimsonFatalis from '$lib/client/images/monster/conquest_crimson_fatalis.webp';
+import IconMonsterShitenDisufiroa from '$lib/client/images/monster/shiten_disufiroa.webp';
+import IconMonsterShitenUnknown from '$lib/client/images/monster/shiten_unknown.webp';
+import IconMonsterBurningFreezingElzelion from '$lib/client/images/monster/burning_freezing_elzelion.webp';
+import IconMonsterHowlingZinogre from '$lib/client/images/monster/howling_zinogre.webp';
+import IconMonsterSupremacyPariapuria from '$lib/client/images/monster/thirsty_pariapuria.webp';
+import IconMonsterSupremacyDoragyurosu from '$lib/client/images/monster/supremacy_doragyurosu.webp';
+import IconMonsterSupremacyTeostra from '$lib/client/images/monster/supremacy_teostra.webp';
+import IconMonsterSupremacyOdibatorasu from '$lib/client/images/monster/supremacy_odibatorasu.webp';
+import IconMonsterGoldenDeviljho from '$lib/client/images/monster/golden_deviljho.webp';
+import IconMonsterFuriousRajang from '$lib/client/images/monster/furious_rajang.webp';
+import IconMonsterRulingGuanzorumu from '$lib/client/images/monster/ruling_guanzorumu.webp';
+import IconMonsterShiftingMiRu from '$lib/client/images/monster/shifting_mi_ru.webp';
+import IconMonsterTwinheadRajang from '$lib/client/images/monster/twinhead_rajang.webp';
+
+import IconRenderMonsterZenithAkuraVashimu from '$lib/client/images/monster/render/zenith_akura_vashimu.webp';
+import IconRenderMonsterZenithAnorupatisu from '$lib/client/images/monster/render/zenith_anorupatisu.webp';
+import IconRenderMonsterZenithBaruragaru from '$lib/client/images/monster/render/zenith_baruragaru.webp';
+import IconRenderMonsterZenithBlangonga from '$lib/client/images/monster/render/zenith_blangonga.webp';
+import IconRenderMonsterZenithBogabadorumu from '$lib/client/images/monster/render/zenith_bogabadorumu.webp';
+import IconRenderMonsterZenithDaimyoHermitaur from '$lib/client/images/monster/render/zenith_daimyo_hermitaur.webp';
+import IconRenderMonsterZenithDoragyurosu from '$lib/client/images/monster/render/zenith_doragyurosu.webp';
+import IconRenderMonsterZenithEspinas from '$lib/client/images/monster/render/zenith_espinas.webp';
+import IconRenderMonsterZenithGasurabazura from '$lib/client/images/monster/render/zenith_gasurabazura.webp';
+import IconRenderMonsterZenithGiaorugu from '$lib/client/images/monster/render/zenith_giaorugu.webp';
+import IconRenderMonsterZenithGravios from '$lib/client/images/monster/render/zenith_gravios.webp';
+import IconRenderMonsterZenithHarudomerugu from '$lib/client/images/monster/render/zenith_harudomerugu.webp';
+import IconRenderMonsterZenithHypnoc from '$lib/client/images/monster/render/zenith_hypnoc.webp';
+import IconRenderMonsterZenithHyujikiki from '$lib/client/images/monster/render/zenith_hyujikiki.webp';
+import IconRenderMonsterZenithInagami from '$lib/client/images/monster/render/zenith_inagami.webp';
+import IconRenderMonsterZenithKhezu from '$lib/client/images/monster/render/zenith_khezu.webp';
+import IconRenderMonsterZenithMidogaron from '$lib/client/images/monster/render/zenith_midogaron.webp';
+import IconRenderMonsterZenithPlesioth from '$lib/client/images/monster/render/zenith_plesioth.webp';
+import IconRenderMonsterZenithRathalos from '$lib/client/images/monster/render/zenith_rathalos.webp';
+import IconRenderMonsterZenithRukodiora from '$lib/client/images/monster/render/zenith_rukodiora.webp';
+import IconRenderMonsterZenithTaikunZamuza from '$lib/client/images/monster/render/zenith_taikun_zamuza.webp';
+import IconRenderMonsterZenithTigrex from '$lib/client/images/monster/render/zenith_tigrex.webp';
+import IconRenderMonsterZenithToridcless from '$lib/client/images/monster/render/zenith_toridcless.webp';
+import IconRenderMonsterConquestFatalis from '$lib/client/images/monster/render/conquest_fatalis.webp';
+import IconRenderMonsterConquestShantien from '$lib/client/images/monster/render/shantien.webp';
+import IconRenderMonsterConquestCrimsonFatalis from '$lib/client/images/monster/render/conquest_crimson_fatalis.webp';
+import IconRenderMonsterShitenDisufiroa from '$lib/client/images/monster/render/shiten_disufiroa.webp';
+import IconRenderMonsterShitenUnknown from '$lib/client/images/monster/render/shiten_unknown.webp';
+import IconRenderMonsterBurningFreezingElzelion from '$lib/client/images/monster/render/burning_freezing_elzelion.webp';
+import IconRenderMonsterHowlingZinogre from '$lib/client/images/monster/render/howling_zinogre.webp';
+import IconRenderMonsterSupremacyPariapuria from '$lib/client/images/monster/render/thirsty_pariapuria.webp';
+import IconRenderMonsterSupremacyDoragyurosu from '$lib/client/images/monster/render/supremacy_doragyurosu.webp';
+import IconRenderMonsterSupremacyTeostra from '$lib/client/images/monster/render/supremacy_teostra.webp';
+import IconRenderMonsterSupremacyOdibatorasu from '$lib/client/images/monster/render/supremacy_odibatorasu.webp';
+import IconRenderMonsterGoldenDeviljho from '$lib/client/images/monster/render/golden_deviljho.webp';
+import IconRenderMonsterFuriousRajang from '$lib/client/images/monster/render/hc_rajang.webp';
+import IconRenderMonsterRulingGuanzorumu from '$lib/client/images/monster/render/ruling_guanzorumu.webp';
+import IconRenderMonsterShiftingMiRu from '$lib/client/images/monster/render/shifting_mi_ru.webp';
+import IconRenderMonsterTwinheadRajang from '$lib/client/images/monster/render/hc_rajang.webp';
 
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
@@ -662,6 +1057,1202 @@ export const ArmorTypes: FrontierArmor[] = [
 		id: 4,
 		name: 'Legs',
 		icon: ArmorLegsIcon,
+	},
+];
+
+export const MonsterIcons: {
+	name: FrontierMonsterName;
+	rank: FrontierRankBand;
+	icon: any;
+	render: any;
+}[] = [
+	{
+		name: '',
+		icon: IconMonsterRandom,
+		rank: '',
+		render: IconMonsterRandom,
+	},
+	{
+		name: 'Rathian',
+		icon: IconMonsterRathian,
+		rank: 'G Rank',
+		render: IconRenderMonsterRathian,
+	},
+	{
+		name: 'Fatalis',
+		icon: IconMonsterFatalis,
+		rank: '',
+		render: IconRenderMonsterFatalis,
+	},
+	{
+		name: 'Kelbi',
+		icon: IconMonsterKelbi,
+		rank: 'G Rank',
+		render: IconRenderMonsterKelbi,
+	},
+	{
+		name: 'Mosswine',
+		icon: IconMonsterMosswine,
+		rank: 'G Rank',
+		render: IconRenderMonsterMosswine,
+	},
+	{
+		name: 'Bullfango',
+		icon: IconMonsterBullfango,
+		rank: 'G Rank',
+		render: IconRenderMonsterBullfango,
+	},
+	{
+		name: 'Yian Kut-Ku',
+		icon: IconMonsterYianKutKu,
+		rank: 'G Rank',
+		render: IconRenderMonsterYianKutKu,
+	},
+	{
+		name: 'Lao-Shan Lung',
+		icon: IconMonsterLaoShanLung,
+		rank: 'G Rank',
+		render: IconRenderMonsterLaoShanLung,
+	},
+	{
+		name: 'Cephadrome',
+		icon: IconMonsterCephadrome,
+		rank: 'G Rank',
+		render: IconRenderMonsterCephadrome,
+	},
+	{
+		name: 'Felyne',
+		icon: IconMonsterFelyne,
+		rank: 'G Rank',
+		render: IconRenderMonsterFelyne,
+	},
+	{
+		name: 'Rathalos',
+		icon: IconMonsterRathalos,
+		rank: 'G Rank',
+		render: IconRenderMonsterRathalos,
+	},
+	{
+		name: 'Aptonoth',
+		icon: IconMonsterAptonoth,
+		rank: 'G Rank',
+		render: IconRenderMonsterAptonoth,
+	},
+	{
+		name: 'Genprey',
+		icon: IconMonsterGenprey,
+		rank: 'G Rank',
+		render: IconRenderMonsterGenprey,
+	},
+	{
+		name: 'Diablos',
+		icon: IconMonsterDiablos,
+		rank: 'G Rank',
+		render: IconRenderMonsterDiablos,
+	},
+	{
+		name: 'Khezu',
+		icon: IconMonsterKhezu,
+		rank: 'G Rank',
+		render: IconRenderMonsterKhezu,
+	},
+	{
+		name: 'Velociprey',
+		icon: IconMonsterVelociprey,
+		rank: 'G Rank',
+		render: IconRenderMonsterVelociprey,
+	},
+	{
+		name: 'Gravios',
+		icon: IconMonsterGravios,
+		rank: 'G Rank',
+		render: IconRenderMonsterGravios,
+	},
+	{
+		name: 'Vespoid',
+		icon: IconMonsterVespoid,
+		rank: 'G Rank',
+		render: IconRenderMonsterVespoid,
+	},
+	{
+		name: 'Gypceros',
+		icon: IconMonsterGypceros,
+		rank: 'G Rank',
+		render: IconRenderMonsterGypceros,
+	},
+	{
+		name: 'Plesioth',
+		icon: IconMonsterPlesioth,
+		rank: 'G Rank',
+		render: IconRenderMonsterPlesioth,
+	},
+	{
+		name: 'Basarios',
+		icon: IconMonsterBasarios,
+		rank: 'G Rank',
+		render: IconRenderMonsterBasarios,
+	},
+	{
+		name: 'Melynx',
+		icon: IconMonsterMelynx,
+		rank: 'G Rank',
+		render: IconRenderMonsterMelynx,
+	},
+	{
+		name: 'Hornetaur',
+		icon: IconMonsterHornetaur,
+		rank: 'G Rank',
+		render: IconRenderMonsterHornetaur,
+	},
+	{
+		name: 'Apceros',
+		icon: IconMonsterApceros,
+		rank: 'G Rank',
+		render: IconRenderMonsterApceros,
+	},
+	{
+		name: 'Monoblos',
+		icon: IconMonsterMonoblos,
+		rank: 'G Rank',
+		render: IconRenderMonsterMonoblos,
+	},
+	{
+		name: 'Velocidrome',
+		icon: IconMonsterVelocidrome,
+		rank: 'G Rank',
+		render: IconRenderMonsterVelocidrome,
+	},
+	{
+		name: 'Gendrome',
+		icon: IconMonsterGendrome,
+		rank: 'G Rank',
+		render: IconRenderMonsterGendrome,
+	},
+	{
+		name: 'Ioprey',
+		icon: IconMonsterIoprey,
+		rank: 'G Rank',
+		render: IconRenderMonsterIoprey,
+	},
+	{
+		name: 'Iodrome',
+		icon: IconMonsterIodrome,
+		rank: 'G Rank',
+		render: IconRenderMonsterIodrome,
+	},
+	{
+		name: 'Kirin',
+		icon: IconMonsterKirin,
+		rank: 'G Rank',
+		render: IconRenderMonsterKirin,
+	},
+	{
+		name: 'Cephalos',
+		icon: IconMonsterCephalos,
+		rank: 'G Rank',
+		render: IconRenderMonsterCephalos,
+	},
+	{
+		name: 'Giaprey / Giadrome',
+		icon: IconMonsterGiapreyGiadrome,
+		rank: 'G Rank',
+		render: IconRenderMonsterGiapreyGiadrome,
+	},
+	{
+		name: 'Crimson Fatalis',
+		icon: IconMonsterCrimsonFatalis,
+		rank: '',
+		render: IconRenderMonsterCrimsonFatalis,
+	},
+	{
+		name: 'Pink Rathian',
+		icon: IconMonsterPinkRathian,
+		rank: 'G Rank',
+		render: IconRenderMonsterPinkRathian,
+	},
+	{
+		name: 'Blue Yian Kut-Ku',
+		icon: IconMonsterBlueYianKutKu,
+		rank: 'G Rank',
+		render: IconRenderMonsterBlueYianKutKu,
+	},
+	{
+		name: 'Purple Gypceros',
+		icon: IconMonsterPurpleGypceros,
+		rank: 'G Rank',
+		render: IconRenderMonsterPurpleGypceros,
+	},
+	{
+		name: 'Yian Garuga',
+		icon: IconMonsterYianGaruga,
+		rank: 'G Rank',
+		render: IconRenderMonsterYianGaruga,
+	},
+	{
+		name: 'Silver Rathalos',
+		icon: IconMonsterSilverRathalos,
+		rank: 'G Rank',
+		render: IconRenderMonsterSilverRathalos,
+	},
+	{
+		name: 'Gold Rathian',
+		icon: IconMonsterGoldRathian,
+		rank: 'G Rank',
+		render: IconRenderMonsterGoldRathian,
+	},
+	{
+		name: 'Black Diablos',
+		icon: IconMonsterBlackDiablos,
+		rank: 'G Rank',
+		render: IconRenderMonsterBlackDiablos,
+	},
+	{
+		name: 'White Monoblos',
+		icon: IconMonsterWhiteMonoblos,
+		rank: 'G Rank',
+		render: IconRenderMonsterWhiteMonoblos,
+	},
+	{
+		name: 'Red Khezu',
+		icon: IconMonsterRedKhezu,
+		rank: 'G Rank',
+		render: IconRenderMonsterRedKhezu,
+	},
+	{
+		name: 'Green Plesioth',
+		icon: IconMonsterGreenPlesioth,
+		rank: 'G Rank',
+		render: IconRenderMonsterGreenPlesioth,
+	},
+	{
+		name: 'Black Gravios',
+		icon: IconMonsterBlackGravios,
+		rank: 'G Rank',
+		render: IconRenderMonsterBlackGravios,
+	},
+	{
+		name: 'Daimyo Hermitaur',
+		icon: IconMonsterDaimyoHermitaur,
+		rank: 'G Rank',
+		render: IconRenderMonsterDaimyoHermitaur,
+	},
+	{
+		name: 'Azure Rathalos',
+		icon: IconMonsterAzureRathalos,
+		rank: 'G Rank',
+		render: IconRenderMonsterAzureRathalos,
+	},
+	{
+		name: 'Ashen Lao-Shan Lung',
+		icon: IconMonsterAshenLaoShanLung,
+		rank: 'G Rank',
+		render: IconRenderMonsterAshenLaoShanLung,
+	},
+	{
+		name: 'Blangonga',
+		icon: IconMonsterBlangonga,
+		rank: 'G Rank',
+		render: IconRenderMonsterBlangonga,
+	},
+	{
+		name: 'Congalala',
+		icon: IconMonsterCongalala,
+		rank: 'G Rank',
+		render: IconRenderMonsterCongalala,
+	},
+	{
+		name: 'Rajang',
+		icon: IconMonsterRajang,
+		rank: 'G Rank',
+		render: IconRenderMonsterRajang,
+	},
+	{
+		name: 'Kushala Daora',
+		icon: IconMonsterKushalaDaora,
+		rank: 'G Rank',
+		render: IconRenderMonsterKushalaDaora,
+	},
+	{
+		name: 'Shen Gaoren',
+		icon: IconMonsterShenGaoren,
+		rank: 'G Rank',
+		render: IconRenderMonsterShenGaoren,
+	},
+	{
+		name: 'Great Thunderbug',
+		icon: IconMonsterGreatThunderbug,
+		rank: 'G Rank',
+		render: IconRenderMonsterGreatThunderbug,
+	},
+	{
+		name: 'Shakalaka',
+		icon: IconMonsterShakalaka,
+		rank: 'G Rank',
+		render: IconRenderMonsterShakalaka,
+	},
+	{
+		name: 'Yama Tsukami',
+		icon: IconMonsterYamaTsukami,
+		rank: 'G Rank',
+		render: IconRenderMonsterYamaTsukami,
+	},
+	{
+		name: 'Chameleos',
+		icon: IconMonsterChameleos,
+		rank: 'G Rank',
+		render: IconRenderMonsterChameleos,
+	},
+	{
+		name: 'Rusted Kushala Daora',
+		icon: IconMonsterRustedKushalaDaora,
+		rank: 'G Rank',
+		render: IconRenderMonsterRustedKushalaDaora,
+	},
+	{
+		name: 'Blango',
+		icon: IconMonsterBlango,
+		rank: 'G Rank',
+		render: IconRenderMonsterBlango,
+	},
+	{
+		name: 'Conga',
+		icon: IconMonsterConga,
+		rank: 'G Rank',
+		render: IconRenderMonsterConga,
+	},
+	{
+		name: 'Remobra',
+		icon: IconMonsterRemobra,
+		rank: 'G Rank',
+		render: IconRenderMonsterRemobra,
+	},
+	{
+		name: 'Lunastra',
+		icon: IconMonsterLunastra,
+		rank: 'G Rank',
+		render: IconRenderMonsterLunastra,
+	},
+	{
+		name: 'Teostra',
+		icon: IconMonsterTeostra,
+		rank: 'G Rank',
+		render: IconRenderMonsterTeostra,
+	},
+	{
+		name: 'Hermitaur',
+		icon: IconMonsterHermitaur,
+		rank: 'G Rank',
+		render: IconRenderMonsterHermitaur,
+	},
+	{
+		name: 'Shogun Ceanataur',
+		icon: IconMonsterShogunCeanataur,
+		rank: 'G Rank',
+		render: IconRenderMonsterShogunCeanataur,
+	},
+	{
+		name: 'Bulldrome',
+		icon: IconMonsterBulldrome,
+		rank: 'G Rank',
+		render: IconRenderMonsterBulldrome,
+	},
+	{
+		name: 'Anteka',
+		icon: IconMonsterAnteka,
+		rank: 'G Rank',
+		render: IconRenderMonsterAnteka,
+	},
+	{
+		name: 'Popo',
+		icon: IconMonsterPopo,
+		rank: 'G Rank',
+		render: IconRenderMonsterPopo,
+	},
+	{
+		name: 'White Fatalis',
+		icon: IconMonsterWhiteFatalis,
+		rank: '',
+		render: IconRenderMonsterWhiteFatalis,
+	},
+	{
+		name: 'Yama Tsukami',
+		icon: IconMonsterYamaTsukami,
+		rank: 'G Rank',
+		render: IconRenderMonsterYamaTsukami,
+	},
+	{
+		name: 'Ceanataur',
+		icon: IconMonsterCeanataur,
+		rank: 'G Rank',
+		render: IconRenderMonsterCeanataur,
+	},
+	{
+		name: 'Hypnocatrice',
+		icon: IconMonsterHypnocatrice,
+		rank: 'G Rank',
+		render: IconRenderMonsterHypnocatrice,
+	},
+	{
+		name: 'Lavasioth',
+		icon: IconMonsterLavasioth,
+		rank: 'G Rank',
+		render: IconRenderMonsterLavasioth,
+	},
+	{
+		name: 'Tigrex',
+		icon: IconMonsterTigrex,
+		rank: 'G Rank',
+		render: IconRenderMonsterTigrex,
+	},
+	{
+		name: 'Akantor',
+		icon: IconMonsterAkantor,
+		rank: 'G Rank',
+		render: IconRenderMonsterAkantor,
+	},
+	{
+		name: 'Bright Hypnoc',
+		icon: IconMonsterBrightHypnoc,
+		rank: 'G Rank',
+		render: IconRenderMonsterBrightHypnoc,
+	},
+	{
+		name: 'Red Lavasioth',
+		icon: IconMonsterRedLavasioth,
+		rank: 'G Rank',
+		render: IconRenderMonsterRedLavasioth,
+	},
+	{
+		name: 'Espinas',
+		icon: IconMonsterEspinas,
+		rank: 'G Rank',
+		render: IconRenderMonsterEspinas,
+	},
+	{
+		name: 'Orange Espinas',
+		icon: IconMonsterOrangeEspinas,
+		rank: 'G Rank',
+		render: IconRenderMonsterOrangeEspinas,
+	},
+	{
+		name: 'Silver Hypnoc',
+		icon: IconMonsterSilverHypnoc,
+		rank: 'G Rank',
+		render: IconRenderMonsterSilverHypnoc,
+	},
+	{
+		name: 'Akura Vashimu',
+		icon: IconMonsterAkuraVashimu,
+		rank: 'G Rank',
+		render: IconRenderMonsterAkuraVashimu,
+	},
+	{
+		name: 'Akura Jebia',
+		icon: IconMonsterAkuraJebia,
+		rank: 'G Rank',
+		render: IconRenderMonsterAkuraJebia,
+	},
+	{
+		name: 'Berukyurosu',
+		icon: IconMonsterBerukyurosu,
+		rank: 'G Rank',
+		render: IconRenderMonsterBerukyurosu,
+	},
+	{
+		name: 'Cactus',
+		icon: IconMonsterCactus,
+		rank: 'G Rank',
+		render: IconRenderMonsterCactus,
+	},
+	{
+		name: 'Pariapuria',
+		icon: IconMonsterPariapuria,
+		rank: 'G Rank',
+		render: IconRenderMonsterPariapuria,
+	},
+	{
+		name: 'White Espinas',
+		icon: IconMonsterWhiteEspinas,
+		rank: 'G Rank',
+		render: IconRenderMonsterWhiteEspinas,
+	},
+	{
+		name: 'Kamu Orugaron',
+		icon: IconMonsterKamuOrugaron,
+		rank: 'G Rank',
+		render: IconRenderMonsterKamuOrugaron,
+	},
+	{
+		name: 'Nono Orugaron',
+		icon: IconMonsterNonoOrugaron,
+		rank: 'G Rank',
+		render: IconRenderMonsterNonoOrugaron,
+	},
+	{
+		name: 'Raviente',
+		icon: IconMonsterRaviente,
+		rank: 'G Rank',
+		render: IconRenderMonsterRaviente,
+	},
+	{
+		name: 'Dyuragaua',
+		icon: IconMonsterDyuragaua,
+		rank: 'G Rank',
+		render: IconRenderMonsterDyuragaua,
+	},
+	{
+		name: 'Doragyurosu',
+		icon: IconMonsterDoragyurosu,
+		rank: 'G Rank',
+		render: IconRenderMonsterDoragyurosu,
+	},
+	{
+		name: 'Gurenzeburu',
+		icon: IconMonsterGurenzeburu,
+		rank: 'G Rank',
+		render: IconRenderMonsterGurenzeburu,
+	},
+	{
+		name: 'Burukku',
+		icon: IconMonsterBurukku,
+		rank: 'G Rank',
+		render: IconRenderMonsterBurukku,
+	},
+	{
+		name: 'Erupe',
+		icon: IconMonsterErupe,
+		rank: 'G Rank',
+		render: IconRenderMonsterErupe,
+	},
+	{
+		name: 'Rukodiora',
+		icon: IconMonsterRukodiora,
+		rank: 'G Rank',
+		render: IconRenderMonsterRukodiora,
+	},
+	{
+		name: 'UNKNOWN',
+		icon: IconMonsterUNKNOWN,
+		rank: 'G Rank',
+		render: IconRenderMonsterUNKNOWN,
+	},
+	{
+		name: 'Gogomoa',
+		icon: IconMonsterGogomoa,
+		rank: 'G Rank',
+		render: IconRenderMonsterGogomoa,
+	},
+	{
+		name: 'Taikun Zamuza',
+		icon: IconMonsterTaikunZamuza,
+		rank: 'G Rank',
+		render: IconRenderMonsterTaikunZamuza,
+	},
+	{
+		name: 'Abiorugu',
+		icon: IconMonsterAbiorugu,
+		rank: 'G Rank',
+		render: IconRenderMonsterAbiorugu,
+	},
+	{
+		name: 'Kuarusepusu',
+		icon: IconMonsterKuarusepusu,
+		rank: 'G Rank',
+		render: IconRenderMonsterKuarusepusu,
+	},
+	{
+		name: 'Odibatorasu',
+		icon: IconMonsterOdibatorasu,
+		rank: 'G Rank',
+		render: IconRenderMonsterOdibatorasu,
+	},
+	{
+		name: 'Disufiroa',
+		icon: IconMonsterDisufiroa,
+		rank: 'G Rank',
+		render: IconRenderMonsterDisufiroa,
+	},
+	{
+		name: 'Rebidiora',
+		icon: IconMonsterRebidiora,
+		rank: 'G Rank',
+		render: IconRenderMonsterRebidiora,
+	},
+	{
+		name: 'Anorupatisu',
+		icon: IconMonsterAnorupatisu,
+		rank: 'G Rank',
+		render: IconRenderMonsterAnorupatisu,
+	},
+	{
+		name: 'Hyujikiki',
+		icon: IconMonsterHyujikiki,
+		rank: 'G Rank',
+		render: IconRenderMonsterHyujikiki,
+	},
+	{
+		name: 'Midogaron',
+		icon: IconMonsterMidogaron,
+		rank: 'G Rank',
+		render: IconRenderMonsterMidogaron,
+	},
+	{
+		name: 'Giaorugu',
+		icon: IconMonsterGiaorugu,
+		rank: 'G Rank',
+		render: IconRenderMonsterGiaorugu,
+	},
+	{
+		name: 'Mi Ru',
+		icon: IconMonsterMiRu,
+		rank: 'G Rank',
+		render: IconRenderMonsterMiRu,
+	},
+	{
+		name: 'Farunokku',
+		icon: IconMonsterFarunokku,
+		rank: 'G Rank',
+		render: IconRenderMonsterFarunokku,
+	},
+	{
+		name: 'Pokaradon',
+		icon: IconMonsterPokaradon,
+		rank: 'G Rank',
+		render: IconRenderMonsterPokaradon,
+	},
+	{
+		name: 'Shantien',
+		icon: IconMonsterShantien,
+		rank: 'G Rank',
+		render: IconRenderMonsterShantien,
+	},
+	{
+		name: 'Pokara',
+		icon: IconMonsterPokara,
+		rank: 'G Rank',
+		render: IconRenderMonsterPokara,
+	},
+	{
+		name: 'Goruganosu',
+		icon: IconMonsterGoruganosu,
+		rank: 'G Rank',
+		render: IconRenderMonsterGoruganosu,
+	},
+	{
+		name: 'Aruganosu',
+		icon: IconMonsterAruganosu,
+		rank: 'G Rank',
+		render: IconRenderMonsterAruganosu,
+	},
+	{
+		name: 'Baruragaru',
+		icon: IconMonsterBaruragaru,
+		rank: 'G Rank',
+		render: IconRenderMonsterBaruragaru,
+	},
+	{
+		name: 'Zerureusu',
+		icon: IconMonsterZerureusu,
+		rank: 'G Rank',
+		render: IconRenderMonsterZerureusu,
+	},
+	{
+		name: 'Gougarf',
+		icon: IconMonsterGougarf,
+		rank: 'G Rank',
+		render: IconRenderMonsterGougarf,
+	},
+	{
+		name: 'Uruki',
+		icon: IconMonsterUruki,
+		rank: 'G Rank',
+		render: IconRenderMonsterUruki,
+	},
+	{
+		name: 'Forokururu',
+		icon: IconMonsterForokururu,
+		rank: 'G Rank',
+		render: IconRenderMonsterForokururu,
+	},
+	{
+		name: 'Meraginasu',
+		icon: IconMonsterMeraginasu,
+		rank: 'G Rank',
+		render: IconRenderMonsterMeraginasu,
+	},
+	{
+		name: 'Diorex',
+		icon: IconMonsterDiorex,
+		rank: 'G Rank',
+		render: IconRenderMonsterDiorex,
+	},
+	{
+		name: 'Garuba Daora',
+		icon: IconMonsterGarubaDaora,
+		rank: 'G Rank',
+		render: IconRenderMonsterGarubaDaora,
+	},
+	{
+		name: 'Inagami',
+		icon: IconMonsterInagami,
+		rank: 'G Rank',
+		render: IconRenderMonsterInagami,
+	},
+	{
+		name: 'Varusaburosu',
+		icon: IconMonsterVarusaburosu,
+		rank: 'G Rank',
+		render: IconRenderMonsterVarusaburosu,
+	},
+	{
+		name: 'Poborubarumu',
+		icon: IconMonsterPoborubarumu,
+		rank: 'G Rank',
+		render: IconRenderMonsterPoborubarumu,
+	},
+	{
+		name: 'Duremudira',
+		icon: IconMonsterDuremudira,
+		rank: 'G Rank',
+		render: IconRenderMonsterDuremudira,
+	},
+	{
+		name: 'Felyne',
+		icon: IconMonsterFelyne,
+		rank: 'G Rank',
+		render: IconRenderMonsterFelyne,
+	},
+	{
+		name: 'Cactus',
+		icon: IconMonsterCactus,
+		rank: 'G Rank',
+		render: IconRenderMonsterCactus,
+	},
+	{
+		name: 'Gureadomosu',
+		icon: IconMonsterGureadomosu,
+		rank: 'G Rank',
+		render: IconRenderMonsterGureadomosu,
+	},
+	{
+		name: 'Harudomerugu',
+		icon: IconMonsterHarudomerugu,
+		rank: 'G Rank',
+		render: IconRenderMonsterHarudomerugu,
+	},
+	{
+		name: 'Toridcless',
+		icon: IconMonsterToridcless,
+		rank: 'G Rank',
+		render: IconRenderMonsterToridcless,
+	},
+	{
+		name: 'Gasurabazura',
+		icon: IconMonsterGasurabazura,
+		rank: 'G Rank',
+		render: IconRenderMonsterGasurabazura,
+	},
+	{
+		name: 'Kusubami',
+		icon: IconMonsterKusubami,
+		rank: 'G Rank',
+		render: IconRenderMonsterKusubami,
+	},
+	{
+		name: 'Yama Kurai',
+		icon: IconMonsterYamaKurai,
+		rank: 'G Rank',
+		render: IconRenderMonsterYamaKurai,
+	},
+	{
+		name: 'Zinogre',
+		icon: IconMonsterZinogre,
+		rank: 'G Rank',
+		render: IconRenderMonsterZinogre,
+	},
+	{
+		name: 'Deviljho',
+		icon: IconMonsterDeviljho,
+		rank: 'G Rank',
+		render: IconRenderMonsterDeviljho,
+	},
+	{
+		name: 'Brachydios',
+		icon: IconMonsterBrachydios,
+		rank: 'G Rank',
+		render: IconRenderMonsterBrachydios,
+	},
+	{
+		name: 'Berserk Raviente',
+		icon: IconMonsterBerserkRaviente,
+		rank: 'G Rank',
+		render: IconRenderMonsterBerserkRaviente,
+	},
+	{
+		name: 'Toa Tesukatora',
+		icon: IconMonsterToaTesukatora,
+		rank: 'G Rank',
+		render: IconRenderMonsterToaTesukatora,
+	},
+	{
+		name: 'Barioth',
+		icon: IconMonsterBarioth,
+		rank: 'G Rank',
+		render: IconRenderMonsterBarioth,
+	},
+	{
+		name: 'Uragaan',
+		icon: IconMonsterUragaan,
+		rank: 'G Rank',
+		render: IconRenderMonsterUragaan,
+	},
+	{
+		name: 'Stygian Zinogre',
+		icon: IconMonsterStygianZinogre,
+		rank: 'G Rank',
+		render: IconRenderMonsterStygianZinogre,
+	},
+	{
+		name: 'Guanzorumu',
+		icon: IconMonsterGuanzorumu,
+		rank: 'G Rank',
+		render: IconRenderMonsterGuanzorumu,
+	},
+	{
+		name: 'Starving Deviljho',
+		icon: IconMonsterStarvingDeviljho,
+		rank: 'G Rank',
+		render: IconRenderMonsterStarvingDeviljho,
+	},
+	{
+		name: 'Voljang',
+		icon: IconMonsterVoljang,
+		rank: 'G Rank',
+		render: IconRenderMonsterVoljang,
+	},
+	{
+		name: 'Nargacuga',
+		icon: IconMonsterNargacuga,
+		rank: 'G Rank',
+		render: IconRenderMonsterNargacuga,
+	},
+	{
+		name: 'Keoaruboru',
+		icon: IconMonsterKeoaruboru,
+		rank: 'G Rank',
+		render: IconRenderMonsterKeoaruboru,
+	},
+	{
+		name: 'Zenaserisu',
+		icon: IconMonsterZenaserisu,
+		rank: 'G Rank',
+		render: IconRenderMonsterZenaserisu,
+	},
+	{
+		name: 'Gore Magala',
+		icon: IconMonsterGoreMagala,
+		rank: 'G Rank',
+		render: IconRenderMonsterGoreMagala,
+	},
+	{
+		name: 'Blinking Nargacuga',
+		icon: IconMonsterBlinkingNargacuga,
+		rank: 'G Rank',
+		render: IconRenderMonsterBlinkingNargacuga,
+	},
+	{
+		name: 'Shagaru Magala',
+		icon: IconMonsterShagaruMagala,
+		rank: 'G Rank',
+		render: IconRenderMonsterShagaruMagala,
+	},
+	{
+		name: 'Amatsu',
+		icon: IconMonsterAmatsu,
+		rank: 'G Rank',
+		render: IconRenderMonsterAmatsu,
+	},
+	{
+		name: 'Elzelion',
+		icon: IconMonsterElzelion,
+		rank: 'G Rank',
+		render: IconRenderMonsterElzelion,
+	},
+	{
+		name: 'Arrogant Duremudira',
+		icon: IconMonsterArrogantDuremudira,
+		rank: 'G Rank',
+		render: IconRenderMonsterArrogantDuremudira,
+	},
+	{
+		name: 'Seregios',
+		icon: IconMonsterSeregios,
+		rank: 'G Rank',
+		render: IconRenderMonsterSeregios,
+	},
+	{
+		name: 'Bogabadorumu',
+		icon: IconMonsterBogabadorumu,
+		rank: 'G Rank',
+		render: IconRenderMonsterBogabadorumu,
+	},
+	{
+		name: 'Blitzkrieg Bogabadorumu',
+		icon: IconMonsterBlitzkriegBogabadorumu,
+		rank: 'G Rank',
+		render: IconRenderMonsterBlitzkriegBogabadorumu,
+	},
+	{
+		name: 'Sparkling Zerureusu',
+		icon: IconMonsterSparklingZerureusu,
+		rank: 'G Rank',
+		render: IconRenderMonsterSparklingZerureusu,
+	},
+	{
+		name: 'PSO2 Rappy',
+		icon: IconMonsterPSO2Rappy,
+		rank: 'G Rank',
+		render: IconRenderMonsterPSO2Rappy,
+	},
+	{
+		name: 'King Shakalaka',
+		icon: IconMonsterKingShakalaka,
+		rank: 'G Rank',
+		render: IconRenderMonsterKingShakalaka,
+	},
+	{
+		name: 'Akura Vashimu',
+		icon: IconMonsterZenithAkuraVashimu,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithAkuraVashimu, // Assuming render images follow a similar naming convention
+	},
+	{
+		name: 'Anorupatisu',
+		icon: IconMonsterZenithAnorupatisu,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithAnorupatisu,
+	},
+	{
+		name: 'Baruragaru',
+		icon: IconMonsterZenithBaruragaru,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithBaruragaru,
+	},
+	{
+		name: 'Blangonga',
+		icon: IconMonsterZenithBlangonga,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithBlangonga,
+	},
+	{
+		name: 'Bogabadorumu',
+		icon: IconMonsterZenithBogabadorumu,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithBogabadorumu,
+	},
+	{
+		name: 'Daimyo Hermitaur',
+		icon: IconMonsterZenithDaimyoHermitaur,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithDaimyoHermitaur,
+	},
+	{
+		name: 'Doragyurosu',
+		icon: IconMonsterZenithDoragyurosu,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithDoragyurosu,
+	},
+	{
+		name: 'Espinas',
+		icon: IconMonsterZenithEspinas,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithEspinas,
+	},
+	{
+		name: 'Gasurabazura',
+		icon: IconMonsterZenithGasurabazura,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithGasurabazura,
+	},
+	{
+		name: 'Giaorugu',
+		icon: IconMonsterZenithGiaorugu,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithGiaorugu,
+	},
+	{
+		name: 'Gravios',
+		icon: IconMonsterZenithGravios,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithGravios,
+	},
+	{
+		name: 'Harudomerugu',
+		icon: IconMonsterZenithHarudomerugu,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithHarudomerugu,
+	},
+	{
+		name: 'Hypnocatrice',
+		icon: IconMonsterZenithHypnoc,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithHypnoc,
+	},
+	{
+		name: 'Hyujikiki',
+		icon: IconMonsterZenithHyujikiki,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithHyujikiki,
+	},
+	{
+		name: 'Inagami',
+		icon: IconMonsterZenithInagami,
+		rank: 'G Rank',
+		render: IconRenderMonsterZenithInagami,
+	},
+	{
+		name: 'Khezu',
+		icon: IconMonsterZenithKhezu,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithKhezu,
+	},
+	{
+		name: 'Midogaron',
+		icon: IconMonsterZenithMidogaron,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithMidogaron,
+	},
+	{
+		name: 'Plesioth',
+		icon: IconMonsterZenithPlesioth,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithPlesioth,
+	},
+	{
+		name: 'Rathalos',
+		icon: IconMonsterZenithRathalos,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithRathalos,
+	},
+	{
+		name: 'Rukodiora',
+		icon: IconMonsterZenithRukodiora,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithRukodiora,
+	},
+	{
+		name: 'Taikun Zamuza',
+		icon: IconMonsterZenithTaikunZamuza,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithTaikunZamuza,
+	},
+	{
+		name: 'Tigrex',
+		icon: IconMonsterZenithTigrex,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithTigrex,
+	},
+	{
+		name: 'Toridcless',
+		icon: IconMonsterZenithToridcless,
+		rank: 'Zenith★4',
+		render: IconRenderMonsterZenithToridcless,
+	},
+	{
+		name: 'Fatalis',
+		icon: IconMonsterConquestFatalis,
+		rank: 'G Rank',
+		render: IconRenderMonsterConquestFatalis,
+	},
+	{
+		name: 'Shantien',
+		icon: IconMonsterConquestShantien,
+		rank: 'G Rank',
+		render: IconRenderMonsterConquestShantien,
+	},
+	{
+		name: 'Crimson Fatalis',
+		icon: IconMonsterConquestCrimsonFatalis,
+		rank: 'G Rank',
+		render: IconRenderMonsterConquestCrimsonFatalis,
+	},
+	{
+		name: 'Disufiroa',
+		icon: IconMonsterShitenDisufiroa,
+		rank: 'Upper Shiten',
+		render: IconRenderMonsterShitenDisufiroa,
+	},
+	{
+		name: 'UNKNOWN',
+		icon: IconMonsterShitenUnknown,
+		rank: 'Upper Shiten',
+		render: IconRenderMonsterShitenUnknown,
+	},
+	{
+		name: 'Elzelion',
+		icon: IconMonsterBurningFreezingElzelion,
+		rank: 'Musou 1',
+		render: IconRenderMonsterBurningFreezingElzelion,
+	},
+	{
+		name: 'Zinogre',
+		icon: IconMonsterHowlingZinogre,
+		rank: 'Musou 1',
+		render: IconRenderMonsterHowlingZinogre,
+	},
+	{
+		name: 'Pariapuria',
+		icon: IconMonsterSupremacyPariapuria,
+		rank: 'Musou 1',
+		render: IconRenderMonsterSupremacyPariapuria,
+	},
+	{
+		name: 'Doragyurosu',
+		icon: IconMonsterSupremacyDoragyurosu,
+		rank: 'Musou 1',
+		render: IconRenderMonsterSupremacyDoragyurosu,
+	},
+	{
+		name: 'Teostra',
+		icon: IconMonsterSupremacyTeostra,
+		rank: 'Musou 1',
+		render: IconRenderMonsterSupremacyTeostra,
+	},
+	{
+		name: 'Odibatorasu',
+		icon: IconMonsterSupremacyOdibatorasu,
+		rank: 'Musou 1',
+		render: IconRenderMonsterSupremacyOdibatorasu,
+	},
+	{
+		name: 'Starving Deviljho',
+		icon: IconMonsterGoldenDeviljho,
+		rank: 'Musou 1',
+		render: IconRenderMonsterGoldenDeviljho,
+	},
+	{
+		name: 'Rajang',
+		icon: IconMonsterFuriousRajang,
+		rank: 'Musou 1',
+		render: IconRenderMonsterFuriousRajang,
+	},
+	{
+		name: 'Guanzorumu',
+		icon: IconMonsterRulingGuanzorumu,
+		rank: 'Musou 1',
+		render: IconRenderMonsterRulingGuanzorumu,
+	},
+	{
+		name: 'Mi Ru',
+		icon: IconMonsterShiftingMiRu,
+		rank: 'Musou 1',
+		render: IconRenderMonsterShiftingMiRu,
+	},
+	{
+		name: 'Rajang',
+		icon: IconMonsterTwinheadRajang,
+		rank: 'Twinhead 1',
+		render: IconRenderMonsterTwinheadRajang,
 	},
 ];
 

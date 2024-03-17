@@ -7,7 +7,7 @@
 <script lang="ts">
 	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import Logo from '$lib/client/components/Logo.svelte';
+	import Banner from '$lib/client/components/Banner.svelte';
 	import Blacksmith from '$lib/client/components/frontier/icon/Blacksmith.svelte';
 	import UserAvatar from 'carbon-icons-svelte/lib/UserAvatar.svelte';
 	import PvP from '$lib/client/components/frontier/icon/PvP.svelte';
@@ -26,7 +26,9 @@
 
 <header>
 	<div class="left">
-		<Logo />
+		<div class="banner">
+			<Banner />
+		</div>
 		<div class="search">
 			<Search
 				expandable
@@ -125,15 +127,15 @@
 		min-height: 10vh;
 		background-color: var(--ctp-crust);
 		align-items: center;
-		padding: 0.5rem;
+		padding: var(--cds-spacing-02);
 	}
 
 	.container-link {
 		padding-block: 0.5rem;
 	}
 
-	.search {
-		height: fit-content;
+	.banner {
+		height: 10vh;
 	}
 
 	ul {

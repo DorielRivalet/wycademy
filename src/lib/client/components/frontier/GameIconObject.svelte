@@ -1,3 +1,14 @@
+<!--
+@component
+Shows a game object next to its icon. You can use either a component or a image import as the icon, only one of either.
+
+### Slots
+
+- Icon: if you are using a component as the icon, otherwise use the image prop.
+- Description: the text next to the icon.
+
+TODO: popover props passed to the slot and slot props.
+-->
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { getTag } from '$lib/client/modules/frontier/functions';
@@ -6,7 +17,7 @@
 	import GamePopover from './GamePopover.svelte';
 	export let hasPopover = false;
 	/**Requires popover*/
-	export let link = '';
+	export let popoverLink = '';
 	export let popoverTag1 = '';
 	export let popoverTag2 = '';
 	export let popoverTag3 = '';
@@ -14,7 +25,9 @@
 	export let popoverSubtitle = '';
 	export let popoverDescription = '';
 	export let popoverAlign: PopoverPosition = 'top';
+	export let image = undefined;
 	export let popoverImage = undefined;
+	export let popoverComponent = undefined;
 	export let color = hasPopover
 		? getCatppuccinColorFromTagColor(getTag(popoverTag1).color)
 		: 'var(--ctp-text);';
@@ -35,7 +48,7 @@
 			<GamePopover
 				bind:open
 				bind:ref
-				bind:link
+				bind:link={popoverLink}
 				bind:tag1={popoverTag1}
 				bind:tag2={popoverTag2}
 				bind:tag3={popoverTag3}
@@ -44,8 +57,10 @@
 				bind:description={popoverDescription}
 				bind:align={popoverAlign}
 				><div slot="image">
-					{#if popoverImage}
-						<svelte:component this={popoverImage} />
+					{#if popoverComponent}
+						<svelte:component this={popoverComponent} />
+					{:else if popoverImage}
+						<img class="popover-image" src={popoverImage} alt={popoverTitle} />
 					{/if}
 				</div></GamePopover
 			>
@@ -59,6 +74,23 @@
 				<slot name="icon" />
 			</span>
 
+			{#if image}
+				<span
+					class="image hoverable"
+					on:click={(e) => handleFocus()}
+					role="button"
+					tabindex="0"
+					on:keypress={(e) => handleFocus()}
+				>
+					<img
+						style="display: inline;"
+						width="64"
+						height="auto"
+						src={image}
+						alt={popoverTitle}
+					/>
+				</span>
+			{/if}
 			<span
 				on:click={(e) => handleFocus()}
 				role="button"
@@ -75,10 +107,21 @@
 	</span>
 {:else}
 	<span class="container">
-		<span class="icon">
-			<slot name="icon" />
-		</span>
-		<span class="description" style="color: {color}">
+		{#if image}
+			<span class="image">
+				<img
+					style="display: inline;"
+					width="64"
+					height="auto"
+					src={image}
+					alt={popoverTitle}
+				/>
+			</span>
+		{:else}
+			<span class="icon">
+				<slot name="icon" />
+			</span>{/if}
+		<span class="description" style="color: {color}; font-weight: bold;">
 			<slot name="description" />
 		</span>
 	</span>
@@ -90,6 +133,18 @@
 		vertical-align: text-bottom;
 		height: var(--cds-spacing-06);
 		max-width: 3ch;
+	}
+
+	.image img {
+		max-width: 4ch;
+		vertical-align: bottom; /* This ensures the image is aligned with the text */
+	}
+
+	.popover-image {
+		max-width: 100%; /* Ensures the image does not exceed the width of its container */
+		max-height: 100%; /* Ensures the image does not exceed the height of its container */
+		object-fit: cover; /* Ensures the image covers the area without distorting its aspect ratio */
+		display: inline-block; /* Removes any extra space below the image */
 	}
 
 	.hoverable,
