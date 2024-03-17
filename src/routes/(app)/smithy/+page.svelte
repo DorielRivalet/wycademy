@@ -79,17 +79,6 @@
 	// 	copyToClipboard(updatedHref);
 	// }
 
-	// function copyToClipboard(text: string) {
-	// 	navigator.clipboard.writeText(text).then(
-	// 		function () {
-	// 			console.log('Copying to clipboard was successful!');
-	// 		},
-	// 		function (err) {
-	// 			console.error('Could not copy text: ', err);
-	// 		},
-	// 	);
-	// }
-
 	function resetWeaponValues() {
 		// TODO idk why this doesnt work with default
 		weaponSharpness = [170, 170, 170, 170, 170, 200, 250, 350];
@@ -3092,7 +3081,7 @@
 	</section>
 </div>
 
-<style>
+<style lang="scss">
 	.weapon-info,
 	.armor-info,
 	.item-info {

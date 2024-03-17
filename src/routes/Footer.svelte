@@ -52,7 +52,7 @@
 	</div>
 </footer>
 
-<style>
+<style lang="scss">
 	.item-container {
 		display: flex;
 		flex-direction: column;

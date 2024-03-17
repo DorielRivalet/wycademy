@@ -2463,7 +2463,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	.modal-open-noblur {
 		-webkit-filter: blur(0);
 		filter: blur(0);

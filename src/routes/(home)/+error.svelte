@@ -39,7 +39,7 @@
 	<Link href="/offline">Try this game!</Link>
 </div>
 
-<style>
+<style lang="scss">
 	.cat {
 		width: auto;
 		height: 12rem;

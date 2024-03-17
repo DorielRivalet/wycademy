@@ -393,7 +393,7 @@
 	</section>
 </div>
 
-<style>
+<style lang="scss">
 	.setting-container {
 		margin-top: 1rem;
 		margin-bottom: 1rem;

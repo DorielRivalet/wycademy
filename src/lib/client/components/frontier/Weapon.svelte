@@ -1387,7 +1387,7 @@ Does not handle decorations because sigils are optimal.
 	</div>
 </DecoratedBorder>
 
-<style>
+<style lang="scss">
 	.arrow-icon-button {
 		background-color: transparent;
 		border: transparent;

@@ -20,7 +20,6 @@
 		statusSkillsDropdownItems,
 		gunnerDropdownItems,
 		ElementIcons,
-		TagTypes,
 		StatusIcons,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
@@ -72,7 +71,6 @@
 	import GameIconObject from '$lib/client/components/frontier/GameIconObject.svelte';
 	import IconElementFire from '$lib/client/components/frontier/icon/element/Fire.svelte';
 	import { getMonster, getTag } from '$lib/client/modules/frontier/functions';
-	import { Copy } from 'carbon-icons-svelte';
 
 	type DataTableKey = string;
 
@@ -2807,18 +2805,18 @@ does not get multiplied by horn */
 			<li>
 				Select a weapon type such as
 				<GameIconObject
-					hasPopover
-					popoverComponent={WeaponTypes.find(
+					hasToggletipPopover
+					toggletipPopoverComponent={WeaponTypes.find(
 						(item) => item.name === 'Long Sword',
 					)?.icon}
-					popoverLink="/smithy"
-					popoverTag1={'Weapon'}
-					popoverTag2={'Blademaster'}
-					popoverTag3={'Long Sword'}
-					popoverTitle={'Long Sword'}
-					popoverSubtitle={'You need good foresight in order to use this weapon'}
-					popoverDescription={'Embrace the blade.'}
-					popoverAlign="right"
+					toggletipPopoverLink="/smithy"
+					toggletipPopoverTag1={'Weapon'}
+					toggletipPopoverTag2={'Blademaster'}
+					toggletipPopoverTag3={'Long Sword'}
+					toggletipPopoverTitle={'Long Sword'}
+					toggletipPopoverSubtitle={'You need good foresight in order to use this weapon'}
+					toggletipPopoverDescription={'Embrace the blade.'}
+					toggletipPopoverAlign="right"
 				>
 					<span slot="icon">
 						<svelte:component
@@ -2831,17 +2829,18 @@ does not get multiplied by horn */
 			</li>
 			<li>
 				Calculate <GameIconObject
-					hasPopover
-					popoverComponent={WeaponTypes.find((item) => item.name === 'Gunlance')
-						?.icon}
-					popoverLink="/smithy"
-					popoverTag1={'Weapon'}
-					popoverTag2={'Blademaster'}
-					popoverTag3={'Gunlance'}
-					popoverTitle={'Gunlance'}
-					popoverSubtitle={'Your blade needs more heat'}
-					popoverDescription={'Prepare your shells.'}
-					popoverAlign="right"
+					hasToggletipPopover
+					toggletipPopoverComponent={WeaponTypes.find(
+						(item) => item.name === 'Gunlance',
+					)?.icon}
+					toggletipPopoverLink="/smithy"
+					toggletipPopoverTag1={'Weapon'}
+					toggletipPopoverTag2={'Blademaster'}
+					toggletipPopoverTag3={'Gunlance'}
+					toggletipPopoverTitle={'Gunlance'}
+					toggletipPopoverSubtitle={'Your blade needs more heat'}
+					toggletipPopoverDescription={'Prepare your shells.'}
+					toggletipPopoverAlign="right"
 				>
 					<span slot="icon">
 						<svelte:component
@@ -2853,16 +2852,16 @@ does not get multiplied by horn */
 			</li>
 			<li>
 				Calculate <GameIconObject
-					hasPopover
-					popoverComponent={getTag('Armor Skill').icon}
-					popoverLink="/smithy"
-					popoverTag1={'Armor Skill'}
-					popoverTag2={'G Rank'}
-					popoverTag3={'BM/GN'}
-					popoverTitle={'Ice Age'}
-					popoverSubtitle={'Zenith Skill available'}
-					popoverDescription={'Grants Winter General and damage over time on hit.'}
-					popoverAlign="right"
+					hasToggletipPopover
+					toggletipPopoverComponent={getTag('Armor Skill').icon}
+					toggletipPopoverLink="/smithy"
+					toggletipPopoverTag1={'Armor Skill'}
+					toggletipPopoverTag2={'G Rank'}
+					toggletipPopoverTag3={'BM/GN'}
+					toggletipPopoverTitle={'Ice Age'}
+					toggletipPopoverSubtitle={'Zenith Skill available'}
+					toggletipPopoverDescription={'Grants Winter General and damage over time on hit.'}
+					toggletipPopoverAlign="right"
 				>
 					<span slot="icon">
 						<svelte:component this={getTag('Armor Skill').icon} /></span
@@ -2872,20 +2871,23 @@ does not get multiplied by horn */
 			</li>
 			<li>
 				Compare your attack values against <GameIconObject
-					hasPopover
-					popoverImage={getMonster('Blinking Nargacuga', '').render}
-					popoverLink="/bestiary"
-					popoverTag1={'Monster'}
-					popoverTag2={'Musou'}
-					popoverTag3={'Historic Site'}
-					popoverTitle={'Blinking Nargacuga'}
-					popoverSubtitle={'Musou'}
-					popoverDescription={'Good luck hunting this monster.'}
-					popoverAlign="top"
+					hasToggletipPopover
+					toggletipPopoverImage={getMonster('Blinking Nargacuga', '').render}
+					toggletipPopoverLink="/bestiary"
+					toggletipPopoverTag1={'Monster'}
+					toggletipPopoverTag2={'Musou'}
+					toggletipPopoverTag3={'Historic Site'}
+					toggletipPopoverTitle={'Blinking Nargacuga'}
+					toggletipPopoverSubtitle={'Musou'}
+					toggletipPopoverDescription={'Good luck hunting this monster.'}
+					toggletipPopoverAlign="right"
 					image={getMonster('Blinking Nargacuga', '').icon}
 				>
 					<span slot="description">Blinking Nargacuga</span></GameIconObject
-				> or <GameIconObject image={getMonster('Rathalos', 'Zenith').icon}>
+				> or <GameIconObject
+					popoverDescription={'The King of the Skies'}
+					image={getMonster('Rathalos', 'Zenith').icon}
+				>
 					<span slot="description">Zenith Rathalos</span></GameIconObject
 				> defense rate.
 			</li>
@@ -5453,7 +5455,7 @@ does not get multiplied by horn */
 		<section>
 			<SectionHeading level={2} title="Weapon Motion Values" />
 
-			<div class="motion-values">
+			<div class="motion-values toc-exclude">
 				<DataTable
 					sortable
 					zebra
@@ -5480,9 +5482,10 @@ does not get multiplied by horn */
 								bind:selectedId={inputWeaponMotionValuesSection}
 								items={weaponSectionNames}
 							/>
-							<CopyButton text={getCSVFromArray(weaponSections)}
-								>Copy as CSV</CopyButton
-							>
+							<CopyButton
+								iconDescription={'Copy as CSV'}
+								text={getCSVFromArray(weaponSections)}
+							/>
 						</div>
 					</Toolbar>
 					<span slot="title">
@@ -5513,7 +5516,7 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Shared Motion Values" />
-		<div class="motion-values">
+		<div class="motion-values toc-exclude">
 			<DataTable
 				sortable
 				zebra
@@ -5534,9 +5537,10 @@ does not get multiplied by horn */
 				rows={sharedMotionValues}
 				><Toolbar
 					><div class="toolbar">
-						<CopyButton text={getCSVFromArray(sharedMotionValues)}
-							>Copy as CSV</CopyButton
-						>
+						<CopyButton
+							iconDescription={'Copy as CSV'}
+							text={getCSVFromArray(sharedMotionValues)}
+						/>
 					</div>
 				</Toolbar>
 				<span slot="title">
@@ -5697,7 +5701,7 @@ does not get multiplied by horn */
 	</section>
 </div>
 
-<style>
+<style lang="scss">
 	.modal-content {
 		display: flex;
 		gap: var(--cds-spacing-06);

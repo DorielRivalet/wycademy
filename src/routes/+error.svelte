@@ -2,7 +2,6 @@
 	import { page } from '$app/stores';
 	import cat from '$lib/client/images/error.webp';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import './styles.css';
 	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
@@ -103,7 +102,7 @@
 	{/key}
 </div>
 
-<style>
+<style lang="css">
 	.cat {
 		width: auto;
 		height: 12rem;

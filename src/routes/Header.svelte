@@ -100,7 +100,7 @@
 	</nav>
 </header>
 
-<style>
+<style lang="scss">
 	.left {
 		margin-left: var(--cds-spacing-02);
 		display: flex;

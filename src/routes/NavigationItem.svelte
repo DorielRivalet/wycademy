@@ -37,7 +37,9 @@
 	</li>
 {/if}
 
-<style>
+<style lang="scss">
+	@use '@carbon/motion' as motion;
+
 	li {
 		margin: var(--cds-spacing-02);
 	}
@@ -114,6 +116,15 @@
 		border-radius: 10%;
 		display: flex;
 		padding: var(--cds-spacing-01);
+		transition:
+			border-color motion.$duration-slow-02 motion.motion(standard, expressive),
+			background-color motion.$duration-slow-02
+				motion.motion(standard, expressive),
+			scrollbar-color motion.$duration-slow-02
+				motion.motion(standard, expressive),
+			opacity motion.$duration-slow-02 motion.motion(standard, expressive),
+			background-image motion.$duration-slow-02
+				motion.motion(standard, expressive);
 	}
 	/* Apply the shiny effect to the icon container on hover */
 	li:hover::after {
@@ -142,7 +153,6 @@
 		height: 100%;
 		border-radius: 10%;
 		background: var(--ctp-blue);
-		transition: 0.5s;
 		transform: scale(0.9);
 		z-index: -1;
 	}
