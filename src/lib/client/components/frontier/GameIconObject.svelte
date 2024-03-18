@@ -26,6 +26,7 @@ TODO: popover props passed to the slot and slot props.
 	export let toggletipPopoverSubtitle = '';
 	export let toggletipPopoverDescription = '';
 	export let toggletipPopoverAlign: PopoverPosition = 'right';
+	/**use icon slot if you are using a component as the icon, otherwise use this image prop*/
 	export let image: any = undefined;
 	export let toggletipPopoverImage: any = undefined;
 	export let toggletipPopoverComponent: any = undefined;
@@ -127,7 +128,7 @@ TODO: popover props passed to the slot and slot props.
 			tabindex="0"
 			on:keypress={(e) => open2 != open2}
 		>
-			{#if popoverDescription}
+			{#if popoverDescription.length > 1}
 				<Popover bind:open={open2} caret align={'top'}>
 					<div
 						style="padding: var(--cds-spacing-03); font-family: var(--font-body); font-size: 1rem;"
