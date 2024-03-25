@@ -2,13 +2,7 @@
 .DS_Store
 node_modules
 /build
-.svelte-kit/ambient.d.ts
-.svelte-kit/non-ambient.d.ts
-.svelte-kit/generated/
-.svelte-kit/types/
-.svelte-kit/output/
-.svelte-kit/cloudflare/
-.svelte-kit/cloudflare-tmp/
+.svelte-kit/
 /package
 .env
 .env.*
