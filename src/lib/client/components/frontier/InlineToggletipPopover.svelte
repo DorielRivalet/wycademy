@@ -147,7 +147,7 @@
 	.popover {
 		transition:
 			opacity motion.$duration-moderate-01 motion.motion(entrance, expressive),
-			top motion.$duration-moderate-01 motion.motion(exit, expressive);
+			top motion.$duration-moderate-01 motion.motion(entrance, expressive);
 		opacity: 1;
 		position: absolute;
 		top: 8rem;
@@ -156,11 +156,13 @@
 	.invisible {
 		opacity: 0;
 		top: 0rem;
+		transition-timing-function: motion.motion(exit, expressive);
 	}
 
 	.visible {
 		opacity: 1;
 		top: 8rem;
+		transition-timing-function: motion.motion(entrance, expressive);
 	}
 
 	hr {
@@ -217,7 +219,6 @@
 		overflow: hidden;
 		grid-area: subtitle;
 		color: var(--ctp-subtext0);
-		line-height: 1em;
 	}
 
 	.title,

@@ -230,7 +230,8 @@
 	}
 
 	.toc-title {
-		text-align: center;
+		text-align: left;
+		font-size: 1.5rem;
 	}
 
 	.expand-TOC {
@@ -285,7 +286,6 @@
 		flex-direction: column;
 		background-color: var(--ctp-mantle);
 		max-width: 100vw;
-		overflow-x: hidden;
 	}
 
 	main {
