@@ -5551,6 +5551,11 @@ does not get multiplied by horn */
 	</section>
 
 	<section>
+		<SectionHeading level={2} title="Ailments" />
+		<div></div>
+	</section>
+
+	<section>
 		<SectionHeading level={2} title="Monster Hitzones" />
 		<div></div>
 	</section>
