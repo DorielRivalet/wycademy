@@ -2829,7 +2829,7 @@ does not get multiplied by horn */
 					tag3="Weapon"
 					popoverIcon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
 					popoverIconType="component"
-					link="/arena#gunlance-shells-and-wyvernfire-damage"
+					link="/arena#gunlance-shells-and-wyvernfire"
 				></InlineToggletip> Shell and Wyvernfire damage.
 			</li>
 			<li>
@@ -2844,7 +2844,7 @@ does not get multiplied by horn */
 					tag3="G Rank"
 					popoverIcon={getTag('Armor Skill').icon}
 					popoverIconType="component"
-					link="/arena#gunlance-shells-and-wyvernfire-damage"
+					link="/arena#gunlance-shells-and-wyvernfire"
 				></InlineToggletip> damage.
 			</li>
 			<li>
@@ -2859,7 +2859,7 @@ does not get multiplied by horn */
 					tag3="G Rank"
 					popoverIcon={getMonster('Blinking Nargacuga', '').render}
 					popoverIconType="file"
-					link="/arena#gunlance-shells-and-wyvernfire-damage"
+					link="/arena#gunlance-shells-and-wyvernfire"
 				></InlineToggletip> or <InlineTooltip
 					tooltip="Monster"
 					text="Zenith Rathalos"
