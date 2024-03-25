@@ -21,6 +21,7 @@
 		gunnerDropdownItems,
 		ElementIcons,
 		StatusIcons,
+		MonsterIcons,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -68,9 +69,9 @@
 	import { theme } from '$lib/client/stores/theme';
 	import { browser } from '$app/environment';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
-	import GameIconObject from '$lib/client/components/frontier/GameIconObject.svelte';
-	import IconElementFire from '$lib/client/components/frontier/icon/element/Fire.svelte';
 	import { getMonster, getTag } from '$lib/client/modules/frontier/functions';
+	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';
+	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 
 	type DataTableKey = string;
 
@@ -1287,6 +1288,7 @@
 		return obscurity;
 	}
 
+	// TODO
 	function setAbnormalityValues(abnormalityToggleValue: boolean) {
 		let drugKnowledgeToggle = false;
 		let statusAssaultToggle = false;
@@ -2803,93 +2805,67 @@ does not get multiplied by horn */
 		</p>
 		<ul>
 			<li>
-				Select a weapon type such as
-				<GameIconObject
-					hasToggletipPopover
-					toggletipPopoverComponent={WeaponTypes.find(
-						(item) => item.name === 'Long Sword',
-					)?.icon}
-					toggletipPopoverLink="/smithy"
-					toggletipPopoverTag1={'Weapon'}
-					toggletipPopoverTag2={'Blademaster'}
-					toggletipPopoverTag3={'Long Sword'}
-					toggletipPopoverTitle={'Long Sword'}
-					toggletipPopoverSubtitle={'You need good foresight in order to use this weapon'}
-					toggletipPopoverDescription={'Embrace the blade.'}
-					toggletipPopoverAlign="right"
-				>
-					<span slot="icon">
-						<svelte:component
-							this={WeaponTypes.find((item) => item.name === 'Long Sword')
-								?.icon}
-						/></span
-					>
-					<span slot="description">Long Sword</span></GameIconObject
-				>.
+				Select a weapon type such as <InlineToggletip
+					title="Long Sword"
+					subtitle="A sword from a far away land"
+					description="Gauge your spirit with this weapon!"
+					iconType="component"
+					icon={WeaponTypes.find((e) => e.name === 'Long Sword')?.icon}
+					tag1="Blademaster"
+					popoverIcon={WeaponTypes.find((e) => e.name === 'Long Sword')?.icon}
+					popoverIconType="component"
+					link="/smithy"
+				></InlineToggletip>
 			</li>
 			<li>
-				Calculate <GameIconObject
-					hasToggletipPopover
-					toggletipPopoverComponent={WeaponTypes.find(
-						(item) => item.name === 'Gunlance',
-					)?.icon}
-					toggletipPopoverLink="/smithy"
-					toggletipPopoverTag1={'Weapon'}
-					toggletipPopoverTag2={'Blademaster'}
-					toggletipPopoverTag3={'Gunlance'}
-					toggletipPopoverTitle={'Gunlance'}
-					toggletipPopoverSubtitle={'Your blade needs more heat'}
-					toggletipPopoverDescription={'Prepare your shells.'}
-					toggletipPopoverAlign="right"
-				>
-					<span slot="icon">
-						<svelte:component
-							this={WeaponTypes.find((item) => item.name === 'Gunlance')?.icon}
-						/></span
-					>
-					<span slot="description">Gunlance</span></GameIconObject
-				> Shell and Wyvernfire damage.
+				Calculate <InlineToggletip
+					title="Gunlance"
+					subtitle="It's neither a lance nor a gun"
+					description="Prepare your shells!"
+					iconType="component"
+					icon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
+					tag1="Blademaster"
+					tag2="Gunlance"
+					tag3="Weapon"
+					popoverIcon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
+					popoverIconType="component"
+					link="/arena#gunlance-shell-and-wyvernfire-damage"
+				></InlineToggletip> Shell and Wyvernfire damage.
 			</li>
 			<li>
-				Calculate <GameIconObject
-					hasToggletipPopover
-					toggletipPopoverComponent={getTag('Armor Skill').icon}
-					toggletipPopoverLink="/smithy"
-					toggletipPopoverTag1={'Armor Skill'}
-					toggletipPopoverTag2={'G Rank'}
-					toggletipPopoverTag3={'BM/GN'}
-					toggletipPopoverTitle={'Ice Age'}
-					toggletipPopoverSubtitle={'Zenith Skill available'}
-					toggletipPopoverDescription={'Grants Winter General and damage over time on hit.'}
-					toggletipPopoverAlign="right"
-				>
-					<span slot="icon">
-						<svelte:component this={getTag('Armor Skill').icon} /></span
-					>
-					<span slot="description">Ice Age</span></GameIconObject
-				> damage.
+				Calculate <InlineToggletip
+					title="Ice Age"
+					subtitle="It's cold out there"
+					description="Grants Winter General and damage over time on hit."
+					iconType="component"
+					icon={getTag('Armor Skill').icon}
+					tag1="Armor Skill"
+					tag2="BM/GN"
+					tag3="G Rank"
+					popoverIcon={getTag('Armor Skill').icon}
+					popoverIconType="component"
+					link="/arena#gunlance-shell-and-wyvernfire-damage"
+				></InlineToggletip> damage.
 			</li>
 			<li>
-				Compare your attack values against <GameIconObject
-					hasToggletipPopover
-					toggletipPopoverImage={getMonster('Blinking Nargacuga', '').render}
-					toggletipPopoverLink="/bestiary"
-					toggletipPopoverTag1={'Monster'}
-					toggletipPopoverTag2={'Musou'}
-					toggletipPopoverTag3={'Historic Site'}
-					toggletipPopoverTitle={'Blinking Nargacuga'}
-					toggletipPopoverSubtitle={'Musou'}
-					toggletipPopoverDescription={'Good luck hunting this monster.'}
-					toggletipPopoverAlign="right"
-					image={getMonster('Blinking Nargacuga', '').icon}
-				>
-					<span slot="description">Blinking Nargacuga</span></GameIconObject
-				> or <GameIconObject
-					popoverDescription={'The King of the Skies'}
-					image={getMonster('Rathalos', 'Zenith').icon}
-				>
-					<span slot="description">Zenith Rathalos</span></GameIconObject
-				> defense rate.
+				Compare your attack values against <InlineToggletip
+					title="Blinking Nargacuga"
+					subtitle="Musou"
+					description="Good luck hunting this monster!"
+					iconType="file"
+					icon={getMonster('Blinking Nargacuga', '').icon}
+					tag1="Musou"
+					tag2="Monster"
+					tag3="G Rank"
+					popoverIcon={getMonster('Blinking Nargacuga', '').render}
+					popoverIconType="file"
+					link="/arena#gunlance-shell-and-wyvernfire-damage"
+				></InlineToggletip> or <InlineTooltip
+					tooltip="Monster"
+					text="Zenith Rathalos"
+					iconType="file"
+					icon={getMonster('Rathalos', 'Zenith').icon}
+				></InlineTooltip> defense rate.
 			</li>
 			<li>View element damage.</li>
 			<li>And much more!</li>
@@ -2897,12 +2873,12 @@ does not get multiplied by horn */
 
 		<p>
 			Additionally, you can view motion values animations, graphs of armor
-			skills such as <GameIconObject>
-				<span slot="icon">
-					<svelte:component this={getTag('Armor Skill').icon} /></span
-				>
-				<span slot="description">Flash Conversion</span></GameIconObject
-			>, and the formulas for your total damage.
+			skills such as <InlineTooltip
+				tooltip="Armor Skill"
+				text="Flash Conversion"
+				iconType="component"
+				icon={getTag('Armor Skill').icon}
+			></InlineTooltip>, and the formulas for your total damage.
 		</p>
 
 		<section>
@@ -5376,54 +5352,39 @@ does not get multiplied by horn */
 					</div>
 					<div class="stats-values">
 						<div class="fire">
-							<GameIconObject>
-								<span slot="icon">
-									<svelte:component
-										this={ElementIcons.find((e) => e.name === 'Fire')?.icon}
-									/></span
-								>
-								<span slot="description">Fire</span></GameIconObject
-							>: {internalFire}
+							<InlineTooltip
+								icon={ElementIcons.find((e) => e.name === 'Fire')?.icon}
+								text={'Fire'}
+								tooltip={'Element'}
+							/>: {internalFire}
 						</div>
 						<div class="water">
-							<GameIconObject>
-								<span slot="icon">
-									<svelte:component
-										this={ElementIcons.find((e) => e.name === 'Water')?.icon}
-									/></span
-								>
-								<span slot="description">Water</span></GameIconObject
-							>: {internalWater}
+							<InlineTooltip
+								icon={ElementIcons.find((e) => e.name === 'Water')?.icon}
+								text={'Water'}
+								tooltip={'Element'}
+							/>: {internalWater}
 						</div>
 						<div class="ice">
-							<GameIconObject>
-								<span slot="icon">
-									<svelte:component
-										this={ElementIcons.find((e) => e.name === 'Ice')?.icon}
-									/></span
-								>
-								<span slot="description">Ice</span></GameIconObject
-							>: {internalIce}
+							<InlineTooltip
+								icon={ElementIcons.find((e) => e.name === 'Ice')?.icon}
+								text={'Ice'}
+								tooltip={'Element'}
+							/>: {internalIce}
 						</div>
 						<div class="thunder">
-							<GameIconObject>
-								<span slot="icon">
-									<svelte:component
-										this={ElementIcons.find((e) => e.name === 'Thunder')?.icon}
-									/></span
-								>
-								<span slot="description">Thunder</span></GameIconObject
-							>: {internalThunder}
+							<InlineTooltip
+								icon={ElementIcons.find((e) => e.name === 'Thunder')?.icon}
+								text={'Thunder'}
+								tooltip={'Element'}
+							/>: {internalThunder}
 						</div>
 						<div class="dragon">
-							<GameIconObject>
-								<span slot="icon">
-									<svelte:component
-										this={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
-									/></span
-								>
-								<span slot="description">Dragon</span></GameIconObject
-							>: {internalDragon}
+							<InlineTooltip
+								icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
+								text={'Dragon'}
+								tooltip={'Element'}
+							/>: {internalDragon}
 						</div>
 						<div class="total-attack">
 							⚔️ True Raw: {internalTrueRawDisplay} ({internalTrueRaw})
@@ -5432,14 +5393,11 @@ does not get multiplied by horn */
 							🎫 My Missions: {internalMissionsNeeded}
 						</div>
 						<div class="status">
-							<GameIconObject>
-								<span slot="icon">
-									<svelte:component this={inputStatusIcon} /></span
-								>
-								<span slot="description"
-									>{inputStatus === 'None' ? 'No Status' : inputStatus}</span
-								></GameIconObject
-							>:
+							<InlineTooltip
+								icon={inputStatusIcon}
+								text={inputStatus}
+								tooltip={'Status'}
+							/>:
 							{internalStatus}
 						</div>
 						<div class="attack-ceiling">
@@ -5594,6 +5552,11 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Monster Hitzones" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Hunting Horn Notes" />
 		<div></div>
 	</section>
 

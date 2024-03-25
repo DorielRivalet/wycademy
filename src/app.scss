@@ -173,17 +173,12 @@ duration-slow-02	Background dimming	700ms
   }
 }
 
- body, main, .bx--link, header, footer, .banner, html, .app, hr, .header, .footer, .icon, .bx--inline-notification, .background, .background::before, .background-light::before{
-	transition: border-color motion.$duration-slow-02 motion.motion(standard, expressive),background-color motion.$duration-slow-02 motion.motion(standard, expressive),scrollbar-color motion.$duration-slow-02 motion.motion(standard, expressive),opacity motion.$duration-slow-02 motion.motion(standard, expressive),background-image motion.$duration-slow-02 motion.motion(standard, expressive);
- }
-
  /* https://www.digitalocean.com/community/tutorials/css-scrollbars
  Works on Firefox */
  * {
 	 scrollbar-width: thin;
 	 scrollbar-color: var(--ctp-blue) var(--ctp-crust);
 	 caret-color: var(--ctp-rosewater);
-	 transition: scrollbar-color motion.$duration-slow-02 motion.motion(standard, expressive);
  }
 
  body{
@@ -309,3 +304,9 @@ duration-slow-02	Background dimming	700ms
  .bx--modal {
 	 background-color: rgba(0, 0, 0, 0.6);
  }
+
+ .bx--snippet--multi {
+	background-color: var(--ctp-base);
+	border-radius: 10px;
+	border: 2px var(--ctp-surface0) solid;
+}
