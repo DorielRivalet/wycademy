@@ -55,7 +55,7 @@
 		"@sveltejs/kit": "^2.5.4",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/cookie": "^0.6.0",
-		"@typescript-eslint/eslint-plugin": "^7.2.0",
+		"@typescript-eslint/eslint-plugin": "^7.4.0",
 		"@typescript-eslint/parser": "^7.1.1",
 		"@vite-pwa/sveltekit": "^0.4.0",
 		"autoprefixer": "^10.4.18",
