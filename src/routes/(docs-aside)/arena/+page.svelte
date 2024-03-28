@@ -73,9 +73,17 @@
 	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import '@carbon/charts-svelte/styles.css';
-	import { onMount } from 'svelte';
+	import { onMount, type ComponentType } from 'svelte';
+	import { ScaleTypes, type LineChartOptions } from '@carbon/charts-svelte';
+	import type { LineChart } from '@carbon/charts-svelte';
+	import { breakpointObserver } from 'carbon-components-svelte';
+
+	const breakpointSize = breakpointObserver();
+	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
+	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
+
 	let flashConversionChartLoaded = false;
-	let flashConversionChart: any;
+	let flashConversionChart: ComponentType<LineChart>;
 
 	function generateFlashConversionChartData() {
 		const minAffinity = 100;
@@ -104,16 +112,16 @@
 			bottom: {
 				title: 'Affinity',
 				mapsTo: 'affinity',
-				scaleType: 'linear',
+				scaleType: ScaleTypes.LINEAR,
 				domain: [100, 500],
 			},
 			left: {
 				mapsTo: 'trueRaw',
 				title: 'True Raw',
-				scaleType: 'linear',
+				scaleType: ScaleTypes.LINEAR,
 			},
 		},
-	};
+	} as LineChartOptions;
 
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
@@ -5832,7 +5840,24 @@ does not get multiplied by horn */
 	.container-inputs {
 		display: grid;
 		gap: 1rem;
-		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	@media (min-width: 320px) {
+		.container-inputs {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (min-width: 672px) {
+		.container-inputs {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		.container-inputs {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
 	}
 
 	.motion-values {
