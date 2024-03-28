@@ -72,6 +72,54 @@
 	import { getMonster, getTag } from '$lib/client/modules/frontier/functions';
 	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
+	import '@carbon/charts-svelte/styles.css';
+	import { onMount } from 'svelte';
+	let flashConversionChartLoaded = false;
+	let flashConversionChart: any;
+
+	function generateFlashConversionChartData() {
+		const minAffinity = 100;
+		const maxAffinity = 500;
+		const step = 10;
+		let data = [];
+		for (let index = minAffinity; index <= maxAffinity; index = index + step) {
+			let obj = {
+				group: 'Dataset 1',
+				affinity: index,
+				trueRaw: Math.floor(Math.sqrt(Math.max(index - 100, 0)) * 7),
+			};
+			data.push(obj);
+		}
+		return data;
+	}
+
+	const flashConversionChartData = generateFlashConversionChartData();
+
+	$: flashConversionChartOptions = {
+		title: 'Flash Conversion Total Affinity to True Raw',
+		theme: $theme,
+		height: '400px',
+		legend: { enabled: false },
+		axes: {
+			bottom: {
+				title: 'Affinity',
+				mapsTo: 'affinity',
+				scaleType: 'linear',
+				domain: [100, 500],
+			},
+			left: {
+				mapsTo: 'trueRaw',
+				title: 'True Raw',
+				scaleType: 'linear',
+			},
+		},
+	};
+
+	onMount(async () => {
+		const charts = await import('@carbon/charts-svelte');
+		flashConversionChart = charts.LineChart;
+		flashConversionChartLoaded = true;
+	});
 
 	type DataTableKey = string;
 
@@ -1480,6 +1528,9 @@
 	const formulaOutputMonsterTotalDefense = display('EHP = \\frac{THP}{DEF}');
 
 	// TODO more formulas
+	const formulaFlashConversion = display(
+		`\\text{Flash Conversion True Raw} = \\lfloor \\sqrt{\\text{Excess Affinity}} \\times 7 \\rfloor`,
+	);
 
 	let internalAffinity = 0;
 	let rarity: FrontierRarity = 1;
@@ -5533,7 +5584,23 @@ does not get multiplied by horn */
 	</section>
 	<section>
 		<SectionHeading level={2} title="Crit Conversion" />
-		<div></div>
+		<p>
+			Adds 30% affinity and converts any excess affinity past 100% into extra
+			true raw.
+		</p>
+		<p>Formula:</p>
+		{@html formulaFlashConversion}
+		<div>
+			{#if flashConversionChartLoaded}
+				<svelte:component
+					this={flashConversionChart}
+					data={flashConversionChartData}
+					options={flashConversionChartOptions}
+				/>
+			{:else}
+				<Loading withOverlay={false} />
+			{/if}
+		</div>
 	</section>
 	<section>
 		<SectionHeading level={2} title="Combos" />
