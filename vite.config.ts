@@ -19,6 +19,9 @@ export default defineConfig({
 		},
 	},
 	plugins: [sveltekit()],
+	ssr: {
+		noExternal: process.env.NODE_ENV === 'production' ? ['@carbon/charts'] : [],
+	},
 	define: {
 		'process.env.NODE_ENV':
 			process.env.NODE_ENV === 'production' ? '"production"' : '"development"',
