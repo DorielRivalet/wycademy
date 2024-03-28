@@ -20,15 +20,92 @@
 	import NavigationItem from './NavigationItem.svelte';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import ThemeChanger from './ThemeChanger.svelte';
+	import { Notification } from 'carbon-icons-svelte';
+	import {
+		OverflowMenu,
+		OverflowMenuItem,
+		breakpoints,
+	} from 'carbon-components-svelte';
+	import Menu from 'carbon-icons-svelte/lib/Menu.svelte';
+	import { breakpointObserver } from 'carbon-components-svelte';
 
+	const breakpointSize = breakpointObserver();
+	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
+	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 	let expanded = false;
 </script>
 
 <header>
 	<div class="left">
+		{#if !$breakpointLargerThanMedium}
+			<OverflowMenu icon={Menu}>
+				<OverflowMenuItem href="/leaderboard" text="Leaderboard" />
+				<OverflowMenuItem href="/hunter-notes" text="Hunter's Notes" />
+				<OverflowMenuItem href="/bestiary" text="Bestiary" />
+				<OverflowMenuItem href="/arena" text="Arena" />
+				<OverflowMenuItem href="/smithy" text="Smithy" />
+				<OverflowMenuItem href="/support" text="Support" />
+				<OverflowMenuItem text="Notifications" />
+				<OverflowMenuItem href="/site-preferences" text="Site Preferences" />
+			</OverflowMenu>
+		{/if}
 		<div class="banner">
 			<Banner />
 		</div>
+	</div>
+
+	<div class="middle">
+		<nav>
+			<ul>
+				{#if $breakpointLargerThanSmall}
+					<NavigationItem
+						color="yellow"
+						path="/leaderboard"
+						description="Leaderboard"
+					>
+						<TrophyWhite
+							color={getHexStringFromCatppuccinColor('yellow', $theme)}
+						/>
+					</NavigationItem>
+				{/if}
+				{#if $breakpointLargerThanMedium}
+					<NavigationItem
+						color="rosewater"
+						path="/hunter-notes"
+						description="Hunter's Notes"
+					>
+						<BookIconWhite
+							color={getHexStringFromCatppuccinColor('rosewater', $theme)}
+						/>
+					</NavigationItem>
+
+					<NavigationItem
+						color="flamingo"
+						path="/bestiary"
+						description="Bestiary"
+					>
+						<MonsterPartIconWhite
+							color={getHexStringFromCatppuccinColor('flamingo', $theme)}
+						/>
+					</NavigationItem>
+
+					<NavigationItem color="pink" path="/arena" description="Arena">
+						<PvP color={getHexStringFromCatppuccinColor('pink', $theme)} />
+					</NavigationItem>
+					<NavigationItem color="mauve" path="/smithy" description="Smithy">
+						<Blacksmith
+							color={getHexStringFromCatppuccinColor('mauve', $theme)}
+						/>
+					</NavigationItem>
+					<NavigationItem color="red" path="/support" description="Support">
+						<MySupport color={getHexStringFromCatppuccinColor('red', $theme)} />
+					</NavigationItem>
+				{/if}
+			</ul>
+		</nav>
+	</div>
+
+	<nav class="right">
 		<div class="search">
 			<Search
 				expandable
@@ -38,65 +115,31 @@
 				on:collapse
 			/>
 		</div>
-	</div>
+		{#if $breakpointLargerThanMedium}
+			<ThemeChanger />
+		{/if}
 
-	<div class="middle">
-		<nav>
-			<ul>
-				<NavigationItem
-					color="yellow"
-					path="/leaderboard"
-					description="Leaderboard"
-				>
-					<TrophyWhite
-						color={getHexStringFromCatppuccinColor('yellow', $theme)}
-					/>
-				</NavigationItem>
-				<NavigationItem
-					color="rosewater"
-					path="/hunter-notes"
-					description="Hunter's Notes"
-				>
-					<BookIconWhite
-						color={getHexStringFromCatppuccinColor('rosewater', $theme)}
-					/>
-				</NavigationItem>
-				<NavigationItem
-					color="flamingo"
-					path="/bestiary"
-					description="Bestiary"
-				>
-					<MonsterPartIconWhite
-						color={getHexStringFromCatppuccinColor('flamingo', $theme)}
-					/>
-				</NavigationItem>
-				<NavigationItem color="pink" path="/arena" description="Arena">
-					<PvP color={getHexStringFromCatppuccinColor('pink', $theme)} />
-				</NavigationItem>
-				<NavigationItem color="mauve" path="/smithy" description="Smithy">
-					<Blacksmith
-						color={getHexStringFromCatppuccinColor('mauve', $theme)}
-					/>
-				</NavigationItem>
-				<NavigationItem color="red" path="/support" description="Support">
-					<MySupport color={getHexStringFromCatppuccinColor('red', $theme)} />
-				</NavigationItem>
-			</ul>
-		</nav>
-	</div>
-
-	<nav class="right">
-		<ThemeChanger />
 		<div class="container-link">
-			<Link href="/site-preferences" class="link" aria-label="Site preferences">
-				<Settings size={48} />
+			<Link href="/site-preferences" class="link" aria-label="Notifications">
+				<Notification size={48} />
 			</Link>
 		</div>
 		<div class="container-link">
-			<Link href="/site-preferences" class="link" aria-label="Site preferences">
+			<Link href="/site-preferences" class="link" aria-label="Profile">
 				<UserAvatar size={48} />
 			</Link>
 		</div>
+		{#if $breakpointLargerThanSmall}
+			<div class="container-link">
+				<Link
+					href="/site-preferences"
+					class="link"
+					aria-label="Site preferences"
+				>
+					<Settings size={48} />
+				</Link>
+			</div>
+		{/if}
 	</nav>
 </header>
 
@@ -106,12 +149,14 @@
 		display: flex;
 		gap: 1rem;
 		align-items: center;
+		height: 100%;
 	}
 
 	.middle {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		height: 100%;
 	}
 
 	.right {
@@ -119,6 +164,7 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: var(--cds-spacing-04);
+		height: 100%;
 	}
 
 	header {
@@ -128,6 +174,7 @@
 		background-color: var(--ctp-crust);
 		align-items: center;
 		padding: var(--cds-spacing-02);
+		max-height: var(--cds-spacing-11);
 	}
 
 	.container-link {
@@ -135,7 +182,8 @@
 	}
 
 	.banner {
-		height: 10vh;
+		height: 100%;
+		transform: scale(60%) translateX(-30%);
 	}
 
 	ul {

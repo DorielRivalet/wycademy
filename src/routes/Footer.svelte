@@ -53,18 +53,37 @@
 </footer>
 
 <style lang="scss">
-	.item-container {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		align-items: center;
-	}
+	@media (min-width: 320px) {
+		footer {
+			padding: var(--cds-spacing-02);
+			background-color: var(--ctp-crust);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 0.8rem;
+		}
 
-	footer {
-		padding: var(--cds-spacing-07);
-		background-color: var(--ctp-crust);
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		.item-container {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			align-items: center;
+		}
+	}
+	@media (min-width: 672px) {
+		footer {
+			padding: var(--cds-spacing-07);
+			background-color: var(--ctp-crust);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.item-container {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			align-items: center;
+		}
 	}
 </style>
