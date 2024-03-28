@@ -10,7 +10,7 @@
 </script>
 
 <div class="container">
-	<h1 class="toc-exclude">{title}</h1>
+	<h1>{title}</h1>
 	{#if withSeparator}
 		<hr />
 	{/if}

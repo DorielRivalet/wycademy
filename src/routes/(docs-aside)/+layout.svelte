@@ -79,6 +79,7 @@
 				isTocPositionedLeft = !isTocPositionedLeft;
 				tocPositionStore.set(isTocPositionedLeft ? 'left' : 'right');
 				tocRightClass = 'table-of-contents';
+				tocLeftClass = 'table-of-contents collapsed inactive';
 				isTocMoving = false;
 			}, millisecondsToDuration(durationFast01));
 		} else {
@@ -87,6 +88,8 @@
 				isTocPositionedLeft = !isTocPositionedLeft;
 				tocPositionStore.set(isTocPositionedLeft ? 'left' : 'right');
 				tocLeftClass = 'table-of-contents';
+				tocRightClass = 'table-of-contents collapsed-right inactive';
+
 				isTocMoving = false;
 			}, millisecondsToDuration(durationFast01));
 		}
@@ -115,12 +118,17 @@
 		isTocMoving = false;
 	}
 
-	let tocRightClass = isTocPositionedLeft
+	let tocRightClass = !tocEnabled
 		? 'table-of-contents inactive'
-		: 'table-of-contents';
-	let tocLeftClass = isTocPositionedLeft
-		? 'table-of-contents'
-		: 'table-of-contents inactive';
+		: isTocPositionedLeft
+			? 'table-of-contents inactive'
+			: 'table-of-contents';
+	let tocLeftClass = !tocEnabled
+		? 'table-of-contents inactive'
+		: isTocPositionedLeft
+			? 'table-of-contents'
+			: 'table-of-contents inactive';
+	$: appClass = tocEnabled ? 'app' : 'app hidden-toc';
 </script>
 
 <LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
@@ -154,7 +162,7 @@
 	{/if}
 {/if}
 
-<div class="app">
+<div class={appClass}>
 	<ViewTransition />
 
 	<div class="header">
@@ -179,7 +187,11 @@
 
 	<div class="contents">
 		<div class={tocLeftClass}>
-			<Toc blurParams={{ duration: 0 }} hide={tocEnabled}>
+			<Toc
+				--toc-overflow="hidden visible"
+				blurParams={{ duration: 0 }}
+				hide={!isTocPositionedLeft}
+			>
 				<span slot="title"
 					><div>
 						<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
@@ -195,11 +207,17 @@
 				>
 			</Toc>
 		</div>
+
 		<main>
 			<slot />
 		</main>
+
 		<div class={tocRightClass}>
-			<Toc blurParams={{ duration: 0 }} hide={tocEnabled}>
+			<Toc
+				--toc-overflow="hidden visible"
+				blurParams={{ duration: 0 }}
+				hide={isTocPositionedLeft}
+			>
 				<span slot="title"
 					><div>
 						<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
@@ -286,6 +304,10 @@
 		flex-direction: column;
 		background-color: var(--ctp-mantle);
 		max-width: 100vw;
+	}
+
+	.hidden-toc {
+		overflow-x: hidden;
 	}
 
 	main {
