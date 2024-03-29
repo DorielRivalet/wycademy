@@ -60,13 +60,13 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			font-size: 0.8rem;
+			font-size: 0.75rem;
 		}
 
 		.item-container {
 			display: flex;
 			flex-direction: column;
-			gap: 0.5rem;
+			gap: 0.25rem;
 			align-items: center;
 		}
 	}

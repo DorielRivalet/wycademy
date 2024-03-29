@@ -21,11 +21,7 @@
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import ThemeChanger from './ThemeChanger.svelte';
 	import { Notification } from 'carbon-icons-svelte';
-	import {
-		OverflowMenu,
-		OverflowMenuItem,
-		breakpoints,
-	} from 'carbon-components-svelte';
+	import { OverflowMenu, OverflowMenuItem } from 'carbon-components-svelte';
 	import Menu from 'carbon-icons-svelte/lib/Menu.svelte';
 	import { breakpointObserver } from 'carbon-components-svelte';
 
@@ -39,13 +35,15 @@
 	<div class="left">
 		{#if !$breakpointLargerThanMedium}
 			<OverflowMenu icon={Menu}>
+				<OverflowMenuItem href="/site-preferences" text="Search" />
 				<OverflowMenuItem href="/leaderboard" text="Leaderboard" />
 				<OverflowMenuItem href="/hunter-notes" text="Hunter's Notes" />
 				<OverflowMenuItem href="/bestiary" text="Bestiary" />
 				<OverflowMenuItem href="/arena" text="Arena" />
 				<OverflowMenuItem href="/smithy" text="Smithy" />
 				<OverflowMenuItem href="/support" text="Support" />
-				<OverflowMenuItem text="Notifications" />
+				<OverflowMenuItem href="/site-preferences" text="Notifications" />
+				<OverflowMenuItem href="/site-preferences" text="Profile" />
 				<OverflowMenuItem href="/site-preferences" text="Site Preferences" />
 			</OverflowMenu>
 		{/if}
@@ -106,30 +104,32 @@
 	</div>
 
 	<nav class="right">
-		<div class="search">
-			<Search
-				expandable
-				bind:expanded
-				autocomplete={'on'}
-				on:expand
-				on:collapse
-			/>
-		</div>
+		{#if $breakpointLargerThanSmall}
+			<div class="search">
+				<Search
+					expandable
+					bind:expanded
+					autocomplete={'on'}
+					on:expand
+					on:collapse
+				/>
+			</div>
+		{/if}
+
 		{#if $breakpointLargerThanMedium}
 			<ThemeChanger />
 		{/if}
-
-		<div class="container-link">
-			<Link href="/site-preferences" class="link" aria-label="Notifications">
-				<Notification size={48} />
-			</Link>
-		</div>
-		<div class="container-link">
-			<Link href="/site-preferences" class="link" aria-label="Profile">
-				<UserAvatar size={48} />
-			</Link>
-		</div>
 		{#if $breakpointLargerThanSmall}
+			<div class="container-link">
+				<Link href="/site-preferences" class="link" aria-label="Notifications">
+					<Notification size={48} />
+				</Link>
+			</div>
+			<div class="container-link">
+				<Link href="/site-preferences" class="link" aria-label="Profile">
+					<UserAvatar size={48} />
+				</Link>
+			</div>
 			<div class="container-link">
 				<Link
 					href="/site-preferences"

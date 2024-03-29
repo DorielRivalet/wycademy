@@ -311,6 +311,11 @@
 		/>
 	</div>
 
+	<p>
+		If the layout of the website appears broken and you are using Firefox on
+		mobile, try another browser.
+	</p>
+
 	<div class="setting-container">
 		<ColorPalette size={32} />
 		{#if getThemeId($theme) !== undefined}

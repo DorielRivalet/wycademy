@@ -2811,6 +2811,73 @@ does not get multiplied by horn */
 	$: inputStatusIcon = StatusIcons.find((e) => e.name === inputStatus)?.icon;
 
 	// TODO datatable description having weapon guide link
+
+	let inputNumberIceAgeCalculatorWeaponTrueRaw = 0;
+	let inputNumberIceAgeCalculatorSigil1TrueRaw = 0;
+	let inputNumberIceAgeCalculatorSigil2TrueRaw = 0;
+	let inputNumberIceAgeCalculatorSigil3TrueRaw = 0;
+	let inputNumberIceAgeCalculatorZenithSigil = 0;
+	let inputNumberIceAgeCalculatorAOESigil = 0;
+	let inputIceAgeCalculatorAOESigilHunters = '1';
+	let inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw = 0;
+
+	function getZenithSigilTrueRaw(value: number) {
+		return 20 * value + 30;
+	}
+
+	function getAOESigilTrueRaw(value: number, hunters: string) {
+		return (25 + value * 5) * Number.parseInt(hunters);
+	}
+
+	let inputNumberIceAgeCalculatorSRTrueRaw = 0;
+	let inputIceAgeCalculatorGRankArmorTrueRaw = 'None';
+	let inputNumberIceAgeCalculatorSecondsElapsed = 0;
+	let inputIceAgeCalculatorStage = 'Stage 1';
+	let inputIceAgeCalculatorHunters = '1';
+	let inputNumberIceAgeCalculatorMonsterDefenseRate = 1;
+
+	$: iceAgeCalculatorTotalDamagePerSecond = Math.ceil(
+		getIceAgeBaseMultiplier(inputIceAgeCalculatorStage) *
+			(inputNumberIceAgeCalculatorWeaponTrueRaw +
+				inputNumberIceAgeCalculatorSigil1TrueRaw +
+				inputNumberIceAgeCalculatorSigil2TrueRaw +
+				inputNumberIceAgeCalculatorSigil3TrueRaw +
+				inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
+				getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
+				getAOESigilTrueRaw(
+					inputNumberIceAgeCalculatorAOESigil,
+					inputIceAgeCalculatorAOESigilHunters,
+				) +
+				inputNumberIceAgeCalculatorSRTrueRaw +
+				getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)) *
+			inputNumberIceAgeCalculatorMonsterDefenseRate *
+			inputNumberIceAgeCalculatorSecondsElapsed *
+			Number.parseInt(inputIceAgeCalculatorHunters),
+	);
+
+	function getGRankArmorTrueRaw(option: string) {
+		switch (option) {
+			case 'None':
+				return 0;
+			case '3+ G Rank Pieces (+30)':
+				return 30;
+			default:
+				return 0;
+		}
+	}
+
+	function getIceAgeBaseMultiplier(stage: string) {
+		switch (stage) {
+			case 'Stage 1':
+				return 0.042;
+			case 'Stage 2':
+				return 0.098;
+			case 'Stage 3':
+				return 0.14;
+			default:
+				return 0.042;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -5588,7 +5655,396 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Ice Age" />
-		<div></div>
+		<div class="ice-age-section">
+			<div class="ice-age-tables-container">
+				<div class="ice-age-table-hits toc-exclude">
+					<DataTable
+						sortable
+						zebra
+						size="short"
+						useStaticWidth
+						headers={[
+							{ key: 'weapon', value: 'Weapon', minWidth: '2rem' },
+							{ key: 'stage1', value: 'Stage 1', minWidth: '1rem' },
+							{ key: 'stage2', value: 'Stage 2', minWidth: '1rem' },
+							{
+								key: 'stage3',
+								value: 'Stage 3',
+								minWidth: '1rem',
+							},
+						]}
+						rows={[
+							{
+								id: 'gs',
+								weapon: 'Great Sword',
+								stage1: '1',
+								stage2: '8',
+								stage3: '17',
+							},
+							{
+								id: 'ha',
+								weapon: 'Hammer',
+								stage1: '1',
+								stage2: '9',
+								stage3: '21',
+							},
+							{
+								id: 'hh',
+								weapon: 'Hunting Horn',
+								stage1: '1',
+								stage2: '9',
+								stage3: '21',
+							},
+							{
+								id: 'la',
+								weapon: 'Lance',
+								stage1: '1',
+								stage2: '12',
+								stage3: '26',
+							},
+							{
+								id: 'gl',
+								weapon: 'Gunlance',
+								stage1: '1',
+								stage2: '12',
+								stage3: '26',
+							},
+							{
+								id: 'ls',
+								weapon: 'Long Sowrd',
+								stage1: '1',
+								stage2: '12',
+								stage3: '26',
+							},
+							{
+								id: 'saf',
+								weapon: 'Switch Axe F',
+								stage1: '1',
+								stage2: '12',
+								stage3: '26',
+							},
+							{
+								id: 'hbg',
+								weapon: 'Heavy Bowgun',
+								stage1: '1',
+								stage2: '12',
+								stage3: '26',
+							},
+
+							{
+								id: 'to',
+								weapon: 'Tonfa',
+								stage1: '1',
+								stage2: '17',
+								stage3: '38',
+							},
+							{
+								id: 'lbg',
+								weapon: 'Light Bowgun',
+								stage1: '1',
+								stage2: '17',
+								stage3: '38',
+							},
+							{
+								id: 'bow',
+								weapon: 'Bow',
+								stage1: '1',
+								stage2: '17',
+								stage3: '38',
+							},
+							{
+								id: 'sns',
+								weapon: 'Sword and Shield',
+								stage1: '1',
+								stage2: '17',
+								stage3: '38',
+							},
+							{
+								id: 'ds',
+								weapon: 'Dual Swords',
+								stage1: '1',
+								stage2: '32',
+								stage3: '75',
+							},
+							{
+								id: 'ms',
+								weapon: 'Magnet Spike',
+								stage1: '1',
+								stage2: 'Unknown',
+								stage3: 'Unknown',
+							},
+						]}
+						><Toolbar
+							><div class="toolbar">
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray(sharedMotionValues)}
+								/>
+							</div>
+						</Toolbar>
+						<span slot="title">
+							<div class="data-table-title">
+								<div>Ice Age Required Hits</div>
+							</div>
+						</span>
+					</DataTable>
+				</div>
+				<div class="ice-age-table-stages-container">
+					<div class="ice-age-table-stages toc-exclude">
+						<DataTable
+							sortable
+							zebra
+							size="short"
+							headers={[
+								{ key: 'stage', value: 'Stage', minWidth: '1rem' },
+								{ key: 'formula', value: 'DPS Formula', minWidth: '8rem' },
+								{ key: 'duration', value: 'Duration', minWidth: '1rem' },
+								{
+									key: 'downgradeDuration',
+									value: 'Downgrade Duration',
+									minWidth: '1rem',
+								},
+							]}
+							rows={[
+								{
+									id: '1',
+									stage: '1',
+									formula: '0.042 x True Raw x DefRate',
+									duration: '11-18s',
+									downgradeDuration: '7s',
+								},
+								{
+									id: '2',
+									stage: '2',
+									formula: '0.098 x True Raw x DefRate',
+									duration: '15-25s',
+									downgradeDuration: '10s',
+								},
+								{
+									id: '3',
+									stage: '3',
+									formula: '0.14 x True Raw x DefRate',
+									duration: '6-9s',
+									downgradeDuration: '-',
+								},
+							]}
+							><Toolbar
+								><div class="toolbar">
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(sharedMotionValues)}
+									/>
+								</div>
+							</Toolbar>
+							<span slot="title">
+								<div class="data-table-title">
+									<div>Ice Age Stages</div>
+								</div>
+							</span>
+						</DataTable>
+					</div>
+					<div class="ice-age-descriptions">
+						<p class="ice-age-description-1">
+							Upon hitting a monster (can be dead), the hunter becomes enveloped
+							in an icy aura, which inflicts damage on all nearby monsters while
+							providing extra skills. This aura progresses through three stages
+							as you deal more hits to a monster. Additionally, it bestows <InlineTooltip
+								text="Stamina Recovery Up"
+								tooltip="Armor Skill"
+								icon={getTag('Armor Skill').icon}
+							/> and <InlineTooltip
+								text="Sharp Sword"
+								tooltip="Armor Skill"
+								icon={getTag('Armor Skill').icon}
+							/> to all hunters within its range, with the wielder also gaining <InlineTooltip
+								text="Winter General"
+								tooltip="Armor Skill"
+								icon={getTag('Armor Skill').icon}
+							/>. Damage occurs in fixed intervals of one second rather than
+							gradually over time.
+						</p>
+						<div class="ice-age-description-2">
+							<p>
+								Typically, damage output ranges between 800 to 1600 per minute,
+								contingent on the level, surpassing the poison output for most G
+								Rank monsters. Within a group of four hunters equipped with Ice
+								Age, the damage stacks and thus escalates from 800-1600 (1p) to
+								3200-6400 (4p).
+							</p>
+						</div>
+						<p>
+							Ice Age's attack power only comes from SR, sigils, weapon base
+							attack and G Rank armor bonus. The following buffs are ignored:
+							items (e.g Seeds, Hunter Powertalon, etc.), meals (e.g. bento,
+							guild food), skills (e.g. Adrenaline, Solid Determination).
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="ice-age-calculator">
+				<div>
+					<NumberInput
+						size="sm"
+						step={10}
+						min={minimumNumberValue}
+						max={maximumNumberValue}
+						bind:value={inputNumberIceAgeCalculatorWeaponTrueRaw}
+						invalidText={'Invalid value'}
+						label={'Weapon Base True Raw'}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={0}
+						max={15}
+						bind:value={inputNumberIceAgeCalculatorSigil1TrueRaw}
+						invalidText={'Invalid value'}
+						label={'Sigil 1 True Raw'}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={0}
+						max={15}
+						bind:value={inputNumberIceAgeCalculatorSigil2TrueRaw}
+						invalidText={'Invalid value'}
+						label={'Sigil 2 True Raw'}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={0}
+						max={15}
+						bind:value={inputNumberIceAgeCalculatorSigil3TrueRaw}
+						invalidText={'Invalid value'}
+						label={'Sigil 3 True Raw'}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={0}
+						max={15}
+						bind:value={inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw}
+						invalidText={'Invalid value'}
+						label={'Unlimited Sigil True Raw'}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={0}
+						max={15}
+						bind:value={inputNumberIceAgeCalculatorZenithSigil}
+						invalidText={'Invalid value'}
+						label={'Zenith Sigil Attack'}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={0}
+						max={15}
+						bind:value={inputNumberIceAgeCalculatorAOESigil}
+						invalidText={'Invalid value'}
+						label={'AOE Sigil Attack'}
+					/>
+				</div>
+				<div>
+					<Dropdown
+						titleText="AOE Attack Sigil Hunters"
+						bind:selectedId={inputIceAgeCalculatorAOESigilHunters}
+						items={[
+							{ id: '1', text: '1 Hunter' },
+							{ id: '2', text: '2 Hunters' },
+							{ id: '3', text: '3 Hunters' },
+							{ id: '4', text: '4 Hunters' },
+						]}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={10}
+						min={minimumNumberValue}
+						max={maximumNumberValue}
+						bind:value={inputNumberIceAgeCalculatorSRTrueRaw}
+						invalidText={invalidNumberValueText}
+						label={'SR True Raw'}
+					/>
+				</div>
+				<div>
+					<Dropdown
+						titleText="G Armor Pieces"
+						bind:selectedId={inputIceAgeCalculatorGRankArmorTrueRaw}
+						items={[
+							{ id: 'None', text: 'None' },
+							{
+								id: '3+ G Rank Pieces (+30)',
+								text: '3+ G Rank Pieces (+30)',
+							},
+						]}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={10}
+						min={minimumNumberValue}
+						max={maximumNumberValue}
+						bind:value={inputNumberIceAgeCalculatorSecondsElapsed}
+						invalidText={invalidNumberValueText}
+						label={'Seconds Elapsed'}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={0.01}
+						min={minimumNumberValue}
+						max={maximumNumberValue}
+						bind:value={inputNumberIceAgeCalculatorMonsterDefenseRate}
+						invalidText={invalidNumberValueText}
+						label={'Monster Defense Rate'}
+					/>
+				</div>
+				<div>
+					<Dropdown
+						titleText="Ice Age Stage"
+						bind:selectedId={inputIceAgeCalculatorStage}
+						items={[
+							{ id: 'Stage 1', text: 'Stage 1' },
+							{ id: 'Stage 2', text: 'Stage 2' },
+							{ id: 'Stage 3', text: 'Stage 3' },
+						]}
+					/>
+				</div>
+				<div>
+					<Dropdown
+						titleText="Ice Age Hunters"
+						bind:selectedId={inputIceAgeCalculatorHunters}
+						items={[
+							{ id: '1', text: '1 Hunter' },
+							{ id: '2', text: '2 Hunters' },
+							{ id: '3', text: '3 Hunters' },
+							{ id: '4', text: '4 Hunters' },
+						]}
+					/>
+				</div>
+				<div>
+					Total: {iceAgeCalculatorTotalDamagePerSecond}
+				</div>
+			</div>
+		</div>
 	</section>
 	<section>
 		<SectionHeading level={2} title="Crit Conversion" />
@@ -5637,6 +6093,11 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Hunting Horn Notes" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="HBG Heat Beam" />
 		<div></div>
 	</section>
 
@@ -5973,7 +6434,7 @@ does not get multiplied by horn */
 			'dragon status my-missions';
 		text-align: center;
 		font-weight: bold;
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 		background-color: var(--ctp-mantle);
 	}
 
@@ -6028,5 +6489,85 @@ does not get multiplied by horn */
 			'inputs-left inputs-middle inputs-right';
 		grid-template-columns: 1fr 1fr 1fr;
 		gap: var(--cds-spacing-08);
+	}
+
+	@media (min-width: 320px) {
+		.ice-age-tables-container {
+			display: grid;
+			margin-top: 1rem;
+			margin-bottom: 2rem;
+			grid-template-areas:
+				'ice-age-table-hits'
+				'ice-age-table-stages-container';
+			gap: 1rem;
+		}
+
+		.ice-age-table-stages-container {
+			grid-area: ice-age-table-stages-container;
+			display: grid;
+			grid-template-rows: auto 1fr;
+			grid-template-areas:
+				'ice-age-table-stages'
+				'ice-age-descriptions';
+			align-items: start;
+			gap: 1rem;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		.ice-age-tables-container {
+			display: grid;
+			margin-top: 1rem;
+			margin-bottom: 2rem;
+			grid-template-columns: 1fr 2fr;
+			grid-template-areas: 'ice-age-table-hits ice-age-table-stages-container';
+		}
+
+		.ice-age-table-stages-container {
+			grid-area: ice-age-table-stages-container;
+			display: grid;
+			grid-template-rows: auto 1fr;
+			grid-template-areas:
+				'ice-age-table-stages'
+				'ice-age-descriptions';
+			align-items: start;
+			gap: 1rem;
+		}
+	}
+
+	.ice-age-table-stages {
+		grid-area: ice-age-table-stages;
+	}
+
+	.ice-age-descriptions {
+		grid-area: ice-age-descriptions;
+		display: flex;
+		gap: 1rem;
+		flex-direction: column;
+	}
+
+	.ice-age-table-hits {
+		grid-area: ice-age-table-hits;
+	}
+
+	.ice-age-section {
+		margin-bottom: 6rem;
+	}
+
+	@media (min-width: 320px) {
+		.ice-age-calculator {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		.ice-age-calculator {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 1rem;
+			align-items: center;
+		}
 	}
 </style>
