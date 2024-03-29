@@ -22,6 +22,7 @@
 		ElementIcons,
 		StatusIcons,
 		MonsterIcons,
+		bentoValues,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -339,11 +340,57 @@
 		return `${header}\n${csv}`;
 	}
 
+	function getBentoSectionValues(section: string) {
+		let defaultResult = [
+			{
+				id: '',
+				ingredient1: '',
+				ingredient2: '',
+				dish: '',
+				health: '0',
+				stamina: '0',
+				attack: '0',
+				defense: '0',
+			},
+		];
+
+		const bentoSectionEntry = bentoValues.find((b) => b.name === section);
+		if (!bentoSectionEntry) {
+			console.error('Bento not found');
+			return defaultResult;
+		}
+
+		let result: {
+			id: string;
+			ingredient1: string;
+			ingredient2: string;
+			dish: string;
+			health: string;
+			stamina: string;
+			attack: string;
+			defense: string;
+		}[] = [];
+
+		bentoSectionEntry.values.forEach((element) => {
+			result.push({
+				id: `${element.ingredient1} ${element.ingredient2}`,
+				ingredient1: element.ingredient1,
+				ingredient2: element.ingredient2,
+				dish: element.dish,
+				health: element.health,
+				stamina: element.stamina,
+				attack: element.attack,
+				defense: element.defense,
+			});
+		});
+
+		return result;
+	}
+
 	function getWeaponSectionMotionValues(
 		weaponName: FrontierWeaponName,
 		section: string,
 	) {
-		console.log('hello');
 		let weaponClass = getWeaponClass(weaponName);
 
 		let defaultResult = [
@@ -1538,11 +1585,43 @@
 	const formulaOutputMultipliers =
 		display(`\\text{Multipliers} = \\lfloor \\lfloor \\text{attackA} \\times \\text{outputHuntingHornMultiplier} + \\text{attackB} \\rfloor \\times \\text{outputAdrenaline} \\times \\text{outputCombatSupremacyAttackMultiplier} \\times \\text{outputWeaponSpecificMultiplier} \\times \\text{outputHidenMultiplier} \\times \\text{outputHammerMultiplier} \\rfloor
 `);
+
+	$: formulaValuesOutputMultipliers = `{${outputMultipliers}} = \\lfloor \\lfloor ${attackA} \\times ${outputHuntingHornMultiplier} + ${attackB} \\rfloor \\times ${outputAdrenaline} \\times ${outputCombatSupremacyAttackMultiplier} \\times ${outputWeaponSpecificMultiplier} \\times ${outputHidenMultiplier} \\times ${outputHammerMultiplier} \\rfloor
+`;
+
 	const formulaOutputFlatAdditions =
 		display(`\\text{Flat Additions} = \\text{outputPartnyaBond} + \\text{outputHunterBond} + \\text{outputAssist} + \\text{outputSoul} + \\text{outputArmor1} + \\text{outputArmor2} + \\text{outputArmorG} + \\text{outputSecretTech}
 `);
-	const formulaInternalAttack = display('EHP = \\\\frac{THP}{DEF}');
-	const formulaInternalTrueRaw = display('EHP = \\\\frac{THP}{DEF}');
+
+	$: formulaValuesOutputFlatAdditions = `{${outputFlatAdditions}} = ${outputPartnyaBond} + ${outputHunterBond} + ${outputAssist} + ${outputSoul} + ${outputArmor1} + ${outputArmor2} + ${outputArmorG} + ${outputSecretTech}
+`;
+
+	/*
+	$: internalAttack =
+		getWeaponClass(inputWeaponType) === 'Blademaster'
+			? Math.floor(
+					internalTrueRaw *
+						outputSharpnessMultiplier *
+						outputSwordAndShieldMultiplier *
+						outputOtherMultipliers *
+						outputMonsterStatusInflictedMultiplier,
+				)
+			: Math.floor(
+					internalTrueRaw *
+						outputOtherMultipliers *
+						outputMonsterStatusInflictedMultiplier,
+				);
+
+*/
+
+	const formulaInternalAttack = display(
+		'\\text{Internal Attack} = \\lfloor \\text{internalTrueRaw} \\times \\text{outputSharpnessMultiplier}\\times \\text{outputSwordAndShieldMultiplier} \\times \\text{outputOtherMultipliers} \\times \\text{outputMonsterStatusInflictedMultiplier} \\rfloor',
+	);
+
+	$: formulaValuesOutputInternalAttack = `{${internalAttack}} = \\lfloor ${internalTrueRaw} \\times ${outputSharpnessMultiplier} \\times ${outputSwordAndShieldMultiplier} \\times ${outputOtherMultipliers} \\times ${outputMonsterStatusInflictedMultiplier} \\rfloor
+`;
+
+	const formulaInternalTrueRaw = display('EHP = \\frac{THP}{DEF}');
 	const formulaInternalTrueRawDisplay = display('EHP = \\\\frac{THP}{DEF}');
 	const formulaInternalFire =
 		display(`\\text{Internal Fire} = \\lfloor \\frac{\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}}{\\text{10}} \\times \\text{outputFireMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Fire', inputElement)} \\rfloor \\times \\text{outputSharpnessMultiplier}
@@ -1717,6 +1796,7 @@
 	let inputNumberDragonHitzone = 30;
 
 	let inputWeaponMotionValuesSection = 'None';
+	let bentoSection = 'Vigorous';
 
 	let outputAdditional = 0;
 
@@ -1862,6 +1942,14 @@
 	// 	inputWeaponMotionValuesSection,
 	// );
 	$: weaponSectionNames = getWeaponSectionNames(inputWeaponType);
+
+	let bentoSectionNames = [
+		{ id: 'Vigorous', text: 'Vigorous' },
+		{ id: 'Starving Wolf', text: 'Starving Wolf' },
+		{ id: 'Adrenaline', text: 'Adrenaline' },
+		{ id: 'Combo', text: 'Combo' },
+	];
+
 	$: weaponIcon = getWeaponIcon(inputWeaponType);
 	$: inputTextInputs = prettyPrintJson(inputs);
 
@@ -2758,6 +2846,8 @@ does not get multiplied by horn */
 		inputWeaponMotionValuesSection,
 	);
 
+	$: bentoSectionValue = getBentoSectionValues(bentoSection);
+
 	$: internalStatus =
 		inputDrugKnowledge !== 'None (1x)'
 			? Math.floor(
@@ -2985,6 +3075,30 @@ does not get multiplied by horn */
 
 		return result;
 	}
+
+	function getStatusArray(input: string) {
+		const values = input.split(',');
+		return values;
+	}
+
+	function getActiveFeatureFinalBitfieldValue(arr: string[]) {
+		const initialValue = 0;
+		const sumWithInitial = arr.reduce(
+			(accumulator, currentValue) =>
+				accumulator +
+				(WeaponTypes.find((e) => e.name === currentValue)?.activeFeatureValue ??
+					0),
+			initialValue,
+		);
+
+		return sumWithInitial;
+	}
+
+	let activeFeatureSelectedRowIds: string[] = [];
+
+	$: activeFeatureFinalBitfieldValue = getActiveFeatureFinalBitfieldValue(
+		activeFeatureSelectedRowIds,
+	);
 </script>
 
 <svelte:head>
@@ -6432,18 +6546,946 @@ does not get multiplied by horn */
 	</section>
 
 	<section>
-		<SectionHeading level={2} title="Exotics" />
+		<SectionHeading level={2} title="Weapons" />
 		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Active Feature" />
+		<div class="active-feature-section">
+			<div class="active-feature-description">
+				<p>
+					The Active Feature system is a daily effect to weapon types. These
+					effects last from 12 PM to 12 PM the next day at which time a new
+					weapon type will be chosen. You can see up to one day in advance by
+					simply looking behind the main Active Feature bar at the top of your
+					screen while in town.
+				</p>
+				<p>
+					Final Bitfield Value: {activeFeatureFinalBitfieldValue}
+				</p>
+			</div>
+			<div class="active-feature-table">
+				<DataTable
+					selectable
+					bind:selectedRowIds={activeFeatureSelectedRowIds}
+					sortable
+					zebra
+					size="medium"
+					headers={[
+						{ key: 'weapon', value: 'Weapon', minWidth: '1rem' },
+						{ key: 'effect', value: 'Active Feature Effect', minWidth: '1rem' },
+						{ key: 'bitfield', value: 'Bitfield Value' },
+					]}
+					rows={[
+						{
+							id: 'Sword and Shield',
+							weapon: 'Sword and Shield',
+							effect: 'x1.2 Status and Element (internal).',
+							bitfield: '16',
+						},
+						{
+							id: 'Dual Swords',
+							weapon: 'Dual Swords',
+							effect:
+								'Reduces the speed at which the HP bar decreases when in true demon mode. Stamina gauge depletion speed is reduced to x0.5 when in demon mode (equivalent to Marathon Runner). When Marathon Runner is activated, it is reduced to x0.33.',
+							bitfield: '64',
+						},
+						{
+							id: 'Great Sword',
+							weapon: 'Great Sword',
+							effect:
+								'+100% Affinity when using an unsheathe attack. This is additional and goes on top of any existing affinity. Synergizes well with Critical Conversion. This also applies to attacks from Parries and also gives the raw increasing effect of skill Critical Conversion (no +30%) while you are performing these actions.',
+							bitfield: '1',
+						},
+						{
+							id: 'Long Sword',
+							weapon: 'Long Sword',
+							bitfield: '128',
+							effect:
+								'Full spirit bar buff effect increased (from +10 attack to +40 attack)',
+						},
+						{
+							id: 'Hammer',
+							weapon: 'Hammer',
+							bitfield: '4',
+							effect:
+								'x1.5 Stun damage. Synergizes well with Sigil and Caravan Skills.',
+						},
+						{
+							id: 'Hunting Horn',
+							weapon: 'Hunting Horn',
+							bitfield: '256',
+							effect: 'x2 Song duration. Synergizes well with Flute Expert.',
+						},
+						{
+							id: 'Lance',
+							weapon: 'Lance',
+							bitfield: '8',
+							effect:
+								'Guard Skill goes up by 1 level. Grants Reflect+3. Does not work with Reflect Up nor Guard Up.',
+						},
+						{
+							id: 'Gunlance',
+							weapon: 'Gunlance',
+							bitfield: '512',
+							effect: 'x1.5 Wyvern Fire and Shelling Damage.',
+						},
+
+						{
+							id: 'Tonfa',
+							weapon: 'Tonfa',
+							bitfield: '2048',
+							effect:
+								'All Ryuuki finisher (i.e. explosion) effects buffed. Head: KO duration from 20s to 30s. Tail: Bleeding 1.5x damage. Body: Sharpness return from 15 to 20. Gunner Attack Up from 25 to 50.',
+						},
+						{
+							id: 'Switch Axe F',
+							weapon: 'Switch Axe F',
+							bitfield: '4096',
+							effect:
+								'Increases Phial Meter Recovery by primary recovery mechanic (either by reloading or guarding)',
+						},
+						{
+							id: 'Magnet Spike',
+							weapon: 'Magnet Spike',
+							bitfield: '8192',
+							effect:
+								'Increases Pin finisher multiplier by 1.25x (from 600 motion value to 750 motion value). x1.1 Cutting damage to the tail in cutting mode. x1.3 Stun value in impact mode.',
+						},
+						{
+							id: 'Light Bowgun',
+							weapon: 'Light Bowgun',
+							effect:
+								'+0.1x Damage increased at critical distance. x1.2 Status damage.',
+							bitfield: '32',
+						},
+
+						{
+							id: 'Heavy Bowgun',
+							weapon: 'Heavy Bowgun',
+							effect: '+0.1x Damage increased at critical distance.',
+							bitfield: '2',
+						},
+						{
+							id: 'Bow',
+							weapon: 'Bow',
+							effect: 'x0.85 Charge time. Synergizes well with Auto-Reload.',
+							bitfield: '1024',
+						},
+					]}
+					><Toolbar
+						><div class="toolbar">
+							<CopyButton
+								iconDescription={'Copy as CSV'}
+								text={getCSVFromArray([
+									{
+										id: 'Sword and Shield',
+										weapon: 'Sword and Shield',
+										effect: 'x1.2 Status and Element (internal).',
+										bitfield: '16',
+									},
+									{
+										id: 'Dual Swords',
+										weapon: 'Dual Swords',
+										effect:
+											'Reduces the speed at which the HP bar decreases when in true demon mode. Stamina gauge depletion speed is reduced to x0.5 when in demon mode (equivalent to Marathon Runner). When Marathon Runner is activated, it is reduced to x0.33.',
+										bitfield: '64',
+									},
+									{
+										id: 'Great Sword',
+										weapon: 'Great Sword',
+										effect:
+											'+100% Affinity when using an unsheathe attack. This is additional and goes on top of any existing affinity. Synergizes well with Critical Conversion. This also applies to attacks from Parries and also gives the raw increasing effect of skill Critical Conversion (no +30%) while you are performing these actions.',
+										bitfield: '1',
+									},
+									{
+										id: 'Long Sword',
+										weapon: 'Long Sword',
+										bitfield: '128',
+										effect:
+											'Full spirit bar buff effect increased (from +10 attack to +40 attack)',
+									},
+									{
+										id: 'Hammer',
+										weapon: 'Hammer',
+										bitfield: '4',
+										effect:
+											'x1.5 Stun damage. Synergizes well with Sigil and Caravan Skills.',
+									},
+									{
+										id: 'Hunting Horn',
+										weapon: 'Hunting Horn',
+										bitfield: '256',
+										effect:
+											'x2 Song duration. Synergizes well with Flute Expert.',
+									},
+									{
+										id: 'Lance',
+										weapon: 'Lance',
+										bitfield: '8',
+										effect:
+											'Guard Skill goes up by 1 level. Grants Reflect+3. Does not work with Reflect Up nor Guard Up.',
+									},
+									{
+										id: 'Gunlance',
+										weapon: 'Gunlance',
+										bitfield: '512',
+										effect: 'x1.5 Wyvern Fire and Shelling Damage.',
+									},
+
+									{
+										id: 'Tonfa',
+										weapon: 'Tonfa',
+										bitfield: '2048',
+										effect:
+											'All Ryuuki finisher (i.e. explosion) effects buffed. Head: KO duration from 20s to 30s. Tail: Bleeding 1.5x damage. Body: Sharpness return from 15 to 20. Gunner Attack Up from 25 to 50.',
+									},
+									{
+										id: 'Switch Axe F',
+										weapon: 'Switch Axe F',
+										bitfield: '4096',
+										effect:
+											'Increases Phial Meter Recovery by primary recovery mechanic (either by reloading or guarding)',
+									},
+									{
+										id: 'Magnet Spike',
+										weapon: 'Magnet Spike',
+										bitfield: '8192',
+										effect:
+											'Increases Pin finisher multiplier by 1.25x (from 600 motion value to 750 motion value). x1.1 Cutting damage to the tail in cutting mode. x1.3 Stun value in impact mode.',
+									},
+									{
+										id: 'Light Bowgun',
+										weapon: 'Light Bowgun',
+										effect:
+											'+0.1x Damage increased at critical distance. x1.2 Status damage.',
+										bitfield: '32',
+									},
+
+									{
+										id: 'Heavy Bowgun',
+										weapon: 'Heavy Bowgun',
+										effect: '+0.1x Damage increased at critical distance.',
+										bitfield: '2',
+									},
+									{
+										id: 'Bow',
+										weapon: 'Bow',
+										effect:
+											'x0.85 Charge time. Synergizes well with Auto-Reload.',
+										bitfield: '1024',
+									},
+								])}
+							/>
+						</div>
+					</Toolbar>
+					<span slot="title">
+						<div class="data-table-title">
+							<div>Active Feature</div>
+						</div>
+					</span>
+					<svelte:fragment slot="cell" let:cell>
+						{#if cell.key === 'weapon'}
+							<InlineTooltip
+								text={cell.value}
+								tooltip={'Weapon'}
+								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+							/>
+						{:else}
+							{cell.value}
+						{/if}
+					</svelte:fragment>
+				</DataTable>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Sharpness" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Guild Poogie" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Armor Colors" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Diva Prayer Gems" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Guild Food" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Bento" />
+		<div>
+			<p>
+				Lunchboxes (or Bentos) are buffs that you set at the quest counter menu,
+				right before embarking on a quest.
+			</p>
+			<p>You can pack a Bento at the appropiate NPC:</p>
+			<ul>
+				<li>The dedicated food store in town.</li>
+				<li>The dedicated food store in the caravan area.</li>
+				<li>The Guild Store Cat in the Guild Hall.</li>
+			</ul>
+
+			<section>
+				<SectionHeading level={3} title="Recommended Bento" />
+				<div class="bento-table">
+					<DataTable
+						sortable
+						zebra
+						size="short"
+						headers={[
+							{ key: 'ingredient1', value: 'Ingredient 1', minWidth: '1rem' },
+							{ key: 'ingredient2', value: 'Ingredient 2', minWidth: '1rem' },
+							{ key: 'dish', value: 'Dish', minWidth: '1rem' },
+							{ key: 'health', value: 'Health', minWidth: '1rem' },
+							{ key: 'stamina', value: 'Stamina', minWidth: '1rem' },
+							{ key: 'attack', value: 'Attack', minWidth: '1rem' },
+							{ key: 'defense', value: 'Defense', minWidth: '1rem' },
+						]}
+						rows={bentoSectionValue}
+						><Toolbar
+							><div class="toolbar">
+								<Dropdown
+									titleText="Bento For Armor Skill"
+									bind:selectedId={bentoSection}
+									items={bentoSectionNames}
+								/>
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray(bentoSectionValue)}
+								/>
+							</div>
+						</Toolbar>
+						<span slot="title">
+							<div class="data-table-title">
+								<div>Recommended Bento</div>
+							</div>
+						</span>
+						<svelte:fragment slot="cell" let:cell>
+							{#if cell.key === 'health' || cell.key === 'stamina' || cell.key === 'attack' || cell.key === 'defense'}
+								<span
+									style={cell.value.includes('-')
+										? 'color: var(--ctp-red)'
+										: ''}>{cell.value}</span
+								>
+							{:else}
+								{cell.value}
+							{/if}
+						</svelte:fragment>
+					</DataTable>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={3} title="Food types and locations" />
+				<div>
+					<p>Guild Cat Store:</p>
+					<ul>
+						<li>
+							<InlineTooltip
+								text="Spirit Mushrooms"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Orange')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Mushroom')?.icon}
+							/>
+						</li>
+						<li>
+							<InlineTooltip
+								text="Frost Tomatoes"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Vegetable')?.icon}
+							/>
+						</li>
+						<li>
+							<InlineTooltip
+								text="Pugi Crackers"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Scale')?.icon}
+							/>
+						</li>
+					</ul>
+					<p>Lunchbox NPC:</p>
+					<ul>
+						<li>
+							<InlineTooltip
+								text="Hot Oil"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+							/>
+						</li>
+						<li>
+							<InlineTooltip
+								text="Power Lard"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+							/>
+						</li>
+						<li>
+							<InlineTooltip
+								text="Fist Rice"
+								tooltip="Item"
+								icon={ItemIcons.find((e) => e.name === 'Seed')?.icon}
+							/>
+						</li>
+						<li>
+							<InlineTooltip
+								text="Pepper Bug"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Blue')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Bug')?.icon}
+							/>
+						</li>
+						<li>
+							<InlineTooltip
+								text="Round Egg"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Egg')?.icon}
+							/>
+						</li>
+						<li>
+							<InlineTooltip
+								text="Predator Honey (Rarely Available)"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+							/>
+						</li>
+					</ul>
+					<p>Town General Store:</p>
+					<ul>
+						<li>
+							<InlineTooltip
+								text="Ancient Bean"
+								tooltip="Item"
+								icon={ItemIcons.find((e) => e.name === 'Seed')?.icon}
+							/>
+						</li>
+						<li>
+							<InlineTooltip
+								text="Gold Extract"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+							/>
+						</li>
+					</ul>
+					<p>Pugi Farm General Store Lv3:</p>
+					<ul>
+						<li>
+							<InlineTooltip
+								text="Predator Honey"
+								tooltip="Item"
+								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
+								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+							/>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Exotics" />
+		<div>
+			<p>
+				Only 1 armor piece is needed to activate the armor skill. All weapons
+				give Speed Eating. Each Exotic monster has a set of associated G Finesse
+				weapon.
+			</p>
+			<div class="exotics-table">
+				<DataTable
+					sortable
+					zebra
+					size="short"
+					headers={[
+						{ key: 'name', value: 'Name', minWidth: '1rem' },
+						{ key: 'armorSkill', value: 'Armor Skill', minWidth: '1rem' },
+					]}
+					rows={[
+						{
+							id: 'Zinogre',
+							armorSkill: 'Thunder Attack (Large)',
+							name: 'Zinogre',
+						},
+						{
+							id: 'Deviljho',
+							armorSkill: 'Starving Wolf+2',
+							name: 'Deviljho',
+						},
+						{
+							id: 'Brachydios',
+							armorSkill: 'Bomber',
+							name: 'Brachydios',
+						},
+
+						{
+							id: 'Barioth',
+							armorSkill: 'Ice Attack (Large)',
+							name: 'Barioth',
+						},
+						{
+							id: 'Uragaan',
+							armorSkill: 'Guard+2 / Ammo Combiner',
+							name: 'Uragaan',
+						},
+						{
+							id: 'Nargacuga',
+							armorSkill: 'Evasion+2',
+							name: 'Nargacuga',
+						},
+						{
+							id: 'Stygian Zinogre',
+							armorSkill: 'Dragon Attack (Large)',
+							name: 'Stygian Zinogre',
+						},
+						{
+							id: 'Gore Magala',
+							armorSkill: 'Focus+2',
+							name: 'Gore Magala',
+						},
+						{
+							id: 'Shagaru Magala',
+							armorSkill: 'Status Immunity (Myriad)',
+							name: 'Shagaru Magala',
+						},
+						{
+							id: 'Amatsu',
+							armorSkill: 'Water Attack (Large)',
+							name: 'Amatsu',
+						},
+						{
+							id: 'Seregios',
+							armorSkill: 'Critical Eye+5',
+							name: 'Seregios',
+						},
+					]}
+					><Toolbar
+						><div class="toolbar">
+							<CopyButton
+								iconDescription={'Copy as CSV'}
+								text={getCSVFromArray([
+									{
+										id: 'Zinogre',
+										armorSkill: 'Thunder Attack (Large)',
+										name: 'Zinogre',
+									},
+									{
+										id: 'Deviljho',
+										armorSkill: 'Starving Wolf+2',
+										name: 'Deviljho',
+									},
+									{
+										id: 'Brachydios',
+										armorSkill: 'Bomber',
+										name: 'Brachydios',
+									},
+
+									{
+										id: 'Barioth',
+										armorSkill: 'Ice Attack (Large)',
+										name: 'Barioth',
+									},
+									{
+										id: 'Uragaan',
+										armorSkill: 'Guard+2 / Ammo Combiner',
+										name: 'Uragaan',
+									},
+									{
+										id: 'Nargacuga',
+										armorSkill: 'Evasion+2',
+										name: 'Nargacuga',
+									},
+									{
+										id: 'Stygian Zinogre',
+										armorSkill: 'Dragon Attack (Large)',
+										name: 'Stygian Zinogre',
+									},
+									{
+										id: 'Gore Magala',
+										armorSkill: 'Focus+2',
+										name: 'Gore Magala',
+									},
+									{
+										id: 'Shagaru Magala',
+										armorSkill: 'Status Immunity (Myriad)',
+										name: 'Shagaru Magala',
+									},
+									{
+										id: 'Amatsu',
+										armorSkill: 'Water Attack (Large)',
+										name: 'Amatsu',
+									},
+									{
+										id: 'Seregios',
+										armorSkill: 'Critical Eye+5',
+										name: 'Seregios',
+									},
+								])}
+							/>
+						</div>
+					</Toolbar>
+					<span slot="title">
+						<div class="data-table-title">
+							<div>Exotic Skills</div>
+						</div>
+					</span>
+					<svelte:fragment slot="cell" let:cell>
+						{#if cell.key === 'name'}
+							<InlineTooltip
+								icon={MonsterIcons.find((e) => e.name === cell.value)?.icon ??
+									''}
+								iconType="file"
+								tooltip={cell.value}
+								text={cell.value}
+							/>
+						{:else}
+							{cell.value}
+						{/if}
+					</svelte:fragment>
+				</DataTable>
+			</div>
+		</div>
 	</section>
 
 	<section>
 		<SectionHeading level={2} title="Origin" />
-		<div></div>
+		<div>
+			<p>
+				Origin monsters are natural evolutions of the Gou monsters. These are
+				required to upgrade Gou armors and weapons beyond G Supremacy level.
+			</p>
+			<div class="origins-table">
+				<DataTable
+					sortable
+					zebra
+					size="short"
+					headers={[
+						{ key: 'weapon', value: 'Weapon', minWidth: '1rem' },
+						{ key: 'name', value: 'Name', minWidth: '1rem' },
+						{ key: 'armorSkill', value: 'Armor Skill', minWidth: '1rem' },
+						{ key: 'monster', value: 'Supremacy Monster', minWidth: '1rem' },
+					]}
+					rows={[
+						{
+							id: '1',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Great Sword',
+							name: 'Varusaburosu GS',
+							monster: 'Teostra',
+						},
+						{
+							id: '2',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Long Sword',
+							name: 'Teostra LS',
+							monster: 'Teostra',
+						},
+						{
+							id: '3',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Sword and Shield',
+							name: 'Varusaburosu SnS',
+							monster: 'Aruganosu / Goruganosu',
+						},
+						{
+							id: '4',
+							armorSkill: 'Exploit Weakness',
+							weapon: 'Dual Swords',
+							name: 'Meraginasu DS',
+							monster: 'Teostra',
+						},
+						{
+							id: '5',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Dual Swords',
+							name: 'Gureadomosu DS',
+							monster: 'Doragyurosu',
+						},
+						{
+							id: '6',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Hammer',
+							name: 'Varusaburosu Hammer',
+							monster: 'Teostra',
+						},
+						{
+							id: '7',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Hunting Horn',
+							name: 'Poborubarumu HH',
+							monster: 'Doragyurosu',
+						},
+						{
+							id: '8',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Lance',
+							name: 'Varusaburosu Lance',
+							monster: 'Teostra',
+						},
+						{
+							id: '9',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Lance',
+							name: 'Varusaburosu Lance',
+							monster: 'Aruganosu / Goruganosu',
+						},
+						{
+							id: '10',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Gunlance',
+							name: 'Poborubarumu GL',
+							monster: 'Teostra',
+						},
+						{
+							id: '11',
+							armorSkill: 'Exploit Weakness',
+							weapon: 'Tonfa',
+							name: 'Meraginasu Tonfa',
+							monster: 'Teostra',
+						},
+						{
+							id: '12',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Tonfa',
+							name: 'Gureadomosu Tonfa',
+							monster: 'Teostra',
+						},
+						{
+							id: '13',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Switch Axe F',
+							name: 'Varusaburosu Swaxe',
+							monster: 'Aruganosu / Goruganosu',
+						},
+						{
+							id: '14',
+							armorSkill: 'Exploit Weakness',
+							weapon: 'Light Bowgun',
+							name: 'Toa Tesukatora LBG',
+							monster: 'Unknown',
+						},
+						{
+							id: '15',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Light Bowgun',
+							name: 'Teostra LBG',
+							monster: 'Pariapuria',
+						},
+						{
+							id: '16',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Heavy Bowgun',
+							name: 'Varusaburosu HBG',
+							monster: 'Aruganosu / Goruganosu',
+						},
+						{
+							id: '17',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Bow',
+							name: 'Varusaburosu Bow',
+							monster: 'Pariapuria',
+						},
+						{
+							id: '18',
+							armorSkill: 'Vampirism+2',
+							weapon: 'Bow',
+							name: 'Poborubarumu Bow',
+							monster: 'Pariapuria',
+						},
+					]}
+					><Toolbar
+						><div class="toolbar">
+							<CopyButton
+								iconDescription={'Copy as CSV'}
+								text={getCSVFromArray([
+									{
+										id: '1',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Great Sword',
+										name: 'Varusaburosu GS',
+										monster: 'Teostra',
+									},
+									{
+										id: '2',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Long Sword',
+										name: 'Teostra LS',
+										monster: 'Teostra',
+									},
+									{
+										id: '3',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Sword and Shield',
+										name: 'Varusaburosu SnS',
+										monster: 'Aruganosu / Goruganosu',
+									},
+									{
+										id: '4',
+										armorSkill: 'Exploit Weakness',
+										weapon: 'Dual Swords',
+										name: 'Meraginasu DS',
+										monster: 'Teostra',
+									},
+									{
+										id: '5',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Dual Swords',
+										name: 'Gureadomosu DS',
+										monster: 'Doragyurosu',
+									},
+									{
+										id: '6',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Hammer',
+										name: 'Varusaburosu Hammer',
+										monster: 'Teostra',
+									},
+									{
+										id: '7',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Hunting Horn',
+										name: 'Poborubarumu HH',
+										monster: 'Doragyurosu',
+									},
+									{
+										id: '8',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Lance',
+										name: 'Varusaburosu Lance',
+										monster: 'Teostra',
+									},
+									{
+										id: '9',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Lance',
+										name: 'Varusaburosu Lance',
+										monster: 'Aruganosu / Goruganosu',
+									},
+									{
+										id: '10',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Gunlance',
+										name: 'Poborubarumu GL',
+										monster: 'Teostra',
+									},
+									{
+										id: '11',
+										armorSkill: 'Exploit Weakness',
+										weapon: 'Tonfa',
+										name: 'Meraginasu Tonfa',
+										monster: 'Teostra',
+									},
+									{
+										id: '12',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Tonfa',
+										name: 'Gureadomosu Tonfa',
+										monster: 'Teostra',
+									},
+									{
+										id: '13',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Switch Axe F',
+										name: 'Varusaburosu Swaxe',
+										monster: 'Aruganosu / Goruganosu',
+									},
+									{
+										id: '14',
+										armorSkill: 'Exploit Weakness',
+										weapon: 'Light Bowgun',
+										name: 'Toa Tesukatora LBG',
+										monster: 'UNKNOWN',
+									},
+									{
+										id: '15',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Light Bowgun',
+										name: 'Teostra LBG',
+										monster: 'Pariapuria',
+									},
+									{
+										id: '16',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Heavy Bowgun',
+										name: 'Varusaburosu HBG',
+										monster: 'Aruganosu / Goruganosu',
+									},
+									{
+										id: '17',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Bow',
+										name: 'Varusaburosu Bow',
+										monster: 'Pariapuria',
+									},
+									{
+										id: '18',
+										armorSkill: 'Vampirism+2',
+										weapon: 'Bow',
+										name: 'Poborubarumu Bow',
+										monster: 'Pariapuria',
+									},
+								])}
+							/>
+						</div>
+					</Toolbar>
+					<span slot="title">
+						<div class="data-table-title">
+							<div>Recommended Origin Weapons</div>
+						</div>
+					</span>
+					<svelte:fragment slot="cell" let:cell>
+						{#if cell.key === 'monster'}
+							<InlineTooltip
+								icon={MonsterIcons.find((e) => e.name === cell.value)?.icon ??
+									''}
+								iconType="file"
+								tooltip={cell.value}
+								text={cell.value}
+							/>
+						{:else if cell.key === 'weapon'}
+							<InlineTooltip
+								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon ??
+									''}
+								tooltip={cell.value}
+								text={cell.value}
+							/>
+						{:else}
+							{cell.value}
+						{/if}
+					</svelte:fragment>
+				</DataTable>
+			</div>
+		</div>
 	</section>
 
 	<section>
 		<SectionHeading level={2} title="Burst" />
-		<div></div>
+		<div>
+			<p>
+				Burst monsters are natural evolutions of the Gou monsters. These are
+				required to upgrade Gou armors and weapons beyond G Supremacy level.
+			</p>
+		</div>
 	</section>
 
 	<section>
@@ -6741,7 +7783,7 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Ailments" />
-		<div>
+		<section>
 			<SectionHeading level={3} title="Monster Status Immunities" />
 			<div>
 				<div class="datatable-container">
@@ -6751,163 +7793,103 @@ does not get multiplied by horn */
 						size="short"
 						headers={[
 							{ key: 'name', value: 'Name', minWidth: '1rem' },
-							{ key: 'poison', value: 'Poison', minWidth: '1rem' },
-							{ key: 'paralysis', value: 'Paralysis', minWidth: '1rem' },
-							{ key: 'sleep', value: 'Sleep', minWidth: '1rem' },
-							{ key: 'blast', value: 'Blast', minWidth: '1rem' },
+							{ key: 'immunities', value: 'Immunities', minWidth: '1rem' },
 						]}
 						rows={[
 							{
 								id: '1',
-								poison: '',
-								paralysis: '✅',
-								sleep: '',
-								blast: '',
+								immunities: 'Paralysis',
 								name: 'Kirin',
 							},
 							{
 								id: '2',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Poison,Paralysis,Sleep',
 								name: 'Lao-Shan Lung',
 							},
 							{
 								id: '3',
-								poison: '✅',
-								paralysis: '',
-								sleep: '',
-								blast: '',
+								immunities: 'Poison',
 								name: 'Yian Garuga',
 							},
 							{
 								id: '4',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Poison,Paralysis,Sleep',
 								name: 'Shen Gaoren',
 							},
 							{
 								id: '5',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Poison,Paralysis,Sleep',
 								name: 'Yama Tsukami',
 							},
 							{
 								id: '6',
-								poison: '✅',
-								paralysis: '',
-								sleep: '',
-								blast: '',
+								immunities: 'Poison',
 								name: 'Espinas',
 							},
 							{
 								id: '7',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Poison,Paralysis,Sleep',
 								name: 'Akura Vashimu',
 							},
 
 							{
 								id: '8',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Poison,Paralysis,Sleep',
 								name: 'Akura Jebia',
 							},
 							{
 								id: '9',
-								poison: '',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Paralysis,Sleep',
 								name: 'Berukyurosu',
 							},
 							{
 								id: '10',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Poison,Paralysis,Sleep',
 								name: 'Pariapuria',
 							},
 							{
 								id: '11',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '✅',
+								immunities: 'Poison,Paralysis,Sleep,Blast',
 								name: 'Raviente',
 							},
 							{
 								id: '12',
-								poison: '',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Paralysis,Sleep',
 								name: 'Doragyurosu',
 							},
 							{
 								id: '13',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '',
-								blast: '',
+								immunities: 'Poison,Paralysis',
 								name: 'Baruragaru',
 							},
 							{
 								id: '14',
-								poison: '',
-								paralysis: '',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Sleep',
 								name: 'Inagami',
 							},
 							{
 								id: '15',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Poison,Paralysis,Sleep',
 								name: 'Duremudira',
 							},
 							{
 								id: '16',
-								poison: '',
-								paralysis: '',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Sleep',
 								name: 'Varusaburosu',
 							},
 							{
 								id: '17',
-								poison: '✅',
-								paralysis: '',
-								sleep: '',
-								blast: '',
+								immunities: 'Poison',
 								name: 'Gasurabazura',
 							},
 							{
 								id: '18',
-								poison: '✅',
-								paralysis: '✅',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Poison,Paralysis,Sleep',
 								name: 'Yama Kurai',
 							},
 							{
 								id: '19',
-								poison: '',
-								paralysis: '',
-								sleep: '✅',
-								blast: '',
+								immunities: 'Sleep',
 								name: 'Keoaruboru',
 							},
 						]}
@@ -6918,155 +7900,98 @@ does not get multiplied by horn */
 									text={getCSVFromArray([
 										{
 											id: '1',
-											poison: '',
-											paralysis: '✅',
-											sleep: '',
-											blast: '',
+											immunities: 'Paralysis',
 											name: 'Kirin',
 										},
 										{
 											id: '2',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Poison,Paralysis,Sleep',
 											name: 'Lao-Shan Lung',
 										},
 										{
 											id: '3',
-											poison: '✅',
-											paralysis: '',
-											sleep: '',
-											blast: '',
-											name: 'Yian Gagura',
+											immunities: 'Poison',
+											name: 'Yian Garuga',
 										},
 										{
 											id: '4',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Poison,Paralysis,Sleep',
 											name: 'Shen Gaoren',
 										},
 										{
 											id: '5',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Poison,Paralysis,Sleep',
 											name: 'Yama Tsukami',
 										},
 										{
 											id: '6',
-											poison: '✅',
-											paralysis: '',
-											sleep: '',
-											blast: '',
+											immunities: 'Poison',
 											name: 'Espinas',
 										},
 										{
 											id: '7',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Poison,Paralysis,Sleep',
 											name: 'Akura Vashimu',
 										},
 
 										{
 											id: '8',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Poison,Paralysis,Sleep',
 											name: 'Akura Jebia',
 										},
 										{
 											id: '9',
-											poison: '',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Paralysis,Sleep',
 											name: 'Berukyurosu',
 										},
 										{
 											id: '10',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Poison,Paralysis,Sleep',
 											name: 'Pariapuria',
 										},
 										{
 											id: '11',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '✅',
+											immunities: 'Poison,Paralysis,Sleep,Blast',
 											name: 'Raviente',
 										},
 										{
 											id: '12',
-											poison: '',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Paralysis,Sleep',
 											name: 'Doragyurosu',
 										},
 										{
 											id: '13',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '',
-											blast: '',
+											immunities: 'Poison,Paralysis',
 											name: 'Baruragaru',
 										},
 										{
 											id: '14',
-											poison: '',
-											paralysis: '',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Sleep',
 											name: 'Inagami',
 										},
 										{
 											id: '15',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Poison,Paralysis,Sleep',
 											name: 'Duremudira',
 										},
 										{
 											id: '16',
-											poison: '',
-											paralysis: '',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Sleep',
 											name: 'Varusaburosu',
 										},
 										{
 											id: '17',
-											poison: '✅',
-											paralysis: '',
-											sleep: '',
-											blast: '',
+											immunities: 'Poison',
 											name: 'Gasurabazura',
 										},
 										{
 											id: '18',
-											poison: '✅',
-											paralysis: '✅',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Poison,Paralysis,Sleep',
 											name: 'Yama Kurai',
 										},
 										{
 											id: '19',
-											poison: '',
-											paralysis: '',
-											sleep: '✅',
-											blast: '',
+											immunities: 'Sleep',
 											name: 'Keoaruboru',
 										},
 									])}
@@ -7086,6 +8011,15 @@ does not get multiplied by horn */
 									iconType={'file'}
 									text={cell.value}
 								/>
+							{:else if cell.key === 'immunities'}
+								{#each getStatusArray(cell.value) as status}
+									<InlineTooltip
+										icon={StatusIcons.find((e) => e.name === status)?.icon ??
+											''}
+										tooltip={'Status'}
+										text={`${status}`}
+									/>
+								{/each}
 							{:else}
 								{cell.value}
 							{/if}
@@ -7098,7 +8032,7 @@ does not get multiplied by horn */
 				</p>
 				<p>Only support can inflict poison to Raviente.</p>
 			</div>
-		</div>
+		</section>
 	</section>
 
 	<section>
@@ -7565,12 +8499,13 @@ does not get multiplied by horn */
 		grid-area: ice-age-table-hits;
 	}
 
-	.ice-age-section,
-	.elements-section {
-		margin-bottom: 6rem;
+	.elements-table,
+	.origins-table,
+	.exotics-table {
+		margin-top: 2rem;
 	}
 
-	.elements-table {
+	.datatable-bottom {
 		margin-top: 2rem;
 	}
 
@@ -7702,5 +8637,17 @@ does not get multiplied by horn */
 	.datatable-container {
 		margin-top: 2rem;
 		margin-bottom: 2rem;
+	}
+
+	.active-feature-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.active-feature-description {
+		display: flex;
+		flex-direction: column; /* Stacks children vertically */
+		gap: 2rem;
 	}
 </style>

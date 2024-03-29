@@ -179,6 +179,9 @@ export type FrontierWeapon = {
 	bloatAttackMultiplier: FrontierWeaponMultiplier;
 	statusAssaultPoison: number;
 	statusAssaultParalysis: number;
+	smallIcon: any;
+	smallIconRed: any;
+	activeFeatureValue: number;
 	// TODO
 };
 export type FrontierEquipmentSkillPoints = [
@@ -592,6 +595,21 @@ export type FrontierMotionValue = {
 export type FrontierMotionValueSection = {
 	name: string;
 	motionValues: FrontierMotionValue[];
+};
+
+export type FrontierBento = {
+	name: 'Vigorous' | 'Starving Wolf' | 'Adrenaline' | 'Combo';
+	values: [
+		{
+			ingredient1: string;
+			ingredient2: string;
+			dish: string;
+			health: string;
+			stamina: string;
+			attack: string;
+			defense: string;
+		},
+	];
 };
 
 export type FrontierMotionValues = {
