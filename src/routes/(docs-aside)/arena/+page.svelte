@@ -77,6 +77,9 @@
 	import { ScaleTypes, type LineChartOptions } from '@carbon/charts-svelte';
 	import type { LineChart } from '@carbon/charts-svelte';
 	import { breakpointObserver } from 'carbon-components-svelte';
+	import IceAgeStage1Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
+	import IceAgeStage2Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
+	import IceAgeStage3Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
@@ -877,13 +880,35 @@
 		}
 	}
 
+	function getIceAgeAnimation(stage: string) {
+		switch (stage) {
+			case '1':
+				return IceAgeStage1Animation;
+			case '2':
+				return IceAgeStage2Animation;
+			case '3':
+				return IceAgeStage3Animation;
+			default:
+				return IceAgeStage1Animation;
+		}
+	}
+
 	function changeModal(cell: DataTableCell, section: string) {
 		modalOpen = true;
 		modalHeading = cell.value;
-		let motionValue = getMotionValue(inputWeaponType, section, cell.value);
 		modalLabel = section || '';
-		modalImage = motionValue.animation || '';
-		modalNotes = motionValue.notes || '';
+
+		switch (section) {
+			case 'Ice Age Stages':
+				modalImage = getIceAgeAnimation(cell.value);
+				modalNotes = '';
+				break;
+			default:
+				let motionValue = getMotionValue(inputWeaponType, section, cell.value);
+				modalImage = motionValue.animation || '';
+				modalNotes = motionValue.notes || '';
+				break;
+		}
 	}
 
 	function hasAnimation(
@@ -5661,10 +5686,14 @@ does not get multiplied by horn */
 					<DataTable
 						sortable
 						zebra
-						size="short"
+						size="medium"
 						useStaticWidth
 						headers={[
-							{ key: 'weapon', value: 'Weapon', minWidth: '2rem' },
+							{
+								key: 'weapon',
+								value: 'Weapon',
+								minWidth: '1rem',
+							},
 							{ key: 'stage1', value: 'Stage 1', minWidth: '1rem' },
 							{ key: 'stage2', value: 'Stage 2', minWidth: '1rem' },
 							{
@@ -5711,7 +5740,7 @@ does not get multiplied by horn */
 							},
 							{
 								id: 'ls',
-								weapon: 'Long Sowrd',
+								weapon: 'Long Sword',
 								stage1: '1',
 								stage2: '12',
 								stage3: '26',
@@ -5778,7 +5807,107 @@ does not get multiplied by horn */
 							><div class="toolbar">
 								<CopyButton
 									iconDescription={'Copy as CSV'}
-									text={getCSVFromArray(sharedMotionValues)}
+									text={getCSVFromArray([
+										{
+											id: 'gs',
+											weapon: 'Great Sword',
+											stage1: '1',
+											stage2: '8',
+											stage3: '17',
+										},
+										{
+											id: 'ha',
+											weapon: 'Hammer',
+											stage1: '1',
+											stage2: '9',
+											stage3: '21',
+										},
+										{
+											id: 'hh',
+											weapon: 'Hunting Horn',
+											stage1: '1',
+											stage2: '9',
+											stage3: '21',
+										},
+										{
+											id: 'la',
+											weapon: 'Lance',
+											stage1: '1',
+											stage2: '12',
+											stage3: '26',
+										},
+										{
+											id: 'gl',
+											weapon: 'Gunlance',
+											stage1: '1',
+											stage2: '12',
+											stage3: '26',
+										},
+										{
+											id: 'ls',
+											weapon: 'Long Sword',
+											stage1: '1',
+											stage2: '12',
+											stage3: '26',
+										},
+										{
+											id: 'saf',
+											weapon: 'Switch Axe F',
+											stage1: '1',
+											stage2: '12',
+											stage3: '26',
+										},
+										{
+											id: 'hbg',
+											weapon: 'Heavy Bowgun',
+											stage1: '1',
+											stage2: '12',
+											stage3: '26',
+										},
+
+										{
+											id: 'to',
+											weapon: 'Tonfa',
+											stage1: '1',
+											stage2: '17',
+											stage3: '38',
+										},
+										{
+											id: 'lbg',
+											weapon: 'Light Bowgun',
+											stage1: '1',
+											stage2: '17',
+											stage3: '38',
+										},
+										{
+											id: 'bow',
+											weapon: 'Bow',
+											stage1: '1',
+											stage2: '17',
+											stage3: '38',
+										},
+										{
+											id: 'sns',
+											weapon: 'Sword and Shield',
+											stage1: '1',
+											stage2: '17',
+											stage3: '38',
+										},
+										{
+											id: 'ds',
+											weapon: 'Dual Swords',
+											stage1: '1',
+											stage2: '32',
+											stage3: '75',
+										},
+										{
+											id: 'ms',
+											weapon: 'Magnet Spike',
+											stage1: '1',
+											stage2: 'Unknown',
+											stage3: 'Unknown',
+										},
+									])}
 								/>
 							</div>
 						</Toolbar>
@@ -5787,6 +5916,17 @@ does not get multiplied by horn */
 								<div>Ice Age Required Hits</div>
 							</div>
 						</span>
+						<svelte:fragment slot="cell" let:cell>
+							{#if cell.key === 'weapon'}
+								<InlineTooltip
+									icon={getWeaponIcon(cell.value)}
+									text={cell.value}
+									tooltip="Weapon">{cell.value}</InlineTooltip
+								>
+							{:else}
+								{cell.value}
+							{/if}
+						</svelte:fragment>
 					</DataTable>
 				</div>
 				<div class="ice-age-table-stages-container">
@@ -5832,7 +5972,29 @@ does not get multiplied by horn */
 								><div class="toolbar">
 									<CopyButton
 										iconDescription={'Copy as CSV'}
-										text={getCSVFromArray(sharedMotionValues)}
+										text={getCSVFromArray([
+											{
+												id: '1',
+												stage: '1',
+												formula: '0.042 x True Raw x DefRate',
+												duration: '11-18s',
+												downgradeDuration: '7s',
+											},
+											{
+												id: '2',
+												stage: '2',
+												formula: '0.098 x True Raw x DefRate',
+												duration: '15-25s',
+												downgradeDuration: '10s',
+											},
+											{
+												id: '3',
+												stage: '3',
+												formula: '0.14 x True Raw x DefRate',
+												duration: '6-9s',
+												downgradeDuration: '-',
+											},
+										])}
 									/>
 								</div>
 							</Toolbar>
@@ -5841,6 +6003,18 @@ does not get multiplied by horn */
 									<div>Ice Age Stages</div>
 								</div>
 							</span>
+							<svelte:fragment slot="cell" let:cell>
+								{#if cell.key === 'stage'}
+									<Button
+										on:click={() => changeModal(cell, 'Ice Age Stages')}
+										size="small"
+										icon={Image}
+										kind="ghost">{cell.value}</Button
+									>
+								{:else}
+									{cell.value}
+								{/if}
+							</svelte:fragment>
 						</DataTable>
 					</div>
 					<div class="ice-age-descriptions">
@@ -6041,7 +6215,7 @@ does not get multiplied by horn */
 					/>
 				</div>
 				<div>
-					Total: {iceAgeCalculatorTotalDamagePerSecond}
+					Total DPS: {iceAgeCalculatorTotalDamagePerSecond}
 				</div>
 			</div>
 		</div>
