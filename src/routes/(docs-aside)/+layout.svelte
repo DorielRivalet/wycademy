@@ -40,11 +40,9 @@
 		easings,
 		motion,
 	} from '@carbon/motion';
-	import { OverflowMenu, OverflowMenuItem } from 'carbon-components-svelte';
-	import { breakpointObserver } from 'carbon-components-svelte';
+	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 
 	const breakpointSize = breakpointObserver();
-	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
