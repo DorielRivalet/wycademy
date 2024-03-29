@@ -2849,11 +2849,19 @@ does not get multiplied by horn */
 	let inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw = 0;
 
 	function getZenithSigilTrueRaw(value: number) {
-		return 20 * value + 30;
+		if (value > 0) {
+			return 20 * value + 30;
+		} else {
+			return 0;
+		}
 	}
 
 	function getAOESigilTrueRaw(value: number, hunters: string) {
-		return (25 + value * 5) * Number.parseInt(hunters);
+		if (value > 0) {
+			return (25 + value * 5) * Number.parseInt(hunters);
+		} else {
+			return 0;
+		}
 	}
 
 	let inputNumberIceAgeCalculatorSRTrueRaw = 0;
@@ -2862,8 +2870,24 @@ does not get multiplied by horn */
 	let inputIceAgeCalculatorStage = 'Stage 1';
 	let inputIceAgeCalculatorHunters = '1';
 	let inputNumberIceAgeCalculatorMonsterDefenseRate = 1;
+	let inputNumberIceAgeCalculatorMonsterTrueHP = 30_000;
 
-	$: iceAgeCalculatorTotalDamagePerSecond = Math.ceil(
+	$: iceAgeCalculatorSecondsNeeded =
+		iceAgeCalculatorDamagePerSecond > 0
+			? Math.floor(
+					inputNumberIceAgeCalculatorMonsterTrueHP /
+						iceAgeCalculatorDamagePerSecond,
+				)
+			: 'Infinity';
+
+	$: iceAgeCalculatorMaxHPPercentDealt =
+		Math.floor(
+			((iceAgeCalculatorTotalDamage * 100) /
+				inputNumberIceAgeCalculatorMonsterTrueHP) *
+				100,
+		) / 100;
+
+	$: iceAgeCalculatorDamagePerSecond = Math.ceil(
 		getIceAgeBaseMultiplier(inputIceAgeCalculatorStage) *
 			(inputNumberIceAgeCalculatorWeaponTrueRaw +
 				inputNumberIceAgeCalculatorSigil1TrueRaw +
@@ -2878,9 +2902,11 @@ does not get multiplied by horn */
 				inputNumberIceAgeCalculatorSRTrueRaw +
 				getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)) *
 			inputNumberIceAgeCalculatorMonsterDefenseRate *
-			inputNumberIceAgeCalculatorSecondsElapsed *
 			Number.parseInt(inputIceAgeCalculatorHunters),
 	);
+
+	$: iceAgeCalculatorTotalDamage =
+		inputNumberIceAgeCalculatorSecondsElapsed * iceAgeCalculatorDamagePerSecond;
 
 	function getGRankArmorTrueRaw(option: string) {
 		switch (option) {
@@ -6307,11 +6333,22 @@ does not get multiplied by horn */
 					<NumberInput
 						size="sm"
 						step={0.01}
-						min={minimumNumberValue}
-						max={maximumNumberValue}
+						min={0.0001}
+						max={10}
 						bind:value={inputNumberIceAgeCalculatorMonsterDefenseRate}
-						invalidText={invalidNumberValueText}
+						invalidText={'Invalid value'}
 						label={'Monster Defense Rate'}
+					/>
+				</div>
+				<div>
+					<NumberInput
+						size="sm"
+						step={100}
+						min={1}
+						max={maximumNumberValue}
+						bind:value={inputNumberIceAgeCalculatorMonsterTrueHP}
+						invalidText={'Invalid value'}
+						label={'Monster True HP'}
 					/>
 				</div>
 				<div>
@@ -6338,7 +6375,14 @@ does not get multiplied by horn */
 					/>
 				</div>
 				<div>
-					Total DPS: {iceAgeCalculatorTotalDamagePerSecond}
+					Seconds needed: {iceAgeCalculatorSecondsNeeded}
+				</div>
+				<div>
+					Max HP% Dealt: {iceAgeCalculatorMaxHPPercentDealt}
+				</div>
+				<div>
+					Total Damage: {iceAgeCalculatorTotalDamage} ({iceAgeCalculatorDamagePerSecond}
+					DPS)
 				</div>
 			</div>
 		</div>
