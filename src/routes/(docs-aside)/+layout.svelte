@@ -40,6 +40,12 @@
 		easings,
 		motion,
 	} from '@carbon/motion';
+	import { OverflowMenu, OverflowMenuItem } from 'carbon-components-svelte';
+	import { breakpointObserver } from 'carbon-components-svelte';
+
+	const breakpointSize = breakpointObserver();
+	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
+	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -136,7 +142,7 @@
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 
-{#if !tocEnabled}
+{#if !tocEnabled && $breakpointLargerThanMedium}
 	{#if isTocPositionedLeft}
 		<div class="expand-TOC">
 			<Button
@@ -192,43 +198,44 @@
 				blurParams={{ duration: 0 }}
 				hide={!isTocPositionedLeft}
 			>
-				<span slot="title"
-					><div>
-						<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
-							>{'Move right'}</Button
-						>
-						<Button
-							kind="ghost"
-							icon={ViewOff}
-							on:click={onTOCToggleButtonPress}>{'Hide'}</Button
-						>
-					</div>
+				<span slot="title">
+					{#if $breakpointLargerThanMedium}
+						<div>
+							<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
+								>{'Move right'}</Button
+							>
+							<Button
+								kind="ghost"
+								icon={ViewOff}
+								on:click={onTOCToggleButtonPress}>{'Hide'}</Button
+							>
+						</div>
+					{/if}
 					<h2 class="toc-title toc-exclude">On this page</h2></span
 				>
 			</Toc>
 		</div>
-
 		<main>
 			<slot />
 		</main>
-
 		<div class={tocRightClass}>
 			<Toc
 				--toc-overflow="hidden visible"
 				blurParams={{ duration: 0 }}
 				hide={isTocPositionedLeft}
 			>
-				<span slot="title"
-					><div>
-						<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
-							>{'Move left'}</Button
-						>
-						<Button
-							kind="ghost"
-							icon={ViewOff}
-							on:click={onTOCToggleButtonPress}>{'Hide'}</Button
-						>
-					</div>
+				<span slot="title">
+					{#if $breakpointLargerThanMedium}
+						<div>
+							<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
+								>{'Move left'}</Button
+							>
+							<Button
+								kind="ghost"
+								icon={ViewOff}
+								on:click={onTOCToggleButtonPress}>{'Hide'}</Button
+							>
+						</div>{/if}
 					<h2 class="toc-title toc-exclude">On this page</h2></span
 				>
 			</Toc>
@@ -274,11 +281,32 @@
 		flex: 0 0 auto;
 		transition: all motion.$duration-fast-02;
 		transition-timing-function: motion.motion(standard, productive);
-		width: 20vw;
 	}
 
-	.table-of-contents.collapsed {
-		margin-left: -20vw;
+	@media (min-width: 320px) {
+		.table-of-contents {
+			width: auto;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		.table-of-contents {
+			width: 20vw;
+		}
+	}
+
+	@media (min-width: 320px) {
+		.table-of-contents.collapsed {
+			margin-left: -20vw;
+			display: none;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		.table-of-contents.collapsed {
+			margin-left: -20vw;
+			display: auto;
+		}
 	}
 
 	.table-of-contents.collapsed-right {

@@ -146,6 +146,7 @@ duration-slow-02	Background dimming	700ms
 	 --cursor-icon-none: auto;
 	 --cursor-icon-none-pointer: pointer;
 	 --cursor-icon-none-wait: wait;
+	 --toc-mobile-bg: var(--ctp-mantle) !important;
  }
 
  ::view-transition-old(root),

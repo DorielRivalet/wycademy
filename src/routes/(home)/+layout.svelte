@@ -101,7 +101,6 @@
 		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-radius: 0px 0px 10px 10px;
 	}
 
 	.header {
