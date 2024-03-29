@@ -14,6 +14,7 @@ import type {
 	FrontierArmorGRLevel,
 	FrontierArmorLevel,
 	FrontierArmorType,
+	FrontierBento,
 	FrontierBowArcShot,
 	FrontierBowCharge,
 	FrontierBowChargeLevel,
@@ -166,7 +167,7 @@ import IconStatusSleep from '$lib/client/components/frontier/icon/status/Sleep.s
 import IconStatusParalysis from '$lib/client/components/frontier/icon/status/Paralysis.svelte';
 import IconStatusBlast from '$lib/client/components/frontier/icon/status/Blast.svelte';
 
-import IconAilmentBleed from '$lib/client/components/frontier/icon/ailment/Bleed.svelte';
+import IconAilmentBleed from '$lib/client/components/frontier/icon/ailment/Bleed2.svelte';
 import IconAilmentBlind from '$lib/client/components/frontier/icon/ailment/Blind.svelte';
 import IconAilmentCorruptedPoison from '$lib/client/components/frontier/icon/ailment/CorruptedPoison.svelte';
 import IconAilmentCrystal from '$lib/client/components/frontier/icon/ailment/Crystal.svelte';
@@ -582,6 +583,35 @@ import IconRenderMonsterRulingGuanzorumu from '$lib/client/images/monster/render
 import IconRenderMonsterShiftingMiRu from '$lib/client/images/monster/render/shifting_mi_ru.webp';
 import IconRenderMonsterTwinheadRajang from '$lib/client/images/monster/render/hc_rajang.webp';
 
+import GreatSwordIconSmall from '$lib/client/images/weapon/small/small_gs.webp';
+import LongSwordIconSmall from '$lib/client/images/weapon/small/small_ls.webp';
+import DualSwordsIconSmall from '$lib/client/images/weapon/small/small_ds.webp';
+import SwordAndShieldIconSmall from '$lib/client/images/weapon/small/small_sns.webp';
+import HammerIconSmall from '$lib/client/images/weapon/small/small_hammer.webp';
+import HuntingHornIconSmall from '$lib/client/images/weapon/small/small_hh.webp';
+import LanceIconSmall from '$lib/client/images/weapon/small/small_lance.webp';
+import GunlanceIconSmall from '$lib/client/images/weapon/small/small_gl.webp';
+import TonfaIconSmall from '$lib/client/images/weapon/small/small_tonfa.webp';
+import SwitchAxeFIconSmall from '$lib/client/images/weapon/small/small_saf.webp';
+import MagnetSpikeIconSmall from '$lib/client/images/weapon/small/small_ms.webp';
+import BowIconSmall from '$lib/client/images/weapon/small/small_bow.webp';
+import LightBowgunIconSmall from '$lib/client/images/weapon/small/small_lbg.webp';
+import HeavyBowgunIconSmall from '$lib/client/images/weapon/small/small_hbg.webp';
+
+import GreatSwordIconSmallRed from '$lib/client/images/weapon/small/small_gs_red.webp';
+import LongSwordIconSmallRed from '$lib/client/images/weapon/small/small_ls_red.webp';
+import DualSwordsIconSmallRed from '$lib/client/images/weapon/small/small_ds_red.webp';
+import SwordAndShieldIconSmallRed from '$lib/client/images/weapon/small/small_sns_red.webp';
+import HammerIconSmallRed from '$lib/client/images/weapon/small/small_hammer_red.webp';
+import HuntingHornIconSmallRed from '$lib/client/images/weapon/small/small_hh_red.webp';
+import LanceIconSmallRed from '$lib/client/images/weapon/small/small_lance.webp';
+import GunlanceIconSmallRed from '$lib/client/images/weapon/small/small_gl_red.webp';
+import TonfaIconSmallRed from '$lib/client/images/weapon/small/small_tonfa_red.webp';
+import SwitchAxeFIconSmallRed from '$lib/client/images/weapon/small/small_saf_red.webp';
+import MagnetSpikeIconSmallRed from '$lib/client/images/weapon/small/small_ms_red.webp';
+import BowIconSmallRed from '$lib/client/images/weapon/small/small_bow_red.webp';
+import LightBowgunIconSmallRed from '$lib/client/images/weapon/small/small_lbg_red.webp';
+import HeavyBowgunIconSmallRed from '$lib/client/images/weapon/small/small_hbg_red.webp';
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
 The biggest argument in favour of this format over TypeScript’s enum is that it keeps your codebase aligned with the state of JavaScript, and when/if enums are added to JavaScript then you can move to the additional syntax.
@@ -923,7 +953,7 @@ export const ItemIcons: { name: string; icon: any }[] = [
 		icon: OreIconWhite,
 	},
 	{
-		name: 'Ore Special  001',
+		name: 'Ore Special',
 		icon: OreIconSpecial_001,
 	},
 	{
@@ -1632,6 +1662,12 @@ export const MonsterIcons: {
 	},
 	{
 		name: 'UNKNOWN',
+		icon: IconMonsterUNKNOWN,
+		rank: 'G Rank',
+		render: IconRenderMonsterUNKNOWN,
+	},
+	{
+		name: 'Unknown',
 		icon: IconMonsterUNKNOWN,
 		rank: 'G Rank',
 		render: IconRenderMonsterUNKNOWN,
@@ -2393,6 +2429,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Great Sword',
 		class: 'Blademaster',
 		icon: GreatSwordIcon,
+		smallIcon: GreatSwordIconSmall,
+		smallIconRed: GreatSwordIconSmallRed,
+		activeFeatureValue: 1,
 		hiden: 'Sword King',
 		bloatAttackMultiplier: 4.8,
 		statusAssaultPoison: 20,
@@ -2403,6 +2442,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Heavy Bowgun',
 		class: 'Gunner',
 		icon: HeavyBowgunIcon,
+		smallIcon: HeavyBowgunIconSmall,
+		smallIconRed: HeavyBowgunIconSmallRed,
+		activeFeatureValue: 2,
 		hiden: 'Gun Sage',
 		bloatAttackMultiplier: 1.2,
 		statusAssaultPoison: 0,
@@ -2413,6 +2455,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Hammer',
 		class: 'Blademaster',
 		icon: HammerIcon,
+		smallIcon: HammerIconSmall,
+		smallIconRed: HammerIconSmallRed,
+		activeFeatureValue: 4,
 		hiden: 'Blunt Beast',
 		bloatAttackMultiplier: 5.2,
 		statusAssaultPoison: 11,
@@ -2423,6 +2468,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Lance',
 		class: 'Blademaster',
 		icon: LanceIcon,
+		smallIcon: LanceIconSmall,
+		smallIconRed: LanceIconSmallRed,
+		activeFeatureValue: 8,
 		hiden: 'Heavenly Spear',
 		bloatAttackMultiplier: 2.3,
 		statusAssaultPoison: 14,
@@ -2433,6 +2481,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Sword and Shield',
 		class: 'Blademaster',
 		icon: SwordAndShieldIcon,
+		smallIcon: SwordAndShieldIconSmall,
+		smallIconRed: SwordAndShieldIconSmallRed,
+		activeFeatureValue: 16,
 		hiden: 'Sword Saint',
 		bloatAttackMultiplier: 1.4,
 		statusAssaultPoison: 12,
@@ -2443,6 +2494,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Light Bowgun',
 		class: 'Gunner',
 		icon: LightBowgunIcon,
+		smallIcon: LightBowgunIconSmall,
+		smallIconRed: LightBowgunIconSmallRed,
+		activeFeatureValue: 32,
 		hiden: 'Gun Prodigy',
 		bloatAttackMultiplier: 1.2,
 		statusAssaultPoison: 0,
@@ -2453,6 +2507,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Dual Swords',
 		class: 'Blademaster',
 		icon: DualSwordsIcon,
+		smallIcon: DualSwordsIconSmall,
+		smallIconRed: DualSwordsIconSmallRed,
+		activeFeatureValue: 64,
 		hiden: 'Dual Dragon',
 		bloatAttackMultiplier: 1.4,
 		statusAssaultPoison: 10,
@@ -2463,6 +2520,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Long Sword',
 		class: 'Blademaster',
 		icon: LongSwordIcon,
+		smallIcon: LongSwordIconSmall,
+		smallIconRed: LongSwordIconSmallRed,
+		activeFeatureValue: 128,
 		hiden: 'Katana God',
 		bloatAttackMultiplier: 4.8,
 		statusAssaultPoison: 11,
@@ -2473,6 +2533,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Hunting Horn',
 		class: 'Blademaster',
 		icon: HuntingHornIcon,
+		smallIcon: HuntingHornIconSmall,
+		smallIconRed: HuntingHornIconSmallRed,
+		activeFeatureValue: 256,
 		hiden: 'Flamboyant Emperor',
 		bloatAttackMultiplier: 5.2,
 		statusAssaultPoison: 13,
@@ -2483,6 +2546,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Gunlance',
 		class: 'Blademaster',
 		icon: GunlanceIcon,
+		smallIcon: GunlanceIconSmall,
+		smallIconRed: GunlanceIconSmallRed,
+		activeFeatureValue: 512,
 		hiden: 'Cannon Emperor',
 		bloatAttackMultiplier: 2.3,
 		statusAssaultPoison: 10,
@@ -2493,6 +2559,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Bow',
 		class: 'Gunner',
 		icon: BowIcon,
+		smallIcon: BowIconSmall,
+		smallIconRed: BowIconSmallRed,
+		activeFeatureValue: 1024,
 		hiden: 'Bow Demon',
 		bloatAttackMultiplier: 1.2,
 		statusAssaultPoison: 0,
@@ -2503,6 +2572,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Tonfa',
 		class: 'Blademaster',
 		icon: TonfaIcon,
+		smallIcon: TonfaIconSmall,
+		smallIconRed: TonfaIconSmallRed,
+		activeFeatureValue: 2048,
 		hiden: 'Piercing Phoenix',
 		bloatAttackMultiplier: 1.8,
 		statusAssaultPoison: 10,
@@ -2513,6 +2585,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Switch Axe F',
 		class: 'Blademaster',
 		icon: SwitchAxeFIcon,
+		smallIcon: SwitchAxeFIconSmall,
+		smallIconRed: SwitchAxeFIconSmallRed,
+		activeFeatureValue: 4096,
 		hiden: 'Edge Marshal',
 		bloatAttackMultiplier: 5.4,
 		statusAssaultPoison: 11,
@@ -2523,6 +2598,9 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Magnet Spike',
 		class: 'Blademaster',
 		icon: MagnetSpikeIcon,
+		smallIcon: MagnetSpikeIconSmall,
+		smallIconRed: MagnetSpikeIconSmallRed,
+		activeFeatureValue: 8192,
 		hiden: 'Magnetic Star',
 		bloatAttackMultiplier: 5.4,
 		statusAssaultPoison: 13,
@@ -2921,6 +2999,65 @@ export const sharedWeaponMotionValues: FrontierMotionValueSection = {
 		{ name: 'Custom Motion', animation: '', values: '0' },
 	],
 };
+
+export const bentoValues: FrontierBento[] = [
+	{
+		name: 'Vigorous',
+		values: [
+			{
+				ingredient1: 'Rainbow Lettuce',
+				ingredient2: 'Thin Wyvern Cut',
+				dish: 'Sappari Marine',
+				health: '+50',
+				stamina: '+50',
+				attack: '+15',
+				defense: '0',
+			},
+		],
+	},
+	{
+		name: 'Starving Wolf',
+		values: [
+			{
+				ingredient1: 'Bitter Cheese',
+				ingredient2: 'Thin Wyvern Cut',
+				dish: 'Meow Noodle',
+				health: '+50',
+				stamina: '-75',
+				attack: '+15',
+				defense: '0',
+			},
+		],
+	},
+	{
+		name: 'Adrenaline',
+		values: [
+			{
+				ingredient1: 'Queen Parsley',
+				ingredient2: 'Thin Wyvern Cut',
+				dish: 'Melomeloquiche',
+				health: '-60',
+				stamina: '+50',
+				attack: '+15',
+				defense: '0',
+			},
+		],
+	},
+	{
+		name: 'Combo',
+		values: [
+			{
+				ingredient1: 'Dancing Spice',
+				ingredient2: 'Thin Wyvern Cut',
+				dish: 'Dan Soup',
+				health: '-50',
+				stamina: '-50',
+				attack: '+15',
+				defense: '0',
+			},
+		],
+	},
+];
 
 export const weaponMotionValues: FrontierMotionValues[] = [
 	{

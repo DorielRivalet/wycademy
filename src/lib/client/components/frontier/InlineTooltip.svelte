@@ -8,6 +8,11 @@ Shows text next to an icon inline. You can use either a component or a image imp
 	export let tooltip: string;
 	export let iconType: 'component' | 'file' = 'component';
 	export let icon: any = QuestionMarkIconWhite;
+	export let iconColor = '#ffffff';
+
+	let iconProps = {
+		color: iconColor,
+	};
 
 	let open = false;
 </script>
@@ -52,7 +57,7 @@ Shows text next to an icon inline. You can use either a component or a image imp
 				tabindex="0"
 				on:keypress={(e) => open != open}
 			>
-				<svelte:component this={icon} />
+				<svelte:component this={icon} {...iconProps} />
 			</span>
 		{/if}
 

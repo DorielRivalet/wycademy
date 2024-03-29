@@ -80,12 +80,16 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	h4,
 	h5,
 	h6 {
-		margin-top: var(--cds-spacing-07);
+		margin-top: var(--cds-spacing-10);
 	}
 
 	a {
 		color: var(
 			--ctp-text
 		); /* Make the link color inherit from the parent element */
+	}
+
+	hr {
+		margin-bottom: var(--cds-spacing-07);
 	}
 </style>
