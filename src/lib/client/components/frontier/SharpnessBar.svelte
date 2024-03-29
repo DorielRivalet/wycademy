@@ -91,7 +91,7 @@
 			<div
 				style="padding: var(--cds-spacing-03); font-family: var(--font-body); font-size: 1rem;"
 			>
-				{#if popoverOverrideText}
+				{#if popoverOverrideText !== ''}
 					{popoverOverrideText}
 				{:else}
 					{popoverContent}{/if}
