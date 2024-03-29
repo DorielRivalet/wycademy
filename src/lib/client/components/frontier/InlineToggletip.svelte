@@ -7,6 +7,14 @@ Shows text next to an icon inline. You can use either a component or a image imp
 	import InlineToggletipPopover from './InlineToggletipPopover.svelte';
 	import type { PopoverPosition } from '$lib/client/modules/frontier/types';
 	import QuestionMarkIconWhite from '$lib/client/components/frontier/icon/item/Question_Mark_Icon_White.svelte';
+	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
+	import { createEventDispatcher } from 'svelte';
+	import { getTag } from '$lib/client/modules/frontier/functions';
+
+	const dispatch = createEventDispatcher();
+	const breakpointSize = breakpointObserver();
+	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
+
 	/** File: images such as webp or gif. Component: svelte files.*/
 	export let iconType: 'component' | 'file' = 'component';
 	/** If the icon is not loading, change the iconType.*/
@@ -35,7 +43,28 @@ Shows text next to an icon inline. You can use either a component or a image imp
 	function handleFocus() {
 		if (!browser) return;
 
-		open = !open;
+		if ($breakpointLargerThanSmall) {
+			open = !open;
+		} else {
+			changeModal();
+		}
+	}
+
+	function changeModal() {
+		dispatch('openModal', {
+			heading: title,
+			label: subtitle,
+			link: link,
+			popoverIcon: popoverIcon,
+			popoverIconType: popoverIconType,
+			description: description,
+			tag1: tag1,
+			tag2: tag2,
+			tag3: tag3,
+			tag1Info: getTag(tag1),
+			tag2Info: getTag(tag2),
+			tag3Info: getTag(tag3),
+		});
 	}
 </script>
 

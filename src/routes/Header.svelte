@@ -20,10 +20,11 @@
 	import NavigationItem from './NavigationItem.svelte';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import ThemeChanger from './ThemeChanger.svelte';
-	import { Notification } from 'carbon-icons-svelte';
-	import { OverflowMenu, OverflowMenuItem } from 'carbon-components-svelte';
+	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
+	import OverflowMenu from 'carbon-components-svelte/src/OverflowMenu/OverflowMenu.svelte';
+	import OverflowMenuItem from 'carbon-components-svelte/src/OverflowMenu/OverflowMenuItem.svelte';
 	import Menu from 'carbon-icons-svelte/lib/Menu.svelte';
-	import { breakpointObserver } from 'carbon-components-svelte';
+	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');

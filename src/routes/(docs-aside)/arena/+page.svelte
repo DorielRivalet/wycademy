@@ -49,6 +49,7 @@
 		FrontierStatus,
 		FrontierWeapon,
 		FrontierWeaponType,
+		TagColor,
 	} from '$lib/client/modules/frontier/types';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
@@ -76,7 +77,8 @@
 	import { onMount, type ComponentType } from 'svelte';
 	import { ScaleTypes, type LineChartOptions } from '@carbon/charts-svelte';
 	import type { LineChart } from '@carbon/charts-svelte';
-	import { breakpointObserver } from 'carbon-components-svelte';
+	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
+	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import IceAgeStage1Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage2Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage3Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
@@ -2903,6 +2905,46 @@ does not get multiplied by horn */
 				return 0.042;
 		}
 	}
+
+	let modalLink = '';
+	let modalPopoverIconType = 'component';
+	let modalPopoverIcon: any;
+	let modalDescription = '';
+	let modalTag1 = '';
+	let modalTag1Info: { link: string; icon: any; color: TagColor } = {
+		link: '',
+		icon: undefined,
+		color: 'outline',
+	};
+	let modalTag2 = '';
+	let modalTag2Info: { link: string; icon: any; color: TagColor } = {
+		link: '',
+		icon: undefined,
+		color: 'outline',
+	};
+	let modalTag3 = '';
+	let modalTag3Info: { link: string; icon: any; color: TagColor } = {
+		link: '',
+		icon: undefined,
+		color: 'outline',
+	};
+
+	function handleOpenModal(e: any) {
+		modalOpen = true;
+		modalImage = '';
+		modalHeading = e.detail.heading;
+		modalLabel = e.detail.label;
+		modalLink = e.detail.link;
+		modalPopoverIconType = e.detail.popoverIconType;
+		modalPopoverIcon = e.detail.popoverIcon;
+		modalDescription = e.detail.description;
+		modalTag1 = e.detail.tag1;
+		modalTag1Info = e.detail.tag1Info;
+		modalTag2 = e.detail.tag2;
+		modalTag2Info = e.detail.tag2Info;
+		modalTag3 = e.detail.tag3;
+		modalTag3Info = e.detail.tag3Info;
+	}
 </script>
 
 <svelte:head>
@@ -2942,6 +2984,83 @@ does not get multiplied by horn */
 			<img src={modalImage} alt={'motion value animation'} />
 			<div>{modalNotes}</div>
 		</div>
+	{:else}
+		<div class="modal-mobile-container">
+			<div class="modal-mobile-contents-top">
+				{#if modalLink !== ''}
+					<div class="modal-mobile-image">
+						<a href={modalLink}>
+							<div>
+								{#if modalPopoverIconType === 'component'}
+									<svelte:component this={modalPopoverIcon} />
+								{:else}
+									<img src={modalPopoverIcon} alt={modalHeading} />
+								{/if}
+							</div>
+						</a>
+					</div>
+					<div class="modal-mobile-title modal-mobile-link">
+						<a href={modalLink}>
+							{modalHeading.substring(0, 64)}
+						</a>
+					</div>
+				{:else}
+					<div class="modal-mobile-image">
+						<div>
+							{#if modalPopoverIconType === 'component'}
+								<svelte:component this={modalPopoverIcon} />
+							{:else}
+								<img src={modalPopoverIcon} alt={modalHeading} />
+							{/if}
+						</div>
+					</div>
+					<div class="modal-mobile-title">
+						{modalHeading.substring(0, 64)}
+					</div>
+				{/if}
+
+				{#if modalLabel !== ''}
+					<div class="modal-mobile-subtitle">{modalLabel.substring(0, 64)}</div>
+				{/if}
+				{#if modalDescription !== ''}
+					<div class="modal-mobile-description">{modalDescription}</div>
+				{/if}
+			</div>
+			{#if modalTag1 !== ''}
+				<hr />
+				<div class="modal-mobile-contents-bottom">
+					<div class="modal-mobile-tag1">
+						<a href={modalTag1Info.link === '' ? '/' : modalTag1Info.link}>
+							<Tag
+								icon={modalTag1Info.icon}
+								type={modalTag1Info.color}
+								interactive>{modalTag1.substring(0, 32)}</Tag
+							></a
+						>
+					</div>
+					{#if modalTag2 !== ''}<div class="modal-mobile-tag2">
+							<a href={modalTag2Info.link === '' ? '/' : modalTag2Info.link}>
+								<Tag
+									icon={modalTag2Info.icon}
+									type={modalTag2Info.color}
+									interactive>{modalTag2.substring(0, 32)}</Tag
+								></a
+							>
+						</div>
+					{/if}
+					{#if modalTag3 !== ''}<div class="modal-mobile-tag3">
+							<a href={modalTag3Info.link === '' ? '/' : modalTag3Info.link}>
+								<Tag
+									icon={modalTag3Info.icon}
+									type={modalTag3Info.color}
+									interactive>{modalTag3.substring(0, 32)}</Tag
+								></a
+							>
+						</div>
+					{/if}
+				</div>
+			{/if}
+		</div>
 	{/if}
 </Modal>
 
@@ -2966,6 +3085,7 @@ does not get multiplied by horn */
 					popoverIcon={WeaponTypes.find((e) => e.name === 'Long Sword')?.icon}
 					popoverIconType="component"
 					link="/smithy"
+					on:openModal={(e) => handleOpenModal(e)}
 				></InlineToggletip>
 			</li>
 			<li>
@@ -2981,6 +3101,7 @@ does not get multiplied by horn */
 					popoverIcon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
 					popoverIconType="component"
 					link="/arena#gunlance-shells-and-wyvernfire"
+					on:openModal={(e) => handleOpenModal(e)}
 				></InlineToggletip> Shell and Wyvernfire damage.
 			</li>
 			<li>
@@ -2996,6 +3117,7 @@ does not get multiplied by horn */
 					popoverIcon={getTag('Armor Skill').icon}
 					popoverIconType="component"
 					link="/arena#gunlance-shells-and-wyvernfire"
+					on:openModal={(e) => handleOpenModal(e)}
 				></InlineToggletip> damage.
 			</li>
 			<li>
@@ -3011,6 +3133,7 @@ does not get multiplied by horn */
 					popoverIcon={getMonster('Blinking Nargacuga', '').render}
 					popoverIconType="file"
 					link="/arena#gunlance-shells-and-wyvernfire"
+					on:openModal={(e) => handleOpenModal(e)}
 				></InlineToggletip> or <InlineTooltip
 					tooltip="Monster"
 					text="Zenith Rathalos"
@@ -6743,5 +6866,113 @@ does not get multiplied by horn */
 			gap: 1rem;
 			align-items: center;
 		}
+	}
+
+	.modal-mobile-popover-image {
+		max-width: 100%; /* Ensures the image does not exceed the width of its container */
+		max-height: 100%; /* Ensures the image does not exceed the height of its container */
+		object-fit: cover; /* Ensures the image covers the area without distorting its aspect ratio */
+		display: inline-block; /* Removes any extra space below the image */
+	}
+
+	.modal-mobile-container hr {
+		width: 100%;
+		margin-bottom: 0;
+	}
+
+	.modal-mobile-container {
+		display: flex;
+		gap: 0.5rem;
+		padding: var(--cds-spacing-04);
+		flex-direction: column;
+		max-width: 48ch;
+		overflow: hidden;
+	}
+
+	.modal-mobile-link:hover {
+		text-decoration: underline;
+	}
+
+	.modal-mobile-image {
+		grid-area: image;
+		display: inline-block;
+		max-width: 8ch;
+	}
+
+	.modal-mobile-button {
+		grid-area: button;
+	}
+
+	.modal-mobile-container a {
+		font-family: var(--font-body);
+		font-size: 1rem;
+		color: var(--ctp-text);
+		text-decoration: none;
+	}
+
+	.modal-mobile-title {
+		display: -webkit-box;
+		-webkit-line-clamp: 1; /* number of lines to show */
+		line-clamp: 1;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		grid-area: title;
+		font-weight: bold;
+		height: fit-content;
+	}
+
+	.modal-mobile-subtitle {
+		display: -webkit-box;
+		-webkit-line-clamp: 2; /* number of lines to show */
+		line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		grid-area: subtitle;
+		color: var(--ctp-subtext0);
+	}
+
+	.modal-mobile-title,
+	.modal-mobile-subtitle {
+		padding-left: 0.5rem;
+		padding-top: 0;
+		padding-bottom: 0;
+		margin: 0;
+	}
+
+	.modal-mobile-tag1,
+	.modal-mobile-tag2,
+	.modal-mobile-tag3 {
+		display: -webkit-box;
+		-webkit-line-clamp: 1; /* number of lines to show */
+		line-clamp: 1;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.modal-mobile-description {
+		grid-area: description;
+		text-wrap: wrap;
+		margin-top: 1rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 3; /* number of lines to show */
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.modal-mobile-contents-top {
+		display: grid;
+		grid-template-areas:
+			'image title button'
+			'image subtitle subtitle'
+			'description description description';
+		gap: 0;
+		grid-template-columns: auto 1fr auto;
+		grid-template-rows: auto 1fr auto;
+	}
+
+	.modal-mobile-contents-bottom {
+		display: flex;
+		gap: 0.5rem;
 	}
 </style>
