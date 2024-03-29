@@ -20,6 +20,8 @@
 	/** Shows the boost border effect.*/
 	export let sharpnessBoost = true;
 
+	export let popoverOverrideText = '';
+
 	function setSharpnessWidths(values: FrontierWeaponSharpness) {
 		const isValid = frontierChecks.isValidSharpness(values);
 		if (isValid) {
@@ -89,7 +91,10 @@
 			<div
 				style="padding: var(--cds-spacing-03); font-family: var(--font-body); font-size: 1rem;"
 			>
-				{popoverContent}
+				{#if popoverOverrideText}
+					{popoverOverrideText}
+				{:else}
+					{popoverContent}{/if}
 			</div>
 		</Popover>
 	</div>

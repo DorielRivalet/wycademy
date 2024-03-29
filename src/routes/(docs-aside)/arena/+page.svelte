@@ -49,6 +49,7 @@
 		FrontierRarity,
 		FrontierStatus,
 		FrontierWeapon,
+		FrontierWeaponSharpness,
 		FrontierWeaponType,
 		TagColor,
 	} from '$lib/client/modules/frontier/types';
@@ -83,6 +84,7 @@
 	import IceAgeStage1Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage2Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage3Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
+	import SharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
@@ -3079,6 +3081,23 @@ does not get multiplied by horn */
 	function getStatusArray(input: string) {
 		const values = input.split(',');
 		return values;
+	}
+
+	function getSharpnessArray(input: string): FrontierWeaponSharpness {
+		// Split the input string into an array of strings
+		let inputValues = input.split(',');
+
+		// Initialize an array with default sharpness levels
+		let sharpness: FrontierWeaponSharpness = [
+			400, 400, 400, 400, 400, 400, 400, 400,
+		];
+
+		// Map the input values to the corresponding sharpness levels
+		for (let i = 0; i < inputValues.length; i++) {
+			sharpness[i] = parseInt(inputValues[i]) ?? 400;
+		}
+
+		return sharpness;
 	}
 
 	function getActiveFeatureFinalBitfieldValue(arr: string[]) {
@@ -6756,7 +6775,7 @@ does not get multiplied by horn */
 			<div class="active-feature-table">
 				<DataTable
 					useStaticWidth
-					selectable
+					batchSelection
 					bind:selectedRowIds={activeFeatureSelectedRowIds}
 					sortable
 					zebra
@@ -6988,7 +7007,156 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Sharpness" />
-		<div></div>
+		<div class="active-feature-table">
+			<DataTable
+				useStaticWidth
+				sortable
+				zebra
+				size="medium"
+				headers={[
+					{ key: 'name', value: 'Color', minWidth: '1rem' },
+					{ key: 'bar', value: 'Sharpness Bar', minWidth: '1rem' },
+					{ key: 'multiplier', value: 'Multiplier' },
+					{ key: 'affinity', value: 'Affinity' },
+				]}
+				rows={[
+					{
+						id: '1',
+						name: 'Red',
+						bar: '400,400,400,400,400,400,400,400',
+						multiplier: 'x0.6',
+						affinity: '0%',
+					},
+					{
+						id: '2',
+						name: 'Orange',
+						bar: '0,400,400,400,400,400,400,400',
+						multiplier: 'x0.85',
+						affinity: '0%',
+					},
+					{
+						id: '3',
+						name: 'Yellow',
+						bar: '0,0,400,400,400,400,400,400',
+						multiplier: 'x1.1',
+						affinity: '0%',
+					},
+					{
+						id: '4',
+						name: 'Green',
+						bar: '0,0,0,400,400,400,400,400',
+						multiplier: 'x1.325',
+						affinity: '0%',
+					},
+					{
+						id: '5',
+						name: 'Blue',
+						bar: '0,0,0,0,400,400,400,400',
+						multiplier: 'x1.45',
+						affinity: '10%',
+					},
+					{
+						id: '6',
+						name: 'White',
+						bar: '0,0,0,0,0,400,400,400',
+						multiplier: 'x1.60',
+						affinity: '10%',
+					},
+					{
+						id: '7',
+						name: 'Purple',
+						bar: '0,0,0,0,0,0,400,400',
+						multiplier: 'x1.7',
+						affinity: '10%',
+					},
+					{
+						id: '8',
+						name: 'Cyan',
+						bar: '0,0,0,0,0,0,0,400',
+						multiplier: 'x1.8',
+						affinity: '10%',
+					},
+				]}
+				><Toolbar
+					><div class="toolbar">
+						<CopyButton
+							iconDescription={'Copy as CSV'}
+							text={getCSVFromArray([
+								{
+									id: '1',
+									name: 'Red',
+									bar: '400,400,400,400,400,400,400,400',
+									multiplier: 'x0.6',
+									affinity: '0%',
+								},
+								{
+									id: '2',
+									name: 'Orange',
+									bar: '0,400,400,400,400,400,400,400',
+									multiplier: 'x0.85',
+									affinity: '0%',
+								},
+								{
+									id: '3',
+									name: 'Yellow',
+									bar: '0,0,400,400,400,400,400,400',
+									multiplier: 'x1.1',
+									affinity: '0%',
+								},
+								{
+									id: '4',
+									name: 'Green',
+									bar: '0,0,0,400,400,400,400,400',
+									multiplier: 'x1.325',
+									affinity: '0%',
+								},
+								{
+									id: '5',
+									name: 'Blue',
+									bar: '0,0,0,0,400,400,400,400',
+									multiplier: 'x1.45',
+									affinity: '10%',
+								},
+								{
+									id: '6',
+									name: 'White',
+									bar: '0,0,0,0,0,400,400,400',
+									multiplier: 'x1.60',
+									affinity: '10%',
+								},
+								{
+									id: '7',
+									name: 'Purple',
+									bar: '0,0,0,0,0,0,400,400',
+									multiplier: 'x1.7',
+									affinity: '10%',
+								},
+								{
+									id: '8',
+									name: 'Cyan',
+									bar: '0,0,0,0,0,0,0,400',
+									multiplier: 'x1.8',
+									affinity: '10%',
+								},
+							])}
+						/>
+					</div>
+				</Toolbar>
+
+				<svelte:fragment slot="cell" let:cell>
+					{#if cell.key === 'bar'}
+						<div class="sharpness-bar-container">
+							<SharpnessBar
+								sharpnessBoost={false}
+								sharpnessValues={getSharpnessArray(cell.value)}
+							/>
+						</div>
+					{:else}
+						{cell.value}
+					{/if}
+				</svelte:fragment>
+			</DataTable>
+		</div>
 	</section>
 
 	<section>
@@ -8863,5 +9031,13 @@ does not get multiplied by horn */
 	.exotics-table,
 	.origins-table {
 		display: flex;
+	}
+
+	.sharpness-bar-container {
+		display: flex;
+		justify-content: stretch;
+		align-items: stretch;
+		width: 100%;
+		height: 100%;
 	}
 </style>
