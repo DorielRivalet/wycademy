@@ -6556,6 +6556,7 @@ does not get multiplied by horn */
 			<div class="weapons-table">
 				<DataTable
 					sortable
+					useStaticWidth
 					zebra
 					size="medium"
 					headers={[
@@ -6739,10 +6740,14 @@ does not get multiplied by horn */
 			<div class="active-feature-description">
 				<p>
 					The Active Feature system is a daily effect to weapon types. These
-					effects last from 12 PM to 12 PM the next day at which time a new
+					effects last from 12 PM to 12 PM the next day, at which time a new
 					weapon type will be chosen. You can see up to one day in advance by
-					simply looking behind the main Active Feature bar at the top of your
-					screen while in town.
+					looking behind the main Active Feature bar at the top of your screen
+					while in <InlineTooltip
+						tooltip="Location"
+						text="Mezeporta"
+						icon={getTag('Location').icon}
+					/>.
 				</p>
 				<p>
 					Final Bitfield Value: {activeFeatureFinalBitfieldValue}
@@ -6750,6 +6755,7 @@ does not get multiplied by horn */
 			</div>
 			<div class="active-feature-table">
 				<DataTable
+					useStaticWidth
 					selectable
 					bind:selectedRowIds={activeFeatureSelectedRowIds}
 					sortable
@@ -7014,9 +7020,27 @@ does not get multiplied by horn */
 			</p>
 			<p>You can pack a Bento at the appropiate NPC:</p>
 			<ul>
-				<li>The dedicated food store in town.</li>
-				<li>The dedicated food store in the caravan area.</li>
-				<li>The Guild Store Cat in the Guild Hall.</li>
+				<li>
+					The dedicated food store in <InlineTooltip
+						tooltip="Location"
+						text="Mezeporta"
+						icon={getTag('Location').icon}
+					/>.
+				</li>
+				<li>
+					The dedicated food store in the <InlineTooltip
+						tooltip="Location"
+						text="Caravan"
+						icon={getTag('Location').icon}
+					/> area.
+				</li>
+				<li>
+					The Guild Store Cat in the <InlineTooltip
+						tooltip="Location"
+						text="Guild Hall"
+						icon={getTag('Location').icon}
+					/>.
+				</li>
 			</ul>
 
 			<section>
@@ -7027,13 +7051,13 @@ does not get multiplied by horn */
 						zebra
 						size="short"
 						headers={[
-							{ key: 'ingredient1', value: 'Ingredient 1', minWidth: '1rem' },
-							{ key: 'ingredient2', value: 'Ingredient 2', minWidth: '1rem' },
-							{ key: 'dish', value: 'Dish', minWidth: '1rem' },
-							{ key: 'health', value: 'Health', minWidth: '1rem' },
-							{ key: 'stamina', value: 'Stamina', minWidth: '1rem' },
-							{ key: 'attack', value: 'Attack', minWidth: '1rem' },
-							{ key: 'defense', value: 'Defense', minWidth: '1rem' },
+							{ key: 'ingredient1', value: 'Ingredient 1' },
+							{ key: 'ingredient2', value: 'Ingredient 2' },
+							{ key: 'dish', value: 'Dish' },
+							{ key: 'health', value: 'Health' },
+							{ key: 'stamina', value: 'Stamina' },
+							{ key: 'attack', value: 'Attack' },
+							{ key: 'defense', value: 'Defense' },
 						]}
 						rows={bentoSectionValue}
 						><Toolbar
@@ -7189,6 +7213,7 @@ does not get multiplied by horn */
 			<div class="exotics-table">
 				<DataTable
 					sortable
+					useStaticWidth
 					zebra
 					size="short"
 					headers={[
@@ -7352,6 +7377,7 @@ does not get multiplied by horn */
 				<DataTable
 					sortable
 					zebra
+					useStaticWidth
 					size="short"
 					headers={[
 						{ key: 'weapon', value: 'Weapon', minWidth: '1rem' },
@@ -7744,6 +7770,7 @@ does not get multiplied by horn */
 				<DataTable
 					sortable
 					zebra
+					useStaticWidth
 					size="short"
 					headers={[
 						{ key: 'name', value: 'Name', minWidth: '1rem' },
@@ -7963,6 +7990,7 @@ does not get multiplied by horn */
 				<div class="datatable-container">
 					<DataTable
 						sortable
+						useStaticWidth
 						zebra
 						size="short"
 						headers={[
@@ -8196,10 +8224,21 @@ does not get multiplied by horn */
 					</DataTable>
 				</div>
 				<p>
-					Subspecies and Zeniths are also immune, except Doragyurosu which is
-					immune to these statuses only in G-Rank, and also as a Zenith.
+					Subspecies and Zeniths are also immune, except <InlineTooltip
+						tooltip="Monster"
+						text="Doragyurosu"
+						icon={MonsterIcons.find((e) => e.name === 'Doragyurosu')?.icon}
+						iconType={'file'}
+					/> which is immune to these statuses only in G-Rank, and also as a Zenith.
 				</p>
-				<p>Only support can inflict poison to Raviente.</p>
+				<p>
+					Only support can inflict poison to <InlineTooltip
+						tooltip="Monster"
+						text="Raviente"
+						iconType={'file'}
+						icon={MonsterIcons.find((e) => e.name === 'Raviente')?.icon}
+					/>.
+				</p>
 			</div>
 		</section>
 	</section>
@@ -8818,5 +8857,11 @@ does not get multiplied by horn */
 		display: flex;
 		flex-direction: column; /* Stacks children vertically */
 		gap: 2rem;
+	}
+
+	.bento-table,
+	.exotics-table,
+	.origins-table {
+		display: flex;
 	}
 </style>
