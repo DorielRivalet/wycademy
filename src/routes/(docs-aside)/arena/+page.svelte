@@ -5929,11 +5929,6 @@ does not get multiplied by horn */
 						/>
 					</div>
 				</Toolbar>
-				<span slot="title">
-					<div class="data-table-title">
-						<div>Shared Motion Values</div>
-					</div>
-				</span>
 				<svelte:fragment slot="cell" let:cell>
 					{#if cell.key === 'name' && hasAnimation(inputWeaponType, cell, 'Shared')}
 						<Button
@@ -6546,8 +6541,196 @@ does not get multiplied by horn */
 	</section>
 
 	<section>
-		<SectionHeading level={2} title="Weapons" />
+		<SectionHeading level={2} title="Critical Distance" />
 		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Armor" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Weapon Multipliers" />
+		<div>
+			<div class="weapons-table">
+				<DataTable
+					sortable
+					zebra
+					size="medium"
+					headers={[
+						{ key: 'weapon', value: 'Weapon', minWidth: '1rem' },
+						{ key: 'multiplier', value: 'Multiplier', minWidth: '1rem' },
+					]}
+					rows={[
+						{
+							id: 'Sword and Shield',
+							weapon: 'Sword and Shield',
+							multiplier: 'x1.4',
+						},
+						{
+							id: 'Dual Swords',
+							weapon: 'Dual Swords',
+							multiplier: 'x1.4',
+						},
+						{
+							id: 'Great Sword',
+							weapon: 'Great Sword',
+							multiplier: 'x4.8',
+						},
+						{
+							id: 'Long Sword',
+							weapon: 'Long Sword',
+							multiplier: 'x4.8',
+						},
+						{
+							id: 'Hammer',
+							weapon: 'Hammer',
+							multiplier: 'x5.2',
+						},
+						{
+							id: 'Hunting Horn',
+							weapon: 'Hunting Horn',
+							multiplier: 'x5.2',
+						},
+						{
+							id: 'Lance',
+							weapon: 'Lance',
+							multiplier: 'x2.3',
+						},
+						{
+							id: 'Gunlance',
+							weapon: 'Gunlance',
+							multiplier: 'x2.3',
+						},
+
+						{
+							id: 'Tonfa',
+							weapon: 'Tonfa',
+							multiplier: 'x1.8',
+						},
+						{
+							id: 'Switch Axe F',
+							weapon: 'Switch Axe F',
+							multiplier: 'x5.4',
+						},
+						{
+							id: 'Magnet Spike',
+							weapon: 'Magnet Spike',
+							multiplier: 'x5.4',
+						},
+						{
+							id: 'Light Bowgun',
+							weapon: 'Light Bowgun',
+							multiplier: 'x1.2',
+						},
+
+						{
+							id: 'Heavy Bowgun',
+							weapon: 'Heavy Bowgun',
+							multiplier: 'x1.2',
+						},
+						{
+							id: 'Bow',
+							weapon: 'Bow',
+							multiplier: 'x1.2',
+						},
+					]}
+					><Toolbar
+						><div class="toolbar">
+							<CopyButton
+								iconDescription={'Copy as CSV'}
+								text={getCSVFromArray([
+									{
+										id: 'Sword and Shield',
+										weapon: 'Sword and Shield',
+										multiplier: 'x1.4',
+									},
+									{
+										id: 'Dual Swords',
+										weapon: 'Dual Swords',
+										multiplier: 'x1.4',
+									},
+									{
+										id: 'Great Sword',
+										weapon: 'Great Sword',
+										multiplier: 'x4.8',
+									},
+									{
+										id: 'Long Sword',
+										weapon: 'Long Sword',
+										multiplier: 'x4.8',
+									},
+									{
+										id: 'Hammer',
+										weapon: 'Hammer',
+										multiplier: 'x5.2',
+									},
+									{
+										id: 'Hunting Horn',
+										weapon: 'Hunting Horn',
+										multiplier: 'x5.2',
+									},
+									{
+										id: 'Lance',
+										weapon: 'Lance',
+										multiplier: 'x2.3',
+									},
+									{
+										id: 'Gunlance',
+										weapon: 'Gunlance',
+										multiplier: 'x2.3',
+									},
+
+									{
+										id: 'Tonfa',
+										weapon: 'Tonfa',
+										multiplier: 'x1.8',
+									},
+									{
+										id: 'Switch Axe F',
+										weapon: 'Switch Axe F',
+										multiplier: 'x5.4',
+									},
+									{
+										id: 'Magnet Spike',
+										weapon: 'Magnet Spike',
+										multiplier: 'x5.4',
+									},
+									{
+										id: 'Light Bowgun',
+										weapon: 'Light Bowgun',
+										multiplier: 'x1.2',
+									},
+
+									{
+										id: 'Heavy Bowgun',
+										weapon: 'Heavy Bowgun',
+										multiplier: 'x1.2',
+									},
+									{
+										id: 'Bow',
+										weapon: 'Bow',
+										multiplier: 'x1.2',
+									},
+								])}
+							/>
+						</div>
+					</Toolbar>
+					<svelte:fragment slot="cell" let:cell>
+						{#if cell.key === 'weapon'}
+							<InlineTooltip
+								text={cell.value}
+								tooltip={'Weapon'}
+								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+							/>
+						{:else}
+							{cell.value}
+						{/if}
+					</svelte:fragment>
+				</DataTable>
+			</div>
+		</div>
 	</section>
 
 	<section>
@@ -6780,11 +6963,7 @@ does not get multiplied by horn */
 							/>
 						</div>
 					</Toolbar>
-					<span slot="title">
-						<div class="data-table-title">
-							<div>Active Feature</div>
-						</div>
-					</span>
+
 					<svelte:fragment slot="cell" let:cell>
 						{#if cell.key === 'weapon'}
 							<InlineTooltip
@@ -6870,11 +7049,6 @@ does not get multiplied by horn */
 								/>
 							</div>
 						</Toolbar>
-						<span slot="title">
-							<div class="data-table-title">
-								<div>Recommended Bento</div>
-							</div>
-						</span>
 						<svelte:fragment slot="cell" let:cell>
 							{#if cell.key === 'health' || cell.key === 'stamina' || cell.key === 'attack' || cell.key === 'defense'}
 								<span
@@ -7998,11 +8172,6 @@ does not get multiplied by horn */
 								/>
 							</div>
 						</Toolbar>
-						<span slot="title">
-							<div class="data-table-title">
-								<div>Monster Status Immunities</div>
-							</div>
-						</span>
 						<svelte:fragment slot="cell" let:cell>
 							{#if cell.key === 'name'}
 								<InlineTooltip
