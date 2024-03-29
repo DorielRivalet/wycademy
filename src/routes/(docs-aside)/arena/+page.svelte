@@ -6195,7 +6195,7 @@ does not get multiplied by horn */
 						size="sm"
 						step={1}
 						min={0}
-						max={15}
+						max={45}
 						bind:value={inputNumberIceAgeCalculatorSigil1TrueRaw}
 						invalidText={'Invalid value'}
 						label={'Sigil 1 True Raw'}
@@ -6206,7 +6206,7 @@ does not get multiplied by horn */
 						size="sm"
 						step={1}
 						min={0}
-						max={15}
+						max={45}
 						bind:value={inputNumberIceAgeCalculatorSigil2TrueRaw}
 						invalidText={'Invalid value'}
 						label={'Sigil 2 True Raw'}
@@ -6217,7 +6217,7 @@ does not get multiplied by horn */
 						size="sm"
 						step={1}
 						min={0}
-						max={15}
+						max={45}
 						bind:value={inputNumberIceAgeCalculatorSigil3TrueRaw}
 						invalidText={'Invalid value'}
 						label={'Sigil 3 True Raw'}

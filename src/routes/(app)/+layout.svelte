@@ -21,10 +21,13 @@
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
+	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
+
+	const breakpointSize = breakpointObserver();
+	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
-	console.log('layout.svelte');
 
 	onMount(() => {
 		let themeValue = $theme;
@@ -161,22 +164,44 @@
 		background-color: var(--ctp-mantle);
 	}
 
-	main {
-		position: relative;
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: var(--cds-spacing-08);
-		width: 100%;
-		max-width: 70vw;
-		margin: 0 auto;
-		box-sizing: border-box;
-		min-height: 90vh;
-		background-color: var(--ctp-base);
-		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-radius: 0px 0px 10px 10px;
+	@media (min-width: 320px) {
+		main {
+			position: relative;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			padding: var(--cds-spacing-08);
+			width: 100%;
+			max-width: 100vw;
+			margin: 0 auto;
+			box-sizing: border-box;
+			min-height: 90vh;
+			background-color: var(--ctp-base);
+			border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
+			border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
+			border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+			border-radius: 0px 0px 10px 10px;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		main {
+			position: relative;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			padding: var(--cds-spacing-08);
+			width: 100%;
+			max-width: 70vw;
+			margin: 0 auto;
+			box-sizing: border-box;
+			min-height: 90vh;
+			background-color: var(--ctp-base);
+			border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
+			border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
+			border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+			border-radius: 0px 0px 10px 10px;
+		}
 	}
 
 	.header {
