@@ -2971,6 +2971,20 @@ does not get multiplied by horn */
 		modalTag3 = e.detail.tag3;
 		modalTag3Info = e.detail.tag3Info;
 	}
+
+	function getElementArray(input: string) {
+		// Step 1: Split the string into individual elements
+		const elements = input.split(', ');
+
+		// Step 2: For each element, split it to separate the percentage value from the name
+		// and construct an object with 'name' and 'value' properties
+		const result = elements.map((element) => {
+			const [value, name] = element.split(' ');
+			return { name, value };
+		});
+
+		return result;
+	}
 </script>
 
 <svelte:head>
@@ -6374,16 +6388,16 @@ does not get multiplied by horn */
 						]}
 					/>
 				</div>
-				<div>
+				<p>
 					Seconds needed: {iceAgeCalculatorSecondsNeeded}
-				</div>
-				<div>
+				</p>
+				<p>
 					Max HP% Dealt: {iceAgeCalculatorMaxHPPercentDealt}
-				</div>
-				<div>
+				</p>
+				<p>
 					Total Damage: {iceAgeCalculatorTotalDamage} ({iceAgeCalculatorDamagePerSecond}
 					DPS)
-				</div>
+				</p>
 			</div>
 		</div>
 	</section>
@@ -6418,13 +6432,673 @@ does not get multiplied by horn */
 	</section>
 
 	<section>
-		<SectionHeading level={2} title="Elements" />
+		<SectionHeading level={2} title="Exotics" />
 		<div></div>
 	</section>
 
 	<section>
-		<SectionHeading level={2} title="Ailments" />
+		<SectionHeading level={2} title="Origin" />
 		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Burst" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Raviente" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Zeniths" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Shitens" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Musous" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Conquest" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Transcend" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Elements" />
+		<div class="elements-section">
+			<p>
+				Combo elements are equivalent to having from two to three of them but at
+				a percentage of your elemental value. For visual effects, the element
+				that deals the most damage will take precedence. <InlineTooltip
+					text="Gunlance's"
+					tooltip="Weapon"
+					icon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
+				/> heatblade alternates the effect.
+			</p>
+			<p>
+				With Transcendence bursts, there is a hierarchy on which elements take
+				precedence first. The order is <InlineTooltip
+					text="Fire"
+					tooltip="Element"
+					icon={ElementIcons.find((e) => e.name === 'Fire')?.icon}
+				/> > <InlineTooltip
+					text="Water"
+					tooltip="Element"
+					icon={ElementIcons.find((e) => e.name === 'Water')?.icon}
+				/> > <InlineTooltip
+					text="Thunder"
+					tooltip="Element"
+					icon={ElementIcons.find((e) => e.name === 'Thunder')?.icon}
+				/> > <InlineTooltip
+					text="Ice"
+					tooltip="Element"
+					icon={ElementIcons.find((e) => e.name === 'Ice')?.icon}
+				/> > <InlineTooltip
+					text="Dragon"
+					tooltip="Element"
+					icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
+				/>.
+			</p>
+			<p>
+				Negative elemental hitzones will still apply their raw penalty normally
+				if the 'wrong' element is involved. Owning <InlineTooltip
+					text="Solid Determination"
+					tooltip="Armor Skill"
+					icon={getTag('Armor Skill')?.icon}
+				/> will brute force all elements involved, using the weapon's <InlineTooltip
+					text="Dissolver"
+					tooltip="Armor Skill"
+					icon={getTag('Armor Skill')?.icon}
+				/> modifier.
+			</p>
+			<div class="elements-table">
+				<DataTable
+					sortable
+					zebra
+					size="short"
+					headers={[
+						{ key: 'name', value: 'Name', minWidth: '1rem' },
+						{ key: 'composition', value: 'Composition', minWidth: '8rem' },
+						{ key: 'origin', value: 'Origin', minWidth: '1rem' },
+					]}
+					rows={[
+						{
+							id: 'Light',
+							composition: '70% Fire, 70% Thunder',
+							origin: 'Zerureusu',
+							name: 'Light',
+						},
+						{
+							id: 'Blaze',
+							origin: 'None',
+							name: 'Blaze',
+							composition: '70% Fire, 70% Dragon',
+						},
+						{
+							id: 'Tenshou',
+							origin: 'Shantien',
+							name: 'Tenshou',
+							composition: '30% Fire, 100% Water, 70% Thunder',
+						},
+						{
+							id: 'Lightning Rod',
+							origin: 'Rebidiora',
+							name: 'Lightning Rod',
+							composition: '70% Thunder, 70% Dragon',
+						},
+						{
+							id: 'Okiko',
+							origin: 'Disufiroa',
+							name: 'Okiko',
+							composition: '80% Fire, 80% Ice, 40% Dragon',
+						},
+						{
+							id: 'Black Flame',
+							origin: 'Fatalis',
+							name: 'Black Flame',
+							composition: '50% Fire, 150% Dragon',
+						},
+						{
+							id: 'Crimson Demon',
+							origin: 'Crimson Fatalis',
+							name: 'Crimson Demon',
+							composition: '50% Dragon, 150% Fire',
+						},
+						{
+							id: 'Dark',
+							origin: 'Meraginasu',
+							name: 'Dark',
+							composition: '80% Ice, 80% Dragon',
+						},
+						{
+							id: 'Music',
+							origin: 'Diva',
+							name: 'Music',
+							composition: '100% Water, 100% Ice',
+						},
+						{
+							id: 'Sound',
+							origin: 'Diva',
+							name: 'Sound',
+							composition: '100% Water, 100% Dragon',
+						},
+						{
+							id: 'Wind',
+							origin: 'Garuba Daora',
+							name: 'Wind',
+							composition: '80% Thunder, 80% Ice',
+						},
+						{
+							id: 'Burning Zero',
+							origin: 'Elzelion',
+							name: 'Burning Zero',
+							composition: '125% Fire, 125% Ice',
+						},
+						{
+							id: "Emperor's Roar",
+							origin: 'White Fatalis',
+							name: "Emperor's Roar",
+							composition: '150% Thunder, 50% Dragon',
+						},
+					]}
+					><Toolbar
+						><div class="toolbar">
+							<CopyButton
+								iconDescription={'Copy as CSV'}
+								text={getCSVFromArray([
+									{
+										id: 'Light',
+										composition: '70% Fire, 70% Thunder',
+										origin: 'Zerureusu',
+										name: 'Light',
+									},
+									{
+										id: 'Blaze',
+										origin: 'None',
+										name: 'Blaze',
+										composition: '70% Fire, 70% Dragon',
+									},
+									{
+										id: 'Tenshou',
+										origin: 'Shantien',
+										name: 'Tenshou',
+										composition: '30% Fire, 100% Water, 70% Thunder',
+									},
+									{
+										id: 'Lightning Rod',
+										origin: 'Rebidiora',
+										name: 'Lightning Rod',
+										composition: '70% Thunder, 70% Dragon',
+									},
+									{
+										id: 'Okiko',
+										origin: 'Disufiroa',
+										name: 'Okiko',
+										composition: '80% Fire, 80% Ice, 40% Dragon',
+									},
+									{
+										id: 'Black Flame',
+										origin: 'Fatalis',
+										name: 'Black Flame',
+										composition: '50% Fire, 150% Dragon',
+									},
+									{
+										id: 'Crimson Demon',
+										origin: 'Crimson Fatalis',
+										name: 'Crimson Demon',
+										composition: '50% Dragon, 150% Fire',
+									},
+									{
+										id: 'Dark',
+										origin: 'Meraginasu',
+										name: 'Dark',
+										composition: '80% Ice, 80% Dragon',
+									},
+									{
+										id: 'Music',
+										origin: 'Diva',
+										name: 'Music',
+										composition: '100% Water, 100% Ice',
+									},
+									{
+										id: 'Sound',
+										origin: 'Diva',
+										name: 'Sound',
+										composition: '100% Water, 100% Dragon',
+									},
+									{
+										id: 'Wind',
+										origin: 'Garuba Daora',
+										name: 'Wind',
+										composition: '80% Thunder, 80% Ice',
+									},
+									{
+										id: 'Burning Zero',
+										origin: 'Elzelion',
+										name: 'Burning Zero',
+										composition: '125% Fire, 125% Ice',
+									},
+									{
+										id: "Emperor's Roar",
+										origin: 'White Fatalis',
+										name: "Emperor's Roar",
+										composition: '150% Thunder, 50% Dragon',
+									},
+								])}
+							/>
+						</div>
+					</Toolbar>
+					<span slot="title">
+						<div class="data-table-title">
+							<div>Combo Elements</div>
+						</div>
+					</span>
+					<svelte:fragment slot="cell" let:cell>
+						{#if cell.key === 'name'}
+							<InlineTooltip
+								icon={ElementIcons.find((e) => e.name === cell.value)?.icon}
+								tooltip={'Element'}
+								text={cell.value}
+							/>
+						{:else if cell.key === 'origin'}
+							<InlineTooltip
+								icon={MonsterIcons.find((e) => e.name === cell.value)?.icon ??
+									''}
+								iconType="file"
+								tooltip={cell.value}
+								text={cell.value}
+							/>
+						{:else if cell.key === 'composition'}
+							{#each getElementArray(cell.value) as element}
+								<InlineTooltip
+									icon={ElementIcons.find((e) => e.name === element.name)
+										?.icon ?? ''}
+									tooltip={'Element'}
+									text={`${element.value} ${element.name}`}
+								/>
+							{/each}
+						{:else}
+							{cell.value}
+						{/if}
+					</svelte:fragment>
+				</DataTable>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Ailments" />
+		<div>
+			<SectionHeading level={3} title="Monster Status Immunities" />
+			<div>
+				<div class="datatable-container">
+					<DataTable
+						sortable
+						zebra
+						size="short"
+						headers={[
+							{ key: 'name', value: 'Name', minWidth: '1rem' },
+							{ key: 'poison', value: 'Poison', minWidth: '1rem' },
+							{ key: 'paralysis', value: 'Paralysis', minWidth: '1rem' },
+							{ key: 'sleep', value: 'Sleep', minWidth: '1rem' },
+							{ key: 'blast', value: 'Blast', minWidth: '1rem' },
+						]}
+						rows={[
+							{
+								id: '1',
+								poison: '',
+								paralysis: '✅',
+								sleep: '',
+								blast: '',
+								name: 'Kirin',
+							},
+							{
+								id: '2',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Lao-Shan Lung',
+							},
+							{
+								id: '3',
+								poison: '✅',
+								paralysis: '',
+								sleep: '',
+								blast: '',
+								name: 'Yian Garuga',
+							},
+							{
+								id: '4',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Shen Gaoren',
+							},
+							{
+								id: '5',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Yama Tsukami',
+							},
+							{
+								id: '6',
+								poison: '✅',
+								paralysis: '',
+								sleep: '',
+								blast: '',
+								name: 'Espinas',
+							},
+							{
+								id: '7',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Akura Vashimu',
+							},
+
+							{
+								id: '8',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Akura Jebia',
+							},
+							{
+								id: '9',
+								poison: '',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Berukyurosu',
+							},
+							{
+								id: '10',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Pariapuria',
+							},
+							{
+								id: '11',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '✅',
+								name: 'Raviente',
+							},
+							{
+								id: '12',
+								poison: '',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Doragyurosu',
+							},
+							{
+								id: '13',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '',
+								blast: '',
+								name: 'Baruragaru',
+							},
+							{
+								id: '14',
+								poison: '',
+								paralysis: '',
+								sleep: '✅',
+								blast: '',
+								name: 'Inagami',
+							},
+							{
+								id: '15',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Duremudira',
+							},
+							{
+								id: '16',
+								poison: '',
+								paralysis: '',
+								sleep: '✅',
+								blast: '',
+								name: 'Varusaburosu',
+							},
+							{
+								id: '17',
+								poison: '✅',
+								paralysis: '',
+								sleep: '',
+								blast: '',
+								name: 'Gasurabazura',
+							},
+							{
+								id: '18',
+								poison: '✅',
+								paralysis: '✅',
+								sleep: '✅',
+								blast: '',
+								name: 'Yama Kurai',
+							},
+							{
+								id: '19',
+								poison: '',
+								paralysis: '',
+								sleep: '✅',
+								blast: '',
+								name: 'Keoaruboru',
+							},
+						]}
+						><Toolbar
+							><div class="toolbar">
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray([
+										{
+											id: '1',
+											poison: '',
+											paralysis: '✅',
+											sleep: '',
+											blast: '',
+											name: 'Kirin',
+										},
+										{
+											id: '2',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Lao-Shan Lung',
+										},
+										{
+											id: '3',
+											poison: '✅',
+											paralysis: '',
+											sleep: '',
+											blast: '',
+											name: 'Yian Gagura',
+										},
+										{
+											id: '4',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Shen Gaoren',
+										},
+										{
+											id: '5',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Yama Tsukami',
+										},
+										{
+											id: '6',
+											poison: '✅',
+											paralysis: '',
+											sleep: '',
+											blast: '',
+											name: 'Espinas',
+										},
+										{
+											id: '7',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Akura Vashimu',
+										},
+
+										{
+											id: '8',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Akura Jebia',
+										},
+										{
+											id: '9',
+											poison: '',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Berukyurosu',
+										},
+										{
+											id: '10',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Pariapuria',
+										},
+										{
+											id: '11',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '✅',
+											name: 'Raviente',
+										},
+										{
+											id: '12',
+											poison: '',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Doragyurosu',
+										},
+										{
+											id: '13',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '',
+											blast: '',
+											name: 'Baruragaru',
+										},
+										{
+											id: '14',
+											poison: '',
+											paralysis: '',
+											sleep: '✅',
+											blast: '',
+											name: 'Inagami',
+										},
+										{
+											id: '15',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Duremudira',
+										},
+										{
+											id: '16',
+											poison: '',
+											paralysis: '',
+											sleep: '✅',
+											blast: '',
+											name: 'Varusaburosu',
+										},
+										{
+											id: '17',
+											poison: '✅',
+											paralysis: '',
+											sleep: '',
+											blast: '',
+											name: 'Gasurabazura',
+										},
+										{
+											id: '18',
+											poison: '✅',
+											paralysis: '✅',
+											sleep: '✅',
+											blast: '',
+											name: 'Yama Kurai',
+										},
+										{
+											id: '19',
+											poison: '',
+											paralysis: '',
+											sleep: '✅',
+											blast: '',
+											name: 'Keoaruboru',
+										},
+									])}
+								/>
+							</div>
+						</Toolbar>
+						<span slot="title">
+							<div class="data-table-title">
+								<div>Monster Status Immunities</div>
+							</div>
+						</span>
+						<svelte:fragment slot="cell" let:cell>
+							{#if cell.key === 'name'}
+								<InlineTooltip
+									icon={MonsterIcons.find((e) => e.name === cell.value)?.icon}
+									tooltip={'Monster'}
+									iconType={'file'}
+									text={cell.value}
+								/>
+							{:else}
+								{cell.value}
+							{/if}
+						</svelte:fragment>
+					</DataTable>
+				</div>
+				<p>
+					Subspecies and Zeniths are also immune, except Doragyurosu which is
+					immune to these statuses only in G-Rank, and also as a Zenith.
+				</p>
+				<p>Only support can inflict poison to Raviente.</p>
+			</div>
+		</div>
 	</section>
 
 	<section>
@@ -6891,8 +7565,13 @@ does not get multiplied by horn */
 		grid-area: ice-age-table-hits;
 	}
 
-	.ice-age-section {
+	.ice-age-section,
+	.elements-section {
 		margin-bottom: 6rem;
+	}
+
+	.elements-table {
+		margin-top: 2rem;
 	}
 
 	@media (min-width: 320px) {
@@ -7018,5 +7697,10 @@ does not get multiplied by horn */
 	.modal-mobile-contents-bottom {
 		display: flex;
 		gap: 0.5rem;
+	}
+
+	.datatable-container {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 </style>

@@ -24,7 +24,9 @@ Shows text next to an icon inline. You can use either a component or a image imp
 				{tooltip}
 			</div></Popover
 		>
-		{#if iconType === 'file'}
+		{#if icon === ''}
+			<span></span>
+		{:else if iconType === 'file'}
 			<span
 				class="image"
 				on:mouseenter={(e) => (open = true)}
