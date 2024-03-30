@@ -5911,7 +5911,7 @@ does not get multiplied by horn */
 								kind="ghost">{cell.value}</Button
 							>
 						{:else}
-							{cell.value}
+							<p>{cell.value}</p>
 						{/if}
 					</svelte:fragment>
 				</DataTable>
@@ -5957,7 +5957,7 @@ does not get multiplied by horn */
 							kind="ghost">{cell.value}</Button
 						>
 					{:else}
-						{cell.value}
+						<p>{cell.value}</p>
 					{/if}
 				</svelte:fragment>
 			</DataTable>
@@ -6215,7 +6215,7 @@ does not get multiplied by horn */
 									tooltip="Weapon">{cell.value}</InlineTooltip
 								>
 							{:else}
-								{cell.value}
+								<p>{cell.value}</p>
 							{/if}
 						</svelte:fragment>
 					</DataTable>
@@ -6303,7 +6303,7 @@ does not get multiplied by horn */
 										kind="ghost">{cell.value}</Button
 									>
 								{:else}
-									{cell.value}
+									<p>{cell.value}</p>
 								{/if}
 							</svelte:fragment>
 						</DataTable>
@@ -6745,7 +6745,7 @@ does not get multiplied by horn */
 								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
 							/>
 						{:else}
-							{cell.value}
+							<p>{cell.value}</p>
 						{/if}
 					</svelte:fragment>
 				</DataTable>
@@ -6997,7 +6997,7 @@ does not get multiplied by horn */
 								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
 							/>
 						{:else}
-							{cell.value}
+							<p>{cell.value}</p>
 						{/if}
 					</svelte:fragment>
 				</DataTable>
@@ -7152,7 +7152,7 @@ does not get multiplied by horn */
 							/>
 						</div>
 					{:else}
-						{cell.value}
+						<p>{cell.value}</p>
 					{/if}
 				</svelte:fragment>
 			</DataTable>
@@ -7249,7 +7249,7 @@ does not get multiplied by horn */
 										: ''}>{cell.value}</span
 								>
 							{:else}
-								{cell.value}
+								<p>{cell.value}</p>
 							{/if}
 						</svelte:fragment>
 					</DataTable>
@@ -7386,7 +7386,7 @@ does not get multiplied by horn */
 					size="short"
 					headers={[
 						{ key: 'name', value: 'Name', minWidth: '1rem' },
-						{ key: 'armorSkill', value: 'Armor Skill', minWidth: '1rem' },
+						{ key: 'armorSkill', value: 'Automatic Skill', minWidth: '1rem' },
 					]}
 					rows={[
 						{
@@ -7526,7 +7526,9 @@ does not get multiplied by horn */
 								text={cell.value}
 							/>
 						{:else}
-							{cell.value}
+							<p>
+								{cell.value}
+							</p>
 						{/if}
 					</svelte:fragment>
 				</DataTable>
@@ -7550,7 +7552,7 @@ does not get multiplied by horn */
 					headers={[
 						{ key: 'weapon', value: 'Weapon', minWidth: '1rem' },
 						{ key: 'name', value: 'Name', minWidth: '1rem' },
-						{ key: 'armorSkill', value: 'Armor Skill', minWidth: '1rem' },
+						{ key: 'armorSkill', value: 'Automatic Skill', minWidth: '1rem' },
 						{ key: 'monster', value: 'Supremacy Monster', minWidth: '1rem' },
 					]}
 					rows={[
@@ -7838,7 +7840,7 @@ does not get multiplied by horn */
 								text={cell.value}
 							/>
 						{:else}
-							{cell.value}
+							<p>{cell.value}</p>
 						{/if}
 					</svelte:fragment>
 				</DataTable>
@@ -8142,7 +8144,7 @@ does not get multiplied by horn */
 								/>
 							{/each}
 						{:else}
-							{cell.value}
+							<p>{cell.value}</p>
 						{/if}
 					</svelte:fragment>
 				</DataTable>
@@ -8386,7 +8388,7 @@ does not get multiplied by horn */
 									/>
 								{/each}
 							{:else}
-								{cell.value}
+								<p>{cell.value}</p>
 							{/if}
 						</svelte:fragment>
 					</DataTable>
