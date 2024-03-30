@@ -7171,7 +7171,443 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Guild Poogie" />
-		<div></div>
+		<div>
+			<p class="spaced-paragraph">
+				Guild Poogies can grant bonuses upon being successfully fed (indicated
+				by them jumping up and down in a white flash), a Guild can have three
+				different Poogie Outfit that each grant a different skill when fed
+				successfully. The easiest way to get the buff is to to mass feed them
+				<InlineTooltip
+					text="Pugi Crackers"
+					tooltip="Item"
+					iconColor={ItemColors.find((e) => 'Yellow')?.value}
+					icon={ItemIcons.find((e) => e.name === 'Scale')?.icon}
+				/> from the Guild Shop.
+			</p>
+
+			<p class="spaced-paragraph">
+				You can only have one buff active at a time. You only need to feed once
+				per log in. You can check your current skill in the last page of your
+				equipment menu.
+			</p>
+
+			<p class="spaced-paragraph">
+				All poogie buffs stack with any similar skills. For example, you can use
+				the Luck effect poogie even if you have <InlineTooltip
+					text="Great Luck"
+					tooltip="Armor Skill"
+					icon={getTag('Armor Skill').icon}
+				/>
+				or Premium Course active. The Luck poogie has a 12.5% chance to reroll a
+				failed reward roll and a 12.5% chance to add additional reward slots. You
+				can get a maximum of 24 standard reward slots if you are using <InlineTooltip
+					text="Great Luck"
+					tooltip="Armor Skill"
+					icon={getTag('Armor Skill').icon}
+				/> with the poogie active. The poogie only affects the top 24 Main Reward
+				slots and does not change any of the other types of rewards (Sub Objectives,
+				Additional, Breaks, Partner, etc.).
+			</p>
+
+			<p>Only the guild leader can purchase and change clothes.</p>
+		</div>
+		<section>
+			<SectionHeading level={3} title="Guild Store Discount" />
+			<div>
+				<p>
+					The discount, from guild rank 5, is activated by successfully
+					completing the "pat on the head" and "it seems pretty happy" responses
+					a specified number of times.
+				</p>
+
+				<ul class="spaced-list">
+					<li>5 times successful: Guild shop 5% discount.</li>
+					<li>10 times successful: Guild shop 10% discount.</li>
+					<li>15 times successful: Guild shop 15% discount.</li>
+				</ul>
+
+				<p>The effect disappears in any of the following events:</p>
+				<ul>
+					<li>12 hours have passed.</li>
+					<li>Logout.</li>
+					<li>Petting poogie for a long time and it getting angry.</li>
+				</ul>
+			</div>
+		</section>
+		<section>
+			<SectionHeading level={3} title="Guild Poogie Skills" />
+			<div>
+				<p class="spaced-paragraph">
+					Guild Poogie Skills are unlocked at Guild Rank 6. Giving food and
+					triggering the alert "seems to love it!" will activate a skill
+					according to the Poogie's clothes with a probability.
+				</p>
+
+				<div>
+					<DataTable
+						useStaticWidth
+						sortable
+						zebra
+						size="medium"
+						headers={[
+							{ key: 'rank', value: 'Rank' },
+							{ key: 'costume', value: 'Costume' },
+							{ key: 'skill', value: 'Skill' },
+							{ key: 'effect', value: 'Effect' },
+							{ key: 'materials', value: 'Materials' },
+						]}
+						rows={[
+							{
+								id: '1',
+								rank: '6',
+								costume: 'Red & White',
+								skill: 'Poogie Thrift',
+								effect:
+									'Flute, Pickaxe and Bugnet are 1/4 less likely to break (Stacks with Whim).',
+								materials: '-',
+							},
+							{
+								id: '2',
+								rank: '6',
+								costume: 'Naked Emperor',
+								skill: 'Poogie Discount',
+								effect:
+									'Furniture store purchase price (Material/Zenny) 10% discount.',
+								materials: 'Wht Durable Fabricx45, Appropriate Partsx15',
+							},
+							{
+								id: '3',
+								rank: '6',
+								costume: 'Soporific White',
+								skill: 'Poogie Taijutsu',
+								effect: 'Halves stamina consumption when evading and guarding.',
+								materials:
+									'Wht Durable Fabricx75, Flexible Medicinex22, Appropriate Partsx30',
+							},
+							{
+								id: '4',
+								rank: '6',
+								costume: 'Black Green Clash',
+								skill: 'Poogie Status Attack',
+								effect:
+									'1.125x attribute value for status attacks (Can be used with status skills)',
+								materials: 'Striped Fabricx45, Green Fabricx30',
+							},
+							{
+								id: '5',
+								rank: '8',
+								costume: 'Silent Suit',
+								skill: 'Poogie Reward Technique',
+								effect:
+									"1/8 chance that the next reward won't be given as a quest reward. In addition, the maximum reward frame will also be increased.",
+								materials:
+									'Wht Durable Fabricx30, Black Fabricx50, Appropriate Partsx20',
+							},
+							{
+								id: '6',
+								rank: '8',
+								costume: 'Bewitching Pink',
+								skill: 'Poogie Defense',
+								effect:
+									'When attacked: 1/4 chance to reduce damage taken by 30% (Can be used with the protection skill).',
+								materials: 'Wht Durable Fabricx2, Peach Fabricx45',
+							},
+							{
+								id: '7',
+								rank: '8',
+								costume: 'Nostalgic Stripe',
+								skill: 'Poogie Escape Technique',
+								effect: 'Halves stamina when running away.',
+								materials: 'Striped Fabricx45, Blue Fabricx25',
+							},
+							{
+								id: '8',
+								rank: '8',
+								costume: 'Soothing Sky',
+								skill: 'Poogie Transporation',
+								effect:
+									'Halves stamina consumption while running while transporting (Can be used with Marathon Runner skill).',
+								materials:
+									'Wht Durable Fabricx40, Blue Fabricx35, Appropriate Partsx10',
+							},
+
+							{
+								id: '9',
+								rank: '9',
+								costume: 'Gentle Green',
+								skill: 'Poogie Trap Mastery',
+								effect: '100% success in combining pitfall and shock traps.',
+								materials:
+									'Green Fabricx35, Blue Fabricx20, Appropriate Partsx20',
+							},
+							{
+								id: '10',
+								rank: '9',
+								costume: 'Restless Brown',
+								skill: 'Poogie Patience',
+								effect:
+									'When attacked: 1/6 chance of gaining super armor (no knockback).',
+								materials:
+									'Brown Fabricx30, Black Fabricx10, Appropriate Partsx30',
+							},
+						]}
+						><Toolbar
+							><div class="toolbar">
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray([
+										{
+											id: '1',
+											rank: '6',
+											costume: 'Red & White',
+											skill: 'Poogie Thrift',
+											effect:
+												'Flute, Pickaxe and Bugnet are 1/4 less likely to break (Stacks with Whim).',
+											materials: '-',
+										},
+										{
+											id: '2',
+											rank: '6',
+											costume: 'Naked Emperor',
+											skill: 'Poogie Discount',
+											effect:
+												'Furniture store purchase price (Material/Zenny) 10% discount.',
+											materials: 'Wht Durable Fabricx45, Appropriate Partsx15',
+										},
+										{
+											id: '3',
+											rank: '6',
+											costume: 'Soporific White',
+											skill: 'Poogie Taijutsu',
+											effect:
+												'Halves stamina consumption when evading and guarding.',
+											materials:
+												'Wht Durable Fabricx75, Flexible Medicinex22, Appropriate Partsx30',
+										},
+										{
+											id: '4',
+											rank: '6',
+											costume: 'Black Green Clash',
+											skill: 'Poogie Status Attack',
+											effect:
+												'1.125x attribute value for status attacks (Can be used with status skills)',
+											materials: 'Striped Fabricx45, Green Fabricx30',
+										},
+										{
+											id: '5',
+											rank: '8',
+											costume: 'Silent Suit',
+											skill: 'Poogie Reward Technique',
+											effect:
+												"1/8 chance that the next reward won't be given as a quest reward. In addition, the maximum reward frame will also be increased.",
+											materials:
+												'Wht Durable Fabricx30, Black Fabricx50, Appropriate Partsx20',
+										},
+										{
+											id: '6',
+											rank: '8',
+											costume: 'Bewitching Pink',
+											skill: 'Poogie Defense',
+											effect:
+												'When attacked: 1/4 chance to reduce damage taken by 30% (Can be used with the protection skill).',
+											materials: 'Wht Durable Fabricx2, Peach Fabricx45',
+										},
+										{
+											id: '7',
+											rank: '8',
+											costume: 'Nostalgic Stripe',
+											skill: 'Poogie Escape Technique',
+											effect: 'Halves stamina when running away.',
+											materials: 'Striped Fabricx45, Blue Fabricx25',
+										},
+										{
+											id: '8',
+											rank: '8',
+											costume: 'Soothing Sky',
+											skill: 'Poogie Transporation',
+											effect:
+												'Halves stamina consumption while running while transporting (Can be used with Marathon Runner skill).',
+											materials:
+												'Wht Durable Fabricx40, Blue Fabricx35, Appropriate Partsx10',
+										},
+
+										{
+											id: '9',
+											rank: '9',
+											costume: 'Gentle Green',
+											skill: 'Poogie Trap Mastery',
+											effect:
+												'100% success in combining pitfall and shock traps.',
+											materials:
+												'Green Fabricx35, Blue Fabricx20, Appropriate Partsx20',
+										},
+										{
+											id: '10',
+											rank: '9',
+											costume: 'Restless Brown',
+											skill: 'Poogie Patience',
+											effect:
+												'When attacked: 1/6 chance of gaining super armor (no knockback).',
+											materials:
+												'Brown Fabricx30, Black Fabricx10, Appropriate Partsx30',
+										},
+									])}
+								/>
+							</div>
+						</Toolbar>
+
+						<svelte:fragment slot="cell" let:cell>
+							<p>{cell.value}</p>
+						</svelte:fragment>
+					</DataTable>
+				</div>
+			</div>
+		</section>
+		<section>
+			<SectionHeading level={3} title="Guild Poogie Clothing Materials" />
+			<div>
+				<p class="spaced-paragraph">
+					Clothing materials are RARE2 and can be put in the guild box.
+				</p>
+				<div>
+					<DataTable
+						useStaticWidth
+						sortable
+						zebra
+						size="medium"
+						headers={[
+							{ key: 'clothingMaterial', value: 'Clothing Material' },
+							{ key: 'productionMaterials', value: 'Production Materials' },
+						]}
+						rows={[
+							{
+								id: '1',
+								clothingMaterial: 'Sturdy Wht Cloth',
+								productionMaterials:
+									'Anteka Peltx3, Giaprey Hidex2, Blangonga Peltx2',
+							},
+							{
+								id: '2',
+								clothingMaterial: 'Appropriate Parts',
+								productionMaterials:
+									'Sunstonex2, Sticky Caterpillarx1, Sm Monster Bonex1, Machalite Orex3',
+							},
+							{
+								id: '3',
+								clothingMaterial: 'Striped Fabric',
+								productionMaterials:
+									'High Quality Peltx3, Striped Skinx2, Black Rajang Peltx1, Carpenterbugx2',
+							},
+							{
+								id: '4',
+								clothingMaterial: 'Green Fabric',
+								productionMaterials:
+									'Burukku Hidex2, Rathian Scalex3, Gendrome Hidex3, Festi Ticketx1',
+							},
+							{
+								id: '5',
+								clothingMaterial: 'Fluffy Serum',
+								productionMaterials:
+									'Bomb Arowanax3, Firecell Stonex1, Fire Herbx5, Monster Fluidx2',
+							},
+							{
+								id: '6',
+								clothingMaterial: 'Black Fabric',
+								productionMaterials:
+									'Remobra Skin+x2, High Quality Peltx3, B.Gravios Shellx1',
+							},
+							{
+								id: '7',
+								clothingMaterial: 'Peach Fabric',
+								productionMaterials:
+									'Ioprey Hide+x1, Teostra Shellx1, Giaprey Hidex3',
+							},
+							{
+								id: '8',
+								clothingMaterial: 'Blue Fabric',
+								productionMaterials:
+									'Velociprey Scalex3, B.Kut-Ku Scalex2, Rubbery Hidex1',
+							},
+
+							{
+								id: '9',
+								clothingMaterial: 'Brown Fabric',
+								productionMaterials:
+									'Genprey Hidex4, Diablos Shellx1, Gluehopperx2',
+							},
+						]}
+						><Toolbar
+							><div class="toolbar">
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray([
+										{
+											id: '1',
+											clothingMaterial: 'Sturdy Wht Cloth',
+											productionMaterials:
+												'Anteka Peltx3, Giaprey Hidex2, Blangonga Peltx2',
+										},
+										{
+											id: '2',
+											clothingMaterial: 'Appropriate Parts',
+											productionMaterials:
+												'Sunstonex2, Sticky Caterpillarx1, Sm Monster Bonex1, Machalite Orex3',
+										},
+										{
+											id: '3',
+											clothingMaterial: 'Striped Fabric',
+											productionMaterials:
+												'High Quality Peltx3, Striped Skinx2, Black Rajang Peltx1, Carpenterbugx2',
+										},
+										{
+											id: '4',
+											clothingMaterial: 'Green Fabric',
+											productionMaterials:
+												'Burukku Hidex2, Rathian Scalex3, Gendrome Hidex3, Festi Ticketx1',
+										},
+										{
+											id: '5',
+											clothingMaterial: 'Fluffy Serum',
+											productionMaterials:
+												'Bomb Arowanax3, Firecell Stonex1, Fire Herbx5, Monster Fluidx2',
+										},
+										{
+											id: '6',
+											clothingMaterial: 'Black Fabric',
+											productionMaterials:
+												'Remobra Skin+x2, High Quality Peltx3, B.Gravios Shellx1',
+										},
+										{
+											id: '7',
+											clothingMaterial: 'Peach Fabric',
+											productionMaterials:
+												'Ioprey Hide+x1, Teostra Shellx1, Giaprey Hidex3',
+										},
+										{
+											id: '8',
+											clothingMaterial: 'Blue Fabric',
+											productionMaterials:
+												'Velociprey Scalex3, B.Kut-Ku Scalex2, Rubbery Hidex1',
+										},
+
+										{
+											id: '9',
+											clothingMaterial: 'Brown Fabric',
+											productionMaterials:
+												'Genprey Hidex4, Diablos Shellx1, Gluehopperx2',
+										},
+									])}
+								/>
+							</div>
+						</Toolbar>
+
+						<svelte:fragment slot="cell" let:cell>
+							<p>{cell.value}</p>
+						</svelte:fragment>
+					</DataTable>
+				</div>
+			</div>
+		</section>
 	</section>
 
 	<section>
@@ -7289,7 +7725,7 @@ does not get multiplied by horn */
 						</li>
 						<li>
 							<InlineTooltip
-								text="Pugi Crackers"
+								text="poogie Crackers"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Scale')?.icon}
@@ -7364,7 +7800,7 @@ does not get multiplied by horn */
 							/>
 						</li>
 					</ul>
-					<p>Pugi Farm General Store Lv3:</p>
+					<p>Poogie Farm General Store Lv3:</p>
 					<ul>
 						<li>
 							<InlineTooltip
