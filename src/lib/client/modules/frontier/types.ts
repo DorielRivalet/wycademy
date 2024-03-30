@@ -599,17 +599,15 @@ export type FrontierMotionValueSection = {
 
 export type FrontierBento = {
 	name: 'Vigorous' | 'Starving Wolf' | 'Adrenaline' | 'Combo';
-	values: [
-		{
-			ingredient1: string;
-			ingredient2: string;
-			dish: string;
-			health: string;
-			stamina: string;
-			attack: string;
-			defense: string;
-		},
-	];
+	values: {
+		ingredient1: string;
+		ingredient2: string;
+		dish: string;
+		health: string;
+		stamina: string;
+		attack: string;
+		defense: string;
+	}[];
 };
 
 export type FrontierMotionValues = {

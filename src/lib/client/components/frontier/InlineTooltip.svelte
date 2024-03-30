@@ -9,15 +9,20 @@ Shows text next to an icon inline. You can use either a component or a image imp
 	export let iconType: 'component' | 'file' = 'component';
 	export let icon: any = QuestionMarkIconWhite;
 	export let iconColor = '#ffffff';
+	/**For component*/
+	export let iconSize = '100%';
+	/**For component*/
+	export let gap = 'auto';
 
 	let iconProps = {
 		color: iconColor,
+		size: iconSize,
 	};
 
 	let open = false;
 </script>
 
-<span class="container">
+<span class="container" style="line-height: {iconSize}">
 	<span
 		style:position="relative"
 		on:mouseenter={(e) => (open = true)}
@@ -51,6 +56,7 @@ Shows text next to an icon inline. You can use either a component or a image imp
 		{:else}
 			<span
 				class="icon"
+				style="margin-right: {gap}"
 				on:mouseenter={(e) => (open = true)}
 				on:mouseleave={(e) => (open = false)}
 				role="button"

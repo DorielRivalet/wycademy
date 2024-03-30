@@ -6781,8 +6781,8 @@ does not get multiplied by horn */
 					zebra
 					size="medium"
 					headers={[
-						{ key: 'weapon', value: 'Weapon', minWidth: '1rem' },
-						{ key: 'effect', value: 'Active Feature Effect', minWidth: '1rem' },
+						{ key: 'weapon', value: 'Weapon', minWidth: '12rem' },
+						{ key: 'effect', value: 'Active Feature Effect' },
 						{ key: 'bitfield', value: 'Bitfield Value' },
 					]}
 					rows={[
@@ -6995,6 +6995,8 @@ does not get multiplied by horn */
 								text={cell.value}
 								tooltip={'Weapon'}
 								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+								iconSize={'2rem'}
+								gap={'0.5rem'}
 							/>
 						{:else}
 							<p>{cell.value}</p>
