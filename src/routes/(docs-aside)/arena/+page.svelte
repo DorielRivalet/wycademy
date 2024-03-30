@@ -85,6 +85,10 @@
 	import IceAgeStage2Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage3Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import SharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
+	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
+	import ToolbarContent from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
+	import Copy from 'carbon-icons-svelte/lib/Copy.svelte';
+	import Pagination from 'carbon-components-svelte/src/Pagination/Pagination.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
@@ -3118,6 +3122,10 @@ does not get multiplied by horn */
 	$: activeFeatureFinalBitfieldValue = getActiveFeatureFinalBitfieldValue(
 		activeFeatureSelectedRowIds,
 	);
+
+	let originsTablePageSize = 5;
+	let originsTablePage = 1;
+	let originsTableFilteredRowIds: string[] = [];
 </script>
 
 <svelte:head>
@@ -5983,7 +5991,7 @@ does not get multiplied by horn */
 							{
 								key: 'weapon',
 								value: 'Weapon',
-								minWidth: '1rem',
+								minWidth: '12rem',
 							},
 							{ key: 'stage1', value: 'Stage 1', minWidth: '1rem' },
 							{ key: 'stage2', value: 'Stage 2', minWidth: '1rem' },
@@ -6803,7 +6811,7 @@ does not get multiplied by horn */
 							id: 'Great Sword',
 							weapon: 'Great Sword',
 							effect:
-								'+100% Affinity when using an unsheathe attack. This is additional and goes on top of any existing affinity. Synergizes well with Critical Conversion. This also applies to attacks from Parries and also gives the raw increasing effect of skill Critical Conversion (no +30%) while you are performing these actions.',
+								"+100% Affinity when using an unsheathe attack. This is additional and goes on top of any existing affinity. Synergizes well with Critical Conversion. This also applies to attacks from Parries and also gives the raw increasing effect of skill Critical Conversion (no +30%) while you are performing these actions. This doesn't activate with Shining Sword.",
 							bitfield: '1',
 						},
 						{
@@ -7545,11 +7553,12 @@ does not get multiplied by horn */
 				Origin monsters are natural evolutions of the Gou monsters. These are
 				required to upgrade Gou armors and weapons beyond G Supremacy level.
 			</p>
-			<div class="origins-table">
+			<div class="origins-table table-with-pagination">
 				<DataTable
 					sortable
 					zebra
-					useStaticWidth
+					pageSize={originsTablePageSize}
+					page={originsTablePage}
 					size="short"
 					headers={[
 						{ key: 'weapon', value: 'Weapon', minWidth: '1rem' },
@@ -7685,139 +7694,149 @@ does not get multiplied by horn */
 							monster: 'Pariapuria',
 						},
 					]}
-					><Toolbar
-						><div class="toolbar">
-							<CopyButton
-								iconDescription={'Copy as CSV'}
-								text={getCSVFromArray([
-									{
-										id: '1',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Great Sword',
-										name: 'Varusaburosu GS',
-										monster: 'Teostra',
-									},
-									{
-										id: '2',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Long Sword',
-										name: 'Teostra LS',
-										monster: 'Teostra',
-									},
-									{
-										id: '3',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Sword and Shield',
-										name: 'Varusaburosu SnS',
-										monster: 'Aruganosu / Goruganosu',
-									},
-									{
-										id: '4',
-										armorSkill: 'Exploit Weakness',
-										weapon: 'Dual Swords',
-										name: 'Meraginasu DS',
-										monster: 'Teostra',
-									},
-									{
-										id: '5',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Dual Swords',
-										name: 'Gureadomosu DS',
-										monster: 'Doragyurosu',
-									},
-									{
-										id: '6',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Hammer',
-										name: 'Varusaburosu Hammer',
-										monster: 'Teostra',
-									},
-									{
-										id: '7',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Hunting Horn',
-										name: 'Poborubarumu HH',
-										monster: 'Doragyurosu',
-									},
-									{
-										id: '8',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Lance',
-										name: 'Varusaburosu Lance',
-										monster: 'Teostra',
-									},
-									{
-										id: '9',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Lance',
-										name: 'Varusaburosu Lance',
-										monster: 'Aruganosu / Goruganosu',
-									},
-									{
-										id: '10',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Gunlance',
-										name: 'Poborubarumu GL',
-										monster: 'Teostra',
-									},
-									{
-										id: '11',
-										armorSkill: 'Exploit Weakness',
-										weapon: 'Tonfa',
-										name: 'Meraginasu Tonfa',
-										monster: 'Teostra',
-									},
-									{
-										id: '12',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Tonfa',
-										name: 'Gureadomosu Tonfa',
-										monster: 'Teostra',
-									},
-									{
-										id: '13',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Switch Axe F',
-										name: 'Varusaburosu Swaxe',
-										monster: 'Aruganosu / Goruganosu',
-									},
-									{
-										id: '14',
-										armorSkill: 'Exploit Weakness',
-										weapon: 'Light Bowgun',
-										name: 'Toa Tesukatora LBG',
-										monster: 'UNKNOWN',
-									},
-									{
-										id: '15',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Light Bowgun',
-										name: 'Teostra LBG',
-										monster: 'Pariapuria',
-									},
-									{
-										id: '16',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Heavy Bowgun',
-										name: 'Varusaburosu HBG',
-										monster: 'Aruganosu / Goruganosu',
-									},
-									{
-										id: '17',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Bow',
-										name: 'Varusaburosu Bow',
-										monster: 'Pariapuria',
-									},
-									{
-										id: '18',
-										armorSkill: 'Vampirism+2',
-										weapon: 'Bow',
-										name: 'Poborubarumu Bow',
-										monster: 'Pariapuria',
-									},
-								])}
+					><Toolbar size="sm">
+						<div class="toolbar">
+							<ToolbarSearch
+								shouldFilterRows
+								value="Vampirism"
+								bind:filteredRowIds={originsTableFilteredRowIds}
 							/>
+							<Button
+								size="small"
+								icon={Copy}
+								on:click={(e) =>
+									navigator.clipboard.writeText(
+										getCSVFromArray([
+											{
+												id: '1',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Great Sword',
+												name: 'Varusaburosu GS',
+												monster: 'Teostra',
+											},
+											{
+												id: '2',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Long Sword',
+												name: 'Teostra LS',
+												monster: 'Teostra',
+											},
+											{
+												id: '3',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Sword and Shield',
+												name: 'Varusaburosu SnS',
+												monster: 'Aruganosu / Goruganosu',
+											},
+											{
+												id: '4',
+												armorSkill: 'Exploit Weakness',
+												weapon: 'Dual Swords',
+												name: 'Meraginasu DS',
+												monster: 'Teostra',
+											},
+											{
+												id: '5',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Dual Swords',
+												name: 'Gureadomosu DS',
+												monster: 'Doragyurosu',
+											},
+											{
+												id: '6',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Hammer',
+												name: 'Varusaburosu Hammer',
+												monster: 'Teostra',
+											},
+											{
+												id: '7',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Hunting Horn',
+												name: 'Poborubarumu HH',
+												monster: 'Doragyurosu',
+											},
+											{
+												id: '8',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Lance',
+												name: 'Varusaburosu Lance',
+												monster: 'Teostra',
+											},
+											{
+												id: '9',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Lance',
+												name: 'Varusaburosu Lance',
+												monster: 'Aruganosu / Goruganosu',
+											},
+											{
+												id: '10',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Gunlance',
+												name: 'Poborubarumu GL',
+												monster: 'Teostra',
+											},
+											{
+												id: '11',
+												armorSkill: 'Exploit Weakness',
+												weapon: 'Tonfa',
+												name: 'Meraginasu Tonfa',
+												monster: 'Teostra',
+											},
+											{
+												id: '12',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Tonfa',
+												name: 'Gureadomosu Tonfa',
+												monster: 'Teostra',
+											},
+											{
+												id: '13',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Switch Axe F',
+												name: 'Varusaburosu Swaxe',
+												monster: 'Aruganosu / Goruganosu',
+											},
+											{
+												id: '14',
+												armorSkill: 'Exploit Weakness',
+												weapon: 'Light Bowgun',
+												name: 'Toa Tesukatora LBG',
+												monster: 'Unknown',
+											},
+											{
+												id: '15',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Light Bowgun',
+												name: 'Teostra LBG',
+												monster: 'Pariapuria',
+											},
+											{
+												id: '16',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Heavy Bowgun',
+												name: 'Varusaburosu HBG',
+												monster: 'Aruganosu / Goruganosu',
+											},
+											{
+												id: '17',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Bow',
+												name: 'Varusaburosu Bow',
+												monster: 'Pariapuria',
+											},
+											{
+												id: '18',
+												armorSkill: 'Vampirism+2',
+												weapon: 'Bow',
+												name: 'Poborubarumu Bow',
+												monster: 'Pariapuria',
+											},
+										]),
+									)}
+								kind="ghost">Copy</Button
+							>
 						</div>
 					</Toolbar>
 					<span slot="title">
@@ -7846,6 +7865,12 @@ does not get multiplied by horn */
 						{/if}
 					</svelte:fragment>
 				</DataTable>
+				<Pagination
+					pageSizes={[5, 10, 20]}
+					bind:pageSize={originsTablePageSize}
+					bind:page={originsTablePage}
+					totalItems={originsTableFilteredRowIds.length}
+				/>
 			</div>
 		</div>
 	</section>
@@ -8554,6 +8579,8 @@ does not get multiplied by horn */
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		flex-grow: 1;
+		flex-shrink: 1;
 	}
 
 	.modal-open-noblur {
@@ -9035,6 +9062,15 @@ does not get multiplied by horn */
 	.exotics-table,
 	.origins-table {
 		display: flex;
+	}
+
+	.table-with-pagination {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.origins-table {
+		max-width: 800px;
 	}
 
 	.sharpness-bar-container {

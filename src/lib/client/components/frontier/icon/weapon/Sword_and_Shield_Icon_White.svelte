@@ -10,8 +10,10 @@
 	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
 	export let rarity: FrontierRarity = 1;
 	export let size = '100%';
+	export let color = '';
 
-	$: targetColor = RarityColors[rarity - 1] ?? RarityColors[0];
+	$: targetColor =
+		color === '' ? RarityColors[rarity - 1] ?? RarityColors[0] : color;
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
