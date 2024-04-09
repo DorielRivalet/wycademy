@@ -7157,11 +7157,15 @@ does not get multiplied by horn */
 						creating a circle indicator.
 					</p>
 					<p class="spaced-paragraph">
-						Heavy Bowgun has a much larger impact animation while in the first
-						half of critical distance on standard shots making it easier to see
-						when you are properly spaced. This adds an extra 0.3x multiplier to
-						damage in that zone (e.g. 2.0 in first half of Normal Shot range,
-						2.3x with an Origin or Zenith Piece and G Rank Weapon, etc.)
+						<InlineTooltip
+							text="Heavy Bowgun"
+							icon={WeaponTypes.find((e) => e.name === 'Heavy Bowgun')?.icon}
+							tooltip="Weapon Type"
+						/> has a much larger impact animation while in the first half of critical
+						distance on standard shots making it easier to see when you are properly
+						spaced. This adds an extra 0.3x multiplier to damage in that zone (e.g.
+						2.0 in first half of Normal Shot range, 2.3x with an Origin or Zenith
+						Piece and G Rank Weapon, etc.)
 					</p>
 					<div>
 						<Dropdown
@@ -9110,7 +9114,149 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Guild Food" />
-		<div></div>
+		<div>
+			<p>
+				Guild cooking is available at guild rank 15, it is a mini-game performed
+				by up to four people. Cooking can activate effects separate from armor
+				skills.
+			</p>
+
+			<p>
+				The skill effect gained by cooking lasts for 90 minutes. However, if a
+				new skill is obtained by cooking, the effect is overwritten. You can
+				check your current duration with the overlay.
+			</p>
+
+			<p>
+				Up to 6 dishes can be "left over". The leftover dishes will be stored
+				for 1 hour at the cat in the cooking area.
+			</p>
+
+			<p>
+				Yellow ingredients are "base ingredients" and pink ingredients are
+				"Auxiliary". These allow you to create dishes via the menu. If you
+				select any other option, it will be a Guild's Yaminabe.
+			</p>
+
+			<p>
+				Guild Food grants a skill on successfully being cooked, there are three
+				levels of each skill it can grant and a potential failure option that
+				applies a debuff instead of a buff.
+			</p>
+
+			<p>
+				During the minigame, you have to press confirm to keep the icon on a
+				meter in either the blue or green bars. Blue produces the best results,
+				while green produces good ones. Cat stamps will appear showing you how
+				well you are doing in the top right until the cooking time expires.
+			</p>
+
+			<p>
+				By repeatedly pressing the confirm button, the cursor on the gauge will
+				move to the right. By hovering the cursor over the green "Success Area"
+				or blue "Great Success Area," a stamp will accumulate directly below the
+				food meter. When the color of the stamp turns green, the dish is a
+				success, and when it turns blue, it is a great success. The more people
+				that participate, the higher the chance the dish will be a great
+				success.
+			</p>
+
+			<p>
+				Upon completion, the food will be sent to the Kitchen Cat who manages
+				cooked food and you will either get told what buff it gives or be asked
+				to replace an existing meal if there are no spots for it to go into.
+			</p>
+
+			<p>
+				Food that is cooked is available to all Guild Members after being posted
+				on the Kitchen Cat for one hour after being completed and the buffs
+				themselves last one hour and thirty minutes, this means you can get a
+				maximum of two hours and thirty minutes of the skill for every time you
+				cook it.
+			</p>
+
+			<p>
+				For food with random results you can keep eating it on the Cat until you
+				proc the skill you want. The skills available in the pool are based on
+				success level with +20 to elemental resistances in the normal success
+				pool.
+			</p>
+
+			<p>
+				There are a lot of ingredients that can be used for cooking, these come
+				from the Guild Store or from the Adventure Boat. The Guild Store
+				requires you to pay either standard Zeny or <InlineTooltip
+					text="Guild Tickets"
+					tooltip="Item"
+					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
+					iconColor={'Green'}
+				/> while the Adventure Boat is mostly RNG based with the rarest items needing
+				materials obtained from participating in the Diva Defense Event.
+			</p>
+
+			<p>
+				As long as you claim rewards from the Diva Defense you will obtain at
+				least some of the materials for the Adventure Boat.
+			</p>
+
+			<p>
+				You can use the Adventure Boat to send a Felyne to a specific location.
+				The Adventure Boat is the only way you can obtain some of the items for
+				the Guild Special Cooking recipes such as those used in the Caring
+				Recipes (Makes it so you cannot hit other players with attacks). Sending
+				out the cats costs RP, which you gain at a rate of 1 per 30 minutes
+				spent in game. Rewards will depend upon a number of factors and be
+				increased by putting in <InlineTooltip
+					text="Guild Tickets"
+					tooltip="Item"
+					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
+					iconColor={'Green'}
+				/> by talking to the NPC on land after the boat departs.
+			</p>
+
+			<p>
+				After the boat returns you can claim any rewards from directly in front
+				of it, depending on the success level of the mission you will see
+				different results ranging from a pile of plain boxes and debris to
+				shining treasures. The boat is out for 6 hours as standard and all
+				members of the guild can contribute and claim rewards.
+			</p>
+
+			<p>
+				There are a number of different cooking modes, you can either go
+				normally which doesn't cost any <InlineTooltip
+					text="Guild Tickets"
+					tooltip="Item"
+					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
+					iconColor={'Green'}
+				/> or you can use one of 6
+				<InlineTooltip
+					text="Guild Ticket"
+					tooltip="Item"
+					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
+					iconColor={'Green'}
+				/> options that alter how the results and minigame functions.
+			</p>
+
+			<p>
+				As with normal food preparation there are recipes for each status you
+				might want, there are four result states from cooking: Great Failure,
+				Failure, Success and Great Success. These are indicated by the number of
+				stamps you collect during the cooking minigame, no stamps is a fixed
+				Great Failure, red stamps result in failure, green in success and blue
+				in great success. For fighting Zenith monsters it is also worth
+				utilising the Resistance recipes; 55 of a resistance is required to
+				avoid extreme versions of blights and you can get +83 elemental
+				resistance from a combination of SR Skills and Guild Cooking.
+			</p>
+
+			<p>
+				Unless you are very confident in your ability to consistently hit Great
+				Success in the minigame, you should only use recipes with red
+				ingredients while also using the Success Level Up cooking option that
+				forces success to upgrade into Great Success.
+			</p>
+		</div>
 	</section>
 
 	<section>

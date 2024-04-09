@@ -3079,6 +3079,14 @@
 			{/if}
 		</div>
 	</section>
+	<section>
+		<SectionHeading level={2} title="Icons" />
+		<div class="container-item-buttons"></div>
+	</section>
+	<section>
+		<SectionHeading level={2} title="Thumbnail Generator" />
+		<div class="container-item-buttons"></div>
+	</section>
 </div>
 
 <style lang="scss">
