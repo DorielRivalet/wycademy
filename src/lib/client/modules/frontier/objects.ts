@@ -612,6 +612,205 @@ import MagnetSpikeIconSmallRed from '$lib/client/images/weapon/small/small_ms_re
 import BowIconSmallRed from '$lib/client/images/weapon/small/small_bow_red.webp';
 import LightBowgunIconSmallRed from '$lib/client/images/weapon/small/small_lbg_red.webp';
 import HeavyBowgunIconSmallRed from '$lib/client/images/weapon/small/small_hbg_red.webp';
+
+import ComponentMonsterRandom from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRathian from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterFatalis from '$lib/client/components/frontier/icon/monster/Fatalis.svelte';
+import ComponentMonsterKelbi from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterMosswine from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBullfango from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterYianKutKu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterLaoShanLung from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterCephadrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterFelyne from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRathalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAptonoth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGenprey from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDiablos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterKhezu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterVelociprey from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGravios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterVespoid from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGypceros from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterPlesioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBasarios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterMelynx from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterHornetaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterApceros from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterMonoblos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterVelocidrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGendrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterIoprey from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterIodrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterKirin from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterCephalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGiapreyGiadrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterCrimsonFatalis from '$lib/client/components/frontier/icon/monster/CrimsonFatalis3.svelte';
+import ComponentMonsterPinkRathian from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBlueYianKutKu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterPurpleGypceros from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterYianGaruga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterSilverRathalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGoldRathian from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBlackDiablos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterWhiteMonoblos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRedKhezu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGreenPlesioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBlackGravios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAzureRathalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAshenLaoShanLung from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBlangonga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterCongalala from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRajang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterKushalaDaora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterShenGaoren from '$lib/client/components/frontier/icon/monster/ShenGaoren.svelte';
+import ComponentMonsterGreatThunderbug from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterShakalaka from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterYamaTsukami from '$lib/client/components/frontier/icon/monster/YamaTsukami2.svelte';
+import ComponentMonsterChameleos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRustedKushalaDaora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBlango from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterConga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRemobra from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterLunastra from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterTeostra from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterHermitaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterShogunCeanataur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBulldrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAnteka from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterPopo from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterWhiteFatalis from '$lib/client/components/frontier/icon/monster/WhiteFatalis6.svelte';
+import ComponentMonsterCeanataur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterHypnocatrice from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterLavasioth from '$lib/client/components/frontier/icon/monster/Lavasioth.svelte';
+import ComponentMonsterTigrex from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAkantor from '$lib/client/components/frontier/icon/monster/Akantor.svelte';
+import ComponentMonsterBrightHypnoc from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRedLavasioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterOrangeEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterSilverHypnoc from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAkuraVashimu from '$lib/client/components/frontier/icon/monster/AkuraVashimu2.svelte';
+import ComponentMonsterAkuraJebia from '$lib/client/components/frontier/icon/monster/AkuraJebia2.svelte';
+import ComponentMonsterBerukyurosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterCactus from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterPariapuria from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterWhiteEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterKamuOrugaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterNonoOrugaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRaviente from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDyuragaua from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDoragyurosu from '$lib/client/components/frontier/icon/monster/Doragyurosu.svelte';
+import ComponentMonsterGurenzeburu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBurukku from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterErupe from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRukodiora from '$lib/client/components/frontier/icon/monster/Rukodiora2.svelte';
+import ComponentMonsterUNKNOWN from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGogomoa from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterTaikunZamuza from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAbiorugu from '$lib/client/components/frontier/icon/monster/Abiorugu3.svelte';
+import ComponentMonsterKuarusepusu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterOdibatorasu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDisufiroa from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRebidiora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAnorupatisu from '$lib/client/components/frontier/icon/monster/Anorupatisu2.svelte';
+import ComponentMonsterHyujikiki from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterMidogaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGiaorugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterMiRu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterFarunokku from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterPokaradon from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterShantien from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterPokara from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGoruganosu from '$lib/client/components/frontier/icon/monster/Goruganosu.svelte';
+import ComponentMonsterAruganosu from '$lib/client/components/frontier/icon/monster/Aruganosu.svelte';
+import ComponentMonsterBaruragaru from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZerureusu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGougarf from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterUruki from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterForokururu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterMeraginasu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDiorex from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGarubaDaora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterInagami from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterVarusaburosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterPoborubarumu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDuremudira from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGureadomosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterHarudomerugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterToridcless from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGasurabazura from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterKusubami from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterYamaKurai from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
+import ComponentMonsterZinogre from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDeviljho from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBrachydios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBerserkRaviente from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterToaTesukatora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBarioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterUragaan from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterStygianZinogre from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGuanzorumu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterStarvingDeviljho from '$lib/client/components/frontier/icon/monster/StarvingDeviljho.svelte';
+import ComponentMonsterVoljang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterNargacuga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterKeoaruboru from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenaserisu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGoreMagala from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBlinkingNargacuga from '$lib/client/components/frontier/icon/monster/BlinkingNargacuga2.svelte';
+import ComponentMonsterShagaruMagala from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAmatsu from '$lib/client/components/frontier/icon/monster/Amatsu2.svelte';
+import ComponentMonsterElzelion from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterArrogantDuremudira from '$lib/client/components/frontier/icon/monster/ArrogantDuremudira2.svelte';
+import ComponentMonsterSeregios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBogabadorumu from '$lib/client/components/frontier/icon/monster/Bogabadorumu6.svelte';
+import ComponentMonsterBlitzkriegBogabadorumu from '$lib/client/components/frontier/icon/monster/BlitzkriegBogabadorumu2.svelte';
+import ComponentMonsterSparklingZerureusu from '$lib/client/components/frontier/icon/monster/SparklingZerureusu.svelte';
+import ComponentMonsterPSO2Rappy from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterKingShakalaka from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+
+import ComponentMonsterZenithAkuraVashimu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithAnorupatisu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithBaruragaru from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithBlangonga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithBogabadorumu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithDoragyurosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithGasurabazura from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithGiaorugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithGravios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithHarudomerugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithHypnoc from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithHyujikiki from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithInagami from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithKhezu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithMidogaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithPlesioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithRathalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithRukodiora from '$lib/client/components/frontier/icon/monster/ZenithRukodiora3.svelte';
+import ComponentMonsterZenithTaikunZamuza from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithTigrex from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZenithToridcless from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterConquestFatalis from '$lib/client/components/frontier/icon/monster/ConquestFatalis4.svelte';
+import ComponentMonsterConquestShantien from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterConquestCrimsonFatalis from '$lib/client/components/frontier/icon/monster/ConquestCrimsonFatalis7.svelte';
+import ComponentMonsterShitenDisufiroa from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterShitenUnknown from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBurningFreezingElzelion from '$lib/client/components/frontier/icon/monster/BurningFreezingElzelion2.svelte';
+import ComponentMonsterHowlingZinogre from '$lib/client/components/frontier/icon/monster/HowlingZinogre3.svelte';
+import ComponentMonsterSupremacyPariapuria from '$lib/client/components/frontier/icon/monster/ThirstyPariapuria.svelte';
+import ComponentMonsterSupremacyDoragyurosu from '$lib/client/components/frontier/icon/monster/SupremacyDoragyurosu.svelte';
+import ComponentMonsterSupremacyTeostra from '$lib/client/components/frontier/icon/monster/SupremacyTeostra.svelte';
+import ComponentMonsterSupremacyOdibatorasu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGoldenDeviljho from '$lib/client/components/frontier/icon/monster/GoldenDeviljho3.svelte';
+import ComponentMonsterFuriousRajang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRulingGuanzorumu from '$lib/client/components/frontier/icon/monster/RulingGuanzorumu.svelte';
+import ComponentMonsterShiftingMiRu from '$lib/client/components/frontier/icon/monster/ShiftingMiRu.svelte';
+import ComponentMonsterTwinheadRajang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRoadWhiteFatalis from '$lib/client/components/frontier/icon/monster/RoadWhiteFatalis3.svelte';
+
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
 The biggest argument in favour of this format over TypeScript’s enum is that it keeps your codebase aligned with the state of JavaScript, and when/if enums are added to JavaScript then you can move to the additional syntax.
@@ -1095,1200 +1294,1809 @@ export const MonsterIcons: {
 	rank: FrontierRankBand;
 	icon: any;
 	render: any;
+	component: any;
+	unusedComponent: boolean;
+	displayName: string;
 }[] = [
 	{
 		name: '',
 		icon: IconMonsterRandom,
 		rank: '',
 		render: IconMonsterRandom,
+		component: ComponentMonsterRandom,
+		unusedComponent: false,
+		displayName: 'Random',
 	},
 	{
 		name: 'Rathian',
 		icon: IconMonsterRathian,
 		rank: 'G Rank',
 		render: IconRenderMonsterRathian,
+		component: ComponentMonsterRathian,
+		unusedComponent: true,
+		displayName: 'Rathian',
 	},
 	{
 		name: 'Fatalis',
 		icon: IconMonsterFatalis,
 		rank: '',
 		render: IconRenderMonsterFatalis,
+		component: ComponentMonsterFatalis,
+		unusedComponent: false,
+		displayName: 'Fatalis',
 	},
 	{
 		name: 'Kelbi',
 		icon: IconMonsterKelbi,
 		rank: 'G Rank',
 		render: IconRenderMonsterKelbi,
+		component: ComponentMonsterKelbi,
+		unusedComponent: true,
+		displayName: 'Kelbi',
 	},
 	{
 		name: 'Mosswine',
 		icon: IconMonsterMosswine,
 		rank: 'G Rank',
 		render: IconRenderMonsterMosswine,
+		component: ComponentMonsterMosswine,
+		unusedComponent: true,
+		displayName: 'Mosswine',
 	},
 	{
 		name: 'Bullfango',
 		icon: IconMonsterBullfango,
 		rank: 'G Rank',
 		render: IconRenderMonsterBullfango,
+		component: ComponentMonsterBullfango,
+		unusedComponent: true,
+		displayName: 'Bullfango',
 	},
 	{
 		name: 'Yian Kut-Ku',
 		icon: IconMonsterYianKutKu,
 		rank: 'G Rank',
 		render: IconRenderMonsterYianKutKu,
+		component: ComponentMonsterYianKutKu,
+		unusedComponent: true,
+		displayName: 'Yian Kut-Ku',
 	},
 	{
 		name: 'Lao-Shan Lung',
 		icon: IconMonsterLaoShanLung,
 		rank: 'G Rank',
 		render: IconRenderMonsterLaoShanLung,
+		component: ComponentMonsterLaoShanLung,
+		unusedComponent: true,
+		displayName: 'Lao-Shan Lung',
 	},
 	{
 		name: 'Cephadrome',
 		icon: IconMonsterCephadrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterCephadrome,
+		component: ComponentMonsterCephadrome,
+		unusedComponent: true,
+		displayName: 'Cephadrome',
 	},
 	{
 		name: 'Felyne',
 		icon: IconMonsterFelyne,
 		rank: 'G Rank',
 		render: IconRenderMonsterFelyne,
+		component: ComponentMonsterFelyne,
+		unusedComponent: true,
+		displayName: 'Felyne',
 	},
 	{
 		name: 'Rathalos',
 		icon: IconMonsterRathalos,
 		rank: 'G Rank',
 		render: IconRenderMonsterRathalos,
+		component: ComponentMonsterRathalos,
+		unusedComponent: true,
+		displayName: 'Rathalos',
 	},
 	{
 		name: 'Aptonoth',
 		icon: IconMonsterAptonoth,
 		rank: 'G Rank',
 		render: IconRenderMonsterAptonoth,
+		component: ComponentMonsterAptonoth,
+		unusedComponent: true,
+		displayName: 'Aptonoth',
 	},
 	{
 		name: 'Genprey',
 		icon: IconMonsterGenprey,
 		rank: 'G Rank',
 		render: IconRenderMonsterGenprey,
+		component: ComponentMonsterGenprey,
+		unusedComponent: true,
+		displayName: 'Genprey',
 	},
 	{
 		name: 'Diablos',
 		icon: IconMonsterDiablos,
 		rank: 'G Rank',
 		render: IconRenderMonsterDiablos,
+		component: ComponentMonsterDiablos,
+		unusedComponent: true,
+		displayName: 'Diablos',
 	},
 	{
 		name: 'Khezu',
 		icon: IconMonsterKhezu,
 		rank: 'G Rank',
 		render: IconRenderMonsterKhezu,
+		component: ComponentMonsterKhezu,
+		unusedComponent: true,
+		displayName: 'Khezu',
 	},
 	{
 		name: 'Velociprey',
 		icon: IconMonsterVelociprey,
 		rank: 'G Rank',
 		render: IconRenderMonsterVelociprey,
+		component: ComponentMonsterVelociprey,
+		unusedComponent: true,
+		displayName: 'Velociprey',
 	},
 	{
 		name: 'Gravios',
 		icon: IconMonsterGravios,
 		rank: 'G Rank',
 		render: IconRenderMonsterGravios,
+		component: ComponentMonsterGravios,
+		unusedComponent: true,
+		displayName: 'Gravios',
 	},
 	{
 		name: 'Vespoid',
 		icon: IconMonsterVespoid,
 		rank: 'G Rank',
 		render: IconRenderMonsterVespoid,
+		component: ComponentMonsterVespoid,
+		unusedComponent: true,
+		displayName: 'Vespoid',
 	},
 	{
 		name: 'Gypceros',
 		icon: IconMonsterGypceros,
 		rank: 'G Rank',
 		render: IconRenderMonsterGypceros,
+		component: ComponentMonsterGypceros,
+		unusedComponent: true,
+		displayName: 'Gypceros',
 	},
 	{
 		name: 'Plesioth',
 		icon: IconMonsterPlesioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterPlesioth,
+		component: ComponentMonsterPlesioth,
+		unusedComponent: true,
+		displayName: 'Plesioth',
 	},
 	{
 		name: 'Basarios',
 		icon: IconMonsterBasarios,
 		rank: 'G Rank',
 		render: IconRenderMonsterBasarios,
+		component: ComponentMonsterBasarios,
+		unusedComponent: true,
+		displayName: 'Basarios',
 	},
 	{
 		name: 'Melynx',
 		icon: IconMonsterMelynx,
 		rank: 'G Rank',
 		render: IconRenderMonsterMelynx,
+		component: ComponentMonsterMelynx,
+		unusedComponent: true,
+		displayName: 'Melynx',
 	},
 	{
 		name: 'Hornetaur',
 		icon: IconMonsterHornetaur,
 		rank: 'G Rank',
 		render: IconRenderMonsterHornetaur,
+		component: ComponentMonsterHornetaur,
+		unusedComponent: true,
+		displayName: 'Hornetaur',
 	},
 	{
 		name: 'Apceros',
 		icon: IconMonsterApceros,
 		rank: 'G Rank',
 		render: IconRenderMonsterApceros,
+		component: ComponentMonsterApceros,
+		unusedComponent: true,
+		displayName: 'Apceros',
 	},
 	{
 		name: 'Monoblos',
+		displayName: 'Monoblos',
 		icon: IconMonsterMonoblos,
 		rank: 'G Rank',
 		render: IconRenderMonsterMonoblos,
+		component: ComponentMonsterMonoblos,
+		unusedComponent: true,
 	},
 	{
 		name: 'Velocidrome',
+		displayName: 'Velocidrome',
 		icon: IconMonsterVelocidrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterVelocidrome,
+		component: ComponentMonsterVelocidrome,
+		unusedComponent: true,
 	},
 	{
 		name: 'Gendrome',
+		displayName: 'Gendrome',
 		icon: IconMonsterGendrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterGendrome,
+		component: ComponentMonsterGendrome,
+		unusedComponent: true,
 	},
 	{
 		name: 'Ioprey',
+		displayName: 'Ioprey',
 		icon: IconMonsterIoprey,
 		rank: 'G Rank',
 		render: IconRenderMonsterIoprey,
+		component: ComponentMonsterIoprey,
+		unusedComponent: true,
 	},
 	{
 		name: 'Iodrome',
+		displayName: 'Iodrome',
 		icon: IconMonsterIodrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterIodrome,
+		component: ComponentMonsterIodrome,
+		unusedComponent: true,
 	},
 	{
 		name: 'Kirin',
+		displayName: 'Kirin',
 		icon: IconMonsterKirin,
 		rank: 'G Rank',
 		render: IconRenderMonsterKirin,
+		component: ComponentMonsterKirin,
+		unusedComponent: true,
 	},
 	{
 		name: 'Cephalos',
+		displayName: 'Cephalos',
 		icon: IconMonsterCephalos,
 		rank: 'G Rank',
 		render: IconRenderMonsterCephalos,
+		component: ComponentMonsterCephalos,
+		unusedComponent: true,
 	},
 	{
 		name: 'Giaprey / Giadrome',
+		displayName: 'Giaprey / Giadrome',
 		icon: IconMonsterGiapreyGiadrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterGiapreyGiadrome,
+		component: ComponentMonsterGiapreyGiadrome,
+		unusedComponent: true,
 	},
 	{
 		name: 'Crimson Fatalis',
+		displayName: 'Crimson Fatalis',
 		icon: IconMonsterCrimsonFatalis,
 		rank: '',
 		render: IconRenderMonsterCrimsonFatalis,
+		component: ComponentMonsterCrimsonFatalis,
+		unusedComponent: false,
 	},
 	{
 		name: 'Pink Rathian',
+		displayName: 'Pink Rathian',
 		icon: IconMonsterPinkRathian,
 		rank: 'G Rank',
 		render: IconRenderMonsterPinkRathian,
+		component: ComponentMonsterPinkRathian,
+		unusedComponent: true,
 	},
 	{
 		name: 'Blue Yian Kut-Ku',
+		displayName: 'Blue Yian Kut-Ku',
 		icon: IconMonsterBlueYianKutKu,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlueYianKutKu,
+		component: ComponentMonsterBlueYianKutKu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Purple Gypceros',
+		displayName: 'Purple Gypceros',
 		icon: IconMonsterPurpleGypceros,
 		rank: 'G Rank',
 		render: IconRenderMonsterPurpleGypceros,
+		component: ComponentMonsterPurpleGypceros,
+		unusedComponent: true,
 	},
 	{
 		name: 'Yian Garuga',
+		displayName: 'Yian Garuga',
 		icon: IconMonsterYianGaruga,
 		rank: 'G Rank',
 		render: IconRenderMonsterYianGaruga,
+		component: ComponentMonsterYianGaruga,
+		unusedComponent: true,
 	},
 	{
 		name: 'Silver Rathalos',
+		displayName: 'Silver Rathalos',
 		icon: IconMonsterSilverRathalos,
 		rank: 'G Rank',
 		render: IconRenderMonsterSilverRathalos,
+		component: ComponentMonsterSilverRathalos,
+		unusedComponent: true,
 	},
 	{
 		name: 'Gold Rathian',
+		displayName: 'Gold Rathian',
 		icon: IconMonsterGoldRathian,
 		rank: 'G Rank',
 		render: IconRenderMonsterGoldRathian,
+		component: ComponentMonsterGoldRathian,
+		unusedComponent: true,
 	},
 	{
 		name: 'Black Diablos',
+		displayName: 'Black Diablos',
 		icon: IconMonsterBlackDiablos,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlackDiablos,
+		component: ComponentMonsterBlackDiablos,
+		unusedComponent: true,
 	},
 	{
 		name: 'White Monoblos',
+		displayName: 'White Monoblos',
 		icon: IconMonsterWhiteMonoblos,
 		rank: 'G Rank',
 		render: IconRenderMonsterWhiteMonoblos,
+		component: ComponentMonsterWhiteMonoblos,
+		unusedComponent: true,
 	},
 	{
 		name: 'Red Khezu',
+		displayName: 'Red Khezu',
 		icon: IconMonsterRedKhezu,
 		rank: 'G Rank',
 		render: IconRenderMonsterRedKhezu,
+		component: ComponentMonsterRedKhezu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Green Plesioth',
+		displayName: 'Green Plesioth',
 		icon: IconMonsterGreenPlesioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterGreenPlesioth,
+		component: ComponentMonsterGreenPlesioth,
+		unusedComponent: true,
 	},
 	{
 		name: 'Black Gravios',
+		displayName: 'Black Gravios',
 		icon: IconMonsterBlackGravios,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlackGravios,
+		component: ComponentMonsterBlackGravios,
+		unusedComponent: true,
 	},
 	{
 		name: 'Daimyo Hermitaur',
+		displayName: 'Daimyo Hermitaur',
 		icon: IconMonsterDaimyoHermitaur,
 		rank: 'G Rank',
 		render: IconRenderMonsterDaimyoHermitaur,
+		component: ComponentMonsterDaimyoHermitaur,
+		unusedComponent: true,
 	},
 	{
 		name: 'Azure Rathalos',
+		displayName: 'Azure Rathalos',
 		icon: IconMonsterAzureRathalos,
 		rank: 'G Rank',
 		render: IconRenderMonsterAzureRathalos,
+		component: ComponentMonsterAzureRathalos,
+		unusedComponent: true,
 	},
 	{
 		name: 'Ashen Lao-Shan Lung',
+		displayName: 'Ashen Lao-Shan Lung',
 		icon: IconMonsterAshenLaoShanLung,
 		rank: 'G Rank',
 		render: IconRenderMonsterAshenLaoShanLung,
+		component: ComponentMonsterAshenLaoShanLung,
+		unusedComponent: true,
 	},
 	{
 		name: 'Blangonga',
+		displayName: 'Blangonga',
 		icon: IconMonsterBlangonga,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlangonga,
+		component: ComponentMonsterBlangonga,
+		unusedComponent: true,
 	},
 	{
 		name: 'Congalala',
+		displayName: 'Congalala',
 		icon: IconMonsterCongalala,
 		rank: 'G Rank',
 		render: IconRenderMonsterCongalala,
+		component: ComponentMonsterCongalala,
+		unusedComponent: true,
 	},
 	{
 		name: 'Rajang',
+		displayName: 'Rajang',
 		icon: IconMonsterRajang,
 		rank: 'G Rank',
 		render: IconRenderMonsterRajang,
+		component: ComponentMonsterRajang,
+		unusedComponent: true,
 	},
 	{
 		name: 'Kushala Daora',
+		displayName: 'Kushala Daora',
 		icon: IconMonsterKushalaDaora,
 		rank: 'G Rank',
 		render: IconRenderMonsterKushalaDaora,
+		component: ComponentMonsterKushalaDaora,
+		unusedComponent: true,
 	},
 	{
 		name: 'Shen Gaoren',
+		displayName: 'Shen Gaoren',
 		icon: IconMonsterShenGaoren,
 		rank: 'G Rank',
 		render: IconRenderMonsterShenGaoren,
+		component: ComponentMonsterShenGaoren,
+		unusedComponent: false,
 	},
 	{
 		name: 'Great Thunderbug',
+		displayName: 'Great Thunderbug',
 		icon: IconMonsterGreatThunderbug,
 		rank: 'G Rank',
 		render: IconRenderMonsterGreatThunderbug,
+		component: ComponentMonsterGreatThunderbug,
+		unusedComponent: true,
 	},
 	{
 		name: 'Shakalaka',
+		displayName: 'Shakalaka',
 		icon: IconMonsterShakalaka,
 		rank: 'G Rank',
 		render: IconRenderMonsterShakalaka,
+		component: ComponentMonsterShakalaka,
+		unusedComponent: true,
 	},
 	{
 		name: 'Yama Tsukami',
+		displayName: 'Yama Tsukami',
 		icon: IconMonsterYamaTsukami,
 		rank: 'G Rank',
 		render: IconRenderMonsterYamaTsukami,
+		component: ComponentMonsterYamaTsukami,
+		unusedComponent: false,
 	},
 	{
 		name: 'Chameleos',
+		displayName: 'Chameleos',
 		icon: IconMonsterChameleos,
 		rank: 'G Rank',
 		render: IconRenderMonsterChameleos,
+		component: ComponentMonsterChameleos,
+		unusedComponent: true,
 	},
 	{
 		name: 'Rusted Kushala Daora',
+		displayName: 'Rusted Kushala Daora',
 		icon: IconMonsterRustedKushalaDaora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRustedKushalaDaora,
+		component: ComponentMonsterRustedKushalaDaora,
+		unusedComponent: true,
 	},
 	{
 		name: 'Blango',
+		displayName: 'Blango',
 		icon: IconMonsterBlango,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlango,
+		component: ComponentMonsterBlango,
+		unusedComponent: true,
 	},
 	{
 		name: 'Conga',
+		displayName: 'Conga',
 		icon: IconMonsterConga,
 		rank: 'G Rank',
 		render: IconRenderMonsterConga,
+		component: ComponentMonsterConga,
+		unusedComponent: true,
 	},
 	{
 		name: 'Remobra',
+		displayName: 'Remobra',
 		icon: IconMonsterRemobra,
 		rank: 'G Rank',
 		render: IconRenderMonsterRemobra,
+		component: ComponentMonsterRemobra,
+		unusedComponent: true,
 	},
 	{
 		name: 'Lunastra',
+		displayName: 'Lunastra',
 		icon: IconMonsterLunastra,
 		rank: 'G Rank',
 		render: IconRenderMonsterLunastra,
+		component: ComponentMonsterLunastra,
+		unusedComponent: true,
 	},
 	{
 		name: 'Teostra',
+		displayName: 'Teostra',
 		icon: IconMonsterTeostra,
 		rank: 'G Rank',
 		render: IconRenderMonsterTeostra,
+		component: ComponentMonsterTeostra,
+		unusedComponent: true,
 	},
 	{
 		name: 'Hermitaur',
+		displayName: 'Hermitaur',
 		icon: IconMonsterHermitaur,
 		rank: 'G Rank',
 		render: IconRenderMonsterHermitaur,
+		component: ComponentMonsterHermitaur,
+		unusedComponent: true,
 	},
 	{
 		name: 'Shogun Ceanataur',
+		displayName: 'Shogun Ceanataur',
 		icon: IconMonsterShogunCeanataur,
 		rank: 'G Rank',
 		render: IconRenderMonsterShogunCeanataur,
+		component: ComponentMonsterShogunCeanataur,
+		unusedComponent: true,
 	},
 	{
 		name: 'Bulldrome',
+		displayName: 'Bulldrome',
 		icon: IconMonsterBulldrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterBulldrome,
+		component: ComponentMonsterBulldrome,
+		unusedComponent: true,
 	},
 	{
 		name: 'Anteka',
+		displayName: 'Anteka',
 		icon: IconMonsterAnteka,
 		rank: 'G Rank',
 		render: IconRenderMonsterAnteka,
+		component: ComponentMonsterAnteka,
+		unusedComponent: true,
 	},
 	{
 		name: 'Popo',
+		displayName: 'Popo',
 		icon: IconMonsterPopo,
 		rank: 'G Rank',
 		render: IconRenderMonsterPopo,
+		component: ComponentMonsterPopo,
+		unusedComponent: true,
 	},
 	{
 		name: 'White Fatalis',
+		displayName: 'White Fatalis',
 		icon: IconMonsterWhiteFatalis,
 		rank: '',
 		render: IconRenderMonsterWhiteFatalis,
+		component: ComponentMonsterWhiteFatalis,
+		unusedComponent: false,
 	},
 	{
 		name: 'Yama Tsukami',
+		displayName: 'Yama Tsukami',
 		icon: IconMonsterYamaTsukami,
 		rank: 'G Rank',
 		render: IconRenderMonsterYamaTsukami,
+		component: ComponentMonsterYamaTsukami,
+		unusedComponent: false,
 	},
 	{
 		name: 'Ceanataur',
+		displayName: 'Ceanataur',
 		icon: IconMonsterCeanataur,
 		rank: 'G Rank',
 		render: IconRenderMonsterCeanataur,
+		component: ComponentMonsterCeanataur,
+		unusedComponent: true,
 	},
 	{
 		name: 'Hypnocatrice',
+		displayName: 'Hypnocatrice',
 		icon: IconMonsterHypnocatrice,
 		rank: 'G Rank',
 		render: IconRenderMonsterHypnocatrice,
+		component: ComponentMonsterHypnocatrice,
+		unusedComponent: true,
 	},
 	{
 		name: 'Lavasioth',
+		displayName: 'Lavasioth',
 		icon: IconMonsterLavasioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterLavasioth,
+		component: ComponentMonsterLavasioth,
+		unusedComponent: false,
 	},
 	{
 		name: 'Tigrex',
+		displayName: 'Tigrex',
 		icon: IconMonsterTigrex,
 		rank: 'G Rank',
 		render: IconRenderMonsterTigrex,
+		component: ComponentMonsterTigrex,
+		unusedComponent: true,
 	},
 	{
 		name: 'Akantor',
+		displayName: 'Akantor',
 		icon: IconMonsterAkantor,
 		rank: 'G Rank',
 		render: IconRenderMonsterAkantor,
+		component: ComponentMonsterAkantor,
+		unusedComponent: false,
 	},
 	{
 		name: 'Bright Hypnoc',
+		displayName: 'Bright Hypnoc',
 		icon: IconMonsterBrightHypnoc,
 		rank: 'G Rank',
 		render: IconRenderMonsterBrightHypnoc,
+		component: ComponentMonsterBrightHypnoc,
+		unusedComponent: true,
 	},
 	{
 		name: 'Red Lavasioth',
+		displayName: 'Red Lavasioth',
 		icon: IconMonsterRedLavasioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterRedLavasioth,
+		component: ComponentMonsterRedLavasioth,
+		unusedComponent: true,
 	},
 	{
 		name: 'Espinas',
+		displayName: 'Espinas',
 		icon: IconMonsterEspinas,
 		rank: 'G Rank',
 		render: IconRenderMonsterEspinas,
+		component: ComponentMonsterEspinas,
+		unusedComponent: true,
 	},
 	{
 		name: 'Orange Espinas',
+		displayName: 'Orange Espinas',
 		icon: IconMonsterOrangeEspinas,
 		rank: 'G Rank',
 		render: IconRenderMonsterOrangeEspinas,
+		component: ComponentMonsterOrangeEspinas,
+		unusedComponent: true,
 	},
 	{
 		name: 'Silver Hypnoc',
+		displayName: 'Silver Hypnoc',
 		icon: IconMonsterSilverHypnoc,
 		rank: 'G Rank',
 		render: IconRenderMonsterSilverHypnoc,
+		component: ComponentMonsterSilverHypnoc,
+		unusedComponent: true,
 	},
 	{
 		name: 'Akura Vashimu',
+		displayName: 'Akura Vashimu',
 		icon: IconMonsterAkuraVashimu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAkuraVashimu,
+		component: ComponentMonsterAkuraVashimu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Akura Jebia',
+		displayName: 'Akura Jebia',
 		icon: IconMonsterAkuraJebia,
 		rank: 'G Rank',
 		render: IconRenderMonsterAkuraJebia,
+		component: ComponentMonsterAkuraJebia,
+		unusedComponent: false,
 	},
 	{
 		name: 'Berukyurosu',
+		displayName: 'Berukyurosu',
 		icon: IconMonsterBerukyurosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterBerukyurosu,
+		component: ComponentMonsterBerukyurosu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Cactus',
+		displayName: 'Cactus',
 		icon: IconMonsterCactus,
 		rank: 'G Rank',
 		render: IconRenderMonsterCactus,
+		component: ComponentMonsterRandom,
+		unusedComponent: true,
 	},
 	{
 		name: 'Pariapuria',
+		displayName: 'Pariapuria',
 		icon: IconMonsterPariapuria,
 		rank: 'G Rank',
 		render: IconRenderMonsterPariapuria,
+		component: ComponentMonsterPariapuria,
+		unusedComponent: true,
 	},
 	{
 		name: 'White Espinas',
+		displayName: 'White Espinas',
 		icon: IconMonsterWhiteEspinas,
 		rank: 'G Rank',
 		render: IconRenderMonsterWhiteEspinas,
+		component: ComponentMonsterWhiteEspinas,
+		unusedComponent: true,
 	},
 	{
 		name: 'Kamu Orugaron',
+		displayName: 'Kamu Orugaron',
 		icon: IconMonsterKamuOrugaron,
 		rank: 'G Rank',
 		render: IconRenderMonsterKamuOrugaron,
+		component: ComponentMonsterKamuOrugaron,
+		unusedComponent: true,
 	},
 	{
 		name: 'Nono Orugaron',
+		displayName: 'Nono Orugaron',
 		icon: IconMonsterNonoOrugaron,
 		rank: 'G Rank',
 		render: IconRenderMonsterNonoOrugaron,
+		component: ComponentMonsterNonoOrugaron,
+		unusedComponent: true,
 	},
 	{
 		name: 'Raviente',
+		displayName: 'Raviente',
 		icon: IconMonsterRaviente,
 		rank: 'G Rank',
 		render: IconRenderMonsterRaviente,
+		component: ComponentMonsterRaviente,
+		unusedComponent: true,
 	},
 	{
 		name: 'Dyuragaua',
+		displayName: 'Dyuragaua',
 		icon: IconMonsterDyuragaua,
 		rank: 'G Rank',
 		render: IconRenderMonsterDyuragaua,
+		component: ComponentMonsterDyuragaua,
+		unusedComponent: true,
 	},
 	{
 		name: 'Doragyurosu',
+		displayName: 'Doragyurosu',
 		icon: IconMonsterDoragyurosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterDoragyurosu,
+		component: ComponentMonsterDoragyurosu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Gurenzeburu',
+		displayName: 'Gurenzeburu',
 		icon: IconMonsterGurenzeburu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGurenzeburu,
+		component: ComponentMonsterGurenzeburu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Burukku',
+		displayName: 'Burukku',
 		icon: IconMonsterBurukku,
 		rank: 'G Rank',
 		render: IconRenderMonsterBurukku,
+		component: ComponentMonsterBurukku,
+		unusedComponent: true,
 	},
 	{
 		name: 'Erupe',
+		displayName: 'Erupe',
 		icon: IconMonsterErupe,
 		rank: 'G Rank',
 		render: IconRenderMonsterErupe,
+		component: ComponentMonsterErupe,
+		unusedComponent: true,
 	},
 	{
 		name: 'Rukodiora',
+		displayName: 'Rukodiora',
 		icon: IconMonsterRukodiora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRukodiora,
+		component: ComponentMonsterRukodiora,
+		unusedComponent: true,
 	},
 	{
 		name: 'UNKNOWN',
+		displayName: 'UNKNOWN',
 		icon: IconMonsterUNKNOWN,
 		rank: 'G Rank',
 		render: IconRenderMonsterUNKNOWN,
+		component: ComponentMonsterUNKNOWN,
+		unusedComponent: true,
 	},
 	{
 		name: 'Unknown',
+		displayName: 'UNKNOWN',
 		icon: IconMonsterUNKNOWN,
 		rank: 'G Rank',
 		render: IconRenderMonsterUNKNOWN,
+		component: ComponentMonsterUNKNOWN,
+		unusedComponent: true,
 	},
 	{
 		name: 'Gogomoa',
+		displayName: 'Gogomoa',
 		icon: IconMonsterGogomoa,
 		rank: 'G Rank',
 		render: IconRenderMonsterGogomoa,
+		component: ComponentMonsterGogomoa,
+		unusedComponent: true,
 	},
 	{
 		name: 'Taikun Zamuza',
+		displayName: 'Taikun Zamuza',
 		icon: IconMonsterTaikunZamuza,
 		rank: 'G Rank',
 		render: IconRenderMonsterTaikunZamuza,
+		component: ComponentMonsterTaikunZamuza,
+		unusedComponent: true,
 	},
 	{
 		name: 'Abiorugu',
+		displayName: 'Abiorugu',
 		icon: IconMonsterAbiorugu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAbiorugu,
+		component: ComponentMonsterAbiorugu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Kuarusepusu',
+		displayName: 'Kuarusepusu',
 		icon: IconMonsterKuarusepusu,
 		rank: 'G Rank',
 		render: IconRenderMonsterKuarusepusu,
+		component: ComponentMonsterKuarusepusu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Odibatorasu',
+		displayName: 'Odibatorasu',
 		icon: IconMonsterOdibatorasu,
 		rank: 'G Rank',
 		render: IconRenderMonsterOdibatorasu,
+		component: ComponentMonsterOdibatorasu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Disufiroa',
+		displayName: 'Disufiroa',
 		icon: IconMonsterDisufiroa,
 		rank: 'G Rank',
 		render: IconRenderMonsterDisufiroa,
+		component: ComponentMonsterDisufiroa,
+		unusedComponent: true,
 	},
 	{
 		name: 'Rebidiora',
+		displayName: 'Rebidiora',
 		icon: IconMonsterRebidiora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRebidiora,
+		component: ComponentMonsterRebidiora,
+		unusedComponent: true,
 	},
 	{
 		name: 'Anorupatisu',
+		displayName: 'Anorupatisu',
 		icon: IconMonsterAnorupatisu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAnorupatisu,
+		component: ComponentMonsterAnorupatisu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Hyujikiki',
+		displayName: 'Hyujikiki',
 		icon: IconMonsterHyujikiki,
 		rank: 'G Rank',
 		render: IconRenderMonsterHyujikiki,
+		component: ComponentMonsterHyujikiki,
+		unusedComponent: true,
 	},
 	{
 		name: 'Midogaron',
+		displayName: 'Midogaron',
 		icon: IconMonsterMidogaron,
 		rank: 'G Rank',
 		render: IconRenderMonsterMidogaron,
+		component: ComponentMonsterMidogaron,
+		unusedComponent: true,
 	},
 	{
 		name: 'Giaorugu',
+		displayName: 'Giaorugu',
 		icon: IconMonsterGiaorugu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGiaorugu,
+		component: ComponentMonsterGiaorugu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Mi Ru',
+		displayName: 'Mi Ru',
 		icon: IconMonsterMiRu,
 		rank: 'G Rank',
 		render: IconRenderMonsterMiRu,
+		component: ComponentMonsterMiRu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Farunokku',
+		displayName: 'Farunokku',
 		icon: IconMonsterFarunokku,
 		rank: 'G Rank',
 		render: IconRenderMonsterFarunokku,
+		component: ComponentMonsterFarunokku,
+		unusedComponent: true,
 	},
 	{
 		name: 'Pokaradon',
+		displayName: 'Pokaradon',
 		icon: IconMonsterPokaradon,
 		rank: 'G Rank',
 		render: IconRenderMonsterPokaradon,
+		component: ComponentMonsterPokaradon,
+		unusedComponent: true,
 	},
 	{
 		name: 'Shantien',
+		displayName: 'Shantien',
 		icon: IconMonsterShantien,
 		rank: 'G Rank',
 		render: IconRenderMonsterShantien,
+		component: ComponentMonsterShantien,
+		unusedComponent: true,
 	},
 	{
 		name: 'Pokara',
+		displayName: 'Pokara',
 		icon: IconMonsterPokara,
 		rank: 'G Rank',
 		render: IconRenderMonsterPokara,
+		component: ComponentMonsterPokara,
+		unusedComponent: true,
 	},
 	{
 		name: 'Goruganosu',
+		displayName: 'Goruganosu',
 		icon: IconMonsterGoruganosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGoruganosu,
+		component: ComponentMonsterGoruganosu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Aruganosu',
+		displayName: 'Aruganosu',
 		icon: IconMonsterAruganosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAruganosu,
+		component: ComponentMonsterAruganosu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Baruragaru',
+		displayName: 'Baruragaru',
 		icon: IconMonsterBaruragaru,
 		rank: 'G Rank',
 		render: IconRenderMonsterBaruragaru,
+		component: ComponentMonsterBaruragaru,
+		unusedComponent: true,
 	},
 	{
 		name: 'Zerureusu',
+		displayName: 'Zerureusu',
 		icon: IconMonsterZerureusu,
 		rank: 'G Rank',
 		render: IconRenderMonsterZerureusu,
+		component: ComponentMonsterZerureusu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Gougarf',
+		displayName: 'Gougarf',
 		icon: IconMonsterGougarf,
 		rank: 'G Rank',
 		render: IconRenderMonsterGougarf,
+		component: ComponentMonsterGougarf,
+		unusedComponent: true,
 	},
 	{
 		name: 'Uruki',
+		displayName: 'Uruki',
 		icon: IconMonsterUruki,
 		rank: 'G Rank',
 		render: IconRenderMonsterUruki,
+		component: ComponentMonsterUruki,
+		unusedComponent: true,
 	},
 	{
 		name: 'Forokururu',
+		displayName: 'Forokururu',
 		icon: IconMonsterForokururu,
 		rank: 'G Rank',
 		render: IconRenderMonsterForokururu,
+		component: ComponentMonsterForokururu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Meraginasu',
+		displayName: 'Meraginasu',
 		icon: IconMonsterMeraginasu,
 		rank: 'G Rank',
 		render: IconRenderMonsterMeraginasu,
+		component: ComponentMonsterMeraginasu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Diorex',
+		displayName: 'Diorex',
 		icon: IconMonsterDiorex,
 		rank: 'G Rank',
 		render: IconRenderMonsterDiorex,
+		component: ComponentMonsterDiorex,
+		unusedComponent: true,
 	},
 	{
 		name: 'Garuba Daora',
+		displayName: 'Garuba Daora',
 		icon: IconMonsterGarubaDaora,
 		rank: 'G Rank',
 		render: IconRenderMonsterGarubaDaora,
+		component: ComponentMonsterGarubaDaora,
+		unusedComponent: true,
 	},
 	{
 		name: 'Inagami',
+		displayName: 'Inagami',
 		icon: IconMonsterInagami,
 		rank: 'G Rank',
 		render: IconRenderMonsterInagami,
+		component: ComponentMonsterInagami,
+		unusedComponent: true,
 	},
 	{
 		name: 'Varusaburosu',
+		displayName: 'Varusaburosu',
 		icon: IconMonsterVarusaburosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterVarusaburosu,
+		component: ComponentMonsterVarusaburosu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Poborubarumu',
+		displayName: 'Poborubarumu',
 		icon: IconMonsterPoborubarumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterPoborubarumu,
+		component: ComponentMonsterPoborubarumu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Duremudira',
+		displayName: 'Duremudira',
 		icon: IconMonsterDuremudira,
 		rank: 'G Rank',
 		render: IconRenderMonsterDuremudira,
+		component: ComponentMonsterDuremudira,
+		unusedComponent: true,
 	},
 	{
 		name: 'Felyne',
+		displayName: 'Felyne',
 		icon: IconMonsterFelyne,
 		rank: 'G Rank',
 		render: IconRenderMonsterFelyne,
+		component: ComponentMonsterFelyne,
+		unusedComponent: true,
 	},
 	{
 		name: 'Cactus',
+		displayName: 'Cactus',
 		icon: IconMonsterCactus,
 		rank: 'G Rank',
 		render: IconRenderMonsterCactus,
+		component: ComponentMonsterCactus,
+		unusedComponent: true,
 	},
 	{
 		name: 'Gureadomosu',
+		displayName: 'Gureadomosu',
 		icon: IconMonsterGureadomosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGureadomosu,
+		component: ComponentMonsterGureadomosu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Harudomerugu',
+		displayName: 'Harudomerugu',
 		icon: IconMonsterHarudomerugu,
 		rank: 'G Rank',
 		render: IconRenderMonsterHarudomerugu,
+		component: ComponentMonsterHarudomerugu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Toridcless',
+		displayName: 'Toridcless',
 		icon: IconMonsterToridcless,
 		rank: 'G Rank',
 		render: IconRenderMonsterToridcless,
+		component: ComponentMonsterToridcless,
+		unusedComponent: true,
 	},
 	{
 		name: 'Gasurabazura',
+		displayName: 'Gasurabazura',
 		icon: IconMonsterGasurabazura,
 		rank: 'G Rank',
 		render: IconRenderMonsterGasurabazura,
+		component: ComponentMonsterGasurabazura,
+		unusedComponent: true,
 	},
 	{
 		name: 'Kusubami',
+		displayName: 'Kusubami',
 		icon: IconMonsterKusubami,
 		rank: 'G Rank',
 		render: IconRenderMonsterKusubami,
+		component: ComponentMonsterKusubami,
+		unusedComponent: true,
 	},
 	{
 		name: 'Yama Kurai',
+		displayName: 'Yama Kurai',
 		icon: IconMonsterYamaKurai,
 		rank: 'G Rank',
 		render: IconRenderMonsterYamaKurai,
+		component: ComponentMonsterYamaKurai,
+		unusedComponent: false,
 	},
 	{
 		name: 'Zinogre',
+		displayName: 'Zinogre',
 		icon: IconMonsterZinogre,
 		rank: 'G Rank',
 		render: IconRenderMonsterZinogre,
+		component: ComponentMonsterZinogre,
+		unusedComponent: true,
 	},
 	{
 		name: 'Deviljho',
+		displayName: 'Deviljho',
 		icon: IconMonsterDeviljho,
 		rank: 'G Rank',
 		render: IconRenderMonsterDeviljho,
+		component: ComponentMonsterDeviljho,
+		unusedComponent: true,
 	},
 	{
 		name: 'Brachydios',
+		displayName: 'Brachydios',
 		icon: IconMonsterBrachydios,
 		rank: 'G Rank',
 		render: IconRenderMonsterBrachydios,
+		component: ComponentMonsterBrachydios,
+		unusedComponent: true,
 	},
 	{
 		name: 'Berserk Raviente',
+		displayName: 'Berserk Raviente',
 		icon: IconMonsterBerserkRaviente,
 		rank: 'G Rank',
 		render: IconRenderMonsterBerserkRaviente,
+		component: ComponentMonsterBerserkRaviente,
+		unusedComponent: true,
 	},
 	{
 		name: 'Toa Tesukatora',
+		displayName: 'Toa Tesukatora',
 		icon: IconMonsterToaTesukatora,
 		rank: 'G Rank',
 		render: IconRenderMonsterToaTesukatora,
+		component: ComponentMonsterToaTesukatora,
+		unusedComponent: true,
 	},
 	{
 		name: 'Barioth',
+		displayName: 'Barioth',
 		icon: IconMonsterBarioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterBarioth,
+		component: ComponentMonsterBarioth,
+		unusedComponent: true,
 	},
 	{
 		name: 'Uragaan',
+		displayName: 'Uragaan',
 		icon: IconMonsterUragaan,
 		rank: 'G Rank',
 		render: IconRenderMonsterUragaan,
+		component: ComponentMonsterUragaan,
+		unusedComponent: true,
 	},
 	{
 		name: 'Stygian Zinogre',
+		displayName: 'Stygian Zinogre',
 		icon: IconMonsterStygianZinogre,
 		rank: 'G Rank',
 		render: IconRenderMonsterStygianZinogre,
+		component: ComponentMonsterStygianZinogre,
+		unusedComponent: true,
 	},
 	{
 		name: 'Guanzorumu',
+		displayName: 'Guanzorumu',
 		icon: IconMonsterGuanzorumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGuanzorumu,
+		component: ComponentMonsterGuanzorumu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Starving Deviljho',
+		displayName: 'Starving Deviljho',
 		icon: IconMonsterStarvingDeviljho,
 		rank: 'G Rank',
 		render: IconRenderMonsterStarvingDeviljho,
+		component: ComponentMonsterStarvingDeviljho,
+		unusedComponent: false,
 	},
 	{
 		name: 'Voljang',
+		displayName: 'Voljang',
 		icon: IconMonsterVoljang,
 		rank: 'G Rank',
 		render: IconRenderMonsterVoljang,
+		component: ComponentMonsterVoljang,
+		unusedComponent: true,
 	},
 	{
 		name: 'Nargacuga',
+		displayName: 'Nargacuga',
 		icon: IconMonsterNargacuga,
 		rank: 'G Rank',
 		render: IconRenderMonsterNargacuga,
+		component: ComponentMonsterNargacuga,
+		unusedComponent: true,
 	},
 	{
 		name: 'Keoaruboru',
+		displayName: 'Keoaruboru',
 		icon: IconMonsterKeoaruboru,
 		rank: 'G Rank',
 		render: IconRenderMonsterKeoaruboru,
+		component: ComponentMonsterKeoaruboru,
+		unusedComponent: true,
 	},
 	{
 		name: 'Zenaserisu',
+		displayName: 'Zenaserisu',
 		icon: IconMonsterZenaserisu,
 		rank: 'G Rank',
 		render: IconRenderMonsterZenaserisu,
+		component: ComponentMonsterZenaserisu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Gore Magala',
+		displayName: 'Gore Magala',
 		icon: IconMonsterGoreMagala,
 		rank: 'G Rank',
 		render: IconRenderMonsterGoreMagala,
+		component: ComponentMonsterGoreMagala,
+		unusedComponent: true,
 	},
 	{
 		name: 'Blinking Nargacuga',
+		displayName: 'Blinking Nargacuga',
 		icon: IconMonsterBlinkingNargacuga,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlinkingNargacuga,
+		component: ComponentMonsterBlinkingNargacuga,
+		unusedComponent: false,
 	},
 	{
 		name: 'Shagaru Magala',
+		displayName: 'Shagaru Magala',
 		icon: IconMonsterShagaruMagala,
 		rank: 'G Rank',
 		render: IconRenderMonsterShagaruMagala,
+		component: ComponentMonsterShagaruMagala,
+		unusedComponent: true,
 	},
 	{
 		name: 'Amatsu',
+		displayName: 'Amatsu',
 		icon: IconMonsterAmatsu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAmatsu,
+		component: ComponentMonsterAmatsu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Elzelion',
+		displayName: 'Elzelion',
 		icon: IconMonsterElzelion,
 		rank: 'G Rank',
 		render: IconRenderMonsterElzelion,
+		component: ComponentMonsterElzelion,
+		unusedComponent: true,
 	},
 	{
 		name: 'Arrogant Duremudira',
+		displayName: 'Arrogant Duremudira',
 		icon: IconMonsterArrogantDuremudira,
 		rank: 'G Rank',
 		render: IconRenderMonsterArrogantDuremudira,
+		component: ComponentMonsterArrogantDuremudira,
+		unusedComponent: false,
 	},
 	{
 		name: 'Seregios',
+		displayName: 'Seregios',
 		icon: IconMonsterSeregios,
 		rank: 'G Rank',
 		render: IconRenderMonsterSeregios,
+		component: ComponentMonsterSeregios,
+		unusedComponent: true,
 	},
 	{
 		name: 'Bogabadorumu',
+		displayName: 'Bogabadorumu',
 		icon: IconMonsterBogabadorumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterBogabadorumu,
+		component: ComponentMonsterBogabadorumu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Blitzkrieg Bogabadorumu',
+		displayName: 'Blitzkrieg Bogabadorumu',
 		icon: IconMonsterBlitzkriegBogabadorumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlitzkriegBogabadorumu,
+		component: ComponentMonsterBlitzkriegBogabadorumu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Sparkling Zerureusu',
+		displayName: 'Sparkling Zerureusu',
 		icon: IconMonsterSparklingZerureusu,
 		rank: 'G Rank',
 		render: IconRenderMonsterSparklingZerureusu,
+		component: ComponentMonsterSparklingZerureusu,
+		unusedComponent: false,
 	},
 	{
 		name: 'PSO2 Rappy',
+		displayName: 'PSO2 Rappy',
 		icon: IconMonsterPSO2Rappy,
 		rank: 'G Rank',
 		render: IconRenderMonsterPSO2Rappy,
+		component: ComponentMonsterPSO2Rappy,
+		unusedComponent: true,
 	},
 	{
 		name: 'King Shakalaka',
+		displayName: 'King Shakalaka',
 		icon: IconMonsterKingShakalaka,
 		rank: 'G Rank',
 		render: IconRenderMonsterKingShakalaka,
+		component: ComponentMonsterKingShakalaka,
+		unusedComponent: true,
 	},
 	{
 		name: 'Akura Vashimu',
+		displayName: 'Zenith Akura Vashimu',
 		icon: IconMonsterZenithAkuraVashimu,
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithAkuraVashimu, // Assuming render images follow a similar naming convention
+		render: IconRenderMonsterZenithAkuraVashimu,
+		component: ComponentMonsterZenithAkuraVashimu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Anorupatisu',
+		displayName: 'Zenith Anorupatisu',
 		icon: IconMonsterZenithAnorupatisu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithAnorupatisu,
+		component: ComponentMonsterZenithAnorupatisu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Baruragaru',
+		displayName: 'Zenith Baruragaru',
 		icon: IconMonsterZenithBaruragaru,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBaruragaru,
+		component: ComponentMonsterZenithBaruragaru,
+		unusedComponent: true,
 	},
 	{
 		name: 'Blangonga',
+		displayName: 'Zenith Blangonga',
 		icon: IconMonsterZenithBlangonga,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBlangonga,
+		component: ComponentMonsterZenithBlangonga,
+		unusedComponent: true,
 	},
 	{
 		name: 'Bogabadorumu',
+		displayName: 'Bogabadorumu',
 		icon: IconMonsterZenithBogabadorumu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBogabadorumu,
+		component: ComponentMonsterBogabadorumu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Daimyo Hermitaur',
+		displayName: 'Zenith Daimyo Hermitaur',
 		icon: IconMonsterZenithDaimyoHermitaur,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithDaimyoHermitaur,
+		component: ComponentMonsterZenithDaimyoHermitaur,
+		unusedComponent: true,
 	},
 	{
 		name: 'Doragyurosu',
+		displayName: 'Zenith Doragyurosu',
 		icon: IconMonsterZenithDoragyurosu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithDoragyurosu,
+		component: ComponentMonsterZenithDoragyurosu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Espinas',
+		displayName: 'Zenith Espinas',
 		icon: IconMonsterZenithEspinas,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithEspinas,
+		component: ComponentMonsterZenithEspinas,
+		unusedComponent: true,
 	},
 	{
 		name: 'Gasurabazura',
+		displayName: 'Zenith Gasurabazura',
 		icon: IconMonsterZenithGasurabazura,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGasurabazura,
+		component: ComponentMonsterZenithGasurabazura,
+		unusedComponent: true,
 	},
 	{
 		name: 'Giaorugu',
+		displayName: 'Zenith Giaorugu',
 		icon: IconMonsterZenithGiaorugu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGiaorugu,
+		component: ComponentMonsterZenithGiaorugu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Gravios',
+		displayName: 'Zenith Gravios',
 		icon: IconMonsterZenithGravios,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGravios,
+		component: ComponentMonsterZenithGravios,
+		unusedComponent: true,
 	},
 	{
 		name: 'Harudomerugu',
+		displayName: 'Zenith Harudomerugu',
 		icon: IconMonsterZenithHarudomerugu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHarudomerugu,
+		component: ComponentMonsterZenithHarudomerugu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Hypnocatrice',
+		displayName: 'Zenith Hypnocatrice',
 		icon: IconMonsterZenithHypnoc,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHypnoc,
+		component: ComponentMonsterZenithHypnoc,
+		unusedComponent: true,
 	},
 	{
 		name: 'Hyujikiki',
+		displayName: 'Zenith Hyujikiki',
 		icon: IconMonsterZenithHyujikiki,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHyujikiki,
+		component: ComponentMonsterZenithHyujikiki,
+		unusedComponent: true,
 	},
 	{
 		name: 'Inagami',
+		displayName: 'Zenith Inagami',
 		icon: IconMonsterZenithInagami,
 		rank: 'G Rank',
 		render: IconRenderMonsterZenithInagami,
+		component: ComponentMonsterZenithInagami,
+		unusedComponent: true,
 	},
 	{
 		name: 'Khezu',
+		displayName: 'Zenith Khezu',
 		icon: IconMonsterZenithKhezu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithKhezu,
+		component: ComponentMonsterZenithKhezu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Midogaron',
+		displayName: 'Zenith Midogaron',
 		icon: IconMonsterZenithMidogaron,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithMidogaron,
+		component: ComponentMonsterZenithMidogaron,
+		unusedComponent: true,
 	},
 	{
 		name: 'Plesioth',
+		displayName: 'Zenith Plesioth',
 		icon: IconMonsterZenithPlesioth,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithPlesioth,
+		component: ComponentMonsterZenithPlesioth,
+		unusedComponent: true,
 	},
 	{
 		name: 'Rathalos',
+		displayName: 'Zenith Rathalos',
 		icon: IconMonsterZenithRathalos,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithRathalos,
+		component: ComponentMonsterZenithRathalos,
+		unusedComponent: true,
 	},
 	{
 		name: 'Rukodiora',
+		displayName: 'Zenith Rukodiora',
 		icon: IconMonsterZenithRukodiora,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithRukodiora,
+		component: ComponentMonsterZenithRukodiora,
+		unusedComponent: false,
 	},
 	{
 		name: 'Taikun Zamuza',
+		displayName: 'Zenith Taikun Zamuza',
 		icon: IconMonsterZenithTaikunZamuza,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithTaikunZamuza,
+		component: ComponentMonsterZenithTaikunZamuza,
+		unusedComponent: true,
 	},
 	{
 		name: 'Tigrex',
+		displayName: 'Zenith Tigrex',
 		icon: IconMonsterZenithTigrex,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithTigrex,
+		component: ComponentMonsterZenithTigrex,
+		unusedComponent: true,
 	},
 	{
 		name: 'Toridcless',
+		displayName: 'Zenith Toridcless',
 		icon: IconMonsterZenithToridcless,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithToridcless,
+		component: ComponentMonsterZenithToridcless,
+		unusedComponent: true,
 	},
 	{
 		name: 'Fatalis',
+		displayName: 'Conquest Fatalis',
 		icon: IconMonsterConquestFatalis,
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestFatalis,
+		component: ComponentMonsterConquestFatalis,
+		unusedComponent: false,
 	},
 	{
 		name: 'Shantien',
+		displayName: 'Conquest Shantien',
 		icon: IconMonsterConquestShantien,
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestShantien,
+		component: ComponentMonsterConquestShantien,
+		unusedComponent: true,
 	},
 	{
 		name: 'Crimson Fatalis',
+		displayName: 'Conquest Crimson Fatalis',
 		icon: IconMonsterConquestCrimsonFatalis,
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestCrimsonFatalis,
+		component: ComponentMonsterConquestCrimsonFatalis,
+		unusedComponent: false,
 	},
 	{
 		name: 'Disufiroa',
+		displayName: 'Shiten Disufiroa',
 		icon: IconMonsterShitenDisufiroa,
 		rank: 'Upper Shiten',
 		render: IconRenderMonsterShitenDisufiroa,
+		component: ComponentMonsterShitenDisufiroa,
+		unusedComponent: true,
 	},
 	{
 		name: 'UNKNOWN',
+		displayName: 'Shiten UNKNOWN',
 		icon: IconMonsterShitenUnknown,
 		rank: 'Upper Shiten',
 		render: IconRenderMonsterShitenUnknown,
+		component: ComponentMonsterShitenUnknown,
+		unusedComponent: true,
 	},
 	{
 		name: 'Elzelion',
+		displayName: 'Burning Freezing Elzelion',
 		icon: IconMonsterBurningFreezingElzelion,
 		rank: 'Musou 1',
 		render: IconRenderMonsterBurningFreezingElzelion,
+		component: ComponentMonsterBurningFreezingElzelion,
+		unusedComponent: false,
 	},
 	{
 		name: 'Zinogre',
+		displayName: 'Howling Zinogre',
 		icon: IconMonsterHowlingZinogre,
 		rank: 'Musou 1',
 		render: IconRenderMonsterHowlingZinogre,
+		component: ComponentMonsterHowlingZinogre,
+		unusedComponent: false,
 	},
 	{
 		name: 'Pariapuria',
+		displayName: 'Supremacy Pariapuria',
 		icon: IconMonsterSupremacyPariapuria,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyPariapuria,
+		component: ComponentMonsterSupremacyPariapuria,
+		unusedComponent: false,
 	},
 	{
 		name: 'Doragyurosu',
+		displayName: 'Supremacy Doragyurosu',
 		icon: IconMonsterSupremacyDoragyurosu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyDoragyurosu,
+		component: ComponentMonsterSupremacyDoragyurosu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Teostra',
+		displayName: 'Supremacy Teostra',
 		icon: IconMonsterSupremacyTeostra,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyTeostra,
+		component: ComponentMonsterSupremacyTeostra,
+		unusedComponent: false,
 	},
 	{
 		name: 'Odibatorasu',
+		displayName: 'Odibatorasu',
 		icon: IconMonsterSupremacyOdibatorasu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyOdibatorasu,
+		component: ComponentMonsterSupremacyOdibatorasu,
+		unusedComponent: true,
 	},
 	{
 		name: 'Starving Deviljho',
+		displayName: 'Starving Deviljho',
 		icon: IconMonsterGoldenDeviljho,
 		rank: 'Musou 1',
 		render: IconRenderMonsterGoldenDeviljho,
+		component: ComponentMonsterGoldenDeviljho,
+		unusedComponent: false,
 	},
 	{
 		name: 'Rajang',
+		displayName: 'Furious Rajang',
 		icon: IconMonsterFuriousRajang,
 		rank: 'Musou 1',
 		render: IconRenderMonsterFuriousRajang,
+		component: ComponentMonsterFuriousRajang,
+		unusedComponent: true,
 	},
 	{
 		name: 'Guanzorumu',
+		displayName: 'Ruling Guanzorumu',
 		icon: IconMonsterRulingGuanzorumu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterRulingGuanzorumu,
+		component: ComponentMonsterRulingGuanzorumu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Mi Ru',
+		displayName: 'Shifting Mi Ru',
 		icon: IconMonsterShiftingMiRu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterShiftingMiRu,
+		component: ComponentMonsterShiftingMiRu,
+		unusedComponent: false,
 	},
 	{
 		name: 'Rajang',
+		displayName: 'Twinhead Rajang',
 		icon: IconMonsterTwinheadRajang,
 		rank: 'Twinhead 1',
 		render: IconRenderMonsterTwinheadRajang,
+		component: ComponentMonsterTwinheadRajang,
+		unusedComponent: true,
+	},
+	{
+		name: 'White Fatalis', // TODO
+		displayName: 'Road White Fatalis',
+		icon: IconMonsterWhiteFatalis,
+		rank: 'G Rank',
+		render: IconRenderMonsterWhiteFatalis,
+		component: ComponentMonsterRoadWhiteFatalis,
+		unusedComponent: false,
 	},
 ];
 

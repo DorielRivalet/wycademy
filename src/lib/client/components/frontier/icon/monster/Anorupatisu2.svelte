@@ -1,9 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+<script lang="ts">
+	import bg from '$lib/client/images/monster/bg-512.webp';
+	export let size = '128px';
+	export let background = false;
 
-<svg
-   width="128mm"
-   height="128mm"
+	$: backgroundStyle = background
+		? `width: ${size}; height: ${size}; background-image: url('${bg}'); background-size: ${size}`
+		: `width: ${size}; height: ${size};`;
+</script>
+
+<div class="container" style={backgroundStyle}>
+	<svg
+   width="100%"
+
    viewBox="0 0 128 128"
    version="1.1"
    id="svg5"
@@ -847,3 +856,4 @@
            rdf:resource="http://creativecommons.org/ns#CommercialUse" /><cc:permits
            rdf:resource="http://creativecommons.org/ns#DerivativeWorks" /><cc:requires
            rdf:resource="http://creativecommons.org/ns#ShareAlike" /></cc:License></rdf:RDF></metadata></svg>
+</div>
