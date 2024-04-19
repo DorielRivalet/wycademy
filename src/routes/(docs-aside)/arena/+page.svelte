@@ -3546,7 +3546,7 @@ does not get multiplied by horn */
 				100,
 		) / 100;
 
-	$: iceAgeCalculatorDamagePerSecond = Math.ceil(
+	$: iceAgeCalculatorDamagePerSecond = Math.floor(
 		getIceAgeBaseMultiplier(inputIceAgeCalculatorStage) *
 			(inputNumberIceAgeCalculatorWeaponTrueRaw +
 				inputNumberIceAgeCalculatorSigil1TrueRaw +
