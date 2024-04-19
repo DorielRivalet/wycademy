@@ -2142,7 +2142,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterRukodiora,
 		component: ComponentMonsterRukodiora,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'UNKNOWN',
