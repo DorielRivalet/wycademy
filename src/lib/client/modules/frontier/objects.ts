@@ -683,11 +683,11 @@ import ComponentMonsterPopo from '$lib/client/components/frontier/icon/monster/M
 import ComponentMonsterWhiteFatalis from '$lib/client/components/frontier/icon/monster/WhiteFatalis6.svelte';
 import ComponentMonsterCeanataur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterHypnocatrice from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterLavasioth from '$lib/client/components/frontier/icon/monster/Lavasioth.svelte';
+import ComponentMonsterLavasioth from '$lib/client/components/frontier/icon/monster/Lavasioth2.svelte';
 import ComponentMonsterTigrex from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterAkantor from '$lib/client/components/frontier/icon/monster/Akantor.svelte';
 import ComponentMonsterBrightHypnoc from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRedLavasioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRedLavasioth from '$lib/client/components/frontier/icon/monster/RedLavasioth.svelte';
 import ComponentMonsterEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterOrangeEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterSilverHypnoc from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -695,11 +695,11 @@ import ComponentMonsterAkuraVashimu from '$lib/client/components/frontier/icon/m
 import ComponentMonsterAkuraJebia from '$lib/client/components/frontier/icon/monster/AkuraJebia2.svelte';
 import ComponentMonsterBerukyurosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterCactus from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterPariapuria from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterPariapuria from '$lib/client/components/frontier/icon/monster/Pariapuria.svelte';
 import ComponentMonsterWhiteEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterKamuOrugaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterNonoOrugaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRaviente from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRaviente from '$lib/client/components/frontier/icon/monster/Raviente3.svelte';
 import ComponentMonsterDyuragaua from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterDoragyurosu from '$lib/client/components/frontier/icon/monster/Doragyurosu.svelte';
 import ComponentMonsterGurenzeburu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -718,15 +718,15 @@ import ComponentMonsterAnorupatisu from '$lib/client/components/frontier/icon/mo
 import ComponentMonsterHyujikiki from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterMidogaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterGiaorugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterMiRu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterMiRu from '$lib/client/components/frontier/icon/monster/MiRu2.svelte';
 import ComponentMonsterFarunokku from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterPokaradon from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterShantien from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterPokara from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGoruganosu from '$lib/client/components/frontier/icon/monster/Goruganosu.svelte';
-import ComponentMonsterAruganosu from '$lib/client/components/frontier/icon/monster/Aruganosu.svelte';
+import ComponentMonsterGoruganosu from '$lib/client/components/frontier/icon/monster/Goruganosu2.svelte';
+import ComponentMonsterAruganosu from '$lib/client/components/frontier/icon/monster/Aruganosu2.svelte';
 import ComponentMonsterBaruragaru from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZerureusu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';
 import ComponentMonsterGougarf from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterUruki from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterForokururu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -736,32 +736,32 @@ import ComponentMonsterGarubaDaora from '$lib/client/components/frontier/icon/mo
 import ComponentMonsterInagami from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterVarusaburosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterPoborubarumu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterDuremudira from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDuremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
 import ComponentMonsterGureadomosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterHarudomerugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterToridcless from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterGasurabazura from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterKusubami from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterYamaKurai from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
-import ComponentMonsterZinogre from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterDeviljho from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterZinogre from '$lib/client/components/frontier/icon/monster/Zinogre2.svelte';
+import ComponentMonsterDeviljho from '$lib/client/components/frontier/icon/monster/Deviljho.svelte';
 import ComponentMonsterBrachydios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBerserkRaviente from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterBerserkRaviente from '$lib/client/components/frontier/icon/monster/BerserkRaviente.svelte';
 import ComponentMonsterToaTesukatora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterBarioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterUragaan from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterStygianZinogre from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterStygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
 import ComponentMonsterGuanzorumu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterStarvingDeviljho from '$lib/client/components/frontier/icon/monster/StarvingDeviljho.svelte';
 import ComponentMonsterVoljang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterNargacuga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterNargacuga from '$lib/client/components/frontier/icon/monster/Nargacuga.svelte';
 import ComponentMonsterKeoaruboru from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterZenaserisu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterGoreMagala from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterBlinkingNargacuga from '$lib/client/components/frontier/icon/monster/BlinkingNargacuga2.svelte';
 import ComponentMonsterShagaruMagala from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterAmatsu from '$lib/client/components/frontier/icon/monster/Amatsu2.svelte';
-import ComponentMonsterElzelion from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterElzelion from '$lib/client/components/frontier/icon/monster/Elzelion.svelte';
 import ComponentMonsterArrogantDuremudira from '$lib/client/components/frontier/icon/monster/ArrogantDuremudira2.svelte';
 import ComponentMonsterSeregios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterBogabadorumu from '$lib/client/components/frontier/icon/monster/Bogabadorumu6.svelte';
@@ -774,7 +774,6 @@ import ComponentMonsterZenithAkuraVashimu from '$lib/client/components/frontier/
 import ComponentMonsterZenithAnorupatisu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterZenithBaruragaru from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterZenithBlangonga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithBogabadorumu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterZenithDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterZenithDoragyurosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterZenithEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -799,7 +798,7 @@ import ComponentMonsterConquestCrimsonFatalis from '$lib/client/components/front
 import ComponentMonsterShitenDisufiroa from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterShitenUnknown from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterBurningFreezingElzelion from '$lib/client/components/frontier/icon/monster/BurningFreezingElzelion2.svelte';
-import ComponentMonsterHowlingZinogre from '$lib/client/components/frontier/icon/monster/HowlingZinogre3.svelte';
+import ComponentMonsterHowlingZinogre from '$lib/client/components/frontier/icon/monster/HowlingZinogre4.svelte';
 import ComponentMonsterSupremacyPariapuria from '$lib/client/components/frontier/icon/monster/ThirstyPariapuria.svelte';
 import ComponentMonsterSupremacyDoragyurosu from '$lib/client/components/frontier/icon/monster/SupremacyDoragyurosu.svelte';
 import ComponentMonsterSupremacyTeostra from '$lib/client/components/frontier/icon/monster/SupremacyTeostra.svelte';
@@ -807,7 +806,7 @@ import ComponentMonsterSupremacyOdibatorasu from '$lib/client/components/frontie
 import ComponentMonsterGoldenDeviljho from '$lib/client/components/frontier/icon/monster/GoldenDeviljho3.svelte';
 import ComponentMonsterFuriousRajang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterRulingGuanzorumu from '$lib/client/components/frontier/icon/monster/RulingGuanzorumu.svelte';
-import ComponentMonsterShiftingMiRu from '$lib/client/components/frontier/icon/monster/ShiftingMiRu.svelte';
+import ComponentMonsterShiftingMiRu from '$lib/client/components/frontier/icon/monster/ShiftingMiRu2.svelte';
 import ComponentMonsterTwinheadRajang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterRoadWhiteFatalis from '$lib/client/components/frontier/icon/monster/RoadWhiteFatalis3.svelte';
 
@@ -1980,7 +1979,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterRedLavasioth,
 		component: ComponentMonsterRedLavasioth,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Espinas',
@@ -2052,7 +2051,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterPariapuria,
 		component: ComponentMonsterPariapuria,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'White Espinas',
@@ -2088,7 +2087,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterRaviente,
 		component: ComponentMonsterRaviente,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Dyuragaua',
@@ -2268,7 +2267,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterMiRu,
 		component: ComponentMonsterMiRu,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Farunokku',
@@ -2340,7 +2339,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterZerureusu,
 		component: ComponentMonsterZerureusu,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Gougarf',
@@ -2430,7 +2429,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterDuremudira,
 		component: ComponentMonsterDuremudira,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Felyne',
@@ -2511,7 +2510,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterZinogre,
 		component: ComponentMonsterZinogre,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Deviljho',
@@ -2520,7 +2519,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterDeviljho,
 		component: ComponentMonsterDeviljho,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Brachydios',
@@ -2538,7 +2537,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterBerserkRaviente,
 		component: ComponentMonsterBerserkRaviente,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Toa Tesukatora',
@@ -2574,7 +2573,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterStygianZinogre,
 		component: ComponentMonsterStygianZinogre,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Guanzorumu',
@@ -2583,13 +2582,13 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterGuanzorumu,
 		component: ComponentMonsterGuanzorumu,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Starving Deviljho',
 		displayName: 'Starving Deviljho',
 		icon: IconMonsterStarvingDeviljho,
-		rank: 'G Rank',
+		rank: 'Musou 1',
 		render: IconRenderMonsterStarvingDeviljho,
 		component: ComponentMonsterStarvingDeviljho,
 		unusedComponent: false,
@@ -2610,7 +2609,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterNargacuga,
 		component: ComponentMonsterNargacuga,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Keoaruboru',
@@ -2673,7 +2672,7 @@ export const MonsterIcons: {
 		rank: 'G Rank',
 		render: IconRenderMonsterElzelion,
 		component: ComponentMonsterElzelion,
-		unusedComponent: true,
+		unusedComponent: false,
 	},
 	{
 		name: 'Arrogant Duremudira',
@@ -2868,7 +2867,7 @@ export const MonsterIcons: {
 		name: 'Inagami',
 		displayName: 'Zenith Inagami',
 		icon: IconMonsterZenithInagami,
-		rank: 'G Rank',
+		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithInagami,
 		component: ComponentMonsterZenithInagami,
 		unusedComponent: true,
@@ -3046,9 +3045,9 @@ export const MonsterIcons: {
 	},
 	{
 		name: 'Starving Deviljho',
-		displayName: 'Starving Deviljho',
+		displayName: 'Golden Deviljho',
 		icon: IconMonsterGoldenDeviljho,
-		rank: 'Musou 1',
+		rank: 'Musou 2',
 		render: IconRenderMonsterGoldenDeviljho,
 		component: ComponentMonsterGoldenDeviljho,
 		unusedComponent: false,

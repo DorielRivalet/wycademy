@@ -6677,8 +6677,8 @@ does not get multiplied by horn */
 								id: 'ms',
 								weapon: 'Magnet Spike',
 								stage1: '1',
-								stage2: 'Unknown',
-								stage3: 'Unknown',
+								stage2: '10',
+								stage3: '22',
 							},
 						]}
 						><Toolbar
@@ -6905,7 +6905,7 @@ does not get multiplied by horn */
 								tooltip="Armor Skill"
 								icon={getTag('Armor Skill').icon}
 							/> and <InlineTooltip
-								text="Sharp Sword"
+								text="Razor Sharp"
 								tooltip="Armor Skill"
 								icon={getTag('Armor Skill').icon}
 							/> to all hunters within its range, with the wielder also gaining <InlineTooltip
@@ -6928,8 +6928,9 @@ does not get multiplied by horn */
 							Ice Age's attack power only comes from SR, sigils, weapon base
 							attack and G Rank armor bonus. The following buffs are ignored:
 							items (e.g Seeds, Hunter Powertalon, etc.), meals (e.g. bento,
-							guild food), skills (e.g. Adrenaline, Solid Determination).
+							guild food), skills (e.g. Adrenaline, Solid Determination). Buffs that affect weapon base attack like Drug Knowledge does count.
 						</p>
+						<p>Ice Age's required hits can be reached faster with Fencing+2.</p>
 					</div>
 				</div>
 			</div>
@@ -7135,6 +7136,26 @@ does not get multiplied by horn */
 				<Loading withOverlay={false} />
 			{/if}
 		</div>
+	</section>
+	<section>
+		<SectionHeading level={2} title="Point Breakthrough" />
+		<div></div>
+	</section>
+	<section>
+		<SectionHeading level={2} title="Ceaseless" />
+		<div></div>
+	</section>
+	<section>
+		<SectionHeading level={2} title="Status Assault" />
+		<div></div>
+	</section>
+	<section>
+		<SectionHeading level={2} title="Rush" />
+		<div></div>
+	</section>
+	<section>
+		<SectionHeading level={2} title="Stylish" />
+		<div></div>
 	</section>
 	<section>
 		<SectionHeading level={2} title="Combos" />
@@ -10522,6 +10543,11 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="HBG Heat Beam" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Bitfields" />
 		<div></div>
 	</section>
 
