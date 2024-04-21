@@ -7,6 +7,8 @@
 import type {
 	FrontierArmorSkillName,
 	FrontierArmorSkillTree,
+	FrontierMonsterName,
+	FrontierRankBand,
 	FrontierSigil,
 	FrontierWeaponClass,
 	FrontierWeaponID,
@@ -667,3 +669,22 @@ export type TagColor =
 	| 'high-contrast'
 	| 'outline'
 	| undefined;
+export type FrontierMonsterInfo = {
+	name: FrontierMonsterName;
+	rank: FrontierRankBand;
+	icon: any;
+	render: any;
+	component: any;
+	unusedComponent: boolean;
+	displayName: string;
+	//id: number; get from ezlion
+	size?: 'Large' | 'Small';
+	element?: FrontierElement[];
+	ailment?: string[];
+	// TODO hitzones
+	title?: string;
+	habitat?: string[];
+	relatedMonsters?: string[];
+	generation?: string[];
+	summary?: string;
+};
