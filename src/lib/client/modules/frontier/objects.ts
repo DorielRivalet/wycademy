@@ -37,6 +37,7 @@ import type {
 	FrontierItemSigil,
 	FrontierItemType,
 	FrontierLightBowgunUpgrade,
+	FrontierMonsterInfo,
 	FrontierMotionValueSection,
 	FrontierMotionValues,
 	FrontierRarity,
@@ -751,7 +752,7 @@ import ComponentMonsterToaTesukatora from '$lib/client/components/frontier/icon/
 import ComponentMonsterBarioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterUragaan from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterStygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
-import ComponentMonsterGuanzorumu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterGuanzorumu from '$lib/client/components/frontier/icon/monster/Guanzorumu.svelte';
 import ComponentMonsterStarvingDeviljho from '$lib/client/components/frontier/icon/monster/StarvingDeviljho.svelte';
 import ComponentMonsterVoljang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterNargacuga from '$lib/client/components/frontier/icon/monster/Nargacuga.svelte';
@@ -792,7 +793,7 @@ import ComponentMonsterZenithRukodiora from '$lib/client/components/frontier/ico
 import ComponentMonsterZenithTaikunZamuza from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterZenithTigrex from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterZenithToridcless from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterConquestFatalis from '$lib/client/components/frontier/icon/monster/ConquestFatalis4.svelte';
+import ComponentMonsterConquestFatalis from '$lib/client/components/frontier/icon/monster/ConquestFatalis7.svelte';
 import ComponentMonsterConquestShantien from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterConquestCrimsonFatalis from '$lib/client/components/frontier/icon/monster/ConquestCrimsonFatalis7.svelte';
 import ComponentMonsterShitenDisufiroa from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -1288,15 +1289,7 @@ export const ArmorTypes: FrontierArmor[] = [
 	},
 ];
 
-export const MonsterIcons: {
-	name: FrontierMonsterName;
-	rank: FrontierRankBand;
-	icon: any;
-	render: any;
-	component: any;
-	unusedComponent: boolean;
-	displayName: string;
-}[] = [
+export const MonsterIcons: FrontierMonsterInfo[] = [
 	{
 		name: '',
 		icon: IconMonsterRandom,
@@ -1314,6 +1307,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterRathian,
 		unusedComponent: true,
 		displayName: 'Rathian',
+		size: 'Large',
 	},
 	{
 		name: 'Fatalis',
@@ -1323,6 +1317,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterFatalis,
 		unusedComponent: false,
 		displayName: 'Fatalis',
+		size: 'Large',
 	},
 	{
 		name: 'Kelbi',
@@ -1332,6 +1327,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterKelbi,
 		unusedComponent: true,
 		displayName: 'Kelbi',
+		size: 'Small',
 	},
 	{
 		name: 'Mosswine',
@@ -1341,6 +1337,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterMosswine,
 		unusedComponent: true,
 		displayName: 'Mosswine',
+		size: 'Small',
 	},
 	{
 		name: 'Bullfango',
@@ -1350,6 +1347,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterBullfango,
 		unusedComponent: true,
 		displayName: 'Bullfango',
+		size: 'Small',
 	},
 	{
 		name: 'Yian Kut-Ku',
@@ -1359,6 +1357,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterYianKutKu,
 		unusedComponent: true,
 		displayName: 'Yian Kut-Ku',
+		size: 'Large',
 	},
 	{
 		name: 'Lao-Shan Lung',
@@ -1368,6 +1367,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterLaoShanLung,
 		unusedComponent: true,
 		displayName: 'Lao-Shan Lung',
+		size: 'Large',
 	},
 	{
 		name: 'Cephadrome',
@@ -1377,6 +1377,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterCephadrome,
 		unusedComponent: true,
 		displayName: 'Cephadrome',
+		size: 'Large',
 	},
 	{
 		name: 'Felyne',
@@ -1386,6 +1387,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterFelyne,
 		unusedComponent: true,
 		displayName: 'Felyne',
+		size: 'Small',
 	},
 	{
 		name: 'Rathalos',
@@ -1395,6 +1397,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterRathalos,
 		unusedComponent: true,
 		displayName: 'Rathalos',
+		size: 'Large',
 	},
 	{
 		name: 'Aptonoth',
@@ -1404,6 +1407,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterAptonoth,
 		unusedComponent: true,
 		displayName: 'Aptonoth',
+		size: 'Small',
 	},
 	{
 		name: 'Genprey',
@@ -1413,6 +1417,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterGenprey,
 		unusedComponent: true,
 		displayName: 'Genprey',
+		size: 'Small',
 	},
 	{
 		name: 'Diablos',
@@ -1422,6 +1427,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterDiablos,
 		unusedComponent: true,
 		displayName: 'Diablos',
+		size: 'Large',
 	},
 	{
 		name: 'Khezu',
@@ -1431,6 +1437,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterKhezu,
 		unusedComponent: true,
 		displayName: 'Khezu',
+		size: 'Large',
 	},
 	{
 		name: 'Velociprey',
@@ -1440,6 +1447,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterVelociprey,
 		unusedComponent: true,
 		displayName: 'Velociprey',
+		size: 'Small',
 	},
 	{
 		name: 'Gravios',
@@ -1449,6 +1457,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterGravios,
 		unusedComponent: true,
 		displayName: 'Gravios',
+		size: 'Large',
 	},
 	{
 		name: 'Vespoid',
@@ -1458,6 +1467,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterVespoid,
 		unusedComponent: true,
 		displayName: 'Vespoid',
+		size: 'Small',
 	},
 	{
 		name: 'Gypceros',
@@ -1467,6 +1477,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterGypceros,
 		unusedComponent: true,
 		displayName: 'Gypceros',
+		size: 'Large',
 	},
 	{
 		name: 'Plesioth',
@@ -1476,6 +1487,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterPlesioth,
 		unusedComponent: true,
 		displayName: 'Plesioth',
+		size: 'Large',
 	},
 	{
 		name: 'Basarios',
@@ -1485,6 +1497,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterBasarios,
 		unusedComponent: true,
 		displayName: 'Basarios',
+		size: 'Large',
 	},
 	{
 		name: 'Melynx',
@@ -1494,6 +1507,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterMelynx,
 		unusedComponent: true,
 		displayName: 'Melynx',
+		size: 'Small',
 	},
 	{
 		name: 'Hornetaur',
@@ -1503,6 +1517,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterHornetaur,
 		unusedComponent: true,
 		displayName: 'Hornetaur',
+		size: 'Small',
 	},
 	{
 		name: 'Apceros',
@@ -1512,6 +1527,7 @@ export const MonsterIcons: {
 		component: ComponentMonsterApceros,
 		unusedComponent: true,
 		displayName: 'Apceros',
+		size: 'Small',
 	},
 	{
 		name: 'Monoblos',
@@ -1530,6 +1546,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterVelocidrome,
 		component: ComponentMonsterVelocidrome,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Gendrome',
@@ -1539,6 +1556,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGendrome,
 		component: ComponentMonsterGendrome,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Ioprey',
@@ -1548,6 +1566,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterIoprey,
 		component: ComponentMonsterIoprey,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Iodrome',
@@ -1557,6 +1576,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterIodrome,
 		component: ComponentMonsterIodrome,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Kirin',
@@ -1566,6 +1586,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterKirin,
 		component: ComponentMonsterKirin,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Cephalos',
@@ -1575,6 +1596,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterCephalos,
 		component: ComponentMonsterCephalos,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Giaprey / Giadrome',
@@ -1584,6 +1606,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGiapreyGiadrome,
 		component: ComponentMonsterGiapreyGiadrome,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Crimson Fatalis',
@@ -1593,6 +1616,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterCrimsonFatalis,
 		component: ComponentMonsterCrimsonFatalis,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Pink Rathian',
@@ -1602,6 +1626,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterPinkRathian,
 		component: ComponentMonsterPinkRathian,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Blue Yian Kut-Ku',
@@ -1611,6 +1636,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBlueYianKutKu,
 		component: ComponentMonsterBlueYianKutKu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Purple Gypceros',
@@ -1620,6 +1646,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterPurpleGypceros,
 		component: ComponentMonsterPurpleGypceros,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Yian Garuga',
@@ -1629,6 +1656,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterYianGaruga,
 		component: ComponentMonsterYianGaruga,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Silver Rathalos',
@@ -1638,6 +1666,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterSilverRathalos,
 		component: ComponentMonsterSilverRathalos,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Gold Rathian',
@@ -1647,6 +1676,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGoldRathian,
 		component: ComponentMonsterGoldRathian,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Black Diablos',
@@ -1656,6 +1686,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBlackDiablos,
 		component: ComponentMonsterBlackDiablos,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'White Monoblos',
@@ -1665,6 +1696,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterWhiteMonoblos,
 		component: ComponentMonsterWhiteMonoblos,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Red Khezu',
@@ -1674,6 +1706,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterRedKhezu,
 		component: ComponentMonsterRedKhezu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Green Plesioth',
@@ -1683,6 +1716,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGreenPlesioth,
 		component: ComponentMonsterGreenPlesioth,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Black Gravios',
@@ -1692,6 +1726,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBlackGravios,
 		component: ComponentMonsterBlackGravios,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Daimyo Hermitaur',
@@ -1701,6 +1736,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterDaimyoHermitaur,
 		component: ComponentMonsterDaimyoHermitaur,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Azure Rathalos',
@@ -1710,6 +1746,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAzureRathalos,
 		component: ComponentMonsterAzureRathalos,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Ashen Lao-Shan Lung',
@@ -1719,6 +1756,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAshenLaoShanLung,
 		component: ComponentMonsterAshenLaoShanLung,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Blangonga',
@@ -1728,6 +1766,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBlangonga,
 		component: ComponentMonsterBlangonga,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Congalala',
@@ -1737,6 +1776,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterCongalala,
 		component: ComponentMonsterCongalala,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Rajang',
@@ -1746,6 +1786,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterRajang,
 		component: ComponentMonsterRajang,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Kushala Daora',
@@ -1755,6 +1796,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterKushalaDaora,
 		component: ComponentMonsterKushalaDaora,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Shen Gaoren',
@@ -1764,6 +1806,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterShenGaoren,
 		component: ComponentMonsterShenGaoren,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Great Thunderbug',
@@ -1773,6 +1816,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGreatThunderbug,
 		component: ComponentMonsterGreatThunderbug,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Shakalaka',
@@ -1782,6 +1826,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterShakalaka,
 		component: ComponentMonsterShakalaka,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Yama Tsukami',
@@ -1791,6 +1836,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterYamaTsukami,
 		component: ComponentMonsterYamaTsukami,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Chameleos',
@@ -1800,6 +1846,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterChameleos,
 		component: ComponentMonsterChameleos,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Rusted Kushala Daora',
@@ -1809,6 +1856,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterRustedKushalaDaora,
 		component: ComponentMonsterRustedKushalaDaora,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Blango',
@@ -1818,6 +1866,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBlango,
 		component: ComponentMonsterBlango,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Conga',
@@ -1827,6 +1876,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterConga,
 		component: ComponentMonsterConga,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Remobra',
@@ -1836,6 +1886,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterRemobra,
 		component: ComponentMonsterRemobra,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Lunastra',
@@ -1845,6 +1896,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterLunastra,
 		component: ComponentMonsterLunastra,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Teostra',
@@ -1854,6 +1906,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterTeostra,
 		component: ComponentMonsterTeostra,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Hermitaur',
@@ -1863,6 +1916,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterHermitaur,
 		component: ComponentMonsterHermitaur,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Shogun Ceanataur',
@@ -1872,6 +1926,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterShogunCeanataur,
 		component: ComponentMonsterShogunCeanataur,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Bulldrome',
@@ -1881,6 +1936,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBulldrome,
 		component: ComponentMonsterBulldrome,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Anteka',
@@ -1890,6 +1946,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAnteka,
 		component: ComponentMonsterAnteka,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Popo',
@@ -1899,6 +1956,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterPopo,
 		component: ComponentMonsterPopo,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'White Fatalis',
@@ -1908,6 +1966,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterWhiteFatalis,
 		component: ComponentMonsterWhiteFatalis,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Yama Tsukami',
@@ -1917,6 +1976,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterYamaTsukami,
 		component: ComponentMonsterYamaTsukami,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Ceanataur',
@@ -1926,6 +1986,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterCeanataur,
 		component: ComponentMonsterCeanataur,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Hypnocatrice',
@@ -1935,6 +1996,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterHypnocatrice,
 		component: ComponentMonsterHypnocatrice,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Lavasioth',
@@ -1944,6 +2006,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterLavasioth,
 		component: ComponentMonsterLavasioth,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Tigrex',
@@ -1953,6 +2016,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterTigrex,
 		component: ComponentMonsterTigrex,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Akantor',
@@ -1962,6 +2026,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAkantor,
 		component: ComponentMonsterAkantor,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Bright Hypnoc',
@@ -1971,6 +2036,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBrightHypnoc,
 		component: ComponentMonsterBrightHypnoc,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Red Lavasioth',
@@ -1980,6 +2046,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterRedLavasioth,
 		component: ComponentMonsterRedLavasioth,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Espinas',
@@ -1989,6 +2056,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterEspinas,
 		component: ComponentMonsterEspinas,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Orange Espinas',
@@ -1998,6 +2066,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterOrangeEspinas,
 		component: ComponentMonsterOrangeEspinas,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Silver Hypnoc',
@@ -2007,6 +2076,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterSilverHypnoc,
 		component: ComponentMonsterSilverHypnoc,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Akura Vashimu',
@@ -2016,6 +2086,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAkuraVashimu,
 		component: ComponentMonsterAkuraVashimu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Akura Jebia',
@@ -2025,6 +2096,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAkuraJebia,
 		component: ComponentMonsterAkuraJebia,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Berukyurosu',
@@ -2034,6 +2106,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBerukyurosu,
 		component: ComponentMonsterBerukyurosu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Cactus',
@@ -2043,6 +2116,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterCactus,
 		component: ComponentMonsterRandom,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Pariapuria',
@@ -2052,6 +2126,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterPariapuria,
 		component: ComponentMonsterPariapuria,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'White Espinas',
@@ -2061,6 +2136,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterWhiteEspinas,
 		component: ComponentMonsterWhiteEspinas,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Kamu Orugaron',
@@ -2070,6 +2146,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterKamuOrugaron,
 		component: ComponentMonsterKamuOrugaron,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Nono Orugaron',
@@ -2079,6 +2156,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterNonoOrugaron,
 		component: ComponentMonsterNonoOrugaron,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Raviente',
@@ -2088,6 +2166,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterRaviente,
 		component: ComponentMonsterRaviente,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Dyuragaua',
@@ -2097,6 +2176,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterDyuragaua,
 		component: ComponentMonsterDyuragaua,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Doragyurosu',
@@ -2106,6 +2186,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterDoragyurosu,
 		component: ComponentMonsterDoragyurosu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Gurenzeburu',
@@ -2115,6 +2196,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGurenzeburu,
 		component: ComponentMonsterGurenzeburu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Burukku',
@@ -2133,6 +2215,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterErupe,
 		component: ComponentMonsterErupe,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Rukodiora',
@@ -2142,6 +2225,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterRukodiora,
 		component: ComponentMonsterRukodiora,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'UNKNOWN',
@@ -2151,6 +2235,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterUNKNOWN,
 		component: ComponentMonsterUNKNOWN,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Unknown',
@@ -2160,6 +2245,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterUNKNOWN,
 		component: ComponentMonsterUNKNOWN,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Gogomoa',
@@ -2169,6 +2255,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGogomoa,
 		component: ComponentMonsterGogomoa,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Taikun Zamuza',
@@ -2178,6 +2265,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterTaikunZamuza,
 		component: ComponentMonsterTaikunZamuza,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Abiorugu',
@@ -2187,6 +2275,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAbiorugu,
 		component: ComponentMonsterAbiorugu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Kuarusepusu',
@@ -2196,6 +2285,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterKuarusepusu,
 		component: ComponentMonsterKuarusepusu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Odibatorasu',
@@ -2205,6 +2295,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterOdibatorasu,
 		component: ComponentMonsterOdibatorasu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Disufiroa',
@@ -2214,6 +2305,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterDisufiroa,
 		component: ComponentMonsterDisufiroa,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Rebidiora',
@@ -2232,6 +2324,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAnorupatisu,
 		component: ComponentMonsterAnorupatisu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Hyujikiki',
@@ -2241,6 +2334,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterHyujikiki,
 		component: ComponentMonsterHyujikiki,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Midogaron',
@@ -2250,6 +2344,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterMidogaron,
 		component: ComponentMonsterMidogaron,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Giaorugu',
@@ -2259,6 +2354,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGiaorugu,
 		component: ComponentMonsterGiaorugu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Mi Ru',
@@ -2268,6 +2364,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterMiRu,
 		component: ComponentMonsterMiRu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Farunokku',
@@ -2277,6 +2374,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterFarunokku,
 		component: ComponentMonsterFarunokku,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Pokaradon',
@@ -2286,6 +2384,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterPokaradon,
 		component: ComponentMonsterPokaradon,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Shantien',
@@ -2295,6 +2394,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterShantien,
 		component: ComponentMonsterShantien,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Pokara',
@@ -2313,6 +2413,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGoruganosu,
 		component: ComponentMonsterGoruganosu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Aruganosu',
@@ -2322,6 +2423,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAruganosu,
 		component: ComponentMonsterAruganosu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Baruragaru',
@@ -2331,6 +2433,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBaruragaru,
 		component: ComponentMonsterBaruragaru,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Zerureusu',
@@ -2340,6 +2443,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZerureusu,
 		component: ComponentMonsterZerureusu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Gougarf',
@@ -2349,6 +2453,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGougarf,
 		component: ComponentMonsterGougarf,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Uruki',
@@ -2358,6 +2463,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterUruki,
 		component: ComponentMonsterUruki,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Forokururu',
@@ -2367,6 +2473,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterForokururu,
 		component: ComponentMonsterForokururu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Meraginasu',
@@ -2376,6 +2483,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterMeraginasu,
 		component: ComponentMonsterMeraginasu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Diorex',
@@ -2385,6 +2493,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterDiorex,
 		component: ComponentMonsterDiorex,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Garuba Daora',
@@ -2394,6 +2503,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGarubaDaora,
 		component: ComponentMonsterGarubaDaora,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Inagami',
@@ -2403,6 +2513,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterInagami,
 		component: ComponentMonsterInagami,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Varusaburosu',
@@ -2412,6 +2523,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterVarusaburosu,
 		component: ComponentMonsterVarusaburosu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Poborubarumu',
@@ -2421,6 +2533,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterPoborubarumu,
 		component: ComponentMonsterPoborubarumu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Duremudira',
@@ -2430,6 +2543,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterDuremudira,
 		component: ComponentMonsterDuremudira,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Felyne',
@@ -2439,6 +2553,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterFelyne,
 		component: ComponentMonsterFelyne,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Cactus',
@@ -2448,6 +2563,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterCactus,
 		component: ComponentMonsterCactus,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Gureadomosu',
@@ -2457,6 +2573,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGureadomosu,
 		component: ComponentMonsterGureadomosu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Harudomerugu',
@@ -2466,6 +2583,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterHarudomerugu,
 		component: ComponentMonsterHarudomerugu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Toridcless',
@@ -2475,6 +2593,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterToridcless,
 		component: ComponentMonsterToridcless,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Gasurabazura',
@@ -2484,6 +2603,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGasurabazura,
 		component: ComponentMonsterGasurabazura,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Kusubami',
@@ -2493,6 +2613,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterKusubami,
 		component: ComponentMonsterKusubami,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'Yama Kurai',
@@ -2502,6 +2623,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterYamaKurai,
 		component: ComponentMonsterYamaKurai,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Zinogre',
@@ -2511,6 +2633,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZinogre,
 		component: ComponentMonsterZinogre,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Deviljho',
@@ -2520,6 +2643,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterDeviljho,
 		component: ComponentMonsterDeviljho,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Brachydios',
@@ -2529,6 +2653,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBrachydios,
 		component: ComponentMonsterBrachydios,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Berserk Raviente',
@@ -2538,6 +2663,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBerserkRaviente,
 		component: ComponentMonsterBerserkRaviente,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Toa Tesukatora',
@@ -2547,6 +2673,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterToaTesukatora,
 		component: ComponentMonsterToaTesukatora,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Barioth',
@@ -2556,6 +2683,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBarioth,
 		component: ComponentMonsterBarioth,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Uragaan',
@@ -2565,6 +2693,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterUragaan,
 		component: ComponentMonsterUragaan,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Stygian Zinogre',
@@ -2574,6 +2703,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterStygianZinogre,
 		component: ComponentMonsterStygianZinogre,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Guanzorumu',
@@ -2583,6 +2713,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGuanzorumu,
 		component: ComponentMonsterGuanzorumu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Starving Deviljho',
@@ -2592,6 +2723,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterStarvingDeviljho,
 		component: ComponentMonsterStarvingDeviljho,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Voljang',
@@ -2601,6 +2733,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterVoljang,
 		component: ComponentMonsterVoljang,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Nargacuga',
@@ -2610,6 +2743,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterNargacuga,
 		component: ComponentMonsterNargacuga,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Keoaruboru',
@@ -2619,6 +2753,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterKeoaruboru,
 		component: ComponentMonsterKeoaruboru,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Zenaserisu',
@@ -2628,6 +2763,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenaserisu,
 		component: ComponentMonsterZenaserisu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Gore Magala',
@@ -2637,6 +2773,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGoreMagala,
 		component: ComponentMonsterGoreMagala,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Blinking Nargacuga',
@@ -2646,6 +2783,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBlinkingNargacuga,
 		component: ComponentMonsterBlinkingNargacuga,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Shagaru Magala',
@@ -2655,6 +2793,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterShagaruMagala,
 		component: ComponentMonsterShagaruMagala,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Amatsu',
@@ -2664,6 +2803,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterAmatsu,
 		component: ComponentMonsterAmatsu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Elzelion',
@@ -2673,6 +2813,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterElzelion,
 		component: ComponentMonsterElzelion,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Arrogant Duremudira',
@@ -2682,6 +2823,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterArrogantDuremudira,
 		component: ComponentMonsterArrogantDuremudira,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Seregios',
@@ -2691,6 +2833,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterSeregios,
 		component: ComponentMonsterSeregios,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Bogabadorumu',
@@ -2700,6 +2843,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBogabadorumu,
 		component: ComponentMonsterBogabadorumu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Blitzkrieg Bogabadorumu',
@@ -2709,6 +2853,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBlitzkriegBogabadorumu,
 		component: ComponentMonsterBlitzkriegBogabadorumu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Sparkling Zerureusu',
@@ -2718,6 +2863,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterSparklingZerureusu,
 		component: ComponentMonsterSparklingZerureusu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'PSO2 Rappy',
@@ -2727,6 +2873,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterPSO2Rappy,
 		component: ComponentMonsterPSO2Rappy,
 		unusedComponent: true,
+		size: 'Small',
 	},
 	{
 		name: 'King Shakalaka',
@@ -2736,6 +2883,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterKingShakalaka,
 		component: ComponentMonsterKingShakalaka,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Akura Vashimu',
@@ -2745,6 +2893,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithAkuraVashimu,
 		component: ComponentMonsterZenithAkuraVashimu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Anorupatisu',
@@ -2754,6 +2903,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithAnorupatisu,
 		component: ComponentMonsterZenithAnorupatisu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Baruragaru',
@@ -2763,6 +2913,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithBaruragaru,
 		component: ComponentMonsterZenithBaruragaru,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Blangonga',
@@ -2772,6 +2923,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithBlangonga,
 		component: ComponentMonsterZenithBlangonga,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Bogabadorumu',
@@ -2781,6 +2933,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithBogabadorumu,
 		component: ComponentMonsterBogabadorumu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Daimyo Hermitaur',
@@ -2790,6 +2943,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithDaimyoHermitaur,
 		component: ComponentMonsterZenithDaimyoHermitaur,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Doragyurosu',
@@ -2799,6 +2953,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithDoragyurosu,
 		component: ComponentMonsterZenithDoragyurosu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Espinas',
@@ -2808,6 +2963,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithEspinas,
 		component: ComponentMonsterZenithEspinas,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Gasurabazura',
@@ -2817,6 +2973,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithGasurabazura,
 		component: ComponentMonsterZenithGasurabazura,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Giaorugu',
@@ -2826,6 +2983,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithGiaorugu,
 		component: ComponentMonsterZenithGiaorugu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Gravios',
@@ -2835,6 +2993,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithGravios,
 		component: ComponentMonsterZenithGravios,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Harudomerugu',
@@ -2844,6 +3003,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithHarudomerugu,
 		component: ComponentMonsterZenithHarudomerugu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Hypnocatrice',
@@ -2853,6 +3013,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithHypnoc,
 		component: ComponentMonsterZenithHypnoc,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Hyujikiki',
@@ -2862,6 +3023,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithHyujikiki,
 		component: ComponentMonsterZenithHyujikiki,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Inagami',
@@ -2871,6 +3033,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithInagami,
 		component: ComponentMonsterZenithInagami,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Khezu',
@@ -2880,6 +3043,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithKhezu,
 		component: ComponentMonsterZenithKhezu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Midogaron',
@@ -2889,6 +3053,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithMidogaron,
 		component: ComponentMonsterZenithMidogaron,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Plesioth',
@@ -2898,6 +3063,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithPlesioth,
 		component: ComponentMonsterZenithPlesioth,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Rathalos',
@@ -2907,6 +3073,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithRathalos,
 		component: ComponentMonsterZenithRathalos,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Rukodiora',
@@ -2916,6 +3083,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithRukodiora,
 		component: ComponentMonsterZenithRukodiora,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Taikun Zamuza',
@@ -2925,6 +3093,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithTaikunZamuza,
 		component: ComponentMonsterZenithTaikunZamuza,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Tigrex',
@@ -2934,6 +3103,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithTigrex,
 		component: ComponentMonsterZenithTigrex,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Toridcless',
@@ -2943,6 +3113,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterZenithToridcless,
 		component: ComponentMonsterZenithToridcless,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Fatalis',
@@ -2952,6 +3123,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterConquestFatalis,
 		component: ComponentMonsterConquestFatalis,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Shantien',
@@ -2961,6 +3133,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterConquestShantien,
 		component: ComponentMonsterConquestShantien,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Crimson Fatalis',
@@ -2970,6 +3143,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterConquestCrimsonFatalis,
 		component: ComponentMonsterConquestCrimsonFatalis,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Disufiroa',
@@ -2979,6 +3153,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterShitenDisufiroa,
 		component: ComponentMonsterShitenDisufiroa,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'UNKNOWN',
@@ -2988,6 +3163,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterShitenUnknown,
 		component: ComponentMonsterShitenUnknown,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Elzelion',
@@ -2997,6 +3173,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterBurningFreezingElzelion,
 		component: ComponentMonsterBurningFreezingElzelion,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Zinogre',
@@ -3006,6 +3183,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterHowlingZinogre,
 		component: ComponentMonsterHowlingZinogre,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Pariapuria',
@@ -3015,6 +3193,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterSupremacyPariapuria,
 		component: ComponentMonsterSupremacyPariapuria,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Doragyurosu',
@@ -3024,6 +3203,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterSupremacyDoragyurosu,
 		component: ComponentMonsterSupremacyDoragyurosu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Teostra',
@@ -3033,6 +3213,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterSupremacyTeostra,
 		component: ComponentMonsterSupremacyTeostra,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Odibatorasu',
@@ -3042,6 +3223,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterSupremacyOdibatorasu,
 		component: ComponentMonsterSupremacyOdibatorasu,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Starving Deviljho',
@@ -3051,6 +3233,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterGoldenDeviljho,
 		component: ComponentMonsterGoldenDeviljho,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Rajang',
@@ -3060,6 +3243,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterFuriousRajang,
 		component: ComponentMonsterFuriousRajang,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'Guanzorumu',
@@ -3069,6 +3253,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterRulingGuanzorumu,
 		component: ComponentMonsterRulingGuanzorumu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Mi Ru',
@@ -3078,6 +3263,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterShiftingMiRu,
 		component: ComponentMonsterShiftingMiRu,
 		unusedComponent: false,
+		size: 'Large',
 	},
 	{
 		name: 'Rajang',
@@ -3087,6 +3273,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterTwinheadRajang,
 		component: ComponentMonsterTwinheadRajang,
 		unusedComponent: true,
+		size: 'Large',
 	},
 	{
 		name: 'White Fatalis', // TODO
@@ -3096,6 +3283,7 @@ export const MonsterIcons: {
 		render: IconRenderMonsterWhiteFatalis,
 		component: ComponentMonsterRoadWhiteFatalis,
 		unusedComponent: false,
+		size: 'Large',
 	},
 ];
 

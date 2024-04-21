@@ -18,10 +18,11 @@
 	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
 	import { MonsterIcons } from '$lib/client/modules/frontier/objects';
-	import type { FrontierMonsterName, FrontierRankBand } from 'ezlion';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
+	import MultiSelect from 'carbon-components-svelte/src/MultiSelect/MultiSelect.svelte';
+	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
 
 	let customTitle = 'Bestiary';
 	let url = $page.url.toString();
@@ -33,20 +34,14 @@
 		background: true,
 	};
 
+	const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
+
 	function getUniqueMonsters() {
 		let names: string[] = [];
-		let result: {
-			name: FrontierMonsterName;
-			rank: FrontierRankBand;
-			icon: any;
-			render: any;
-			component: any;
-			unusedComponent: boolean;
-			displayName: string;
-		}[] = [];
+		let result: FrontierMonsterInfo[] = [];
 		MonsterIcons.forEach((element) => {
 			if (!names.find((e) => element.displayName === e)) {
-				if (element.displayName !== 'Random') {
+				if (!unlistedMonsterNames.find((e) => e === element.displayName)) {
 					names.push(element.displayName);
 					result.push(element);
 				}
@@ -62,7 +57,39 @@
 			(b?.displayName?.codePointAt(0) ?? 0),
 	);
 
-	let orderAscending = false;
+	let currentMonsters = uniqueMonsters;
+
+	let orderAscending = true;
+	let searchTerm = '';
+
+	let selectedSize = ['Large', 'Small']; // Default value for "Size" dropdown
+	let selectedClass = 'All'; // Default value for "Class" dropdown
+	let selectedType = 'All'; // Default value for "Type" dropdown
+	let selectedElement = 'All'; // Default value for "Element" dropdown
+	let selectedAilment = 'All'; // Default value for "Ailment" dropdown
+
+	// Reactive statement to filter and sort monsters based on searchTerm, orderAscending, and dropdown selections
+	$: {
+		let filteredMonsters = uniqueMonsters.filter(
+			(monster) =>
+				monster.displayName.toLowerCase().includes(searchTerm.toLowerCase()) &&
+				selectedSize.find((e) => e === monster.size) &&
+				(selectedClass === 'All' || monster.class === selectedClass) &&
+				(selectedType === 'All' || monster.type === selectedType) &&
+				(selectedElement === 'All' || monster.element === selectedElement) &&
+				(selectedAilment === 'All' || monster.ailment === selectedAilment),
+		);
+
+		// Sort the filtered monsters alphabetically
+		filteredMonsters.sort((a, b) => a.displayName.localeCompare(b.displayName));
+
+		// Reverse the order if orderAscending is false
+		if (!orderAscending) {
+			filteredMonsters.reverse();
+		}
+
+		currentMonsters = filteredMonsters;
+	}
 </script>
 
 <Head
@@ -85,21 +112,22 @@
 	<div class="container">
 		<div class="options">
 			<div>
-				<Search autocomplete={'on'} />
+				<Search
+					bind:value={searchTerm}
+					placeholder="Search monster name..."
+					autocomplete={'on'}
+				/>
 			</div>
 			<div class="dropdowns">
-				<Dropdown
-					titleText="Size"
-					selectedId="0"
+				<MultiSelect
 					type="inline"
+					label="Select size..."
 					items={[
-						{ id: '0', text: 'All' },
-						{ id: '1', text: 'Large' },
-						{ id: '2', text: 'Small' },
+						{ id: 'Large', text: 'Large' },
+						{ id: 'Small', text: 'Small' },
 					]}
-					on:select={(event) => console.log('a')}
-					let:item
-				></Dropdown>
+					bind:selectedIds={selectedSize}
+				/>
 				<Dropdown
 					titleText="Class"
 					selectedId="0"
@@ -109,8 +137,6 @@
 						{ id: '1', text: 'Flying Wyvern' },
 						{ id: '2', text: 'Brute Wyvern' },
 					]}
-					on:select={(event) => console.log('a')}
-					let:item
 				></Dropdown>
 				<Dropdown
 					titleText="Type"
@@ -122,8 +148,6 @@
 						{ id: '2', text: 'Unlimited' },
 						{ id: '3', text: 'Musou' },
 					]}
-					on:select={(event) => console.log('a')}
-					let:item
 				/>
 				<Dropdown
 					titleText="Element"
@@ -134,8 +158,6 @@
 						{ id: '1', text: 'Fire' },
 						{ id: '2', text: 'Water' },
 					]}
-					on:select={(event) => console.log('a')}
-					let:item
 				/>
 				<Dropdown
 					titleText="Ailment"
@@ -146,37 +168,44 @@
 						{ id: '1', text: 'Poison' },
 						{ id: '2', text: 'Sleep' },
 					]}
-					on:select={(event) => console.log('a')}
-					let:item
 				/>
 				<Toggle
-					labelA="Ascending"
-					labelB="Descending"
+					labelA="Descending"
+					labelB="Ascending"
 					hideLabel
 					labelText="Order"
 					bind:toggled={orderAscending}
 				/>
 			</div>
+			<p>Results: {currentMonsters.length}</p>
 		</div>
 
-		<div class="monster-list">
-			{#each uniqueMonsters as monster}
-				<div class="monster-container">
-					{#if monster.unusedComponent}
-						<img
-							src={monster.icon}
-							alt={monster.displayName}
-							width={monsterIconSize}
-						/>
-					{:else}
-						<svelte:component this={monster.component} {...iconProps} />
-					{/if}
-					<div style="width: {monsterIconSize}" class="monster-name">
-						{monster.displayName}
+		{#if currentMonsters.length > 0}
+			<div class="monster-list">
+				{#each currentMonsters as monster}
+					<div class="monster-container">
+						{#if monster.unusedComponent}
+							<img
+								src={monster.icon}
+								alt={monster.displayName}
+								width={monsterIconSize}
+							/>
+						{:else}
+							<svelte:component this={monster.component} {...iconProps} />
+						{/if}
+						<div style="width: {monsterIconSize}" class="monster-name">
+							{monster.displayName}
+						</div>
 					</div>
-				</div>
-			{/each}
-		</div>
+				{/each}
+			</div>
+		{:else}
+			<p><strong>No monsters found</strong></p>
+			<p>
+				Try adjusting your search or filter options to find what you're looking
+				for.
+			</p>
+		{/if}
 	</div>
 </section>
 
