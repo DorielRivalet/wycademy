@@ -1,9 +1,14 @@
 <script lang="ts">
 	import {
+		ArmorTypes,
+		ColorCodes,
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
 		ItemIcons,
+		MonsterIcons,
+		RarityColors,
 		SharpnessNames,
+		WeaponTypes,
 		defaultArmorComponentValues,
 		defaultItemComponentValues,
 		defaultWeaponComponentValues,
@@ -20,7 +25,9 @@
 	import { frontierMappers } from '$lib/client/modules/frontier/functions';
 	import { browser } from '$app/environment';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
-	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import Dropdown, {
+		type DropdownItem,
+	} from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import Head from '$lib/client/components/Head.svelte';
@@ -36,6 +43,7 @@
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import type {
+		FrontierArmor,
 		FrontierArmorClass,
 		FrontierArmorGRLevel,
 		FrontierArmorLevel,
@@ -51,9 +59,11 @@
 		FrontierItemRankType,
 		FrontierItemSigil,
 		FrontierItemType,
+		FrontierMonsterInfo,
 		FrontierRarity,
 		FrontierSlot,
 		FrontierSwitchAxeFPhial,
+		FrontierWeapon,
 	} from '$lib/client/modules/frontier/types';
 	import Item from '$lib/client/components/frontier/Item.svelte';
 	import pageThumbnail from '$lib/client/images/icon/blacksmith.png';
@@ -748,6 +758,160 @@
 		huntingHornNotes.split(' ')[1],
 		huntingHornNotes.split(' ')[2],
 	] as FrontierHuntingHornWeaponNote[];
+
+	function getUniqueMonsters() {
+		let names: string[] = [];
+		let result: FrontierMonsterInfo[] = [];
+		MonsterIcons.forEach((element) => {
+			if (!names.find((e) => element.displayName === e)) {
+				if (!unlistedMonsterNames.find((e) => e === element.displayName)) {
+					names.push(element.displayName);
+					result.push(element);
+				}
+			}
+		});
+
+		return result;
+	}
+
+	let selectedIconType: 'Weapon' | 'Armor' | 'Monster' | 'Item' = 'Weapon';
+	const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
+	let uniqueMonsters = getUniqueMonsters().sort(
+		(a, b) =>
+			(a?.displayName?.codePointAt(0) ?? 0) -
+			(b?.displayName?.codePointAt(0) ?? 0),
+	);
+
+	function getCurrentIconsFromType(type: string) {
+		let list:
+			| FrontierWeapon[]
+			| FrontierArmor[]
+			| { name: string; icon: any }[]
+			| FrontierMonsterInfo[];
+		switch (type) {
+			default:
+				list = WeaponTypes;
+				break;
+			case 'Weapon':
+				list = WeaponTypes;
+				break;
+			case 'Armor':
+				list = ArmorTypes;
+				break;
+			case 'Item':
+				list = ItemIcons;
+				break;
+			case 'Monster':
+				list = uniqueMonsters;
+				break;
+		}
+
+		let result: DropdownItem[] = [];
+		list.forEach((element) => {
+			if (type === 'Monster' && 'displayName' in element) {
+				// TypeScript now knows that element is of type FrontierMonsterInfo
+				// Ensure 'displayName' is a string before pushing to result
+				if (typeof element.displayName === 'string') {
+					result.push({
+						id: `${element.displayName}`,
+						text: element.displayName,
+					});
+				}
+			} else {
+				result.push({ id: element.name, text: element.name });
+			}
+		});
+
+		selectedIconIdFromList = result[0].id;
+
+		return result;
+	}
+
+	let selectedIconFormat: 'SVG' | 'PNG' = 'SVG';
+	let selectedIconSize: '256px' | '512px' | '1024px' | '2048px' = '256px';
+
+	function getCurrentIconPreview(
+		selectedIconType: 'Weapon' | 'Monster' | 'Armor' | 'Item',
+		selectionID: string,
+
+		size: '256px' | '512px' | '1024px' | '2048px',
+		format: 'SVG' | 'PNG',
+		color: string,
+	) {
+		// return html in either the form of img if selecting PNG or
+		// svelte component if selecting SVG.
+		console.table([selectedIconType, selectionID, size, format, color]);
+		let result = { component: undefined, image: undefined };
+		switch (selectedIconType) {
+			case 'Weapon':
+				return {
+					component: WeaponTypes.find((e) => e.name === selectedIconIdFromList)
+						?.icon,
+					image: WeaponTypes.find((e) => e.name === selectedIconIdFromList)
+						?.smallIcon,
+				};
+			case 'Monster':
+				return {
+					component: MonsterIcons.find(
+						(e) => e.displayName === selectedIconIdFromList,
+					)?.component,
+					image: MonsterIcons.find(
+						(e) => e.displayName === selectedIconIdFromList,
+					)?.icon,
+				};
+			case 'Armor':
+				return {
+					component: ArmorTypes.find((e) => e.name === selectedIconIdFromList)
+						?.icon,
+					image: ArmorTypes.find((e) => e.name === selectedIconIdFromList)
+						?.icon,
+				};
+			case 'Item':
+				return {
+					component: ItemIcons.find((e) => e.name === selectedIconIdFromList)
+						?.icon,
+					image: ItemIcons.find((e) => e.name === selectedIconIdFromList)?.icon,
+				};
+		}
+	}
+
+	function getAllFrontierColors() {
+		let result: DropdownItem[] = [];
+		RarityColors.forEach((e, i) => {
+			if (i < 3) {
+				// For the first three entries, group them under "Rare 1-3"
+				if (i === 0) {
+					result.push({ id: e, text: `Rare 1-3` });
+				}
+			} else {
+				// For the rest, use the index to generate the text "Rare 4 to Rare 12"
+				result.push({ id: e, text: `Rare ${i + 1}` });
+			}
+		});
+		ItemColors.forEach((e) => result.push({ id: e.value, text: e.name }));
+		ColorCodes.forEach((e, i) => result.push({ id: e, text: `~C${i}` }));
+
+		// Remove duplicates based on 'id'
+		const uniqueResult = result.filter(
+			(obj, index) => result.findIndex((item) => item.id === obj.id) === index,
+		);
+
+		return uniqueResult;
+	}
+
+	let selectedIconIdFromList = 'Great Sword';
+	let allFrontierColors = getAllFrontierColors();
+	let selectedIconColor = allFrontierColors[0].id;
+	let selectedIconBackground = false;
+
+	$: currentIconsFromType = getCurrentIconsFromType(selectedIconType);
+	$: currentIconPreview = getCurrentIconPreview(
+		selectedIconType,
+		selectedIconIdFromList,
+		selectedIconSize,
+		selectedIconFormat,
+		selectedIconColor,
+	);
 </script>
 
 <Head
@@ -3081,7 +3245,73 @@
 	</section>
 	<section>
 		<SectionHeading level={2} title="Icons" />
-		<div class="container-item-buttons"></div>
+		<div class="container-buttons">
+			<Button kind="tertiary" icon={Download} on:click={downloadItemsImage}
+				>Download</Button
+			>
+			<Dropdown
+				type="inline"
+				titleText="Type"
+				bind:selectedId={selectedIconType}
+				items={[
+					{ id: 'Weapon', text: 'Weapon' },
+					{ id: 'Armor', text: 'Armor' },
+					{ id: 'Item', text: 'Item' },
+					{ id: 'Monster', text: 'Monster' },
+				]}
+			/>
+			<Dropdown
+				type="inline"
+				titleText="Icon"
+				bind:selectedId={selectedIconIdFromList}
+				items={currentIconsFromType}
+			/>
+			<Dropdown
+				type="inline"
+				titleText="Size"
+				bind:selectedId={selectedIconSize}
+				items={[
+					{ id: '256px', text: '256px' },
+					{ id: '512px', text: '512px' },
+					{ id: '1024px', text: '1024px' },
+					{ id: '2048px', text: '2048px' },
+				]}
+			/>
+			<Dropdown
+				type="inline"
+				titleText="Format"
+				bind:selectedId={selectedIconFormat}
+				items={[
+					{ id: 'SVG', text: 'SVG' },
+					{ id: 'PNG', text: 'PNG' },
+				]}
+			/>
+			<Dropdown
+				type="inline"
+				titleText="Color"
+				bind:selectedId={selectedIconColor}
+				items={allFrontierColors}
+			/>
+			<Toggle labelText="Background" bind:toggled={selectedIconBackground} />
+		</div>
+		<div class="icon-preview">
+			{#if selectedIconFormat === 'SVG'}
+				<svelte:component
+					this={currentIconPreview.component}
+					{...{
+						size: selectedIconSize,
+						color: selectedIconColor,
+						background: selectedIconBackground,
+					}}
+				/>
+			{:else}
+				<img
+					src={currentIconPreview.image}
+					alt={selectedIconIdFromList}
+					width={selectedIconSize}
+				/>
+			{/if}
+		</div>
 	</section>
 	<section>
 		<SectionHeading level={2} title="Thumbnail Generator" />
@@ -3133,10 +3363,13 @@
 
 	.container-weapon-buttons,
 	.container-armor-buttons,
-	.container-item-buttons {
+	.container-item-buttons,
+	.container-buttons {
 		display: flex;
 		flex-direction: row;
 		gap: 1rem;
+		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	.page-2-blademaster,
@@ -3173,5 +3406,11 @@
 		grid-template-columns: repeat(3, 1fr);
 		margin: 1rem;
 		gap: 1rem;
+	}
+
+	.icon-preview {
+		display: flex;
+		width: 100%;
+		justify-content: center;
 	}
 </style>
