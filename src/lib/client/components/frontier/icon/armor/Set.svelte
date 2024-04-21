@@ -3,8 +3,11 @@
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
 	export let rarity: FrontierRarity = 1;
+	export let size = '100%';
+	export let color = '';
 
-	$: targetColor = RarityColors[rarity - 1] ?? RarityColors[0];
+	$: targetColor =
+		color === '' ? RarityColors[rarity - 1] ?? RarityColors[0] : color;
 </script>
 
 <!-- MIT License
@@ -29,8 +32,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.-->
 <svg
-	width="100%"
-	height="100%"
+	width={size}
 	viewBox="0 0 64 64"
 	version="1.1"
 	xmlns="http://www.w3.org/2000/svg"

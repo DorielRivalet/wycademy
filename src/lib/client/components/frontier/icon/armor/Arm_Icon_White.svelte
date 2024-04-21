@@ -9,13 +9,16 @@
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
 	export let rarity: FrontierRarity = 1;
+	export let size = '100%';
+	export let color = '';
 
-	$: targetColor = RarityColors[rarity - 1] ?? RarityColors[0];
+	$: targetColor =
+		color === '' ? RarityColors[rarity - 1] ?? RarityColors[0] : color;
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<svg width="100%" height="100%" viewBox="0 0 16.933333 16.933334" version="1.1">
+<svg width={size} viewBox="0 0 16.933333 16.933334" version="1.1">
 	<defs id="defs4840" />
 	<sodipodi:namedview
 		id="base"

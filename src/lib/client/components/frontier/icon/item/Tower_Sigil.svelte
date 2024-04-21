@@ -2,13 +2,13 @@
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
 	export let color = '#ffffff';
+	export let size = '100%';
 
 	$: targetColor = color;
 </script>
 
 <svg
-	width="100%"
-	height="100%"
+	width={size}
 	viewBox="0 0 64 64"
 	version="1.1"
 	id="svg5"

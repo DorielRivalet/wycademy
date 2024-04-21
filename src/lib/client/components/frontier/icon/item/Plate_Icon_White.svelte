@@ -8,17 +8,12 @@
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
 	export let color = '#ffffff';
+	export let size = '100%';
 
 	$: targetColor = color;
 </script>
 
-<svg
-	width="100%"
-	height="100%"
-	viewBox="0 0 16.933333 16.933334"
-	version="1.1"
-	id="svg4846"
->
+<svg width={size} viewBox="0 0 16.933333 16.933334" version="1.1" id="svg4846">
 	<g id="layer1" transform="translate(0,-280.06665)">
 		<path
 			style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:3.99999994;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
