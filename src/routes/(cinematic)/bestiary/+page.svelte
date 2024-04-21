@@ -23,6 +23,8 @@
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import MultiSelect from 'carbon-components-svelte/src/MultiSelect/MultiSelect.svelte';
 	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import slugify from 'slugify';
 
 	let customTitle = 'Bestiary';
 	let url = $page.url.toString();
@@ -184,17 +186,31 @@
 			<div class="monster-list">
 				{#each currentMonsters as monster}
 					<div class="monster-container">
-						{#if monster.unusedComponent}
-							<img
-								src={monster.icon}
-								alt={monster.displayName}
-								width={monsterIconSize}
-							/>
-						{:else}
-							<svelte:component this={monster.component} {...iconProps} />
-						{/if}
+						<div
+							class="monster-icon"
+							style:--monster-icon="monster-icon-{slugify(monster.displayName, {
+								lower: true,
+							})}"
+						>
+							<Link
+								href={`/bestiary/${slugify(monster.displayName, { lower: true })}`}
+							>
+								{#if monster.unusedComponent}
+									<img
+										src={monster.icon}
+										alt={monster.displayName}
+										width={monsterIconSize}
+									/>
+								{:else}
+									<svelte:component this={monster.component} {...iconProps} />
+								{/if}
+							</Link>
+						</div>
+
 						<div style="width: {monsterIconSize}" class="monster-name">
-							{monster.displayName}
+							<Link href={`/bestiary/${'abiorugu'}`}>
+								{monster.displayName}
+							</Link>
 						</div>
 					</div>
 				{/each}
@@ -210,6 +226,14 @@
 </section>
 
 <style lang="scss">
+	@use '@carbon/motion' as motion;
+
+	.monster-list {
+		.monster-icon {
+			view-transition-name: var(--monster-icon);
+		}
+	}
+
 	.monster-list {
 		display: flex;
 		flex-direction: row;
@@ -236,6 +260,16 @@
 		gap: 0.5rem;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.monster-icon {
+		transition-property: filter;
+		transition-duration: motion.$duration-fast-02;
+		transition-timing-function: motion.motion(standard, expressive);
+	}
+
+	.monster-icon:hover {
+		filter: drop-shadow(0 0 10px var(--ctp-blue)) brightness(120%);
 	}
 
 	.options {
