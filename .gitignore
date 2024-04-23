@@ -1,3 +1,5 @@
+/scripts/input/
+/scripts/output/
 .vscode/
 .DS_Store
 node_modules

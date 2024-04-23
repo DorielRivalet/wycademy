@@ -537,7 +537,7 @@ import IconMonsterHowlingZinogre from '$lib/client/images/monster/howling_zinogr
 import IconMonsterSupremacyPariapuria from '$lib/client/images/monster/thirsty_pariapuria.webp';
 import IconMonsterSupremacyDoragyurosu from '$lib/client/images/monster/supremacy_doragyurosu.webp';
 import IconMonsterSupremacyTeostra from '$lib/client/images/monster/supremacy_teostra.webp';
-import IconMonsterSupremacyOdibatorasu from '$lib/client/images/monster/supremacy_odibatorasu.webp';
+import IconMonsterSupremacyOdibatorasu from '$lib/client/images/monster/odibatorasu.webp';
 import IconMonsterGoldenDeviljho from '$lib/client/images/monster/golden_deviljho.webp';
 import IconMonsterFuriousRajang from '$lib/client/images/monster/furious_rajang.webp';
 import IconMonsterRulingGuanzorumu from '$lib/client/images/monster/ruling_guanzorumu.webp';

@@ -9,6 +9,7 @@
 	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
 	import type { GitHubData } from '$lib/types';
 	import * as constant from '$lib/constants';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	export let githubData: GitHubData = {
 		lastModified: '',
 		commitLink: '',
@@ -36,10 +37,10 @@
 			>{constant.authorName} &copy {new Date().getUTCFullYear()}</Link
 		>
 		<div>
-			Powered by <Link href="https://developers.cloudflare.com/pages/"
-				>Cloudflare Pages</Link
-			> and <Link href="https://kit.svelte.dev/docs/introduction"
-				>SvelteKit</Link
+			Powered by <OutboundLink href="https://developers.cloudflare.com/pages/"
+				>Cloudflare Pages</OutboundLink
+			> and <OutboundLink href="https://kit.svelte.dev/docs/introduction"
+				>SvelteKit</OutboundLink
 			>
 		</div>
 	</div>
