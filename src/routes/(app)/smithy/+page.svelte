@@ -30,6 +30,7 @@
 	} from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import Head from '$lib/client/components/Head.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import {
@@ -437,6 +438,44 @@
 			link.href = dataUrl;
 			link.click();
 		});
+	}
+
+	function downloadIconImage() {
+		if (!browser) return;
+		let node =
+			selectedIconFormat === 'PNG'
+				? document.querySelector('#icon-dom img')
+				: document.querySelector('#icon-dom svg');
+		if (!node) return;
+		if (selectedIconFormat === 'PNG') {
+			domToPng(node, { quality: 1 }).then((dataUrl) => {
+				const link = document.createElement('a');
+				link.download = `${slugify(
+					`${slugify(selectedIconIdFromList)}-${new Date().toISOString()}.png`,
+				)}`;
+				link.href = dataUrl;
+				link.click();
+			});
+		} else {
+			// Serialize the SVG node to a string
+			let svgString = new XMLSerializer().serializeToString(node);
+
+			// Create a Blob from the SVG string
+			let blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+
+			// Create a URL for the Blob
+			let url = URL.createObjectURL(blob);
+
+			// Create a link element for downloading
+			const link = document.createElement('a');
+			link.download = `${slugify(`${slugify(selectedIconIdFromList)}-${new Date().toISOString()}.svg`)}`;
+			link.href = url;
+
+			// Append the link to the body, click it, and then remove it
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}
 	}
 
 	let url = $page.url.toString();
@@ -3245,8 +3284,14 @@
 	</section>
 	<section>
 		<SectionHeading level={2} title="Icons" />
+		<p class="spaced-paragraph">
+			You can find the image for the monster backgrounds in our <OutboundLink
+				href="https://github.com/DorielRivalet/wycademy/blob/main/src/lib/client/images/monster/bg-512.webp"
+				>repository</OutboundLink
+			>
+		</p>
 		<div class="container-buttons">
-			<Button kind="tertiary" icon={Download} on:click={downloadItemsImage}
+			<Button kind="tertiary" icon={Download} on:click={downloadIconImage}
 				>Download</Button
 			>
 			<Dropdown
@@ -3286,31 +3331,39 @@
 					{ id: 'PNG', text: 'PNG' },
 				]}
 			/>
-			<Dropdown
-				type="inline"
-				titleText="Color"
-				bind:selectedId={selectedIconColor}
-				items={allFrontierColors}
-			/>
-			<Toggle labelText="Background" bind:toggled={selectedIconBackground} />
-		</div>
-		<div class="icon-preview">
-			{#if selectedIconFormat === 'SVG'}
-				<svelte:component
-					this={currentIconPreview.component}
-					{...{
-						size: selectedIconSize,
-						color: selectedIconColor,
-						background: selectedIconBackground,
-					}}
-				/>
-			{:else}
-				<img
-					src={currentIconPreview.image}
-					alt={selectedIconIdFromList}
-					width={selectedIconSize}
+			{#if selectedIconType !== 'Monster'}
+				<Dropdown
+					type="inline"
+					titleText="Color"
+					bind:selectedId={selectedIconColor}
+					items={allFrontierColors}
 				/>
 			{/if}
+			{#if selectedIconType === 'Monster'}
+				<Toggle
+					labelText="Background"
+					bind:toggled={selectedIconBackground}
+				/>{/if}
+		</div>
+		<div class="icon-preview">
+			<div id={'icon-dom'} style="width: {selectedIconSize}">
+				{#if selectedIconFormat === 'SVG'}
+					<svelte:component
+						this={currentIconPreview.component}
+						{...{
+							size: selectedIconType === 'Weapon' ? '100%' : selectedIconSize,
+							color: selectedIconColor,
+							background: selectedIconBackground,
+						}}
+					/>
+				{:else}
+					<img
+						src={currentIconPreview.image}
+						alt={selectedIconIdFromList}
+						width={selectedIconSize}
+					/>
+				{/if}
+			</div>
 		</div>
 	</section>
 	<section>
@@ -3410,7 +3463,7 @@
 
 	.icon-preview {
 		display: flex;
-		width: 100%;
+		width: auto;
 		justify-content: center;
 	}
 </style>

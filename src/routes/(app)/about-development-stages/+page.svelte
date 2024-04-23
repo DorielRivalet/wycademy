@@ -17,8 +17,8 @@
 		projectName,
 		website,
 	} from '$lib/constants';
-	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Head from '$lib/client/components/Head.svelte';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	let url = $page.url.toString();
 </script>
 
@@ -43,8 +43,9 @@
 		Since this website intends to host many potential features, it is best to
 		detail a clear development process so users can know what to expect during
 		each development phase. For the specifics of when a stage finishes and the
-		next one starts, see the milestones <Link
-			href="https://github.com/DorielRivalet/wycademy/milestones">here</Link
+		next one starts, see the milestones <OutboundLink
+			href="https://github.com/DorielRivalet/wycademy/milestones"
+			>in our repository</OutboundLink
 		>.
 	</p>
 
