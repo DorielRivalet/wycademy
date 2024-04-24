@@ -894,110 +894,142 @@ export const AilmentIcons: { name: FrontierAilment; icon: any }[] = [
 	{ name: 'Vocal Cord Paralysis', icon: IconAilmentVocalCordParalysis },
 ];
 
-export const ElementIcons: { name: FrontierElement; icon: any }[] = [
+export const ElementIcons: {
+	name: FrontierElement;
+	displayName: FrontierElement;
+	icon: any;
+}[] = [
 	{
 		name: '',
+		displayName: '',
 		icon: '',
 	},
 	{
 		name: 'Raw',
+		displayName: 'Raw',
 		icon: '',
 	},
 	{
 		name: 'None',
+		displayName: 'None',
 		icon: '',
 	},
 	{
 		name: 'Fire',
+		displayName: 'Fire',
 		icon: IconElementFire,
 	},
 	{
 		name: 'Water',
+		displayName: 'Water',
 		icon: IconElementWater,
 	},
 	{
 		name: 'Thunder',
+		displayName: 'Thunder',
 		icon: IconElementThunder,
 	},
 	{
 		name: 'Ice',
+		displayName: 'Ice',
 		icon: IconElementIce,
 	},
 	{
 		name: 'Dragon',
+		displayName: 'Dragon',
 		icon: IconElementDragon,
 	},
 	{
 		name: 'Light',
+		displayName: 'Light',
 		icon: IconElementLight,
 	},
 	{
 		name: 'Blaze',
+		displayName: 'Blaze',
 		icon: IconElementBlaze,
 	},
 	{
 		name: 'Tenshou',
+		displayName: 'Tenshou',
 		icon: IconElementTenshou,
 	},
 	{
 		name: 'Okiko',
+		displayName: 'Okiko',
 		icon: IconElementOkiko,
 	},
 	{
 		name: 'L. Rod',
+		displayName: 'Lightning Rod',
 		icon: IconElementLightingRod,
 	},
 	{
 		name: 'Lightning Rod',
+		displayName: 'Lightning Rod',
 		icon: IconElementLightingRod,
 	},
 	{
 		name: 'B. Flame',
+		displayName: 'Black Flame',
 		icon: IconElementBlackFlame,
 	},
 	{
 		name: 'Black Flame',
+		displayName: 'Black Flame',
+
 		icon: IconElementBlackFlame,
 	},
 	{
 		name: 'C. Demon',
+		displayName: 'Crimson Demon',
+
 		icon: IconElementCrimsonDemon,
 	},
 	{
 		name: 'Crimson Demon',
+		displayName: 'Crimson Demon',
 		icon: IconElementCrimsonDemon,
 	},
 	{
 		name: 'E. Roar',
+		displayName: "Emperor's Roar",
 		icon: IconElementEmperorRoar,
 	},
 	{
 		name: "Emperor's Roar",
+		displayName: "Emperor's Roar",
 		icon: IconElementEmperorRoar,
 	},
 	{
 		name: 'B. Zero',
+		displayName: 'Burning Zero',
 		icon: IconElementBurningZero,
 	},
 
 	{
 		name: 'Burning Zero',
+		displayName: 'Burning Zero',
 		icon: IconElementBurningZero,
 	},
 	{
 		name: 'Dark',
+		displayName: 'Dark',
 		icon: IconElementDark,
 	},
 	{
 		name: 'Music',
+		displayName: 'Music',
 		icon: IconElementMusic,
 	},
 	{
 		name: 'Sound',
+		displayName: 'Sound',
 		icon: IconElementSound,
 	},
 	{
 		name: 'Wind',
+		displayName: 'Wind',
 		icon: IconElementWind,
 	},
 ];

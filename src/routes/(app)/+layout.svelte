@@ -162,6 +162,7 @@
 		display: flex;
 		flex-direction: column;
 		background-color: var(--ctp-mantle);
+		overflow-x: hidden;
 	}
 
 	@media (min-width: 320px) {

@@ -688,3 +688,20 @@ export type FrontierMonsterInfo = {
 	generation?: string[];
 	summary?: string;
 };
+export type IconSize =
+	| '64px'
+	| '128px'
+	| '256px'
+	| '512px'
+	| '1024px'
+	| '2048px';
+
+export type FrontierIconType =
+	| 'Weapon'
+	| 'Monster'
+	| 'Armor'
+	| 'Item'
+	| 'Location'
+	| 'Element'
+	| 'Ailment'
+	| 'Status';
