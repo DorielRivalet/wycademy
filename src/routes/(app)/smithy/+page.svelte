@@ -1,13 +1,16 @@
 <script lang="ts">
 	import {
+		AilmentIcons,
 		ArmorTypes,
 		ColorCodes,
+		ElementIcons,
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
 		ItemIcons,
 		MonsterIcons,
 		RarityColors,
 		SharpnessNames,
+		StatusIcons,
 		WeaponTypes,
 		defaultArmorComponentValues,
 		defaultItemComponentValues,
@@ -55,6 +58,7 @@
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
 		FrontierHuntingHornWeaponNote,
+		FrontierIconType,
 		FrontierItemColor,
 		FrontierItemDecoration,
 		FrontierItemRankType,
@@ -65,6 +69,7 @@
 		FrontierSlot,
 		FrontierSwitchAxeFPhial,
 		FrontierWeapon,
+		IconSize,
 	} from '$lib/client/modules/frontier/types';
 	import Item from '$lib/client/components/frontier/Item.svelte';
 	import pageThumbnail from '$lib/client/images/icon/blacksmith.png';
@@ -74,6 +79,34 @@
 		type FrontierWeaponClass,
 		type FrontierZenithSkill,
 	} from 'ezlion';
+	import type { HTMLImgAttributes, SVGAttributes } from 'svelte/elements';
+	import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
+	import ImageSearch from 'carbon-icons-svelte/lib/ImageSearch.svelte';
+	import Add from 'carbon-icons-svelte/lib/Add.svelte';
+	import Delete from 'carbon-icons-svelte/lib/Delete.svelte';
+	import CharacterUppercase from 'carbon-icons-svelte/lib/CharacterUppercase.svelte';
+	import ColorPalette from 'carbon-icons-svelte/lib/ColorPalette.svelte';
+	import ColorSwitch from 'carbon-icons-svelte/lib/ColorSwitch.svelte';
+	import TextColor from 'carbon-icons-svelte/lib/TextColor.svelte';
+	import TextFill from 'carbon-icons-svelte/lib/TextFill.svelte';
+	import TextCreation from 'carbon-icons-svelte/lib/TextCreation.svelte';
+	import TextFont from 'carbon-icons-svelte/lib/TextFont.svelte';
+	import TextItalic from 'carbon-icons-svelte/lib/TextItalic.svelte';
+	import TextStrikethrough from 'carbon-icons-svelte/lib/TextStrikethrough.svelte';
+	import TextBold from 'carbon-icons-svelte/lib/TextBold.svelte';
+	import TextScale from 'carbon-icons-svelte/lib/TextScale.svelte';
+	import TextUnderline from 'carbon-icons-svelte/lib/TextUnderline.svelte';
+	import TextAlignCenter from 'carbon-icons-svelte/lib/TextAlignCenter.svelte';
+	import TextAlignLeft from 'carbon-icons-svelte/lib/TextAlignLeft.svelte';
+	import TextAlignRight from 'carbon-icons-svelte/lib/TextAlignRight.svelte';
+	import TextVerticalAlignment from 'carbon-icons-svelte/lib/TextVerticalAlignment.svelte';
+	import Txt from 'carbon-icons-svelte/lib/Txt.svelte';
+	import StringText from 'carbon-icons-svelte/lib/StringText.svelte';
+	import Edit from 'carbon-icons-svelte/lib/Edit.svelte';
+	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
+	import FileUploader from 'carbon-components-svelte/src/FileUploader/FileUploader.svelte';
+	import FileUploaderDropContainer from 'carbon-components-svelte/src/FileUploader/FileUploaderDropContainer.svelte';
+	import { Power } from 'carbon-icons-svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -451,7 +484,7 @@
 			domToPng(node, { quality: 1 }).then((dataUrl) => {
 				const link = document.createElement('a');
 				link.download = `${slugify(
-					`${slugify(selectedIconIdFromList)}-${new Date().toISOString()}.png`,
+					`${slugify(selectedIconIdFromList)}${selectedIconType !== 'Monster' ? `-${selectedIconColor}` : ''}.png`,
 				)}`;
 				link.href = dataUrl;
 				link.click();
@@ -468,7 +501,7 @@
 
 			// Create a link element for downloading
 			const link = document.createElement('a');
-			link.download = `${slugify(`${slugify(selectedIconIdFromList)}-${new Date().toISOString()}.svg`)}`;
+			link.download = `${slugify(`${slugify(selectedIconIdFromList)}${selectedIconType !== 'Monster' ? `-${selectedIconColor}` : ''}.svg`)}`;
 			link.href = url;
 
 			// Append the link to the body, click it, and then remove it
@@ -813,13 +846,72 @@
 		return result;
 	}
 
-	let selectedIconType: 'Weapon' | 'Armor' | 'Monster' | 'Item' = 'Weapon';
-	const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
-	let uniqueMonsters = getUniqueMonsters().sort(
-		(a, b) =>
-			(a?.displayName?.codePointAt(0) ?? 0) -
-			(b?.displayName?.codePointAt(0) ?? 0),
-	);
+	function getThumbnailGeneratorImagesFromType(type: FrontierIconType) {
+		let list:
+			| FrontierWeapon[]
+			| FrontierArmor[]
+			| { name: string; icon: any }[]
+			| FrontierMonsterInfo[];
+		switch (type) {
+			default:
+				list = WeaponTypes;
+				break;
+			case 'Weapon':
+				list = WeaponTypes;
+				break;
+			case 'Armor':
+				list = ArmorTypes;
+				break;
+			case 'Item':
+				list = ItemIcons;
+				break;
+			case 'Monster':
+				list = uniqueMonsters;
+				break;
+			case 'Element':
+				list = ElementIcons;
+				break;
+			case 'Ailment':
+				list = AilmentIcons;
+				break;
+			case 'Status':
+				list = StatusIcons;
+				break;
+			// case 'Location':
+			// 	list = ;
+			// 	break;
+		}
+
+		list = list.filter((e) => e.icon !== '');
+
+		let result: DropdownItem[] = [];
+		list.forEach((element) => {
+			if (
+				(type === 'Monster' || type === 'Element') &&
+				'displayName' in element
+			) {
+				// TypeScript now knows that element is of type FrontierMonsterInfo
+				// Ensure 'displayName' is a string before pushing to result
+				if (
+					typeof element.displayName === 'string' &&
+					!result.find((e) => e.id === element.displayName)
+				) {
+					result.push({
+						id: `${element.displayName}`,
+						text: element.displayName,
+					});
+				}
+			} else {
+				result.push({ id: element.name, text: element.name });
+			}
+		});
+
+		result.sort((a, b) => a.text.localeCompare(b.text));
+
+		thumbnailGeneratorImageIdFromList = result[0].id;
+
+		return result;
+	}
 
 	function getCurrentIconsFromType(type: string) {
 		let list:
@@ -843,14 +935,34 @@
 			case 'Monster':
 				list = uniqueMonsters;
 				break;
+			case 'Element':
+				list = ElementIcons;
+				break;
+			case 'Ailment':
+				list = AilmentIcons;
+				break;
+			case 'Status':
+				list = StatusIcons;
+				break;
+			// case 'Location':
+			// 	list = ;
+			// 	break;
 		}
+
+		list = list.filter((e) => e.icon !== '');
 
 		let result: DropdownItem[] = [];
 		list.forEach((element) => {
-			if (type === 'Monster' && 'displayName' in element) {
+			if (
+				(type === 'Monster' || type === 'Element') &&
+				'displayName' in element
+			) {
 				// TypeScript now knows that element is of type FrontierMonsterInfo
 				// Ensure 'displayName' is a string before pushing to result
-				if (typeof element.displayName === 'string') {
+				if (
+					typeof element.displayName === 'string' &&
+					!result.find((e) => e.id === element.displayName)
+				) {
 					result.push({
 						id: `${element.displayName}`,
 						text: element.displayName,
@@ -861,55 +973,64 @@
 			}
 		});
 
+		result.sort((a, b) => a.text.localeCompare(b.text));
+
 		selectedIconIdFromList = result[0].id;
 
 		return result;
 	}
 
-	let selectedIconFormat: 'SVG' | 'PNG' = 'SVG';
-	let selectedIconSize: '256px' | '512px' | '1024px' | '2048px' = '256px';
-
-	function getCurrentIconPreview(
-		selectedIconType: 'Weapon' | 'Monster' | 'Armor' | 'Item',
+	function getIconBlobFromIconMetaData(
+		selectedIconType: FrontierIconType,
 		selectionID: string,
-
-		size: '256px' | '512px' | '1024px' | '2048px',
+		size: IconSize,
 		format: 'SVG' | 'PNG',
 		color: string,
 	) {
-		// return html in either the form of img if selecting PNG or
+		// TODO return html in either the form of img if selecting PNG or
 		// svelte component if selecting SVG.
-		console.table([selectedIconType, selectionID, size, format, color]);
-		let result = { component: undefined, image: undefined };
 		switch (selectedIconType) {
 			case 'Weapon':
 				return {
-					component: WeaponTypes.find((e) => e.name === selectedIconIdFromList)
-						?.icon,
-					image: WeaponTypes.find((e) => e.name === selectedIconIdFromList)
-						?.smallIcon,
+					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
+					image: WeaponTypes.find((e) => e.name === selectionID)?.smallIcon,
 				};
 			case 'Monster':
 				return {
-					component: MonsterIcons.find(
-						(e) => e.displayName === selectedIconIdFromList,
-					)?.component,
-					image: MonsterIcons.find(
-						(e) => e.displayName === selectedIconIdFromList,
-					)?.icon,
+					component: MonsterIcons.find((e) => e.displayName === selectionID)
+						?.component,
+					image: MonsterIcons.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Armor':
 				return {
-					component: ArmorTypes.find((e) => e.name === selectedIconIdFromList)
-						?.icon,
-					image: ArmorTypes.find((e) => e.name === selectedIconIdFromList)
-						?.icon,
+					component: ArmorTypes.find((e) => e.name === selectionID)?.icon,
+					image: ArmorTypes.find((e) => e.name === selectionID)?.icon,
 				};
 			case 'Item':
 				return {
-					component: ItemIcons.find((e) => e.name === selectedIconIdFromList)
+					component: ItemIcons.find((e) => e.name === selectionID)?.icon,
+					image: ItemIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Location':
+				return {
+					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
+					image: WeaponTypes.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Element':
+				return {
+					component: ElementIcons.find((e) => e.displayName === selectionID)
 						?.icon,
-					image: ItemIcons.find((e) => e.name === selectedIconIdFromList)?.icon,
+					image: ElementIcons.find((e) => e.displayName === selectionID)?.icon,
+				};
+			case 'Ailment':
+				return {
+					component: AilmentIcons.find((e) => e.name === selectionID)?.icon,
+					image: AilmentIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Status':
+				return {
+					component: StatusIcons.find((e) => e.name === selectionID)?.icon,
+					image: StatusIcons.find((e) => e.name === selectionID)?.icon,
 				};
 		}
 	}
@@ -938,13 +1059,118 @@
 		return uniqueResult;
 	}
 
-	let selectedIconIdFromList = 'Great Sword';
+	function addThumbnailImage() {
+		if (thumbnailImages.length > 16) {
+			return;
+		}
+		thumbnailImages = [
+			...thumbnailImages,
+			{
+				filetype: thumbnailGeneratorImageFormat,
+				src: getIconBlobFromIconMetaData(
+					thumbnailGeneratorImageType,
+					thumbnailGeneratorImageIdFromList,
+					'128px',
+					thumbnailGeneratorImageFormat,
+					thumbnailGeneratorImageColor,
+				),
+				alt: 'Thumbnail Image',
+				top: 0,
+				left: 0,
+				width: '128px',
+				height: '128px',
+				zindex: 1,
+				opacity: 1,
+				dropShadowSize: '5px',
+				dropShadowColor: '#000',
+				borderWidth: '0px',
+				borderColor: '#fff',
+				borderRadius: '5px',
+				background: thumbnailGeneratorImageBackground,
+				color: thumbnailGeneratorImageColor,
+			},
+		];
+	}
+
+	function removeThumbnailImage(index: number) {
+		thumbnailImages.splice(index, 1);
+	}
+
+	function addThumbnailText() {
+		thumbnailTexts.push({ text: '', fontSize: '16px', color: '#000' });
+	}
+
+	function removeThumbnailText(index: number) {
+		thumbnailTexts.splice(index, 1);
+	}
+
+	function downloadGeneratedThumbnailImage() {
+		let node = document.querySelector('#generated-thumbnail-dom');
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify('generated-thumbnail')}-${new Date().toISOString()}.png`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
+
+	function addUploadedImage(files: ReadonlyArray<File>) {
+		if (files.length === 0 || thumbnailUploadedImages.length > 16) {
+			return;
+		}
+		thumbnailUploadedImages = [
+			...thumbnailUploadedImages,
+			{
+				filetype: files[files.length - 1].type.toLowerCase(),
+				src: URL.createObjectURL(files[files.length - 1]),
+				alt: 'Thumbnail Image',
+				top: 0,
+				left: 0,
+				width: '128px',
+				height: '128px',
+				zindex: 1,
+				opacity: 1,
+				dropShadowSize: '5px',
+				dropShadowColor: '#000',
+				borderWidth: '0px',
+				borderColor: '#fff',
+				borderRadius: '5px',
+			},
+		];
+	}
+
+	let selectedIconFormat: 'SVG' | 'PNG' = 'SVG';
+	let selectedIconSize: IconSize = '256px';
+	let selectedIconType: FrontierIconType = 'Monster';
+	const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
+	let uniqueMonsters = getUniqueMonsters().sort(
+		(a, b) =>
+			(a?.displayName?.codePointAt(0) ?? 0) -
+			(b?.displayName?.codePointAt(0) ?? 0),
+	);
+	let selectedIconIdFromList = 'Abiorugu';
 	let allFrontierColors = getAllFrontierColors();
 	let selectedIconColor = allFrontierColors[0].id;
 	let selectedIconBackground = false;
 
+	let thumbnailImages: HTMLImgAttributes[] = [];
+	let thumbnailUploadedImages: HTMLImgAttributes[] = [];
+	let thumbnailTexts: { text: ''; fontSize: '16px'; color: '#000' }[] = [];
+
+	let thumbnailGeneratorImageFormat: 'SVG' | 'PNG' = 'SVG';
+	let thumbnailGeneratorImageType: FrontierIconType = 'Monster';
+	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
+	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
+	let thumbnailGeneratorImageBackground = false;
+	let thumbnailGeneratorImageFiles: ReadonlyArray<File> = [];
+
+	$: addUploadedImage(thumbnailGeneratorImageFiles);
 	$: currentIconsFromType = getCurrentIconsFromType(selectedIconType);
-	$: currentIconPreview = getCurrentIconPreview(
+	$: thumbnailGeneratorImagesFromType = getThumbnailGeneratorImagesFromType(
+		thumbnailGeneratorImageType,
+	);
+	$: currentIconPreview = getIconBlobFromIconMetaData(
 		selectedIconType,
 		selectedIconIdFromList,
 		selectedIconSize,
@@ -969,6 +1195,20 @@
 
 <div>
 	<SectionHeadingTopLevel title="Smithy" />
+
+	<p>
+		In the Smithy, you can generate various equipment for display purposes, such
+		as <InlineTooltip text="Armor" icon={ArmorTypes[0].icon} tooltip="Armor" />, <InlineTooltip
+			text="Weapons"
+			icon={WeaponTypes[0].icon}
+			tooltip="Weapon"
+		/> and <InlineTooltip
+			text="Items"
+			icon={ItemIcons[0].icon}
+			tooltip="Item"
+		/>. Additionally, you can download the icons themselves and make thumbnails
+		for your videos.
+	</p>
 
 	<section>
 		<SectionHeading title="Weapon" level={2} />
@@ -3299,10 +3539,14 @@
 				titleText="Type"
 				bind:selectedId={selectedIconType}
 				items={[
-					{ id: 'Weapon', text: 'Weapon' },
+					{ id: 'Ailment', text: 'Ailment' },
 					{ id: 'Armor', text: 'Armor' },
+					{ id: 'Element', text: 'Element' },
 					{ id: 'Item', text: 'Item' },
+					{ id: 'Location', text: 'Location' },
+					{ id: 'Status', text: 'Status' },
 					{ id: 'Monster', text: 'Monster' },
+					{ id: 'Weapon', text: 'Weapon' },
 				]}
 			/>
 			<Dropdown
@@ -3316,6 +3560,8 @@
 				titleText="Size"
 				bind:selectedId={selectedIconSize}
 				items={[
+					{ id: '64px', text: '64px' },
+					{ id: '128px', text: '128px' },
 					{ id: '256px', text: '256px' },
 					{ id: '512px', text: '512px' },
 					{ id: '1024px', text: '1024px' },
@@ -3327,11 +3573,11 @@
 				titleText="Format"
 				bind:selectedId={selectedIconFormat}
 				items={[
-					{ id: 'SVG', text: 'SVG' },
 					{ id: 'PNG', text: 'PNG' },
+					{ id: 'SVG', text: 'SVG' },
 				]}
 			/>
-			{#if selectedIconType !== 'Monster'}
+			{#if selectedIconType !== 'Monster' && selectedIconType !== 'Ailment' && selectedIconType !== 'Status' && selectedIconType !== 'Element' && selectedIconType !== 'Location'}
 				<Dropdown
 					type="inline"
 					titleText="Color"
@@ -3368,7 +3614,113 @@
 	</section>
 	<section>
 		<SectionHeading level={2} title="Thumbnail Generator" />
-		<div class="container-item-buttons"></div>
+		<p class="spaced-paragraph">
+			The thumbnail preview shown here may have a shorter width than the
+			downloaded file. The downloaded file will be in the correct dimensions,
+			that is, 1280x720 pixels.
+		</p>
+		<div class="container-item-buttons">
+			<Button
+				kind="tertiary"
+				icon={Download}
+				on:click={downloadGeneratedThumbnailImage}>Download</Button
+			>
+		</div>
+		<div class="container-buttons">
+			<FileUploaderDropContainer
+				accept={['.svg', '.png', '.webp', '.jpg', '.jpeg']}
+				bind:files={thumbnailGeneratorImageFiles}
+				labelText="Drag and drop images here or click to upload (8MB max)"
+				validateFiles={(files) => {
+					return files.filter(
+						(file) =>
+							file.size < 8 * Math.pow(10, 6) &&
+							(file.name.endsWith('.png') ||
+								file.name.endsWith('.webp') ||
+								file.name.endsWith('.jpg') ||
+								file.name.endsWith('.svg') ||
+								file.name.endsWith('.jpeg')),
+					);
+				}}
+			/>
+		</div>
+
+		<div class="container-buttons">
+			<Button kind="tertiary" icon={Add} on:click={addThumbnailImage}
+				>Add Image</Button
+			>
+			<Dropdown
+				type="inline"
+				titleText="Type"
+				bind:selectedId={thumbnailGeneratorImageType}
+				items={[
+					{ id: 'Ailment', text: 'Ailment' },
+					{ id: 'Armor', text: 'Armor' },
+					{ id: 'Element', text: 'Element' },
+					{ id: 'Item', text: 'Item' },
+					{ id: 'Location', text: 'Location' },
+					{ id: 'Status', text: 'Status' },
+					{ id: 'Monster', text: 'Monster' },
+					{ id: 'Weapon', text: 'Weapon' },
+				]}
+			/>
+			<Dropdown
+				type="inline"
+				titleText="Icon"
+				bind:selectedId={thumbnailGeneratorImageIdFromList}
+				items={thumbnailGeneratorImagesFromType}
+			/>
+			{#if thumbnailGeneratorImageType !== 'Monster' && thumbnailGeneratorImageType !== 'Ailment' && thumbnailGeneratorImageType !== 'Status' && thumbnailGeneratorImageType !== 'Element' && thumbnailGeneratorImageType !== 'Location'}
+				<Dropdown
+					type="inline"
+					titleText="Color"
+					bind:selectedId={thumbnailGeneratorImageColor}
+					items={allFrontierColors}
+				/>
+			{/if}
+			{#if thumbnailGeneratorImageType === 'Monster'}
+				<Toggle
+					labelText="Background"
+					bind:toggled={thumbnailGeneratorImageBackground}
+				/>{/if}
+		</div>
+
+		<div class="thumbnail-container">
+			<div id="generated-thumbnail-dom">
+				{#each thumbnailImages as image, i}
+					<div
+						style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
+					>
+						<svelte:component
+							this={image.src.component}
+							{...{ color: image.color, background: image.background }}
+						/>
+					</div>
+				{/each}
+				{#each thumbnailUploadedImages as image, i}
+					{#if image.filetype !== 'image/svg+xml'}
+						<img
+							src={image.src}
+							alt={image.alt}
+							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
+						/>
+					{:else if image.filetype === 'image/svg+xml'}
+						<img
+							src={image.src}
+							alt={image.alt}
+							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
+						/>
+					{/if}
+				{/each}
+				{#each thumbnailTexts as text, i}
+					<div
+						style="position: absolute; top: 0; left: 0; font-size: {text.fontSize}; color: {text.color};"
+					>
+						{text.text}
+					</div>
+				{/each}
+			</div>
+		</div>
 	</section>
 </div>
 
@@ -3423,6 +3775,7 @@
 		gap: 1rem;
 		align-items: center;
 		flex-wrap: wrap;
+		margin-bottom: 1rem;
 	}
 
 	.page-2-blademaster,
@@ -3463,7 +3816,18 @@
 
 	.icon-preview {
 		display: flex;
-		width: auto;
+		width: 100%;
 		justify-content: center;
+	}
+
+	.thumbnail-container {
+		border: 2px solid var(--ctp-surface0);
+		background-color: var(--ctp-mantle);
+	}
+
+	#generated-thumbnail-dom {
+		width: 1280px;
+		height: 720px;
+		position: relative;
 	}
 </style>
