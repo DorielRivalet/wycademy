@@ -4,9 +4,11 @@
 		ArmorTypes,
 		ColorCodes,
 		ElementIcons,
+		Habitats,
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
 		ItemIcons,
+		LocationIcons,
 		MonsterIcons,
 		RarityColors,
 		SharpnessNames,
@@ -79,7 +81,7 @@
 		type FrontierWeaponClass,
 		type FrontierZenithSkill,
 	} from 'ezlion';
-	import type { HTMLImgAttributes, SVGAttributes } from 'svelte/elements';
+	import type { HTMLImgAttributes } from 'svelte/elements';
 	import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
 	import ImageSearch from 'carbon-icons-svelte/lib/ImageSearch.svelte';
 	import Add from 'carbon-icons-svelte/lib/Add.svelte';
@@ -104,9 +106,7 @@
 	import StringText from 'carbon-icons-svelte/lib/StringText.svelte';
 	import Edit from 'carbon-icons-svelte/lib/Edit.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import FileUploader from 'carbon-components-svelte/src/FileUploader/FileUploader.svelte';
 	import FileUploaderDropContainer from 'carbon-components-svelte/src/FileUploader/FileUploaderDropContainer.svelte';
-	import { Power } from 'carbon-icons-svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -365,7 +365,7 @@
 	function getZenithSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
 		Object.values(ezlion.SkillZenith).forEach((element) => {
-			if (element !== '') {
+			if (element !== '' && element !== 'None') {
 				array = [...array, { id: element, text: element }];
 			}
 		});
@@ -375,21 +375,30 @@
 	function getSigilSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
 		Object.values(ezlion.SkillSigil).forEach((element) => {
-			if (element !== '') {
+			if (element !== '' && element !== 'None') {
 				array = [...array, { id: element, text: element }];
 			}
 		});
-		return array;
+		// Remove duplicates based on 'id'
+		const uniqueResult = array.filter(
+			(obj, index) => array.findIndex((item) => item.id === obj.id) === index,
+		);
+		return uniqueResult;
 	}
 
 	function getArmorSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
 		Object.values(ezlion.SkillArmor).forEach((element) => {
-			if (element !== '') {
+			if (element !== '' && element !== 'None') {
 				array = [...array, { id: element, text: element }];
 			}
 		});
-		return array;
+
+		// Remove duplicates based on 'id'
+		const uniqueResult = array.filter(
+			(obj, index) => array.findIndex((item) => item.id === obj.id) === index,
+		);
+		return uniqueResult;
 	}
 
 	function getArmorSkillTree() {
@@ -475,17 +484,22 @@
 
 	function downloadIconImage() {
 		if (!browser) return;
-		let node =
-			selectedIconFormat === 'PNG'
-				? document.querySelector('#icon-dom img')
-				: document.querySelector('#icon-dom svg');
+		const isSVG =
+			((selectedIconType === 'Monster' || selectedIconType === 'Weapon') &&
+				selectedIconFormat === 'SVG') ||
+			selectedIconType === 'Element' ||
+			selectedIconType === 'Ailment' ||
+			selectedIconType === 'Status' ||
+			selectedIconType === 'Armor' ||
+			selectedIconType === 'Item';
+		let node = isSVG
+			? document.querySelector('#icon-dom svg')
+			: document.querySelector('#icon-dom img');
 		if (!node) return;
-		if (selectedIconFormat === 'PNG') {
+		if (!isSVG) {
 			domToPng(node, { quality: 1 }).then((dataUrl) => {
 				const link = document.createElement('a');
-				link.download = `${slugify(
-					`${slugify(selectedIconIdFromList)}${selectedIconType !== 'Monster' ? `-${selectedIconColor}` : ''}.png`,
-				)}`;
+				link.download = `${slugify(`${slugify(selectedIconIdFromList)}.png`)}`;
 				link.href = dataUrl;
 				link.click();
 			});
@@ -501,7 +515,7 @@
 
 			// Create a link element for downloading
 			const link = document.createElement('a');
-			link.download = `${slugify(`${slugify(selectedIconIdFromList)}${selectedIconType !== 'Monster' ? `-${selectedIconColor}` : ''}.svg`)}`;
+			link.download = `${slugify(`${slugify(selectedIconIdFromList)}${selectedIconType === 'Armor' || selectedIconType === 'Item' || selectedIconType === 'Weapon' ? `-${selectedIconColor}` : ''}.svg`)}`;
 			link.href = url;
 
 			// Append the link to the body, click it, and then remove it
@@ -846,12 +860,15 @@
 		return result;
 	}
 
-	function getThumbnailGeneratorImagesFromType(type: FrontierIconType) {
+	function getThumbnailGeneratorImagesFromType(
+		type: FrontierIconType | 'Habitat',
+	) {
 		let list:
 			| FrontierWeapon[]
 			| FrontierArmor[]
 			| { name: string; icon: any }[]
-			| FrontierMonsterInfo[];
+			| FrontierMonsterInfo[]
+			| { name: string; image: any }[];
 		switch (type) {
 			default:
 				list = WeaponTypes;
@@ -877,9 +894,12 @@
 			case 'Status':
 				list = StatusIcons;
 				break;
-			// case 'Location':
-			// 	list = ;
-			// 	break;
+			case 'Location':
+				list = LocationIcons;
+				break;
+			case 'Habitat':
+				list = Habitats;
+				break;
 		}
 
 		list = list.filter((e) => e.icon !== '');
@@ -918,7 +938,8 @@
 			| FrontierWeapon[]
 			| FrontierArmor[]
 			| { name: string; icon: any }[]
-			| FrontierMonsterInfo[];
+			| FrontierMonsterInfo[]
+			| { name: string; image: any }[];
 		switch (type) {
 			default:
 				list = WeaponTypes;
@@ -944,9 +965,12 @@
 			case 'Status':
 				list = StatusIcons;
 				break;
-			// case 'Location':
-			// 	list = ;
-			// 	break;
+			case 'Location':
+				list = LocationIcons;
+				break;
+			case 'Habitat':
+				list = Habitats;
+				break;
 		}
 
 		list = list.filter((e) => e.icon !== '');
@@ -981,7 +1005,7 @@
 	}
 
 	function getIconBlobFromIconMetaData(
-		selectedIconType: FrontierIconType,
+		selectedIconType: FrontierIconType | 'Habitat',
 		selectionID: string,
 		size: IconSize,
 		format: 'SVG' | 'PNG',
@@ -1013,8 +1037,8 @@
 				};
 			case 'Location':
 				return {
-					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
-					image: WeaponTypes.find((e) => e.name === selectionID)?.icon,
+					component: LocationIcons.find((e) => e.name === selectionID)?.icon,
+					image: LocationIcons.find((e) => e.name === selectionID)?.icon,
 				};
 			case 'Element':
 				return {
@@ -1031,6 +1055,11 @@
 				return {
 					component: StatusIcons.find((e) => e.name === selectionID)?.icon,
 					image: StatusIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Habitat':
+				return {
+					component: Habitats.find((e) => e.name === selectionID)?.image,
+					image: Habitats.find((e) => e.name === selectionID)?.image,
 				};
 		}
 	}
@@ -1066,7 +1095,8 @@
 		thumbnailImages = [
 			...thumbnailImages,
 			{
-				filetype: thumbnailGeneratorImageFormat,
+				fileFormat: thumbnailGeneratorImageFormat,
+				fileType: thumbnailGeneratorImageType,
 				src: getIconBlobFromIconMetaData(
 					thumbnailGeneratorImageType,
 					thumbnailGeneratorImageIdFromList,
@@ -1090,6 +1120,7 @@
 				color: thumbnailGeneratorImageColor,
 			},
 		];
+		console.log(thumbnailImages);
 	}
 
 	function removeThumbnailImage(index: number) {
@@ -1122,7 +1153,7 @@
 		thumbnailUploadedImages = [
 			...thumbnailUploadedImages,
 			{
-				filetype: files[files.length - 1].type.toLowerCase(),
+				fileType: files[files.length - 1].type.toLowerCase(),
 				src: URL.createObjectURL(files[files.length - 1]),
 				alt: 'Thumbnail Image',
 				top: 0,
@@ -1142,7 +1173,7 @@
 
 	let selectedIconFormat: 'SVG' | 'PNG' = 'SVG';
 	let selectedIconSize: IconSize = '256px';
-	let selectedIconType: FrontierIconType = 'Monster';
+	let selectedIconType: FrontierIconType | 'Habitat' = 'Monster';
 	const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
 	let uniqueMonsters = getUniqueMonsters().sort(
 		(a, b) =>
@@ -1159,7 +1190,7 @@
 	let thumbnailTexts: { text: ''; fontSize: '16px'; color: '#000' }[] = [];
 
 	let thumbnailGeneratorImageFormat: 'SVG' | 'PNG' = 'SVG';
-	let thumbnailGeneratorImageType: FrontierIconType = 'Monster';
+	let thumbnailGeneratorImageType: FrontierIconType | 'Habitat' = 'Monster';
 	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
 	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
 	let thumbnailGeneratorImageBackground = false;
@@ -3542,6 +3573,7 @@
 					{ id: 'Ailment', text: 'Ailment' },
 					{ id: 'Armor', text: 'Armor' },
 					{ id: 'Element', text: 'Element' },
+					{ id: 'Habitat', text: 'Habitat' },
 					{ id: 'Item', text: 'Item' },
 					{ id: 'Location', text: 'Location' },
 					{ id: 'Status', text: 'Status' },
@@ -3568,16 +3600,18 @@
 					{ id: '2048px', text: '2048px' },
 				]}
 			/>
-			<Dropdown
-				type="inline"
-				titleText="Format"
-				bind:selectedId={selectedIconFormat}
-				items={[
-					{ id: 'PNG', text: 'PNG' },
-					{ id: 'SVG', text: 'SVG' },
-				]}
-			/>
-			{#if selectedIconType !== 'Monster' && selectedIconType !== 'Ailment' && selectedIconType !== 'Status' && selectedIconType !== 'Element' && selectedIconType !== 'Location'}
+			{#if selectedIconType === 'Monster' || selectedIconType === 'Weapon'}
+				<Dropdown
+					type="inline"
+					titleText="Format"
+					bind:selectedId={selectedIconFormat}
+					items={[
+						{ id: 'PNG', text: 'PNG' },
+						{ id: 'SVG', text: 'SVG' },
+					]}
+				/>
+			{/if}
+			{#if selectedIconType === 'Armor' || selectedIconType === 'Item' || selectedIconType === 'Weapon'}
 				<Dropdown
 					type="inline"
 					titleText="Color"
@@ -3593,7 +3627,7 @@
 		</div>
 		<div class="icon-preview">
 			<div id={'icon-dom'} style="width: {selectedIconSize}">
-				{#if selectedIconFormat === 'SVG'}
+				{#if ((selectedIconType === 'Monster' || selectedIconType === 'Weapon') && selectedIconFormat === 'SVG') || selectedIconType === 'Element' || selectedIconType === 'Ailment' || selectedIconType === 'Status' || selectedIconType === 'Item' || selectedIconType === 'Armor'}
 					<svelte:component
 						this={currentIconPreview.component}
 						{...{
@@ -3657,6 +3691,7 @@
 					{ id: 'Ailment', text: 'Ailment' },
 					{ id: 'Armor', text: 'Armor' },
 					{ id: 'Element', text: 'Element' },
+					{ id: 'Habitat', text: 'Habitat' },
 					{ id: 'Item', text: 'Item' },
 					{ id: 'Location', text: 'Location' },
 					{ id: 'Status', text: 'Status' },
@@ -3670,7 +3705,7 @@
 				bind:selectedId={thumbnailGeneratorImageIdFromList}
 				items={thumbnailGeneratorImagesFromType}
 			/>
-			{#if thumbnailGeneratorImageType !== 'Monster' && thumbnailGeneratorImageType !== 'Ailment' && thumbnailGeneratorImageType !== 'Status' && thumbnailGeneratorImageType !== 'Element' && thumbnailGeneratorImageType !== 'Location'}
+			{#if selectedIconType === 'Armor' || selectedIconType === 'Item' || selectedIconType === 'Weapon'}
 				<Dropdown
 					type="inline"
 					titleText="Color"
@@ -3682,29 +3717,38 @@
 				<Toggle
 					labelText="Background"
 					bind:toggled={thumbnailGeneratorImageBackground}
-				/>{/if}
+				/>
+			{/if}
 		</div>
 
 		<div class="thumbnail-container">
 			<div id="generated-thumbnail-dom">
 				{#each thumbnailImages as image, i}
-					<div
-						style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
-					>
-						<svelte:component
-							this={image.src.component}
-							{...{ color: image.color, background: image.background }}
+					{#if image.fileType === 'Location' || image.fileType === 'Habitat'}
+						<img
+							src={image.src.image}
+							alt={image.alt}
+							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
 						/>
-					</div>
+					{:else}
+						<div
+							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
+						>
+							<svelte:component
+								this={image.src.component}
+								{...{ color: image.color, background: image.background }}
+							/>
+						</div>
+					{/if}
 				{/each}
 				{#each thumbnailUploadedImages as image, i}
-					{#if image.filetype !== 'image/svg+xml'}
+					{#if image.fileType !== 'image/svg+xml'}
 						<img
 							src={image.src}
 							alt={image.alt}
 							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
 						/>
-					{:else if image.filetype === 'image/svg+xml'}
+					{:else if image.fileType === 'image/svg+xml'}
 						<img
 							src={image.src}
 							alt={image.alt}
