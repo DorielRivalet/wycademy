@@ -8,10 +8,10 @@
 	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Banner from '$lib/client/components/Banner.svelte';
-	import Blacksmith from '$lib/client/components/frontier/icon/Blacksmith.svelte';
+	import Blacksmith from '$lib/client/components/frontier/icon/location/Blacksmith.svelte';
 	import UserAvatar from 'carbon-icons-svelte/lib/UserAvatar.svelte';
-	import PvP from '$lib/client/components/frontier/icon/PvP.svelte';
-	import MySupport from '$lib/client/components/frontier/icon/MySupport.svelte';
+	import PvP from '$lib/client/components/frontier/icon/location/PvP.svelte';
+	import MySupport from '$lib/client/components/frontier/icon/location/MySupport.svelte';
 	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 	import MonsterPartIconWhite from '$lib/client/components/frontier/icon/item/Monster_Part_Icon_White.svelte';
 	import TrophyWhite from '$lib/client/components/frontier/icon/TrophyWhite.svelte';
