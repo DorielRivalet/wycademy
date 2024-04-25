@@ -163,7 +163,7 @@ export type FrontierArmorID = 0 | 1 | 2 | 3 | 4;
 export type FrontierSlot = 0 | 1 | 2 | 3;
 export type FrontierArmor = {
 	id: FrontierArmorID;
-	name: FrontierArmorName;
+	name: FrontierArmorName | 'Set';
 	icon: any;
 };
 /**0 does not show. Shows in 2nd page. */
