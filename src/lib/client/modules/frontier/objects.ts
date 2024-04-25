@@ -70,6 +70,7 @@ import ArmorChestIcon from '$lib/client/components/frontier/icon/armor/Chest_Ico
 import ArmorArmsIcon from '$lib/client/components/frontier/icon/armor/Arm_Icon_White.svelte';
 import ArmorWaistIcon from '$lib/client/components/frontier/icon/armor/Waist_Icon_White.svelte';
 import ArmorLegsIcon from '$lib/client/components/frontier/icon/armor/Leg_Icon_White.svelte';
+import ArmorSetIcon from '$lib/client/components/frontier/icon/armor/Set.svelte';
 
 import ArmorSphereIconWhite from '$lib/client/components/frontier/icon/item/Armor_Sphere_Icon_White.svelte';
 import BaitIconWhite from '$lib/client/components/frontier/icon/item/Bait_Icon_White.svelte';
@@ -1421,6 +1422,11 @@ export const ArmorTypes: FrontierArmor[] = [
 		id: 4,
 		name: 'Legs',
 		icon: ArmorLegsIcon,
+	},
+	{
+		id: 5,
+		name: 'Set',
+		icon: ArmorSetIcon,
 	},
 ];
 

@@ -1109,7 +1109,7 @@
 				),
 				alt: 'Thumbnail Image',
 				top: 0,
-				left: 0,
+				left: 1000,
 				width: '128px',
 				height: '128px',
 				zindex: 1,
@@ -1123,7 +1123,6 @@
 				color: thumbnailGeneratorImageColor,
 			},
 		];
-		console.log(thumbnailImages);
 	}
 
 	function removeThumbnailImage(index: number) {
@@ -1138,10 +1137,14 @@
 		thumbnailTexts.splice(index, 1);
 	}
 
-	function downloadGeneratedThumbnailImage() {
+	async function downloadGeneratedThumbnailImage() {
 		let node = document.querySelector('#generated-thumbnail-dom');
-		if (!node) return;
-		domToPng(node, { quality: 1 }).then((dataUrl) => {
+
+		if (!node) {
+			return;
+		}
+
+		await domToPng(node, { quality: 1 }).then((dataUrl) => {
 			const link = document.createElement('a');
 			link.download = `${slugify('generated-thumbnail')}-${new Date().toISOString()}.png`;
 			link.href = dataUrl;
@@ -1201,6 +1204,14 @@
 		'mantle',
 		$theme,
 	);
+
+	let thumbnailGeneratorBorderWidth = 12;
+	let thumbnailGeneratorBorderStyle = 'outset';
+	let thumbnailGeneratorBorderColor = getHexStringFromCatppuccinColor(
+		'red',
+		$theme,
+	);
+
 	let thumbnailGeneratorImageFiles: ReadonlyArray<File> = [];
 
 	$: addUploadedImage(thumbnailGeneratorImageFiles);
@@ -1215,6 +1226,7 @@
 		selectedIconFormat,
 		selectedIconColor,
 	);
+	$: thumbnailGeneratorPreviewStyle = `background-color: ${thumbnailGeneratorBackgroundColor}; border: ${thumbnailGeneratorBorderWidth}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`;
 </script>
 
 <Head
@@ -1386,55 +1398,55 @@
 						/>
 					</div>
 				{/key}
-				<div class="weapon-info-values">
-					<Dropdown
-						titleText="Type"
-						type="inline"
-						hideLabel
-						bind:selectedId={weaponTypeId}
-						items={[
-							{ id: '0', text: 'Great Sword' },
-							{ id: '7', text: 'Long Sword' },
-							{ id: '4', text: 'Sword and Shield' },
-							{ id: '6', text: 'Dual Swords' },
-							{ id: '2', text: 'Hammer' },
-							{ id: '8', text: 'Hunting Horn' },
-							{ id: '3', text: 'Lance' },
-							{ id: '9', text: 'Gunlance' },
-							{ id: '1', text: 'Heavy Bowgun' },
-							{ id: '5', text: 'Light Bowgun' },
-							{ id: '10', text: 'Bow' },
-							{ id: '11', text: 'Tonfa' },
-							{ id: '12', text: 'Switch Axe F' },
-							{ id: '13', text: 'Magnet Spike' },
-						]}
-					/>
-					<TextInput
-						labelText="Name"
-						placeholder="Enter weapon name"
-						hideLabel
-						bind:value={weaponName}
-					/>
+			</div>
+			<div class="weapon-info-values">
+				<Dropdown
+					titleText="Type"
+					type="inline"
+					hideLabel
+					bind:selectedId={weaponTypeId}
+					items={[
+						{ id: '0', text: 'Great Sword' },
+						{ id: '7', text: 'Long Sword' },
+						{ id: '4', text: 'Sword and Shield' },
+						{ id: '6', text: 'Dual Swords' },
+						{ id: '2', text: 'Hammer' },
+						{ id: '8', text: 'Hunting Horn' },
+						{ id: '3', text: 'Lance' },
+						{ id: '9', text: 'Gunlance' },
+						{ id: '1', text: 'Heavy Bowgun' },
+						{ id: '5', text: 'Light Bowgun' },
+						{ id: '10', text: 'Bow' },
+						{ id: '11', text: 'Tonfa' },
+						{ id: '12', text: 'Switch Axe F' },
+						{ id: '13', text: 'Magnet Spike' },
+					]}
+				/>
+				<TextInput
+					labelText="Name"
+					placeholder="Enter weapon name"
+					hideLabel
+					bind:value={weaponName}
+				/>
 
-					<NumberInput
-						size="sm"
-						step={1}
-						min={minimumRarity}
-						max={maximumRarity}
-						bind:value={weaponRarity}
-						invalidText={invalidWeaponRarityText}
-						label={'Rarity'}
-					/>
-					<NumberInput
-						size="sm"
-						step={1}
-						min={minimumWeaponLevel}
-						max={maximumWeaponLevel}
-						bind:value={weaponLevel}
-						invalidText={invalidWeaponLevelText}
-						label={'Level'}
-					/>
-				</div>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={minimumRarity}
+					max={maximumRarity}
+					bind:value={weaponRarity}
+					invalidText={invalidWeaponRarityText}
+					label={'Rarity'}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={minimumWeaponLevel}
+					max={maximumWeaponLevel}
+					bind:value={weaponLevel}
+					invalidText={invalidWeaponLevelText}
+					label={'Level'}
+				/>
 			</div>
 			{#if currentWeaponPage === 1}
 				<div class="page-1-blademaster">
@@ -2743,50 +2755,51 @@
 						/>
 					</div>
 				{/key}
-				<div class="armor-info-values">
-					<Dropdown
-						titleText="Type"
-						type="inline"
-						hideLabel
-						bind:selectedId={armorID}
-						items={[
-							{ id: '0', text: 'Head' },
-							{ id: '1', text: 'Chest' },
-							{ id: '2', text: 'Arms' },
-							{ id: '3', text: 'Waist' },
-							{ id: '4', text: 'Legs' },
-						]}
-					/>
-					<TextInput
-						labelText="Name"
-						placeholder="Enter armor name"
-						hideLabel
-						bind:value={armorName}
-					/>
-
-					<NumberInput
-						size="sm"
-						step={1}
-						min={minimumRarity}
-						max={maximumRarity}
-						bind:value={armorRarity}
-						invalidText={invalidWeaponRarityText}
-						label={'Rarity'}
-					/>
-
-					<Dropdown
-						titleText="Rank"
-						type="inline"
-						hideLabel
-						bind:selectedId={armorRank}
-						items={[
-							{ id: '', text: 'None' },
-							{ id: 'G', text: 'G' },
-							{ id: 'Z', text: 'Zenith' },
-						]}
-					/>
-				</div>
 			</div>
+			<div class="armor-info-values">
+				<Dropdown
+					titleText="Type"
+					type="inline"
+					hideLabel
+					bind:selectedId={armorID}
+					items={[
+						{ id: '0', text: 'Head' },
+						{ id: '1', text: 'Chest' },
+						{ id: '2', text: 'Arms' },
+						{ id: '3', text: 'Waist' },
+						{ id: '4', text: 'Legs' },
+					]}
+				/>
+				<TextInput
+					labelText="Name"
+					placeholder="Enter armor name"
+					hideLabel
+					bind:value={armorName}
+				/>
+
+				<NumberInput
+					size="sm"
+					step={1}
+					min={minimumRarity}
+					max={maximumRarity}
+					bind:value={armorRarity}
+					invalidText={invalidWeaponRarityText}
+					label={'Rarity'}
+				/>
+
+				<Dropdown
+					titleText="Rank"
+					type="inline"
+					hideLabel
+					bind:selectedId={armorRank}
+					items={[
+						{ id: '', text: 'None' },
+						{ id: 'G', text: 'G' },
+						{ id: 'Z', text: 'Zenith' },
+					]}
+				/>
+			</div>
+
 			{#if currentArmorPage === 1}
 				<div class="page-1-armor">
 					<NumberInput
@@ -3271,74 +3284,74 @@
 						/>
 					</div>
 				{/key}
-				<div class="item-info-values">
-					<Dropdown
-						titleText="Item Type"
-						type="inline"
-						hideLabel
-						bind:selectedId={itemType}
-						items={[
-							{ id: 'Decoration', text: 'Decoration' },
-							{ id: 'Sigil', text: 'Sigil' },
-							{ id: 'Cuff', text: 'Cuff' },
-							{ id: 'Zenith Cuff', text: 'Zenith Cuff' },
-							{ id: 'Hiden Cuff', text: 'Hiden Cuff' },
-							{ id: 'Tower Sigil', text: 'Tower Sigil' },
-							{ id: 'Tower Decoration', text: 'Tower Decoration' },
-							{ id: 'Other', text: 'Other' },
-						]}
-					/>
-					<Dropdown
-						titleText="Item Icon"
-						type="inline"
-						hideLabel
-						bind:selectedId={itemIconName}
-						items={getItemIcons()}
-					/>
-					<Dropdown
-						titleText="Item Color"
-						type="inline"
-						hideLabel
-						bind:selectedId={itemColorName}
-						items={getItemColors()}
-					/>
-					<TextInput
-						labelText="Name"
-						placeholder="Enter item name"
-						hideLabel
-						bind:value={itemName}
-					/>
+			</div>
+			<div class="item-info-values">
+				<Dropdown
+					titleText="Item Type"
+					type="inline"
+					hideLabel
+					bind:selectedId={itemType}
+					items={[
+						{ id: 'Decoration', text: 'Decoration' },
+						{ id: 'Sigil', text: 'Sigil' },
+						{ id: 'Cuff', text: 'Cuff' },
+						{ id: 'Zenith Cuff', text: 'Zenith Cuff' },
+						{ id: 'Hiden Cuff', text: 'Hiden Cuff' },
+						{ id: 'Tower Sigil', text: 'Tower Sigil' },
+						{ id: 'Tower Decoration', text: 'Tower Decoration' },
+						{ id: 'Other', text: 'Other' },
+					]}
+				/>
+				<Dropdown
+					titleText="Item Icon"
+					type="inline"
+					hideLabel
+					bind:selectedId={itemIconName}
+					items={getItemIcons()}
+				/>
+				<Dropdown
+					titleText="Item Color"
+					type="inline"
+					hideLabel
+					bind:selectedId={itemColorName}
+					items={getItemColors()}
+				/>
+				<TextInput
+					labelText="Name"
+					placeholder="Enter item name"
+					hideLabel
+					bind:value={itemName}
+				/>
 
-					<TextInput
-						labelText="Description"
-						placeholder="Enter item description"
-						hideLabel
-						bind:value={itemDescription}
-					/>
+				<TextInput
+					labelText="Description"
+					placeholder="Enter item description"
+					hideLabel
+					bind:value={itemDescription}
+				/>
 
-					<Dropdown
-						titleText="Rank"
-						type="inline"
-						hideLabel
-						bind:selectedId={itemRank}
-						items={[
-							{ id: '', text: 'None' },
-							{ id: 'G', text: 'G' },
-							{ id: 'Z', text: 'Zenith' },
-							{ id: 'T', text: 'Tower' },
-						]}
-					/>
+				<Dropdown
+					titleText="Rank"
+					type="inline"
+					hideLabel
+					bind:selectedId={itemRank}
+					items={[
+						{ id: '', text: 'None' },
+						{ id: 'G', text: 'G' },
+						{ id: 'Z', text: 'Zenith' },
+						{ id: 'T', text: 'Tower' },
+					]}
+				/>
 
-					<NumberInput
-						size="sm"
-						step={1}
-						min={minimumRarity}
-						max={maximumRarity}
-						bind:value={itemRarity}
-						invalidText={invalidWeaponRarityText}
-						label={'Rarity'}
-					/>
-				</div>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={minimumRarity}
+					max={maximumRarity}
+					bind:value={itemRarity}
+					invalidText={invalidWeaponRarityText}
+					label={'Rarity'}
+				/>
 			</div>
 			{#if currentItemPage === 1}
 				<div class="page-1-item">
@@ -3655,11 +3668,11 @@
 	</section>
 	<section>
 		<SectionHeading level={2} title="Thumbnail Generator" />
-		<p class="spaced-paragraph">
-			The thumbnail preview shown here may have a shorter width than the
-			downloaded file. The downloaded file will be in the correct dimensions,
-			that is, 1280x720 pixels.
-		</p>
+		<p>Rule of thirds:</p>
+		<ul class="spaced-list">
+			<li>X: 427, 853</li>
+			<li>Y: 240, 480</li>
+		</ul>
 		<div class="container-item-buttons">
 			<Button
 				kind="tertiary"
@@ -3740,13 +3753,48 @@
 					$theme,
 				)}
 			/>
+			<ColorPicker
+				bind:hex={thumbnailGeneratorBorderColor}
+				label="Border Color"
+				--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+				--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+				--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+				--cp-button-hover-color={getHexStringFromCatppuccinColor(
+					'blue',
+					$theme,
+				)}
+			/>
+
+			<Dropdown
+				type="inline"
+				titleText="Border Style"
+				bind:selectedId={thumbnailGeneratorBorderStyle}
+				items={[
+					{ id: 'none', text: 'None' },
+					{ id: 'hidden', text: 'Hidden' },
+					{ id: 'dotted', text: 'Dotted' },
+					{ id: 'dashed', text: 'Dashed' },
+					{ id: 'solid', text: 'Solid' },
+					{ id: 'double', text: 'Double' },
+					{ id: 'groove', text: 'Groove' },
+					{ id: 'ridge', text: 'Ridge' },
+					{ id: 'inset', text: 'Inset' },
+					{ id: 'outset', text: 'Outset' },
+				]}
+			/>
+			<NumberInput
+				size="sm"
+				step={1}
+				min={0}
+				max={128}
+				bind:value={thumbnailGeneratorBorderWidth}
+				invalidText={'Value must be between 0 and 128'}
+				label={'Border Width (px)'}
+			/>
 		</div>
 
 		<div class="thumbnail-container">
-			<div
-				style="background-color: {thumbnailGeneratorBackgroundColor}"
-				id="generated-thumbnail-dom"
-			>
+			<div style={thumbnailGeneratorPreviewStyle} id="generated-thumbnail-dom">
 				{#each thumbnailImages as image, i}
 					{#if image.fileType === 'Location' || image.fileType === 'Habitat'}
 						<img
@@ -3797,32 +3845,21 @@
 	.armor-info,
 	.item-info {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: start;
-		gap: var(--cds-spacing-04);
+		align-items: center;
 	}
 
 	.weapon-info-values,
 	.armor-info-values,
-	.item-info-values {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		margin: 1rem;
-		gap: 1rem;
-	}
-
+	.item-info-values,
+	.weapon-info-values-bottom,
 	.weapon-sharpness-values {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
 		margin: 1rem;
 		gap: 1rem;
-	}
-
-	.weapon-info-values-bottom {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		margin: 1rem;
-		gap: 1rem;
+		align-items: center;
 	}
 
 	.container-weapon,
@@ -3857,7 +3894,7 @@
 	.page-3-bow,
 	.page-1-item {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
 		margin: 1rem;
 		gap: 1rem;
 	}
@@ -3867,7 +3904,7 @@
 	.page-3-armor,
 	.page-3-item {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
 		margin: 1rem;
 		gap: 1rem;
 	}
@@ -3877,7 +3914,7 @@
 	.page-1-armor,
 	.page-2-item {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
 		margin: 1rem;
 		gap: 1rem;
 	}
@@ -3889,14 +3926,15 @@
 	}
 
 	.thumbnail-container {
-		border: 2px solid var(--ctp-surface0);
-		background-color: var(--ctp-mantle);
+		overflow-x: auto; /* Enable horizontal scrolling */
+		overflow-y: auto; /* Prevent vertical scrolling */
+		border: 2px solid var(--ctp-surface0); /* Keep the border */
+		white-space: nowrap; /* Prevent content from wrapping to the next line */
 	}
 
 	#generated-thumbnail-dom {
-		max-width: 100%;
-		width: 1280px;
-		height: 720px;
-		position: relative;
+		position: relative; /* Changed from absolute to relative to allow border to be applied */
+		width: 1280px; /* Fixed width to match the desired output size */
+		height: 720px; /* Fixed height to match the desired output size */
 	}
 </style>
