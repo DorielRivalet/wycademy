@@ -107,6 +107,9 @@
 	import Edit from 'carbon-icons-svelte/lib/Edit.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import FileUploaderDropContainer from 'carbon-components-svelte/src/FileUploader/FileUploaderDropContainer.svelte';
+	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
+	import { theme } from '$lib/client/stores/theme';
+	import ColorPicker from 'svelte-awesome-color-picker';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -1194,6 +1197,10 @@
 	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
 	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
 	let thumbnailGeneratorImageBackground = false;
+	let thumbnailGeneratorBackgroundColor = getHexStringFromCatppuccinColor(
+		'mantle',
+		$theme,
+	);
 	let thumbnailGeneratorImageFiles: ReadonlyArray<File> = [];
 
 	$: addUploadedImage(thumbnailGeneratorImageFiles);
@@ -3721,8 +3728,25 @@
 			{/if}
 		</div>
 
+		<div class="container-buttons">
+			<ColorPicker
+				bind:hex={thumbnailGeneratorBackgroundColor}
+				label="Background Color"
+				--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+				--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+				--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+				--cp-button-hover-color={getHexStringFromCatppuccinColor(
+					'blue',
+					$theme,
+				)}
+			/>
+		</div>
+
 		<div class="thumbnail-container">
-			<div id="generated-thumbnail-dom">
+			<div
+				style="background-color: {thumbnailGeneratorBackgroundColor}"
+				id="generated-thumbnail-dom"
+			>
 				{#each thumbnailImages as image, i}
 					{#if image.fileType === 'Location' || image.fileType === 'Habitat'}
 						<img
@@ -3870,6 +3894,7 @@
 	}
 
 	#generated-thumbnail-dom {
+		max-width: 100%;
 		width: 1280px;
 		height: 720px;
 		position: relative;
