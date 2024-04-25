@@ -204,7 +204,7 @@
 				<div class="level">
 					<span class="text-yellow"
 						>Lv<span class="text-yellow double-width">:</span><span
-							style="color: var(--ctp-text);">{level}</span
+							style="color: var(--ctp-mocha-text);">{level}</span
 						>
 					</span>
 				</div>
@@ -212,7 +212,7 @@
 				<div class="defense">
 					<span class="text-yellow"
 						>Defense<span class="text-yellow double-width">:</span><span
-							style="color: var(--ctp-text);"
+							style="color: var(--ctp-mocha-text);"
 							>{defense.toString().substring(0, maxDefenseLength)}</span
 						>
 					</span>
@@ -221,7 +221,7 @@
 				<div class="fireRes">
 					<span class="text-yellow"
 						>Fire<span class="text-yellow double-width">:</span><span
-							style="color: var(--ctp-text);"
+							style="color: var(--ctp-mocha-text);"
 							>{fireResistance
 								.toString()
 								.substring(0, maxElementResLength)}</span
@@ -232,7 +232,7 @@
 				<div class="waterRes">
 					<span class="text-yellow"
 						>Water<span class="text-yellow double-width">:</span><span
-							style="color: var(--ctp-text);"
+							style="color: var(--ctp-mocha-text);"
 							>{waterResistance
 								.toString()
 								.substring(0, maxElementResLength)}</span
@@ -243,7 +243,7 @@
 				<div class="thunderRes">
 					<span class="text-yellow"
 						>Thunder<span class="text-yellow double-width">:</span><span
-							style="color: var(--ctp-text);"
+							style="color: var(--ctp-mocha-text);"
 							>{thunderResistance
 								.toString()
 								.substring(0, maxElementResLength)}</span
@@ -254,7 +254,7 @@
 				<div class="iceRes">
 					<span class="text-yellow"
 						>Ice<span class="text-yellow double-width">:</span><span
-							style="color: var(--ctp-text);"
+							style="color: var(--ctp-mocha-text);"
 							>{iceResistance
 								.toString()
 								.substring(0, maxElementResLength)}</span
@@ -265,7 +265,7 @@
 				<div class="dragonRes">
 					<span class="text-yellow"
 						>Dragon<span class="text-yellow double-width">:</span><span
-							style="color: var(--ctp-text);"
+							style="color: var(--ctp-mocha-text);"
 							>{dragonResistance
 								.toString()
 								.substring(0, maxElementResLength)}</span
@@ -288,7 +288,7 @@
 							<span class="double-width">:</span><span
 								style="color: {elementBoost
 									? 'var(--fz-text-cyan)'
-									: 'var(--ctp-text)'};"
+									: 'var(--ctp-mocha-text)'};"
 								>{elementValue
 									.toString()
 									.substring(0, maxElementStatusLength)}</span

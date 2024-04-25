@@ -214,7 +214,7 @@ Does not handle decorations because sigils are optimal.
 	$: rarityColor = stringReplacements.colorFromRarity(rarity);
 	$: affinityColor = affinityBoost
 		? frontierColorNames[2].values[1].var
-		: '--ctp-text';
+		: '--ctp-mocha-text';
 	$: weaponClass = WeaponTypes[weaponID].class;
 	$: weaponTypeName = WeaponTypes[weaponID].name;
 	$: maxPages = weaponClass === 'Blademaster' ? 6 : 8;
@@ -370,7 +370,7 @@ Does not handle decorations because sigils are optimal.
 							>Attack<span class="text-yellow double-width">:</span><span
 								style="color: {attackBoost
 									? 'var(--fz-text-cyan)'
-									: 'var(--ctp-text)'};"
+									: 'var(--ctp-mocha-text)'};"
 								>{attack.toString().substring(0, maxAttackLength)}</span
 							>
 						</span>
@@ -412,7 +412,7 @@ Does not handle decorations because sigils are optimal.
 							<span class="double-width">:</span><span
 								style="color: {elementBoost
 									? 'var(--fz-text-cyan)'
-									: 'var(--ctp-text)'};"
+									: 'var(--ctp-mocha-text)'};"
 								>{elementValue
 									.toString()
 									.substring(0, maxElementStatusLength)}</span
@@ -453,7 +453,7 @@ Does not handle decorations because sigils are optimal.
 							<span class="double-width">:</span><span
 								style="color: {statusBoost
 									? 'var(--fz-text-cyan)'
-									: 'var(--ctp-text)'};"
+									: 'var(--ctp-mocha-text)'};"
 								>{statusValue
 									.toString()
 									.substring(0, maxElementStatusLength)}</span
@@ -521,7 +521,7 @@ Does not handle decorations because sigils are optimal.
 							>Attack<span class="text-yellow double-width">:</span><span
 								style="color: {attackBoost
 									? 'var(--fz-text-cyan)'
-									: 'var(--ctp-text)'};"
+									: 'var(--ctp-mocha-text)'};"
 								>{attack.toString().substring(0, maxAttackLength)}</span
 							>
 						</span>
@@ -551,7 +551,7 @@ Does not handle decorations because sigils are optimal.
 									<span class="double-width">:</span><span
 										style="color: {elementBoost
 											? 'var(--fz-text-cyan)'
-											: 'var(--ctp-text)'};"
+											: 'var(--ctp-mocha-text)'};"
 										>{elementValue
 											.toString()
 											.substring(0, maxElementStatusLength)}</span
@@ -603,7 +603,9 @@ Does not handle decorations because sigils are optimal.
 						{:else if weaponTypeName !== 'Bow' && bowgunAttackLevel >= 1}
 							<span class="text-yellow"
 								>Attack LV<span class="text-yellow double-width">:</span></span
-							><span style="color: var(--ctp-text);">{bowgunAttackLevel}</span>
+							><span style="color: var(--ctp-mocha-text);"
+								>{bowgunAttackLevel}</span
+							>
 						{/if}
 					</div>
 					<div class="pages">
