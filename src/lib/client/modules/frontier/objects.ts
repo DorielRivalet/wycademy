@@ -843,7 +843,7 @@ import LocationIconMyTore from '$lib/client/images/icon/my_tore.webp';
 import LocationIconPvP from '$lib/client/images/icon/pvp.webp';
 import LocationIconRastaBar from '$lib/client/images/icon/rasta_bar.webp';
 import LocationIconRavienteRaid from '$lib/client/images/icon/raviente_raid.webp';
-import LocationIconRoad from '$lib/client/images/icon/rengoku.webp';
+import LocationIconRoad from '$lib/client/images/icon/road.webp';
 import LocationIconSnowyMountains from '$lib/client/images/icon/snowy_mountains.webp';
 import LocationIconTent from '$lib/client/images/icon/tent.webp';
 import LocationIconTidalIsland from '$lib/client/images/icon/tidal_island.webp';
