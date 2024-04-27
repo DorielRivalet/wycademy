@@ -89,7 +89,7 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.4.5",
 		"vite": "^5.2.10",
-		"vitest": "^1.5.0",
+		"vitest": "^1.5.2",
 		"workbox-precaching": "^7.0.0",
 		"workbox-recipes": "^7.0.0",
 		"workbox-routing": "^7.1.0",
