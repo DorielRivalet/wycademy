@@ -1109,16 +1109,16 @@
 				),
 				alt: 'Thumbnail Image',
 				top: 0,
-				left: 1000,
-				width: '128px',
-				height: '128px',
+				left: 0,
+				width: 128,
+				height: 128,
 				zindex: 1,
 				opacity: 1,
-				dropShadowSize: '5px',
-				dropShadowColor: '#000',
-				borderWidth: '0px',
-				borderColor: '#fff',
-				borderRadius: '5px',
+				dropShadowSize: thumbnailGeneratorImageShadowWidth,
+				dropShadowColor: thumbnailGeneratorImageShadowColor,
+				borderWidth: thumbnailGeneratorImageBorderWidth,
+				borderColor: thumbnailGeneratorImageBorderColor,
+				borderRadius: thumbnailGeneratorImageBorderRadius,
 				background: thumbnailGeneratorImageBackground,
 				color: thumbnailGeneratorImageColor,
 			},
@@ -1130,7 +1130,29 @@
 	}
 
 	function addThumbnailText() {
-		thumbnailTexts.push({ text: '', fontSize: '16px', color: '#000' });
+		if (thumbnailTexts.length > 16) {
+			return;
+		}
+		thumbnailTexts = [
+			...thumbnailTexts,
+			{
+				text: thumbnailGeneratorText,
+				top: 100,
+				left: 100,
+				zindex: 1,
+				opacity: 1,
+				fontSize: thumbnailGeneratorTextFontSize,
+				gradientolor: thumbnailGeneratorTextColor,
+				rotation: thumbnailGeneratorTextRotation,
+				shadowWidth: thumbnailGeneratorTextShadowWidth,
+				shadowColor: thumbnailGeneratorTextShadowColor,
+				decoration: thumbnailGeneratorTextDecoration,
+				decorationColor: thumbnailGeneratorTextDecorationColor,
+				fontFamily: thumbnailGeneratorTextFontFamily,
+				fontWeight: thumbnailGeneratorTextFontWeight,
+				fontStyle: thumbnailGeneratorTextFontStyle,
+			},
+		];
 	}
 
 	function removeThumbnailText(index: number) {
@@ -1164,15 +1186,15 @@
 				alt: 'Thumbnail Image',
 				top: 0,
 				left: 0,
-				width: '128px',
-				height: '128px',
+				width: 128,
+				height: 128,
 				zindex: 1,
 				opacity: 1,
-				dropShadowSize: '5px',
-				dropShadowColor: '#000',
-				borderWidth: '0px',
-				borderColor: '#fff',
-				borderRadius: '5px',
+				dropShadowSize: thumbnailGeneratorUploadedImageShadowWidth,
+				dropShadowColor: thumbnailGeneratorUploadedImageShadowColor,
+				borderWidth: thumbnailGeneratorUploadedImageBorderWidth,
+				borderColor: thumbnailGeneratorUploadedImageBorderColor,
+				borderRadius: thumbnailGeneratorUploadedImageBorderRadius,
 			},
 		];
 	}
@@ -1193,17 +1215,24 @@
 
 	let thumbnailImages: HTMLImgAttributes[] = [];
 	let thumbnailUploadedImages: HTMLImgAttributes[] = [];
-	let thumbnailTexts: { text: ''; fontSize: '16px'; color: '#000' }[] = [];
+	let thumbnailTexts: HTMLParagraphElement[] = [];
 
 	let thumbnailGeneratorImageFormat: 'SVG' | 'PNG' = 'SVG';
 	let thumbnailGeneratorImageType: FrontierIconType | 'Habitat' = 'Monster';
 	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
 	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
 	let thumbnailGeneratorImageBackground = false;
-	let thumbnailGeneratorBackgroundColor = getHexStringFromCatppuccinColor(
-		'mantle',
-		$theme,
-	);
+	let thumbnailGeneratorBackgroundGradientStartColor =
+		getHexStringFromCatppuccinColor('mantle', $theme);
+	let thumbnailGeneratorBackgroundGradientEndColor =
+		getHexStringFromCatppuccinColor('crust', $theme);
+	let thumbnailGeneratorBackgroundGradientRotation = 45;
+	let thumbnailGeneratorBackgroundGradientLinear = false;
+	let thumbnailGeneratorImageShadowColor = '#000';
+	let thumbnailGeneratorImageShadowWidth = 4;
+	let thumbnailGeneratorImageBorderWidth = 0;
+	let thumbnailGeneratorImageBorderColor = '#000';
+	let thumbnailGeneratorImageBorderRadius = 5;
 
 	let thumbnailGeneratorBorderWidth = 12;
 	let thumbnailGeneratorBorderStyle = 'outset';
@@ -1211,8 +1240,30 @@
 		'red',
 		$theme,
 	);
+	let thumbnailGeneratorBorder = false;
 
 	let thumbnailGeneratorImageFiles: ReadonlyArray<File> = [];
+
+	let thumbnailGeneratorText = '5 Musous No Hit SW+CS';
+	let thumbnailGeneratorTextFontSize = 48;
+	let thumbnailGeneratorTextColor = '#000';
+	let thumbnailGeneratorTextRotation = 0;
+	let thumbnailGeneratorTextShadowColor = '#f00';
+	let thumbnailGeneratorTextShadowWidth = 1;
+	let thumbnailGeneratorTextFontFamily = 'Arial';
+	let thumbnailGeneratorTextFontStyle = 'italic';
+	let thumbnailGeneratorTextFontWeight = 'Bold';
+	let thumbnailGeneratorTextDecoration = 'underline';
+	let thumbnailGeneratorTextDecorationColor = '#f00';
+
+	let thumbnailGeneratorSectionOption: 'Text' | 'Image' | 'Custom Image' =
+		'Image';
+
+	let thumbnailGeneratorUploadedImageShadowWidth = 4;
+	let thumbnailGeneratorUploadedImageShadowColor = '#000';
+	let thumbnailGeneratorUploadedImageBorderWidth = 4;
+	let thumbnailGeneratorUploadedImageBorderColor = '#000';
+	let thumbnailGeneratorUploadedImageBorderRadius = 5;
 
 	$: addUploadedImage(thumbnailGeneratorImageFiles);
 	$: currentIconsFromType = getCurrentIconsFromType(selectedIconType);
@@ -1226,7 +1277,7 @@
 		selectedIconFormat,
 		selectedIconColor,
 	);
-	$: thumbnailGeneratorPreviewStyle = `background-color: ${thumbnailGeneratorBackgroundColor}; border: ${thumbnailGeneratorBorderWidth}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`;
+	$: thumbnailGeneratorPreviewStyle = `background: ${thumbnailGeneratorBackgroundGradientLinear ? 'linear' : 'radial'}-gradient(${thumbnailGeneratorBackgroundGradientLinear ? `${thumbnailGeneratorBackgroundGradientRotation}deg` : 'circle'}, ${thumbnailGeneratorBackgroundGradientStartColor} 0%, ${thumbnailGeneratorBackgroundGradientEndColor} 100%); border: ${thumbnailGeneratorBorder ? thumbnailGeneratorBorderWidth : '0'}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`;
 </script>
 
 <Head
@@ -3681,70 +3732,53 @@
 			>
 		</div>
 		<div class="container-buttons">
-			<FileUploaderDropContainer
-				accept={['.svg', '.png', '.webp', '.jpg', '.jpeg']}
-				bind:files={thumbnailGeneratorImageFiles}
-				labelText="Drag and drop images here or click to upload (8MB max)"
-				validateFiles={(files) => {
-					return files.filter(
-						(file) =>
-							file.size < 8 * Math.pow(10, 6) &&
-							(file.name.endsWith('.png') ||
-								file.name.endsWith('.webp') ||
-								file.name.endsWith('.jpg') ||
-								file.name.endsWith('.svg') ||
-								file.name.endsWith('.jpeg')),
-					);
-				}}
-			/>
-		</div>
+			<Toggle labelText="Border" bind:toggled={thumbnailGeneratorBorder} />
 
-		<div class="container-buttons">
-			<Button kind="tertiary" icon={Add} on:click={addThumbnailImage}
-				>Add Image</Button
-			>
-			<Dropdown
-				type="inline"
-				titleText="Type"
-				bind:selectedId={thumbnailGeneratorImageType}
-				items={[
-					{ id: 'Ailment', text: 'Ailment' },
-					{ id: 'Armor', text: 'Armor' },
-					{ id: 'Element', text: 'Element' },
-					{ id: 'Habitat', text: 'Habitat' },
-					{ id: 'Item', text: 'Item' },
-					{ id: 'Location', text: 'Location' },
-					{ id: 'Status', text: 'Status' },
-					{ id: 'Monster', text: 'Monster' },
-					{ id: 'Weapon', text: 'Weapon' },
-				]}
-			/>
-			<Dropdown
-				type="inline"
-				titleText="Icon"
-				bind:selectedId={thumbnailGeneratorImageIdFromList}
-				items={thumbnailGeneratorImagesFromType}
-			/>
-			{#if selectedIconType === 'Armor' || selectedIconType === 'Item' || selectedIconType === 'Weapon'}
+			{#if thumbnailGeneratorBorder}
+				<ColorPicker
+					bind:hex={thumbnailGeneratorBorderColor}
+					label="Border Color"
+					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-button-hover-color={getHexStringFromCatppuccinColor(
+						'blue',
+						$theme,
+					)}
+				/>
+
 				<Dropdown
 					type="inline"
-					titleText="Color"
-					bind:selectedId={thumbnailGeneratorImageColor}
-					items={allFrontierColors}
+					titleText="Border Style"
+					bind:selectedId={thumbnailGeneratorBorderStyle}
+					items={[
+						{ id: 'none', text: 'None' },
+						{ id: 'hidden', text: 'Hidden' },
+						{ id: 'dotted', text: 'Dotted' },
+						{ id: 'dashed', text: 'Dashed' },
+						{ id: 'solid', text: 'Solid' },
+						{ id: 'double', text: 'Double' },
+						{ id: 'groove', text: 'Groove' },
+						{ id: 'ridge', text: 'Ridge' },
+						{ id: 'inset', text: 'Inset' },
+						{ id: 'outset', text: 'Outset' },
+					]}
 				/>
-			{/if}
-			{#if thumbnailGeneratorImageType === 'Monster'}
-				<Toggle
-					labelText="Background"
-					bind:toggled={thumbnailGeneratorImageBackground}
+				<NumberInput
+					size="sm"
+					step={1}
+					min={0}
+					max={128}
+					bind:value={thumbnailGeneratorBorderWidth}
+					invalidText={'Value must be between 0 and 128'}
+					label={'Border Width (px)'}
 				/>
 			{/if}
 		</div>
-
 		<div class="container-buttons">
 			<ColorPicker
-				bind:hex={thumbnailGeneratorBackgroundColor}
-				label="Background Color"
+				bind:hex={thumbnailGeneratorBackgroundGradientStartColor}
+				label="Background Color Gradient Start"
 				--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
 				--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
 				--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
@@ -3754,8 +3788,8 @@
 				)}
 			/>
 			<ColorPicker
-				bind:hex={thumbnailGeneratorBorderColor}
-				label="Border Color"
+				bind:hex={thumbnailGeneratorBackgroundGradientEndColor}
+				label="Background Color Gradient End"
 				--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
 				--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
 				--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
@@ -3763,35 +3797,329 @@
 					'blue',
 					$theme,
 				)}
-			/>
-
-			<Dropdown
-				type="inline"
-				titleText="Border Style"
-				bind:selectedId={thumbnailGeneratorBorderStyle}
-				items={[
-					{ id: 'none', text: 'None' },
-					{ id: 'hidden', text: 'Hidden' },
-					{ id: 'dotted', text: 'Dotted' },
-					{ id: 'dashed', text: 'Dashed' },
-					{ id: 'solid', text: 'Solid' },
-					{ id: 'double', text: 'Double' },
-					{ id: 'groove', text: 'Groove' },
-					{ id: 'ridge', text: 'Ridge' },
-					{ id: 'inset', text: 'Inset' },
-					{ id: 'outset', text: 'Outset' },
-				]}
 			/>
 			<NumberInput
 				size="sm"
 				step={1}
-				min={0}
-				max={128}
-				bind:value={thumbnailGeneratorBorderWidth}
-				invalidText={'Value must be between 0 and 128'}
-				label={'Border Width (px)'}
+				min={-360}
+				max={360}
+				bind:value={thumbnailGeneratorBackgroundGradientRotation}
+				invalidText={'Value must be between -360 and 360'}
+				label={'Gradient Rotation (degrees)'}
+			/>
+			<Toggle
+				labelText="Gradient Type"
+				labelA="Radial"
+				labelB="Linear"
+				bind:toggled={thumbnailGeneratorBackgroundGradientLinear}
 			/>
 		</div>
+
+		<div class="container-buttons">
+			<Dropdown
+				type="inline"
+				titleText="Insert Element"
+				bind:selectedId={thumbnailGeneratorSectionOption}
+				items={[
+					{ id: 'Text', text: 'Text' },
+					{ id: 'Image', text: 'Image' },
+					{ id: 'Custom Image', text: 'Custom Image' },
+				]}
+			/>
+		</div>
+
+		{#if thumbnailGeneratorSectionOption === 'Text'}
+			<div class="container-buttons">
+				<Button kind="tertiary" icon={Add} on:click={addThumbnailText}
+					>Add Text</Button
+				>
+				<TextInput
+					labelText="Text"
+					placeholder="Enter text"
+					hideLabel
+					bind:value={thumbnailGeneratorText}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={1}
+					max={128}
+					bind:value={thumbnailGeneratorTextFontSize}
+					invalidText={'Value must be between 1 and 128'}
+					label={'Text Size (px)'}
+				/>
+
+				<Dropdown
+					titleText="Font Family"
+					type="inline"
+					bind:selectedId={thumbnailGeneratorTextFontFamily}
+					items={[
+						{ id: 'Arial', text: 'Arial' },
+						{ id: 'Times New Roman', text: 'Times New Roman' },
+						{ id: 'Courier New', text: 'Courier New' },
+						{ id: 'Verdana', text: 'Verdana' },
+						{ id: 'Georgia', text: 'Georgia' },
+						{ id: 'Tahoma', text: 'Tahoma' },
+						{ id: 'Trebuchet MS', text: 'Trebuchet MS' },
+						{ id: 'Palatino', text: 'Palatino' },
+						{ id: 'Garamond', text: 'Garamond' },
+						{ id: 'Bookman', text: 'Bookman' },
+						{ id: 'Comic Sans MS', text: 'Comic Sans MS' },
+						{ id: 'Courier', text: 'Courier' },
+						{ id: 'Lucida Console', text: 'Lucida Console' },
+					]}
+				/>
+
+				<Dropdown
+					titleText="Font Style"
+					type="inline"
+					bind:selectedId={thumbnailGeneratorTextFontStyle}
+					items={[
+						{ id: 'normal', text: 'Normal' },
+						{ id: 'italic', text: 'Italic' },
+					]}
+				/>
+
+				<Dropdown
+					titleText="Font Weight"
+					type="inline"
+					bind:selectedId={thumbnailGeneratorTextFontWeight}
+					items={[
+						{ id: '100', text: '100' },
+						{ id: '300', text: '300' },
+						{ id: '400', text: '400' },
+						{ id: '500', text: '500' },
+						{ id: '700', text: '700' },
+						{ id: '900', text: '900' },
+						{ id: 'Bold', text: 'Bold' },
+					]}
+				/>
+
+				<Dropdown
+					titleText="Text Decoration"
+					type="inline"
+					bind:selectedId={thumbnailGeneratorTextDecoration}
+					items={[
+						{ id: 'underline', text: 'Underline' },
+						{ id: 'line-through', text: 'Strikethrough' },
+						{ id: 'overline', text: 'Overline' },
+					]}
+				/>
+
+				<ColorPicker
+					bind:hex={thumbnailGeneratorTextDecorationColor}
+					label="Text Decoration Color"
+					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-button-hover-color={getHexStringFromCatppuccinColor(
+						'blue',
+						$theme,
+					)}
+				/>
+
+				<ColorPicker
+					bind:hex={thumbnailGeneratorTextShadowColor}
+					label="Text Shadow Color"
+					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-button-hover-color={getHexStringFromCatppuccinColor(
+						'blue',
+						$theme,
+					)}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={0}
+					max={128}
+					bind:value={thumbnailGeneratorTextShadowWidth}
+					invalidText={'Value must be between 0 and 128'}
+					label={'Text Shadow Width (px)'}
+				/>
+
+				<ColorPicker
+					bind:hex={thumbnailGeneratorTextColor}
+					label="Text Color"
+					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-button-hover-color={getHexStringFromCatppuccinColor(
+						'blue',
+						$theme,
+					)}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={-360}
+					max={360}
+					bind:value={thumbnailGeneratorTextRotation}
+					invalidText={'Value must be between -360 and 360'}
+					label={'Text Rotation (degrees)'}
+				/>
+			</div>
+		{:else if thumbnailGeneratorSectionOption === 'Image'}
+			<div class="container-buttons">
+				<Button kind="tertiary" icon={Add} on:click={addThumbnailImage}
+					>Add Image</Button
+				>
+				<Dropdown
+					type="inline"
+					titleText="Type"
+					bind:selectedId={thumbnailGeneratorImageType}
+					items={[
+						{ id: 'Ailment', text: 'Ailment' },
+						{ id: 'Armor', text: 'Armor' },
+						{ id: 'Element', text: 'Element' },
+						{ id: 'Habitat', text: 'Habitat' },
+						{ id: 'Item', text: 'Item' },
+						{ id: 'Location', text: 'Location' },
+						{ id: 'Status', text: 'Status' },
+						{ id: 'Monster', text: 'Monster' },
+						{ id: 'Weapon', text: 'Weapon' },
+					]}
+				/>
+				<Dropdown
+					type="inline"
+					titleText="Icon"
+					bind:selectedId={thumbnailGeneratorImageIdFromList}
+					items={thumbnailGeneratorImagesFromType}
+				/>
+				{#if selectedIconType === 'Armor' || selectedIconType === 'Item' || selectedIconType === 'Weapon'}
+					<Dropdown
+						type="inline"
+						titleText="Color"
+						bind:selectedId={thumbnailGeneratorImageColor}
+						items={allFrontierColors}
+					/>
+				{/if}
+				{#if thumbnailGeneratorImageType === 'Monster'}
+					<Toggle
+						labelText="Background"
+						bind:toggled={thumbnailGeneratorImageBackground}
+					/>
+				{/if}
+				<ColorPicker
+					bind:hex={thumbnailGeneratorImageShadowColor}
+					label="Image Shadow Color"
+					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-button-hover-color={getHexStringFromCatppuccinColor(
+						'blue',
+						$theme,
+					)}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={0}
+					max={128}
+					bind:value={thumbnailGeneratorImageShadowWidth}
+					invalidText={'Value must be between 0 and 128'}
+					label={'Image Shadow Width (px)'}
+				/>
+				<ColorPicker
+					bind:hex={thumbnailGeneratorImageBorderColor}
+					label="Image Border Color"
+					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-button-hover-color={getHexStringFromCatppuccinColor(
+						'blue',
+						$theme,
+					)}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={0}
+					max={128}
+					bind:value={thumbnailGeneratorImageBorderWidth}
+					invalidText={'Value must be between 0 and 128'}
+					label={'Image Border Width (px)'}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={0}
+					max={128}
+					bind:value={thumbnailGeneratorImageBorderRadius}
+					invalidText={'Value must be between 0 and 128'}
+					label={'Image Border Radius (px)'}
+				/>
+			</div>
+		{:else}
+			<div class="container-buttons">
+				<FileUploaderDropContainer
+					accept={['.svg', '.png', '.webp', '.jpg', '.jpeg']}
+					bind:files={thumbnailGeneratorImageFiles}
+					labelText="Drag and drop images here or click to upload (8MB max)"
+					validateFiles={(files) => {
+						return files.filter(
+							(file) =>
+								file.size < 8 * Math.pow(10, 6) &&
+								(file.name.endsWith('.png') ||
+									file.name.endsWith('.webp') ||
+									file.name.endsWith('.jpg') ||
+									file.name.endsWith('.svg') ||
+									file.name.endsWith('.jpeg')),
+						);
+					}}
+				/>
+				<ColorPicker
+					bind:hex={thumbnailGeneratorUploadedImageShadowColor}
+					label="Uploaded Image Shadow Color"
+					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-button-hover-color={getHexStringFromCatppuccinColor(
+						'blue',
+						$theme,
+					)}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={0}
+					max={128}
+					bind:value={thumbnailGeneratorUploadedImageShadowWidth}
+					invalidText={'Value must be between 0 and 128'}
+					label={'Uploaded Image Shadow Width (px)'}
+				/>
+				<ColorPicker
+					bind:hex={thumbnailGeneratorUploadedImageBorderColor}
+					label="Uploaded Image Border Color"
+					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-button-hover-color={getHexStringFromCatppuccinColor(
+						'blue',
+						$theme,
+					)}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={0}
+					max={128}
+					bind:value={thumbnailGeneratorUploadedImageBorderWidth}
+					invalidText={'Value must be between 0 and 128'}
+					label={'Uploaded Image Border Width (px)'}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={0}
+					max={128}
+					bind:value={thumbnailGeneratorUploadedImageBorderRadius}
+					invalidText={'Value must be between 0 and 128'}
+					label={'Uploaded Image Border Radius (px)'}
+				/>
+			</div>
+		{/if}
 
 		<div class="thumbnail-container">
 			<div style={thumbnailGeneratorPreviewStyle} id="generated-thumbnail-dom">
@@ -3800,11 +4128,11 @@
 						<img
 							src={image.src.image}
 							alt={image.alt}
-							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
+							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 						/>
 					{:else}
 						<div
-							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
+							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 						>
 							<svelte:component
 								this={image.src.component}
@@ -3818,22 +4146,28 @@
 						<img
 							src={image.src}
 							alt={image.alt}
-							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
+							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 						/>
 					{:else if image.fileType === 'image/svg+xml'}
 						<img
 							src={image.src}
 							alt={image.alt}
-							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}; height: {image.height}; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize} {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}; border-width: {image.borderWidth} {image.borderWidth} {image.borderWidth} {image.borderWidth};"
+							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 						/>
 					{/if}
 				{/each}
 				{#each thumbnailTexts as text, i}
-					<div
-						style="position: absolute; top: 0; left: 0; font-size: {text.fontSize}; color: {text.color};"
+					<p
+						style="position: absolute; top: {text.top}px; left: {text.left}px; z-index: {text.zIndex}; opacity: {text.opacity}; font-size: {text.fontSize}px; text-shadow:
+						-{text.shadowWidth}px -{text.shadowWidth}px 0 {text.shadowColor},
+						{text.shadowWidth}px -{text.shadowWidth}px 0 {text.shadowColor},
+						-{text.shadowWidth}px {text.shadowWidth}px 0 {text.shadowColor},
+						{text.shadowWidth}px {text.shadowWidth}px 0 {text.shadowColor};
+						color: {text.color};
+						 transform: rotate({text.rotation}deg); text-decoration: {text.decoration} {text.decorationColor}; font-family: {text.fontFamily}; font-weight: {text.fontWeight}; font-style: {text.fontStyle};"
 					>
 						{text.text}
-					</div>
+					</p>
 				{/each}
 			</div>
 		</div>
