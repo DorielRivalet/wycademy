@@ -864,6 +864,7 @@ import HabitatImageCloudViewingFortress from '$lib/client/images/habitat/cloud-v
 import HabitatImageCompetitionArena from '$lib/client/images/habitat/competition-arena.webp';
 import HabitatImageDeepCrater from '$lib/client/images/habitat/deep-crater.webp';
 import HabitatImageDesert from '$lib/client/images/habitat/desert.webp';
+import HabitatImageDuremudiraEntrance from '$lib/client/images/habitat/duremudira-entrance.webp';
 import HabitatImageFlowerFields from '$lib/client/images/habitat/flower-fields.webp';
 import HabitatImageForestAndHills from '$lib/client/images/habitat/forest-and-hills.webp';
 import HabitatImageFortress from '$lib/client/images/habitat/fortress.webp';
@@ -894,6 +895,203 @@ import HabitatImageTown from '$lib/client/images/habitat/town.webp';
 import HabitatImageVolcano from '$lib/client/images/habitat/volcano.webp';
 import HabitatImageWhiteLake from '$lib/client/images/habitat/white-lake.webp';
 import HabitatImageWorldsEnd from '$lib/client/images/habitat/worlds-end.webp';
+
+import FullMonsterRenderRandom from '$lib/client/images/monster/random.webp';
+import FullMonsterRenderRathian from '$lib/client/images/monster/render/full/rathian.webp';
+import FullMonsterRenderFatalis from '$lib/client/images/monster/render/full/fatalis.webp';
+import FullMonsterRenderKelbi from '$lib/client/images/monster/render/full/kelbi.webp';
+import FullMonsterRenderMosswine from '$lib/client/images/monster/render/full/mosswine.webp';
+import FullMonsterRenderBullfango from '$lib/client/images/monster/render/full/bullfango.webp';
+import FullMonsterRenderYianKutKu from '$lib/client/images/monster/render/full/yian-kut-ku.webp';
+import FullMonsterRenderLaoShanLung from '$lib/client/images/monster/render/full/lao-shan-lung.webp';
+import FullMonsterRenderCephadrome from '$lib/client/images/monster/render/full/cephadrome.webp';
+import FullMonsterRenderFelyne from '$lib/client/images/monster/render/full/felyne.webp';
+import FullMonsterRenderRathalos from '$lib/client/images/monster/render/full/rathalos.webp';
+import FullMonsterRenderAptonoth from '$lib/client/images/monster/render/full/aptonoth.webp';
+import FullMonsterRenderGenprey from '$lib/client/images/monster/render/full/genprey.webp';
+import FullMonsterRenderDiablos from '$lib/client/images/monster/render/full/diablos.webp';
+import FullMonsterRenderKhezu from '$lib/client/images/monster/render/full/khezu.webp';
+import FullMonsterRenderVelociprey from '$lib/client/images/monster/render/full/velocidrome.webp';
+import FullMonsterRenderGravios from '$lib/client/images/monster/render/full/gravios.webp';
+import FullMonsterRenderVespoid from '$lib/client/images/monster/render/full/vespoid.webp';
+import FullMonsterRenderGypceros from '$lib/client/images/monster/render/full/gypceros.webp';
+import FullMonsterRenderPlesioth from '$lib/client/images/monster/render/full/plesioth.webp';
+import FullMonsterRenderBasarios from '$lib/client/images/monster/render/full/basarios.webp';
+import FullMonsterRenderMelynx from '$lib/client/images/monster/render/full/melynx.webp';
+import FullMonsterRenderHornetaur from '$lib/client/images/monster/render/full/hornetaur.webp';
+import FullMonsterRenderApceros from '$lib/client/images/monster/render/full/apceros.webp';
+import FullMonsterRenderMonoblos from '$lib/client/images/monster/render/full/monoblos.webp';
+import FullMonsterRenderVelocidrome from '$lib/client/images/monster/render/full/velocidrome.webp';
+import FullMonsterRenderGendrome from '$lib/client/images/monster/render/full/gendrome.webp';
+import FullMonsterRenderIoprey from '$lib/client/images/monster/render/full/ioprey.webp';
+import FullMonsterRenderIodrome from '$lib/client/images/monster/render/full/iodrome.webp';
+import FullMonsterRenderKirin from '$lib/client/images/monster/render/full/kirin.webp';
+import FullMonsterRenderCephalos from '$lib/client/images/monster/render/full/cephalos.webp';
+import FullMonsterRenderGiapreyGiadrome from '$lib/client/images/monster/render/full/giaprey.webp';
+import FullMonsterRenderCrimsonFatalis from '$lib/client/images/monster/render/full/crimson-fatalis.webp';
+import FullMonsterRenderPinkRathian from '$lib/client/images/monster/render/full/pink-rathian.webp';
+import FullMonsterRenderBlueYianKutKu from '$lib/client/images/monster/render/full/blue-yian-kut-ku.webp';
+import FullMonsterRenderPurpleGypceros from '$lib/client/images/monster/render/full/purple-gypceros.webp';
+import FullMonsterRenderYianGaruga from '$lib/client/images/monster/render/full/yian-garuga.webp';
+import FullMonsterRenderSilverRathalos from '$lib/client/images/monster/render/full/silver-rathalos.webp';
+import FullMonsterRenderGoldRathian from '$lib/client/images/monster/render/full/gold-rathian.webp';
+import FullMonsterRenderBlackDiablos from '$lib/client/images/monster/render/full/black-diablos.webp';
+import FullMonsterRenderWhiteMonoblos from '$lib/client/images/monster/render/full/white-monoblos.webp';
+import FullMonsterRenderRedKhezu from '$lib/client/images/monster/render/full/red-khezu.webp';
+import FullMonsterRenderGreenPlesioth from '$lib/client/images/monster/render/full/green-plesioth.webp';
+import FullMonsterRenderBlackGravios from '$lib/client/images/monster/render/full/black-gravios.webp';
+import FullMonsterRenderDaimyoHermitaur from '$lib/client/images/monster/render/full/daimyo-hermitaur.webp';
+import FullMonsterRenderAzureRathalos from '$lib/client/images/monster/render/full/azure-rathalos.webp';
+import FullMonsterRenderAshenLaoShanLung from '$lib/client/images/monster/render/full/ashen-lao-shan-lung.webp';
+import FullMonsterRenderBlangonga from '$lib/client/images/monster/render/full/blangonga.webp';
+import FullMonsterRenderCongalala from '$lib/client/images/monster/render/full/congalala.webp';
+import FullMonsterRenderRajang from '$lib/client/images/monster/render/full/rajang.webp';
+import FullMonsterRenderKushalaDaora from '$lib/client/images/monster/render/full/kushala-daora.webp';
+import FullMonsterRenderShenGaoren from '$lib/client/images/monster/render/full/shen-gaoren.webp';
+import FullMonsterRenderGreatThunderbug from '$lib/client/images/monster/render/full/great-thunderbug.webp';
+import FullMonsterRenderShakalaka from '$lib/client/images/monster/render/full/shakalaka.webp';
+import FullMonsterRenderYamaTsukami from '$lib/client/images/monster/render/full/yama-tsukami.webp';
+import FullMonsterRenderChameleos from '$lib/client/images/monster/render/full/chameleos.webp';
+import FullMonsterRenderRustedKushalaDaora from '$lib/client/images/monster/render/full/rusted-kushala-daora.webp';
+import FullMonsterRenderBlango from '$lib/client/images/monster/render/full/blango.webp';
+import FullMonsterRenderConga from '$lib/client/images/monster/render/full/conga.webp';
+import FullMonsterRenderRemobra from '$lib/client/images/monster/render/full/remobra.webp';
+import FullMonsterRenderLunastra from '$lib/client/images/monster/render/full/lunastra.webp';
+import FullMonsterRenderTeostra from '$lib/client/images/monster/render/full/teostra.webp';
+import FullMonsterRenderHermitaur from '$lib/client/images/monster/render/full/hermitaur.webp';
+import FullMonsterRenderShogunCeanataur from '$lib/client/images/monster/render/full/shogun-ceanataur.webp';
+import FullMonsterRenderBulldrome from '$lib/client/images/monster/render/full/bulldrome.webp';
+import FullMonsterRenderAnteka from '$lib/client/images/monster/render/full/anteka.webp';
+import FullMonsterRenderPopo from '$lib/client/images/monster/render/full/popo.webp';
+import FullMonsterRenderWhiteFatalis from '$lib/client/images/monster/render/full/white-fatalis.webp';
+import FullMonsterRenderCeanataur from '$lib/client/images/monster/render/full/ceanataur.webp';
+import FullMonsterRenderHypnocatrice from '$lib/client/images/monster/render/full/hypnoc.webp';
+import FullMonsterRenderLavasioth from '$lib/client/images/monster/render/full/lavasioth.webp';
+import FullMonsterRenderTigrex from '$lib/client/images/monster/render/full/tigrex.webp';
+import FullMonsterRenderAkantor from '$lib/client/images/monster/render/full/akantor.webp';
+import FullMonsterRenderBrightHypnoc from '$lib/client/images/monster/render/full/bright-hypnoc.webp';
+import FullMonsterRenderRedLavasioth from '$lib/client/images/monster/render/full/red-lavasioth.webp';
+import FullMonsterRenderEspinas from '$lib/client/images/monster/render/full/espinas.webp';
+import FullMonsterRenderOrangeEspinas from '$lib/client/images/monster/render/full/orange-espinas.webp';
+import FullMonsterRenderSilverHypnoc from '$lib/client/images/monster/render/full/silver-hypnoc.webp';
+import FullMonsterRenderAkuraVashimu from '$lib/client/images/monster/render/full/akura-vashimu.webp';
+import FullMonsterRenderAkuraJebia from '$lib/client/images/monster/render/full/akura-jebia.webp';
+import FullMonsterRenderBerukyurosu from '$lib/client/images/monster/render/full/berukyurosu.webp';
+import FullMonsterRenderCactus from '$lib/client/images/monster/cactus.webp';
+import FullMonsterRenderPariapuria from '$lib/client/images/monster/render/full/pariapuria.webp';
+import FullMonsterRenderWhiteEspinas from '$lib/client/images/monster/render/full/white-espinas.webp';
+import FullMonsterRenderKamuOrugaron from '$lib/client/images/monster/render/full/kamu-orugaron.webp';
+import FullMonsterRenderNonoOrugaron from '$lib/client/images/monster/render/full/nono-orugaron.webp';
+import FullMonsterRenderRaviente from '$lib/client/images/monster/render/full/raviente.webp';
+import FullMonsterRenderDyuragaua from '$lib/client/images/monster/render/full/dyuragaua.webp';
+import FullMonsterRenderDoragyurosu from '$lib/client/images/monster/render/full/doragyurosu.webp';
+import FullMonsterRenderGurenzeburu from '$lib/client/images/monster/render/full/gurenzeburu.webp';
+import FullMonsterRenderBurukku from '$lib/client/images/monster/render/full/burukku.webp';
+import FullMonsterRenderErupe from '$lib/client/images/monster/render/full/erupe.webp';
+import FullMonsterRenderRukodiora from '$lib/client/images/monster/render/full/rukodiora.webp';
+import FullMonsterRenderUNKNOWN from '$lib/client/images/monster/render/full/unknown.webp';
+import FullMonsterRenderGogomoa from '$lib/client/images/monster/render/full/gogomoa.webp';
+import FullMonsterRenderTaikunZamuza from '$lib/client/images/monster/render/full/taikun-zamuza.webp';
+import FullMonsterRenderAbiorugu from '$lib/client/images/monster/render/full/abiorugu.webp';
+import FullMonsterRenderKuarusepusu from '$lib/client/images/monster/render/full/kuarusepusu.webp';
+import FullMonsterRenderOdibatorasu from '$lib/client/images/monster/render/full/odibatorasu.webp';
+import FullMonsterRenderDisufiroa from '$lib/client/images/monster/render/full/disufiroa.webp';
+import FullMonsterRenderRebidiora from '$lib/client/images/monster/render/full/rebidiora.webp';
+import FullMonsterRenderAnorupatisu from '$lib/client/images/monster/render/full/anorupatisu.webp';
+import FullMonsterRenderHyujikiki from '$lib/client/images/monster/render/full/hyujikiki.webp';
+import FullMonsterRenderMidogaron from '$lib/client/images/monster/render/full/midogaron.webp';
+import FullMonsterRenderGiaorugu from '$lib/client/images/monster/render/full/giaorugu.webp';
+import FullMonsterRenderMiRu from '$lib/client/images/monster/render/full/mi-ru.webp';
+import FullMonsterRenderFarunokku from '$lib/client/images/monster/render/full/farunokku.webp';
+import FullMonsterRenderPokaradon from '$lib/client/images/monster/render/full/pokaradon.webp';
+import FullMonsterRenderShantien from '$lib/client/images/monster/render/full/shantien.webp';
+import FullMonsterRenderPokara from '$lib/client/images/monster/render/full/pokara.webp';
+import FullMonsterRenderGoruganosu from '$lib/client/images/monster/render/full/goruganosu.webp';
+import FullMonsterRenderAruganosu from '$lib/client/images/monster/render/full/aruganosu.webp';
+import FullMonsterRenderBaruragaru from '$lib/client/images/monster/render/full/baruragaru.webp';
+import FullMonsterRenderZerureusu from '$lib/client/images/monster/render/full/zerureusu.webp';
+import FullMonsterRenderGougarf from '$lib/client/images/monster/render/full/gourgarf.webp';
+import FullMonsterRenderUruki from '$lib/client/images/monster/render/full/uruki.webp';
+import FullMonsterRenderForokururu from '$lib/client/images/monster/render/full/forokururu.webp';
+import FullMonsterRenderMeraginasu from '$lib/client/images/monster/render/full/meraginasu.webp';
+import FullMonsterRenderDiorex from '$lib/client/images/monster/render/full/diorex.webp';
+import FullMonsterRenderGarubaDaora from '$lib/client/images/monster/render/full/garuba-daora.webp';
+import FullMonsterRenderInagami from '$lib/client/images/monster/render/full/inagami.webp';
+import FullMonsterRenderVarusaburosu from '$lib/client/images/monster/render/full/varusaburosu.webp';
+import FullMonsterRenderPoborubarumu from '$lib/client/images/monster/render/full/poborubarumu.webp';
+import FullMonsterRenderDuremudira from '$lib/client/images/monster/render/full/duremudira.webp';
+import FullMonsterRenderGureadomosu from '$lib/client/images/monster/render/full/gureadomosu.webp';
+import FullMonsterRenderHarudomerugu from '$lib/client/images/monster/render/full/harudomerugu.webp';
+import FullMonsterRenderToridcless from '$lib/client/images/monster/render/full/toridcless.webp';
+import FullMonsterRenderGasurabazura from '$lib/client/images/monster/render/full/gasurabazura.webp';
+import FullMonsterRenderKusubami from '$lib/client/images/monster/render/full/kusubami.webp';
+import FullMonsterRenderYamaKurai from '$lib/client/images/monster/render/full/yama-kurai.webp';
+import FullMonsterRenderZinogre from '$lib/client/images/monster/render/full/zinogre.webp';
+import FullMonsterRenderDeviljho from '$lib/client/images/monster/render/full/deviljho.webp';
+import FullMonsterRenderBrachydios from '$lib/client/images/monster/render/full/brachydios.webp';
+import FullMonsterRenderBerserkRaviente from '$lib/client/images/monster/render/full/berserk-raviente.webp';
+import FullMonsterRenderToaTesukatora from '$lib/client/images/monster/render/full/toa-tesukatora.webp';
+import FullMonsterRenderBarioth from '$lib/client/images/monster/render/full/barioth.webp';
+import FullMonsterRenderUragaan from '$lib/client/images/monster/render/full/uragaan.webp';
+import FullMonsterRenderStygianZinogre from '$lib/client/images/monster/render/full/stygian-zinogre.webp';
+import FullMonsterRenderGuanzorumu from '$lib/client/images/monster/render/full/guanzorumu.webp';
+import FullMonsterRenderStarvingDeviljho from '$lib/client/images/monster/render/full/savage-deviljho.webp';
+import FullMonsterRenderVoljang from '$lib/client/images/monster/render/full/voljang.webp';
+import FullMonsterRenderNargacuga from '$lib/client/images/monster/render/full/nargacuga.webp';
+import FullMonsterRenderKeoaruboru from '$lib/client/images/monster/render/full/keoaruboru.webp';
+import FullMonsterRenderZenaserisu from '$lib/client/images/monster/render/full/zenaserisu.webp';
+import FullMonsterRenderGoreMagala from '$lib/client/images/monster/render/full/gore-magala.webp';
+import FullMonsterRenderBlinkingNargacuga from '$lib/client/images/monster/render/full/blinking-nargacuga.webp';
+import FullMonsterRenderShagaruMagala from '$lib/client/images/monster/render/full/shagaru-magala.webp';
+import FullMonsterRenderAmatsu from '$lib/client/images/monster/render/full/amatsu.webp';
+import FullMonsterRenderElzelion from '$lib/client/images/monster/render/full/elzelion.webp';
+import FullMonsterRenderArrogantDuremudira from '$lib/client/images/monster/render/full/arrogant-duremudira2.webp';
+import FullMonsterRenderSeregios from '$lib/client/images/monster/render/full/seregios.webp';
+import FullMonsterRenderBogabadorumu from '$lib/client/images/monster/render/full/zenith-bogabadorumu.webp';
+import FullMonsterRenderBlitzkriegBogabadorumu from '$lib/client/images/monster/render/full/blitzkrieg-bogabadorumu.webp';
+import FullMonsterRenderSparklingZerureusu from '$lib/client/images/monster/render/full/sparkling-zerureusu.webp';
+import FullMonsterRenderPSO2Rappy from '$lib/client/images/monster/render/full/pso2-rappy.webp';
+import FullMonsterRenderKingShakalaka from '$lib/client/images/monster/render/full/king-shakalaka.webp';
+
+import FullMonsterRenderZenithAkuraVashimu from '$lib/client/images/monster/render/full/zenith-akura-vashimu.webp';
+import FullMonsterRenderZenithAnorupatisu from '$lib/client/images/monster/render/full/zenith-anorupatisu.webp';
+import FullMonsterRenderZenithBaruragaru from '$lib/client/images/monster/render/full/zenith-baruragaru.webp';
+import FullMonsterRenderZenithBlangonga from '$lib/client/images/monster/render/full/zenith-blangonga.webp';
+import FullMonsterRenderZenithDaimyoHermitaur from '$lib/client/images/monster/render/full/zenith-daimyo-hermitaur.webp';
+import FullMonsterRenderZenithDoragyurosu from '$lib/client/images/monster/render/full/zenith-doragyurosu.webp';
+import FullMonsterRenderZenithEspinas from '$lib/client/images/monster/render/full/zenith-espinas.webp';
+import FullMonsterRenderZenithGasurabazura from '$lib/client/images/monster/render/full/zenith-gasurabazura.webp';
+import FullMonsterRenderZenithGiaorugu from '$lib/client/images/monster/render/full/zenith-giaorugu.webp';
+import FullMonsterRenderZenithGravios from '$lib/client/images/monster/render/full/zenith-gravios.webp';
+import FullMonsterRenderZenithHarudomerugu from '$lib/client/images/monster/render/full/zenith-harudomerugu.webp';
+import FullMonsterRenderZenithHypnoc from '$lib/client/images/monster/render/full/zenith-hypnoc.webp';
+import FullMonsterRenderZenithHyujikiki from '$lib/client/images/monster/render/full/zenith-hyujikiki.webp';
+import FullMonsterRenderZenithInagami from '$lib/client/images/monster/render/full/zenith-inagami.webp';
+import FullMonsterRenderZenithKhezu from '$lib/client/images/monster/render/full/zenith-khezu.webp';
+import FullMonsterRenderZenithMidogaron from '$lib/client/images/monster/render/full/zenith-midogaron.webp';
+import FullMonsterRenderZenithPlesioth from '$lib/client/images/monster/render/full/zenith-plesioth.webp';
+import FullMonsterRenderZenithRathalos from '$lib/client/images/monster/render/full/zenith-rathalos.webp';
+import FullMonsterRenderZenithRukodiora from '$lib/client/images/monster/render/full/zenith-rukodiora.webp';
+import FullMonsterRenderZenithTaikunZamuza from '$lib/client/images/monster/render/full/zenith-taikun-zamuza.webp';
+import FullMonsterRenderZenithTigrex from '$lib/client/images/monster/render/full/zenith-tigrex.webp';
+import FullMonsterRenderZenithToridcless from '$lib/client/images/monster/render/full/zenith-toridcless.webp';
+import FullMonsterRenderConquestFatalis from '$lib/client/images/monster/render/full/conquest-fatalis.webp';
+import FullMonsterRenderConquestShantien from '$lib/client/images/monster/render/full/shantien.webp';
+import FullMonsterRenderConquestCrimsonFatalis from '$lib/client/images/monster/render/full/conquest-crimson-fatalis.webp';
+import FullMonsterRenderShitenDisufiroa from '$lib/client/images/monster/render/full/disufiroa.webp';
+import FullMonsterRenderShitenUnknown from '$lib/client/images/monster/render/full/unknown.webp';
+import FullMonsterRenderBurningFreezingElzelion from '$lib/client/images/monster/render/full/burning-freezing-elzelion.webp';
+import FullMonsterRenderHowlingZinogre from '$lib/client/images/monster/render/full/howling-zinogre2.webp';
+import FullMonsterRenderSupremacyPariapuria from '$lib/client/images/monster/render/full/supremacy-pariapuria.webp';
+import FullMonsterRenderSupremacyDoragyurosu from '$lib/client/images/monster/render/full/supremacy-doragyurosu.webp';
+import FullMonsterRenderSupremacyTeostra from '$lib/client/images/monster/render/full/supremacy-teostra.webp';
+import FullMonsterRenderSupremacyOdibatorasu from '$lib/client/images/monster/render/full/supremacy-odibatorasu.webp';
+import FullMonsterRenderGoldenDeviljho from '$lib/client/images/monster/render/full/golden-deviljho.webp';
+import FullMonsterRenderFuriousRajang from '$lib/client/images/monster/render/full/furious-rajang.webp';
+import FullMonsterRenderRulingGuanzorumu from '$lib/client/images/monster/render/full/ruling-guanzorumu.webp';
+import FullMonsterRenderShiftingMiRu from '$lib/client/images/monster/render/full/shifting-mi-ru.webp';
+import FullMonsterRenderTwinheadRajang from '$lib/client/images/monster/render/full/hc-rajang.webp';
+import FullMonsterRenderRoadWhiteFatalis from '$lib/client/images/monster/render/full/white-fatalis.webp';
 
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
@@ -990,6 +1188,7 @@ export const Habitats: { name: string; image: any }[] = [
 	{ name: 'Competition Arena', image: HabitatImageCompetitionArena },
 	{ name: 'Deep Crater', image: HabitatImageDeepCrater },
 	{ name: 'Desert', image: HabitatImageDesert },
+	{ name: 'Duremudira Entrance', image: HabitatImageDuremudiraEntrance },
 	{ name: 'Flower Fields', image: HabitatImageFlowerFields },
 	{ name: 'Forest and Hills', image: HabitatImageForestAndHills },
 	{ name: 'Fortress', image: HabitatImageFortress },
@@ -1521,6 +1720,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRandom,
 		rank: '',
 		render: IconMonsterRandom,
+		fullRender: FullMonsterRenderRandom,
 		component: ComponentMonsterRandom,
 		unusedComponent: false,
 		displayName: 'Random',
@@ -1530,6 +1730,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRathian,
 		rank: 'G Rank',
 		render: IconRenderMonsterRathian,
+		fullRender: FullMonsterRenderRathian,
 		component: ComponentMonsterRathian,
 		unusedComponent: true,
 		displayName: 'Rathian',
@@ -1540,6 +1741,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterFatalis,
 		rank: '',
 		render: IconRenderMonsterFatalis,
+		fullRender: FullMonsterRenderFatalis,
 		component: ComponentMonsterFatalis,
 		unusedComponent: false,
 		displayName: 'Fatalis',
@@ -1550,6 +1752,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterKelbi,
 		rank: 'G Rank',
 		render: IconRenderMonsterKelbi,
+		fullRender: FullMonsterRenderKelbi,
 		component: ComponentMonsterKelbi,
 		unusedComponent: true,
 		displayName: 'Kelbi',
@@ -1560,6 +1763,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterMosswine,
 		rank: 'G Rank',
 		render: IconRenderMonsterMosswine,
+		fullRender: FullMonsterRenderMosswine,
 		component: ComponentMonsterMosswine,
 		unusedComponent: true,
 		displayName: 'Mosswine',
@@ -1570,6 +1774,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBullfango,
 		rank: 'G Rank',
 		render: IconRenderMonsterBullfango,
+		fullRender: FullMonsterRenderBullfango,
 		component: ComponentMonsterBullfango,
 		unusedComponent: true,
 		displayName: 'Bullfango',
@@ -1580,6 +1785,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterYianKutKu,
 		rank: 'G Rank',
 		render: IconRenderMonsterYianKutKu,
+		fullRender: FullMonsterRenderYianKutKu,
 		component: ComponentMonsterYianKutKu,
 		unusedComponent: true,
 		displayName: 'Yian Kut-Ku',
@@ -1590,6 +1796,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterLaoShanLung,
 		rank: 'G Rank',
 		render: IconRenderMonsterLaoShanLung,
+		fullRender: FullMonsterRenderLaoShanLung,
 		component: ComponentMonsterLaoShanLung,
 		unusedComponent: true,
 		displayName: 'Lao-Shan Lung',
@@ -1600,6 +1807,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterCephadrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterCephadrome,
+		fullRender: FullMonsterRenderCephadrome,
 		component: ComponentMonsterCephadrome,
 		unusedComponent: true,
 		displayName: 'Cephadrome',
@@ -1610,6 +1818,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterFelyne,
 		rank: 'G Rank',
 		render: IconRenderMonsterFelyne,
+		fullRender: FullMonsterRenderFelyne,
 		component: ComponentMonsterFelyne,
 		unusedComponent: true,
 		displayName: 'Felyne',
@@ -1620,6 +1829,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRathalos,
 		rank: 'G Rank',
 		render: IconRenderMonsterRathalos,
+		fullRender: FullMonsterRenderRathalos,
 		component: ComponentMonsterRathalos,
 		unusedComponent: true,
 		displayName: 'Rathalos',
@@ -1630,6 +1840,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAptonoth,
 		rank: 'G Rank',
 		render: IconRenderMonsterAptonoth,
+		fullRender: FullMonsterRenderAptonoth,
 		component: ComponentMonsterAptonoth,
 		unusedComponent: true,
 		displayName: 'Aptonoth',
@@ -1640,6 +1851,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGenprey,
 		rank: 'G Rank',
 		render: IconRenderMonsterGenprey,
+		fullRender: FullMonsterRenderGenprey,
 		component: ComponentMonsterGenprey,
 		unusedComponent: true,
 		displayName: 'Genprey',
@@ -1650,6 +1862,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterDiablos,
 		rank: 'G Rank',
 		render: IconRenderMonsterDiablos,
+		fullRender: FullMonsterRenderDiablos,
 		component: ComponentMonsterDiablos,
 		unusedComponent: true,
 		displayName: 'Diablos',
@@ -1660,6 +1873,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterKhezu,
 		rank: 'G Rank',
 		render: IconRenderMonsterKhezu,
+		fullRender: FullMonsterRenderKhezu,
 		component: ComponentMonsterKhezu,
 		unusedComponent: true,
 		displayName: 'Khezu',
@@ -1670,6 +1884,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterVelociprey,
 		rank: 'G Rank',
 		render: IconRenderMonsterVelociprey,
+		fullRender: FullMonsterRenderVelociprey,
 		component: ComponentMonsterVelociprey,
 		unusedComponent: true,
 		displayName: 'Velociprey',
@@ -1680,6 +1895,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGravios,
 		rank: 'G Rank',
 		render: IconRenderMonsterGravios,
+		fullRender: FullMonsterRenderGravios,
 		component: ComponentMonsterGravios,
 		unusedComponent: true,
 		displayName: 'Gravios',
@@ -1690,6 +1906,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterVespoid,
 		rank: 'G Rank',
 		render: IconRenderMonsterVespoid,
+		fullRender: FullMonsterRenderVespoid,
 		component: ComponentMonsterVespoid,
 		unusedComponent: true,
 		displayName: 'Vespoid',
@@ -1700,6 +1917,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGypceros,
 		rank: 'G Rank',
 		render: IconRenderMonsterGypceros,
+		fullRender: FullMonsterRenderGypceros,
 		component: ComponentMonsterGypceros,
 		unusedComponent: true,
 		displayName: 'Gypceros',
@@ -1710,6 +1928,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterPlesioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterPlesioth,
+		fullRender: FullMonsterRenderPlesioth,
 		component: ComponentMonsterPlesioth,
 		unusedComponent: true,
 		displayName: 'Plesioth',
@@ -1720,6 +1939,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBasarios,
 		rank: 'G Rank',
 		render: IconRenderMonsterBasarios,
+		fullRender: FullMonsterRenderBasarios,
 		component: ComponentMonsterBasarios,
 		unusedComponent: true,
 		displayName: 'Basarios',
@@ -1730,6 +1950,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterMelynx,
 		rank: 'G Rank',
 		render: IconRenderMonsterMelynx,
+		fullRender: FullMonsterRenderMelynx,
 		component: ComponentMonsterMelynx,
 		unusedComponent: true,
 		displayName: 'Melynx',
@@ -1740,6 +1961,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterHornetaur,
 		rank: 'G Rank',
 		render: IconRenderMonsterHornetaur,
+		fullRender: FullMonsterRenderHornetaur,
 		component: ComponentMonsterHornetaur,
 		unusedComponent: true,
 		displayName: 'Hornetaur',
@@ -1750,6 +1972,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterApceros,
 		rank: 'G Rank',
 		render: IconRenderMonsterApceros,
+		fullRender: FullMonsterRenderApceros,
 		component: ComponentMonsterApceros,
 		unusedComponent: true,
 		displayName: 'Apceros',
@@ -1761,6 +1984,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterMonoblos,
 		rank: 'G Rank',
 		render: IconRenderMonsterMonoblos,
+		fullRender: FullMonsterRenderMonoblos,
 		component: ComponentMonsterMonoblos,
 		unusedComponent: true,
 	},
@@ -1770,6 +1994,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterVelocidrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterVelocidrome,
+		fullRender: FullMonsterRenderVelocidrome,
 		component: ComponentMonsterVelocidrome,
 		unusedComponent: true,
 		size: 'Large',
@@ -1780,6 +2005,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGendrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterGendrome,
+		fullRender: FullMonsterRenderGendrome,
 		component: ComponentMonsterGendrome,
 		unusedComponent: true,
 		size: 'Large',
@@ -1790,6 +2016,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterIoprey,
 		rank: 'G Rank',
 		render: IconRenderMonsterIoprey,
+		fullRender: FullMonsterRenderIoprey,
 		component: ComponentMonsterIoprey,
 		unusedComponent: true,
 		size: 'Small',
@@ -1800,6 +2027,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterIodrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterIodrome,
+		fullRender: FullMonsterRenderIodrome,
 		component: ComponentMonsterIodrome,
 		unusedComponent: true,
 		size: 'Large',
@@ -1810,6 +2038,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterKirin,
 		rank: 'G Rank',
 		render: IconRenderMonsterKirin,
+		fullRender: FullMonsterRenderKirin,
 		component: ComponentMonsterKirin,
 		unusedComponent: true,
 		size: 'Large',
@@ -1820,6 +2049,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterCephalos,
 		rank: 'G Rank',
 		render: IconRenderMonsterCephalos,
+		fullRender: FullMonsterRenderCephalos,
 		component: ComponentMonsterCephalos,
 		unusedComponent: true,
 		size: 'Small',
@@ -1830,6 +2060,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGiapreyGiadrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterGiapreyGiadrome,
+		fullRender: FullMonsterRenderGiapreyGiadrome,
 		component: ComponentMonsterGiapreyGiadrome,
 		unusedComponent: true,
 		size: 'Small',
@@ -1840,6 +2071,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterCrimsonFatalis,
 		rank: '',
 		render: IconRenderMonsterCrimsonFatalis,
+		fullRender: FullMonsterRenderCrimsonFatalis,
 		component: ComponentMonsterCrimsonFatalis,
 		unusedComponent: false,
 		size: 'Large',
@@ -1850,6 +2082,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterPinkRathian,
 		rank: 'G Rank',
 		render: IconRenderMonsterPinkRathian,
+		fullRender: FullMonsterRenderPinkRathian,
 		component: ComponentMonsterPinkRathian,
 		unusedComponent: true,
 		size: 'Large',
@@ -1860,6 +2093,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBlueYianKutKu,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlueYianKutKu,
+		fullRender: FullMonsterRenderBlueYianKutKu,
 		component: ComponentMonsterBlueYianKutKu,
 		unusedComponent: true,
 		size: 'Large',
@@ -1870,6 +2104,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterPurpleGypceros,
 		rank: 'G Rank',
 		render: IconRenderMonsterPurpleGypceros,
+		fullRender: FullMonsterRenderPurpleGypceros,
 		component: ComponentMonsterPurpleGypceros,
 		unusedComponent: true,
 		size: 'Large',
@@ -1880,6 +2115,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterYianGaruga,
 		rank: 'G Rank',
 		render: IconRenderMonsterYianGaruga,
+		fullRender: FullMonsterRenderYianGaruga,
 		component: ComponentMonsterYianGaruga,
 		unusedComponent: true,
 		size: 'Large',
@@ -1890,6 +2126,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterSilverRathalos,
 		rank: 'G Rank',
 		render: IconRenderMonsterSilverRathalos,
+		fullRender: FullMonsterRenderSilverRathalos,
 		component: ComponentMonsterSilverRathalos,
 		unusedComponent: true,
 		size: 'Large',
@@ -1900,6 +2137,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGoldRathian,
 		rank: 'G Rank',
 		render: IconRenderMonsterGoldRathian,
+		fullRender: FullMonsterRenderGoldRathian,
 		component: ComponentMonsterGoldRathian,
 		unusedComponent: true,
 		size: 'Large',
@@ -1910,6 +2148,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBlackDiablos,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlackDiablos,
+		fullRender: FullMonsterRenderBlackDiablos,
 		component: ComponentMonsterBlackDiablos,
 		unusedComponent: true,
 		size: 'Large',
@@ -1920,6 +2159,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterWhiteMonoblos,
 		rank: 'G Rank',
 		render: IconRenderMonsterWhiteMonoblos,
+		fullRender: FullMonsterRenderWhiteMonoblos,
 		component: ComponentMonsterWhiteMonoblos,
 		unusedComponent: true,
 		size: 'Large',
@@ -1930,6 +2170,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRedKhezu,
 		rank: 'G Rank',
 		render: IconRenderMonsterRedKhezu,
+		fullRender: FullMonsterRenderRedKhezu,
 		component: ComponentMonsterRedKhezu,
 		unusedComponent: true,
 		size: 'Large',
@@ -1940,6 +2181,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGreenPlesioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterGreenPlesioth,
+		fullRender: FullMonsterRenderGreenPlesioth,
 		component: ComponentMonsterGreenPlesioth,
 		unusedComponent: true,
 		size: 'Large',
@@ -1950,6 +2192,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBlackGravios,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlackGravios,
+		fullRender: FullMonsterRenderBlackGravios,
 		component: ComponentMonsterBlackGravios,
 		unusedComponent: true,
 		size: 'Large',
@@ -1960,6 +2203,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterDaimyoHermitaur,
 		rank: 'G Rank',
 		render: IconRenderMonsterDaimyoHermitaur,
+		fullRender: FullMonsterRenderDaimyoHermitaur,
 		component: ComponentMonsterDaimyoHermitaur,
 		unusedComponent: true,
 		size: 'Large',
@@ -1970,6 +2214,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAzureRathalos,
 		rank: 'G Rank',
 		render: IconRenderMonsterAzureRathalos,
+		fullRender: FullMonsterRenderAzureRathalos,
 		component: ComponentMonsterAzureRathalos,
 		unusedComponent: true,
 		size: 'Large',
@@ -1980,6 +2225,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAshenLaoShanLung,
 		rank: 'G Rank',
 		render: IconRenderMonsterAshenLaoShanLung,
+		fullRender: FullMonsterRenderAshenLaoShanLung,
 		component: ComponentMonsterAshenLaoShanLung,
 		unusedComponent: true,
 		size: 'Large',
@@ -1990,6 +2236,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBlangonga,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlangonga,
+		fullRender: FullMonsterRenderBlangonga,
 		component: ComponentMonsterBlangonga,
 		unusedComponent: true,
 		size: 'Large',
@@ -2000,6 +2247,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterCongalala,
 		rank: 'G Rank',
 		render: IconRenderMonsterCongalala,
+		fullRender: FullMonsterRenderCongalala,
 		component: ComponentMonsterCongalala,
 		unusedComponent: true,
 		size: 'Large',
@@ -2010,6 +2258,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRajang,
 		rank: 'G Rank',
 		render: IconRenderMonsterRajang,
+		fullRender: FullMonsterRenderRajang,
 		component: ComponentMonsterRajang,
 		unusedComponent: true,
 		size: 'Large',
@@ -2020,6 +2269,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterKushalaDaora,
 		rank: 'G Rank',
 		render: IconRenderMonsterKushalaDaora,
+		fullRender: FullMonsterRenderKushalaDaora,
 		component: ComponentMonsterKushalaDaora,
 		unusedComponent: true,
 		size: 'Large',
@@ -2030,6 +2280,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterShenGaoren,
 		rank: 'G Rank',
 		render: IconRenderMonsterShenGaoren,
+		fullRender: FullMonsterRenderShenGaoren,
 		component: ComponentMonsterShenGaoren,
 		unusedComponent: false,
 		size: 'Large',
@@ -2040,6 +2291,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGreatThunderbug,
 		rank: 'G Rank',
 		render: IconRenderMonsterGreatThunderbug,
+		fullRender: FullMonsterRenderGreatThunderbug,
 		component: ComponentMonsterGreatThunderbug,
 		unusedComponent: true,
 		size: 'Small',
@@ -2050,6 +2302,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterShakalaka,
 		rank: 'G Rank',
 		render: IconRenderMonsterShakalaka,
+		fullRender: FullMonsterRenderShakalaka,
 		component: ComponentMonsterShakalaka,
 		unusedComponent: true,
 		size: 'Small',
@@ -2060,6 +2313,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterYamaTsukami,
 		rank: 'G Rank',
 		render: IconRenderMonsterYamaTsukami,
+		fullRender: FullMonsterRenderYamaTsukami,
 		component: ComponentMonsterYamaTsukami,
 		unusedComponent: false,
 		size: 'Large',
@@ -2070,6 +2324,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterChameleos,
 		rank: 'G Rank',
 		render: IconRenderMonsterChameleos,
+		fullRender: FullMonsterRenderChameleos,
 		component: ComponentMonsterChameleos,
 		unusedComponent: true,
 		size: 'Large',
@@ -2080,6 +2335,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRustedKushalaDaora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRustedKushalaDaora,
+		fullRender: FullMonsterRenderRustedKushalaDaora,
 		component: ComponentMonsterRustedKushalaDaora,
 		unusedComponent: true,
 		size: 'Large',
@@ -2090,6 +2346,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBlango,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlango,
+		fullRender: FullMonsterRenderBlango,
 		component: ComponentMonsterBlango,
 		unusedComponent: true,
 		size: 'Small',
@@ -2100,6 +2357,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterConga,
 		rank: 'G Rank',
 		render: IconRenderMonsterConga,
+		fullRender: FullMonsterRenderConga,
 		component: ComponentMonsterConga,
 		unusedComponent: true,
 		size: 'Small',
@@ -2110,6 +2368,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRemobra,
 		rank: 'G Rank',
 		render: IconRenderMonsterRemobra,
+		fullRender: FullMonsterRenderRemobra,
 		component: ComponentMonsterRemobra,
 		unusedComponent: true,
 		size: 'Small',
@@ -2120,6 +2379,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterLunastra,
 		rank: 'G Rank',
 		render: IconRenderMonsterLunastra,
+		fullRender: FullMonsterRenderLunastra,
 		component: ComponentMonsterLunastra,
 		unusedComponent: true,
 		size: 'Large',
@@ -2130,6 +2390,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterTeostra,
 		rank: 'G Rank',
 		render: IconRenderMonsterTeostra,
+		fullRender: FullMonsterRenderTeostra,
 		component: ComponentMonsterTeostra,
 		unusedComponent: true,
 		size: 'Large',
@@ -2140,6 +2401,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterHermitaur,
 		rank: 'G Rank',
 		render: IconRenderMonsterHermitaur,
+		fullRender: FullMonsterRenderHermitaur,
 		component: ComponentMonsterHermitaur,
 		unusedComponent: true,
 		size: 'Small',
@@ -2150,6 +2412,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterShogunCeanataur,
 		rank: 'G Rank',
 		render: IconRenderMonsterShogunCeanataur,
+		fullRender: FullMonsterRenderShogunCeanataur,
 		component: ComponentMonsterShogunCeanataur,
 		unusedComponent: true,
 		size: 'Large',
@@ -2160,6 +2423,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBulldrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterBulldrome,
+		fullRender: FullMonsterRenderBulldrome,
 		component: ComponentMonsterBulldrome,
 		unusedComponent: true,
 		size: 'Large',
@@ -2170,6 +2434,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAnteka,
 		rank: 'G Rank',
 		render: IconRenderMonsterAnteka,
+		fullRender: FullMonsterRenderAnteka,
 		component: ComponentMonsterAnteka,
 		unusedComponent: true,
 		size: 'Small',
@@ -2180,6 +2445,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterPopo,
 		rank: 'G Rank',
 		render: IconRenderMonsterPopo,
+		fullRender: FullMonsterRenderPopo,
 		component: ComponentMonsterPopo,
 		unusedComponent: true,
 		size: 'Small',
@@ -2190,6 +2456,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterWhiteFatalis,
 		rank: '',
 		render: IconRenderMonsterWhiteFatalis,
+		fullRender: FullMonsterRenderWhiteFatalis,
 		component: ComponentMonsterWhiteFatalis,
 		unusedComponent: false,
 		size: 'Large',
@@ -2200,6 +2467,8 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterYamaTsukami,
 		rank: 'G Rank',
 		render: IconRenderMonsterYamaTsukami,
+		fullRender: FullMonsterRenderYamaTsukami,
+		fullRender: FullMonsterRenderYamaTsukami,
 		component: ComponentMonsterYamaTsukami,
 		unusedComponent: false,
 		size: 'Large',
@@ -2210,6 +2479,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterCeanataur,
 		rank: 'G Rank',
 		render: IconRenderMonsterCeanataur,
+		fullRender: FullMonsterRenderCeanataur,
 		component: ComponentMonsterCeanataur,
 		unusedComponent: true,
 		size: 'Small',
@@ -2220,6 +2490,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterHypnocatrice,
 		rank: 'G Rank',
 		render: IconRenderMonsterHypnocatrice,
+		fullRender: FullMonsterRenderHypnocatrice,
 		component: ComponentMonsterHypnocatrice,
 		unusedComponent: true,
 		size: 'Large',
@@ -2230,6 +2501,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterLavasioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterLavasioth,
+		fullRender: FullMonsterRenderLavasioth,
 		component: ComponentMonsterLavasioth,
 		unusedComponent: false,
 		size: 'Large',
@@ -2240,6 +2512,8 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterTigrex,
 		rank: 'G Rank',
 		render: IconRenderMonsterTigrex,
+		fullRender: FullMonsterRenderTigrex,
+		fullRender: FullMonsterRenderTigrex,
 		component: ComponentMonsterTigrex,
 		unusedComponent: true,
 		size: 'Large',
@@ -2250,6 +2524,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAkantor,
 		rank: 'G Rank',
 		render: IconRenderMonsterAkantor,
+		fullRender: FullMonsterRenderAkantor,
 		component: ComponentMonsterAkantor,
 		unusedComponent: false,
 		size: 'Large',
@@ -2260,6 +2535,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBrightHypnoc,
 		rank: 'G Rank',
 		render: IconRenderMonsterBrightHypnoc,
+		fullRender: FullMonsterRenderBrightHypnoc,
 		component: ComponentMonsterBrightHypnoc,
 		unusedComponent: true,
 		size: 'Large',
@@ -2270,6 +2546,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRedLavasioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterRedLavasioth,
+		fullRender: FullMonsterRenderRedLavasioth,
 		component: ComponentMonsterRedLavasioth,
 		unusedComponent: false,
 		size: 'Large',
@@ -2280,6 +2557,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterEspinas,
 		rank: 'G Rank',
 		render: IconRenderMonsterEspinas,
+		fullRender: FullMonsterRenderEspinas,
 		component: ComponentMonsterEspinas,
 		unusedComponent: true,
 		size: 'Large',
@@ -2290,6 +2568,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterOrangeEspinas,
 		rank: 'G Rank',
 		render: IconRenderMonsterOrangeEspinas,
+		fullRender: FullMonsterRenderOrangeEspinas,
 		component: ComponentMonsterOrangeEspinas,
 		unusedComponent: true,
 		size: 'Large',
@@ -2300,6 +2579,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterSilverHypnoc,
 		rank: 'G Rank',
 		render: IconRenderMonsterSilverHypnoc,
+		fullRender: FullMonsterRenderSilverHypnoc,
 		component: ComponentMonsterSilverHypnoc,
 		unusedComponent: true,
 		size: 'Large',
@@ -2310,6 +2590,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAkuraVashimu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAkuraVashimu,
+		fullRender: FullMonsterRenderAkuraVashimu,
 		component: ComponentMonsterAkuraVashimu,
 		unusedComponent: false,
 		size: 'Large',
@@ -2320,6 +2601,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAkuraJebia,
 		rank: 'G Rank',
 		render: IconRenderMonsterAkuraJebia,
+		fullRender: FullMonsterRenderAkuraJebia,
 		component: ComponentMonsterAkuraJebia,
 		unusedComponent: false,
 		size: 'Large',
@@ -2330,6 +2612,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBerukyurosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterBerukyurosu,
+		fullRender: FullMonsterRenderBerukyurosu,
 		component: ComponentMonsterBerukyurosu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2340,6 +2623,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterCactus,
 		rank: 'G Rank',
 		render: IconRenderMonsterCactus,
+		fullRender: FullMonsterRenderCactus,
 		component: ComponentMonsterRandom,
 		unusedComponent: true,
 		size: 'Small',
@@ -2350,6 +2634,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterPariapuria,
 		rank: 'G Rank',
 		render: IconRenderMonsterPariapuria,
+		fullRender: FullMonsterRenderPariapuria,
 		component: ComponentMonsterPariapuria,
 		unusedComponent: false,
 		size: 'Large',
@@ -2360,6 +2645,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterWhiteEspinas,
 		rank: 'G Rank',
 		render: IconRenderMonsterWhiteEspinas,
+		fullRender: FullMonsterRenderWhiteEspinas,
 		component: ComponentMonsterWhiteEspinas,
 		unusedComponent: true,
 		size: 'Large',
@@ -2370,6 +2656,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterKamuOrugaron,
 		rank: 'G Rank',
 		render: IconRenderMonsterKamuOrugaron,
+		fullRender: FullMonsterRenderKamuOrugaron,
 		component: ComponentMonsterKamuOrugaron,
 		unusedComponent: true,
 		size: 'Large',
@@ -2380,6 +2667,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterNonoOrugaron,
 		rank: 'G Rank',
 		render: IconRenderMonsterNonoOrugaron,
+		fullRender: FullMonsterRenderNonoOrugaron,
 		component: ComponentMonsterNonoOrugaron,
 		unusedComponent: true,
 		size: 'Large',
@@ -2390,6 +2678,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRaviente,
 		rank: 'G Rank',
 		render: IconRenderMonsterRaviente,
+		fullRender: FullMonsterRenderRaviente,
 		component: ComponentMonsterRaviente,
 		unusedComponent: false,
 		size: 'Large',
@@ -2400,6 +2689,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterDyuragaua,
 		rank: 'G Rank',
 		render: IconRenderMonsterDyuragaua,
+		fullRender: FullMonsterRenderDyuragaua,
 		component: ComponentMonsterDyuragaua,
 		unusedComponent: true,
 		size: 'Large',
@@ -2410,6 +2700,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterDoragyurosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterDoragyurosu,
+		fullRender: FullMonsterRenderDoragyurosu,
 		component: ComponentMonsterDoragyurosu,
 		unusedComponent: false,
 		size: 'Large',
@@ -2420,6 +2711,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGurenzeburu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGurenzeburu,
+		fullRender: FullMonsterRenderGurenzeburu,
 		component: ComponentMonsterGurenzeburu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2430,6 +2722,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBurukku,
 		rank: 'G Rank',
 		render: IconRenderMonsterBurukku,
+		fullRender: FullMonsterRenderBurukku,
 		component: ComponentMonsterBurukku,
 		unusedComponent: true,
 	},
@@ -2439,6 +2732,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterErupe,
 		rank: 'G Rank',
 		render: IconRenderMonsterErupe,
+		fullRender: FullMonsterRenderErupe,
 		component: ComponentMonsterErupe,
 		unusedComponent: true,
 		size: 'Small',
@@ -2449,6 +2743,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRukodiora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRukodiora,
+		fullRender: FullMonsterRenderRukodiora,
 		component: ComponentMonsterRukodiora,
 		unusedComponent: false,
 		size: 'Large',
@@ -2459,6 +2754,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterUNKNOWN,
 		rank: 'G Rank',
 		render: IconRenderMonsterUNKNOWN,
+		fullRender: FullMonsterRenderUNKNOWN,
 		component: ComponentMonsterUNKNOWN,
 		unusedComponent: true,
 		size: 'Large',
@@ -2469,6 +2765,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterUNKNOWN,
 		rank: 'G Rank',
 		render: IconRenderMonsterUNKNOWN,
+		fullRender: FullMonsterRenderUNKNOWN,
 		component: ComponentMonsterUNKNOWN,
 		unusedComponent: true,
 		size: 'Large',
@@ -2479,6 +2776,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGogomoa,
 		rank: 'G Rank',
 		render: IconRenderMonsterGogomoa,
+		fullRender: FullMonsterRenderGogomoa,
 		component: ComponentMonsterGogomoa,
 		unusedComponent: true,
 		size: 'Large',
@@ -2489,6 +2787,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterTaikunZamuza,
 		rank: 'G Rank',
 		render: IconRenderMonsterTaikunZamuza,
+		fullRender: FullMonsterRenderTaikunZamuza,
 		component: ComponentMonsterTaikunZamuza,
 		unusedComponent: true,
 		size: 'Large',
@@ -2499,6 +2798,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAbiorugu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAbiorugu,
+		fullRender: FullMonsterRenderAbiorugu,
 		component: ComponentMonsterAbiorugu,
 		unusedComponent: false,
 		size: 'Large',
@@ -2509,6 +2809,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterKuarusepusu,
 		rank: 'G Rank',
 		render: IconRenderMonsterKuarusepusu,
+		fullRender: FullMonsterRenderKuarusepusu,
 		component: ComponentMonsterKuarusepusu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2519,6 +2820,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterOdibatorasu,
 		rank: 'G Rank',
 		render: IconRenderMonsterOdibatorasu,
+		fullRender: FullMonsterRenderOdibatorasu,
 		component: ComponentMonsterOdibatorasu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2529,6 +2831,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterDisufiroa,
 		rank: 'G Rank',
 		render: IconRenderMonsterDisufiroa,
+		fullRender: FullMonsterRenderDisufiroa,
 		component: ComponentMonsterDisufiroa,
 		unusedComponent: true,
 		size: 'Large',
@@ -2539,6 +2842,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRebidiora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRebidiora,
+		fullRender: FullMonsterRenderRebidiora,
 		component: ComponentMonsterRebidiora,
 		unusedComponent: true,
 	},
@@ -2548,6 +2852,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAnorupatisu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAnorupatisu,
+		fullRender: FullMonsterRenderAnorupatisu,
 		component: ComponentMonsterAnorupatisu,
 		unusedComponent: false,
 		size: 'Large',
@@ -2558,6 +2863,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterHyujikiki,
 		rank: 'G Rank',
 		render: IconRenderMonsterHyujikiki,
+		fullRender: FullMonsterRenderHyujikiki,
 		component: ComponentMonsterHyujikiki,
 		unusedComponent: true,
 		size: 'Large',
@@ -2568,6 +2874,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterMidogaron,
 		rank: 'G Rank',
 		render: IconRenderMonsterMidogaron,
+		fullRender: FullMonsterRenderMidogaron,
 		component: ComponentMonsterMidogaron,
 		unusedComponent: true,
 		size: 'Large',
@@ -2578,6 +2885,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGiaorugu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGiaorugu,
+		fullRender: FullMonsterRenderGiaorugu,
 		component: ComponentMonsterGiaorugu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2588,6 +2896,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterMiRu,
 		rank: 'G Rank',
 		render: IconRenderMonsterMiRu,
+		fullRender: FullMonsterRenderMiRu,
 		component: ComponentMonsterMiRu,
 		unusedComponent: false,
 		size: 'Large',
@@ -2598,6 +2907,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterFarunokku,
 		rank: 'G Rank',
 		render: IconRenderMonsterFarunokku,
+		fullRender: FullMonsterRenderFarunokku,
 		component: ComponentMonsterFarunokku,
 		unusedComponent: true,
 		size: 'Large',
@@ -2608,6 +2918,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterPokaradon,
 		rank: 'G Rank',
 		render: IconRenderMonsterPokaradon,
+		fullRender: FullMonsterRenderPokaradon,
 		component: ComponentMonsterPokaradon,
 		unusedComponent: true,
 		size: 'Large',
@@ -2618,6 +2929,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterShantien,
 		rank: 'G Rank',
 		render: IconRenderMonsterShantien,
+		fullRender: FullMonsterRenderShantien,
 		component: ComponentMonsterShantien,
 		unusedComponent: true,
 		size: 'Large',
@@ -2628,6 +2940,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterPokara,
 		rank: 'G Rank',
 		render: IconRenderMonsterPokara,
+		fullRender: FullMonsterRenderPokara,
 		component: ComponentMonsterPokara,
 		unusedComponent: true,
 	},
@@ -2637,6 +2950,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGoruganosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGoruganosu,
+		fullRender: FullMonsterRenderGoruganosu,
 		component: ComponentMonsterGoruganosu,
 		unusedComponent: false,
 		size: 'Large',
@@ -2647,6 +2961,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAruganosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAruganosu,
+		fullRender: FullMonsterRenderAruganosu,
 		component: ComponentMonsterAruganosu,
 		unusedComponent: false,
 		size: 'Large',
@@ -2657,6 +2972,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBaruragaru,
 		rank: 'G Rank',
 		render: IconRenderMonsterBaruragaru,
+		fullRender: FullMonsterRenderBaruragaru,
 		component: ComponentMonsterBaruragaru,
 		unusedComponent: true,
 		size: 'Large',
@@ -2667,6 +2983,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZerureusu,
 		rank: 'G Rank',
 		render: IconRenderMonsterZerureusu,
+		fullRender: FullMonsterRenderZerureusu,
 		component: ComponentMonsterZerureusu,
 		unusedComponent: false,
 		size: 'Large',
@@ -2677,6 +2994,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGougarf,
 		rank: 'G Rank',
 		render: IconRenderMonsterGougarf,
+		fullRender: FullMonsterRenderGougarf,
 		component: ComponentMonsterGougarf,
 		unusedComponent: true,
 		size: 'Large',
@@ -2687,6 +3005,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterUruki,
 		rank: 'G Rank',
 		render: IconRenderMonsterUruki,
+		fullRender: FullMonsterRenderUruki,
 		component: ComponentMonsterUruki,
 		unusedComponent: true,
 		size: 'Small',
@@ -2697,6 +3016,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterForokururu,
 		rank: 'G Rank',
 		render: IconRenderMonsterForokururu,
+		fullRender: FullMonsterRenderForokururu,
 		component: ComponentMonsterForokururu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2707,6 +3027,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterMeraginasu,
 		rank: 'G Rank',
 		render: IconRenderMonsterMeraginasu,
+		fullRender: FullMonsterRenderMeraginasu,
 		component: ComponentMonsterMeraginasu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2717,6 +3038,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterDiorex,
 		rank: 'G Rank',
 		render: IconRenderMonsterDiorex,
+		fullRender: FullMonsterRenderDiorex,
 		component: ComponentMonsterDiorex,
 		unusedComponent: true,
 		size: 'Large',
@@ -2727,6 +3049,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGarubaDaora,
 		rank: 'G Rank',
 		render: IconRenderMonsterGarubaDaora,
+		fullRender: FullMonsterRenderGarubaDaora,
 		component: ComponentMonsterGarubaDaora,
 		unusedComponent: true,
 		size: 'Large',
@@ -2737,6 +3060,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterInagami,
 		rank: 'G Rank',
 		render: IconRenderMonsterInagami,
+		fullRender: FullMonsterRenderInagami,
 		component: ComponentMonsterInagami,
 		unusedComponent: true,
 		size: 'Large',
@@ -2747,6 +3071,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterVarusaburosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterVarusaburosu,
+		fullRender: FullMonsterRenderVarusaburosu,
 		component: ComponentMonsterVarusaburosu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2757,6 +3082,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterPoborubarumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterPoborubarumu,
+		fullRender: FullMonsterRenderPoborubarumu,
 		component: ComponentMonsterPoborubarumu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2767,6 +3093,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterDuremudira,
 		rank: 'G Rank',
 		render: IconRenderMonsterDuremudira,
+		fullRender: FullMonsterRenderDuremudira,
 		component: ComponentMonsterDuremudira,
 		unusedComponent: false,
 		size: 'Large',
@@ -2777,6 +3104,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterFelyne,
 		rank: 'G Rank',
 		render: IconRenderMonsterFelyne,
+		fullRender: FullMonsterRenderFelyne,
 		component: ComponentMonsterFelyne,
 		unusedComponent: true,
 		size: 'Small',
@@ -2787,6 +3115,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterCactus,
 		rank: 'G Rank',
 		render: IconRenderMonsterCactus,
+		fullRender: FullMonsterRenderCactus,
 		component: ComponentMonsterCactus,
 		unusedComponent: true,
 		size: 'Small',
@@ -2797,6 +3126,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGureadomosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGureadomosu,
+		fullRender: FullMonsterRenderGureadomosu,
 		component: ComponentMonsterGureadomosu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2807,6 +3137,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterHarudomerugu,
 		rank: 'G Rank',
 		render: IconRenderMonsterHarudomerugu,
+		fullRender: FullMonsterRenderHarudomerugu,
 		component: ComponentMonsterHarudomerugu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2817,6 +3148,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterToridcless,
 		rank: 'G Rank',
 		render: IconRenderMonsterToridcless,
+		fullRender: FullMonsterRenderToridcless,
 		component: ComponentMonsterToridcless,
 		unusedComponent: true,
 		size: 'Large',
@@ -2827,6 +3159,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGasurabazura,
 		rank: 'G Rank',
 		render: IconRenderMonsterGasurabazura,
+		fullRender: FullMonsterRenderGasurabazura,
 		component: ComponentMonsterGasurabazura,
 		unusedComponent: true,
 		size: 'Large',
@@ -2837,6 +3170,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterKusubami,
 		rank: 'G Rank',
 		render: IconRenderMonsterKusubami,
+		fullRender: FullMonsterRenderKusubami,
 		component: ComponentMonsterKusubami,
 		unusedComponent: true,
 		size: 'Small',
@@ -2847,6 +3181,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterYamaKurai,
 		rank: 'G Rank',
 		render: IconRenderMonsterYamaKurai,
+		fullRender: FullMonsterRenderYamaKurai,
 		component: ComponentMonsterYamaKurai,
 		unusedComponent: false,
 		size: 'Large',
@@ -2857,6 +3192,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZinogre,
 		rank: 'G Rank',
 		render: IconRenderMonsterZinogre,
+		fullRender: FullMonsterRenderZinogre,
 		component: ComponentMonsterZinogre,
 		unusedComponent: false,
 		size: 'Large',
@@ -2867,6 +3203,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterDeviljho,
 		rank: 'G Rank',
 		render: IconRenderMonsterDeviljho,
+		fullRender: FullMonsterRenderDeviljho,
 		component: ComponentMonsterDeviljho,
 		unusedComponent: false,
 		size: 'Large',
@@ -2877,6 +3214,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBrachydios,
 		rank: 'G Rank',
 		render: IconRenderMonsterBrachydios,
+		fullRender: FullMonsterRenderBrachydios,
 		component: ComponentMonsterBrachydios,
 		unusedComponent: true,
 		size: 'Large',
@@ -2887,6 +3225,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBerserkRaviente,
 		rank: 'G Rank',
 		render: IconRenderMonsterBerserkRaviente,
+		fullRender: FullMonsterRenderBerserkRaviente,
 		component: ComponentMonsterBerserkRaviente,
 		unusedComponent: false,
 		size: 'Large',
@@ -2897,6 +3236,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterToaTesukatora,
 		rank: 'G Rank',
 		render: IconRenderMonsterToaTesukatora,
+		fullRender: FullMonsterRenderToaTesukatora,
 		component: ComponentMonsterToaTesukatora,
 		unusedComponent: true,
 		size: 'Large',
@@ -2907,6 +3247,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBarioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterBarioth,
+		fullRender: FullMonsterRenderBarioth,
 		component: ComponentMonsterBarioth,
 		unusedComponent: true,
 		size: 'Large',
@@ -2917,6 +3258,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterUragaan,
 		rank: 'G Rank',
 		render: IconRenderMonsterUragaan,
+		fullRender: FullMonsterRenderUragaan,
 		component: ComponentMonsterUragaan,
 		unusedComponent: true,
 		size: 'Large',
@@ -2927,6 +3269,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterStygianZinogre,
 		rank: 'G Rank',
 		render: IconRenderMonsterStygianZinogre,
+		fullRender: FullMonsterRenderStygianZinogre,
 		component: ComponentMonsterStygianZinogre,
 		unusedComponent: false,
 		size: 'Large',
@@ -2937,6 +3280,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGuanzorumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGuanzorumu,
+		fullRender: FullMonsterRenderGuanzorumu,
 		component: ComponentMonsterGuanzorumu,
 		unusedComponent: false,
 		size: 'Large',
@@ -2947,6 +3291,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterStarvingDeviljho,
 		rank: 'Musou 1',
 		render: IconRenderMonsterStarvingDeviljho,
+		fullRender: FullMonsterRenderStarvingDeviljho,
 		component: ComponentMonsterStarvingDeviljho,
 		unusedComponent: false,
 		size: 'Large',
@@ -2957,6 +3302,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterVoljang,
 		rank: 'G Rank',
 		render: IconRenderMonsterVoljang,
+		fullRender: FullMonsterRenderVoljang,
 		component: ComponentMonsterVoljang,
 		unusedComponent: true,
 		size: 'Large',
@@ -2967,6 +3313,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterNargacuga,
 		rank: 'G Rank',
 		render: IconRenderMonsterNargacuga,
+		fullRender: FullMonsterRenderNargacuga,
 		component: ComponentMonsterNargacuga,
 		unusedComponent: false,
 		size: 'Large',
@@ -2977,6 +3324,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterKeoaruboru,
 		rank: 'G Rank',
 		render: IconRenderMonsterKeoaruboru,
+		fullRender: FullMonsterRenderKeoaruboru,
 		component: ComponentMonsterKeoaruboru,
 		unusedComponent: true,
 		size: 'Large',
@@ -2987,6 +3335,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenaserisu,
 		rank: 'G Rank',
 		render: IconRenderMonsterZenaserisu,
+		fullRender: FullMonsterRenderZenaserisu,
 		component: ComponentMonsterZenaserisu,
 		unusedComponent: true,
 		size: 'Large',
@@ -2997,6 +3346,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGoreMagala,
 		rank: 'G Rank',
 		render: IconRenderMonsterGoreMagala,
+		fullRender: FullMonsterRenderGoreMagala,
 		component: ComponentMonsterGoreMagala,
 		unusedComponent: true,
 		size: 'Large',
@@ -3007,6 +3357,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBlinkingNargacuga,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlinkingNargacuga,
+		fullRender: FullMonsterRenderBlinkingNargacuga,
 		component: ComponentMonsterBlinkingNargacuga,
 		unusedComponent: false,
 		size: 'Large',
@@ -3017,6 +3368,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterShagaruMagala,
 		rank: 'G Rank',
 		render: IconRenderMonsterShagaruMagala,
+		fullRender: FullMonsterRenderShagaruMagala,
 		component: ComponentMonsterShagaruMagala,
 		unusedComponent: true,
 		size: 'Large',
@@ -3027,6 +3379,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterAmatsu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAmatsu,
+		fullRender: FullMonsterRenderAmatsu,
 		component: ComponentMonsterAmatsu,
 		unusedComponent: false,
 		size: 'Large',
@@ -3037,6 +3390,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterElzelion,
 		rank: 'G Rank',
 		render: IconRenderMonsterElzelion,
+		fullRender: FullMonsterRenderElzelion,
 		component: ComponentMonsterElzelion,
 		unusedComponent: false,
 		size: 'Large',
@@ -3047,6 +3401,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterArrogantDuremudira,
 		rank: 'G Rank',
 		render: IconRenderMonsterArrogantDuremudira,
+		fullRender: FullMonsterRenderArrogantDuremudira,
 		component: ComponentMonsterArrogantDuremudira,
 		unusedComponent: false,
 		size: 'Large',
@@ -3057,6 +3412,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterSeregios,
 		rank: 'G Rank',
 		render: IconRenderMonsterSeregios,
+		fullRender: FullMonsterRenderSeregios,
 		component: ComponentMonsterSeregios,
 		unusedComponent: true,
 		size: 'Large',
@@ -3067,6 +3423,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBogabadorumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterBogabadorumu,
+		fullRender: FullMonsterRenderBogabadorumu,
 		component: ComponentMonsterBogabadorumu,
 		unusedComponent: false,
 		size: 'Large',
@@ -3077,6 +3434,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBlitzkriegBogabadorumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterBlitzkriegBogabadorumu,
+		fullRender: FullMonsterRenderBlitzkriegBogabadorumu,
 		component: ComponentMonsterBlitzkriegBogabadorumu,
 		unusedComponent: false,
 		size: 'Large',
@@ -3087,6 +3445,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterSparklingZerureusu,
 		rank: 'G Rank',
 		render: IconRenderMonsterSparklingZerureusu,
+		fullRender: FullMonsterRenderSparklingZerureusu,
 		component: ComponentMonsterSparklingZerureusu,
 		unusedComponent: false,
 		size: 'Large',
@@ -3097,6 +3456,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterPSO2Rappy,
 		rank: 'G Rank',
 		render: IconRenderMonsterPSO2Rappy,
+		fullRender: FullMonsterRenderPSO2Rappy,
 		component: ComponentMonsterPSO2Rappy,
 		unusedComponent: true,
 		size: 'Small',
@@ -3107,6 +3467,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterKingShakalaka,
 		rank: 'G Rank',
 		render: IconRenderMonsterKingShakalaka,
+		fullRender: FullMonsterRenderKingShakalaka,
 		component: ComponentMonsterKingShakalaka,
 		unusedComponent: true,
 		size: 'Large',
@@ -3117,6 +3478,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithAkuraVashimu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithAkuraVashimu,
+		fullRender: FullMonsterRenderZenithAkuraVashimu,
 		component: ComponentMonsterZenithAkuraVashimu,
 		unusedComponent: true,
 		size: 'Large',
@@ -3127,6 +3489,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithAnorupatisu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithAnorupatisu,
+		fullRender: FullMonsterRenderZenithAnorupatisu,
 		component: ComponentMonsterZenithAnorupatisu,
 		unusedComponent: true,
 		size: 'Large',
@@ -3137,6 +3500,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithBaruragaru,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBaruragaru,
+		fullRender: FullMonsterRenderZenithBaruragaru,
 		component: ComponentMonsterZenithBaruragaru,
 		unusedComponent: true,
 		size: 'Large',
@@ -3147,6 +3511,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithBlangonga,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBlangonga,
+		fullRender: FullMonsterRenderZenithBlangonga,
 		component: ComponentMonsterZenithBlangonga,
 		unusedComponent: true,
 		size: 'Large',
@@ -3157,6 +3522,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithBogabadorumu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBogabadorumu,
+		fullRender: FullMonsterRenderBogabadorumu,
 		component: ComponentMonsterBogabadorumu,
 		unusedComponent: true,
 		size: 'Large',
@@ -3167,6 +3533,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithDaimyoHermitaur,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithDaimyoHermitaur,
+		fullRender: FullMonsterRenderZenithDaimyoHermitaur,
 		component: ComponentMonsterZenithDaimyoHermitaur,
 		unusedComponent: true,
 		size: 'Large',
@@ -3177,6 +3544,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithDoragyurosu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithDoragyurosu,
+		fullRender: FullMonsterRenderZenithDoragyurosu,
 		component: ComponentMonsterZenithDoragyurosu,
 		unusedComponent: true,
 		size: 'Large',
@@ -3187,6 +3555,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithEspinas,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithEspinas,
+		fullRender: FullMonsterRenderZenithEspinas,
 		component: ComponentMonsterZenithEspinas,
 		unusedComponent: true,
 		size: 'Large',
@@ -3197,6 +3566,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithGasurabazura,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGasurabazura,
+		fullRender: FullMonsterRenderZenithGasurabazura,
 		component: ComponentMonsterZenithGasurabazura,
 		unusedComponent: true,
 		size: 'Large',
@@ -3207,6 +3577,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithGiaorugu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGiaorugu,
+		fullRender: FullMonsterRenderZenithGiaorugu,
 		component: ComponentMonsterZenithGiaorugu,
 		unusedComponent: true,
 		size: 'Large',
@@ -3217,6 +3588,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithGravios,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGravios,
+		fullRender: FullMonsterRenderZenithGravios,
 		component: ComponentMonsterZenithGravios,
 		unusedComponent: true,
 		size: 'Large',
@@ -3227,6 +3599,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithHarudomerugu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHarudomerugu,
+		fullRender: FullMonsterRenderZenithHarudomerugu,
 		component: ComponentMonsterZenithHarudomerugu,
 		unusedComponent: true,
 		size: 'Large',
@@ -3237,6 +3610,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithHypnoc,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHypnoc,
+		fullRender: FullMonsterRenderZenithHypnoc,
 		component: ComponentMonsterZenithHypnoc,
 		unusedComponent: true,
 		size: 'Large',
@@ -3247,6 +3621,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithHyujikiki,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHyujikiki,
+		fullRender: FullMonsterRenderZenithHyujikiki,
 		component: ComponentMonsterZenithHyujikiki,
 		unusedComponent: true,
 		size: 'Large',
@@ -3257,6 +3632,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithInagami,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithInagami,
+		fullRender: FullMonsterRenderZenithInagami,
 		component: ComponentMonsterZenithInagami,
 		unusedComponent: true,
 		size: 'Large',
@@ -3267,6 +3643,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithKhezu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithKhezu,
+		fullRender: FullMonsterRenderZenithKhezu,
 		component: ComponentMonsterZenithKhezu,
 		unusedComponent: true,
 		size: 'Large',
@@ -3277,6 +3654,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithMidogaron,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithMidogaron,
+		fullRender: FullMonsterRenderZenithMidogaron,
 		component: ComponentMonsterZenithMidogaron,
 		unusedComponent: true,
 		size: 'Large',
@@ -3287,6 +3665,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithPlesioth,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithPlesioth,
+		fullRender: FullMonsterRenderZenithPlesioth,
 		component: ComponentMonsterZenithPlesioth,
 		unusedComponent: true,
 		size: 'Large',
@@ -3297,6 +3676,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithRathalos,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithRathalos,
+		fullRender: FullMonsterRenderZenithRathalos,
 		component: ComponentMonsterZenithRathalos,
 		unusedComponent: true,
 		size: 'Large',
@@ -3307,6 +3687,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithRukodiora,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithRukodiora,
+		fullRender: FullMonsterRenderZenithRukodiora,
 		component: ComponentMonsterZenithRukodiora,
 		unusedComponent: false,
 		size: 'Large',
@@ -3317,6 +3698,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithTaikunZamuza,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithTaikunZamuza,
+		fullRender: FullMonsterRenderZenithTaikunZamuza,
 		component: ComponentMonsterZenithTaikunZamuza,
 		unusedComponent: true,
 		size: 'Large',
@@ -3327,6 +3709,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithTigrex,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithTigrex,
+		fullRender: FullMonsterRenderZenithTigrex,
 		component: ComponentMonsterZenithTigrex,
 		unusedComponent: true,
 		size: 'Large',
@@ -3337,6 +3720,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithToridcless,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithToridcless,
+		fullRender: FullMonsterRenderZenithToridcless,
 		component: ComponentMonsterZenithToridcless,
 		unusedComponent: true,
 		size: 'Large',
@@ -3347,6 +3731,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterConquestFatalis,
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestFatalis,
+		fullRender: FullMonsterRenderConquestFatalis,
 		component: ComponentMonsterConquestFatalis,
 		unusedComponent: false,
 		size: 'Large',
@@ -3357,6 +3742,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterConquestShantien,
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestShantien,
+		fullRender: FullMonsterRenderConquestShantien,
 		component: ComponentMonsterConquestShantien,
 		unusedComponent: true,
 		size: 'Large',
@@ -3367,6 +3753,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterConquestCrimsonFatalis,
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestCrimsonFatalis,
+		fullRender: FullMonsterRenderConquestCrimsonFatalis,
 		component: ComponentMonsterConquestCrimsonFatalis,
 		unusedComponent: false,
 		size: 'Large',
@@ -3377,6 +3764,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterShitenDisufiroa,
 		rank: 'Upper Shiten',
 		render: IconRenderMonsterShitenDisufiroa,
+		fullRender: FullMonsterRenderShitenDisufiroa,
 		component: ComponentMonsterShitenDisufiroa,
 		unusedComponent: true,
 		size: 'Large',
@@ -3387,6 +3775,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterShitenUnknown,
 		rank: 'Upper Shiten',
 		render: IconRenderMonsterShitenUnknown,
+		fullRender: FullMonsterRenderShitenUnknown,
 		component: ComponentMonsterShitenUnknown,
 		unusedComponent: true,
 		size: 'Large',
@@ -3397,6 +3786,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterBurningFreezingElzelion,
 		rank: 'Musou 1',
 		render: IconRenderMonsterBurningFreezingElzelion,
+		fullRender: FullMonsterRenderBurningFreezingElzelion,
 		component: ComponentMonsterBurningFreezingElzelion,
 		unusedComponent: false,
 		size: 'Large',
@@ -3407,6 +3797,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterHowlingZinogre,
 		rank: 'Musou 1',
 		render: IconRenderMonsterHowlingZinogre,
+		fullRender: FullMonsterRenderHowlingZinogre,
 		component: ComponentMonsterHowlingZinogre,
 		unusedComponent: false,
 		size: 'Large',
@@ -3417,6 +3808,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterSupremacyPariapuria,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyPariapuria,
+		fullRender: FullMonsterRenderSupremacyPariapuria,
 		component: ComponentMonsterSupremacyPariapuria,
 		unusedComponent: false,
 		size: 'Large',
@@ -3427,6 +3819,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterSupremacyDoragyurosu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyDoragyurosu,
+		fullRender: FullMonsterRenderSupremacyDoragyurosu,
 		component: ComponentMonsterSupremacyDoragyurosu,
 		unusedComponent: false,
 		size: 'Large',
@@ -3437,6 +3830,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterSupremacyTeostra,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyTeostra,
+		fullRender: FullMonsterRenderSupremacyTeostra,
 		component: ComponentMonsterSupremacyTeostra,
 		unusedComponent: false,
 		size: 'Large',
@@ -3447,6 +3841,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterSupremacyOdibatorasu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyOdibatorasu,
+		fullRender: FullMonsterRenderSupremacyOdibatorasu,
 		component: ComponentMonsterSupremacyOdibatorasu,
 		unusedComponent: true,
 		size: 'Large',
@@ -3457,6 +3852,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterGoldenDeviljho,
 		rank: 'Musou 2',
 		render: IconRenderMonsterGoldenDeviljho,
+		fullRender: FullMonsterRenderGoldenDeviljho,
 		component: ComponentMonsterGoldenDeviljho,
 		unusedComponent: false,
 		size: 'Large',
@@ -3467,6 +3863,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterFuriousRajang,
 		rank: 'Musou 1',
 		render: IconRenderMonsterFuriousRajang,
+		fullRender: FullMonsterRenderFuriousRajang,
 		component: ComponentMonsterFuriousRajang,
 		unusedComponent: true,
 		size: 'Large',
@@ -3477,6 +3874,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterRulingGuanzorumu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterRulingGuanzorumu,
+		fullRender: FullMonsterRenderRulingGuanzorumu,
 		component: ComponentMonsterRulingGuanzorumu,
 		unusedComponent: false,
 		size: 'Large',
@@ -3487,6 +3885,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterShiftingMiRu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterShiftingMiRu,
+		fullRender: FullMonsterRenderShiftingMiRu,
 		component: ComponentMonsterShiftingMiRu,
 		unusedComponent: false,
 		size: 'Large',
@@ -3497,6 +3896,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterTwinheadRajang,
 		rank: 'Twinhead 1',
 		render: IconRenderMonsterTwinheadRajang,
+		fullRender: FullMonsterRenderTwinheadRajang,
 		component: ComponentMonsterTwinheadRajang,
 		unusedComponent: true,
 		size: 'Large',
@@ -3507,6 +3907,7 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterWhiteFatalis,
 		rank: 'G Rank',
 		render: IconRenderMonsterWhiteFatalis,
+		fullRender: FullMonsterRenderWhiteFatalis,
 		component: ComponentMonsterRoadWhiteFatalis,
 		unusedComponent: false,
 		size: 'Large',
