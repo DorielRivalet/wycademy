@@ -60,7 +60,7 @@
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
 		FrontierHuntingHornWeaponNote,
-		FrontierIconType,
+		FrontierImageType,
 		FrontierItemColor,
 		FrontierItemDecoration,
 		FrontierItemRankType,
@@ -488,8 +488,8 @@
 	function downloadIconImage() {
 		if (!browser) return;
 		const isSVG =
-			((selectedIconType === 'Monster' || selectedIconType === 'Weapon') &&
-				selectedIconFormat === 'SVG') ||
+			((selectedIconType === 'Monster Icon' || selectedIconType === 'Weapon') &&
+				selectedIconFormat === 'Vector') ||
 			selectedIconType === 'Element' ||
 			selectedIconType === 'Ailment' ||
 			selectedIconType === 'Status' ||
@@ -864,7 +864,7 @@
 	}
 
 	function getThumbnailGeneratorImagesFromType(
-		type: FrontierIconType | 'Habitat',
+		type: FrontierImageType | 'Habitat',
 	) {
 		let list:
 			| FrontierWeapon[]
@@ -885,7 +885,8 @@
 			case 'Item':
 				list = ItemIcons;
 				break;
-			case 'Monster':
+			case 'Monster Icon':
+			case 'Monster Render':
 				list = uniqueMonsters;
 				break;
 			case 'Element':
@@ -910,7 +911,7 @@
 		let result: DropdownItem[] = [];
 		list.forEach((element) => {
 			if (
-				(type === 'Monster' || type === 'Element') &&
+				(type === 'Monster Icon' || type === 'Element') &&
 				'displayName' in element
 			) {
 				// TypeScript now knows that element is of type FrontierMonsterInfo
@@ -956,7 +957,8 @@
 			case 'Item':
 				list = ItemIcons;
 				break;
-			case 'Monster':
+			case 'Monster Icon':
+			case 'Monster Render':
 				list = uniqueMonsters;
 				break;
 			case 'Element':
@@ -981,7 +983,9 @@
 		let result: DropdownItem[] = [];
 		list.forEach((element) => {
 			if (
-				(type === 'Monster' || type === 'Element') &&
+				(type === 'Monster Icon' ||
+					type === 'Element' ||
+					type === 'Monster Render') &&
 				'displayName' in element
 			) {
 				// TypeScript now knows that element is of type FrontierMonsterInfo
@@ -1008,10 +1012,10 @@
 	}
 
 	function getIconBlobFromIconMetaData(
-		selectedIconType: FrontierIconType | 'Habitat',
+		selectedIconType: FrontierImageType,
 		selectionID: string,
 		size: IconSize,
-		format: 'SVG' | 'PNG',
+		format: 'Vector' | 'Raster',
 		color: string,
 	) {
 		// TODO return html in either the form of img if selecting PNG or
@@ -1022,11 +1026,18 @@
 					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
 					image: WeaponTypes.find((e) => e.name === selectionID)?.smallIcon,
 				};
-			case 'Monster':
+			case 'Monster Icon':
 				return {
 					component: MonsterIcons.find((e) => e.displayName === selectionID)
 						?.component,
 					image: MonsterIcons.find((e) => e.displayName === selectionID)?.icon,
+				};
+			case 'Monster Render':
+				return {
+					full: MonsterIcons.find((e) => e.displayName === selectionID)
+						?.fullRender,
+					small: MonsterIcons.find((e) => e.displayName === selectionID)
+						?.render,
 				};
 			case 'Armor':
 				return {
@@ -1199,9 +1210,10 @@
 		];
 	}
 
-	let selectedIconFormat: 'SVG' | 'PNG' = 'SVG';
+	let selectedIconFormat: 'Vector' | 'Raster' = 'Vector';
+	let selectedIconMonsterRenderSize: 'Small' | 'Full' = 'Full';
 	let selectedIconSize: IconSize = '256px';
-	let selectedIconType: FrontierIconType | 'Habitat' = 'Monster';
+	let selectedIconType: FrontierImageType = 'Monster Icon';
 	const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
 	let uniqueMonsters = getUniqueMonsters().sort(
 		(a, b) =>
@@ -1218,7 +1230,7 @@
 	let thumbnailTexts: HTMLParagraphElement[] = [];
 
 	let thumbnailGeneratorImageFormat: 'SVG' | 'PNG' = 'SVG';
-	let thumbnailGeneratorImageType: FrontierIconType | 'Habitat' = 'Monster';
+	let thumbnailGeneratorImageType: FrontierImageType = 'Monster Icon';
 	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
 	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
 	let thumbnailGeneratorImageBackground = false;
@@ -3625,6 +3637,10 @@
 		</div>
 	</section>
 	<section>
+		<SectionHeading level={2} title="Tower Weapon" />
+		<p class="spaced-paragraph"></p>
+	</section>
+	<section>
 		<SectionHeading level={2} title="Icons" />
 		<p class="spaced-paragraph">
 			You can find the image for the monster backgrounds in our <OutboundLink
@@ -3648,7 +3664,8 @@
 					{ id: 'Item', text: 'Item' },
 					{ id: 'Location', text: 'Location' },
 					{ id: 'Status', text: 'Status' },
-					{ id: 'Monster', text: 'Monster' },
+					{ id: 'Monster Icon', text: 'Monster Icon' },
+					{ id: 'Monster Render', text: 'Monster Render' },
 					{ id: 'Weapon', text: 'Weapon' },
 				]}
 			/>
@@ -3671,14 +3688,25 @@
 					{ id: '2048px', text: '2048px' },
 				]}
 			/>
-			{#if selectedIconType === 'Monster' || selectedIconType === 'Weapon'}
+			{#if selectedIconType === 'Monster Icon' || selectedIconType === 'Weapon'}
 				<Dropdown
 					type="inline"
 					titleText="Format"
 					bind:selectedId={selectedIconFormat}
 					items={[
-						{ id: 'PNG', text: 'PNG' },
-						{ id: 'SVG', text: 'SVG' },
+						{ id: 'Raster', text: 'Raster' },
+						{ id: 'Vector', text: 'Vector' },
+					]}
+				/>
+			{/if}
+			{#if selectedIconType === 'Monster Render'}
+				<Dropdown
+					type="inline"
+					titleText="Format"
+					bind:selectedId={selectedIconMonsterRenderSize}
+					items={[
+						{ id: 'Small', text: 'Small' },
+						{ id: 'Full', text: 'Full' },
 					]}
 				/>
 			{/if}
@@ -3690,7 +3718,7 @@
 					items={allFrontierColors}
 				/>
 			{/if}
-			{#if selectedIconType === 'Monster'}
+			{#if selectedIconType === 'Monster Icon' && selectedIconFormat === 'Vector'}
 				<Toggle
 					labelText="Background"
 					bind:toggled={selectedIconBackground}
@@ -3698,7 +3726,7 @@
 		</div>
 		<div class="icon-preview">
 			<div id={'icon-dom'} style="width: {selectedIconSize}">
-				{#if ((selectedIconType === 'Monster' || selectedIconType === 'Weapon') && selectedIconFormat === 'SVG') || selectedIconType === 'Element' || selectedIconType === 'Ailment' || selectedIconType === 'Status' || selectedIconType === 'Item' || selectedIconType === 'Armor'}
+				{#if ((selectedIconType === 'Monster Icon' || selectedIconType === 'Weapon') && selectedIconFormat === 'Vector') || selectedIconType === 'Element' || selectedIconType === 'Ailment' || selectedIconType === 'Status' || selectedIconType === 'Item' || selectedIconType === 'Armor'}
 					<svelte:component
 						this={currentIconPreview.component}
 						{...{
@@ -3709,7 +3737,11 @@
 					/>
 				{:else}
 					<img
-						src={currentIconPreview.image}
+						src={selectedIconType === 'Monster Render'
+							? selectedIconMonsterRenderSize === 'Small'
+								? currentIconPreview.small
+								: currentIconPreview.full
+							: currentIconPreview.image}
 						alt={selectedIconIdFromList}
 						width={selectedIconSize}
 					/>
@@ -3977,7 +4009,8 @@
 						{ id: 'Item', text: 'Item' },
 						{ id: 'Location', text: 'Location' },
 						{ id: 'Status', text: 'Status' },
-						{ id: 'Monster', text: 'Monster' },
+						{ id: 'Monster Icon', text: 'Monster Icon' },
+						{ id: 'Monster Render', text: 'Monster Render' },
 						{ id: 'Weapon', text: 'Weapon' },
 					]}
 				/>
@@ -3995,7 +4028,7 @@
 						items={allFrontierColors}
 					/>
 				{/if}
-				{#if thumbnailGeneratorImageType === 'Monster'}
+				{#if thumbnailGeneratorImageType === 'Monster Icon'}
 					<Toggle
 						labelText="Background"
 						bind:toggled={thumbnailGeneratorImageBackground}

@@ -674,6 +674,7 @@ export type FrontierMonsterInfo = {
 	rank: FrontierRankBand;
 	icon: any;
 	render: any;
+	fullRender: any;
 	component: any;
 	unusedComponent: boolean;
 	displayName: string;
@@ -696,12 +697,14 @@ export type IconSize =
 	| '1024px'
 	| '2048px';
 
-export type FrontierIconType =
+export type FrontierImageType =
 	| 'Weapon'
-	| 'Monster'
+	| 'Monster Icon'
 	| 'Armor'
 	| 'Item'
 	| 'Location'
 	| 'Element'
 	| 'Ailment'
-	| 'Status';
+	| 'Status'
+	| 'Habitat'
+	| 'Monster Render';
