@@ -4,6 +4,7 @@
 		ArmorTypes,
 		ColorCodes,
 		ElementIcons,
+		Games,
 		Habitats,
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
@@ -904,6 +905,9 @@
 			case 'Habitat':
 				list = Habitats;
 				break;
+			case 'Game':
+				list = Games;
+				break;
 		}
 
 		list = list.filter((e) => e.icon !== '');
@@ -975,6 +979,9 @@
 				break;
 			case 'Habitat':
 				list = Habitats;
+				break;
+			case 'Game':
+				list = Games;
 				break;
 		}
 
@@ -1074,6 +1081,11 @@
 				return {
 					component: Habitats.find((e) => e.name === selectionID)?.image,
 					image: Habitats.find((e) => e.name === selectionID)?.image,
+				};
+			case 'Game':
+				return {
+					component: Games.find((e) => e.name === selectionID)?.icon,
+					image: Games.find((e) => e.name === selectionID)?.icon,
 				};
 		}
 	}
@@ -3660,6 +3672,7 @@
 					{ id: 'Ailment', text: 'Ailment' },
 					{ id: 'Armor', text: 'Armor' },
 					{ id: 'Element', text: 'Element' },
+					{ id: 'Game', text: 'Game' },
 					{ id: 'Habitat', text: 'Habitat' },
 					{ id: 'Item', text: 'Item' },
 					{ id: 'Location', text: 'Location' },
@@ -3702,7 +3715,7 @@
 			{#if selectedIconType === 'Monster Render'}
 				<Dropdown
 					type="inline"
-					titleText="Format"
+					titleText="Render Size"
 					bind:selectedId={selectedIconMonsterRenderSize}
 					items={[
 						{ id: 'Small', text: 'Small' },
@@ -4005,6 +4018,7 @@
 						{ id: 'Ailment', text: 'Ailment' },
 						{ id: 'Armor', text: 'Armor' },
 						{ id: 'Element', text: 'Element' },
+						{ id: 'Game', text: 'Game' },
 						{ id: 'Habitat', text: 'Habitat' },
 						{ id: 'Item', text: 'Item' },
 						{ id: 'Location', text: 'Location' },

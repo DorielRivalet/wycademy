@@ -1093,6 +1093,13 @@ import FullMonsterRenderShiftingMiRu from '$lib/client/images/monster/render/ful
 import FullMonsterRenderTwinheadRajang from '$lib/client/images/monster/render/full/hc-rajang.webp';
 import FullMonsterRenderRoadWhiteFatalis from '$lib/client/images/monster/render/full/white-fatalis.webp';
 
+import GameLogoMonsterHunterFrontier from '$lib/client/images/game/mhf.webp';
+import GameLogoMonsterHunterFrontierG from '$lib/client/images/game/mhfg.webp';
+import GameLogoMonsterHunterFrontierGG from '$lib/client/images/game/mhfgg.webp';
+import GameLogoMonsterHunterFrontierZSmall from '$lib/client/images/game/mhfz-small.webp';
+import GameLogoMonsterHunterFrontierZ from '$lib/client/images/game/mhfz.webp';
+import GameLogoMonsterHunterFrontierZZ from '$lib/client/images/game/mhfzz.webp';
+
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
 The biggest argument in favour of this format over TypeScript’s enum is that it keeps your codebase aligned with the state of JavaScript, and when/if enums are added to JavaScript then you can move to the additional syntax.
@@ -1148,6 +1155,33 @@ export const StatusIcons: { name: FrontierStatus; icon: any }[] = [
 	{
 		name: 'Blast',
 		icon: IconStatusBlast,
+	},
+];
+
+export const Games: { name: string; icon: any }[] = [
+	{
+		name: 'Monster Hunter Frontier',
+		icon: GameLogoMonsterHunterFrontier,
+	},
+	{
+		name: 'Monster Hunter Frontier G',
+		icon: GameLogoMonsterHunterFrontierG,
+	},
+	{
+		name: 'Monster Hunter Frontier G Genuine',
+		icon: GameLogoMonsterHunterFrontierGG,
+	},
+	{
+		name: 'Monster Hunter Frontier Z (Small)',
+		icon: GameLogoMonsterHunterFrontierZSmall,
+	},
+	{
+		name: 'Monster Hunter Frontier Z',
+		icon: GameLogoMonsterHunterFrontierZ,
+	},
+	{
+		name: 'Monster Hunter Frontier Z Zenith',
+		icon: GameLogoMonsterHunterFrontierZZ,
 	},
 ];
 
