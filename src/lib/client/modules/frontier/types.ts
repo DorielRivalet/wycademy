@@ -707,4 +707,5 @@ export type FrontierImageType =
 	| 'Ailment'
 	| 'Status'
 	| 'Habitat'
-	| 'Monster Render';
+	| 'Monster Render'
+	| 'Game';
