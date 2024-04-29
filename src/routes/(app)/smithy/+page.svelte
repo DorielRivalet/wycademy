@@ -915,7 +915,9 @@
 		let result: DropdownItem[] = [];
 		list.forEach((element) => {
 			if (
-				(type === 'Monster Icon' || type === 'Element') &&
+				(type === 'Monster Icon' ||
+					type === 'Element' ||
+					type === 'Monster Render') &&
 				'displayName' in element
 			) {
 				// TypeScript now knows that element is of type FrontierMonsterInfo
@@ -1133,8 +1135,8 @@
 				alt: 'Thumbnail Image',
 				top: 0,
 				left: 0,
-				width: 128,
-				height: 128,
+				width: thumbnailGeneratorImageType === 'Habitat' ? 1280 : 128,
+				height: thumbnailGeneratorImageType === 'Habitat' ? 720 : 128,
 				zindex: 1,
 				opacity: 1,
 				dropShadowSize: thumbnailGeneratorImageShadowWidth,
@@ -1144,6 +1146,7 @@
 				borderRadius: thumbnailGeneratorImageBorderRadius,
 				background: thumbnailGeneratorImageBackground,
 				color: thumbnailGeneratorImageColor,
+				monsterRenderSize: thumbnailGeneratorMonsterRenderSize,
 			},
 		];
 	}
@@ -1246,6 +1249,7 @@
 	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
 	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
 	let thumbnailGeneratorImageBackground = false;
+	let thumbnailGeneratorMonsterRenderSize = 'Full';
 	let thumbnailGeneratorBackgroundGradientStartColor =
 		getHexStringFromCatppuccinColor('mantle', $theme);
 	let thumbnailGeneratorBackgroundGradientEndColor =
@@ -4034,12 +4038,23 @@
 					bind:selectedId={thumbnailGeneratorImageIdFromList}
 					items={thumbnailGeneratorImagesFromType}
 				/>
-				{#if selectedIconType === 'Armor' || selectedIconType === 'Item' || selectedIconType === 'Weapon'}
+				{#if thumbnailGeneratorImageType === 'Armor' || thumbnailGeneratorImageType === 'Item' || thumbnailGeneratorImageType === 'Weapon'}
 					<Dropdown
 						type="inline"
 						titleText="Color"
 						bind:selectedId={thumbnailGeneratorImageColor}
 						items={allFrontierColors}
+					/>
+				{/if}
+				{#if thumbnailGeneratorImageType === 'Monster Render'}
+					<Dropdown
+						type="inline"
+						titleText="Render Size"
+						bind:selectedId={thumbnailGeneratorMonsterRenderSize}
+						items={[
+							{ id: 'Small', text: 'Small' },
+							{ id: 'Full', text: 'Full' },
+						]}
 					/>
 				{/if}
 				{#if thumbnailGeneratorImageType === 'Monster Icon'}
@@ -4171,9 +4186,13 @@
 		<div class="thumbnail-container">
 			<div style={thumbnailGeneratorPreviewStyle} id="generated-thumbnail-dom">
 				{#each thumbnailImages as image, i}
-					{#if image.fileType === 'Location' || image.fileType === 'Habitat'}
+					{#if image.fileType === 'Location' || image.fileType === 'Habitat' || image.fileType === 'Monster Render' || image.fileType === 'Game'}
 						<img
-							src={image.src.image}
+							src={image.fileType === 'Monster Render'
+								? image.monsterRenderSize === 'Small'
+									? image.src.small
+									: image.src.full
+								: image.src.image}
 							alt={image.alt}
 							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 						/>
