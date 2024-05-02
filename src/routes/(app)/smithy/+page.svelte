@@ -111,6 +111,7 @@
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
 	import ColorPicker from 'svelte-awesome-color-picker';
+	import ThumbnailGeneratorImage from './ThumbnailGeneratorImage.svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -864,9 +865,7 @@
 		return result;
 	}
 
-	function getThumbnailGeneratorImagesFromType(
-		type: FrontierImageType | 'Habitat',
-	) {
+	function getThumbnailGeneratorImagesFromType(type: FrontierImageType) {
 		let list:
 			| FrontierWeapon[]
 			| FrontierArmor[]
@@ -1123,20 +1122,21 @@
 		thumbnailImages = [
 			...thumbnailImages,
 			{
+				elementType: thumbnailGeneratorSectionOption,
 				fileFormat: thumbnailGeneratorImageFormat,
 				fileType: thumbnailGeneratorImageType,
 				src: getIconBlobFromIconMetaData(
 					thumbnailGeneratorImageType,
 					thumbnailGeneratorImageIdFromList,
-					'128px',
+					'256px',
 					thumbnailGeneratorImageFormat,
 					thumbnailGeneratorImageColor,
 				),
 				alt: 'Thumbnail Image',
 				top: 0,
 				left: 0,
-				width: thumbnailGeneratorImageType === 'Habitat' ? 1280 : 128,
-				height: thumbnailGeneratorImageType === 'Habitat' ? 720 : 128,
+				width: thumbnailGeneratorImageType === 'Habitat' ? 1280 : 256,
+				height: thumbnailGeneratorImageType === 'Habitat' ? 720 : 256,
 				zindex: 1,
 				opacity: 1,
 				dropShadowSize: thumbnailGeneratorImageShadowWidth,
@@ -1147,12 +1147,36 @@
 				background: thumbnailGeneratorImageBackground,
 				color: thumbnailGeneratorImageColor,
 				monsterRenderSize: thumbnailGeneratorMonsterRenderSize,
+				name: `${thumbnailGeneratorImageType} ${thumbnailGeneratorImageIdFromList}`,
 			},
 		];
 	}
 
-	function removeThumbnailImage(index: number) {
-		thumbnailImages.splice(index, 1);
+	function addUploadedImage(files: ReadonlyArray<File>) {
+		if (files.length === 0 || thumbnailUploadedImages.length > 16) {
+			return;
+		}
+		thumbnailUploadedImages = [
+			...thumbnailUploadedImages,
+			{
+				elementType: thumbnailGeneratorSectionOption,
+				fileType: files[files.length - 1].type.toLowerCase(),
+				src: URL.createObjectURL(files[files.length - 1]),
+				alt: 'Thumbnail Image',
+				top: 0,
+				left: 0,
+				width: 256,
+				height: 256,
+				zindex: 1,
+				opacity: 1,
+				dropShadowSize: thumbnailGeneratorUploadedImageShadowWidth,
+				dropShadowColor: thumbnailGeneratorUploadedImageShadowColor,
+				borderWidth: thumbnailGeneratorUploadedImageBorderWidth,
+				borderColor: thumbnailGeneratorUploadedImageBorderColor,
+				borderRadius: thumbnailGeneratorUploadedImageBorderRadius,
+				name: files[files.length - 1].name,
+			},
+		];
 	}
 
 	function addThumbnailText() {
@@ -1162,6 +1186,7 @@
 		thumbnailTexts = [
 			...thumbnailTexts,
 			{
+				elementType: thumbnailGeneratorSectionOption,
 				text: thumbnailGeneratorText,
 				top: 100,
 				left: 100,
@@ -1181,8 +1206,104 @@
 		];
 	}
 
-	function removeThumbnailText(index: number) {
-		thumbnailTexts.splice(index, 1);
+	function handleDelete(
+		section: 'Image' | 'Custom Image' | 'Text',
+		index: number,
+	) {
+		switch (section) {
+			case 'Image':
+				thumbnailImages = thumbnailImages.filter((_, i) => i !== index);
+				break;
+			case 'Custom Image':
+				thumbnailUploadedImages = thumbnailUploadedImages.filter(
+					(_, i) => i !== index,
+				);
+				break;
+			case 'Text':
+				thumbnailTexts = thumbnailTexts.filter((_, i) => i !== index);
+				break;
+		}
+	}
+
+	function handleDuplicate(
+		section: 'Image' | 'Custom Image' | 'Text',
+		index: number,
+	) {
+		switch (section) {
+			case 'Image':
+				thumbnailImages = [
+					...thumbnailImages,
+					{
+						elementType: thumbnailImages[index].elementType,
+						fileFormat: thumbnailImages[index].fileFormat,
+						fileType: thumbnailImages[index].fileType,
+						src: thumbnailImages[index].src,
+						alt: thumbnailImages[index].alt,
+						top: thumbnailImages[index].top,
+						left: thumbnailImages[index].left,
+						width: thumbnailImages[index].width,
+						height: thumbnailImages[index].height,
+						zindex: thumbnailImages[index].zindex,
+						opacity: thumbnailImages[index].opacity,
+						dropShadowSize: thumbnailImages[index].dropShadowSize,
+						dropShadowColor: thumbnailImages[index].dropShadowColor,
+						borderWidth: thumbnailImages[index].borderWidth,
+						borderColor: thumbnailImages[index].borderColor,
+						borderRadius: thumbnailImages[index].borderRadius,
+						background: thumbnailImages[index].background,
+						color: thumbnailImages[index].color,
+						monsterRenderSize: thumbnailImages[index].monsterRenderSize,
+						name: thumbnailImages[index].name,
+					},
+				];
+				break;
+			case 'Custom Image':
+				thumbnailUploadedImages = [
+					...thumbnailUploadedImages,
+					{
+						elementType: thumbnailUploadedImages[index].elementType,
+						fileType: thumbnailUploadedImages[index].fileType,
+						src: thumbnailUploadedImages[index].src,
+						alt: thumbnailUploadedImages[index].alt,
+						top: thumbnailUploadedImages[index].top,
+						left: thumbnailUploadedImages[index].left,
+						width: thumbnailUploadedImages[index].width,
+						height: thumbnailUploadedImages[index].height,
+						zindex: thumbnailUploadedImages[index].zindex,
+						opacity: thumbnailUploadedImages[index].opacity,
+						dropShadowSize: thumbnailUploadedImages[index].dropShadowSize,
+						dropShadowColor: thumbnailUploadedImages[index].dropShadowColor,
+						borderWidth: thumbnailUploadedImages[index].borderWidth,
+						borderColor: thumbnailUploadedImages[index].borderColor,
+						borderRadius: thumbnailUploadedImages[index].borderRadius,
+						name: thumbnailUploadedImages[index].name,
+					},
+				];
+				break;
+			case 'Text':
+				thumbnailTexts = [
+					...thumbnailTexts,
+					{
+						elementType: thumbnailTexts[index].elementType,
+						text: thumbnailTexts[index].text,
+						top: thumbnailTexts[index].top,
+						left: thumbnailTexts[index].left,
+						zindex: thumbnailTexts[index].zindex,
+						opacity: thumbnailTexts[index].opacity,
+						fontSize: thumbnailTexts[index].fontSize,
+						gradientolor: thumbnailTexts[index].gradientolor,
+						rotation: thumbnailTexts[index].rotation,
+						shadowWidth: thumbnailTexts[index].shadowWidth,
+						shadowColor: thumbnailTexts[index].shadowColor,
+						decoration: thumbnailTexts[index].decoration,
+						decorationColor: thumbnailTexts[index].decorationColor,
+						fontFamily: thumbnailTexts[index].fontFamily,
+						fontWeight: thumbnailTexts[index].fontWeight,
+						fontStyle: thumbnailTexts[index].fontStyle,
+					},
+				];
+				break;
+		}
 	}
 
 	async function downloadGeneratedThumbnailImage() {
@@ -1200,43 +1321,19 @@
 		});
 	}
 
-	function addUploadedImage(files: ReadonlyArray<File>) {
-		if (files.length === 0 || thumbnailUploadedImages.length > 16) {
-			return;
-		}
-		thumbnailUploadedImages = [
-			...thumbnailUploadedImages,
-			{
-				fileType: files[files.length - 1].type.toLowerCase(),
-				src: URL.createObjectURL(files[files.length - 1]),
-				alt: 'Thumbnail Image',
-				top: 0,
-				left: 0,
-				width: 128,
-				height: 128,
-				zindex: 1,
-				opacity: 1,
-				dropShadowSize: thumbnailGeneratorUploadedImageShadowWidth,
-				dropShadowColor: thumbnailGeneratorUploadedImageShadowColor,
-				borderWidth: thumbnailGeneratorUploadedImageBorderWidth,
-				borderColor: thumbnailGeneratorUploadedImageBorderColor,
-				borderRadius: thumbnailGeneratorUploadedImageBorderRadius,
-			},
-		];
-	}
-
 	let selectedIconFormat: 'Vector' | 'Raster' = 'Vector';
 	let selectedIconMonsterRenderSize: 'Small' | 'Full' = 'Full';
 	let selectedIconSize: IconSize = '256px';
 	let selectedIconType: FrontierImageType = 'Monster Icon';
 	const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
+	const allFrontierColors = getAllFrontierColors();
+
 	let uniqueMonsters = getUniqueMonsters().sort(
 		(a, b) =>
 			(a?.displayName?.codePointAt(0) ?? 0) -
 			(b?.displayName?.codePointAt(0) ?? 0),
 	);
 	let selectedIconIdFromList = 'Abiorugu';
-	let allFrontierColors = getAllFrontierColors();
 	let selectedIconColor = allFrontierColors[0].id;
 	let selectedIconBackground = false;
 
@@ -1249,7 +1346,7 @@
 	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
 	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
 	let thumbnailGeneratorImageBackground = false;
-	let thumbnailGeneratorMonsterRenderSize = 'Full';
+	let thumbnailGeneratorMonsterRenderSize: 'Small' | 'Full' = 'Full';
 	let thumbnailGeneratorBackgroundGradientStartColor =
 		getHexStringFromCatppuccinColor('mantle', $theme);
 	let thumbnailGeneratorBackgroundGradientEndColor =
@@ -1306,6 +1403,8 @@
 		selectedIconColor,
 	);
 	$: thumbnailGeneratorPreviewStyle = `background: ${thumbnailGeneratorBackgroundGradientLinear ? 'linear' : 'radial'}-gradient(${thumbnailGeneratorBackgroundGradientLinear ? `${thumbnailGeneratorBackgroundGradientRotation}deg` : 'circle'}, ${thumbnailGeneratorBackgroundGradientStartColor} 0%, ${thumbnailGeneratorBackgroundGradientEndColor} 100%); border: ${thumbnailGeneratorBorder ? thumbnailGeneratorBorderWidth : '0'}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`;
+
+	$: console.log(thumbnailUploadedImages);
 </script>
 
 <Head
@@ -4202,7 +4301,11 @@
 						>
 							<svelte:component
 								this={image.src.component}
-								{...{ color: image.color, background: image.background }}
+								{...{
+									color: image.color,
+									background: image.background,
+									size: `${image.width}px`,
+								}}
 							/>
 						</div>
 					{/if}
@@ -4237,10 +4340,62 @@
 				{/each}
 			</div>
 		</div>
+
+		<div class="thumbnail-element-container">
+			{#each thumbnailImages as image, i}
+				<ThumbnailGeneratorImage
+					index={i}
+					name={image.name}
+					on:delete={() => handleDelete(image.elementType, i)}
+					on:duplicate={() => handleDuplicate(image.elementType, i)}
+					bind:top={image.top}
+					bind:left={image.left}
+					bind:width={image.width}
+					bind:height={image.height}
+					bind:zindex={image.zindex}
+					bind:opacity={image.opacity}
+					bind:dropShadowSize={image.dropShadowSize}
+					bind:dropShadowColor={image.dropShadowColor}
+					bind:borderWidth={image.borderWidth}
+					bind:borderColor={image.borderColor}
+					bind:borderRadius={image.borderRadius}
+					bind:background={image.background}
+					bind:color={image.color}
+					bind:monsterRenderSize={image.monsterRenderSize}
+					bind:imageType={image.imageType}
+				/>
+			{/each}
+			{#each thumbnailUploadedImages as image, i}
+				<ThumbnailGeneratorImage
+					index={i}
+					name={image.name}
+					on:delete={() => handleDelete(image.elementType, i)}
+					on:duplicate={() => handleDuplicate(image.elementType, i)}
+					bind:top={image.top}
+					bind:left={image.left}
+					bind:width={image.width}
+					bind:height={image.height}
+					bind:zindex={image.zindex}
+					bind:opacity={image.opacity}
+					bind:dropShadowSize={image.dropShadowSize}
+					bind:dropShadowColor={image.dropShadowColor}
+					bind:borderWidth={image.borderWidth}
+					bind:borderColor={image.borderColor}
+					bind:borderRadius={image.borderRadius}
+				/>
+			{/each}
+		</div>
 	</section>
 </div>
 
 <style lang="scss">
+	.thumbnail-element-container {
+		margin-top: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
 	.weapon-info,
 	.armor-info,
 	.item-info {
