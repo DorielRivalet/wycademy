@@ -91,9 +91,9 @@
 			size="sm"
 			step={1}
 			min={0}
-			max={720}
+			max={721}
 			bind:value={top}
-			invalidText={'Value must be between 0 and 720'}
+			invalidText={'Value must be between 0 and 721'}
 			label={'Top Position (px)'}
 		/>
 		<NumberInput
