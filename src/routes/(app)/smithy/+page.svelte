@@ -1172,7 +1172,7 @@
 				zindex: 1,
 				opacity: 1,
 				fontSize: thumbnailGeneratorTextFontSize,
-				gradientColor: thumbnailGeneratorTextColor,
+				color: thumbnailGeneratorTextColor,
 				rotation: thumbnailGeneratorTextRotation,
 				shadowWidth: thumbnailGeneratorTextShadowWidth,
 				shadowColor: thumbnailGeneratorTextShadowColor,
@@ -1270,7 +1270,7 @@
 						zindex: thumbnailTexts[index].zindex,
 						opacity: thumbnailTexts[index].opacity,
 						fontSize: thumbnailTexts[index].fontSize,
-						gradientColor: thumbnailTexts[index].gradientColor,
+						color: thumbnailTexts[index].color,
 						rotation: thumbnailTexts[index].rotation,
 						shadowWidth: thumbnailTexts[index].shadowWidth,
 						shadowColor: thumbnailTexts[index].shadowColor,
@@ -1300,6 +1300,284 @@
 		});
 	}
 
+	function getThumbnailGeneratorTemplateExampleTexts() {
+		return [
+			{
+				elementType: 'text',
+				text: 'Rush of Madness',
+				top: 594,
+				left: 431,
+				zindex: 2,
+				opacity: 1,
+				fontSize: 80,
+				color: getHexStringFromCatppuccinColor('green', 'g100'),
+				rotation: 0,
+				shadowWidth: 0,
+				shadowColor: '#000000',
+				decoration: 'none',
+				decorationColor: '#000000',
+				fontFamily: 'MS Gothic',
+				fontWeight: 'bold',
+				fontStyle: 'normal',
+			},
+			{
+				elementType: 'text',
+				text: 'Rush of Madness',
+				top: 590,
+				left: 427,
+				zindex: 2,
+				opacity: 1,
+				fontSize: 80,
+				color: getHexStringFromCatppuccinColor('rosewater', 'g100'),
+				rotation: 0,
+				shadowWidth: 0,
+				shadowColor: '#000000',
+				decoration: 'none',
+				decorationColor: '#000000',
+				fontFamily: 'MS Gothic',
+				fontWeight: 'bold',
+				fontStyle: 'normal',
+			},
+			{
+				elementType: 'text',
+				text: '23\'29"56',
+				top: 474,
+				left: 514,
+				zindex: 2,
+				opacity: 1,
+				fontSize: 96,
+				color: getHexStringFromCatppuccinColor('blue', 'g100'),
+				rotation: 0,
+				shadowWidth: 0,
+				shadowColor: '#000000',
+				decoration: 'none',
+				decorationColor: '#000000',
+				fontFamily: 'MS Gothic',
+				fontWeight: 'bold',
+				fontStyle: 'normal',
+			},
+			{
+				elementType: 'text',
+				text: '23\'29"56',
+				top: 470,
+				left: 510,
+				zindex: 2,
+				opacity: 1,
+				fontSize: 96,
+				color: getHexStringFromCatppuccinColor('rosewater', 'g100'),
+				rotation: 0,
+				shadowWidth: 0,
+				shadowColor: '#000000',
+				decoration: 'none',
+				decorationColor: '#000000',
+				fontFamily: 'MS Gothic',
+				fontWeight: 'bold',
+				fontStyle: 'normal',
+			},
+		];
+	}
+
+	function getThumbnailGeneratorTemplateExampleImages() {
+		return [
+			{
+				elementType: 'Image',
+				fileFormat: 'Raster',
+				fileType: 'Habitat',
+				src: getIconBlobFromIconMetaData(
+					'Habitat',
+					'Historical Site',
+					'256px',
+					'Raster',
+					'#ffffff',
+				),
+				alt: 'Thumbnail Image',
+				top: 0,
+				left: 0,
+				width: 1280,
+				height: 720,
+				zindex: 0,
+				opacity: 1,
+				dropShadowSize: 0,
+				dropShadowColor: '#000000',
+				borderWidth: 0,
+				borderColor: '#000000',
+				borderRadius: 0,
+				background: false,
+				color: '#ffffff',
+				monsterRenderSize: 'Full',
+				name: `Habitat Historical Site`,
+			},
+			{
+				elementType: 'Image',
+				fileFormat: 'Vector',
+				fileType: 'Weapon',
+				src: getIconBlobFromIconMetaData(
+					'Weapon',
+					'Magnet Spike',
+					'256px',
+					'Vector',
+					'#ffffff',
+				),
+				alt: 'Thumbnail Image',
+				top: 425,
+				left: 64,
+				width: 256,
+				height: 256,
+				zindex: 0,
+				opacity: 1,
+				dropShadowSize: 8,
+				dropShadowColor: '#ff0000',
+				borderWidth: 0,
+				borderColor: '#000000',
+				borderRadius: 0,
+				background: false,
+				color: '#ffffff',
+				monsterRenderSize: 'Full',
+				name: `Weapon Magnet Spike`,
+			},
+			{
+				elementType: 'Image',
+				fileFormat: 'Vector',
+				fileType: 'Monster Icon',
+				src: getIconBlobFromIconMetaData(
+					'Monster Icon',
+					'Blinking Nargacuga',
+					'256px',
+					'Vector',
+					'#ffffff',
+				),
+				alt: 'Thumbnail Image',
+				top: 50,
+				left: 400,
+				width: 192,
+				height: 192,
+				zindex: 0,
+				opacity: 1,
+				dropShadowSize: 8,
+				dropShadowColor: '#ffffff',
+				borderWidth: 0,
+				borderColor: '#ffffff',
+				borderRadius: 0,
+				background: false,
+				color: '#ffffff',
+				monsterRenderSize: 'Full',
+				name: `Monster Blinking Nargacuga`,
+			},
+			{
+				elementType: 'Image',
+				fileFormat: 'Vector',
+				fileType: 'Monster Icon',
+				src: getIconBlobFromIconMetaData(
+					'Monster Icon',
+					'Burning Freezing Elzelion',
+					'256px',
+					'Vector',
+					'#ffffff',
+				),
+				alt: 'Thumbnail Image',
+				top: 242,
+				left: 496,
+				width: 192,
+				height: 192,
+				zindex: 0,
+				opacity: 1,
+				dropShadowSize: 8,
+				dropShadowColor: '#ff00ff',
+				borderWidth: 0,
+				borderColor: '#0000ff',
+				borderRadius: 0,
+				background: false,
+				color: '#ffffff',
+				monsterRenderSize: 'Full',
+				name: `Monster Burning Freezing Elzelion`,
+			},
+			{
+				elementType: 'Image',
+				fileFormat: 'Vector',
+				fileType: 'Monster Icon',
+				src: getIconBlobFromIconMetaData(
+					'Monster Icon',
+					'Howling Zinogre',
+					'256px',
+					'Vector',
+					'#ffffff',
+				),
+				alt: 'Thumbnail Image',
+				top: 50,
+				left: 592,
+				width: 192,
+				height: 192,
+				zindex: 0,
+				opacity: 1,
+				dropShadowSize: 8,
+				dropShadowColor: '#00ffff',
+				borderWidth: 0,
+				borderColor: '#000000',
+				borderRadius: 0,
+				background: false,
+				color: '#ffffff',
+				monsterRenderSize: 'Full',
+				name: 'Monster Howling Zinogre',
+			},
+			{
+				elementType: 'Image',
+				fileFormat: 'Vector',
+				fileType: 'Monster Icon',
+				src: getIconBlobFromIconMetaData(
+					'Monster Icon',
+					'Sparkling Zerureusu',
+					'256px',
+					'Vector',
+					'#ffffff',
+				),
+				alt: 'Thumbnail Image',
+				top: 242,
+				left: 688,
+				width: 192,
+				height: 192,
+				zindex: 0,
+				opacity: 1,
+				dropShadowSize: 8,
+				dropShadowColor: '#ff0000',
+				borderWidth: 0,
+				borderColor: '#000000',
+				borderRadius: 0,
+				background: false,
+				color: '#ffffff',
+				monsterRenderSize: 'Full',
+				name: `Monster Sparkling Zerureusu`,
+			},
+			{
+				elementType: 'Image',
+				fileFormat: 'Vector',
+				fileType: 'Monster Icon',
+				src: getIconBlobFromIconMetaData(
+					'Monster Icon',
+					'Blitzkrieg Bogabadorumu',
+					'256px',
+					'Vector',
+					'#ffffff',
+				),
+				alt: 'Thumbnail Image',
+				top: 50,
+				left: 784,
+				width: 192,
+				height: 192,
+				zindex: 0,
+				opacity: 1,
+				dropShadowSize: 8,
+				dropShadowColor: '#0000ff',
+				borderWidth: 0,
+				borderColor: '#000000',
+				borderRadius: 0,
+				background: false,
+				color: '#ffffff',
+				monsterRenderSize: 'Full',
+				name: `Monster Blitzkrieg Bogabadorumu`,
+			},
+		];
+	}
+
 	let selectedIconFormat: 'Vector' | 'Raster' = 'Vector';
 	let selectedIconMonsterRenderSize: 'Small' | 'Full' = 'Full';
 	let selectedIconSize: IconSize = '256px';
@@ -1320,7 +1598,7 @@
 	let thumbnailUploadedImages: HTMLImgAttributes[] = [];
 	let thumbnailTexts: HTMLParagraphElement[] = [];
 
-	let thumbnailGeneratorImageFormat: 'SVG' | 'PNG' = 'SVG';
+	let thumbnailGeneratorImageFormat: 'Vector' | 'Raster' = 'Vector';
 	let thumbnailGeneratorImageType: FrontierImageType = 'Monster Icon';
 	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
 	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
@@ -1368,6 +1646,21 @@
 	let thumbnailGeneratorUploadedImageBorderWidth = 4;
 	let thumbnailGeneratorUploadedImageBorderColor = '#000';
 	let thumbnailGeneratorUploadedImageBorderRadius = 5;
+
+	let thumbnailGeneratorTemplateExampleImages =
+		getThumbnailGeneratorTemplateExampleImages();
+	let thumbnailGeneratorTemplateExampleTexts =
+		getThumbnailGeneratorTemplateExampleTexts();
+
+	thumbnailImages = [
+		...thumbnailImages,
+		...thumbnailGeneratorTemplateExampleImages,
+	];
+
+	thumbnailTexts = [
+		...thumbnailTexts,
+		...thumbnailGeneratorTemplateExampleTexts,
+	];
 
 	$: addUploadedImage(thumbnailGeneratorImageFiles);
 	$: currentIconsFromType = getCurrentIconsFromType(selectedIconType);
@@ -3994,6 +4287,7 @@
 						{ id: 'Comic Sans MS', text: 'Comic Sans MS' },
 						{ id: 'Courier', text: 'Courier' },
 						{ id: 'Lucida Console', text: 'Lucida Console' },
+						{ id: 'MS Gothic', text: 'MS Gothic' },
 					]}
 				/>
 
@@ -4386,7 +4680,7 @@
 					bind:textDecorationColor={textElement.decorationColor}
 					bind:textShadowWidth={textElement.shadowWidth}
 					bind:textShadowColor={textElement.shadowColor}
-					bind:textColor={textElement.gradientColor}
+					bind:textColor={textElement.color}
 					bind:textRotation={textElement.rotation}
 				/>
 			{/each}

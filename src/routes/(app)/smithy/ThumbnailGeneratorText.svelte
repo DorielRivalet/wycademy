@@ -97,6 +97,7 @@
 				{ id: 'Comic Sans MS', text: 'Comic Sans MS' },
 				{ id: 'Courier', text: 'Courier' },
 				{ id: 'Lucida Console', text: 'Lucida Console' },
+				{ id: 'MS Gothic', text: 'MS Gothic' },
 			]}
 		/>
 
