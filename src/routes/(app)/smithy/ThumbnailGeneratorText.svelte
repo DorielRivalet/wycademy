@@ -17,7 +17,7 @@
 	export let opacity = 1;
 	export let fontSize = 48;
 	export let fontFamily = 'Arial';
-	export let fontWeight = 'Bold';
+	export let fontWeight = 'bold';
 	export let fontStyle = 'italic';
 	export let textDecoration = 'underline';
 	export let textDecorationColor = '#ff0000';
@@ -116,12 +116,16 @@
 			bind:selectedId={fontWeight}
 			items={[
 				{ id: '100', text: '100' },
+				{ id: '200', text: '200' },
 				{ id: '300', text: '300' },
 				{ id: '400', text: '400' },
 				{ id: '500', text: '500' },
+				{ id: '600', text: '600' },
 				{ id: '700', text: '700' },
+				{ id: '800', text: '800' },
 				{ id: '900', text: '900' },
-				{ id: 'Bold', text: 'Bold' },
+				{ id: 'normal', text: 'Normal' },
+				{ id: 'bold', text: 'Bold' },
 			]}
 		/>
 
@@ -130,6 +134,7 @@
 			type="inline"
 			bind:selectedId={textDecoration}
 			items={[
+				{ id: 'none', text: 'None' },
 				{ id: 'underline', text: 'Underline' },
 				{ id: 'line-through', text: 'Strikethrough' },
 				{ id: 'overline', text: 'Overline' },
