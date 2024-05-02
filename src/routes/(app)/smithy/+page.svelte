@@ -83,35 +83,14 @@
 		type FrontierZenithSkill,
 	} from 'ezlion';
 	import type { HTMLImgAttributes } from 'svelte/elements';
-	import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
-	import ImageSearch from 'carbon-icons-svelte/lib/ImageSearch.svelte';
 	import Add from 'carbon-icons-svelte/lib/Add.svelte';
-	import Delete from 'carbon-icons-svelte/lib/Delete.svelte';
-	import CharacterUppercase from 'carbon-icons-svelte/lib/CharacterUppercase.svelte';
-	import ColorPalette from 'carbon-icons-svelte/lib/ColorPalette.svelte';
-	import ColorSwitch from 'carbon-icons-svelte/lib/ColorSwitch.svelte';
-	import TextColor from 'carbon-icons-svelte/lib/TextColor.svelte';
-	import TextFill from 'carbon-icons-svelte/lib/TextFill.svelte';
-	import TextCreation from 'carbon-icons-svelte/lib/TextCreation.svelte';
-	import TextFont from 'carbon-icons-svelte/lib/TextFont.svelte';
-	import TextItalic from 'carbon-icons-svelte/lib/TextItalic.svelte';
-	import TextStrikethrough from 'carbon-icons-svelte/lib/TextStrikethrough.svelte';
-	import TextBold from 'carbon-icons-svelte/lib/TextBold.svelte';
-	import TextScale from 'carbon-icons-svelte/lib/TextScale.svelte';
-	import TextUnderline from 'carbon-icons-svelte/lib/TextUnderline.svelte';
-	import TextAlignCenter from 'carbon-icons-svelte/lib/TextAlignCenter.svelte';
-	import TextAlignLeft from 'carbon-icons-svelte/lib/TextAlignLeft.svelte';
-	import TextAlignRight from 'carbon-icons-svelte/lib/TextAlignRight.svelte';
-	import TextVerticalAlignment from 'carbon-icons-svelte/lib/TextVerticalAlignment.svelte';
-	import Txt from 'carbon-icons-svelte/lib/Txt.svelte';
-	import StringText from 'carbon-icons-svelte/lib/StringText.svelte';
-	import Edit from 'carbon-icons-svelte/lib/Edit.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import FileUploaderDropContainer from 'carbon-components-svelte/src/FileUploader/FileUploaderDropContainer.svelte';
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
 	import ColorPicker from 'svelte-awesome-color-picker';
 	import ThumbnailGeneratorImage from './ThumbnailGeneratorImage.svelte';
+	import ThumbnailGeneratorText from './ThumbnailGeneratorText.svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -1193,7 +1172,7 @@
 				zindex: 1,
 				opacity: 1,
 				fontSize: thumbnailGeneratorTextFontSize,
-				gradientolor: thumbnailGeneratorTextColor,
+				gradientColor: thumbnailGeneratorTextColor,
 				rotation: thumbnailGeneratorTextRotation,
 				shadowWidth: thumbnailGeneratorTextShadowWidth,
 				shadowColor: thumbnailGeneratorTextShadowColor,
@@ -1291,7 +1270,7 @@
 						zindex: thumbnailTexts[index].zindex,
 						opacity: thumbnailTexts[index].opacity,
 						fontSize: thumbnailTexts[index].fontSize,
-						gradientolor: thumbnailTexts[index].gradientolor,
+						gradientColor: thumbnailTexts[index].gradientColor,
 						rotation: thumbnailTexts[index].rotation,
 						shadowWidth: thumbnailTexts[index].shadowWidth,
 						shadowColor: thumbnailTexts[index].shadowColor,
@@ -4382,6 +4361,28 @@
 					bind:borderWidth={image.borderWidth}
 					bind:borderColor={image.borderColor}
 					bind:borderRadius={image.borderRadius}
+				/>
+			{/each}
+			{#each thumbnailTexts as textElement, i}
+				<ThumbnailGeneratorText
+					index={i}
+					name={textElement.text}
+					on:delete={() => handleDelete(textElement.elementType, i)}
+					on:duplicate={() => handleDuplicate(textElement.elementType, i)}
+					bind:top={textElement.top}
+					bind:left={textElement.left}
+					bind:zindex={textElement.zindex}
+					bind:opacity={textElement.opacity}
+					bind:fontSize={textElement.fontSize}
+					bind:fontFamily={textElement.fontFamily}
+					bind:fontWeight={textElement.fontWeight}
+					bind:fontStyle={textElement.fontStyle}
+					bind:textDecoration={textElement.decoration}
+					bind:textDecorationColor={textElement.decorationColor}
+					bind:textShadowWidth={textElement.shadowWidth}
+					bind:textShadowColor={textElement.shadowColor}
+					bind:textColor={textElement.gradientColor}
+					bind:textRotation={textElement.rotation}
 				/>
 			{/each}
 		</div>
