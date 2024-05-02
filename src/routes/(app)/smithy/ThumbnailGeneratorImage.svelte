@@ -87,6 +87,24 @@
 		>
 	</div>
 	<div class="flex-row">
+		<NumberInput
+			size="sm"
+			step={1}
+			min={0}
+			max={720}
+			bind:value={top}
+			invalidText={'Value must be between 0 and 720'}
+			label={'Top Position (px)'}
+		/>
+		<NumberInput
+			size="sm"
+			step={1}
+			min={0}
+			max={1280}
+			bind:value={left}
+			invalidText={'Value must be between 0 and 1280'}
+			label={'Left Position (px)'}
+		/>
 		{#if imageType === 'Armor' || imageType === 'Item' || imageType === 'Weapon'}
 			<Dropdown
 				type="inline"
@@ -151,24 +169,6 @@
 			bind:value={borderRadius}
 			invalidText={'Value must be between 0 and 128'}
 			label={'Image Border Radius (px)'}
-		/>
-		<NumberInput
-			size="sm"
-			step={1}
-			min={0}
-			max={720}
-			bind:value={top}
-			invalidText={'Value must be between 0 and 720'}
-			label={'Top Position (px)'}
-		/>
-		<NumberInput
-			size="sm"
-			step={1}
-			min={0}
-			max={1280}
-			bind:value={left}
-			invalidText={'Value must be between 0 and 1280'}
-			label={'Left Position (px)'}
 		/>
 		<NumberInput
 			size="sm"
