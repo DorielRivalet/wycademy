@@ -7,10 +7,10 @@
 	import ColorPicker from 'svelte-awesome-color-picker';
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
-	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 
-	export let name = 'Name';
+	export let text = 'Text';
 	export let top = 0;
 	export let left = 0;
 	export let zindex = 1;
@@ -21,9 +21,9 @@
 	export let fontStyle = 'italic';
 	export let textDecoration = 'underline';
 	export let textDecorationColor = '#ff0000';
-	export let textShadowWidth: number;
-	export let textShadowColor: string;
-	export let textColor: '#000';
+	export let textShadowWidth = 0;
+	export let textShadowColor = '#000000';
+	export let textColor: '#000000';
 	export let textRotation = 0;
 	export let index = 0;
 
@@ -42,7 +42,12 @@
 
 <div class="container flex-column">
 	<div class="flex-row">
-		<CodeSnippet code={name} type="inline" hideCopyButton light />
+		<TextInput
+			labelText="Text"
+			placeholder="Enter text"
+			hideLabel
+			bind:value={text}
+		/>
 		<Button kind="danger-tertiary" icon={TrashCan} on:click={deleteElement}
 			>Delete</Button
 		>

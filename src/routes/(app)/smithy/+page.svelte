@@ -1101,6 +1101,7 @@
 		thumbnailImages = [
 			...thumbnailImages,
 			{
+				optionId: thumbnailGeneratorImageIdFromList,
 				elementType: thumbnailGeneratorSectionOption,
 				fileFormat: thumbnailGeneratorImageFormat,
 				fileType: thumbnailGeneratorImageType,
@@ -1213,6 +1214,7 @@
 				thumbnailImages = [
 					...thumbnailImages,
 					{
+						optionId: thumbnailImages[index].optionId,
 						elementType: thumbnailImages[index].elementType,
 						fileFormat: thumbnailImages[index].fileFormat,
 						fileType: thumbnailImages[index].fileType,
@@ -1303,7 +1305,7 @@
 	function getThumbnailGeneratorTemplateExampleTexts() {
 		return [
 			{
-				elementType: 'text',
+				elementType: 'Text',
 				text: 'Rush of Madness',
 				top: 594,
 				left: 431,
@@ -1321,7 +1323,7 @@
 				fontStyle: 'normal',
 			},
 			{
-				elementType: 'text',
+				elementType: 'Text',
 				text: 'Rush of Madness',
 				top: 590,
 				left: 427,
@@ -1339,7 +1341,7 @@
 				fontStyle: 'normal',
 			},
 			{
-				elementType: 'text',
+				elementType: 'Text',
 				text: '23\'29"56',
 				top: 474,
 				left: 514,
@@ -1357,7 +1359,7 @@
 				fontStyle: 'normal',
 			},
 			{
-				elementType: 'text',
+				elementType: 'Text',
 				text: '23\'29"56',
 				top: 470,
 				left: 510,
@@ -1380,6 +1382,7 @@
 	function getThumbnailGeneratorTemplateExampleImages() {
 		return [
 			{
+				optionId: 'Historical Site',
 				elementType: 'Image',
 				fileFormat: 'Raster',
 				fileType: 'Habitat',
@@ -1405,9 +1408,9 @@
 				background: false,
 				color: '#ffffff',
 				monsterRenderSize: 'Full',
-				name: `Habitat Historical Site`,
 			},
 			{
+				optionId: 'Magnet Spike',
 				elementType: 'Image',
 				fileFormat: 'Vector',
 				fileType: 'Weapon',
@@ -1433,9 +1436,9 @@
 				background: false,
 				color: '#ffffff',
 				monsterRenderSize: 'Full',
-				name: `Weapon Magnet Spike`,
 			},
 			{
+				optionId: 'Blinking Nargacuga',
 				elementType: 'Image',
 				fileFormat: 'Vector',
 				fileType: 'Monster Icon',
@@ -1461,9 +1464,9 @@
 				background: false,
 				color: '#ffffff',
 				monsterRenderSize: 'Full',
-				name: `Monster Blinking Nargacuga`,
 			},
 			{
+				optionId: 'Burning Freezing Elzelion',
 				elementType: 'Image',
 				fileFormat: 'Vector',
 				fileType: 'Monster Icon',
@@ -1489,9 +1492,9 @@
 				background: false,
 				color: '#ffffff',
 				monsterRenderSize: 'Full',
-				name: `Monster Burning Freezing Elzelion`,
 			},
 			{
+				optionId: 'Howling Zinogre',
 				elementType: 'Image',
 				fileFormat: 'Vector',
 				fileType: 'Monster Icon',
@@ -1517,9 +1520,9 @@
 				background: false,
 				color: '#ffffff',
 				monsterRenderSize: 'Full',
-				name: 'Monster Howling Zinogre',
 			},
 			{
+				optionId: 'Sparkling Zerureusu',
 				elementType: 'Image',
 				fileFormat: 'Vector',
 				fileType: 'Monster Icon',
@@ -1545,9 +1548,9 @@
 				background: false,
 				color: '#ffffff',
 				monsterRenderSize: 'Full',
-				name: `Monster Sparkling Zerureusu`,
 			},
 			{
+				optionId: 'Blitzkrieg Bogabadorumu',
 				elementType: 'Image',
 				fileFormat: 'Vector',
 				fileType: 'Monster Icon',
@@ -1573,7 +1576,6 @@
 				background: false,
 				color: '#ffffff',
 				monsterRenderSize: 'Full',
-				name: `Monster Blitzkrieg Bogabadorumu`,
 			},
 		];
 	}
@@ -1610,10 +1612,10 @@
 		getHexStringFromCatppuccinColor('crust', $theme);
 	let thumbnailGeneratorBackgroundGradientRotation = 45;
 	let thumbnailGeneratorBackgroundGradientLinear = false;
-	let thumbnailGeneratorImageShadowColor = '#000';
+	let thumbnailGeneratorImageShadowColor = '#000000';
 	let thumbnailGeneratorImageShadowWidth = 4;
 	let thumbnailGeneratorImageBorderWidth = 0;
-	let thumbnailGeneratorImageBorderColor = '#000';
+	let thumbnailGeneratorImageBorderColor = '#000000';
 	let thumbnailGeneratorImageBorderRadius = 5;
 
 	let thumbnailGeneratorBorderWidth = 12;
@@ -1628,23 +1630,23 @@
 
 	let thumbnailGeneratorText = '5 Musous No Hit SW+CS';
 	let thumbnailGeneratorTextFontSize = 48;
-	let thumbnailGeneratorTextColor = '#000';
+	let thumbnailGeneratorTextColor = '#000000';
 	let thumbnailGeneratorTextRotation = 0;
-	let thumbnailGeneratorTextShadowColor = '#f00';
+	let thumbnailGeneratorTextShadowColor = '#ff0000';
 	let thumbnailGeneratorTextShadowWidth = 1;
 	let thumbnailGeneratorTextFontFamily = 'Arial';
 	let thumbnailGeneratorTextFontStyle = 'italic';
 	let thumbnailGeneratorTextFontWeight = 'bold';
 	let thumbnailGeneratorTextDecoration = 'underline';
-	let thumbnailGeneratorTextDecorationColor = '#f00';
+	let thumbnailGeneratorTextDecorationColor = '#ff0000';
 
 	let thumbnailGeneratorSectionOption: 'Text' | 'Image' | 'Custom Image' =
 		'Image';
 
 	let thumbnailGeneratorUploadedImageShadowWidth = 4;
-	let thumbnailGeneratorUploadedImageShadowColor = '#000';
+	let thumbnailGeneratorUploadedImageShadowColor = '#000000';
 	let thumbnailGeneratorUploadedImageBorderWidth = 4;
-	let thumbnailGeneratorUploadedImageBorderColor = '#000';
+	let thumbnailGeneratorUploadedImageBorderColor = '#000000';
 	let thumbnailGeneratorUploadedImageBorderRadius = 5;
 
 	let thumbnailGeneratorTemplateExampleImages =
@@ -1675,8 +1677,6 @@
 		selectedIconColor,
 	);
 	$: thumbnailGeneratorPreviewStyle = `background: ${thumbnailGeneratorBackgroundGradientLinear ? 'linear' : 'radial'}-gradient(${thumbnailGeneratorBackgroundGradientLinear ? `${thumbnailGeneratorBackgroundGradientRotation}deg` : 'circle'}, ${thumbnailGeneratorBackgroundGradientStartColor} 0%, ${thumbnailGeneratorBackgroundGradientEndColor} 100%); border: ${thumbnailGeneratorBorder ? thumbnailGeneratorBorderWidth : '0'}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`;
-
-	$: console.log(thumbnailUploadedImages);
 </script>
 
 <Head
@@ -4623,7 +4623,6 @@
 			{#each thumbnailImages as image, i}
 				<ThumbnailGeneratorImage
 					index={i}
-					name={image.name}
 					on:delete={() => handleDelete(image.elementType, i)}
 					on:duplicate={() => handleDuplicate(image.elementType, i)}
 					bind:top={image.top}
@@ -4640,13 +4639,15 @@
 					bind:background={image.background}
 					bind:color={image.color}
 					bind:monsterRenderSize={image.monsterRenderSize}
-					bind:imageType={image.imageType}
+					bind:fileType={image.fileType}
+					bind:src={image.src}
+					optionsList={getThumbnailGeneratorImagesFromType(image.fileType)}
+					bind:optionId={image.optionId}
 				/>
 			{/each}
 			{#each thumbnailUploadedImages as image, i}
 				<ThumbnailGeneratorImage
 					index={i}
-					name={image.name}
 					on:delete={() => handleDelete(image.elementType, i)}
 					on:duplicate={() => handleDuplicate(image.elementType, i)}
 					bind:top={image.top}
@@ -4665,7 +4666,7 @@
 			{#each thumbnailTexts as textElement, i}
 				<ThumbnailGeneratorText
 					index={i}
-					name={textElement.text}
+					bind:text={textElement.text}
 					on:delete={() => handleDelete(textElement.elementType, i)}
 					on:duplicate={() => handleDuplicate(textElement.elementType, i)}
 					bind:top={textElement.top}

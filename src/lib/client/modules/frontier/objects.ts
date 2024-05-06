@@ -873,6 +873,7 @@ import HabitatImageGreatArena from '$lib/client/images/habitat/great-arena.webp'
 import HabitatImageGreatForest from '$lib/client/images/habitat/great-forest.webp';
 import HabitatImageHighlands from '$lib/client/images/habitat/highlands.webp';
 import HabitatImageHistoricalSite from '$lib/client/images/habitat/historical-site.webp';
+import HabitatImageHistoricalSiteNight from '$lib/client/images/habitat/historical-site-night.webp';
 import HabitatImageInterceptionBase from '$lib/client/images/habitat/interception-base.webp';
 import HabitatImageJungle from '$lib/client/images/habitat/jungle.webp';
 import HabitatImageLargeExplorationShip from '$lib/client/images/habitat/large-exploration-ship.webp';
@@ -1231,6 +1232,7 @@ export const Habitats: { name: string; image: any }[] = [
 	{ name: 'Great Forest', image: HabitatImageGreatForest },
 	{ name: 'Highlands', image: HabitatImageHighlands },
 	{ name: 'Historical Site', image: HabitatImageHistoricalSite },
+	{ name: 'Historical Site - Night', image: HabitatImageHistoricalSiteNight },
 	{ name: 'Interception Base', image: HabitatImageInterceptionBase },
 	{ name: 'Jungle', image: HabitatImageJungle },
 	{
@@ -2496,18 +2498,6 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		size: 'Large',
 	},
 	{
-		name: 'Yama Tsukami',
-		displayName: 'Yama Tsukami',
-		icon: IconMonsterYamaTsukami,
-		rank: 'G Rank',
-		render: IconRenderMonsterYamaTsukami,
-		fullRender: FullMonsterRenderYamaTsukami,
-		fullRender: FullMonsterRenderYamaTsukami,
-		component: ComponentMonsterYamaTsukami,
-		unusedComponent: false,
-		size: 'Large',
-	},
-	{
 		name: 'Ceanataur',
 		displayName: 'Ceanataur',
 		icon: IconMonsterCeanataur,
@@ -2546,7 +2536,6 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		icon: IconMonsterTigrex,
 		rank: 'G Rank',
 		render: IconRenderMonsterTigrex,
-		fullRender: FullMonsterRenderTigrex,
 		fullRender: FullMonsterRenderTigrex,
 		component: ComponentMonsterTigrex,
 		unusedComponent: true,
