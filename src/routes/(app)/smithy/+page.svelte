@@ -1550,13 +1550,13 @@
 				monsterRenderSize: 'Full',
 			},
 			{
-				optionId: 'Blitzkrieg Bogabadorumu',
+				optionId: 'Bombardier Bogabadorumu',
 				elementType: 'Image',
 				fileFormat: 'Vector',
 				fileType: 'Monster Icon',
 				src: getIconBlobFromIconMetaData(
 					'Monster Icon',
-					'Blitzkrieg Bogabadorumu',
+					'Bombardier Bogabadorumu',
 					'256px',
 					'Vector',
 					'#ffffff',
