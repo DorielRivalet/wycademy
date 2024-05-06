@@ -208,7 +208,9 @@
 						</div>
 
 						<div style="width: {monsterIconSize}" class="monster-name">
-							<Link href={`/bestiary/${'abiorugu'}`}>
+							<Link
+								href={`/bestiary/${slugify(monster.displayName, { lower: true })}`}
+							>
 								{monster.displayName}
 							</Link>
 						</div>

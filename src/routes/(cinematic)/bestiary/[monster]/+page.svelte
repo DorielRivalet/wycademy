@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import slugify from 'slugify';
 
 	export let data;
@@ -14,9 +15,7 @@
 {#if monster}
 	<div class="container">
 		<div class="description">
-			<h1>
-				{monster.displayName}
-			</h1>
+			<SectionHeadingTopLevel title={monster.displayName} />
 
 			<div
 				class="monster-icon"
@@ -47,12 +46,6 @@
 	.description {
 		align-self: center;
 
-		& h1 {
-			width: fit-content;
-			font-size: 3rem;
-			text-transform: capitalize;
-		}
-
 		& p {
 			margin-top: 0.5rem;
 		}
@@ -63,7 +56,6 @@
 			gap: 2rem;
 			margin-top: 2rem;
 			padding-top: 2rem;
-			border-top: 1px solid hsl(220 40% 14%);
 
 			& .item {
 				& :nth-child(1) {
