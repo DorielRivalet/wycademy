@@ -344,7 +344,7 @@ import IconMonsterElzelion from '$lib/client/images/monster/elzelion.webp';
 import IconMonsterArrogantDuremudira from '$lib/client/images/monster/arrogant_duremudira.webp';
 import IconMonsterSeregios from '$lib/client/images/monster/seregios.webp';
 import IconMonsterBogabadorumu from '$lib/client/images/monster/zenith_bogabadorumu.gif';
-import IconMonsterBlitzkriegBogabadorumu from '$lib/client/images/monster/blitzkrieg_bogabadorumu.webp';
+import IconMonsterBombardierBogabadorumu from '$lib/client/images/monster/bombardier_bogabadorumu.webp';
 import IconMonsterSparklingZerureusu from '$lib/client/images/monster/sparkling_zerureusu.webp';
 import IconMonsterPSO2Rappy from '$lib/client/images/monster/pso2_rappy.webp';
 import IconMonsterKingShakalaka from '$lib/client/images/monster/king_shakalaka.webp';
@@ -500,7 +500,7 @@ import IconRenderMonsterElzelion from '$lib/client/images/monster/render/elzelio
 import IconRenderMonsterArrogantDuremudira from '$lib/client/images/monster/render/arrogant_duremudira.webp';
 import IconRenderMonsterSeregios from '$lib/client/images/monster/render/seregios.webp';
 import IconRenderMonsterBogabadorumu from '$lib/client/images/monster/render/zenith_bogabadorumu.webp';
-import IconRenderMonsterBlitzkriegBogabadorumu from '$lib/client/images/monster/render/blitzkrieg_bogabadorumu.webp';
+import IconRenderMonsterBombardierBogabadorumu from '$lib/client/images/monster/render/bombardier_bogabadorumu.webp';
 import IconRenderMonsterSparklingZerureusu from '$lib/client/images/monster/render/sparkling_zerureusu.webp';
 import IconRenderMonsterPSO2Rappy from '$lib/client/images/monster/render/pso2_rappy.webp';
 import IconRenderMonsterKingShakalaka from '$lib/client/images/monster/render/king_shakalaka.webp';
@@ -767,7 +767,7 @@ import ComponentMonsterElzelion from '$lib/client/components/frontier/icon/monst
 import ComponentMonsterArrogantDuremudira from '$lib/client/components/frontier/icon/monster/ArrogantDuremudira2.svelte';
 import ComponentMonsterSeregios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterBogabadorumu from '$lib/client/components/frontier/icon/monster/Bogabadorumu6.svelte';
-import ComponentMonsterBlitzkriegBogabadorumu from '$lib/client/components/frontier/icon/monster/BlitzkriegBogabadorumu2.svelte';
+import ComponentMonsterBombardierBogabadorumu from '$lib/client/components/frontier/icon/monster/BombardierBogabadorumu2.svelte';
 import ComponentMonsterSparklingZerureusu from '$lib/client/components/frontier/icon/monster/SparklingZerureusu.svelte';
 import ComponentMonsterPSO2Rappy from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterKingShakalaka from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -1049,7 +1049,7 @@ import FullMonsterRenderElzelion from '$lib/client/images/monster/render/full/el
 import FullMonsterRenderArrogantDuremudira from '$lib/client/images/monster/render/full/arrogant-duremudira2.webp';
 import FullMonsterRenderSeregios from '$lib/client/images/monster/render/full/seregios.webp';
 import FullMonsterRenderBogabadorumu from '$lib/client/images/monster/render/full/zenith-bogabadorumu.webp';
-import FullMonsterRenderBlitzkriegBogabadorumu from '$lib/client/images/monster/render/full/blitzkrieg-bogabadorumu.webp';
+import FullMonsterRenderBombardierBogabadorumu from '$lib/client/images/monster/render/full/bombardier-bogabadorumu.webp';
 import FullMonsterRenderSparklingZerureusu from '$lib/client/images/monster/render/full/sparkling-zerureusu.webp';
 import FullMonsterRenderPSO2Rappy from '$lib/client/images/monster/render/full/pso2-rappy.webp';
 import FullMonsterRenderKingShakalaka from '$lib/client/images/monster/render/full/king-shakalaka.webp';
@@ -3452,13 +3452,13 @@ export const MonsterIcons: FrontierMonsterInfo[] = [
 		size: 'Large',
 	},
 	{
-		name: 'Blitzkrieg Bogabadorumu',
-		displayName: 'Blitzkrieg Bogabadorumu',
-		icon: IconMonsterBlitzkriegBogabadorumu,
+		name: 'Bombardier Bogabadorumu',
+		displayName: 'Bombardier Bogabadorumu',
+		icon: IconMonsterBombardierBogabadorumu,
 		rank: 'G Rank',
-		render: IconRenderMonsterBlitzkriegBogabadorumu,
-		fullRender: FullMonsterRenderBlitzkriegBogabadorumu,
-		component: ComponentMonsterBlitzkriegBogabadorumu,
+		render: IconRenderMonsterBombardierBogabadorumu,
+		fullRender: FullMonsterRenderBombardierBogabadorumu,
+		component: ComponentMonsterBombardierBogabadorumu,
 		unusedComponent: false,
 		size: 'Large',
 	},
