@@ -12,30 +12,42 @@
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
 	import {
+		AilmentIcons,
+		ArmorTypes,
 		ColorCodes,
+		ElementIcons,
+		Games,
+		Habitats,
 		ItemColors,
+		ItemIcons,
+		LocationIcons,
+		MonsterIcons,
 		RarityColors,
+		StatusIcons,
+		WeaponTypes,
 	} from '$lib/client/modules/frontier/objects';
-	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	export let name = 'Name';
 	export let top = 0;
 	export let left = 0;
 	export let width = 256;
 	export let height = 256;
 	export let zindex = 1;
 	export let opacity = 1;
-	export let dropShadowSize: number;
-	export let dropShadowColor: string;
-	export let borderWidth: number;
-	export let borderColor: string;
-	export let borderRadius: number;
+	export let dropShadowSize = 8;
+	export let dropShadowColor = '#000000';
+	export let borderWidth = 0;
+	export let borderColor = '#000000';
+	export let borderRadius = 8;
 	export let background = true;
 	export let color: '#ffffff';
 	export let monsterRenderSize: 'Small' | 'Full';
-	export let imageType: FrontierImageType | undefined;
+	export let fileType: FrontierImageType;
 	export let index = 0;
+	export let optionsList: DropdownItem[] = [];
+	export let optionId: string;
+	export let src;
+	$: src = getIconBlobFromIconMetaData(fileType, optionId);
 
 	const dispatch = createEventDispatcher();
 
@@ -47,6 +59,75 @@
 	function duplicate() {
 		// Emit an event to the parent component with the index
 		dispatch('duplicate', { index });
+	}
+
+	function getIconBlobFromIconMetaData(
+		selectedIconType: FrontierImageType,
+		selectionID: string,
+	) {
+		// TODO return html in either the form of img if selecting PNG or
+		// svelte component if selecting SVG.
+		switch (selectedIconType) {
+			case 'Weapon':
+				return {
+					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
+					image: WeaponTypes.find((e) => e.name === selectionID)?.smallIcon,
+				};
+			case 'Monster Icon':
+				return {
+					component: MonsterIcons.find((e) => e.displayName === selectionID)
+						?.component,
+					image: MonsterIcons.find((e) => e.displayName === selectionID)?.icon,
+				};
+			case 'Monster Render':
+				return {
+					full: MonsterIcons.find((e) => e.displayName === selectionID)
+						?.fullRender,
+					small: MonsterIcons.find((e) => e.displayName === selectionID)
+						?.render,
+				};
+			case 'Armor':
+				return {
+					component: ArmorTypes.find((e) => e.name === selectionID)?.icon,
+					image: ArmorTypes.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Item':
+				return {
+					component: ItemIcons.find((e) => e.name === selectionID)?.icon,
+					image: ItemIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Location':
+				return {
+					component: LocationIcons.find((e) => e.name === selectionID)?.icon,
+					image: LocationIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Element':
+				return {
+					component: ElementIcons.find((e) => e.displayName === selectionID)
+						?.icon,
+					image: ElementIcons.find((e) => e.displayName === selectionID)?.icon,
+				};
+			case 'Ailment':
+				return {
+					component: AilmentIcons.find((e) => e.name === selectionID)?.icon,
+					image: AilmentIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Status':
+				return {
+					component: StatusIcons.find((e) => e.name === selectionID)?.icon,
+					image: StatusIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Habitat':
+				return {
+					component: Habitats.find((e) => e.name === selectionID)?.image,
+					image: Habitats.find((e) => e.name === selectionID)?.image,
+				};
+			case 'Game':
+				return {
+					component: Games.find((e) => e.name === selectionID)?.icon,
+					image: Games.find((e) => e.name === selectionID)?.icon,
+				};
+		}
 	}
 
 	function getAllFrontierColors() {
@@ -78,7 +159,12 @@
 
 <div class="container flex-column">
 	<div class="flex-row">
-		<CodeSnippet code={name} type="inline" hideCopyButton light />
+		<Dropdown
+			type="inline"
+			titleText="Icon"
+			bind:selectedId={optionId}
+			items={optionsList}
+		/>
 		<Button kind="danger-tertiary" icon={TrashCan} on:click={deleteElement}
 			>Delete</Button
 		>
@@ -105,7 +191,7 @@
 			invalidText={'Value must be between 0 and 1280'}
 			label={'Left Position (px)'}
 		/>
-		{#if imageType === 'Armor' || imageType === 'Item' || imageType === 'Weapon'}
+		{#if fileType === 'Armor' || fileType === 'Item' || fileType === 'Weapon'}
 			<Dropdown
 				type="inline"
 				titleText="Color"
@@ -113,7 +199,7 @@
 				items={allFrontierColors}
 			/>
 		{/if}
-		{#if imageType === 'Monster Render'}
+		{#if fileType === 'Monster Render'}
 			<Dropdown
 				type="inline"
 				titleText="Render Size"
@@ -124,7 +210,7 @@
 				]}
 			/>
 		{/if}
-		{#if imageType === 'Monster Icon'}
+		{#if fileType === 'Monster Icon'}
 			<Toggle labelText="Background" bind:toggled={background} />
 		{/if}
 		<ColorPicker
