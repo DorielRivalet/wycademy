@@ -97,13 +97,6 @@ Shows text next to an icon inline. You can use either a component or a image imp
 		vertical-align: bottom; /* This ensures the image is aligned with the text */
 	}
 
-	.popover-image {
-		max-width: 100%; /* Ensures the image does not exceed the width of its container */
-		max-height: 100%; /* Ensures the image does not exceed the height of its container */
-		object-fit: cover; /* Ensures the image covers the area without distorting its aspect ratio */
-		display: inline-block; /* Removes any extra space below the image */
-	}
-
 	.popover-content {
 		color: var(--ctp-text);
 		text-shadow: none;
