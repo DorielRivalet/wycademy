@@ -71,6 +71,8 @@
 		FrontierRarity,
 		FrontierSlot,
 		FrontierSwitchAxeFPhial,
+		FrontierTowerWeapon,
+		FrontierTowerWeaponSeries,
 		FrontierWeapon,
 		IconSize,
 	} from '$lib/client/modules/frontier/types';
@@ -80,6 +82,7 @@
 		type FrontierArmorSkillName,
 		type FrontierArmorSkillTree,
 		type FrontierWeaponClass,
+		type FrontierWeaponName,
 		type FrontierZenithSkill,
 	} from 'ezlion';
 	import type { HTMLImgAttributes } from 'svelte/elements';
@@ -91,6 +94,17 @@
 	import ColorPicker from 'svelte-awesome-color-picker';
 	import ThumbnailGeneratorImage from './ThumbnailGeneratorImage.svelte';
 	import ThumbnailGeneratorText from './ThumbnailGeneratorText.svelte';
+	import {
+		towerWeaponSeries,
+		towerWeaponSlotImages,
+		towerWeapons,
+		type FrontierTowerWeaponSeriesInfo,
+		type FrontierTowerWeaponSlotInfo,
+	} from '$lib/client/modules/frontier/tower-weapons';
+	import Slider from 'carbon-components-svelte/src/Slider/Slider.svelte';
+	import SharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
+	import RadioButtonGroup from 'carbon-components-svelte/src/RadioButtonGroup/RadioButtonGroup.svelte';
+	import RadioButton from 'carbon-components-svelte/src/RadioButton/RadioButton.svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -1580,6 +1594,354 @@
 		];
 	}
 
+	function onSelectTowerWeaponOption() {
+		towerWeaponSelected = getTowerWeaponSelected(
+			towerWeaponSelectedWeaponOption,
+		);
+
+		towerWeaponGunlanceShellLevel = '0';
+		towerWeaponGunlanceShellLevelCost = getTowerWeaponGunlanceShellLevelCost();
+		towerWeaponSelectedSeriesInfo =
+			getTowerWeaponSeriesInfo(towerWeaponSelected);
+
+		towerWeaponAttackValue = towerWeaponSelected.attack[0][0];
+		towerWeaponElementValue = 0;
+		towerWeaponParalysisValue = 0;
+		towerWeaponPoisonValue = 0;
+		towerWeaponSleepValue = 0;
+		towerWeaponAffinityValue = towerWeaponSelected.affinity[0][0];
+		towerWeaponSharpnessLevel = 0;
+		towerWeaponGunlanceShellLevel = '0';
+		towerWeaponReloadSpeedValue = 0;
+		towerWeaponRecoilValue = 0;
+		towerWeaponBowCharge1Level = 1;
+		towerWeaponBowCharge2Level = 1;
+		towerWeaponBowCharge3Level = 1;
+		towerWeaponBowCharge4Level = 1;
+
+		towerWeaponSlots = getTowerWeaponSlots(towerWeaponSelectedSeriesInfo);
+		updateTowerWeaponSlotsState();
+		updateSliderDisabledState();
+	}
+
+	function onSelectTowerWeaponGunlanceShellLevel() {
+		towerWeaponGunlanceShellLevelCost = getTowerWeaponGunlanceShellLevelCost();
+	}
+
+	function onSelectTowerWeaponType() {
+		towerWeaponsFromType = getTowerWeaponsByType(towerWeaponSelectedWeaponType);
+		towerWeaponSelectedWeaponOption = towerWeaponsFromType[0].id;
+		towerWeaponSelected = getTowerWeaponSelected(
+			towerWeaponSelectedWeaponOption,
+		);
+
+		towerWeaponGunlanceShellLevel = '0';
+		towerWeaponGunlanceShellLevelCost = getTowerWeaponGunlanceShellLevelCost();
+		towerWeaponSelectedSeriesInfo =
+			getTowerWeaponSeriesInfo(towerWeaponSelected);
+
+		towerWeaponAttackValue = towerWeaponSelected.attack[0][0];
+		towerWeaponElementValue = 0;
+		towerWeaponParalysisValue = 0;
+		towerWeaponPoisonValue = 0;
+		towerWeaponSleepValue = 0;
+		towerWeaponAffinityValue = towerWeaponSelected.affinity[0][0];
+		towerWeaponSharpnessLevel = 0;
+		towerWeaponGunlanceShellLevel = '0';
+		towerWeaponReloadSpeedValue = 0;
+		towerWeaponRecoilValue = 0;
+		towerWeaponBowCharge1Level = 1;
+		towerWeaponBowCharge2Level = 1;
+		towerWeaponBowCharge3Level = 1;
+		towerWeaponBowCharge4Level = 1;
+
+		towerWeaponSlots = getTowerWeaponSlots(towerWeaponSelectedSeriesInfo);
+		updateTowerWeaponSlotsState();
+		updateSliderDisabledState();
+	}
+
+	/**TODO Add side-effects here */
+	function getTowerWeaponsByType(type: FrontierWeaponName) {
+		let result: DropdownItem[] = [];
+		let filtered = towerWeapons.filter((e) => e.type == type);
+		filtered.forEach((element) => {
+			result.push({ id: element.name, text: element.name });
+		});
+
+		return result;
+
+		// towerWeaponGunlanceShellLevels = towerWeapons.find(
+		// 	(element) => element.name === towerWeaponSelectedWeaponOption,
+		// )?.gunlanceShellLevel ?? [[]];
+		// towerWeaponGunlanceShellOptions =
+		// 	getTowerWeaponGunlaceShellOptions(towerWeaponSelected);
+		// return result;
+	}
+
+	function getTowerWeaponImageSource(weaponOption: string) {
+		let found =
+			towerWeapons.find((e) => e.name === weaponOption)?.image ??
+			towerWeapons[0].image;
+		return found;
+	}
+
+	function findClosestIndex(arr?: [number, number, number][], w: number) {
+		if (!arr) {
+			return 0;
+		}
+		// Initialize variables to keep track of the minimum difference and its index
+		let minDifference = Infinity; // Start with a large value
+		let closestIndex = -1; // Initialize to -1 to indicate no match
+
+		// Iterate over the array
+		for (let i = 0; i < arr.length; i++) {
+			// Calculate the absolute difference between w and the current element in x
+			const difference = Math.abs(w - arr[i][0]);
+
+			// Check if this difference is smaller than the current minimum difference
+			if (difference < minDifference) {
+				// Update the minimum difference and the index where it was found
+				minDifference = difference;
+				closestIndex = i;
+			}
+		}
+
+		// Return the index where the closest value to w was found
+		return closestIndex;
+	}
+
+	function getTowerWeaponSharpnessLevels(series: FrontierTowerWeaponSeries) {
+		let result: number[] = [];
+		let weapon = towerWeaponSeries.find((e) => e.series === series);
+		weapon?.sharpnessLevels.forEach((element, index) => {
+			result.push(index);
+		});
+		if (towerWeaponSharpnessLevel > result[result.length - 1]) {
+			towerWeaponSharpnessLevel = result[result.length - 1];
+		}
+		return result;
+	}
+
+	function handleSliderChange(
+		arr: [number, number, number][],
+		property: string,
+	) {
+		let index = 0;
+		switch (property) {
+			case 'attack':
+				index = findClosestIndex(arr, towerWeaponAttackValue);
+				towerWeaponAttackValue = arr[index][0];
+				break;
+			case 'element':
+				index = findClosestIndex(arr, towerWeaponElementValue);
+				towerWeaponElementValue = arr[index][0];
+				break;
+			case 'poison':
+				index = findClosestIndex(arr, towerWeaponPoisonValue);
+				towerWeaponPoisonValue = arr[index][0];
+				break;
+			case 'paralysis':
+				index = findClosestIndex(arr, towerWeaponParalysisValue);
+				towerWeaponParalysisValue = arr[index][0];
+				break;
+			case 'sleep':
+				index = findClosestIndex(arr, towerWeaponSleepValue);
+				towerWeaponSleepValue = arr[index][0];
+				break;
+			case 'affinity':
+				index = findClosestIndex(arr, towerWeaponAffinityValue);
+				towerWeaponAffinityValue = arr[index][0];
+				break;
+		}
+
+		updateTowerWeaponSlotsState();
+	}
+
+	function getTowerWeaponSelected(option: string) {
+		return towerWeapons.find((e) => e.name === option) ?? towerWeapons[0];
+	}
+
+	function getTowerWeaponGunlanceShellLevels(weapon: FrontierTowerWeapon) {
+		return weapon.gunlanceShellLevel ?? [[]];
+	}
+
+	function getTowerWeaponGunlanceShellLevelCost() {
+		if (towerWeaponSelected.type !== 'Gunlance') {
+			return 0;
+		}
+
+		if (
+			towerWeaponSelected.type === 'Gunlance' &&
+			towerWeaponSelected.gunlanceShellLevel !== undefined
+		) {
+			return towerWeaponSelected.gunlanceShellLevel[
+				parseInt(towerWeaponGunlanceShellLevel)
+			][1];
+		} else {
+			return 0;
+		}
+	}
+
+	function getTowerWeaponGunlaceShellOptions(weapon: FrontierTowerWeapon) {
+		let result: DropdownItem[] = [];
+		weapon.gunlanceShellLevel?.forEach((e, i) => {
+			result.push({
+				id: `${i}`,
+				text: `LV${towerWeaponSelected.series === 'Blue' && i > 0 ? i + 5 : i + 1}`,
+			});
+		});
+		return result;
+	}
+
+	function updateTowerWeaponSlotsState() {
+		towerWeaponSigilsUsed = 0;
+
+		if (towerWeaponElementValue > 0) {
+			towerWeaponSigilsUsed++;
+		}
+
+		if (towerWeaponAffinityValue > 0) {
+			towerWeaponSigilsUsed++;
+		}
+
+		if (
+			towerWeaponPoisonValue >= 1 ||
+			towerWeaponParalysisValue >= 1 ||
+			towerWeaponSleepValue >= 1
+		) {
+			towerWeaponSigilsUsed++;
+		}
+
+		if (towerWeaponSlots[0].type === 'Sigil') {
+			if (towerWeaponSlots[0].state === 'off' && towerWeaponSigilsUsed >= 1) {
+				towerWeaponSlots[0].state = 'on';
+				towerWeaponSlots[0].image = towerWeaponSlotImages[3].image;
+			}
+		}
+
+		if (towerWeaponSlots[1].type === 'Sigil') {
+			if (
+				towerWeaponSlots[1].state === 'off' &&
+				towerWeaponSlots[0].state === 'on' &&
+				towerWeaponSigilsUsed >= 2
+			) {
+				towerWeaponSlots[1].state = 'on';
+				towerWeaponSlots[1].image = towerWeaponSlotImages[3].image;
+			}
+		}
+
+		if (towerWeaponSlots[2].type === 'Sigil') {
+			if (
+				towerWeaponSlots[2].state === 'off' &&
+				towerWeaponSlots[1].state === 'on' &&
+				towerWeaponSlots[0].state === 'on' &&
+				towerWeaponSigilsUsed >= 3
+			) {
+				towerWeaponSlots[2].state = 'on';
+				towerWeaponSlots[2].image = towerWeaponSlotImages[3].image;
+			}
+		}
+
+		if (towerWeaponSigilsUsed === 2) {
+			towerWeaponSlots[2].state = 'off';
+			towerWeaponSlots[2].image =
+				towerWeaponSlots[2].type === 'Sigil'
+					? towerWeaponSlotImages[2].image
+					: towerWeaponSlotImages[1].image;
+		} else if (towerWeaponSigilsUsed === 1) {
+			towerWeaponSlots[1].state = 'off';
+			towerWeaponSlots[1].image =
+				towerWeaponSlots[1].type === 'Sigil'
+					? towerWeaponSlotImages[2].image
+					: towerWeaponSlotImages[1].image;
+		} else if (towerWeaponSigilsUsed === 0) {
+			towerWeaponSlots[0].state = 'off';
+			towerWeaponSlots[0].image =
+				towerWeaponSlots[0].type === 'Sigil'
+					? towerWeaponSlotImages[2].image
+					: towerWeaponSlotImages[1].image;
+		}
+
+		updateSliderDisabledState();
+	}
+
+	function getTowerWeaponSlots(seriesInfo: FrontierTowerWeaponSeriesInfo) {
+		let result: FrontierTowerWeaponSlotInfo[] = [];
+		seriesInfo.slots.forEach((e, i) => {
+			result.push({
+				state: 'off',
+				type:
+					i === 2 &&
+					towerWeaponSelected.series === 'Blue' &&
+					(towerWeaponSelected.type === 'Bow' ||
+						towerWeaponSelected.type === 'Light Bowgun' ||
+						towerWeaponSelected.type === 'Heavy Bowgun')
+						? 'Decoration'
+						: e,
+				image:
+					towerWeaponSlotImages.find(
+						(element) =>
+							element.state === 'off' &&
+							element.type ===
+								(i === 2 &&
+								towerWeaponSelected.series === 'Blue' &&
+								(towerWeaponSelected.type === 'Bow' ||
+									towerWeaponSelected.type === 'Light Bowgun' ||
+									towerWeaponSelected.type === 'Heavy Bowgun')
+									? 'Decoration'
+									: e),
+					).image ?? '',
+			});
+		});
+		return result;
+	}
+
+	function getTowerWeaponSeriesInfo(weapon: FrontierTowerWeapon) {
+		return (
+			towerWeaponSeries.find((e) => e.series === weapon.series) ??
+			towerWeaponSeries[0]
+		);
+	}
+
+	function updateSliderDisabledState() {
+		// Example logic: Disable the slider if all sigil slots are in use and the property value is 0
+
+		const maxSigilsSlots = towerWeaponSelectedSeriesInfo.slots.filter(
+			(e) => e === 'Sigil',
+		).length;
+		const sigilSlotsInUse = towerWeaponSigilsUsed;
+
+		// Determine if any of the conditions for disabling poison, sleep, and paralysis sliders are met
+		const disablePoisonSleepParalysis =
+			sigilSlotsInUse >= maxSigilsSlots &&
+			(towerWeaponElementValue > 0 || towerWeaponAffinityValue > 0);
+		// Disable sliders based on the values of poison, paralysis, and sleep
+		// Adjusted to ensure that sliders are disabled when any of the conditions are met
+		towerWeaponPoisonDisabled =
+			towerWeaponPoisonValue <= 0 &&
+			(disablePoisonSleepParalysis ||
+				towerWeaponSleepValue > 0 ||
+				towerWeaponParalysisValue > 0);
+
+		towerWeaponParalysisDisabled =
+			towerWeaponParalysisValue <= 0 &&
+			(disablePoisonSleepParalysis ||
+				towerWeaponSleepValue > 0 ||
+				towerWeaponPoisonValue > 0);
+
+		towerWeaponSleepDisabled =
+			towerWeaponSleepValue <= 0 &&
+			(disablePoisonSleepParalysis ||
+				towerWeaponPoisonValue > 0 ||
+				towerWeaponParalysisValue > 0);
+
+		towerWeaponElementDisabled =
+			towerWeaponSigilsUsed >= maxSigilsSlots && towerWeaponElementValue <= 0;
+
+		towerWeaponAffinityDisabled =
+			towerWeaponSigilsUsed >= maxSigilsSlots && towerWeaponAffinityValue <= 0;
+	}
+
 	let selectedIconFormat: 'Vector' | 'Raster' = 'Vector';
 	let selectedIconMonsterRenderSize: 'Small' | 'Full' = 'Full';
 	let selectedIconSize: IconSize = '256px';
@@ -1663,6 +2025,105 @@
 		...thumbnailTexts,
 		...thumbnailGeneratorTemplateExampleTexts,
 	];
+
+	let towerWeaponSelectedWeaponType = towerWeapons[0].type;
+	let towerWeaponSelectedWeaponOption = towerWeapons[0].name;
+	let towerWeaponAttackValue = towerWeapons[0].attack[0][0];
+	let towerWeaponElementValue = 0;
+	let towerWeaponParalysisValue = 0;
+	let towerWeaponPoisonValue = 0;
+	let towerWeaponSleepValue = 0;
+	let towerWeaponAffinityValue = towerWeapons[0].affinity[0][0];
+	let towerWeaponSharpnessLevel = 0;
+	let towerWeaponGunlanceShellLevel = '0';
+	let towerWeaponReloadSpeedValue = 0;
+	let towerWeaponRecoilValue = 0;
+	let towerWeaponBowCharge1Level = 1;
+	let towerWeaponBowCharge2Level = 1;
+	let towerWeaponBowCharge3Level = 1;
+	let towerWeaponBowCharge4Level = 1;
+
+	let towerWeaponSelected = towerWeapons[0];
+	let towerWeaponsFromType = getTowerWeaponsByType(
+		towerWeaponSelectedWeaponType,
+	);
+
+	let towerWeaponSelectedSeriesInfo =
+		getTowerWeaponSeriesInfo(towerWeaponSelected);
+
+	$: towerWeaponSharpnessLevels = getTowerWeaponSharpnessLevels(
+		towerWeaponSelected.series,
+	);
+
+	$: towerWeaponAttackIndex = findClosestIndex(
+		towerWeaponSelected.attack,
+		towerWeaponAttackValue,
+	);
+
+	$: towerWeaponElementIndex = findClosestIndex(
+		towerWeaponSelected.element,
+		towerWeaponElementValue,
+	);
+
+	$: towerWeaponParalysisIndex = findClosestIndex(
+		towerWeaponSelected.paralysis,
+		towerWeaponParalysisValue,
+	);
+
+	$: towerWeaponPoisonIndex = findClosestIndex(
+		towerWeaponSelected.poison,
+		towerWeaponPoisonValue,
+	);
+
+	$: towerWeaponSleepIndex = findClosestIndex(
+		towerWeaponSelected.sleep,
+		towerWeaponSleepValue,
+	);
+
+	$: towerWeaponAffinityIndex = findClosestIndex(
+		towerWeaponSelected.affinity,
+		towerWeaponAffinityValue,
+	);
+
+	$: towerWeaponSharpnessIndex =
+		towerWeaponSharpnessLevels.findIndex(
+			(e) => e === towerWeaponSharpnessLevel,
+		) ?? 0;
+
+	// TODO dropdown?
+	$: towerWeaponGunlanceShellLevels =
+		getTowerWeaponGunlanceShellLevels(towerWeaponSelected);
+
+	let towerWeaponGunlanceShellLevelCost = getTowerWeaponGunlanceShellLevelCost(
+		towerWeaponGunlanceShellLevels,
+		towerWeaponGunlanceShellLevel,
+	);
+
+	$: towerWeaponGunlanceShellOptions =
+		getTowerWeaponGunlaceShellOptions(towerWeaponSelected);
+
+	let towerWeaponReloadSpeedIndex = 0;
+	let towerWeaponRecoilIndex = 0;
+	let towerWeaponBowCharge1Index = 0;
+	let towerWeaponBowCharge2Index = 0;
+	let towerWeaponBowCharge3Index = 0;
+	let towerWeaponBowCharge4Index = 0;
+	let towerWeaponSlots = getTowerWeaponSlots(towerWeaponSelectedSeriesInfo);
+	let towerWeaponSigilsUsed = 0;
+	let towerWeaponElementDisabled = false;
+	let towerWeaponAffinityDisabled = false;
+	let towerWeaponSleepDisabled = false;
+	let towerWeaponPoisonDisabled = false;
+	let towerWeaponParalysisDisabled = false;
+
+	$: towerWeaponSharpnessBarValues =
+		towerWeaponSeries.find((e) => e.series === towerWeaponSelected.series)
+			?.sharpnessLevels[towerWeaponSharpnessIndex][0] ??
+		towerWeaponSeries[0].sharpnessLevels[0][0];
+
+	$: towerWeaponImage = getTowerWeaponImageSource(
+		towerWeaponSelectedWeaponOption,
+	);
 
 	$: addUploadedImage(thumbnailGeneratorImageFiles);
 	$: currentIconsFromType = getCurrentIconsFromType(selectedIconType);
@@ -4025,7 +4486,252 @@
 	</section>
 	<section>
 		<SectionHeading level={2} title="Tower Weapon" />
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Value correction:"
+			subtitle="The sliders automatically adjust to the correct values once you release them."
+		/>
+
 		<p class="spaced-paragraph"></p>
+		<div class="flex-centered padded">
+			<Dropdown
+				titleText="Weapon Type"
+				type="inline"
+				hideLabel
+				on:select={onSelectTowerWeaponType}
+				bind:selectedId={towerWeaponSelectedWeaponType}
+				items={[
+					{ id: 'Great Sword', text: 'Great Sword' },
+					{ id: 'Long Sword', text: 'Long Sword' },
+					{ id: 'Sword and Shield', text: 'Sword and Shield' },
+					{ id: 'Dual Swords', text: 'Dual Swords' },
+					{ id: 'Hammer', text: 'Hammer' },
+					{ id: 'Hunting Horn', text: 'Hunting Horn' },
+					{ id: 'Lance', text: 'Lance' },
+					{ id: 'Gunlance', text: 'Gunlance' },
+					{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
+					{ id: 'Light Bowgun', text: 'Light Bowgun' },
+					{ id: 'Bow', text: 'Bow' },
+					{ id: 'Tonfa', text: 'Tonfa' },
+					{ id: 'Switch Axe F', text: 'Switch Axe F' },
+					{ id: 'Magnet Spike', text: 'Magnet Spike' },
+				]}
+			/>
+			<Dropdown
+				titleText="Tower Weapon"
+				type="inline"
+				hideLabel
+				on:select={onSelectTowerWeaponOption}
+				bind:selectedId={towerWeaponSelectedWeaponOption}
+				items={towerWeaponsFromType}
+			/>
+		</div>
+		<div class="flex-centered padded flex-column">
+			<img src={towerWeaponImage} alt="Tower Weapon" />
+			<div class="tower-weapon-slots-container">
+				{#each towerWeaponSlots as weaponSlot}
+					<img src={weaponSlot.image} alt="Tower Weapon Slot" />
+				{/each}
+			</div>
+		</div>
+
+		<div class="flex-centered padded">
+			<p><strong>Total Cost: {0}</strong></p>
+		</div>
+
+		<div class="tower-weapon-properties">
+			<div class="tower-weapon-property">
+				<Slider
+					labelText="Attack"
+					min={towerWeaponSelected.attack[0][0]}
+					max={towerWeaponSelected.attack.at(-1)[0]}
+					bind:value={towerWeaponAttackValue}
+					on:change={(e) =>
+						handleSliderChange(towerWeaponSelected.attack, 'attack')}
+				/>
+				<p>
+					Upgrade #{towerWeaponAttackIndex} Cost: {towerWeaponSelected.attack[
+						towerWeaponAttackIndex
+					][1]}
+				</p>
+			</div>
+			{#if towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
+				<div class="tower-weapon-property">
+					<Slider
+						labelText="Element"
+						min={towerWeaponSelected.element[0][0]}
+						max={towerWeaponSelected.element.at(-1)[0]}
+						bind:value={towerWeaponElementValue}
+						disabled={towerWeaponElementDisabled}
+						on:change={(e) =>
+							handleSliderChange(towerWeaponSelected.element, 'element')}
+					/>
+					<p>
+						Upgrade #{towerWeaponElementIndex} Cost: {towerWeaponSelected
+							.element[towerWeaponElementIndex][1]}
+					</p>
+				</div>
+				{#if towerWeaponSelectedWeaponType !== 'Bow'}
+					<div class="tower-weapon-property">
+						<Slider
+							disabled={towerWeaponPoisonDisabled}
+							labelText="Poison"
+							min={towerWeaponSelected.poison[0][0]}
+							max={towerWeaponSelected.poison.at(-1)[0]}
+							bind:value={towerWeaponPoisonValue}
+							on:change={(e) =>
+								handleSliderChange(towerWeaponSelected.poison, 'poison')}
+						/>
+						<p>
+							Upgrade #{towerWeaponPoisonIndex} Cost: {towerWeaponSelected
+								.poison[towerWeaponPoisonIndex][1]}
+						</p>
+					</div>
+					<div class="tower-weapon-property">
+						<Slider
+							disabled={towerWeaponParalysisDisabled}
+							labelText="Paralysis"
+							min={towerWeaponSelected.paralysis[0][0]}
+							max={towerWeaponSelected.paralysis.at(-1)[0]}
+							bind:value={towerWeaponParalysisValue}
+							on:change={(e) =>
+								handleSliderChange(towerWeaponSelected.paralysis, 'paralysis')}
+						/>
+						<p>
+							Upgrade #{towerWeaponParalysisIndex} Cost: {towerWeaponSelected
+								.paralysis[towerWeaponParalysisIndex][1]}
+						</p>
+					</div>
+					<div class="tower-weapon-property">
+						<Slider
+							disabled={towerWeaponSleepDisabled}
+							labelText="Sleep"
+							min={towerWeaponSelected.sleep[0][0]}
+							max={towerWeaponSelected.sleep.at(-1)[0]}
+							bind:value={towerWeaponSleepValue}
+							on:change={(e) =>
+								handleSliderChange(towerWeaponSelected.sleep, 'sleep')}
+						/>
+						<p>
+							Upgrade #{towerWeaponSleepIndex} Cost: {towerWeaponSelected.sleep[
+								towerWeaponSleepIndex
+							][1]}
+						</p>
+					</div>
+				{/if}
+			{/if}
+			<div class="tower-weapon-property">
+				<Slider
+					labelText="Affinity"
+					min={towerWeaponSelected.affinity[0][0]}
+					max={towerWeaponSelected.affinity.at(-1)[0]}
+					bind:value={towerWeaponAffinityValue}
+					disabled={towerWeaponAffinityDisabled}
+					on:change={(e) =>
+						handleSliderChange(towerWeaponSelected.affinity, 'affinity')}
+				/>
+				<p>
+					Upgrade #{towerWeaponAffinityIndex} Cost: {towerWeaponSelected
+						.affinity[towerWeaponAffinityIndex][1]}
+				</p>
+			</div>
+			{#if towerWeaponSelectedWeaponType !== 'Bow' && towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
+				<div class="tower-weapon-property">
+					<RadioButtonGroup
+						legendText="Sharpness"
+						name="sharpness"
+						bind:selected={towerWeaponSharpnessLevel}
+					>
+						{#each towerWeaponSharpnessLevels as value}
+							<RadioButton labelText={`LV${value}`} {value} />
+						{/each}
+					</RadioButtonGroup>
+					<div class="sharpness-bar-container">
+						<SharpnessBar
+							sharpnessBoost={false}
+							sharpnessValues={towerWeaponSharpnessBarValues}
+						/>
+					</div>
+					<p>
+						Upgrade #{towerWeaponSharpnessIndex} Cost: {towerWeaponSelectedSeriesInfo
+							.sharpnessLevels[towerWeaponSharpnessIndex][1]}
+					</p>
+				</div>
+			{/if}
+			{#if towerWeaponSelectedWeaponType === 'Gunlance'}
+				<div class="tower-weapon-property">
+					<Dropdown
+						type="default"
+						titleText="Shell Level"
+						on:select={onSelectTowerWeaponGunlanceShellLevel}
+						bind:selectedId={towerWeaponGunlanceShellLevel}
+						items={towerWeaponGunlanceShellOptions}
+					/>
+					<p>
+						Upgrade #{towerWeaponGunlanceShellLevel} Cost: {towerWeaponGunlanceShellLevelCost}
+					</p>
+				</div>
+			{/if}
+			{#if towerWeaponSelectedWeaponType === 'Heavy Bowgun' || towerWeaponSelectedWeaponType === 'Light Bowgun'}
+				<div class="tower-weapon-property">
+					<p>
+						Upgrade #{0} Cost: {0}
+					</p>
+				</div>
+				<div class="tower-weapon-property">
+					<p>
+						Upgrade #{0} Cost: {0}
+					</p>
+				</div>
+			{/if}
+			{#if towerWeaponSelectedWeaponType === 'Bow'}
+				<div class="tower-weapon-property">
+					<p>
+						Upgrade #{0} Cost: {0}
+					</p>
+				</div>
+				<div class="tower-weapon-property">
+					<p>
+						Upgrade #{0} Cost: {0}
+					</p>
+				</div>
+				<div class="tower-weapon-property">
+					<p>
+						Upgrade #{0} Cost: {0}
+					</p>
+				</div>
+				<div class="tower-weapon-property">
+					<p>
+						Upgrade #{0} Cost: {0}
+					</p>
+				</div>
+			{/if}
+		</div>
+		<div class="tower-weapon-gems">
+			<InlineTooltip
+				tooltip="Item"
+				text={`${0} Courage Gems`}
+				icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
+				iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+				iconSize={'24px'}
+			/>
+			<InlineTooltip
+				tooltip="Item"
+				text={`${0} Glittering Gems`}
+				icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
+				iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+				iconSize={'24px'}
+			/>
+			<InlineTooltip
+				tooltip="Item"
+				text={`${0} Divine Gems`}
+				icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
+				iconColor={ItemColors.find((e) => e.name === 'Cyan')?.value}
+				iconSize={'24px'}
+			/>
+		</div>
 	</section>
 	<section>
 		<SectionHeading level={2} title="Icons" />
@@ -4139,6 +4845,20 @@
 	</section>
 	<section>
 		<SectionHeading level={2} title="Thumbnail Generator" />
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="warning"
+			title="Browser compatibility:"
+			subtitle="The download button functionality may not work on Firefox. It is confirmed to work with Chromium based browsers."
+		/>
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Background:"
+			subtitle="The ZIndex of the background should be 0."
+		/>
 		<p>Rule of thirds:</p>
 		<ul class="spaced-list">
 			<li>X: 427, 853</li>
@@ -4792,5 +5512,56 @@
 		position: relative; /* Changed from absolute to relative to allow border to be applied */
 		width: 1280px; /* Fixed width to match the desired output size */
 		height: 720px; /* Fixed height to match the desired output size */
+	}
+
+	.tower-weapon-properties {
+		margin-top: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.tower-weapon-property {
+		text-align: center;
+	}
+
+	.flex-centered {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.tower-weapon-gems {
+		display: flex;
+		gap: 1rem;
+		font-size: 24px;
+		justify-content: center;
+		padding: 1rem;
+	}
+
+	.padded {
+		padding: 0.5rem;
+	}
+
+	.sharpness-bar-container {
+		display: inline-flex;
+		margin: 1rem;
+	}
+
+	.tower-weapon-slots-container {
+		background-color: #000;
+		border: 2px solid #000;
+		border-radius: 4px;
+		padding: 1rem;
+		width: 8rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	.flex-column {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 	}
 </style>
