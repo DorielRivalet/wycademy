@@ -28,7 +28,10 @@
 	import { domToPng } from 'modern-screenshot';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import slugify from 'slugify';
-	import { frontierMappers } from '$lib/client/modules/frontier/functions';
+	import {
+		frontierMappers,
+		getTag,
+	} from '$lib/client/modules/frontier/functions';
 	import { browser } from '$app/environment';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import Dropdown, {
@@ -55,6 +58,8 @@
 		FrontierArmorGRLevel,
 		FrontierArmorLevel,
 		FrontierArmorType,
+		FrontierBowgunRecoil,
+		FrontierBowgunReloadSpeed,
 		FrontierEquipmentDecorations,
 		FrontierEquipmentRank,
 		FrontierEquipmentSkillPoints,
@@ -521,6 +526,20 @@
 			link.click();
 			document.body.removeChild(link);
 		}
+	}
+
+	function downloadTowerWeaponImage() {
+		if (!browser) return;
+		let node = document.querySelector('#tower-weapon-dom');
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(
+				`tower-${towerWeaponSelected.type}-${towerWeaponSelected.name}-${new Date().toISOString()}.png`,
+			)}`;
+			link.href = dataUrl;
+			link.click();
+		});
 	}
 
 	let url = $page.url.toString();
@@ -1612,12 +1631,19 @@
 		towerWeaponAffinityValue = towerWeaponSelected.affinity[0][0];
 		towerWeaponSharpnessLevel = 0;
 		towerWeaponGunlanceShellLevel = '0';
-		towerWeaponReloadSpeedValue = 0;
-		towerWeaponRecoilValue = 0;
-		towerWeaponBowCharge1Level = 1;
-		towerWeaponBowCharge2Level = 1;
-		towerWeaponBowCharge3Level = 1;
-		towerWeaponBowCharge4Level = 1;
+
+		towerWeaponReloadSpeedValue = 'Very Slow';
+		towerWeaponRecoilValue = 'Max';
+		towerWeaponBowCharge1Level = '1';
+		towerWeaponBowCharge2Level = '1';
+		towerWeaponBowCharge3Level = '1';
+		towerWeaponBowCharge4Level = '1';
+		towerWeaponReloadSpeedCost = 0;
+		towerWeaponRecoilCost = 0;
+		towerWeaponBowCharge1Cost = 0;
+		towerWeaponBowCharge2Cost = 0;
+		towerWeaponBowCharge3Cost = 0;
+		towerWeaponBowCharge4Cost = 0;
 
 		towerWeaponSlots = getTowerWeaponSlots(towerWeaponSelectedSeriesInfo);
 		updateTowerWeaponSlotsState();
@@ -1626,6 +1652,30 @@
 
 	function onSelectTowerWeaponGunlanceShellLevel() {
 		towerWeaponGunlanceShellLevelCost = getTowerWeaponGunlanceShellLevelCost();
+	}
+
+	function onSelectTowerWeaponReloadSpeed() {
+		towerWeaponReloadSpeedCost = getTowerWeaponReloadSpeedCost();
+	}
+
+	function onSelectTowerWeaponRecoil() {
+		towerWeaponRecoilCost = getTowerWeaponRecoilCost();
+	}
+
+	function onSelectTowerWeaponBowCharge1() {
+		towerWeaponBowCharge1Cost = getTowerWeaponBowChargeCost(1);
+	}
+
+	function onSelectTowerWeaponBowCharge2() {
+		towerWeaponBowCharge2Cost = getTowerWeaponBowChargeCost(2);
+	}
+
+	function onSelectTowerWeaponBowCharge3() {
+		towerWeaponBowCharge3Cost = getTowerWeaponBowChargeCost(3);
+	}
+
+	function onSelectTowerWeaponBowCharge4() {
+		towerWeaponBowCharge4Cost = getTowerWeaponBowChargeCost(4);
 	}
 
 	function onSelectTowerWeaponType() {
@@ -1648,12 +1698,19 @@
 		towerWeaponAffinityValue = towerWeaponSelected.affinity[0][0];
 		towerWeaponSharpnessLevel = 0;
 		towerWeaponGunlanceShellLevel = '0';
-		towerWeaponReloadSpeedValue = 0;
-		towerWeaponRecoilValue = 0;
-		towerWeaponBowCharge1Level = 1;
-		towerWeaponBowCharge2Level = 1;
-		towerWeaponBowCharge3Level = 1;
-		towerWeaponBowCharge4Level = 1;
+
+		towerWeaponReloadSpeedValue = 'Very Slow';
+		towerWeaponRecoilValue = 'Max';
+		towerWeaponBowCharge1Level = '1';
+		towerWeaponBowCharge2Level = '1';
+		towerWeaponBowCharge3Level = '1';
+		towerWeaponBowCharge4Level = '1';
+		towerWeaponReloadSpeedCost = 0;
+		towerWeaponRecoilCost = 0;
+		towerWeaponBowCharge1Cost = 0;
+		towerWeaponBowCharge2Cost = 0;
+		towerWeaponBowCharge3Cost = 0;
+		towerWeaponBowCharge4Cost = 0;
 
 		towerWeaponSlots = getTowerWeaponSlots(towerWeaponSelectedSeriesInfo);
 		updateTowerWeaponSlotsState();
@@ -1761,10 +1818,6 @@
 		return towerWeapons.find((e) => e.name === option) ?? towerWeapons[0];
 	}
 
-	function getTowerWeaponGunlanceShellLevels(weapon: FrontierTowerWeapon) {
-		return weapon.gunlanceShellLevel ?? [[]];
-	}
-
 	function getTowerWeaponGunlanceShellLevelCost() {
 		if (towerWeaponSelected.type !== 'Gunlance') {
 			return 0;
@@ -1779,6 +1832,73 @@
 			][1];
 		} else {
 			return 0;
+		}
+	}
+
+	function getTowerWeaponReloadSpeedCost() {
+		if (
+			towerWeaponSelected.type !== 'Light Bowgun' &&
+			towerWeaponSelected.type !== 'Heavy Bowgun'
+		) {
+			return 0;
+		}
+
+		if (towerWeaponSelectedSeriesInfo.reload !== undefined) {
+			return towerWeaponSelectedSeriesInfo.reload.find(
+				(e) => e[0] === towerWeaponReloadSpeedValue,
+			)[1];
+		} else {
+			return 0;
+		}
+	}
+
+	function getTowerWeaponRecoilCost() {
+		if (
+			towerWeaponSelected.type !== 'Light Bowgun' &&
+			towerWeaponSelected.type !== 'Heavy Bowgun'
+		) {
+			return 0;
+		}
+
+		if (towerWeaponSelectedSeriesInfo.recoil !== undefined) {
+			return towerWeaponSelectedSeriesInfo.recoil.find(
+				(e) => e[0] === towerWeaponRecoilValue,
+			)[1];
+		} else {
+			return 0;
+		}
+	}
+
+	function getTowerWeaponBowChargeCost(level: number) {
+		if (
+			towerWeaponSelected.type !== 'Bow' ||
+			towerWeaponSelected.bowCharge1 === undefined ||
+			towerWeaponSelected.bowCharge2 === undefined ||
+			towerWeaponSelected.bowCharge3 === undefined ||
+			towerWeaponSelected.bowCharge4 === undefined
+		) {
+			return 0;
+		}
+
+		switch (level) {
+			case 1:
+				return towerWeaponSelected.bowCharge1[
+					parseInt(towerWeaponBowCharge1Level) - 1
+				][1];
+			case 2:
+				return towerWeaponSelected.bowCharge2[
+					parseInt(towerWeaponBowCharge2Level) - 1
+				][1];
+			case 3:
+				return towerWeaponSelected.bowCharge3[
+					parseInt(towerWeaponBowCharge3Level) - 1
+				][1];
+			case 4:
+				return towerWeaponSelected.bowCharge4[
+					parseInt(towerWeaponBowCharge4Level) - 1
+				][1];
+			default:
+				return 0;
 		}
 	}
 
@@ -1942,6 +2062,89 @@
 			towerWeaponSigilsUsed >= maxSigilsSlots && towerWeaponAffinityValue <= 0;
 	}
 
+	function getTowerWeaponTotalGems(
+		weapon: FrontierTowerWeapon,
+		attackGems: number,
+		elementGems: number,
+		poisonGems: number,
+		sleepGems: number,
+		paralysisGems: number,
+		affinityGems: number,
+		sharpnessGems: number,
+		gunlanceShellIndex: number,
+		reloadIndex: number,
+		recoilIndex: number,
+		bowCharge1Index: number,
+		bowCharge2Index: number,
+		bowCharge3Index: number,
+		bowCharge4Index: number,
+	) {
+		let result = { courage: 0, glittering: 0, divine: 0 };
+
+		result.courage = attackGems + affinityGems;
+
+		result.glittering = elementGems + poisonGems + sleepGems + paralysisGems;
+
+		result.divine =
+			sharpnessGems +
+			(towerWeaponSelected.gunlanceShellLevel
+				? towerWeaponSelected.gunlanceShellLevel[gunlanceShellIndex][2]
+				: 0) +
+			towerWeaponSelectedSeriesInfo.reload[reloadIndex][2] +
+			towerWeaponSelectedSeriesInfo.recoil[recoilIndex][2] +
+			(towerWeaponSelected.bowCharge1
+				? towerWeaponSelected.bowCharge1[bowCharge1Index][2]
+				: 0) +
+			(towerWeaponSelected.bowCharge2
+				? towerWeaponSelected.bowCharge2[bowCharge2Index][2]
+				: 0) +
+			(towerWeaponSelected.bowCharge3
+				? towerWeaponSelected.bowCharge3[bowCharge3Index][2]
+				: 0) +
+			(towerWeaponSelected.bowCharge4
+				? towerWeaponSelected.bowCharge4[bowCharge4Index][2]
+				: 0);
+
+		return result;
+	}
+
+	function getTowerWeaponTotalCost(
+		weapon: FrontierTowerWeapon,
+		attackCost: number,
+		elementCost: number,
+		poisonCost: number,
+		sleepCost: number,
+		paralysisCost: number,
+		affinityCost: number,
+		sharpnessCost: number,
+		gunlanceShellCost: number,
+		reloadCost: number,
+		recoilCost: number,
+		bowCharge1Cost: number,
+		bowCharge2Cost: number,
+		bowCharge3Cost: number,
+		bowCharge4Cost: number,
+	) {
+		let result = 0;
+		result =
+			attackCost +
+			elementCost +
+			poisonCost +
+			sleepCost +
+			paralysisCost +
+			affinityCost +
+			sharpnessCost +
+			gunlanceShellCost +
+			reloadCost +
+			recoilCost +
+			bowCharge1Cost +
+			bowCharge2Cost +
+			bowCharge3Cost +
+			bowCharge4Cost;
+
+		return result;
+	}
+
 	let selectedIconFormat: 'Vector' | 'Raster' = 'Vector';
 	let selectedIconMonsterRenderSize: 'Small' | 'Full' = 'Full';
 	let selectedIconSize: IconSize = '256px';
@@ -2036,12 +2239,13 @@
 	let towerWeaponAffinityValue = towerWeapons[0].affinity[0][0];
 	let towerWeaponSharpnessLevel = 0;
 	let towerWeaponGunlanceShellLevel = '0';
-	let towerWeaponReloadSpeedValue = 0;
-	let towerWeaponRecoilValue = 0;
-	let towerWeaponBowCharge1Level = 1;
-	let towerWeaponBowCharge2Level = 1;
-	let towerWeaponBowCharge3Level = 1;
-	let towerWeaponBowCharge4Level = 1;
+
+	let towerWeaponReloadSpeedValue: FrontierBowgunReloadSpeed = 'Very Slow';
+	let towerWeaponRecoilValue: FrontierBowgunRecoil = 'Max';
+	let towerWeaponBowCharge1Level = '1';
+	let towerWeaponBowCharge2Level = '1';
+	let towerWeaponBowCharge3Level = '1';
+	let towerWeaponBowCharge4Level = '1';
 
 	let towerWeaponSelected = towerWeapons[0];
 	let towerWeaponsFromType = getTowerWeaponsByType(
@@ -2050,6 +2254,39 @@
 
 	let towerWeaponSelectedSeriesInfo =
 		getTowerWeaponSeriesInfo(towerWeaponSelected);
+
+	const towerWeaponReloadSpeedOptions = [
+		{ id: 'Very Slow', text: 'Very Slow' },
+		{ id: 'Slow', text: 'Slow' },
+		{ id: 'Normal', text: 'Normal' },
+		{ id: 'Fast', text: 'Fast' },
+		{ id: 'Very Fast', text: 'Very Fast' },
+	];
+
+	const towerWeaponRecoilOptions = [
+		{ id: 'Max', text: 'Max' },
+		{ id: 'Large', text: 'Large' },
+		{ id: 'Medium', text: 'Medium' },
+		{ id: 'Small', text: 'Small' },
+		{ id: 'Smaller', text: 'Smaller' },
+	];
+
+	$: towerWeaponSeriesColor =
+		towerWeaponSelected.series === 'Light'
+			? RarityColors[0]
+			: towerWeaponSelected.series === 'Dark'
+				? RarityColors[11]
+				: RarityColors[5];
+
+	$: console.log(towerWeaponSeriesColor);
+
+	$: towerWeaponReloadSpeedIndex = towerWeaponReloadSpeedOptions.findIndex(
+		(e) => e.id === towerWeaponReloadSpeedValue,
+	);
+
+	$: towerWeaponRecoilIndex = towerWeaponRecoilOptions.findIndex(
+		(e) => e.id === towerWeaponRecoilValue,
+	);
 
 	$: towerWeaponSharpnessLevels = getTowerWeaponSharpnessLevels(
 		towerWeaponSelected.series,
@@ -2090,24 +2327,25 @@
 			(e) => e === towerWeaponSharpnessLevel,
 		) ?? 0;
 
-	// TODO dropdown?
-	$: towerWeaponGunlanceShellLevels =
-		getTowerWeaponGunlanceShellLevels(towerWeaponSelected);
-
-	let towerWeaponGunlanceShellLevelCost = getTowerWeaponGunlanceShellLevelCost(
-		towerWeaponGunlanceShellLevels,
-		towerWeaponGunlanceShellLevel,
-	);
+	let towerWeaponGunlanceShellLevelCost =
+		getTowerWeaponGunlanceShellLevelCost();
+	let towerWeaponReloadSpeedCost = getTowerWeaponReloadSpeedCost();
+	let towerWeaponRecoilCost = getTowerWeaponRecoilCost();
+	let towerWeaponBowCharge1Cost = getTowerWeaponBowChargeCost(1);
+	let towerWeaponBowCharge2Cost = getTowerWeaponBowChargeCost(2);
+	let towerWeaponBowCharge3Cost = getTowerWeaponBowChargeCost(3);
+	let towerWeaponBowCharge4Cost = getTowerWeaponBowChargeCost(4);
 
 	$: towerWeaponGunlanceShellOptions =
 		getTowerWeaponGunlaceShellOptions(towerWeaponSelected);
 
-	let towerWeaponReloadSpeedIndex = 0;
-	let towerWeaponRecoilIndex = 0;
-	let towerWeaponBowCharge1Index = 0;
-	let towerWeaponBowCharge2Index = 0;
-	let towerWeaponBowCharge3Index = 0;
-	let towerWeaponBowCharge4Index = 0;
+	const towerWeaponBowChargeOptions = [
+		{ id: '1', text: 'LV1' },
+		{ id: '2', text: 'LV2' },
+		{ id: '3', text: 'LV3' },
+		{ id: '4', text: 'LV4' },
+	];
+
 	let towerWeaponSlots = getTowerWeaponSlots(towerWeaponSelectedSeriesInfo);
 	let towerWeaponSigilsUsed = 0;
 	let towerWeaponElementDisabled = false;
@@ -2124,6 +2362,61 @@
 	$: towerWeaponImage = getTowerWeaponImageSource(
 		towerWeaponSelectedWeaponOption,
 	);
+
+	$: towerWeaponTotalGems = getTowerWeaponTotalGems(
+		towerWeaponSelected,
+		towerWeaponSelected.attack[towerWeaponAttackIndex][2],
+		towerWeaponSelected.element
+			? towerWeaponSelected.element[towerWeaponElementIndex][2]
+			: 0,
+		towerWeaponSelected.poison
+			? towerWeaponSelected.poison[towerWeaponPoisonIndex][2]
+			: 0,
+		towerWeaponSelected.sleep
+			? towerWeaponSelected.sleep[towerWeaponSleepIndex][2]
+			: 0,
+		towerWeaponSelected.paralysis
+			? towerWeaponSelected.paralysis[towerWeaponParalysisIndex][2]
+			: 0,
+		towerWeaponSelected.affinity[towerWeaponAffinityIndex][2],
+		towerWeaponSelectedSeriesInfo.sharpnessLevels[towerWeaponSharpnessIndex][2],
+		parseInt(towerWeaponGunlanceShellLevel),
+		towerWeaponReloadSpeedIndex,
+		towerWeaponRecoilIndex,
+		parseInt(towerWeaponBowCharge1Level) - 1,
+		parseInt(towerWeaponBowCharge2Level) - 1,
+		parseInt(towerWeaponBowCharge3Level) - 1,
+		parseInt(towerWeaponBowCharge4Level) - 1,
+	);
+
+	$: towerWeaponTotalCost = getTowerWeaponTotalCost(
+		towerWeaponSelected,
+		towerWeaponSelected.attack[towerWeaponAttackIndex][1],
+		towerWeaponSelected.element
+			? towerWeaponSelected.element[towerWeaponElementIndex][1]
+			: 0,
+		towerWeaponSelected.poison
+			? towerWeaponSelected.poison[towerWeaponPoisonIndex][1]
+			: 0,
+		towerWeaponSelected.sleep
+			? towerWeaponSelected.sleep[towerWeaponSleepIndex][1]
+			: 0,
+		towerWeaponSelected.paralysis
+			? towerWeaponSelected.paralysis[towerWeaponParalysisIndex][1]
+			: 0,
+		towerWeaponSelected.affinity[towerWeaponAffinityIndex][1],
+		towerWeaponSelectedSeriesInfo.sharpnessLevels[towerWeaponSharpnessIndex][1],
+		towerWeaponGunlanceShellLevelCost,
+		towerWeaponReloadSpeedCost,
+		towerWeaponRecoilCost,
+		towerWeaponBowCharge1Cost,
+		towerWeaponBowCharge2Cost,
+		towerWeaponBowCharge3Cost,
+		towerWeaponBowCharge4Cost,
+	);
+
+	$: towerWeaponExceedsMaxCost =
+		towerWeaponTotalCost > towerWeaponSelectedSeriesInfo.maxTotalCost;
 
 	$: addUploadedImage(thumbnailGeneratorImageFiles);
 	$: currentIconsFromType = getCurrentIconsFromType(selectedIconType);
@@ -4494,7 +4787,89 @@
 			subtitle="The sliders automatically adjust to the correct values once you release them."
 		/>
 
-		<p class="spaced-paragraph"></p>
+		<p class="spaced-paragraph">
+			A customisable weapon made from materials found by playing through the <InlineTooltip
+				icon={LocationIcons.find((e) => e.name === 'Tower')?.icon}
+				tooltip="Location"
+				iconType={'file'}
+				text="Sky Corridor"
+			/>.
+		</p>
+
+		<p class="spaced-paragraph">
+			You can customize weapon attributes such as Sharpness, Raw, Elemental,
+			Status, Shelling Type, Shot Type, etc. They are comparable to Lv50 G Rank
+			weapons when fully upgraded. You can insert Tower Decorations, which gives
+			skills without using slots, making it a powerful weapon when built
+			correctly. You cannot reverse most of the attribute upgrades.
+		</p>
+
+		<p class="spaced-paragraph">
+			Light versions of weapons have two sigils slots and a single decoration
+			slot, while Dark versions gives you a single sigil slot and two decoration
+			slots.
+		</p>
+
+		<p class="spaced-paragraph">
+			Tower Sigils are used to grant Affinity, Status, Elemental, Zenith Skills
+			or Weapon Abilities. You can only have as many of these properties as you
+			have Sigil slots and you can't have two of the same type (for example, two
+			Elemental, Status or Affinity sigils does not stack.)
+		</p>
+
+		<p class="spaced-paragraph">
+			Tower Decorations grant your weapon a skill. For example, if you have a
+			Tower Decoration for <InlineTooltip
+				tooltip="Armor Skill"
+				text="Expert+5"
+				iconType="component"
+				icon={getTag('Armor Skill').icon}
+			/>, then it gives you that skill when you slot it into a weapon and equip
+			it. You can have a maximum of two skills on a weapon.
+		</p>
+
+		<p class="spaced-paragraph">
+			In order to remove a Tower Decoration, you need to buy a <InlineTooltip
+				tooltip={'Item'}
+				text="Twr Removal Solution"
+				icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+			/>.
+		</p>
+
+		<p>
+			The rest of the Tower Weapon materials are available at the <InlineTooltip
+				icon={LocationIcons.find((e) => e.name === 'Road')?.icon}
+				tooltip="Location"
+				iconType={'file'}
+				text="Road Shop"
+			/>. Alternatively, you can replace them directly at the cost of losing the
+			previously slotted decoration. A <InlineTooltip
+				tooltip="Item"
+				icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+				text="Pulsating Liquid"
+			/> lets you adjust the properties of Tower Hunting Horns, Bows, Bowguns and
+			Gunlances.
+		</p>
+
+		<p class="spaced-paragraph">
+			Tower Weapons can be crafted by talking to the Cat wearing a backpack in
+			the <InlineTooltip
+				tooltip="Location"
+				iconType={'file'}
+				icon={LocationIcons.find((e) => e.name === 'Blacksmith')?.icon}
+				text="Blacksmith"
+			/>.
+		</p>
+
+		<p class="spaced-paragraph">
+			The Blue series of the tower weapons have 3 Tower Sigil slots. They have
+			high enough stats to surpass all weapons (except Evolution, certain
+			Premium weapons and Road). They require Zenith materials to craft, but
+			<strong>they do not have the Zenith Partbreaker effect</strong>. Zenith
+			Sigils affect any skills granted (including Exotics, Hybrids and from
+			Tower Decorations).
+		</p>
+
 		<div class="flex-centered padded">
 			<Dropdown
 				titleText="Weapon Type"
@@ -4537,8 +4912,13 @@
 			</div>
 		</div>
 
-		<div class="flex-centered padded">
-			<p><strong>Total Cost: {0}</strong></p>
+		<div
+			class="flex-centered padded"
+			style={towerWeaponExceedsMaxCost
+				? 'color: var(--ctp-red)'
+				: 'var(--ctp-text)'}
+		>
+			<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
 		</div>
 
 		<div class="tower-weapon-properties">
@@ -4676,61 +5056,276 @@
 			{/if}
 			{#if towerWeaponSelectedWeaponType === 'Heavy Bowgun' || towerWeaponSelectedWeaponType === 'Light Bowgun'}
 				<div class="tower-weapon-property">
+					<Dropdown
+						type="default"
+						titleText="Reload Speed"
+						on:select={onSelectTowerWeaponReloadSpeed}
+						bind:selectedId={towerWeaponReloadSpeedValue}
+						items={towerWeaponReloadSpeedOptions}
+					/>
 					<p>
-						Upgrade #{0} Cost: {0}
+						Upgrade #{towerWeaponReloadSpeedIndex} Cost: {towerWeaponReloadSpeedCost}
 					</p>
 				</div>
 				<div class="tower-weapon-property">
+					<Dropdown
+						type="default"
+						titleText="Recoil"
+						on:select={onSelectTowerWeaponRecoil}
+						bind:selectedId={towerWeaponRecoilValue}
+						items={towerWeaponRecoilOptions}
+					/>
 					<p>
-						Upgrade #{0} Cost: {0}
+						Upgrade #{towerWeaponRecoilIndex} Cost: {towerWeaponRecoilCost}
 					</p>
 				</div>
 			{/if}
 			{#if towerWeaponSelectedWeaponType === 'Bow'}
 				<div class="tower-weapon-property">
+					<Dropdown
+						type="default"
+						titleText="Charge 1"
+						on:select={onSelectTowerWeaponBowCharge1}
+						bind:selectedId={towerWeaponBowCharge1Level}
+						items={towerWeaponBowChargeOptions}
+					/>
 					<p>
-						Upgrade #{0} Cost: {0}
+						Upgrade #{parseInt(towerWeaponBowCharge1Level) - 1} Cost: {towerWeaponBowCharge1Cost}
 					</p>
 				</div>
 				<div class="tower-weapon-property">
+					<Dropdown
+						type="default"
+						titleText="Charge 2"
+						on:select={onSelectTowerWeaponBowCharge2}
+						bind:selectedId={towerWeaponBowCharge2Level}
+						items={towerWeaponBowChargeOptions}
+					/>
 					<p>
-						Upgrade #{0} Cost: {0}
+						Upgrade #{parseInt(towerWeaponBowCharge2Level) - 1} Cost: {towerWeaponBowCharge2Cost}
 					</p>
 				</div>
 				<div class="tower-weapon-property">
+					<Dropdown
+						type="default"
+						titleText="Charge 3"
+						on:select={onSelectTowerWeaponBowCharge3}
+						bind:selectedId={towerWeaponBowCharge3Level}
+						items={towerWeaponBowChargeOptions}
+					/>
 					<p>
-						Upgrade #{0} Cost: {0}
+						Upgrade #{parseInt(towerWeaponBowCharge3Level) - 1} Cost: {towerWeaponBowCharge3Cost}
 					</p>
 				</div>
 				<div class="tower-weapon-property">
+					<Dropdown
+						type="default"
+						titleText="Charge 4"
+						on:select={onSelectTowerWeaponBowCharge4}
+						bind:selectedId={towerWeaponBowCharge4Level}
+						items={towerWeaponBowChargeOptions}
+					/>
 					<p>
-						Upgrade #{0} Cost: {0}
+						Upgrade #{parseInt(towerWeaponBowCharge4Level) - 1} Cost: {towerWeaponBowCharge4Cost}
 					</p>
 				</div>
 			{/if}
 		</div>
-		<div class="tower-weapon-gems">
-			<InlineTooltip
-				tooltip="Item"
-				text={`${0} Courage Gems`}
-				icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
-				iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
-				iconSize={'24px'}
-			/>
-			<InlineTooltip
-				tooltip="Item"
-				text={`${0} Glittering Gems`}
-				icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
-				iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
-				iconSize={'24px'}
-			/>
-			<InlineTooltip
-				tooltip="Item"
-				text={`${0} Divine Gems`}
-				icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
-				iconColor={ItemColors.find((e) => e.name === 'Cyan')?.value}
-				iconSize={'24px'}
-			/>
+		<div class="container-buttons"></div>
+		<Button kind="tertiary" icon={Download} on:click={downloadTowerWeaponImage}
+			>Download</Button
+		>
+		<div class="tower-weapon-stats" id="tower-weapon-dom">
+			<div
+				class="flex-centered"
+				style={towerWeaponExceedsMaxCost
+					? 'color: var(--ctp-red)'
+					: 'var(--ctp-text)'}
+			>
+				<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
+			</div>
+			<div class="tower-weapon-gems">
+				<p>
+					<InlineTooltip
+						tooltip="Item"
+						text={`${towerWeaponTotalGems.courage} Courage Gems`}
+						icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
+						iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+						iconSize={'clamp(1rem, 2vw, 2rem)'}
+					/>
+				</p>
+				<p>
+					<InlineTooltip
+						tooltip="Item"
+						text={`${towerWeaponTotalGems.glittering} Glittering Gems`}
+						icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
+						iconColor={RarityColors[5]}
+						iconSize={'clamp(1rem, 2vw, 2rem)'}
+					/>
+				</p>
+				<p>
+					<InlineTooltip
+						tooltip="Item"
+						text={`${towerWeaponTotalGems.divine} Divine Gems`}
+						icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
+						iconColor={RarityColors[3]}
+						iconSize={'clamp(1rem, 2vw, 2rem)'}
+					/>
+				</p>
+			</div>
+			<div class="tower-weapon-summary">
+				<p>
+					<InlineTooltip
+						tooltip={'Stat'}
+						text={`${towerWeaponAttackValue} Attack (${towerWeaponAttackIndex !== towerWeaponSelected.attack.length - 1 ? towerWeaponAttackIndex : 'MAX'})`}
+						iconSize={'clamp(1rem, 2vw, 2rem)'}
+						icon={ItemIcons.find((e) => e.name === 'Knife')?.icon}
+						iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+					/>
+				</p>
+				{#if towerWeaponElementValue > 0}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`${towerWeaponElementValue * 10} Element (${towerWeaponElementIndex !== towerWeaponSelected.element.length - 1 ? towerWeaponElementIndex : 'MAX'})`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponPoisonValue > 0}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`${towerWeaponPoisonValue * 10} Status (${towerWeaponPoisonIndex !== towerWeaponSelected.poison.length - 1 ? towerWeaponPoisonIndex : 'MAX'})`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={StatusIcons.find((e) => e.name === 'Poison')?.icon}
+						/>
+					</p>
+				{:else if towerWeaponParalysisValue > 0}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`${towerWeaponParalysisValue} Status (${towerWeaponParalysisIndex !== towerWeaponSelected.paralysis.length - 1 ? towerWeaponParalysisIndex : 'MAX'})`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={StatusIcons.find((e) => e.name === 'Paralysis')?.icon}
+						/>
+					</p>
+				{:else if towerWeaponSleepValue > 0}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`${towerWeaponSleepValue} Status (${towerWeaponSleepIndex !== towerWeaponSelected.sleep.length - 1 ? towerWeaponSleepIndex : 'MAX'})`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={StatusIcons.find((e) => e.name === 'Sleep')?.icon}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponAffinityValue > 0}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`${towerWeaponAffinityValue}% Affinity (${towerWeaponAffinityIndex !== towerWeaponSelected.affinity.length - 1 ? towerWeaponAffinityIndex : 'MAX'})`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={ItemIcons.find((e) => e.name === 'Knife')?.icon}
+							iconColor={ItemColors.find((e) => e.name === 'Cyan')?.value}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponSharpnessLevel > 0}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`Sharpness LV${towerWeaponSharpnessIndex !== towerWeaponSelectedSeriesInfo.sharpnessLevels.length - 1 ? towerWeaponSharpnessIndex : ' MAX'}`}
+							iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={ItemIcons.find((e) => e.name === 'Whetstone')?.icon}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponGunlanceShellLevel !== '0'}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`Shell LV${parseInt(towerWeaponGunlanceShellLevel) !== 8 ? parseInt(towerWeaponGunlanceShellLevel) + 1 : ' MAX'}`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponReloadSpeedValue !== 'Very Slow'}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`${towerWeaponReloadSpeedValue} Reload`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={ItemIcons.find((e) => e.name === 'Shot')?.icon}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponRecoilValue !== 'Max'}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`${towerWeaponRecoilValue} Recoil`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={ItemIcons.find((e) => e.name === 'Shot')?.icon}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponBowCharge1Level !== '1'}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`Charge 1 LV${towerWeaponBowCharge1Level !== '4' ? towerWeaponBowCharge1Level : ' MAX'}`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={WeaponTypes.find((e) => e.name === 'Bow')?.icon}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponBowCharge2Level !== '1'}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`Charge 2 LV${towerWeaponBowCharge2Level !== '4' ? towerWeaponBowCharge2Level : ' MAX'}`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={WeaponTypes.find((e) => e.name === 'Bow')?.icon}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponBowCharge3Level !== '1'}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`Charge 3 LV${towerWeaponBowCharge3Level !== '4' ? towerWeaponBowCharge3Level : ' MAX'}`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={WeaponTypes.find((e) => e.name === 'Bow')?.icon}
+						/>
+					</p>
+				{/if}
+				{#if towerWeaponBowCharge4Level !== '1'}
+					<p>
+						<InlineTooltip
+							tooltip={'Stat'}
+							text={`Charge 4 LV${towerWeaponBowCharge4Level !== '4' ? towerWeaponBowCharge4Level : ' MAX'}`}
+							iconSize={'clamp(1rem, 2vw, 2rem)'}
+							icon={WeaponTypes.find((e) => e.name === 'Bow')?.icon}
+						/>
+					</p>
+				{/if}
+			</div>
+			<div class="tower-weapon-name">
+				{#key towerWeaponSeriesColor}
+					<svelte:component
+						this={WeaponTypes.find(
+							(e) => e.name === towerWeaponSelectedWeaponType,
+						)?.icon}
+						{...{ color: towerWeaponSeriesColor, size: '64px' }}
+					/>
+
+					<strong>{towerWeaponSelectedWeaponOption}</strong>
+				{/key}
+			</div>
 		</div>
 	</section>
 	<section>
@@ -5532,14 +6127,6 @@
 		align-items: center;
 	}
 
-	.tower-weapon-gems {
-		display: flex;
-		gap: 1rem;
-		font-size: 24px;
-		justify-content: center;
-		padding: 1rem;
-	}
-
 	.padded {
 		padding: 0.5rem;
 	}
@@ -5563,5 +6150,47 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	.tower-weapon-stats {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin: 2rem;
+		border: 2px solid (--ctp-surface0);
+		background: var(--ctp-mantle);
+		padding: 1rem;
+		border-radius: 4px;
+	}
+
+	.tower-weapon-gems {
+		display: flex;
+		gap: 1rem;
+		font-size: clamp(1rem, 2vw, 2rem);
+		justify-content: center;
+		text-align: center;
+		flex-wrap: wrap;
+	}
+
+	.tower-weapon-summary {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		font-size: clamp(1rem, 2vw, 2rem);
+		text-align: center;
+		vertical-align: bottom;
+		flex-wrap: wrap;
+	}
+
+	.tower-weapon-name {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		font-size: 32px;
 	}
 </style>
