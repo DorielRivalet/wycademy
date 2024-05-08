@@ -89,7 +89,12 @@ export type FrontierBowgunReloadSpeed =
 	| 'Normal'
 	| 'Fast'
 	| 'Very Fast';
-export type FrontierBowgunRecoil = 'Medium' | 'Small' | 'Smaller';
+export type FrontierBowgunRecoil =
+	| 'Max'
+	| 'Large'
+	| 'Medium'
+	| 'Small'
+	| 'Smaller';
 export type FrontierBowgunAmmo =
 	| 'Norm S.'
 	| 'Pierce S.'
@@ -709,3 +714,68 @@ export type FrontierImageType =
 	| 'Habitat'
 	| 'Monster Render'
 	| 'Game';
+
+export type FrontierTowerWeaponGem = 'Courage' | 'Glittering' | 'Divine';
+export type FrontierTowerWeaponSeries = 'Light' | 'Dark' | 'Blue';
+export type FrontierTowerWeaponSlotType = 'Decoration' | 'Sigil';
+export type FrontierTowerWeaponReloadUpgrade = [
+	value: FrontierBowgunReloadSpeed,
+	cost: number,
+	gems: number,
+];
+export type FrontierTowerWeaponRecoilUpgrade = [
+	value: FrontierBowgunRecoil,
+	cost: number,
+	gems: number,
+];
+export type FrontierTowerWeaponLevelUpgrade = [
+	value: number,
+	cost: number,
+	gems: number,
+];
+export type FrontierTowerWeaponSharpnessUpgrade = [
+	bar: FrontierWeaponSharpness,
+	cost: number,
+	gems: number,
+];
+
+export type FrontierTowerWeaponUpgradeGemType = {
+	attack: FrontierTowerWeaponGem;
+	element: FrontierTowerWeaponGem;
+	paralysis: FrontierTowerWeaponGem;
+	poison: FrontierTowerWeaponGem;
+	sleep: FrontierTowerWeaponGem;
+	affinity: FrontierTowerWeaponGem;
+	sharpness: FrontierTowerWeaponGem;
+	reload: FrontierTowerWeaponGem;
+	recoil: FrontierTowerWeaponGem;
+	gunlanceShellLevel: FrontierTowerWeaponGem;
+	bowCharge1: FrontierTowerWeaponGem;
+	bowCharge2: FrontierTowerWeaponGem;
+	bowCharge3: FrontierTowerWeaponGem;
+	bowCharge4: FrontierTowerWeaponGem;
+};
+
+export type FrontierTowerWeaponGunlanceShellLevelUpgrade = [
+	level: number,
+	cost: number,
+	gems: number,
+];
+
+export type FrontierTowerWeapon = {
+	name: string;
+	series: FrontierTowerWeaponSeries;
+	type: FrontierWeaponName;
+	image: any;
+	attack: FrontierTowerWeaponLevelUpgrade[];
+	element?: FrontierTowerWeaponLevelUpgrade[];
+	paralysis?: FrontierTowerWeaponLevelUpgrade[];
+	poison?: FrontierTowerWeaponLevelUpgrade[];
+	sleep?: FrontierTowerWeaponLevelUpgrade[];
+	affinity: FrontierTowerWeaponLevelUpgrade[];
+	bowCharge1?: FrontierTowerWeaponLevelUpgrade[];
+	bowCharge2?: FrontierTowerWeaponLevelUpgrade[];
+	bowCharge3?: FrontierTowerWeaponLevelUpgrade[];
+	bowCharge4?: FrontierTowerWeaponLevelUpgrade[];
+	gunlanceShellLevel?: FrontierTowerWeaponGunlanceShellLevelUpgrade[];
+};
