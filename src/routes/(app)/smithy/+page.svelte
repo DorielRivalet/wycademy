@@ -110,6 +110,7 @@
 	import SharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
 	import RadioButtonGroup from 'carbon-components-svelte/src/RadioButtonGroup/RadioButtonGroup.svelte';
 	import RadioButton from 'carbon-components-svelte/src/RadioButton/RadioButton.svelte';
+	import { onMount } from 'svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -2431,6 +2432,66 @@
 		selectedIconColor,
 	);
 	$: thumbnailGeneratorPreviewStyle = `background: ${thumbnailGeneratorBackgroundGradientLinear ? 'linear' : 'radial'}-gradient(${thumbnailGeneratorBackgroundGradientLinear ? `${thumbnailGeneratorBackgroundGradientRotation}deg` : 'circle'}, ${thumbnailGeneratorBackgroundGradientStartColor} 0%, ${thumbnailGeneratorBackgroundGradientEndColor} 100%); border: ${thumbnailGeneratorBorder ? thumbnailGeneratorBorderWidth : '0'}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`;
+
+	let thumbnailContainer: HTMLDivElement;
+	let thumbnailContainerCursorPosition = { x: 0, y: 0 };
+
+	onMount(() => {
+		thumbnailContainer.addEventListener('dragover', (e) => {
+			e.preventDefault(); // Necessary to allow dropping
+		});
+
+		thumbnailContainer.addEventListener('mousemove', (e) => {
+			const rect = thumbnailContainer.getBoundingClientRect();
+			thumbnailContainerCursorPosition.x = Math.round(e.clientX - rect.left);
+			thumbnailContainerCursorPosition.y = Math.round(e.clientY - rect.top);
+		});
+
+		thumbnailContainer.addEventListener('drop', (e) => {
+			e.preventDefault(); // Prevents default behavior
+			const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+			const element = document.getElementById(data.id);
+			console.table([e.clientY, data.offsetY, e.clientX, data.offsetX]);
+			if (element) {
+				// Calculate the correct position based on the cursor's position relative to the container
+				// and the initial offset of the dragged element
+				const rect = thumbnailContainer.getBoundingClientRect();
+				const newTop = Math.round(e.clientY - rect.top - data.offsetY);
+				const newLeft = Math.round(e.clientX - rect.left - data.offsetX);
+
+				// Update the element's position
+				element.style.top = `${newTop}px`;
+				element.style.left = `${newLeft}px`;
+
+				// Update the position in your data model here
+				// For example, if you're tracking the position in a Svelte store or a local variable, update it here
+				if (data.id.startsWith('image')) {
+					thumbnailImages[data.index].top = newTop;
+					thumbnailImages[data.index].left = newLeft;
+				} else if (data.id.startsWith('upload')) {
+					thumbnailUploadedImages[data.index].top = newTop;
+					thumbnailUploadedImages[data.index].left = newLeft;
+				} else if (data.id.startsWith('text')) {
+					thumbnailTexts[data.index].top = newTop;
+					thumbnailTexts[data.index].left = newLeft;
+				}
+			}
+		});
+	});
+
+	function handleDragStart(
+		e: { dataTransfer: { setData: (arg0: string, arg1: string) => void } },
+		id: any,
+		offsetX: any,
+		offsetY: any,
+		index: number,
+	) {
+		console.log(JSON.stringify({ id, offsetX, offsetY, index }));
+		e.dataTransfer.setData(
+			'text/plain',
+			JSON.stringify({ id, offsetX, offsetY, index }),
+		);
+	}
 </script>
 
 <Head
@@ -5206,7 +5267,7 @@
 					<p>
 						<InlineTooltip
 							tooltip={'Stat'}
-							text={`${towerWeaponParalysisValue} Status (${towerWeaponParalysisIndex !== towerWeaponSelected.paralysis.length - 1 ? towerWeaponParalysisIndex : 'MAX'})`}
+							text={`${towerWeaponParalysisValue * 10} Status (${towerWeaponParalysisIndex !== towerWeaponSelected.paralysis.length - 1 ? towerWeaponParalysisIndex : 'MAX'})`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
 							icon={StatusIcons.find((e) => e.name === 'Paralysis')?.icon}
 						/>
@@ -5215,7 +5276,7 @@
 					<p>
 						<InlineTooltip
 							tooltip={'Stat'}
-							text={`${towerWeaponSleepValue} Status (${towerWeaponSleepIndex !== towerWeaponSelected.sleep.length - 1 ? towerWeaponSleepIndex : 'MAX'})`}
+							text={`${towerWeaponSleepValue * 10} Status (${towerWeaponSleepIndex !== towerWeaponSelected.sleep.length - 1 ? towerWeaponSleepIndex : 'MAX'})`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
 							icon={StatusIcons.find((e) => e.name === 'Sleep')?.icon}
 						/>
@@ -5334,7 +5395,7 @@
 			You can find the image for the monster backgrounds in our <OutboundLink
 				href="https://github.com/DorielRivalet/wycademy/blob/main/src/lib/client/images/monster/bg-512.webp"
 				>repository</OutboundLink
-			>
+			>.
 		</p>
 		<div class="container-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadIconImage}
@@ -5875,8 +5936,16 @@
 			</div>
 		{/if}
 
+		<p class="spaced-paragraph flex-centered">
+			X: {thumbnailContainerCursorPosition.x} Y: {thumbnailContainerCursorPosition.y}
+		</p>
+
 		<div class="thumbnail-container">
-			<div style={thumbnailGeneratorPreviewStyle} id="generated-thumbnail-dom">
+			<div
+				style={thumbnailGeneratorPreviewStyle}
+				id="generated-thumbnail-dom"
+				bind:this={thumbnailContainer}
+			>
 				{#each thumbnailImages as image, i}
 					{#if image.fileType === 'Location' || image.fileType === 'Habitat' || image.fileType === 'Monster Render' || image.fileType === 'Game'}
 						<img
@@ -5886,6 +5955,10 @@
 									: image.src.full
 								: image.src.image}
 							alt={image.alt}
+							draggable={image.fileType === 'Habitat' ? 'false' : 'true'}
+							id={`image-${i}`}
+							on:dragstart={(e) =>
+								handleDragStart(e, `image-${i}`, e.offsetX, e.offsetY, i)}
 							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 						/>
 					{:else}
@@ -5908,18 +5981,30 @@
 						<img
 							src={image.src}
 							alt={image.alt}
+							draggable={'true'}
+							on:dragstart={(e) =>
+								handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
+							id={`upload-${i}`}
 							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 						/>
 					{:else if image.fileType === 'image/svg+xml'}
 						<img
 							src={image.src}
 							alt={image.alt}
+							draggable={'true'}
+							on:dragstart={(e) =>
+								handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
+							id={`upload-${i}`}
 							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 						/>
 					{/if}
 				{/each}
 				{#each thumbnailTexts as text, i}
 					<p
+						draggable={'true'}
+						on:dragstart={(e) =>
+							handleDragStart(e, `text-${i}`, e.offsetX, e.offsetY, i)}
+						id={`text-${i}`}
 						style="position: absolute; top: {text.top}px; left: {text.left}px; z-index: {text.zIndex}; opacity: {text.opacity}; font-size: {text.fontSize}px; text-shadow:
 						-{text.shadowWidth}px -{text.shadowWidth}px 0 {text.shadowColor},
 						{text.shadowWidth}px -{text.shadowWidth}px 0 {text.shadowColor},
