@@ -97,7 +97,7 @@
 		"workbox-strategies": "^7.1.0"
 	},
 	"dependencies": {
-		"@carbon/grid": "^11.22.0",
+		"@carbon/grid": "^11.23.0",
 		"@carbon/layout": "^11.21.0",
 		"@carbon/motion": "^11.17.0",
 		"@catppuccin/palette": "^1.2.0",
