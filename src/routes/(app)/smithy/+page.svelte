@@ -115,7 +115,7 @@
 	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Save from 'carbon-icons-svelte/lib/Save.svelte';
-	import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
+	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
 	import FileUploader from 'carbon-components-svelte/src/FileUploader/FileUploader.svelte';
 
 	type dropdownItem = { id: string; text: string };
@@ -132,6 +132,11 @@
 	// 	const updatedHref = `${$page.url.origin}${$page.url.pathname}?${queryString}`;
 	// 	copyToClipboard(updatedHref);
 	// }
+
+	function shouldFilterItem(item: { text: string }, value: string) {
+		if (!value) return true;
+		return item.text.toLowerCase().includes(value.toLowerCase());
+	}
 
 	function resetWeaponValues() {
 		// TODO idk why this doesnt work with default
@@ -5911,11 +5916,12 @@
 						{ id: 'Weapon', text: 'Weapon' },
 					]}
 				/>
-				<Dropdown
-					type="inline"
+				<ComboBox
 					titleText="Icon"
+					placeholder="Select icon"
 					bind:selectedId={thumbnailGeneratorImageIdFromList}
 					items={thumbnailGeneratorImagesFromType}
+					{shouldFilterItem}
 				/>
 				{#if thumbnailGeneratorImageType === 'Armor' || thumbnailGeneratorImageType === 'Item' || thumbnailGeneratorImageType === 'Weapon'}
 					<Dropdown
