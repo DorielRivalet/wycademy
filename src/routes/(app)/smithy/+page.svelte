@@ -1385,6 +1385,25 @@
 		}
 	}
 
+	async function createThumbnailGeneratorSmallPreview() {
+		let node = document.querySelector('#generated-thumbnail-dom');
+
+		if (!node) {
+			return;
+		}
+
+		let size = Number(thumbnailGeneratorSmallPreviewSize);
+
+		await domToPng(node, {
+			quality: 1,
+		}).then((dataUrl) => {
+			thumbnailGeneratorSmallPreview = dataUrl;
+		});
+	}
+
+	let thumbnailGeneratorSmallPreview = '';
+	let thumbnailGeneratorSmallPreviewSize = '512';
+
 	async function downloadGeneratedThumbnailImage() {
 		let node = document.querySelector('#generated-thumbnail-dom');
 
@@ -6069,6 +6088,35 @@
 				/>
 			</div>
 		{/if}
+
+		<div class="container-buttons">
+			<Button
+				kind="tertiary"
+				icon={Add}
+				on:click={createThumbnailGeneratorSmallPreview}>Create Preview</Button
+			>
+			<Dropdown
+				type="inline"
+				titleText="Size"
+				bind:selectedId={thumbnailGeneratorSmallPreviewSize}
+				items={[
+					{ id: '128', text: '128px' },
+					{ id: '256', text: '256px' },
+					{ id: '512', text: '512px' },
+				]}
+			/>
+		</div>
+
+		<div>
+			{#if thumbnailGeneratorSmallPreview !== ''}
+				<img
+					src={thumbnailGeneratorSmallPreview}
+					width="auto"
+					height={`${thumbnailGeneratorSmallPreviewSize}px`}
+					alt="Thumbnail Preview"
+				/>
+			{/if}
+		</div>
 
 		<p class="spaced-paragraph flex-centered">
 			X: {thumbnailContainerCursorPosition.x} Y: {thumbnailContainerCursorPosition.y}
