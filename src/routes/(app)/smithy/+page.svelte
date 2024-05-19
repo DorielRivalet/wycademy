@@ -1134,24 +1134,34 @@
 		return uniqueResult;
 	}
 
-	function loadThumbnailTemplate() {
+	async function loadThumbnailTemplate() {
 		if (thumbnailGeneratorTemplateFiles.length > 0) {
+			loadingTemplateStatus = 'uploading';
 			const file = thumbnailGeneratorTemplateFiles[0]; // Assuming one file is uploaded at a time
 			const reader = new FileReader();
 			reader.onload = function (event) {
 				try {
 					const jsonData = JSON.parse(event.target.result);
-					// You can process the JSON data here
-					thumbnailImages = jsonData.thumbnailImages;
-					thumbnailTexts = jsonData.thumbnailTexts;
+					thumbnailImages = [...[]];
+					thumbnailTexts = [...[]];
+					setTimeout(() => {
+						thumbnailImages = [...jsonData.thumbnailImages];
+						thumbnailTexts = [...jsonData.thumbnailTexts];
+						loadingTemplateStatus = 'complete';
+					}, 1000);
 				} catch (error) {
 					console.error('Error parsing JSON:', error);
+					loadingTemplateStatus = 'uploading';
 				}
 			};
 			reader.onerror = function (error) {
 				console.error('Error reading file:', error);
+				loadingTemplateStatus = 'uploading';
 			};
 			reader.readAsText(file); // Read the file as text
+			loadingTemplateStatus = 'uploading';
+		} else {
+			loadingTemplateStatus = 'uploading';
 		}
 	}
 
@@ -2716,6 +2726,9 @@
 	// console.log(JSON.stringify(result, null, 2));
 
 	let moveableTarget;
+
+	let loadingTemplateStatus: 'uploading' | 'edit' | 'complete' | undefined =
+		'uploading';
 
 	function onThumbnailImageContainerMouseDown(
 		e: MouseEvent & { currentTarget: EventTarget & HTMLDivElement },
@@ -5964,11 +5977,11 @@
 				buttonLabel="Add File"
 				labelDescription="Only JSON files are accepted. Custom images are neither loaded nor saved."
 				accept={['.json']}
-				status="complete"
 				iconDescription="Template file"
 				kind="tertiary"
 				bind:files={thumbnailGeneratorTemplateFiles}
 				on:add={loadThumbnailTemplate}
+				bind:status={loadingTemplateStatus}
 			/>
 		</div>
 		<div class="container-buttons">
@@ -6423,83 +6436,89 @@
 				id="generated-thumbnail-dom"
 				bind:this={thumbnailContainer}
 			>
-				{#each thumbnailImages as image, i}
-					{#if image.fileType === 'Location' || image.fileType === 'Habitat' || image.fileType === 'Monster Render' || image.fileType === 'Game'}
-						<img
-							src={image.fileType === 'Monster Render'
-								? image.monsterRenderSize === 'Small'
-									? image.src.small
-									: image.src.full
-								: image.src.image}
-							alt={image.alt}
-							draggable={image.fileType === 'Habitat' ? 'false' : 'true'}
-							id={`image-${i}`}
-							on:dragstart={(e) =>
-								handleDragStart(e, `image-${i}`, e.offsetX, e.offsetY, i)}
-							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
-						/>
-					{:else}
-						<div
-							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
-							on:mousedown={(e) => onThumbnailImageContainerMouseDown(e, i)}
-							id={`image-${i}`}
-						>
-							<svelte:component
-								this={image.src.component}
-								{...{
-									color: image.color,
-									background: image.background,
-									size: `${image.width}px`,
-								}}
+				{#if thumbnailImages.length !== undefined && thumbnailImages.length > 0}
+					{#each thumbnailImages as image, i}
+						{#if image.fileType === 'Location' || image.fileType === 'Habitat' || image.fileType === 'Monster Render' || image.fileType === 'Game'}
+							<img
+								src={image.fileType === 'Monster Render'
+									? image.monsterRenderSize === 'Small'
+										? image.src.small
+										: image.src.full
+									: image.src.image}
+								alt={image.alt}
+								draggable={image.fileType === 'Habitat' ? 'false' : 'true'}
+								id={`image-${i}`}
+								on:dragstart={(e) =>
+									handleDragStart(e, `image-${i}`, e.offsetX, e.offsetY, i)}
+								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 							/>
-						</div>
-					{/if}
-				{/each}
+						{:else}
+							<div
+								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
+								on:mousedown={(e) => onThumbnailImageContainerMouseDown(e, i)}
+								id={`image-${i}`}
+							>
+								<svelte:component
+									this={image.src.component}
+									{...{
+										color: image.color,
+										background: image.background,
+										size: `${image.width}px`,
+									}}
+								/>
+							</div>
+						{/if}
+					{/each}
+				{/if}
 				<Moveable
 					target={moveableTarget}
 					draggable={true}
 					on:dragEnd={({ detail: e }) => onDragEnd(e)}
 				/>
-				{#each thumbnailUploadedImages as image, i}
-					{#if image.fileType !== 'image/svg+xml'}
-						<img
-							src={image.src}
-							alt={image.alt}
+				{#if thumbnailUploadedImages.length !== undefined && thumbnailUploadedImages.length > 0}
+					{#each thumbnailUploadedImages as image, i}
+						{#if image.fileType !== 'image/svg+xml'}
+							<img
+								src={image.src}
+								alt={image.alt}
+								draggable={'true'}
+								on:dragstart={(e) =>
+									handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
+								id={`upload-${i}`}
+								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
+							/>
+						{:else if image.fileType === 'image/svg+xml'}
+							<img
+								src={image.src}
+								alt={image.alt}
+								draggable={'true'}
+								on:dragstart={(e) =>
+									handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
+								id={`upload-${i}`}
+								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
+							/>
+						{/if}
+					{/each}
+				{/if}
+				{#if thumbnailTexts.length !== undefined && thumbnailTexts.length > 0}
+					{#each thumbnailTexts as text, i}
+						<p
 							draggable={'true'}
 							on:dragstart={(e) =>
-								handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
-							id={`upload-${i}`}
-							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
-						/>
-					{:else if image.fileType === 'image/svg+xml'}
-						<img
-							src={image.src}
-							alt={image.alt}
-							draggable={'true'}
-							on:dragstart={(e) =>
-								handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
-							id={`upload-${i}`}
-							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
-						/>
-					{/if}
-				{/each}
-				{#each thumbnailTexts as text, i}
-					<p
-						draggable={'true'}
-						on:dragstart={(e) =>
-							handleDragStart(e, `text-${i}`, e.offsetX, e.offsetY, i)}
-						id={`text-${i}`}
-						style="position: absolute; top: {text.top}px; left: {text.left}px; z-index: {text.zIndex}; opacity: {text.opacity}; font-size: {text.fontSize}px; text-shadow:
+								handleDragStart(e, `text-${i}`, e.offsetX, e.offsetY, i)}
+							id={`text-${i}`}
+							style="position: absolute; top: {text.top}px; left: {text.left}px; z-index: {text.zIndex}; opacity: {text.opacity}; font-size: {text.fontSize}px; text-shadow:
 						-{text.shadowWidth}px -{text.shadowWidth}px 0 {text.shadowColor},
 						{text.shadowWidth}px -{text.shadowWidth}px 0 {text.shadowColor},
 						-{text.shadowWidth}px {text.shadowWidth}px 0 {text.shadowColor},
 						{text.shadowWidth}px {text.shadowWidth}px 0 {text.shadowColor};
 						color: {text.color};
 						 transform: rotate({text.rotation}deg); text-decoration: {text.decoration} {text.decorationColor}; font-family: {text.fontFamily}; font-weight: {text.fontWeight}; font-style: {text.fontStyle};"
-					>
-						{text.text}
-					</p>
-				{/each}
+						>
+							{text.text}
+						</p>
+					{/each}
+				{/if}
 			</div>
 		</div>
 
@@ -6514,137 +6533,149 @@
 
 		<div class="thumbnail-element-container">
 			{#if !thumbnailElementsOrderReversed}
-				{#each thumbnailImages as image, i}
-					<ThumbnailGeneratorImage
-						index={i}
-						on:delete={() => handleDelete(image.elementType, i)}
-						on:duplicate={() => handleDuplicate(image.elementType, i)}
-						bind:top={image.top}
-						bind:left={image.left}
-						bind:width={image.width}
-						bind:height={image.height}
-						bind:zindex={image.zindex}
-						bind:opacity={image.opacity}
-						bind:dropShadowSize={image.dropShadowSize}
-						bind:dropShadowColor={image.dropShadowColor}
-						bind:borderWidth={image.borderWidth}
-						bind:borderColor={image.borderColor}
-						bind:borderRadius={image.borderRadius}
-						bind:background={image.background}
-						bind:color={image.color}
-						bind:monsterRenderSize={image.monsterRenderSize}
-						bind:fileType={image.fileType}
-						bind:src={image.src}
-						optionsList={getThumbnailGeneratorImagesFromType(image.fileType)}
-						bind:optionId={image.optionId}
-					/>
-				{/each}
-				{#each thumbnailUploadedImages as image, i}
-					<ThumbnailGeneratorImage
-						index={i}
-						on:delete={() => handleDelete(image.elementType, i)}
-						on:duplicate={() => handleDuplicate(image.elementType, i)}
-						bind:top={image.top}
-						bind:left={image.left}
-						bind:width={image.width}
-						bind:height={image.height}
-						bind:zindex={image.zindex}
-						bind:opacity={image.opacity}
-						bind:dropShadowSize={image.dropShadowSize}
-						bind:dropShadowColor={image.dropShadowColor}
-						bind:borderWidth={image.borderWidth}
-						bind:borderColor={image.borderColor}
-						bind:borderRadius={image.borderRadius}
-					/>
-				{/each}
-				{#each thumbnailTexts as textElement, i}
-					<ThumbnailGeneratorText
-						index={i}
-						bind:text={textElement.text}
-						on:delete={() => handleDelete(textElement.elementType, i)}
-						on:duplicate={() => handleDuplicate(textElement.elementType, i)}
-						bind:top={textElement.top}
-						bind:left={textElement.left}
-						bind:zindex={textElement.zindex}
-						bind:opacity={textElement.opacity}
-						bind:fontSize={textElement.fontSize}
-						bind:fontFamily={textElement.fontFamily}
-						bind:fontWeight={textElement.fontWeight}
-						bind:fontStyle={textElement.fontStyle}
-						bind:textDecoration={textElement.decoration}
-						bind:textDecorationColor={textElement.decorationColor}
-						bind:textShadowWidth={textElement.shadowWidth}
-						bind:textShadowColor={textElement.shadowColor}
-						bind:textColor={textElement.color}
-						bind:textRotation={textElement.rotation}
-					/>
-				{/each}
+				{#if thumbnailImages.length > 0}
+					{#each thumbnailImages as image, i}
+						<ThumbnailGeneratorImage
+							index={i}
+							on:delete={() => handleDelete(image.elementType, i)}
+							on:duplicate={() => handleDuplicate(image.elementType, i)}
+							bind:top={image.top}
+							bind:left={image.left}
+							bind:width={image.width}
+							bind:height={image.height}
+							bind:zindex={image.zindex}
+							bind:opacity={image.opacity}
+							bind:dropShadowSize={image.dropShadowSize}
+							bind:dropShadowColor={image.dropShadowColor}
+							bind:borderWidth={image.borderWidth}
+							bind:borderColor={image.borderColor}
+							bind:borderRadius={image.borderRadius}
+							bind:background={image.background}
+							bind:color={image.color}
+							bind:monsterRenderSize={image.monsterRenderSize}
+							bind:fileType={image.fileType}
+							bind:src={image.src}
+							optionsList={getThumbnailGeneratorImagesFromType(image.fileType)}
+							bind:optionId={image.optionId}
+						/>
+					{/each}
+				{/if}
+				{#if thumbnailUploadedImages.length > 0}
+					{#each thumbnailUploadedImages as image, i}
+						<ThumbnailGeneratorImage
+							index={i}
+							on:delete={() => handleDelete(image.elementType, i)}
+							on:duplicate={() => handleDuplicate(image.elementType, i)}
+							bind:top={image.top}
+							bind:left={image.left}
+							bind:width={image.width}
+							bind:height={image.height}
+							bind:zindex={image.zindex}
+							bind:opacity={image.opacity}
+							bind:dropShadowSize={image.dropShadowSize}
+							bind:dropShadowColor={image.dropShadowColor}
+							bind:borderWidth={image.borderWidth}
+							bind:borderColor={image.borderColor}
+							bind:borderRadius={image.borderRadius}
+						/>
+					{/each}
+				{/if}
+				{#if thumbnailTexts.length > 0}
+					{#each thumbnailTexts as textElement, i}
+						<ThumbnailGeneratorText
+							index={i}
+							bind:text={textElement.text}
+							on:delete={() => handleDelete(textElement.elementType, i)}
+							on:duplicate={() => handleDuplicate(textElement.elementType, i)}
+							bind:top={textElement.top}
+							bind:left={textElement.left}
+							bind:zindex={textElement.zindex}
+							bind:opacity={textElement.opacity}
+							bind:fontSize={textElement.fontSize}
+							bind:fontFamily={textElement.fontFamily}
+							bind:fontWeight={textElement.fontWeight}
+							bind:fontStyle={textElement.fontStyle}
+							bind:textDecoration={textElement.decoration}
+							bind:textDecorationColor={textElement.decorationColor}
+							bind:textShadowWidth={textElement.shadowWidth}
+							bind:textShadowColor={textElement.shadowColor}
+							bind:textColor={textElement.color}
+							bind:textRotation={textElement.rotation}
+						/>
+					{/each}
+				{/if}
 			{:else}
-				{#each [...thumbnailImages].reverse() as image, i}
-					<ThumbnailGeneratorImage
-						index={i}
-						on:delete={() => handleDelete(image.elementType, i)}
-						on:duplicate={() => handleDuplicate(image.elementType, i)}
-						bind:top={image.top}
-						bind:left={image.left}
-						bind:width={image.width}
-						bind:height={image.height}
-						bind:zindex={image.zindex}
-						bind:opacity={image.opacity}
-						bind:dropShadowSize={image.dropShadowSize}
-						bind:dropShadowColor={image.dropShadowColor}
-						bind:borderWidth={image.borderWidth}
-						bind:borderColor={image.borderColor}
-						bind:borderRadius={image.borderRadius}
-						bind:background={image.background}
-						bind:color={image.color}
-						bind:monsterRenderSize={image.monsterRenderSize}
-						bind:fileType={image.fileType}
-						bind:src={image.src}
-						optionsList={getThumbnailGeneratorImagesFromType(image.fileType)}
-						bind:optionId={image.optionId}
-					/>
-				{/each}
-				{#each [...thumbnailUploadedImages].reverse() as image, i}
-					<ThumbnailGeneratorImage
-						index={i}
-						on:delete={() => handleDelete(image.elementType, i)}
-						on:duplicate={() => handleDuplicate(image.elementType, i)}
-						bind:top={image.top}
-						bind:left={image.left}
-						bind:width={image.width}
-						bind:height={image.height}
-						bind:zindex={image.zindex}
-						bind:opacity={image.opacity}
-						bind:dropShadowSize={image.dropShadowSize}
-						bind:dropShadowColor={image.dropShadowColor}
-						bind:borderWidth={image.borderWidth}
-						bind:borderColor={image.borderColor}
-						bind:borderRadius={image.borderRadius}
-					/>
-				{/each}
-				{#each [...thumbnailTexts].reverse() as textElement, i}
-					<ThumbnailGeneratorText
-						index={i}
-						bind:text={textElement.text}
-						on:delete={() => handleDelete(textElement.elementType, i)}
-						on:duplicate={() => handleDuplicate(textElement.elementType, i)}
-						bind:top={textElement.top}
-						bind:left={textElement.left}
-						bind:zindex={textElement.zindex}
-						bind:opacity={textElement.opacity}
-						bind:fontSize={textElement.fontSize}
-						bind:fontFamily={textElement.fontFamily}
-						bind:fontWeight={textElement.fontWeight}
-						bind:fontStyle={textElement.fontStyle}
-						bind:textDecoration={textElement.decoration}
-						bind:textDecorationColor={textElement.decorationColor}
-						bind:textShadowWidth={textElement.shadowWidth}
-						bind:textShadowColor={textElement.shadowColor}
-						bind:textColor={textElement.color}
-						bind:textRotation={textElement.rotation}
-					/>
-				{/each}
+				{#if thumbnailImages.length > 0}
+					{#each [...thumbnailImages].reverse() as image, i}
+						<ThumbnailGeneratorImage
+							index={i}
+							on:delete={() => handleDelete(image.elementType, i)}
+							on:duplicate={() => handleDuplicate(image.elementType, i)}
+							bind:top={image.top}
+							bind:left={image.left}
+							bind:width={image.width}
+							bind:height={image.height}
+							bind:zindex={image.zindex}
+							bind:opacity={image.opacity}
+							bind:dropShadowSize={image.dropShadowSize}
+							bind:dropShadowColor={image.dropShadowColor}
+							bind:borderWidth={image.borderWidth}
+							bind:borderColor={image.borderColor}
+							bind:borderRadius={image.borderRadius}
+							bind:background={image.background}
+							bind:color={image.color}
+							bind:monsterRenderSize={image.monsterRenderSize}
+							bind:fileType={image.fileType}
+							bind:src={image.src}
+							optionsList={getThumbnailGeneratorImagesFromType(image.fileType)}
+							bind:optionId={image.optionId}
+						/>
+					{/each}
+				{/if}
+				{#if thumbnailUploadedImages.length > 0}
+					{#each [...thumbnailUploadedImages].reverse() as image, i}
+						<ThumbnailGeneratorImage
+							index={i}
+							on:delete={() => handleDelete(image.elementType, i)}
+							on:duplicate={() => handleDuplicate(image.elementType, i)}
+							bind:top={image.top}
+							bind:left={image.left}
+							bind:width={image.width}
+							bind:height={image.height}
+							bind:zindex={image.zindex}
+							bind:opacity={image.opacity}
+							bind:dropShadowSize={image.dropShadowSize}
+							bind:dropShadowColor={image.dropShadowColor}
+							bind:borderWidth={image.borderWidth}
+							bind:borderColor={image.borderColor}
+							bind:borderRadius={image.borderRadius}
+						/>
+					{/each}
+				{/if}
+				{#if thumbnailTexts.length > 0}
+					{#each [...thumbnailTexts].reverse() as textElement, i}
+						<ThumbnailGeneratorText
+							index={i}
+							bind:text={textElement.text}
+							on:delete={() => handleDelete(textElement.elementType, i)}
+							on:duplicate={() => handleDuplicate(textElement.elementType, i)}
+							bind:top={textElement.top}
+							bind:left={textElement.left}
+							bind:zindex={textElement.zindex}
+							bind:opacity={textElement.opacity}
+							bind:fontSize={textElement.fontSize}
+							bind:fontFamily={textElement.fontFamily}
+							bind:fontWeight={textElement.fontWeight}
+							bind:fontStyle={textElement.fontStyle}
+							bind:textDecoration={textElement.decoration}
+							bind:textDecorationColor={textElement.decorationColor}
+							bind:textShadowWidth={textElement.shadowWidth}
+							bind:textShadowColor={textElement.shadowColor}
+							bind:textColor={textElement.color}
+							bind:textRotation={textElement.rotation}
+						/>
+					{/each}
+				{/if}
 			{/if}
 		</div>
 	</section>
