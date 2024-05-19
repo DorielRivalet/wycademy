@@ -2541,6 +2541,8 @@
 		});
 	});
 
+	let thumbnailElementsOrderReversed = false;
+
 	let modalOpen = false;
 	let modalHeading = '';
 	let modalLabel = '';
@@ -6151,72 +6153,149 @@
 			</div>
 		</div>
 
+		<div class="thumbnail-order-toggle">
+			<Toggle
+				labelText="Order"
+				bind:toggled={thumbnailElementsOrderReversed}
+				labelA={'Oldest'}
+				labelB="Newest"
+			/>
+		</div>
+
 		<div class="thumbnail-element-container">
-			{#each thumbnailImages as image, i}
-				<ThumbnailGeneratorImage
-					index={i}
-					on:delete={() => handleDelete(image.elementType, i)}
-					on:duplicate={() => handleDuplicate(image.elementType, i)}
-					bind:top={image.top}
-					bind:left={image.left}
-					bind:width={image.width}
-					bind:height={image.height}
-					bind:zindex={image.zindex}
-					bind:opacity={image.opacity}
-					bind:dropShadowSize={image.dropShadowSize}
-					bind:dropShadowColor={image.dropShadowColor}
-					bind:borderWidth={image.borderWidth}
-					bind:borderColor={image.borderColor}
-					bind:borderRadius={image.borderRadius}
-					bind:background={image.background}
-					bind:color={image.color}
-					bind:monsterRenderSize={image.monsterRenderSize}
-					bind:fileType={image.fileType}
-					bind:src={image.src}
-					optionsList={getThumbnailGeneratorImagesFromType(image.fileType)}
-					bind:optionId={image.optionId}
-				/>
-			{/each}
-			{#each thumbnailUploadedImages as image, i}
-				<ThumbnailGeneratorImage
-					index={i}
-					on:delete={() => handleDelete(image.elementType, i)}
-					on:duplicate={() => handleDuplicate(image.elementType, i)}
-					bind:top={image.top}
-					bind:left={image.left}
-					bind:width={image.width}
-					bind:height={image.height}
-					bind:zindex={image.zindex}
-					bind:opacity={image.opacity}
-					bind:dropShadowSize={image.dropShadowSize}
-					bind:dropShadowColor={image.dropShadowColor}
-					bind:borderWidth={image.borderWidth}
-					bind:borderColor={image.borderColor}
-					bind:borderRadius={image.borderRadius}
-				/>
-			{/each}
-			{#each thumbnailTexts as textElement, i}
-				<ThumbnailGeneratorText
-					index={i}
-					bind:text={textElement.text}
-					on:delete={() => handleDelete(textElement.elementType, i)}
-					on:duplicate={() => handleDuplicate(textElement.elementType, i)}
-					bind:top={textElement.top}
-					bind:left={textElement.left}
-					bind:zindex={textElement.zindex}
-					bind:opacity={textElement.opacity}
-					bind:fontSize={textElement.fontSize}
-					bind:fontFamily={textElement.fontFamily}
-					bind:fontWeight={textElement.fontWeight}
-					bind:fontStyle={textElement.fontStyle}
-					bind:textDecoration={textElement.decoration}
-					bind:textDecorationColor={textElement.decorationColor}
-					bind:textShadowWidth={textElement.shadowWidth}
-					bind:textShadowColor={textElement.shadowColor}
-					bind:textColor={textElement.color}
-					bind:textRotation={textElement.rotation}
-				/>
-			{/each}
+			{#if !thumbnailElementsOrderReversed}
+				{#each thumbnailImages as image, i}
+					<ThumbnailGeneratorImage
+						index={i}
+						on:delete={() => handleDelete(image.elementType, i)}
+						on:duplicate={() => handleDuplicate(image.elementType, i)}
+						bind:top={image.top}
+						bind:left={image.left}
+						bind:width={image.width}
+						bind:height={image.height}
+						bind:zindex={image.zindex}
+						bind:opacity={image.opacity}
+						bind:dropShadowSize={image.dropShadowSize}
+						bind:dropShadowColor={image.dropShadowColor}
+						bind:borderWidth={image.borderWidth}
+						bind:borderColor={image.borderColor}
+						bind:borderRadius={image.borderRadius}
+						bind:background={image.background}
+						bind:color={image.color}
+						bind:monsterRenderSize={image.monsterRenderSize}
+						bind:fileType={image.fileType}
+						bind:src={image.src}
+						optionsList={getThumbnailGeneratorImagesFromType(image.fileType)}
+						bind:optionId={image.optionId}
+					/>
+				{/each}
+				{#each thumbnailUploadedImages as image, i}
+					<ThumbnailGeneratorImage
+						index={i}
+						on:delete={() => handleDelete(image.elementType, i)}
+						on:duplicate={() => handleDuplicate(image.elementType, i)}
+						bind:top={image.top}
+						bind:left={image.left}
+						bind:width={image.width}
+						bind:height={image.height}
+						bind:zindex={image.zindex}
+						bind:opacity={image.opacity}
+						bind:dropShadowSize={image.dropShadowSize}
+						bind:dropShadowColor={image.dropShadowColor}
+						bind:borderWidth={image.borderWidth}
+						bind:borderColor={image.borderColor}
+						bind:borderRadius={image.borderRadius}
+					/>
+				{/each}
+				{#each thumbnailTexts as textElement, i}
+					<ThumbnailGeneratorText
+						index={i}
+						bind:text={textElement.text}
+						on:delete={() => handleDelete(textElement.elementType, i)}
+						on:duplicate={() => handleDuplicate(textElement.elementType, i)}
+						bind:top={textElement.top}
+						bind:left={textElement.left}
+						bind:zindex={textElement.zindex}
+						bind:opacity={textElement.opacity}
+						bind:fontSize={textElement.fontSize}
+						bind:fontFamily={textElement.fontFamily}
+						bind:fontWeight={textElement.fontWeight}
+						bind:fontStyle={textElement.fontStyle}
+						bind:textDecoration={textElement.decoration}
+						bind:textDecorationColor={textElement.decorationColor}
+						bind:textShadowWidth={textElement.shadowWidth}
+						bind:textShadowColor={textElement.shadowColor}
+						bind:textColor={textElement.color}
+						bind:textRotation={textElement.rotation}
+					/>
+				{/each}
+			{:else}
+				{#each [...thumbnailImages].reverse() as image, i}
+					<ThumbnailGeneratorImage
+						index={i}
+						on:delete={() => handleDelete(image.elementType, i)}
+						on:duplicate={() => handleDuplicate(image.elementType, i)}
+						bind:top={image.top}
+						bind:left={image.left}
+						bind:width={image.width}
+						bind:height={image.height}
+						bind:zindex={image.zindex}
+						bind:opacity={image.opacity}
+						bind:dropShadowSize={image.dropShadowSize}
+						bind:dropShadowColor={image.dropShadowColor}
+						bind:borderWidth={image.borderWidth}
+						bind:borderColor={image.borderColor}
+						bind:borderRadius={image.borderRadius}
+						bind:background={image.background}
+						bind:color={image.color}
+						bind:monsterRenderSize={image.monsterRenderSize}
+						bind:fileType={image.fileType}
+						bind:src={image.src}
+						optionsList={getThumbnailGeneratorImagesFromType(image.fileType)}
+						bind:optionId={image.optionId}
+					/>
+				{/each}
+				{#each [...thumbnailUploadedImages].reverse() as image, i}
+					<ThumbnailGeneratorImage
+						index={i}
+						on:delete={() => handleDelete(image.elementType, i)}
+						on:duplicate={() => handleDuplicate(image.elementType, i)}
+						bind:top={image.top}
+						bind:left={image.left}
+						bind:width={image.width}
+						bind:height={image.height}
+						bind:zindex={image.zindex}
+						bind:opacity={image.opacity}
+						bind:dropShadowSize={image.dropShadowSize}
+						bind:dropShadowColor={image.dropShadowColor}
+						bind:borderWidth={image.borderWidth}
+						bind:borderColor={image.borderColor}
+						bind:borderRadius={image.borderRadius}
+					/>
+				{/each}
+				{#each [...thumbnailTexts].reverse() as textElement, i}
+					<ThumbnailGeneratorText
+						index={i}
+						bind:text={textElement.text}
+						on:delete={() => handleDelete(textElement.elementType, i)}
+						on:duplicate={() => handleDuplicate(textElement.elementType, i)}
+						bind:top={textElement.top}
+						bind:left={textElement.left}
+						bind:zindex={textElement.zindex}
+						bind:opacity={textElement.opacity}
+						bind:fontSize={textElement.fontSize}
+						bind:fontFamily={textElement.fontFamily}
+						bind:fontWeight={textElement.fontWeight}
+						bind:fontStyle={textElement.fontStyle}
+						bind:textDecoration={textElement.decoration}
+						bind:textDecorationColor={textElement.decorationColor}
+						bind:textShadowWidth={textElement.shadowWidth}
+						bind:textShadowColor={textElement.shadowColor}
+						bind:textColor={textElement.color}
+						bind:textRotation={textElement.rotation}
+					/>
+				{/each}
+			{/if}
 		</div>
 	</section>
 </div>
@@ -6415,5 +6494,13 @@
 		display: flex;
 		gap: var(--cds-spacing-06);
 		flex-direction: column;
+	}
+
+	.thumbnail-order-toggle {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 1rem;
 	}
 </style>
