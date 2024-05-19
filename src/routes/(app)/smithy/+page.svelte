@@ -111,6 +111,9 @@
 	import RadioButtonGroup from 'carbon-components-svelte/src/RadioButtonGroup/RadioButtonGroup.svelte';
 	import RadioButton from 'carbon-components-svelte/src/RadioButton/RadioButton.svelte';
 	import { onMount } from 'svelte';
+	import Youtube from 'svelte-youtube-embed';
+	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
+	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -2279,8 +2282,6 @@
 				? RarityColors[11]
 				: RarityColors[5];
 
-	$: console.log(towerWeaponSeriesColor);
-
 	$: towerWeaponReloadSpeedIndex = towerWeaponReloadSpeedOptions.findIndex(
 		(e) => e.id === towerWeaponReloadSpeedValue,
 	);
@@ -2451,7 +2452,6 @@
 			e.preventDefault(); // Prevents default behavior
 			const data = JSON.parse(e.dataTransfer.getData('text/plain'));
 			const element = document.getElementById(data.id);
-			console.table([e.clientY, data.offsetY, e.clientX, data.offsetX]);
 			if (element) {
 				// Calculate the correct position based on the cursor's position relative to the container
 				// and the initial offset of the dragged element
@@ -2479,6 +2479,29 @@
 		});
 	});
 
+	let modalOpen = false;
+	let modalHeading = '';
+	let modalLabel = '';
+	let modalImage = '';
+	let modalNotes = '';
+
+	function changeModal(heading: string, section: string) {
+		modalOpen = true;
+		modalHeading = heading;
+		modalLabel = section || '';
+
+		switch (section) {
+			case 'youtube':
+				modalImage = '';
+				modalNotes = '';
+				break;
+			default:
+				modalImage = '';
+				modalNotes = '';
+				break;
+		}
+	}
+
 	function handleDragStart(
 		e: { dataTransfer: { setData: (arg0: string, arg1: string) => void } },
 		id: any,
@@ -2486,7 +2509,6 @@
 		offsetY: any,
 		index: number,
 	) {
-		console.log(JSON.stringify({ id, offsetX, offsetY, index }));
 		e.dataTransfer.setData(
 			'text/plain',
 			JSON.stringify({ id, offsetX, offsetY, index }),
@@ -2507,6 +2529,21 @@
 	name={projectName}
 	siteName={projectName}
 />
+
+<Modal
+	passiveModal
+	bind:open={modalOpen}
+	{modalHeading}
+	{modalLabel}
+	on:open
+	on:close
+>
+	<div class="modal-content">
+		<div class="video-container">
+			<Youtube id="rLzX-y-BJfw" />
+		</div>
+	</div>
+</Modal>
 
 <div>
 	<SectionHeadingTopLevel title="Smithy" />
@@ -5515,6 +5552,24 @@
 			title="Background:"
 			subtitle="The ZIndex of the background should be 0."
 		/>
+		<p class="spaced-paragraph">
+			Here you can download the thumbnail generated below, with the resulting
+			size being 1280x720 pixels, perfect for things such as
+			<span
+				><Button
+					on:click={() => changeModal('', 'YouTube')}
+					size="default"
+					icon={LogoYoutube}
+					kind="ghost">YouTube thumbnails.</Button
+				></span
+			>
+		</p>
+
+		<p class="spaced-paragraph">
+			Additionally, for text and raster images you can drag and drop them in
+			order to change their position in the thumbnail, as an alternative to the
+			number inputs.
+		</p>
 		<p>Rule of thirds:</p>
 		<ul class="spaced-list">
 			<li>X: 427, 853</li>
@@ -6277,5 +6332,11 @@
 		align-items: center;
 		gap: 1rem;
 		font-size: 32px;
+	}
+
+	.modal-content {
+		display: flex;
+		gap: var(--cds-spacing-06);
+		flex-direction: column;
 	}
 </style>
