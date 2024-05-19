@@ -27,6 +27,7 @@
 		WeaponTypes,
 	} from '$lib/client/modules/frontier/objects';
 	import { createEventDispatcher } from 'svelte';
+	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
 
 	export let top = 0;
 	export let left = 0;
@@ -50,6 +51,11 @@
 	$: src = getIconBlobFromIconMetaData(fileType, optionId);
 
 	const dispatch = createEventDispatcher();
+
+	function shouldFilterItem(item: { text: string }, value: string) {
+		if (!value) return true;
+		return item.text.toLowerCase().includes(value.toLowerCase());
+	}
 
 	function deleteElement() {
 		// Emit an event to the parent component with the index
@@ -159,11 +165,12 @@
 
 <div class="container flex-column">
 	<div class="flex-row">
-		<Dropdown
-			type="inline"
+		<ComboBox
 			titleText="Icon"
+			placeholder="Select icon"
 			bind:selectedId={optionId}
 			items={optionsList}
+			{shouldFilterItem}
 		/>
 		<Button kind="danger-tertiary" icon={TrashCan} on:click={deleteElement}
 			>Delete</Button
