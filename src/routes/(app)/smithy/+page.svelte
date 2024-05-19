@@ -6109,7 +6109,10 @@
 						{ id: 'Lucida Console', text: 'Lucida Console' },
 						{ id: 'MS Gothic', text: 'MS Gothic' },
 					]}
-				/>
+					let:item
+				>
+					<p style="font-family: {item.id}">{item.id}</p>
+				</Dropdown>
 
 				<Dropdown
 					titleText="Font Style"
