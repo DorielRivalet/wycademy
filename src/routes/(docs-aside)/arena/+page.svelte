@@ -86,7 +86,6 @@
 	import IceAgeStage3Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import SharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
-	import ToolbarContent from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
 	import Copy from 'carbon-icons-svelte/lib/Copy.svelte';
 	import Pagination from 'carbon-components-svelte/src/Pagination/Pagination.svelte';
 	import ezlion from 'ezlion';
@@ -6928,7 +6927,8 @@ does not get multiplied by horn */
 							Ice Age's attack power only comes from SR, sigils, weapon base
 							attack and G Rank armor bonus. The following buffs are ignored:
 							items (e.g Seeds, Hunter Powertalon, etc.), meals (e.g. bento,
-							guild food), skills (e.g. Adrenaline, Solid Determination). Buffs that affect weapon base attack like Drug Knowledge does count.
+							guild food), skills (e.g. Adrenaline, Solid Determination). Buffs
+							that affect weapon base attack like Drug Knowledge does count.
 						</p>
 						<p>Ice Age's required hits can be reached faster with Fencing+2.</p>
 					</div>

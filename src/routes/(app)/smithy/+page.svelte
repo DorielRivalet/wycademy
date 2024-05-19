@@ -114,6 +114,9 @@
 	import Youtube from 'svelte-youtube-embed';
 	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
+	import Save from 'carbon-icons-svelte/lib/Save.svelte';
+	import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
+	import FileUploader from 'carbon-components-svelte/src/FileUploader/FileUploader.svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -1129,6 +1132,59 @@
 		);
 
 		return uniqueResult;
+	}
+
+	function loadThumbnailTemplate() {
+		if (thumbnailGeneratorTemplateFiles.length > 0) {
+			const file = thumbnailGeneratorTemplateFiles[0]; // Assuming one file is uploaded at a time
+			const reader = new FileReader();
+			reader.onload = function (event) {
+				try {
+					const jsonData = JSON.parse(event.target.result);
+					// You can process the JSON data here
+					thumbnailImages = jsonData.thumbnailImages;
+					thumbnailTexts = jsonData.thumbnailTexts;
+				} catch (error) {
+					console.error('Error parsing JSON:', error);
+				}
+			};
+			reader.onerror = function (error) {
+				console.error('Error reading file:', error);
+			};
+			reader.readAsText(file); // Read the file as text
+		}
+	}
+
+	function saveThumbnailTemplate() {
+		let input = JSON.stringify({
+			thumbnailImages: thumbnailImages,
+			thumbnailTexts: thumbnailTexts,
+		});
+
+		// Create a Blob object from the string content
+		const blob = new Blob([input], { type: 'application/json;charset=utf-8' });
+
+		// Generate a URL for the Blob
+		const url = URL.createObjectURL(blob);
+
+		// Create an anchor element
+		const link = document.createElement('a');
+
+		// Set the href and download attributes of the anchor element
+		link.href = url;
+		link.download = `wycademy-smithy-thumbnail-template-${new Date().toISOString()}.json`; // You can customize the filename here
+
+		// Append the anchor element to the document body
+		document.body.appendChild(link);
+
+		// Trigger the download by simulating a click on the anchor element
+		link.click();
+
+		// Remove the anchor element from the document
+		document.body.removeChild(link);
+
+		// Revoke the URL to free up memory
+		URL.revokeObjectURL(url);
 	}
 
 	function addThumbnailImage() {
@@ -2196,6 +2252,7 @@
 	let thumbnailGeneratorBorder = false;
 
 	let thumbnailGeneratorImageFiles: ReadonlyArray<File> = [];
+	let thumbnailGeneratorTemplateFiles: ReadonlyArray<File> = [];
 
 	let thumbnailGeneratorText = '5 Musous No Hit SW+CS';
 	let thumbnailGeneratorTextFontSize = 48;
@@ -5579,8 +5636,22 @@
 			<Button
 				kind="tertiary"
 				icon={Download}
-				on:click={downloadGeneratedThumbnailImage}>Download</Button
+				on:click={downloadGeneratedThumbnailImage}>Download Thumbnail</Button
 			>
+			<Button kind="tertiary" icon={Save} on:click={saveThumbnailTemplate}
+				>Save as Template</Button
+			>
+			<FileUploader
+				labelTitle="Load Template"
+				buttonLabel="Add File"
+				labelDescription="Only JSON files are accepted. Custom images are neither loaded nor saved."
+				accept={['.json']}
+				status="complete"
+				iconDescription="Template file"
+				kind="tertiary"
+				bind:files={thumbnailGeneratorTemplateFiles}
+				on:add={loadThumbnailTemplate}
+			/>
 		</div>
 		<div class="container-buttons">
 			<Toggle labelText="Border" bind:toggled={thumbnailGeneratorBorder} />
