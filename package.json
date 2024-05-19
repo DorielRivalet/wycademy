@@ -100,7 +100,7 @@
 		"@carbon/grid": "^11.22.0",
 		"@carbon/layout": "^11.21.0",
 		"@carbon/motion": "^11.17.0",
-		"@catppuccin/palette": "^1.1.1",
+		"@catppuccin/palette": "^1.2.0",
 		"@ibm/plex": "^6.4.1",
 		"alex": "^11.0.1",
 		"carbon-components": "^11.56.0",
