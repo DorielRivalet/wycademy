@@ -6872,6 +6872,7 @@
 	}
 
 	.tower-weapon-slider-button {
+		color: var(--ctp-text);
 		padding: 1rem;
 		display: flex;
 		justify-content: center;
