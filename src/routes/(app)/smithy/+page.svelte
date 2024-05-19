@@ -118,6 +118,7 @@
 	import Save from 'carbon-icons-svelte/lib/Save.svelte';
 	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
 	import FileUploader from 'carbon-components-svelte/src/FileUploader/FileUploader.svelte';
+	import Moveable from 'svelte-moveable';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -2713,6 +2714,40 @@
 	// countStringValueOccurrencesInFrontierEnumerables(duplicatesInput);
 
 	// console.log(JSON.stringify(result, null, 2));
+
+	let moveableTarget;
+
+	function onThumbnailImageContainerMouseDown(
+		e: MouseEvent & { currentTarget: EventTarget & HTMLDivElement },
+		i: number,
+	) {
+		if (e.target.tagName !== 'svg' && e.target.tagName !== 'div') {
+			moveableTarget = undefined;
+		} else {
+			moveableTarget = document.getElementById(`image-${i}`);
+		}
+	}
+
+	function onDragEnd(e) {
+		let { target, isDrag, clientX, clientY } = e;
+		const element = moveableTarget;
+		const rect = thumbnailContainer.getBoundingClientRect();
+
+		// Adjustments for centering the element
+		const elementWidth = element.offsetWidth;
+		const elementHeight = element.offsetHeight;
+		const newTop = Math.round(clientY - rect.top - elementHeight / 2); // Subtract half the height
+		const newLeft = Math.round(clientX - rect.left - elementWidth / 2); // Subtract half the width
+
+		element.style.top = `${newTop}px`;
+		element.style.left = `${newLeft}px`;
+
+		// Update the thumbnailImages array with the new positions
+		thumbnailImages[Number(moveableTarget.id.replace('image-', ''))].top =
+			newTop;
+		thumbnailImages[Number(moveableTarget.id.replace('image-', ''))].left =
+			newLeft;
+	}
 </script>
 
 <Head
@@ -5906,9 +5941,9 @@
 		</p>
 
 		<p class="spaced-paragraph">
-			Additionally, for text and raster images you can drag and drop them in
-			order to change their position in the thumbnail, as an alternative to the
-			number inputs.
+			Additionally, for text, vector and raster images you can drag and drop
+			them in order to change their position in the thumbnail, as an alternative
+			to the number inputs.
 		</p>
 		<p>Rule of thirds:</p>
 		<ul class="spaced-list">
@@ -6403,6 +6438,8 @@
 					{:else}
 						<div
 							style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
+							on:mousedown={(e) => onThumbnailImageContainerMouseDown(e, i)}
+							id={`image-${i}`}
 						>
 							<svelte:component
 								this={image.src.component}
@@ -6415,6 +6452,11 @@
 						</div>
 					{/if}
 				{/each}
+				<Moveable
+					target={moveableTarget}
+					draggable={true}
+					on:dragEnd={({ detail: e }) => onDragEnd(e)}
+				/>
 				{#each thumbnailUploadedImages as image, i}
 					{#if image.fileType !== 'image/svg+xml'}
 						<img
