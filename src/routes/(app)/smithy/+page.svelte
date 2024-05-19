@@ -86,6 +86,7 @@
 	import ezlion, {
 		type FrontierArmorSkillName,
 		type FrontierArmorSkillTree,
+		type FrontierEnumerable,
 		type FrontierWeaponClass,
 		type FrontierWeaponName,
 		type FrontierZenithSkill,
@@ -394,11 +395,8 @@
 				array = [...array, { id: element, text: element }];
 			}
 		});
-		// Remove duplicates based on 'id'
-		const uniqueResult = array.filter(
-			(obj, index) => array.findIndex((item) => item.id === obj.id) === index,
-		);
-		return uniqueResult;
+
+		return array;
 	}
 
 	function getArmorSkills() {
@@ -409,11 +407,7 @@
 			}
 		});
 
-		// Remove duplicates based on 'id'
-		const uniqueResult = array.filter(
-			(obj, index) => array.findIndex((item) => item.id === obj.id) === index,
-		);
-		return uniqueResult;
+		return array;
 	}
 
 	function getArmorSkillTree() {
@@ -1392,8 +1386,6 @@
 			return;
 		}
 
-		let size = Number(thumbnailGeneratorSmallPreviewSize);
-
 		await domToPng(node, {
 			quality: 1,
 		}).then((dataUrl) => {
@@ -1861,6 +1853,36 @@
 			towerWeaponSharpnessLevel = result[result.length - 1];
 		}
 		return result;
+	}
+
+	function handleSliderButton(
+		arr: [number, number, number][],
+		property: string,
+		updatedIndex: number,
+	) {
+		let index = updatedIndex;
+		switch (property) {
+			case 'attack':
+				towerWeaponAttackValue = arr[index][0];
+				break;
+			case 'element':
+				towerWeaponElementValue = arr[index][0];
+				break;
+			case 'poison':
+				towerWeaponPoisonValue = arr[index][0];
+				break;
+			case 'paralysis':
+				towerWeaponParalysisValue = arr[index][0];
+				break;
+			case 'sleep':
+				towerWeaponSleepValue = arr[index][0];
+				break;
+			case 'affinity':
+				towerWeaponAffinityValue = arr[index][0];
+				break;
+		}
+
+		updateTowerWeaponSlotsState();
 	}
 
 	function handleSliderChange(
@@ -2597,6 +2619,100 @@
 			JSON.stringify({ id, offsetX, offsetY, index }),
 		);
 	}
+
+	function countStringOccurrences(nestedArray: string[][]) {
+		const counts = {};
+
+		function countStrings(arr: any[]) {
+			arr.forEach((item: string | number) => {
+				if (typeof item === 'string') {
+					counts[item] = (counts[item] || 0) + 1;
+				} else if (Array.isArray(item)) {
+					countStrings(item);
+				}
+			});
+		}
+
+		countStrings(nestedArray);
+		return counts;
+	}
+
+	function countStringValueOccurrencesInFrontierEnumerables(
+		inputObj: Record<string, FrontierEnumerable>,
+	): Record<string, Record<string, number>> {
+		const result: Record<string, Record<string, number>> = {};
+
+		function traverse(obj: FrontierEnumerable, currentKey: string = '') {
+			Object.values(obj).forEach((value) => {
+				if (typeof value === 'string') {
+					if (!result[currentKey]) {
+						result[currentKey] = {};
+					}
+					result[currentKey][value] = (result[currentKey][value] || 0) + 1;
+				} else if (value instanceof Object) {
+					traverse(value, currentKey);
+				}
+			});
+		}
+
+		Object.keys(inputObj).forEach((key) => {
+			traverse(inputObj[key], key);
+		});
+
+		// Filter occurrences above 1
+		const filteredResult: Record<string, Record<string, number>> = {};
+		Object.entries(result).forEach(([key, values]) => {
+			const filteredValues = Object.fromEntries(
+				Object.entries(values).filter(([_, count]) => count > 1),
+			);
+			if (Object.keys(filteredValues).length > 0) {
+				filteredResult[key] = filteredValues;
+			}
+		});
+
+		return filteredResult;
+	}
+
+	// const duplicatesInput = {
+	// 	ArmorArms: ezlion.ArmorArms,
+	// 	ArmorChest: ezlion.ArmorChest,
+	// 	ArmorColor: ezlion.ArmorColor,
+	// 	ArmorHead: ezlion.ArmorHead,
+	// 	ArmorLegs: ezlion.ArmorLegs,
+	// 	ArmorWaist: ezlion.ArmorWaist,
+	// 	Item: ezlion.Item,
+	// 	Location: ezlion.Location,
+	// 	Monster: ezlion.Monster,
+	// 	ObjectiveType: ezlion.ObjectiveType,
+	// 	PoogieCostume: ezlion.PoogieCostume,
+	// 	Quest: ezlion.Quest,
+	// 	RankBand: ezlion.RankBand,
+	// 	Sharpness: ezlion.Sharpness,
+	// 	SkillArmor: ezlion.SkillArmor,
+	// 	SkillCaravan: ezlion.SkillCaravan,
+	// 	SkillDiva: ezlion.SkillDiva,
+	// 	SkillHalk: ezlion.SkillHalk,
+	// 	SkillRoadTower: ezlion.SkillRoadTower,
+	// 	SkillSigil: ezlion.SkillSigil,
+	// 	SkillStyleRank: ezlion.SkillStyleRank,
+	// 	SkillZenith: ezlion.SkillZenith,
+	// 	WeaponBlademaster: ezlion.WeaponBlademaster,
+	// 	WeaponClass: ezlion.WeaponClass,
+	// 	WeaponGunner: ezlion.WeaponGunner,
+	// 	WeaponStyle: ezlion.WeaponStyle,
+	// 	WeaponType: ezlion.WeaponType,
+	// 	PoogieGuildOutfit: ezlion.PoogieGuildOutfit,
+	// 	QuestToggleMode: ezlion.QuestToggleMode,
+	// 	SkillDivaPrayerGem: ezlion.SkillDivaPrayerGem,
+	// 	SkillGuildPoogie: ezlion.SkillGuildPoogie,
+	// 	SkillTree: ezlion.SkillTree,
+	// 	SkillArmorPriority: ezlion.SkillArmorPriority,
+	// };
+
+	// const result =
+	// countStringValueOccurrencesInFrontierEnumerables(duplicatesInput);
+
+	// console.log(JSON.stringify(result, null, 2));
 </script>
 
 <Head
@@ -5104,14 +5220,37 @@
 
 		<div class="tower-weapon-properties">
 			<div class="tower-weapon-property">
-				<Slider
-					labelText="Attack"
-					min={towerWeaponSelected.attack[0][0]}
-					max={towerWeaponSelected.attack.at(-1)[0]}
-					bind:value={towerWeaponAttackValue}
-					on:change={(e) =>
-						handleSliderChange(towerWeaponSelected.attack, 'attack')}
-				/>
+				<div class="tower-weapon-slider-container">
+					<button
+						on:click={() =>
+							handleSliderButton(
+								towerWeaponSelected.attack,
+								'attack',
+								Math.max(towerWeaponAttackIndex - 1, 0),
+							)}
+						class="tower-weapon-slider-button">-</button
+					>
+					<Slider
+						labelText="Attack"
+						min={towerWeaponSelected.attack[0][0]}
+						max={towerWeaponSelected.attack.at(-1)[0]}
+						bind:value={towerWeaponAttackValue}
+						on:change={(e) =>
+							handleSliderChange(towerWeaponSelected.attack, 'attack')}
+					/>
+					<button
+						on:click={() =>
+							handleSliderButton(
+								towerWeaponSelected.attack,
+								'attack',
+								Math.min(
+									towerWeaponAttackIndex + 1,
+									towerWeaponSelected.attack.length - 1,
+								),
+							)}
+						class="tower-weapon-slider-button">+</button
+					>
+				</div>
 				<p>
 					Upgrade #{towerWeaponAttackIndex} Cost: {towerWeaponSelected.attack[
 						towerWeaponAttackIndex
@@ -5120,22 +5259,94 @@
 			</div>
 			{#if towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
 				<div class="tower-weapon-property">
-					<Slider
-						labelText="Element"
-						min={towerWeaponSelected.element[0][0]}
-						max={towerWeaponSelected.element.at(-1)[0]}
-						bind:value={towerWeaponElementValue}
-						disabled={towerWeaponElementDisabled}
-						on:change={(e) =>
-							handleSliderChange(towerWeaponSelected.element, 'element')}
-					/>
+					<div class="tower-weapon-slider-container">
+						<button
+							on:click={() =>
+								handleSliderButton(
+									towerWeaponSelected.element,
+									'element',
+									Math.max(towerWeaponElementIndex - 1, 0),
+								)}
+							class="tower-weapon-slider-button">-</button
+						>
+						<Slider
+							labelText="Element"
+							min={towerWeaponSelected.element[0][0]}
+							max={towerWeaponSelected.element.at(-1)[0]}
+							bind:value={towerWeaponElementValue}
+							disabled={towerWeaponElementDisabled}
+							on:change={(e) =>
+								handleSliderChange(towerWeaponSelected.element, 'element')}
+						/>
+						<button
+							on:click={() =>
+								handleSliderButton(
+									towerWeaponSelected.element,
+									'element',
+									Math.min(
+										towerWeaponElementIndex + 1,
+										towerWeaponSelected.element.length - 1,
+									),
+								)}
+							class="tower-weapon-slider-button">+</button
+						>
+					</div>
 					<p>
 						Upgrade #{towerWeaponElementIndex} Cost: {towerWeaponSelected
 							.element[towerWeaponElementIndex][1]}
 					</p>
 				</div>
-				{#if towerWeaponSelectedWeaponType !== 'Bow'}
-					<div class="tower-weapon-property">
+			{/if}
+			<div class="tower-weapon-property">
+				<div class="tower-weapon-slider-container">
+					<button
+						on:click={() =>
+							handleSliderButton(
+								towerWeaponSelected.affinity,
+								'affinity',
+								Math.max(towerWeaponAffinityIndex - 1, 0),
+							)}
+						class="tower-weapon-slider-button">-</button
+					>
+					<Slider
+						labelText="Affinity"
+						min={towerWeaponSelected.affinity[0][0]}
+						max={towerWeaponSelected.affinity.at(-1)[0]}
+						bind:value={towerWeaponAffinityValue}
+						disabled={towerWeaponAffinityDisabled}
+						on:change={(e) =>
+							handleSliderChange(towerWeaponSelected.affinity, 'affinity')}
+					/>
+					<button
+						on:click={() =>
+							handleSliderButton(
+								towerWeaponSelected.affinity,
+								'affinity',
+								Math.min(
+									towerWeaponAffinityIndex + 1,
+									towerWeaponSelected.affinity.length - 1,
+								),
+							)}
+						class="tower-weapon-slider-button">+</button
+					>
+				</div>
+				<p>
+					Upgrade #{towerWeaponAffinityIndex} Cost: {towerWeaponSelected
+						.affinity[towerWeaponAffinityIndex][1]}
+				</p>
+			</div>
+			{#if towerWeaponSelectedWeaponType !== 'Bow'}
+				<div class="tower-weapon-property">
+					<div class="tower-weapon-slider-container">
+						<button
+							on:click={() =>
+								handleSliderButton(
+									towerWeaponSelected.poison,
+									'poison',
+									Math.max(towerWeaponPoisonIndex - 1, 0),
+								)}
+							class="tower-weapon-slider-button">-</button
+						>
 						<Slider
 							disabled={towerWeaponPoisonDisabled}
 							labelText="Poison"
@@ -5145,27 +5356,74 @@
 							on:change={(e) =>
 								handleSliderChange(towerWeaponSelected.poison, 'poison')}
 						/>
-						<p>
-							Upgrade #{towerWeaponPoisonIndex} Cost: {towerWeaponSelected
-								.poison[towerWeaponPoisonIndex][1]}
-						</p>
+						<button
+							on:click={() =>
+								handleSliderButton(
+									towerWeaponSelected.poison,
+									'poison',
+									Math.min(
+										towerWeaponPoisonIndex + 1,
+										towerWeaponSelected.poison.length - 1,
+									),
+								)}
+							class="tower-weapon-slider-button">+</button
+						>
 					</div>
-					<div class="tower-weapon-property">
-						<Slider
-							disabled={towerWeaponParalysisDisabled}
-							labelText="Paralysis"
-							min={towerWeaponSelected.paralysis[0][0]}
-							max={towerWeaponSelected.paralysis.at(-1)[0]}
-							bind:value={towerWeaponParalysisValue}
-							on:change={(e) =>
-								handleSliderChange(towerWeaponSelected.paralysis, 'paralysis')}
-						/>
-						<p>
-							Upgrade #{towerWeaponParalysisIndex} Cost: {towerWeaponSelected
-								.paralysis[towerWeaponParalysisIndex][1]}
-						</p>
+					<p>
+						Upgrade #{towerWeaponPoisonIndex} Cost: {towerWeaponSelected.poison[
+							towerWeaponPoisonIndex
+						][1]}
+					</p>
+				</div>
+				<div class="tower-weapon-property">
+					<div class="tower-weapon-slider-container">
+						<button
+							on:click={() =>
+								handleSliderButton(
+									towerWeaponSelected.paralysis,
+									'paralysis',
+									Math.max(towerWeaponParalysisIndex - 1, 0),
+								)}
+							class="tower-weapon-slider-button">-</button
+						>
+					<Slider
+						disabled={towerWeaponParalysisDisabled}
+						labelText="Paralysis"
+						min={towerWeaponSelected.paralysis[0][0]}
+						max={towerWeaponSelected.paralysis.at(-1)[0]}
+						bind:value={towerWeaponParalysisValue}
+						on:change={(e) =>
+							handleSliderChange(towerWeaponSelected.paralysis, 'paralysis')}
+					/>
+					<button
+							on:click={() =>
+								handleSliderButton(
+									towerWeaponSelected.paralysis,
+									'paralysis',
+									Math.min(
+										towerWeaponParalysisIndex + 1,
+										towerWeaponSelected.paralysis.length - 1,
+									),
+								)}
+							class="tower-weapon-slider-button">+</button
+						>
 					</div>
-					<div class="tower-weapon-property">
+					<p>
+						Upgrade #{towerWeaponParalysisIndex} Cost: {towerWeaponSelected
+							.paralysis[towerWeaponParalysisIndex][1]}
+					</p>
+				</div>
+				<div class="tower-weapon-property">
+					<div class="tower-weapon-slider-container">
+						<button
+							on:click={() =>
+								handleSliderButton(
+									towerWeaponSelected.sleep,
+									'sleep',
+									Math.max(towerWeaponSleepIndex - 1, 0),
+								)}
+							class="tower-weapon-slider-button">-</button
+						>
 						<Slider
 							disabled={towerWeaponSleepDisabled}
 							labelText="Sleep"
@@ -5175,29 +5433,28 @@
 							on:change={(e) =>
 								handleSliderChange(towerWeaponSelected.sleep, 'sleep')}
 						/>
-						<p>
-							Upgrade #{towerWeaponSleepIndex} Cost: {towerWeaponSelected.sleep[
-								towerWeaponSleepIndex
-							][1]}
-						</p>
+						<button
+							on:click={() =>
+								handleSliderButton(
+									towerWeaponSelected.sleep,
+									'sleep',
+									Math.min(
+										towerWeaponSleepIndex + 1,
+										towerWeaponSelected.sleep.length - 1,
+									),
+								)}
+							class="tower-weapon-slider-button">+</button
+						>
 					</div>
-				{/if}
+
+					<p>
+						Upgrade #{towerWeaponSleepIndex} Cost: {towerWeaponSelected.sleep[
+							towerWeaponSleepIndex
+						][1]}
+					</p>
+				</div>
 			{/if}
-			<div class="tower-weapon-property">
-				<Slider
-					labelText="Affinity"
-					min={towerWeaponSelected.affinity[0][0]}
-					max={towerWeaponSelected.affinity.at(-1)[0]}
-					bind:value={towerWeaponAffinityValue}
-					disabled={towerWeaponAffinityDisabled}
-					on:change={(e) =>
-						handleSliderChange(towerWeaponSelected.affinity, 'affinity')}
-				/>
-				<p>
-					Upgrade #{towerWeaponAffinityIndex} Cost: {towerWeaponSelected
-						.affinity[towerWeaponAffinityIndex][1]}
-				</p>
-			</div>
+
 			{#if towerWeaponSelectedWeaponType !== 'Bow' && towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
 				<div class="tower-weapon-property">
 					<RadioButtonGroup
@@ -5626,7 +5883,7 @@
 			hideCloseButton
 			kind="warning"
 			title="Browser compatibility:"
-			subtitle="The download button functionality may not work on Firefox. It is confirmed to work with Chromium based browsers."
+			subtitle="Many features on this section may not work on Firefox. It is confirmed to work with Chromium based browsers."
 		/>
 		<InlineNotification
 			lowContrast
@@ -6554,5 +6811,31 @@
 
 	.thumbnail-generator-small-preview {
 		margin-bottom: 1rem;
+	}
+
+	.tower-weapon-slider-container {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.tower-weapon-slider-button {
+		padding: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: bold;
+		font-size: 24px;
+		background-color: var(--ctp-surface0);
+		border: 2px solid var(--ctp-yellow);
+		outline: 2px outset var(--ctp-surface0);
+		width: 1ch;
+		height: 1ch;
+	}
+
+	.tower-weapon-slider-button:active {
+		outline: 2px inset var(--ctp-surface0);
 	}
 </style>
