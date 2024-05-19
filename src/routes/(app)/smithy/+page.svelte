@@ -6107,7 +6107,7 @@
 			/>
 		</div>
 
-		<div>
+		<div class="thumbnail-generator-small-preview">
 			{#if thumbnailGeneratorSmallPreview !== ''}
 				<img
 					src={thumbnailGeneratorSmallPreview}
@@ -6550,5 +6550,9 @@
 		justify-content: center;
 		align-items: center;
 		margin: 1rem;
+	}
+
+	.thumbnail-generator-small-preview {
+		margin-bottom: 1rem;
 	}
 </style>
