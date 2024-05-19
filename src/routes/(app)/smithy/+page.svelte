@@ -5386,16 +5386,16 @@
 								)}
 							class="tower-weapon-slider-button">-</button
 						>
-					<Slider
-						disabled={towerWeaponParalysisDisabled}
-						labelText="Paralysis"
-						min={towerWeaponSelected.paralysis[0][0]}
-						max={towerWeaponSelected.paralysis.at(-1)[0]}
-						bind:value={towerWeaponParalysisValue}
-						on:change={(e) =>
-							handleSliderChange(towerWeaponSelected.paralysis, 'paralysis')}
-					/>
-					<button
+						<Slider
+							disabled={towerWeaponParalysisDisabled}
+							labelText="Paralysis"
+							min={towerWeaponSelected.paralysis[0][0]}
+							max={towerWeaponSelected.paralysis.at(-1)[0]}
+							bind:value={towerWeaponParalysisValue}
+							on:change={(e) =>
+								handleSliderChange(towerWeaponSelected.paralysis, 'paralysis')}
+						/>
+						<button
 							on:click={() =>
 								handleSliderButton(
 									towerWeaponSelected.paralysis,
@@ -6720,6 +6720,11 @@
 
 	.tower-weapon-property {
 		text-align: center;
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		flex-direction: row;
 	}
 
 	.flex-centered {
