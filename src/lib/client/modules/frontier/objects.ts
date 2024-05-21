@@ -855,6 +855,7 @@ import LocationIconVolcano from '$lib/client/images/icon/volcano.webp';
 import LocationIconWhiteLake from '$lib/client/images/icon/white_lake.webp';
 import LocationIconWorld from '$lib/client/images/icon/world.webp';
 import LocationIconBurst from '$lib/client/images/icon/burst.webp';
+import LocationIconCaravan from '$lib/client/images/icon/pallone_caravan.webp';
 
 import HabitatImageArena from '$lib/client/images/habitat/arena.webp';
 import HabitatImageBattleground from '$lib/client/images/habitat/battleground.webp';
@@ -1270,6 +1271,7 @@ export const LocationIcons: { name: string; icon: any }[] = [
 		icon: LocationIconBerserkRavienteRaid,
 	},
 	{ name: 'Blacksmith', icon: LocationIconBlacksmith },
+	{ name: 'Caravan', icon: LocationIconCaravan },
 	{ name: 'Cattleya', icon: LocationIconCattleya },
 	{ name: 'Diva Fountain', icon: LocationIconDivaFountain },
 	{ name: 'Diva Note', icon: LocationIconDivaNote },
@@ -1292,6 +1294,7 @@ export const LocationIcons: { name: string; icon: any }[] = [
 	},
 	{ name: 'Interception', icon: LocationIconInterception },
 	{ name: 'Jungle', icon: LocationIconJungle },
+	{ name: 'Mezeporta', icon: LocationIconCattleya },
 	{ name: 'Mezfes', icon: LocationIconMezfes },
 	{ name: 'My Gallery', icon: LocationIconMyGallery },
 	{ name: 'My Garden', icon: LocationIconMyGarden },
