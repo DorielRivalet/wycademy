@@ -23,6 +23,7 @@
 		StatusIcons,
 		MonsterIcons,
 		bentoValues,
+		LocationIcons,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -3563,6 +3564,22 @@ does not get multiplied by horn */
 			Number.parseInt(inputIceAgeCalculatorHunters),
 	);
 
+	const formulaIceAgeDamagePerSecond = display(
+		`\\text{Ice Age DPS} = \\lfloor \\text{Stage Multiplier} \\times (\\text{Weapon True Raw} + \\text{Sigils True Raw} + \\text{SR True Raw} + \\text{GRank Armor Bonus}) \\times \\text{Monster Defense Rate} \\times \\text{Ice Age Hunters}\\rfloor`,
+	);
+
+	$: formulaValuesIceAgeDamagePerSecond = `${iceAgeCalculatorDamagePerSecond} = \\lfloor ${getIceAgeBaseMultiplier(inputIceAgeCalculatorStage)} \\times (${inputNumberIceAgeCalculatorWeaponTrueRaw} + ${
+		inputNumberIceAgeCalculatorSigil1TrueRaw +
+		inputNumberIceAgeCalculatorSigil2TrueRaw +
+		inputNumberIceAgeCalculatorSigil3TrueRaw +
+		inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
+		getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
+		getAOESigilTrueRaw(
+			inputNumberIceAgeCalculatorAOESigil,
+			inputIceAgeCalculatorAOESigilHunters,
+		)
+	} + ${inputNumberIceAgeCalculatorSRTrueRaw} + ${getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)}) \\times ${inputNumberIceAgeCalculatorMonsterDefenseRate} \\times ${Number.parseInt(inputIceAgeCalculatorHunters)} \\rfloor`;
+
 	$: iceAgeCalculatorTotalDamage =
 		inputNumberIceAgeCalculatorSecondsElapsed * iceAgeCalculatorDamagePerSecond;
 
@@ -6918,8 +6935,11 @@ does not get multiplied by horn */
 							<p>
 								Typically, damage output ranges between 800 to 1600 per minute,
 								contingent on the level, surpassing the poison output for most G
-								Rank monsters. Within a group of four hunters equipped with Ice
-								Age, the damage stacks and thus escalates from 800-1600 (1p) to
+								Rank monsters. Within a group of four hunters equipped with <InlineTooltip
+									text="Ice Age"
+									tooltip="Armor Skill"
+									icon={getTag('Armor Skill').icon}
+								/>, the damage stacks and thus escalates from 800-1600 (1p) to
 								3200-6400 (4p).
 							</p>
 						</div>
@@ -6930,7 +6950,13 @@ does not get multiplied by horn */
 							guild food), skills (e.g. Adrenaline, Solid Determination). Buffs
 							that affect weapon base attack like Drug Knowledge does count.
 						</p>
-						<p>Ice Age's required hits can be reached faster with Fencing+2.</p>
+						<p>
+							Ice Age's required hits can be reached faster with <InlineTooltip
+								text="Fencing+2"
+								tooltip="Armor Skill"
+								icon={getTag('Armor Skill').icon}
+							/>.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -7115,6 +7141,9 @@ does not get multiplied by horn */
 					DPS)
 				</p>
 			</div>
+			<p>Formula:</p>
+			{@html formulaIceAgeDamagePerSecond}
+			{@html display(formulaValuesIceAgeDamagePerSecond)}
 		</div>
 	</section>
 	<section>
@@ -7579,9 +7608,10 @@ does not get multiplied by horn */
 					weapon type will be chosen. You can see up to one day in advance by
 					looking behind the main Active Feature bar at the top of your screen
 					while in <InlineTooltip
-						tooltip="Location"
 						text="Mezeporta"
-						icon={getTag('Location').icon}
+						tooltip="Location"
+						icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
+						iconType={'file'}
 					/>.
 				</p>
 				<p>
@@ -7981,14 +8011,19 @@ does not get multiplied by horn */
 		<SectionHeading level={2} title="Guild Poogie" />
 		<div>
 			<p class="spaced-paragraph">
-				Guild Poogies can grant bonuses upon being successfully fed (indicated
-				by them jumping up and down in a white flash), a Guild can have three
-				different Poogie Outfit that each grant a different skill when fed
-				successfully. The easiest way to get the buff is to to mass feed them
+				Guild Poogies, found in the <InlineTooltip
+					text="Guild Hall"
+					tooltip="Location"
+					icon={LocationIcons.find((e) => e.name === 'Guild Hall')?.icon}
+					iconType="file"
+				/>, can grant bonuses upon being successfully fed (indicated by them
+				jumping up and down in a white flash), a Guild can have three different
+				Poogie Outfit that each grant a different skill when fed successfully.
+				The easiest way to get the buff is to to mass feed them
 				<InlineTooltip
 					text="Pugi Crackers"
 					tooltip="Item"
-					iconColor={ItemColors.find((e) => 'Yellow')?.value}
+					iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 					icon={ItemIcons.find((e) => e.name === 'Scale')?.icon}
 				/> from the Guild Shop.
 			</p>
@@ -8426,7 +8461,8 @@ does not get multiplied by horn */
 				are also the color that is displayed behind your weapon icon in <InlineTooltip
 					text="Mezeporta"
 					tooltip="Location"
-					icon={getTag('Location').icon}
+					icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
+					iconType={'file'}
 				/>.
 			</p>
 			<p class="spaced-paragraph">
@@ -8440,7 +8476,8 @@ does not get multiplied by horn */
 				<InlineTooltip
 					text="Blacksmith"
 					tooltip="Location"
-					icon={getTag('Location').icon}
+					icon={LocationIcons.find((e) => e.name === 'Blacksmith')?.icon}
+					iconType={'file'}
 				/> sells.
 			</p>
 			<p class="spaced-paragraph">
@@ -8640,9 +8677,14 @@ does not get multiplied by horn */
 		<SectionHeading level={2} title="Diva Prayer Gems" />
 		<div>
 			<p class="spaced-paragraph">
-				During the Diva Defense event, there are up to four different colors of
-				Prayer gems, each of these will have a different effect based on the
-				skills currently assigned to the individual colors.
+				During the <InlineTooltip
+					text="Diva Defense"
+					tooltip="Event"
+					icon={LocationIcons.find((e) => e.name === 'Interception')?.icon}
+					iconType="file"
+				/> event, there are up to four different colors of Prayer gems, each of these
+				will have a different effect based on the skills currently assigned to the
+				individual colors.
 			</p>
 			<p class="spaced-paragraph">
 				The buffs are only available in the second week of the event. The total
@@ -9136,146 +9178,141 @@ does not get multiplied by horn */
 	<section>
 		<SectionHeading level={2} title="Guild Food" />
 		<div>
-			<p>
-				Guild cooking is available at guild rank 15, it is a mini-game performed
-				by up to four people. Cooking can activate effects separate from armor
-				skills.
+			<p class="spaced-paragraph">
+				Guild cooking is available at guild rank 15 in the <InlineTooltip
+					text="Guild Hall"
+					tooltip="Location"
+					icon={LocationIcons.find((e) => e.name === 'Guild Hall')?.icon}
+					iconType="file"
+				/> and is a mini-game for up to four people. Cooking can activate effects
+				independent of armor skills.
 			</p>
-
 			<p>
-				The skill effect gained by cooking lasts for 90 minutes. However, if a
-				new skill is obtained by cooking, the effect is overwritten. You can
-				check your current duration with the overlay.
+				The skill effect from cooking lasts for 90 minutes. If a new skill is
+				obtained, it overwrites the previous effect. You can check the duration
+				with the overlay.
 			</p>
-
-			<p>
-				Up to 6 dishes can be "left over". The leftover dishes will be stored
-				for 1 hour at the cat in the cooking area.
+			<img
+				width="81"
+				height="105"
+				class="spaced-image"
+				src="https://github.com/DorielRivalet/mhfz-overlay/raw/main/demo/buffs.png"
+				alt="overlay timers"
+			/>
+			<p class="spaced-paragraph">
+				Up to 6 dishes can be stored as "leftovers" for 1 hour at the cat in the
+				cooking area.
 			</p>
-
-			<p>
+			<p class="spaced-paragraph">
 				Yellow ingredients are "base ingredients" and pink ingredients are
-				"Auxiliary". These allow you to create dishes via the menu. If you
-				select any other option, it will be a Guild's Yaminabe.
+				"auxiliary." These allow you to create dishes via the menu. Selecting
+				any other option results in a Guild's Yaminabe.
 			</p>
-
-			<p>
-				Guild Food grants a skill on successfully being cooked, there are three
-				levels of each skill it can grant and a potential failure option that
-				applies a debuff instead of a buff.
+			<p class="spaced-paragraph">
+				Successfully cooking Guild Food grants a skill with three levels of each
+				skill available, and a potential failure option that applies a debuff
+				instead of a buff.
 			</p>
-
-			<p>
-				During the minigame, you have to press confirm to keep the icon on a
-				meter in either the blue or green bars. Blue produces the best results,
-				while green produces good ones. Cat stamps will appear showing you how
-				well you are doing in the top right until the cooking time expires.
+			<p class="spaced-paragraph">
+				During the minigame, press confirm to keep the icon on a meter within
+				the blue or green bars. Blue produces the best results, and green
+				produces good ones. Cat stamps appear in the top right to indicate your
+				performance until the cooking time expires.
 			</p>
-
-			<p>
-				By repeatedly pressing the confirm button, the cursor on the gauge will
-				move to the right. By hovering the cursor over the green "Success Area"
-				or blue "Great Success Area," a stamp will accumulate directly below the
-				food meter. When the color of the stamp turns green, the dish is a
-				success, and when it turns blue, it is a great success. The more people
-				that participate, the higher the chance the dish will be a great
-				success.
+			<p class="spaced-paragraph">
+				By repeatedly pressing confirm, the cursor moves to the right. Hovering
+				over the green "Success Area" or blue "Great Success Area" accumulates a
+				stamp below the food meter. Green stamps indicate success, and blue
+				stamps indicate great success. More participants increase the chance of
+				a great success.
 			</p>
-
-			<p>
-				Upon completion, the food will be sent to the Kitchen Cat who manages
-				cooked food and you will either get told what buff it gives or be asked
-				to replace an existing meal if there are no spots for it to go into.
+			<p class="spaced-paragraph">
+				Upon completion, the food is sent to the Kitchen Cat, who manages cooked
+				food. You will be informed of the buff it grants or asked to replace an
+				existing meal if there are no available spots.
 			</p>
-
-			<p>
-				Food that is cooked is available to all Guild Members after being posted
-				on the Kitchen Cat for one hour after being completed and the buffs
-				themselves last one hour and thirty minutes, this means you can get a
-				maximum of two hours and thirty minutes of the skill for every time you
-				cook it.
+			<p class="spaced-paragraph">
+				Cooked food is available to all guild members after being posted with
+				the Kitchen Cat for one hour. The buffs last one hour and thirty
+				minutes, giving a maximum of two hours and thirty minutes of skill
+				duration per cooking session.
 			</p>
-
-			<p>
-				For food with random results you can keep eating it on the Cat until you
-				proc the skill you want. The skills available in the pool are based on
-				success level with +20 to elemental resistances in the normal success
-				pool.
+			<p class="spaced-paragraph">
+				For food with random results, you can keep eating it at the Cat until
+				you get the desired skill. The skills available depend on the success
+				level, with +20 to elemental resistances in the normal success pool.
 			</p>
-
-			<p>
-				There are a lot of ingredients that can be used for cooking, these come
-				from the Guild Store or from the Adventure Boat. The Guild Store
-				requires you to pay either standard Zeny or <InlineTooltip
+			<p class="spaced-paragraph">
+				Many ingredients can be used for cooking, obtained from the Guild Store
+				or the Adventure Boat. The Guild Store requires payment with either
+				standard Zeny or <InlineTooltip
 					text="Guild Tickets"
 					tooltip="Item"
 					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
-					iconColor={'Green'}
-				/> while the Adventure Boat is mostly RNG based with the rarest items needing
-				materials obtained from participating in the Diva Defense Event.
+					iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+				/>, while the Adventure Boat relies on RNG with rare items needing
+				materials from the <InlineTooltip
+					text="Diva Defense"
+					tooltip="Event"
+					icon={LocationIcons.find((e) => e.name === 'Interception')?.icon}
+					iconType="file"
+				/> Event.
 			</p>
-
-			<p>
-				As long as you claim rewards from the Diva Defense you will obtain at
-				least some of the materials for the Adventure Boat.
+			<p class="spaced-paragraph">
+				By claiming rewards from <InlineTooltip
+					text="Diva Defense"
+					tooltip="Event"
+					icon={LocationIcons.find((e) => e.name === 'Interception')?.icon}
+					iconType="file"
+				/>, you will obtain some materials for the Adventure Boat.
 			</p>
-
-			<p>
-				You can use the Adventure Boat to send a Felyne to a specific location.
-				The Adventure Boat is the only way you can obtain some of the items for
-				the Guild Special Cooking recipes such as those used in the Caring
-				Recipes (Makes it so you cannot hit other players with attacks). Sending
-				out the cats costs RP, which you gain at a rate of 1 per 30 minutes
-				spent in game. Rewards will depend upon a number of factors and be
-				increased by putting in <InlineTooltip
+			<p class="spaced-paragraph">
+				You can send a Felyne to a specific location using the Adventure Boat,
+				which is the only way to obtain some items for Guild Special Cooking
+				recipes, such as those for the Caring Recipes (prevents hitting other
+				players with attacks). Sending out cats costs RP, gained at a rate of 1
+				per 30 minutes spent in-game. Rewards depend on several factors and can
+				be increased by using <InlineTooltip
 					text="Guild Tickets"
 					tooltip="Item"
 					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
-					iconColor={'Green'}
-				/> by talking to the NPC on land after the boat departs.
+					iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+				/> through the NPC on land after the boat departs.
 			</p>
-
-			<p>
-				After the boat returns you can claim any rewards from directly in front
-				of it, depending on the success level of the mission you will see
-				different results ranging from a pile of plain boxes and debris to
-				shining treasures. The boat is out for 6 hours as standard and all
-				members of the guild can contribute and claim rewards.
+			<p class="spaced-paragraph">
+				After the boat returns, claim rewards in front of it. Results vary from
+				plain boxes and debris to shining treasures, depending on mission
+				success. The boat is out for 6 hours, and all guild members can
+				contribute and claim rewards.
 			</p>
-
-			<p>
-				There are a number of different cooking modes, you can either go
-				normally which doesn't cost any <InlineTooltip
-					text="Guild Tickets"
-					tooltip="Item"
-					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
-					iconColor={'Green'}
-				/> or you can use one of 6
+			<p class="spaced-paragraph">
+				There are different cooking modes: normal mode, which doesn't cost any
 				<InlineTooltip
+					text="Guild Tickets"
+					tooltip="Item"
+					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
+					iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+				/>, and six <InlineTooltip
 					text="Guild Ticket"
 					tooltip="Item"
 					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
-					iconColor={'Green'}
-				/> options that alter how the results and minigame functions.
+					iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+				/> options that alter the results and minigame functions.
 			</p>
-
-			<p>
-				As with normal food preparation there are recipes for each status you
-				might want, there are four result states from cooking: Great Failure,
-				Failure, Success and Great Success. These are indicated by the number of
-				stamps you collect during the cooking minigame, no stamps is a fixed
-				Great Failure, red stamps result in failure, green in success and blue
-				in great success. For fighting Zenith monsters it is also worth
-				utilising the Resistance recipes; 55 of a resistance is required to
-				avoid extreme versions of blights and you can get +83 elemental
-				resistance from a combination of SR Skills and Guild Cooking.
+			<p class="spaced-paragraph">
+				Recipes exist for each status you might want, with four result states
+				from cooking: Great Failure, Failure, Success, and Great Success. These
+				are indicated by the number of stamps collected during the minigame: no
+				stamps is a Great Failure, red stamps result in failure, green in
+				success, and blue in great success. For fighting Zenith monsters, use
+				the Resistance recipes; 55 resistance is required to avoid extreme
+				blights, and you can get +83 elemental resistance from a combination of
+				SR Skills and Guild Cooking.
 			</p>
-
-			<p>
-				Unless you are very confident in your ability to consistently hit Great
-				Success in the minigame, you should only use recipes with red
-				ingredients while also using the Success Level Up cooking option that
-				forces success to upgrade into Great Success.
+			<p class="spaced-paragraph">
+				Unless you are confident in consistently achieving Great Success, use
+				recipes with red ingredients and the Success Level Up cooking option to
+				upgrade success into Great Success.
 			</p>
 		</div>
 	</section>
@@ -9291,23 +9328,26 @@ does not get multiplied by horn */
 			<ul>
 				<li>
 					The dedicated food store in <InlineTooltip
-						tooltip="Location"
 						text="Mezeporta"
-						icon={getTag('Location').icon}
+						tooltip="Location"
+						icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
+						iconType={'file'}
 					/>.
 				</li>
 				<li>
 					The dedicated food store in the <InlineTooltip
 						tooltip="Location"
 						text="Caravan"
-						icon={getTag('Location').icon}
+						icon={LocationIcons.find((e) => e.name === 'Caravan')?.icon}
+						iconType={'file'}
 					/> area.
 				</li>
 				<li>
 					The Guild Store Cat in the <InlineTooltip
 						tooltip="Location"
 						text="Guild Hall"
-						icon={getTag('Location').icon}
+						icon={LocationIcons.find((e) => e.name === 'Guild Hall')?.icon}
+						iconType={'file'}
 					/>.
 				</li>
 			</ul>
@@ -9358,7 +9398,7 @@ does not get multiplied by horn */
 			</section>
 
 			<section>
-				<SectionHeading level={3} title="Food types and locations" />
+				<SectionHeading level={3} title="Food Types and Locations" />
 				<div>
 					<p>Guild Cat Store:</p>
 					<ul>
@@ -10732,6 +10772,7 @@ does not get multiplied by horn */
 		display: flex;
 		gap: 1rem;
 		align-items: center;
+		flex-wrap: wrap;
 	}
 
 	.number-input-container {
