@@ -8794,7 +8794,7 @@ does not get multiplied by horn */
 							id: '8',
 							gem: ezlion.SkillDivaPrayerGem[8],
 							effects:
-								'Increases the amount of raw damage dealt by a cutting weapon by adjusting hitboxes to be weaker against the damage type.',
+								'Increases the amount of raw damage dealt by a cutting weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
 							maxLevel: '3',
 							unused: '❌',
 							partyEffect: '❌',
@@ -8803,7 +8803,7 @@ does not get multiplied by horn */
 							id: '9',
 							gem: ezlion.SkillDivaPrayerGem[9],
 							effects:
-								'Increases the amount of raw damage dealt by an impact weapon by adjusting hitboxes to be weaker against the damage type.',
+								'Increases the amount of raw damage dealt by an impact weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
 							maxLevel: '3',
 							unused: '❌',
 							partyEffect: '❌',
@@ -8812,7 +8812,7 @@ does not get multiplied by horn */
 							id: '10',
 							gem: ezlion.SkillDivaPrayerGem[10],
 							effects:
-								'Increases the amount of raw damage dealt by a ranged weapon by adjusting hitboxes to be weaker against the damage type.',
+								'Increases the amount of raw damage dealt by a ranged weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
 							maxLevel: '3',
 							unused: '❌',
 							partyEffect: '❌',
@@ -8820,7 +8820,8 @@ does not get multiplied by horn */
 						{
 							id: '11',
 							gem: ezlion.SkillDivaPrayerGem[11],
-							effects: 'Increases the duration of status effects on monsters.',
+							effects:
+								'Increases the duration of status effects on monsters. +22/35/60 seconds increase. 10 seconds downtime with Abnormality, 25 without.',
 							maxLevel: '3',
 							unused: '❌',
 							partyEffect: '✅',
@@ -8845,7 +8846,8 @@ does not get multiplied by horn */
 						{
 							id: '14',
 							gem: ezlion.SkillDivaPrayerGem[14],
-							effects: 'Elemental damage increases based on level.',
+							effects:
+								'Elemental damage increases based on level. +1/2/3 Elemental Hitzone increase.',
 							maxLevel: '3',
 							unused: '❌',
 							partyEffect: '❌',
@@ -8870,7 +8872,7 @@ does not get multiplied by horn */
 							id: '17',
 							gem: ezlion.SkillDivaPrayerGem[17],
 							effects:
-								'Attack will go up based on the number of human hunters in a quest.',
+								'Attack will go up based on the number of players in a quest.',
 							maxLevel: '3',
 							unused: '❌',
 							partyEffect: '✅',
@@ -8888,7 +8890,7 @@ does not get multiplied by horn */
 							id: '19',
 							gem: ezlion.SkillDivaPrayerGem[19],
 							effects:
-								'Increases affinity of all weapons based on the level of the song.',
+								'Increases affinity of all weapons based on the level of the song. +25/50/100% Affinity increase.',
 							maxLevel: '3',
 							unused: '❌',
 							partyEffect: '❌',
