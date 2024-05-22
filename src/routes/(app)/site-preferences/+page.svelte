@@ -43,6 +43,10 @@
 		pushNotificationsStore,
 		onSoundToggle,
 		onNotificationPress,
+		onScrollToTopToggle,
+		scrollToTopStore,
+		onStickyHeaderToggle,
+		stickyHeaderStore,
 	} from '$lib/client/stores/toggles';
 	import { onVolumeChange, volumeStore } from '$lib/client/stores/volume';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
@@ -230,6 +234,8 @@
 />
 <LocalStorage bind:value={$volumeStore} key="__volume" />
 <LocalStorage bind:value={$cursorIcon} key="__cursor-icon" />
+<LocalStorage bind:value={$scrollToTopStore} key="__scroll-to-top-enabled" />
+<LocalStorage bind:value={$stickyHeaderStore} key="__sticky-header-enabled" />
 
 <div>
 	<SectionHeadingTopLevel title="Site Preferences" />
@@ -277,6 +283,22 @@
 			required
 			on:change={onVolumeChange}
 			value={$volumeStore}
+		/>
+	</div>
+
+	<div class="setting-container">
+		<Toggle
+			labelText="Scroll to Top Button"
+			on:toggle={onScrollToTopToggle}
+			bind:toggled={$scrollToTopStore}
+		/>
+	</div>
+
+	<div class="setting-container">
+		<Toggle
+			labelText="Sticky Header"
+			on:toggle={onStickyHeaderToggle}
+			bind:toggled={$stickyHeaderStore}
 		/>
 	</div>
 
