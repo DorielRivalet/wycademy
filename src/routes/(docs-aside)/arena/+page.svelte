@@ -2141,6 +2141,7 @@
 	const formulaOutputAttackA =
 		display(`\\text{Attack A} = \\text{inputNumberTrueRaw} +\\newline \\text{outputPassives} +\\newline (\\text{inputNumberSigil1Attack} + \\text{inputNumberSigil2Attack} + \\text{inputNumberSigil3Attack}) +\\newline \\text{inputNumberConquestAttack} +\\newline \\text{outputAttackMedicine} +\\newline \\text{outputAttackSkill} +\\newline \\text{outputFoodAttack} +\\newline \\text{outputSeedAttack} +\\newline \\text{inputNumberStyleRankAttack} +\\newline \\text{inputNumberUnlimitedSigil} +\\newline \\text{outputDrugKnowledgeMultiplierTotal} +\\newline \\text{outputDuremudiraAttack} +\\newline \\text{outputLoneWolfAttack} +\\newline \\text{outputCaravanAddition} +\\newline \\text{outputShiriagariAttack} +\\newline \\text{outputRoadAdvancement} +\\newline \\lfloor \\text{outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline \\text{outputConsumptionSlayerAttack} +\\newline \\text{outputRoadLastStandAttack} +\\newline \\text{outputLanceRedPhialAttack} +\\newline \\text{outputRoadTowerAttack} +\\newline \\text{outputZenithTotalAttack} +\\newline \\text{outputAOETotalAttack}
 `);
+
 	$: formulaValuesOutputAttackA = `{${attackA}} = ${inputNumberTrueRaw} +\\newline ${outputPassives} +\\newline (${inputNumberSigil1Attack} + ${inputNumberSigil2Attack} + ${inputNumberSigil3Attack}) +\\newline ${inputNumberConquestAttack} +\\newline ${outputAttackMedicine} +\\newline ${outputAttackSkill} +\\newline ${outputFoodAttack} +\\newline ${outputSeedAttack} +\\newline ${inputNumberStyleRankAttack} +\\newline ${inputNumberUnlimitedSigil} +\\newline ${outputDrugKnowledgeMultiplierTotal} +\\newline ${outputDuremudiraAttack} +\\newline ${outputLoneWolfAttack} +\\newline ${outputCaravanAddition} +\\newline ${outputShiriagariAttack} +\\newline ${outputRoadAdvancement} +\\newline \\lfloor ${outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline ${outputConsumptionSlayerAttack} +\\newline ${outputRoadLastStandAttack} +\\newline ${outputLanceRedPhialAttack} +\\newline ${outputRoadTowerAttack} +\\newline ${outputZenithTotalAttack} +\\newline ${outputAOETotalAttack}
 `;
 
@@ -6445,7 +6446,7 @@ does not get multiplied by horn */
 						<div class="status">
 							<InlineTooltip
 								icon={inputStatusIcon}
-								text={inputStatus}
+								text={inputStatus === 'None' ? 'Status' : inputStatus}
 								tooltip={'Status'}
 							/>:
 							{internalStatus}
@@ -8821,7 +8822,7 @@ does not get multiplied by horn */
 							id: '11',
 							gem: ezlion.SkillDivaPrayerGem[11],
 							effects:
-								'Increases the duration of status effects on monsters. +22/35/60 seconds increase. 10 seconds downtime with Abnormality, 25 without.',
+								'Increases the duration of status effects on monsters. +22/35/60 seconds increase. Around 10 seconds downtime with Abnormality, around 25 without.',
 							maxLevel: '3',
 							unused: '❌',
 							partyEffect: '✅',
@@ -8872,7 +8873,7 @@ does not get multiplied by horn */
 							id: '17',
 							gem: ezlion.SkillDivaPrayerGem[17],
 							effects:
-								'Attack will go up based on the number of players in a quest.',
+								'Attack will go up based on the number of players in a quest. +30 True Raw increase if you are the only player.',
 							maxLevel: '3',
 							unused: '❌',
 							partyEffect: '✅',
