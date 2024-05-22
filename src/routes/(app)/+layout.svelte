@@ -22,6 +22,7 @@
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
+	import { stickyHeaderStore } from '$lib/client/stores/toggles';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -81,12 +82,14 @@
 				return $theme === 'g10' ? 'none-light' : 'none';
 		}
 	}
+
+	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 </script>
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <div class="app">
 	<ViewTransition />
-	<div class="header">
+	<div class={headerClass}>
 		<Header />
 	</div>
 	<div class="banner">
@@ -162,7 +165,6 @@
 		display: flex;
 		flex-direction: column;
 		background-color: var(--ctp-mantle);
-		overflow-x: hidden;
 	}
 
 	@media (min-width: 320px) {
@@ -207,6 +209,14 @@
 
 	.header {
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		position: static;
+	}
+
+	.sticky {
+		position: -webkit-sticky; /* For Safari */
+		position: sticky;
+		top: 0;
+		z-index: 1000; /* Ensure it stays above other content */
 	}
 
 	.none {

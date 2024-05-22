@@ -247,6 +247,13 @@
 		title="Notifications:"
 		subtitle="Make sure notifications are also allowed in your operating system for the browser you are using. If you accept the permission, you will receive a notification to confirm it is working."
 	/>
+	<InlineNotification
+		lowContrast
+		hideCloseButton
+		kind="info"
+		title="Header:"
+		subtitle="The sticky header only works in certain layouts."
+	/>
 
 	<div class="setting-container">
 		<Button kind="tertiary" icon={Notification} on:click={onNotificationPress}
