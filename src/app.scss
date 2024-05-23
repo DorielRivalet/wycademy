@@ -324,3 +324,12 @@ duration-slow-02	Background dimming	700ms
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 }
+
+.centered-figure{
+	display: flex;
+	align-items: center;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	flex-direction: column;
+	gap: 1rem;
+}

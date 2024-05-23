@@ -8,7 +8,6 @@ import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 
 let tocEnabled = true;
-let tocPosition = 'left';
 
 if (browser) {
 	const localStorageTocEnabledValue =
@@ -16,13 +15,8 @@ if (browser) {
 	tocEnabled = localStorageTocEnabledValue
 		? localStorageTocEnabledValue === 'true'
 		: true;
-	const localStorageTocPositionValue =
-		window.localStorage.getItem('__toc-position');
-	tocPosition = localStorageTocPositionValue ?? 'left';
 } else {
 	tocEnabled = true;
-	tocPosition = 'left';
 }
 
 export const tocEnabledStore = writable(tocEnabled);
-export const tocPositionStore = writable(tocPosition);
