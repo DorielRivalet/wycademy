@@ -23,31 +23,18 @@
 	import { goto } from '$app/navigation';
 	import Toc from 'svelte-toc';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
-	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
-	import Move from 'carbon-icons-svelte/lib/Move.svelte';
 	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
-	import { tocEnabledStore, tocPositionStore } from '$lib/client/stores/toc';
-	import {
-		durationFast01,
-		durationFast02,
-		durationModerate01,
-		durationModerate02,
-		durationSlow01,
-		durationSlow02,
-		easings,
-		motion,
-	} from '@carbon/motion';
+	import { tocEnabledStore } from '$lib/client/stores/toc';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
+	import { stickyHeaderStore } from '$lib/client/stores/toggles';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
-	console.log('layout.svelte');
 
 	onMount(() => {
 		let themeValue = $theme;
@@ -64,112 +51,52 @@
 		});
 	});
 
-	let tocEnabled = $tocEnabledStore;
-	let isTocPositionedLeft = $tocPositionStore === 'left';
+	let tocVisible = $tocEnabledStore;
 	let isTocMoving = false;
-
-	function millisecondsToDuration(duration: string) {
-		return Number.parseFloat(duration.replace('ms', ''));
-	}
-
-	function onTOCMoveButtonPress(e: MouseEvent) {
-		if (isTocMoving || !tocEnabled) return;
-
-		isTocMoving = true;
-
-		if (isTocPositionedLeft) {
-			tocLeftClass = 'table-of-contents collapsed';
-			setTimeout(() => {
-				isTocPositionedLeft = !isTocPositionedLeft;
-				tocPositionStore.set(isTocPositionedLeft ? 'left' : 'right');
-				tocRightClass = 'table-of-contents';
-				tocLeftClass = 'table-of-contents collapsed inactive';
-				isTocMoving = false;
-			}, millisecondsToDuration(durationFast01));
-		} else {
-			tocRightClass = 'table-of-contents collapsed-right';
-			setTimeout(() => {
-				isTocPositionedLeft = !isTocPositionedLeft;
-				tocPositionStore.set(isTocPositionedLeft ? 'left' : 'right');
-				tocLeftClass = 'table-of-contents';
-				tocRightClass = 'table-of-contents collapsed-right inactive';
-
-				isTocMoving = false;
-			}, millisecondsToDuration(durationFast01));
-		}
-	}
 
 	function onTOCToggleButtonPress(e: MouseEvent) {
 		if (isTocMoving) return;
 		isTocMoving = true;
-		tocEnabled = !tocEnabled;
-		tocEnabledStore.set(tocEnabled ? true : false);
+		tocVisible = !tocVisible;
+		tocEnabledStore.set(tocVisible ? true : false);
 
-		if (tocEnabled) {
-			if (isTocPositionedLeft) {
-				tocLeftClass = 'table-of-contents';
-			} else {
-				tocRightClass = 'table-of-contents';
-			}
+		if (tocVisible) {
+			tocClass = 'left-column';
+			centerColumnClass = ''; // Reset to default width
 		} else {
-			if (isTocPositionedLeft) {
-				tocLeftClass = 'table-of-contents  collapsed';
-			} else {
-				tocRightClass = 'table-of-contents collapsed-right';
-			}
+			tocClass = 'left-column collapsed';
+			centerColumnClass = 'expanded'; // Increase width to full
 		}
-
 		isTocMoving = false;
 	}
 
-	let tocRightClass = !tocEnabled
-		? 'table-of-contents inactive'
-		: isTocPositionedLeft
-			? 'table-of-contents inactive'
-			: 'table-of-contents';
-	let tocLeftClass = !tocEnabled
-		? 'table-of-contents inactive'
-		: isTocPositionedLeft
-			? 'table-of-contents'
-			: 'table-of-contents inactive';
-	$: appClass = tocEnabled ? 'app' : 'app hidden-toc';
+	let tocClass = tocVisible ? 'left-column' : 'left-column collapsed';
+	let centerColumnClass = tocVisible ? '' : 'expanded';
+
+	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 </script>
 
 <LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
-<LocalStorage bind:value={$tocPositionStore} key="__toc-position" />
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 
-{#if !tocEnabled && $breakpointLargerThanMedium}
-	{#if isTocPositionedLeft}
-		<div class="expand-TOC">
-			<Button
-				iconDescription="Expand TOC"
-				tooltipPosition="right"
-				size="small"
-				kind="ghost"
-				icon={ChevronRight}
-				on:click={onTOCToggleButtonPress}
-			/>
-		</div>
-	{:else}
-		<div class="expand-TOC-reverse">
-			<Button
-				iconDescription="Expand TOC"
-				tooltipPosition="left"
-				size="small"
-				kind="ghost"
-				icon={ChevronLeft}
-				on:click={onTOCToggleButtonPress}
-			/>
-		</div>
-	{/if}
+{#if !tocVisible && $breakpointLargerThanMedium}
+	<div class="expand-TOC">
+		<Button
+			iconDescription="Expand TOC"
+			tooltipPosition="right"
+			size="small"
+			kind="ghost"
+			icon={ChevronRight}
+			on:click={onTOCToggleButtonPress}
+		/>
+	</div>
 {/if}
 
-<div class={appClass}>
+<div class="app">
 	<ViewTransition />
 
-	<div class="header">
+	<div class={headerClass}>
 		<Header />
 	</div>
 	<div class="banner">
@@ -189,19 +116,12 @@
 		</InlineNotification>
 	</div>
 
-	<div class="contents">
-		<div class={tocLeftClass}>
-			<Toc
-				--toc-overflow="hidden visible"
-				blurParams={{ duration: 0 }}
-				hide={!isTocPositionedLeft}
-			>
+	<div class="container">
+		<div class={tocClass}>
+			<Toc blurParams={{ duration: 0 }}>
 				<span slot="title">
 					{#if $breakpointLargerThanMedium}
 						<div>
-							<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
-								>{'Move right'}</Button
-							>
 							<Button
 								kind="ghost"
 								icon={ViewOff}
@@ -213,31 +133,9 @@
 				>
 			</Toc>
 		</div>
-		<main>
+		<main class="center-column {centerColumnClass}">
 			<slot />
 		</main>
-		<div class={tocRightClass}>
-			<Toc
-				--toc-overflow="hidden visible"
-				blurParams={{ duration: 0 }}
-				hide={isTocPositionedLeft}
-			>
-				<span slot="title">
-					{#if $breakpointLargerThanMedium}
-						<div>
-							<Button kind="ghost" icon={Move} on:click={onTOCMoveButtonPress}
-								>{'Move left'}</Button
-							>
-							<Button
-								kind="ghost"
-								icon={ViewOff}
-								on:click={onTOCToggleButtonPress}>{'Hide'}</Button
-							>
-						</div>{/if}
-					<h2 class="toc-title toc-exclude">On this page</h2></span
-				>
-			</Toc>
-		</div>
 	</div>
 
 	{#key $page.url.pathname}
@@ -247,6 +145,69 @@
 
 <style lang="scss">
 	@use '@carbon/motion' as motion;
+
+	.app {
+		display: flex;
+		flex-direction: column;
+		background-color: var(--ctp-mantle);
+		max-width: 100vw;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: row;
+		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		max-width: 100vw;
+	}
+
+	.center-column {
+		padding: var(--cds-spacing-08);
+		margin: 0 auto;
+		flex-shrink: 1;
+		min-height: 90vh;
+		background-color: var(--ctp-base);
+		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
+		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
+		flex: 1 0 0%;
+		width: calc(
+			100% - 16.67%
+		); // Directly adds the TOC width to the main content width
+	}
+
+	.center-column.expanded {
+		width: 100%;
+		transition: width motion.$duration-fast-02
+			motion.motion(standard, expressive);
+	}
+
+	.left-column {
+		flex: 0 0 auto;
+		transition: margin motion.$duration-fast-02
+			motion.motion(standard, expressive);
+		width: 16.67%;
+	}
+
+	.left-column.collapsed {
+		margin-left: -16.67%;
+	}
+
+	.banner {
+		display: flex;
+		justify-content: center;
+		background-color: var(--ctp-mantle);
+	}
+
+	.header {
+		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		position: static;
+	}
+
+	.sticky {
+		position: -webkit-sticky; /* For Safari */
+		position: sticky;
+		top: 0;
+		z-index: 1000; /* Ensure it stays above other content */
+	}
 
 	.inactive {
 		display: none;
@@ -264,94 +225,5 @@
 		padding: 0;
 		margin: 0;
 		z-index: 1000; /* Ensure the button is above other content */
-	}
-
-	.expand-TOC-reverse {
-		position: fixed; /* Position the button relative to the viewport */
-		top: 50%; /* Position it in the middle vertically */
-		right: 0%; /* Position it at the left edge of the viewport */
-		padding: 0;
-		margin: 0;
-		z-index: 1000; /* Ensure the button is above other content */
-	}
-
-	.table-of-contents {
-		flex: 0 0 auto;
-		transition: all motion.$duration-fast-02;
-		transition-timing-function: motion.motion(standard, productive);
-	}
-
-	@media (min-width: 320px) {
-		.table-of-contents {
-			width: auto;
-		}
-	}
-
-	@media (min-width: 1056px) {
-		.table-of-contents {
-			width: 20vw;
-		}
-	}
-
-	@media (min-width: 320px) {
-		.table-of-contents.collapsed {
-			margin-left: -20vw;
-			display: none;
-		}
-	}
-
-	@media (min-width: 1056px) {
-		.table-of-contents.collapsed {
-			margin-left: -20vw;
-			display: auto;
-		}
-	}
-
-	.table-of-contents.collapsed-right {
-		margin-right: -20vw;
-	}
-
-	.contents {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start; /* Align items to the start */
-		width: 100%;
-		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
-	}
-
-	.banner {
-		display: flex;
-		justify-content: center;
-		background-color: var(--ctp-mantle);
-	}
-
-	.app {
-		display: flex;
-		flex-direction: column;
-		background-color: var(--ctp-mantle);
-		max-width: 100vw;
-	}
-
-	.hidden-toc {
-		overflow-x: hidden;
-	}
-
-	main {
-		display: flex;
-		flex-direction: column;
-		padding: var(--cds-spacing-08);
-		margin: 0 auto;
-		flex: 1 0 0%;
-		width: 100%;
-		box-sizing: border-box;
-		min-height: 90vh;
-		background-color: var(--ctp-base);
-		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
-		overflow-x: hidden; /* Prevent horizontal scrolling */
-	}
-
-	.header {
-		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 	}
 </style>
