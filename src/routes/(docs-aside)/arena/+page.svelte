@@ -2146,24 +2146,24 @@
 `;
 
 	const formulaOutputAttackB =
-		display(`\\text{Attack B} = \\text{outputRush} + \\text{outputStylishAssault} + \\text{outputFuriousAttack} + \\text{outputVigorousAddition} + \\text{outputCritConversionAttack} + \\text{inputNumberVampirism} + \\text{outputObscurityTotal} + \\text{outputIncitement}
+		display(`\\text{Attack B} = \\text{outputRush} +\\newline \\text{outputStylishAssault} +\\newline \\text{outputFuriousAttack} +\\newline \\text{outputVigorousAddition} +\\newline \\text{outputCritConversionAttack} +\\newline \\text{inputNumberVampirism} +\\newline \\text{outputObscurityTotal} +\\newline \\text{outputIncitement}
 `);
 
-	$: formulaValuesOutputAttackB = `{${attackB}} = ${outputRush} + ${outputStylishAssault} + ${outputFuriousAttack} + ${outputVigorousAddition} + ${outputCritConversionAttack} + ${inputNumberVampirism} + ${outputObscurityTotal} + ${outputIncitement}
+	$: formulaValuesOutputAttackB = `{${attackB}} = ${outputRush} +\\newline ${outputStylishAssault} +\\newline ${outputFuriousAttack} +\\newline ${outputVigorousAddition} +\\newline ${outputCritConversionAttack} +\\newline ${inputNumberVampirism} +\\newline ${outputObscurityTotal} +\\newline ${outputIncitement}
 `;
 
 	const formulaOutputMultipliers =
-		display(`\\text{Multipliers} = \\lfloor \\lfloor \\text{attackA} \\times \\text{outputHuntingHornMultiplier} + \\text{attackB} \\rfloor \\times \\text{outputAdrenaline} \\times \\text{outputCombatSupremacyAttackMultiplier} \\times \\text{outputWeaponSpecificMultiplier} \\times \\text{outputHidenMultiplier} \\times \\text{outputHammerMultiplier} \\rfloor
+		display(`\\text{Multipliers} = \\lfloor \\lfloor \\text{attackA} \\times \\text{outputHuntingHornMultiplier} + \\text{attackB} \\rfloor\\newline \\times \\text{outputAdrenaline} \\times \\text{outputCombatSupremacyAttackMultiplier} \\times \\text{outputWeaponSpecificMultiplier} \\times \\text{outputHidenMultiplier} \\times \\text{outputHammerMultiplier} \\rfloor
 `);
 
-	$: formulaValuesOutputMultipliers = `{${outputMultipliers}} = \\lfloor \\lfloor ${attackA} \\times ${outputHuntingHornMultiplier} + ${attackB} \\rfloor \\times ${outputAdrenaline} \\times ${outputCombatSupremacyAttackMultiplier} \\times ${outputWeaponSpecificMultiplier} \\times ${outputHidenMultiplier} \\times ${outputHammerMultiplier} \\rfloor
+	$: formulaValuesOutputMultipliers = `{${outputMultipliers}} = \\lfloor \\lfloor ${attackA} \\times ${outputHuntingHornMultiplier} + ${attackB} \\rfloor\\newline \\times ${outputAdrenaline} \\times ${outputCombatSupremacyAttackMultiplier} \\times ${outputWeaponSpecificMultiplier} \\times ${outputHidenMultiplier} \\times ${outputHammerMultiplier} \\rfloor
 `;
 
 	const formulaOutputFlatAdditions =
-		display(`\\text{Flat Additions} = \\text{outputPartnyaBond} + \\text{outputHunterBond} + \\text{outputAssist} + \\text{outputSoul} + \\text{outputArmor1} + \\text{outputArmor2} + \\text{outputArmorG} + \\text{outputSecretTech}
+		display(`\\text{Flat Additions} = \\text{outputPartnyaBond} +\\newline \\text{outputHunterBond} +\\newline \\text{outputAssist} +\\newline \\text{outputSoul} +\\newline \\text{outputArmor1} +\\newline \\text{outputArmor2} +\\newline \\text{outputArmorG} +\\newline \\text{outputSecretTech}
 `);
 
-	$: formulaValuesOutputFlatAdditions = `{${outputFlatAdditions}} = ${outputPartnyaBond} + ${outputHunterBond} + ${outputAssist} + ${outputSoul} + ${outputArmor1} + ${outputArmor2} + ${outputArmorG} + ${outputSecretTech}
+	$: formulaValuesOutputFlatAdditions = `{${outputFlatAdditions}} = ${outputPartnyaBond} +\\newline ${outputHunterBond} +\\newline ${outputAssist} +\\newline ${outputSoul} +\\newline ${outputArmor1} +\\newline ${outputArmor2} +\\newline ${outputArmorG} +\\newline ${outputSecretTech}
 `;
 
 	/*
@@ -2185,31 +2185,197 @@
 */
 
 	const formulaInternalAttack = display(
-		'\\text{Internal Attack} = \\lfloor \\text{internalTrueRaw} \\times \\text{outputSharpnessMultiplier}\\times \\text{outputSwordAndShieldMultiplier} \\times \\text{outputOtherMultipliers} \\times \\text{outputMonsterStatusInflictedMultiplier} \\rfloor',
+		'\\text{Internal Attack} = \\lfloor \\text{internalTrueRaw} \\times\\newline \\text{outputSharpnessMultiplier}\\times\\newline \\text{outputSwordAndShieldMultiplier} \\times\\newline \\text{outputOtherMultipliers} \\times\\newline \\text{outputMonsterStatusInflictedMultiplier} \\rfloor',
 	);
 
-	$: formulaValuesOutputInternalAttack = `{${internalAttack}} = \\lfloor ${internalTrueRaw} \\times ${outputSharpnessMultiplier} \\times ${outputSwordAndShieldMultiplier} \\times ${outputOtherMultipliers} \\times ${outputMonsterStatusInflictedMultiplier} \\rfloor
+	$: formulaValuesOutputInternalAttack = `{${internalAttack}} = \\lfloor ${internalTrueRaw} \\times\\newline ${outputSharpnessMultiplier} \\times\\newline ${outputSwordAndShieldMultiplier} \\times\\newline ${outputOtherMultipliers} \\times\\newline ${outputMonsterStatusInflictedMultiplier} \\rfloor
 `;
 
+	// TODO
 	const formulaInternalTrueRaw = display('EHP = \\frac{THP}{DEF}');
 	const formulaInternalTrueRawDisplay = display('EHP = \\\\frac{THP}{DEF}');
+
 	const formulaInternalFire =
-		display(`\\text{Internal Fire} = \\lfloor \\frac{\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}}{\\text{10}} \\times \\text{outputFireMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Fire', inputElement)} \\rfloor \\times \\text{outputSharpnessMultiplier}
+		display(`\\text{Internal Fire} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputFireMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 `);
-	const formulaInternalWater = display('EHP = \\frac{THP}{DEF}');
-	const formulaInternalThunder = display('EHP = \\frac{THP}{DEF}');
-	const formulaInternalIce = display('EHP = \\frac{THP}{DEF}');
-	const formulaInternalDragon = display('EHP = \\frac{THP}{DEF}');
-	const formulaInternalAffinity = display('EHP = \\frac{THP}{DEF}');
-	const formulaInternalStatus = display('EHP = \\frac{THP}{DEF}');
-	const formulaOutputTotalAffinity = display('EHP = \\frac{THP}{DEF}');
-	const formulaOutputDrugKnowledgeMultiplierTotal = display(
-		'EHP = \\frac{THP}{DEF}',
+	$: formulaValuesInternalFire = `${internalFire} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputFireMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+`;
+
+	const formulaInternalWater =
+		display(`\\text{Internal Water} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputWaterMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+`);
+	$: formulaValuesInternalWater = `${internalWater} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputWaterMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+`;
+	const formulaInternalThunder =
+		display(`\\text{Internal Thunder} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputThunderMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+`);
+	$: formulaValuesInternalThunder = `${internalThunder} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputThunderMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+`;
+	const formulaInternalIce =
+		display(`\\text{Internal Ice} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputIceMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+`);
+	$: formulaValuesInternalIce = `${internalIce} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputIceMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+`;
+	const formulaInternalDragon =
+		display(`\\text{Internal Dragon} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputDragonMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+`);
+	$: formulaValuesInternalDragon = `${internalDragon} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputDragonMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+`;
+
+	const formulaInternalAffinity =
+		display(`\\text{Internal Affinity} = \\text{outputIssenAffinity} +\\newline
+	\\text{outputSharpnessAffinity} +\\newline
+	\\text{inputNumberUnlimitedSigil} +\\newline
+	\\text{inputNumberSigil1Affinity} +\\newline
+	\\text{inputNumberSigil2Affinity} +\\newline
+	\\text{inputNumberSigil3Affinity} +\\newline
+	\\text{outputStyleRankAffinity} +\\newline
+	\\text{outputExpertAffinity} +\\newline
+	\\text{inputNumberNaturalAffinity} +\\newline
+	\\text{outputFlashConversionAffinity} +\\newline
+	\\text{outputStarvingWolfAffinity} +\\newline
+	\\text{outputCeaselessAffinity}`);
+	$: formulaValuesInternalAffinity = `${internalAffinity} = ${outputIssenAffinity} +\\newline
+	${outputSharpnessAffinity} +\\newline
+	${inputNumberUnlimitedSigil} +\\newline
+	${inputNumberSigil1Affinity} +\\newline
+	${inputNumberSigil2Affinity} +\\newline
+	${inputNumberSigil3Affinity} +\\newline
+	${outputStyleRankAffinity} +\\newline
+	${outputExpertAffinity} +\\newline
+	${inputNumberNaturalAffinity} +\\newline
+	${outputFlashConversionAffinity} +\\newline
+	${outputStarvingWolfAffinity} +\\newline
+	${outputCeaselessAffinity}`;
+
+	const formulaInternalStatus =
+		display(`\\text{Internal Status} = \\lfloor \\lfloor
+		\\text{inputNumberStatusValue} \\times\\newline
+		\\text{outputStatusAttackUpMultiplier} \\times\\newline
+		\\text{outputStatusGuildPoogieMultiplier} \\times\\newline
+		\\text{outputStatusSigilMultiplier} \\times\\newline
+		\\text{outputWeaponStatusModifiers} \\times\\newline
+		\\text{outputFuriousMultiplier}
+		\\rfloor \\times\\newline \\text{outputDrugKnowledgeMultiplier}
+		\\rfloor`);
+	$: formulaValuesInternalStatus = `${internalStatus} = \\lfloor \\lfloor
+		${inputNumberStatusValue} \\times\\newline
+		${outputStatusAttackUpMultiplier} \\times\\newline
+		${outputStatusGuildPoogieMultiplier} \\times\\newline
+		${outputStatusSigilMultiplier} \\times\\newline
+		${outputWeaponStatusModifiers} \\times\\newline
+		${outputFuriousMultiplier}
+		\\rfloor \\times\\newline ${outputDrugKnowledgeMultiplier}
+		\\rfloor`;
+
+	const formulaOutputTotalAffinity = display(`\\text{outputTotalAffinity} =
+	\\text{outputIssenAffinity} +\\newline
+	\\text{outputSharpnessAffinity} +\\newline
+	\\text{inputNumberSigil1Affinity} +\\newline
+	\\text{inputNumberSigil2Affinity} +\\newline
+	\\text{inputNumberSigil3Affinity} +\\newline
+	\\text{outputStyleRankAffinity} +\\newline
+	\\text{outputExpertAffinity} +\\newline
+	\\text{inputNumberNaturalAffinity} +\\newline
+	\\text{outputFlashConversionAffinity} +\\newline
+	\\text{outputFGSActiveFeatureAffinity} +\\newline
+	\\text{outputDrinkAffinity} +\\newline
+	\\text{outputStarvingWolfAffinity} +\\newline
+	\\text{outputCeaselessAffinity} +\\newline
+	\\text{outputFuriousAffinity} +\\newline
+	\\text{outputAOETotalAffinity}`);
+	$: formulaValuesOutputTotalAffinity = `${outputTotalAffinity} =
+	${outputIssenAffinity} +\\newline
+	${outputSharpnessAffinity} +\\newline
+	${inputNumberSigil1Affinity} +\\newline
+	${inputNumberSigil2Affinity} +\\newline
+	${inputNumberSigil3Affinity} +\\newline
+	${outputStyleRankAffinity} +\\newline
+	${outputExpertAffinity} +\\newline
+	${inputNumberNaturalAffinity} +\\newline
+	${outputFlashConversionAffinity} +\\newline
+	${outputFGSActiveFeatureAffinity} +\\newline
+	${outputDrinkAffinity} +\\newline
+	${outputStarvingWolfAffinity} +\\newline
+	${outputCeaselessAffinity} +\\newline
+	${outputFuriousAffinity} +\\newline
+	${outputAOETotalAffinity}`;
+
+	/*
+	$: outputDrugKnowledgeMultiplierTotal = getDrugKnowledgeAddition(
+		outputDrugKnowledgeMultiplier,
+		inputNumberStatusValue,
+		outputStatusAttackUpMultiplier,
+		outputStatusGuildPoogieMultiplier,
+		outputStatusSigilMultiplier,
 	);
-	const formulaOutputCritValue = display('EHP = \\frac{THP}{DEF}');
-	const formulaOutputOtherMultipliers = display('EHP = \\frac{THP}{DEF}');
-	const formulaOutputStatusUsedSA = display('EHP = \\frac{THP}{DEF}');
-	const formulaOutputMonsterTotalDefense = display('EHP = \\frac{THP}{DEF}');
+*/
+
+	const formulaOutputDrugKnowledgeMultiplierTotal = display(
+		`\\text{outputDrugKnowledgeMultiplierTotal} = \\text{getDrugKnowledgeAddition(
+		outputDrugKnowledgeMultiplier,
+		inputNumberStatusValue,
+		outputStatusAttackUpMultiplier,
+		outputStatusGuildPoogieMultiplier,
+		outputStatusSigilMultiplier)}`,
+	);
+	$: formulaValuesOutputDrugKnowledgeMultiplierTotal = `${outputDrugKnowledgeMultiplierTotal} = ${getDrugKnowledgeAddition(
+		outputDrugKnowledgeMultiplier,
+		inputNumberStatusValue,
+		outputStatusAttackUpMultiplier,
+		outputStatusGuildPoogieMultiplier,
+		outputStatusSigilMultiplier,
+	)}`;
+
+	const formulaOutputCritValue =
+		display(`\\text{outputCritValue} = \\text{getCritValue(
+		outputStarvingWolfAffinity,
+		outputCeaselessAffinity,
+		outputExpertAffinity,
+		outputIssenAffinity
+	)}`);
+	$: formulaValuesOutputCritValue = `${outputCritValue} = ${getCritValue(
+		outputStarvingWolfAffinity,
+		outputCeaselessAffinity,
+		outputExpertAffinity,
+		outputIssenAffinity,
+	)}`;
+
+	const formulaOutputOtherMultipliers =
+		display(`\\text{outputOtherMultipliers} =
+	\\text{inputNumberTranscendRawMultiplier} \\times\\newline
+	\\text{inputNumberLanceImpactMultiplier} \\times\\newline
+	\\text{inputNumberRavientePowerSwordCrystalsMultiplier}`);
+	$: formulaValuesOutputOtherMultipliers = `${outputOtherMultipliers} =
+	${inputNumberTranscendRawMultiplier} \\times\\newline
+	${inputNumberLanceImpactMultiplier} \\times\\newline
+	${inputNumberRavientePowerSwordCrystalsMultiplier}`;
+
+	const formulaOutputStatusUsedSA =
+		display(`\\text{outputStatusUsedSA} = \\lfloor \\lfloor
+	(\\text{inputNumberStatusValue} / 10) \\times\\newline
+	\\text{outputStatusAttackUpMultiplier} \\times\\newline
+	\\text{outputStatusGuildPoogieMultiplier} \\times\\newline
+	\\text{outputStatusSigilMultiplier} \\times\\newline
+	\\text{outputWeaponStatusModifiers} \\times\\newline
+	\\text{outputFuriousMultiplier}
+	\\rfloor \\times\\newline \\text{outputStatusValueMultiplier}
+	\\rfloor`);
+	$: formulaValuesOutputStatusUsedSA = `${outputStatusUsedSA} = \\lfloor \\lfloor
+	(${inputNumberStatusValue} / 10) \\times\\newline
+	${outputStatusAttackUpMultiplier} \\times\\newline
+	${outputStatusGuildPoogieMultiplier} \\times\\newline
+	${outputStatusSigilMultiplier} \\times\\newline
+	${outputWeaponStatusModifiers} \\times\\newline
+	${outputFuriousMultiplier}
+	\\rfloor \\times\\newline ${outputStatusValueMultiplier}
+	\\rfloor`;
+
+	const formulaOutputMonsterTotalDefense =
+		display(`\\text{outputMonsterTotalDefense} =
+	\\text{inputNumberDefenseRate} \\times\\newline \\text{inputNumberMonsterRage} \\times\\newline \\text{inputNumberHCModifiers}`);
+	$: formulaValuesOutputMonsterTotalDefense = `${outputMonsterTotalDefense} =
+	${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\newline ${inputNumberHCModifiers}`;
 
 	// TODO more formulas
 	const formulaFlashConversion = display(
@@ -3418,6 +3584,7 @@ does not get multiplied by horn */
 
 	$: bentoSectionValue = getBentoSectionValues(bentoSection);
 
+	// TODO i dont need ternary?
 	$: internalStatus =
 		inputDrugKnowledge !== 'None (1x)'
 			? Math.floor(
@@ -6569,6 +6736,105 @@ does not get multiplied by horn */
 	</section>
 
 	<section>
+		<SectionHeading level={2} title="Formulas" />
+		<p>
+			Below are the formulas for the above damage calculator. Your current
+			inputs values are reflected below each formula.
+		</p>
+		<section>
+			<SectionHeading title={'Attack A'} level={3} />
+			{@html formulaOutputAttackA}
+			{@html display(formulaValuesOutputAttackA)}
+		</section>
+		<section>
+			<SectionHeading title={'Attack B'} level={3} />
+			{@html formulaOutputAttackB}
+			{@html display(formulaValuesOutputAttackB)}
+		</section>
+		<section>
+			<SectionHeading title={'Multipliers'} level={3} />
+			{@html formulaOutputMultipliers}
+			{@html display(formulaValuesOutputMultipliers)}
+		</section>
+		<section>
+			<SectionHeading title={'Flat Additions'} level={3} />
+			{@html formulaOutputFlatAdditions}
+			{@html display(formulaValuesOutputFlatAdditions)}
+		</section>
+		<section>
+			<SectionHeading title={'Internal Attack'} level={3} />
+			{@html formulaInternalAttack}
+			{@html display(formulaValuesOutputInternalAttack)}
+		</section>
+		<section>
+			<SectionHeading title={'Internal Fire'} level={3} />
+			{@html formulaInternalFire}
+			{@html display(formulaValuesInternalFire)}
+		</section>
+		<section>
+			<SectionHeading title={'Internal Water'} level={3} />
+			{@html formulaInternalWater}
+			{@html display(formulaValuesInternalWater)}
+		</section>
+		<section>
+			<SectionHeading title={'Internal Thunder'} level={3} />
+			{@html formulaInternalThunder}
+			{@html display(formulaValuesInternalThunder)}
+		</section>
+		<section>
+			<SectionHeading title={'Internal Ice'} level={3} />
+			{@html formulaInternalIce}
+			{@html display(formulaValuesInternalIce)}
+		</section>
+		<section>
+			<SectionHeading title={'Internal Dragon'} level={3} />
+			{@html formulaInternalDragon}
+			{@html display(formulaValuesInternalDragon)}
+		</section>
+		<section>
+			<SectionHeading title={'Internal Status'} level={3} />
+			{@html formulaInternalStatus}
+			{@html display(formulaValuesInternalStatus)}
+		</section>
+		<section>
+			<SectionHeading title={'Internal Affinity'} level={3} />
+			<p>Averaged, max 100, minimum 0.</p>
+			{@html formulaInternalAffinity}
+			{@html display(formulaValuesInternalAffinity)}
+		</section>
+		<section>
+			<SectionHeading title={'Total Affinity'} level={3} />
+			{@html formulaOutputTotalAffinity}
+			{@html display(formulaValuesOutputTotalAffinity)}
+		</section>
+		<section>
+			<SectionHeading title={'Drug Knowlege Total Multiplier'} level={3} />
+			{@html formulaOutputDrugKnowledgeMultiplierTotal}
+			{@html display(formulaValuesOutputDrugKnowledgeMultiplierTotal)}
+		</section>
+		<section>
+			<SectionHeading title={'Crit Value'} level={3} />
+			{@html formulaOutputCritValue}
+			{@html display(formulaValuesOutputCritValue)}
+		</section>
+		<section>
+			<SectionHeading title={'Other Multipliers'} level={3} />
+			{@html formulaOutputOtherMultipliers}
+			{@html display(formulaValuesOutputOtherMultipliers)}
+		</section>
+		<section>
+			<SectionHeading title={'Status Assault Total'} level={3} />
+			{@html formulaOutputStatusUsedSA}
+			{@html display(formulaValuesOutputStatusUsedSA)}
+		</section>
+		<section>
+			<SectionHeading title={'Monster Total Defense'} level={3} />
+			{@html formulaOutputMonsterTotalDefense}
+			{@html display(formulaValuesOutputMonsterTotalDefense)}
+		</section>
+	</section>
+
+	<section>
 		<SectionHeading level={2} title="Gunlance Shells and Wyvernfire" />
 		<div></div>
 	</section>
@@ -6576,13 +6842,59 @@ does not get multiplied by horn */
 	<section>
 		<SectionHeading level={2} title="Ice Age" />
 		<div class="ice-age-section">
+			<div class="ice-age-descriptions">
+				<p class="ice-age-description-1">
+					Upon hitting a monster (can be dead), the hunter becomes enveloped in
+					an icy aura, which inflicts damage on all nearby monsters while
+					providing extra skills. This aura progresses through three stages as
+					you deal more hits to a monster. Additionally, it bestows <InlineTooltip
+						text="Stamina Recovery Up"
+						tooltip="Armor Skill"
+						icon={getTag('Armor Skill').icon}
+					/> and <InlineTooltip
+						text="Razor Sharp"
+						tooltip="Armor Skill"
+						icon={getTag('Armor Skill').icon}
+					/> to all hunters within its range, with the wielder also gaining <InlineTooltip
+						text="Winter General"
+						tooltip="Armor Skill"
+						icon={getTag('Armor Skill').icon}
+					/>. Damage occurs in fixed intervals of one second rather than
+					gradually over time.
+				</p>
+				<div class="ice-age-description-2">
+					<p>
+						Typically, damage output ranges between 800 to 1600 per minute,
+						contingent on the level, surpassing the poison output for most G
+						Rank monsters. Within a group of four hunters equipped with <InlineTooltip
+							text="Ice Age"
+							tooltip="Armor Skill"
+							icon={getTag('Armor Skill').icon}
+						/>, the damage stacks and thus escalates from 800-1600 (1p) to
+						3200-6400 (4p).
+					</p>
+				</div>
+				<p>
+					Ice Age's attack power only comes from SR, sigils, weapon base attack
+					and G Rank armor bonus. The following buffs are ignored: items (e.g
+					Seeds, Hunter Powertalon, etc.), meals (e.g. bento, guild food),
+					skills (e.g. Adrenaline, Solid Determination). Buffs that affect
+					weapon base attack like Drug Knowledge does count.
+				</p>
+				<p class="spaced-paragraph">
+					Ice Age's required hits can be reached faster with <InlineTooltip
+						text="Fencing+2"
+						tooltip="Armor Skill"
+						icon={getTag('Armor Skill').icon}
+					/>.
+				</p>
+			</div>
 			<div class="ice-age-tables-container">
 				<div class="ice-age-table-hits toc-exclude">
 					<DataTable
 						sortable
 						zebra
 						size="medium"
-						useStaticWidth
 						headers={[
 							{
 								key: 'weapon',
@@ -6824,142 +7136,99 @@ does not get multiplied by horn */
 						</svelte:fragment>
 					</DataTable>
 				</div>
-				<div class="ice-age-table-stages-container">
-					<div class="ice-age-table-stages toc-exclude">
-						<DataTable
-							sortable
-							zebra
-							size="short"
-							headers={[
-								{ key: 'stage', value: 'Stage', minWidth: '1rem' },
-								{ key: 'formula', value: 'DPS Formula', minWidth: '8rem' },
-								{ key: 'duration', value: 'Duration', minWidth: '1rem' },
-								{
-									key: 'downgradeDuration',
-									value: 'Downgrade Duration',
-									minWidth: '1rem',
-								},
-							]}
-							rows={[
-								{
-									id: '1',
-									stage: '1',
-									formula: '0.042 x True Raw x DefRate',
-									duration: '11-18s',
-									downgradeDuration: '7s',
-								},
-								{
-									id: '2',
-									stage: '2',
-									formula: '0.098 x True Raw x DefRate',
-									duration: '15-25s',
-									downgradeDuration: '10s',
-								},
-								{
-									id: '3',
-									stage: '3',
-									formula: '0.14 x True Raw x DefRate',
-									duration: '6-9s',
-									downgradeDuration: '-',
-								},
-							]}
-							><Toolbar
-								><div class="toolbar">
-									<CopyButton
-										iconDescription={'Copy as CSV'}
-										text={getCSVFromArray([
-											{
-												id: '1',
-												stage: '1',
-												formula: '0.042 x True Raw x DefRate',
-												duration: '11-18s',
-												downgradeDuration: '7s',
-											},
-											{
-												id: '2',
-												stage: '2',
-												formula: '0.098 x True Raw x DefRate',
-												duration: '15-25s',
-												downgradeDuration: '10s',
-											},
-											{
-												id: '3',
-												stage: '3',
-												formula: '0.14 x True Raw x DefRate',
-												duration: '6-9s',
-												downgradeDuration: '-',
-											},
-										])}
-									/>
-								</div>
-							</Toolbar>
-							<span slot="title">
-								<div class="data-table-title">
-									<div>Ice Age Stages</div>
-								</div>
-							</span>
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'stage'}
-									<Button
-										on:click={() => changeModal(cell, 'Ice Age Stages')}
-										size="small"
-										icon={Image}
-										kind="ghost">{cell.value}</Button
-									>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
-						</DataTable>
-					</div>
-					<div class="ice-age-descriptions">
-						<p class="ice-age-description-1">
-							Upon hitting a monster (can be dead), the hunter becomes enveloped
-							in an icy aura, which inflicts damage on all nearby monsters while
-							providing extra skills. This aura progresses through three stages
-							as you deal more hits to a monster. Additionally, it bestows <InlineTooltip
-								text="Stamina Recovery Up"
-								tooltip="Armor Skill"
-								icon={getTag('Armor Skill').icon}
-							/> and <InlineTooltip
-								text="Razor Sharp"
-								tooltip="Armor Skill"
-								icon={getTag('Armor Skill').icon}
-							/> to all hunters within its range, with the wielder also gaining <InlineTooltip
-								text="Winter General"
-								tooltip="Armor Skill"
-								icon={getTag('Armor Skill').icon}
-							/>. Damage occurs in fixed intervals of one second rather than
-							gradually over time.
-						</p>
-						<div class="ice-age-description-2">
-							<p>
-								Typically, damage output ranges between 800 to 1600 per minute,
-								contingent on the level, surpassing the poison output for most G
-								Rank monsters. Within a group of four hunters equipped with <InlineTooltip
-									text="Ice Age"
-									tooltip="Armor Skill"
-									icon={getTag('Armor Skill').icon}
-								/>, the damage stacks and thus escalates from 800-1600 (1p) to
-								3200-6400 (4p).
-							</p>
-						</div>
-						<p>
-							Ice Age's attack power only comes from SR, sigils, weapon base
-							attack and G Rank armor bonus. The following buffs are ignored:
-							items (e.g Seeds, Hunter Powertalon, etc.), meals (e.g. bento,
-							guild food), skills (e.g. Adrenaline, Solid Determination). Buffs
-							that affect weapon base attack like Drug Knowledge does count.
-						</p>
-						<p>
-							Ice Age's required hits can be reached faster with <InlineTooltip
-								text="Fencing+2"
-								tooltip="Armor Skill"
-								icon={getTag('Armor Skill').icon}
-							/>.
-						</p>
-					</div>
+				<div class="ice-age-table-stages toc-exclude">
+					<DataTable
+						sortable
+						zebra
+						size="short"
+						headers={[
+							{ key: 'stage', value: 'Stage', minWidth: '1rem' },
+							{ key: 'formula', value: 'DPS Formula', minWidth: '8rem' },
+							{ key: 'duration', value: 'Duration', minWidth: '1rem' },
+							{
+								key: 'downgradeDuration',
+								value: 'Downgrade Duration',
+								minWidth: '1rem',
+							},
+						]}
+						rows={[
+							{
+								id: '1',
+								stage: '1',
+								formula: '0.042 x True Raw x DefRate',
+								duration: '11-18s',
+								downgradeDuration: '7s',
+							},
+							{
+								id: '2',
+								stage: '2',
+								formula: '0.098 x True Raw x DefRate',
+								duration: '15-25s',
+								downgradeDuration: '10s',
+							},
+							{
+								id: '3',
+								stage: '3',
+								formula: '0.14 x True Raw x DefRate',
+								duration: '6-9s',
+								downgradeDuration: '-',
+							},
+						]}
+						><Toolbar
+							><div class="toolbar">
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray([
+										{
+											id: '1',
+											stage: '1',
+											formula: '0.042 x True Raw x DefRate',
+											duration: '11-18s',
+											downgradeDuration: '7s',
+										},
+										{
+											id: '2',
+											stage: '2',
+											formula: '0.098 x True Raw x DefRate',
+											duration: '15-25s',
+											downgradeDuration: '10s',
+										},
+										{
+											id: '3',
+											stage: '3',
+											formula: '0.14 x True Raw x DefRate',
+											duration: '6-9s',
+											downgradeDuration: '-',
+										},
+									])}
+								/>
+							</div>
+						</Toolbar>
+						<span slot="title">
+							<div class="data-table-title">
+								<div>Ice Age Stages</div>
+							</div>
+						</span>
+						<svelte:fragment slot="cell" let:cell>
+							{#if cell.key === 'stage'}
+								<Button
+									on:click={() => changeModal(cell, 'Ice Age Stages')}
+									size="small"
+									icon={Image}
+									kind="ghost">{cell.value}</Button
+								>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						</svelte:fragment>
+					</DataTable>
 				</div>
+			</div>
+
+			<div class="ice-age-formula">
+				<p>Formula:</p>
+				{@html formulaIceAgeDamagePerSecond}
+				{@html display(formulaValuesIceAgeDamagePerSecond)}
 			</div>
 			<div class="ice-age-calculator">
 				<div>
@@ -7142,9 +7411,6 @@ does not get multiplied by horn */
 					DPS)
 				</p>
 			</div>
-			<p>Formula:</p>
-			{@html formulaIceAgeDamagePerSecond}
-			{@html display(formulaValuesIceAgeDamagePerSecond)}
 		</div>
 	</section>
 	<section>
@@ -7856,7 +8122,7 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Sharpness" />
-		<div class="active-feature-table">
+		<div class="sharpness-table">
 			<DataTable
 				useStaticWidth
 				sortable
@@ -8087,7 +8353,7 @@ does not get multiplied by horn */
 					according to the Poogie's clothes with a probability.
 				</p>
 
-				<div>
+				<div class="guild-poogie-table">
 					<DataTable
 						useStaticWidth
 						sortable
@@ -8717,7 +8983,7 @@ does not get multiplied by horn */
 				You can check your currently equipped gem names in Overlay Settings >
 				Hunter Notes > Gear Info (Text)
 			</p>
-			<div>
+			<div class="diva-prayer-gems-table">
 				<DataTable
 					useStaticWidth
 					sortable
@@ -9192,16 +9458,18 @@ does not get multiplied by horn */
 			</p>
 			<p>
 				The skill effect from cooking lasts for 90 minutes. If a new skill is
-				obtained, it overwrites the previous effect. You can check the duration
-				with the overlay.
+				obtained, it overwrites the previous effect.
 			</p>
-			<img
-				width="81"
-				height="105"
-				class="spaced-image"
-				src="https://github.com/DorielRivalet/mhfz-overlay/raw/main/demo/buffs.png"
-				alt="overlay timers"
-			/>
+			<figure class="centered-figure">
+				<img
+					width="81"
+					height="105"
+					src="https://github.com/DorielRivalet/mhfz-overlay/raw/main/demo/buffs.png"
+					alt="overlay timers"
+				/>
+				<figcaption>You can check the duration with the overlay.</figcaption>
+			</figure>
+
 			<p class="spaced-paragraph">
 				Up to 6 dishes can be stored as "leftovers" for 1 hour at the cat in the
 				cooking area.
@@ -9361,6 +9629,7 @@ does not get multiplied by horn */
 					<DataTable
 						sortable
 						zebra
+						useStaticWidth
 						size="short"
 						headers={[
 							{ key: 'ingredient1', value: 'Ingredient 1' },
@@ -10603,104 +10872,6 @@ does not get multiplied by horn */
 		<SectionHeading level={2} title="Inputs Logs" />
 		<div></div>
 	</section>
-
-	<section>
-		<SectionHeading level={2} title="Formulas" />
-		<p>
-			Below are the formulas for the above damage calculator. Your current
-			inputs values are reflected below each formula.
-		</p>
-		<section>
-			<SectionHeading title={'Attack A'} level={3} />
-			{@html formulaOutputAttackA}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Attack B'} level={3} />
-			{@html formulaOutputAttackB}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Multipliers'} level={3} />
-			{@html formulaOutputMultipliers}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Flat Additions'} level={3} />
-			{@html formulaOutputFlatAdditions}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Internal Attack'} level={3} />
-			{@html formulaInternalAttack}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Internal Fire'} level={3} />
-			{@html formulaInternalFire}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Internal Water'} level={3} />
-			{@html formulaInternalWater}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Internal Thunder'} level={3} />
-			{@html formulaInternalThunder}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Internal Ice'} level={3} />
-			{@html formulaInternalIce}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Internal Dragon'} level={3} />
-			{@html formulaInternalDragon}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Internal Status'} level={3} />
-			{@html formulaInternalStatus}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Internal Affinity'} level={3} />
-			{@html formulaInternalAffinity}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Total Affinity'} level={3} />
-			{@html formulaOutputTotalAffinity}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Drug Knowlege Total Multiplier'} level={3} />
-			{@html formulaOutputDrugKnowledgeMultiplierTotal}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Crit Value'} level={3} />
-			{@html formulaOutputCritValue}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Other Multipliers'} level={3} />
-			{@html formulaOutputOtherMultipliers}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Status Assault Total'} level={3} />
-			{@html formulaOutputStatusUsedSA}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-		<section>
-			<SectionHeading title={'Monster Total Defense'} level={3} />
-			{@html formulaOutputMonsterTotalDefense}
-			{@html display(formulaValuesOutputAttackA)}
-		</section>
-	</section>
 </div>
 
 <style lang="scss">
@@ -10922,7 +11093,8 @@ does not get multiplied by horn */
 	}
 
 	.container-shiki {
-		height: 16rem;
+		height: auto;
+		max-width: 80vw;
 	}
 
 	.stats-values {
@@ -10992,48 +11164,12 @@ does not get multiplied by horn */
 		gap: var(--cds-spacing-08);
 	}
 
-	@media (min-width: 320px) {
-		.ice-age-tables-container {
-			display: grid;
-			margin-top: 1rem;
-			margin-bottom: 2rem;
-			grid-template-areas:
-				'ice-age-table-hits'
-				'ice-age-table-stages-container';
-			gap: 1rem;
-		}
-
-		.ice-age-table-stages-container {
-			grid-area: ice-age-table-stages-container;
-			display: grid;
-			grid-template-rows: auto 1fr;
-			grid-template-areas:
-				'ice-age-table-stages'
-				'ice-age-descriptions';
-			align-items: start;
-			gap: 1rem;
-		}
-	}
-
-	@media (min-width: 1056px) {
-		.ice-age-tables-container {
-			display: grid;
-			margin-top: 1rem;
-			margin-bottom: 2rem;
-			grid-template-columns: 1fr 2fr;
-			grid-template-areas: 'ice-age-table-hits ice-age-table-stages-container';
-		}
-
-		.ice-age-table-stages-container {
-			grid-area: ice-age-table-stages-container;
-			display: grid;
-			grid-template-rows: auto 1fr;
-			grid-template-areas:
-				'ice-age-table-stages'
-				'ice-age-descriptions';
-			align-items: start;
-			gap: 1rem;
-		}
+	.ice-age-tables-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-bottom: 2rem;
+		align-items: start;
 	}
 
 	.ice-age-table-stages {
@@ -11205,8 +11341,20 @@ does not get multiplied by horn */
 
 	.bento-table,
 	.exotics-table,
-	.origins-table {
+	.origins-table,
+	.ice-age-table-hits,
+	.sharpness-table,
+	.guild-poogie-table,
+	.diva-prayer-gems-table {
 		display: flex;
+		flex-wrap: wrap;
+		overflow-x: auto;
+		max-width: 90vw;
+	}
+
+	.ice-age-formula {
+		max-width: 80vw;
+		overflow-x: auto;
 	}
 
 	.table-with-pagination {
