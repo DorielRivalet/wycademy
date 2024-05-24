@@ -732,6 +732,7 @@
 			thunder: string;
 			ice: string;
 			dragon: string;
+			additional: string;
 		}[] = [];
 
 		sharedWeaponMotionValues.motionValues.forEach((element, index) => {
@@ -747,6 +748,7 @@
 				thunder: '0',
 				ice: '0',
 				dragon: '0',
+				additional: '0',
 			});
 		});
 
@@ -966,15 +968,16 @@
 			{
 				id: '',
 				name: '',
-				motion: '',
+				motion: '', // TODO they are wrong motions
 				raw: '0', // TODO
-				element: '0',
+				element: '0', // TODO the rest
 				total: '0',
 				fire: '0',
 				water: '0',
 				thunder: '0',
 				ice: '0',
 				dragon: '0',
+				additional: '0',
 			},
 		];
 
@@ -1005,6 +1008,7 @@
 			thunder: string;
 			ice: string;
 			dragon: string;
+			additional: string;
 		}[] = [];
 
 		let outputTotal = 0;
@@ -1327,7 +1331,7 @@
 						Math.floor(
 							Math.floor(
 								((Math.floor(motionValue * critMultiplier) / 100) *
-									internalAttack *
+									getMaxTrueRaw(internalTrueRaw) *
 									outputSharpnessMultiplier *
 									flagMultiplier *
 									outputSwordAndShieldMultiplier *
@@ -1343,28 +1347,28 @@
 					outputFencingMultiplier,
 			);
 
-			console.warn(`motionValue: ${motionValue}`);
-			console.warn(`critMultiplier: ${critMultiplier}`);
-			console.warn(`internalAttack: ${internalAttack}`);
-			console.warn(`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`);
-			console.warn(`flagMultiplier: ${flagMultiplier}`);
-			console.warn(
+			console.log(`motionValue: ${motionValue}`);
+			console.log(`critMultiplier: ${critMultiplier}`);
+			console.log(`internalAttack: ${internalAttack}`);
+			console.log(`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`);
+			console.log(`flagMultiplier: ${flagMultiplier}`);
+			console.log(
 				`outputSwordAndShieldMultiplier: ${outputSwordAndShieldMultiplier}`,
 			);
-			console.warn(`outputOtherMultipliers: ${outputOtherMultipliers}`);
-			console.warn(
+			console.log(`outputOtherMultipliers: ${outputOtherMultipliers}`);
+			console.log(
 				`outputMonsterStatusInflictedMultiplier: ${outputMonsterStatusInflictedMultiplier}`,
 			);
-			console.warn(`rawHitzoneMultiplier: ${rawHitzoneMultiplier}`);
-			console.warn(`outputMonsterTotalDefense: ${outputMonsterTotalDefense}`);
-			console.warn(
+			console.log(`rawHitzoneMultiplier: ${rawHitzoneMultiplier}`);
+			console.log(`outputMonsterTotalDefense: ${outputMonsterTotalDefense}`);
+			console.log(
 				`outputAbsoluteDefenseMultiplier: ${outputAbsoluteDefenseMultiplier}`,
 			);
-			console.warn(
+			console.log(
 				`outputPremiumCourseMultiplier: ${outputPremiumCourseMultiplier}`,
 			);
-			console.warn(`outputFencingMultiplier: ${outputFencingMultiplier}`);
-			console.warn(`rawOutput: ${rawOutput}`);
+			console.log(`outputFencingMultiplier: ${outputFencingMultiplier}`);
+			console.log(`rawOutput: ${rawOutput}`);
 
 			// Final Ouput
 			outputTotal = totalElementalOutput + rawOutput + outputAdditional;
@@ -1408,6 +1412,10 @@
 
 			internalAffinity = totalAffinityUsed;
 
+			console.log(
+				`name: ${element.name}\nmotion: ${element.values}\nraw: ${rawOutput.toString()}`,
+			);
+
 			result.push({
 				id: index.toString(),
 				name: element.name,
@@ -1425,6 +1433,10 @@
 				ice: iceOutput.toString() === 'NaN' ? '0' : iceOutput.toString(),
 				dragon:
 					dragonOutput.toString() === 'NaN' ? '0' : dragonOutput.toString(),
+				additional:
+					outputAdditional.toString() === 'NaN'
+						? '0'
+						: outputAdditional.toString(),
 			});
 		});
 		//  outputStatusAssault = 0;
@@ -1748,8 +1760,6 @@
 		inputNumberElementalMultiplier =
 			newInputs.inputNumberElementalMultiplier ||
 			inputNumberElementalMultiplier;
-		inputNumberAttackValue =
-			newInputs.inputNumberAttackValue || inputNumberAttackValue;
 		inputNumberTrueRaw = newInputs.inputNumberTrueRaw || inputNumberTrueRaw;
 		inputNumberUnlimitedSigil =
 			newInputs.inputNumberUnlimitedSigil || inputNumberUnlimitedSigil;
@@ -2191,10 +2201,6 @@
 	$: formulaValuesOutputInternalAttack = `{${internalAttack}} = \\lfloor ${internalTrueRaw} \\times\\newline ${outputSharpnessMultiplier} \\times\\newline ${outputSwordAndShieldMultiplier} \\times\\newline ${outputOtherMultipliers} \\times\\newline ${outputMonsterStatusInflictedMultiplier} \\rfloor
 `;
 
-	// TODO
-	const formulaInternalTrueRaw = display('EHP = \\frac{THP}{DEF}');
-	const formulaInternalTrueRawDisplay = display('EHP = \\\\frac{THP}{DEF}');
-
 	const formulaInternalFire =
 		display(`\\text{Internal Fire} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputFireMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 `);
@@ -2311,6 +2317,11 @@
 	);
 */
 
+	// TODO
+	const formulaInternalTrueRaw = display(
+		`\\begin{equation*} \\text{internalTrueRaw} = \\begin{cases} \\text{maxTrueRaw} & \\text{if } outputAttackCeiling > 180 \\\\ \\lfloor outputFlatAdditions + outputMultipliers \\rfloor & \\text{otherwise} \\end{cases} \\end{equation*}`,
+	);
+
 	const formulaOutputDrugKnowledgeMultiplierTotal = display(
 		`\\text{outputDrugKnowledgeMultiplierTotal} = \\text{getDrugKnowledgeAddition(
 		outputDrugKnowledgeMultiplier,
@@ -2408,7 +2419,7 @@
 	let inputAffinityItems = 'None';
 	let inputGsActiveFeature = 'None';
 	let inputAttackSkills = 'None';
-	let inputCaravanSkills = 'None (1x)';
+	let inputCaravanSkills = 'None';
 	let inputPassiveItems = 'None';
 	let inputFoodConsumables = 'None';
 	let inputSeedsFlutesCat = 'None';
@@ -2493,7 +2504,6 @@
 	let inputNumberTotalMotionValue = 125;
 	let inputNumberHitCount = 1;
 	let inputNumberElementalMultiplier = 1;
-	let inputNumberAttackValue = 770;
 	let inputNumberTrueRaw = 550;
 	let inputNumberUnlimitedSigil = 0;
 	let inputNumberStyleRankAttack = 100;
@@ -2632,7 +2642,6 @@
 		inputNumberTotalMotionValue: inputNumberTotalMotionValue,
 		inputNumberHitCount: inputNumberHitCount,
 		inputNumberElementalMultiplier: inputNumberElementalMultiplier,
-		inputNumberAttackValue: inputNumberAttackValue,
 		inputNumberTrueRaw: inputNumberTrueRaw,
 		inputNumberUnlimitedSigil: inputNumberUnlimitedSigil,
 		inputNumberStyleRankAttack: inputNumberStyleRankAttack,
@@ -2839,7 +2848,7 @@
 
 	$: outputCaravanMultiplier =
 		multipliedBaseDropdownItems.find((item) => item.name === inputCaravanSkills)
-			?.value || 1;
+			?.value || 0;
 
 	$: outputCaravanAddition = Math.floor(
 		inputNumberTrueRaw * outputCaravanMultiplier,
@@ -3423,6 +3432,16 @@ does not get multiplied by horn */
 	// 		outputWeaponTypeMultiplier,
 	// );
 
+	/**getIDtrueraw*/
+	function getMaxTrueRaw(raw: number) {
+		if (raw <= 8000) {
+			return raw;
+		} else {
+			return 8000;
+		}
+	}
+
+	/**ACtrueout*/
 	$: internalTrueRaw =
 		outputAttackCeiling > 180
 			? maxTrueRaw
@@ -3889,6 +3908,8 @@ does not get multiplied by horn */
 			text: 'Pellet / Spread Shot',
 		},
 	];
+
+	let inputNumberAttackValue = 0;
 </script>
 
 <svelte:head>
@@ -4078,12 +4099,12 @@ does not get multiplied by horn */
 					popoverIconType="file"
 					link="/arena#gunlance-shells-and-wyvernfire"
 					on:openModal={(e) => handleOpenModal(e)}
-				></InlineToggletip> or <InlineTooltip
+				/> or <InlineTooltip
 					tooltip="Monster"
 					text="Zenith Rathalos"
 					iconType="file"
 					icon={getMonster('Rathalos', 'Zenith').icon}
-				></InlineTooltip> defense rate.
+				/> defense rate.
 			</li>
 			<li>View element damage.</li>
 			<li>And much more!</li>
@@ -4096,7 +4117,7 @@ does not get multiplied by horn */
 				text="Flash Conversion"
 				iconType="component"
 				icon={getTag('Armor Skill').icon}
-			></InlineTooltip>, and the formulas for your total damage.
+			/>, and the formulas for your total damage.
 		</p>
 
 		<section>
@@ -4148,13 +4169,15 @@ does not get multiplied by horn */
 					<div class="buttons-bottom">
 						<div class="container-shiki">
 							{#if isShikiLoading}
-								<div style="min-width: 32rem;">
+								<div class="shiki-loading">
 									<CodeSnippet type="multi" skeleton />
 								</div>
 							{:else}
-								<CodeSnippet showMoreLess={false} hideCopyButton type="multi"
-									>{@html inputsHTML}</CodeSnippet
-								>
+								<div class="shiki-code">
+									<CodeSnippet showMoreLess={false} hideCopyButton type="multi"
+										>{@html inputsHTML}</CodeSnippet
+									>
+								</div>
 							{/if}
 						</div>
 						<div class="button-container">
@@ -4169,6 +4192,28 @@ does not get multiplied by horn */
 						>
 					</div>
 					<!-- <Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} /> -->
+				</div>
+
+				<div>
+					<p>Attack Display Value to True Raw Converter</p>
+					<div class="number-input-container">
+						<NumberInput
+							size="sm"
+							step={10}
+							min={minimumNumberValue}
+							max={maximumNumberValue}
+							bind:value={inputNumberAttackValue}
+							invalidText={invalidNumberValueText}
+							label={'Weapon Attack Display Value'}
+						/>
+					</div>
+					<p>
+						True Raw: {Math.floor(
+							inputNumberAttackValue /
+								WeaponTypes.find((e) => e.name === inputWeaponType)
+									?.bloatAttackMultiplier,
+						)}
+					</p>
 				</div>
 
 				<div class="container-inputs">
@@ -4369,7 +4414,7 @@ does not get multiplied by horn */
 										titleText="Caravan Skills"
 										bind:selectedId={inputCaravanSkills}
 										items={[
-											{ id: 'None (1x)', text: 'None (1x)' },
+											{ id: 'None', text: 'None' },
 											{
 												id: 'Shooting Rampage (x1.1) (Ranged Only)',
 												text: 'Shooting Rampage (x1.1) (Ranged Only)',
@@ -5383,17 +5428,6 @@ does not get multiplied by horn */
 										]}
 									/>
 
-									<div class="number-input-container">
-										<NumberInput
-											size="sm"
-											step={10}
-											min={minimumNumberValue}
-											max={maximumNumberValue}
-											bind:value={inputNumberAttackValue}
-											invalidText={invalidNumberValueText}
-											label={'Attack Value'}
-										/>
-									</div>
 									<div class="number-input-container">
 										<NumberInput
 											size="sm"
@@ -6648,6 +6682,7 @@ does not get multiplied by horn */
 						{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 						{ key: 'ice', value: '❄️', minWidth: '1rem' },
 						{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+						{ key: 'additional', value: 'Additional', minWidth: '1rem' },
 					]}
 					rows={weaponSections}
 				>
@@ -6657,6 +6692,16 @@ does not get multiplied by horn */
 								titleText="Weapon Motion Values Section"
 								bind:selectedId={inputWeaponMotionValuesSection}
 								items={weaponSectionNames}
+							/>
+							<Button
+								icon={Restart}
+								kind="ghost"
+								iconDescription="Refresh"
+								on:click={(e) =>
+									(weaponSections = getWeaponSectionMotionValues(
+										inputWeaponType,
+										inputWeaponMotionValuesSection,
+									))}
 							/>
 							<CopyButton
 								iconDescription={'Copy as CSV'}
@@ -6709,6 +6754,7 @@ does not get multiplied by horn */
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
 				]}
 				rows={sharedMotionValues}
 				><Toolbar
@@ -6741,6 +6787,14 @@ does not get multiplied by horn */
 			Below are the formulas for the above damage calculator. Your current
 			inputs values are reflected below each formula.
 		</p>
+		<section>
+			<SectionHeading title={'Internal True Raw'} level={3} />
+			{@html formulaInternalTrueRaw}
+			<p>maxTrueRaw: {maxTrueRaw}</p>
+			<p>outputAttackCeiling: {outputAttackCeiling}</p>
+			<p>outputFlatAdditions: {outputFlatAdditions}</p>
+			<p>outputMultipliers: {outputMultipliers}</p>
+		</section>
 		<section>
 			<SectionHeading title={'Attack A'} level={3} />
 			{@html formulaOutputAttackA}
@@ -7128,8 +7182,8 @@ does not get multiplied by horn */
 								<InlineTooltip
 									icon={getWeaponIcon(cell.value)}
 									text={cell.value}
-									tooltip="Weapon">{cell.value}</InlineTooltip
-								>
+									tooltip="Weapon"
+								/>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
@@ -10944,7 +10998,7 @@ does not get multiplied by horn */
 	.buttons-top,
 	.buttons-bottom {
 		display: flex;
-		gap: 1rem;
+		gap: 2rem;
 		align-items: center;
 		flex-wrap: wrap;
 	}
@@ -11095,6 +11149,15 @@ does not get multiplied by horn */
 	.container-shiki {
 		height: auto;
 		max-width: 80vw;
+		height: 256px;
+	}
+
+	.shiki-code {
+		width: 100%;
+	}
+
+	.shiki-loading {
+		width: 256px;
 	}
 
 	.stats-values {
