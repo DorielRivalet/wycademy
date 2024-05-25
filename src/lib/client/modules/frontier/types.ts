@@ -596,6 +596,10 @@ export type FrontierMotionValue = {
 	name: string;
 	animation?: any;
 	values: string; // TODO: to number array?
+	hitCount: number;
+	elementMultiplier: number;
+	motionValue: number;
+	specialFlag: string;
 	notes?: string;
 };
 

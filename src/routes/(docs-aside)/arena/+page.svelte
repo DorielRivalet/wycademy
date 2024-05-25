@@ -847,54 +847,6 @@
 		}
 	}
 
-	function getMotionValueNumber(input: string): number {
-		// Remove unwanted patterns
-		let cleanedInput = input.replace(
-			/\[K\]|\(\d+\s*(Sigil|Healing|Status|KO)\)/g,
-			'',
-		);
-		cleanedInput = cleanedInput.replace(/※ Impact/g, '');
-		cleanedInput = cleanedInput.replace('※', '');
-
-		// Remove parentheses and their contents
-		cleanedInput = cleanedInput.replace(/\(\d+\)/g, '');
-
-		// Replace multiplication symbols
-		cleanedInput = cleanedInput.replace('x', '*');
-
-		// Replace sum symbols
-		cleanedInput = cleanedInput.replace('･', '+');
-
-		// Split the cleaned string into an array of numbers and operators
-		const parts = cleanedInput.split(/(\d+|\+|\*)/).filter(Boolean);
-
-		console.warn(`parts: ${parts}`);
-
-		// Initialize result
-		let result = 0;
-
-		// Iterate over parts and perform operations
-		for (let i = 0; i < parts.length; i++) {
-			if (parts[i] === '+') {
-				// Perform addition
-				result += parseFloat(parts[++i]);
-			} else if (parts[i] === '*') {
-				// Perform multiplication
-				result *= parseFloat(parts[++i]);
-			} else {
-				// Handle numbers
-				result = parseFloat(parts[i]);
-			}
-		}
-
-		// TODO
-		if (result === NaN) {
-			result = parseFloat(parts[0]);
-		}
-
-		return result;
-	}
-
 	function getCSVFromArray(array: Array<object>) {
 		// Check if the array is not empty
 		if (array.length === 0) {
@@ -1015,25 +967,27 @@
 
 		// hitzone preprocessing
 		let elementHitzoneFireMultiplier = getElementalExploit(
-			weaponClass,
+			weaponName,
 			inputNumberFireHitzone,
 		);
 		let elementHitzoneWaterMultiplier = getElementalExploit(
-			weaponClass,
+			weaponName,
 			inputNumberWaterHitzone,
 		);
 		let elementHitzoneThunderMultiplier = getElementalExploit(
-			weaponClass,
+			weaponName,
 			inputNumberThunderHitzone,
 		);
 		let elementHitzoneIceMultiplier = getElementalExploit(
-			weaponClass,
+			weaponName,
 			inputNumberIceHitzone,
 		);
 		let elementHitzoneDragonMultiplier = getElementalExploit(
-			weaponClass,
+			weaponName,
 			inputNumberDragonHitzone,
 		);
+
+		// TODO?
 		let rawHitzoneMultiplier = getExploitWeakness(
 			weaponClass,
 			inputNumberRawHitzone,
@@ -1060,6 +1014,36 @@
 				elementHitzoneFireMultiplier) /
 				100,
 		);
+
+		console.log(`usedFire: ${usedFire}`);
+		console.log(
+			`inputNumberElementalValueReplacement: ${inputNumberElementalValueReplacement}`,
+		);
+		console.log(`inputNumberSigil1Element: ${inputNumberSigil1Element}`);
+		console.log(`inputNumberSigil2Element: ${inputNumberSigil2Element}`);
+		console.log(`inputNumberSigil3Element: ${inputNumberSigil3Element}`);
+		console.log(`inputNumberUnlimitedSigil: ${inputNumberUnlimitedSigil}`);
+		console.log(`outputAoeElement: ${outputAoeElement}`);
+		console.log(`outputFireMultiplier: ${outputFireMultiplier}`);
+		console.log(
+			`outputZenithElementMultiplier: ${outputZenithElementMultiplier}`,
+		);
+		console.log(
+			`outputElementalAttackMultiplier: ${outputElementalAttackMultiplier}`,
+		);
+		console.log(
+			`outputHHElementalSongMultiplier: ${outputHHElementalSongMultiplier}`,
+		);
+		console.log(
+			`outputWeaponElementMultiplier: ${outputWeaponElementMultiplier}`,
+		);
+		console.log(`outputFuriousMultiplier: ${outputFuriousMultiplier}`);
+		console.log(`fireValueMultiplier: ${fireValueMultiplier}`);
+		console.log(`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`);
+		console.log(
+			`elementHitzoneFireMultiplier: ${elementHitzoneFireMultiplier}`,
+		);
+
 		let usedWater = Math.floor(
 			((Math.floor(
 				(inputNumberElementalValueReplacement +
@@ -1146,9 +1130,9 @@
 		);
 
 		sectionEntry.motionValues.forEach((element, index) => {
-			let motionValue = getMotionValueNumber(element.values);
-			let hitCount = 1;
-			let elementMultiplier = 1;
+			let motionValue = element.motionValue;
+			let hitCount = element.hitCount;
+			let elementMultiplier = element.elementMultiplier;
 			let critMultiplier = 1;
 			let totalAffinityUsed = 0;
 			let SwordAndShieldSigilAdded = 0;
@@ -1272,6 +1256,13 @@
 
 			let totalElementalOutput =
 				fireOutput + waterOutput + thunderOutput + iceOutput + dragonOutput;
+
+			console.log(`fireOutput: ${fireOutput}`);
+			console.log(`usedFire: ${usedFire}`);
+			console.log(`outputMonsterTotalDefense: ${outputMonsterTotalDefense}`);
+			console.log(`hitCount: ${hitCount}`);
+			console.log(`elementMultiplier: ${elementMultiplier}`);
+			console.log(`outputFencingMultiplier: ${outputFencingMultiplier}`);
 
 			// Additional including status assault
 			// Status active, poison or paralysis
@@ -2049,38 +2040,37 @@
 		return result.toFixed(2);
 	}
 
-	/** Elemental Exploit or Dissolver for melee*/
+	/** Elemental Exploit or Dissolver for melee. proceleex*/
 	function getElementalExploit(
-		weaponClass: FrontierWeaponClass,
+		weaponName: FrontierWeaponName,
 		hitzone: number,
 	) {
 		// TODO Gunner
 		let result = 0;
 		let modifier = 0;
-		let debuff = 0;
+		let huntingHornDebuff = 0;
 
 		// TODO to object
-		if (
-			inputWeaponType === 'Sword and Shield' ||
-			inputWeaponType === 'Great Sword' ||
-			inputWeaponType === 'Long Sword' ||
-			inputWeaponType === 'Hammer' ||
-			inputWeaponType === 'Hunting Horn' ||
-			inputWeaponType === 'Lance' ||
-			inputWeaponType === 'Switch Axe F'
-		) {
-			modifier = 15;
-		} else if (
-			inputWeaponType === 'Dual Swords' ||
-			inputWeaponType === 'Gunlance'
-		) {
-			modifier = 10;
-		} else if (inputWeaponType === 'Light Bowgun') {
-			modifier = 10;
-		} else if (inputWeaponType === 'Heavy Bowgun') {
-			modifier = 5;
-		} else if (inputWeaponType === 'Bow') {
-			modifier = 5;
+		switch (weaponName) {
+			case 'Sword and Shield':
+			case 'Great Sword':
+			case 'Long Sword':
+			case 'Hammer':
+			case 'Hunting Horn':
+			case 'Lance':
+			case 'Switch Axe F':
+			case 'Magnet Spike':
+				modifier = 15;
+				break;
+			case 'Dual Swords':
+			case 'Gunlance':
+			case 'Light Bowgun':
+				modifier = 10;
+				break;
+			case 'Heavy Bowgun':
+			case 'Bow':
+				modifier = 5;
+				break;
 		}
 
 		if (
@@ -2088,27 +2078,27 @@
 				'Elemental Weakness (+4 on all Elemental Hitzones)' ||
 			inputHuntingHornDebuff === 'Both (+4 on Elemental, +2 on Raw)'
 		) {
-			debuff = 4;
+			huntingHornDebuff = 4;
 		} else {
-			debuff = 0;
+			huntingHornDebuff = 0;
 		}
 
 		if (
-			inputElementalExploiter !== 'Off' &&
-			hitzone + debuff < outputElementalExploiter
+			inputElementalExploiter !== 'None' &&
+			hitzone + huntingHornDebuff < outputElementalExploiter
 		) {
-			result = debuff + hitzone;
+			result = huntingHornDebuff + hitzone;
 		} else if (
-			inputElementalExploiter !== 'Off' &&
-			hitzone + debuff >= outputElementalExploiter
+			inputElementalExploiter !== 'None' &&
+			hitzone + huntingHornDebuff >= outputElementalExploiter
 		) {
-			result = debuff + modifier + hitzone;
+			result = huntingHornDebuff + modifier + hitzone;
 		} else if (
 			inputElementalExploiter === 'Determination (+X to ele hitzones)'
 		) {
-			result = debuff + modifier + hitzone;
+			result = huntingHornDebuff + modifier + hitzone;
 		} else {
-			result = debuff + hitzone;
+			result = huntingHornDebuff + hitzone;
 		}
 		return result;
 	}
@@ -3414,6 +3404,7 @@ does not get multiplied by horn */
 		`outputHHElementalSongMultiplier: ${outputHHElementalSongMultiplier}`,
 	);
 
+	/**eleSwaxe*/
 	$: outputWeaponElementMultiplier =
 		elementalSkillsDropdownItems.find(
 			(item) => item.name === inputWeaponElementMultipliers,
