@@ -43,7 +43,11 @@
 	} from '$lib/constants';
 	import { page } from '$app/stores';
 	import pageThumbnail from '$lib/client/images/icon/pvp.png';
-	import type { FrontierWeaponClass, FrontierWeaponName } from 'ezlion';
+	import type {
+		FrontierWeaponClass,
+		FrontierWeaponName,
+		FrontierWeaponStyle,
+	} from 'ezlion';
 	import type {
 		FrontierElement,
 		FrontierMotionValue,
@@ -719,19 +723,30 @@
 		display?: (item: any, row: DataTableRow) => DataTableValue;
 	}
 
-	function getWeaponSectionNames(weaponName: FrontierWeaponName) {
+	function getWeaponSectionNames(
+		weaponName: FrontierWeaponName,
+		style: FrontierWeaponStyle,
+	) {
 		let result: { id: string; text: string }[] = [];
 
-		let sections = getSectionNamesByWeapon(weaponName);
+		let sections = getSectionNamesByWeapon(weaponName, style);
 
-		sections.forEach((element) => {
-			result.push({ id: element, text: element });
-		});
+		if (sections.length > 0) {
+			sections.forEach((element) => {
+				result.push({ id: element, text: element });
+			});
 
-		return result;
+			return result;
+		} else {
+			result.push({ id: 'None', text: 'None' });
+			return result;
+		}
 	}
 
-	function getSectionNamesByWeapon(weaponName: FrontierWeaponName) {
+	function getSectionNamesByWeapon(
+		weaponName: FrontierWeaponName,
+		style: FrontierWeaponStyle,
+	) {
 		// Find the weapon by name
 		const weapon = weaponMotionValues.find((w) => w.name === weaponName);
 		if (!weapon) {
@@ -739,11 +754,18 @@
 			return []; // or throw new Error('Weapon not found');
 		}
 
-		// Map over the sections of the found weapon to extract their names
-		const sectionNames = weapon.sections.map((section) => section.name);
+		const hasSections =
+			weapon.sections.filter((section) => section.style === style).length > 0;
 
-		// Return the array of section names
-		return sectionNames;
+		if (hasSections) {
+			// Map over the sections of the found weapon to extract their names
+			const sectionNames = weapon.sections.map((section) => section.name);
+
+			// Return the array of section names
+			return sectionNames;
+		} else {
+			return [];
+		}
 	}
 
 	function getWeaponClass(weaponName: FrontierWeaponName): FrontierWeaponClass {
@@ -827,6 +849,8 @@
 		return `${header}\n${csv}`;
 	}
 
+	let showWeaponMotionValuesSectionWarning = false;
+
 	function getBentoSectionValues(section: string) {
 		let defaultResult = [
 			{
@@ -899,6 +923,7 @@
 		];
 
 		let sectionEntry = sharedWeaponMotionValues;
+		showWeaponMotionValuesSectionWarning = false;
 
 		if (!isSharedMotionSection) {
 			// Find the weapon by name
@@ -910,10 +935,14 @@
 			}
 
 			// Find the section by name within the found weapon
-			sectionEntry = weaponEntry.sections.find((s) => s.name === section);
+			sectionEntry = weaponEntry.sections.find(
+				(s) =>
+					s.name === section && s.style === inputWeaponMotionValuesSectionStyle,
+			);
 			if (!sectionEntry) {
 				sectionEntry = weaponEntry.sections[0];
 				inputWeaponMotionValuesSection = sectionEntry.name;
+				showWeaponMotionValuesSectionWarning = true;
 			}
 		}
 
@@ -2510,6 +2539,8 @@
 	let inputNumberDragonHitzone = 30;
 
 	let inputWeaponMotionValuesSection = 'None';
+	let inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle =
+		'Extreme Style';
 	let bentoSection = 'Vigorous';
 
 	let outputAdditional = 0;
@@ -2660,7 +2691,10 @@
 	// 	inputWeaponType,
 	// 	inputWeaponMotionValuesSection,
 	// );
-	$: weaponSectionNames = getWeaponSectionNames(inputWeaponType);
+	$: weaponSectionNames = getWeaponSectionNames(
+		inputWeaponType,
+		inputWeaponMotionValuesSectionStyle,
+	);
 
 	let bentoSectionNames = [
 		{ id: 'Vigorous', text: 'Vigorous' },
@@ -6640,6 +6674,15 @@ does not get multiplied by horn */
 		<section>
 			<SectionHeading level={2} title="Weapon Motion Values" />
 
+			{#if showWeaponMotionValuesSectionWarning}
+				<InlineNotification
+					title="Warning:"
+					subtitle="Section with the selected style not found, displaying default section."
+					kind="warning"
+					lowContrast
+					on:close={() => (showWeaponMotionValuesSectionWarning = false)}
+				/>
+			{/if}
 			<div class="motion-values toc-exclude">
 				<DataTable
 					sortable
@@ -6664,9 +6707,19 @@ does not get multiplied by horn */
 					<Toolbar
 						><div class="toolbar">
 							<Dropdown
-								titleText="Weapon Motion Values Section"
+								titleText="Section"
 								bind:selectedId={inputWeaponMotionValuesSection}
 								items={weaponSectionNames}
+							/>
+							<Dropdown
+								titleText="Style"
+								bind:selectedId={inputWeaponMotionValuesSectionStyle}
+								items={[
+									{ id: 'Earth Style', text: 'Earth Style' },
+									{ id: 'Heaven Style', text: 'Heaven Style' },
+									{ id: 'Storm Style', text: 'Storm Style' },
+									{ id: 'Extreme Style', text: 'Extreme Style' },
+								]}
 							/>
 							<Button
 								icon={Restart}

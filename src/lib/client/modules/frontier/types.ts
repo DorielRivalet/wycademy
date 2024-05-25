@@ -13,6 +13,7 @@ import type {
 	FrontierWeaponClass,
 	FrontierWeaponID,
 	FrontierWeaponName,
+	FrontierWeaponStyle,
 } from 'ezlion';
 
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
@@ -606,6 +607,7 @@ export type FrontierMotionValue = {
 export type FrontierMotionValueSection = {
 	name: string;
 	motionValues: FrontierMotionValue[];
+	style: FrontierWeaponStyle;
 };
 
 export type FrontierBento = {

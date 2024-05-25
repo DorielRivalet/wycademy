@@ -4631,6 +4631,7 @@ export const defaultItemComponentValues = {
 // TODO dmg calc
 export const sharedWeaponMotionValues: FrontierMotionValueSection = {
 	name: 'Shared',
+	style: '',
 	motionValues: [
 		{
 			name: 'Reflect+1',
@@ -4809,6 +4810,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'None',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Jump Slash (Unsheathe)',
@@ -5027,6 +5029,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'Extreme Demon Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Downslash 1',
@@ -5167,6 +5170,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Extreme Demon Mode (Red Mode)',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Downslash 1',
@@ -5307,6 +5311,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Standard Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Rush Slash',
@@ -5402,6 +5407,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Demon Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Rush Slash',
@@ -5515,6 +5521,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'True Demon Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Rush Slash',
@@ -5664,6 +5671,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'True Demon Mode (Red Mode)',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Rush Slash',
@@ -5818,6 +5826,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'None',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Vertical Slash',
@@ -5986,6 +5995,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up+1',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Lv1 Charge',
@@ -6063,6 +6073,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up+2',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Lv1 Charge',
@@ -6145,6 +6156,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'None',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Down Slash',
@@ -6438,6 +6450,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up+1',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Piercing Stab',
@@ -6569,6 +6582,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up+2',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Piercing Stab',
@@ -6696,6 +6710,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'None',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Unsheathe',
@@ -6890,6 +6905,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up+1',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Charge Upswing',
@@ -6994,6 +7010,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up+2',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Charge Upswing',
@@ -7103,6 +7120,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'None',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Slam Attack (to Note 2)',
@@ -7284,6 +7302,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'None',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Unsheathe Stabs',
@@ -7451,6 +7470,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up+1',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Yellow Charge',
@@ -7474,6 +7494,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up+2',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Yellow Charge',
@@ -7502,6 +7523,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'None',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Rush Thrust (Unsheathe)',
@@ -7638,6 +7660,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'Long Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Unsheathe',
@@ -8039,6 +8062,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up +2 & Gunnery God',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Standard 2 & EX Lv1',
@@ -8071,6 +8095,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Long Mode Charge Attack Up +1',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Standard 2 Lv1',
@@ -8130,6 +8155,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Long Mode Charge Attack Up +2',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Standard 2 Lv1',
@@ -8189,6 +8215,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Gunnery',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'EX Pursuit 1 (G. God)',
@@ -8329,6 +8356,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Martial Arts +1',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Dash Kick',
@@ -8379,6 +8407,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Martial Arts +2',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Dash Kick',
@@ -8438,6 +8467,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Short Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Unsheathe',
@@ -8839,6 +8869,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Short Mode Charge Attack Up +1',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Standard 2 Lv1',
@@ -8871,6 +8902,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Short Mode Charge Attack Up +2',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Standard 2 Lv1',
@@ -8903,6 +8935,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Short Mode Charge Attack Up +2 & Gunnery God',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Standard 2 & EX Lv1',
@@ -8935,6 +8968,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Short Mode Gunnery',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'EX Pursuit 1 (G. God)',
@@ -9075,6 +9109,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Short Mode Martial Arts +1',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Dash Kick',
@@ -9125,6 +9160,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Short Mode Martial Arts +2',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Dash Kick',
@@ -9189,6 +9225,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'Axe Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Vertical Slash',
@@ -9239,6 +9276,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Ele, Status, Stun Phials Sword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Running Rotation Slash',
@@ -9307,6 +9345,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up +1 Ele, Status, Stun Phials Sword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'S Evasion Charged Upslash',
@@ -9339,6 +9378,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up +2 Ele, Status, Stun Phials Sword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'S Evasion Charged Upslash',
@@ -9371,6 +9411,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Ele, Status, Stun Phials Lightsword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Light Sword Transformation',
@@ -9601,6 +9642,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up +1 Ele, Status, Stun Phials Lightsword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'S Evasion Charged Upslash',
@@ -9633,6 +9675,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up +2 Ele, Status, Stun Phials Lightsword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'S Evasion Charged Upslash',
@@ -9665,6 +9708,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Power Phial Sword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Running Rotation Slash',
@@ -9733,6 +9777,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up +1 Power Phial Sword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'S Evasion Charged Upslash',
@@ -9765,6 +9810,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up +2 Power Phial Sword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'S Evasion Charged Upslash',
@@ -9797,6 +9843,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Power Phial Lightsword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Light Sword Transformation',
@@ -10027,6 +10074,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up +1 Power Phial Lightsword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'S Evasion Charged Upslash',
@@ -10059,6 +10107,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Charge Attack Up +2 Power Phial Lightsword Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'S Evasion Charged Upslash',
@@ -10096,6 +10145,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'Cutting Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Unsheathe Vertical',
@@ -10272,6 +10322,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Impact Mode',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Horizontal 1',
@@ -10462,6 +10513,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'Shots',
+				style: 'Earth Style',
 				motionValues: [
 					{
 						name: 'LV1 Norm S.',
@@ -10827,6 +10879,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Melee',
+				style: 'Earth Style',
 				motionValues: [
 					{
 						name: 'Melee Attacks',
@@ -10847,6 +10900,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'Shots',
+				style: 'Earth Style',
 				motionValues: [
 					{
 						name: 'LV1 Norm S.',
@@ -11194,6 +11248,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Compression Shots',
+				style: 'Earth Style',
 				motionValues: [
 					{
 						name: 'Compressed Shot Motion',
@@ -11222,6 +11277,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		sections: [
 			{
 				name: 'Shots',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Rapid LV1',
@@ -11380,6 +11436,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Arc Shots',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Wide Pellet Arc',
@@ -11421,6 +11478,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Crouch Shots',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Sniper Shot Lv4',
@@ -11462,6 +11520,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 			},
 			{
 				name: 'Melee',
+				style: 'Extreme Style',
 				motionValues: [
 					{
 						name: 'Melee Attacks',
