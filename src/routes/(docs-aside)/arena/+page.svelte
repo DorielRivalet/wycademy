@@ -719,42 +719,6 @@
 		display?: (item: any, row: DataTableRow) => DataTableValue;
 	}
 
-	function getSharedMotionValues() {
-		let result: {
-			id: string;
-			name: string;
-			motion: string;
-			raw: string;
-			element: string;
-			total: string;
-			fire: string;
-			water: string;
-			thunder: string;
-			ice: string;
-			dragon: string;
-			additional: string;
-		}[] = [];
-
-		sharedWeaponMotionValues.motionValues.forEach((element, index) => {
-			result.push({
-				id: index.toString(),
-				name: element.name,
-				motion: element.values,
-				raw: '0',
-				element: '0',
-				total: '0',
-				fire: '0',
-				water: '0',
-				thunder: '0',
-				ice: '0',
-				dragon: '0',
-				additional: '0',
-			});
-		});
-
-		return result;
-	}
-
 	function getWeaponSectionNames(weaponName: FrontierWeaponName) {
 		let result: { id: string; text: string }[] = [];
 
@@ -913,6 +877,7 @@
 	function getWeaponSectionMotionValues(
 		weaponName: FrontierWeaponName,
 		section: string,
+		isSharedMotionSection = false,
 	) {
 		let weaponClass = getWeaponClass(weaponName);
 
@@ -933,19 +898,23 @@
 			},
 		];
 
-		// Find the weapon by name
-		const weaponEntry = weaponMotionValues.find((w) => w.name === weaponName);
-		if (!weaponEntry) {
-			// Return an empty object or an error message if the weapon is not found
-			console.error('Weapon not found');
-			return defaultResult; // or throw new Error('Weapon not found');
-		}
+		let sectionEntry = sharedWeaponMotionValues;
 
-		// Find the section by name within the found weapon
-		let sectionEntry = weaponEntry.sections.find((s) => s.name === section);
-		if (!sectionEntry) {
-			sectionEntry = weaponEntry.sections[0];
-			inputWeaponMotionValuesSection = sectionEntry.name;
+		if (!isSharedMotionSection) {
+			// Find the weapon by name
+			const weaponEntry = weaponMotionValues.find((w) => w.name === weaponName);
+			if (!weaponEntry) {
+				// Return an empty object or an error message if the weapon is not found
+				console.error('Weapon not found');
+				return defaultResult; // or throw new Error('Weapon not found');
+			}
+
+			// Find the section by name within the found weapon
+			sectionEntry = weaponEntry.sections.find((s) => s.name === section);
+			if (!sectionEntry) {
+				sectionEntry = weaponEntry.sections[0];
+				inputWeaponMotionValuesSection = sectionEntry.name;
+			}
 		}
 
 		let result: {
@@ -1152,10 +1121,12 @@
 				motionValue = inputNumberTotalMotionValue;
 				hitCount = inputNumberHitCount;
 				elementMultiplier = inputNumberElementalMultiplier;
+				element.values = motionValue.toString();
 			}
 
 			// Reflect
-			if (inputCritMode === 'No Crits') {
+			// TODO specialFlag types
+			if (inputCritMode === 'No Crits' || element.specialFlag === 'nocrit') {
 				critMultiplier = 1.0;
 			} else {
 				if (inputCritMode === 'All Crits') {
@@ -1451,7 +1422,15 @@
 		section: string,
 		motionValueName: string,
 	): FrontierMotionValue {
-		let defaultValue = { name: '', animation: '', values: '' };
+		let defaultValue = {
+			name: '',
+			animation: '',
+			values: '',
+			motionValue: 0,
+			specialFlag: '',
+			hitCount: 0,
+			elementMultiplier: 0,
+		};
 
 		if (section === 'Shared') {
 			// Find the section by name within the found weapon
@@ -2388,7 +2367,6 @@
 	let weaponIconProps = {
 		rarity: rarity,
 	};
-	let sharedMotionValues = getSharedMotionValues();
 
 	let inputTextImportData = '';
 
@@ -2535,6 +2513,12 @@
 	let bentoSection = 'Vigorous';
 
 	let outputAdditional = 0;
+
+	let sharedMotionValues = getWeaponSectionMotionValues(
+		inputWeaponType,
+		'Shared',
+		true,
+	);
 
 	$: inputs = {
 		inputStyleRankAffinity: inputStyleRankAffinity,
@@ -6750,6 +6734,17 @@ does not get multiplied by horn */
 				rows={sharedMotionValues}
 				><Toolbar
 					><div class="toolbar">
+						<Button
+							icon={Restart}
+							kind="ghost"
+							iconDescription="Refresh"
+							on:click={(e) =>
+								(sharedMotionValues = getWeaponSectionMotionValues(
+									inputWeaponType,
+									'Shared',
+									true,
+								))}
+						/>
 						<CopyButton
 							iconDescription={'Copy as CSV'}
 							text={getCSVFromArray(sharedMotionValues)}
