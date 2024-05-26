@@ -94,6 +94,7 @@
 	import Copy from 'carbon-icons-svelte/lib/Copy.svelte';
 	import Pagination from 'carbon-components-svelte/src/Pagination/Pagination.svelte';
 	import ezlion from 'ezlion';
+	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
@@ -9554,9 +9555,10 @@ does not get multiplied by horn */
 				obtained, it overwrites the previous effect.
 			</p>
 			<figure class="centered-figure">
-				<img
-					width="81"
-					height="105"
+				<ImageDialog
+					width={81}
+					height={105}
+					type="file"
 					src="https://github.com/DorielRivalet/mhfz-overlay/raw/main/demo/buffs.png"
 					alt="overlay timers"
 				/>
