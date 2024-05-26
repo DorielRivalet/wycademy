@@ -12406,6 +12406,41 @@ export const statusSkillsDropdownItems: DropdownItemOption[] = [
 	},
 ] as const;
 
+export const oldBlademasterSharpness = [
+	{
+		name: 'Red (0.6x)',
+		value: 0.25,
+	},
+	{
+		name: 'Orange (0.85x)',
+		value: 0.5,
+	},
+	{
+		name: 'Yellow (1.1x)',
+		value: 0.75,
+	},
+	{
+		name: 'Green (1.325x)',
+		value: 1,
+	},
+	{
+		name: 'Blue (1.45x)',
+		value: 1.0625,
+	},
+	{
+		name: 'White (1.6x)',
+		value: 1.125,
+	},
+	{
+		name: 'Purple (1.7x)',
+		value: 1.15,
+	},
+	{
+		name: 'Cyan (1.8x)',
+		value: 1.2,
+	},
+];
+
 export const blademasterDropdownItems: DropdownItemOption[] = [
 	{
 		name: 'Red (0.6x)',
