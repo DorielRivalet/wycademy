@@ -5251,7 +5251,7 @@
 			/>
 		</div>
 		<div class="flex-centered padded flex-column">
-			<ImageDialog size="100%" src={towerWeaponImage} alt="Tower Weapon" type="file" />
+			<ImageDialog width={195} height={200} src={towerWeaponImage} alt="Tower Weapon" type="file" />
 			<div class="tower-weapon-slots-container">
 				{#each towerWeaponSlots as weaponSlot}
 					<img src={weaponSlot.image} alt="Tower Weapon Slot" />

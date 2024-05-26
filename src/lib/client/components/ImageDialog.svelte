@@ -24,11 +24,14 @@
 	export let type;
 	export let src: any;
 	export let alt = 'Dialog';
-	export let size;
+	export let componentSize = '100%';
 	export let background = true;
 	export let color = '#ffffff';
+	export let width = 0;
+	export let height = 0;
+
 	let componentProps = {
-		size: size,
+		size: componentSize,
 		background: background,
 		color: color,
 	};
@@ -77,7 +80,12 @@
 
 <button on:click={openDialog}>
 	{#if type === 'file'}
-		<img {src} {alt} width={size} />
+		<img
+			{src}
+			{alt}
+			width={width !== 0 ? width : 128}
+			height={height !== 0 ? height : 128}
+		/>
 	{:else if type === 'component'}
 		<svelte:component this={svgComponent} {...componentProps} />
 	{/if}

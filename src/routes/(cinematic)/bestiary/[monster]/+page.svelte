@@ -28,14 +28,15 @@
 					<ImageDialog
 						src={monster.icon}
 						alt={monster.displayName}
-						size="256px"
+						width={256}
+						height={256}
 						type="file"
 					/>
 				{:else}
 					<ImageDialog
 						src={monster.component}
 						alt={monster.displayName}
-						size={'100%'}
+						componentSize={'100%'}
 						type="component"
 					/>
 				{/if}
