@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import slugify from 'slugify';
 
@@ -24,9 +25,19 @@
 				})}"
 			>
 				{#if monster.unusedComponent}
-					<img src={monster.icon} alt={monster.displayName} width="256px" />
+					<ImageDialog
+						src={monster.icon}
+						alt={monster.displayName}
+						size="256px"
+						type="file"
+					/>
 				{:else}
-					<svelte:component this={monster.component} {...{ size: '256px' }} />
+					<ImageDialog
+						src={monster.component}
+						alt={monster.displayName}
+						size={'100%'}
+						type="component"
+					/>
 				{/if}
 			</div>
 
