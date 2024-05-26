@@ -5,16 +5,6 @@
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import { getTag } from '$lib/client/modules/frontier/functions';
 	import type { PopoverPosition } from '$lib/client/modules/frontier/types';
-	import {
-		durationFast01,
-		durationFast02,
-		durationModerate01,
-		durationModerate02,
-		durationSlow01,
-		durationSlow02,
-		easings,
-		motion,
-	} from '@carbon/motion';
 	const positions: PopoverPosition[] = ['top', 'right', 'bottom', 'left'];
 
 	function movePopover() {
@@ -54,7 +44,7 @@
 		clearTimeout(closeTimeout);
 		closeTimeout = setTimeout(() => {
 			open = false;
-		}, millisecondsToDuration(durationModerate01)); // Adjust this to match your transition duration
+		}, millisecondsToDuration('150ms')); // Adjust this to match your transition duration
 	}
 
 	$: popoverClass = open ? 'popover visible' : 'popover invisible';
