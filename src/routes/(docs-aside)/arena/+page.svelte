@@ -24,6 +24,7 @@
 		MonsterIcons,
 		bentoValues,
 		LocationIcons,
+		oldBlademasterSharpness,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -53,9 +54,7 @@
 		FrontierMotionValue,
 		FrontierRarity,
 		FrontierStatus,
-		FrontierWeapon,
 		FrontierWeaponSharpness,
-		FrontierWeaponType,
 		TagColor,
 	} from '$lib/client/modules/frontier/types';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
@@ -84,7 +83,6 @@
 	import { onMount, type ComponentType } from 'svelte';
 	import { ScaleTypes, type LineChartOptions } from '@carbon/charts-svelte';
 	import type { LineChart } from '@carbon/charts-svelte';
-	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import IceAgeStage1Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage2Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
@@ -95,10 +93,6 @@
 	import Pagination from 'carbon-components-svelte/src/Pagination/Pagination.svelte';
 	import ezlion from 'ezlion';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
-
-	const breakpointSize = breakpointObserver();
-	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
-	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	let flashConversionChartLoaded = false;
 	let flashConversionChart: ComponentType<LineChart>;
@@ -1195,14 +1189,27 @@
 				if (inputElement === 'None') {
 					SwordAndShieldSigilAdded = Math.floor(
 						Math.floor(
-							outputTrueRaw *
+							getMaxTrueRaw(internalTrueRaw) *
 								0.025 *
-								outputSharpnessMultiplier *
+								outputOldSharpnessMultiplier *
 								(rawHitzoneMultiplier / 100),
 						) * outputMonsterTotalDefense,
 					);
 					critMultiplier = 1.0;
 					motionValue = 0;
+
+					console.log('Sns Sigil added');
+					console.log(`SwordAndShieldSigilAdded: ${SwordAndShieldSigilAdded}`);
+					console.log(
+						`getMaxTrueRaw(internalTrueRaw): ${getMaxTrueRaw(internalTrueRaw)}`,
+					);
+					console.log(
+						`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`,
+					);
+					console.log(`rawHitzoneMultiplier: ${rawHitzoneMultiplier}`);
+					console.log(
+						`outputMonsterTotalDefense: ${outputMonsterTotalDefense}`,
+					);
 				} else {
 					motionValue = 0;
 					SwordAndShieldSigilAdded = 0;
@@ -2117,14 +2124,14 @@
 		weaponClass: FrontierWeaponClass,
 		hitzone: number,
 	) {
-		let modifier =
+		let huntingHornModifier =
 			inputHuntingHornDebuff === 'Raw Weakness (+2 on Raw Hitzones)' ||
 			inputHuntingHornDebuff === 'Both (+4 on Elemental, +2 on Raw)'
 				? 2
 				: 0;
 
 		// set initial hitzone
-		let used = hitzone + outputThunderClad + modifier;
+		let used = hitzone + outputThunderClad + huntingHornModifier;
 
 		// critical shot, sniper, determination, precision in critical distance
 		if (weaponClass === 'Gunner') {
@@ -2133,6 +2140,9 @@
 
 		// check if processed hitzones have been pushed to 35 and then apply Exploit Weakness
 		if (outputExploitWeakness === 5 && (used >= 35 || used >= 30)) {
+			used = used + 5;
+		} else if (inputExploitWeakness === 'Determination (+5 on raw hitzones)') {
+			//determination is always applied
 			used = used + 5;
 		}
 
@@ -3290,6 +3300,10 @@ does not get multiplied by horn */
 
 	$: outputSharpnessMultiplier =
 		blademasterDropdownItems.find((item) => item.name === inputSharpness)
+			?.value || 0;
+
+	$: outputOldSharpnessMultiplier =
+		oldBlademasterSharpness.find((item) => item.name === inputSharpness)
 			?.value || 0;
 
 	$: console.log(`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`);
