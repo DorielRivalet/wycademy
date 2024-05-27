@@ -1003,7 +1003,7 @@
 					inputNumberSigil2Element * 10 +
 					inputNumberSigil3Element * 10 +
 					inputNumberUnlimitedSigil * 10 +
-					outputAoeElement) *
+					outputAOETotalElement) *
 					outputFireMultiplier *
 					outputZenithElementMultiplier *
 					outputElementalAttackMultiplier *
@@ -1026,7 +1026,7 @@
 		console.log(`inputNumberSigil2Element: ${inputNumberSigil2Element}`);
 		console.log(`inputNumberSigil3Element: ${inputNumberSigil3Element}`);
 		console.log(`inputNumberUnlimitedSigil: ${inputNumberUnlimitedSigil}`);
-		console.log(`outputAoeElement: ${outputAoeElement}`);
+		console.log(`outputAOETotalElement: ${outputAOETotalElement}`);
 		console.log(`outputFireMultiplier: ${outputFireMultiplier}`);
 		console.log(
 			`outputZenithElementMultiplier: ${outputZenithElementMultiplier}`,
@@ -1054,7 +1054,7 @@
 					inputNumberSigil2Element * 10 +
 					inputNumberSigil3Element * 10 +
 					inputNumberUnlimitedSigil * 10 +
-					outputAoeElement) *
+					outputAOETotalElement) *
 					outputWaterMultiplier *
 					outputZenithElementMultiplier *
 					outputElementalAttackMultiplier *
@@ -1075,7 +1075,7 @@
 					inputNumberSigil2Element * 10 +
 					inputNumberSigil3Element * 10 +
 					inputNumberUnlimitedSigil * 10 +
-					outputAoeElement) *
+					outputAOETotalElement) *
 					outputThunderMultiplier *
 					outputZenithElementMultiplier *
 					outputElementalAttackMultiplier *
@@ -1096,7 +1096,7 @@
 					inputNumberSigil2Element * 10 +
 					inputNumberSigil3Element * 10 +
 					inputNumberUnlimitedSigil * 10 +
-					outputAoeElement) *
+					outputAOETotalElement) *
 					outputIceMultiplier *
 					outputZenithElementMultiplier *
 					outputElementalAttackMultiplier *
@@ -1117,7 +1117,7 @@
 					inputNumberSigil2Element * 10 +
 					inputNumberSigil3Element * 10 +
 					inputNumberUnlimitedSigil * 10 +
-					outputAoeElement) *
+					outputAOETotalElement) *
 					outputDragonMultiplier *
 					outputZenithElementMultiplier *
 					outputElementalAttackMultiplier *
@@ -1265,7 +1265,6 @@
 
 			// Additional including status assault
 			// Status active, poison or paralysis
-			// TODO this is wrong
 			if (
 				inputStatusAssault === 'On (For Sleep add +10 raw hitbox)' &&
 				inputStatus !== 'None'
@@ -1288,7 +1287,7 @@
 						Math.floor(
 							Math.floor(
 								statusAssaultMultiplier *
-									(outputStatusUsedSA +
+									(outputStatusUsedSA + // TODO outputStatusValueMultiplier which is used to calculate this is wrong in the original code, but we leave as is for now
 										getStatusAssault(inputWeaponType, 'Poison')),
 							) * outputMonsterTotalDefense,
 						) * outputFencingMultiplier,
@@ -1373,7 +1372,7 @@
 					inputNumberSigil2Element * 10 +
 					inputNumberSigil3Element * 10 +
 					inputNumberUnlimitedSigil * 10 +
-					outputAoeElement,
+					outputAOETotalElement,
 			);
 			console.log('-1-');
 
@@ -2125,30 +2124,30 @@
 `;
 
 	const formulaInternalFire =
-		display(`\\text{Internal Fire} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputFireMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+		display(`\\text{Internal Fire} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputFireMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 `);
-	$: formulaValuesInternalFire = `${internalFire} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputFireMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+	$: formulaValuesInternalFire = `${internalFire} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputFireMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
 `;
 
 	const formulaInternalWater =
-		display(`\\text{Internal Water} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputWaterMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+		display(`\\text{Internal Water} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputWaterMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 `);
-	$: formulaValuesInternalWater = `${internalWater} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputWaterMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+	$: formulaValuesInternalWater = `${internalWater} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputWaterMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
 `;
 	const formulaInternalThunder =
-		display(`\\text{Internal Thunder} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputThunderMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+		display(`\\text{Internal Thunder} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputThunderMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 `);
-	$: formulaValuesInternalThunder = `${internalThunder} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputThunderMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+	$: formulaValuesInternalThunder = `${internalThunder} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputThunderMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
 `;
 	const formulaInternalIce =
-		display(`\\text{Internal Ice} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputIceMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+		display(`\\text{Internal Ice} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputIceMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 `);
-	$: formulaValuesInternalIce = `${internalIce} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputIceMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+	$: formulaValuesInternalIce = `${internalIce} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputIceMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
 `;
 	const formulaInternalDragon =
-		display(`\\text{Internal Dragon} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAoeElement}) \\times \\text{outputDragonMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+		display(`\\text{Internal Dragon} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputDragonMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 `);
-	$: formulaValuesInternalDragon = `${internalDragon} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputDragonMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+	$: formulaValuesInternalDragon = `${internalDragon} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputDragonMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
 `;
 
 	const internalAffinityFunctionString = `/**This is different from total affinity. */
@@ -2222,7 +2221,6 @@
 	${outputStarvingWolfAffinity} +\\newline
 	${outputCeaselessAffinity})`;
 
-	// TODO?
 	const formulaInternalStatus =
 		display(`\\text{Internal Status} = \\lfloor \\lfloor
 		\\text{inputNumberStatusValue} \\times\\newline
@@ -2447,6 +2445,7 @@
 	let inputNumberHitCount = 1;
 	let inputNumberElementalMultiplier = 1;
 	let inputNumberTrueRaw = 550;
+	/**TODO some outputs dont use this that maybe should?*/
 	let inputNumberUnlimitedSigil = 0;
 	let inputNumberStyleRankAttack = 100;
 	let inputNumberSigil1Attack = 0;
@@ -2721,7 +2720,7 @@
 
 	$: console.log(`outputAOEAffinityCount: ${outputAOEAffinityCount}`);
 
-	// TODO check this and ele
+	/** This should be the correct one, not 20 * count + 2 * value.*/
 	$: outputAOETotalAffinity =
 		outputAOEAffinityCount === 0 || inputNumberAOEAffinitySigil === 0
 			? 0
@@ -2804,12 +2803,13 @@
 		sigilDropdownItems.find((item) => item.name === inputAoeAttackSigil)
 			?.value || 0;
 
+	/** This should be the correct one, not 25 * count + 5 * value.*/
 	$: outputAOETotalAttack =
 		outputAOEAttackCount === 0 || inputNumberAOEAttackSigil === 0
 			? 0
 			: (25 + inputNumberAOEAttackSigil * 5) * outputAOEAttackCount;
 
-	$: outputAOEElementCount =
+	$: outputAOETotalElementCount =
 		sigilDropdownItems.find((item) => item.name === inputAoeElementSigil)
 			?.value || 0;
 
@@ -3019,7 +3019,7 @@ does not get multiplied by horn */
 		`outputDrugKnowledgeTotalTrueRaw: ${outputDrugKnowledgeTotalTrueRaw}`,
 	);
 
-	/**statusAssaultToggle TODO*/
+	/**statusAssaultToggle statusassault? TODO unused by original? Edit: Its used but the execution makes it change to another value instantly in the original code.*/
 	$: outputStatusAssault =
 		inputDrugKnowledge !== 'None (1x)'
 			? Math.floor(
@@ -3506,10 +3506,11 @@ does not get multiplied by horn */
 						outputMonsterStatusInflictedMultiplier,
 				);
 
-	$: outputAoeElement =
-		outputAOEElementCount === 0 || inputNumberAOEElementSigil === 0
+	/** This should be the correct one, not 50 * count + 50 * value.*/
+	$: outputAOETotalElement =
+		outputAOETotalElementCount === 0 || inputNumberAOEElementSigil === 0
 			? 0
-			: (50 + inputNumberAOEElementSigil * 50) * outputAOEElementCount;
+			: (50 + inputNumberAOEElementSigil * 50) * outputAOETotalElementCount;
 
 	$: fireValueMultiplier = getElementMultiplier('Fire', inputElement);
 	$: waterValueMultiplier = getElementMultiplier('Water', inputElement);
@@ -3551,7 +3552,7 @@ does not get multiplied by horn */
 			inputNumberSigil2Element * 10 +
 			inputNumberSigil3Element * 10 +
 			inputNumberUnlimitedSigil * 10 +
-			outputAoeElement) *
+			outputAOETotalElement) *
 			outputFireMultiplier *
 			outputZenithElementMultiplier *
 			outputElementalAttackMultiplier *
@@ -3569,7 +3570,7 @@ does not get multiplied by horn */
 			inputNumberSigil2Element * 10 +
 			inputNumberSigil3Element * 10 +
 			inputNumberUnlimitedSigil * 10 +
-			outputAoeElement) *
+			outputAOETotalElement) *
 			outputWaterMultiplier *
 			outputZenithElementMultiplier *
 			outputElementalAttackMultiplier *
@@ -3587,7 +3588,7 @@ does not get multiplied by horn */
 			inputNumberSigil2Element * 10 +
 			inputNumberSigil3Element * 10 +
 			inputNumberUnlimitedSigil * 10 +
-			outputAoeElement) *
+			outputAOETotalElement) *
 			outputThunderMultiplier *
 			outputZenithElementMultiplier *
 			outputElementalAttackMultiplier *
@@ -3605,7 +3606,7 @@ does not get multiplied by horn */
 			inputNumberSigil2Element * 10 +
 			inputNumberSigil3Element * 10 +
 			inputNumberUnlimitedSigil * 10 +
-			outputAoeElement) *
+			outputAOETotalElement) *
 			outputIceMultiplier *
 			outputZenithElementMultiplier *
 			outputElementalAttackMultiplier *
@@ -3623,7 +3624,7 @@ does not get multiplied by horn */
 			inputNumberSigil2Element * 10 +
 			inputNumberSigil3Element * 10 +
 			inputNumberUnlimitedSigil * 10 +
-			outputAoeElement) *
+			outputAOETotalElement) *
 			outputDragonMultiplier *
 			outputZenithElementMultiplier *
 			outputElementalAttackMultiplier *
@@ -4282,8 +4283,8 @@ does not get multiplied by horn */
 					<p>
 						True Raw: {Math.floor(
 							inputNumberAttackValue /
-								WeaponTypes.find((e) => e.name === inputWeaponType)
-									?.bloatAttackMultiplier,
+								(WeaponTypes.find((e) => e.name === inputWeaponType)
+									?.bloatAttackMultiplier ?? 1),
 						)}
 					</p>
 				</div>
@@ -5502,6 +5503,7 @@ does not get multiplied by horn */
 											label={'True Raw'}
 										/>
 									</div>
+
 									<div class="number-input-container">
 										<NumberInput
 											size="sm"
@@ -7684,12 +7686,16 @@ does not get multiplied by horn */
 			true raw.
 		</p>
 		<p class="spaced-paragraph">
-			Critical Conversion Up only uses the base affinity of your weapon (natural affinity). Sigils,
-			Skills, SR Skills and the +5-10% from having above blue sharpness do not
-			count towards the increase. In game, the sharpness bonus is always
-			displayed, so deduct 10% from most weapons for getting the correct value.
+			Critical Conversion Up only uses the base affinity of your weapon (natural
+			affinity). Sigils, Skills, SR Skills and the +5-10% from having above blue
+			sharpness do not count towards the increase. In game, the sharpness bonus
+			is always displayed, so deduct 10% from most weapons for getting the
+			correct value.
 		</p>
-		<p class="spaced-paragraph">The zenith skill does not need you to have over 100% affinity for it to take effect.</p>
+		<p class="spaced-paragraph">
+			The zenith skill does not need you to have over 100% affinity for it to
+			take effect.
+		</p>
 		<p>Formulas:</p>
 		<div class="formula-container">
 			{@html formulaFlashConversion}
