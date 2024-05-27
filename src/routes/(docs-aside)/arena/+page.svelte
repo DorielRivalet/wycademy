@@ -26,6 +26,7 @@
 		LocationIcons,
 		oldBlademasterSharpness,
 		greatSwordCharges,
+		obscurityValues,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -102,7 +103,10 @@
 	let criticalDistanceChart: ComponentType<LineChart>;
 	let criticalDistanceBowChart: ComponentType<LineChart>;
 
-	function generateFlashConversionChartData() {
+	function generateFlashConversionChartData(
+		naturalAffinity: number,
+		critConversionUpMultiplier: number,
+	) {
 		const minAffinity = 100;
 		const maxAffinity = 500;
 		const step = 10;
@@ -111,7 +115,12 @@
 			let obj = {
 				group: 'Dataset 1',
 				affinity: index,
-				trueRaw: Math.floor(Math.sqrt(Math.max(index - 100, 0)) * 7),
+				trueRaw:
+					Math.floor(Math.sqrt(Math.max(index - 100, 0)) * 7) +
+					Math.floor(
+						Math.sqrt(Math.max(naturalAffinity, 0)) *
+							critConversionUpMultiplier,
+					),
 			};
 			data.push(obj);
 		}
@@ -132,7 +141,6 @@
 		);
 	}
 
-	const flashConversionChartData = generateFlashConversionChartData();
 	const criticalDistanceChartAmmoTypesData = [
 		{
 			type: 'Normal / Rapid Shot',
@@ -1637,7 +1645,8 @@
 		inputSeedsFlutesCat = newInputs.inputSeedsFlutesCat || inputSeedsFlutesCat;
 		inputLanceHbg = newInputs.inputLanceHbg || inputLanceHbg;
 		inputLoneWolf = newInputs.inputLoneWolf || inputLoneWolf;
-		inputCritConversion = newInputs.inputCritConversion || inputCritConversion;
+		inputCritConversionUp =
+			newInputs.inputCritConversionUp || inputCritConversionUp;
 		inputStylishAssault = newInputs.inputStylishAssault || inputStylishAssault;
 		inputConsumptionSlayer =
 			newInputs.inputConsumptionSlayer || inputConsumptionSlayer;
@@ -1735,8 +1744,6 @@
 			newInputs.inputAbsoluteDefense || inputAbsoluteDefense;
 		inputPremiumBoost = newInputs.inputPremiumBoost || inputPremiumBoost;
 
-		inputNumberCritConversion =
-			newInputs.inputNumberCritConversion || inputNumberCritConversion;
 		inputNumberRoadFloor =
 			newInputs.inputNumberRoadFloor || inputNumberRoadFloor;
 		inputNumberConquestAttack =
@@ -1871,6 +1878,7 @@
 		outputStatusAttackUpMultiplier: number,
 		outputStatusGuildPoogieMultiplier: number,
 		outputStatusSigilMultiplier: number,
+		outputFuriousMultiplier: number,
 	) {
 		let drugKnowledgeRaw = 0;
 
@@ -1892,35 +1900,24 @@
 		return drugKnowledgeRaw;
 	}
 
-	function getCritConversionValue(
-		outputCritConversion: number,
-		outputCritUp: number,
+	function getCritConversionTrueRaw(
+		totalAffinity: number,
+		critConversionUpMultiplier: number,
 		naturalAffinity: number,
+		critConversionAffinity: Number,
 	) {
-		let result = 0;
-		if (outputCritConversion < 101) {
-			if (outputCritUp === 1) {
-				result = 0 + Math.floor(Math.sqrt(naturalAffinity) * 5);
-			} else if (outputCritUp === 2) {
-				result = 0 + Math.floor(Math.sqrt(naturalAffinity) * 10);
-			} else {
-				result = 0;
-			}
-		} else {
-			if (outputCritUp === 1) {
-				result =
-					Math.floor(Math.sqrt(outputCritConversion - 100) * 7) +
-					Math.floor(Math.sqrt(naturalAffinity) * 5);
-			} else if (outputCritUp === 2) {
-				result =
-					Math.floor(Math.sqrt(outputCritConversion - 100) * 7) +
-					Math.floor(Math.sqrt(naturalAffinity) * 10);
-			} else {
-				result = Math.floor(Math.sqrt(outputCritConversion - 100) * 7);
-			}
+		if (critConversionAffinity !== 30 || totalAffinity <= 0) {
+			return 0;
 		}
 
-		return result;
+		let excessAffinityTrueRaw =
+			totalAffinity > 100 ? Math.floor(Math.sqrt(totalAffinity - 100) * 7) : 0;
+
+		let naturalAffinityTrueRaw = Math.floor(
+			Math.sqrt(Math.max(naturalAffinity, 0)) * critConversionUpMultiplier,
+		);
+
+		return naturalAffinityTrueRaw + excessAffinityTrueRaw;
 	}
 
 	function getLengthAttackValue(outputLengthType: string, trueRaw: number) {
@@ -1930,9 +1927,6 @@
 		}
 		// else if (outputLengthType === 2) {
 		// 	result = Math.ceil(trueRaw - (trueRaw * 0.07 + 1));
-		else if (outputLengthType === 'string') {
-			result = trueRaw;
-		}
 
 		return result;
 	}
@@ -1941,49 +1935,21 @@
 		weaponType: FrontierWeaponName,
 		outputObscurityLevel: number,
 	) {
-		let obscurityArray: number[] = [];
-		let obscurity = 0;
-		let weaponClass = getWeaponClass(weaponType);
+		let foundWeapon = WeaponTypes.find((e) => e.name === weaponType);
 
-		if (weaponClass === 'Blademaster') {
-			if (
-				weaponType === 'Sword and Shield' ||
-				weaponType === 'Lance' ||
-				weaponType === 'Gunlance' ||
-				weaponType === 'Tonfa'
-			) {
-				// Sns, Lance, Gl, Tonfa
-				obscurityArray = [
-					0, 40, 80, 120, 160, 200, 220, 240, 260, 280, 300, 70, 140, 210, 240,
-					270, 300,
-				];
-				obscurity = obscurityArray[outputObscurityLevel];
-			} else if (
-				weaponType === 'Great Sword' ||
-				weaponType === 'Switch Axe F' ||
-				weaponType === 'Magnet Spike'
-			) {
-				// GS, Swaxe, Magnet Spike
-				obscurityArray = [
-					0, 30, 60, 90, 120, 150, 165, 180, 195, 210, 225, 50, 100, 150, 175,
-					200, 225,
-				];
-				obscurity = obscurityArray[outputObscurityLevel];
-			} else if (weaponType === 'Long Sword') {
-				// LS
-				obscurityArray = [
-					0, 20, 40, 60, 80, 100, 110, 120, 130, 140, 150, 30, 60, 90, 110, 130,
-					150,
-				];
-				obscurity = obscurityArray[outputObscurityLevel];
-			} else {
-				obscurity = 0;
-			}
-		} else {
-			obscurity = 0;
+		if (!foundWeapon) {
+			return 0;
 		}
 
-		return obscurity;
+		let foundObscurity = obscurityValues.find((e) =>
+			e.weapons.find((e) => e === weaponType),
+		);
+
+		if (!foundObscurity) {
+			return 0;
+		}
+
+		return foundObscurity.values[outputObscurityLevel];
 	}
 
 	function setAbnormalityValues(abnormalityToggleValue: boolean) {
@@ -2013,13 +1979,11 @@
 			result = result + 0.15;
 		} else if (outputCeaselessAffinity === 3) {
 			result = result + 0.2;
-		} else {
-			result = result;
 		}
 
 		if (outputExpertAffinity === 100) {
 			result = result + 0.25;
-			outputIssenAffinity = 0;
+			inputIssenSkills = 'None or Determination';
 		} else if (outputIssenAffinity === 5) {
 			result = result + 0.1;
 		} else if (outputIssenAffinity === 10) {
@@ -2108,17 +2072,17 @@
 	const invalidNumberValueText = `Invalid value. Must be between ${minimumNumberValue} and ${maximumNumberValue}`;
 
 	const formulaOutputAttackA =
-		display(`\\text{Attack A} = \\text{inputNumberTrueRaw} +\\newline \\text{outputPassives} +\\newline (\\text{inputNumberSigil1Attack} + \\text{inputNumberSigil2Attack} + \\text{inputNumberSigil3Attack}) +\\newline \\text{inputNumberConquestAttack} +\\newline \\text{outputAttackMedicine} +\\newline \\text{outputAttackSkill} +\\newline \\text{outputFoodAttack} +\\newline \\text{outputSeedAttack} +\\newline \\text{inputNumberStyleRankAttack} +\\newline \\text{inputNumberUnlimitedSigil} +\\newline \\text{outputDrugKnowledgeTotalTrueRaw} +\\newline \\text{outputDuremudiraAttack} +\\newline \\text{outputLoneWolfAttack} +\\newline \\text{outputCaravanAddition} +\\newline \\text{outputShiriagariAttack} +\\newline \\text{outputRoadAdvancement} +\\newline \\lfloor \\text{outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline \\text{outputConsumptionSlayerAttack} +\\newline \\text{outputRoadLastStandAttack} +\\newline \\text{outputLanceRedPhialAttack} +\\newline \\text{outputRoadTowerAttack} +\\newline \\text{outputZenithTotalAttack} +\\newline \\text{outputAOETotalAttack}
+		display(`\\text{Attack A} = \\text{outputLengthUpTrueRaw} +\\newline \\text{outputPassives} +\\newline (\\text{inputNumberSigil1Attack} + \\text{inputNumberSigil2Attack} + \\text{inputNumberSigil3Attack}) +\\newline \\text{inputNumberConquestAttack} +\\newline \\text{outputAttackMedicine} +\\newline \\text{outputAttackSkill} +\\newline \\text{outputFoodAttack} +\\newline \\text{outputSeedAttack} +\\newline \\text{inputNumberStyleRankAttack} +\\newline \\text{inputNumberUnlimitedSigil} +\\newline \\text{outputDrugKnowledgeTotalTrueRaw} +\\newline \\text{outputDuremudiraAttack} +\\newline \\text{outputLoneWolfAttack} +\\newline \\text{outputCaravanAddition} +\\newline \\text{outputShiriagariAttack} +\\newline \\text{outputRoadAdvancement} +\\newline \\lfloor \\text{outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline \\text{outputConsumptionSlayerAttack} +\\newline \\text{outputRoadLastStandAttack} +\\newline \\text{outputLanceRedPhialAttack} +\\newline \\text{outputRoadTowerAttack} +\\newline \\text{outputZenithTotalAttack} +\\newline \\text{outputAOETotalAttack}
 `);
 
-	$: formulaValuesOutputAttackA = `{${attackA}} = ${inputNumberTrueRaw} +\\newline ${outputPassives} +\\newline (${inputNumberSigil1Attack} + ${inputNumberSigil2Attack} + ${inputNumberSigil3Attack}) +\\newline ${inputNumberConquestAttack} +\\newline ${outputAttackMedicine} +\\newline ${outputAttackSkill} +\\newline ${outputFoodAttack} +\\newline ${outputSeedAttack} +\\newline ${inputNumberStyleRankAttack} +\\newline ${inputNumberUnlimitedSigil} +\\newline ${outputDrugKnowledgeTotalTrueRaw} +\\newline ${outputDuremudiraAttack} +\\newline ${outputLoneWolfAttack} +\\newline ${outputCaravanAddition} +\\newline ${outputShiriagariAttack} +\\newline ${outputRoadAdvancement} +\\newline \\lfloor ${outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline ${outputConsumptionSlayerAttack} +\\newline ${outputRoadLastStandAttack} +\\newline ${outputLanceRedPhialAttack} +\\newline ${outputRoadTowerAttack} +\\newline ${outputZenithTotalAttack} +\\newline ${outputAOETotalAttack}
+	$: formulaValuesOutputAttackA = `{${attackA}} = ${outputLengthUpTrueRaw} +\\newline ${outputPassives} +\\newline (${inputNumberSigil1Attack} + ${inputNumberSigil2Attack} + ${inputNumberSigil3Attack}) +\\newline ${inputNumberConquestAttack} +\\newline ${outputAttackMedicine} +\\newline ${outputAttackSkill} +\\newline ${outputFoodAttack} +\\newline ${outputSeedAttack} +\\newline ${inputNumberStyleRankAttack} +\\newline ${inputNumberUnlimitedSigil} +\\newline ${outputDrugKnowledgeTotalTrueRaw} +\\newline ${outputDuremudiraAttack} +\\newline ${outputLoneWolfAttack} +\\newline ${outputCaravanAddition} +\\newline ${outputShiriagariAttack} +\\newline ${outputRoadAdvancement} +\\newline \\lfloor ${outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline ${outputConsumptionSlayerAttack} +\\newline ${outputRoadLastStandAttack} +\\newline ${outputLanceRedPhialAttack} +\\newline ${outputRoadTowerAttack} +\\newline ${outputZenithTotalAttack} +\\newline ${outputAOETotalAttack}
 `;
 
 	const formulaOutputAttackB =
-		display(`\\text{Attack B} = \\text{outputRush} +\\newline \\text{outputStylishAssault} +\\newline \\text{outputFuriousAttack} +\\newline \\text{outputVigorousAddition} +\\newline \\text{outputCritConversionAttack} +\\newline \\text{inputNumberVampirism} +\\newline \\text{outputObscurityTotal} +\\newline \\text{outputIncitement}
+		display(`\\text{Attack B} = \\text{outputRush} +\\newline \\text{outputStylishAssault} +\\newline \\text{outputFuriousAttack} +\\newline \\text{outputVigorousAddition} +\\newline \\text{outputCritConversionTrueRaw} +\\newline \\text{inputNumberVampirism} +\\newline \\text{outputObscurityTotal} +\\newline \\text{outputIncitement}
 `);
 
-	$: formulaValuesOutputAttackB = `{${attackB}} = ${outputRush} +\\newline ${outputStylishAssault} +\\newline ${outputFuriousAttack} +\\newline ${outputVigorousAddition} +\\newline ${outputCritConversionAttack} +\\newline ${inputNumberVampirism} +\\newline ${outputObscurityTotal} +\\newline ${outputIncitement}
+	$: formulaValuesOutputAttackB = `{${attackB}} = ${outputRush} +\\newline ${outputStylishAssault} +\\newline ${outputFuriousAttack} +\\newline ${outputVigorousAddition} +\\newline ${outputCritConversionTrueRaw} +\\newline ${inputNumberVampirism} +\\newline ${outputObscurityTotal} +\\newline ${outputIncitement}
 `;
 
 	const formulaOutputMultipliers =
@@ -2197,6 +2161,39 @@
 			default:
 				return 0;
 		}
+	}`;
+
+	const critValueFunctionString = `function getCritValue(
+		outputStarvingWolfAffinity: number,
+		outputCeaselessAffinity: number,
+		outputExpertAffinity: number,
+		outputIssenAffinity: number,
+	) {
+		let result = 1.25;
+		if (outputStarvingWolfAffinity === 2) {
+			result = result + 0.1;
+		}
+
+		if (outputCeaselessAffinity === 1) {
+			result = result + 0.1;
+		} else if (outputCeaselessAffinity === 2) {
+			result = result + 0.15;
+		} else if (outputCeaselessAffinity === 3) {
+			result = result + 0.2;
+		}
+
+		if (outputExpertAffinity === 100) {
+			result = result + 0.25;
+			inputIssenSkills = 'None or Determination';
+		} else if (outputIssenAffinity === 5) {
+			result = result + 0.1;
+		} else if (outputIssenAffinity === 10) {
+			result = result + 0.15;
+		} else if (outputIssenAffinity === 20) {
+			result = result + 0.25;
+		}
+
+		return result.toFixed(2);
 	}`;
 
 	const formulaInternalAffinity =
@@ -2279,35 +2276,13 @@
 	${outputFuriousAffinity} +\\newline
 	${outputAOETotalAffinity}`;
 
-	/*
-	$: outputDrugKnowledgeMultiplierTotal = getDrugKnowledgeAddition(
-		outputDrugKnowledgeMultiplier,
-		inputNumberStatusValue,
-		outputStatusAttackUpMultiplier,
-		outputStatusGuildPoogieMultiplier,
-		outputStatusSigilMultiplier,
-	);
-*/
-
 	const formulaInternalTrueRaw = display(
-		`\\begin{equation*} \\text{internalTrueRaw} = \\begin{cases} \\text{maxTrueRaw} & \\text{if } outputAttackCeiling > 180 \\\\ \\lfloor outputFlatAdditions + outputMultipliers \\rfloor & \\text{otherwise} \\end{cases} \\end{equation*}`,
+		`\\begin{equation*} \\text{internalTrueRaw} = \\begin{cases} \\text{maxTrueRaw} & \\text{if } \\text{outputAttackCeiling} > 180 \\\\ \\lfloor \\text{outputFlatAdditions} + \\text{outputMultipliers} \\rfloor & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
 
 	const formulaOutputDrugKnowledgeTotalTrueRaw = display(
-		`\\text{outputDrugKnowledgeTotalTrueRaw} = \\text{getDrugKnowledgeAddition(
-		outputDrugKnowledgeMultiplier,
-		inputNumberStatusValue,
-		outputStatusAttackUpMultiplier,
-		outputStatusGuildPoogieMultiplier,
-		outputStatusSigilMultiplier)}`,
+		`\\begin{equation*} \\text{outputDrugKnowledgeTotalTrueRaw} = \\begin{cases} 0 & \\text{if } \\text{outputDrugKnowledgeMultiplier} \\ne 1 \\\\ \\lfloor \\lfloor \\frac{\\text{inputNumberStatusValue} \\times \\text{outputStatusAttackUpMultiplier} \\times \\text{outputStatusGuildPoogieMultiplier} \\times \\text{outputStatusSigilMultiplier} \\times \\text{outputFuriousMultiplier}}{10}\\rfloor \\times \\text{outputDrugKnowledgeMultiplier} \\times 0.658 \\rfloor & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
-	$: formulaValuesOutputDrugKnowledgeTotalTrueRaw = `${outputDrugKnowledgeTotalTrueRaw} = ${getDrugKnowledgeAddition(
-		outputDrugKnowledgeMultiplier,
-		inputNumberStatusValue,
-		outputStatusAttackUpMultiplier,
-		outputStatusGuildPoogieMultiplier,
-		outputStatusSigilMultiplier,
-	)}`;
 
 	const formulaOutputCritValue =
 		display(`\\text{outputCritValue} = \\text{getCritValue(
@@ -2316,12 +2291,12 @@
 		outputExpertAffinity,
 		outputIssenAffinity
 	)}`);
-	$: formulaValuesOutputCritValue = `${outputCritValue} = ${getCritValue(
-		outputStarvingWolfAffinity,
-		outputCeaselessAffinity,
-		outputExpertAffinity,
-		outputIssenAffinity,
-	)}`;
+	$: formulaValuesOutputCritValue = `${outputCritValue} = \\text{getCritValue}(
+		${outputStarvingWolfAffinity},
+		${outputCeaselessAffinity},
+		${outputExpertAffinity},
+		${outputIssenAffinity}
+	)`;
 
 	const formulaOutputOtherMultipliers =
 		display(`\\text{outputOtherMultipliers} =
@@ -2361,9 +2336,6 @@
 	${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\newline ${inputNumberHCModifiers}`;
 
 	// TODO more formulas
-	const formulaFlashConversion = display(
-		`\\text{Flash Conversion True Raw} = \\lfloor \\sqrt{\\text{Excess Affinity}} \\times 7 \\rfloor`,
-	);
 
 	let internalAffinity = 0;
 	let rarity: FrontierRarity = 1;
@@ -2396,7 +2368,7 @@
 	let inputSeedsFlutesCat = 'None';
 	let inputLanceHbg = 'None';
 	let inputLoneWolf = 'None';
-	let inputCritConversion = 'None';
+	let inputCritConversionUp = 'None';
 	let inputStylishAssault = 'None';
 	let inputConsumptionSlayer = 'None';
 	let inputObscurity = 'None';
@@ -2468,7 +2440,6 @@
 	let inputAbsoluteDefense = 'Active (1.0x)';
 	let inputPremiumBoost = 'Inactive (1x)';
 
-	let inputNumberCritConversion = 0;
 	let inputNumberRoadFloor = 0;
 	let inputNumberConquestAttack = 0;
 	let inputNumberVampirism = 0;
@@ -2542,7 +2513,7 @@
 		inputSeedsFlutesCat: inputSeedsFlutesCat,
 		inputLanceHbg: inputLanceHbg,
 		inputLoneWolf: inputLoneWolf,
-		inputCritConversion: inputCritConversion,
+		inputCritConversionUp: inputCritConversionUp,
 		inputStylishAssault: inputStylishAssault,
 		inputConsumptionSlayer: inputConsumptionSlayer,
 		inputObscurity: inputObscurity,
@@ -2614,7 +2585,6 @@
 		inputAbsoluteDefense: inputAbsoluteDefense,
 		inputPremiumBoost: inputPremiumBoost,
 
-		inputNumberCritConversion: inputNumberCritConversion,
 		inputNumberRoadFloor: inputNumberRoadFloor,
 		inputNumberConquestAttack: inputNumberConquestAttack,
 		inputNumberVampirism: inputNumberVampirism,
@@ -2783,18 +2753,6 @@
 
 	$: console.log(`outputWeaponTypeMultiplier: ${outputWeaponTypeMultiplier}`);
 
-	$: outputWeaponDisplayedAttack = Math.ceil(
-		inputNumberTrueRaw * outputWeaponTypeMultiplier,
-	);
-
-	$: console.log(`outputWeaponDisplayedAttack: ${outputWeaponDisplayedAttack}`);
-
-	$: outputTrueRaw = Math.ceil(
-		outputWeaponDisplayedAttack / outputWeaponTypeMultiplier,
-	);
-
-	$: console.log(`outputTrueRaw: ${outputTrueRaw}`);
-
 	$: outputRoadAdvLvFlr =
 		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAdvLvFlr)
 			?.value || 0;
@@ -2879,12 +2837,47 @@
 
 	$: console.log(`outputFuriousMultiplier: ${outputFuriousMultiplier}`);
 
-	$: outputCritConversionAttack =
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputCritConversion,
-		)?.value || 0;
+	$: outputCritConversionUpMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputCritConversionUp)
+			?.value || 0;
 
-	$: console.log(`outputCritConversionAttack: ${outputCritConversionAttack}`);
+	$: console.log(
+		`outputCritConversionUpMultiplier: ${outputCritConversionUpMultiplier}`,
+	);
+
+	let critConversionCalculatorTotalAffinity = 500;
+	let critConversionCalculatorCritConversionUp = 'Crit C. Up +1 (Z1)';
+	let critConversionCalculatorNaturalAffinity = 100;
+	let critConversionCalculatorFlashConversion = 'Critical Conversion (+30%)';
+
+	$: critConversionCalculatorCritConversionUpMultiplier =
+		multipliersDropdownItems.find(
+			(item) => item.name === critConversionCalculatorCritConversionUp,
+		)?.value || 0;
+	$: critConversionCalculatorFlashConversionAffinity =
+		affinityDropdownItems.find(
+			(item) => item.name === critConversionCalculatorFlashConversion,
+		)?.value || 0;
+	$: critConversionCalculatorTrueRaw = getCritConversionTrueRaw(
+		critConversionCalculatorTotalAffinity,
+		critConversionCalculatorCritConversionUpMultiplier,
+		critConversionCalculatorNaturalAffinity,
+		critConversionCalculatorFlashConversionAffinity,
+	);
+
+	$: critConversionCalculatorExcessAffinity = Math.max(
+		0,
+		critConversionCalculatorTotalAffinity - 100,
+	);
+
+	$: outputCritConversionTrueRaw = getCritConversionTrueRaw(
+		outputTotalAffinity,
+		outputCritConversionUpMultiplier,
+		inputNumberNaturalAffinity,
+		outputFlashConversionAffinity,
+	);
+
+	$: console.log(`outputCritConversionTrueRaw: ${outputCritConversionTrueRaw}`);
 
 	$: outputObscurityLevel =
 		multipliedBaseDropdownItems.find((item) => item.name === inputObscurity)
@@ -2901,7 +2894,11 @@
 		multipliedBaseDropdownItems.find((item) => item.name === inputIncitement)
 			?.value || 0;
 
-	$: outputLengthUpTrueRaw = getLengthAttackValue(inputLengthUp, outputTrueRaw);
+	/** Affects truerawvalue*/
+	$: outputLengthUpTrueRaw = getLengthAttackValue(
+		inputLengthUp,
+		inputNumberTrueRaw,
+	);
 
 	$: console.log(`outputLengthUpTrueRaw: ${outputLengthUpTrueRaw}`);
 
@@ -2912,7 +2909,7 @@ does not get multiplied by horn */
 		outputStylishAssault +
 		outputFuriousAttack +
 		outputVigorousAddition +
-		outputCritConversionAttack +
+		outputCritConversionTrueRaw +
 		inputNumberVampirism +
 		outputObscurityTotal +
 		outputIncitement;
@@ -2977,6 +2974,7 @@ does not get multiplied by horn */
 		outputStatusAttackUpMultiplier,
 		outputStatusGuildPoogieMultiplier,
 		outputStatusSigilMultiplier,
+		outputFuriousMultiplier,
 	);
 
 	$: console.log(
@@ -3059,7 +3057,7 @@ does not get multiplied by horn */
 	$: console.log(`outputRoadTowerAttack: ${outputRoadTowerAttack}`);
 
 	$: attackA =
-		inputNumberTrueRaw +
+		outputLengthUpTrueRaw +
 		outputPassives +
 		(inputNumberSigil1Attack +
 			inputNumberSigil2Attack +
@@ -3208,6 +3206,7 @@ does not get multiplied by horn */
 
 	$: console.log(`outputCompressedShotPower: ${outputCompressedShotPower}`);
 
+	// TODO unused?
 	$: outputCritValue = getCritValue(
 		outputStarvingWolfAffinity,
 		outputCeaselessAffinity,
@@ -3693,12 +3692,14 @@ does not get multiplied by horn */
 				internalAffinityFunctionString,
 				'ts',
 			);
+			critValueFunctionHTML = await renderShiki(critValueFunctionString, 'ts');
 			isShikiLoading = false;
 		})();
 	}
 
 	let inputsHTML = '';
 	let internalAffinityFunctionHTML = '';
+	let critValueFunctionHTML = '';
 
 	$: inputStatusIcon = StatusIcons.find((e) => e.name === inputStatus)?.icon;
 
@@ -3929,6 +3930,27 @@ does not get multiplied by horn */
 	];
 
 	let inputNumberAttackValue = 0;
+
+	const formulaFlashConversion = display(
+		`\\text{Flash Conversion True Raw} = \\lfloor \\sqrt{\\text{Excess Affinity}} \\times 7 \\rfloor`,
+	);
+
+	$: formulaValuesFlashConversion = `${Math.floor(Math.sqrt(critConversionCalculatorExcessAffinity >= 0 ? critConversionCalculatorExcessAffinity : 0) * 7)} = \\lfloor \\sqrt{${critConversionCalculatorExcessAffinity}} \\times 7 \\rfloor
+	`;
+
+	const formulaFlashConversionUp = display(
+		`\\text{Flash Conversion Up True Raw} = \\lfloor \\sqrt{\\text{Natural Affinity}} \\times \\text{critConversionUpMultiplier} \\rfloor`,
+	);
+
+	$: formulaValuesFlashConversionUp = `${Math.floor(
+		Math.sqrt(Math.max(0, critConversionCalculatorNaturalAffinity)) *
+			critConversionCalculatorCritConversionUpMultiplier,
+	)} = \\lfloor \\sqrt{${Math.max(0, critConversionCalculatorNaturalAffinity)}} \\times ${critConversionCalculatorCritConversionUpMultiplier} \\rfloor`;
+
+	$: flashConversionChartData = generateFlashConversionChartData(
+		critConversionCalculatorNaturalAffinity,
+		critConversionCalculatorCritConversionUpMultiplier,
+	);
 </script>
 
 <svelte:head>
@@ -4146,13 +4168,6 @@ does not get multiplied by horn */
 					<InlineNotification
 						title="Note:"
 						subtitle="Refreshing the page resets all values."
-						kind="info"
-						lowContrast
-					/>
-
-					<InlineNotification
-						title="Bugs:"
-						subtitle="If you notice an error with a calculation, you can send an issue on the GitHub repository."
 						kind="info"
 						lowContrast
 					/>
@@ -4587,24 +4602,13 @@ does not get multiplied by horn */
 
 									<Dropdown
 										titleText="Crit Conversion Up"
-										bind:selectedId={inputCritConversion}
+										bind:selectedId={inputCritConversionUp}
 										items={[
 											{ id: 'None', text: 'None' },
 											{ id: 'Crit C. Up +1 (Z1)', text: 'Crit C. Up +1 (Z1)' },
 											{ id: 'Crit C. Up +2 (Z1)', text: 'Crit C. Up +2 (Z1)' },
 										]}
 									/>
-									<div class="number-input-container">
-										<NumberInput
-											size="sm"
-											step={10}
-											min={minimumNumberValue}
-											max={maximumNumberValue}
-											bind:value={inputNumberCritConversion}
-											invalidText={invalidNumberValueText}
-											label={'Crit Conversion'}
-										/>
-									</div>
 									<Dropdown
 										titleText="Stylish Assault"
 										bind:selectedId={inputStylishAssault}
@@ -6834,13 +6838,22 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Formulas" />
+		<InlineNotification
+			title="Bugs:"
+			subtitle="If you notice an error with the damage calculator, you can send an issue on the GitHub repository."
+			kind="info"
+			lowContrast
+		/>
 		<p>
 			Below are the formulas for the above damage calculator. Your current
 			inputs values are reflected below each formula.
 		</p>
 		<section>
 			<SectionHeading title={'Internal True Raw'} level={3} />
-			{@html formulaInternalTrueRaw}
+			<div class="formula-container">
+				{@html formulaInternalTrueRaw}
+			</div>
+			<p>internalTrueRaw: {internalTrueRaw}</p>
 			<p>maxTrueRaw: {maxTrueRaw}</p>
 			<p>outputAttackCeiling: {outputAttackCeiling}</p>
 			<p>outputFlatAdditions: {outputFlatAdditions}</p>
@@ -6848,58 +6861,102 @@ does not get multiplied by horn */
 		</section>
 		<section>
 			<SectionHeading title={'Attack A'} level={3} />
-			{@html formulaOutputAttackA}
-			{@html display(formulaValuesOutputAttackA)}
+			<div class="formula-container">
+				{@html formulaOutputAttackA}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputAttackA)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Attack B'} level={3} />
-			{@html formulaOutputAttackB}
-			{@html display(formulaValuesOutputAttackB)}
+			<div class="formula-container">
+				{@html formulaOutputAttackB}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputAttackB)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Multipliers'} level={3} />
-			{@html formulaOutputMultipliers}
-			{@html display(formulaValuesOutputMultipliers)}
+			<div class="formula-container">
+				{@html formulaOutputMultipliers}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputMultipliers)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Flat Additions'} level={3} />
-			{@html formulaOutputFlatAdditions}
-			{@html display(formulaValuesOutputFlatAdditions)}
+			<div class="formula-container">
+				{@html formulaOutputFlatAdditions}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputFlatAdditions)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Internal Attack'} level={3} />
-			{@html formulaInternalAttack}
-			{@html display(formulaValuesOutputInternalAttack)}
+			<div class="formula-container">
+				{@html formulaInternalAttack}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputInternalAttack)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Internal Fire'} level={3} />
-			{@html formulaInternalFire}
-			{@html display(formulaValuesInternalFire)}
+			<div class="formula-container">
+				{@html formulaInternalFire}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesInternalFire)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Internal Water'} level={3} />
-			{@html formulaInternalWater}
-			{@html display(formulaValuesInternalWater)}
+			<div class="formula-container">
+				{@html formulaInternalWater}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesInternalWater)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Internal Thunder'} level={3} />
-			{@html formulaInternalThunder}
-			{@html display(formulaValuesInternalThunder)}
+			<div class="formula-container">
+				{@html formulaInternalThunder}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesInternalThunder)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Internal Ice'} level={3} />
-			{@html formulaInternalIce}
-			{@html display(formulaValuesInternalIce)}
+			<div class="formula-container">
+				{@html formulaInternalIce}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesInternalIce)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Internal Dragon'} level={3} />
-			{@html formulaInternalDragon}
-			{@html display(formulaValuesInternalDragon)}
+			<div class="formula-container">
+				{@html formulaInternalDragon}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesInternalDragon)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Internal Status'} level={3} />
-			{@html formulaInternalStatus}
-			{@html display(formulaValuesInternalStatus)}
+			<div class="formula-container">
+				{@html formulaInternalStatus}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesInternalStatus)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Internal Affinity'} level={3} />
@@ -6916,38 +6973,86 @@ does not get multiplied by horn */
 					</div>
 				{/if}
 			</div>
-			{@html formulaInternalAffinity}
-			{@html display(formulaValuesInternalAffinity)}
+			<div class="formula-container">
+				{@html formulaInternalAffinity}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesInternalAffinity)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Total Affinity'} level={3} />
-			{@html formulaOutputTotalAffinity}
-			{@html display(formulaValuesOutputTotalAffinity)}
+			<p>Used for Critical Conversion calculation.</p>
+			<div class="formula-container">
+				{@html formulaOutputTotalAffinity}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputTotalAffinity)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Drug Knowlege Total True Raw'} level={3} />
-			{@html formulaOutputDrugKnowledgeTotalTrueRaw}
-			{@html display(formulaValuesOutputDrugKnowledgeTotalTrueRaw)}
+			<div class="formula-container">
+				{@html formulaOutputDrugKnowledgeTotalTrueRaw}
+			</div>
+			<p>outputDrugKnowledgeTotalTrueRaw: {outputDrugKnowledgeTotalTrueRaw}</p>
+			<p>inputNumberStatusValue: {inputNumberStatusValue}</p>
+			<p>outputStatusAttackUpMultiplier: {outputStatusAttackUpMultiplier}</p>
+			<p>
+				outputStatusGuildPoogieMultiplier: {outputStatusGuildPoogieMultiplier}
+			</p>
+			<p>outputStatusSigilMultiplier: {outputStatusSigilMultiplier}</p>
+			<p>outputFuriousMultiplier: {outputFuriousMultiplier}</p>
+			<p>outputDrugKnowledgeMultiplier: {outputDrugKnowledgeMultiplier}</p>
 		</section>
 		<section>
 			<SectionHeading title={'Crit Value'} level={3} />
-			{@html formulaOutputCritValue}
-			{@html display(formulaValuesOutputCritValue)}
+			<div class="container-shiki">
+				{#if isShikiLoading}
+					<div class="shiki-loading">
+						<CodeSnippet type="multi" skeleton />
+					</div>
+				{:else}
+					<div class="shiki-code">
+						<CodeSnippet showMoreLess={false} hideCopyButton type="multi"
+							>{@html critValueFunctionHTML}</CodeSnippet
+						>
+					</div>
+				{/if}
+			</div>
+			<div class="formula-container">
+				{@html formulaOutputCritValue}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputCritValue)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Other Multipliers'} level={3} />
-			{@html formulaOutputOtherMultipliers}
-			{@html display(formulaValuesOutputOtherMultipliers)}
+			<div class="formula-container">
+				{@html formulaOutputOtherMultipliers}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputOtherMultipliers)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Status Assault Total'} level={3} />
-			{@html formulaOutputStatusUsedSA}
-			{@html display(formulaValuesOutputStatusUsedSA)}
+			<div class="formula-container">
+				{@html formulaOutputStatusUsedSA}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputStatusUsedSA)}
+			</div>
 		</section>
 		<section>
 			<SectionHeading title={'Monster Total Defense'} level={3} />
-			{@html formulaOutputMonsterTotalDefense}
-			{@html display(formulaValuesOutputMonsterTotalDefense)}
+			<div class="formula-container">
+				{@html formulaOutputMonsterTotalDefense}
+			</div>
+			<div class="formula-container">
+				{@html display(formulaValuesOutputMonsterTotalDefense)}
+			</div>
 		</section>
 	</section>
 
@@ -7344,8 +7449,12 @@ does not get multiplied by horn */
 
 			<div class="ice-age-formula">
 				<p>Formula:</p>
-				{@html formulaIceAgeDamagePerSecond}
-				{@html display(formulaValuesIceAgeDamagePerSecond)}
+				<div class="formula-container">
+					{@html formulaIceAgeDamagePerSecond}
+				</div>
+				<div class="formula-container">
+					{@html display(formulaValuesIceAgeDamagePerSecond)}
+				</div>
 			</div>
 			<div class="ice-age-calculator">
 				<div>
@@ -7536,8 +7645,54 @@ does not get multiplied by horn */
 			Adds 30% affinity and converts any excess affinity past 100% into extra
 			true raw.
 		</p>
-		<p>Formula:</p>
-		{@html formulaFlashConversion}
+		<p>Formulas:</p>
+		<div class="formula-container">
+			{@html formulaFlashConversion}
+			{@html display(formulaValuesFlashConversion)}
+			{@html formulaFlashConversionUp}
+			{@html display(formulaValuesFlashConversionUp)}
+		</div>
+		<div class="flash-conversion-calculator">
+			<Dropdown
+				titleText="Flash Conversion"
+				bind:selectedId={critConversionCalculatorFlashConversion}
+				items={[
+					{ id: 'None', text: 'None' },
+					{
+						id: 'Critical Conversion (+30%)',
+						text: 'Critical Conversion (+30%)',
+					},
+				]}
+			/>
+			<Dropdown
+				titleText="Crit Conversion Up"
+				bind:selectedId={critConversionCalculatorCritConversionUp}
+				items={[
+					{ id: 'None', text: 'None' },
+					{ id: 'Crit C. Up +1 (Z1)', text: 'Crit C. Up +1 (Z1)' },
+					{ id: 'Crit C. Up +2 (Z1)', text: 'Crit C. Up +2 (Z1)' },
+				]}
+			/>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					min={critConversionCalculatorNaturalAffinity}
+					bind:value={critConversionCalculatorTotalAffinity}
+					invalidText={'Wrong value, check your natural affinity.'}
+					label={'Total Affinity'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={10}
+					bind:value={critConversionCalculatorNaturalAffinity}
+					label={'Natural Affinity'}
+				/>
+			</div>
+			<p>Total True Raw: {critConversionCalculatorTrueRaw}</p>
+		</div>
 		<div>
 			{#if flashConversionChartLoaded}
 				<svelte:component
@@ -11325,6 +11480,14 @@ does not get multiplied by horn */
 		margin-top: 2rem;
 	}
 
+	.flash-conversion-calculator {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+		align-items: center;
+		margin: 1rem;
+	}
+
 	@media (min-width: 320px) {
 		.ice-age-calculator {
 			display: flex;
@@ -11500,5 +11663,10 @@ does not get multiplied by horn */
 		align-items: stretch;
 		width: 100%;
 		height: 100%;
+	}
+
+	.formula-container {
+		margin-bottom: 1rem;
+		margin-top: 1rem;
 	}
 </style>

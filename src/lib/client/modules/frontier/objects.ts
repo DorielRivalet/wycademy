@@ -142,6 +142,7 @@ import type {
 	FrontierRankBand,
 	FrontierSigil,
 	FrontierWeaponClass,
+	FrontierWeaponName,
 	FrontierZenithSkill,
 } from 'ezlion';
 
@@ -11912,15 +11913,6 @@ export const multipliedBaseDropdownItems: DropdownItemOption[] = [
 		value: 100,
 	},
 	{
-		name: 'Crit C. Up +1 (Z1)', // TODO
-		value: 0,
-	},
-	{
-		name: 'Crit C. Up +2 (Z1)',
-		value: 0,
-	},
-
-	{
 		name: 'S. Assault Up (+120) (Z1)',
 		value: 120,
 	},
@@ -12133,6 +12125,8 @@ export const multipliersDropdownItems: DropdownItemOption[] = [
 		name: 'None (1x)',
 		value: 1,
 	},
+	{ name: 'Crit C. Up +1 (Z1)', value: 5 },
+	{ name: 'Crit C. Up +2 (Z1)', value: 10 },
 	{
 		name: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)',
 		value: 1.05,
@@ -13201,6 +13195,33 @@ export const greatSwordCharges = [
 	{ name: 'Lv1 Charge', multiplier: 1.1 },
 	{ name: 'Lv2 Charge', multiplier: 1.2 },
 	{ name: 'Lv3 Charge', multiplier: 1.3 },
+];
+
+export const obscurityValues: {
+	weapons: FrontierWeaponName[];
+	values: number[];
+}[] = [
+	{
+		weapons: ['Sword and Shield', 'Lance', 'Gunlance', 'Tonfa'],
+		values: [
+			0, 40, 80, 120, 160, 200, 220, 240, 260, 280, 300, 70, 140, 210, 240, 270,
+			300,
+		],
+	},
+	{
+		weapons: ['Great Sword', 'Switch Axe F', 'Magnet Spike'],
+		values: [
+			0, 30, 60, 90, 120, 150, 165, 180, 195, 210, 225, 50, 100, 150, 175, 200,
+			225,
+		],
+	},
+	{
+		weapons: ['Long Sword'],
+		values: [
+			0, 20, 40, 60, 80, 100, 110, 120, 130, 140, 150, 30, 60, 90, 110, 130,
+			150,
+		],
+	},
 ];
 
 /*
