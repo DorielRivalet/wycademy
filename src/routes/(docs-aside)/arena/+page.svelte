@@ -2253,7 +2253,7 @@
 	\\text{outputExpertAffinity} +\\newline
 	\\text{inputNumberNaturalAffinity} +\\newline
 	\\text{outputFlashConversionAffinity} +\\newline
-	\\text{outputFGSActiveFeatureAffinity} +\\newline
+	\\text{outputGSActiveFeatureAffinity} +\\newline
 	\\text{outputDrinkAffinity} +\\newline
 	\\text{outputStarvingWolfAffinity} +\\newline
 	\\text{outputCeaselessAffinity} +\\newline
@@ -2269,7 +2269,7 @@
 	${outputExpertAffinity} +\\newline
 	${inputNumberNaturalAffinity} +\\newline
 	${outputFlashConversionAffinity} +\\newline
-	${outputFGSActiveFeatureAffinity} +\\newline
+	${outputGSActiveFeatureAffinity} +\\newline
 	${outputDrinkAffinity} +\\newline
 	${outputStarvingWolfAffinity} +\\newline
 	${outputCeaselessAffinity} +\\newline
@@ -2701,12 +2701,12 @@
 		`outputFlashConversionAffinity: ${outputFlashConversionAffinity}`,
 	);
 
-	$: outputFGSActiveFeatureAffinity =
+	$: outputGSActiveFeatureAffinity =
 		affinityDropdownItems.find((item) => item.name === inputGsActiveFeature)
 			?.value || 0;
 
 	$: console.log(
-		`outputFGSActiveFeatureAffinity: ${outputFGSActiveFeatureAffinity}`,
+		`outputGSActiveFeatureAffinity: ${outputGSActiveFeatureAffinity}`,
 	);
 
 	$: outputDrinkAffinity =
@@ -2721,10 +2721,11 @@
 
 	$: console.log(`outputAOEAffinityCount: ${outputAOEAffinityCount}`);
 
+	// TODO check this and ele
 	$: outputAOETotalAffinity =
 		outputAOEAffinityCount === 0 || inputNumberAOEAffinitySigil === 0
 			? 0
-			: 20 * outputAOEAffinityCount + outputAOEAffinityCount * 2;
+			: (20 + inputNumberAOEAffinitySigil * 2) * outputAOEAffinityCount;
 
 	$: console.log(`outputAOETotalAffinity: ${outputAOETotalAffinity}`);
 
@@ -2738,7 +2739,7 @@
 		outputExpertAffinity +
 		inputNumberNaturalAffinity +
 		outputFlashConversionAffinity +
-		outputFGSActiveFeatureAffinity +
+		outputGSActiveFeatureAffinity +
 		outputDrinkAffinity +
 		outputStarvingWolfAffinity +
 		outputCeaselessAffinity +
@@ -2806,7 +2807,7 @@
 	$: outputAOETotalAttack =
 		outputAOEAttackCount === 0 || inputNumberAOEAttackSigil === 0
 			? 0
-			: 25 * outputAOEAttackCount + inputNumberAOEAttackSigil * 5;
+			: (25 + inputNumberAOEAttackSigil * 5) * outputAOEAttackCount;
 
 	$: outputAOEElementCount =
 		sigilDropdownItems.find((item) => item.name === inputAoeElementSigil)
@@ -2845,8 +2846,28 @@
 		`outputCritConversionUpMultiplier: ${outputCritConversionUpMultiplier}`,
 	);
 
-	let critConversionCalculatorTotalAffinity = 500;
-	let critConversionCalculatorCritConversionUp = 'Crit C. Up +1 (Z1)';
+	let critConversionCalculatorIssenAffinity = '0';
+	let critConversionCalculatorSharpnessAffinity = '10';
+	let critConversionCalculatorSigil1Affinity = 15;
+	let critConversionCalculatorSigil2Affinity = 0;
+	let critConversionCalculatorSigil3Affinity = 0;
+	let critConversionCalculatorStyleRankAffinity = '26';
+	let critConversionCalculatorExpertAffinity = '100';
+	let critConversionCalculatorGSActiveFeatureAffinity = '0';
+	let critConversionCalculatorDrinkAffinity = '30';
+	let critConversionCalculatorStarvingWolfAffinity = '50';
+	let critConversionCalculatorCeaselessAffinity = '60';
+	let critConversionCalculatorFuriousAffinity = '40';
+	let critConversionCalculatorAOEAffinityCount = '1';
+	let critConversionCalculatorAOEAffinitySigil = 0;
+	$: critConversionCalculatorAOETotalAffinity =
+		Number(critConversionCalculatorAOEAffinityCount) === 0 ||
+		critConversionCalculatorAOEAffinitySigil === 0
+			? 0
+			: (20 + critConversionCalculatorAOEAffinitySigil * 2) *
+				Number(critConversionCalculatorAOEAffinityCount);
+
+	let critConversionCalculatorCritConversionUp = 'None';
 	let critConversionCalculatorNaturalAffinity = 100;
 	let critConversionCalculatorFlashConversion = 'Critical Conversion (+30%)';
 
@@ -2869,6 +2890,23 @@
 		0,
 		critConversionCalculatorTotalAffinity - 100,
 	);
+
+	$: critConversionCalculatorTotalAffinity =
+		Number(critConversionCalculatorIssenAffinity) +
+		Number(critConversionCalculatorSharpnessAffinity) +
+		critConversionCalculatorSigil1Affinity +
+		critConversionCalculatorSigil2Affinity +
+		critConversionCalculatorSigil3Affinity +
+		Number(critConversionCalculatorStyleRankAffinity) +
+		Number(critConversionCalculatorExpertAffinity) +
+		critConversionCalculatorNaturalAffinity +
+		critConversionCalculatorFlashConversionAffinity +
+		Number(critConversionCalculatorGSActiveFeatureAffinity) +
+		Number(critConversionCalculatorDrinkAffinity) +
+		Number(critConversionCalculatorStarvingWolfAffinity) +
+		Number(critConversionCalculatorCeaselessAffinity) +
+		Number(critConversionCalculatorFuriousAffinity) +
+		critConversionCalculatorAOETotalAffinity;
 
 	$: outputCritConversionTrueRaw = getCritConversionTrueRaw(
 		outputTotalAffinity,
@@ -3471,7 +3509,7 @@ does not get multiplied by horn */
 	$: outputAoeElement =
 		outputAOEElementCount === 0 || inputNumberAOEElementSigil === 0
 			? 0
-			: 50 * outputAOEElementCount + inputNumberAOEElementSigil * 50;
+			: (50 + inputNumberAOEElementSigil * 50) * outputAOEElementCount;
 
 	$: fireValueMultiplier = getElementMultiplier('Fire', inputElement);
 	$: waterValueMultiplier = getElementMultiplier('Water', inputElement);
@@ -7640,11 +7678,18 @@ does not get multiplied by horn */
 		</div>
 	</section>
 	<section>
-		<SectionHeading level={2} title="Crit Conversion" />
-		<p>
+		<SectionHeading level={2} title="Critical Conversion / Flash Conversion" />
+		<p class="spaced-paragraph">
 			Adds 30% affinity and converts any excess affinity past 100% into extra
 			true raw.
 		</p>
+		<p class="spaced-paragraph">
+			Critical Conversion Up only uses the base affinity of your weapon (natural affinity). Sigils,
+			Skills, SR Skills and the +5-10% from having above blue sharpness do not
+			count towards the increase. In game, the sharpness bonus is always
+			displayed, so deduct 10% from most weapons for getting the correct value.
+		</p>
+		<p class="spaced-paragraph">The zenith skill does not need you to have over 100% affinity for it to take effect.</p>
 		<p>Formulas:</p>
 		<div class="formula-container">
 			{@html formulaFlashConversion}
@@ -7677,22 +7722,206 @@ does not get multiplied by horn */
 				<NumberInput
 					size="sm"
 					step={10}
-					min={critConversionCalculatorNaturalAffinity}
-					bind:value={critConversionCalculatorTotalAffinity}
-					invalidText={'Wrong value, check your natural affinity.'}
-					label={'Total Affinity'}
+					bind:value={critConversionCalculatorNaturalAffinity}
+					label={'Natural Affinity'}
 				/>
 			</div>
 			<div class="number-input-container">
 				<NumberInput
 					size="sm"
-					step={10}
-					bind:value={critConversionCalculatorNaturalAffinity}
-					label={'Natural Affinity'}
+					step={1}
+					bind:value={critConversionCalculatorSigil1Affinity}
+					label={'Sigil 1 Affinity'}
 				/>
 			</div>
-			<p>Total True Raw: {critConversionCalculatorTrueRaw}</p>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={1}
+					bind:value={critConversionCalculatorSigil2Affinity}
+					label={'Sigil 2 Affinity'}
+				/>
+			</div>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={1}
+					bind:value={critConversionCalculatorSigil3Affinity}
+					label={'Sigil 3 Affinity'}
+				/>
+			</div>
+			<Dropdown
+				titleText="AOE Affinity Sigil Hunters"
+				bind:selectedId={critConversionCalculatorAOEAffinityCount}
+				items={[
+					{ id: '1', text: '1 Hunter' },
+					{ id: '2', text: '2 Hunters' },
+					{ id: '3', text: '3 Hunters' },
+					{ id: '4', text: '4 Hunters' },
+				]}
+			/>
+			<div class="number-input-container">
+				<NumberInput
+					size="sm"
+					step={1}
+					min={0}
+					max={15}
+					bind:value={critConversionCalculatorAOEAffinitySigil}
+					invalidText={'Invalid value'}
+					label={'AOE Sigil Affinity'}
+				/>
+			</div>
+			<Dropdown
+				titleText="Issen Skills"
+				bind:selectedId={critConversionCalculatorIssenAffinity}
+				items={[
+					{
+						id: '0',
+						text: 'None or Determination',
+					},
+					{
+						id: '5',
+						text: 'Issen +1 (+5% / +0.10x)',
+					},
+					{
+						id: '10',
+						text: 'Issen +2 (+10% / +0.15x)',
+					},
+					{
+						id: '20',
+						text: 'Issen +3 (+20% / +0.25x)',
+					},
+				]}
+			/>
+			<Dropdown
+				titleText="Melee Sharpness"
+				bind:selectedId={critConversionCalculatorSharpnessAffinity}
+				items={[
+					{
+						id: '0',
+						text: 'Below Blue or Gunners (+0%)',
+					},
+					{ id: '5', text: 'Blue (+5%)' },
+					{
+						id: '10',
+						text: 'White Upwards (+10%)',
+					},
+				]}
+			/>
+			<Dropdown
+				titleText="Style Rank Affinity"
+				bind:selectedId={critConversionCalculatorStyleRankAffinity}
+				items={[
+					{ id: '0', text: 'None' },
+					{
+						id: '20',
+						text: 'Affinity +20% (+20%)',
+					},
+					{
+						id: '24',
+						text: 'Affinity +24% (+24%)',
+					},
+					{
+						id: '26',
+						text: 'Affinity +26% (+26%)',
+					},
+				]}
+			/>
+			<Dropdown
+				titleText="Expert Skills"
+				bind:selectedId={critConversionCalculatorExpertAffinity}
+				items={[
+					{ id: '0', text: 'None' },
+					{ id: '10', text: 'Expert +1 (+10%)' },
+					{ id: '20', text: 'Expert +2 (+20%)' },
+					{ id: '30', text: 'Expert +3 (+30%)' },
+					{ id: '40', text: 'Expert +4 (+40%)' },
+					{ id: '50', text: 'Expert +5 (+50%)' },
+					{
+						id: '100',
+						text: 'Determination (+100%)',
+					},
+				]}
+			/>
+			<Dropdown
+				titleText="GS Active Feature"
+				bind:selectedId={critConversionCalculatorGSActiveFeatureAffinity}
+				items={[
+					{ id: '0', text: 'None' },
+					{
+						id: '100',
+						text: 'Unsheathe and Parry Attacks (+100%)',
+					},
+				]}
+			/>
+			<Dropdown
+				titleText="Affinity Items"
+				bind:selectedId={critConversionCalculatorDrinkAffinity}
+				items={[
+					{ id: '0', text: 'None' },
+					{
+						id: '10',
+						text: 'Caravan Whetstone (+10%)',
+					},
+					{ id: '30', text: 'Halk Drink (+30%)' },
+					{ id: '40', text: 'Both (+40%)' },
+				]}
+			/>
+			<Dropdown
+				titleText="Starving Wolf"
+				bind:selectedId={critConversionCalculatorStarvingWolfAffinity}
+				items={[
+					{ id: '0', text: 'None (1x)' },
+					{
+						id: '50',
+						text: 'Starving Wolf +1 or +2 (+50%)',
+					},
+				]}
+			/>
+			<Dropdown
+				titleText="Ceaseless"
+				bind:selectedId={critConversionCalculatorCeaselessAffinity}
+				items={[
+					{ id: '0', text: 'None (1x)' },
+					{
+						id: '35',
+						text: 'Ceaseless 1st Stage (+35% / +0.10x)',
+					},
+					{
+						id: '50',
+						text: 'Ceaseless 2nd Stage (+50% / +0.15x)',
+					},
+					{
+						id: '60',
+						text: 'Ceaseless Up 3rd Stage (+60% / +0.20x)',
+					},
+				]}
+			/>
+			<Dropdown
+				titleText="Furious"
+				bind:selectedId={critConversionCalculatorFuriousAffinity}
+				items={[
+					{
+						id: '0',
+						text: 'None (x1 Ele & Status)',
+					},
+					{
+						id: '10',
+						text: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)',
+					},
+					{
+						id: '25',
+						text: '2nd Stage (+100 / 1.10x Ele & Status / +25% Affinity)',
+					},
+					{
+						id: '40',
+						text: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
+					},
+				]}
+			/>
 		</div>
+		<p>Total Affinity: {critConversionCalculatorTotalAffinity}</p>
+		<p>Total True Raw: {critConversionCalculatorTrueRaw}</p>
 		<div>
 			{#if flashConversionChartLoaded}
 				<svelte:component
