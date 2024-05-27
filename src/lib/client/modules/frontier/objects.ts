@@ -11591,6 +11591,47 @@ export const gunlanceShellValues = [
 	44, 57, 63, 68, 107, 119, 133, 153,
 ];
 
+export const affinityBaseCritMultiplierBonusDropdownItems: DropdownItemOption[] =
+	[
+		{
+			name: 'Issen +1 (+5% / +0.10x)',
+			value: 0.1,
+		},
+		{
+			name: 'Issen +2 (+10% / +0.15x)',
+			value: 0.15,
+		},
+		{
+			name: 'Issen +3 (+20% / +0.25x)',
+			value: 0.25,
+		},
+		{
+			name: 'Ceaseless 1st Stage (+35% / +0.10x)',
+			value: 0.1,
+		},
+		{
+			name: 'Ceaseless 2nd Stage (+50% / +0.15x)',
+			value: 0.15,
+		},
+		{
+			name: 'Ceaseless Up 3rd Stage (+60% / +0.20x)',
+			value: 0.2,
+		},
+		{
+			name: 'Starving Wolf+2 (+50% / +0.10x)',
+			value: 0.1,
+		},
+		{
+			name: 'Determination (+100%)',
+			value: 0.25,
+		},
+
+		// {
+		// 	name: '1.8x LBG & Bow Crit Distance',
+		// 	value: 1.8,
+		// },
+	];
+
 export const affinityDropdownItems: DropdownItemOption[] = [
 	{
 		name: 'None',

@@ -27,6 +27,7 @@
 		oldBlademasterSharpness,
 		greatSwordCharges,
 		obscurityValues,
+		affinityBaseCritMultiplierBonusDropdownItems,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -1165,7 +1166,7 @@
 				critMultiplier = 1.0;
 			} else {
 				if (inputCritMode === 'All Crits') {
-					critMultiplier = inputNumberCritMultiplier;
+					critMultiplier = outputCritMultiplier;
 					totalAffinityUsed = 100;
 				} else if (inputCritMode === 'Averaged') {
 					totalAffinityUsed =
@@ -1187,7 +1188,7 @@
 						totalAffinityUsed = 0;
 					}
 					critMultiplier =
-						(totalAffinityUsed / 100) * inputNumberCritMultiplier +
+						(totalAffinityUsed / 100) * outputCritMultiplier +
 						(1 - totalAffinityUsed / 100) * 1;
 				} else {
 					critMultiplier = 1.0;
@@ -1780,8 +1781,6 @@
 			newInputs.inputNumberSigil3Affinity || inputNumberSigil3Affinity;
 		inputNumberAOEAffinitySigil =
 			newInputs.inputNumberAOEAffinitySigil || inputNumberAOEAffinitySigil;
-		inputNumberCritMultiplier =
-			newInputs.inputNumberCritMultiplier || inputNumberCritMultiplier;
 		inputNumberLanceImpactMultiplier =
 			newInputs.inputNumberLanceImpactMultiplier ||
 			inputNumberLanceImpactMultiplier;
@@ -1881,7 +1880,10 @@
 	) {
 		let drugKnowledgeRaw = 0;
 
-		if (outputDrugKnowledgeMultiplier !== 1) {
+		if (
+			outputDrugKnowledgeMultiplier === 0.42 ||
+			outputDrugKnowledgeMultiplier === 0.38
+		) {
 			drugKnowledgeRaw = Math.floor(
 				Math.floor(
 					(inputStatusValue *
@@ -1961,37 +1963,52 @@
 		inputStatusAttackUp = abnormalityToggleValue ? 'On (1.125x)' : 'None (1x)';
 	}
 
+	function setIssenValues(expertValue: boolean) {
+		inputIssenSkills = expertValue ? 'None or Determination' : inputIssenSkills;
+	}
+
+	/**The inputIssenSkills side-effect is handled by an on:select event in the dropdown*/
 	function getCritValue(
-		outputStarvingWolfAffinity: number,
-		outputCeaselessAffinity: number,
-		outputExpertAffinity: number,
-		outputIssenAffinity: number,
+		inputStarvingWolf: string,
+		inputCeaseless: string,
+		inputExpertSkills: string,
+		inputIssenSkills: string,
+		outputTotalAffinity: number,
 	) {
-		let result = 1.25;
-		if (outputStarvingWolfAffinity === 2) {
-			result = result + 0.1;
+		if (outputTotalAffinity === 0) {
+			return 1;
 		}
 
-		if (outputCeaselessAffinity === 1) {
-			result = result + 0.1;
-		} else if (outputCeaselessAffinity === 2) {
-			result = result + 0.15;
-		} else if (outputCeaselessAffinity === 3) {
-			result = result + 0.2;
+		if (outputTotalAffinity < 0) {
+			return 0.75;
 		}
 
-		if (outputExpertAffinity === 100) {
-			result = result + 0.25;
-			inputIssenSkills = 'None or Determination';
-		} else if (outputIssenAffinity === 5) {
-			result = result + 0.1;
-		} else if (outputIssenAffinity === 10) {
-			result = result + 0.15;
-		} else if (outputIssenAffinity === 20) {
-			result = result + 0.25;
-		}
+		let baseCritMultiplier = 1.25;
 
-		return result.toFixed(2);
+		let starvingWolfBonusMultiplier =
+			affinityBaseCritMultiplierBonusDropdownItems.find(
+				(e) => e.name === inputStarvingWolf,
+			)?.value || 0;
+		let ceaselessBonusMultiplier =
+			affinityBaseCritMultiplierBonusDropdownItems.find(
+				(e) => e.name === inputCeaseless,
+			)?.value || 0;
+		let expertBonusMultiplier =
+			affinityBaseCritMultiplierBonusDropdownItems.find(
+				(e) => e.name === inputExpertSkills,
+			)?.value || 0;
+		let issenBonusMultiplier =
+			affinityBaseCritMultiplierBonusDropdownItems.find(
+				(e) => e.name === inputIssenSkills,
+			)?.value || 0;
+
+		return (
+			baseCritMultiplier +
+			starvingWolfBonusMultiplier +
+			ceaselessBonusMultiplier +
+			expertBonusMultiplier +
+			issenBonusMultiplier
+		);
 	}
 
 	/** Elemental Exploit or Dissolver for melee. proceleex*/
@@ -2162,37 +2179,56 @@
 		}
 	}`;
 
-	const critValueFunctionString = `function getCritValue(
-		outputStarvingWolfAffinity: number,
-		outputCeaselessAffinity: number,
-		outputExpertAffinity: number,
-		outputIssenAffinity: number,
+	const critValueFunctionString = `	function getCritValue(
+		inputStarvingWolf: string,
+		inputCeaseless: string,
+		inputExpertSkills: string,
+		inputIssenSkills: string,
+		outputTotalAffinity: number,
 	) {
-		let result = 1.25;
-		if (outputStarvingWolfAffinity === 2) {
-			result = result + 0.1;
+		if (outputTotalAffinity === 0) {
+			return 1;
 		}
 
-		if (outputCeaselessAffinity === 1) {
-			result = result + 0.1;
-		} else if (outputCeaselessAffinity === 2) {
-			result = result + 0.15;
-		} else if (outputCeaselessAffinity === 3) {
-			result = result + 0.2;
+		if (outputTotalAffinity < 0) {
+			return 0.75;
 		}
 
-		if (outputExpertAffinity === 100) {
-			result = result + 0.25;
-			inputIssenSkills = 'None or Determination';
-		} else if (outputIssenAffinity === 5) {
-			result = result + 0.1;
-		} else if (outputIssenAffinity === 10) {
-			result = result + 0.15;
-		} else if (outputIssenAffinity === 20) {
-			result = result + 0.25;
+		let baseCritMultiplier = 1.25;
+
+		let starvingWolfBonusMultiplier =
+			affinityBaseCritMultiplierBonusDropdownItems.find(
+				(e) => e.name === inputStarvingWolf,
+			)?.value || 1;
+		let ceaselessBonusMultiplier =
+			affinityBaseCritMultiplierBonusDropdownItems.find(
+				(e) => e.name === inputCeaseless,
+			)?.value || 1;
+		let expertBonusMultiplier =
+			affinityBaseCritMultiplierBonusDropdownItems.find(
+				(e) => e.name === inputExpertSkills,
+			)?.value || 1;
+
+		if (expertBonusMultiplier > 1) {
+			return (
+				baseCritMultiplier +
+				starvingWolfBonusMultiplier +
+				ceaselessBonusMultiplier +
+				expertBonusMultiplier
+			);
 		}
 
-		return result.toFixed(2);
+		let issenBonusMultiplier =
+			affinityBaseCritMultiplierBonusDropdownItems.find(
+				(e) => e.name === inputIssenSkills,
+			)?.value || 1;
+
+		return (
+			baseCritMultiplier +
+			starvingWolfBonusMultiplier +
+			ceaselessBonusMultiplier +
+			issenBonusMultiplier
+		);
 	}`;
 
 	const formulaInternalAffinity =
@@ -2458,7 +2494,6 @@
 	let inputNumberSigil2Affinity = 0;
 	let inputNumberSigil3Affinity = 0;
 	let inputNumberAOEAffinitySigil = 0;
-	let inputNumberCritMultiplier = 1.5;
 	let inputNumberLanceImpactMultiplier = 1;
 	let inputNumberTranscendRawMultiplier = 1;
 	let inputNumberRavientePowerSwordCrystalsMultiplier = 1;
@@ -2603,7 +2638,6 @@
 		inputNumberSigil2Affinity: inputNumberSigil2Affinity,
 		inputNumberSigil3Affinity: inputNumberSigil3Affinity,
 		inputNumberAOEAffinitySigil: inputNumberAOEAffinitySigil,
-		inputNumberCritMultiplier: inputNumberCritMultiplier,
 		inputNumberLanceImpactMultiplier: inputNumberLanceImpactMultiplier,
 		inputNumberTranscendRawMultiplier: inputNumberTranscendRawMultiplier,
 		inputNumberRavientePowerSwordCrystalsMultiplier:
@@ -2981,7 +3015,6 @@ does not get multiplied by horn */
 
 	$: console.log(`outputSeedAttack: ${outputSeedAttack}`);
 
-	// TODO?
 	$: outputDrugKnowledgeMultiplier =
 		statusSkillsDropdownItems.find((item) => item.name === inputDrugKnowledge)
 			?.value || 1;
@@ -3244,13 +3277,15 @@ does not get multiplied by horn */
 
 	$: console.log(`outputCompressedShotPower: ${outputCompressedShotPower}`);
 
-	// TODO unused?
 	$: outputCritValue = getCritValue(
-		outputStarvingWolfAffinity,
-		outputCeaselessAffinity,
-		outputExpertAffinity,
-		outputIssenAffinity,
+		inputStarvingWolf,
+		inputCeaseless,
+		inputExpertSkills,
+		inputIssenSkills,
+		outputTotalAffinity,
 	);
+
+	$: outputCritMultiplier = Number(outputCritValue.toFixed(2));
 
 	$: console.log(`outputCritValue: ${outputCritValue}`);
 
@@ -3652,29 +3687,16 @@ does not get multiplied by horn */
 
 	$: bentoSectionValue = getBentoSectionValues(bentoSection);
 
-	// TODO i dont need ternary?
-	$: internalStatus =
-		inputDrugKnowledge !== 'None (1x)'
-			? Math.floor(
-					Math.floor(
-						inputNumberStatusValue *
-							outputStatusAttackUpMultiplier *
-							outputStatusGuildPoogieMultiplier *
-							outputStatusSigilMultiplier *
-							outputWeaponStatusModifiers *
-							outputFuriousMultiplier,
-					) * outputDrugKnowledgeMultiplier,
-				)
-			: Math.floor(
-					Math.floor(
-						inputNumberStatusValue *
-							outputStatusAttackUpMultiplier *
-							outputStatusGuildPoogieMultiplier *
-							outputStatusSigilMultiplier *
-							outputWeaponStatusModifiers *
-							outputFuriousMultiplier,
-					),
-				);
+	$: internalStatus = Math.floor(
+		Math.floor(
+			inputNumberStatusValue *
+				outputStatusAttackUpMultiplier *
+				outputStatusGuildPoogieMultiplier *
+				outputStatusSigilMultiplier *
+				outputWeaponStatusModifiers *
+				outputFuriousMultiplier,
+		) * outputDrugKnowledgeMultiplier,
+	);
 
 	/**StatusUsedSA*/
 	$: outputStatusUsedSA = Math.floor(
@@ -4332,6 +4354,10 @@ does not get multiplied by horn */
 									<Dropdown
 										titleText="Expert Skills"
 										bind:selectedId={inputExpertSkills}
+										on:select={(e) =>
+											setIssenValues(
+												inputExpertSkills === 'Determination (+100%)',
+											)}
 										items={[
 											{ id: 'None', text: 'None' },
 											{ id: 'Expert +1 (+10%)', text: 'Expert +1 (+10%)' },
@@ -4360,6 +4386,7 @@ does not get multiplied by horn */
 									<Dropdown
 										titleText="Issen Skills"
 										bind:selectedId={inputIssenSkills}
+										disabled={inputExpertSkills === 'Determination (+100%)'}
 										items={[
 											{
 												id: 'None or Determination',
@@ -5599,10 +5626,7 @@ does not get multiplied by horn */
 										<NumberInput
 											size="sm"
 											step={10}
-											min={minimumNumberValue}
-											max={maximumNumberValue}
 											bind:value={inputNumberNaturalAffinity}
-											invalidText={invalidNumberValueText}
 											label={'Natural Affinity'}
 										/>
 									</div>
@@ -5662,18 +5686,6 @@ does not get multiplied by horn */
 											{ id: '4 Sigils', text: '4 Sigils' },
 										]}
 									/>
-
-									<div class="number-input-container">
-										<NumberInput
-											size="sm"
-											step={10}
-											min={minimumNumberValue}
-											max={maximumNumberValue}
-											bind:value={inputNumberCritMultiplier}
-											invalidText={invalidNumberValueText}
-											label={'Crit Multiplier'}
-										/>
-									</div>
 
 									<Dropdown
 										titleText="Crit Mode"
@@ -7046,7 +7058,7 @@ does not get multiplied by horn */
 			<p>outputDrugKnowledgeMultiplier: {outputDrugKnowledgeMultiplier}</p>
 		</section>
 		<section>
-			<SectionHeading title={'Crit Value'} level={3} />
+			<SectionHeading title={'Critical Multiplier'} level={3} />
 			<div class="container-shiki">
 				{#if isShikiLoading}
 					<div class="shiki-loading">
