@@ -25,6 +25,7 @@
 		bentoValues,
 		LocationIcons,
 		oldBlademasterSharpness,
+		greatSwordCharges,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -93,6 +94,7 @@
 	import Pagination from 'carbon-components-svelte/src/Pagination/Pagination.svelte';
 	import ezlion from 'ezlion';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
+	import { type BundledLanguage } from 'shiki/langs';
 
 	let flashConversionChartLoaded = false;
 	let flashConversionChart: ComponentType<LineChart>;
@@ -814,17 +816,18 @@
 		weaponType: FrontierWeaponName,
 		statusType: FrontierStatus,
 	) {
-		if (statusType === 'Poison') {
-			return (
-				WeaponTypes.find((w) => w.name === weaponType)?.statusAssaultPoison || 0
-			);
-		} else if (statusType === 'Paralysis') {
-			return (
-				WeaponTypes.find((w) => w.name === weaponType)
-					?.statusAssaultParalysis || 0
-			);
-		} else {
+		let weapon = WeaponTypes.find((w) => w.name === weaponType);
+		if (!weapon) {
 			return 0;
+		}
+
+		switch (statusType) {
+			case 'Poison':
+				return weapon.statusAssaultPoison;
+			case 'Paralysis':
+				return weapon.statusAssaultParalysis;
+			default:
+				return 0;
 		}
 	}
 
@@ -905,8 +908,8 @@
 				id: '',
 				name: '',
 				motion: '', // TODO they are wrong motions
-				raw: '0', // TODO
-				element: '0', // TODO the rest
+				raw: '0',
+				element: '0',
 				total: '0',
 				fire: '0',
 				water: '0',
@@ -980,7 +983,6 @@
 			inputNumberDragonHitzone,
 		);
 
-		// TODO?
 		let rawHitzoneMultiplier = getExploitWeakness(
 			weaponClass,
 			inputNumberRawHitzone,
@@ -1135,13 +1137,14 @@
 			let thunderOutput = 0;
 			let iceOutput = 0;
 			let dragonOutput = 0;
+			/**statassmult*/
 			let statusAssaultMultiplier = 1;
 			let additional = 0;
+			/**statusassault*/
 			let statusAssault = 0;
 
 			// handle motions with additional properties
 			if (element.name === 'Custom Motion') {
-				// TODO
 				motionValue = inputNumberTotalMotionValue;
 				hitCount = inputNumberHitCount;
 				elementMultiplier = inputNumberElementalMultiplier;
@@ -1160,7 +1163,7 @@
 					totalAffinityUsed =
 						outputIssenAffinity +
 						outputSharpnessAffinity +
-						inputNumberUnlimitedSigil + // TODO?
+						inputNumberUnlimitedSigil +
 						inputNumberSigil1Affinity +
 						inputNumberSigil2Affinity +
 						inputNumberSigil3Affinity +
@@ -1197,19 +1200,6 @@
 					);
 					critMultiplier = 1.0;
 					motionValue = 0;
-
-					console.log('Sns Sigil added');
-					console.log(`SwordAndShieldSigilAdded: ${SwordAndShieldSigilAdded}`);
-					console.log(
-						`getMaxTrueRaw(internalTrueRaw): ${getMaxTrueRaw(internalTrueRaw)}`,
-					);
-					console.log(
-						`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`,
-					);
-					console.log(`rawHitzoneMultiplier: ${rawHitzoneMultiplier}`);
-					console.log(
-						`outputMonsterTotalDefense: ${outputMonsterTotalDefense}`,
-					);
 				} else {
 					motionValue = 0;
 					SwordAndShieldSigilAdded = 0;
@@ -1219,16 +1209,9 @@
 			}
 
 			// GS Charges
-			// TODO object
-			if (element.name === 'Lv1 Charge') {
-				flagMultiplier = 1.1;
-			} else if (element.name === 'Lv2 Charge') {
-				flagMultiplier = 1.2;
-			} else if (element.name === 'Lv3 Charge') {
-				flagMultiplier = 1.3;
-			} else {
-				flagMultiplier = 1;
-			}
+			flagMultiplier =
+				greatSwordCharges.find((e) => e.name === 'element.name')?.multiplier ||
+				1;
 
 			fireOutput = Math.floor(
 				Math.floor(usedFire * outputMonsterTotalDefense) *
@@ -1274,8 +1257,9 @@
 
 			// Additional including status assault
 			// Status active, poison or paralysis
+			// TODO this is wrong
 			if (
-				inputStatusAttackUp === 'On (For Sleep add +10 raw hitbox)' &&
+				inputStatusAssault === 'On (For Sleep add +10 raw hitbox)' &&
 				inputStatus !== 'None'
 			) {
 				// Check for enough to deal status
@@ -1334,7 +1318,7 @@
 									outputSharpnessMultiplier *
 									flagMultiplier *
 									outputSwordAndShieldMultiplier *
-									outputOtherMultipliers * // TODO
+									outputOtherMultipliers *
 									outputMonsterStatusInflictedMultiplier *
 									rawHitzoneMultiplier) /
 									100,
@@ -1408,8 +1392,6 @@
 
 			console.log(outputSharpnessMultiplier);
 			console.log('-end-');
-
-			internalAffinity = totalAffinityUsed;
 
 			console.log(
 				`name: ${element.name}\nmotion: ${element.values}\nraw: ${rawOutput.toString()}`,
@@ -1886,7 +1868,7 @@
 	function getDrugKnowledgeAddition(
 		outputDrugKnowledgeMultiplier: number,
 		inputStatusValue: number,
-		outputStatusAttack: number,
+		outputStatusAttackUpMultiplier: number,
 		outputStatusGuildPoogieMultiplier: number,
 		outputStatusSigilMultiplier: number,
 	) {
@@ -1895,7 +1877,7 @@
 		if (outputDrugKnowledgeMultiplier !== 1) {
 			drugKnowledgeRaw = Math.floor(
 				Math.floor(
-					(inputStatusValue * // TODO input?
+					(inputStatusValue *
 						outputStatusAttackUpMultiplier *
 						outputStatusGuildPoogieMultiplier *
 						outputStatusSigilMultiplier *
@@ -2004,21 +1986,14 @@
 		return obscurity;
 	}
 
-	// TODO
 	function setAbnormalityValues(abnormalityToggleValue: boolean) {
-		let drugKnowledgeToggle = false;
-		let statusAssaultToggle = false;
-		let statusStatusAttackMultiplier = 1;
-
-		if (abnormalityToggleValue) {
-			drugKnowledgeToggle = true;
-			statusAssaultToggle = true;
-			statusStatusAttackMultiplier = 1.125;
-		} else {
-			drugKnowledgeToggle = false;
-			statusAssaultToggle = false;
-			statusStatusAttackMultiplier = 1;
-		}
+		inputDrugKnowledge = abnormalityToggleValue
+			? 'Standard (0.38x Status)'
+			: 'None (1x)';
+		inputStatusAssault = abnormalityToggleValue
+			? 'On (For Sleep add +10 raw hitzone)'
+			: 'None';
+		inputStatusAttackUp = abnormalityToggleValue ? 'On (1.125x)' : 'None (1x)';
 	}
 
 	function getCritValue(
@@ -2063,41 +2038,15 @@
 	) {
 		// TODO Gunner
 		let result = 0;
-		let modifier = 0;
-		let huntingHornDebuff = 0;
-
-		// TODO to object
-		switch (weaponName) {
-			case 'Sword and Shield':
-			case 'Great Sword':
-			case 'Long Sword':
-			case 'Hammer':
-			case 'Hunting Horn':
-			case 'Lance':
-			case 'Switch Axe F':
-			case 'Magnet Spike':
-				modifier = 15;
-				break;
-			case 'Dual Swords':
-			case 'Gunlance':
-			case 'Light Bowgun':
-				modifier = 10;
-				break;
-			case 'Heavy Bowgun':
-			case 'Bow':
-				modifier = 5;
-				break;
-		}
-
-		if (
+		let huntingHornDebuff =
 			inputHuntingHornDebuff ===
 				'Elemental Weakness (+4 on all Elemental Hitzones)' ||
 			inputHuntingHornDebuff === 'Both (+4 on Elemental, +2 on Raw)'
-		) {
-			huntingHornDebuff = 4;
-		} else {
-			huntingHornDebuff = 0;
-		}
+				? 4
+				: 0;
+		let modifier =
+			WeaponTypes.find((e) => e.name === weaponName)
+				?.elementalExploitModifier || 0;
 
 		if (
 			inputElementalExploiter !== 'None' &&
@@ -2116,6 +2065,7 @@
 		} else {
 			result = huntingHornDebuff + hitzone;
 		}
+
 		return result;
 	}
 
@@ -2158,10 +2108,10 @@
 	const invalidNumberValueText = `Invalid value. Must be between ${minimumNumberValue} and ${maximumNumberValue}`;
 
 	const formulaOutputAttackA =
-		display(`\\text{Attack A} = \\text{inputNumberTrueRaw} +\\newline \\text{outputPassives} +\\newline (\\text{inputNumberSigil1Attack} + \\text{inputNumberSigil2Attack} + \\text{inputNumberSigil3Attack}) +\\newline \\text{inputNumberConquestAttack} +\\newline \\text{outputAttackMedicine} +\\newline \\text{outputAttackSkill} +\\newline \\text{outputFoodAttack} +\\newline \\text{outputSeedAttack} +\\newline \\text{inputNumberStyleRankAttack} +\\newline \\text{inputNumberUnlimitedSigil} +\\newline \\text{outputDrugKnowledgeMultiplierTotal} +\\newline \\text{outputDuremudiraAttack} +\\newline \\text{outputLoneWolfAttack} +\\newline \\text{outputCaravanAddition} +\\newline \\text{outputShiriagariAttack} +\\newline \\text{outputRoadAdvancement} +\\newline \\lfloor \\text{outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline \\text{outputConsumptionSlayerAttack} +\\newline \\text{outputRoadLastStandAttack} +\\newline \\text{outputLanceRedPhialAttack} +\\newline \\text{outputRoadTowerAttack} +\\newline \\text{outputZenithTotalAttack} +\\newline \\text{outputAOETotalAttack}
+		display(`\\text{Attack A} = \\text{inputNumberTrueRaw} +\\newline \\text{outputPassives} +\\newline (\\text{inputNumberSigil1Attack} + \\text{inputNumberSigil2Attack} + \\text{inputNumberSigil3Attack}) +\\newline \\text{inputNumberConquestAttack} +\\newline \\text{outputAttackMedicine} +\\newline \\text{outputAttackSkill} +\\newline \\text{outputFoodAttack} +\\newline \\text{outputSeedAttack} +\\newline \\text{inputNumberStyleRankAttack} +\\newline \\text{inputNumberUnlimitedSigil} +\\newline \\text{outputDrugKnowledgeTotalTrueRaw} +\\newline \\text{outputDuremudiraAttack} +\\newline \\text{outputLoneWolfAttack} +\\newline \\text{outputCaravanAddition} +\\newline \\text{outputShiriagariAttack} +\\newline \\text{outputRoadAdvancement} +\\newline \\lfloor \\text{outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline \\text{outputConsumptionSlayerAttack} +\\newline \\text{outputRoadLastStandAttack} +\\newline \\text{outputLanceRedPhialAttack} +\\newline \\text{outputRoadTowerAttack} +\\newline \\text{outputZenithTotalAttack} +\\newline \\text{outputAOETotalAttack}
 `);
 
-	$: formulaValuesOutputAttackA = `{${attackA}} = ${inputNumberTrueRaw} +\\newline ${outputPassives} +\\newline (${inputNumberSigil1Attack} + ${inputNumberSigil2Attack} + ${inputNumberSigil3Attack}) +\\newline ${inputNumberConquestAttack} +\\newline ${outputAttackMedicine} +\\newline ${outputAttackSkill} +\\newline ${outputFoodAttack} +\\newline ${outputSeedAttack} +\\newline ${inputNumberStyleRankAttack} +\\newline ${inputNumberUnlimitedSigil} +\\newline ${outputDrugKnowledgeMultiplierTotal} +\\newline ${outputDuremudiraAttack} +\\newline ${outputLoneWolfAttack} +\\newline ${outputCaravanAddition} +\\newline ${outputShiriagariAttack} +\\newline ${outputRoadAdvancement} +\\newline \\lfloor ${outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline ${outputConsumptionSlayerAttack} +\\newline ${outputRoadLastStandAttack} +\\newline ${outputLanceRedPhialAttack} +\\newline ${outputRoadTowerAttack} +\\newline ${outputZenithTotalAttack} +\\newline ${outputAOETotalAttack}
+	$: formulaValuesOutputAttackA = `{${attackA}} = ${inputNumberTrueRaw} +\\newline ${outputPassives} +\\newline (${inputNumberSigil1Attack} + ${inputNumberSigil2Attack} + ${inputNumberSigil3Attack}) +\\newline ${inputNumberConquestAttack} +\\newline ${outputAttackMedicine} +\\newline ${outputAttackSkill} +\\newline ${outputFoodAttack} +\\newline ${outputSeedAttack} +\\newline ${inputNumberStyleRankAttack} +\\newline ${inputNumberUnlimitedSigil} +\\newline ${outputDrugKnowledgeTotalTrueRaw} +\\newline ${outputDuremudiraAttack} +\\newline ${outputLoneWolfAttack} +\\newline ${outputCaravanAddition} +\\newline ${outputShiriagariAttack} +\\newline ${outputRoadAdvancement} +\\newline \\lfloor ${outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline ${outputConsumptionSlayerAttack} +\\newline ${outputRoadLastStandAttack} +\\newline ${outputLanceRedPhialAttack} +\\newline ${outputRoadTowerAttack} +\\newline ${outputZenithTotalAttack} +\\newline ${outputAOETotalAttack}
 `;
 
 	const formulaOutputAttackB =
@@ -2237,8 +2187,20 @@
 	$: formulaValuesInternalDragon = `${internalDragon} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAoeElement}) \\times ${outputDragonMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
 `;
 
+	const internalAffinityFunctionString = `/**This is different from total affinity. */
+	function getInternalAffinity(critMode: string, totalAffinity: number) {
+		switch (critMode) {
+			case 'All Crits':
+				return 100;
+			case 'Averaged':
+				return Math.max(Math.min(totalAffinity, 100), 0);
+			default:
+				return 0;
+		}
+	}`;
+
 	const formulaInternalAffinity =
-		display(`\\text{Internal Affinity} = \\text{outputIssenAffinity} +\\newline
+		display(`\\text{Internal Affinity} = \\text{getInternalAffinity}(\\text{inputCritMode},  \\text{outputIssenAffinity} +\\newline
 	\\text{outputSharpnessAffinity} +\\newline
 	\\text{inputNumberUnlimitedSigil} +\\newline
 	\\text{inputNumberSigil1Affinity} +\\newline
@@ -2249,8 +2211,8 @@
 	\\text{inputNumberNaturalAffinity} +\\newline
 	\\text{outputFlashConversionAffinity} +\\newline
 	\\text{outputStarvingWolfAffinity} +\\newline
-	\\text{outputCeaselessAffinity}`);
-	$: formulaValuesInternalAffinity = `${internalAffinity} = ${outputIssenAffinity} +\\newline
+	\\text{outputCeaselessAffinity})`);
+	$: formulaValuesInternalAffinity = `${internalAffinity} = \\text{getInternalAffinity}(\\text{${inputCritMode}}, ${outputIssenAffinity} +\\newline
 	${outputSharpnessAffinity} +\\newline
 	${inputNumberUnlimitedSigil} +\\newline
 	${inputNumberSigil1Affinity} +\\newline
@@ -2261,8 +2223,9 @@
 	${inputNumberNaturalAffinity} +\\newline
 	${outputFlashConversionAffinity} +\\newline
 	${outputStarvingWolfAffinity} +\\newline
-	${outputCeaselessAffinity}`;
+	${outputCeaselessAffinity})`;
 
+	// TODO?
 	const formulaInternalStatus =
 		display(`\\text{Internal Status} = \\lfloor \\lfloor
 		\\text{inputNumberStatusValue} \\times\\newline
@@ -2326,20 +2289,19 @@
 	);
 */
 
-	// TODO
 	const formulaInternalTrueRaw = display(
 		`\\begin{equation*} \\text{internalTrueRaw} = \\begin{cases} \\text{maxTrueRaw} & \\text{if } outputAttackCeiling > 180 \\\\ \\lfloor outputFlatAdditions + outputMultipliers \\rfloor & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
 
-	const formulaOutputDrugKnowledgeMultiplierTotal = display(
-		`\\text{outputDrugKnowledgeMultiplierTotal} = \\text{getDrugKnowledgeAddition(
+	const formulaOutputDrugKnowledgeTotalTrueRaw = display(
+		`\\text{outputDrugKnowledgeTotalTrueRaw} = \\text{getDrugKnowledgeAddition(
 		outputDrugKnowledgeMultiplier,
 		inputNumberStatusValue,
 		outputStatusAttackUpMultiplier,
 		outputStatusGuildPoogieMultiplier,
 		outputStatusSigilMultiplier)}`,
 	);
-	$: formulaValuesOutputDrugKnowledgeMultiplierTotal = `${outputDrugKnowledgeMultiplierTotal} = ${getDrugKnowledgeAddition(
+	$: formulaValuesOutputDrugKnowledgeTotalTrueRaw = `${outputDrugKnowledgeTotalTrueRaw} = ${getDrugKnowledgeAddition(
 		outputDrugKnowledgeMultiplier,
 		inputNumberStatusValue,
 		outputStatusAttackUpMultiplier,
@@ -2371,6 +2333,7 @@
 	${inputNumberLanceImpactMultiplier} \\times\\newline
 	${inputNumberRavientePowerSwordCrystalsMultiplier}`;
 
+	// TODO?
 	const formulaOutputStatusUsedSA =
 		display(`\\text{outputStatusUsedSA} = \\lfloor \\lfloor
 	(\\text{inputNumberStatusValue} / 10) \\times\\newline
@@ -2983,10 +2946,7 @@ does not get multiplied by horn */
 
 	$: console.log(`outputSeedAttack: ${outputSeedAttack}`);
 
-	$: outputUnlimitedSigilAttack = 10 * inputNumberUnlimitedSigil; // TODO
-
-	$: console.log(`outputUnlimitedSigilAttack: ${outputUnlimitedSigilAttack}`);
-
+	// TODO?
 	$: outputDrugKnowledgeMultiplier =
 		statusSkillsDropdownItems.find((item) => item.name === inputDrugKnowledge)
 			?.value || 1;
@@ -3011,7 +2971,7 @@ does not get multiplied by horn */
 		`outputMonsterStatusInflictedMultiplier: ${outputMonsterStatusInflictedMultiplier}`,
 	);
 
-	$: outputDrugKnowledgeMultiplierTotal = getDrugKnowledgeAddition(
+	$: outputDrugKnowledgeTotalTrueRaw = getDrugKnowledgeAddition(
 		outputDrugKnowledgeMultiplier,
 		inputNumberStatusValue,
 		outputStatusAttackUpMultiplier,
@@ -3020,9 +2980,10 @@ does not get multiplied by horn */
 	);
 
 	$: console.log(
-		`outputDrugKnowledgeMultiplierTotal: ${outputDrugKnowledgeMultiplierTotal}`,
+		`outputDrugKnowledgeTotalTrueRaw: ${outputDrugKnowledgeTotalTrueRaw}`,
 	);
 
+	/**statusAssaultToggle TODO*/
 	$: outputStatusAssault =
 		inputDrugKnowledge !== 'None (1x)'
 			? Math.floor(
@@ -3036,7 +2997,7 @@ does not get multiplied by horn */
 
 	$: console.log(`outputStatusAssault: ${outputStatusAssault}`);
 
-	// TODO?
+	/**statusStatusattack*/
 	$: outputStatusAttackUpMultiplier =
 		statusSkillsDropdownItems.find((item) => item.name === inputStatusAttackUp)
 			?.value || 1;
@@ -3109,8 +3070,8 @@ does not get multiplied by horn */
 		outputFoodAttack +
 		outputSeedAttack +
 		inputNumberStyleRankAttack +
-		inputNumberUnlimitedSigil + // TODO
-		outputDrugKnowledgeMultiplierTotal +
+		inputNumberUnlimitedSigil +
+		outputDrugKnowledgeTotalTrueRaw +
 		outputDuremudiraAttack +
 		outputLoneWolfAttack +
 		outputCaravanAddition +
@@ -3365,9 +3326,7 @@ does not get multiplied by horn */
 		`outputPremiumCourseMultiplier: ${outputPremiumCourseMultiplier}`,
 	);
 
-	$: outputFencingMultiplier =
-		blademasterDropdownItems.find((item) => item.name === inputFencing)
-			?.value || 1;
+	$: outputFencingMultiplier = inputFencing === '+2' ? 1.2 : 1;
 
 	$: console.log(`outputFencingMultiplier: ${outputFencingMultiplier}`);
 
@@ -3521,6 +3480,34 @@ does not get multiplied by horn */
 	$: iceValueMultiplier = getElementMultiplier('Ice', inputElement);
 	$: dragonValueMultiplier = getElementMultiplier('Dragon', inputElement);
 
+	/**This is different from total affinity. */
+	function getInternalAffinity(critMode: string, totalAffinity: number) {
+		switch (critMode) {
+			case 'All Crits':
+				return 100;
+			case 'Averaged':
+				return Math.max(Math.min(totalAffinity, 100), 0);
+			default:
+				return 0;
+		}
+	}
+
+	$: internalAffinity = getInternalAffinity(
+		inputCritMode,
+		outputIssenAffinity +
+			outputSharpnessAffinity +
+			inputNumberUnlimitedSigil +
+			inputNumberSigil1Affinity +
+			inputNumberSigil2Affinity +
+			inputNumberSigil3Affinity +
+			outputStyleRankAffinity +
+			outputExpertAffinity +
+			inputNumberNaturalAffinity +
+			outputFlashConversionAffinity +
+			outputStarvingWolfAffinity +
+			outputCeaselessAffinity,
+	);
+
 	$: internalFire = Math.floor(
 		(((inputNumberElementalValueReplacement +
 			inputNumberSigil1Element * 10 +
@@ -3651,6 +3638,7 @@ does not get multiplied by horn */
 					),
 				);
 
+	/**StatusUsedSA*/
 	$: outputStatusUsedSA = Math.floor(
 		Math.floor(
 			(inputNumberStatusValue / 10) *
@@ -3664,8 +3652,10 @@ does not get multiplied by horn */
 
 	// Additional including status assault
 	// Status active, poison or paralysis
+	// TODO this is wrong. This always evaluates to 1. Leaving this as is for now.
+	/**statvalmult*/
 	$: outputStatusValueMultiplier =
-		inputStatusAttackUp === 'On (For Sleep add +10 raw hitbox)' &&
+		inputStatusAssault === 'On (For Sleep add +10 raw hitbox)' &&
 		inputStatus !== 'None' &&
 		inputNumberStatusValue >= 10 &&
 		outputDrugKnowledgeMultiplier === 1
@@ -3684,10 +3674,10 @@ does not get multiplied by horn */
 
 	let isShikiLoading = true;
 
-	async function renderShiki(inputs: string) {
+	async function renderShiki(inputs: string, lang: BundledLanguage) {
 		if (!browser) return '';
 		const result = await codeToHtml(inputs, {
-			lang: 'json',
+			lang: lang,
 			theme: getCatppuccinFlavorFromThemeForShiki($theme),
 		});
 		return result;
@@ -3698,12 +3688,17 @@ does not get multiplied by horn */
 		isShikiLoading = true;
 		// Use an immediately invoked async function expression (IIFE) to handle async operations
 		(async () => {
-			inputsHTML = await renderShiki(inputTextInputs);
+			inputsHTML = await renderShiki(inputTextInputs, 'json');
+			internalAffinityFunctionHTML = await renderShiki(
+				internalAffinityFunctionString,
+				'ts',
+			);
 			isShikiLoading = false;
 		})();
 	}
 
 	let inputsHTML = '';
+	let internalAffinityFunctionHTML = '';
 
 	$: inputStatusIcon = StatusIcons.find((e) => e.name === inputStatus)?.icon;
 
@@ -5306,6 +5301,8 @@ does not get multiplied by horn */
 											{ id: 'None', text: 'None' },
 											{ id: 'On', text: 'On' }, // TODO
 										]}
+										on:select={(e) =>
+											setAbnormalityValues(inputAbnormality === 'On')}
 									/>
 
 									<Dropdown
@@ -6906,7 +6903,19 @@ does not get multiplied by horn */
 		</section>
 		<section>
 			<SectionHeading title={'Internal Affinity'} level={3} />
-			<p>Averaged, max 100, minimum 0.</p>
+			<div class="container-shiki">
+				{#if isShikiLoading}
+					<div class="shiki-loading">
+						<CodeSnippet type="multi" skeleton />
+					</div>
+				{:else}
+					<div class="shiki-code">
+						<CodeSnippet showMoreLess={false} hideCopyButton type="multi"
+							>{@html internalAffinityFunctionHTML}</CodeSnippet
+						>
+					</div>
+				{/if}
+			</div>
 			{@html formulaInternalAffinity}
 			{@html display(formulaValuesInternalAffinity)}
 		</section>
@@ -6916,9 +6925,9 @@ does not get multiplied by horn */
 			{@html display(formulaValuesOutputTotalAffinity)}
 		</section>
 		<section>
-			<SectionHeading title={'Drug Knowlege Total Multiplier'} level={3} />
-			{@html formulaOutputDrugKnowledgeMultiplierTotal}
-			{@html display(formulaValuesOutputDrugKnowledgeMultiplierTotal)}
+			<SectionHeading title={'Drug Knowlege Total True Raw'} level={3} />
+			{@html formulaOutputDrugKnowledgeTotalTrueRaw}
+			{@html display(formulaValuesOutputDrugKnowledgeTotalTrueRaw)}
 		</section>
 		<section>
 			<SectionHeading title={'Crit Value'} level={3} />
@@ -11205,6 +11214,7 @@ does not get multiplied by horn */
 		height: auto;
 		max-width: 80vw;
 		height: 256px;
+		margin-bottom: 2rem;
 	}
 
 	.shiki-code {

@@ -4084,6 +4084,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 4.8,
 		statusAssaultPoison: 20,
 		statusAssaultParalysis: 10,
+		elementalExploitModifier: 15,
 	},
 	{
 		id: 1,
@@ -4097,6 +4098,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 1.2,
 		statusAssaultPoison: 0,
 		statusAssaultParalysis: 0,
+		elementalExploitModifier: 5,
 	},
 	{
 		id: 2,
@@ -4110,6 +4112,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 5.2,
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 10,
+		elementalExploitModifier: 15,
 	},
 	{
 		id: 3,
@@ -4123,6 +4126,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 2.3,
 		statusAssaultPoison: 14,
 		statusAssaultParalysis: 7,
+		elementalExploitModifier: 15,
 	},
 	{
 		id: 4,
@@ -4136,6 +4140,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 1.4,
 		statusAssaultPoison: 12,
 		statusAssaultParalysis: 7,
+		elementalExploitModifier: 15,
 	},
 	{
 		id: 5,
@@ -4149,6 +4154,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 1.2,
 		statusAssaultPoison: 0,
 		statusAssaultParalysis: 0,
+		elementalExploitModifier: 10,
 	},
 	{
 		id: 6,
@@ -4162,6 +4168,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 1.4,
 		statusAssaultPoison: 10,
 		statusAssaultParalysis: 3,
+		elementalExploitModifier: 10,
 	},
 	{
 		id: 7,
@@ -4175,6 +4182,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 4.8,
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 7,
+		elementalExploitModifier: 15,
 	},
 	{
 		id: 8,
@@ -4188,6 +4196,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 5.2,
 		statusAssaultPoison: 13,
 		statusAssaultParalysis: 7,
+		elementalExploitModifier: 15,
 	},
 	{
 		id: 9,
@@ -4201,6 +4210,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 2.3,
 		statusAssaultPoison: 10,
 		statusAssaultParalysis: 9,
+		elementalExploitModifier: 10,
 	},
 	{
 		id: 10,
@@ -4214,6 +4224,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 1.2,
 		statusAssaultPoison: 0,
 		statusAssaultParalysis: 0,
+		elementalExploitModifier: 5,
 	},
 	{
 		id: 11,
@@ -4227,6 +4238,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 1.8,
 		statusAssaultPoison: 10,
 		statusAssaultParalysis: 6,
+		elementalExploitModifier: 15,
 	},
 	{
 		id: 12,
@@ -4240,6 +4252,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 5.4,
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 7,
+		elementalExploitModifier: 15,
 	},
 	{
 		id: 13,
@@ -4253,6 +4266,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 5.4,
 		statusAssaultPoison: 13,
 		statusAssaultParalysis: 6,
+		elementalExploitModifier: 15,
 	},
 ];
 
@@ -12372,6 +12386,7 @@ export const elementalSkillsDropdownItems: DropdownItemOption[] = [
 ] as const;
 
 export const statusSkillsDropdownItems: DropdownItemOption[] = [
+	{ name: 'None (1x)', value: 1 },
 	{
 		name: 'Standard (0.38x Status)',
 		value: 0.38,
@@ -12384,6 +12399,7 @@ export const statusSkillsDropdownItems: DropdownItemOption[] = [
 		name: 'On (1.125x)',
 		value: 1.125,
 	},
+	// { name: 'On (For Sleep add +10 raw hitzone)', value: 1 },
 	{
 		name: 'Normal (1.1x)',
 		value: 1.1,
@@ -13180,6 +13196,12 @@ export const elementMultipliers: FrontierElementMultiplier[] = [
 		dragonMultiplier: 0,
 	},
 ] as const;
+
+export const greatSwordCharges = [
+	{ name: 'Lv1 Charge', multiplier: 1.1 },
+	{ name: 'Lv2 Charge', multiplier: 1.2 },
+	{ name: 'Lv3 Charge', multiplier: 1.3 },
+];
 
 /*
 // It requires an extra line to pull out the values

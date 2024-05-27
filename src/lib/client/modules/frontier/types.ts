@@ -190,6 +190,7 @@ export type FrontierWeapon = {
 	smallIcon: any;
 	smallIconRed: any;
 	activeFeatureValue: number;
+	elementalExploitModifier: number;
 	// TODO
 };
 export type FrontierEquipmentSkillPoints = [
