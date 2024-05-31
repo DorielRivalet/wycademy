@@ -1979,11 +1979,7 @@
 			return 1;
 		}
 
-		if (outputTotalAffinity < 0) {
-			return 0.75;
-		}
-
-		let baseCritMultiplier = 1.25;
+		let baseCritMultiplier = outputTotalAffinity < 0 ? 0.75 : 1.25;
 
 		let starvingWolfBonusMultiplier =
 			affinityBaseCritMultiplierBonusDropdownItems.find(
