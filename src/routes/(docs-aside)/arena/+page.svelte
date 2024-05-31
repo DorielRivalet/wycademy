@@ -97,6 +97,7 @@
 	import ezlion from 'ezlion';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import { type BundledLanguage } from 'shiki/langs';
+	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 
 	let flashConversionChartLoaded = false;
 	let flashConversionChart: ComponentType<LineChart>;
@@ -4506,29 +4507,42 @@ does not get multiplied by horn */
 										]}
 									/>
 
-									<Dropdown
-										titleText="Caravan Skills"
-										bind:selectedId={inputCaravanSkills}
-										items={[
-											{ id: 'None', text: 'None' },
-											{
-												id: 'Shooting Rampage (x1.1) (Ranged Only)',
-												text: 'Shooting Rampage (x1.1) (Ranged Only)',
-											},
-											{
-												id: 'Weapons Art Small (x1.01)',
-												text: 'Weapons Art Small (x1.01)',
-											},
-											{
-												id: 'Weapons Art Medium (x1.025)',
-												text: 'Weapons Art Medium (x1.025)',
-											},
-											{
-												id: 'Weapons Art Large (x1.05)',
-												text: 'Weapons Art Large (x1.05)',
-											},
-										]}
-									/>
+									<div class="dropdown-tooltip-container">
+										<Tooltip align="start">
+											<p class="spaced-paragraph">
+												These are not a final multiplier but rather additional
+												true raw damage.
+											</p>
+											<p>
+												For example, Weapons Art Large on a 600 true raw weapon
+												would be the same as +30 Attack or Attack Up Very Large
+												(600*0.05).
+											</p>
+										</Tooltip>
+										<Dropdown
+											titleText="Caravan Skills"
+											bind:selectedId={inputCaravanSkills}
+											items={[
+												{ id: 'None', text: 'None' },
+												{
+													id: 'Shooting Rampage (x1.1) (Ranged Only)',
+													text: 'Shooting Rampage (x1.1) (Ranged Only)',
+												},
+												{
+													id: 'Weapons Art Small (x1.01)',
+													text: 'Weapons Art Small (x1.01)',
+												},
+												{
+													id: 'Weapons Art Medium (x1.025)',
+													text: 'Weapons Art Medium (x1.025)',
+												},
+												{
+													id: 'Weapons Art Large (x1.05)',
+													text: 'Weapons Art Large (x1.05)',
+												},
+											]}
+										/>
+									</div>
 
 									<Dropdown
 										titleText="Passive Items"
@@ -4662,15 +4676,26 @@ does not get multiplied by horn */
 										]}
 									/>
 
-									<Dropdown
-										titleText="Crit Conversion Up"
-										bind:selectedId={inputCritConversionUp}
-										items={[
-											{ id: 'None', text: 'None' },
-											{ id: 'Crit C. Up +1 (Z1)', text: 'Crit C. Up +1 (Z1)' },
-											{ id: 'Crit C. Up +2 (Z1)', text: 'Crit C. Up +2 (Z1)' },
-										]}
-									/>
+									<div class="dropdown-tooltip-container">
+										<Tooltip align="start">
+											<p>Does not need affinity over 100% to add True Raw.</p>
+										</Tooltip>
+										<Dropdown
+											titleText="Crit Conversion Up"
+											bind:selectedId={inputCritConversionUp}
+											items={[
+												{ id: 'None', text: 'None' },
+												{
+													id: 'Crit C. Up +1 (Z1)',
+													text: 'Crit C. Up +1 (Z1)',
+												},
+												{
+													id: 'Crit C. Up +2 (Z1)',
+													text: 'Crit C. Up +2 (Z1)',
+												},
+											]}
+										/>
+									</div>
 									<Dropdown
 										titleText="Stylish Assault"
 										bind:selectedId={inputStylishAssault}
@@ -4717,12 +4742,26 @@ does not get multiplied by horn */
 										<NumberInput
 											size="sm"
 											step={10}
-											min={minimumNumberValue}
-											max={maximumNumberValue}
+											min={0}
+											max={80}
 											bind:value={inputNumberVampirism}
-											invalidText={invalidNumberValueText}
-											label={'Vampirism'}
-										/>
+											invalidText={'Value must be between 0 and 80.'}
+											on:click={(e) => e.preventDefault()}
+										>
+											<span slot="label"
+												><Tooltip align="start" triggerText="Vampirism">
+													<p class="spaced-paragraph">
+														Each successfully leeching attack with a weapon adds
+														a certain amount of additional true raw up to a
+														maximum of +80.
+													</p>
+													<p>Dual Swords, Tonfa, LBG: +3</p>
+													<p>SnS, LS, Lance, Gunlance, Swaxe F, HBG, Bow: +4</p>
+													<p>Hammer, Hunting Horn: +5</p>
+													<p>Great Sword: +7</p>
+												</Tooltip></span
+											>
+										</NumberInput>
 									</div>
 
 									<Dropdown
@@ -4857,14 +4896,24 @@ does not get multiplied by horn */
 										]}
 									/>
 
-									<Dropdown
-										titleText="Length Up"
-										bind:selectedId={inputLengthUp}
-										items={[
-											{ id: 'None', text: 'None' },
-											{ id: 'Active', text: 'Active' }, // TODO
-										]}
-									/>
+									<div class="dropdown-tooltip-container">
+										<Tooltip align="start">
+											<p>
+												Adjusts base True Raw appropriately if you are using a
+												Length Up sigil on a G Rank weapon. This reduction does
+												not stack so 3 sigils to increase length 3 times would
+												be the same reduction as 1.
+											</p>
+										</Tooltip>
+										<Dropdown
+											titleText="Length Up"
+											bind:selectedId={inputLengthUp}
+											items={[
+												{ id: 'None', text: 'None' },
+												{ id: 'Active', text: 'Active' }, // TODO
+											]}
+										/>
+									</div>
 
 									<Dropdown
 										titleText="Road Attack"
@@ -4968,17 +5017,37 @@ does not get multiplied by horn */
 											max={maximumNumberValue}
 											bind:value={inputNumberConquestAttack}
 											invalidText={invalidNumberValueText}
-											label={'Conquest Attack'}
+											on:click={(e) => e.preventDefault()}
+										>
+											<span slot="label"
+												><Tooltip align="start" triggerText="Conquest Attack">
+													<p>
+														The value of the skill as displayed on your SR stats
+														if enabled. Only takes effect on standard Conquest
+														quests.
+														<strong>Shiten quests do not count.</strong>
+													</p>
+												</Tooltip></span
+											>
+										</NumberInput>
+									</div>
+									<div class="dropdown-tooltip-container">
+										<Tooltip align="start">
+											<p>
+												Toggle whether or not you have consumed a Conquest
+												Attack Potion on a standard Conquest quest.
+												<strong>Shiten quests do not count.</strong>
+											</p>
+										</Tooltip>
+										<Dropdown
+											titleText="Attack Medicine"
+											bind:selectedId={inputAttackMedicine}
+											items={[
+												{ id: 'None', text: 'None' },
+												{ id: 'Active (+100)', text: 'Active (+100)' },
+											]}
 										/>
 									</div>
-									<Dropdown
-										titleText="Attack Medicine"
-										bind:selectedId={inputAttackMedicine}
-										items={[
-											{ id: 'None', text: 'None' },
-											{ id: 'Active (+100)', text: 'Active (+100)' },
-										]}
-									/>
 								</div>
 							</div>
 
@@ -5062,9 +5131,18 @@ does not get multiplied by horn */
 										items={[
 											{ id: 'None (1x)', text: 'None (1x)' },
 											{ id: '1 Sharpen (x1.05)', text: '1 Sharpen (x1.05)' },
-											{ id: '2 Sharpens (x1.10)', text: '2 Sharpens (x1.10)' },
-											{ id: '3 Sharpens (x1.15)', text: '3 Sharpens (x1.15)' },
-											{ id: '4 Sharpens (x1.20)', text: '4 Sharpens (x1.20)' },
+											{
+												id: '2 Sharpens (x1.10)',
+												text: '2 Sharpens (x1.10)',
+											},
+											{
+												id: '3 Sharpens (x1.15)',
+												text: '3 Sharpens (x1.15)',
+											},
+											{
+												id: '4 Sharpens (x1.20)',
+												text: '4 Sharpens (x1.20)',
+											},
 											{ id: '1 Bar (x1.10)', text: '1 Bar (x1.10)' },
 											{ id: '2 Bar (x1.20)', text: '2 Bar (x1.20)' },
 											{ id: '3 Bar (x1.30)', text: '3 Bar (x1.30)' },
@@ -5103,61 +5181,91 @@ does not get multiplied by horn */
 							<div class="input-section">
 								<div class="small-header">➕ Flat Additions</div>
 								<div class="inputs-group-column">
-									<Dropdown
-										titleText="Armor 1"
-										bind:selectedId={inputArmor1}
-										items={[
-											{ id: 'None', text: 'None' },
-											{
-												id: '1 Storm / Suprem / Burst Piece (+15)',
-												text: '1 Storm / Suprem / Burst Piece (+15)',
-											},
-											{
-												id: '2 Storm / Suprem / Burst Pieces (+30)',
-												text: '2 Storm / Suprem / Burst Pieces (+30)',
-											},
-											{
-												id: '3 Storm / Suprem / Burst Pieces (+45)',
-												text: '3 Storm / Suprem / Burst Pieces (+45)',
-											},
-											{
-												id: '4 Storm / Suprem / Burst Pieces (+60)',
-												text: '4 Storm / Suprem / Burst Pieces (+60)',
-											},
-											{
-												id: '5 Storm / Suprem / Burst Pieces (+80)',
-												text: '5 Storm / Suprem / Burst Pieces (+80)',
-											},
-										]}
-									/>
+									<div class="dropdown-tooltip-container">
+										<Tooltip align="start">
+											<p class="spaced-paragraph">
+												These buffs only take effect if you are using a weapon
+												that is on a Gou tree while on a Gou, Supremacy or G
+												Rank quest.
+											</p>
+											<p>
+												For example: normal Lv50 weapons would get no buffs on
+												any quests, but having a G Supremacy Weapon and 2
+												appropiate armor pieces would result in a +40 addition
+												to final damage.
+											</p>
+										</Tooltip>
+										<Dropdown
+											titleText="Armor 1"
+											bind:selectedId={inputArmor1}
+											items={[
+												{ id: 'None', text: 'None' },
+												{
+													id: '1 Storm / Suprem / Burst Piece (+15)',
+													text: '1 Storm / Suprem / Burst Piece (+15)',
+												},
+												{
+													id: '2 Storm / Suprem / Burst Pieces (+30)',
+													text: '2 Storm / Suprem / Burst Pieces (+30)',
+												},
+												{
+													id: '3 Storm / Suprem / Burst Pieces (+45)',
+													text: '3 Storm / Suprem / Burst Pieces (+45)',
+												},
+												{
+													id: '4 Storm / Suprem / Burst Pieces (+60)',
+													text: '4 Storm / Suprem / Burst Pieces (+60)',
+												},
+												{
+													id: '5 Storm / Suprem / Burst Pieces (+80)',
+													text: '5 Storm / Suprem / Burst Pieces (+80)',
+												},
+											]}
+										/>
+									</div>
 
-									<Dropdown
-										titleText="Origin Armor"
-										bind:selectedId={inputOriginArmor}
-										items={[
-											{ id: 'None', text: 'None' },
-											{
-												id: '1 Origin Piece (+20)',
-												text: '1 Origin Piece (+20)',
-											},
-											{
-												id: '2 Origin Pieces (+40)',
-												text: '2 Origin Pieces (+40)',
-											},
-											{
-												id: '3 Origin Pieces (+60)',
-												text: '3 Origin Pieces (+60)',
-											},
-											{
-												id: '4 Origin Pieces (+80)',
-												text: '4 Origin Pieces (+80)',
-											},
-											{
-												id: '5 Origin Pieces (+110)',
-												text: '5 Origin Pieces (+110)',
-											},
-										]}
-									/>
+									<div class="dropdown-tooltip-container">
+										<Tooltip align="start">
+											<p class="spaced-paragraph">
+												These buffs only take effect if you are using a weapon
+												that is on a Gou tree while on a Gou, Supremacy or G
+												Rank quest.
+											</p>
+											<p>
+												For example: normal Lv50 weapons would get no buffs on
+												any quests, but having a G Supremacy Weapon and 2
+												appropiate armor pieces would result in a +40 addition
+												to final damage.
+											</p>
+										</Tooltip>
+										<Dropdown
+											titleText="Origin Armor"
+											bind:selectedId={inputOriginArmor}
+											items={[
+												{ id: 'None', text: 'None' },
+												{
+													id: '1 Origin Piece (+20)',
+													text: '1 Origin Piece (+20)',
+												},
+												{
+													id: '2 Origin Pieces (+40)',
+													text: '2 Origin Pieces (+40)',
+												},
+												{
+													id: '3 Origin Pieces (+60)',
+													text: '3 Origin Pieces (+60)',
+												},
+												{
+													id: '4 Origin Pieces (+80)',
+													text: '4 Origin Pieces (+80)',
+												},
+												{
+													id: '5 Origin Pieces (+110)',
+													text: '5 Origin Pieces (+110)',
+												},
+											]}
+										/>
+									</div>
 
 									<Dropdown
 										titleText="G Armor Pieces"
@@ -5189,8 +5297,14 @@ does not get multiplied by horn */
 										items={[
 											{ id: 'None', text: 'None' },
 											{ id: 'On Self (+15)', text: 'On Self (+15)' },
-											{ id: 'Hit by Other (+30)', text: 'Hit by Other (+30)' },
-											{ id: 'Red Soul Up (+100)', text: 'Red Soul Up (+100)' },
+											{
+												id: 'Hit by Other (+30)',
+												text: 'Hit by Other (+30)',
+											},
+											{
+												id: 'Red Soul Up (+100)',
+												text: 'Red Soul Up (+100)',
+											},
 										]}
 									/>
 
@@ -5352,7 +5466,10 @@ does not get multiplied by horn */
 										bind:selectedId={inputHhElementalUp}
 										items={[
 											{ id: 'None (1x)', text: 'None (1x)' },
-											{ id: 'Ele Up Song (1.1x)', text: 'Ele Up Song (1.1x)' },
+											{
+												id: 'Ele Up Song (1.1x)',
+												text: 'Ele Up Song (1.1x)',
+											},
 										]}
 									/>
 								</div>
@@ -5547,8 +5664,17 @@ does not get multiplied by horn */
 											max={maximumNumberValue}
 											bind:value={inputNumberStyleRankAttack}
 											invalidText={invalidNumberValueText}
-											label={'SR Attack'}
-										/>
+											on:click={(e) => e.preventDefault()}
+										>
+											<span slot="label"
+												><Tooltip align="start" triggerText="SR Attack">
+													<p>
+														The top most attack level as displayed on SR info.
+														Lv MAX is 100.
+													</p>
+												</Tooltip></span
+											>
+										</NumberInput>
 									</div>
 									<div class="number-input-container">
 										<NumberInput
@@ -5722,6 +5848,7 @@ does not get multiplied by horn */
 											]}
 										/>
 
+										<!-- TODO: toggles?-->
 										<div class="number-input-container">
 											<NumberInput
 												size="sm"
@@ -5761,98 +5888,106 @@ does not get multiplied by horn */
 								<div class="input-section">
 									<div class="small-header">🏹 Gunner</div>
 									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Distance Multiplier"
-											bind:selectedId={inputDistanceMultiplier}
-											items={[
-												{
-													id: '1.8x LBG & Bow Crit Distance',
-													text: '1.8x LBG & Bow Crit Distance',
-												},
-												{
-													id: '2.3x HBG 1st Half Crit Distance',
-													text: '2.3x HBG 1st Half Crit Distance',
-												},
-												{
-													id: '2.0x HBG 2nd Half Crit Distance',
-													text: '2.0x HBG 2nd Half Crit Distance',
-												},
-												{
-													id: '1.9x LBG & Bow Crit D. & Z Piece',
-													text: '1.9x LBG & Bow Crit D. & Z Piece',
-												},
-												{
-													id: '2.45x HBG 1st Half Crit D. & Zenith',
-													text: '2.45x HBG 1st Half Crit D. & Zenith',
-												},
-												{
-													id: '2.15x HBG 2nd Half Crit D. & Zenith',
-													text: '2.15x HBG 2nd Half Crit D. & Zenith',
-												},
-												{
-													id: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
-													text: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
-												},
-												{
-													id: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
-													text: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
-												},
-												{
-													id: '2.1x 1st Half Crit D. (HBG Active Feature)',
-													text: '2.1x 1st Half Crit D. (HBG Active Feature)',
-												},
-												{
-													id: '1.8x 2nd Half Crit D. (HBG Active Feature)',
-													text: '1.8x 2nd Half Crit D. (HBG Active Feature)',
-												},
-												{
-													id: '2.0x HBG 1st Half Crit D.',
-													text: '2.0x HBG 1st Half Crit D.',
-												},
-												{
-													id: '1.7x 2nd Half Crit D.',
-													text: '1.7x 2nd Half Crit D.',
-												},
-												{
-													id: '1.5x Bow or LBG Crit D.',
-													text: '1.5x Bow or LBG Crit D.',
-												},
-												{ id: '2.2x', text: '2.2x' },
-												{ id: '1.6x', text: '1.6x' },
-												{ id: '1.4x', text: '1.4x' },
-												{ id: '1.3x', text: '1.3x' },
-												{ id: '1.2x', text: '1.2x' },
-												{ id: '1.1x', text: '1.1x' },
-												{ id: '1.0x', text: '1.0x' },
-												{
-													id: '2.3x Step Shot & Z Piece',
-													text: '2.3x Step Shot & Z Piece',
-												},
-												{
-													id: '2.0x Step Shot & Z Piece',
-													text: '2.0x Step Shot & Z Piece',
-												},
-												{
-													id: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
-													text: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
-												},
-												{
-													id: '1.6x Standard C. Distance (LBG Active Feature)',
-													text: '1.6x Standard C. Distance (LBG Active Feature) ',
-												},
-												{
-													id: '2.4x Step Shot & Z Piece (LBG Active Feature)',
-													text: '2.4x Step Shot & Z Piece (LBG Active Feature)',
-												},
-												{
-													id: '2.1x Step Shot & Z Piece (LBG Active Feature)',
-													text: '2.1x Step Shot & Z Piece (LBG Active Feature)',
-												},
-												{ id: '2.5x', text: '2.5x' },
-												{ id: '2.55x', text: '2.55x' },
-												{ id: '2.60x', text: '2.60x' },
-											]}
-										/>
+										<div class="dropdown-tooltip-container">
+											<Tooltip align="start">
+												<p>
+													You can find the graph for this multiplier in the
+													Critical Distance section.
+												</p>
+											</Tooltip>
+											<Dropdown
+												titleText="Distance Multiplier"
+												bind:selectedId={inputDistanceMultiplier}
+												items={[
+													{
+														id: '1.8x LBG & Bow Crit Distance',
+														text: '1.8x LBG & Bow Crit Distance',
+													},
+													{
+														id: '2.3x HBG 1st Half Crit Distance',
+														text: '2.3x HBG 1st Half Crit Distance',
+													},
+													{
+														id: '2.0x HBG 2nd Half Crit Distance',
+														text: '2.0x HBG 2nd Half Crit Distance',
+													},
+													{
+														id: '1.9x LBG & Bow Crit D. & Z Piece',
+														text: '1.9x LBG & Bow Crit D. & Z Piece',
+													},
+													{
+														id: '2.45x HBG 1st Half Crit D. & Zenith',
+														text: '2.45x HBG 1st Half Crit D. & Zenith',
+													},
+													{
+														id: '2.15x HBG 2nd Half Crit D. & Zenith',
+														text: '2.15x HBG 2nd Half Crit D. & Zenith',
+													},
+													{
+														id: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
+														text: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
+													},
+													{
+														id: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
+														text: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
+													},
+													{
+														id: '2.1x 1st Half Crit D. (HBG Active Feature)',
+														text: '2.1x 1st Half Crit D. (HBG Active Feature)',
+													},
+													{
+														id: '1.8x 2nd Half Crit D. (HBG Active Feature)',
+														text: '1.8x 2nd Half Crit D. (HBG Active Feature)',
+													},
+													{
+														id: '2.0x HBG 1st Half Crit D.',
+														text: '2.0x HBG 1st Half Crit D.',
+													},
+													{
+														id: '1.7x 2nd Half Crit D.',
+														text: '1.7x 2nd Half Crit D.',
+													},
+													{
+														id: '1.5x Bow or LBG Crit D.',
+														text: '1.5x Bow or LBG Crit D.',
+													},
+													{ id: '2.2x', text: '2.2x' },
+													{ id: '1.6x', text: '1.6x' },
+													{ id: '1.4x', text: '1.4x' },
+													{ id: '1.3x', text: '1.3x' },
+													{ id: '1.2x', text: '1.2x' },
+													{ id: '1.1x', text: '1.1x' },
+													{ id: '1.0x', text: '1.0x' },
+													{
+														id: '2.3x Step Shot & Z Piece',
+														text: '2.3x Step Shot & Z Piece',
+													},
+													{
+														id: '2.0x Step Shot & Z Piece',
+														text: '2.0x Step Shot & Z Piece',
+													},
+													{
+														id: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
+														text: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
+													},
+													{
+														id: '1.6x Standard C. Distance (LBG Active Feature)',
+														text: '1.6x Standard C. Distance (LBG Active Feature) ',
+													},
+													{
+														id: '2.4x Step Shot & Z Piece (LBG Active Feature)',
+														text: '2.4x Step Shot & Z Piece (LBG Active Feature)',
+													},
+													{
+														id: '2.1x Step Shot & Z Piece (LBG Active Feature)',
+														text: '2.1x Step Shot & Z Piece (LBG Active Feature)',
+													},
+													{ id: '2.5x', text: '2.5x' },
+													{ id: '2.55x', text: '2.55x' },
+													{ id: '2.60x', text: '2.60x' },
+												]}
+											/>
+										</div>
 
 										<Dropdown
 											titleText="Bullet Modifier"
@@ -5880,14 +6015,23 @@ does not get multiplied by horn */
 											bind:selectedId={inputShotMultiplier}
 											items={[
 												{ id: 'Just Shot (1.3x)', text: 'Just Shot (1.3x)' },
-												{ id: 'Perfect JS (1.4x)', text: 'Perfect JS (1.4x)' },
-												{ id: 'Evade Shot (0.6x)', text: 'Evade Shot (0.6x)' },
+												{
+													id: 'Perfect JS (1.4x)',
+													text: 'Perfect JS (1.4x)',
+												},
+												{
+													id: 'Evade Shot (0.6x)',
+													text: 'Evade Shot (0.6x)',
+												},
 												{
 													id: 'Finishing Shot (2.0x)',
 													text: 'Finishing Shot (2.0x)',
 												},
 												{ id: 'None (1x)', text: 'None (1x)' },
-												{ id: 'Rapid Fire (0.5x)', text: 'Rapid Fire (0.5x)' },
+												{
+													id: 'Rapid Fire (0.5x)',
+													text: 'Rapid Fire (0.5x)',
+												},
 												{
 													id: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
 													text: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
@@ -6051,64 +6195,79 @@ does not get multiplied by horn */
 											]}
 										/>
 
-										<Dropdown
-											titleText="Bow Coatings Multiplier"
-											bind:selectedId={inputBowCoatingsMultiplier}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Power Bottle (1.6x)',
-													text: 'Power Bottle (1.6x)',
-												},
-												{
-													id: 'P. Bottle + Bow Hiden (1.8x)',
-													text: 'P. Bottle + Bow Hiden (1.8x)',
-												},
-												{
-													id: 'P. + Origin (1.7x)',
-													text: 'P. + Origin (1.7x)',
-												},
-												{
-													id: 'P. + Origin + Hiden (1.9x)',
-													text: 'P. + Origin + Hiden (1.9x)',
-												},
-												{
-													id: 'Status Bottle (1.5x)',
-													text: 'Status Bottle (1.5x)',
-												},
-												{
-													id: 'S. Bottle + Hiden (1.7x)',
-													text: 'S. Bottle + Hiden (1.7x)',
-												},
-												{
-													id: 'S. Bottle + Origin (1.6x)',
-													text: 'S. Bottle + Origin (1.6x)',
-												},
-												{
-													id: 'S. + Origin + Hiden (1.8x)',
-													text: 'S. + Origin + Hiden (1.8x)',
-												},
-												{
-													id: 'Non-G Power Bottle (1.5x)',
-													text: 'Non-G Power Bottle (1.5x)',
-												},
-												{
-													id: 'Choose a level lower for Non-G',
-													text: 'Choose a level lower for Non-G',
-												}, // TODO
-											]}
-										/>
+										<div class="dropdown-tooltip-container">
+											<Tooltip align="start">
+												<p>
+													Adjusts for Consumption Slayer, a skill that causes
+													double coating consumption for an additional +0.2x
+													multiplier.
+												</p>
+											</Tooltip>
+											<Dropdown
+												titleText="Bow Coatings Multiplier"
+												bind:selectedId={inputBowCoatingsMultiplier}
+												items={[
+													{ id: 'None (1x)', text: 'None (1x)' },
+													{
+														id: 'Power Bottle (1.6x)',
+														text: 'Power Bottle (1.6x)',
+													},
+													{
+														id: 'P. Bottle + Bow Hiden (1.8x)',
+														text: 'P. Bottle + Bow Hiden (1.8x)',
+													},
+													{
+														id: 'P. + Origin (1.7x)',
+														text: 'P. + Origin (1.7x)',
+													},
+													{
+														id: 'P. + Origin + Hiden (1.9x)',
+														text: 'P. + Origin + Hiden (1.9x)',
+													},
+													{
+														id: 'Status Bottle (1.5x)',
+														text: 'Status Bottle (1.5x)',
+													},
+													{
+														id: 'S. Bottle + Hiden (1.7x)',
+														text: 'S. Bottle + Hiden (1.7x)',
+													},
+													{
+														id: 'S. Bottle + Origin (1.6x)',
+														text: 'S. Bottle + Origin (1.6x)',
+													},
+													{
+														id: 'S. + Origin + Hiden (1.8x)',
+														text: 'S. + Origin + Hiden (1.8x)',
+													},
+													{
+														id: 'Non-G Power Bottle (1.5x)',
+														text: 'Non-G Power Bottle (1.5x)',
+													},
+													{
+														id: 'Choose a level lower for Non-G',
+														text: 'Choose a level lower for Non-G',
+													}, // TODO
+												]}
+											/>
+										</div>
 
 										<Dropdown
 											titleText="Charge Multiplier"
 											bind:selectedId={inputChargeMultiplier}
 											items={[
-												{ id: 'Lv1 (0.4x / 0.7x)', text: 'Lv1 (0.4x / 0.7x)' },
+												{
+													id: 'Lv1 (0.4x / 0.7x)',
+													text: 'Lv1 (0.4x / 0.7x)',
+												},
 												{
 													id: 'Lv2 (1.0x / 0.95x) ',
 													text: 'Lv2 (1.0x / 0.95x) ',
 												},
-												{ id: 'Lv3 (1.5x / 1.2x)', text: 'Lv3 (1.5x / 1.2x)' },
+												{
+													id: 'Lv3 (1.5x / 1.2x)',
+													text: 'Lv3 (1.5x / 1.2x)',
+												},
 												{
 													id: 'Lv4 (1.85x / 1.334x)',
 													text: 'Lv4 (1.85x / 1.334x)',
@@ -6152,7 +6311,10 @@ does not get multiplied by horn */
 											titleText="Quick Shot"
 											bind:selectedId={inputQuickShot}
 											items={[
-												{ id: 'Normal (All 1.0x)', text: 'Normal (All 1.0x)' },
+												{
+													id: 'Normal (All 1.0x)',
+													text: 'Normal (All 1.0x)',
+												},
 												{
 													id: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
 													text: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
@@ -6180,7 +6342,10 @@ does not get multiplied by horn */
 											{ id: 'Ice Shot', text: 'Ice Shot' },
 											{ id: 'Dragon Shot', text: 'Dragon Shot' },
 											{ id: 'Perfect Fire Shot', text: 'Perfect Fire Shot' },
-											{ id: 'Perfect Water Shot', text: 'Perfect Water Shot' },
+											{
+												id: 'Perfect Water Shot',
+												text: 'Perfect Water Shot',
+											},
 											{
 												id: 'Perfect Thunder Shot',
 												text: 'Perfect Thunder Shot',
@@ -6277,8 +6442,24 @@ does not get multiplied by horn */
 											max={maximumNumberValue}
 											bind:value={inputNumberElementalValueReplacement}
 											invalidText={invalidNumberValueText}
-											label={'Element'}
-										/>
+											on:click={(e) => e.preventDefault()}
+										>
+											<span slot="label"
+												><Tooltip align="start" triggerText="Element">
+													<p class="spaced-paragraph">
+														For the three levels of Standard Elemental Sword
+														Crystals you can use the values 500, 700, 900 and
+														for the GR600 Crystals you can use the values 1300,
+														1500 and 2100.
+													</p>
+													<p>
+														This value replaces any elemental values on the
+														weapon so set the element appropriately and use only
+														the number above.
+													</p>
+												</Tooltip></span
+											>
+										</NumberInput>
 									</div>
 									<div class="number-input-container">
 										<NumberInput
@@ -6406,8 +6587,18 @@ does not get multiplied by horn */
 											max={maximumNumberValue}
 											bind:value={inputNumberOtherAdditional}
 											invalidText={invalidNumberValueText}
-											label={'Additional'}
-										/>
+											on:click={(e) => e.preventDefault()}
+										>
+											<span slot="label">
+												<Tooltip align="start" triggerText="Additional">
+													<p>
+														Enter any other additional damage to be calculated
+														against only the defense rate such as bombs and
+														blast status.
+													</p></Tooltip
+												>
+											</span>
+										</NumberInput>
 									</div>
 								</div>
 							</div>
@@ -6427,8 +6618,18 @@ does not get multiplied by horn */
 											max={maximumNumberValue}
 											bind:value={inputNumberDefenseRate}
 											invalidText={invalidNumberValueText}
-											label={'Defense Rate'}
-										/>
+											on:click={(e) => e.preventDefault()}
+										>
+											<span slot="label"
+												><Tooltip align="start" triggerText="Defense Rate">
+													<p>
+														You can find the defense rate using the overlay. The
+														value in the overlay already includes the rage and
+														hardcore modifier multiplications.
+													</p>
+												</Tooltip></span
+											>
+										</NumberInput>
 									</div>
 									<div class="number-input-container">
 										<NumberInput
@@ -11911,5 +12112,12 @@ does not get multiplied by horn */
 	.formula-container {
 		margin-bottom: 1rem;
 		margin-top: 1rem;
+	}
+
+	.dropdown-tooltip-container {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+		gap: 1rem;
 	}
 </style>
