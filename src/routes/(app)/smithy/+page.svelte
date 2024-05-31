@@ -2284,6 +2284,9 @@
 	let selectedIconColor = allFrontierColors[0].id;
 	let selectedIconBackground = false;
 
+	let selectedIconShadowColor = '#ffffff';
+	let selectedIconShadowWidth = 0;
+
 	let thumbnailImages: HTMLImgAttributes[] = [];
 	let thumbnailUploadedImages: HTMLImgAttributes[] = [];
 	let thumbnailTexts: HTMLParagraphElement[] = [];
@@ -5911,18 +5914,42 @@
 					labelText="Background"
 					bind:toggled={selectedIconBackground}
 				/>{/if}
+			<ColorPicker
+				bind:hex={selectedIconShadowColor}
+				label="Shadow Color"
+				--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
+				--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
+				--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+				--cp-button-hover-color={getHexStringFromCatppuccinColor(
+					'blue',
+					$theme,
+				)}
+			/>
+			<NumberInput
+				size="sm"
+				step={1}
+				min={0}
+				max={128}
+				bind:value={selectedIconShadowWidth}
+				invalidText={'Value must be between 0 and 128'}
+				label={'Shadow Width (px)'}
+			/>
 		</div>
 		<div class="icon-preview">
 			<div id={'icon-dom'} style="width: {selectedIconSize}">
 				{#if ((selectedIconType === 'Monster Icon' || selectedIconType === 'Weapon') && selectedIconFormat === 'Vector') || selectedIconType === 'Element' || selectedIconType === 'Ailment' || selectedIconType === 'Status' || selectedIconType === 'Item' || selectedIconType === 'Armor'}
-					<svelte:component
-						this={currentIconPreview.component}
-						{...{
-							size: selectedIconType === 'Weapon' ? '100%' : selectedIconSize,
-							color: selectedIconColor,
-							background: selectedIconBackground,
-						}}
-					/>
+					<div
+						style="filter: drop-shadow(0 0 {selectedIconShadowWidth}px {selectedIconShadowColor});"
+					>
+						<svelte:component
+							this={currentIconPreview.component}
+							{...{
+								size: selectedIconType === 'Weapon' ? '100%' : selectedIconSize,
+								color: selectedIconColor,
+								background: selectedIconBackground,
+							}}
+						/>
+					</div>
 				{:else}
 					<img
 						src={selectedIconType === 'Monster Render'
@@ -5932,6 +5959,7 @@
 							: currentIconPreview.image}
 						alt={selectedIconIdFromList}
 						width={selectedIconSize}
+						style="filter: drop-shadow(0 0 {selectedIconShadowWidth}px {selectedIconShadowColor});"
 					/>
 				{/if}
 			</div>
