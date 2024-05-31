@@ -1291,6 +1291,10 @@
 		];
 	}
 
+	function getCorrectIndex(i: number, totalLength: number) {
+		return thumbnailElementsOrderReversed ? totalLength - 1 - i : i;
+	}
+
 	function handleDelete(
 		section: 'Image' | 'Custom Image' | 'Text',
 		index: number,
@@ -5251,7 +5255,13 @@
 			/>
 		</div>
 		<div class="flex-centered padded flex-column">
-			<ImageDialog width={195} height={200} src={towerWeaponImage} alt="Tower Weapon" type="file" />
+			<ImageDialog
+				width={195}
+				height={200}
+				src={towerWeaponImage}
+				alt="Tower Weapon"
+				type="file"
+			/>
 			<div class="tower-weapon-slots-container">
 				{#each towerWeaponSlots as weaponSlot}
 					<img src={weaponSlot.image} alt="Tower Weapon Slot" />
@@ -6547,8 +6557,16 @@
 					{#each thumbnailImages as image, i}
 						<ThumbnailGeneratorImage
 							index={i}
-							on:delete={() => handleDelete(image.elementType, i)}
-							on:duplicate={() => handleDuplicate(image.elementType, i)}
+							on:delete={() =>
+								handleDelete(
+									image.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
+							on:duplicate={() =>
+								handleDuplicate(
+									image.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
 							bind:top={image.top}
 							bind:left={image.left}
 							bind:width={image.width}
@@ -6574,8 +6592,16 @@
 					{#each thumbnailUploadedImages as image, i}
 						<ThumbnailGeneratorImage
 							index={i}
-							on:delete={() => handleDelete(image.elementType, i)}
-							on:duplicate={() => handleDuplicate(image.elementType, i)}
+							on:delete={() =>
+								handleDelete(
+									image.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
+							on:duplicate={() =>
+								handleDuplicate(
+									image.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
 							bind:top={image.top}
 							bind:left={image.left}
 							bind:width={image.width}
@@ -6595,8 +6621,16 @@
 						<ThumbnailGeneratorText
 							index={i}
 							bind:text={textElement.text}
-							on:delete={() => handleDelete(textElement.elementType, i)}
-							on:duplicate={() => handleDuplicate(textElement.elementType, i)}
+							on:delete={() =>
+								handleDelete(
+									textElement.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
+							on:duplicate={() =>
+								handleDuplicate(
+									textElement.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
 							bind:top={textElement.top}
 							bind:left={textElement.left}
 							bind:zindex={textElement.zindex}
@@ -6619,8 +6653,16 @@
 					{#each [...thumbnailImages].reverse() as image, i}
 						<ThumbnailGeneratorImage
 							index={i}
-							on:delete={() => handleDelete(image.elementType, i)}
-							on:duplicate={() => handleDuplicate(image.elementType, i)}
+							on:delete={() =>
+								handleDelete(
+									image.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
+							on:duplicate={() =>
+								handleDuplicate(
+									image.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
 							bind:top={image.top}
 							bind:left={image.left}
 							bind:width={image.width}
@@ -6646,8 +6688,16 @@
 					{#each [...thumbnailUploadedImages].reverse() as image, i}
 						<ThumbnailGeneratorImage
 							index={i}
-							on:delete={() => handleDelete(image.elementType, i)}
-							on:duplicate={() => handleDuplicate(image.elementType, i)}
+							on:delete={() =>
+								handleDelete(
+									image.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
+							on:duplicate={() =>
+								handleDuplicate(
+									image.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
 							bind:top={image.top}
 							bind:left={image.left}
 							bind:width={image.width}
@@ -6667,8 +6717,16 @@
 						<ThumbnailGeneratorText
 							index={i}
 							bind:text={textElement.text}
-							on:delete={() => handleDelete(textElement.elementType, i)}
-							on:duplicate={() => handleDuplicate(textElement.elementType, i)}
+							on:delete={() =>
+								handleDelete(
+									textElement.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
+							on:duplicate={() =>
+								handleDuplicate(
+									textElement.elementType,
+									getCorrectIndex(i, thumbnailImages.length),
+								)}
 							bind:top={textElement.top}
 							bind:left={textElement.left}
 							bind:zindex={textElement.zindex}
