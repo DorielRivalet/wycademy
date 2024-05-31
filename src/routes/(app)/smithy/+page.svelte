@@ -121,6 +121,7 @@
 	import Moveable from 'svelte-moveable';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
+	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -1403,14 +1404,20 @@
 			return;
 		}
 
+		thumbnailGeneratorSmallPreviewStatus = 'loading';
+
 		await domToPng(node, {
 			quality: 1,
 		}).then((dataUrl) => {
 			thumbnailGeneratorSmallPreview = dataUrl;
 		});
+
+		thumbnailGeneratorSmallPreviewStatus = 'loaded';
 	}
 
 	let thumbnailGeneratorSmallPreview = '';
+	let thumbnailGeneratorSmallPreviewStatus: 'unloaded' | 'loading' | 'loaded' =
+		'unloaded';
 	let thumbnailGeneratorSmallPreviewSize = '512';
 
 	async function downloadGeneratedThumbnailImage() {
@@ -6465,7 +6472,13 @@
 		</div>
 
 		<div class="thumbnail-generator-small-preview">
-			{#if thumbnailGeneratorSmallPreview !== ''}
+			{#if thumbnailGeneratorSmallPreviewStatus === 'unloaded'}
+				<p>Your thumbnail preview will be displayed here.</p>
+			{:else if thumbnailGeneratorSmallPreviewStatus === 'loading'}
+				<SkeletonPlaceholder
+					style="height: {thumbnailGeneratorSmallPreviewSize}px; width: 50%;"
+				/>
+			{:else if thumbnailGeneratorSmallPreviewStatus === 'loaded'}
 				<img
 					src={thumbnailGeneratorSmallPreview}
 					width="auto"
@@ -6502,6 +6515,7 @@
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 							/>
 						{:else}
+							<!-- svelte-ignore a11y-no-static-element-interactions -->
 							<div
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 								on:mousedown={(e) => onThumbnailImageContainerMouseDown(e, i)}
