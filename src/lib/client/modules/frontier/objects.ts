@@ -1094,7 +1094,6 @@ import FullMonsterRenderFuriousRajang from '$lib/client/images/monster/render/fu
 import FullMonsterRenderRulingGuanzorumu from '$lib/client/images/monster/render/full/ruling-guanzorumu.webp';
 import FullMonsterRenderShiftingMiRu from '$lib/client/images/monster/render/full/shifting-mi-ru.webp';
 import FullMonsterRenderTwinheadRajang from '$lib/client/images/monster/render/full/hc-rajang.webp';
-import FullMonsterRenderRoadWhiteFatalis from '$lib/client/images/monster/render/full/white-fatalis.webp';
 
 import GameLogoMonsterHunterFrontier from '$lib/client/images/game/mhf.webp';
 import GameLogoMonsterHunterFrontierG from '$lib/client/images/game/mhfg.webp';
@@ -1102,6 +1101,8 @@ import GameLogoMonsterHunterFrontierGG from '$lib/client/images/game/mhfgg.webp'
 import GameLogoMonsterHunterFrontierZSmall from '$lib/client/images/game/mhfz-small.webp';
 import GameLogoMonsterHunterFrontierZ from '$lib/client/images/game/mhfz.webp';
 import GameLogoMonsterHunterFrontierZZ from '$lib/client/images/game/mhfzz.webp';
+
+// TODO the colors arrays should be grouped together.
 
 /*
 https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums
@@ -11728,11 +11729,11 @@ export const affinityDropdownItems: DropdownItemOption[] = [
 	},
 	{
 		name: 'Ceaseless 2nd Stage (+50% / +0.15x)',
-		value: 60,
+		value: 50,
 	},
 	{
 		name: 'Ceaseless Up 3rd Stage (+60% / +0.20x)',
-		value: 70,
+		value: 60,
 	},
 
 	{
