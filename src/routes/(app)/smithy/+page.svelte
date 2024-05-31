@@ -5856,11 +5856,12 @@
 					{ id: 'Weapon', text: 'Weapon' },
 				]}
 			/>
-			<Dropdown
-				type="inline"
+			<ComboBox
 				titleText="Icon"
+				placeholder="Select icon"
 				bind:selectedId={selectedIconIdFromList}
 				items={currentIconsFromType}
+				{shouldFilterItem}
 			/>
 			<Dropdown
 				type="inline"
