@@ -28,6 +28,9 @@
 		greatSwordCharges,
 		obscurityValues,
 		affinityBaseCritMultiplierBonusDropdownItems,
+		legacyCalculatorKeysMap,
+		legacyCalculatorNumberInputs,
+		legacyCalculatorValuesMap,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -68,6 +71,7 @@
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
@@ -858,6 +862,8 @@
 	}
 
 	let showWeaponMotionValuesSectionWarning = false;
+	let showDamageCalculatorInputsJSONError = false;
+	let showDamageCalculatorLegacyInputsJSONError = false;
 
 	function getBentoSectionValues(section: string) {
 		let defaultResult = [
@@ -1586,6 +1592,112 @@
 		URL.revokeObjectURL(url);
 	}
 
+	function mapLegacyValue(
+		legacyKey: string,
+		legacyValue: string,
+	): string | number | boolean {
+		if (legacyCalculatorNumberInputs.find((e) => e === legacyKey)) {
+			return Number(legacyValue);
+		}
+
+		let legacyStat = legacyCalculatorValuesMap.find(
+			(e) => e[legacyKey][legacyValue] !== undefined,
+		);
+
+		if (!legacyStat) {
+			console.warn(`Invalid value for legacy key ${legacyKey}: ${legacyStat}`);
+			return 'None';
+		}
+
+		return legacyStat[legacyKey][legacyValue];
+	}
+
+	function transformLegacyData(legacyData: { [key: string]: string }) {
+		const newData: { [key: string]: string | number | boolean } = {};
+
+		// Iterate over each entry in the legacy data
+		for (const [legacyKey, legacyValue] of Object.entries(legacyData)) {
+			// Find the corresponding new key based on the mapping
+			const newKey = legacyCalculatorKeysMap[legacyKey];
+
+			if (newKey === '') {
+				continue;
+			}
+
+			// Check if a direct mapping exists
+			if (newKey) {
+				// Assign the transformed value to the new key
+				newData[newKey] = mapLegacyValue(legacyKey, legacyValue);
+			}
+		}
+
+		return newData;
+	}
+
+	function loadLegacyInputsFromJSONFile(legacyCalculatorSaveSlot: number) {
+		// Create an input element to prompt the user to select a file
+		const input = document.createElement('input');
+		input.type = 'file';
+		input.accept = '.json'; // Accept only JSON files
+
+		// Listen for the change event on the input element
+		input.addEventListener('change', (event) => {
+			const file = (event.target as HTMLInputElement).files?.[0];
+			if (file) {
+				const reader = new FileReader();
+
+				// Listen for the load event on the FileReader
+				reader.onload = (e) => {
+					// Parse the JSON content
+					let jsonData: { [key: string]: any } = {};
+					try {
+						jsonData = JSON.parse(e.target?.result as string);
+					} catch {
+						showDamageCalculatorLegacyInputsJSONError = true;
+						return;
+					}
+
+					showDamageCalculatorLegacyInputsJSONError = false;
+
+					// Filter keys based on the specified save slot
+					const filteredKeys = Object.keys(jsonData).filter((key) =>
+						key.startsWith(`save${legacyCalculatorSaveSlot}`),
+					);
+
+					if (filteredKeys.length === 0) {
+						return;
+					}
+
+					// Remove the saveX prefix and prepare for mapping
+					const transformedData: { [key: string]: string } = {};
+					filteredKeys.forEach((key) => {
+						const newKey = key.replace(
+							`save${legacyCalculatorSaveSlotNumber}`,
+							'',
+						);
+						transformedData[newKey] = jsonData[key];
+					});
+
+					// Now, transformedData contains the relevant data without the saveX prefix
+					// Perform key-value mapping here based on your requirements
+					// For demonstration, assuming a simple direct mapping
+					const mappedData = transformLegacyData(transformedData); // Replace this with your actual mapping logic
+
+					// Load the mapped data into your application
+					// Assuming updateInputs is a function that takes the mapped data and updates your UI
+					inputTextImportData = JSON.stringify(mappedData, null, 2);
+					updateInputs();
+				};
+
+				// Read the file as text
+				reader.readAsText(file);
+			}
+		});
+
+		// Trigger the file selection dialog
+		input.click();
+	}
+
 	function loadInputsFromJSONFile() {
 		// Create an input element to prompt the user to select a file
 		const input = document.createElement('input');
@@ -1620,7 +1732,16 @@
 			return;
 		}
 
-		let newInputs = JSON.parse(inputTextImportData);
+		let newInputs: { [key: string]: string | number | boolean } = {};
+
+		try {
+			newInputs = JSON.parse(inputTextImportData);
+		} catch (e) {
+			showDamageCalculatorInputsJSONError = true;
+			return;
+		}
+
+		showDamageCalculatorInputsJSONError = false;
 
 		// Update individual variables directly
 		inputStyleRankAffinity =
@@ -2450,7 +2571,7 @@
 	let inputDistanceMultiplier = '1.8x LBG & Bow Crit Distance';
 	let inputBulletModifier = 'None (1x)';
 	let inputShotMultiplier = 'None (1x)';
-	let inputHbgChargeShot = 'Normal / Charge Lv 0 (x1)';
+	let inputHbgChargeShot = 'Normal / Charge Lv 0 (1x)';
 	let inputCompressedShotMultiplier = 'Not Compressed (0x)';
 	let inputBowCoatingsMultiplier = 'None (1x)';
 	let inputChargeMultiplier = 'Lv4 (1.85x / 1.334x)';
@@ -3755,8 +3876,11 @@ does not get multiplied by horn */
 		})();
 	}
 
+	/**the generated HTML is sanitized by shiki*/
 	let inputsHTML = '';
+	/**the generated HTML is sanitized by shiki*/
 	let internalAffinityFunctionHTML = '';
+	/**the generated HTML is sanitized by shiki*/
 	let critValueFunctionHTML = '';
 
 	$: inputStatusIcon = StatusIcons.find((e) => e.name === inputStatus)?.icon;
@@ -4009,6 +4133,8 @@ does not get multiplied by horn */
 		critConversionCalculatorNaturalAffinity,
 		critConversionCalculatorCritConversionUpMultiplier,
 	);
+
+	let legacyCalculatorSaveSlotNumber = 1;
 </script>
 
 <svelte:head>
@@ -4240,7 +4366,84 @@ does not get multiplied by horn */
 						</li>
 						<li>4. Paste them here.</li>
 					</ol>
+
+					<p>
+						If you want to import the save slots from the legacy calculator:
+					</p>
+					<ol>
+						<li>
+							1. Go to the <OutboundLink
+								href="https://dorielrivalet.github.io/mhfz-damage-calculator"
+								>legacy calculator</OutboundLink
+							>.
+						</li>
+						<li>2. Open the Console by pressing <kbd>Ctrl+Shift+I</kbd>.</li>
+						<li>
+							3. To put all of your save slots into the clipboard, paste the
+							following command and run it in the console: <CodeSnippet
+								showMoreLess={false}
+								type="inline">copy(JSON.stringify(localStorage));</CodeSnippet
+							>
+						</li>
+						<li>
+							4. With the copied clipboard text, paste it into a text editor and
+							save as JSON file.
+						</li>
+						<li>
+							5. Click the button below, specifying the slot number in the
+							number input, in order to import the file.
+						</li>
+					</ol>
+					<div class="flex-row">
+						<div class="number-input-container">
+							<NumberInput
+								size="sm"
+								step={1}
+								min={1}
+								max={20}
+								bind:value={legacyCalculatorSaveSlotNumber}
+								invalidText={'Value must be between 1 and 20.'}
+								label={'Legacy Calculator Save Slot Number'}
+							/>
+						</div>
+						<Button
+							kind="tertiary"
+							icon={Upload}
+							on:click={() =>
+								loadLegacyInputsFromJSONFile(legacyCalculatorSaveSlotNumber)}
+							>Import legacy save file</Button
+						>
+					</div>
 				</div>
+
+				{#if showDamageCalculatorLegacyInputsJSONError}
+					<InlineNotification
+						title="Error:"
+						subtitle="Invalid legacy damage calculator inputs in the imported file."
+						kind="error"
+						hideCloseButton
+						lowContrast
+						on:close={() => (showDamageCalculatorLegacyInputsJSONError = false)}
+					/>
+				{/if}
+
+				<p>
+					It is recommended to backup your save slots by doing the above steps
+					before August 2024. Afterwards, the legacy calculator will no longer
+					be available.
+				</p>
+
+				{#if showDamageCalculatorInputsJSONError}
+					<InlineNotification
+						title="Error:"
+						subtitle="Invalid damage calculator inputs in the JSON text area."
+						kind="error"
+						hideCloseButton
+						lowContrast
+						on:close={() => (showDamageCalculatorInputsJSONError = false)}
+					/>
+				{/if}
+
 				<div class="container-buttons">
 					<div class="buttons-top">
 						<TextArea
@@ -4287,25 +4490,27 @@ does not get multiplied by horn */
 				</div>
 
 				<div>
-					<p>Attack Display Value to True Raw Converter</p>
-					<div class="number-input-container">
-						<NumberInput
-							size="sm"
-							step={10}
-							min={minimumNumberValue}
-							max={maximumNumberValue}
-							bind:value={inputNumberAttackValue}
-							invalidText={invalidNumberValueText}
-							label={'Weapon Attack Display Value'}
-						/>
+					<p>Attack Display Value to True Raw Converter:</p>
+					<div class="flex-row-centered">
+						<div class="number-input-container">
+							<NumberInput
+								size="sm"
+								step={10}
+								min={minimumNumberValue}
+								max={maximumNumberValue}
+								bind:value={inputNumberAttackValue}
+								invalidText={invalidNumberValueText}
+								label={'Weapon Attack Display Value'}
+							/>
+						</div>
+						<p>
+							True Raw: {Math.floor(
+								inputNumberAttackValue /
+									(WeaponTypes.find((e) => e.name === inputWeaponType)
+										?.bloatAttackMultiplier ?? 1),
+							)}
+						</p>
 					</div>
-					<p>
-						True Raw: {Math.floor(
-							inputNumberAttackValue /
-								(WeaponTypes.find((e) => e.name === inputWeaponType)
-									?.bloatAttackMultiplier ?? 1),
-						)}
-					</p>
 				</div>
 
 				<div class="container-inputs">
@@ -6044,8 +6249,8 @@ does not get multiplied by horn */
 											bind:selectedId={inputHbgChargeShot}
 											items={[
 												{
-													id: 'Normal / Charge Lv 0 (x1)',
-													text: 'Normal / Charge Lv 0 (x1)',
+													id: 'Normal / Charge Lv 0 (1x)',
+													text: 'Normal / Charge Lv 0 (1x)',
 												},
 												{
 													id: 'Charge Lv 1 (1.15x)',
@@ -7089,7 +7294,7 @@ does not get multiplied by horn */
 		<SectionHeading level={2} title="Formulas" />
 		<InlineNotification
 			title="Bugs:"
-			subtitle="If you notice an error with the damage calculator, you can send an issue on the GitHub repository."
+			subtitle="If you notice an error with the damage calculator, you can send an issue on the GitHub repository with the inputs JSON file to facilitate debugging."
 			kind="info"
 			lowContrast
 		/>
@@ -11684,7 +11889,7 @@ does not get multiplied by horn */
 	.damage-calculator {
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 1rem;
 	}
 
 	.container-inputs {
@@ -12119,5 +12324,18 @@ does not get multiplied by horn */
 		grid-template-columns: auto 1fr;
 		align-items: center;
 		gap: 1rem;
+	}
+
+	.flex-row {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.flex-row-centered {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+		align-items: center;
 	}
 </style>
