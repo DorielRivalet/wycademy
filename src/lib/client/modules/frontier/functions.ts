@@ -17,7 +17,7 @@ import {
 	ArmorTypes,
 	ItemColors,
 	monsterInfo,
-	TagTypes,
+	tagInfo,
 	WeaponTypes,
 } from './objects';
 import FireIcon from '$lib/client/images/icon/element/fire.webp';
@@ -174,13 +174,25 @@ export const frontierMappers = {
 	},
 };
 
+export function isFieldEmpty(field: string | undefined | null) {
+	return (
+		field === undefined ||
+		field === null ||
+		field === '' ||
+		field === 'N/A' ||
+		field === '(?)' ||
+		field === 'None' ||
+		field === 'Not found'
+	);
+}
+
 export function getTag(value: string) {
-	for (const tagType of TagTypes) {
+	for (const tagType of tagInfo) {
 		if (tagType.values.includes(value)) {
 			return tagType;
 		}
 	}
-	return TagTypes[0];
+	return tagInfo[0];
 }
 
 export function getMonster(name: FrontierMonsterName, rank: string) {
