@@ -713,6 +713,7 @@ export type FrontierMonsterInfo = {
 	relatedMonsters?: string[];
 	generation?: string;
 	ecology?: string;
+	link?: string;
 	// TODO hitzones
 };
 export type IconSize =
