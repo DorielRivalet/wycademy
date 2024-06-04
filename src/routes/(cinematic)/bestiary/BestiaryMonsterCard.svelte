@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { getTag } from '$lib/client/modules/frontier/functions';
+	import { getTag, isFieldEmpty } from '$lib/client/modules/frontier/functions';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
 
-	export let title = 'Abiorugu';
-	export let subtitle = 'Ferocious Wyvern';
+	export let monster: FrontierMonsterInfo;
 	export let tags = ['Brute Wyvern', 'Hardcore', 'Unlimited', 'Fire'];
 	export let width: string;
 
@@ -18,12 +18,12 @@
 		</div>
 	</div>
 	<div class="bottom">
-		<p class="title" style="width: {'100%'}">
-			{title}
-		</p>
-		{#if subtitle !== ''}
+		<a class="title" style="width: {'100%'}" href={monster.link}>
+			{monster.displayName}
+		</a>
+		{#if monster.titles && monster.titles.length > 0 && !isFieldEmpty(monster.titles[0])}
 			<p class="subtitle" style="width: {'100%'}">
-				{subtitle}
+				{monster.titles[0]}
 			</p>
 		{/if}
 		<div class="tags" style="width: {'100%'}">
@@ -106,5 +106,14 @@
 		line-clamp: 1;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+	}
+
+	a {
+		all: unset;
+	}
+
+	a:hover {
+		cursor: var(--cursor-icon-pointer);
+		text-decoration: underline;
 	}
 </style>
