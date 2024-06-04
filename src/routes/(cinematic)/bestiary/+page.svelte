@@ -217,12 +217,7 @@
 							}}
 						>
 							<BestiaryMonsterCard
-								title={monster.displayName}
-								subtitle={monster.titles !== undefined
-									? isFieldEmpty(monster.titles[0])
-										? ''
-										: monster.titles[0]
-									: ''}
+								{monster}
 								width={monsterIconSize}
 								tags={[
 									...[monster.class ?? ''],
