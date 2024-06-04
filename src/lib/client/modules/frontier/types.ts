@@ -690,6 +690,9 @@ export type TagColor =
 	| 'high-contrast'
 	| 'outline'
 	| undefined;
+
+export type FrontierElementStatus = FrontierElement | FrontierStatus;
+
 export type FrontierMonsterInfo = {
 	name: FrontierMonsterName;
 	rank: FrontierRankBand;
@@ -703,7 +706,7 @@ export type FrontierMonsterInfo = {
 	class?: FrontierMonsterClass;
 	elements?: FrontierElement[];
 	ailments?: FrontierAilment[];
-	weaknesses?: string[];
+	weaknesses?: FrontierElementStatus[];
 	habitats?: string[];
 	type?: 'Large' | 'Small';
 	sizes?: string[];
