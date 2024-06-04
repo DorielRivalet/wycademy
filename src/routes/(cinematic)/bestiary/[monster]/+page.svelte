@@ -10,6 +10,7 @@
 	import {
 		AilmentIcons,
 		ElementIcons,
+		StatusIcons,
 	} from '$lib/client/modules/frontier/objects';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 
@@ -140,12 +141,21 @@
 					<strong>Weaknesses: </strong>
 					{#if monster.weaknesses !== undefined && monster.weaknesses.length > 0}
 						{#each monster.weaknesses as weakness}
-							<InlineTooltip
-								text={weakness}
-								tooltip="Element"
-								iconType="component"
-								icon={ElementIcons.find((e) => e.name === weakness)?.icon}
-							/>
+							{#if ElementIcons.find((e) => e.name === weakness)}
+								<InlineTooltip
+									text={weakness}
+									tooltip="Element"
+									iconType="component"
+									icon={ElementIcons.find((e) => e.name === weakness)?.icon}
+								/>
+							{:else if StatusIcons.find((e) => e.name === weakness)}
+								<InlineTooltip
+									text={weakness}
+									tooltip="Status"
+									iconType="component"
+									icon={StatusIcons.find((e) => e.name === weakness)?.icon}
+								/>
+							{/if}
 						{/each}
 					{:else}
 						None
