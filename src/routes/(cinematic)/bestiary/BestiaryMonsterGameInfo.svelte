@@ -65,6 +65,5 @@
 	.image {
 		margin-top: 1rem;
 		margin-bottom: 1rem;
-		margin-left: 1rem;
 	}
 </style>
