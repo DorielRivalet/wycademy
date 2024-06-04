@@ -31,6 +31,7 @@
 	import List from 'carbon-icons-svelte/lib/List.svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
+	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
 
 	export let data;
 
@@ -99,18 +100,6 @@
 		}
 
 		currentMonsters = filteredMonsters;
-	}
-
-	function isFieldEmpty(field: string | undefined | null) {
-		return (
-			field === undefined ||
-			field === null ||
-			field === '' ||
-			field === 'N/A' ||
-			field === '(?)' ||
-			field === 'None' ||
-			field === 'Not found'
-		);
 	}
 
 	let contextSwitcherIndex = 0;
@@ -236,6 +225,11 @@
 										: monster.titles[0]
 									: ''}
 								width={monsterIconSize}
+								tags={[
+									...[monster.class ?? ''],
+									...(monster.elements ?? []),
+									...(monster.ailments ?? []),
+								]}
 							>
 								<span slot="image">
 									<div

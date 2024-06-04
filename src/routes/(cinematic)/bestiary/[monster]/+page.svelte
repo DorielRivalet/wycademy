@@ -5,6 +5,13 @@
 	// import { wikiaMonsterKeyMap } from '$lib/client/modules/frontier/objects.js';
 	// import type { WikiaMonster } from '$lib/client/modules/frontier/types.js';
 	import slugify from 'slugify';
+	import BestiaryMonsterGameInfo from '../BestiaryMonsterGameInfo.svelte';
+	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
+	import {
+		AilmentIcons,
+		ElementIcons,
+	} from '$lib/client/modules/frontier/objects';
+	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 
 	export let data;
 
@@ -59,74 +66,112 @@
 
 {#if monster}
 	<div class="container">
-		<div class="description">
-			<SectionHeadingTopLevel title={monster.displayName} />
+		<SectionHeadingTopLevel title={monster.displayName} />
 
-			<!-- <code>{JSON.stringify(transformedWikiaMonster, null, 2)}</code> -->
+		<!-- <code>{JSON.stringify(transformedWikiaMonster, null, 2)}</code> -->
 
-			<div
-				class="monster-icon"
-				style:--monster-icon="monster-icon-{slugify(monster.displayName, {
-					lower: true,
-				})}"
+		<div class="overview">
+			<BestiaryMonsterGameInfo
+				description={monster.ecology}
+				type={monster.class}
+				title={monster.titles !== undefined
+					? isFieldEmpty(monster.titles[0])
+						? 'None'
+						: monster.titles[0]
+					: 'None'}
 			>
-				{#if monster.unusedComponent}
-					<ImageDialog
-						src={monster.icon}
-						alt={monster.displayName}
-						width={256}
-						height={256}
-						type="file"
-					/>
-				{:else}
-					<ImageDialog
-						src={monster.component}
-						alt={monster.displayName}
-						componentSize={'100%'}
-						type="component"
-					/>
-				{/if}
-			</div>
+				<div
+					class="monster-icon"
+					style:--monster-icon="monster-icon-{slugify(monster.displayName, {
+						lower: true,
+					})}"
+				>
+					{#if monster.unusedComponent}
+						<ImageDialog
+							src={monster.icon}
+							alt={monster.displayName}
+							width={256}
+							height={256}
+							type="file"
+						/>
+					{:else}
+						<ImageDialog
+							src={monster.component}
+							alt={monster.displayName}
+							componentSize={'100%'}
+							type="component"
+						/>
+					{/if}
+				</div></BestiaryMonsterGameInfo
+			>
 
-			<p class="details">{monster.displayName}</p>
+			<div class="elements-ailments-weaknesses">
+				<div class="elements">
+					<strong>Elements: </strong>
+					{#if monster.elements !== undefined && monster.elements.length > 0}
+						{#each monster.elements as element}
+							<InlineTooltip
+								text={element}
+								tooltip="Element"
+								iconType="component"
+								icon={ElementIcons.find((e) => e.displayName === element)?.icon}
+							/>
+						{/each}
+					{:else}
+						None
+					{/if}
+				</div>
+				<div class="ailments">
+					<strong>Ailments: </strong>
+					{#if monster.ailments !== undefined && monster.ailments.length > 0}
+						{#each monster.ailments as ailment}
+							<InlineTooltip
+								text={ailment}
+								tooltip="Ailment"
+								iconType="component"
+								icon={AilmentIcons.find((e) => e.name === ailment)?.icon}
+							/>
+						{/each}
+					{:else}
+						None
+					{/if}
+				</div>
+				<div class="weaknesses">
+					<strong>Weaknesses: </strong>
+					{#if monster.weaknesses !== undefined && monster.weaknesses.length > 0}
+						{#each monster.weaknesses as weakness}
+							<InlineTooltip
+								text={weakness}
+								tooltip="Element"
+								iconType="component"
+								icon={ElementIcons.find((e) => e.name === weakness)?.icon}
+							/>
+						{/each}
+					{:else}
+						None
+					{/if}
+				</div>
+			</div>
 		</div>
 	</div>
 {/if}
 
 <style lang="scss">
-	.container {
-		& .monster-icon {
-			width: 256px;
-			view-transition-name: var(--monster-icon);
-		}
+	.monster-icon {
+		width: 100%;
+		view-transition-name: var(--monster-icon);
 	}
 
-	.description {
-		align-self: center;
+	.overview {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
 
-		& p {
-			margin-top: 0.5rem;
-		}
-
-		& .details {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-			gap: 2rem;
-			margin-top: 2rem;
-			padding-top: 2rem;
-
-			& .item {
-				& :nth-child(1) {
-					text-transform: uppercase;
-					font-weight: 600;
-				}
-
-				& :nth-child(2) {
-					font-size: 1.4rem;
-					color: hsl(220 40% 90%);
-					text-transform: capitalize;
-				}
-			}
-		}
+	.elements-ailments-weaknesses {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		gap: 1rem;
 	}
 </style>

@@ -43,7 +43,15 @@ export type FrontierAilment = // TODO missing
 		| 'Snowman'
 		| 'Stench'
 		| 'Stun'
-		| 'Vocal Cord Paralysis';
+		| 'Vocal Cord Paralysis'
+		| 'Poison'
+		| 'Paralysis'
+		| 'Sleep'
+		| 'Blast'
+		| 'Defense Down'
+		| 'Farcaster'
+		| 'Confusion'
+		| 'Frenzy Virus';
 export type FrontierElement =
 	| ''
 	| 'None'
@@ -694,7 +702,7 @@ export type FrontierMonsterInfo = {
 	titles?: string[];
 	class?: FrontierMonsterClass;
 	elements?: FrontierElement[];
-	ailments?: string[];
+	ailments?: FrontierAilment[];
 	weaknesses?: string[];
 	habitats?: string[];
 	type?: 'Large' | 'Small';

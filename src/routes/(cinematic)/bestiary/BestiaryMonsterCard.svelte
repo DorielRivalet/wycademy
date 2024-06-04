@@ -6,7 +6,7 @@
 	export let tags = ['Brute Wyvern', 'Hardcore', 'Unlimited', 'Fire'];
 	export let width: string;
 
-	const maxTagLength = 16;
+	const maxTagLength = 20;
 </script>
 
 <div class="card" style="width: {width};">
