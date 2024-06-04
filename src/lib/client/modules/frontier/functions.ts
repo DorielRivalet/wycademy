@@ -16,7 +16,7 @@ import type {
 import {
 	ArmorTypes,
 	ItemColors,
-	MonsterIcons,
+	monsterInfo,
 	TagTypes,
 	WeaponTypes,
 } from './objects';
@@ -184,7 +184,7 @@ export function getTag(value: string) {
 }
 
 export function getMonster(name: FrontierMonsterName, rank: string) {
-	for (const monster of MonsterIcons) {
+	for (const monster of monsterInfo) {
 		if (
 			monster.rank.toLowerCase().includes(rank.toLowerCase()) &&
 			monster.name.toLowerCase() === name.toLowerCase()
@@ -193,11 +193,11 @@ export function getMonster(name: FrontierMonsterName, rank: string) {
 		}
 	}
 
-	for (const monster of MonsterIcons) {
+	for (const monster of monsterInfo) {
 		if (monster.name.toLowerCase() === name.toLowerCase()) {
 			return monster;
 		}
 	}
 
-	return MonsterIcons[0];
+	return monsterInfo[0];
 }

@@ -1,6 +1,6 @@
 <script>
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import ChevronUp from 'carbon-icons-svelte/lib/ChevronUp.svelte';
+	import UpToTop from 'carbon-icons-svelte/lib/UpToTop.svelte';
 
 	export let showOnPx = 150;
 	let hidden = true;
@@ -32,7 +32,7 @@
 	<Button
 		size="small"
 		iconDescription="Go up"
-		icon={ChevronUp}
+		icon={UpToTop}
 		on:click={goTop}
 		kind="ghost"
 	/>

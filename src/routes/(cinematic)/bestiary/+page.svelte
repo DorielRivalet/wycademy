@@ -17,7 +17,6 @@
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
-	import { MonsterIcons } from '$lib/client/modules/frontier/objects';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
@@ -25,11 +24,20 @@
 	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import slugify from 'slugify';
+	import BestiaryMonsterCard from './BestiaryMonsterCard.svelte';
+	import ContentSwitcher from 'carbon-components-svelte/src/ContentSwitcher/ContentSwitcher.svelte';
+	import Switch from 'carbon-components-svelte/src/ContentSwitcher/Switch.svelte';
+	import Grid from 'carbon-icons-svelte/lib/Grid.svelte';
+	import List from 'carbon-icons-svelte/lib/List.svelte';
+	import { cubicInOut } from 'svelte/easing';
+	import { fade } from 'svelte/transition';
+
+	export let data;
 
 	let customTitle = 'Bestiary';
 	let url = $page.url.toString();
 
-	const monsterIconSize = '128px';
+	const monsterIconSize = '256px';
 
 	let iconProps = {
 		size: monsterIconSize,
@@ -41,7 +49,7 @@
 	function getUniqueMonsters() {
 		let names: string[] = [];
 		let result: FrontierMonsterInfo[] = [];
-		MonsterIcons.forEach((element) => {
+		data.monsterInfo.forEach((element) => {
 			if (!names.find((e) => element.displayName === e)) {
 				if (!unlistedMonsterNames.find((e) => e === element.displayName)) {
 					names.push(element.displayName);
@@ -75,11 +83,11 @@
 		let filteredMonsters = uniqueMonsters.filter(
 			(monster) =>
 				monster.displayName.toLowerCase().includes(searchTerm.toLowerCase()) &&
-				selectedSize.find((e) => e === monster.size) &&
+				selectedSize.find((e) => e === monster.type) &&
 				(selectedClass === 'All' || monster.class === selectedClass) &&
-				(selectedType === 'All' || monster.type === selectedType) &&
-				(selectedElement === 'All' || monster.element === selectedElement) &&
-				(selectedAilment === 'All' || monster.ailment === selectedAilment),
+				(selectedType === 'All' || monster.type === selectedType),
+			// (selectedElement === 'All' || monster.element === selectedElement) &&
+			// (selectedAilment === 'All' || monster.ailment === selectedAilment),
 		);
 
 		// Sort the filtered monsters alphabetically
@@ -92,6 +100,20 @@
 
 		currentMonsters = filteredMonsters;
 	}
+
+	function isFieldEmpty(field: string | undefined | null) {
+		return (
+			field === undefined ||
+			field === null ||
+			field === '' ||
+			field === 'N/A' ||
+			field === '(?)' ||
+			field === 'None' ||
+			field === 'Not found'
+		);
+	}
+
+	let contextSwitcherIndex = 0;
 </script>
 
 <Head
@@ -112,129 +134,154 @@
 	<SectionHeadingTopLevel title="Bestiary" />
 
 	<div class="container">
-		<div class="options">
-			<div>
-				<Search
-					bind:value={searchTerm}
-					placeholder="Search monster name..."
-					autocomplete={'on'}
-				/>
-			</div>
-			<div class="dropdowns">
-				<MultiSelect
-					type="inline"
-					label="Select size..."
-					items={[
-						{ id: 'Large', text: 'Large' },
-						{ id: 'Small', text: 'Small' },
-					]}
-					bind:selectedIds={selectedSize}
-				/>
-				<Dropdown
-					titleText="Class"
-					selectedId="0"
-					type="inline"
-					items={[
-						{ id: '0', text: 'All' },
-						{ id: '1', text: 'Flying Wyvern' },
-						{ id: '2', text: 'Brute Wyvern' },
-					]}
-				></Dropdown>
-				<Dropdown
-					titleText="Type"
-					selectedId="0"
-					type="inline"
-					items={[
-						{ id: '0', text: 'All' },
-						{ id: '1', text: 'Hardcore' },
-						{ id: '2', text: 'Unlimited' },
-						{ id: '3', text: 'Musou' },
-					]}
-				/>
-				<Dropdown
-					titleText="Element"
-					selectedId="0"
-					type="inline"
-					items={[
-						{ id: '0', text: 'All' },
-						{ id: '1', text: 'Fire' },
-						{ id: '2', text: 'Water' },
-					]}
-				/>
-				<Dropdown
-					titleText="Ailment"
-					selectedId="0"
-					type="inline"
-					items={[
-						{ id: '0', text: 'All' },
-						{ id: '1', text: 'Poison' },
-						{ id: '2', text: 'Sleep' },
-					]}
-				/>
-				<Toggle
-					labelA="Descending"
-					labelB="Ascending"
-					hideLabel
-					labelText="Order"
-					bind:toggled={orderAscending}
-				/>
-			</div>
-			<p>Results: {currentMonsters.length}</p>
-		</div>
-
-		{#if currentMonsters.length > 0}
-			<div class="monster-list">
-				{#each currentMonsters as monster}
-					<div class="monster-container">
-						<div
-							class="monster-icon"
-							style:--monster-icon="monster-icon-{slugify(monster.displayName, {
-								lower: true,
-							})}"
-						>
-							<Link
-								href={`/bestiary/${slugify(monster.displayName, { lower: true })}`}
-							>
-								{#if monster.unusedComponent}
-									<img
-										src={monster.icon}
-										alt={monster.displayName}
-										width={monsterIconSize}
-									/>
-								{:else}
-									<svelte:component this={monster.component} {...iconProps} />
-								{/if}
-							</Link>
-						</div>
-
-						<div style="width: {monsterIconSize}" class="monster-name">
-							<Link
-								href={`/bestiary/${slugify(monster.displayName, { lower: true })}`}
-							>
-								{monster.displayName}
-							</Link>
-						</div>
+		<div class="content-switcher-container">
+			<ContentSwitcher bind:selectedIndex={contextSwitcherIndex}>
+				<Switch>
+					<div style="display: flex; align-items: center;">
+						<Grid title="Card view" />
 					</div>
-				{/each}
+				</Switch>
+				<Switch>
+					<div style="display: flex; align-items: center;">
+						<List title="List view" />
+					</div>
+				</Switch>
+			</ContentSwitcher>
+		</div>
+		{#if contextSwitcherIndex === 0}
+			<div class="options">
+				<div>
+					<Search
+						bind:value={searchTerm}
+						placeholder="Search monster name..."
+						autocomplete={'on'}
+					/>
+				</div>
+				<div class="dropdowns">
+					<MultiSelect
+						type="inline"
+						label="Select size..."
+						items={[
+							{ id: 'Large', text: 'Large' },
+							{ id: 'Small', text: 'Small' },
+						]}
+						bind:selectedIds={selectedSize}
+					/>
+					<Dropdown
+						titleText="Class"
+						selectedId="0"
+						type="inline"
+						items={[
+							{ id: '0', text: 'All' },
+							{ id: '1', text: 'Flying Wyvern' },
+							{ id: '2', text: 'Brute Wyvern' },
+						]}
+					></Dropdown>
+					<Dropdown
+						titleText="Type"
+						selectedId="0"
+						type="inline"
+						items={[
+							{ id: '0', text: 'All' },
+							{ id: '1', text: 'Hardcore' },
+							{ id: '2', text: 'Unlimited' },
+							{ id: '3', text: 'Musou' },
+						]}
+					/>
+					<Dropdown
+						titleText="Element"
+						selectedId="0"
+						type="inline"
+						items={[
+							{ id: '0', text: 'All' },
+							{ id: '1', text: 'Fire' },
+							{ id: '2', text: 'Water' },
+						]}
+					/>
+					<Dropdown
+						titleText="Ailment"
+						selectedId="0"
+						type="inline"
+						items={[
+							{ id: '0', text: 'All' },
+							{ id: '1', text: 'Poison' },
+							{ id: '2', text: 'Sleep' },
+						]}
+					/>
+					<Toggle
+						labelA="Descending"
+						labelB="Ascending"
+						hideLabel
+						labelText="Order"
+						bind:toggled={orderAscending}
+					/>
+				</div>
+				<p>Results: {currentMonsters.length}</p>
 			</div>
-		{:else}
-			<p><strong>No monsters found</strong></p>
-			<p>
-				Try adjusting your search or filter options to find what you're looking
-				for.
-			</p>
+
+			{#if currentMonsters.length > 0}
+				<div class="monster-list">
+					{#each currentMonsters as monster}
+						<div
+							transition:fade={{
+								duration: 300,
+								easing: cubicInOut,
+							}}
+						>
+							<BestiaryMonsterCard
+								title={monster.displayName}
+								subtitle={monster.titles !== undefined
+									? isFieldEmpty(monster.titles[0])
+										? ''
+										: monster.titles[0]
+									: ''}
+								width={monsterIconSize}
+							>
+								<span slot="image">
+									<div
+										class="monster-icon"
+										style:--monster-icon="monster-icon-{slugify(
+											monster.displayName,
+											{
+												lower: true,
+											},
+										)}"
+									>
+										<Link
+											href={`/bestiary/${slugify(monster.displayName, { lower: true })}`}
+										>
+											{#if monster.unusedComponent}
+												<img
+													src={monster.icon}
+													alt={monster.displayName}
+													width={monsterIconSize}
+												/>
+											{:else}
+												<svelte:component
+													this={monster.component}
+													{...iconProps}
+												/>
+											{/if}
+										</Link>
+									</div>
+								</span>
+							</BestiaryMonsterCard>
+						</div>
+					{/each}
+				</div>
+			{:else}
+				<p><strong>No monsters found</strong></p>
+				<p>
+					Try adjusting your search or filter options to find what you're
+					looking for.
+				</p>
+			{/if}
 		{/if}
 	</div>
 </section>
 
 <style lang="scss">
 	@use '@carbon/motion' as motion;
-
-	.monster-list {
-		.monster-icon {
-			view-transition-name: var(--monster-icon);
-		}
-	}
 
 	.monster-list {
 		display: flex;
@@ -250,28 +297,15 @@
 		flex-wrap: wrap;
 	}
 
-	.monster-name {
-		font-weight: bold;
-		text-wrap: wrap;
-		text-align: center;
-		line-height: 1.5em;
-	}
-
-	.monster-container {
-		display: flex;
-		gap: 0.5rem;
-		flex-direction: column;
-		align-items: center;
-	}
-
 	.monster-icon {
 		transition-property: filter;
 		transition-duration: motion.$duration-fast-02;
 		transition-timing-function: motion.motion(standard, expressive);
+		view-transition-name: var(--monster-icon);
 	}
 
 	.monster-icon:hover {
-		filter: drop-shadow(0 0 10px var(--ctp-blue)) brightness(120%);
+		filter: brightness(120%);
 	}
 
 	.options {
@@ -292,5 +326,9 @@
 		gap: 1rem;
 		flex-wrap: wrap;
 		align-items: center;
+	}
+
+	.content-switcher-container {
+		max-width: max-content;
 	}
 </style>

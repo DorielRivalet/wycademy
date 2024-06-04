@@ -123,6 +123,7 @@
 		display: flex;
 		justify-content: center;
 		background-color: var(--ctp-mantle);
+		z-index: 99;
 	}
 
 	.footer {
@@ -204,6 +205,7 @@
 			border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
 			border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 			border-radius: 0px 0px 10px 10px;
+			box-shadow: 0 0px 32px #00000080;
 		}
 	}
 
