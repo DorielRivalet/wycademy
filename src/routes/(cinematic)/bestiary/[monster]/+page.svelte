@@ -11,10 +11,9 @@
 		AilmentIcons,
 		ElementIcons,
 		StatusIcons,
+		monsterInfo,
 	} from '$lib/client/modules/frontier/objects';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-
-	export let data;
 
 	// function getFilteredWikiaMonsterData(data: WikiaMonster) {
 	// 	const result: WikiaMonster = {
@@ -58,7 +57,7 @@
 
 	// let transformedWikiaMonster = transformMonsterData(filteredWikiaMonsterData);
 
-	$: monster = data.monsterInfo.find(
+	$: monster = monsterInfo.find(
 		(monster) =>
 			$page.params.monster.toLowerCase() ===
 			slugify(monster.displayName).toLowerCase(),

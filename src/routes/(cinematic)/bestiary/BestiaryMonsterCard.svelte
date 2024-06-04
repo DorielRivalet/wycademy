@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { getTag } from '$lib/client/modules/frontier/functions';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+
 	export let title = 'Abiorugu';
 	export let subtitle = 'Ferocious Wyvern';
 	export let tags = ['Brute Wyvern', 'Hardcore', 'Unlimited', 'Fire'];
@@ -12,7 +14,7 @@
 <div class="card" style="width: {width};">
 	<div class="top">
 		<div class="image">
-			<slot name="image"></slot>
+			<slot></slot>
 		</div>
 	</div>
 	<div class="bottom">
@@ -27,10 +29,10 @@
 		<div class="tags" style="width: {'100%'}">
 			{#each tags as tag}
 				<div class="tag">
-					<a href={getTag(tag).link === '' ? '/' : getTag(tag).link}>
+					<Link href={getTag(tag).link === '' ? '/' : getTag(tag).link}>
 						<Tag icon={getTag(tag).icon} type={getTag(tag).color} interactive
 							>{tag.substring(0, maxTagLength)}</Tag
-						></a
+						></Link
 					>
 				</div>
 			{/each}

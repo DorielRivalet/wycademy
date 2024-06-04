@@ -1786,6 +1786,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: true,
 		displayName: 'Rathian',
 		type: 'Large',
+		link: '/bestiary/rathian',
 		ecology:
 			'Flying Wyverns widely known as "Queens of the Land." With powerful legs and venomous tails, they are powerful predators and are especially dangerous during the breeding season. Legend holds there exists a rare golden varient.',
 		titles: ['Female Fire Wyvern', 'Queen of the Land'],
@@ -1873,6 +1874,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: false,
 		displayName: 'Fatalis',
 		type: 'Large',
+		link: '/bestiary/fatalis',
 		ecology:
 			'A legendary black dragon said to have prowled these lands from the days of old. Many skilled hunters have sought to challenge it, but none ever return. A monster shrouded in mystery...',
 		titles: ['Black Dragon', 'The Dark Demise', 'Black Flame'],
@@ -1895,6 +1897,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: true,
 		displayName: 'Kelbi',
 		type: 'Small',
+		link: '/bestiary/kelbi',
+
 		ecology:
 			'Small and docile Herbivores thier horns are famously used in a variety of medicines. The best way to harvest said horns is with a blunt weapon. During the evening or inclement weather, they will retreat into caves.',
 		titles: [],
@@ -1957,6 +1961,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterMosswine,
 		unusedComponent: true,
 		displayName: 'Mosswine',
+		link: '/bestiary/mosswine',
+
 		type: 'Small',
 		ecology:
 			'Wild pigs covered in Moss and various fungus. Occasionally, whole mushrooms can be found on them as well. Their meat is also a famous delicacy. Normally docile towards hunters they will charge if provoked!',
@@ -1981,6 +1987,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterBullfango,
 		unusedComponent: true,
 		displayName: 'Bullfango',
+		link: '/bestiary/bullfango',
+
 		type: 'Small',
 		ecology:
 			'Foul-tempered wild boars that charge toward hunters the moment they spot them. Fertile and with a huge range, they often form large herds. Their meat is beloved by hunters.',
@@ -2042,6 +2050,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterYianKutKu,
 		unusedComponent: true,
 		displayName: 'Yian Kut-Ku',
+		link: '/bestiary/yian-kut-ku',
+
 		type: 'Large',
 		ecology:
 			'A Bird Wyvern with a Large beak and larger ears. Common in warm, humid areas, they have extremely sensitive hearing and as a result, can be stunned by loud noises. When enraged they will use fire based attacks.',
@@ -2088,6 +2098,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterLaoShanLung,
 		unusedComponent: true,
 		displayName: 'Lao-Shan Lung',
+		link: '/bestiary/lao-shan-lung',
+
 		type: 'Large',
 		ecology:
 			'A giant dragon few have  seen and lived to tell the tale. When on the rampage it wreaks havoc on all in its path. The Guild has built a fortress to repel the beast, but will it hold?',
@@ -2110,6 +2122,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterCephadrome,
 		unusedComponent: true,
 		displayName: 'Cephadrome',
+		link: '/bestiary/cephadrome',
+
 		type: 'Large',
 		ecology:
 			'The alpha leader of Cephalos Packs. Much larger than their kin and with darker scales, these beasts possess enhanced paralytic saliva.',
@@ -2136,6 +2150,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterFelyne,
 		unusedComponent: true,
 		displayName: 'Felyne',
+		link: '/bestiary/felyne',
+
 		type: 'Small',
 		ecology:
 			'Bipedal creatures resembling cats with white fur. Though normally docile, they will attack viciously provoked. Naturally curious, they often enter society and co-exist with humans and wyvernians. They are naturally attracted to Felvine and follow it anywhere.',
@@ -2156,6 +2172,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterRathalos,
 		fullRender: FullMonsterRenderRathalos,
 		component: ComponentMonsterRathalos,
+		link: '/bestiary/rathalos',
+
 		unusedComponent: true,
 		displayName: 'Rathalos',
 		type: 'Large',
@@ -2231,6 +2249,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderAptonoth,
 		component: ComponentMonsterAptonoth,
 		unusedComponent: true,
+		link: '/bestiary/aptonoth',
+
 		displayName: 'Aptonoth',
 		type: 'Small',
 		ecology:
@@ -2256,6 +2276,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterGenprey,
 		unusedComponent: true,
 		displayName: 'Genprey',
+		link: '/bestiary/genprey',
+
 		type: 'Small',
 		ecology:
 			'Close relatives of Velociprey like their cousins they dwell in packs, but can easily be differentiated by their yellow and green hides. Found in arid places, Genprey use their fangs to administer a potent neurotoxin.',
@@ -2298,6 +2320,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterDiablos,
 		unusedComponent: true,
 		displayName: 'Diablos',
+		link: '/bestiary/diablos',
+
 		type: 'Large',
 		ecology:
 			'Large Wyverns with a pair of massive horns. Though they feed exclusively on desert cacti, they are violently territorial and are capable of burrowing through sand, as well as charging at high speed. Approach with caution.',
@@ -2359,6 +2383,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterKhezu,
 		unusedComponent: true,
 		displayName: 'Khezu',
+		link: '/bestiary/khezu',
+
 		type: 'Large',
 		ecology:
 			'Horrifying Wyverns Found in cold regions during the Breeding season and more temperate areas during the Cold Season. Nearly blind they rely on scent to hunt prey, which they paralyze with electric attacks.',
@@ -2409,6 +2435,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterVelociprey,
 		unusedComponent: true,
 		displayName: 'Velociprey',
+		link: '/bestiary/velociprey',
+
 		type: 'Small',
 		ecology:
 			'Pack-dwelling Bird-Wyverns known for their aggression. They are regarded by most hunters as a nuisance. They are found in most temperate enviroments during warmer seasons.',
@@ -2456,6 +2484,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderGravios,
 		component: ComponentMonsterGravios,
 		unusedComponent: true,
+		link: '/bestiary/gravios',
+
 		displayName: 'Gravios',
 		type: 'Large',
 		ecology:
@@ -2516,6 +2546,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterVespoid,
 		unusedComponent: true,
 		displayName: 'Vespoid',
+		link: '/bestiary/vespoid',
+
 		type: 'Small',
 		ecology:
 			'An enormous, wasp-like Neopeteron with a paralytic sting. Easily damaged, there are rarely any usable materials left after dispatching one. It has been reported however that using poison on them yields better results.',
@@ -2581,6 +2613,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterGypceros,
 		unusedComponent: true,
 		displayName: 'Gypceros',
+		link: '/bestiary/gypceros',
+
 		type: 'Large',
 		ecology:
 			'Odd Wyverns capable of disorientating hunters by emitting a bright flash from their crest. Their rubbery skin resists impacts and shock traps. Though timid, their saliva hides a vicious toxin. They prefer warm and marshy habitats.',
@@ -2621,6 +2655,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterPlesioth,
 		unusedComponent: true,
 		displayName: 'Plesioth',
+		link: '/bestiary/plesioth',
+
 		type: 'Large',
 		ecology:
 			'Huge Piscine Wyverns famous for their great strength. Like most Piscine Wyverns their wings have evolved into powerful fins. Despite appearences, Plesioth are as deadly on land as they are in water.',
@@ -2662,6 +2698,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterBasarios,
 		unusedComponent: true,
 		displayName: 'Basarios',
+		link: '/bestiary/basarios',
+
 		type: 'Large',
 		ecology:
 			'Juvenile Gravios famous for their rock-like carapaces. Often mistaken for large rocks when sleeping, their shells are weak to explosives. They are also able to emit poisonous gas and are dormant during Cold Seasons',
@@ -2714,6 +2752,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterMelynx,
 		fullRender: FullMonsterRenderMelynx,
 		component: ComponentMonsterMelynx,
+		link: '/bestiary/melynx',
+
 		unusedComponent: true,
 		displayName: 'Melynx',
 		type: 'Small',
@@ -2738,6 +2778,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterHornetaur,
 		unusedComponent: true,
 		displayName: 'Hornetaur',
+		link: '/bestiary/hornetaur',
+
 		type: 'Small',
 		ecology:
 			'A large Neopeteron related to Vespoids. They primarily dwell on the ground of damp and dark places. However, like their cousins, they are easily destroyed by most weapons. It is reported that they are extremely susceptible to poisons.',
@@ -2762,6 +2804,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterApceros,
 		unusedComponent: true,
 		displayName: 'Apceros',
+		link: '/bestiary/apceros',
+
 		type: 'Small',
 		ecology:
 			'Desert-dwelling Herbivores covered in armor-like hide. Though edible, obtaining meat from them is difficult due to their territorial nature. They are especially violent towards any hunter who would steal their eggs.',
@@ -2799,6 +2843,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterMonoblos,
 		fullRender: FullMonsterRenderMonoblos,
 		component: ComponentMonsterMonoblos,
+		link: '/bestiary/monoblos',
+
 		unusedComponent: true,
 		ecology:
 			'A large, desert-dwelling Wyvern with a single massive horn. Although they lack any form of breath attack, they can shierk loud enough to shatter eardrums. Despite their appearence they are actually herbivorous.',
@@ -2811,6 +2857,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterVelocidrome,
 		fullRender: FullMonsterRenderVelocidrome,
 		component: ComponentMonsterVelocidrome,
+		link: '/bestiary/velocidrome',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -2853,6 +2901,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterGendrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterGendrome,
+		link: '/bestiary/gendrome',
+
 		fullRender: FullMonsterRenderGendrome,
 		component: ComponentMonsterGendrome,
 		unusedComponent: true,
@@ -2901,6 +2951,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderIoprey,
 		component: ComponentMonsterIoprey,
 		unusedComponent: true,
+		link: '/bestiary/ioprey',
+
 		type: 'Small',
 		ecology:
 			'Vivid-red Bird Wyverns found in sub-tropical areas. Specialized organs in their throats produce a potent toxin, which they spit at their prey.',
@@ -2952,6 +3004,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterIodrome,
 		fullRender: FullMonsterRenderIodrome,
 		component: ComponentMonsterIodrome,
+		link: '/bestiary/iodrome',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -2999,6 +3053,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterKirin,
 		fullRender: FullMonsterRenderKirin,
 		component: ComponentMonsterKirin,
+		link: '/bestiary/kirin',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3042,6 +3098,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterCephalos,
 		fullRender: FullMonsterRenderCephalos,
+		link: '/bestiary/cephalos',
+
 		component: ComponentMonsterCephalos,
 		unusedComponent: true,
 		type: 'Small',
@@ -3084,6 +3142,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterGiaprey,
 		fullRender: FullMonsterRenderGiaprey,
 		component: ComponentMonsterGiaprey,
+		link: '/bestiary/giaprey',
+
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -3126,6 +3186,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterCrimsonFatalis,
 		fullRender: FullMonsterRenderCrimsonFatalis,
 		component: ComponentMonsterCrimsonFatalis,
+		link: '/bestiary/crimson-fatalis',
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -3148,6 +3210,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterPinkRathian,
 		fullRender: FullMonsterRenderPinkRathian,
 		component: ComponentMonsterPinkRathian,
+		link: '/bestiary/pink-rathian',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3174,6 +3238,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBlueYianKutKu,
 		fullRender: FullMonsterRenderBlueYianKutKu,
 		component: ComponentMonsterBlueYianKutKu,
+		link: '/bestiary/blue-yian-kut-ku',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3200,6 +3266,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterPurpleGypceros,
 		fullRender: FullMonsterRenderPurpleGypceros,
 		component: ComponentMonsterPurpleGypceros,
+		link: '/bestiary/purple-gypceros',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `A variant of Gypceros with a striking purple hide. They are more aggressive than normal Gypceros and are virtually immune to most poisons. Like their kin, they will attempt to steal hunter's items and can secrete a horrific venom.`,
@@ -3223,6 +3291,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterYianGaruga,
 		fullRender: FullMonsterRenderYianGaruga,
 		component: ComponentMonsterYianGaruga,
+		link: '/bestiary/yian-garuga',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3272,6 +3342,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterSilverRathalos,
 		fullRender: FullMonsterRenderSilverRathalos,
 		component: ComponentMonsterSilverRathalos,
+		link: '/bestiary/silver-rathalos',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3326,6 +3398,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterGoldRathian,
 		fullRender: FullMonsterRenderGoldRathian,
 		component: ComponentMonsterGoldRathian,
+		link: '/bestiary/gold-rathian',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `A legendary and rare variant of Rathian with glittering, golden scales. Often referred to as the "Golden Moon", little is known of this Wyvern's ecology, save for it's ability to dispatch unwary hunters with ease.`,
@@ -3385,6 +3459,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderBlackDiablos,
 		component: ComponentMonsterBlackDiablos,
 		unusedComponent: true,
+		link: '/bestiary/black-diablos',
+
 		type: 'Large',
 		ecology:
 			'These black-shelled Diablos are not actually a true Sub-Species, but rather are female Diablos in heat. Their shells turn black to warn other creatures as they become incredibly violent and territorial, even for a Diablos.',
@@ -3438,6 +3514,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderWhiteMonoblos,
 		component: ComponentMonsterWhiteMonoblos,
 		unusedComponent: true,
+		link: '/bestiary/white-monoblos',
+
 		type: 'Large',
 		ecology:
 			'A Sub-Species of Monoblos with chalk-white scales. Highly territorial, they will charge at any intruder without hesitation. They are capable of running at a great speed and are quite powerful.',
@@ -3479,6 +3557,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterRedKhezu,
 		fullRender: FullMonsterRenderRedKhezu,
 		component: ComponentMonsterRedKhezu,
+		link: '/bestiary/red-khezu',
+
 		unusedComponent: true,
 		ecology:
 			'A Khezu variant with a ghastly red hide. Much more aggressive than normal Khezu, their electrical organs are also more developed and can deliver deadly shocks to careless hunters.',
@@ -3506,6 +3586,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderGreenPlesioth,
 		component: ComponentMonsterGreenPlesioth,
 		unusedComponent: true,
+		link: '/bestiary/green-plesioth',
+
 		type: 'Large',
 		ecology:
 			'A Plesioth Sub-Species with deep Jad-green scales. While physically similiar to standard Plesioth, these individuals are much more aggressive and are much more accurate with their water beam attacks.',
@@ -3537,6 +3619,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBlackGravios,
 		fullRender: FullMonsterRenderBlackGravios,
 		component: ComponentMonsterBlackGravios,
+		link: '/bestiary/black-gravios',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3591,6 +3675,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterDaimyoHermitaur,
 		fullRender: FullMonsterRenderDaimyoHermitaur,
 		component: ComponentMonsterDaimyoHermitaur,
+		link: '/bestiary/daimyo-hermitaur',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `A large carapaceon with a big monster's skull on it's back. Found in warm, sandy areas, they attack prey with bubble breath and their massive, rock-hard pincers. They will also use their pincers for defense.`,
@@ -3616,6 +3702,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterAzureRathalos,
 		fullRender: FullMonsterRenderAzureRathalos,
 		component: ComponentMonsterAzureRathalos,
+		link: '/bestiary/azure-rathalos',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `Terrible Wyvern's also known as the "Kings of the Sky". Together with Rathian, they claim large and diverse territories. Rathalos descend upon prey and foe alike from high altitudes, striking with poison talons and fire.`,
@@ -3642,6 +3730,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderAshenLaoShanLung,
 		component: ComponentMonsterAshenLaoShanLung,
 		unusedComponent: true,
+		link: '/bestiary/ashen-lao-shan-lung',
+
 		type: 'Large',
 		ecology:
 			'An enormous dragon few have ever seen. It is not a true Sub-Species, but rather An older Lao-Shan Lung that has become encased in hardened ash from years of dwelling in a volcanic area. The Guild believes something has driven it from its native range.',
@@ -3664,6 +3754,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderBlangonga,
 		component: ComponentMonsterBlangonga,
 		unusedComponent: true,
+		link: '/bestiary/blangonga',
+
 		ecology:
 			'Leader of a Blango pack it is twice as large and recognized by its giant fangs whiskers, and head-crown. It sends its pack to attack any trespassers. Its jumping power allows it  great mobility in its home range of the snowy mountains.',
 		type: 'Large',
@@ -3689,6 +3781,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterCongalala,
 		fullRender: FullMonsterRenderCongalala,
 		component: ComponentMonsterCongalala,
+		link: '/bestiary/congalala',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3739,6 +3833,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterRajang,
 		fullRender: FullMonsterRenderRajang,
+		link: '/bestiary/rajang',
+
 		component: ComponentMonsterRajang,
 		unusedComponent: true,
 		ecology:
@@ -3823,6 +3919,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterKushalaDaora,
 		fullRender: FullMonsterRenderKushalaDaora,
 		component: ComponentMonsterKushalaDaora,
+		link: '/bestiary/kushala-daora',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3878,6 +3976,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterShenGaoren,
 		fullRender: FullMonsterRenderShenGaoren,
+		link: '/bestiary/shen-gaoren',
+
 		component: ComponentMonsterShenGaoren,
 		unusedComponent: false,
 		type: 'Large',
@@ -3955,6 +4055,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterShakalaka,
 		fullRender: FullMonsterRenderShakalaka,
+		link: '/bestiary/shakalaka',
+
 		component: ComponentMonsterShakalaka,
 		unusedComponent: true,
 		type: 'Small',
@@ -3980,6 +4082,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterYamaTsukami,
 		fullRender: FullMonsterRenderYamaTsukami,
 		component: ComponentMonsterYamaTsukami,
+		link: '/bestiary/yama-tsukami',
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -4001,6 +4105,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterChameleos,
 		fullRender: FullMonsterRenderChameleos,
+		link: '/bestiary/chameleos',
+
 		component: ComponentMonsterChameleos,
 		unusedComponent: true,
 		type: 'Large',
@@ -4026,6 +4132,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterRustedKushalaDaora,
 		fullRender: FullMonsterRenderRustedKushalaDaora,
 		component: ComponentMonsterRustedKushalaDaora,
+		link: '/bestiary/rusted-kushala-daora',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -4061,6 +4169,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBlango,
 		fullRender: FullMonsterRenderBlango,
 		component: ComponentMonsterBlango,
+		link: '/bestiary/blango',
+
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -4086,6 +4196,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterConga,
 		fullRender: FullMonsterRenderConga,
+		link: '/bestiary/conga',
+
 		component: ComponentMonsterConga,
 		unusedComponent: true,
 		type: 'Small',
@@ -4134,6 +4246,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterRemobra,
 		fullRender: FullMonsterRenderRemobra,
+		link: '/bestiary/remobra',
+
 		component: ComponentMonsterRemobra,
 		unusedComponent: true,
 		ecology:
@@ -4187,6 +4301,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterLunastra,
 		fullRender: FullMonsterRenderLunastra,
+		link: '/bestiary/lunastra',
+
 		component: ComponentMonsterLunastra,
 		unusedComponent: true,
 		type: 'Large',
@@ -4211,6 +4327,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterTeostra,
 		fullRender: FullMonsterRenderTeostra,
+		link: '/bestiary/teostra',
+
 		component: ComponentMonsterTeostra,
 		unusedComponent: true,
 		type: 'Large',
@@ -4236,6 +4354,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterHermitaur,
 		fullRender: FullMonsterRenderHermitaur,
 		component: ComponentMonsterHermitaur,
+		link: '/bestiary/hermitaur',
+
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -4298,6 +4418,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterShogunCeanataur,
 		fullRender: FullMonsterRenderShogunCeanataur,
 		component: ComponentMonsterShogunCeanataur,
+		link: '/bestiary/shogun-ceanataur',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `A large Carapaceon with a giant monster's skull on its back. Its long, sharp pincers allow it to pierce stone and even travel along rock ceilings. They are native to marshy and volcanic areas and occasionally they develop a precious, rare pearl.`,
@@ -4323,6 +4445,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBulldrome,
 		fullRender: FullMonsterRenderBulldrome,
 		component: ComponentMonsterBulldrome,
+		link: '/bestiary/bulldrome',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -4367,6 +4491,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterAnteka,
 		fullRender: FullMonsterRenderAnteka,
+		link: '/bestiary/anteka',
+
 		component: ComponentMonsterAnteka,
 		unusedComponent: true,
 		type: 'Small',
@@ -4398,6 +4524,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterPopo,
 		fullRender: FullMonsterRenderPopo,
+		link: '/bestiary/popo',
+
 		component: ComponentMonsterPopo,
 		unusedComponent: true,
 		type: 'Small',
@@ -4419,6 +4547,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'White Fatalis',
 		displayName: 'White Fatalis',
 		icon: IconMonsterWhiteFatalis,
+		link: '/bestiary/white-fatalis',
+
 		rank: '',
 		render: IconRenderMonsterWhiteFatalis,
 		fullRender: FullMonsterRenderWhiteFatalis,
@@ -4445,6 +4575,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterCeanataur,
 		unusedComponent: true,
 		type: 'Small',
+		link: '/bestiary/ceanataur',
+
 		ecology: `An adolescent Carapaceon with an organic shell firmly placed on it's back. Once grown their original shell falls off and is rplaced by a large monster's skull. Common in volcanic areas.`,
 		titles: [],
 		class: 'Carapaceon',
@@ -4478,6 +4610,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterHypnocatrice,
 		fullRender: FullMonsterRenderHypnocatrice,
 		component: ComponentMonsterHypnocatrice,
+		link: '/bestiary/hypnocatrice',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -4516,6 +4650,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterLavasioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterLavasioth,
+		link: '/bestiary/lavasioth',
+
 		fullRender: FullMonsterRenderLavasioth,
 		component: ComponentMonsterLavasioth,
 		unusedComponent: false,
@@ -4558,6 +4694,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterTigrex,
 		fullRender: FullMonsterRenderTigrex,
+		link: '/bestiary/tigrex',
+
 		component: ComponentMonsterTigrex,
 		unusedComponent: true,
 		type: 'Large',
@@ -4633,6 +4771,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterAkantor,
 		fullRender: FullMonsterRenderAkantor,
 		component: ComponentMonsterAkantor,
+		link: '/bestiary/akantor',
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -4662,6 +4802,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBrightHypnoc,
 		fullRender: FullMonsterRenderBrightHypnoc,
 		component: ComponentMonsterBrightHypnoc,
+		link: '/bestiary/bright-hypnoc',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -4688,6 +4830,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterRedLavasioth,
 		unusedComponent: false,
 		type: 'Large',
+		link: '/bestiary/red-lavasioth',
+
 		ecology:
 			'A Lavasioth Sub-Species which has melted rare ores into its molten armor, causing it to remain red even when cooled. A more developed lava-storage organ allows them to utilize additional attacks.',
 		titles: ['Crimson Lava Wyvern'],
@@ -4708,6 +4852,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterEspinas,
 		rank: 'G Rank',
 		render: IconRenderMonsterEspinas,
+		link: '/bestiary/espinas',
+
 		fullRender: FullMonsterRenderEspinas,
 		component: ComponentMonsterEspinas,
 		unusedComponent: true,
@@ -4764,6 +4910,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterOrangeEspinas,
 		fullRender: FullMonsterRenderOrangeEspinas,
 		component: ComponentMonsterOrangeEspinas,
+		link: '/bestiary/orange-espinas',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `Orange-coloured Espinas variants which prefer to live in more arid areas compared to their green kin. While just as passive as normal Espinas, they possess acidic saliva that can rapidly corrode armour.`,
@@ -4814,6 +4962,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterSilverHypnoc,
 		fullRender: FullMonsterRenderSilverHypnoc,
 		component: ComponentMonsterSilverHypnoc,
+		link: '/bestiary/silver-hypnoc',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -4848,6 +4998,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderAkuraVashimu,
 		component: ComponentMonsterAkuraVashimu,
 		unusedComponent: false,
+		link: '/bestiary/akura-vashimu',
+
 		titles: ['Tail Crystal Scorpion'],
 		class: 'Carapaceon',
 		elements: [],
@@ -4875,6 +5027,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterAkuraJebia,
 		fullRender: FullMonsterRenderAkuraJebia,
 		component: ComponentMonsterAkuraJebia,
+		link: '/bestiary/akura-jebia',
+
 		unusedComponent: false,
 		ecology:
 			'Closely related to Akura Vashimu, these Carapaceons use their crystal-covered tails to lure curious prey into striking distance. Research indicates that if their tails are injured, they will use their crystalizing fluid to patch the wound.',
@@ -4896,6 +5050,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterBerukyurosu,
 		fullRender: FullMonsterRenderBerukyurosu,
+		link: '/bestiary/berukyurosu',
+
 		component: ComponentMonsterBerukyurosu,
 		unusedComponent: true,
 		ecology:
@@ -4919,6 +5075,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterCactus,
 		fullRender: FullMonsterRenderCactus,
 		component: ComponentMonsterRandom,
+		link: '/bestiary/cactus',
+
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -4932,6 +5090,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterPariapuria,
 		fullRender: FullMonsterRenderPariapuria,
 		component: ComponentMonsterPariapuria,
+		link: '/bestiary/pariapuria',
+
 		unusedComponent: false,
 		ecology: `Foul Wyverns with a ceaseless appetite. They will devour any form of meat they find. Hunters may utilize this by placing meat of certain types near these beasts, causing them to over eat and vomit rare materials they've eaten.`,
 		type: 'Large',
@@ -4960,6 +5120,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterWhiteEspinas,
 		fullRender: FullMonsterRenderWhiteEspinas,
+		link: '/bestiary/white-espinas',
+
 		component: ComponentMonsterWhiteEspinas,
 		unusedComponent: true,
 		ecology:
@@ -5003,6 +5165,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderKamuOrugaron,
 		component: ComponentMonsterKamuOrugaron,
 		unusedComponent: true,
+		link: '/bestiary/kamu-orugaron',
+
 		type: 'Large',
 		ecology:
 			'Nomadic, male Fanged Beasts with bristling grey coats. They are never far from their mate, the Nono Orugaron. Research shows these beasts have advanced respiratory systems allowing them to unleash deadly wind-based attacks.',
@@ -5021,6 +5185,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Nono Orugaron',
 		icon: IconMonsterNonoOrugaron,
 		rank: 'G Rank',
+		link: '/bestiary/nono-orugaron',
+
 		render: IconRenderMonsterNonoOrugaron,
 		fullRender: FullMonsterRenderNonoOrugaron,
 		component: ComponentMonsterNonoOrugaron,
@@ -5042,6 +5208,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Raviente',
 		displayName: 'Raviente',
 		icon: IconMonsterRaviente,
+		link: '/bestiary/raviente',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterRaviente,
 		fullRender: FullMonsterRenderRaviente,
@@ -5068,6 +5236,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterDyuragaua,
 		fullRender: FullMonsterRenderDyuragaua,
 		component: ComponentMonsterDyuragaua,
+		link: '/bestiary/dyuragaua',
+
 		unusedComponent: true,
 		ecology:
 			'Enigmatic creatures only found near ancient ruins. Little has been documented of their ecology, but reports claim they are able to cloak themselves in an armour of frost when engraged. It is also said to despise loud noises.',
@@ -5095,6 +5265,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterDoragyurosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterDoragyurosu,
+		link: '/bestiary/doragyurosu',
+
 		fullRender: FullMonsterRenderDoragyurosu,
 		component: ComponentMonsterDoragyurosu,
 		unusedComponent: false,
@@ -5120,6 +5292,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterGurenzeburu,
 		fullRender: FullMonsterRenderGurenzeburu,
+		link: '/bestiary/gurenzeburu',
+
 		component: ComponentMonsterGurenzeburu,
 		unusedComponent: true,
 		ecology:
@@ -5143,6 +5317,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBurukku,
 		fullRender: FullMonsterRenderBurukku,
 		component: ComponentMonsterBurukku,
+		link: '/bestiary/burukku',
+
 		unusedComponent: true,
 		ecology:
 			'Peaceful Herbivores with shaggy coats of fur. They are found in herds roaming the Highlands. Normally docile they will attack as a group if threatened. It is reported that they are often shepherded by a Gurenzeburu.',
@@ -5155,6 +5331,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterErupe,
 		fullRender: FullMonsterRenderErupe,
 		component: ComponentMonsterErupe,
+		link: '/bestiary/erupe',
+
 		unusedComponent: true,
 		ecology:
 			'Small Herbivores native to the Highlands. They are quite peaceful and curious towards hunters. Their hooves are uniquely adapted to live in steep, rocky enviroments. During harsh weather, or if threatened they will quickly flee to safety.',
@@ -5175,6 +5353,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterRukodiora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRukodiora,
+		link: '/bestiary/rukodiora',
+
 		fullRender: FullMonsterRenderRukodiora,
 		component: ComponentMonsterRukodiora,
 		unusedComponent: false,
@@ -5204,6 +5384,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterUNKNOWN,
 		rank: 'G Rank',
 		render: IconRenderMonsterUNKNOWN,
+		link: '/bestiary/unknown',
+
 		fullRender: FullMonsterRenderUNKNOWN,
 		component: ComponentMonsterUNKNOWN,
 		unusedComponent: true,
@@ -5228,6 +5410,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterUNKNOWN,
 		fullRender: FullMonsterRenderUNKNOWN,
+		link: '/bestiary/unknown',
+
 		component: ComponentMonsterUNKNOWN,
 		unusedComponent: true,
 		ecology: `A Wyvern with pitch-black scales and crimson talons occasionally seen at ancient towers. The abilities of this Wyvern seems to vary between witnesses and so little is known of it's biology, that it has yet to be officially named.`,
@@ -5252,6 +5436,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterGogomoa,
 		fullRender: FullMonsterRenderGogomoa,
 		component: ComponentMonsterGogomoa,
+		link: '/bestiary/gogomoa',
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -5272,6 +5458,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterTaikunZamuza,
 		rank: 'G Rank',
 		render: IconRenderMonsterTaikunZamuza,
+		link: '/bestiary/taikun-zamuza',
+
 		fullRender: FullMonsterRenderTaikunZamuza,
 		component: ComponentMonsterTaikunZamuza,
 		unusedComponent: true,
@@ -5295,6 +5483,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterAbiorugu,
 		fullRender: FullMonsterRenderAbiorugu,
+		link: '/bestiary/abiorugu',
+
 		component: ComponentMonsterAbiorugu,
 		unusedComponent: false,
 		ecology:
@@ -5332,6 +5522,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterKuarusepusu,
 		rank: 'G Rank',
 		render: IconRenderMonsterKuarusepusu,
+		link: '/bestiary/kuarusepusu',
+
 		fullRender: FullMonsterRenderKuarusepusu,
 		component: ComponentMonsterKuarusepusu,
 		unusedComponent: true,
@@ -5368,6 +5560,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Odibatorasu',
 		icon: IconMonsterOdibatorasu,
 		rank: 'G Rank',
+		link: '/bestiary/odibatorasu',
+
 		render: IconRenderMonsterOdibatorasu,
 		fullRender: FullMonsterRenderOdibatorasu,
 		component: ComponentMonsterOdibatorasu,
@@ -5394,6 +5588,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterDisufiroa,
 		fullRender: FullMonsterRenderDisufiroa,
 		component: ComponentMonsterDisufiroa,
+		link: '/bestiary/disufiroa',
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Frozen Seraphim Dragon'],
@@ -5412,6 +5608,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterRebidiora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRebidiora,
+		link: '/bestiary/rebidiora',
+
 		fullRender: FullMonsterRenderRebidiora,
 		component: ComponentMonsterRebidiora,
 		unusedComponent: true,
@@ -5423,6 +5621,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterAnorupatisu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAnorupatisu,
+		link: '/bestiary/anorupatisu',
+
 		fullRender: FullMonsterRenderAnorupatisu,
 		component: ComponentMonsterAnorupatisu,
 		unusedComponent: false,
@@ -5445,6 +5645,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterHyujikiki,
 		rank: 'G Rank',
 		render: IconRenderMonsterHyujikiki,
+		link: '/bestiary/hyujikiki',
+
 		fullRender: FullMonsterRenderHyujikiki,
 		component: ComponentMonsterHyujikiki,
 		unusedComponent: true,
@@ -5468,6 +5670,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Midogaron',
 		icon: IconMonsterMidogaron,
 		rank: 'G Rank',
+		link: '/bestiary/midogaron',
+
 		render: IconRenderMonsterMidogaron,
 		fullRender: FullMonsterRenderMidogaron,
 		component: ComponentMonsterMidogaron,
@@ -5488,6 +5692,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Giaorugu',
 		icon: IconMonsterGiaorugu,
 		rank: 'G Rank',
+		link: '/bestiary/giaorugu',
+
 		render: IconRenderMonsterGiaorugu,
 		fullRender: FullMonsterRenderGiaorugu,
 		component: ComponentMonsterGiaorugu,
@@ -5519,6 +5725,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterMiRu,
 		rank: 'G Rank',
 		render: IconRenderMonsterMiRu,
+		link: '/bestiary/mi-ru',
+
 		fullRender: FullMonsterRenderMiRu,
 		component: ComponentMonsterMiRu,
 		unusedComponent: false,
@@ -5540,6 +5748,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Farunokku',
 		icon: IconMonsterFarunokku,
 		rank: 'G Rank',
+		link: '/bestiary/farunokku',
+
 		ecology:
 			'Closely related to Hypnocs these Wyverns possess extremely bright plumage, not to warn predators, but to attract potential mates. Naturally being highly visible to potential threats, these Wyverns are quite capable of defending themselves and are not to be taken lightly.',
 		render: IconRenderMonsterFarunokku,
@@ -5569,6 +5779,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterPokaradon,
 		rank: 'G Rank',
 		render: IconRenderMonsterPokaradon,
+		link: '/bestiary/pokaradon',
+
 		fullRender: FullMonsterRenderPokaradon,
 		component: ComponentMonsterPokaradon,
 		unusedComponent: true,
@@ -5588,6 +5800,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Shantien',
 		displayName: 'Shantien',
+		link: '/bestiary/shantien',
+
 		icon: IconMonsterShantien,
 		ecology:
 			'An elusive Elder Dragon previously known only from ancient legends. It dwells high in the atmosphere, far above most other creatures, but will rarely descend to ground level. It was classified by the Guild after its discovery by the Large Exploration Ship.',
@@ -5614,6 +5828,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ecology:
 			'Female Leviathans found in the Polar Sea. Roughly half the size of their male counterparts, they also possess smaller fangs, more suited to catching fish than for display. If their children or mate is threatened, they will attack ferociously.',
 		rank: 'G Rank',
+		link: '/bestiary/pokara',
 		render: IconRenderMonsterPokara,
 		fullRender: FullMonsterRenderPokara,
 		component: ComponentMonsterPokara,
@@ -5623,6 +5838,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Goruganosu',
 		displayName: 'Goruganosu',
 		icon: IconMonsterGoruganosu,
+		link: '/bestiary/goruganosu',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterGoruganosu,
 		fullRender: FullMonsterRenderGoruganosu,
@@ -5657,6 +5874,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Aruganosu',
 		displayName: 'Aruganosu',
+		link: '/bestiary/aruganosu',
+
 		icon: IconMonsterAruganosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAruganosu,
@@ -5693,6 +5912,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Baruragaru',
 		icon: IconMonsterBaruragaru,
 		rank: 'G Rank',
+		link: '/bestiary/baruragaru',
+
 		render: IconRenderMonsterBaruragaru,
 		fullRender: FullMonsterRenderBaruragaru,
 		component: ComponentMonsterBaruragaru,
@@ -5715,6 +5936,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Zerureusu',
 		icon: IconMonsterZerureusu,
 		rank: 'G Rank',
+		link: '/bestiary/zerureusu',
+
 		render: IconRenderMonsterZerureusu,
 		fullRender: FullMonsterRenderZerureusu,
 		component: ComponentMonsterZerureusu,
@@ -5748,6 +5971,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	},
 	{
 		name: 'Gougarf',
+		link: '/bestiary/gougarf',
+
 		displayName: 'Gougarf',
 		icon: IconMonsterGougarf,
 		rank: 'G Rank',
@@ -5770,6 +5995,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Uruki',
 		displayName: 'Uruki',
+		link: '/bestiary/uruki',
+
 		icon: IconMonsterUruki,
 		rank: 'G Rank',
 		render: IconRenderMonsterUruki,
@@ -5792,6 +6019,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Forokururu',
 		displayName: 'Forokururu',
 		icon: IconMonsterForokururu,
+		link: '/bestiary/forokururu',
+
 		ecology:
 			'Majestic Bird Wyverns native to the Flower Field. They possess a highly evolved beak, which allows them to feed from the various flowers in their habitat. Attention should be paid to the color of their wings and tail feathers.',
 		rank: 'G Rank',
@@ -5822,6 +6051,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Meraginasu',
 		ecology:
 			'Previously known only from fossils and believed to be extinct until living specimens were sighted by the Guild. These black and gold Wyverns are seemingly blind and navigate their underground territories through sound.',
+		link: '/bestiary/meraginasu',
 		icon: IconMonsterMeraginasu,
 		rank: 'G Rank',
 		render: IconRenderMonsterMeraginasu,
@@ -5864,6 +6094,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Diorex',
 		displayName: 'Diorex',
+		link: '/bestiary/diorex',
+
 		icon: IconMonsterDiorex,
 		rank: 'G Rank',
 		ecology:
@@ -5898,6 +6130,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Garuba Daora',
 		icon: IconMonsterGarubaDaora,
 		rank: 'G Rank',
+		link: '/bestiary/garuba-daora',
+
 		render: IconRenderMonsterGarubaDaora,
 		fullRender: FullMonsterRenderGarubaDaora,
 		component: ComponentMonsterGarubaDaora,
@@ -5924,6 +6158,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	},
 	{
 		name: 'Inagami',
+		link: '/bestiary/inagami',
+
 		displayName: 'Inagami',
 		icon: IconMonsterInagami,
 		ecology:
@@ -5948,6 +6184,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Varusaburosu',
 		displayName: 'Varusaburosu',
 		icon: IconMonsterVarusaburosu,
+		link: '/bestiary/varusaburosu',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterVarusaburosu,
 		fullRender: FullMonsterRenderVarusaburosu,
@@ -5988,6 +6226,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterPoborubarumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterPoborubarumu,
+		link: '/bestiary/poborubarumu',
+
 		fullRender: FullMonsterRenderPoborubarumu,
 		component: ComponentMonsterPoborubarumu,
 		unusedComponent: true,
@@ -6011,6 +6251,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterDuremudira,
 		fullRender: FullMonsterRenderDuremudira,
+		link: '/bestiary/duremudira',
+
 		component: ComponentMonsterDuremudira,
 		unusedComponent: false,
 		ecology:
@@ -6031,6 +6273,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Gureadomosu',
 		icon: IconMonsterGureadomosu,
 		rank: 'G Rank',
+		link: '/bestiary/gureadomosu',
+
 		render: IconRenderMonsterGureadomosu,
 		fullRender: FullMonsterRenderGureadomosu,
 		component: ComponentMonsterGureadomosu,
@@ -6068,6 +6312,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Harudomerugu',
 		displayName: 'Harudomerugu',
+		link: '/bestiary/harudomerugu',
+
 		icon: IconMonsterHarudomerugu,
 		rank: 'G Rank',
 		render: IconRenderMonsterHarudomerugu,
@@ -6090,6 +6336,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Toridcless',
 		displayName: 'Toridcless',
+		link: '/bestiary/toridcless',
+
 		icon: IconMonsterToridcless,
 		rank: 'G Rank',
 		render: IconRenderMonsterToridcless,
@@ -6120,6 +6368,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ecology: `Large Brute Wyverns endemic to White Lake, research shows they were previously semi aquatic, until the lake's waters receeded, forcing them to re-adapt to terrestrial life. They are able to store lagre quantities of poison gained from their prey.`,
 		displayName: 'Gasurabazura',
 		icon: IconMonsterGasurabazura,
+		link: '/bestiary/gasurabazura',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterGasurabazura,
 		fullRender: FullMonsterRenderGasurabazura,
@@ -6138,6 +6388,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	},
 	{
 		name: 'Kusubami',
+		link: '/bestiary/kusubami',
+
 		displayName: 'Kusubami',
 		icon: IconMonsterKusubami,
 		rank: 'G Rank',
@@ -6161,6 +6413,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Yama Kurai',
 		displayName: 'Yama Kurai',
+		link: '/bestiary/yama-kurai',
+
 		icon: IconMonsterYamaKurai,
 		rank: 'G Rank',
 		ecology: `An Elder Dragon that floats through the sky and has been sighted in the Highlands. While it seems to share relation with Yama Tsukami, Guild research is still ongoing. It's body is home to a veritable ecosystem of unique and dangerous flora.`,
@@ -6185,6 +6439,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZinogre,
 		rank: 'G Rank',
 		render: IconRenderMonsterZinogre,
+		link: '/bestiary/zinogre',
+
 		fullRender: FullMonsterRenderZinogre,
 		component: ComponentMonsterZinogre,
 		unusedComponent: false,
@@ -6243,6 +6499,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Deviljho',
 		displayName: 'Deviljho',
 		icon: IconMonsterDeviljho,
+		link: '/bestiary/deviljho',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterDeviljho,
 		fullRender: FullMonsterRenderDeviljho,
@@ -6314,6 +6572,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Brachydios',
 		displayName: 'Brachydios',
 		icon: IconMonsterBrachydios,
+		link: '/bestiary/brachydios',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterBrachydios,
 		fullRender: FullMonsterRenderBrachydios,
@@ -6358,6 +6618,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterBerserkRaviente,
 		rank: 'G Rank',
 		render: IconRenderMonsterBerserkRaviente,
+		link: '/bestiary/berserk-raviente',
+
 		fullRender: FullMonsterRenderBerserkRaviente,
 		component: ComponentMonsterBerserkRaviente,
 		unusedComponent: false,
@@ -6379,6 +6641,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Toa Tesukatora',
 		icon: IconMonsterToaTesukatora,
 		rank: 'G Rank',
+		link: '/bestiary/toia-tesukatora',
+
 		render: IconRenderMonsterToaTesukatora,
 		fullRender: FullMonsterRenderToaTesukatora,
 		component: ComponentMonsterToaTesukatora,
@@ -6399,6 +6663,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Barioth',
 		icon: IconMonsterBarioth,
 		rank: 'G Rank',
+		link: '/bestiary/barioth',
+
 		render: IconRenderMonsterBarioth,
 		fullRender: FullMonsterRenderBarioth,
 		component: ComponentMonsterBarioth,
@@ -6446,6 +6712,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Uragaan',
 		displayName: 'Uragaan',
+		link: '/bestiary/uragaan',
+
 		icon: IconMonsterUragaan,
 		rank: 'G Rank',
 		render: IconRenderMonsterUragaan,
@@ -6472,6 +6740,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Stygian Zinogre',
 		icon: IconMonsterStygianZinogre,
 		rank: 'G Rank',
+		link: '/bestiary/stygian-zinogre',
+
 		render: IconRenderMonsterStygianZinogre,
 		fullRender: FullMonsterRenderStygianZinogre,
 		component: ComponentMonsterStygianZinogre,
@@ -6521,6 +6791,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterGuanzorumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGuanzorumu,
+		link: '/bestiary/guanzorumu',
+
 		fullRender: FullMonsterRenderGuanzorumu,
 		component: ComponentMonsterGuanzorumu,
 		unusedComponent: false,
@@ -6543,6 +6815,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Musou 1',
 		render: IconRenderMonsterStarvingDeviljho,
 		fullRender: FullMonsterRenderStarvingDeviljho,
+		link: '/bestiary/starving-deviljho',
+
 		component: ComponentMonsterStarvingDeviljho,
 		unusedComponent: false,
 		type: 'Large',
@@ -6569,6 +6843,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterVoljang,
 		fullRender: FullMonsterRenderVoljang,
+		link: '/bestiary/voljang',
+
 		component: ComponentMonsterVoljang,
 		unusedComponent: true,
 		ecology:
@@ -6596,6 +6872,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterNargacuga,
 		rank: 'G Rank',
 		render: IconRenderMonsterNargacuga,
+		link: '/bestiary/nargacuga',
+
 		fullRender: FullMonsterRenderNargacuga,
 		component: ComponentMonsterNargacuga,
 		unusedComponent: false,
@@ -6652,6 +6930,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Keoaruboru',
 		displayName: 'Keoaruboru',
 		icon: IconMonsterKeoaruboru,
+		link: '/bestiary/keoaruboru',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterKeoaruboru,
 		fullRender: FullMonsterRenderKeoaruboru,
@@ -6675,6 +6955,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenaserisu,
 		rank: 'G Rank',
 		render: IconRenderMonsterZenaserisu,
+		link: '/bestiary/zenaserisu',
+
 		fullRender: FullMonsterRenderZenaserisu,
 		component: ComponentMonsterZenaserisu,
 		unusedComponent: true,
@@ -6697,6 +6979,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterGoreMagala,
 		rank: 'G Rank',
 		render: IconRenderMonsterGoreMagala,
+		link: '/bestiary/gore-magala',
+
 		fullRender: FullMonsterRenderGoreMagala,
 		component: ComponentMonsterGoreMagala,
 		unusedComponent: true,
@@ -6738,6 +7022,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Blinking Nargacuga',
 		displayName: 'Blinking Nargacuga',
 		icon: IconMonsterBlinkingNargacuga,
+		link: '/bestiary/blinking-nargacuga',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterBlinkingNargacuga,
 		fullRender: FullMonsterRenderBlinkingNargacuga,
@@ -6765,6 +7051,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterShagaruMagala,
 		fullRender: FullMonsterRenderShagaruMagala,
 		component: ComponentMonsterShagaruMagala,
+		link: '/bestiary/shagaru-magala',
+
 		unusedComponent: true,
 		ecology: `The distinctive radiant light of the mature Gore Magala has has been seen in the Sanctuary of Heaven's Mount. Some believe Shagaru Magala was the "foul wind that withered a mountain," a calamity spoken of in ancient texts.`,
 		type: 'Large',
@@ -6786,6 +7074,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Amatsu',
 		displayName: 'Amatsu',
+		link: '/bestiary/amatsu',
+
 		icon: IconMonsterAmatsu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAmatsu,
@@ -6816,6 +7106,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterElzelion,
 		rank: 'G Rank',
 		render: IconRenderMonsterElzelion,
+		link: '/bestiary/elzelion',
+
 		fullRender: FullMonsterRenderElzelion,
 		component: ComponentMonsterElzelion,
 		unusedComponent: false,
@@ -6835,6 +7127,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Arrogant Duremudira',
 		displayName: 'Arrogant Duremudira',
 		icon: IconMonsterArrogantDuremudira,
+		link: '/bestiary/arrogant-duremudira',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterArrogantDuremudira,
 		fullRender: FullMonsterRenderArrogantDuremudira,
@@ -6856,6 +7150,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Seregios',
 		displayName: 'Seregios',
 		icon: IconMonsterSeregios,
+		link: '/bestiary/seregios',
+
 		rank: 'G Rank',
 		render: IconRenderMonsterSeregios,
 		fullRender: FullMonsterRenderSeregios,
@@ -6899,6 +7195,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Bogabadorumu',
 		icon: IconMonsterBogabadorumu,
 		rank: 'G Rank',
+		link: '/bestiary/bogabadorumu',
+
 		render: IconRenderMonsterBogabadorumu,
 		fullRender: FullMonsterRenderBogabadorumu,
 		component: ComponentMonsterBogabadorumu,
@@ -6921,6 +7219,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Bombardier Bogabadorumu',
 		icon: IconMonsterBombardierBogabadorumu,
 		rank: 'G Rank',
+		link: '/bestiary/bombardier-bogabadorumu',
+
 		render: IconRenderMonsterBombardierBogabadorumu,
 		fullRender: FullMonsterRenderBombardierBogabadorumu,
 		component: ComponentMonsterBombardierBogabadorumu,
@@ -6942,6 +7242,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Sparkling Zerureusu',
 		icon: IconMonsterSparklingZerureusu,
 		rank: 'G Rank',
+		link: '/bestiary/sparkling-zerureusu',
+
 		render: IconRenderMonsterSparklingZerureusu,
 		fullRender: FullMonsterRenderSparklingZerureusu,
 		component: ComponentMonsterSparklingZerureusu,
@@ -6966,6 +7268,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterPSO2Rappy,
 		rank: 'G Rank',
 		render: IconRenderMonsterPSO2Rappy,
+		link: '/bestiary/pso2-rappy',
+
 		fullRender: FullMonsterRenderPSO2Rappy,
 		component: ComponentMonsterPSO2Rappy,
 		unusedComponent: true,
@@ -6979,6 +7283,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterKingShakalaka,
 		fullRender: FullMonsterRenderKingShakalaka,
+		link: '/bestiary/king-shakalaka',
+
 		component: ComponentMonsterKingShakalaka,
 		unusedComponent: true,
 		ecology: `A crown-like object sits upon this leader of the Shakalaka's brow. Many a skilled hunter have been frustrated by the minions it attracts to its side. But be wary, for it's one powerful foe. When infuriated, it will unleash an unimaginably strong attack.`,
@@ -6997,6 +7303,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Akura Vashimu',
 		displayName: 'Zenith Akura Vashimu',
 		icon: IconMonsterZenithAkuraVashimu,
+		link: '/bestiary/zenith-akura-vashimu',
+
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithAkuraVashimu,
 		fullRender: FullMonsterRenderZenithAkuraVashimu,
@@ -7020,6 +7328,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithAnorupatisu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithAnorupatisu,
+		link: '/bestiary/zenith-anorupatisu',
+
 		fullRender: FullMonsterRenderZenithAnorupatisu,
 		component: ComponentMonsterZenithAnorupatisu,
 		unusedComponent: true,
@@ -7039,6 +7349,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Baruragaru',
 		displayName: 'Zenith Baruragaru',
 		icon: IconMonsterZenithBaruragaru,
+		link: '/bestiary/zenith-baruragaru',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBaruragaru,
 		fullRender: FullMonsterRenderZenithBaruragaru,
@@ -7060,6 +7371,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Blangonga',
 		displayName: 'Zenith Blangonga',
 		icon: IconMonsterZenithBlangonga,
+		link: '/bestiary/zenith-blangonga',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBlangonga,
 		fullRender: FullMonsterRenderZenithBlangonga,
@@ -7087,6 +7399,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithBogabadorumu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBogabadorumu,
+		link: '/bestiary/bogabadorumu',
 		fullRender: FullMonsterRenderBogabadorumu,
 		component: ComponentMonsterBogabadorumu,
 		unusedComponent: true,
@@ -7100,6 +7413,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithDaimyoHermitaur,
 		fullRender: FullMonsterRenderZenithDaimyoHermitaur,
+		link: '/bestiary/zenith-daimyo-hermitaur',
 		component: ComponentMonsterZenithDaimyoHermitaur,
 		unusedComponent: true,
 		ecology: `Zenith Daimyo Hermitaur is usually calm when left undisturbed, but will quickly become aggressive if attacked by a foe. Strangely, Zenith Daimyo Hermitaur have only been reported living in the White Lake.`,
@@ -7123,6 +7437,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Zenith Doragyurosu',
 		icon: IconMonsterZenithDoragyurosu,
 		rank: 'Zenith★4',
+		link: '/bestiary/zenith-doragyurosu',
 		render: IconRenderMonsterZenithDoragyurosu,
 		fullRender: FullMonsterRenderZenithDoragyurosu,
 		component: ComponentMonsterZenithDoragyurosu,
@@ -7145,6 +7460,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithEspinas,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithEspinas,
+		link: '/bestiary/zenith-espinas',
 		fullRender: FullMonsterRenderZenithEspinas,
 		component: ComponentMonsterZenithEspinas,
 		unusedComponent: true,
@@ -7186,6 +7502,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGasurabazura,
 		fullRender: FullMonsterRenderZenithGasurabazura,
+		link: '/bestiary/zenith-gasurabazura',
 		component: ComponentMonsterZenithGasurabazura,
 		unusedComponent: true,
 		ecology: `A stronger, more powerful counterpart of Gasurabazura. They are reported to feint attacks in order to catch hunters off-guard. It is said that when enraged, their arms grow to incredible sizes, destroying everything in sight. Their poison is known to be one of the most potent in the world.`,
@@ -7206,6 +7523,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithGiaorugu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGiaorugu,
+		link: '/bestiary/zenith-giaorugu',
 		fullRender: FullMonsterRenderZenithGiaorugu,
 		component: ComponentMonsterZenithGiaorugu,
 		unusedComponent: true,
@@ -7236,6 +7554,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGravios,
 		fullRender: FullMonsterRenderZenithGravios,
+		link: '/bestiary/zenith-gravios',
 		component: ComponentMonsterZenithGravios,
 		unusedComponent: true,
 		ecology: `Zenith Gravios are known to inhabit the Volcano, and can be found in the Battleground. It can use it's tail for swings and explosion-causing slams, the later of which it can use to propel itself towards a foe.`,
@@ -7256,6 +7575,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Harudomerugu',
 		displayName: 'Zenith Harudomerugu',
 		icon: IconMonsterZenithHarudomerugu,
+		link: '/bestiary/zenith-harudomerugu',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHarudomerugu,
 		fullRender: FullMonsterRenderZenithHarudomerugu,
@@ -7277,6 +7597,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Hypnocatrice',
 		displayName: 'Zenith Hypnocatrice',
 		icon: IconMonsterZenithHypnoc,
+		link: '/bestiary/zenith-hypnocatrice',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHypnoc,
 		fullRender: FullMonsterRenderZenithHypnoc,
@@ -7304,6 +7625,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithHyujikiki,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHyujikiki,
+		link: '/bestiary/zenith-hyujikiki',
 		fullRender: FullMonsterRenderZenithHyujikiki,
 		component: ComponentMonsterZenithHyujikiki,
 		ecology: `Zenith Hyujikiki share much of the same abilities as the normal ones, but the most noteworthy change is the heavier semi-metallic needles. Due to the changes to become like this the twisters no longer carry the needles, and Zenith Hyujikiki cannot use its venom anymore. To make up for this the needles Zenith Hyujikiki throws are much sharper piercing and inducing severe bleeding onto those struck by them, it also makes use of a few new attacks such as a roll which leaves clumps of needles in its wake, although some attacks normal Hyujikiki has are absent. Notably the needles will be stuck in the hunters that are struck by, or walk over the clumps of them.`,
@@ -7325,6 +7647,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithInagami,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithInagami,
+		link: '/bestiary/zenith-inagami',
 		fullRender: FullMonsterRenderZenithInagami,
 		component: ComponentMonsterZenithInagami,
 		unusedComponent: true,
@@ -7344,6 +7667,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Khezu',
 		displayName: 'Zenith Khezu',
 		icon: IconMonsterZenithKhezu,
+		link: '/bestiary/zenith-khezu',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithKhezu,
 		fullRender: FullMonsterRenderZenithKhezu,
@@ -7370,6 +7694,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithMidogaron,
 		fullRender: FullMonsterRenderZenithMidogaron,
+		link: '/bestiary/zenith-midogaron',
 		component: ComponentMonsterZenithMidogaron,
 		unusedComponent: true,
 		ecology: `An evolved Midogaron that are slightly larger and fierce than their counterpart. The mohawk-like mane that extended from their heads through tails has further developed to have longer violet hairs instead of an orange short ones. The quills on their heads grew longer with a pinkish color, while the rest of them on their necks through tails grew slightly larger with the same color as the ones on their heads. Zenith Midogaron's fur on its face and legs has the same violet color as the developed extended mane. Their claws heavy developed to have longer violet ones instead orange short ones with violet flame-like spikes on the back of their legs. Zenith Midogaron's tusks have also grown a bit longer.`,
@@ -7389,6 +7714,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Zenith Plesioth',
 		icon: IconMonsterZenithPlesioth,
 		rank: 'Zenith★4',
+		link: '/bestiary/zenith-plesioth',
 		render: IconRenderMonsterZenithPlesioth,
 		fullRender: FullMonsterRenderZenithPlesioth,
 		ecology: `Evolved Plesioth that are larger and more intimidating than their counterparts. Their heads in addition to having lighter scales have also heavily developed, now sporting a large, light blue tipped head fin with several light blue hooked spikes lining each side of it. Additionally, they have developed five long and jagged tusks located on the side of their lower jaws. Lastly, they have short and spiked appendages instead of normal fins on the side of their heads.`,
@@ -7412,6 +7738,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Zenith Rathalos',
 		icon: IconMonsterZenithRathalos,
 		rank: 'Zenith★4',
+		link: '/bestiary/zenith-rathalos',
 		render: IconRenderMonsterZenithRathalos,
 		fullRender: FullMonsterRenderZenithRathalos,
 		component: ComponentMonsterZenithRathalos,
@@ -7434,6 +7761,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Rukodiora',
 		displayName: 'Zenith Rukodiora',
 		icon: IconMonsterZenithRukodiora,
+		link: '/bestiary/zenith-rukodiora',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithRukodiora,
 		fullRender: FullMonsterRenderZenithRukodiora,
@@ -7465,6 +7793,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithTaikunZamuza,
 		fullRender: FullMonsterRenderZenithTaikunZamuza,
+		link: '/bestiary/zenith-taikun-zamuza',
 		component: ComponentMonsterZenithTaikunZamuza,
 		unusedComponent: true,
 		ecology: `Zenith Taikun Zamuza are much more prone to attack compared to their kin, lacking the environmental armor they don't seem to try and hide as much, if at all. In the unarmored state, the spikes on the legs and claws are noticeably absent, with blue bulb-like electric organs present in their place. The claws are also quite a bit thicker, longer, and overall bigger compared to that of a standard unarmored Taikun Zamuza.`,
@@ -7483,6 +7812,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Tigrex',
 		displayName: 'Zenith Tigrex',
 		icon: IconMonsterZenithTigrex,
+		link: '/bestiary/zenith-tigrex',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithTigrex,
 		fullRender: FullMonsterRenderZenithTigrex,
@@ -7509,6 +7839,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithToridcless,
 		fullRender: FullMonsterRenderZenithToridcless,
+		link: '/bestiary/zenith-toridcless',
 		component: ComponentMonsterZenithToridcless,
 		unusedComponent: true,
 		type: 'Large',
@@ -7528,6 +7859,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Conquest Fatalis',
 		icon: IconMonsterConquestFatalis,
 		rank: 'G Rank',
+		link: '/bestiary/conquest-fatalis',
 		render: IconRenderMonsterConquestFatalis,
 		fullRender: FullMonsterRenderConquestFatalis,
 		component: ComponentMonsterConquestFatalis,
@@ -7550,6 +7882,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterConquestShantien,
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestShantien,
+		link: '/bestiary/conquest-shantien',
 		fullRender: FullMonsterRenderConquestShantien,
 		component: ComponentMonsterConquestShantien,
 		unusedComponent: true,
@@ -7572,6 +7905,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestCrimsonFatalis,
 		fullRender: FullMonsterRenderConquestCrimsonFatalis,
+		link: '/bestiary/conquest-crimson-fatalis',
 		component: ComponentMonsterConquestCrimsonFatalis,
 		unusedComponent: false,
 		type: 'Large',
@@ -7593,6 +7927,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Upper Shiten',
 		render: IconRenderMonsterShitenDisufiroa,
 		fullRender: FullMonsterRenderShitenDisufiroa,
+		link: '/bestiary/shiten-disufiroa',
 		component: ComponentMonsterShitenDisufiroa,
 		unusedComponent: true,
 		ecology: `According to one account from a lucky hunter, when it freezes itself at the end of the fight, instead of dying, it will break out and gain a new appearance which its chest protrusions become purple in addition to the blue stripes on its underbelly and the webbing of its wings. Its red scales also turn black in color and its attacks become much fiercer, as well as some new devastating large attacks utilizing its elements.`,
@@ -7611,6 +7946,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'UNKNOWN',
 		displayName: 'Shiten UNKNOWN',
 		icon: IconMonsterShitenUnknown,
+		link: '/bestiary/shiten-unknown',
 		rank: 'Upper Shiten',
 		render: IconRenderMonsterShitenUnknown,
 		fullRender: FullMonsterRenderShitenUnknown,
@@ -7636,6 +7972,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterBurningFreezingElzelion,
 		rank: 'Musou 1',
 		render: IconRenderMonsterBurningFreezingElzelion,
+		link: '/bestiary/burning-freezing-elzelion',
 		fullRender: FullMonsterRenderBurningFreezingElzelion,
 		component: ComponentMonsterBurningFreezingElzelion,
 		unusedComponent: false,
@@ -7656,6 +7993,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Howling Zinogre',
 		icon: IconMonsterHowlingZinogre,
 		rank: 'Musou 1',
+		link: '/bestiary/howling-zinogre',
 		render: IconRenderMonsterHowlingZinogre,
 		fullRender: FullMonsterRenderHowlingZinogre,
 		component: ComponentMonsterHowlingZinogre,
@@ -7683,6 +8021,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Pariapuria',
 		displayName: 'Supremacy Pariapuria',
 		icon: IconMonsterSupremacyPariapuria,
+		link: '/bestiary/supremacy-pariapuria',
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyPariapuria,
 		fullRender: FullMonsterRenderSupremacyPariapuria,
@@ -7711,6 +8050,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		name: 'Doragyurosu',
 		displayName: 'Supremacy Doragyurosu',
+		link: '/bestiary/supremacy-doragyurosu',
 		icon: IconMonsterSupremacyDoragyurosu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyDoragyurosu,
@@ -7736,6 +8076,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Supremacy Teostra',
 		icon: IconMonsterSupremacyTeostra,
 		rank: 'Musou 1',
+		link: '/bestiary/supremacy-teostra',
 		render: IconRenderMonsterSupremacyTeostra,
 		fullRender: FullMonsterRenderSupremacyTeostra,
 		component: ComponentMonsterSupremacyTeostra,
@@ -7756,6 +8097,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Odibatorasu',
 		displayName: 'Odibatorasu',
 		icon: IconMonsterSupremacyOdibatorasu,
+		link: '/bestiary/supremacy-odibatorasu',
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyOdibatorasu,
 		fullRender: FullMonsterRenderSupremacyOdibatorasu,
@@ -7778,6 +8120,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Golden Deviljho',
 		icon: IconMonsterGoldenDeviljho,
 		rank: 'Musou 2',
+		link: '/bestiary/golden-deviljho',
 		render: IconRenderMonsterGoldenDeviljho,
 		fullRender: FullMonsterRenderGoldenDeviljho,
 		component: ComponentMonsterGoldenDeviljho,
@@ -7803,6 +8146,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Musou 1',
 		render: IconRenderMonsterFuriousRajang,
 		fullRender: FullMonsterRenderFuriousRajang,
+		link: '/bestiary/furious-rajang',
 		component: ComponentMonsterFuriousRajang,
 		unusedComponent: true,
 		ecology: `Furious Rajang is a standard Rajang that has grown extremely powerful, and has lost its tail either by it falling off naturally or by tearing it off itself, allowing it to fully harness its abilities. Furious Rajang's appearance resembles that of an enraged Rajang by default. Its Rage mode shows that its fur stands up and it is visibly electrified by an electric aura.`,
@@ -7858,6 +8202,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Ruling Guanzorumu',
 		icon: IconMonsterRulingGuanzorumu,
 		rank: 'Musou 1',
+		link: '/bestiary/ruling-guanzorumu',
 		render: IconRenderMonsterRulingGuanzorumu,
 		fullRender: FullMonsterRenderRulingGuanzorumu,
 		component: ComponentMonsterRulingGuanzorumu,
@@ -7879,6 +8224,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Shifting Mi Ru',
 		icon: IconMonsterShiftingMiRu,
 		rank: 'Musou 1',
+		link: '/bestiary/shifting-mi-ru',
 		render: IconRenderMonsterShiftingMiRu,
 		fullRender: FullMonsterRenderShiftingMiRu,
 		component: ComponentMonsterShiftingMiRu,
@@ -7901,6 +8247,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterTwinheadRajang,
 		rank: 'Twinhead 1',
 		render: IconRenderMonsterTwinheadRajang,
+		link: '/bestiary/twinhead-rajang',
 		fullRender: FullMonsterRenderTwinheadRajang,
 		component: ComponentMonsterTwinheadRajang,
 		unusedComponent: true,
@@ -7938,6 +8285,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterWhiteFatalis,
 		fullRender: FullMonsterRenderWhiteFatalis,
+		link: '/bestiary/road-white-fatalis',
 		component: ComponentMonsterRoadWhiteFatalis,
 		unusedComponent: false,
 		ecology: `This version of White Fatalis is exclusive to the Hunting Road, only appearing every tenth stage. Many of its attacks are with a mixed element called Emperor's Roar, but it can also create area-wide tremors and tremendous wind gusts to damage foes, rivaling that of a Zenith species. After some time during an intense battle, White Fatalis' spikes and horns will glow from blue to red.

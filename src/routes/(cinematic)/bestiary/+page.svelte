@@ -32,8 +32,7 @@
 	import { cubicInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
 	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
-
-	export let data;
+	import { monsterInfo } from '$lib/client/modules/frontier/objects';
 
 	let customTitle = 'Bestiary';
 	let url = $page.url.toString();
@@ -50,7 +49,7 @@
 	function getUniqueMonsters() {
 		let names: string[] = [];
 		let result: FrontierMonsterInfo[] = [];
-		data.monsterInfo.forEach((element) => {
+		monsterInfo.forEach((element) => {
 			if (!names.find((e) => element.displayName === e)) {
 				if (!unlistedMonsterNames.find((e) => e === element.displayName)) {
 					names.push(element.displayName);
@@ -231,34 +230,32 @@
 									...(monster.ailments ?? []),
 								]}
 							>
-								<span slot="image">
-									<div
-										class="monster-icon"
-										style:--monster-icon="monster-icon-{slugify(
-											monster.displayName,
-											{
-												lower: true,
-											},
-										)}"
+								<div
+									class="monster-icon"
+									style:--monster-icon="monster-icon-{slugify(
+										monster.displayName,
+										{
+											lower: true,
+										},
+									)}"
+								>
+									<Link
+										href={`/bestiary/${slugify(monster.displayName, { lower: true })}`}
 									>
-										<Link
-											href={`/bestiary/${slugify(monster.displayName, { lower: true })}`}
-										>
-											{#if monster.unusedComponent}
-												<img
-													src={monster.icon}
-													alt={monster.displayName}
-													width={monsterIconSize}
-												/>
-											{:else}
-												<svelte:component
-													this={monster.component}
-													{...iconProps}
-												/>
-											{/if}
-										</Link>
-									</div>
-								</span>
+										{#if monster.unusedComponent}
+											<img
+												src={monster.icon}
+												alt={monster.displayName}
+												width={monsterIconSize}
+											/>
+										{:else}
+											<svelte:component
+												this={monster.component}
+												{...iconProps}
+											/>
+										{/if}
+									</Link>
+								</div>
 							</BestiaryMonsterCard>
 						</div>
 					{/each}
