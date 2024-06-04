@@ -1,0 +1,16 @@
+[
+	{
+		"id": 1,
+		"hex": "0x01",
+		"title": "Abiorugu",
+		"content": "Details about Monster",
+		"category": "Monster"
+	},
+	{
+		"id": 1,
+		"hex": "0x01",
+		"title": "Great Sword",
+		"content": "Details about Great Sword",
+		"category": "Weapon"
+	}
+]

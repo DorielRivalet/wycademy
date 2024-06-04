@@ -14,6 +14,8 @@
 		monsterInfo,
 	} from '$lib/client/modules/frontier/objects';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
+	import ezlion from 'ezlion';
+	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
 
 	// function getFilteredWikiaMonsterData(data: WikiaMonster) {
 	// 	const result: WikiaMonster = {
@@ -57,11 +59,52 @@
 
 	// let transformedWikiaMonster = transformMonsterData(filteredWikiaMonsterData);
 
-	$: monster = monsterInfo.find(
-		(monster) =>
-			$page.params.monster.toLowerCase() ===
-			slugify(monster.displayName).toLowerCase(),
-	);
+	function findMonster(params: string) {
+		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
+			(monster) =>
+				$page.params.monster.toLowerCase() ===
+				slugify(monster.displayName).toLowerCase(),
+		);
+
+		if (found) {
+			return found;
+		} else {
+			let foundKey = Object.keys(ezlion.Monster).find(
+				(e) => `${e}` === $page.params.monster,
+			);
+			if (foundKey) {
+				return monsterInfo.find(
+					(m) => m.name === ezlion.Monster[Number(foundKey)],
+				);
+			} else {
+				return undefined;
+			}
+		}
+	}
+
+	/** https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value*/
+	function getKeyByValue(object: { [x: string]: any }, value: any) {
+		return Object.keys(object).find(
+			(key) => slugify(object[key], { lower: true }) === value,
+		);
+	}
+
+	function findMonsterID(params: string) {
+		let result = Number(params);
+		if (isNaN(result)) {
+			let foundValue = getKeyByValue(ezlion.Monster, params);
+			if (foundValue) {
+				return foundValue;
+			} else {
+				return 'Not found!';
+			}
+		} else {
+			return result;
+		}
+	}
+
+	$: monster = findMonster($page.params.monster);
+	$: monsterID = findMonsterID($page.params.monster);
 </script>
 
 {#if monster}
@@ -160,15 +203,25 @@
 						None
 					{/if}
 				</div>
+				<p>
+					<strong>ID: </strong>{monsterID} (0x{Number.parseInt(`${monsterID}`)
+						.toString(16)
+						.toUpperCase()
+						.padStart(2, '0')})
+				</p>
 			</div>
 		</div>
 	</div>
+{:else}
+	<p>Monster not found.</p>
 {/if}
 
 <style lang="scss">
 	.monster-icon {
-		width: 100%;
 		view-transition-name: var(--monster-icon);
+		display: flex;
+		width: 100%;
+		justify-content: center;
 	}
 
 	.overview {

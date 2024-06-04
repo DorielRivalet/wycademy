@@ -31,7 +31,6 @@
 	import List from 'carbon-icons-svelte/lib/List.svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
 	import { monsterInfo } from '$lib/client/modules/frontier/objects';
 
 	let customTitle = 'Bestiary';
