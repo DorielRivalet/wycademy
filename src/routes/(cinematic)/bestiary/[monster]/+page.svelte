@@ -2,11 +2,55 @@
 	import { page } from '$app/stores';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
+	// import { wikiaMonsterKeyMap } from '$lib/client/modules/frontier/objects.js';
+	// import type { WikiaMonster } from '$lib/client/modules/frontier/types.js';
 	import slugify from 'slugify';
 
 	export let data;
 
-	$: monster = data.monsters.find(
+	// function getFilteredWikiaMonsterData(data: WikiaMonster) {
+	// 	const result: WikiaMonster = {
+	// 		englishTitle: data?.englishTitle,
+	// 		monsterType: data?.monsterType,
+	// 		element: data?.element,
+	// 		ailments: data?.ailments,
+	// 		weakestTo: data?.weakestTo,
+	// 		habitats: data?.habitats,
+	// 		monsterSize: data?.monsterSize,
+	// 		monsterRelations: data?.monsterRelations,
+	// 		generation: data?.generation,
+	// 	};
+
+	// 	return result;
+	// }
+
+	// let filteredWikiaMonsterData = getFilteredWikiaMonsterData(data.wikiaMonster);
+
+	// function transformMonsterData(wikiaData: WikiaMonster) {
+	// 	const newData: WikiaMonster = {};
+
+	// 	// Iterate over each entry in the legacy data
+	// 	for (const [wikiaKey, wikiaValue] of Object.entries(wikiaData)) {
+	// 		// Find the corresponding new key based on the mapping
+	// 		const newKey = wikiaMonsterKeyMap[wikiaKey];
+
+	// 		if (newKey === '') {
+	// 			continue;
+	// 		}
+
+	// 		// Check if a direct mapping exists
+	// 		if (newKey) {
+	// 			// Assign the transformed value to the new key
+	// 			newData[newKey] = wikiaValue;
+	// 		}
+	// 	}
+
+	// 	return newData;
+	// }
+
+	// let transformedWikiaMonster = transformMonsterData(filteredWikiaMonsterData);
+
+	$: monster = data.monsterInfo.find(
 		(monster) =>
 			$page.params.monster.toLowerCase() ===
 			slugify(monster.displayName).toLowerCase(),
@@ -17,6 +61,8 @@
 	<div class="container">
 		<div class="description">
 			<SectionHeadingTopLevel title={monster.displayName} />
+
+			<!-- <code>{JSON.stringify(transformedWikiaMonster, null, 2)}</code> -->
 
 			<div
 				class="monster-icon"

@@ -21,7 +21,7 @@
 		gunnerDropdownItems,
 		ElementIcons,
 		StatusIcons,
-		MonsterIcons,
+		monsterInfo,
 		bentoValues,
 		LocationIcons,
 		oldBlademasterSharpness,
@@ -58,6 +58,7 @@
 	import type {
 		FrontierElement,
 		FrontierMotionValue,
+		FrontierMotionValueSection,
 		FrontierRarity,
 		FrontierStatus,
 		FrontierWeaponSharpness,
@@ -66,8 +67,6 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
-	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import Launch from 'carbon-icons-svelte/lib/Launch.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
@@ -936,7 +935,8 @@
 			},
 		];
 
-		let sectionEntry = sharedWeaponMotionValues;
+		let sectionEntry: FrontierMotionValueSection | undefined =
+			sharedWeaponMotionValues;
 		showWeaponMotionValuesSectionWarning = false;
 
 		if (!isSharedMotionSection) {
@@ -1643,7 +1643,7 @@
 		// Listen for the change event on the input element
 		input.addEventListener('change', (event) => {
 			const file = (event.target as HTMLInputElement).files?.[0];
-			if (file) {
+			if (file && file.size < 8 * Math.pow(10, 6)) {
 				const reader = new FileReader();
 
 				// Listen for the load event on the FileReader
@@ -1707,7 +1707,7 @@
 		// Listen for the change event on the input element
 		input.addEventListener('change', (event) => {
 			const file = (event.target as HTMLInputElement).files?.[0];
-			if (file) {
+			if (file && file.size < 8 * Math.pow(10, 6)) {
 				const reader = new FileReader();
 
 				// Listen for the load event on the FileReader
@@ -1732,7 +1732,7 @@
 			return;
 		}
 
-		let newInputs: { [key: string]: string | number | boolean } = {};
+		let newInputs: { [key: string]: any } = {};
 
 		try {
 			newInputs = JSON.parse(inputTextImportData);
@@ -10854,7 +10854,7 @@ does not get multiplied by horn */
 					<svelte:fragment slot="cell" let:cell>
 						{#if cell.key === 'name'}
 							<InlineTooltip
-								icon={MonsterIcons.find((e) => e.name === cell.value)?.icon ??
+								icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
 									''}
 								iconType="file"
 								tooltip={cell.value}
@@ -11172,7 +11172,7 @@ does not get multiplied by horn */
 					<svelte:fragment slot="cell" let:cell>
 						{#if cell.key === 'monster'}
 							<InlineTooltip
-								icon={MonsterIcons.find((e) => e.name === cell.value)?.icon ??
+								icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
 									''}
 								iconType="file"
 								tooltip={cell.value}
@@ -11480,7 +11480,7 @@ does not get multiplied by horn */
 							/>
 						{:else if cell.key === 'origin'}
 							<InlineTooltip
-								icon={MonsterIcons.find((e) => e.name === cell.value)?.icon ??
+								icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
 									''}
 								iconType="file"
 								tooltip={cell.value}
@@ -11725,7 +11725,7 @@ does not get multiplied by horn */
 						<svelte:fragment slot="cell" let:cell>
 							{#if cell.key === 'name'}
 								<InlineTooltip
-									icon={MonsterIcons.find((e) => e.name === cell.value)?.icon}
+									icon={monsterInfo.find((e) => e.name === cell.value)?.icon}
 									tooltip={'Monster'}
 									iconType={'file'}
 									text={cell.value}
@@ -11749,7 +11749,7 @@ does not get multiplied by horn */
 					Subspecies and Zeniths are also immune, except <InlineTooltip
 						tooltip="Monster"
 						text="Doragyurosu"
-						icon={MonsterIcons.find((e) => e.name === 'Doragyurosu')?.icon}
+						icon={monsterInfo.find((e) => e.name === 'Doragyurosu')?.icon}
 						iconType={'file'}
 					/> which is immune to these statuses only in G Rank, and also as a Zenith.
 				</p>
@@ -11758,7 +11758,7 @@ does not get multiplied by horn */
 						tooltip="Monster"
 						text="Raviente"
 						iconType={'file'}
-						icon={MonsterIcons.find((e) => e.name === 'Raviente')?.icon}
+						icon={monsterInfo.find((e) => e.name === 'Raviente')?.icon}
 					/>.
 				</p>
 			</div>

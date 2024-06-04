@@ -21,7 +21,7 @@
 		ItemColors,
 		ItemIcons,
 		LocationIcons,
-		MonsterIcons,
+		monsterInfo,
 		RarityColors,
 		StatusIcons,
 		WeaponTypes,
@@ -81,16 +81,15 @@
 				};
 			case 'Monster Icon':
 				return {
-					component: MonsterIcons.find((e) => e.displayName === selectionID)
+					component: monsterInfo.find((e) => e.displayName === selectionID)
 						?.component,
-					image: MonsterIcons.find((e) => e.displayName === selectionID)?.icon,
+					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Monster Render':
 				return {
-					full: MonsterIcons.find((e) => e.displayName === selectionID)
+					full: monsterInfo.find((e) => e.displayName === selectionID)
 						?.fullRender,
-					small: MonsterIcons.find((e) => e.displayName === selectionID)
-						?.render,
+					small: monsterInfo.find((e) => e.displayName === selectionID)?.render,
 				};
 			case 'Armor':
 				return {

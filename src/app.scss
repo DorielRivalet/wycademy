@@ -337,3 +337,11 @@ duration-slow-02	Background dimming	700ms
 	flex-direction: column;
 	gap: 1rem;
 }
+
+.bx--content-switcher-btn::after {
+	background-color: var(--ctp-blue);
+}
+
+.bx--content-switcher-btn.bx--content-switcher--selected{
+	color: var(--ctp-base);
+}

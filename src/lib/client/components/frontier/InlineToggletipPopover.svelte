@@ -28,7 +28,7 @@
 	const maxSubtitleLength = 64;
 	const maxTagLength = 16;
 
-	let positionIndex = positions.findIndex((v) => v === align) ?? 0;
+	let positionIndex = positions.findIndex((v) => v === align);
 	let closeTimeout: NodeJS.Timeout;
 	function millisecondsToDuration(duration: string) {
 		return Number.parseFloat(duration.replace('ms', ''));

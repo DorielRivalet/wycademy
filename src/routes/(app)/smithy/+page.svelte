@@ -10,7 +10,7 @@
 		ItemColors,
 		ItemIcons,
 		LocationIcons,
-		MonsterIcons,
+		monsterInfo,
 		RarityColors,
 		SharpnessNames,
 		StatusIcons,
@@ -875,7 +875,7 @@
 	function getUniqueMonsters() {
 		let names: string[] = [];
 		let result: FrontierMonsterInfo[] = [];
-		MonsterIcons.forEach((element) => {
+		monsterInfo.forEach((element) => {
 			if (!names.find((e) => element.displayName === e)) {
 				if (!unlistedMonsterNames.find((e) => e === element.displayName)) {
 					names.push(element.displayName);
@@ -1058,16 +1058,15 @@
 				};
 			case 'Monster Icon':
 				return {
-					component: MonsterIcons.find((e) => e.displayName === selectionID)
+					component: monsterInfo.find((e) => e.displayName === selectionID)
 						?.component,
-					image: MonsterIcons.find((e) => e.displayName === selectionID)?.icon,
+					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Monster Render':
 				return {
-					full: MonsterIcons.find((e) => e.displayName === selectionID)
+					full: monsterInfo.find((e) => e.displayName === selectionID)
 						?.fullRender,
-					small: MonsterIcons.find((e) => e.displayName === selectionID)
-						?.render,
+					small: monsterInfo.find((e) => e.displayName === selectionID)?.render,
 				};
 			case 'Armor':
 				return {
@@ -1239,7 +1238,11 @@
 	}
 
 	function addUploadedImage(files: ReadonlyArray<File>) {
-		if (files.length === 0 || thumbnailUploadedImages.length > 16) {
+		if (
+			files.length === 0 ||
+			thumbnailUploadedImages.length > 16 ||
+			files[files.length - 1].size >= 8 * Math.pow(10, 6)
+		) {
 			return;
 		}
 		thumbnailUploadedImages = [
@@ -1826,13 +1829,6 @@
 		});
 
 		return result;
-
-		// towerWeaponGunlanceShellLevels = towerWeapons.find(
-		// 	(element) => element.name === towerWeaponSelectedWeaponOption,
-		// )?.gunlanceShellLevel ?? [[]];
-		// towerWeaponGunlanceShellOptions =
-		// 	getTowerWeaponGunlaceShellOptions(towerWeaponSelected);
-		// return result;
 	}
 
 	function getTowerWeaponImageSource(weaponOption: string) {

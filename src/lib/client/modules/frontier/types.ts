@@ -15,6 +15,7 @@ import type {
 	FrontierWeaponName,
 	FrontierWeaponStyle,
 } from 'ezlion';
+import type { wikiaMonsters } from './objects';
 
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
 
@@ -690,16 +691,18 @@ export type FrontierMonsterInfo = {
 	component: any;
 	unusedComponent: boolean;
 	displayName: string;
-	//id: number; get from ezlion
-	size?: 'Large' | 'Small';
-	element?: FrontierElement[];
-	ailment?: string[];
-	// TODO hitzones
-	title?: string;
-	habitat?: string[];
+	titles?: string[];
+	class?: FrontierMonsterClass;
+	elements?: FrontierElement[];
+	ailments?: string[];
+	weaknesses?: string[];
+	habitats?: string[];
+	type?: 'Large' | 'Small';
+	sizes?: string[];
 	relatedMonsters?: string[];
-	generation?: string[];
-	summary?: string;
+	generation?: string;
+	ecology?: string;
+	// TODO hitzones
 };
 export type IconSize =
 	| '64px'
@@ -786,3 +789,47 @@ export type FrontierTowerWeapon = {
 	bowCharge4?: FrontierTowerWeaponLevelUpgrade[];
 	gunlanceShellLevel?: FrontierTowerWeaponGunlanceShellLevelUpgrade[];
 };
+
+export type FrontierMonsterClass =
+	| 'Lynian'
+	| 'Herbivore'
+	| 'Fish'
+	| 'Wingdrake'
+	| 'Neopteron'
+	| 'Temnoceran'
+	| 'Bird Wyvern'
+	| 'Flying Wyvern'
+	| 'Piscine Wyvern'
+	| 'Carapaceon'
+	| 'Amphibian'
+	| 'Fanged Beast'
+	| 'Leviathan'
+	| 'Snake Wyvern'
+	| 'Brute Wyvern'
+	| 'Fanged Wyvern'
+	| 'Elder Dragon'
+	| 'Unknown'
+	| '???'
+	| 'Relict'
+	| 'Unclassified Monster';
+
+export type WikiaMonster = {
+	englishName?: string;
+	japaneseName?: string;
+	chineseName?: string;
+	nicknames?: string;
+	englishTitle?: string[];
+	japaneseTitle?: string;
+	monsterType?: string;
+	element?: string[];
+	ailments?: string[];
+	weakestTo?: string[];
+	weaknessSign?: string;
+	signatureMove?: string;
+	habitats?: string[];
+	monsterSize?: string[];
+	monsterRelations?: string[];
+	generation?: string;
+} | null;
+
+export type WikiaMonsterName = (typeof wikiaMonsters)[number];
