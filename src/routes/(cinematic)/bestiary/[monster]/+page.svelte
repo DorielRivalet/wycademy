@@ -53,8 +53,8 @@
 		return monster?.id ?? 'Not found';
 	}
 
-	let monster = findMonster($page.params.monster);
-	let monsterID = findMonsterID(monster);
+	$: monster = findMonster($page.params.monster);
+	$: monsterID = findMonsterID(monster);
 </script>
 
 {#if monster}
@@ -215,9 +215,7 @@
 							{#each monster.relatedMonsters as relatedMonster}
 								<ListItem>
 									{#if findMonsterInfo(relatedMonster)}
-										<!-- TODO make it work without reloading-->
 										<Link
-											data-sveltekit-reload
 											href={`/bestiary/${slugify(findMonsterInfo(relatedMonster)?.displayName ?? '/bestiary', { lower: true })}`}
 										>
 											{#if findMonsterInfo(relatedMonster)?.unusedComponent}
