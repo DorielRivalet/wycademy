@@ -5,6 +5,8 @@ import type {
 } from '$lib/client/modules/frontier/types';
 import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
 
+export const prerender = true;
+
 type PossibleArrays = FrontierMonsterInfo;
 
 function mapToSearchItem(

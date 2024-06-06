@@ -38,7 +38,7 @@
 	/>
 </div>
 
-<style>
+<style lang="scss">
 	.back-to-top {
 		opacity: 1;
 		transition:

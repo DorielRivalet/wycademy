@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { cubicInOut } from 'svelte/easing';
+	import { fade } from 'svelte/transition';
 
 	/**https://stackoverflow.com/questions/68235936/how-to-use-two-svelte-transitions-on-the-same-togglable-element*/
 	function slidefade(
@@ -75,7 +76,7 @@
 </script>
 
 {#if showModal}
-	<div class="overlay"></div>
+	<div in:fade={{ duration: 150 }} class="overlay"></div>
 {/if}
 
 <button on:click={openDialog}>
@@ -132,7 +133,6 @@
 		border-color: transparent;
 		background: none;
 		padding: 0;
-		background: none;
 		width: 100%;
 		height: 100%;
 	}

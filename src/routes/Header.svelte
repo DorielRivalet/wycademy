@@ -18,42 +18,42 @@
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
 	import NavigationItem from './NavigationItem.svelte';
-	import SearchIcon from 'carbon-icons-svelte/lib/Search.svelte';
-	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
+	import WycademySearch from '$lib/client/components/WycademySearch.svelte';
 	import ThemeChanger from './ThemeChanger.svelte';
 	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
 	import OverflowMenu from 'carbon-components-svelte/src/OverflowMenu/OverflowMenu.svelte';
 	import OverflowMenuItem from 'carbon-components-svelte/src/OverflowMenu/OverflowMenuItem.svelte';
 	import Menu from 'carbon-icons-svelte/lib/Menu.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
-	import { onMount } from 'svelte';
-	import {
-		createPostsIndex,
-		searchPostsIndex,
-		type SearchResult,
-	} from '$lib/search';
-	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import { page } from '$app/stores';
 
-	let search: 'loading' | 'ready' = 'loading';
-	let searchTerm = '';
-	let results: SearchResult[] = [];
+	// let searchState: 'idle' | 'load' | 'ready' = 'idle';
+	// let searchTerm = '';
+	// let results: SearchResult[] = [];
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	onMount(async () => {
-		const posts = await fetch('/api/search').then((res) => res.json());
-		createPostsIndex(posts);
-		search = 'ready';
-	});
+	// let posts: SearchItem[] = [];
 
-	let searchOpen = false;
+	// async function onSearchPressed() {
+	// 	searchOpen = !searchOpen;
 
-	$: if (search === 'ready') {
-		results = searchPostsIndex(searchTerm);
-	}
+	// 	if (searchState === 'ready' || searchState === 'load') {
+	// 		return;
+	// 	}
+
+	// 	searchState = 'load';
+	// 	posts = await fetch('/api/search').then((res) => res.json());
+	// 	createPostsIndex(posts);
+	// 	searchState = 'ready';
+	// }
+
+	// let searchOpen = false;
+
+	// $: if (searchState === 'ready') {
+	// 	results = searchPostsIndex(searchTerm);
+	// }
 </script>
 
 <header>
@@ -128,56 +128,7 @@
 	</div>
 
 	<nav class="right">
-		{#if search === 'ready'}
-			<Button
-				iconDescription="Search"
-				icon={SearchIcon}
-				kind="ghost"
-				on:click={() => (searchOpen = !searchOpen)}
-			/>
-
-			{#if searchOpen}
-				<div class="search">
-					<Search
-						expanded
-						bind:value={searchTerm}
-						autocomplete="off"
-						spellcheck={false}
-						on:clear={() => (searchOpen = false)}
-					/>
-
-					<div class="results">
-						{#if results.length > 0}
-							<ul>
-								{#each results as result}
-									<li>
-										{#if $page.url.pathname.startsWith('/bestiary/')}
-											<a
-												data-sveltekit-reload
-												on:click={() => (searchOpen = false)}
-												href={result.slug}
-											>
-												{@html result.title}
-											</a>
-										{:else}
-											<a
-												on:click={() => (searchOpen = false)}
-												href={result.slug}
-											>
-												{@html result.title}
-											</a>
-										{/if}
-										<p>{@html result.content}</p>
-									</li>
-								{/each}
-							</ul>
-						{:else}
-							<p>No results found.</p>
-						{/if}
-					</div>
-				</div>
-			{/if}
-		{/if}
+		<WycademySearch />
 
 		{#if $breakpointLargerThanMedium}
 			<ThemeChanger />
@@ -297,7 +248,7 @@
 
 			& li:not(:last-child) {
 				padding-block: 0.5rem;
-				border-bottom: 1px solid hsl(220 10% 20%);
+				border-bottom: 1px solid var(--ctp-overlay0);
 			}
 		}
 
