@@ -10,6 +10,10 @@
 	import type { GitHubData } from '$lib/types';
 	import * as constant from '$lib/constants';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
+	import CloudflareLogo from '$lib/client/images/cloudflare-pages-logo.svg';
+	import SvelteLogo from '$lib/client/images/svelte-logo.svg';
+	import Raviente from '$lib/client/images/icon/berserk_raviente_raid.webp';
+
 	export let githubData: GitHubData = {
 		lastModified: '',
 		commitLink: '',
@@ -28,21 +32,46 @@
 			</div>
 		{:else}
 			<div>Want to play as Raviente?</div>
-			<Link href="/offline">Try this game!</Link>
+			<div class="icon-info-container">
+				<img src={Raviente} width="32" alt="Raviente" />
+				<Link href="/offline">Try this game!</Link>
+			</div>
 		{/if}
 	</div>
 
 	<div class="item-container">
-		<Link href={constant.authorUrl}
-			>{constant.authorName} &copy {new Date().getUTCFullYear()}</Link
-		>
-		<div>
-			Powered by <OutboundLink href="https://developers.cloudflare.com/pages/"
-				>Cloudflare Pages</OutboundLink
-			> and <OutboundLink href="https://kit.svelte.dev/docs/introduction"
-				>SvelteKit</OutboundLink
+		<div class="icon-info-container">
+			<img
+				class="rounded-image"
+				src="https://avatars.githubusercontent.com/u/100863878"
+				width="32"
+				alt="Author"
+			/>
+			<Link href={constant.authorUrl}
+				>{constant.authorName} &copy {new Date().getUTCFullYear()}</Link
 			>
 		</div>
+		<div class="icon-info-container">
+			<p>Powered by</p>
+			<img width="32" src={CloudflareLogo} alt="Cloudflare Pages Logo" />
+			<span class="logo-container">
+				<OutboundLink href="https://developers.cloudflare.com/pages/">
+					Cloudflare Pages™</OutboundLink
+				>
+			</span>
+			<p>and</p>
+			<img width="32" src={SvelteLogo} alt="Svelte Logo" />
+			<span class="logo-container">
+				<OutboundLink href="https://kit.svelte.dev/docs/introduction">
+					SvelteKit</OutboundLink
+				>
+			</span>
+		</div>
+		<OutboundLink
+			href="https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md"
+		>
+			Code licensed {constant.license}</OutboundLink
+		>
 	</div>
 
 	<div class="item-container">
@@ -54,13 +83,28 @@
 </footer>
 
 <style lang="scss">
+	.icon-info-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+		align-items: center;
+	}
+
+	.rounded-image {
+		border-radius: 50%;
+	}
+
 	@media (min-width: 320px) {
 		footer {
 			padding: var(--cds-spacing-02);
 			background-color: var(--ctp-crust);
 			display: flex;
 			justify-content: space-between;
+			flex-wrap: wrap;
 			align-items: center;
+			flex-direction: column;
+			gap: 2rem;
+			padding-top: 2rem;
 			font-size: 0.75rem;
 		}
 
@@ -71,12 +115,15 @@
 			align-items: center;
 		}
 	}
+
 	@media (min-width: 672px) {
 		footer {
 			padding: var(--cds-spacing-07);
 			background-color: var(--ctp-crust);
+			flex-wrap: wrap;
 			display: flex;
 			justify-content: space-between;
+			flex-direction: row;
 			align-items: center;
 		}
 
