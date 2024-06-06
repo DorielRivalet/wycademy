@@ -10,6 +10,7 @@ import type {
 	FrontierArmorID,
 	FrontierElement,
 	FrontierItemColor,
+	FrontierMonsterInfo,
 	FrontierStatus,
 	FrontierWeaponSharpness,
 } from './types';
@@ -18,6 +19,7 @@ import {
 	ItemColors,
 	monsterInfo,
 	tagInfo,
+	unlistedMonsterNames,
 	WeaponTypes,
 } from './objects';
 import FireIcon from '$lib/client/images/icon/element/fire.webp';
@@ -48,6 +50,7 @@ import type {
 	FrontierRankBand,
 	FrontierWeaponID,
 } from 'ezlion';
+import slugify from 'slugify';
 
 export const frontierMath = {
 	calculateEHP: (monsterHP: number, defrate: number) =>
@@ -173,6 +176,28 @@ export const frontierMappers = {
 		}
 	},
 };
+
+export function getUniqueMonsters() {
+	const names: string[] = [];
+	const result: FrontierMonsterInfo[] = [];
+	monsterInfo.forEach((element) => {
+		if (!names.find((e) => element.displayName === e)) {
+			if (!unlistedMonsterNames.find((e) => e === element.displayName)) {
+				names.push(element.displayName);
+				result.push(element);
+			}
+		}
+	});
+
+	return result;
+}
+
+/** https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value*/
+export function getKeyByValue(object: { [x: string]: any }, value: any) {
+	return Object.keys(object).find(
+		(key) => slugify(object[key], { lower: true }) === value,
+	);
+}
 
 export function isFieldEmpty(field: string | undefined | null) {
 	return (

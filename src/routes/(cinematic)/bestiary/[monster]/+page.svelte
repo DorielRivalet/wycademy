@@ -73,38 +73,22 @@
 				(e) => `${e}` === $page.params.monster,
 			);
 			if (foundKey) {
-				return monsterInfo.find(
-					(m) => m.name === ezlion.Monster[Number(foundKey)],
-				);
+				return monsterInfo.find((m) => m.id === Number(foundKey));
 			} else {
 				return undefined;
 			}
 		}
 	}
 
-	/** https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value*/
-	function getKeyByValue(object: { [x: string]: any }, value: any) {
-		return Object.keys(object).find(
-			(key) => slugify(object[key], { lower: true }) === value,
-		);
-	}
-
-	function findMonsterID(params: string) {
-		let result = Number(params);
-		if (isNaN(result)) {
-			let foundValue = getKeyByValue(ezlion.Monster, params);
-			if (foundValue) {
-				return foundValue;
-			} else {
-				return 'Not found!';
-			}
-		} else {
-			return result;
+	function findMonsterID(monster: FrontierMonsterInfo | undefined) {
+		if (monster === undefined) {
+			return 'Not found';
 		}
+		return monster?.id ?? 'Not found';
 	}
 
-	$: monster = findMonster($page.params.monster);
-	$: monsterID = findMonsterID($page.params.monster);
+	let monster = findMonster($page.params.monster);
+	let monsterID = findMonsterID(monster);
 </script>
 
 {#if monster}
