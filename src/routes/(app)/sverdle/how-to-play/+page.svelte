@@ -78,11 +78,11 @@
 
 	.close {
 		border-style: solid;
-		border-color: var(--color-theme-2);
+		border-color: var(--ctp-surface0);
 	}
 
 	.exact {
-		background: var(--color-theme-2);
+		background: var(--ctp-surface0);
 		color: white;
 	}
 

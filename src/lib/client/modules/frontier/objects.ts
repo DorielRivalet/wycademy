@@ -3779,6 +3779,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Zenith Blangonga',
 			'Rajang',
 			'Furious Rajang',
+			'Twinhead Rajang',
 			'Conga',
 			'Congalala',
 		],
@@ -3833,6 +3834,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 			'Rajang',
 			'Furious Rajang',
+			'Twinhead Rajang',
 		],
 		generation: 'Second Generation',
 	},
@@ -3906,6 +3908,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		sizes: ['Gold Crown Large: 1631.2', 'Gold Crown Small: 729.62'],
 		relatedMonsters: [
 			'Furious Rajang',
+			'Twinhead Rajang',
 			'Voljang',
 			'Blango',
 			'Blangonga',
@@ -4198,6 +4201,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Congalala',
 			'Rajang',
 			'Furious Rajang',
+			'Twinhead Rajang',
 		],
 		generation: 'Second Generation',
 	},
@@ -4248,6 +4252,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 			'Rajang',
 			'Furious Rajang',
+			'Twinhead Rajang',
 		],
 		generation: 'Second Generation',
 	},
@@ -6023,7 +6028,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Water', 'Fire'],
 		habitats: ['Gorge', 'Bamboo Forest', 'Road'],
 		sizes: ['Gold Crown Large: 1132.8', 'Gold Crown Small: 768.0'],
-		relatedMonsters: ['Rajang', 'Furious Rajang', 'Voljang'],
+		relatedMonsters: ['Rajang', 'Furious Rajang', 'Twinhead Rajang', 'Voljang'],
 		generation: 'Frontier',
 	},
 	{
@@ -6875,7 +6880,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Ice', 'Water'],
 		habitats: ['Battleground', 'Road'],
 		sizes: ['Gold Crown Large: 1532.2', 'Gold Crown Small: 1276.8'],
-		relatedMonsters: ['Rajang', 'Furious Rajang', 'Gougarf'],
+		relatedMonsters: ['Rajang', 'Furious Rajang', 'Twinhead Rajang', 'Gougarf'],
 		generation: 'Frontier',
 	},
 	{
@@ -7408,6 +7413,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Blangonga',
 			'Rajang',
 			'Furious Rajang',
+			'Twinhead Rajang',
 			'Conga',
 			'Congalala',
 		],
@@ -8257,6 +8263,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Conga',
 			'Congalala',
 			'Gougarf',
+			'Twinhead Rajang',
 		],
 		generation: 'Second',
 	},
@@ -8334,7 +8341,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Zenith Blangonga',
 			'Conga',
 			'Congalala',
-			'Gougarf',
+			'Gougarf','Furious Rajang'
 		],
 		generation: 'Frontier',
 	},

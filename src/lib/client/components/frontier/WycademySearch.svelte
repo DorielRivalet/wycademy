@@ -189,7 +189,7 @@
 					autocomplete="off"
 					spellcheck={false}
 					on:clear={closeDialog}
-					placeholder="Search... (ESC or Clear to Exit)"
+					placeholder="Search... (Esc/Clear button to Exit)"
 				/>
 			</div>
 			<div class="results">
@@ -212,19 +212,9 @@
 								<ol>
 									{#each results as result}
 										<li>
-											{#if $page.url.pathname.startsWith('/bestiary/')}
-												<a
-													data-sveltekit-reload
-													on:click={closeDialog}
-													href={result.slug}
-												>
-													{@html result.title}
-												</a>
-											{:else}
-												<a on:click={closeDialog} href={result.slug}>
-													{@html result.title}
-												</a>
-											{/if}
+											<a on:click={closeDialog} href={result.slug}>
+												{@html result.title}
+											</a>
 											{#if result.content.length > 0}
 												<ul class="spaced-list">
 													{#each result.content as content}
