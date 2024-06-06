@@ -118,21 +118,29 @@
 
 	<div class="container">
 		<div class={tocClass}>
-			<Toc blurParams={{ duration: 0 }}>
+			<Toc blurParams={{ duration: 0 }} --toc-desktop-sticky-top={'10vh'}>
 				<span slot="title">
 					{#if $breakpointLargerThanMedium}
-						<div>
-							<Button
-								kind="ghost"
-								icon={ViewOff}
-								on:click={onTOCToggleButtonPress}>{'Hide'}</Button
+						<h2 class="toc-title toc-exclude">
+							<span
+								>On this page <span>
+									<Button
+										iconDescription={'Hide'}
+										kind="ghost"
+										size={'small'}
+										icon={ViewOff}
+										on:click={onTOCToggleButtonPress}
+									></Button>
+								</span></span
 							>
-						</div>
+						</h2>
+					{:else}
+						<h2 class="toc-title toc-exclude">On this page</h2>
 					{/if}
-					<h2 class="toc-title toc-exclude">On this page</h2></span
-				>
+				</span>
 			</Toc>
 		</div>
+
 		<main class="center-column {centerColumnClass}">
 			<slot />
 		</main>
@@ -225,5 +233,10 @@
 		padding: 0;
 		margin: 0;
 		z-index: 1000; /* Ensure the button is above other content */
+	}
+
+	.toc-title .toc-exclude {
+		display: flex;
+		flex-direction: row;
 	}
 </style>
