@@ -16,3 +16,4 @@ export const datePublished = '2023-09-02';
 export const apiCacheTimeouts = {
 	github: 60 * 60 * 24,
 } as const;
+export const license = 'MIT';
