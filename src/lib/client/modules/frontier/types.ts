@@ -708,15 +708,68 @@ export type FrontierMonsterInfo = {
 	elements?: FrontierElement[];
 	ailments?: FrontierAilment[];
 	weaknesses?: FrontierElementStatus[];
-	habitats?: string[];
+	habitats?: string[]; // TODO location type
 	type?: 'Large' | 'Small';
 	sizes?: string[];
-	relatedMonsters?: string[];
+	relatedMonsters?: FrontierMonsterNameExpanded[];
 	generation?: string;
 	ecology?: string;
 	link?: string;
 	// TODO hitzones
 };
+
+export type FrontierMonsterNameExpanded =
+	| FrontierMonsterName
+	| 'Zenith Anorupatisu'
+	| 'Zenith Akura Vashimu'
+	| 'Furious Rajang'
+	| 'Twinhead Rajang'
+	| 'Zenith Blangonga'
+	| 'Zenith Daimyo Hermitaur'
+	| 'Zenith Doragyurosu'
+	| 'Zenith Espinas'
+	| 'Zenith Gasurabazura'
+	| 'Zenith Giaorugu'
+	| 'Zenith Hypnocatrice'
+	| 'Zenith Hyujikiki'
+	| 'Zenith Inagami'
+	| 'Zenith Khezu'
+	| 'Zenith Midogaron'
+	| 'Zenith Plesioth'
+	| 'Zenith Rathalos'
+	| 'Zenith Rukodiora'
+	| 'Zenith Tigrex'
+	| 'Zenith Toridcless'
+	| 'Zenith Baruragaru'
+	| 'Zenith Bogabadorumu'
+	| 'Zenith Gravios'
+	| 'Zenith Harudomerugu'
+	| 'Zenith Taikun Zamuza'
+	| 'Road White Fatalis'
+	| 'Upper Shiten UNKNOWN'
+	| 'Upper Shiten Disufiroa'
+	| 'Shiten Disufiroa'
+	| 'Shiten Unknown'
+	| 'Supremacy Teostra'
+	| 'Supremacy Odibatorasu'
+	| 'Supremacy Pariapuria'
+	| 'Thirsty Pariapuria'
+	| 'Supremacy Unknown'
+	| 'Conquest Fatalis'
+	| 'Conquest Crimson Fatalis'
+	| 'Conquest Disufiroa'
+	| 'Conquest Shantien'
+	| 'Giaprey'
+	| 'Lolo Gourgarf'
+	| 'Ray Gougarf'
+	| 'Howling Zinogre'
+	| 'Violent Raviente'
+	| 'Golden Deviljho'
+	| 'Shifting Mi Ru'
+	| 'Ruling Guanzorumu'
+	| 'Four Heavenly King Deviljho'
+	| 'Burning Freezing Elzelion';
+
 export type IconSize =
 	| '64px'
 	| '128px'

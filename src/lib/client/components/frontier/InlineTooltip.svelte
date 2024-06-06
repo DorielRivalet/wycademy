@@ -13,10 +13,12 @@ Shows text next to an icon inline. You can use either a component or a image imp
 	export let iconSize = '100%';
 	/**For component*/
 	export let gap = 'auto';
+	export let background = true;
 
 	let iconProps = {
 		color: iconColor,
 		size: iconSize,
+		background: background,
 	};
 
 	let open = false;
