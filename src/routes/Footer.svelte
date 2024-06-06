@@ -13,6 +13,7 @@
 	import CloudflareLogo from '$lib/client/images/cloudflare-pages-logo.svg';
 	import SvelteLogo from '$lib/client/images/svelte-logo.svg';
 	import Raviente from '$lib/client/images/icon/berserk_raviente_raid.webp';
+	import authorImage from '$lib/client/images/author.webp';
 
 	export let githubData: GitHubData = {
 		lastModified: '',
@@ -41,12 +42,7 @@
 
 	<div class="item-container">
 		<div class="icon-info-container">
-			<img
-				class="rounded-image"
-				src="https://avatars.githubusercontent.com/u/100863878"
-				width="32"
-				alt="Author"
-			/>
+			<img class="rounded-image" src={authorImage} width="32" alt="Author" />
 			<Link href={constant.authorUrl}
 				>{constant.authorName} &copy {new Date().getUTCFullYear()}</Link
 			>
