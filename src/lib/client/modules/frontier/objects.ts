@@ -126,6 +126,7 @@ import TailIconWhite from '$lib/client/components/frontier/icon/item/Tail_Icon_W
 import TalismanIconWhite from '$lib/client/components/frontier/icon/item/Talisman_Icon_White.svelte';
 import TicketIconWhite from '$lib/client/components/frontier/icon/item/Ticket_Icon_White.svelte';
 import TowerSigil from '$lib/client/components/frontier/icon/item/Tower_Sigil.svelte';
+import Sigil from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 import TrapIconWhite from '$lib/client/components/frontier/icon/item/Trap_Icon_White.svelte';
 import TrapToolIconWhite from '$lib/client/components/frontier/icon/item/Trap_Tool_Icon_White.svelte';
 import VegetableIconWhite from '$lib/client/components/frontier/icon/item/Vegetable_Icon_White.svelte';
@@ -1665,6 +1666,10 @@ export const ItemIcons: { name: string; icon: any }[] = [
 	{
 		name: 'Shot',
 		icon: ShotIconWhite,
+	},
+	{
+		name: 'Sigil',
+		icon: Sigil,
 	},
 	{
 		name: 'Smoke',

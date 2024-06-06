@@ -8408,7 +8408,7 @@ does not get multiplied by horn */
 						distance on standard shots making it easier to see when you are properly
 						spaced. This adds an extra 0.3x multiplier to damage in that zone (e.g.
 						2.0 in first half of Normal Shot range, 2.3x with an Origin or Zenith
-						Piece and G Rank Weapon, etc.)
+						Piece and G Rank Weapon, etc.).
 					</p>
 					<div>
 						<Dropdown
@@ -10621,7 +10621,7 @@ does not get multiplied by horn */
 						</ListItem>
 						<ListItem>
 							<InlineTooltip
-								text="poogie Crackers"
+								text="Poogie Crackers"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Scale')?.icon}

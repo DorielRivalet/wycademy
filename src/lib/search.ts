@@ -1,8 +1,4 @@
 import FlexSearch from 'flexsearch';
-import type {
-	SearchItem,
-	SearchItemCategory,
-} from '$lib/client/modules/frontier/types';
 
 export type SearchResult = {
 	content: string[];
@@ -12,6 +8,27 @@ export type SearchResult = {
 	id: number;
 	hex: string;
 };
+
+export type SearchItem = {
+	title: string;
+	slug: string;
+	content: string;
+	category: SearchItemCategory;
+	id: number;
+	hex: string;
+};
+
+export type SearchItemCategory =
+	| 'Monster'
+	| 'Armor'
+	| 'Skill'
+	| 'Sigil'
+	| 'Item'
+	| 'Overview'
+	| 'Weapon'
+	| 'User'
+	| 'Other'
+	| 'All';
 
 let postsIndex: FlexSearch.Index;
 let posts: SearchItem[];
@@ -27,7 +44,10 @@ export function createPostsIndex(data: SearchItem[]) {
 	posts = data;
 }
 
-export function searchPostsIndex(searchTerm: string): SearchResult[] {
+export function searchPostsIndex(
+	searchTerm: string,
+	scope: SearchItemCategory,
+): SearchResult[] {
 	if (searchTerm === '' || searchTerm === undefined) {
 		return [];
 	}
@@ -47,7 +67,11 @@ export function searchPostsIndex(searchTerm: string): SearchResult[] {
 		},
 	);
 
-	return mappedResults;
+	if (scope === 'All') {
+		return mappedResults;
+	} else {
+		return mappedResults.filter((result) => result.category === scope) ?? [];
+	}
 }
 
 function replaceTextWithMarker(text: string, match: string) {
@@ -67,7 +91,7 @@ function getMatches(text: string, searchTerm: string, limit = 1) {
 	}
 
 	if (text === '' || text === undefined) {
-		return ['No matches found'];
+		return [];
 	}
 
 	return indexes.map((index) => {
