@@ -2,21 +2,85 @@
 	import { fade } from 'svelte/transition';
 	import SearchWorker from '$lib/client/workers/search?worker';
 	import { onNavigate } from '$app/navigation';
-	import type { SearchResult } from '$lib/search.ts';
+	import type { SearchItemCategory, SearchResult } from '$lib/search.ts';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import SearchIcon from 'carbon-icons-svelte/lib/Search.svelte';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
-	import SkeletonText from 'carbon-components-svelte/src/SkeletonText/SkeletonText.svelte';
 	import { onDestroy } from 'svelte';
 	import { page } from '$app/stores';
-	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
-	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
-	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
+	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
+	import { ArmorTypes, ItemIcons } from '$lib/client/modules/frontier/objects';
+	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
+	import InlineTooltip from './InlineTooltip.svelte';
 
 	let search: 'idle' | 'load' | 'ready' = 'idle';
 	let searchTerm = '';
 	let results: SearchResult[] = [];
 	let searchWorker: Worker;
+
+	const categoryIcons: { name: SearchItemCategory; icon: any }[] = [
+		{
+			name: 'Monster',
+			icon: ItemIcons.find((e) => e.name === 'Monster Part')?.icon,
+		},
+		{
+			name: 'Armor',
+			icon: ArmorTypes.find((e) => e.name === 'Chest')?.icon,
+		},
+		{
+			name: 'Skill',
+			icon: ItemIcons.find((e) => e.name === 'Jewel')?.icon,
+		},
+		{
+			name: 'Sigil',
+			icon: ItemIcons.find((e) => e.name === 'Sigil')?.icon,
+		},
+		{
+			name: 'Item',
+			icon: ItemIcons.find((e) => e.name === 'Ticket')?.icon,
+		},
+		{
+			name: 'Overview',
+			icon: ItemIcons.find((e) => e.name === 'Book')?.icon,
+		},
+		{
+			name: 'Weapon',
+			icon: ItemIcons.find((e) => e.name === 'Whetstone')?.icon,
+		},
+		{
+			name: 'User',
+			icon: ArmorTypes.find((e) => e.name === 'Head')?.icon,
+		},
+		{
+			name: 'Other',
+			icon: ItemIcons.find((e) => e.name === 'Question Mark')?.icon,
+		},
+		{
+			name: 'All',
+			icon: ItemIcons.find((e) => e.name === 'Mantle')?.icon,
+		},
+	];
+
+	// Function to group results by category
+	function groupByCategory(results: SearchResult[]) {
+		return results.reduce((acc, result) => {
+			const key = result.category;
+			if (!acc[key]) {
+				acc[key] = [];
+			}
+			acc[key].push(result);
+			return acc;
+		}, {});
+	}
+
+	function getCategoryIcon(category: SearchItemCategory) {
+		return (
+			categoryIcons.find((e) => e.name === category)?.icon ??
+			QuestionMarkIconWhite
+		);
+	}
 
 	function initialize() {
 		if (showModal) {
@@ -30,30 +94,17 @@
 		}
 
 		search = 'load';
+		// create worker
 		searchWorker = new SearchWorker();
+		// listen for messages
 		searchWorker.addEventListener('message', (e) => {
 			const { type, payload } = e.data;
 			type === 'ready' && (search = 'ready');
 			type === 'results' && (results = payload.results);
 		});
-
+		// initialize when the component mounts
 		searchWorker.postMessage({ type: 'load' });
 	}
-
-	onNavigate(() => {
-		closeDialog();
-	});
-
-	$: if (search === 'ready') {
-		searchWorker.postMessage({ type: 'search', payload: { searchTerm } });
-	}
-
-	$: if (searchTerm && !showModal) {
-		searchTerm = '';
-	}
-
-	let dialogElement: HTMLDialogElement;
-	let showModal = false;
 
 	function openDialog() {
 		showModal = true;
@@ -71,7 +122,30 @@
 		}
 	});
 
+	onNavigate(() => {
+		closeDialog();
+	});
+
+	let dialogElement: HTMLDialogElement;
+	let showModal = false;
+	let scopeFilterId = 'All';
+
+	$: if (search === 'ready') {
+		// update results
+		searchWorker.postMessage({
+			type: 'search',
+			payload: { searchTerm, scopeFilterId },
+		});
+	}
+
+	$: if (searchTerm && !showModal) {
+		searchTerm = '';
+	}
+
 	$: dialogClass = showModal ? 'dialog open' : 'dialog';
+
+	// Call the function to get grouped results
+	$: groupedResults = groupByCategory(results);
 </script>
 
 {#if showModal}
@@ -85,62 +159,87 @@
 	on:click={initialize}
 />
 
-<dialog bind:this={dialogElement} class={dialogClass}>
+<dialog bind:this={dialogElement} class={dialogClass} on:close={closeDialog}>
 	{#if showModal}
 		<div class="content" in:fade={{ duration: 150 }}>
-			<Search
-				expanded
-				bind:value={searchTerm}
-				autocomplete="off"
-				spellcheck={false}
-				on:clear={closeDialog}
-			/>
+			<div class="search-container">
+				<div class="dropdown">
+					<Dropdown
+						hideLabel
+						type="default"
+						size="xl"
+						bind:selectedId={scopeFilterId}
+						items={[
+							{ id: 'All', text: 'All' },
+							{ id: 'Monster', text: 'Monster' },
+							{ id: 'Armor', text: 'Armor' },
+							{ id: 'Skill', text: 'Skill' },
+							{ id: 'Sigil', text: 'Sigil' },
+							{ id: 'Item', text: 'Item' },
+							{ id: 'Overview', text: 'Overview' },
+							{ id: 'Weapon', text: 'Weapon' },
+							{ id: 'User', text: 'User' },
+							{ id: 'Other', text: 'Other' },
+						]}
+					/>
+				</div>
+				<Search
+					expanded
+					bind:value={searchTerm}
+					autocomplete="off"
+					spellcheck={false}
+					on:clear={closeDialog}
+					placeholder="Search... (ESC or Clear to Exit)"
+				/>
+			</div>
 			<div class="results">
 				{#if search === 'load'}
-					<OrderedList class="spaced-list">
-						<ListItem>
-							<SkeletonText heading />
-							<SkeletonText paragraph />
-						</ListItem>
-						<ListItem>
-							<SkeletonText heading />
-							<SkeletonText paragraph />
-						</ListItem>
-						<ListItem>
-							<SkeletonText heading />
-							<SkeletonText paragraph />
-						</ListItem>
-					</OrderedList>
+					<Accordion skeleton />
 				{:else if results.length > 0}
 					<p>{results.length} results found.</p>
-					<OrderedList class="spaced-list">
-						{#each results as result}
-							<ListItem>
-								{#if $page.url.pathname.startsWith('/bestiary/')}
-									<a
-										data-sveltekit-reload
-										on:click={closeDialog}
-										href={result.slug}
-									>
-										{@html result.title}
-									</a>
-								{:else}
-									<a on:click={closeDialog} href={result.slug}>
-										{@html result.title}
-									</a>
-								{/if}
-								{#if result.content.length > 0}
-									<UnorderedList class="spaced-list">
-										{#each result.content as content}
-											<ListItem>{@html content}</ListItem>
-										{/each}
-									</UnorderedList>
-								{/if}
-							</ListItem>
+					<Accordion>
+						{#each Object.entries(groupedResults) as [category, results], i}
+							<AccordionItem open={i === 0}>
+								<svelte:fragment slot="title">
+									<InlineTooltip
+										tooltip={category}
+										iconType="component"
+										text={`${category} (${results.length})`}
+										icon={getCategoryIcon(category)}
+									/>
+								</svelte:fragment>
+								<hr class="category-separator" />
+								<ol>
+									{#each results as result}
+										<li>
+											{#if $page.url.pathname.startsWith('/bestiary/')}
+												<a
+													data-sveltekit-reload
+													on:click={closeDialog}
+													href={result.slug}
+												>
+													{@html result.title}
+												</a>
+											{:else}
+												<a on:click={closeDialog} href={result.slug}>
+													{@html result.title}
+												</a>
+											{/if}
+											{#if result.content.length > 0}
+												<ul class="spaced-list">
+													{#each result.content as content}
+														<li>{@html content}</li>
+													{/each}
+												</ul>
+											{/if}
+										</li>
+									{/each}
+								</ol>
+							</AccordionItem>
 						{/each}
-					</OrderedList>
+					</Accordion>
 				{:else}
-					<p>Zero results found.</p>
+					<p>0 results found.</p>
 				{/if}
 			</div>
 		</div>
@@ -152,6 +251,16 @@
 		border-color: transparent;
 		background: none;
 		padding: 0;
+	}
+
+	.search-container {
+		background-color: var(--ctp-surface0);
+		display: flex;
+	}
+
+	.dropdown {
+		min-width: 128px;
+		position: relative;
 	}
 
 	.overlay {
@@ -185,6 +294,12 @@
 
 		& ol {
 			margin-block-start: var(--cds-spacing-03);
+			list-style-type: decimal;
+			padding-left: 1rem;
+		}
+
+		& ul {
+			list-style-type: disc;
 		}
 
 		& li:not(:last-child) {
@@ -203,10 +318,22 @@
 			}
 		}
 
+		& p {
+			margin-bottom: 2rem;
+		}
+
 		/*
 		& mark {
 			background-color: var(--ctp-red);
 		}
 		*/
+	}
+
+	.category-separator {
+		border-top: 4px solid var(--ctp-overlay0);
+	}
+	.accordion-item-title {
+		display: flex;
+		align-items: center;
 	}
 </style>

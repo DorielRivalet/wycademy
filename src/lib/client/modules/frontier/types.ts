@@ -846,23 +846,3 @@ export type WikiaMonster = {
 } | null;
 
 export type WikiaMonsterName = (typeof wikiaMonsters)[number];
-
-export type SearchItem = {
-	title: string;
-	slug: string;
-	content: string;
-	category: SearchItemCategory;
-	id: number;
-	hex: string;
-};
-
-export type SearchItemCategory =
-	| 'Monster'
-	| 'Armor'
-	| 'Skill'
-	| 'Sigil'
-	| 'Item'
-	| 'Overview'
-	| 'Weapon'
-	| 'Username'
-	| 'Other';
