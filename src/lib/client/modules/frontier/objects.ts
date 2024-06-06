@@ -1765,8 +1765,11 @@ export const ArmorTypes: FrontierArmor[] = [
 	},
 ];
 
+export const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
+
 export const monsterInfo: FrontierMonsterInfo[] = [
 	{
+		id: 0,
 		name: '',
 		icon: IconMonsterRandom,
 		rank: '',
@@ -1777,6 +1780,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Random',
 	},
 	{
+		id: 1,
 		name: 'Rathian',
 		icon: IconMonsterRathian,
 		rank: 'G Rank',
@@ -1865,6 +1869,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 2,
 		name: 'Fatalis',
 		icon: IconMonsterFatalis,
 		rank: '',
@@ -1888,6 +1893,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 3,
 		name: 'Kelbi',
 		icon: IconMonsterKelbi,
 		rank: 'G Rank',
@@ -1953,6 +1959,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 4,
 		name: 'Mosswine',
 		icon: IconMonsterMosswine,
 		rank: 'G Rank',
@@ -1979,6 +1986,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 5,
 		name: 'Bullfango',
 		icon: IconMonsterBullfango,
 		rank: 'G Rank',
@@ -2042,6 +2050,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 6,
 		name: 'Yian Kut-Ku',
 		icon: IconMonsterYianKutKu,
 		rank: 'G Rank',
@@ -2090,6 +2099,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 7,
 		name: 'Lao-Shan Lung',
 		icon: IconMonsterLaoShanLung,
 		rank: 'G Rank',
@@ -2114,6 +2124,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 8,
 		name: 'Cephadrome',
 		icon: IconMonsterCephadrome,
 		rank: 'G Rank',
@@ -2142,6 +2153,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 9,
 		name: 'Felyne',
 		icon: IconMonsterFelyne,
 		rank: 'G Rank',
@@ -2166,6 +2178,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 11,
 		name: 'Rathalos',
 		icon: IconMonsterRathalos,
 		rank: 'G Rank',
@@ -2242,6 +2255,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 12,
 		name: 'Aptonoth',
 		icon: IconMonsterAptonoth,
 		rank: 'G Rank',
@@ -2268,6 +2282,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 13,
 		name: 'Genprey',
 		icon: IconMonsterGenprey,
 		rank: 'G Rank',
@@ -2312,6 +2327,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 14,
 		name: 'Diablos',
 		icon: IconMonsterDiablos,
 		rank: 'G Rank',
@@ -2375,6 +2391,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 15,
 		name: 'Khezu',
 		icon: IconMonsterKhezu,
 		rank: 'G Rank',
@@ -2427,6 +2444,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 16,
 		name: 'Velociprey',
 		icon: IconMonsterVelociprey,
 		rank: 'G Rank',
@@ -2477,6 +2495,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 17,
 		name: 'Gravios',
 		icon: IconMonsterGravios,
 		rank: 'G Rank',
@@ -2538,6 +2557,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 19,
 		name: 'Vespoid',
 		icon: IconMonsterVespoid,
 		rank: 'G Rank',
@@ -2605,6 +2625,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 20,
 		name: 'Gypceros',
 		icon: IconMonsterGypceros,
 		rank: 'G Rank',
@@ -2647,6 +2668,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 21,
 		name: 'Plesioth',
 		icon: IconMonsterPlesioth,
 		rank: 'G Rank',
@@ -2690,6 +2712,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 22,
 		name: 'Basarios',
 		icon: IconMonsterBasarios,
 		rank: 'G Rank',
@@ -2746,6 +2769,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 23,
 		name: 'Melynx',
 		icon: IconMonsterMelynx,
 		rank: 'G Rank',
@@ -2770,6 +2794,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 24,
 		name: 'Hornetaur',
 		icon: IconMonsterHornetaur,
 		rank: 'G Rank',
@@ -2796,6 +2821,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 25,
 		name: 'Apceros',
 		icon: IconMonsterApceros,
 		rank: 'G Rank',
@@ -2836,6 +2862,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 26,
 		name: 'Monoblos',
 		displayName: 'Monoblos',
 		icon: IconMonsterMonoblos,
@@ -2850,6 +2877,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'A large, desert-dwelling Wyvern with a single massive horn. Although they lack any form of breath attack, they can shierk loud enough to shatter eardrums. Despite their appearence they are actually herbivorous.',
 	},
 	{
+		id: 27,
 		name: 'Velocidrome',
 		displayName: 'Velocidrome',
 		icon: IconMonsterVelocidrome,
@@ -2896,6 +2924,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 28,
 		name: 'Gendrome',
 		displayName: 'Gendrome',
 		icon: IconMonsterGendrome,
@@ -2943,6 +2972,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 30,
 		name: 'Ioprey',
 		displayName: 'Ioprey',
 		icon: IconMonsterIoprey,
@@ -2997,6 +3027,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 31,
 		name: 'Iodrome',
 		displayName: 'Iodrome',
 		icon: IconMonsterIodrome,
@@ -3046,6 +3077,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 33,
 		name: 'Kirin',
 		displayName: 'Kirin',
 		icon: IconMonsterKirin,
@@ -3092,6 +3124,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 34,
 		name: 'Cephalos',
 		displayName: 'Cephalos',
 		icon: IconMonsterCephalos,
@@ -3135,6 +3168,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 35,
 		name: 'Giaprey',
 		displayName: 'Giaprey',
 		icon: IconMonsterGiaprey,
@@ -3179,6 +3213,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 36,
 		name: 'Crimson Fatalis',
 		displayName: 'Crimson Fatalis',
 		icon: IconMonsterCrimsonFatalis,
@@ -3203,6 +3238,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 37,
 		name: 'Pink Rathian',
 		displayName: 'Pink Rathian',
 		icon: IconMonsterPinkRathian,
@@ -3231,6 +3267,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 38,
 		name: 'Blue Yian Kut-Ku',
 		displayName: 'Blue Yian Kut-Ku',
 		icon: IconMonsterBlueYianKutKu,
@@ -3259,6 +3296,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 39,
 		name: 'Purple Gypceros',
 		displayName: 'Purple Gypceros',
 		icon: IconMonsterPurpleGypceros,
@@ -3284,6 +3322,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 40,
 		name: 'Yian Garuga',
 		displayName: 'Yian Garuga',
 		icon: IconMonsterYianGaruga,
@@ -3335,6 +3374,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 41,
 		name: 'Silver Rathalos',
 		displayName: 'Silver Rathalos',
 		icon: IconMonsterSilverRathalos,
@@ -3391,6 +3431,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 42,
 		name: 'Gold Rathian',
 		displayName: 'Gold Rathian',
 		icon: IconMonsterGoldRathian,
@@ -3451,6 +3492,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 43,
 		name: 'Black Diablos',
 		displayName: 'Black Diablos',
 		icon: IconMonsterBlackDiablos,
@@ -3506,6 +3548,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 44,
 		name: 'White Monoblos',
 		displayName: 'White Monoblos',
 		icon: IconMonsterWhiteMonoblos,
@@ -3550,6 +3593,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 45,
 		name: 'Red Khezu',
 		displayName: 'Red Khezu',
 		icon: IconMonsterRedKhezu,
@@ -3578,6 +3622,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 46,
 		name: 'Green Plesioth',
 		displayName: 'Green Plesioth',
 		icon: IconMonsterGreenPlesioth,
@@ -3612,6 +3657,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 47,
 		name: 'Black Gravios',
 		displayName: 'Black Gravios',
 		icon: IconMonsterBlackGravios,
@@ -3668,6 +3714,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 48,
 		name: 'Daimyo Hermitaur',
 		displayName: 'Daimyo Hermitaur',
 		icon: IconMonsterDaimyoHermitaur,
@@ -3695,6 +3742,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 49,
 		name: 'Azure Rathalos',
 		displayName: 'Azure Rathalos',
 		icon: IconMonsterAzureRathalos,
@@ -3722,6 +3770,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 50,
 		name: 'Ashen Lao-Shan Lung',
 		displayName: 'Ashen Lao-Shan Lung',
 		icon: IconMonsterAshenLaoShanLung,
@@ -3746,6 +3795,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'First Generation',
 	},
 	{
+		id: 51,
 		name: 'Blangonga',
 		displayName: 'Blangonga',
 		icon: IconMonsterBlangonga,
@@ -3774,6 +3824,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 52,
 		name: 'Congalala',
 		displayName: 'Congalala',
 		icon: IconMonsterCongalala,
@@ -3827,6 +3878,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 53,
 		name: 'Rajang',
 		displayName: 'Rajang',
 		icon: IconMonsterRajang,
@@ -3912,6 +3964,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 54,
 		name: 'Kushala Daora',
 		displayName: 'Kushala Daora',
 		icon: IconMonsterKushalaDaora,
@@ -3970,6 +4023,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 55,
 		name: 'Shen Gaoren',
 		displayName: 'Shen Gaoren',
 		icon: IconMonsterShenGaoren,
@@ -3993,6 +4047,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 56,
 		name: 'Great Thunderbug',
 		displayName: 'Great Thunderbug',
 		icon: IconMonsterGreatThunderbug,
@@ -4049,6 +4104,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 57,
 		name: 'Shakalaka',
 		displayName: 'Shakalaka',
 		icon: IconMonsterShakalaka,
@@ -4075,6 +4131,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 58,
 		name: 'Yama Tsukami',
 		displayName: 'Yama Tsukami',
 		icon: IconMonsterYamaTsukami,
@@ -4099,6 +4156,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 59,
 		name: 'Chameleos',
 		displayName: 'Chameleos',
 		icon: IconMonsterChameleos,
@@ -4125,6 +4183,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 60,
 		name: 'Rusted Kushala Daora',
 		displayName: 'Rusted Kushala Daora',
 		icon: IconMonsterRustedKushalaDaora,
@@ -4162,6 +4221,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 61,
 		name: 'Blango',
 		displayName: 'Blango',
 		icon: IconMonsterBlango,
@@ -4190,6 +4250,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 62,
 		name: 'Conga',
 		displayName: 'Conga',
 		icon: IconMonsterConga,
@@ -4240,6 +4301,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 63,
 		name: 'Remobra',
 		displayName: 'Remobra',
 		icon: IconMonsterRemobra,
@@ -4295,6 +4357,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 64,
 		name: 'Lunastra',
 		displayName: 'Lunastra',
 		icon: IconMonsterLunastra,
@@ -4321,6 +4384,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 65,
 		name: 'Teostra',
 		displayName: 'Teostra',
 		icon: IconMonsterTeostra,
@@ -4347,6 +4411,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 66,
 		name: 'Hermitaur',
 		displayName: 'Hermitaur',
 		icon: IconMonsterHermitaur,
@@ -4411,6 +4476,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 67,
 		name: 'Shogun Ceanataur',
 		displayName: 'Shogun Ceanataur',
 		icon: IconMonsterShogunCeanataur,
@@ -4438,6 +4504,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 68,
 		name: 'Bulldrome',
 		displayName: 'Bulldrome',
 		icon: IconMonsterBulldrome,
@@ -4485,6 +4552,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 69,
 		name: 'Anteka',
 		displayName: 'Anteka',
 		icon: IconMonsterAnteka,
@@ -4518,6 +4586,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 70,
 		name: 'Popo',
 		displayName: 'Popo',
 		icon: IconMonsterPopo,
@@ -4544,6 +4613,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 71,
 		name: 'White Fatalis',
 		displayName: 'White Fatalis',
 		icon: IconMonsterWhiteFatalis,
@@ -4566,6 +4636,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 73,
 		name: 'Ceanataur',
 		displayName: 'Ceanataur',
 		icon: IconMonsterCeanataur,
@@ -4603,6 +4674,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 74,
 		name: 'Hypnocatrice',
 		displayName: 'Hypnocatrice',
 		icon: IconMonsterHypnocatrice,
@@ -4645,6 +4717,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 75,
 		name: 'Lavasioth',
 		displayName: 'Lavasioth',
 		icon: IconMonsterLavasioth,
@@ -4688,6 +4761,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 76,
 		name: 'Tigrex',
 		displayName: 'Tigrex',
 		icon: IconMonsterTigrex,
@@ -4764,6 +4838,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 77,
 		name: 'Akantor',
 		displayName: 'Akantor',
 		icon: IconMonsterAkantor,
@@ -4795,6 +4870,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 78,
 		name: 'Bright Hypnoc',
 		displayName: 'Bright Hypnoc',
 		icon: IconMonsterBrightHypnoc,
@@ -4821,6 +4897,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 79,
 		name: 'Red Lavasioth',
 		displayName: 'Red Lavasioth',
 		icon: IconMonsterRedLavasioth,
@@ -4847,6 +4924,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 80,
 		name: 'Espinas',
 		displayName: 'Espinas',
 		icon: IconMonsterEspinas,
@@ -4903,6 +4981,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Fifth Generation',
 	},
 	{
+		id: 81,
 		name: 'Orange Espinas',
 		displayName: 'Orange Espinas',
 		icon: IconMonsterOrangeEspinas,
@@ -4955,6 +5034,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Fifth Generation',
 	},
 	{
+		id: 82,
 		name: 'Silver Hypnoc',
 		displayName: 'Silver Hypnoc',
 		icon: IconMonsterSilverHypnoc,
@@ -4990,6 +5070,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 83,
 		name: 'Akura Vashimu',
 		displayName: 'Akura Vashimu',
 		icon: IconMonsterAkuraVashimu,
@@ -5020,6 +5101,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		type: 'Large',
 	},
 	{
+		id: 84,
 		name: 'Akura Jebia',
 		displayName: 'Akura Jebia',
 		icon: IconMonsterAkuraJebia,
@@ -5044,6 +5126,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 85,
 		name: 'Berukyurosu',
 		displayName: 'Berukyurosu',
 		icon: IconMonsterBerukyurosu,
@@ -5068,6 +5151,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 86,
 		name: 'Cactus',
 		displayName: 'Cactus',
 		icon: IconMonsterCactus,
@@ -5083,6 +5167,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'This species of cactus has been found to give various restorative effects to hunters. They are found all throughout the Gorge.',
 	},
 	{
+		id: 89,
 		name: 'Pariapuria',
 		displayName: 'Pariapuria',
 		icon: IconMonsterPariapuria,
@@ -5114,6 +5199,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 90,
 		name: 'White Espinas',
 		displayName: 'White Espinas',
 		icon: IconMonsterWhiteEspinas,
@@ -5157,6 +5243,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 91,
 		name: 'Kamu Orugaron',
 		displayName: 'Kamu Orugaron',
 		icon: IconMonsterKamuOrugaron,
@@ -5181,6 +5268,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 92,
 		name: 'Nono Orugaron',
 		displayName: 'Nono Orugaron',
 		icon: IconMonsterNonoOrugaron,
@@ -5205,6 +5293,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 93,
 		name: 'Raviente',
 		displayName: 'Raviente',
 		icon: IconMonsterRaviente,
@@ -5229,6 +5318,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 94,
 		name: 'Dyuragaua',
 		displayName: 'Dyuragaua',
 		icon: IconMonsterDyuragaua,
@@ -5260,6 +5350,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 95,
 		name: 'Doragyurosu',
 		displayName: 'Doragyurosu',
 		icon: IconMonsterDoragyurosu,
@@ -5286,6 +5377,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 96,
 		name: 'Gurenzeburu',
 		displayName: 'Gurenzeburu',
 		icon: IconMonsterGurenzeburu,
@@ -5310,6 +5402,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 97,
 		name: 'Burukku',
 		displayName: 'Burukku',
 		icon: IconMonsterBurukku,
@@ -5324,6 +5417,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Peaceful Herbivores with shaggy coats of fur. They are found in herds roaming the Highlands. Normally docile they will attack as a group if threatened. It is reported that they are often shepherded by a Gurenzeburu.',
 	},
 	{
+		id: 98,
 		name: 'Erupe',
 		displayName: 'Erupe',
 		icon: IconMonsterErupe,
@@ -5348,6 +5442,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 99,
 		name: 'Rukodiora',
 		displayName: 'Rukodiora',
 		icon: IconMonsterRukodiora,
@@ -5379,6 +5474,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 100,
 		name: 'UNKNOWN',
 		displayName: 'UNKNOWN',
 		icon: IconMonsterUNKNOWN,
@@ -5404,6 +5500,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 100,
 		name: 'Unknown',
 		displayName: 'UNKNOWN',
 		icon: IconMonsterUNKNOWN,
@@ -5429,6 +5526,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 101,
 		name: 'Gogomoa',
 		displayName: 'Gogomoa',
 		icon: IconMonsterGogomoa,
@@ -5453,6 +5551,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 103,
 		name: 'Taikun Zamuza',
 		displayName: 'Taikun Zamuza',
 		icon: IconMonsterTaikunZamuza,
@@ -5477,6 +5576,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 104,
 		name: 'Abiorugu',
 		displayName: 'Abiorugu',
 		icon: IconMonsterAbiorugu,
@@ -5517,6 +5617,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 105,
 		name: 'Kuarusepusu',
 		displayName: 'Kuarusepusu',
 		icon: IconMonsterKuarusepusu,
@@ -5556,6 +5657,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 106,
 		name: 'Odibatorasu',
 		displayName: 'Odibatorasu',
 		icon: IconMonsterOdibatorasu,
@@ -5580,6 +5682,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 107,
 		name: 'Disufiroa',
 		displayName: 'Disufiroa',
 		icon: IconMonsterDisufiroa,
@@ -5603,6 +5706,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 108,
 		name: 'Rebidiora',
 		displayName: 'Rebidiora',
 		icon: IconMonsterRebidiora,
@@ -5616,6 +5720,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ecology: `A powerful dragon clad in purple scales and shining wings. It's origin is unknown but scholars believe it may be a Sub-Species of Rukodiora. It is able to generate far more powerful magnetic fields than its relative. `,
 	},
 	{
+		id: 109,
 		name: 'Anorupatisu',
 		displayName: 'Anorupatisu',
 		icon: IconMonsterAnorupatisu,
@@ -5640,6 +5745,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 110,
 		name: 'Hyujikiki',
 		displayName: 'Hyujikiki',
 		icon: IconMonsterHyujikiki,
@@ -5664,6 +5770,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 111,
 		name: 'Midogaron',
 		ecology:
 			'Rare and violent variants of Kamu Orugaron, known to inhabit volcanic regions. Unlike their standard cousins, they are solitary hunters and have been know to even harrass Nono Orugaron during the breeding season. Their bright orange fur is highly fire-resistant.',
@@ -5688,6 +5795,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 112,
 		name: 'Giaorugu',
 		displayName: 'Giaorugu',
 		icon: IconMonsterGiaorugu,
@@ -5699,7 +5807,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterGiaorugu,
 		unusedComponent: true,
 		ecology:
-			'Closely related to Abiorugu they inhabit freezing enviroments such as the Polar Sea, where they utilize ice to increase the power of their attacks. They are able to shoot beams of pressurized ice water at targets.',
+			'Closely related to Abiorugu, they inhabit freezing enviroments such as the Polar Sea, where they utilize ice to increase the power of their attacks. They are able to shoot beams of pressurized ice water at targets.',
 		type: 'Large',
 		titles: ['Ice Ferocious Wyvern'],
 		class: 'Brute Wyvern',
@@ -5720,6 +5828,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 113,
 		name: 'Mi Ru',
 		displayName: 'Mi Ru',
 		icon: IconMonsterMiRu,
@@ -5744,6 +5853,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 114,
 		name: 'Farunokku',
 		displayName: 'Farunokku',
 		icon: IconMonsterFarunokku,
@@ -5751,7 +5861,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/bestiary/farunokku',
 
 		ecology:
-			'Closely related to Hypnocs these Wyverns possess extremely bright plumage, not to warn predators, but to attract potential mates. Naturally being highly visible to potential threats, these Wyverns are quite capable of defending themselves and are not to be taken lightly.',
+			'Closely related to Hypnocatrice, these Wyverns possess extremely bright plumage, not to warn predators, but to attract potential mates. Naturally being highly visible to potential threats, these Wyverns are quite capable of defending themselves and are not to be taken lightly.',
 		render: IconRenderMonsterFarunokku,
 		fullRender: FullMonsterRenderFarunokku,
 		component: ComponentMonsterFarunokku,
@@ -5774,6 +5884,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 115,
 		name: 'Pokaradon',
 		displayName: 'Pokaradon',
 		icon: IconMonsterPokaradon,
@@ -5798,6 +5909,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 116,
 		name: 'Shantien',
 		displayName: 'Shantien',
 		link: '/bestiary/shantien',
@@ -5822,6 +5934,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 117,
 		name: 'Pokara',
 		displayName: 'Pokara',
 		icon: IconMonsterPokara,
@@ -5835,6 +5948,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: true,
 	},
 	{
+		id: 119,
 		name: 'Goruganosu',
 		displayName: 'Goruganosu',
 		icon: IconMonsterGoruganosu,
@@ -5872,6 +5986,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 120,
 		name: 'Aruganosu',
 		displayName: 'Aruganosu',
 		link: '/bestiary/aruganosu',
@@ -5908,6 +6023,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 121,
 		name: 'Baruragaru',
 		displayName: 'Baruragaru',
 		icon: IconMonsterBaruragaru,
@@ -5932,6 +6048,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 122,
 		name: 'Zerureusu',
 		displayName: 'Zerureusu',
 		icon: IconMonsterZerureusu,
@@ -5970,6 +6087,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 123,
 		name: 'Gougarf',
 		link: '/bestiary/gougarf',
 
@@ -5993,6 +6111,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 124,
 		name: 'Uruki',
 		displayName: 'Uruki',
 		link: '/bestiary/uruki',
@@ -6016,6 +6135,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 125,
 		name: 'Forokururu',
 		displayName: 'Forokururu',
 		icon: IconMonsterForokururu,
@@ -6047,6 +6167,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 126,
 		name: 'Meraginasu',
 		displayName: 'Meraginasu',
 		ecology:
@@ -6092,6 +6213,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 127,
 		name: 'Diorex',
 		displayName: 'Diorex',
 		link: '/bestiary/diorex',
@@ -6126,6 +6248,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 128,
 		name: 'Garuba Daora',
 		displayName: 'Garuba Daora',
 		icon: IconMonsterGarubaDaora,
@@ -6157,6 +6280,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 129,
 		name: 'Inagami',
 		link: '/bestiary/inagami',
 
@@ -6181,6 +6305,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 130,
 		name: 'Varusaburosu',
 		displayName: 'Varusaburosu',
 		icon: IconMonsterVarusaburosu,
@@ -6221,6 +6346,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 131,
 		name: 'Poborubarumu',
 		displayName: 'Poborubarumu',
 		icon: IconMonsterPoborubarumu,
@@ -6245,6 +6371,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 132,
 		name: 'Duremudira',
 		displayName: 'Duremudira',
 		icon: IconMonsterDuremudira,
@@ -6269,6 +6396,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 139,
 		name: 'Gureadomosu',
 		displayName: 'Gureadomosu',
 		icon: IconMonsterGureadomosu,
@@ -6310,6 +6438,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 140,
 		name: 'Harudomerugu',
 		displayName: 'Harudomerugu',
 		link: '/bestiary/harudomerugu',
@@ -6334,6 +6463,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 141,
 		name: 'Toridcless',
 		displayName: 'Toridcless',
 		link: '/bestiary/toridcless',
@@ -6364,6 +6494,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 142,
 		name: 'Gasurabazura',
 		ecology: `Large Brute Wyverns endemic to White Lake, research shows they were previously semi aquatic, until the lake's waters receeded, forcing them to re-adapt to terrestrial life. They are able to store lagre quantities of poison gained from their prey.`,
 		displayName: 'Gasurabazura',
@@ -6387,6 +6518,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 143,
 		name: 'Kusubami',
 		link: '/bestiary/kusubami',
 
@@ -6411,6 +6543,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 144,
 		name: 'Yama Kurai',
 		displayName: 'Yama Kurai',
 		link: '/bestiary/yama-kurai',
@@ -6434,6 +6567,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 146,
 		name: 'Zinogre',
 		displayName: 'Zinogre',
 		icon: IconMonsterZinogre,
@@ -6496,6 +6630,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Third Generation',
 	},
 	{
+		id: 147,
 		name: 'Deviljho',
 		displayName: 'Deviljho',
 		icon: IconMonsterDeviljho,
@@ -6569,6 +6704,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Third Generation',
 	},
 	{
+		id: 148,
 		name: 'Brachydios',
 		displayName: 'Brachydios',
 		icon: IconMonsterBrachydios,
@@ -6613,6 +6749,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Third Generation',
 	},
 	{
+		id: 149,
 		name: 'Berserk Raviente',
 		displayName: 'Berserk Raviente',
 		icon: IconMonsterBerserkRaviente,
@@ -6636,6 +6773,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 150,
 		name: 'Toa Tesukatora',
 		ecology: `Recently documented by Guild researchers exploring an arctic region, this proud dragon is believed to be an ancestor of Teostra and Lunastra. While much of it's biology is still unknown, it is speculated to be the source of some intense blizzards.`,
 		displayName: 'Toa Tesukatora',
@@ -6659,6 +6797,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 151,
 		name: 'Barioth',
 		displayName: 'Barioth',
 		icon: IconMonsterBarioth,
@@ -6710,6 +6849,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Third Generation',
 	},
 	{
+		id: 152,
 		name: 'Uragaan',
 		displayName: 'Uragaan',
 		link: '/bestiary/uragaan',
@@ -6736,6 +6876,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Third Generation',
 	},
 	{
+		id: 153,
 		name: 'Stygian Zinogre',
 		displayName: 'Stygian Zinogre',
 		icon: IconMonsterStygianZinogre,
@@ -6786,6 +6927,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Third Generation',
 	},
 	{
+		id: 154,
 		name: 'Guanzorumu',
 		displayName: 'Guanzorumu',
 		icon: IconMonsterGuanzorumu,
@@ -6809,6 +6951,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 155,
 		name: 'Starving Deviljho',
 		displayName: 'Starving Deviljho',
 		icon: IconMonsterStarvingDeviljho,
@@ -6837,6 +6980,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Third Generation',
 	},
 	{
+		id: 158,
 		name: 'Voljang',
 		displayName: 'Voljang',
 		icon: IconMonsterVoljang,
@@ -6867,6 +7011,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 159,
 		name: 'Nargacuga',
 		displayName: 'Nargacuga',
 		icon: IconMonsterNargacuga,
@@ -6927,6 +7072,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 160,
 		name: 'Keoaruboru',
 		displayName: 'Keoaruboru',
 		icon: IconMonsterKeoaruboru,
@@ -6950,6 +7096,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 161,
 		name: 'Zenaserisu',
 		displayName: 'Zenaserisu',
 		icon: IconMonsterZenaserisu,
@@ -6974,6 +7121,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 162,
 		name: 'Gore Magala',
 		displayName: 'Gore Magala',
 		icon: IconMonsterGoreMagala,
@@ -7019,6 +7167,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Fourth Generation',
 	},
 	{
+		id: 163,
 		name: 'Blinking Nargacuga',
 		displayName: 'Blinking Nargacuga',
 		icon: IconMonsterBlinkingNargacuga,
@@ -7044,6 +7193,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 164,
 		name: 'Shagaru Magala',
 		displayName: 'Shagaru Magala',
 		icon: IconMonsterShagaruMagala,
@@ -7072,6 +7222,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Fourth Generation',
 	},
 	{
+		id: 165,
 		name: 'Amatsu',
 		displayName: 'Amatsu',
 		link: '/bestiary/amatsu',
@@ -7101,6 +7252,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Third Generation',
 	},
 	{
+		id: 166,
 		name: 'Elzelion',
 		displayName: 'Elzelion',
 		icon: IconMonsterElzelion,
@@ -7124,6 +7276,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 167,
 		name: 'Arrogant Duremudira',
 		displayName: 'Arrogant Duremudira',
 		icon: IconMonsterArrogantDuremudira,
@@ -7147,6 +7300,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 169,
 		name: 'Seregios',
 		displayName: 'Seregios',
 		icon: IconMonsterSeregios,
@@ -7191,6 +7345,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Fourth Generation',
 	},
 	{
+		id: 170,
 		name: 'Bogabadorumu',
 		displayName: 'Bogabadorumu',
 		icon: IconMonsterBogabadorumu,
@@ -7215,6 +7370,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 172,
 		name: 'Bombardier Bogabadorumu',
 		displayName: 'Bombardier Bogabadorumu',
 		icon: IconMonsterBombardierBogabadorumu,
@@ -7238,6 +7394,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 174,
 		name: 'Sparkling Zerureusu',
 		displayName: 'Sparkling Zerureusu',
 		icon: IconMonsterSparklingZerureusu,
@@ -7263,6 +7420,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 175,
 		name: 'PSO2 Rappy',
 		displayName: 'PSO2 Rappy',
 		icon: IconMonsterPSO2Rappy,
@@ -7277,6 +7435,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		type: 'Small',
 	},
 	{
+		id: 176,
 		name: 'King Shakalaka',
 		displayName: 'King Shakalaka',
 		icon: IconMonsterKingShakalaka,
@@ -7300,6 +7459,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 	{
+		id: 83,
 		name: 'Akura Vashimu',
 		displayName: 'Zenith Akura Vashimu',
 		icon: IconMonsterZenithAkuraVashimu,
@@ -7323,6 +7483,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 109,
 		name: 'Anorupatisu',
 		displayName: 'Zenith Anorupatisu',
 		icon: IconMonsterZenithAnorupatisu,
@@ -7346,6 +7507,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 121,
 		name: 'Baruragaru',
 		displayName: 'Zenith Baruragaru',
 		icon: IconMonsterZenithBaruragaru,
@@ -7368,6 +7530,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 51,
 		name: 'Blangonga',
 		displayName: 'Zenith Blangonga',
 		icon: IconMonsterZenithBlangonga,
@@ -7394,6 +7557,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 170,
 		name: 'Bogabadorumu',
 		displayName: 'Bogabadorumu',
 		icon: IconMonsterZenithBogabadorumu,
@@ -7407,6 +7571,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		type: 'Large',
 	},
 	{
+		id: 48,
 		name: 'Daimyo Hermitaur',
 		displayName: 'Zenith Daimyo Hermitaur',
 		icon: IconMonsterZenithDaimyoHermitaur,
@@ -7433,6 +7598,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 95,
 		name: 'Doragyurosu',
 		displayName: 'Zenith Doragyurosu',
 		icon: IconMonsterZenithDoragyurosu,
@@ -7455,6 +7621,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 80,
 		name: 'Espinas',
 		displayName: 'Zenith Espinas',
 		icon: IconMonsterZenithEspinas,
@@ -7496,6 +7663,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 142,
 		name: 'Gasurabazura',
 		displayName: 'Zenith Gasurabazura',
 		icon: IconMonsterZenithGasurabazura,
@@ -7518,6 +7686,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 112,
 		name: 'Giaorugu',
 		displayName: 'Zenith Giaorugu',
 		icon: IconMonsterZenithGiaorugu,
@@ -7548,6 +7717,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 17,
 		name: 'Gravios',
 		displayName: 'Zenith Gravios',
 		icon: IconMonsterZenithGravios,
@@ -7572,6 +7742,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 140,
 		name: 'Harudomerugu',
 		displayName: 'Zenith Harudomerugu',
 		icon: IconMonsterZenithHarudomerugu,
@@ -7594,6 +7765,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 74,
 		name: 'Hypnocatrice',
 		displayName: 'Zenith Hypnocatrice',
 		icon: IconMonsterZenithHypnoc,
@@ -7620,6 +7792,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 110,
 		name: 'Hyujikiki',
 		displayName: 'Zenith Hyujikiki',
 		icon: IconMonsterZenithHyujikiki,
@@ -7642,6 +7815,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 129,
 		name: 'Inagami',
 		displayName: 'Zenith Inagami',
 		icon: IconMonsterZenithInagami,
@@ -7664,6 +7838,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 15,
 		name: 'Khezu',
 		displayName: 'Zenith Khezu',
 		icon: IconMonsterZenithKhezu,
@@ -7688,6 +7863,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 111,
 		name: 'Midogaron',
 		displayName: 'Zenith Midogaron',
 		icon: IconMonsterZenithMidogaron,
@@ -7710,6 +7886,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 21,
 		name: 'Plesioth',
 		displayName: 'Zenith Plesioth',
 		icon: IconMonsterZenithPlesioth,
@@ -7734,6 +7911,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 11,
 		name: 'Rathalos',
 		displayName: 'Zenith Rathalos',
 		icon: IconMonsterZenithRathalos,
@@ -7758,6 +7936,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 99,
 		name: 'Rukodiora',
 		displayName: 'Zenith Rukodiora',
 		icon: IconMonsterZenithRukodiora,
@@ -7787,6 +7966,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 103,
 		name: 'Taikun Zamuza',
 		displayName: 'Zenith Taikun Zamuza',
 		icon: IconMonsterZenithTaikunZamuza,
@@ -7809,6 +7989,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 76,
 		name: 'Tigrex',
 		displayName: 'Zenith Tigrex',
 		icon: IconMonsterZenithTigrex,
@@ -7833,6 +8014,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 141,
 		name: 'Toridcless',
 		displayName: 'Zenith Toridcless',
 		icon: IconMonsterZenithToridcless,
@@ -7855,6 +8037,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 2,
 		name: 'Fatalis',
 		displayName: 'Conquest Fatalis',
 		icon: IconMonsterConquestFatalis,
@@ -7877,6 +8060,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 116,
 		name: 'Shantien',
 		displayName: 'Conquest Shantien',
 		icon: IconMonsterConquestShantien,
@@ -7899,6 +8083,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 36,
 		name: 'Crimson Fatalis',
 		displayName: 'Conquest Crimson Fatalis',
 		icon: IconMonsterConquestCrimsonFatalis,
@@ -7921,6 +8106,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 107,
 		name: 'Disufiroa',
 		displayName: 'Shiten Disufiroa',
 		icon: IconMonsterShitenDisufiroa,
@@ -7943,6 +8129,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 100,
 		name: 'UNKNOWN',
 		displayName: 'Shiten UNKNOWN',
 		icon: IconMonsterShitenUnknown,
@@ -7967,6 +8154,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 166,
 		name: 'Elzelion',
 		displayName: 'Burning Freezing Elzelion',
 		icon: IconMonsterBurningFreezingElzelion,
@@ -7989,6 +8177,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 146,
 		name: 'Zinogre',
 		displayName: 'Howling Zinogre',
 		icon: IconMonsterHowlingZinogre,
@@ -8018,6 +8207,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 89,
 		name: 'Pariapuria',
 		displayName: 'Supremacy Pariapuria',
 		icon: IconMonsterSupremacyPariapuria,
@@ -8048,6 +8238,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 95,
 		name: 'Doragyurosu',
 		displayName: 'Supremacy Doragyurosu',
 		link: '/bestiary/supremacy-doragyurosu',
@@ -8072,6 +8263,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 65,
 		name: 'Teostra',
 		displayName: 'Supremacy Teostra',
 		icon: IconMonsterSupremacyTeostra,
@@ -8094,6 +8286,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 106,
 		name: 'Odibatorasu',
 		displayName: 'Odibatorasu',
 		icon: IconMonsterSupremacyOdibatorasu,
@@ -8116,6 +8309,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 155,
 		name: 'Starving Deviljho',
 		displayName: 'Golden Deviljho',
 		icon: IconMonsterGoldenDeviljho,
@@ -8140,6 +8334,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 53,
 		name: 'Rajang',
 		displayName: 'Furious Rajang',
 		icon: IconMonsterFuriousRajang,
@@ -8198,6 +8393,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second',
 	},
 	{
+		id: 154,
 		name: 'Guanzorumu',
 		displayName: 'Ruling Guanzorumu',
 		icon: IconMonsterRulingGuanzorumu,
@@ -8220,6 +8416,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 113,
 		name: 'Mi Ru',
 		displayName: 'Shifting Mi Ru',
 		icon: IconMonsterShiftingMiRu,
@@ -8242,6 +8439,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 53,
 		name: 'Rajang',
 		displayName: 'Twinhead Rajang',
 		icon: IconMonsterTwinheadRajang,
@@ -8279,6 +8477,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
+		id: 71,
 		name: 'White Fatalis', // TODO
 		displayName: 'Road White Fatalis',
 		icon: IconMonsterWhiteFatalis,

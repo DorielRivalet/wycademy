@@ -31,6 +31,7 @@
 	import {
 		frontierMappers,
 		getTag,
+		getUniqueMonsters,
 	} from '$lib/client/modules/frontier/functions';
 	import { browser } from '$app/environment';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -871,21 +872,6 @@
 		huntingHornNotes.split(' ')[1],
 		huntingHornNotes.split(' ')[2],
 	] as FrontierHuntingHornWeaponNote[];
-
-	function getUniqueMonsters() {
-		let names: string[] = [];
-		let result: FrontierMonsterInfo[] = [];
-		monsterInfo.forEach((element) => {
-			if (!names.find((e) => element.displayName === e)) {
-				if (!unlistedMonsterNames.find((e) => e === element.displayName)) {
-					names.push(element.displayName);
-					result.push(element);
-				}
-			}
-		});
-
-		return result;
-	}
 
 	function getThumbnailGeneratorImagesFromType(type: FrontierImageType) {
 		let list:
@@ -2275,7 +2261,6 @@
 	let selectedIconMonsterRenderSize: 'Small' | 'Full' = 'Full';
 	let selectedIconSize: IconSize = '256px';
 	let selectedIconType: FrontierImageType = 'Monster Icon';
-	const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
 	const allFrontierColors = getAllFrontierColors();
 
 	let uniqueMonsters = getUniqueMonsters().sort(

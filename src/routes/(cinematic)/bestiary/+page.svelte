@@ -21,7 +21,6 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import MultiSelect from 'carbon-components-svelte/src/MultiSelect/MultiSelect.svelte';
-	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import slugify from 'slugify';
 	import BestiaryMonsterCard from './BestiaryMonsterCard.svelte';
@@ -31,7 +30,7 @@
 	import List from 'carbon-icons-svelte/lib/List.svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	import { monsterInfo } from '$lib/client/modules/frontier/objects';
+	import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
 
 	let customTitle = 'Bestiary';
 	let url = $page.url.toString();
@@ -42,23 +41,6 @@
 		size: monsterIconSize,
 		background: true,
 	};
-
-	const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
-
-	function getUniqueMonsters() {
-		let names: string[] = [];
-		let result: FrontierMonsterInfo[] = [];
-		monsterInfo.forEach((element) => {
-			if (!names.find((e) => element.displayName === e)) {
-				if (!unlistedMonsterNames.find((e) => e === element.displayName)) {
-					names.push(element.displayName);
-					result.push(element);
-				}
-			}
-		});
-
-		return result;
-	}
 
 	let uniqueMonsters = getUniqueMonsters().sort(
 		(a, b) =>
