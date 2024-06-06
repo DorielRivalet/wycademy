@@ -2,8 +2,6 @@
 	import { page } from '$app/stores';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	// import { wikiaMonsterKeyMap } from '$lib/client/modules/frontier/objects.js';
-	// import type { WikiaMonster } from '$lib/client/modules/frontier/types.js';
 	import slugify from 'slugify';
 	import BestiaryMonsterGameInfo from '../BestiaryMonsterGameInfo.svelte';
 	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
@@ -16,48 +14,10 @@
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import ezlion from 'ezlion';
 	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
-
-	// function getFilteredWikiaMonsterData(data: WikiaMonster) {
-	// 	const result: WikiaMonster = {
-	// 		englishTitle: data?.englishTitle,
-	// 		monsterType: data?.monsterType,
-	// 		element: data?.element,
-	// 		ailments: data?.ailments,
-	// 		weakestTo: data?.weakestTo,
-	// 		habitats: data?.habitats,
-	// 		monsterSize: data?.monsterSize,
-	// 		monsterRelations: data?.monsterRelations,
-	// 		generation: data?.generation,
-	// 	};
-
-	// 	return result;
-	// }
-
-	// let filteredWikiaMonsterData = getFilteredWikiaMonsterData(data.wikiaMonster);
-
-	// function transformMonsterData(wikiaData: WikiaMonster) {
-	// 	const newData: WikiaMonster = {};
-
-	// 	// Iterate over each entry in the legacy data
-	// 	for (const [wikiaKey, wikiaValue] of Object.entries(wikiaData)) {
-	// 		// Find the corresponding new key based on the mapping
-	// 		const newKey = wikiaMonsterKeyMap[wikiaKey];
-
-	// 		if (newKey === '') {
-	// 			continue;
-	// 		}
-
-	// 		// Check if a direct mapping exists
-	// 		if (newKey) {
-	// 			// Assign the transformed value to the new key
-	// 			newData[newKey] = wikiaValue;
-	// 		}
-	// 	}
-
-	// 	return newData;
-	// }
-
-	// let transformedWikiaMonster = transformMonsterData(filteredWikiaMonsterData);
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
@@ -80,6 +40,12 @@
 		}
 	}
 
+	function findMonsterInfo(name: string) {
+		return monsterInfo.find(
+			(e) => e.displayName.toLowerCase() === name.toLowerCase(),
+		);
+	}
+
 	function findMonsterID(monster: FrontierMonsterInfo | undefined) {
 		if (monster === undefined) {
 			return 'Not found';
@@ -94,107 +60,204 @@
 {#if monster}
 	<div class="container">
 		<SectionHeadingTopLevel title={monster.displayName} />
-
-		<!-- <code>{JSON.stringify(transformedWikiaMonster, null, 2)}</code> -->
-
 		<div class="overview">
-			<BestiaryMonsterGameInfo
-				description={monster.ecology}
-				type={monster.class}
-				title={monster.titles !== undefined
-					? isFieldEmpty(monster.titles[0])
-						? 'None'
-						: monster.titles[0]
-					: 'None'}
-			>
-				<div
-					class="monster-icon"
-					style:--monster-icon="monster-icon-{slugify(monster.displayName, {
-						lower: true,
-					})}"
+			<div>
+				<BestiaryMonsterGameInfo
+					description={monster.ecology}
+					type={monster.class}
+					title={monster.titles !== undefined
+						? isFieldEmpty(monster.titles[0])
+							? 'None'
+							: monster.titles[0]
+						: 'None'}
 				>
-					{#if monster.unusedComponent}
-						<ImageDialog
-							src={monster.icon}
-							alt={monster.displayName}
-							width={256}
-							height={256}
-							type="file"
-						/>
-					{:else}
-						<ImageDialog
-							src={monster.component}
-							alt={monster.displayName}
-							componentSize={'100%'}
-							type="component"
-						/>
-					{/if}
-				</div></BestiaryMonsterGameInfo
-			>
-
-			<div class="elements-ailments-weaknesses">
-				<div class="elements">
-					<strong>Elements: </strong>
-					{#if monster.elements !== undefined && monster.elements.length > 0}
-						{#each monster.elements as element}
-							<InlineTooltip
-								text={element}
-								tooltip="Element"
-								iconType="component"
-								icon={ElementIcons.find((e) => e.displayName === element)?.icon}
+					<div
+						class="monster-icon"
+						style:--monster-icon="monster-icon-{slugify(monster.displayName, {
+							lower: true,
+						})}"
+					>
+						{#if monster.unusedComponent}
+							<ImageDialog
+								src={monster.icon}
+								alt={monster.displayName}
+								width={256}
+								height={256}
+								type="file"
 							/>
-						{/each}
-					{:else}
-						None
-					{/if}
-				</div>
-				<div class="ailments">
-					<strong>Ailments: </strong>
-					{#if monster.ailments !== undefined && monster.ailments.length > 0}
-						{#each monster.ailments as ailment}
-							<InlineTooltip
-								text={ailment}
-								tooltip="Ailment"
-								iconType="component"
-								icon={AilmentIcons.find((e) => e.name === ailment)?.icon}
+						{:else}
+							<ImageDialog
+								src={monster.component}
+								alt={monster.displayName}
+								componentSize={'100%'}
+								type="component"
 							/>
-						{/each}
-					{:else}
-						None
-					{/if}
-				</div>
-				<div class="weaknesses">
-					<strong>Weaknesses: </strong>
-					{#if monster.weaknesses !== undefined && monster.weaknesses.length > 0}
-						{#each monster.weaknesses as weakness}
-							{#if ElementIcons.find((e) => e.name === weakness)}
+						{/if}
+					</div>
+				</BestiaryMonsterGameInfo>
+			</div>
+			<div class="monster-properties">
+				<div>
+					<div class="elements">
+						<strong>Elements: </strong>
+						{#if monster.elements !== undefined && monster.elements.length > 0}
+							{#each monster.elements as element}
 								<InlineTooltip
-									text={weakness}
+									text={element}
 									tooltip="Element"
 									iconType="component"
-									icon={ElementIcons.find((e) => e.name === weakness)?.icon}
+									icon={ElementIcons.find((e) => e.displayName === element)
+										?.icon}
 								/>
-							{:else if StatusIcons.find((e) => e.name === weakness)}
+							{/each}
+						{:else}
+							None
+						{/if}
+					</div>
+					<div class="ailments">
+						<strong>Ailments: </strong>
+						{#if monster.ailments !== undefined && monster.ailments.length > 0}
+							{#each monster.ailments as ailment}
 								<InlineTooltip
-									text={weakness}
-									tooltip="Status"
+									text={ailment}
+									tooltip="Ailment"
 									iconType="component"
-									icon={StatusIcons.find((e) => e.name === weakness)?.icon}
+									icon={AilmentIcons.find((e) => e.name === ailment)?.icon}
 								/>
-							{/if}
-						{/each}
+							{/each}
+						{:else}
+							None
+						{/if}
+					</div>
+					<div class="weaknesses">
+						<strong>Weaknesses: </strong>
+						{#if monster.weaknesses !== undefined && monster.weaknesses.length > 0}
+							{#each monster.weaknesses as weakness}
+								{#if ElementIcons.find((e) => e.name === weakness)}
+									<InlineTooltip
+										text={weakness}
+										tooltip="Element"
+										iconType="component"
+										icon={ElementIcons.find((e) => e.name === weakness)?.icon}
+									/>
+								{:else if StatusIcons.find((e) => e.name === weakness)}
+									<InlineTooltip
+										text={weakness}
+										tooltip="Status"
+										iconType="component"
+										icon={StatusIcons.find((e) => e.name === weakness)?.icon}
+									/>
+								{/if}
+							{/each}
+						{:else}
+							None
+						{/if}
+					</div>
+					<p>
+						<strong>ID: </strong>{monsterID} (0x{Number.parseInt(`${monsterID}`)
+							.toString(16)
+							.toUpperCase()
+							.padStart(2, '0')})
+					</p>
+					<p>
+						<strong>Size Type: </strong>{monster.type}
+					</p>
+					<p>
+						<strong>Sizes: </strong>
+						{#if monster.sizes && monster.sizes.length > 0}
+							<UnorderedList class="spaced-list">
+								{#each monster.sizes as size}
+									<ListItem>{size}</ListItem>
+								{/each}
+							</UnorderedList>
+						{:else}
+							<p>Not found.</p>
+						{/if}
+					</p>
+					<p>
+						<strong>Rank: </strong>{monster.rank}
+					</p>
+					<p>
+						<strong>Render (click to expand): </strong>
+						<ImageDialog
+							type="file"
+							src={monster.fullRender}
+							alt="Monster Render"
+							width={32}
+							height={32}
+						/>
+					</p>
+					<p>
+						<strong>Generation: </strong>{monster.generation}
+					</p>
+				</div>
+				<div>
+					<p>
+						<strong>Habitats: </strong>
+						{#if monster.habitats && monster.habitats.length > 0}
+							<UnorderedList class="spaced-list">
+								{#each monster.habitats as habitat}
+									<ListItem>{habitat}</ListItem>
+								{/each}
+							</UnorderedList>
+						{:else}
+							<p>Not found.</p>
+						{/if}
+					</p>
+				</div>
+				<div>
+					<p>
+						<strong>Related Monsters: </strong>
+					</p>
+
+					{#if monster.relatedMonsters && monster.relatedMonsters.length > 0}
+						<UnorderedList class="spaced-list">
+							{#each monster.relatedMonsters as relatedMonster}
+								<ListItem>
+									{#if findMonsterInfo(relatedMonster)}
+										<!-- TODO make it work without reloading-->
+										<Link
+											data-sveltekit-reload
+											href={`/bestiary/${slugify(findMonsterInfo(relatedMonster)?.displayName ?? '/bestiary', { lower: true })}`}
+										>
+											{#if findMonsterInfo(relatedMonster)?.unusedComponent}
+												<InlineTooltip
+													iconType="file"
+													tooltip={relatedMonster}
+													text={relatedMonster}
+													gap={'.5rem'}
+													iconSize={'32px'}
+													icon={findMonsterInfo(relatedMonster)?.icon}
+												/>
+											{:else}
+												<InlineTooltip
+													iconType="component"
+													gap={'.5rem'}
+													tooltip={relatedMonster}
+													text={relatedMonster}
+													iconSize={'32px'}
+													icon={findMonsterInfo(relatedMonster)?.component}
+												/>
+											{/if}
+										</Link>
+									{:else}
+										{relatedMonster}
+									{/if}
+								</ListItem>
+							{/each}
+						</UnorderedList>
 					{:else}
-						None
+						<p>Not found.</p>
 					{/if}
 				</div>
-				<p>
-					<strong>ID: </strong>{monsterID} (0x{Number.parseInt(`${monsterID}`)
-						.toString(16)
-						.toUpperCase()
-						.padStart(2, '0')})
-				</p>
 			</div>
 		</div>
+		<section>
+			<SectionHeading title="Hitzone Values" level={2} />
+		</section>
+		<section>
+			<SectionHeading title="Fastest Hunts" level={2} />
+		</section>
 	</div>
 {:else}
 	<p>Monster not found.</p>
@@ -211,13 +274,20 @@
 	.overview {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1rem;
+		gap: 2rem;
 	}
 
-	.elements-ailments-weaknesses {
+	.monster-properties {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 4rem;
+	}
+
+	.monster-properties > div {
 		display: flex;
 		flex-direction: column;
-		flex-wrap: wrap;
 		gap: 1rem;
+		flex-wrap: wrap;
 	}
 </style>
