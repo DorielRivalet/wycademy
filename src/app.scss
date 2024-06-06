@@ -245,22 +245,6 @@ duration-slow-02	Background dimming	700ms
 	 margin-bottom: var(--cds-spacing-06);
  }
 
- li {
-	 margin: var(--cds-spacing-05);
- }
-
- ul li,
- ol li {
-	 font-size: 1rem;
-	 line-height: var(--cds-spacing-06);
- }
-
- ul li::marker {
-	 content: '• ';
-	 color: var(--cds-text-01);
-	 font-size: 1.5em;
- }
-
  .bx--label--disabled,
  .bx--dropdown--disabled,
  .bx--list-box--disabled,
@@ -327,6 +311,12 @@ duration-slow-02	Background dimming	700ms
 
 .spaced-div{
 	margin-bottom: 1rem;
+}
+
+.spaced-list li {
+	margin-left: var(--cds-spacing-05);
+	margin-bottom: var(--cds-spacing-05);
+	margin-top: var(--cds-spacing-05);
 }
 
 .centered-figure{

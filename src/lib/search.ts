@@ -2,7 +2,7 @@ import FlexSearch from 'flexsearch';
 import type {
 	SearchItem,
 	SearchItemCategory,
-} from './client/modules/frontier/types';
+} from '$lib/client/modules/frontier/types';
 
 export type SearchResult = {
 	content: string[];

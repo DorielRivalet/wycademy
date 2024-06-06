@@ -9,6 +9,9 @@
 	import SkeletonText from 'carbon-components-svelte/src/SkeletonText/SkeletonText.svelte';
 	import { onDestroy } from 'svelte';
 	import { page } from '$app/stores';
+	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 
 	let search: 'idle' | 'load' | 'ready' = 'idle';
 	let searchTerm = '';
@@ -94,49 +97,50 @@
 			/>
 			<div class="results">
 				{#if search === 'load'}
-					<ul>
-						<li>
+					<OrderedList class="spaced-list">
+						<ListItem>
 							<SkeletonText heading />
 							<SkeletonText paragraph />
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<SkeletonText heading />
 							<SkeletonText paragraph />
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<SkeletonText heading />
 							<SkeletonText paragraph />
-						</li>
-					</ul>
+						</ListItem>
+					</OrderedList>
 				{:else if results.length > 0}
-					<ul>
+					<p>{results.length} results found.</p>
+					<OrderedList class="spaced-list">
 						{#each results as result}
-							{#if result.content.length > 0}
-								<li>
-									{#if $page.url.pathname.startsWith('/bestiary/')}
-										<a
-											data-sveltekit-reload
-											on:click={closeDialog}
-											href={result.slug}
-										>
-											{@html result.title}
-										</a>
-									{:else}
-										<a on:click={closeDialog} href={result.slug}>
-											{@html result.title}
-										</a>
-									{/if}
-									<ol>
+							<ListItem>
+								{#if $page.url.pathname.startsWith('/bestiary/')}
+									<a
+										data-sveltekit-reload
+										on:click={closeDialog}
+										href={result.slug}
+									>
+										{@html result.title}
+									</a>
+								{:else}
+									<a on:click={closeDialog} href={result.slug}>
+										{@html result.title}
+									</a>
+								{/if}
+								{#if result.content.length > 0}
+									<UnorderedList class="spaced-list">
 										{#each result.content as content}
-											<li>{@html content}</li>
+											<ListItem>{@html content}</ListItem>
 										{/each}
-									</ol>
-								</li>
-							{/if}
+									</UnorderedList>
+								{/if}
+							</ListItem>
 						{/each}
-					</ul>
+					</OrderedList>
 				{:else}
-					<p>No results found.</p>
+					<p>Zero results found.</p>
 				{/if}
 			</div>
 		</div>
