@@ -18,42 +18,19 @@
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
 	import NavigationItem from './NavigationItem.svelte';
-	import WycademySearch from '$lib/client/components/WycademySearch.svelte';
+	import WycademySearch from '$lib/client/components/frontier/WycademySearch.svelte';
 	import ThemeChanger from './ThemeChanger.svelte';
 	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
 	import OverflowMenu from 'carbon-components-svelte/src/OverflowMenu/OverflowMenu.svelte';
 	import OverflowMenuItem from 'carbon-components-svelte/src/OverflowMenu/OverflowMenuItem.svelte';
 	import Menu from 'carbon-icons-svelte/lib/Menu.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
-
-	// let searchState: 'idle' | 'load' | 'ready' = 'idle';
-	// let searchTerm = '';
-	// let results: SearchResult[] = [];
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
-
-	// let posts: SearchItem[] = [];
-
-	// async function onSearchPressed() {
-	// 	searchOpen = !searchOpen;
-
-	// 	if (searchState === 'ready' || searchState === 'load') {
-	// 		return;
-	// 	}
-
-	// 	searchState = 'load';
-	// 	posts = await fetch('/api/search').then((res) => res.json());
-	// 	createPostsIndex(posts);
-	// 	searchState = 'ready';
-	// }
-
-	// let searchOpen = false;
-
-	// $: if (searchState === 'ready') {
-	// 	results = searchPostsIndex(searchTerm);
-	// }
 </script>
 
 <header>
@@ -207,61 +184,5 @@
 		display: flex;
 		align-items: center;
 		list-style: none;
-	}
-
-	.search {
-		z-index: 999;
-		width: 90vw;
-		max-width: 600px;
-		position: fixed;
-		left: 50%;
-		top: 20%;
-		translate: -50% -0%;
-		border-radius: 0.5rem;
-		box-shadow: 0px 0px 20px hsl(0 0% 0% / 40%);
-		overflow: hidden;
-
-		& input {
-			width: 100%;
-			padding: 1.5rem;
-			color: var(--ctp-text);
-			background-color: var(--ctp-surface0);
-			font: inherit;
-			border: none;
-			outline: none;
-		}
-	}
-
-	.results {
-		max-height: 48vh;
-		padding: 1.5rem;
-		background-color: var(--ctp-surface0);
-		overflow-y: auto;
-		scrollbar-width: thin;
-
-		& ul {
-			display: grid;
-			gap: 1rem;
-			padding: 0px;
-			margin: 0px;
-			list-style: none;
-
-			& li:not(:last-child) {
-				padding-block: 0.5rem;
-				border-bottom: 1px solid var(--ctp-overlay0);
-			}
-		}
-
-		& a {
-			display: block;
-			font-size: 1.5rem;
-			color: var(--ctp-text);
-			text-decoration: none;
-			transition: color 0.3s ease;
-
-			&:hover {
-				color: var(--ctp-sky);
-			}
-		}
 	}
 </style>

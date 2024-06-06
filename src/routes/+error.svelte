@@ -15,6 +15,9 @@
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	$: bgClass =
 		$theme === 'g10' ? `background-light bg-support` : `background bg-support`;
@@ -74,15 +77,15 @@
 				</h1>
 
 				<p>Don't fret! Here's what you can do:</p>
-				<ol>
-					<li>
+				<UnorderedList class="spaced-list">
+					<ListItem>
 						🎵 Sharpen your Hunting Horn - We'll be back in tune in no time.
-					</li>
-					<li>
+					</ListItem>
+					<ListItem>
 						🐷 Pet your Poogie for good luck and maybe a purrfect solution.
-					</li>
-					<li>🍖 Grab a Well-Done Steak while we sort this out.</li>
-				</ol>
+					</ListItem>
+					<ListItem>🍖 Grab a Well-Done Steak while we sort this out.</ListItem>
+				</UnorderedList>
 
 				Remember, every hunter faces challenges, but we always come out stronger
 				together, nya! 🎵🍖🐾

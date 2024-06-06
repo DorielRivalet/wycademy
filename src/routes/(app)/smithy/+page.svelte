@@ -123,6 +123,8 @@
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -5989,10 +5991,10 @@
 			to the number inputs.
 		</p>
 		<p>Rule of thirds:</p>
-		<ul class="spaced-list">
-			<li>X: 427, 853</li>
-			<li>Y: 240, 480</li>
-		</ul>
+		<UnorderedList class="spaced-list">
+			<ListItem>X: 427, 853</ListItem>
+			<ListItem>Y: 240, 480</ListItem>
+		</UnorderedList>
 		<div class="container-buttons">
 			<p>Credit text</p>
 			<CopyButton

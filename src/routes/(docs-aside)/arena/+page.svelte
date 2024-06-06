@@ -101,6 +101,9 @@
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import { type BundledLanguage } from 'shiki/langs';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
 
 	let flashConversionChartLoaded = false;
 	let flashConversionChart: ComponentType<LineChart>;
@@ -4263,8 +4266,8 @@ does not get multiplied by horn */
 			statistics, such as your total damage, by selecting the gear and weapon
 			values. You can, for example:
 		</p>
-		<ul>
-			<li>
+		<UnorderedList class="spaced-list">
+			<ListItem>
 				Select a weapon type such as <InlineToggletip
 					title="Long Sword"
 					subtitle="A sword from a far away land"
@@ -4277,8 +4280,8 @@ does not get multiplied by horn */
 					link="/smithy"
 					on:openModal={(e) => handleOpenModal(e)}
 				></InlineToggletip>
-			</li>
-			<li>
+			</ListItem>
+			<ListItem>
 				Calculate <InlineToggletip
 					title="Gunlance"
 					subtitle="It's neither a lance nor a gun"
@@ -4293,8 +4296,8 @@ does not get multiplied by horn */
 					link="/arena#gunlance-shells-and-wyvernfire"
 					on:openModal={(e) => handleOpenModal(e)}
 				></InlineToggletip> Shell and Wyvernfire damage.
-			</li>
-			<li>
+			</ListItem>
+			<ListItem>
 				Calculate <InlineToggletip
 					title="Ice Age"
 					subtitle="It's cold out there"
@@ -4309,8 +4312,8 @@ does not get multiplied by horn */
 					link="/arena#gunlance-shells-and-wyvernfire"
 					on:openModal={(e) => handleOpenModal(e)}
 				></InlineToggletip> damage.
-			</li>
-			<li>
+			</ListItem>
+			<ListItem>
 				Compare your attack values against <InlineToggletip
 					title="Blinking Nargacuga"
 					subtitle="Musou"
@@ -4330,10 +4333,10 @@ does not get multiplied by horn */
 					iconType="file"
 					icon={getMonster('Rathalos', 'Zenith').icon}
 				/> defense rate.
-			</li>
-			<li>View element damage.</li>
-			<li>And much more!</li>
-		</ul>
+			</ListItem>
+			<ListItem>View element damage.</ListItem>
+			<ListItem>And much more!</ListItem>
+		</UnorderedList>
 
 		<p>
 			Additionally, you can view motion values animations, graphs of armor
@@ -4357,43 +4360,45 @@ does not get multiplied by horn */
 					/>
 
 					<p>To load your gear from the game:</p>
-					<ol>
-						<li>1. Load the overlay.</li>
-						<li>2. Go into a quest and open overlay settings.</li>
-						<li>
-							3. Go to Hunter's Notes tab, right-click your guild card and
-							select "Copy stats for Wycademy's Arena".
-						</li>
-						<li>4. Paste them here.</li>
-					</ol>
+					<OrderedList class="spaced-list">
+						<ListItem>Load the overlay.</ListItem>
+						<ListItem>Go into a quest and open overlay settings.</ListItem>
+						<ListItem>
+							Go to Hunter's Notes tab, right-click your guild card and select
+							"Copy stats for Wycademy's Arena".
+						</ListItem>
+						<ListItem>Paste them here.</ListItem>
+					</OrderedList>
 
 					<p>
 						If you want to import the save slots from the legacy calculator:
 					</p>
-					<ol>
-						<li>
-							1. Go to the <OutboundLink
+					<OrderedList class="spaced-list">
+						<ListItem>
+							Go to the <OutboundLink
 								href="https://dorielrivalet.github.io/mhfz-damage-calculator"
 								>legacy calculator</OutboundLink
 							>.
-						</li>
-						<li>2. Open the Console by pressing <kbd>Ctrl+Shift+I</kbd>.</li>
-						<li>
-							3. To put all of your save slots into the clipboard, paste the
+						</ListItem>
+						<ListItem
+							>Open the Console by pressing <kbd>Ctrl+Shift+I</kbd>.</ListItem
+						>
+						<ListItem>
+							To put all of your save slots into the clipboard, paste the
 							following command and run it in the console: <CodeSnippet
 								showMoreLess={false}
 								type="inline">copy(JSON.stringify(localStorage));</CodeSnippet
 							>
-						</li>
-						<li>
-							4. With the copied clipboard text, paste it into a text editor and
+						</ListItem>
+						<ListItem>
+							With the copied clipboard text, paste it into a text editor and
 							save as JSON file.
-						</li>
-						<li>
-							5. Click the button below, specifying the slot number in the
-							number input, in order to import the file.
-						</li>
-					</ol>
+						</ListItem>
+						<ListItem>
+							Click the button below, specifying the slot number in the number
+							input, in order to import the file.
+						</ListItem>
+					</OrderedList>
 					<div class="flex-row">
 						<div class="number-input-container">
 							<NumberInput
@@ -9251,18 +9256,20 @@ does not get multiplied by horn */
 					a specified number of times.
 				</p>
 
-				<ul class="spaced-list">
-					<li>5 times successful: Guild shop 5% discount.</li>
-					<li>10 times successful: Guild shop 10% discount.</li>
-					<li>15 times successful: Guild shop 15% discount.</li>
-				</ul>
+				<UnorderedList class="spaced-list">
+					<ListItem>5 times successful: Guild shop 5% discount.</ListItem>
+					<ListItem>10 times successful: Guild shop 10% discount.</ListItem>
+					<ListItem>15 times successful: Guild shop 15% discount.</ListItem>
+				</UnorderedList>
 
 				<p>The effect disappears in any of the following events:</p>
-				<ul>
-					<li>12 hours have passed.</li>
-					<li>Logout.</li>
-					<li>Petting poogie for a long time and it getting angry.</li>
-				</ul>
+				<UnorderedList class="spaced-list">
+					<ListItem>12 hours have passed.</ListItem>
+					<ListItem>Logout.</ListItem>
+					<ListItem
+						>Petting poogie for a long time and it getting angry.</ListItem
+					>
+				</UnorderedList>
 			</div>
 		</section>
 		<section>
@@ -10518,32 +10525,32 @@ does not get multiplied by horn */
 				right before embarking on a quest.
 			</p>
 			<p>You can pack a Bento at the appropiate NPC:</p>
-			<ul>
-				<li>
+			<UnorderedList class="spaced-list">
+				<ListItem>
 					The dedicated food store in <InlineTooltip
 						text="Mezeporta"
 						tooltip="Location"
 						icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
 						iconType={'file'}
 					/>.
-				</li>
-				<li>
+				</ListItem>
+				<ListItem>
 					The dedicated food store in the <InlineTooltip
 						tooltip="Location"
 						text="Caravan"
 						icon={LocationIcons.find((e) => e.name === 'Caravan')?.icon}
 						iconType={'file'}
 					/> area.
-				</li>
-				<li>
+				</ListItem>
+				<ListItem>
 					The Guild Store Cat in the <InlineTooltip
 						tooltip="Location"
 						text="Guild Hall"
 						icon={LocationIcons.find((e) => e.name === 'Guild Hall')?.icon}
 						iconType={'file'}
 					/>.
-				</li>
-			</ul>
+				</ListItem>
+			</UnorderedList>
 
 			<section>
 				<SectionHeading level={3} title="Recommended Bento" />
@@ -10595,111 +10602,111 @@ does not get multiplied by horn */
 				<SectionHeading level={3} title="Food Types and Locations" />
 				<div>
 					<p>Guild Cat Store:</p>
-					<ul>
-						<li>
+					<UnorderedList class="spaced-list">
+						<ListItem>
 							<InlineTooltip
 								text="Spirit Mushrooms"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Orange')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Mushroom')?.icon}
 							/>
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<InlineTooltip
 								text="Frost Tomatoes"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Vegetable')?.icon}
 							/>
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<InlineTooltip
 								text="poogie Crackers"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Scale')?.icon}
 							/>
-						</li>
-					</ul>
+						</ListItem>
+					</UnorderedList>
 					<p>Lunchbox NPC:</p>
-					<ul>
-						<li>
+					<UnorderedList class="spaced-list">
+						<ListItem>
 							<InlineTooltip
 								text="Hot Oil"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
 							/>
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<InlineTooltip
 								text="Power Lard"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
 							/>
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<InlineTooltip
 								text="Fist Rice"
 								tooltip="Item"
 								icon={ItemIcons.find((e) => e.name === 'Seed')?.icon}
 							/>
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<InlineTooltip
 								text="Pepper Bug"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Blue')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Bug')?.icon}
 							/>
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<InlineTooltip
 								text="Round Egg"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Egg')?.icon}
 							/>
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<InlineTooltip
 								text="Predator Honey (Rarely Available)"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
 							/>
-						</li>
-					</ul>
+						</ListItem>
+					</UnorderedList>
 					<p>Town General Store:</p>
-					<ul>
-						<li>
+					<UnorderedList class="spaced-list">
+						<ListItem>
 							<InlineTooltip
 								text="Ancient Bean"
 								tooltip="Item"
 								icon={ItemIcons.find((e) => e.name === 'Seed')?.icon}
 							/>
-						</li>
-						<li>
+						</ListItem>
+						<ListItem>
 							<InlineTooltip
 								text="Gold Extract"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
 							/>
-						</li>
-					</ul>
+						</ListItem>
+					</UnorderedList>
 					<p>Poogie Farm General Store Lv3:</p>
-					<ul>
-						<li>
+					<UnorderedList class="spaced-list">
+						<ListItem>
 							<InlineTooltip
 								text="Predator Honey"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
 							/>
-						</li>
-					</ul>
+						</ListItem>
+					</UnorderedList>
 				</div>
 			</section>
 		</div>

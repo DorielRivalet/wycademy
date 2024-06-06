@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 	import cat from '$lib/client/images/error.webp';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 
 	const errorTitles = [
 		'The Gargwa took the quest and ran away with it! 🐔',
@@ -21,11 +23,15 @@
 	</h1>
 
 	<p>Don't fret! Here's what you can do:</p>
-	<ol>
-		<li>🎵 Sharpen your Hunting Horn - We'll be back in tune in no time.</li>
-		<li>🐷 Pet your Poogie for good luck and maybe a purrfect solution.</li>
-		<li>🍖 Grab a Well-Done Steak while we sort this out.</li>
-	</ol>
+	<UnorderedList class="spaced-list">
+		<ListItem
+			>🎵 Sharpen your Hunting Horn - We'll be back in tune in no time.</ListItem
+		>
+		<ListItem
+			>🐷 Pet your Poogie for good luck and maybe a purrfect solution.</ListItem
+		>
+		<ListItem>🍖 Grab a Well-Done Steak while we sort this out.</ListItem>
+	</UnorderedList>
 
 	Remember, every hunter faces challenges, but we always come out stronger
 	together, nya! 🎵🍖🐾

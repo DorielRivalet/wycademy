@@ -19,6 +19,8 @@
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	let url = $page.url.toString();
 </script>
 
@@ -55,21 +57,21 @@
 			During <em>alpha</em>, anything in the website can drastically change at
 			any moment and everything is potentially ephemeral.
 		</p>
-		<ul>
-			<li>
+		<UnorderedList class="spaced-list">
+			<ListItem>
 				<strong>Accounts: </strong>they do not provide any substantial features
 				or perks, and can be deleted at any moment, potentially right after
 				account creation.
-			</li>
-			<li>
+			</ListItem>
+			<ListItem>
 				<strong>Settings: </strong>the currently saved settings can be cleared
 				and/or not be available anymore.
-			</li>
-			<li>
+			</ListItem>
+			<ListItem>
 				<strong>Stability: </strong>the website should be considered unstable
 				and its whole structure may be different at any moment.
-			</li>
-		</ul>
+			</ListItem>
+		</UnorderedList>
 		<p>
 			This development phase is to set the stage for establishing consistent
 			page layouts and a more stable project structure in the next phase. This
@@ -83,17 +85,17 @@
 			During this phase, any feature related to accounts can be considered
 			unstable, and may change at any moment.
 		</p>
-		<ul>
-			<li>
+		<UnorderedList class="spaced-list">
+			<ListItem>
 				Features not related to accounts should have a established structure and
 				aim to be stable.
-			</li>
-			<li>Major bugs from any source may still occur.</li>
-			<li>
+			</ListItem>
+			<ListItem>Major bugs from any source may still occur.</ListItem>
+			<ListItem>
 				<strong>Settings: </strong>they should be established and not be
 				cleared, if possible.
-			</li>
-		</ul>
+			</ListItem>
+		</UnorderedList>
 	</section>
 	<p>
 		The <em>beta</em> stage paves the road for v1.0.0. This phase sacrifices velocity
@@ -106,13 +108,13 @@
 			The first non-beta release of the website should be considered stable.
 			Should major changes occur, it would become v2, and so on.
 		</p>
-		<ul>
-			<li>Major bugs should be fixed for the most part.</li>
-			<li>
+		<UnorderedList class="spaced-list">
+			<ListItem>Major bugs should be fixed for the most part.</ListItem>
+			<ListItem>
 				Features related to accounts should present minor bugs at worst case
 				scenario.
-			</li>
-		</ul>
+			</ListItem>
+		</UnorderedList>
 		<p>
 			When v1 is released, the warning notice at the top of the home page will
 			be removed. Should any major issues arise in future versions, users would
@@ -122,21 +124,21 @@
 
 	<section>
 		<SectionHeading title={'Closing Notes'} level={2} />
-		<ul>
-			<li>
+		<UnorderedList class="spaced-list">
+			<ListItem>
 				In the <em>alpha</em> stage, users should expect that the site might be unstable
 				and change frequently.
-			</li>
+			</ListItem>
 
-			<li>
+			<ListItem>
 				In the <em>beta</em> stage, users can start using the site for regular activities,
 				but they should still expect some changes and potential issues.
-			</li>
+			</ListItem>
 
-			<li>
+			<ListItem>
 				In v1.0.0 and beyond, users can use the site normally and expect a
 				stable experience.
-			</li>
-		</ul>
+			</ListItem>
+		</UnorderedList>
 	</section>
 </div>

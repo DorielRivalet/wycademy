@@ -18,7 +18,6 @@
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
-	console.log('page.svelte');
 
 	let customTitle = 'Home';
 	let url = $page.url.toString();
