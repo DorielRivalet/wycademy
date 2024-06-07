@@ -5172,8 +5172,13 @@ does not get multiplied by horn */
 											max={maximumNumberValue}
 											bind:value={inputNumberRoadFloor}
 											invalidText={invalidNumberValueText}
-											label={'Road Floor'}
-										/>
+											on:click={(e) => e.preventDefault()}
+											><span slot="label"
+												><Tooltip align="start" triggerText="Road Floor">
+													<p>Attack rises every 5 floors, stopping at 26.</p>
+												</Tooltip></span
+											>
+										</NumberInput>
 									</div>
 
 									<Dropdown
@@ -5567,8 +5572,8 @@ does not get multiplied by horn */
 												text: 'Small and Halk Drink (1.21x)',
 											},
 											{
-												id: 'Large and Halk Drink (1.33x)',
-												text: 'Large and Halk Drink (1.33x)',
+												id: 'Large and Halk Drink (1.331x)',
+												text: 'Large and Halk Drink (1.331x)',
 											},
 										]}
 									/>
@@ -5588,8 +5593,8 @@ does not get multiplied by horn */
 												text: 'Small and Halk Drink (1.21x)',
 											},
 											{
-												id: 'Large and Halk Drink (1.33x)',
-												text: 'Large and Halk Drink (1.33x)',
+												id: 'Large and Halk Drink (1.331x)',
+												text: 'Large and Halk Drink (1.331x)',
 											},
 										]}
 									/>
@@ -5609,8 +5614,8 @@ does not get multiplied by horn */
 												text: 'Small and Halk Drink (1.21x)',
 											},
 											{
-												id: 'Large and Halk Drink (1.33x)',
-												text: 'Large and Halk Drink (1.33x)',
+												id: 'Large and Halk Drink (1.331x)',
+												text: 'Large and Halk Drink (1.331x)',
 											},
 										]}
 									/>
@@ -5630,8 +5635,8 @@ does not get multiplied by horn */
 												text: 'Small and Halk Drink (1.21x)',
 											},
 											{
-												id: 'Large and Halk Drink (1.33x)',
-												text: 'Large and Halk Drink (1.33x)',
+												id: 'Large and Halk Drink (1.331x)',
+												text: 'Large and Halk Drink (1.331x)',
 											},
 										]}
 									/>
@@ -5651,8 +5656,8 @@ does not get multiplied by horn */
 												text: 'Small and Halk Drink (1.21x)',
 											},
 											{
-												id: 'Large and Halk Drink (1.33x)',
-												text: 'Large and Halk Drink (1.33x)',
+												id: 'Large and Halk Drink (1.331x)',
+												text: 'Large and Halk Drink (1.331x)',
 											},
 										]}
 									/>
