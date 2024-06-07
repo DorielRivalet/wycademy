@@ -31,6 +31,7 @@
 		legacyCalculatorKeysMap,
 		legacyCalculatorNumberInputs,
 		legacyCalculatorValuesMap,
+		monsterStatusDropdownOptions,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -3165,8 +3166,9 @@ does not get multiplied by horn */
 	);
 
 	$: outputMonsterStatusInflictedMultiplier =
-		statusSkillsDropdownItems.find((item) => item.name === inputMonsterStatus)
-			?.value || 1;
+		monsterStatusDropdownOptions.find(
+			(item) => item.name === inputMonsterStatus,
+		)?.value || 1;
 
 	$: console.log(
 		`outputMonsterStatusInflictedMultiplier: ${outputMonsterStatusInflictedMultiplier}`,

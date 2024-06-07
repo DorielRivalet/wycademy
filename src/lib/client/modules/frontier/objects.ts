@@ -17170,7 +17170,7 @@ export const statusSkillsDropdownItems: DropdownItemOption[] = [
 		name: 'On (1.125x)',
 		value: 1.125,
 	},
-	// { name: 'On (For Sleep add +10 raw hitzone)', value: 1 },
+	// { TODO? name: 'On (For Sleep add +10 raw hitzone)', value: 1 },
 	{
 		name: 'Normal (1.1x)',
 		value: 1.1,
@@ -17681,7 +17681,7 @@ export const elementDropdownItems: DropdownItemOption[] = [
 	},
 ] as const;
 
-export const monsterDropdownOptions: DropdownItemOption[] = [
+export const monsterStatusDropdownOptions: DropdownItemOption[] = [
 	{
 		name: 'Paralysed (1.1x)',
 		value: 1.1,
