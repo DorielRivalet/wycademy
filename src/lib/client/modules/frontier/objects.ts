@@ -8341,7 +8341,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Zenith Blangonga',
 			'Conga',
 			'Congalala',
-			'Gougarf','Furious Rajang'
+			'Gougarf',
+			'Furious Rajang',
 		],
 		generation: 'Frontier',
 	},
@@ -17017,7 +17018,7 @@ export const multipliersDropdownItems: DropdownItemOption[] = [
 	},
 	{
 		name: 'MS Hiden Boost (x1.03)',
-		value: 1.03,
+		value: 1.05, // TODO this is legacy value
 	},
 	{
 		name: 'Yes (x1.2)',
@@ -17096,7 +17097,7 @@ export const flatAdditionsDropdownItems: DropdownItemOption[] = [
 	},
 	{
 		name: 'Active (+5)',
-		value: 50,
+		value: 5,
 	},
 	{
 		name: 'Bond Level 1(+0)', // TODO
@@ -17134,8 +17135,8 @@ export const elementalSkillsDropdownItems: DropdownItemOption[] = [
 		value: 1.21,
 	},
 	{
-		name: 'Large and Halk Drink (1.33x)',
-		value: 1.33,
+		name: 'Large and Halk Drink (1.331x)',
+		value: 1.331,
 	},
 	{
 		name: 'Active (1.1x)',
@@ -18488,35 +18489,35 @@ export const legacyCalculatorValuesMap: {
 			'1.1': 'Small or Halk Drink (1.1x)',
 			'1.2': 'Large (1.2x)',
 			'1.21': 'Small and Halk Drink (1.21x)',
-			'1.331': 'Large and Halk Drink (1.33x)',
+			'1.331': 'Large and Halk Drink (1.331x)',
 		},
 		watermulti: {
 			'1': 'None (1x)',
 			'1.1': 'Small or Halk Drink (1.1x)',
 			'1.2': 'Large (1.2x)',
 			'1.21': 'Small and Halk Drink (1.21x)',
-			'1.331': 'Large and Halk Drink (1.33x)',
+			'1.331': 'Large and Halk Drink (1.331x)',
 		},
 		thundermulti: {
 			'1': 'None (1x)',
 			'1.1': 'Small or Halk Drink (1.1x)',
 			'1.2': 'Large (1.2x)',
 			'1.21': 'Small and Halk Drink (1.21x)',
-			'1.331': 'Large and Halk Drink (1.33x)',
+			'1.331': 'Large and Halk Drink (1.331x)',
 		},
 		icemulti: {
 			'1': 'None (1x)',
 			'1.1': 'Small or Halk Drink (1.1x)',
 			'1.2': 'Large (1.2x)',
 			'1.21': 'Small and Halk Drink (1.21x)',
-			'1.331': 'Large and Halk Drink (1.33x)',
+			'1.331': 'Large and Halk Drink (1.331x)',
 		},
 		dragonmulti: {
 			'1': 'None (1x)',
 			'1.1': 'Small or Halk Drink (1.1x)',
 			'1.2': 'Large (1.2x)',
 			'1.21': 'Small and Halk Drink (1.21x)',
-			'1.331': 'Large and Halk Drink (1.33x)',
+			'1.331': 'Large and Halk Drink (1.331x)',
 		},
 		eleHalk: {
 			'1': 'None (1x)',
