@@ -1620,6 +1620,18 @@
 
 		// Iterate over each entry in the legacy data
 		for (const [legacyKey, legacyValue] of Object.entries(legacyData)) {
+			if (
+				legacyKey === 'drugknowledgeupToggle' &&
+				newData['inputDrugKnowledge'] === 'None (1x)'
+			) {
+				continue;
+			}
+
+			if (legacyKey === 'drugknowledgeToggle' && legacyValue === '0') {
+				newData['inputDrugKnowledge'] = 'None (1x)';
+				continue;
+			}
+
 			// Find the corresponding new key based on the mapping
 			const newKey = legacyCalculatorKeysMap[legacyKey];
 
@@ -4386,9 +4398,10 @@ does not get multiplied by horn */
 						<ListItem>
 							To put all of your save slots into the clipboard, paste the
 							following command and run it in the console: <CodeSnippet
+								code={'copy(JSON.stringify(localStorage));'}
 								showMoreLess={false}
-								type="inline">copy(JSON.stringify(localStorage));</CodeSnippet
-							>
+								type="inline"
+							/>
 						</ListItem>
 						<ListItem>
 							With the copied clipboard text, paste it into a text editor and
@@ -5948,7 +5961,7 @@ does not get multiplied by horn */
 									</div>
 
 									<Dropdown
-										titleText="AoE Attack Sigil"
+										titleText="AoE Attack Sigil Count"
 										bind:selectedId={inputAoeAttackSigil}
 										items={[
 											{ id: 'None', text: 'None' },
@@ -6013,7 +6026,7 @@ does not get multiplied by horn */
 									</div>
 
 									<Dropdown
-										titleText="AoE Affinity Sigil"
+										titleText="AoE Affinity Sigil Count"
 										bind:selectedId={inputAoeAffinitySigil}
 										items={[
 											{ id: 'None', text: 'None' },
@@ -6733,7 +6746,7 @@ does not get multiplied by horn */
 									</div>
 
 									<Dropdown
-										titleText="AoE Element Sigil"
+										titleText="AoE Element Sigil Count"
 										bind:selectedId={inputAoeElementSigil}
 										items={[
 											{ id: 'None', text: 'None' },
