@@ -18,6 +18,10 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import EspinasSleeping from '$lib/client/images/splash.gif';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
+	import { goto } from '$app/navigation';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
@@ -258,10 +262,24 @@
 		</section>
 	</div>
 {:else}
-	<p>Monster not found.</p>
+	<div class="not-found-container">
+		<p>Monster not found</p>
+		<img src={EspinasSleeping} alt="Espinas sleeping" width="128" />
+		<Button icon={PreviousOutline} on:click={() => goto('/bestiary')}
+			>Go to Bestiary</Button
+		>
+	</div>
 {/if}
 
 <style lang="scss">
+	.not-found-container {
+		display: flex;
+		gap: 1rem;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
 	.monster-icon {
 		view-transition-name: var(--monster-icon);
 		display: flex;
