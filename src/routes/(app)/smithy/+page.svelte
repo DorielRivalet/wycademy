@@ -454,7 +454,7 @@
 
 	function downloadWeaponImage() {
 		if (!browser) return;
-		let node = document.querySelector('#weapon-dom');
+		let node = document.getElementById('weapon-dom');
 		if (!node) return;
 		domToPng(node, { quality: 1 }).then((dataUrl) => {
 			const link = document.createElement('a');
@@ -470,7 +470,7 @@
 
 	function downloadArmorImage() {
 		if (!browser) return;
-		let node = document.querySelector('#armor-dom');
+		let node = document.getElementById('armor-dom');
 		if (!node) return;
 		domToPng(node, { quality: 1 }).then((dataUrl) => {
 			const link = document.createElement('a');
@@ -486,7 +486,7 @@
 
 	function downloadItemsImage() {
 		if (!browser) return;
-		let node = document.querySelector('#item-dom');
+		let node = document.getElementById('item-dom');
 		if (!node) return;
 		domToPng(node, { quality: 1 }).then((dataUrl) => {
 			const link = document.createElement('a');
@@ -543,7 +543,7 @@
 
 	function downloadTowerWeaponImage() {
 		if (!browser) return;
-		let node = document.querySelector('#tower-weapon-dom');
+		let node = document.getElementById('tower-weapon-dom');
 		if (!node) return;
 		domToPng(node, { quality: 1 }).then((dataUrl) => {
 			const link = document.createElement('a');
@@ -1389,7 +1389,7 @@
 	}
 
 	async function createThumbnailGeneratorSmallPreview() {
-		let node = document.querySelector('#generated-thumbnail-dom');
+		let node = document.getElementById('generated-thumbnail-dom');
 
 		if (!node) {
 			return;
@@ -1412,7 +1412,7 @@
 	let thumbnailGeneratorSmallPreviewSize = '512';
 
 	async function downloadGeneratedThumbnailImage() {
-		let node = document.querySelector('#generated-thumbnail-dom');
+		let node = document.getElementById('generated-thumbnail-dom');
 
 		if (!node) {
 			return;
