@@ -105,6 +105,8 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
+	import { domToPng } from 'modern-screenshot';
+	import slugify from 'slugify';
 
 	let flashConversionChartLoaded = false;
 	let flashConversionChart: ComponentType<LineChart>;
@@ -868,6 +870,49 @@
 	let showDamageCalculatorInputsJSONError = false;
 	let showDamageCalculatorLegacyInputsJSONError = false;
 
+	type MotionValueResult = {
+		id: string;
+		name: string;
+		motion: string;
+		raw: string;
+		element: string;
+		total: string;
+		fire: string;
+		water: string;
+		thunder: string;
+		ice: string;
+		dragon: string;
+		additional: string;
+	};
+
+	function downloadMotionValuesImage() {
+		if (!browser) return;
+		let node = document.getElementById('motion-values-dom');
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(
+				`${inputWeaponType}-Motion-Values-${new Date().toISOString()}.png`,
+			)}`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
+
+	function downloadSharedMotionValuesImage() {
+		if (!browser) return;
+		let node = document.getElementById('shared-motion-values-dom');
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(
+				`${inputWeaponType}-Shared-Motion-Values-${new Date().toISOString()}.png`,
+			)}`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
+
 	function getBentoSectionValues(section: string) {
 		let defaultResult = [
 			{
@@ -922,7 +967,7 @@
 	) {
 		let weaponClass = getWeaponClass(weaponName);
 
-		let defaultResult = [
+		let defaultResult: MotionValueResult[] = [
 			{
 				id: '',
 				name: '',
@@ -964,20 +1009,7 @@
 			}
 		}
 
-		let result: {
-			id: string;
-			name: string;
-			motion: string;
-			raw: string;
-			element: string;
-			total: string;
-			fire: string;
-			water: string;
-			thunder: string;
-			ice: string;
-			dragon: string;
-			additional: string;
-		}[] = [];
+		let result: MotionValueResult[] = [];
 
 		let outputTotal = 0;
 
@@ -1439,19 +1471,7 @@
 						: outputAdditional.toString(),
 			});
 		});
-		//  outputStatusAssault = 0;
-		/*		let internalFire = 0;
-	let internalWater = 0;
-	let internalIce = 0;
-	let internalThunder = 0;
-	let internalDragon = 0;
-	let finalTrueRawDisplay = 0;
-	let finalTrueRaw = 0;
-	let missionsNeeded = 0;
-	let internalStatus = 0;
-	let attackCeiling = 0;
-	let internalAttack = 0;
-	let internalAffinity = 0;*/
+
 		return result;
 	}
 
@@ -1745,6 +1765,7 @@
 
 	function updateInputs() {
 		if (inputTextImportData === undefined || inputTextImportData === '') {
+			showDamageCalculatorInputsJSONError = false;
 			return;
 		}
 
@@ -2504,6 +2525,7 @@
 	${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\newline ${inputNumberHCModifiers}`;
 
 	// TODO more formulas
+	// TODO gunner formulas
 
 	let internalAffinity = 0;
 	let rarity: FrontierRarity = 1;
@@ -4993,7 +5015,7 @@ does not get multiplied by horn */
 										titleText="Obscurity"
 										bind:selectedId={inputObscurity}
 										items={[
-											{ id: 'None', text: 'None' }, // TODO
+											{ id: 'None', text: 'None' },
 											{
 												id: '1 Block (+40 / +30 / +20)',
 												text: '1 Block (+40 / +30 / +20)',
@@ -5036,27 +5058,27 @@ does not get multiplied by horn */
 											},
 											{
 												id: '1 Block (+70 / +50 / +30)',
-												text: '1 Block (+70 / +50 / +30)',
+												text: 'Obscurity Up 1 Block (+70 / +50 / +30)',
 											},
 											{
 												id: '2 Blocks (+140 / +100 / +60)',
-												text: '2 Blocks (+140 / +100 / +60)',
+												text: 'Obscurity Up 2 Blocks (+140 / +100 / +60)',
 											},
 											{
 												id: '3 Blocks (+210 / +150 / +90)',
-												text: '3 Blocks (+210 / +150 / +90)',
+												text: 'Obscurity Up 3 Blocks (+210 / +150 / +90)',
 											},
 											{
 												id: '4 Blocks (+240 / +175 / +110)',
-												text: '4 Blocks (+240 / +175 / +110)',
+												text: 'Obscurity Up 4 Blocks (+240 / +175 / +110)',
 											},
 											{
 												id: '5 Blocks (+270 / +200 / +130)',
-												text: '5 Blocks (+270 / +200 / +130)',
+												text: 'Obscurity Up 5 Blocks (+270 / +200 / +130)',
 											},
 											{
 												id: '6 Blocks (+300 / +225 / +150)',
-												text: '6 Blocks (+300 / +225 / +150)',
+												text: 'Obscurity Up 6 Blocks (+300 / +225 / +150)',
 											},
 										]}
 									/>
@@ -5135,7 +5157,7 @@ does not get multiplied by horn */
 											bind:selectedId={inputLengthUp}
 											items={[
 												{ id: 'None', text: 'None' },
-												{ id: 'Active', text: 'Active' }, // TODO
+												{ id: 'Active', text: 'Active' },
 											]}
 										/>
 									</div>
@@ -5712,7 +5734,7 @@ does not get multiplied by horn */
 										bind:selectedId={inputAbnormality}
 										items={[
 											{ id: 'None', text: 'None' },
-											{ id: 'On', text: 'On' }, // TODO
+											{ id: 'On', text: 'On' },
 										]}
 										on:select={(e) =>
 											setAbnormalityValues(inputAbnormality === 'On')}
@@ -6074,7 +6096,7 @@ does not get multiplied by horn */
 											bind:selectedId={inputFencing}
 											items={[
 												{ id: 'None', text: 'None' },
-												{ id: '+2', text: '+2' }, // TODO
+												{ id: '+2', text: '+2' },
 											]}
 										/>
 
@@ -6604,7 +6626,7 @@ does not get multiplied by horn */
 										bind:selectedId={inputElement}
 										items={[
 											{ id: 'None', text: 'None' },
-											{ id: 'Fire', text: 'Fire (火)' }, // TODO
+											{ id: 'Fire', text: 'Fire (火)' },
 											{ id: 'Water', text: 'Water (水)' },
 											{ id: 'Thunder', text: 'Thunder (雷)' },
 											{ id: 'Ice', text: 'Ice (冰)' },
@@ -6755,7 +6777,7 @@ does not get multiplied by horn */
 											{ id: '1 Sigil', text: '1 Sigil' },
 											{ id: '2 Sigils', text: '2 Sigils' },
 											{ id: '3 Sigils', text: '3 Sigils' },
-											{ id: '4 Sigils', text: '4 Sigils' }, // TODO
+											{ id: '4 Sigils', text: '4 Sigils' },
 										]}
 									/>
 
@@ -6789,7 +6811,7 @@ does not get multiplied by horn */
 										items={[
 											{ id: 'None', text: 'None' },
 											{ id: 'Poison', text: 'Poison' },
-											{ id: 'Paralysis', text: 'Paralysis' }, // TODO
+											{ id: 'Paralysis', text: 'Paralysis' },
 										]}
 									/>
 
@@ -7165,9 +7187,13 @@ does not get multiplied by horn */
 				</div>
 			</div>
 		</section>
-		<!--TODO animations-->
 		<section>
 			<SectionHeading level={2} title="Weapon Motion Values" />
+
+			<p class="spaced-paragraph">
+				You can change the weapon type shown below in the damage calculator
+				above.
+			</p>
 
 			{#if showWeaponMotionValuesSectionWarning}
 				<InlineNotification
@@ -7180,6 +7206,7 @@ does not get multiplied by horn */
 			{/if}
 			<div class="motion-values toc-exclude">
 				<DataTable
+					id="motion-values-dom"
 					sortable
 					zebra
 					size="short"
@@ -7230,6 +7257,11 @@ does not get multiplied by horn */
 								iconDescription={'Copy as CSV'}
 								text={getCSVFromArray(weaponSections)}
 							/>
+							<Button
+								kind="tertiary"
+								icon={Download}
+								on:click={downloadMotionValuesImage}>Download</Button
+							>
 						</div>
 					</Toolbar>
 					<span slot="title">
@@ -7262,6 +7294,7 @@ does not get multiplied by horn */
 		<SectionHeading level={2} title="Shared Motion Values" />
 		<div class="motion-values toc-exclude">
 			<DataTable
+				id="shared-motion-values-dom"
 				sortable
 				zebra
 				size="short"
@@ -7297,6 +7330,11 @@ does not get multiplied by horn */
 							iconDescription={'Copy as CSV'}
 							text={getCSVFromArray(sharedMotionValues)}
 						/>
+						<Button
+							kind="tertiary"
+							icon={Download}
+							on:click={downloadSharedMotionValuesImage}>Download</Button
+						>
 					</div>
 				</Toolbar>
 				<svelte:fragment slot="cell" let:cell>
@@ -7312,6 +7350,13 @@ does not get multiplied by horn */
 					{/if}
 				</svelte:fragment>
 			</DataTable>
+		</div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Inputs Logs" />
+		<div>
+			<CodeSnippet code={'Inputs show here.'} type="multi" />
 		</div>
 	</section>
 
@@ -7537,6 +7582,11 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Gunlance Shells and Wyvernfire" />
+		<div></div>
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Heavy Bowgun Heat Beam" />
 		<div></div>
 	</section>
 
@@ -11808,17 +11858,7 @@ does not get multiplied by horn */
 	</section>
 
 	<section>
-		<SectionHeading level={2} title="HBG Heat Beam" />
-		<div></div>
-	</section>
-
-	<section>
 		<SectionHeading level={2} title="Bitfields" />
-		<div></div>
-	</section>
-
-	<section>
-		<SectionHeading level={2} title="Inputs Logs" />
 		<div></div>
 	</section>
 </div>
