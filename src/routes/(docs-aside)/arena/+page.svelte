@@ -32,6 +32,8 @@
 		legacyCalculatorNumberInputs,
 		legacyCalculatorValuesMap,
 		monsterStatusDropdownOptions,
+		elementDropdownItems,
+		bowChargeLevels,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -929,6 +931,7 @@
 
 		const bentoSectionEntry = bentoValues.find((b) => b.name === section);
 		if (!bentoSectionEntry) {
+			// TODO warn user?
 			console.error('Bento not found');
 			return defaultResult;
 		}
@@ -960,13 +963,711 @@
 		return result;
 	}
 
+	/**TODO could be optimized too. bowchargeQuick = bowQuickShotChargeLevel, quickshotmode = outputQuickShotChargeModifier*/
+	function getShotValues(
+		specialFlag: string,
+		bowQuickShotChargeLevel: number,
+		bowChargeLevels:
+			| undefined
+			| {
+					chargeModifier: string;
+					levels: { raw: number; element: number };
+			  },
+		outputQuickShotChargeModifier: number,
+		inputElement: FrontierElement,
+		criticalMultiplier: number,
+		motionValue: number,
+		criticalDistanceMultiplier: number,
+		inputBulletStrengthModifier: string,
+		motionValueName: string,
+		shotAdjustedMotionValue: number,
+	): {
+		bombValues: number;
+		bulletStrengthModifier: number;
+		quickShotChargeModifier: number;
+		dragonShotValue: number;
+		fireShotValue: number;
+		waterShotValue: number;
+		iceShotValue: number;
+		thunderShotValue: number;
+		bowSigilAddedValue: number;
+		bowQuickShotChargeLevel: number;
+		bowChargeRawLevel: number;
+		bowChargeElementLevel: number;
+		criticalMultiplier: number;
+		motionValue: number;
+		criticalDistanceMultiplier: number;
+		shotAdjustedMotionValue: number;
+	} {
+		let bulletStrengthModifier = 1;
+
+		let result = {
+			bombValues: 0,
+			bulletStrengthModifier: bulletStrengthModifier,
+			quickShotChargeModifier: outputQuickShotChargeModifier,
+			dragonShotValue: 0,
+			fireShotValue: 0,
+			waterShotValue: 0,
+			iceShotValue: 0,
+			thunderShotValue: 0,
+			bowSigilAddedValue: 0,
+			bowQuickShotChargeLevel: bowQuickShotChargeLevel,
+			bowChargeRawLevel: bowChargeLevels?.levels.raw ?? 0,
+			bowChargeElementLevel: bowChargeLevels?.levels.element ?? 0,
+			criticalMultiplier: criticalMultiplier,
+			motionValue: motionValue,
+			criticalDistanceMultiplier: criticalDistanceMultiplier,
+			shotAdjustedMotionValue: shotAdjustedMotionValue,
+		};
+
+		switch (specialFlag) {
+			case 'melee': // TODO legacy is wrong maybe
+				return {
+					...result,
+					criticalDistanceMultiplier: 0.6,
+					bulletStrengthModifier: 1.0,
+					bowChargeRawLevel: 1.0,
+					bowChargeElementLevel: 0.6,
+					bowQuickShotChargeLevel: 1,
+					quickShotChargeModifier: 1,
+				};
+			case 'bowsigil':
+				if (
+					inputElement !== 'None' ||
+					bowChargeLevels === undefined ||
+					bowChargeLevels.chargeModifier === 'Crouched Lv1 (0.48x / 0.7x)' ||
+					bowChargeLevels.chargeModifier === 'Crouched Lv2 (1.3x / 0.8x)' ||
+					bowChargeLevels.chargeModifier === 'Crouched Lv3 (2.1x / 1.2x)' ||
+					bowChargeLevels.chargeModifier === 'Crouched Lv4 (2.59x / 1.334x)' ||
+					bowChargeLevels.chargeModifier ===
+						'Uncharged Rising Shot (0.4x / 1.0x)' ||
+					bowChargeLevels.chargeModifier === 'Charged Rising Shot (1.0x / 1.5x)'
+				) {
+					return {
+						...result,
+						bowChargeRawLevel: bowChargeLevels?.levels?.raw ?? 0,
+						bowChargeElementLevel: bowChargeLevels?.levels?.element ?? 0,
+					};
+				}
+
+				const bowRawSigilChargeMultipliers = {
+					'Lv1 (0.4x / 0.7x)': 0.4,
+					'Lv2 (1.0x / 0.95x)': 1.0,
+					'Lv3 (1.5x / 1.2x)': 1.5,
+					'Lv4 (1.85x / 1.334x)': 1.85,
+					'Sniper Lv4 (1.0x / 1.0x)': 1.0,
+					'Sniper Lv5 (1.125x / 1.1x)': 1.1,
+					'Crouched Lv1 (0.48x / 0.7x)': 2.0, // TODO unused?
+				};
+
+				return {
+					...result,
+					bowSigilAddedValue: Math.floor(
+						Math.floor(
+							getMaxTrueRaw(internalTrueRaw) *
+								0.015 * // TODO Test
+								bowRawSigilChargeMultipliers[bowChargeLevels.chargeModifier] *
+								(getExploitWeakness(outputWeaponClass, inputNumberRawHitzone) /
+									100),
+						) * outputMonsterTotalDefense,
+					),
+					criticalMultiplier: 1,
+					motionValue: 0,
+				};
+			case 'nocmel':
+				return {
+					...result,
+					criticalDistanceMultiplier: 0.6,
+					bulletStrengthModifier: 1.0,
+					bowChargeRawLevel: 1.0,
+					bowChargeElementLevel: 0.6,
+					bowQuickShotChargeLevel: 1,
+					quickShotChargeModifier: 1,
+					criticalMultiplier: 1.0,
+				};
+			case 'rapid':
+				// rapid up normal up and steady hand
+				if (
+					inputBulletStrengthModifier === 'Normal / Rapid Up (1.1x)' ||
+					inputBulletStrengthModifier === 'Steady Hand (All Below)'
+				) {
+					bulletStrengthModifier = 1.1;
+				}
+
+				return {
+					...result,
+					bulletStrengthModifier: bulletStrengthModifier,
+				};
+			case 'scatter':
+				// scatter up pellet up and steady hand
+				if (
+					inputBulletStrengthModifier === 'Pellet / Scatter Up (1.3x)' ||
+					inputBulletStrengthModifier === 'Steady Hand (All Below)'
+				) {
+					bulletStrengthModifier = 1.3;
+				} else {
+					bulletStrengthModifier = 1;
+				}
+
+				let waterShotValue = 0;
+
+				if (motionValueName === 'LV1 Pellet S.') {
+					waterShotValue = 15;
+				} else if (motionValueName === 'LV2 Pellet S.') {
+					waterShotValue = 16;
+				} else if (motionValueName === 'LV3 Pellet S.') {
+					waterShotValue = 20;
+				}
+
+				return {
+					...result,
+					bulletStrengthModifier: bulletStrengthModifier,
+					waterShotValue: waterShotValue,
+				};
+
+			case 'pierce':
+				// pierce up and steady hand
+				if (
+					inputBulletStrengthModifier === 'Pierce Up (1.1x)' ||
+					inputBulletStrengthModifier === 'Steady Hand (All Below)'
+				) {
+					bulletStrengthModifier = 1.1;
+				}
+
+				return {
+					...result,
+					bulletStrengthModifier: bulletStrengthModifier,
+				};
+			case 'sniper1':
+				// use 1.0x / 1.0x multi
+				return {
+					...result,
+					bowQuickShotChargeLevel: 1,
+					quickShotChargeModifier: 1,
+					bowChargeRawLevel: 1,
+					bowChargeElementLevel: 1,
+				};
+			case 'sniper2':
+				// use 1.125x / 1.2x multi
+				return {
+					...result,
+					bowQuickShotChargeLevel: 1,
+					quickShotChargeModifier: 1,
+					bowChargeRawLevel: 1.125,
+					bowChargeElementLevel: 1.2,
+				};
+			case 'arcshot1':
+				// use 1.0x / 0.7x multi with no critical distance
+				return {
+					...result,
+					bowQuickShotChargeLevel: 1,
+					quickShotChargeModifier: 1,
+					bowChargeRawLevel: 1,
+					bowChargeElementLevel: 0.2,
+
+					criticalDistanceMultiplier: 1,
+				};
+			case 'arcshot2':
+				// use 1.0x / 0.2x multi with no critical distance and 19 bomb damage
+				return {
+					...result,
+					bowQuickShotChargeLevel: 1,
+					quickShotChargeModifier: 1,
+					bowChargeRawLevel: 1,
+					bowChargeElementLevel: 0.2,
+
+					criticalDistanceMultiplier: 1,
+				};
+			case 'risingmulti1':
+				// use 0.4x / 1.0x multi
+				return {
+					...result,
+					bowQuickShotChargeLevel: 1,
+					quickShotChargeModifier: 1,
+					bowChargeRawLevel: 0.4,
+					bowChargeElementLevel: 1,
+				};
+			case 'risingmulti2':
+				// use 1.0x / 1.5x multi
+				return {
+					...result,
+					bowQuickShotChargeLevel: 1,
+					quickShotChargeModifier: 1,
+					bowChargeRawLevel: 1,
+					bowChargeElementLevel: 1.5,
+				};
+			case 'crag1':
+				//Bomb 30, Fire 400
+				return {
+					...result,
+					bombValues: 30,
+					fireShotValue: 40,
+				};
+			case 'crag2':
+				//Bomb 40, Fire 600
+				return {
+					...result,
+					bombValues: 40,
+					fireShotValue: 60,
+				};
+			case 'crag3':
+				//Bomb 50, Fire 800
+				return {
+					...result,
+					bombValues: 50,
+					fireShotValue: 80,
+				};
+			case 'cluster1':
+				// Bomb 32, Fire 20 x 3
+				return {
+					...result,
+					bombValues: 96,
+					fireShotValue: 6,
+				};
+			case 'cluster2':
+				// Bomb 32, Fire 20 x 4
+				return {
+					...result,
+					bombValues: 128,
+					fireShotValue: 8,
+				};
+			case 'cluster3':
+				// Bomb 32, Fire 20 x 5
+				return {
+					...result,
+					bombValues: 160,
+					fireShotValue: 10,
+				};
+			case 'fireshot':
+				//Weapon Attack + Fire x0.5 (0.4x lbg)
+				if (inputWeaponType === 'Light Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						fireShotValue:
+							internalTrueRaw *
+							0.4 *
+							outputFireMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else if (inputWeaponType === 'Heavy Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						fireShotValue:
+							internalTrueRaw *
+							0.5 *
+							outputHBGChargeShot *
+							outputFireMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+					};
+				}
+
+			case 'watershot':
+				//(Weapon Attack x0.25 Water) x 3 (0.13x lbg)
+				if (inputWeaponType === 'Light Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						waterShotValue:
+							internalTrueRaw *
+							0.2 *
+							3 *
+							outputWaterMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else if (inputWeaponType === 'Heavy Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						waterShotValue:
+							internalTrueRaw *
+							0.25 *
+							3 *
+							outputHBGChargeShot *
+							outputWaterMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+					};
+				}
+			case 'thundershot':
+				//(Weapon Attack x 0.27 Thunder) x 3 (0.2x lbg)
+				if (inputWeaponType === 'Light Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						thunderShotValue:
+							internalTrueRaw *
+							0.2 *
+							3 *
+							outputThunderMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else if (inputWeaponType === 'Heavy Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						thunderShotValue:
+							internalTrueRaw *
+							0.27 *
+							3 *
+							outputHBGChargeShot *
+							outputThunderMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+					};
+				}
+			case 'iceshot':
+				//(Weapon Attack x0.25 Ice) x 3 (0.13x lbg)
+				if (inputWeaponType === 'Light Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						iceShotValue:
+							internalTrueRaw *
+							0.2 *
+							3 *
+							outputIceMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else if (inputWeaponType === 'Heavy Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						iceShotValue:
+							internalTrueRaw *
+							0.25 *
+							3 *
+							outputHBGChargeShot *
+							outputIceMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+					};
+				}
+			case 'dragonshot':
+				//90 Dragon x3 (75 lbg)
+				if (inputWeaponType === 'Light Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						dragonShotValue:
+							225 *
+							outputDragonMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else if (inputWeaponType === 'Heavy Bowgun') {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+						dragonShotValue:
+							270 *
+							outputHBGChargeShot *
+							outputDragonMultiplier *
+							outputElementalAttackMultiplier *
+							outputHHElementalSongMultiplier,
+					};
+				} else {
+					return {
+						...result,
+						bowQuickShotChargeLevel: 1,
+						quickShotChargeModifier: 1,
+						bowChargeRawLevel: 1,
+						bowChargeElementLevel: 1,
+					};
+				}
+			case 'elecomp':
+				//outputHBGChargeShot
+				switch (inputCompressedElementShot) {
+					case 'Fire Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue: inputNumberCompressedElementShot * 0.5,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							fireShotValue:
+								Math.floor(
+									internalTrueRaw *
+										0.3 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputFireMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+					case 'Water Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue:
+								inputNumberCompressedElementShot * 0.5 * 3,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							waterShotValue:
+								Math.floor(
+									internalTrueRaw *
+										0.15 *
+										3 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputWaterMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+					case 'Thunder Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue:
+								inputNumberCompressedElementShot * 0.5 * 3,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							thunderShotValue:
+								Math.floor(
+									internalTrueRaw *
+										0.17 *
+										3 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputThunderMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+					case 'Ice Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue:
+								inputNumberCompressedElementShot * 0.5 * 3,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							iceShotValue:
+								Math.floor(
+									internalTrueRaw *
+										0.15 *
+										3 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputIceMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+					case 'Dragon Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue:
+								inputNumberCompressedElementShot * outputHBGChargeShot,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							fireShotValue:
+								Math.floor(
+									72 *
+										3 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputFireMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+					case 'Perfect Fire Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue: inputNumberCompressedElementShot * 0.8,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							fireShotValue:
+								Math.floor(
+									internalTrueRaw *
+										0.4 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputFireMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+					case 'Perfect Water Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue: inputNumberCompressedElementShot * 0.8,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							waterShotValue:
+								Math.floor(
+									internalTrueRaw *
+										0.2 *
+										3 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputWaterMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+					case 'Perfect Thunder Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue: inputNumberCompressedElementShot * 0.8,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							thunderShotValue:
+								Math.floor(
+									internalTrueRaw *
+										0.215 *
+										3 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputThunderMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+					case 'Perfect Ice Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue: inputNumberCompressedElementShot * 0.8,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							iceShotValue:
+								Math.floor(
+									internalTrueRaw *
+										0.2 *
+										3 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputIceMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+					case 'Perfect Dragon Shot':
+						return {
+							...result,
+							shotAdjustedMotionValue: inputNumberCompressedElementShot * 0.5,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							fireShotValue:
+								Math.floor(
+									90 *
+										3 *
+										inputNumberCompressedElementShot *
+										outputHBGChargeShot,
+								) *
+								outputFireMultiplier *
+								outputElementalAttackMultiplier *
+								outputHHElementalSongMultiplier,
+						};
+
+					default:
+						return {
+							...result,
+							bowQuickShotChargeLevel: 1,
+							quickShotChargeModifier: 1,
+							bowChargeRawLevel: 1,
+							bowChargeElementLevel: 1,
+							shotAdjustedMotionValue: 0,
+						};
+				}
+
+			default:
+				return result;
+		}
+	}
+
 	function getWeaponSectionMotionValues(
 		weaponName: FrontierWeaponName,
 		section: string,
 		isSharedMotionSection = false,
 	) {
-		let weaponClass = getWeaponClass(weaponName);
-
 		let defaultResult: MotionValueResult[] = [
 			{
 				id: '',
@@ -993,6 +1694,7 @@
 			const weaponEntry = weaponMotionValues.find((w) => w.name === weaponName);
 			if (!weaponEntry) {
 				// Return an empty object or an error message if the weapon is not found
+				// TODO warn user?
 				console.error('Weapon not found');
 				return defaultResult; // or throw new Error('Weapon not found');
 			}
@@ -1036,7 +1738,7 @@
 		);
 
 		let rawHitzoneMultiplier = getExploitWeakness(
-			weaponClass,
+			outputWeaponClass,
 			inputNumberRawHitzone,
 		);
 
@@ -1060,35 +1762,6 @@
 				outputSharpnessMultiplier *
 				elementHitzoneFireMultiplier) /
 				100,
-		);
-
-		console.log(`usedFire: ${usedFire}`);
-		console.log(
-			`inputNumberElementalValueReplacement: ${inputNumberElementalValueReplacement}`,
-		);
-		console.log(`inputNumberSigil1Element: ${inputNumberSigil1Element}`);
-		console.log(`inputNumberSigil2Element: ${inputNumberSigil2Element}`);
-		console.log(`inputNumberSigil3Element: ${inputNumberSigil3Element}`);
-		console.log(`inputNumberUnlimitedSigil: ${inputNumberUnlimitedSigil}`);
-		console.log(`outputAOETotalElement: ${outputAOETotalElement}`);
-		console.log(`outputFireMultiplier: ${outputFireMultiplier}`);
-		console.log(
-			`outputZenithElementMultiplier: ${outputZenithElementMultiplier}`,
-		);
-		console.log(
-			`outputElementalAttackMultiplier: ${outputElementalAttackMultiplier}`,
-		);
-		console.log(
-			`outputHHElementalSongMultiplier: ${outputHHElementalSongMultiplier}`,
-		);
-		console.log(
-			`outputWeaponElementMultiplier: ${outputWeaponElementMultiplier}`,
-		);
-		console.log(`outputFuriousMultiplier: ${outputFuriousMultiplier}`);
-		console.log(`fireValueMultiplier: ${fireValueMultiplier}`);
-		console.log(`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`);
-		console.log(
-			`elementHitzoneFireMultiplier: ${elementHitzoneFireMultiplier}`,
 		);
 
 		let usedWater = Math.floor(
@@ -1176,10 +1849,11 @@
 				100,
 		);
 
-		sectionEntry.motionValues.forEach((element, index) => {
-			let motionValue = element.motionValue;
-			let hitCount = element.hitCount;
-			let elementMultiplier = element.elementMultiplier;
+		sectionEntry.motionValues.forEach((motionValueItem, index) => {
+			/**also compressionmotionvalue*/
+			let motionValue = motionValueItem.motionValue;
+			let hitCount = motionValueItem.hitCount;
+			let elementMultiplier = motionValueItem.elementMultiplier;
 			let critMultiplier = 1;
 			let totalAffinityUsed = 0;
 			let SwordAndShieldSigilAdded = 0;
@@ -1195,17 +1869,108 @@
 			/**statusassault*/
 			let statusAssault = 0;
 
+			/**shotadjustedmotion*/
+			let shotAdjustedMotionValue = motionValue;
+			/**bowchargeQuick*/
+			let bowQuickShotChargeLevel = 1;
+
 			// handle motions with additional properties
-			if (element.name === 'Custom Motion') {
+			// Custom Motion
+			if (
+				motionValueItem.name === 'Custom Motion' ||
+				motionValueItem.specialFlag === 'custommotion'
+			) {
 				motionValue = inputNumberTotalMotionValue;
 				hitCount = inputNumberHitCount;
 				elementMultiplier = inputNumberElementalMultiplier;
-				element.values = motionValue.toString();
+				motionValueItem.values = motionValue.toString();
+			} else if (motionValueItem.specialFlag === 'compressionmotion') {
+				motionValue = outputCompressedShotPower;
+				motionValueItem.values = motionValue.toString();
+			}
+
+			if (weaponName == 'Heavy Bowgun') {
+				shotAdjustedMotionValue = motionValue * outputHBGChargeShot;
+			}
+
+			if (
+				outputQuickShotChargeModifier === 1 ||
+				outputQuickShotChargeModifier === 2
+			) {
+				// lv2 0.85x
+				if (
+					outputBowChargeMultiplierLevels?.chargeModifier ===
+					'Lv2 (1.0x / 0.95x)'
+				) {
+					bowQuickShotChargeLevel = 0.85;
+				}
+				// lv3 0.75x
+				else if (
+					outputBowChargeMultiplierLevels?.chargeModifier ===
+					'Lv3 (1.5x / 1.2x)'
+				) {
+					bowQuickShotChargeLevel = 0.75;
+				}
+				// lv4 0.65x
+				else if (
+					outputBowChargeMultiplierLevels?.chargeModifier ===
+					'Lv4 (1.85x / 1.334x)'
+				) {
+					bowQuickShotChargeLevel = 0.65;
+				}
+			}
+
+			// TODO lazy handling of individual shot multipliers and properties
+			let shotValues = getShotValues(
+				motionValueItem.specialFlag,
+				bowQuickShotChargeLevel,
+				outputBowChargeMultiplierLevels,
+				outputQuickShotChargeModifier,
+				inputElement,
+				critMultiplier,
+				motionValue,
+				outputCriticalDistanceMultiplier,
+				inputBulletStrengthModifier,
+				motionValueItem.name,
+				shotAdjustedMotionValue,
+			);
+
+			let bombValues = shotValues.bombValues;
+			let bulletStrengthModifier = shotValues.bulletStrengthModifier;
+			/**TODO it seems bow does not use this but rather outputCriticalDistanceMultiplier*/
+			let bowgunsCriticalDistanceMultiplier =
+				shotValues.criticalDistanceMultiplier;
+			let quickShotMode = shotValues.quickShotChargeModifier;
+			let dragonShotValue = shotValues.dragonShotValue;
+			let fireShotValue = shotValues.fireShotValue;
+			let waterShotValue = shotValues.waterShotValue;
+			let iceShotValue = shotValues.iceShotValue;
+			let thunderShotValue = shotValues.thunderShotValue;
+			let bowSigilAddedValue = shotValues.bowSigilAddedValue;
+
+			bowQuickShotChargeLevel = shotValues.bowQuickShotChargeLevel;
+			// TODO does these hold the values in here or does it change due to reactivity instantly?
+			// outputQuickShotChargeModifier = shotValues.quickShotChargeModifier;
+			// outputCriticalDistanceMultiplier = shotValues.criticalDistanceMultiplier;
+			let bowChargeRawLevel = shotValues.bowChargeRawLevel;
+
+			// TODO testing
+			if (motionValueItem.specialFlag === 'elecomp') {
+				shotAdjustedMotionValue = shotValues.shotAdjustedMotionValue;
+			}
+
+			// TODO gunner and blademaster may conflict
+			if (outputWeaponClass === 'Gunner') {
+				critMultiplier = shotValues.criticalMultiplier;
+				motionValue = shotValues.motionValue;
 			}
 
 			// Reflect
 			// TODO specialFlag types
-			if (inputCritMode === 'No Crits' || element.specialFlag === 'nocrit') {
+			if (
+				inputCritMode === 'No Crits' ||
+				motionValueItem.specialFlag === 'nocrit'
+			) {
 				critMultiplier = 1.0;
 			} else {
 				if (inputCritMode === 'All Crits') {
@@ -1240,7 +2005,7 @@
 			}
 
 			// SnS Sigil
-			if (element.name === 'Sigil Additional') {
+			if (motionValueItem.name === 'Sigil Additional') {
 				if (inputElement === 'None') {
 					SwordAndShieldSigilAdded = Math.floor(
 						Math.floor(
@@ -1300,13 +2065,6 @@
 			let totalElementalOutput =
 				fireOutput + waterOutput + thunderOutput + iceOutput + dragonOutput;
 
-			console.log(`fireOutput: ${fireOutput}`);
-			console.log(`usedFire: ${usedFire}`);
-			console.log(`outputMonsterTotalDefense: ${outputMonsterTotalDefense}`);
-			console.log(`hitCount: ${hitCount}`);
-			console.log(`elementMultiplier: ${elementMultiplier}`);
-			console.log(`outputFencingMultiplier: ${outputFencingMultiplier}`);
-
 			// Additional including status assault
 			// Status active, poison or paralysis
 			if (
@@ -1332,7 +2090,7 @@
 							Math.floor(
 								statusAssaultMultiplier *
 									(outputStatusUsedSA + // TODO outputStatusValueMultiplier which is used to calculate this is wrong in the original code, but we leave as is for now
-										getStatusAssault(inputWeaponType, 'Poison')),
+										getStatusAssault(weaponName, 'Poison')),
 							) * outputMonsterTotalDefense,
 						) * outputFencingMultiplier,
 					);
@@ -1341,117 +2099,652 @@
 				statusAssault = 0;
 			}
 
-			if (element.name === '~ Burst ~ 3 Hits') {
+			if (motionValueItem.name === '~ Burst ~ 3 Hits') {
 				additional = Math.floor(50 * outputMonsterTotalDefense);
-			} else if (element.name === '~ Burst ~ 11 Hits') {
+			} else if (motionValueItem.name === '~ Burst ~ 11 Hits') {
 				additional = Math.floor(100 * outputMonsterTotalDefense);
-			} else if (element.name === '~ Burst ~ 12 Hits+') {
+			} else if (motionValueItem.name === '~ Burst ~ 12 Hits+') {
 				additional = Math.floor(200 * outputMonsterTotalDefense);
 			} else {
 				additional = 0;
 			}
 
-			outputAdditional =
+			let outputAdditional =
 				(Math.floor(inputNumberOtherAdditional * outputMonsterTotalDefense) +
 					additional +
 					statusAssault +
 					SwordAndShieldSigilAdded) *
 				hitCount;
 
-			// Raw Output
-			let rawOutput = Math.floor(
-				Math.floor(
+			let rawOutput = 0;
+
+			if (outputWeaponClass === 'Blademaster') {
+				// Raw Output
+				rawOutput = Math.floor(
 					Math.floor(
 						Math.floor(
 							Math.floor(
-								((Math.floor(motionValue * critMultiplier) / 100) *
-									getMaxTrueRaw(internalTrueRaw) *
-									outputSharpnessMultiplier *
-									flagMultiplier *
-									outputSwordAndShieldMultiplier *
-									outputOtherMultipliers *
-									outputMonsterStatusInflictedMultiplier *
-									rawHitzoneMultiplier) /
-									100,
-							) * outputMonsterTotalDefense,
-						),
-					) * outputAbsoluteDefenseMultiplier,
-				) *
-					outputPremiumCourseMultiplier *
-					outputFencingMultiplier,
-			);
+								Math.floor(
+									((Math.floor(motionValue * critMultiplier) / 100) *
+										getMaxTrueRaw(internalTrueRaw) *
+										outputSharpnessMultiplier *
+										flagMultiplier *
+										outputSwordAndShieldMultiplier *
+										outputOtherMultipliers *
+										outputMonsterStatusInflictedMultiplier *
+										rawHitzoneMultiplier) /
+										100,
+								) * outputMonsterTotalDefense,
+							),
+						) * outputAbsoluteDefenseMultiplier,
+					) *
+						outputPremiumCourseMultiplier *
+						outputFencingMultiplier,
+				);
+			} else if (
+				weaponName === 'Light Bowgun' ||
+				weaponName === 'Heavy Bowgun'
+			) {
+				// TODO testing
+				if (motionValueItem.specialFlag === 'elecomp') {
+					motionValue = Math.floor(shotAdjustedMotionValue);
+					motionValueItem.values = motionValue.toString();
+				}
 
-			console.log(`motionValue: ${motionValue}`);
-			console.log(`critMultiplier: ${critMultiplier}`);
-			console.log(`internalAttack: ${internalAttack}`);
-			console.log(`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`);
-			console.log(`flagMultiplier: ${flagMultiplier}`);
-			console.log(
-				`outputSwordAndShieldMultiplier: ${outputSwordAndShieldMultiplier}`,
-			);
-			console.log(`outputOtherMultipliers: ${outputOtherMultipliers}`);
-			console.log(
-				`outputMonsterStatusInflictedMultiplier: ${outputMonsterStatusInflictedMultiplier}`,
-			);
-			console.log(`rawHitzoneMultiplier: ${rawHitzoneMultiplier}`);
-			console.log(`outputMonsterTotalDefense: ${outputMonsterTotalDefense}`);
-			console.log(
-				`outputAbsoluteDefenseMultiplier: ${outputAbsoluteDefenseMultiplier}`,
-			);
-			console.log(
-				`outputPremiumCourseMultiplier: ${outputPremiumCourseMultiplier}`,
-			);
-			console.log(`outputFencingMultiplier: ${outputFencingMultiplier}`);
-			console.log(`rawOutput: ${rawOutput}`);
+				// actual raw output
+				rawOutput = Math.floor(
+					Math.floor(
+						Math.floor(
+							(shotAdjustedMotionValue / 100) *
+								critMultiplier *
+								internalTrueRaw *
+								bowgunsCriticalDistanceMultiplier *
+								bulletStrengthModifier *
+								outputShotMultiplier *
+								outputMonsterStatusInflictedMultiplier *
+								(inputNumberRawHitzone / 100) *
+								outputMonsterTotalDefense,
+						) * outputAbsoluteDefenseMultiplier,
+					) * outputPremiumCourseMultiplier,
+				);
+			} else if (weaponName === 'Bow') {
+				if (quickShotMode !== 2) {
+					rawOutput = Math.floor(
+						Math.floor(
+							Math.floor(
+								Math.floor(
+									(Math.floor(
+										(motionValue / 100) * critMultiplier * internalTrueRaw,
+									) *
+										outputCriticalDistanceMultiplier *
+										outputBowCoatingModifier *
+										bulletStrengthModifier *
+										bowChargeRawLevel *
+										bowQuickShotChargeLevel *
+										outputMonsterStatusInflictedMultiplier *
+										inputNumberRawHitzone) /
+										100,
+								) * outputMonsterTotalDefense,
+							) * outputAbsoluteDefenseMultiplier,
+						) * outputPremiumCourseMultiplier,
+					);
+				} else if (quickShotMode === 2) {
+					rawOutput =
+						Math.floor(
+							Math.floor(
+								Math.floor(
+									Math.floor(
+										(Math.floor(
+											(motionValue / 100) * critMultiplier * internalTrueRaw,
+										) *
+											outputCriticalDistanceMultiplier *
+											outputBowCoatingModifier *
+											bulletStrengthModifier *
+											shotValues.bowChargeRawLevel *
+											outputMonsterStatusInflictedMultiplier *
+											inputNumberRawHitzone) /
+											100,
+									) * outputMonsterTotalDefense,
+								) * outputAbsoluteDefenseMultiplier,
+							) * outputPremiumCourseMultiplier,
+						) +
+						Math.floor(
+							Math.floor(
+								Math.floor(
+									Math.floor(
+										(Math.floor(
+											(motionValue / 100) * critMultiplier * internalTrueRaw,
+										) *
+											outputCriticalDistanceMultiplier *
+											outputBowCoatingModifier *
+											bulletStrengthModifier *
+											shotValues.bowChargeRawLevel *
+											bowQuickShotChargeLevel *
+											outputMonsterStatusInflictedMultiplier *
+											inputNumberRawHitzone) /
+											100,
+									) * outputMonsterTotalDefense,
+								) * outputAbsoluteDefenseMultiplier,
+							) * outputPremiumCourseMultiplier,
+						);
+				}
+			}
 
 			// Final Ouput
 			outputTotal = totalElementalOutput + rawOutput + outputAdditional;
 
+			// Gunner override TODO refactor needed
+			// Elemental
+			if (weaponName === 'Light Bowgun' || weaponName === 'Heavy Bowgun') {
+				// Bowguns
+				fireOutput = Math.floor(
+					Math.floor(
+						(Math.floor(fireShotValue) *
+							shotValues.bowChargeElementLevel *
+							outputFuriousMultiplier *
+							outputZenithElementMultiplier *
+							bowQuickShotChargeLevel *
+							inputNumberFireHitzone) /
+							100,
+					) * outputMonsterTotalDefense,
+				);
+				waterOutput = Math.floor(
+					Math.floor(
+						(Math.floor(waterShotValue) *
+							shotValues.bowChargeElementLevel *
+							outputFuriousMultiplier *
+							outputZenithElementMultiplier *
+							bowQuickShotChargeLevel *
+							inputNumberWaterHitzone) /
+							100,
+					) * outputMonsterTotalDefense,
+				);
+				thunderOutput = Math.floor(
+					Math.floor(
+						(Math.floor(thunderShotValue) *
+							shotValues.bowChargeElementLevel *
+							outputFuriousMultiplier *
+							outputZenithElementMultiplier *
+							bowQuickShotChargeLevel *
+							inputNumberThunderHitzone) /
+							100,
+					) * outputMonsterTotalDefense,
+				);
+				iceOutput = Math.floor(
+					Math.floor(
+						(Math.floor(iceShotValue) *
+							shotValues.bowChargeElementLevel *
+							outputFuriousMultiplier *
+							outputZenithElementMultiplier *
+							bowQuickShotChargeLevel *
+							inputNumberIceHitzone) /
+							100,
+					) * outputMonsterTotalDefense,
+				);
+				dragonOutput = Math.floor(
+					Math.floor(
+						(Math.floor(dragonShotValue) *
+							shotValues.bowChargeElementLevel *
+							outputFuriousMultiplier *
+							outputZenithElementMultiplier *
+							bowQuickShotChargeLevel *
+							inputNumberDragonHitzone) /
+							100,
+					) * outputMonsterTotalDefense,
+				);
+
+				totalElementalOutput =
+					fireOutput + waterOutput + thunderOutput + iceOutput + dragonOutput;
+			} else if (weaponName === 'Bow') {
+				// Bow
+				if (quickShotMode !== 2) {
+					fireOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputFireMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Fire', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberFireHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) * hitCount;
+
+					waterOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputWaterMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Water', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberWaterHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) * hitCount;
+
+					thunderOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputThunderMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Thunder', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberThunderHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) * hitCount;
+
+					iceOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputIceMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Ice', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberIceHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) * hitCount;
+
+					dragonOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputDragonMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Dragon', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberDragonHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) * hitCount;
+
+					totalElementalOutput =
+						fireOutput + waterOutput + thunderOutput + iceOutput + dragonOutput;
+				} else if (quickShotMode === 2) {
+					fireOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputFireMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Fire', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberFireHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount +
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputFireMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Fire', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									inputNumberFireHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount;
+
+					waterOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputWaterMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Water', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberWaterHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount +
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputWaterMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Water', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									inputNumberWaterHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount;
+
+					thunderOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputThunderMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Thunder', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberThunderHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount +
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputThunderMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Thunder', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									inputNumberThunderHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount;
+
+					iceOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputIceMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Ice', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberIceHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount +
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputIceMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Ice', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									inputNumberIceHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount;
+
+					dragonOutput =
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil1Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputDragonMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Dragon', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									shotValues.bowQuickShotChargeLevel *
+									inputNumberDragonHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount +
+						Math.floor(
+							Math.floor(
+								((Math.floor(
+									(inputNumberElementalValueReplacement +
+										inputNumberSigil1Element * 10 +
+										inputNumberSigil2Element * 10 +
+										inputNumberSigil3Element * 10 +
+										inputNumberUnlimitedSigil * 10 +
+										outputAOETotalElement) *
+										outputDragonMultiplier *
+										outputZenithElementMultiplier *
+										outputFuriousMultiplier *
+										getElementMultiplier('Dragon', inputElement),
+								) /
+									10) *
+									shotValues.bowChargeElementLevel *
+									inputNumberDragonHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) *
+							hitCount;
+
+					totalElementalOutput =
+						fireOutput + waterOutput + thunderOutput + iceOutput + dragonOutput;
+				}
+			}
+
+			// Sum above
+			// Additional
+			if (outputWeaponClass === 'Gunner') {
+				outputAdditional =
+					Math.floor(
+						(inputNumberOtherAdditional + bombValues) *
+							outputMonsterTotalDefense,
+					) + bowSigilAddedValue;
+
+				outputTotal = totalElementalOutput + rawOutput + outputAdditional;
+				// TODO test
+				if (weaponName !== 'Bow') {
+					internalFire = 0;
+					internalWater = 0;
+					internalThunder = 0;
+					internalIce = 0;
+					internalDragon = 0;
+				} else {
+					internalFire = Math.floor(
+						Math.floor(
+							(inputNumberElementalValueReplacement +
+								inputNumberSigil1Element * 10 +
+								inputNumberSigil2Element * 10 +
+								inputNumberSigil3Element * 10 +
+								inputNumberUnlimitedSigil * 10 +
+								outputAOETotalElement * outputFuriousMultiplier) *
+								outputFireMultiplier *
+								outputZenithElementMultiplier *
+								getElementMultiplier('Fire', inputElement),
+						) / 10,
+					);
+
+					internalWater = Math.floor(
+						Math.floor(
+							(inputNumberElementalValueReplacement +
+								inputNumberSigil1Element * 10 +
+								inputNumberSigil2Element * 10 +
+								inputNumberSigil3Element * 10 +
+								inputNumberUnlimitedSigil * 10 +
+								outputAOETotalElement * outputFuriousMultiplier) *
+								outputWaterMultiplier *
+								outputZenithElementMultiplier *
+								getElementMultiplier('Water', inputElement),
+						) / 10,
+					);
+
+					internalThunder = Math.floor(
+						Math.floor(
+							(inputNumberElementalValueReplacement +
+								inputNumberSigil1Element * 10 +
+								inputNumberSigil2Element * 10 +
+								inputNumberSigil3Element * 10 +
+								inputNumberUnlimitedSigil * 10 +
+								outputAOETotalElement * outputFuriousMultiplier) *
+								outputThunderMultiplier *
+								outputZenithElementMultiplier *
+								getElementMultiplier('Thunder', inputElement),
+						) / 10,
+					);
+
+					internalIce = Math.floor(
+						Math.floor(
+							(inputNumberElementalValueReplacement +
+								inputNumberSigil1Element * 10 +
+								inputNumberSigil2Element * 10 +
+								inputNumberSigil3Element * 10 +
+								inputNumberUnlimitedSigil * 10 +
+								outputAOETotalElement * outputFuriousMultiplier) *
+								outputIceMultiplier *
+								outputZenithElementMultiplier *
+								getElementMultiplier('Ice', inputElement),
+						) / 10,
+					);
+
+					internalDragon = Math.floor(
+						Math.floor(
+							(inputNumberElementalValueReplacement +
+								inputNumberSigil1Element * 10 +
+								inputNumberSigil2Element * 10 +
+								inputNumberSigil3Element * 10 +
+								inputNumberUnlimitedSigil * 10 +
+								outputAOETotalElement * outputFuriousMultiplier) *
+								outputDragonMultiplier *
+								outputZenithElementMultiplier *
+								getElementMultiplier('Dragon', inputElement),
+						) / 10,
+					);
+				}
+
+				// $("#internalAffinity").text(totalaffinityused + "%");
+				internalStatus = 0;
+			}
+
 			// Used Values
-
-			console.log('-start-');
-			console.log(
-				inputNumberElementalValueReplacement +
-					inputNumberSigil1Element * 10 +
-					inputNumberSigil2Element * 10 +
-					inputNumberSigil3Element * 10 +
-					inputNumberUnlimitedSigil * 10 +
-					outputAOETotalElement,
-			);
-			console.log('-1-');
-
-			console.log(getElementMultiplier('Fire', inputElement));
-			console.log('-2-');
-
-			console.log(outputZenithElementMultiplier);
-			console.log('-3-');
-
-			console.log(outputElementalAttackMultiplier);
-			console.log('-4-');
-
-			console.log(outputHHElementalSongMultiplier);
-			console.log('-5-');
-
-			console.log(outputWeaponElementMultiplier);
-			console.log('-6-');
-
-			console.log(outputFuriousMultiplier);
-			console.log('-7-');
-
-			console.log(fireValueMultiplier);
-			console.log('-8-');
-
-			console.log(outputSharpnessMultiplier);
-			console.log('-end-');
-
-			console.log(
-				`name: ${element.name}\nmotion: ${element.values}\nraw: ${rawOutput.toString()}`,
-			);
 
 			result.push({
 				id: index.toString(),
-				name: element.name,
-				motion: element.values,
+				name: motionValueItem.name,
+				motion: motionValueItem.values,
 				raw: rawOutput.toString() === 'NaN' ? '0' : rawOutput.toString(),
 				element:
 					totalElementalOutput.toString() === 'NaN'
@@ -1866,9 +3159,11 @@
 		inputCritMode = newInputs.inputCritMode || inputCritMode;
 		inputSharpness = newInputs.inputSharpness || inputSharpness;
 		inputFencing = newInputs.inputFencing || inputFencing;
-		inputDistanceMultiplier =
-			newInputs.inputDistanceMultiplier || inputDistanceMultiplier;
-		inputBulletModifier = newInputs.inputBulletModifier || inputBulletModifier;
+		inputCriticalDistanceMultiplier =
+			newInputs.inputCriticalDistanceMultiplier ||
+			inputCriticalDistanceMultiplier;
+		inputBulletStrengthModifier =
+			newInputs.inputBulletStrengthModifier || inputBulletStrengthModifier;
 		inputShotMultiplier = newInputs.inputShotMultiplier || inputShotMultiplier;
 		inputHbgChargeShot = newInputs.inputHbgChargeShot || inputHbgChargeShot;
 		inputCompressedShotMultiplier =
@@ -1877,8 +3172,8 @@
 			newInputs.inputCompressedElementShot || inputCompressedElementShot;
 		inputBowCoatingsMultiplier =
 			newInputs.inputBowCoatingsMultiplier || inputBowCoatingsMultiplier;
-		inputChargeMultiplier =
-			newInputs.inputChargeMultiplier || inputChargeMultiplier;
+		inputBowChargeMultiplier =
+			newInputs.inputBowChargeMultiplier || inputBowChargeMultiplier;
 		inputQuickShot = newInputs.inputQuickShot || inputQuickShot;
 		inputElement = newInputs.inputElement || inputElement;
 		inputAoeElementSigil =
@@ -2134,9 +3429,10 @@
 		inputIssenSkills: string,
 		outputTotalAffinity: number,
 	) {
-		if (outputTotalAffinity === 0) {
-			return 1;
-		}
+		// TODO uncomment when removing legacy bugs
+		// if (outputTotalAffinity === 0) {
+		// 	return 1;
+		// }
 
 		let baseCritMultiplier = outputTotalAffinity < 0 ? 0.75 : 1.25;
 
@@ -2527,7 +3823,6 @@
 	// TODO more formulas
 	// TODO gunner formulas
 
-	let internalAffinity = 0;
 	let rarity: FrontierRarity = 1;
 	let weaponIconProps = {
 		rarity: rarity,
@@ -2606,14 +3901,18 @@
 	let inputCritMode = 'All Crits';
 	let inputSharpness = 'Cyan (1.8x)';
 	let inputFencing = 'None';
-	let inputDistanceMultiplier = '1.8x LBG & Bow Crit Distance';
-	let inputBulletModifier = 'None (1x)';
-	let inputShotMultiplier = 'None (1x)';
+	let inputCriticalDistanceMultiplier = '1.8x LBG & Bow Crit Distance';
+	let inputBulletStrengthModifier = 'None (1x)';
+	/**bowgunshotmodifier*/
+	let inputShotMultiplier = 'Just Shot (1.3x)';
+	/**HBGchargemulti*/
 	let inputHbgChargeShot = 'Normal / Charge Lv 0 (1x)';
 	let inputCompressedShotMultiplier = 'Not Compressed (0x)';
+	/**bowbottles*/
 	let inputBowCoatingsMultiplier = 'None (1x)';
-	let inputChargeMultiplier = 'Lv4 (1.85x / 1.334x)';
+	let inputBowChargeMultiplier = 'Lv4 (1.85x / 1.334x)';
 	let inputQuickShot = 'Normal (All 1.0x)';
+	/**eleshottype*/
 	let inputCompressedElementShot = 'Not Compressed';
 	let inputElement: FrontierElement = 'None';
 	let inputAoeElementSigil = 'None';
@@ -2653,6 +3952,7 @@
 	let inputNumberLanceImpactMultiplier = 1;
 	let inputNumberTranscendRawMultiplier = 1;
 	let inputNumberRavientePowerSwordCrystalsMultiplier = 1;
+	/**fakeele rangedfakeelement*/
 	let inputNumberElementalValueReplacement = 0;
 	let inputNumberSigil1Element = 0;
 	let inputNumberSigil2Element = 0;
@@ -2677,8 +3977,6 @@
 	let inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle =
 		'Extreme Style';
 	let bentoSection = 'Vigorous';
-
-	let outputAdditional = 0;
 
 	let sharedMotionValues = getWeaponSectionMotionValues(
 		inputWeaponType,
@@ -2751,14 +4049,14 @@
 		inputCritMode: inputCritMode,
 		inputSharpness: inputSharpness,
 		inputFencing: inputFencing,
-		inputDistanceMultiplier: inputDistanceMultiplier,
-		inputBulletModifier: inputBulletModifier,
+		inputCriticalDistanceMultiplier: inputCriticalDistanceMultiplier,
+		inputBulletStrengthModifier: inputBulletStrengthModifier,
 		inputShotMultiplier: inputShotMultiplier,
 		inputHbgChargeShot: inputHbgChargeShot,
 		inputCompressedShotMultiplier: inputCompressedShotMultiplier,
 		inputCompressedElementShot: inputCompressedElementShot,
 		inputBowCoatingsMultiplier: inputBowCoatingsMultiplier,
-		inputChargeMultiplier: inputChargeMultiplier,
+		inputBowChargeMultiplier: inputBowChargeMultiplier,
 		inputQuickShot: inputQuickShot,
 		inputElement: inputElement,
 		inputAoeElementSigil: inputAoeElementSigil,
@@ -2971,7 +4269,7 @@
 
 	$: outputVigorousAddition =
 		outputVigorousUp && outputAdrenaline === 1.15
-			? getWeaponClass(inputWeaponType) === 'Blademaster'
+			? outputWeaponClass === 'Blademaster'
 				? 100
 				: 50
 			: 0;
@@ -3022,6 +4320,7 @@
 
 	$: console.log(`outputFuriousAttack: ${outputFuriousAttack}`);
 
+	/**furious ele*/
 	$: outputFuriousMultiplier =
 		multipliersDropdownItems.find((item) => item.name === inputFurious)
 			?.value || 1;
@@ -3266,6 +4565,37 @@ does not get multiplied by horn */
 		`outputConsumptionSlayerAttack: ${outputConsumptionSlayerAttack}`,
 	);
 
+	/**bowgunshotmodifier*/
+	$: outputShotMultiplier =
+		gunnerDropdownItems.find((item) => item.name === inputShotMultiplier)
+			?.value || 1;
+
+	$: console.log(`outputShotMultiplier: ${outputShotMultiplier}`);
+
+	$: outputCriticalDistanceMultiplier =
+		gunnerDropdownItems.find((e) => e.name === inputCriticalDistanceMultiplier)
+			?.value || 1;
+
+	$: console.log(
+		`outputCriticalDistanceMultiplier: ${outputCriticalDistanceMultiplier}`,
+	);
+
+	/** coatingmod*/
+	$: outputBowCoatingModifier =
+		inputConsumptionSlayer === 'Active (+100)'
+			? outputBowCoatingsMultiplier + 0.2
+			: outputBowCoatingsMultiplier;
+
+	$: console.log(`outputBowCoatingModifier: ${outputBowCoatingModifier}`);
+
+	/**bowbottles*/
+	$: outputBowCoatingsMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsMultiplier,
+		)?.value || 1;
+
+	$: console.log(`outputBowCoatingsMultiplier: ${outputBowCoatingsMultiplier}`);
+
 	$: outputRoadLastStandAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputRoadLastStand)
 			?.value || 0;
@@ -3341,11 +4671,21 @@ does not get multiplied by horn */
 		`outputWeaponSpecificMultiplier: ${outputWeaponSpecificMultiplier}`,
 	);
 
-	$: outputHammerMultiplier =
-		multipliersDropdownItems.find((item) => item.name === inputChargeMultiplier)
-			?.value || 1;
+	/**TODO legacy unused*/
+	const outputHammerMultiplier = 1;
+	// multipliersDropdownItems.find((item) => item.name === inputBowChargeMultiplier)
+	// 	?.value || 1;
 
-	$: console.log(`outputHammerMultiplier: ${outputHammerMultiplier}`);
+	/**quickshotchargemodifier and quickshotmode*/
+	$: outputQuickShotChargeModifier =
+		gunnerDropdownItems.find((item) => item.name === inputQuickShot)?.value ||
+		0;
+
+	/*bowchargelevel and elebowchargelevel. chargeLevel is bowchargemodifier*/
+	$: outputBowChargeMultiplierLevels =
+		bowChargeLevels.find(
+			(item) => item.chargeModifier === inputBowChargeMultiplier,
+		) || undefined;
 
 	$: outputMultipliers = Math.floor(
 		Math.floor(attackA * outputHuntingHornMultiplier + attackB) *
@@ -3428,6 +4768,7 @@ does not get multiplied by horn */
 		`outputCompressedShotsMultiplier: ${outputCompressedShotsMultiplier}`,
 	);
 
+	/**compressedshotpower*/
 	$: outputCompressedShotPower = Math.floor(
 		inputNumberCompressedShot * outputCompressedShotsMultiplier,
 	);
@@ -3607,6 +4948,7 @@ does not get multiplied by horn */
 
 	$: console.log(`outputWeaponStatusModifiers: ${outputWeaponStatusModifiers}`);
 
+	/**eleHalk*/
 	$: outputElementalAttackMultiplier =
 		elementalSkillsDropdownItems.find(
 			(item) => item.name === inputElementalAttackMultiplier,
@@ -3616,6 +4958,7 @@ does not get multiplied by horn */
 		`outputElementalAttackMultiplier: ${outputElementalAttackMultiplier}`,
 	);
 
+	/**eleHH*/
 	$: outputHHElementalSongMultiplier =
 		elementalSkillsDropdownItems.find(
 			(item) => item.name === inputHhElementalUp,
@@ -3627,7 +4970,7 @@ does not get multiplied by horn */
 
 	/**eleSwaxe*/
 	$: outputWeaponElementMultiplier =
-		elementalSkillsDropdownItems.find(
+		elementDropdownItems.find(
 			(item) => item.name === inputWeaponElementMultipliers,
 		)?.value || 1;
 
@@ -3653,7 +4996,7 @@ does not get multiplied by horn */
 		}
 	}
 
-	/**ACtrueout*/
+	/**ACtrueout. ACtrueoutHolder?*/
 	$: internalTrueRaw =
 		outputAttackCeiling > 180
 			? maxTrueRaw
@@ -3684,21 +5027,21 @@ does not get multiplied by horn */
 						: missionRequirementAttackCeilings[outputAttackCeiling - 1];
 
 	$: internalAttack =
-		getWeaponClass(inputWeaponType) === 'Blademaster'
+		outputWeaponClass === 'Blademaster'
 			? Math.floor(
-					internalTrueRaw *
+					getMaxTrueRaw(internalTrueRaw) *
 						outputSharpnessMultiplier *
 						outputSwordAndShieldMultiplier *
 						outputOtherMultipliers *
 						outputMonsterStatusInflictedMultiplier,
 				)
 			: Math.floor(
-					internalTrueRaw *
+					getMaxTrueRaw(internalTrueRaw) *
 						outputOtherMultipliers *
 						outputMonsterStatusInflictedMultiplier,
 				);
 
-	/** This should be the correct one, not 50 * count + 50 * value.*/
+	/** This should be the correct one, not 50 * count + 50 * value. aoeEle*/
 	$: outputAOETotalElement =
 		outputAOETotalElementCount === 0 || inputNumberAOEElementSigil === 0
 			? 0
@@ -3881,6 +5224,10 @@ does not get multiplied by horn */
 
 	$: outputMonsterTotalDefense =
 		inputNumberDefenseRate * inputNumberMonsterRage * inputNumberHCModifiers;
+
+	/**HBGchargemulti*/
+	$: outputHBGChargeShot =
+		gunnerDropdownItems.find((e) => e.name === inputHbgChargeShot)?.value || 1;
 
 	// outputStatusAssault = Math.floor(
 	// 	(statusUsedSA + getStatusAssault(inputWeaponType, inputStatus)) *
@@ -4174,6 +5521,8 @@ does not get multiplied by horn */
 	);
 
 	let legacyCalculatorSaveSlotNumber = 1;
+
+	$: outputWeaponClass = getWeaponClass(inputWeaponType);
 </script>
 
 <svelte:head>
@@ -4417,7 +5766,8 @@ does not get multiplied by horn */
 							>.
 						</ListItem>
 						<ListItem
-							>Open the Console by pressing <kbd>Ctrl+Shift+I</kbd>.</ListItem
+							>Open the Console by pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+							<kbd>I</kbd>.</ListItem
 						>
 						<ListItem>
 							To put all of your save slots into the clipboard, paste the
@@ -5583,10 +6933,10 @@ does not get multiplied by horn */
 										bind:selectedId={inputPartnyaaBond}
 										items={[
 											{ id: 'None', text: 'None' },
-											{ id: 'Bond Level 1(+0)', text: 'Bond Level 1(+0)' },
-											{ id: 'Bond Level 2(+10)', text: 'Bond Level 2(+10)' },
-											{ id: 'Bond Level 3(+20)', text: 'Bond Level 3(+20)' },
-											{ id: 'Bond Level 4(+30)', text: 'Bond Level 4(+30)' },
+											{ id: 'Bond Level 1(+0)', text: 'Bond Level 1 (+0)' },
+											{ id: 'Bond Level 2(+10)', text: 'Bond Level 2 (+10)' },
+											{ id: 'Bond Level 3(+20)', text: 'Bond Level 3 (+20)' },
+											{ id: 'Bond Level 4(+30)', text: 'Bond Level 4 (+30)' },
 										]}
 									/>
 								</div>
@@ -5877,10 +7227,10 @@ does not get multiplied by horn */
 											{ id: 'Gunlance', text: 'Gunlance' },
 											{ id: 'Tonfa', text: 'Tonfa' },
 											{ id: 'Switch Axe F', text: 'Switch Axe F' },
+											{ id: 'Magnet Spike', text: 'Magnet Spike' },
 											{ id: 'Light Bowgun', text: 'Light Bowgun' },
 											{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
 											{ id: 'Bow', text: 'Bow' },
-											{ id: 'Magnet Spike', text: 'Magnet Spike' },
 										]}
 									/>
 
@@ -6072,7 +7422,7 @@ does not get multiplied by horn */
 									/>
 								</div>
 							</div>
-							{#if getWeaponClass(inputWeaponType) === 'Blademaster'}
+							{#if outputWeaponClass === 'Blademaster'}
 								<div class="input-section">
 									<div class="small-header">⚔️ Blademaster</div>
 									<div class="inputs-group-column">
@@ -6149,7 +7499,7 @@ does not get multiplied by horn */
 											</Tooltip>
 											<Dropdown
 												titleText="Distance Multiplier"
-												bind:selectedId={inputDistanceMultiplier}
+												bind:selectedId={inputCriticalDistanceMultiplier}
 												items={[
 													{
 														id: '1.8x LBG & Bow Crit Distance',
@@ -6243,7 +7593,7 @@ does not get multiplied by horn */
 
 										<Dropdown
 											titleText="Bullet Modifier"
-											bind:selectedId={inputBulletModifier}
+											bind:selectedId={inputBulletStrengthModifier}
 											items={[
 												{ id: 'None (1x)', text: 'None (1x)' },
 												{
@@ -6266,6 +7616,7 @@ does not get multiplied by horn */
 											titleText="Shot Multiplier"
 											bind:selectedId={inputShotMultiplier}
 											items={[
+												{ id: 'None (1x)', text: 'None (1x)' },
 												{ id: 'Just Shot (1.3x)', text: 'Just Shot (1.3x)' },
 												{
 													id: 'Perfect JS (1.4x)',
@@ -6279,7 +7630,6 @@ does not get multiplied by horn */
 													id: 'Finishing Shot (2.0x)',
 													text: 'Finishing Shot (2.0x)',
 												},
-												{ id: 'None (1x)', text: 'None (1x)' },
 												{
 													id: 'Rapid Fire (0.5x)',
 													text: 'Rapid Fire (0.5x)',
@@ -6325,7 +7675,7 @@ does not get multiplied by horn */
 												max={maximumNumberValue}
 												bind:value={inputNumberCompressedShot}
 												invalidText={invalidNumberValueText}
-												label={'Compressed Shot'}
+												label={'Compressed Shot Count'}
 											/>
 										</div>
 										<Dropdown
@@ -6505,16 +7855,16 @@ does not get multiplied by horn */
 										</div>
 
 										<Dropdown
-											titleText="Charge Multiplier"
-											bind:selectedId={inputChargeMultiplier}
+											titleText="Bow Charge Multiplier"
+											bind:selectedId={inputBowChargeMultiplier}
 											items={[
 												{
 													id: 'Lv1 (0.4x / 0.7x)',
 													text: 'Lv1 (0.4x / 0.7x)',
 												},
 												{
-													id: 'Lv2 (1.0x / 0.95x) ',
-													text: 'Lv2 (1.0x / 0.95x) ',
+													id: 'Lv2 (1.0x / 0.95x) ', // TODO using legacy values hence the inconsistency
+													text: 'Lv2 (1.0x / 0.8x) ',
 												},
 												{
 													id: 'Lv3 (1.5x / 1.2x)',
@@ -6570,7 +7920,7 @@ does not get multiplied by horn */
 												{
 													id: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
 													text: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
-												}, // TODO
+												},
 												{
 													id: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
 													text: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
@@ -6618,7 +7968,7 @@ does not get multiplied by horn */
 											max={maximumNumberValue}
 											bind:value={inputNumberCompressedElementShot}
 											invalidText={invalidNumberValueText}
-											label={'Compressed Element Shot'}
+											label={'Compressed Element Shot Count'}
 										/>
 									</div>
 									<Dropdown
@@ -12404,5 +13754,21 @@ does not get multiplied by horn */
 		gap: 1rem;
 		flex-wrap: wrap;
 		align-items: center;
+	}
+
+	kbd {
+		background-color: var(--ctp-surface0);
+		border-radius: 3px;
+		border: 1px solid var(--ctp-overlay0);
+		box-shadow:
+			0 1px 1px rgba(0, 0, 0, 0.2),
+			0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+		color: var(--cpt-text);
+		display: inline-block;
+		font-size: 0.85em;
+		font-weight: 700;
+		line-height: 1;
+		padding: 2px 4px;
+		white-space: nowrap;
 	}
 </style>
