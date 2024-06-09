@@ -1,6 +1,4 @@
-// export function load() {
-// 	throw new Error('yikes');
-// }
+// TODO can i prerender this?
 console.log('layout.server.ts');
 import { apiCacheTimeouts } from '$lib/constants';
 import type { GitHubData } from '$lib/types';

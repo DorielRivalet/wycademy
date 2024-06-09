@@ -17117,6 +17117,7 @@ export const flatAdditionsDropdownItems: DropdownItemOption[] = [
 	},
 ] as const;
 
+/**If this is the wrong dropdown try elementDropdownItems (possible rename) */
 export const elementalSkillsDropdownItems: DropdownItemOption[] = [
 	{
 		name: 'None (1x)',
@@ -17464,12 +17465,25 @@ export const gunnerDropdownItems: DropdownItemOption[] = [
 		name: 'Storm Style Lv 0 (0.95x)',
 		value: 0.95,
 	},
+	{
+		name: 'Normal (All 1.0x)',
+		value: 0,
+	},
+	{
+		name: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
+		value: 1,
+	},
+	{
+		name: `Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)`,
+		value: 2,
+	},
 ] as const;
 
+/**If this is the wrong dropdown try elementalSkillsDropdownItems (possible rename) */
 export const elementDropdownItems: DropdownItemOption[] = [
 	{
-		name: 'Not Compressed (x1)',
-		value: 1,
+		name: 'Not Compressed (0x)',
+		value: 0,
 	},
 	{
 		name: 'Lv1 Norm S. (2.4x Bullets Loaded)', // TODO
@@ -17613,56 +17627,10 @@ export const elementDropdownItems: DropdownItemOption[] = [
 	},
 	{
 		name: 'Non-G Power Bottle (1.5x)',
-		value: 0.5,
+		value: 1.5,
 	},
-	{
-		name: 'Lv1 (0.4x / 0.7x)', // TODO
-		value: 0,
-	},
-	{
-		name: 'Lv2 (1.0x / 0.95x)',
-		value: 0,
-	},
-	{
-		name: 'Lv3 (1.5x / 1.2x)',
-		value: 0,
-	},
-	{
-		name: 'Lv4 (1.85x / 1.334x)',
-		value: 0,
-	},
-	{
-		name: 'Sniper Lv4 (1.0x / 1.0x)',
-		value: 0,
-	},
-	{
-		name: 'Sniper Lv5 (1.125x / 1.1x)',
-		value: 0,
-	},
-	{
-		name: 'Uncharged Rising Shot (0.4x / 1.0x)',
-		value: 0,
-	},
-	{
-		name: 'Charged Rising Shot (1.0x / 1.5x)',
-		value: 0,
-	},
-	{
-		name: 'Crouched Lv1 (0.48x / 0.7x)',
-		value: 0,
-	},
-	{
-		name: 'Crouched Lv2 (1.3x / 0.8x)',
-		value: 0,
-	},
-	{
-		name: 'Crouched Lv3 (2.1x / 1.2x)',
-		value: 0,
-	},
-	{
-		name: 'Crouched Lv4 (2.59x / 1.334x)',
-		value: 0,
-	},
+	{ name: 'Choose a level lower for Non-G', value: 1.5 },
+	// removed bowchargemodifier
 	{
 		name: 'Normal (All 1.0x)',
 		value: 1.0,
@@ -18001,6 +17969,7 @@ export const obscurityValues: {
 	},
 ];
 
+// TODO may need to double check for updated variables
 export const legacyCalculatorKeysMap: { [key: string]: string } = {
 	// weaponclass: '',
 	AffinitySharp: 'inputMeleeSharpnessAffinity',
@@ -18011,9 +17980,9 @@ export const legacyCalculatorKeysMap: { [key: string]: string } = {
 	ACconsumption: 'inputConsumptionSlayer',
 	AffinityNatural: 'inputNumberNaturalAffinity',
 	elementtype: 'inputElement',
-	bulletstrengthmod: 'inputBulletModifier',
+	bulletstrengthmod: 'inputBulletStrengthModifier',
 	ACbondhunter: 'inputBondMaleHunter',
-	HBGshotstocompress: 'inputCompressedShotMultiplier',
+	HBGshotstocompress: 'inputNumberCompressedShot',
 	firemulti: 'inputFireMultipliers',
 	AffinityGSAF: 'inputGsActiveFeature',
 	ACweapontype: 'inputWeaponType',
@@ -18049,7 +18018,7 @@ export const legacyCalculatorKeysMap: { [key: string]: string } = {
 	additional: 'inputNumberOtherAdditional',
 	ACsigil: 'inputNumberSigil1Attack',
 	ACsecrettech: 'inputGsr999SecretTech',
-	rangeddistancemulti: 'inputDistanceMultiplier',
+	rangeddistancemulti: 'inputCriticalDistanceMultiplier',
 	ACassist: 'inputAssistance',
 	ACdure: 'inputDuremudiraAttack',
 	eleHalk: 'inputElementalAttackMultiplier',
@@ -18057,7 +18026,7 @@ export const legacyCalculatorKeysMap: { [key: string]: string } = {
 	ACadvlvl: 'inputRoadAdvLvFlr',
 	elehb3: 'inputNumberIceHitzone',
 	sharpness: 'inputSharpness',
-	HBGshotstocompressEle: 'inputCompressedElementShot',
+	HBGshotstocompressEle: 'inputNumberCompressedElementShot',
 	//tonfamode: '',
 	statusSigil: 'inputStatusSigil',
 	Premium: 'inputPremiumBoost',
@@ -18158,7 +18127,6 @@ export const legacyCalculatorNumberInputs = [
 	'ssmulti',
 	'rangedmotionvalue',
 	'HBGshotstocompress',
-	'compressedshotpower',
 	'consumptionS',
 	'motionvalue',
 	'fakeelement',
@@ -18220,7 +18188,7 @@ export const legacyCalculatorValuesMap: {
 		},
 
 		AffinityStylerank: {
-			'0': 'None (+0)',
+			'0': 'None',
 			'20': 'Affinity +20% (+20%)',
 			'24': 'Affinity +24% (+24%)',
 			'26': 'Affinity +26% (+26%)',
@@ -18247,23 +18215,23 @@ export const legacyCalculatorValuesMap: {
 			'20': 'Issen +3 (+20% / +0.25x)',
 		},
 		AffinityCeaseless: {
-			'0': 'None (+0% / +0.00x)',
+			'0': 'None (1x)',
 			'1': 'Ceaseless 1st Stage (+35% / +0.10x)',
 			'2': 'Ceaseless 2nd Stage (+50% / +0.15x)',
 			'3': 'Ceaseless Up 3rd Stage (+60% / +0.20x)',
 		},
 		AffinitySW: {
-			'0': 'None (+0 / +0.00x)',
+			'0': 'None (1x)',
 			'1': 'Starving Wolf+1 (+50% / +0.00x)',
 			'2': 'Starving Wolf+2 (+50% / +0.10x)',
 		},
 		AffinityDrink: {
-			'0': 'None (+0%)',
+			'0': 'None',
 			'30': 'Halk Drink (+30%)',
 			'10': 'Caravan Whetstone (+10%)',
 			'40': 'Both (+40%)',
 		},
-		AffinityGSAF: { '0': 'Off', '100': 'Unsheathe and Parry Attacks (+100%)' },
+		AffinityGSAF: { '0': 'None', '100': 'Unsheathe and Parry Attacks (+100%)' },
 		ACatkskill: {
 			'0': 'None',
 			'50.0': 'Attack Absolute (+50)',
@@ -18406,28 +18374,28 @@ export const legacyCalculatorValuesMap: {
 			'100': 'Active (+100)',
 		},
 		AChh: {
-			'1.0': 'None',
+			'1.0': 'None (1x)',
 			'1.1': 'G Rank Atk Sm (x1.10)',
 			'1.150': 'G Rank Atk Sm Bonus (x1.15)',
 			'1.1500': 'G Rank Atk Lg (x1.15)',
 			'1.200': 'G Rank Atk Lg Bonus (x1.2)',
 		},
 		ACadren: {
-			'1.0': 'None',
+			'1.0': 'None (1x)',
 			'1.15': 'Vigorous (x1.15)',
 			'0.7': 'Worry (x0.70)',
 			'1.3': 'Bowguns (x1.3)',
 			'1.5': 'Melee / Bows (x1.5)',
 		},
-		ACvigup: { '0': 'Inactive', '1': 'Active (+50 Ranged, +100 Melee)' },
+		ACvigup: { '0': 'None', '1': 'Active (+50 Ranged, +100 Melee)' },
 		AChiden: {
-			'1.0': 'None',
+			'1.0': 'None (1x)',
 			'1.4': 'Ranged Large Hiden (x1.4)',
 			'1.3': 'SnS or Ranged (x1.3)',
 			'1.2': 'Other Weapons (x1.2)',
 		},
 		ACdstonfa: {
-			'1': 'None',
+			'1': 'None (1x)',
 			'1.05': '1 Sharpen (x1.05)',
 			'1.1': '2 Sharpens (x1.10)',
 			'1.15': '3 Sharpens (x1.15)',
@@ -18445,7 +18413,7 @@ export const legacyCalculatorValuesMap: {
 		},
 		// todo? AChammer: { '1': 'None', '1': 'Perfect Charge (Hiden) (x1.3)' },
 		ACcomsup: {
-			'1': 'No',
+			'1': 'None (1x)',
 			'1.2': 'Yes (x1.2)',
 		},
 		ACarmour1: {
@@ -18671,7 +18639,7 @@ export const legacyCalculatorValuesMap: {
 		},
 		HBGcompressedshots: {
 			'0': 'Not Compressed (0x)',
-			'2.4': 'Affinity +20% (+20%)',
+			'2.4': 'Lv1 Norm S. (2.4x Bullets Loaded)',
 			'6.0': 'Lv2 Norm S. (6.0x Bullets Loaded)',
 			// todo '6.0': '',
 			'5.0': 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
@@ -18731,7 +18699,7 @@ export const legacyCalculatorValuesMap: {
 			'1.40': 'Perfect JS (1.4x)',
 			'0.6': 'Evade Shot (0.6x)',
 			'2.0': 'Finishing Shot (2.0x)',
-			'1.0': 'None (1.0x)',
+			'1.0': 'None (1x)',
 			'0.5': 'Rapid Fire (0.5x)',
 			'0.73': 'Ultra Rapid Lv 1 Pierce S (0.73x)',
 		},
@@ -19109,6 +19077,57 @@ export const wikiaMonsterKeyMap = {
 	monsterRelations: 'relatedMonsters',
 	generation: 'generation',
 };
+
+export const bowChargeLevels = [
+	{
+		chargeModifier: 'Lv1 (0.4x / 0.7x)',
+		levels: { raw: 0.4, element: 0.7 },
+	},
+	{
+		chargeModifier: 'Lv2 (1.0x / 0.95x)',
+		levels: { raw: 1, element: 0.8 }, // TODO legacy values, 0.95 and 0.90 mismatch
+	},
+	{
+		chargeModifier: 'Lv3 (1.5x / 1.2x)',
+		levels: { raw: 1.5, element: 1.2 },
+	},
+	{
+		chargeModifier: 'Lv4 (1.85x / 1.334x)',
+		levels: { raw: 1.85, element: 1.334 },
+	},
+	{
+		chargeModifier: 'Sniper Lv4 (1.0x / 1.0x)',
+		levels: { raw: 1.0, element: 1.0 },
+	},
+	{
+		chargeModifier: 'Sniper Lv5 (1.125x / 1.1x)',
+		levels: { raw: 1.125, element: 1.1 },
+	},
+	{
+		chargeModifier: 'Uncharged Rising Shot (0.4x / 1.0x)',
+		levels: { raw: 0.4, element: 1 },
+	},
+	{
+		chargeModifier: 'Charged Rising Shot (1.0x / 1.5x)',
+		levels: { raw: 1.0, element: 1.5 },
+	},
+	{
+		chargeModifier: 'Crouched Lv1 (0.48x / 0.7x)',
+		levels: { raw: 0.48, element: 0.7 },
+	},
+	{
+		chargeModifier: 'Crouched Lv2 (1.3x / 0.8x)',
+		levels: { raw: 1.3, element: 0.8 },
+	},
+	{
+		chargeModifier: 'Crouched Lv3 (2.1x / 1.2x)',
+		levels: { raw: 2.1, element: 1.2 },
+	},
+	{
+		chargeModifier: 'Crouched Lv4 (2.59x / 1.334x)',
+		levels: { raw: 2.59, element: 1.334 },
+	},
+];
 
 /*
 // It requires an extra line to pull out the values
