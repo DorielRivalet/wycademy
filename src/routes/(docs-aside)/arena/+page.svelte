@@ -36,6 +36,7 @@
 		bowChargeLevels,
 	} from '$lib/client/modules/frontier/objects';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
+	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Head from '$lib/client/components/Head.svelte';
@@ -4143,72 +4144,101 @@
 		affinityDropdownItems.find((item) => item.name === inputStarvingWolf)
 			?.value || 0;
 
-	$: console.log(`outputStarvingWolfAffinity: ${outputStarvingWolfAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStarvingWolfAffinity',
+		outputStarvingWolfAffinity.toString(),
+	);
 
 	$: outputCeaselessAffinity =
 		affinityDropdownItems.find((item) => item.name === inputCeaseless)?.value ||
 		0;
 
-	$: console.log(`outputCeaselessAffinity: ${outputCeaselessAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCeaselessAffinity',
+		outputCeaselessAffinity.toString(),
+	);
 
 	$: outputFuriousAffinity =
 		affinityDropdownItems.find((item) => item.name === inputFurious)?.value ||
 		0;
 
-	$: console.log(`outputFuriousAffinity: ${outputFuriousAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFuriousAffinity',
+		outputFuriousAffinity.toString(),
+	);
 
 	$: outputIssenAffinity =
 		affinityDropdownItems.find((item) => item.name === inputIssenSkills)
 			?.value || 0;
 
-	$: console.log(`outputIssenAffinity: ${outputIssenAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputIssenAffinity',
+		outputIssenAffinity.toString(),
+	);
 
 	$: outputSharpnessAffinity =
 		affinityDropdownItems.find(
 			(item) => item.name === inputMeleeSharpnessAffinity,
 		)?.value || 0;
 
-	$: console.log(`outputSharpnessAffinity: ${outputSharpnessAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSharpnessAffinity',
+		outputSharpnessAffinity.toString(),
+	);
 
 	$: outputStyleRankAffinity =
 		affinityDropdownItems.find((item) => item.name === inputStyleRankAffinity)
 			?.value || 0;
 
-	$: console.log(`outputStyleRankAffinity: ${outputStyleRankAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStyleRankAffinity',
+		outputStyleRankAffinity.toString(),
+	);
 
 	$: outputExpertAffinity =
 		affinityDropdownItems.find((item) => item.name === inputExpertSkills)
 			?.value || 0;
 
-	$: console.log(`outputExpertAffinity: ${outputExpertAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputExpertAffinity',
+		outputExpertAffinity.toString(),
+	);
 
 	$: outputFlashConversionAffinity =
 		affinityDropdownItems.find((item) => item.name === inputFlashConversion)
 			?.value || 0;
 
-	$: console.log(
-		`outputFlashConversionAffinity: ${outputFlashConversionAffinity}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFlashConversionAffinity',
+		outputFlashConversionAffinity.toString(),
 	);
 
 	$: outputGSActiveFeatureAffinity =
 		affinityDropdownItems.find((item) => item.name === inputGsActiveFeature)
 			?.value || 0;
 
-	$: console.log(
-		`outputGSActiveFeatureAffinity: ${outputGSActiveFeatureAffinity}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGSActiveFeatureAffinity',
+		outputGSActiveFeatureAffinity.toString(),
 	);
 
 	$: outputDrinkAffinity =
 		affinityDropdownItems.find((item) => item.name === inputAffinityItems)
 			?.value || 0;
 
-	$: console.log(`outputDrinkAffinity: ${outputDrinkAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDrinkAffinity',
+		outputDrinkAffinity.toString(),
+	);
 
 	$: outputAOEAffinityCount =
 		sigilDropdownItems.find((item) => item.name === inputAoeAffinitySigil)
 			?.value || 0;
 
-	$: console.log(`outputAOEAffinityCount: ${outputAOEAffinityCount}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAOEAffinityCount',
+		outputAOEAffinityCount.toString(),
+	);
 
 	/** This should be the correct one, not 20 * count + 2 * value.*/
 	$: outputAOETotalAffinity =
@@ -4216,7 +4246,10 @@
 			? 0
 			: (20 + inputNumberAOEAffinitySigil * 2) * outputAOEAffinityCount;
 
-	$: console.log(`outputAOETotalAffinity: ${outputAOETotalAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAOETotalAffinity',
+		outputAOETotalAffinity.toString(),
+	);
 
 	$: outputTotalAffinity =
 		outputIssenAffinity +
@@ -4235,39 +4268,60 @@
 		outputFuriousAffinity +
 		outputAOETotalAffinity;
 
-	$: console.log(`outputTotalAffinity: ${outputTotalAffinity}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputTotalAffinity',
+		outputTotalAffinity.toString(),
+	);
 
 	$: outputWeaponTypeMultiplier =
 		WeaponTypes.find((weaponType) => weaponType.name === inputWeaponType)
 			?.bloatAttackMultiplier || 1.2;
 
-	$: console.log(`outputWeaponTypeMultiplier: ${outputWeaponTypeMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWeaponTypeMultiplier',
+		outputWeaponTypeMultiplier.toString(),
+	);
 
 	$: outputRoadAdvLvFlr =
 		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAdvLvFlr)
 			?.value || 0;
 
-	$: console.log(`outputRoadAdvLvFlr: ${outputRoadAdvLvFlr}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputRoadAdvLvFlr',
+		outputRoadAdvLvFlr.toString(),
+	);
 
 	$: outputRoadAdvancement = getRoadAdvancementValue(
 		outputRoadAdvLvFlr,
 		inputNumberRoadFloor,
 	);
 
-	$: console.log(`inputNumberRoadFloor: ${inputNumberRoadFloor}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'inputNumberRoadFloor',
+		inputNumberRoadFloor.toString(),
+	);
 
-	$: console.log(`outputRoadAdvancement: ${outputRoadAdvancement}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputRoadAdvancement',
+		outputRoadAdvancement.toString(),
+	);
 
 	$: outputVigorousUp = inputVigorousUp === 'Active (+50 Ranged, +100 Melee)';
 
-	$: console.log(`outputVigorousUp: ${outputVigorousUp}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputVigorousUp',
+		outputVigorousUp.toString(),
+	);
 
 	$: outputAdrenaline =
 		multipliersDropdownItems.find(
 			(item) => item.name === inputAdrenalineVigorous,
 		)?.value || 0;
 
-	$: console.log(`outputAdrenaline: ${outputAdrenaline}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAdrenaline',
+		outputAdrenaline.toString(),
+	);
 
 	$: outputVigorousAddition =
 		outputVigorousUp && outputAdrenaline === 1.15
@@ -4307,34 +4361,44 @@
 		multipliedBaseDropdownItems.find((item) => item.name === inputRush)
 			?.value || 0;
 
-	$: console.log(`outputRush: ${outputRush}`);
+	$: addToDamageCalculatorHistoryLogs('outputRush', outputRush.toString());
 
 	$: outputStylishAssault =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputStylishAssault,
 		)?.value || 0;
 
-	$: console.log(`outputStylishAssault: ${outputStylishAssault}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStylishAssault',
+		outputStylishAssault.toString(),
+	);
 
 	$: outputFuriousAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputFurious)
 			?.value || 0;
 
-	$: console.log(`outputFuriousAttack: ${outputFuriousAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFuriousAttack',
+		outputFuriousAttack.toString(),
+	);
 
 	/**furious ele*/
 	$: outputFuriousMultiplier =
 		multipliersDropdownItems.find((item) => item.name === inputFurious)
 			?.value || 1;
 
-	$: console.log(`outputFuriousMultiplier: ${outputFuriousMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFuriousMultiplier',
+		outputFuriousMultiplier.toString(),
+	);
 
 	$: outputCritConversionUpMultiplier =
 		multipliersDropdownItems.find((item) => item.name === inputCritConversionUp)
 			?.value || 0;
 
-	$: console.log(
-		`outputCritConversionUpMultiplier: ${outputCritConversionUpMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCritConversionUpMultiplier',
+		outputCritConversionUpMultiplier.toString(),
 	);
 
 	let critConversionCalculatorIssenAffinity = '0';
@@ -4406,7 +4470,10 @@
 		outputFlashConversionAffinity,
 	);
 
-	$: console.log(`outputCritConversionTrueRaw: ${outputCritConversionTrueRaw}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCritConversionTrueRaw',
+		outputCritConversionTrueRaw.toString(),
+	);
 
 	$: outputObscurityLevel =
 		multipliedBaseDropdownItems.find((item) => item.name === inputObscurity)
@@ -4417,7 +4484,10 @@
 		outputObscurityLevel,
 	);
 
-	$: console.log(`outputObscurityTotal: ${outputObscurityTotal}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputObscurityTotal',
+		outputObscurityTotal.toString(),
+	);
 
 	$: outputIncitement =
 		multipliedBaseDropdownItems.find((item) => item.name === inputIncitement)
@@ -4429,7 +4499,10 @@
 		inputNumberTrueRaw,
 	);
 
-	$: console.log(`outputLengthUpTrueRaw: ${outputLengthUpTrueRaw}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputLengthUpTrueRaw',
+		outputLengthUpTrueRaw.toString(),
+	);
 
 	/** Rush / Stylish Assault / Vampirism / Flash Conversion / Obscurity / Incitement / Furious / Vigorous Up
 does not get multiplied by horn */
@@ -4443,49 +4516,63 @@ does not get multiplied by horn */
 		outputObscurityTotal +
 		outputIncitement;
 
-	$: console.log(`attackB: ${attackB}`);
+	$: addToDamageCalculatorHistoryLogs('attackB', attackB.toString());
 
 	$: outputAttackMedicine =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputAttackMedicine,
 		)?.value || 0;
 
-	$: console.log(`outputAttackMedicine: ${outputAttackMedicine}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAttackMedicine',
+		outputAttackMedicine.toString(),
+	);
 
 	$: outputAttackSkill =
 		multipliedBaseDropdownItems.find((item) => item.name === inputAttackSkills)
 			?.value || 0;
 
-	$: console.log(`outputAttackSkill: ${outputAttackSkill}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAttackSkill',
+		outputAttackSkill.toString(),
+	);
 
 	$: outputFoodAttack =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputFoodConsumables,
 		)?.value || 0;
 
-	$: console.log(`outputFoodAttack: ${outputFoodAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFoodAttack',
+		outputFoodAttack.toString(),
+	);
 
 	$: outputSeedAttack =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputSeedsFlutesCat,
 		)?.value || 0;
 
-	$: console.log(`outputSeedAttack: ${outputSeedAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSeedAttack',
+		outputSeedAttack.toString(),
+	);
 
 	$: outputDrugKnowledgeMultiplier =
 		statusSkillsDropdownItems.find((item) => item.name === inputDrugKnowledge)
 			?.value || 1;
 
-	$: console.log(
-		`outputDrugKnowledgeMultiplier: ${outputDrugKnowledgeMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDrugKnowledgeMultiplier',
+		outputDrugKnowledgeMultiplier.toString(),
 	);
 
 	$: outputStatusGuildPoogieMultiplier =
 		statusSkillsDropdownItems.find((item) => item.name === inputGuildPoogie)
 			?.value || 1;
 
-	$: console.log(
-		`outputStatusGuildPoogieMultiplier: ${outputStatusGuildPoogieMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusGuildPoogieMultiplier',
+		outputStatusGuildPoogieMultiplier.toString(),
 	);
 
 	$: outputMonsterStatusInflictedMultiplier =
@@ -4493,8 +4580,9 @@ does not get multiplied by horn */
 			(item) => item.name === inputMonsterStatus,
 		)?.value || 1;
 
-	$: console.log(
-		`outputMonsterStatusInflictedMultiplier: ${outputMonsterStatusInflictedMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputMonsterStatusInflictedMultiplier',
+		outputMonsterStatusInflictedMultiplier.toString(),
 	);
 
 	$: outputDrugKnowledgeTotalTrueRaw = getDrugKnowledgeAddition(
@@ -4506,8 +4594,9 @@ does not get multiplied by horn */
 		outputFuriousMultiplier,
 	);
 
-	$: console.log(
-		`outputDrugKnowledgeTotalTrueRaw: ${outputDrugKnowledgeTotalTrueRaw}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDrugKnowledgeTotalTrueRaw',
+		outputDrugKnowledgeTotalTrueRaw.toString(),
 	);
 
 	/**statusAssaultToggle statusassault? TODO unused by original? Edit: Its used but the execution makes it change to another value instantly in the original code.*/
@@ -4522,49 +4611,66 @@ does not get multiplied by horn */
 				)
 			: 0;
 
-	$: console.log(`outputStatusAssault: ${outputStatusAssault}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusAssault',
+		outputStatusAssault.toString(),
+	);
 
 	/**statusStatusattack*/
 	$: outputStatusAttackUpMultiplier =
 		statusSkillsDropdownItems.find((item) => item.name === inputStatusAttackUp)
 			?.value || 1;
 
-	$: console.log(
-		`outputStatusAttackUpMultiplier: ${outputStatusAttackUpMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusAttackUpMultiplier',
+		outputStatusAttackUpMultiplier.toString(),
 	);
 
 	$: outputPassives =
 		multipliedBaseDropdownItems.find((item) => item.name === inputPassiveItems)
 			?.value || 0;
 
-	$: console.log(`outputPassives: ${outputPassives}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputPassives',
+		outputPassives.toString(),
+	);
 
 	$: outputLoneWolfAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputLoneWolf)
 			?.value || 0;
 
-	$: console.log(`outputLoneWolfAttack: ${outputLoneWolfAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputLoneWolfAttack',
+		outputLoneWolfAttack.toString(),
+	);
 
 	$: outputDuremudiraAttack =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputDuremudiraAttack,
 		)?.value || 0;
 
-	$: console.log(`outputDuremudiraAttack: ${outputDuremudiraAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDuremudiraAttack',
+		outputDuremudiraAttack.toString(),
+	);
 
 	$: outputShiriagariAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputShiriagari)
 			?.value || 0;
 
-	$: console.log(`outputShiriagariAttack: ${outputShiriagariAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputShiriagariAttack',
+		outputShiriagariAttack.toString(),
+	);
 
 	$: outputConsumptionSlayerAttack =
 		multipliedBaseDropdownItems.find(
 			(item) => item.name === inputConsumptionSlayer,
 		)?.value || 0;
 
-	$: console.log(
-		`outputConsumptionSlayerAttack: ${outputConsumptionSlayerAttack}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputConsumptionSlayerAttack',
+		outputConsumptionSlayerAttack.toString(),
 	);
 
 	/**bowgunshotmodifier*/
@@ -4572,14 +4678,18 @@ does not get multiplied by horn */
 		gunnerDropdownItems.find((item) => item.name === inputShotMultiplier)
 			?.value || 1;
 
-	$: console.log(`outputShotMultiplier: ${outputShotMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputShotMultiplier',
+		outputShotMultiplier.toString(),
+	);
 
 	$: outputCriticalDistanceMultiplier =
 		gunnerDropdownItems.find((e) => e.name === inputCriticalDistanceMultiplier)
 			?.value || 1;
 
-	$: console.log(
-		`outputCriticalDistanceMultiplier: ${outputCriticalDistanceMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCriticalDistanceMultiplier',
+		outputCriticalDistanceMultiplier.toString(),
 	);
 
 	/** coatingmod*/
@@ -4588,7 +4698,10 @@ does not get multiplied by horn */
 			? outputBowCoatingsMultiplier + 0.2
 			: outputBowCoatingsMultiplier;
 
-	$: console.log(`outputBowCoatingModifier: ${outputBowCoatingModifier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingModifier',
+		outputBowCoatingModifier.toString(),
+	);
 
 	/**bowbottles*/
 	$: outputBowCoatingsMultiplier =
@@ -4596,25 +4709,37 @@ does not get multiplied by horn */
 			(item) => item.name === inputBowCoatingsMultiplier,
 		)?.value || 1;
 
-	$: console.log(`outputBowCoatingsMultiplier: ${outputBowCoatingsMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsMultiplier',
+		outputBowCoatingsMultiplier.toString(),
+	);
 
 	$: outputRoadLastStandAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputRoadLastStand)
 			?.value || 0;
 
-	$: console.log(`outputRoadLastStandAttack: ${outputRoadLastStandAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputRoadLastStandAttack',
+		outputRoadLastStandAttack.toString(),
+	);
 
 	$: outputLanceRedPhialAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputLanceHbg)
 			?.value || 0;
 
-	$: console.log(`outputLanceRedPhialAttack: ${outputLanceRedPhialAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputLanceRedPhialAttack',
+		outputLanceRedPhialAttack.toString(),
+	);
 
 	$: outputRoadTowerAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAttack)
 			?.value || 0;
 
-	$: console.log(`outputRoadTowerAttack: ${outputRoadTowerAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputRoadTowerAttack',
+		outputRoadTowerAttack.toString(),
+	);
 
 	$: attackA =
 		outputLengthUpTrueRaw +
@@ -4643,34 +4768,42 @@ does not get multiplied by horn */
 		outputZenithTotalAttack +
 		outputAOETotalAttack;
 
-	$: console.log(`attackA: ${attackA}`);
+	$: addToDamageCalculatorHistoryLogs('attackA', attackA.toString());
 
 	$: outputHuntingHornMultiplier =
 		multipliersDropdownItems.find((item) => item.name === inputHhAttackSongs)
 			?.value || 1;
 
-	$: console.log(`outputHuntingHornMultiplier: ${outputHuntingHornMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputHuntingHornMultiplier',
+		outputHuntingHornMultiplier.toString(),
+	);
 
 	$: outputCombatSupremacyAttackMultiplier =
 		multipliersDropdownItems.find((item) => item.name === inputCombatSupremacy)
 			?.value || 1;
 
-	$: console.log(
-		`outputCombatSupremacyAttackMultiplier: ${outputCombatSupremacyAttackMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCombatSupremacyAttackMultiplier',
+		outputCombatSupremacyAttackMultiplier.toString(),
 	);
 
 	$: outputHidenMultiplier =
 		multipliersDropdownItems.find((item) => item.name === inputHidenSkills)
 			?.value || 1;
 
-	$: console.log(`outputHidenMultiplier: ${outputHidenMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputHidenMultiplier',
+		outputHidenMultiplier.toString(),
+	);
 
 	$: outputWeaponSpecificMultiplier =
 		multipliersDropdownItems.find((item) => item.name === inputWeaponSpecific)
 			?.value || 1;
 
-	$: console.log(
-		`outputWeaponSpecificMultiplier: ${outputWeaponSpecificMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWeaponSpecificMultiplier',
+		outputWeaponSpecificMultiplier.toString(),
 	);
 
 	/**TODO legacy unused*/
@@ -4698,56 +4831,68 @@ does not get multiplied by horn */
 			outputHammerMultiplier,
 	);
 
-	$: console.log(`outputMultipliers: ${outputMultipliers}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputMultipliers',
+		outputMultipliers.toString(),
+	);
 
 	$: outputPartnyaBond =
 		flatAdditionsDropdownItems.find((item) => item.name === inputPartnyaaBond)
 			?.value || 0;
 
-	$: console.log(`outputPartnyaBond: ${outputPartnyaBond}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputPartnyaBond',
+		outputPartnyaBond.toString(),
+	);
 
 	$: outputHunterBond =
 		flatAdditionsDropdownItems.find((item) => item.name === inputBondMaleHunter)
 			?.value || 0;
 
-	$: console.log(`outputHunterBond: ${outputHunterBond}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputHunterBond',
+		outputHunterBond.toString(),
+	);
 
 	$: outputAssist =
 		flatAdditionsDropdownItems.find((item) => item.name === inputAssistance)
 			?.value || 0;
 
-	$: console.log(`outputAssist: ${outputAssist}`);
+	$: addToDamageCalculatorHistoryLogs('outputAssist', outputAssist.toString());
 
 	$: outputSoul =
 		flatAdditionsDropdownItems.find((item) => item.name === inputRedSoul)
 			?.value || 0;
 
-	$: console.log(`outputSoul: ${outputSoul}`);
+	$: addToDamageCalculatorHistoryLogs('outputSoul', outputSoul.toString());
 
 	$: outputArmor1 =
 		flatAdditionsDropdownItems.find((item) => item.name === inputArmor1)
 			?.value || 0;
 
-	$: console.log(`outputArmor1: ${outputArmor1}`);
+	$: addToDamageCalculatorHistoryLogs('outputArmor1', outputArmor1.toString());
 
 	$: outputArmor2 =
 		flatAdditionsDropdownItems.find((item) => item.name === inputOriginArmor)
 			?.value || 0;
 
-	$: console.log(`outputArmor2: ${outputArmor2}`);
+	$: addToDamageCalculatorHistoryLogs('outputArmor2', outputArmor2.toString());
 
 	$: outputArmorG =
 		flatAdditionsDropdownItems.find((item) => item.name === inputGArmorPieces)
 			?.value || 0;
 
-	$: console.log(`outputArmorG: ${outputArmorG}`);
+	$: addToDamageCalculatorHistoryLogs('outputArmorG', outputArmorG.toString());
 
 	$: outputSecretTech =
 		flatAdditionsDropdownItems.find(
 			(item) => item.name === inputGsr999SecretTech,
 		)?.value || 0;
 
-	$: console.log(`outputSecretTech: ${outputSecretTech}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSecretTech',
+		outputSecretTech.toString(),
+	);
 
 	$: outputFlatAdditions =
 		outputPartnyaBond +
@@ -4759,15 +4904,19 @@ does not get multiplied by horn */
 		outputArmorG +
 		outputSecretTech;
 
-	$: console.log(`outputFlatAdditions: ${outputFlatAdditions}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFlatAdditions',
+		outputFlatAdditions.toString(),
+	);
 
 	$: outputCompressedShotsMultiplier =
 		gunnerDropdownItems.find(
 			(item) => item.name === inputCompressedShotMultiplier,
 		)?.value || 0; // TODO
 
-	$: console.log(
-		`outputCompressedShotsMultiplier: ${outputCompressedShotsMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCompressedShotsMultiplier',
+		outputCompressedShotsMultiplier.toString(),
 	);
 
 	/**compressedshotpower*/
@@ -4775,7 +4924,10 @@ does not get multiplied by horn */
 		inputNumberCompressedShot * outputCompressedShotsMultiplier,
 	);
 
-	$: console.log(`outputCompressedShotPower: ${outputCompressedShotPower}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCompressedShotPower',
+		outputCompressedShotPower.toString(),
+	);
 
 	$: outputCritValue = getCritValue(
 		inputStarvingWolf,
@@ -4787,13 +4939,17 @@ does not get multiplied by horn */
 
 	$: outputCritMultiplier = Number(outputCritValue.toFixed(2));
 
-	$: console.log(`outputCritValue: ${outputCritValue}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCritValue',
+		outputCritValue.toString(),
+	);
 
 	$: outputSwordAndShieldMultiplier =
 		inputWeaponType === 'Sword and Shield' ? 1.25 : 1;
 
-	$: console.log(
-		`outputSwordAndShieldMultiplier: ${outputCompressedShotsMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSwordAndShieldMultiplier',
+		outputSwordAndShieldMultiplier.toString(),
 	);
 
 	$: outputOtherMultipliers =
@@ -4801,7 +4957,10 @@ does not get multiplied by horn */
 		inputNumberLanceImpactMultiplier *
 		inputNumberRavientePowerSwordCrystalsMultiplier;
 
-	$: console.log(`outputOtherMultipliers: ${outputOtherMultipliers}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputOtherMultipliers',
+		outputOtherMultipliers.toString(),
+	);
 
 	let inputGunlanceRaw = 1;
 	let inputGunlanceShellType = 2;
@@ -4818,18 +4977,33 @@ does not get multiplied by horn */
 						gunlanceShellValues[outputGunlanceShellType]
 					: 0;
 
-	$: console.log(`outputGunlanceRaw: ${outputGunlanceRaw}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceRaw',
+		outputGunlanceRaw.toString(),
+	);
 
-	$: console.log(`outputGunlanceShellType: ${outputGunlanceShellType}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceShellType',
+		outputGunlanceShellType.toString(),
+	);
 
-	$: console.log(`outputGunlanceShellDamage: ${outputGunlanceShellDamage}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceShellDamage',
+		outputGunlanceShellDamage.toString(),
+	);
 
 	$: outputGunlanceShell = Math.floor(outputGunlanceShellDamage);
 	$: outputGunlanceShellBoosted = Math.floor(outputGunlanceShellDamage * 1.5);
 
-	$: console.log(`outputGunlanceShell: ${outputGunlanceShell}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceShell',
+		outputGunlanceShell.toString(),
+	);
 
-	$: console.log(`outputGunlanceShellBoosted: ${outputGunlanceShellBoosted}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceShellBoosted',
+		outputGunlanceShellBoosted.toString(),
+	);
 
 	$: outputSharpnessMultiplier =
 		blademasterDropdownItems.find((item) => item.name === inputSharpness)
@@ -4839,116 +5013,160 @@ does not get multiplied by horn */
 		oldBlademasterSharpness.find((item) => item.name === inputSharpness)
 			?.value || 0;
 
-	$: console.log(`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSharpnessMultiplier',
+		outputSharpnessMultiplier.toString(),
+	);
 
 	$: outputElementalExploiter =
 		hitzoneValueModifiersDropdownItems.find(
 			(item) => item.name === inputElementalExploiter,
 		)?.value || 0;
 
-	$: console.log(`outputElementalExploiter: ${outputElementalExploiter}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputElementalExploiter',
+		outputElementalExploiter.toString(),
+	);
 
 	$: outputThunderClad =
 		hitzoneValueModifiersDropdownItems.find(
 			(item) => item.name === inputThunderClad,
 		)?.value || 0;
-	$: console.log(`outputThunderClad: ${outputThunderClad}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputThunderClad',
+		outputThunderClad.toString(),
+	);
 
 	$: outputSniper =
 		hitzoneValueModifiersDropdownItems.find(
 			(item) => item.name === inputPrecisionSniperCritS,
 		)?.value || 0;
 
-	$: console.log(`outputSniper: ${outputSniper}`);
+	$: addToDamageCalculatorHistoryLogs('outputSniper', outputSniper.toString());
 
 	$: outputExploitWeakness =
 		hitzoneValueModifiersDropdownItems.find(
 			(item) => item.name === inputExploitWeakness,
 		)?.value || 0;
 
-	$: console.log(`outputExploitWeakness: ${outputExploitWeakness}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputExploitWeakness',
+		outputExploitWeakness.toString(),
+	);
 
 	$: outputAcidShot =
 		hitzoneValueModifiersDropdownItems.find(
 			(item) => item.name === inputAcidShots,
 		)?.value || 0;
 
-	$: console.log(`outputAcidShot: ${outputAcidShot}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAcidShot',
+		outputAcidShot.toString(),
+	);
 
 	$: outputPointBreakthrough =
 		hitzoneValueModifiersDropdownItems.find(
 			(item) => item.name === inputPointBreakthrough,
 		)?.value || 0;
 
-	$: console.log(`outputPointBreakthrough: ${outputPointBreakthrough}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputPointBreakthrough',
+		outputPointBreakthrough.toString(),
+	);
 
 	$: outputAbsoluteDefenseMultiplier =
 		otherDropdownItems.find((item) => item.name === inputAbsoluteDefense)
 			?.value || 1;
 
-	$: console.log(
-		`outputAbsoluteDefenseMultiplier: ${outputAbsoluteDefenseMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAbsoluteDefenseMultiplier',
+		outputAbsoluteDefenseMultiplier.toString(),
 	);
 
 	$: outputPremiumCourseMultiplier =
 		otherDropdownItems.find((item) => item.name === inputPremiumBoost)?.value ||
 		1;
 
-	$: console.log(
-		`outputPremiumCourseMultiplier: ${outputPremiumCourseMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputPremiumCourseMultiplier',
+		outputPremiumCourseMultiplier.toString(),
 	);
 
 	$: outputFencingMultiplier = inputFencing === '+2' ? 1.2 : 1;
 
-	$: console.log(`outputFencingMultiplier: ${outputFencingMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFencingMultiplier',
+		outputFencingMultiplier.toString(),
+	);
 
 	$: outputFireMultiplier =
 		elementalSkillsDropdownItems.find(
 			(item) => item.name === inputFireMultipliers,
 		)?.value || 1;
 
-	$: console.log(`outputFireMultiplier: ${outputFireMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFireMultiplier',
+		outputFireMultiplier.toString(),
+	);
 
 	$: outputWaterMultiplier =
 		elementalSkillsDropdownItems.find(
 			(item) => item.name === inputWaterMultipliers,
 		)?.value || 1;
 
-	$: console.log(`outputWaterMultiplier: ${outputWaterMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWaterMultiplier',
+		outputWaterMultiplier.toString(),
+	);
 
 	$: outputThunderMultiplier =
 		elementalSkillsDropdownItems.find(
 			(item) => item.name === inputThunderMultipliers,
 		)?.value || 1;
 
-	$: console.log(`outputThunderMultiplier: ${outputThunderMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputThunderMultiplier',
+		outputThunderMultiplier.toString(),
+	);
 
 	$: outputIceMultiplier =
 		elementalSkillsDropdownItems.find(
 			(item) => item.name === inputIceMultipliers,
 		)?.value || 1;
 
-	$: console.log(`outputIceMultiplier: ${outputIceMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputIceMultiplier',
+		outputIceMultiplier.toString(),
+	);
 
 	$: outputDragonMultiplier =
 		elementalSkillsDropdownItems.find(
 			(item) => item.name === inputDragonMultipliers,
 		)?.value || 1;
 
-	$: console.log(`outputDragonMultiplier: ${outputDragonMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDragonMultiplier',
+		outputDragonMultiplier.toString(),
+	);
 
 	$: outputStatusSigilMultiplier =
 		statusSkillsDropdownItems.find((item) => item.name === inputStatusSigil)
 			?.value || 1;
 
-	$: console.log(`outputStatusSigilMultiplier: ${outputStatusSigilMultiplier}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusSigilMultiplier',
+		outputStatusSigilMultiplier.toString(),
+	);
 
 	$: outputWeaponStatusModifiers =
 		statusSkillsDropdownItems.find(
 			(item) => item.name === inputWeaponStatusModifiers,
 		)?.value || 1;
 
-	$: console.log(`outputWeaponStatusModifiers: ${outputWeaponStatusModifiers}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWeaponStatusModifiers',
+		outputWeaponStatusModifiers.toString(),
+	);
 
 	/**eleHalk*/
 	$: outputElementalAttackMultiplier =
@@ -4956,8 +5174,9 @@ does not get multiplied by horn */
 			(item) => item.name === inputElementalAttackMultiplier,
 		)?.value || 1;
 
-	$: console.log(
-		`outputElementalAttackMultiplier: ${outputElementalAttackMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputElementalAttackMultiplier',
+		outputElementalAttackMultiplier.toString(),
 	);
 
 	/**eleHH*/
@@ -4966,8 +5185,9 @@ does not get multiplied by horn */
 			(item) => item.name === inputHhElementalUp,
 		)?.value || 1;
 
-	$: console.log(
-		`outputHHElementalSongMultiplier: ${outputHHElementalSongMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputHHElementalSongMultiplier',
+		outputHHElementalSongMultiplier.toString(),
 	);
 
 	/**eleSwaxe*/
@@ -4976,13 +5196,20 @@ does not get multiplied by horn */
 			(item) => item.name === inputWeaponElementMultipliers,
 		)?.value || 1;
 
-	$: console.log(
-		`outputWeaponElementMultiplier: ${outputWeaponElementMultiplier}`,
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWeaponElementMultiplier',
+		outputWeaponElementMultiplier.toString(),
 	);
 
-	$: console.log(`inputElementalExploiter: ${inputElementalExploiter}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'inputElementalExploiter',
+		inputElementalExploiter.toString(),
+	);
 
-	$: console.log(`internalAttack: ${internalAttack}`);
+	$: addToDamageCalculatorHistoryLogs(
+		'internalAttack',
+		internalAttack.toString(),
+	);
 
 	// let roundedResult = Math.floor(
 	// 	Math.floor(outputFlatAdditions + Math.floor(outputMultipliers)) *
@@ -5525,6 +5752,30 @@ does not get multiplied by horn */
 	let legacyCalculatorSaveSlotNumber = 1;
 
 	$: outputWeaponClass = getWeaponClass(inputWeaponType);
+
+	function addToDamageCalculatorHistoryLogs(
+		variableName: string,
+		value: string,
+	) {
+		damageCalculatorHistoryLogs = [
+			...damageCalculatorHistoryLogs,
+			{
+				time: `${new Date().toLocaleTimeString()}`,
+				variableName: variableName,
+				value: value,
+			},
+		];
+	}
+
+	let damageCalculatorHistoryLogsOrderReversed = false;
+
+	type DamageCalculatorHistoryLogsEntry = {
+		time: string;
+		variableName: string;
+		value: string;
+	};
+
+	let damageCalculatorHistoryLogs: DamageCalculatorHistoryLogsEntry[] = [];
 </script>
 
 <svelte:head>
@@ -8752,9 +9003,47 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Inputs Logs" />
-		<div>
-			<CodeSnippet code={'Inputs show here.'} type="multi" />
+		<div class="inline-elements-container">
+			<span>
+				<Toggle
+					labelText="Order"
+					bind:toggled={damageCalculatorHistoryLogsOrderReversed}
+					labelA={'Oldest'}
+					labelB="Newest"
+				/></span
+			><span>
+				<CopyButton
+					iconDescription={'Copy as CSV'}
+					text={getCSVFromArray(damageCalculatorHistoryLogs)}
+				/></span
+			>
 		</div>
+		<p class="spaced-paragraph">
+			Entries: {damageCalculatorHistoryLogs.length}
+		</p>
+		<CodeSnippet type="multi" hideCopyButton showMoreLess={false}>
+			<div>
+				{#if damageCalculatorHistoryLogs.length > 0}
+					{#if !damageCalculatorHistoryLogsOrderReversed}
+						{#each damageCalculatorHistoryLogs as logEntry}
+							<p>
+								{`[${logEntry.time}] ${logEntry.variableName} changed to ${logEntry.value}`}
+							</p>
+						{/each}
+					{:else}
+						{#each [...damageCalculatorHistoryLogs].reverse() as logEntry}
+							<p>
+								{`[${logEntry.time}] ${logEntry.variableName} changed to ${logEntry.value}`}
+							</p>
+						{/each}
+					{/if}
+				{:else}
+					<p>
+						No logs found. Try modifying the inputs of the damage calculator.
+					</p>
+				{/if}
+			</div>
+		</CodeSnippet>
 	</section>
 
 	<section>
@@ -13817,5 +14106,14 @@ does not get multiplied by horn */
 		line-height: 1;
 		padding: 2px 4px;
 		white-space: nowrap;
+	}
+
+	.inline-elements-container {
+		display: flex;
+		flex-direction: row;
+		gap: var(--cds-spacing-12);
+		align-items: center;
+		flex-wrap: wrap;
+		margin-bottom: 1rem;
 	}
 </style>
