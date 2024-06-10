@@ -9446,7 +9446,7 @@ export const sharedWeaponMotionValues: FrontierMotionValueSection = {
 			hitCount: 1,
 			elementMultiplier: 0,
 			motionValue: 30,
-			specialFlag: 'nocrit',
+			specialFlag: 'nocrit', // also nocmel in gunner in legacy code
 		},
 		{
 			name: 'Custom Motion',

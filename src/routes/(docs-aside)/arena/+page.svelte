@@ -1075,6 +1075,7 @@
 					motionValue: 0,
 				};
 			case 'nocmel':
+			case 'nocrit': // TODO testing
 				return {
 					...result,
 					criticalDistanceMultiplier: 0.6,
@@ -1967,6 +1968,7 @@
 
 			// Reflect
 			// TODO specialFlag types
+			// critical handling
 			if (
 				inputCritMode === 'No Crits' ||
 				motionValueItem.specialFlag === 'nocrit'
@@ -5735,6 +5737,18 @@ does not get multiplied by horn */
 
 		<section>
 			<SectionHeading level={2} title="Damage Calculator" />
+			<p class="spaced-paragraph">
+				This damage calculator may not reflect the damage output you do in the
+				game with total accuracy. In order to track and report damage testing,
+				you can check <OutboundLink
+					href="https://github.com/DorielRivalet/wycademy/issues/360"
+					>the pinned issue in the repository</OutboundLink
+				>.
+			</p>
+			<p class="spaced-paragraph">
+				Below are instructions for saving and loading the calculator inputs from
+				various sources in case you want to reference them later.
+			</p>
 			<div class="damage-calculator">
 				<div>
 					<InlineNotification
@@ -8642,6 +8656,39 @@ does not get multiplied by horn */
 
 	<section>
 		<SectionHeading level={2} title="Shared Motion Values" />
+		<p class="spaced-paragraph">
+			<InlineTooltip
+				text="Dual Swords"
+				iconType="component"
+				tooltip="Weapon"
+				icon={getWeaponIcon('Dual Swords')}
+			/>, <InlineTooltip
+				text="Hammer"
+				iconType="component"
+				tooltip="Weapon"
+				icon={getWeaponIcon('Hammer')}
+			/>, <InlineTooltip
+				text="Hunting Horn"
+				iconType="component"
+				tooltip="Weapon"
+				icon={getWeaponIcon('Hunting Horn')}
+			/>, <InlineTooltip
+				text="Light Bowgun"
+				iconType="component"
+				tooltip="Weapon"
+				icon={getWeaponIcon('Light Bowgun')}
+			/>, <InlineTooltip
+				text="Heavy Bowgun"
+				iconType="component"
+				tooltip="Weapon"
+				icon={getWeaponIcon('Heavy Bowgun')}
+			/> and <InlineTooltip
+				text="Bow"
+				iconType="component"
+				tooltip="Weapon"
+				icon={getWeaponIcon('Bow')}
+			/> cannot use Reflect or Perfect Guard.
+		</p>
 		<div class="motion-values toc-exclude">
 			<DataTable
 				id="shared-motion-values-dom"
