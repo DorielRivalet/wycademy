@@ -21,7 +21,18 @@ const config = {
 			// See below for an explanation of these options
 			routes: {
 				include: ['/*'],
-				exclude: ['<all>'],
+				exclude: [
+					'/_app/*',
+					'/android/*',
+					'/app.webmanifest',
+					'/assets/img/*',
+					'/assets/sound/*',
+					'/favicon.ico',
+					'/favicon.png',
+					'/favicon.webp',
+					'/github-mark-white.svg',
+					'/ios/*',
+				],
 			},
 		}),
 	},

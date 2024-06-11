@@ -2,6 +2,7 @@ import { json } from '@sveltejs/kit';
 import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
 import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
 import type { SearchItem } from '$lib/search';
+import { browser } from '$app/environment';
 
 export const prerender = true;
 
@@ -615,6 +616,7 @@ function mapToSearchItem(
 const uniqueMonsters = getUniqueMonsters();
 
 export async function GET() {
+	if (!browser) return json([]);
 	const jsonResult = [
 		...pageInfo,
 		...mapToSearchItem(uniqueMonsters, 'monsterInfo'),
