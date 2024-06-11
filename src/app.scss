@@ -1,18 +1,17 @@
-
 /*
  * © 2023 Doriel Rivalet
  * Use of this source code is governed by a MIT license that can be
  * found in the LICENSE file.
  */
- @use '@carbon/motion' as motion;
- @import '$lib/client/styles/catppuccin.css';
+@use '@carbon/motion' as motion;
+@import '$lib/client/styles/catppuccin.css';
 
- /* TODO: sass for optimization. but only when i know every component im going to use.*/
- @import 'carbon-components-svelte/css/all.css';
- @import '$lib/client/styles/frontier.css';
- /*TODO: motion and spacing variables*/
+/* TODO: sass for optimization. but only when i know every component im going to use.*/
+@import 'carbon-components-svelte/css/all.css';
+@import '$lib/client/styles/frontier.css';
+/*TODO: motion and spacing variables*/
 
- /*
+/*
  Token	Usage	Value
 duration-fast-01	Micro-interactions such as button and toggle	70ms
 duration-fast-02	Micro-interactions such as fade	110ms
@@ -22,7 +21,7 @@ duration-slow-01	Large expansion, important system notifications	400ms
 duration-slow-02	Background dimming	700ms
  */
 
- /*
+/*
  🌻 Latte
  Labels	Hex	RGB	HSL
 	 Rosewater	#dc8a78	rgb(220, 138, 120)	hsl(11, 59%, 67%)
@@ -137,183 +136,184 @@ duration-slow-02	Background dimming	700ms
 	 Crust	#11111b	rgb(17, 17, 27)	hsl(240, 23%, 9%)
  */
 
- :root {
-	 --font-body: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
-	 --font-mono: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
-		 'Bitstream Vera Sans Mono', Courier, monospace;
-	 --font-serif: 'IBM Plex Serif', 'Georgia', Times, serif;
-	 font-family: var(--font-body);
-	 --cursor-icon-none: auto;
-	 --cursor-icon-none-pointer: pointer;
-	 --cursor-icon-none-wait: wait;
-	 --toc-mobile-bg: var(--ctp-mantle) !important;
- }
-
- ::view-transition-old(root),
- ::view-transition-new(root) {
-	animation-duration: motion.$duration-fast-02;
-	animation-timing-function: motion.motion(standard, expressive);
- }
-
- body {
-	 min-height: 100vh;
-	 margin: 0;
-	 background-attachment: fixed;
-	 background-size: 100vw 100vh;
-	 cursor: var(--cursor-icon);
- }
-
- @media (prefers-reduced-motion) {
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.001s !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001s !important;
-		transition: none !important; /* TODO?	*/
-  }
+:root {
+	--font-body: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+	--font-mono: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
+		'Bitstream Vera Sans Mono', Courier, monospace;
+	--font-serif: 'IBM Plex Serif', 'Georgia', Times, serif;
+	font-family: var(--font-body);
+	--cursor-icon-none: auto;
+	--cursor-icon-none-pointer: pointer;
+	--cursor-icon-none-wait: wait;
+	--toc-mobile-bg: var(--ctp-mantle) !important;
 }
 
- /* https://www.digitalocean.com/community/tutorials/css-scrollbars
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: motion.$duration-fast-02;
+	animation-timing-function: motion.motion(standard, expressive);
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	background-attachment: fixed;
+	background-size: 100vw 100vh;
+	cursor: var(--cursor-icon);
+}
+
+@media (prefers-reduced-motion) {
+	*,
+	::before,
+	::after {
+		animation-duration: 0.001s !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001s !important;
+		transition: none !important; /* TODO?	*/
+	}
+}
+
+/* https://www.digitalocean.com/community/tutorials/css-scrollbars
  Works on Firefox */
- * {
-	 scrollbar-width: thin;
-	 scrollbar-color: var(--ctp-blue) var(--ctp-crust);
-	 caret-color: var(--ctp-rosewater);
- }
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--ctp-blue) var(--ctp-crust);
+	caret-color: var(--ctp-rosewater);
+}
 
- body{
+body {
 	transition: color motion.$duration-slow-02 motion.motion(standard, expressive);
- }
+}
 
- /* Works on Chrome, Edge, and Safari */
- *::-webkit-scrollbar {
-	 width: var(--cds-spacing-03);
- }
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: var(--cds-spacing-03);
+}
 
- *::-webkit-scrollbar-track {
-	 background: var(--ctp-crust);
- }
+*::-webkit-scrollbar-track {
+	background: var(--ctp-crust);
+}
 
- *::-webkit-scrollbar-thumb {
-	 background-color: var(--ctp-blue);
-	 border-radius: 1rem;
-	 border: 2px solid var(--ctp-blue);
- }
+*::-webkit-scrollbar-thumb {
+	background-color: var(--ctp-blue);
+	border-radius: 1rem;
+	border: 2px solid var(--ctp-blue);
+}
 
- .text-column {
-	 display: flex;
-	 max-width: 48rem;
-	 flex: 0.6;
-	 flex-direction: column;
-	 justify-content: center;
-	 margin: 0 auto;
- }
+.text-column {
+	display: flex;
+	max-width: 48rem;
+	flex: 0.6;
+	flex-direction: column;
+	justify-content: center;
+	margin: 0 auto;
+}
 
- .subtle {
-	 color: var(--ctp-overlay1);
- }
+.subtle {
+	color: var(--ctp-overlay1);
+}
 
- @media (min-width: 720px) {
-	 h1 {
-		 font-size: 2.4rem;
-	 }
- }
+@media (min-width: 720px) {
+	h1 {
+		font-size: 2.4rem;
+	}
+}
 
- @media (prefers-reduced-motion) {
-	 ::view-transition-group(*),
-	 ::view-transition-old(*),
-	 ::view-transition-new(*) {
-		 animation: none !important;
-	 }
- }
+@media (prefers-reduced-motion) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}
 
- .visually-hidden {
-	 border: 0;
-	 clip: rect(0 0 0 0);
-	 height: auto;
-	 margin: 0;
-	 overflow: hidden;
-	 padding: 0;
-	 position: absolute;
-	 width: 1px;
-	 white-space: nowrap;
- }
+.visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
+}
 
- hr {
-	 opacity: 0.25;
-	 margin-bottom: var(--cds-spacing-06);
- }
+hr {
+	opacity: 0.25;
+	margin-bottom: var(--cds-spacing-06);
+}
 
- .bx--label--disabled,
- .bx--dropdown--disabled,
- .bx--list-box--disabled,
- .bx--list-box__field[disabled],
- .bx--list-box__field[disabled].bx--list-box__menu-icon,
- .list-box--disabled,
- .bx--dropdown--disabled > .bx--list-box__field > .bx--list-box__menu-icon {
-	 cursor: not-allowed !important;
- }
+.bx--label--disabled,
+.bx--dropdown--disabled,
+.bx--list-box--disabled,
+.bx--list-box__field[disabled],
+.bx--list-box__field[disabled].bx--list-box__menu-icon,
+.list-box--disabled,
+.bx--dropdown--disabled > .bx--list-box__field > .bx--list-box__menu-icon {
+	cursor: not-allowed !important;
+}
 
- .bx--label {
-	 cursor: var(--cursor-icon);
- }
+.bx--label {
+	cursor: var(--cursor-icon);
+}
 
- a,
- button,
- [role='button'],
- input[type='submit'],
- input[type='reset'],
- input[type='button'],
- .bx--list-box__menu-icon,
- .bx--list-box__menu-item__option,
- .bx--list-box__menu-item,
- .bx--list-box__menu-item--highlighted,
- .bx--slider,
- .bx--toggle-input__label,
- .bx--toggle__text--on,
- .bx--toggle__text--off,
- .bx--toggle__switch {
-	 cursor: var(--cursor-icon-pointer) !important;
- }
+a,
+button,
+[role='button'],
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+.bx--list-box__menu-icon,
+.bx--list-box__menu-item__option,
+.bx--list-box__menu-item,
+.bx--list-box__menu-item--highlighted,
+.bx--slider,
+.bx--toggle-input__label,
+.bx--toggle__text--on,
+.bx--toggle__text--off,
+.bx--toggle__switch {
+	cursor: var(--cursor-icon-pointer) !important;
+}
 
- body.wait,
- body.wait * {
-	 cursor: var(--cursor-icon-wait) !important;
- }
+body.wait,
+body.wait * {
+	cursor: var(--cursor-icon-wait) !important;
+}
 
- ::selection {
-	 background-color: var(--ctp-surface2);
- }
+::selection {
+	background-color: var(--ctp-surface2);
+}
 
- .bx--modal {
-	 background-color: rgba(0, 0, 0, 0.6);
- }
+.bx--modal {
+	background-color: rgba(0, 0, 0, 0.6);
+}
 
- .bx--snippet--multi {
+.bx--snippet--multi {
 	background-color: var(--ctp-base);
 	border-radius: 10px;
 	border: 2px var(--ctp-surface0) solid;
 }
 
-.spaced-paragraph{
+.spaced-paragraph {
 	margin-bottom: 1rem;
 }
 
-.spaced-list{
+.spaced-list {
 	margin-bottom: 2rem;
 }
 
-.spaced-image{
+.spaced-image {
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 }
 
-.spaced-div{
+.spaced-div {
 	margin-bottom: 1rem;
 }
 
-.spaced-toggle{
+.spaced-toggle,
+.spaced-button {
 	margin-bottom: 1rem;
 }
 
@@ -323,7 +323,7 @@ duration-slow-02	Background dimming	700ms
 	margin-top: var(--cds-spacing-05);
 }
 
-.centered-figure{
+.centered-figure {
 	display: flex;
 	align-items: center;
 	margin-top: 2rem;
@@ -336,6 +336,6 @@ duration-slow-02	Background dimming	700ms
 	background-color: var(--ctp-blue);
 }
 
-.bx--content-switcher-btn.bx--content-switcher--selected{
+.bx--content-switcher-btn.bx--content-switcher--selected {
 	color: var(--ctp-base);
 }

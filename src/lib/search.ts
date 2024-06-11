@@ -7,6 +7,7 @@ export type SearchResult = {
 	category: SearchItemCategory;
 	id: number;
 	hex: string;
+	originalTitle: string;
 };
 
 export type SearchItem = {
@@ -59,6 +60,7 @@ export function searchPostsIndex(
 			return {
 				slug,
 				title: replaceTextWithMarker(title, match),
+				originalTitle: title,
 				content: getMatches(content, match),
 				category,
 				id,
