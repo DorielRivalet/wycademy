@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import SearchWorker from '$lib/client/workers/search?worker';
 	import { onNavigate } from '$app/navigation';
 	import type { SearchItemCategory, SearchResult } from '$lib/search.ts';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -17,11 +16,11 @@
 	import RecentlyViewed from 'carbon-icons-svelte/lib/RecentlyViewed.svelte';
 	import TrashCan from 'carbon-icons-svelte/lib/TrashCan.svelte';
 	import { browser } from '$app/environment';
+	import { createPostsIndex, searchPostsIndex } from '$lib/search';
 
 	let search: 'idle' | 'load' | 'ready' = 'idle';
 	let searchTerm = '';
 	let results: SearchResult[] = [];
-	let searchWorker: Worker;
 	let searchDuration = 0;
 
 	const categoryIcons: { name: SearchItemCategory; icon: any }[] = [
@@ -115,30 +114,19 @@
 		recentSearches = updatedSearches;
 	}
 
-	function initialize() {
+	async function initialize() {
 		if (showModal) {
 			closeDialog();
 		} else {
 			openDialog();
 		}
 
-		if (search === 'ready') {
-			return;
+		if (search === 'idle') {
+			search = 'load';
+			const posts = await fetch('/api/search').then((res) => res.json());
+			createPostsIndex(posts);
+			search = 'ready';
 		}
-
-		search = 'load';
-		// create worker
-		searchWorker = new SearchWorker();
-		// listen for messages
-		searchWorker.addEventListener('message', (e) => {
-			const { type, payload } = e.data;
-			type === 'ready' && (search = 'ready');
-			type === 'results' &&
-				(results = payload.results) &&
-				(searchDuration = payload.searchDuration);
-		});
-		// initialize when the component mounts
-		searchWorker.postMessage({ type: 'load' });
 	}
 
 	function openDialog() {
@@ -182,14 +170,11 @@
 
 	let dialogElement: HTMLDialogElement;
 	let showModal = false;
-	let scopeFilterId = 'All';
+	let scopeFilterId: SearchItemCategory = 'All';
 
 	$: if (search === 'ready') {
 		// update results
-		searchWorker.postMessage({
-			type: 'search',
-			payload: { searchTerm, scopeFilterId },
-		});
+		results = searchPostsIndex(searchTerm, scopeFilterId);
 	}
 
 	$: if (searchTerm && !showModal) {
@@ -249,7 +234,7 @@
 			<div class="results">
 				{#if search === 'load'}
 					<Accordion skeleton />
-				{:else if results.length > 0}
+				{:else if results.length > 0 && search === 'ready'}
 					<p>
 						{results.length} results found ({searchDuration / 1000} seconds).
 					</p>

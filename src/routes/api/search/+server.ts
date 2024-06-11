@@ -1,9 +1,6 @@
 import { json } from '@sveltejs/kit';
-import { browser } from '$app/environment';
-
-export const prerender = true;
+import results from './results.json';
 
 export async function GET() {
-	if (!browser) return json([]);
-	return json((await import('$lib/page-info')).default());
+	return json(results);
 }
