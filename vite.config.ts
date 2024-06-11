@@ -6,6 +6,7 @@
 
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
 	css: {
@@ -18,7 +19,13 @@ export default defineConfig({
 			},
 		},
 	},
-	plugins: [sveltekit()],
+	plugins: [
+		sveltekit(),
+		visualizer({
+			filename: './dist/stats.html',
+			template: 'treemap', // or sunburst, network, etc.
+		}),
+	],
 	ssr: {
 		noExternal: process.env.NODE_ENV === 'production' ? ['@carbon/charts'] : [],
 	},
