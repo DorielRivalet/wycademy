@@ -778,7 +778,9 @@
 
 		if (hasSections) {
 			// Map over the sections of the found weapon to extract their names
-			const sectionNames = weapon.sections.map((section) => section.name);
+			const sectionNames = weapon.sections
+				.filter((section) => section.style === style)
+				.map((section) => section.name);
 
 			// Return the array of section names
 			return sectionNames;
@@ -4121,10 +4123,7 @@
 	};
 
 	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
-	// $: weaponSections = getWeaponSectionMotionValues(
-	// 	inputWeaponType,
-	// 	inputWeaponMotionValuesSection,
-	// );
+
 	$: weaponSectionNames = getWeaponSectionNames(
 		inputWeaponType,
 		inputWeaponMotionValuesSectionStyle,
