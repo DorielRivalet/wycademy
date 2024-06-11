@@ -25,8 +25,6 @@
 	import OverflowMenuItem from 'carbon-components-svelte/src/OverflowMenu/OverflowMenuItem.svelte';
 	import Menu from 'carbon-icons-svelte/lib/Menu.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
-	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
-	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
