@@ -7,18 +7,22 @@
 	import SearchIcon from 'carbon-icons-svelte/lib/Search.svelte';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import { onDestroy } from 'svelte';
-	import { page } from '$app/stores';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 	import { ArmorTypes, ItemIcons } from '$lib/client/modules/frontier/objects';
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
 	import InlineTooltip from './InlineTooltip.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import RecentlyViewed from 'carbon-icons-svelte/lib/RecentlyViewed.svelte';
+	import TrashCan from 'carbon-icons-svelte/lib/TrashCan.svelte';
+	import { browser } from '$app/environment';
 
 	let search: 'idle' | 'load' | 'ready' = 'idle';
 	let searchTerm = '';
 	let results: SearchResult[] = [];
 	let searchWorker: Worker;
+	let searchDuration = 0;
 
 	const categoryIcons: { name: SearchItemCategory; icon: any }[] = [
 		{
@@ -82,6 +86,35 @@
 		);
 	}
 
+	function deleteSearchTerm(title: string, slug: string) {
+		if (!browser) return;
+
+		// Filter out the search term to be deleted
+		const updatedSearches = (recentSearches || []).filter(
+			(search) => !(search.title === title && search.slug === slug),
+		);
+
+		// Update localStorage with the filtered array
+		window.localStorage.setItem(
+			'__recent-searches',
+			JSON.stringify(updatedSearches),
+		);
+
+		// Update the variable directly to reflect changes
+		recentSearches = updatedSearches;
+	}
+
+	function deleteAllSearchTerms() {
+		if (!browser) return;
+
+		const updatedSearches = [];
+		window.localStorage.setItem(
+			'__recent-searches',
+			JSON.stringify(updatedSearches),
+		);
+		recentSearches = updatedSearches;
+	}
+
 	function initialize() {
 		if (showModal) {
 			closeDialog();
@@ -100,7 +133,9 @@
 		searchWorker.addEventListener('message', (e) => {
 			const { type, payload } = e.data;
 			type === 'ready' && (search = 'ready');
-			type === 'results' && (results = payload.results);
+			type === 'results' &&
+				(results = payload.results) &&
+				(searchDuration = payload.searchDuration);
 		});
 		// initialize when the component mounts
 		searchWorker.postMessage({ type: 'load' });
@@ -125,6 +160,25 @@
 	onNavigate(() => {
 		closeDialog();
 	});
+
+	let recentSearches = !browser
+		? []
+		: JSON.parse(window.localStorage.getItem('__recent-searches') ?? '[]');
+
+	$: recentSearchesJSON = recentSearches;
+
+	function saveSearchTerm(title: string, slug: string) {
+		if (!browser) return;
+
+		const updatedSearches = [...(recentSearches || []), { title, slug }];
+		window.localStorage.setItem(
+			'__recent-searches',
+			JSON.stringify(updatedSearches),
+		);
+
+		// Update the variable directly to reflect changes
+		recentSearches = updatedSearches;
+	}
 
 	let dialogElement: HTMLDialogElement;
 	let showModal = false;
@@ -196,7 +250,9 @@
 				{#if search === 'load'}
 					<Accordion skeleton />
 				{:else if results.length > 0}
-					<p>{results.length} results found.</p>
+					<p>
+						{results.length} results found ({searchDuration / 1000} seconds).
+					</p>
 					<Accordion>
 						{#each Object.entries(groupedResults) as [category, results], i}
 							<AccordionItem open={i === 0}>
@@ -212,7 +268,13 @@
 								<ol>
 									{#each results as result}
 										<li>
-											<a on:click={closeDialog} href={result.slug}>
+											<a
+												on:click={(e) => {
+													saveSearchTerm(result.originalTitle, result.slug);
+													closeDialog();
+												}}
+												href={result.slug}
+											>
 												{@html result.title}
 											</a>
 											{#if result.content.length > 0}
@@ -228,8 +290,35 @@
 							</AccordionItem>
 						{/each}
 					</Accordion>
-				{:else}
-					<p>0 results found.</p>
+				{:else if recentSearchesJSON.length > 0}
+					<Button
+						class="spaced-button"
+						iconDescription="Delete"
+						kind="tertiary"
+						icon={TrashCan}
+						on:click={deleteAllSearchTerms}>Delete all recent searches</Button
+					>
+					{#each [...recentSearchesJSON].reverse() as recentSearch}
+						<div class="recent-search-container">
+							<div class="recent-search-info">
+								<div>
+									<RecentlyViewed />
+								</div>
+								<div>
+									<Link href={recentSearch.slug}>{recentSearch.title}</Link>
+								</div>
+							</div>
+							<div>
+								<Button
+									iconDescription="Delete"
+									kind="ghost"
+									icon={TrashCan}
+									on:click={(e) =>
+										deleteSearchTerm(recentSearch.title, recentSearch.slug)}
+								/>
+							</div>
+						</div>
+					{/each}
 				{/if}
 			</div>
 		</div>
@@ -237,6 +326,21 @@
 </dialog>
 
 <style lang="scss">
+	.recent-search-container {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.recent-search-info {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+		align-items: center;
+	}
+
 	dialog {
 		border-color: transparent;
 		background: none;

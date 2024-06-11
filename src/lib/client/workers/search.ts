@@ -14,11 +14,19 @@ addEventListener('message', async (e) => {
 	}
 
 	if (type === 'search') {
+		const startTime = Date.now();
 		// get search term
 		const searchTerm = payload.searchTerm;
 		// search posts index
 		const results = searchPostsIndex(searchTerm, payload.scopeFilterId);
+
+		const endTime = Date.now();
+		const searchDuration = endTime - startTime;
+
 		// send message with results and search term
-		postMessage({ type: 'results', payload: { results, searchTerm } });
+		postMessage({
+			type: 'results',
+			payload: { results, searchTerm, searchDuration },
+		});
 	}
 });
