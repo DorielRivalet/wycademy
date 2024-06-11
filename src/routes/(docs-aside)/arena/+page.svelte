@@ -7885,7 +7885,7 @@ does not get multiplied by horn */
 												{ id: 'Just Shot (1.3x)', text: 'Just Shot (1.3x)' },
 												{
 													id: 'Perfect JS (1.4x)',
-													text: 'Perfect JS (1.4x)',
+													text: 'Perfect Just Shot (1.4x)',
 												},
 												{
 													id: 'Evade Shot (0.6x)',
@@ -7923,7 +7923,7 @@ does not get multiplied by horn */
 													text: 'Charge Lv 2 (1.3x)',
 												},
 												{
-													id: 'Charge Lv 3 (1.5x)',
+													id: 'Charge Lv 3 (1.5x)', // TODO 1.49 on Normal?
 													text: 'Charge Lv 3 (1.5x)',
 												},
 												{
@@ -8808,6 +8808,12 @@ does not get multiplied by horn */
 			<p class="spaced-paragraph">
 				You can change the weapon type shown below in the damage calculator
 				above.
+			</p>
+
+			<p class="spaced-paragraph">
+				Some motion values have numbers in parentheses, those are KO values. KO
+				indicates impact portions of the motion value, which use white sharpness
+				as the maximum multiplier.
 			</p>
 
 			{#if showWeaponMotionValuesSectionWarning}
