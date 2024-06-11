@@ -611,7 +611,8 @@ Only support can inflict poison to Raviente Raviente.`,
 
 const uniqueMonsters = getUniqueMonsters();
 
-export const searchJSON = [
-	...pageInfo,
-	...mapToSearchItem(uniqueMonsters, 'monsterInfo'),
-];
+export default () =>
+	Promise.resolve([
+		...pageInfo,
+		...mapToSearchItem(uniqueMonsters, 'monsterInfo'),
+	]);
