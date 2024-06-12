@@ -4,7 +4,7 @@
  * found in the LICENSE file.
  */
 
-import adapter from '@sveltejs/adapter-cloudflare';
+import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { optimizeImports } from 'carbon-preprocess-svelte';
 
@@ -19,21 +19,21 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter({
 			// See below for an explanation of these options
-			routes: {
-				include: ['/*'],
-				exclude: [
-					'/_app/*',
-					'/android/*',
-					'/app.webmanifest',
-					'/assets/img/*',
-					'/assets/sound/*',
-					'/favicon.ico',
-					'/favicon.png',
-					'/favicon.webp',
-					'/github-mark-white.svg',
-					'/ios/*',
-				],
-			},
+			// routes: {
+			// 	include: ['/*'],
+			// 	exclude: [
+			// 		'/_app/*',
+			// 		'/android/*',
+			// 		'/app.webmanifest',
+			// 		'/assets/img/*',
+			// 		'/assets/sound/*',
+			// 		'/favicon.ico',
+			// 		'/favicon.png',
+			// 		'/favicon.webp',
+			// 		'/github-mark-white.svg',
+			// 		'/ios/*',
+			// 	],
+			// },
 		}),
 	},
 };
