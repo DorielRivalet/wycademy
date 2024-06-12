@@ -10,10 +10,12 @@
 	import type { GitHubData } from '$lib/types';
 	import * as constant from '$lib/constants';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
-	import CloudflareLogo from '$lib/client/images/cloudflare-pages-logo.svg';
+	import VercelLogo from '$lib/client/images/vercel-logotype-dark.svg';
+	import VercelLogoLight from '$lib/client/images/vercel-logotype-light.svg';
 	import SvelteLogo from '$lib/client/images/svelte-logo.svg';
 	import Raviente from '$lib/client/images/icon/berserk_raviente_raid.webp';
 	import authorImage from '$lib/client/images/author.webp';
+	import { theme } from '$lib/client/stores/theme';
 
 	export let githubData: GitHubData = {
 		lastModified: '',
@@ -49,11 +51,14 @@
 		</div>
 		<div class="icon-info-container">
 			<p>Powered by</p>
-			<img width="32" src={CloudflareLogo} alt="Cloudflare Pages Logo" />
 			<span class="logo-container">
-				<OutboundLink href="https://developers.cloudflare.com/pages/">
-					Cloudflare Pages™</OutboundLink
-				>
+				<OutboundLink href="https://vercel.com/">
+					{#if $theme === 'g10'}
+						<img width="96" src={VercelLogoLight} alt="Vercel Logo" />
+					{:else}
+						<img width="96" src={VercelLogo} alt="Vercel Logo" />
+					{/if}
+				</OutboundLink>
 			</span>
 			<p>and</p>
 			<img width="32" src={SvelteLogo} alt="Svelte Logo" />
