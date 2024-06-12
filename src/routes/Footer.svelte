@@ -54,9 +54,9 @@
 			<span class="logo-container">
 				<OutboundLink href="https://vercel.com/">
 					{#if $theme === 'g10'}
-						<img width="96" src={VercelLogoLight} alt="Vercel Logo" />
-					{:else}
 						<img width="96" src={VercelLogo} alt="Vercel Logo" />
+					{:else}
+						<img width="96" src={VercelLogoLight} alt="Vercel Logo" />
 					{/if}
 				</OutboundLink>
 			</span>
