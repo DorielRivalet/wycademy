@@ -114,6 +114,8 @@
 		recentSearches = updatedSearches;
 	}
 
+	$: console.log(`==============${search}===========================`);
+
 	async function initialize() {
 		if (showModal) {
 			closeDialog();
