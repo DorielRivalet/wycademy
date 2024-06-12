@@ -11,7 +11,7 @@ export const authorUrl = 'https://github.com/DorielRivalet';
 export const projectGitHub = 'https://github.com/DorielRivalet/wycademy';
 export const developmentStage = 'alpha';
 export const appVersion = '0.3.0';
-export const website = 'https://wycademy.pages.dev';
+export const website = 'https://wycademy.vercel.app';
 export const datePublished = '2023-09-02';
 export const apiCacheTimeouts = {
 	github: 60 * 60 * 24,

@@ -62,7 +62,7 @@ SOFTWARE.
 			license: 'https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md',
 			alternateName: 'wycademy',
 			name: mainEntity.name,
-			sameAs: 'https://wycademy.pages.dev',
+			sameAs: 'https://wycademy.vercel.app',
 			url: mainEntity.url,
 			headline: mainEntity.headline,
 			description: mainEntity.description,
