@@ -7,6 +7,7 @@
 import type {
 	FrontierArmorSkillName,
 	FrontierArmorSkillTree,
+	FrontierDivaPrayerGemSkillName,
 	FrontierMonsterName,
 	FrontierRankBand,
 	FrontierSigil,
@@ -899,3 +900,15 @@ export type WikiaMonster = {
 } | null;
 
 export type WikiaMonsterName = (typeof wikiaMonsters)[number];
+
+// TODO
+export type FrontierDivaPrayerGem = {
+	color: FrontierDivaPrayerGemColor;
+	skill: {
+		name: FrontierDivaPrayerGemSkillName;
+		level: FrontierDivaPrayerGemLevel;
+	};
+};
+
+export type FrontierDivaPrayerGemColor = 'Red' | 'Yellow' | 'Green' | 'Blue';
+export type FrontierDivaPrayerGemLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;

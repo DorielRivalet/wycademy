@@ -69,7 +69,7 @@ export const themeTokens = {
 		'skeleton-01': 'var(--ctp-mocha-overlay0)',
 		'skeleton-02': 'var(--ctp-mocha-overlay1)',
 		'visited-link': 'var(--ctp-mocha-lavender)',
-		'disabled-01': 'var(--ctp-mocha-overlay0)',
+		'disabled-01': 'var(--ctp-mocha-surface0)',
 		'disabled-02': 'var(--ctp-mocha-overlay1)',
 		'disabled-03': 'var(--ctp-mocha-overlay2)',
 
@@ -301,7 +301,7 @@ export const themeTokens = {
 		'skeleton-01': 'var(--ctp-macchiato-overlay0)',
 		'skeleton-02': 'var(--ctp-macchiato-overlay1)',
 		'visited-link': 'var(--ctp-macchiato-lavender)',
-		'disabled-01': 'var(--ctp-macchiato-overlay0)',
+		'disabled-01': 'var(--ctp-macchiato-surface0)',
 		'disabled-02': 'var(--ctp-macchiato-overlay1)',
 		'disabled-03': 'var(--ctp-macchiato-overlay2)',
 
@@ -533,7 +533,7 @@ export const themeTokens = {
 		'skeleton-01': 'var(--ctp-frappe-overlay0)',
 		'skeleton-02': 'var(--ctp-frappe-overlay1)',
 		'visited-link': 'var(--ctp-frappe-lavender)',
-		'disabled-01': 'var(--ctp-frappe-overlay0)',
+		'disabled-01': 'var(--ctp-frappe-surface0)',
 		'disabled-02': 'var(--ctp-frappe-overlay1)',
 		'disabled-03': 'var(--ctp-frappe-overlay2)',
 
@@ -765,7 +765,7 @@ export const themeTokens = {
 		'skeleton-01': 'var(--ctp-latte-overlay0)',
 		'skeleton-02': 'var(--ctp-latte-overlay1)',
 		'visited-link': 'var(--ctp-latte-lavender)',
-		'disabled-01': 'var(--ctp-latte-overlay0)',
+		'disabled-01': 'var(--ctp-latte-surface0)',
 		'disabled-02': 'var(--ctp-latte-overlay1)',
 		'disabled-03': 'var(--ctp-latte-overlay2)',
 
@@ -997,7 +997,7 @@ export const themeTokens = {
 		'skeleton-01': 'var(--ctp-latte-overlay0)',
 		'skeleton-02': 'var(--ctp-latte-overlay1)',
 		'visited-link': 'var(--ctp-latte-lavender)',
-		'disabled-01': 'var(--ctp-latte-overlay0)',
+		'disabled-01': 'var(--ctp-latte-surface0)',
 		'disabled-02': 'var(--ctp-latte-overlay1)',
 		'disabled-03': 'var(--ctp-latte-overlay2)',
 
@@ -1229,7 +1229,7 @@ export const themeTokens = {
 		'skeleton-01': 'var(--ctp-mocha-overlay0)',
 		'skeleton-02': 'var(--ctp-mocha-overlay1)',
 		'visited-link': 'var(--ctp-mocha-lavender)',
-		'disabled-01': 'var(--ctp-mocha-overlay0)',
+		'disabled-01': 'var(--ctp-mocha-surface0)',
 		'disabled-02': 'var(--ctp-mocha-overlay1)',
 		'disabled-03': 'var(--ctp-mocha-overlay2)',
 
