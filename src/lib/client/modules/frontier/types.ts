@@ -188,6 +188,12 @@ export type FrontierArmorGRLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export type FrontierArmorLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export type FrontierWeaponMultiplier = 1.4 | 4.8 | 5.2 | 2.3 | 5.4 | 1.8 | 1.2;
 export type FrontierTonfaMode = 'Long' | 'Short';
+export type FrontierDamageType =
+	| 'Cutting'
+	| 'Impact'
+	| 'Shot'
+	| 'Pierce'
+	| 'True Damage';
 export type FrontierWeapon = {
 	id: FrontierWeaponID;
 	name: FrontierWeaponName;
@@ -201,6 +207,8 @@ export type FrontierWeapon = {
 	smallIconRed: any;
 	activeFeatureValue: number;
 	elementalExploitModifier: number;
+	// TODO should be in motion values instead
+	damageType: FrontierDamageType;
 	// TODO
 };
 export type FrontierEquipmentSkillPoints = [
