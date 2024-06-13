@@ -8826,6 +8826,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 20,
 		statusAssaultParalysis: 10,
 		elementalExploitModifier: 15,
+		damageType: 'Cutting',
 	},
 	{
 		id: 1,
@@ -8840,6 +8841,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 0,
 		statusAssaultParalysis: 0,
 		elementalExploitModifier: 5,
+		damageType: 'Shot',
 	},
 	{
 		id: 2,
@@ -8854,6 +8856,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 10,
 		elementalExploitModifier: 15,
+		damageType: 'Impact',
 	},
 	{
 		id: 3,
@@ -8868,6 +8871,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 14,
 		statusAssaultParalysis: 7,
 		elementalExploitModifier: 15,
+		damageType: 'Pierce',
 	},
 	{
 		id: 4,
@@ -8882,6 +8886,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 12,
 		statusAssaultParalysis: 7,
 		elementalExploitModifier: 15,
+		damageType: 'Cutting',
 	},
 	{
 		id: 5,
@@ -8896,6 +8901,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 0,
 		statusAssaultParalysis: 0,
 		elementalExploitModifier: 10,
+		damageType: 'Shot',
 	},
 	{
 		id: 6,
@@ -8910,6 +8916,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 10,
 		statusAssaultParalysis: 3,
 		elementalExploitModifier: 10,
+		damageType: 'Cutting',
 	},
 	{
 		id: 7,
@@ -8924,6 +8931,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 7,
 		elementalExploitModifier: 15,
+		damageType: 'Cutting',
 	},
 	{
 		id: 8,
@@ -8938,6 +8946,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 13,
 		statusAssaultParalysis: 7,
 		elementalExploitModifier: 15,
+		damageType: 'Impact',
 	},
 	{
 		id: 9,
@@ -8952,6 +8961,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 10,
 		statusAssaultParalysis: 9,
 		elementalExploitModifier: 10,
+		damageType: 'Cutting',
 	},
 	{
 		id: 10,
@@ -8966,6 +8976,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 0,
 		statusAssaultParalysis: 0,
 		elementalExploitModifier: 5,
+		damageType: 'Shot',
 	},
 	{
 		id: 11,
@@ -8980,6 +8991,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 10,
 		statusAssaultParalysis: 6,
 		elementalExploitModifier: 15,
+		damageType: 'Impact',
 	},
 	{
 		id: 12,
@@ -8994,6 +9006,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 7,
 		elementalExploitModifier: 15,
+		damageType: 'Cutting',
 	},
 	{
 		id: 13,
@@ -9008,6 +9021,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 13,
 		statusAssaultParalysis: 6,
 		elementalExploitModifier: 15,
+		damageType: 'Cutting',
 	},
 ];
 
@@ -21551,18 +21565,6 @@ export const affinityDropdownItems: DropdownItemOption[] = [
 		name: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
 		value: 40,
 	},
-	{
-		name: 'Affinity UP Lv1 (+25%)',
-		value: 25,
-	},
-	{
-		name: 'Affinity UP Lv2 (+50%)',
-		value: 50,
-	},
-	{
-		name: 'Affinity UP Lv3 (+100%)',
-		value: 100,
-	},
 ] as const;
 
 export const multipliedBaseDropdownItems: DropdownItemOption[] = [
@@ -23025,7 +23027,7 @@ export const legacyCalculatorKeysMap: { [key: string]: string } = {
 	AffinityDrink: 'inputAffinityItems',
 	ACfood: 'inputFoodConsumables',
 	ACsigil2: 'inputNumberSigil2Attack',
-	rawhb: 'inputNumberRawHitzone',
+	rawhb: 'inputNumberCuttingHitzone',
 	ACconsumption: 'inputConsumptionSlayer',
 	AffinityNatural: 'inputNumberNaturalAffinity',
 	elementtype: 'inputElement',
@@ -24347,7 +24349,7 @@ export const divaPrayerGems: {
 		id: 17,
 		name: ezlion.SkillDivaPrayerGem[17],
 		description:
-			'Attack will go up based on the number of players in a quest. +30 True Raw increase if you are the only player.',
+			'Attack will go up based on the number of players in a quest. +10/20/30 True Raw increase if you are the only player.',
 		maxLevel: 3,
 		unused: false,
 		partyEffect: true,
@@ -24417,6 +24419,85 @@ export const divaPrayerGems: {
 		maxLevel: 2,
 		unused: true,
 		partyEffect: false,
+	},
+];
+
+export const divaPrayerGemsDropdownItems: DropdownItemOption[] = [
+	{
+		name: 'None',
+		value: 0,
+	},
+	{
+		name: 'Affinity UP Lv1',
+		value: 25,
+	},
+	{
+		name: 'Affinity UP Lv2',
+		value: 50,
+	},
+	{
+		name: 'Affinity UP Lv3',
+		value: 100,
+	},
+	{
+		name: 'Cutting UP Lv1',
+		value: 1,
+	},
+	{
+		name: 'Cutting UP Lv2',
+		value: 2,
+	},
+	{
+		name: 'Cutting UP Lv3',
+		value: 3,
+	},
+	{
+		name: 'Impact UP Lv1',
+		value: 1,
+	},
+	{
+		name: 'Impact UP Lv2',
+		value: 2,
+	},
+	{
+		name: 'Impact UP Lv3',
+		value: 3,
+	},
+	{
+		name: 'Shot UP Lv1',
+		value: 1,
+	},
+	{
+		name: 'Shot UP Lv2',
+		value: 2,
+	},
+	{
+		name: 'Shot UP Lv3',
+		value: 3,
+	},
+	{
+		name: 'Element UP Lv1',
+		value: 1,
+	},
+	{
+		name: 'Element UP Lv2',
+		value: 2,
+	},
+	{
+		name: 'Element UP Lv3',
+		value: 3,
+	},
+	{
+		name: 'Friendship UP Lv1',
+		value: 10,
+	},
+	{
+		name: 'Friendship UP Lv2',
+		value: 20,
+	},
+	{
+		name: 'Friendship UP Lv3',
+		value: 30,
 	},
 ];
 

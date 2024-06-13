@@ -35,6 +35,7 @@
 		elementDropdownItems,
 		bowChargeLevels,
 		divaPrayerGems,
+		divaPrayerGemsDropdownItems,
 	} from '$lib/client/modules/frontier/objects';
 	import DivaPrayerGem from '$lib/client/components/frontier/icon/DivaPrayerGem.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
@@ -1083,7 +1084,10 @@
 							getMaxTrueRaw(internalTrueRaw) *
 								0.015 * // TODO Test
 								bowRawSigilChargeMultipliers[bowChargeLevels.chargeModifier] *
-								(getExploitWeakness(outputWeaponClass, inputNumberRawHitzone) /
+								(getExploitWeakness(
+									outputWeaponClass,
+									inputNumberShotHitzone + outputDivaPrayerGemShotHitzone,
+								) /
 									100),
 						) * outputMonsterTotalDefense,
 					),
@@ -1680,6 +1684,60 @@
 		}
 	}
 
+	// TODO unused
+	function getHitzoneValueFromWeaponType(weaponType: FrontierWeaponName) {
+		let damageType =
+			WeaponTypes.find((e) => e.name === weaponType)?.damageType || '';
+		switch (damageType) {
+			default:
+				return 0;
+			case 'Cutting':
+				return inputNumberCuttingHitzone;
+			case 'Impact':
+				return inputNumberImpactHitzone;
+			case 'Shot':
+				return inputNumberShotHitzone;
+			case 'Pierce':
+				return inputNumberImpactHitzone * 0.72 > inputNumberCuttingHitzone
+					? inputNumberImpactHitzone
+					: inputNumberCuttingHitzone;
+		}
+	}
+
+	function getRawHitzoneMultiplier(weaponType: FrontierWeaponName) {
+		let damageType =
+			WeaponTypes.find((e) => e.name === weaponType)?.damageType || '';
+		switch (damageType) {
+			default:
+				return 1;
+			case 'Cutting':
+				return getExploitWeakness(
+					outputWeaponClass,
+					inputNumberCuttingHitzone + outputDivaPrayerGemCuttingHitzone,
+				);
+			case 'Impact':
+				return getExploitWeakness(
+					outputWeaponClass,
+					inputNumberCuttingHitzone + outputDivaPrayerGemCuttingHitzone,
+				);
+			case 'Shot': // TODO unused
+				return getExploitWeakness(
+					outputWeaponClass,
+					inputNumberShotHitzone + outputDivaPrayerGemShotHitzone,
+				);
+			case 'Pierce': // lance
+				return inputNumberImpactHitzone * 0.72 > inputNumberCuttingHitzone
+					? getExploitWeakness(
+							outputWeaponClass,
+							inputNumberImpactHitzone + outputDivaPrayerGemImpactHitzone,
+						)
+					: getExploitWeakness(
+							outputWeaponClass,
+							inputNumberCuttingHitzone + outputDivaPrayerGemCuttingHitzone,
+						);
+		}
+	}
+
 	function getWeaponSectionMotionValues(
 		weaponName: FrontierWeaponName,
 		section: string,
@@ -1735,29 +1793,26 @@
 		// hitzone preprocessing
 		let elementHitzoneFireMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberFireHitzone,
+			inputNumberFireHitzone + outputDivaPrayerGemElementHitzone,
 		);
 		let elementHitzoneWaterMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberWaterHitzone,
+			inputNumberWaterHitzone + outputDivaPrayerGemElementHitzone,
 		);
 		let elementHitzoneThunderMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberThunderHitzone,
+			inputNumberThunderHitzone + outputDivaPrayerGemElementHitzone,
 		);
 		let elementHitzoneIceMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberIceHitzone,
+			inputNumberIceHitzone + outputDivaPrayerGemElementHitzone,
 		);
 		let elementHitzoneDragonMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberDragonHitzone,
+			inputNumberDragonHitzone + outputDivaPrayerGemElementHitzone,
 		);
 
-		let rawHitzoneMultiplier = getExploitWeakness(
-			outputWeaponClass,
-			inputNumberRawHitzone,
-		);
+		let rawHitzoneMultiplier = getRawHitzoneMultiplier(weaponName);
 
 		let usedFire = Math.floor(
 			((Math.floor(
@@ -1995,6 +2050,7 @@
 					critMultiplier = outputCritMultiplier;
 					totalAffinityUsed = 100;
 				} else if (inputCritMode === 'Averaged') {
+					// todo totalAffinity is different than the other ones, missing terms?
 					totalAffinityUsed =
 						outputIssenAffinity +
 						outputSharpnessAffinity +
@@ -2007,7 +2063,8 @@
 						inputNumberNaturalAffinity +
 						outputFlashConversionAffinity +
 						outputStarvingWolfAffinity +
-						outputCeaselessAffinity;
+						outputCeaselessAffinity +
+						outputDivaPrayerGemAffinity;
 					if (totalAffinityUsed > 100) {
 						totalAffinityUsed = 100;
 					} else if (totalAffinityUsed < 0) {
@@ -2023,7 +2080,10 @@
 			}
 
 			// SnS Sigil
-			if (motionValueItem.name === 'Sigil Additional') {
+			if (
+				motionValueItem.name === 'Sigil Additional' &&
+				motionValueItem.specialFlag === 'snssigil'
+			) {
 				if (inputElement === 'None') {
 					SwordAndShieldSigilAdded = Math.floor(
 						Math.floor(
@@ -2127,8 +2187,12 @@
 				additional = 0;
 			}
 
+			// todo: untested diva prayer gems
 			let outputAdditional =
-				(Math.floor(inputNumberOtherAdditional * outputMonsterTotalDefense) +
+				(Math.floor(
+					(inputNumberOtherAdditional + outputDivaPrayerGemTrueRaw) *
+						outputMonsterTotalDefense,
+				) +
 					additional +
 					statusAssault +
 					SwordAndShieldSigilAdded) *
@@ -2180,7 +2244,8 @@
 								bulletStrengthModifier *
 								outputShotMultiplier *
 								outputMonsterStatusInflictedMultiplier *
-								(inputNumberRawHitzone / 100) *
+								((inputNumberShotHitzone + outputDivaPrayerGemShotHitzone) /
+									100) *
 								outputMonsterTotalDefense,
 						) * outputAbsoluteDefenseMultiplier,
 					) * outputPremiumCourseMultiplier,
@@ -2200,7 +2265,7 @@
 										bowChargeRawLevel *
 										bowQuickShotChargeLevel *
 										outputMonsterStatusInflictedMultiplier *
-										inputNumberRawHitzone) /
+										inputNumberShotHitzone) /
 										100,
 								) * outputMonsterTotalDefense,
 							) * outputAbsoluteDefenseMultiplier,
@@ -2220,7 +2285,7 @@
 											bulletStrengthModifier *
 											shotValues.bowChargeRawLevel *
 											outputMonsterStatusInflictedMultiplier *
-											inputNumberRawHitzone) /
+											inputNumberShotHitzone) /
 											100,
 									) * outputMonsterTotalDefense,
 								) * outputAbsoluteDefenseMultiplier,
@@ -2239,7 +2304,7 @@
 											shotValues.bowChargeRawLevel *
 											bowQuickShotChargeLevel *
 											outputMonsterStatusInflictedMultiplier *
-											inputNumberRawHitzone) /
+											inputNumberShotHitzone) /
 											100,
 									) * outputMonsterTotalDefense,
 								) * outputAbsoluteDefenseMultiplier,
@@ -2262,7 +2327,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							inputNumberFireHitzone) /
+							(inputNumberFireHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -2273,7 +2338,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							inputNumberWaterHitzone) /
+							(inputNumberWaterHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -2284,7 +2349,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							inputNumberThunderHitzone) /
+							(inputNumberThunderHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -2295,7 +2360,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							inputNumberIceHitzone) /
+							(inputNumberIceHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -2306,7 +2371,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							inputNumberDragonHitzone) /
+							(inputNumberDragonHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -2334,7 +2399,8 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberFireHitzone) /
+									(inputNumberFireHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -2357,7 +2423,8 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberWaterHitzone) /
+									(inputNumberWaterHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -2380,7 +2447,8 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberThunderHitzone) /
+									(inputNumberThunderHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -2403,7 +2471,7 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberIceHitzone) /
+									(inputNumberIceHitzone + outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -2426,7 +2494,8 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberDragonHitzone) /
+									(inputNumberDragonHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -2452,7 +2521,8 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberFireHitzone) /
+									(inputNumberFireHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2473,7 +2543,8 @@
 								) /
 									10) *
 									shotValues.bowChargeElementLevel *
-									inputNumberFireHitzone) /
+									(inputNumberFireHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2497,7 +2568,8 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberWaterHitzone) /
+									(inputNumberWaterHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2518,7 +2590,8 @@
 								) /
 									10) *
 									shotValues.bowChargeElementLevel *
-									inputNumberWaterHitzone) /
+									(inputNumberWaterHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2542,7 +2615,8 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberThunderHitzone) /
+									(inputNumberThunderHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2563,7 +2637,8 @@
 								) /
 									10) *
 									shotValues.bowChargeElementLevel *
-									inputNumberThunderHitzone) /
+									(inputNumberThunderHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2587,7 +2662,7 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberIceHitzone) /
+									(inputNumberIceHitzone + outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2608,7 +2683,7 @@
 								) /
 									10) *
 									shotValues.bowChargeElementLevel *
-									inputNumberIceHitzone) /
+									(inputNumberIceHitzone + outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2632,7 +2707,8 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									inputNumberDragonHitzone) /
+									(inputNumberDragonHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2653,7 +2729,8 @@
 								) /
 									10) *
 									shotValues.bowChargeElementLevel *
-									inputNumberDragonHitzone) /
+									(inputNumberDragonHitzone +
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2669,7 +2746,9 @@
 			if (outputWeaponClass === 'Gunner') {
 				outputAdditional =
 					Math.floor(
-						(inputNumberOtherAdditional + bombValues) *
+						(inputNumberOtherAdditional +
+							bombValues +
+							outputDivaPrayerGemTrueRaw) *
 							outputMonsterTotalDefense,
 					) + bowSigilAddedValue;
 
@@ -3107,8 +3186,6 @@
 		inputAffinityItems = newInputs.inputAffinityItems || inputAffinityItems;
 		inputGsActiveFeature =
 			newInputs.inputGsActiveFeature || inputGsActiveFeature;
-		inputDivaPrayerGemAffinity =
-			newInputs.inputDivaPrayerGemAffinity || inputDivaPrayerGemAffinity;
 		inputAttackSkills = newInputs.inputAttackSkills || inputAttackSkills;
 		inputCaravanSkills = newInputs.inputCaravanSkills || inputCaravanSkills;
 		inputPassiveItems = newInputs.inputPassiveItems || inputPassiveItems;
@@ -3292,8 +3369,12 @@
 			newInputs.inputNumberMonsterRage || inputNumberMonsterRage;
 		inputNumberHCModifiers =
 			newInputs.inputNumberHCModifiers || inputNumberHCModifiers;
-		inputNumberRawHitzone =
-			newInputs.inputNumberRawHitzone || inputNumberRawHitzone;
+		inputNumberCuttingHitzone =
+			newInputs.inputNumberCuttingHitzone || inputNumberCuttingHitzone;
+		inputNumberImpactHitzone =
+			newInputs.inputNumberImpactHitzone || inputNumberImpactHitzone;
+		inputNumberShotHitzone =
+			newInputs.inputNumberShotHitzone || inputNumberShotHitzone;
 		inputNumberFireHitzone =
 			newInputs.inputNumberFireHitzone || inputNumberFireHitzone;
 		inputNumberWaterHitzone =
@@ -3304,6 +3385,28 @@
 			newInputs.inputNumberIceHitzone || inputNumberIceHitzone;
 		inputNumberDragonHitzone =
 			newInputs.inputNumberDragonHitzone || inputNumberDragonHitzone;
+
+		inputDivaPrayerGemRedName =
+			newInputs.inputDivaPrayerGemRedName || inputDivaPrayerGemRedName;
+		inputDivaPrayerGemYellowName =
+			newInputs.inputDivaPrayerGemYellowName || inputDivaPrayerGemYellowName;
+		inputDivaPrayerGemGreenName =
+			newInputs.inputDivaPrayerGemRedName || inputDivaPrayerGemGreenName;
+		inputDivaPrayerGemBlueName =
+			newInputs.inputDivaPrayerGemBlueName || inputDivaPrayerGemBlueName;
+
+		inputNumberDivaPrayerGemRedLevel =
+			newInputs.inputNumberDivaPrayerGemRedLevel ||
+			inputNumberDivaPrayerGemRedLevel;
+		inputNumberDivaPrayerGemYellowLevel =
+			newInputs.inputNumberDivaPrayerGemYellowLevel ||
+			inputNumberDivaPrayerGemYellowLevel;
+		inputNumberDivaPrayerGemGreenLevel =
+			newInputs.inputNumberDivaPrayerGemGreenLevel ||
+			inputNumberDivaPrayerGemGreenLevel;
+		inputNumberDivaPrayerGemYellowLevel =
+			newInputs.inputNumberDivaPrayerGemRedLevel ||
+			inputNumberDivaPrayerGemYellowLevel;
 	}
 
 	function prettyPrintJson(input: string | object) {
@@ -3715,7 +3818,8 @@
 	\\text{inputNumberNaturalAffinity} +\\newline
 	\\text{outputFlashConversionAffinity} +\\newline
 	\\text{outputStarvingWolfAffinity} +\\newline
-	\\text{outputCeaselessAffinity})`);
+	\\text{outputCeaselessAffinity} +\\newline
+	\\text{outputDivaPrayerGemAffinity})`);
 	$: formulaValuesInternalAffinity = `${internalAffinity} = \\text{getInternalAffinity}(\\text{${inputCritMode}}, ${outputIssenAffinity} +\\newline
 	${outputSharpnessAffinity} +\\newline
 	${inputNumberUnlimitedSigil} +\\newline
@@ -3727,7 +3831,8 @@
 	${inputNumberNaturalAffinity} +\\newline
 	${outputFlashConversionAffinity} +\\newline
 	${outputStarvingWolfAffinity} +\\newline
-	${outputCeaselessAffinity})`;
+	${outputCeaselessAffinity} +\\newline
+	${outputDivaPrayerGemAffinity})`;
 
 	const formulaInternalStatus =
 		display(`\\text{Internal Status} = \\lfloor \\lfloor
@@ -3869,7 +3974,6 @@
 	let inputStarvingWolf = 'None (1x)';
 	let inputAffinityItems = 'None';
 	let inputGsActiveFeature = 'None';
-	let inputDivaPrayerGemAffinity = 'None';
 	let inputAttackSkills = 'None';
 	let inputCaravanSkills = 'None';
 	let inputPassiveItems = 'None';
@@ -3990,7 +4094,9 @@
 	let inputNumberDefenseRate = 0.3;
 	let inputNumberMonsterRage = 1;
 	let inputNumberHCModifiers = 1;
-	let inputNumberRawHitzone = 30;
+	let inputNumberCuttingHitzone = 30;
+	let inputNumberImpactHitzone = 30;
+	let inputNumberShotHitzone = 30;
 	let inputNumberFireHitzone = 30;
 	let inputNumberWaterHitzone = 30;
 	let inputNumberThunderHitzone = 30;
@@ -4018,7 +4124,6 @@
 		inputStarvingWolf: inputStarvingWolf,
 		inputAffinityItems: inputAffinityItems,
 		inputGsActiveFeature: inputGsActiveFeature,
-		inputDivaPrayerGemAffinity: inputDivaPrayerGemAffinity,
 		inputAttackSkills: inputAttackSkills,
 		inputCaravanSkills: inputCaravanSkills,
 		inputPassiveItems: inputPassiveItems,
@@ -4134,12 +4239,24 @@
 		inputNumberDefenseRate: inputNumberDefenseRate,
 		inputNumberMonsterRage: inputNumberMonsterRage,
 		inputNumberHCModifiers: inputNumberHCModifiers,
-		inputNumberRawHitzone: inputNumberRawHitzone,
+		inputNumberCuttingHitzone: inputNumberCuttingHitzone,
+		inputNumberImpactHitzone: inputNumberImpactHitzone,
+		inputNumberShotHitzone: inputNumberShotHitzone,
 		inputNumberFireHitzone: inputNumberFireHitzone,
 		inputNumberWaterHitzone: inputNumberWaterHitzone,
 		inputNumberThunderHitzone: inputNumberThunderHitzone,
 		inputNumberIceHitzone: inputNumberIceHitzone,
 		inputNumberDragonHitzone: inputNumberDragonHitzone,
+
+		inputNumberDivaPrayerGemRedLevel: inputNumberDivaPrayerGemRedLevel,
+		inputNumberDivaPrayerGemYellowLevel: inputNumberDivaPrayerGemYellowLevel,
+		inputNumberDivaPrayerGemGreenLevel: inputNumberDivaPrayerGemGreenLevel,
+		inputNumberDivaPrayerGemBlueLevel: inputNumberDivaPrayerGemBlueLevel,
+
+		inputDivaPrayerGemRedName: inputDivaPrayerGemRedName,
+		inputDivaPrayerGemYellowName: inputDivaPrayerGemYellowName,
+		inputDivaPrayerGemGreenName: inputDivaPrayerGemGreenName,
+		inputDivaPrayerGemBlueName: inputDivaPrayerGemBlueName,
 	};
 
 	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
@@ -4236,19 +4353,9 @@
 		affinityDropdownItems.find((item) => item.name === inputGsActiveFeature)
 			?.value || 0;
 
-	$: outputDivaPrayerGemAffinity =
-		affinityDropdownItems.find(
-			(item) => item.name === inputDivaPrayerGemAffinity,
-		)?.value || 0;
-
 	$: addToDamageCalculatorHistoryLogs(
 		'outputGSActiveFeatureAffinity',
 		outputGSActiveFeatureAffinity.toString(),
-	);
-
-	$: addToDamageCalculatorHistoryLogs(
-		'outputDivaPrayerGemAffinity',
-		outputDivaPrayerGemAffinity.toString(),
 	);
 
 	$: outputDrinkAffinity =
@@ -5811,10 +5918,13 @@ does not get multiplied by horn */
 
 	const maxTotalDivaPrayerGemLevel = 7;
 
-	let inputDivaPrayerGemRed: FrontierDivaPrayerGemSkillName = 'Sharpness UP';
-	let inputDivaPrayerGemYellow: FrontierDivaPrayerGemSkillName = 'Cutting UP';
-	let inputDivaPrayerGemGreen: FrontierDivaPrayerGemSkillName = 'Friendship UP';
-	let inputDivaPrayerGemBlue: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName =
+		'Sharpness UP';
+	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName =
+		'Cutting UP';
+	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName =
+		'Friendship UP';
+	let inputDivaPrayerGemBlueName: FrontierDivaPrayerGemSkillName = 'None';
 
 	const iconKey = 'divaPrayerGemIcon';
 
@@ -5825,10 +5935,10 @@ does not get multiplied by horn */
 			text: gem.name,
 		}));
 
-	let inputDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 1;
-	let inputDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 3;
-	let inputDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 3;
-	let inputDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 1;
+	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 3;
+	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 3;
+	let inputNumberDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
 
 	function hasDuplicateValues(obj: Object, ignoredString: string) {
 		if (!obj) {
@@ -5859,19 +5969,19 @@ does not get multiplied by horn */
 	}
 
 	$: outputDivaPrayerGemRedMaxLevel = getMaxDivaPrayerGemLevel(
-		inputDivaPrayerGemRed,
+		inputDivaPrayerGemRedName,
 	);
 
 	$: outputDivaPrayerGemYellowMaxLevel = getMaxDivaPrayerGemLevel(
-		inputDivaPrayerGemYellow,
+		inputDivaPrayerGemYellowName,
 	);
 
 	$: outputDivaPrayerGemGreenMaxLevel = getMaxDivaPrayerGemLevel(
-		inputDivaPrayerGemGreen,
+		inputDivaPrayerGemGreenName,
 	);
 
 	$: outputDivaPrayerGemBlueMaxLevel = getMaxDivaPrayerGemLevel(
-		inputDivaPrayerGemBlue,
+		inputDivaPrayerGemBlueName,
 	);
 
 	$: hasDivaPrayerGemDuplicates = hasDuplicateValues(
@@ -5880,10 +5990,10 @@ does not get multiplied by horn */
 	);
 
 	$: damageCalculatorSelectedDivaPrayerGems = {
-		Red: inputDivaPrayerGemRed,
-		Yellow: inputDivaPrayerGemYellow,
-		Green: inputDivaPrayerGemGreen,
-		Blue: inputDivaPrayerGemBlue,
+		Red: inputDivaPrayerGemRedName,
+		Yellow: inputDivaPrayerGemYellowName,
+		Green: inputDivaPrayerGemGreenName,
+		Blue: inputDivaPrayerGemBlueName,
 	};
 
 	const [send, receive] = crossfade({
@@ -5898,6 +6008,259 @@ does not get multiplied by horn */
 
 	// Generate gem emojis based on the count
 	$: gemEmojis = '💎'.repeat(divaPrayerGemsCount);
+
+	function getDivaPrayerGemValue(
+		name: FrontierDivaPrayerGemSkillName,
+		level: FrontierDivaPrayerGemLevel,
+		property:
+			| 'affinity'
+			| 'cutting'
+			| 'impact'
+			| 'shot'
+			| 'element'
+			| 'trueRaw',
+	) {
+		if (
+			name === 'None' ||
+			level < 0 ||
+			level > maxTotalDivaPrayerGemLevel ||
+			hasDivaPrayerGemDuplicates ||
+			inputNumberDivaPrayerGemRedLevel +
+				inputNumberDivaPrayerGemYellowLevel +
+				inputNumberDivaPrayerGemGreenLevel +
+				inputNumberDivaPrayerGemBlueLevel >
+				maxTotalDivaPrayerGemLevel
+		) {
+			return 0;
+		}
+
+		switch (property) {
+			default:
+				return 0;
+			case 'affinity':
+				if (name !== 'Affinity UP') {
+					return 0;
+				}
+
+				return (
+					divaPrayerGemsDropdownItems.find(
+						(e) => e.name === `${name} Lv${level}`,
+					)?.value ?? 0
+				);
+			case 'cutting':
+				if (name !== 'Cutting UP') {
+					return 0;
+				}
+
+				return (
+					divaPrayerGemsDropdownItems.find(
+						(e) => e.name === `${name} Lv${level}`,
+					)?.value ?? 0
+				);
+			case 'impact':
+				if (name !== 'Impact UP') {
+					return 0;
+				}
+
+				return (
+					divaPrayerGemsDropdownItems.find(
+						(e) => e.name === `${name} Lv${level}`,
+					)?.value ?? 0
+				);
+			case 'shot':
+				if (name !== 'Shot UP') {
+					return 0;
+				}
+
+				return (
+					divaPrayerGemsDropdownItems.find(
+						(e) => e.name === `${name} Lv${level}`,
+					)?.value ?? 0
+				);
+			case 'element':
+				if (name !== 'Element UP') {
+					return 0;
+				}
+
+				return (
+					divaPrayerGemsDropdownItems.find(
+						(e) => e.name === `${name} Lv${level}`,
+					)?.value ?? 0
+				);
+			case 'trueRaw':
+				if (name !== 'Friendship UP') {
+					return 0;
+				}
+
+				return (
+					divaPrayerGemsDropdownItems.find(
+						(e) => e.name === `${name} Lv${level}`,
+					)?.value ?? 0
+				);
+		}
+	}
+
+	$: outputDivaPrayerGemAffinity =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'affinity',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'affinity',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'affinity',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'affinity',
+		);
+
+	$: outputDivaPrayerGemCuttingHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'cutting',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'cutting',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'cutting',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'cutting',
+		);
+
+	$: outputDivaPrayerGemImpactHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'impact',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'impact',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'impact',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'impact',
+		);
+
+	$: outputDivaPrayerGemShotHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'shot',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'shot',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'shot',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'shot',
+		);
+
+	$: outputDivaPrayerGemElementHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'element',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'element',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'element',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'element',
+		);
+
+	$: outputDivaPrayerGemTrueRaw =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'trueRaw',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'trueRaw',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'trueRaw',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'trueRaw',
+		);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemAffinity',
+		outputDivaPrayerGemAffinity.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemCuttingHitzone',
+		outputDivaPrayerGemCuttingHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemImpactHitzone',
+		outputDivaPrayerGemImpactHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemShotHitzone',
+		outputDivaPrayerGemShotHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemElementHitzone',
+		outputDivaPrayerGemElementHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemTrueRaw',
+		outputDivaPrayerGemTrueRaw.toString(),
+	);
 </script>
 
 <svelte:head>
@@ -6446,30 +6809,6 @@ does not get multiplied by horn */
 											{
 												id: 'Unsheathe and Parry Attacks (+100%)',
 												text: 'Unsheathe and Parry Attacks (+100%)',
-											},
-										]}
-									/>
-
-									<Dropdown
-										titleText="Diva Prayer Gem Affinity"
-										bind:selectedId={inputDivaPrayerGemAffinity}
-										disabled={false}
-										items={[
-											{
-												id: 'None',
-												text: 'None',
-											},
-											{
-												id: 'Affinity UP Lv1 (+25%)',
-												text: 'Affinity UP Lv1 (+25%)',
-											},
-											{
-												id: 'Affinity UP Lv2 (+50%)',
-												text: 'Affinity UP Lv2 (+50%)',
-											},
-											{
-												id: 'Affinity UP Lv3 (+100%)',
-												text: 'Affinity UP Lv3 (+100%)',
 											},
 										]}
 									/>
@@ -8672,9 +9011,31 @@ does not get multiplied by horn */
 											step={10}
 											min={minimumNumberValue}
 											max={maximumNumberValue}
-											bind:value={inputNumberRawHitzone}
+											bind:value={inputNumberCuttingHitzone}
 											invalidText={invalidNumberValueText}
-											label={'Raw Hitzone'}
+											label={'Cutting Hitzone'}
+										/>
+									</div>
+									<div class="number-input-container">
+										<NumberInput
+											size="sm"
+											step={10}
+											min={minimumNumberValue}
+											max={maximumNumberValue}
+											bind:value={inputNumberImpactHitzone}
+											invalidText={invalidNumberValueText}
+											label={'Impact Hitzone'}
+										/>
+									</div>
+									<div class="number-input-container">
+										<NumberInput
+											size="sm"
+											step={10}
+											min={minimumNumberValue}
+											max={maximumNumberValue}
+											bind:value={inputNumberShotHitzone}
+											invalidText={invalidNumberValueText}
+											label={'Shot Hitzone'}
 										/>
 									</div>
 									<div class="number-input-container">
@@ -8885,7 +9246,7 @@ does not get multiplied by horn */
 						</div>
 					</div>
 				</div>
-				{#if inputDivaPrayerGemRedLevel + inputDivaPrayerGemYellowLevel + inputDivaPrayerGemGreenLevel + inputDivaPrayerGemBlueLevel > 7}
+				{#if inputNumberDivaPrayerGemRedLevel + inputNumberDivaPrayerGemYellowLevel + inputNumberDivaPrayerGemGreenLevel + inputNumberDivaPrayerGemBlueLevel > maxTotalDivaPrayerGemLevel}
 					<InlineNotification
 						title="Error:"
 						subtitle={`Total gem level exceeds ${maxTotalDivaPrayerGemLevel}, skipping calculations.`}
@@ -8902,7 +9263,7 @@ does not get multiplied by horn */
 						<div class="diva-prayer-gem">
 							<div class="diva-prayer-gem-icon">
 								<!-- Container for the active icon -->
-								{#if inputDivaPrayerGemRed !== 'None'}
+								{#if inputDivaPrayerGemRedName !== 'None'}
 									<div
 										class="icon-wrapper"
 										in:send={{ key: iconKey }}
@@ -8923,20 +9284,20 @@ does not get multiplied by horn */
 								{/if}
 							</div>
 							<Dropdown
-								bind:selectedId={inputDivaPrayerGemRed}
+								bind:selectedId={inputDivaPrayerGemRedName}
 								titleText="Diva Prayer Gem Skill"
 								invalid={hasDivaPrayerGemDuplicates}
 								invalidText="Duplicate gem found"
 								items={mappedDivaPrayerGems}
-								disabled={inputDivaPrayerGemYellow !== 'None'}
+								disabled={inputDivaPrayerGemYellowName !== 'None'}
 								on:select={(e) => {
-									if (inputDivaPrayerGemRed === 'None') {
-										inputDivaPrayerGemYellow = 'None';
-										inputDivaPrayerGemYellowLevel = 0;
-										inputDivaPrayerGemGreen = 'None';
-										inputDivaPrayerGemGreenLevel = 0;
-										inputDivaPrayerGemBlue = 'None';
-										inputDivaPrayerGemBlueLevel = 0;
+									if (inputDivaPrayerGemRedName === 'None') {
+										inputDivaPrayerGemYellowName = 'None';
+										inputNumberDivaPrayerGemYellowLevel = 0;
+										inputDivaPrayerGemGreenName = 'None';
+										inputNumberDivaPrayerGemGreenLevel = 0;
+										inputDivaPrayerGemBlueName = 'None';
+										inputNumberDivaPrayerGemBlueLevel = 0;
 									}
 								}}
 							/>
@@ -8947,18 +9308,18 @@ does not get multiplied by horn */
 									step={1}
 									min={0}
 									bind:max={outputDivaPrayerGemRedMaxLevel}
-									bind:value={inputDivaPrayerGemRedLevel}
+									bind:value={inputNumberDivaPrayerGemRedLevel}
 									invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemRedMaxLevel}`}
 									label={'Diva Prayer Gem Level'}
-									disabled={inputDivaPrayerGemRed === 'None' ||
-										inputDivaPrayerGemYellow !== 'None'}
+									disabled={inputDivaPrayerGemRedName === 'None' ||
+										inputDivaPrayerGemYellowName !== 'None'}
 								/>
 							</div>
 						</div>
 						<div class="diva-prayer-gem">
 							<div class="diva-prayer-gem-icon">
 								<!-- Container for the active icon -->
-								{#if inputDivaPrayerGemYellow !== 'None'}
+								{#if inputDivaPrayerGemYellowName !== 'None'}
 									<div
 										class="icon-wrapper"
 										in:send={{ key: iconKey }}
@@ -8979,20 +9340,20 @@ does not get multiplied by horn */
 								{/if}
 							</div>
 							<Dropdown
-								bind:selectedId={inputDivaPrayerGemYellow}
+								bind:selectedId={inputDivaPrayerGemYellowName}
 								invalid={hasDivaPrayerGemDuplicates}
 								invalidText="Duplicate gem found"
 								titleText="Diva Prayer Gem Skill"
 								items={mappedDivaPrayerGems}
-								disabled={inputDivaPrayerGemRed === 'None' ||
-									inputDivaPrayerGemGreen !== 'None'}
+								disabled={inputDivaPrayerGemRedName === 'None' ||
+									inputDivaPrayerGemGreenName !== 'None'}
 								on:select={(e) => {
-									if (inputDivaPrayerGemYellow === 'None') {
-										inputDivaPrayerGemYellowLevel = 0;
-										inputDivaPrayerGemGreen = 'None';
-										inputDivaPrayerGemGreenLevel = 0;
-										inputDivaPrayerGemBlue = 'None';
-										inputDivaPrayerGemBlueLevel = 0;
+									if (inputDivaPrayerGemYellowName === 'None') {
+										inputNumberDivaPrayerGemYellowLevel = 0;
+										inputDivaPrayerGemGreenName = 'None';
+										inputNumberDivaPrayerGemGreenLevel = 0;
+										inputDivaPrayerGemBlueName = 'None';
+										inputNumberDivaPrayerGemBlueLevel = 0;
 									}
 								}}
 							/>
@@ -9002,18 +9363,18 @@ does not get multiplied by horn */
 									step={1}
 									min={0}
 									bind:max={outputDivaPrayerGemYellowMaxLevel}
-									bind:value={inputDivaPrayerGemYellowLevel}
+									bind:value={inputNumberDivaPrayerGemYellowLevel}
 									invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemYellowMaxLevel}`}
 									label={'Diva Prayer Gem Level'}
-									disabled={inputDivaPrayerGemYellow === 'None' ||
-										inputDivaPrayerGemGreen !== 'None'}
+									disabled={inputDivaPrayerGemYellowName === 'None' ||
+										inputDivaPrayerGemGreenName !== 'None'}
 								/>
 							</div>
 						</div>
 						<div class="diva-prayer-gem">
 							<div class="diva-prayer-gem-icon">
 								<!-- Container for the active icon -->
-								{#if inputDivaPrayerGemGreen !== 'None'}
+								{#if inputDivaPrayerGemGreenName !== 'None'}
 									<div
 										class="icon-wrapper"
 										in:send={{ key: iconKey }}
@@ -9034,18 +9395,18 @@ does not get multiplied by horn */
 								{/if}
 							</div>
 							<Dropdown
-								bind:selectedId={inputDivaPrayerGemGreen}
+								bind:selectedId={inputDivaPrayerGemGreenName}
 								invalid={hasDivaPrayerGemDuplicates}
 								invalidText="Duplicate gem found"
 								titleText="Diva Prayer Gem Skill"
 								items={mappedDivaPrayerGems}
-								disabled={inputDivaPrayerGemYellow === 'None' ||
-									inputDivaPrayerGemBlue !== 'None'}
+								disabled={inputDivaPrayerGemYellowName === 'None' ||
+									inputDivaPrayerGemBlueName !== 'None'}
 								on:select={(e) => {
-									if (inputDivaPrayerGemGreen === 'None') {
-										inputDivaPrayerGemGreenLevel = 0;
-										inputDivaPrayerGemBlue = 'None';
-										inputDivaPrayerGemBlueLevel = 0;
+									if (inputDivaPrayerGemGreenName === 'None') {
+										inputNumberDivaPrayerGemGreenLevel = 0;
+										inputDivaPrayerGemBlueName = 'None';
+										inputNumberDivaPrayerGemBlueLevel = 0;
 									}
 								}}
 							/>
@@ -9055,18 +9416,18 @@ does not get multiplied by horn */
 									step={1}
 									min={0}
 									bind:max={outputDivaPrayerGemGreenMaxLevel}
-									bind:value={inputDivaPrayerGemGreenLevel}
+									bind:value={inputNumberDivaPrayerGemGreenLevel}
 									invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemGreenMaxLevel}`}
 									label={'Diva Prayer Gem Level'}
-									disabled={inputDivaPrayerGemGreen === 'None' ||
-										inputDivaPrayerGemBlue !== 'None'}
+									disabled={inputDivaPrayerGemGreenName === 'None' ||
+										inputDivaPrayerGemBlueName !== 'None'}
 								/>
 							</div>
 						</div>
 						<div class="diva-prayer-gem">
 							<div class="diva-prayer-gem-icon">
 								<!-- Container for the active icon -->
-								{#if inputDivaPrayerGemBlue !== 'None'}
+								{#if inputDivaPrayerGemBlueName !== 'None'}
 									<div
 										class="icon-wrapper"
 										in:send={{ key: iconKey }}
@@ -9087,15 +9448,15 @@ does not get multiplied by horn */
 								{/if}
 							</div>
 							<Dropdown
-								bind:selectedId={inputDivaPrayerGemBlue}
+								bind:selectedId={inputDivaPrayerGemBlueName}
 								invalid={hasDivaPrayerGemDuplicates}
 								invalidText="Duplicate gem found"
 								titleText="Diva Prayer Gem Skill"
 								items={mappedDivaPrayerGems}
-								disabled={inputDivaPrayerGemGreen === 'None'}
+								disabled={inputDivaPrayerGemGreenName === 'None'}
 								on:select={(e) => {
-									if (inputDivaPrayerGemBlue === 'None') {
-										inputDivaPrayerGemBlueLevel = 0;
+									if (inputDivaPrayerGemBlueName === 'None') {
+										inputNumberDivaPrayerGemBlueLevel = 0;
 									}
 								}}
 							/>
@@ -9105,10 +9466,10 @@ does not get multiplied by horn */
 									step={1}
 									min={0}
 									bind:max={outputDivaPrayerGemBlueMaxLevel}
-									bind:value={inputDivaPrayerGemBlueLevel}
+									bind:value={inputNumberDivaPrayerGemBlueLevel}
 									invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemBlueMaxLevel}`}
 									label={'Diva Prayer Gem Level'}
-									disabled={inputDivaPrayerGemBlue === 'None'}
+									disabled={inputDivaPrayerGemBlueName === 'None'}
 								/>
 							</div>
 						</div>
@@ -12083,13 +12444,15 @@ does not get multiplied by horn */
 						{ key: 'unused', value: 'Unused' },
 						{ key: 'partyEffect', value: 'Party Effect' },
 					]}
-					rows={divaPrayerGems.map((e) => {
-						return {
-							...e,
-							unused: e.unused ? '✅' : '❌',
-							partyEffect: e.partyEffect ? '✅' : '❌',
-						};
-					})}
+					rows={divaPrayerGems
+						.filter((e) => e.name !== 'None')
+						.map((e) => {
+							return {
+								...e,
+								unused: e.unused ? '✅' : '❌',
+								partyEffect: e.partyEffect ? '✅' : '❌',
+							};
+						})}
 					><Toolbar
 						><div class="toolbar">
 							<CopyButton
@@ -13989,8 +14352,8 @@ does not get multiplied by horn */
 
 	.diva-prayer-gem-icon {
 		position: relative;
-		width: 100px; /* Adjust based on your icon size */
-		height: 100px; /* Adjust based on your icon size */
+		width: 64px;
+		height: 64px;
 	}
 
 	.icon-wrapper {
