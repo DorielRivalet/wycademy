@@ -8,6 +8,8 @@ import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 import { format } from 'mathjs';
 import type {
 	FrontierArmorID,
+	FrontierDivaPrayerGem,
+	FrontierDivaPrayerGemColor,
 	FrontierElement,
 	FrontierItemColor,
 	FrontierMonsterInfo,
@@ -16,6 +18,7 @@ import type {
 } from './types';
 import {
 	ArmorTypes,
+	divaPrayerGemColors,
 	ItemColors,
 	monsterInfo,
 	tagInfo,
@@ -176,6 +179,12 @@ export const frontierMappers = {
 		}
 	},
 };
+
+export function getDivaPrayerGemColor(
+	color: FrontierDivaPrayerGemColor | 'Inactive',
+) {
+	return divaPrayerGemColors.find((e) => e.name === color)?.color ?? '#ffffff';
+}
 
 export function getUniqueMonsters() {
 	const names: string[] = [];

@@ -34,7 +34,9 @@
 		monsterStatusDropdownOptions,
 		elementDropdownItems,
 		bowChargeLevels,
+		divaPrayerGems,
 	} from '$lib/client/modules/frontier/objects';
+	import DivaPrayerGem from '$lib/client/components/frontier/icon/DivaPrayerGem.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -55,11 +57,15 @@
 	import { page } from '$app/stores';
 	import pageThumbnail from '$lib/client/images/icon/pvp.png';
 	import type {
+		FrontierDivaPrayerGemSkillName,
 		FrontierWeaponClass,
 		FrontierWeaponName,
 		FrontierWeaponStyle,
 	} from 'ezlion';
 	import type {
+		FrontierDivaPrayerGem,
+		FrontierDivaPrayerGemColor,
+		FrontierDivaPrayerGemLevel,
 		FrontierElement,
 		FrontierMotionValue,
 		FrontierMotionValueSection,
@@ -86,7 +92,11 @@
 	import { theme } from '$lib/client/stores/theme';
 	import { browser } from '$app/environment';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
-	import { getMonster, getTag } from '$lib/client/modules/frontier/functions';
+	import {
+		getDivaPrayerGemColor,
+		getMonster,
+		getTag,
+	} from '$lib/client/modules/frontier/functions';
 	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import '@carbon/charts-svelte/styles.css';
@@ -110,6 +120,8 @@
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
+	import { crossfade, fade } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 
 	let flashConversionChartLoaded = false;
 	let flashConversionChart: ComponentType<LineChart>;
@@ -874,6 +886,7 @@
 	let showWeaponMotionValuesSectionWarning = false;
 	let showDamageCalculatorInputsJSONError = false;
 	let showDamageCalculatorLegacyInputsJSONError = false;
+	let showDivaPrayerGemsMaxTotalLevelError = false;
 
 	type MotionValueResult = {
 		id: string;
@@ -3094,6 +3107,8 @@
 		inputAffinityItems = newInputs.inputAffinityItems || inputAffinityItems;
 		inputGsActiveFeature =
 			newInputs.inputGsActiveFeature || inputGsActiveFeature;
+		inputDivaPrayerGemAffinity =
+			newInputs.inputDivaPrayerGemAffinity || inputDivaPrayerGemAffinity;
 		inputAttackSkills = newInputs.inputAttackSkills || inputAttackSkills;
 		inputCaravanSkills = newInputs.inputCaravanSkills || inputCaravanSkills;
 		inputPassiveItems = newInputs.inputPassiveItems || inputPassiveItems;
@@ -3542,6 +3557,7 @@
 	const minimumNumberValue = 0;
 	const maximumNumberValue = 99999;
 	const invalidNumberValueText = `Invalid value. Must be between ${minimumNumberValue} and ${maximumNumberValue}`;
+	const invalidTrueRawText = `Invalid value. Must be between ${minimumNumberValue} and ${maxTrueRaw}`;
 
 	const formulaOutputAttackA =
 		display(`\\text{Attack A} = \\text{outputLengthUpTrueRaw} +\\newline \\text{outputPassives} +\\newline (\\text{inputNumberSigil1Attack} + \\text{inputNumberSigil2Attack} + \\text{inputNumberSigil3Attack}) +\\newline \\text{inputNumberConquestAttack} +\\newline \\text{outputAttackMedicine} +\\newline \\text{outputAttackSkill} +\\newline \\text{outputFoodAttack} +\\newline \\text{outputSeedAttack} +\\newline \\text{inputNumberStyleRankAttack} +\\newline \\text{inputNumberUnlimitedSigil} +\\newline \\text{outputDrugKnowledgeTotalTrueRaw} +\\newline \\text{outputDuremudiraAttack} +\\newline \\text{outputLoneWolfAttack} +\\newline \\text{outputCaravanAddition} +\\newline \\text{outputShiriagariAttack} +\\newline \\text{outputRoadAdvancement} +\\newline \\lfloor \\text{outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline \\text{outputConsumptionSlayerAttack} +\\newline \\text{outputRoadLastStandAttack} +\\newline \\text{outputLanceRedPhialAttack} +\\newline \\text{outputRoadTowerAttack} +\\newline \\text{outputZenithTotalAttack} +\\newline \\text{outputAOETotalAttack}
@@ -3744,6 +3760,7 @@
 	\\text{inputNumberNaturalAffinity} +\\newline
 	\\text{outputFlashConversionAffinity} +\\newline
 	\\text{outputGSActiveFeatureAffinity} +\\newline
+	\\text{outputDivaPrayerGemAffinity} +\\newline
 	\\text{outputDrinkAffinity} +\\newline
 	\\text{outputStarvingWolfAffinity} +\\newline
 	\\text{outputCeaselessAffinity} +\\newline
@@ -3760,6 +3777,7 @@
 	${inputNumberNaturalAffinity} +\\newline
 	${outputFlashConversionAffinity} +\\newline
 	${outputGSActiveFeatureAffinity} +\\newline
+	${outputDivaPrayerGemAffinity} +\\newline
 	${outputDrinkAffinity} +\\newline
 	${outputStarvingWolfAffinity} +\\newline
 	${outputCeaselessAffinity} +\\newline
@@ -3851,6 +3869,7 @@
 	let inputStarvingWolf = 'None (1x)';
 	let inputAffinityItems = 'None';
 	let inputGsActiveFeature = 'None';
+	let inputDivaPrayerGemAffinity = 'None';
 	let inputAttackSkills = 'None';
 	let inputCaravanSkills = 'None';
 	let inputPassiveItems = 'None';
@@ -3999,6 +4018,7 @@
 		inputStarvingWolf: inputStarvingWolf,
 		inputAffinityItems: inputAffinityItems,
 		inputGsActiveFeature: inputGsActiveFeature,
+		inputDivaPrayerGemAffinity: inputDivaPrayerGemAffinity,
 		inputAttackSkills: inputAttackSkills,
 		inputCaravanSkills: inputCaravanSkills,
 		inputPassiveItems: inputPassiveItems,
@@ -4216,9 +4236,19 @@
 		affinityDropdownItems.find((item) => item.name === inputGsActiveFeature)
 			?.value || 0;
 
+	$: outputDivaPrayerGemAffinity =
+		affinityDropdownItems.find(
+			(item) => item.name === inputDivaPrayerGemAffinity,
+		)?.value || 0;
+
 	$: addToDamageCalculatorHistoryLogs(
 		'outputGSActiveFeatureAffinity',
 		outputGSActiveFeatureAffinity.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemAffinity',
+		outputDivaPrayerGemAffinity.toString(),
 	);
 
 	$: outputDrinkAffinity =
@@ -4261,6 +4291,7 @@
 		inputNumberNaturalAffinity +
 		outputFlashConversionAffinity +
 		outputGSActiveFeatureAffinity +
+		outputDivaPrayerGemAffinity +
 		outputDrinkAffinity +
 		outputStarvingWolfAffinity +
 		outputCeaselessAffinity +
@@ -4412,6 +4443,7 @@
 	let critConversionCalculatorStarvingWolfAffinity = '50';
 	let critConversionCalculatorCeaselessAffinity = '60';
 	let critConversionCalculatorFuriousAffinity = '40';
+	let critConversionCalculatorDivaPrayerGemAffinity = '100';
 	let critConversionCalculatorAOEAffinityCount = '1';
 	let critConversionCalculatorAOEAffinitySigil = 0;
 	$: critConversionCalculatorAOETotalAffinity =
@@ -4460,7 +4492,8 @@
 		Number(critConversionCalculatorStarvingWolfAffinity) +
 		Number(critConversionCalculatorCeaselessAffinity) +
 		Number(critConversionCalculatorFuriousAffinity) +
-		critConversionCalculatorAOETotalAffinity;
+		critConversionCalculatorAOETotalAffinity +
+		Number(critConversionCalculatorDivaPrayerGemAffinity);
 
 	$: outputCritConversionTrueRaw = getCritConversionTrueRaw(
 		outputTotalAffinity,
@@ -5775,6 +5808,96 @@ does not get multiplied by horn */
 	};
 
 	let damageCalculatorHistoryLogs: DamageCalculatorHistoryLogsEntry[] = [];
+
+	const maxTotalDivaPrayerGemLevel = 7;
+
+	let inputDivaPrayerGemRed: FrontierDivaPrayerGemSkillName = 'Sharpness UP';
+	let inputDivaPrayerGemYellow: FrontierDivaPrayerGemSkillName = 'Cutting UP';
+	let inputDivaPrayerGemGreen: FrontierDivaPrayerGemSkillName = 'Friendship UP';
+	let inputDivaPrayerGemBlue: FrontierDivaPrayerGemSkillName = 'None';
+
+	const iconKey = 'divaPrayerGemIcon';
+
+	const mappedDivaPrayerGems = divaPrayerGems
+		.filter((e) => !e.unused)
+		.map((gem) => ({
+			id: gem.name,
+			text: gem.name,
+		}));
+
+	let inputDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 1;
+	let inputDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 3;
+	let inputDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 3;
+	let inputDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
+
+	function hasDuplicateValues(obj: Object, ignoredString: string) {
+		if (!obj) {
+			return false;
+		}
+
+		// Step 1: Extract values into an array
+		const values = Object.values(obj);
+
+		// Step 2: Check for duplicates
+		return values.some((value) => {
+			// Ignore the specified string when counting occurrences
+			if (value === ignoredString) {
+				return false;
+			}
+			// Count occurrences of the current value
+			const count = values.filter((v) => v === value).length;
+			// Return true if any value appears more than once
+			return count > 1;
+		});
+	}
+
+	function getMaxDivaPrayerGemLevel(skillName: string) {
+		return (
+			divaPrayerGems.find((e) => e.name === skillName)?.maxLevel ??
+			maxTotalDivaPrayerGemLevel
+		);
+	}
+
+	$: outputDivaPrayerGemRedMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemRed,
+	);
+
+	$: outputDivaPrayerGemYellowMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemYellow,
+	);
+
+	$: outputDivaPrayerGemGreenMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemGreen,
+	);
+
+	$: outputDivaPrayerGemBlueMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemBlue,
+	);
+
+	$: hasDivaPrayerGemDuplicates = hasDuplicateValues(
+		damageCalculatorSelectedDivaPrayerGems,
+		'None',
+	);
+
+	$: damageCalculatorSelectedDivaPrayerGems = {
+		Red: inputDivaPrayerGemRed,
+		Yellow: inputDivaPrayerGemYellow,
+		Green: inputDivaPrayerGemGreen,
+		Blue: inputDivaPrayerGemBlue,
+	};
+
+	const [send, receive] = crossfade({
+		duration: 1500,
+		easing: quintOut,
+	});
+
+	// Calculate the count of gems that aren't "None"
+	$: divaPrayerGemsCount = Object.values(
+		damageCalculatorSelectedDivaPrayerGems,
+	).filter((gem) => gem !== 'None').length;
+
+	// Generate gem emojis based on the count
+	$: gemEmojis = '💎'.repeat(divaPrayerGemsCount);
 </script>
 
 <svelte:head>
@@ -6100,7 +6223,7 @@ does not get multiplied by horn */
 					/>
 				{/if}
 
-				<div class="container-buttons">
+				<div class="damage-calculator-container-buttons">
 					<div class="buttons-top">
 						<TextArea
 							labelText="Load Data"
@@ -6323,6 +6446,30 @@ does not get multiplied by horn */
 											{
 												id: 'Unsheathe and Parry Attacks (+100%)',
 												text: 'Unsheathe and Parry Attacks (+100%)',
+											},
+										]}
+									/>
+
+									<Dropdown
+										titleText="Diva Prayer Gem Affinity"
+										bind:selectedId={inputDivaPrayerGemAffinity}
+										disabled={false}
+										items={[
+											{
+												id: 'None',
+												text: 'None',
+											},
+											{
+												id: 'Affinity UP Lv1 (+25%)',
+												text: 'Affinity UP Lv1 (+25%)',
+											},
+											{
+												id: 'Affinity UP Lv2 (+50%)',
+												text: 'Affinity UP Lv2 (+50%)',
+											},
+											{
+												id: 'Affinity UP Lv3 (+100%)',
+												text: 'Affinity UP Lv3 (+100%)',
 											},
 										]}
 									/>
@@ -7527,9 +7674,9 @@ does not get multiplied by horn */
 											size="sm"
 											step={10}
 											min={minimumNumberValue}
-											max={maximumNumberValue}
+											max={100}
 											bind:value={inputNumberStyleRankAttack}
-											invalidText={invalidNumberValueText}
+											invalidText={'Invalid value. Must be between 0 and 100'}
 											on:click={(e) => e.preventDefault()}
 										>
 											<span slot="label"
@@ -8738,6 +8885,235 @@ does not get multiplied by horn */
 						</div>
 					</div>
 				</div>
+				{#if inputDivaPrayerGemRedLevel + inputDivaPrayerGemYellowLevel + inputDivaPrayerGemGreenLevel + inputDivaPrayerGemBlueLevel > 7}
+					<InlineNotification
+						title="Error:"
+						subtitle={`Total gem level exceeds ${maxTotalDivaPrayerGemLevel}, skipping calculations.`}
+						kind="error"
+						lowContrast
+						hideCloseButton
+					/>
+				{/if}
+				<div class="damage-calculator-diva-prayer-gems-container">
+					<div class="stats-header">
+						{gemEmojis} Diva Prayer Gems {gemEmojis}
+					</div>
+					<div class="diva-stats-values">
+						<div class="diva-prayer-gem">
+							<div class="diva-prayer-gem-icon">
+								<!-- Container for the active icon -->
+								{#if inputDivaPrayerGemRed !== 'None'}
+									<div
+										class="icon-wrapper"
+										in:send={{ key: iconKey }}
+										out:receive={{ key: iconKey }}
+									>
+										<DivaPrayerGem color={getDivaPrayerGemColor('Red')} />
+									</div>
+								{:else}
+									<!-- Container for the inactive icon -->
+
+									<div
+										class="icon-wrapper"
+										in:send={{ key: iconKey }}
+										out:receive={{ key: iconKey }}
+									>
+										<DivaPrayerGem color={getDivaPrayerGemColor('Inactive')} />
+									</div>
+								{/if}
+							</div>
+							<Dropdown
+								bind:selectedId={inputDivaPrayerGemRed}
+								titleText="Diva Prayer Gem Skill"
+								invalid={hasDivaPrayerGemDuplicates}
+								invalidText="Duplicate gem found"
+								items={mappedDivaPrayerGems}
+								disabled={inputDivaPrayerGemYellow !== 'None'}
+								on:select={(e) => {
+									if (inputDivaPrayerGemRed === 'None') {
+										inputDivaPrayerGemYellow = 'None';
+										inputDivaPrayerGemYellowLevel = 0;
+										inputDivaPrayerGemGreen = 'None';
+										inputDivaPrayerGemGreenLevel = 0;
+										inputDivaPrayerGemBlue = 'None';
+										inputDivaPrayerGemBlueLevel = 0;
+									}
+								}}
+							/>
+							<div class="diva-prayer-gem-level">
+								<!--TODO max levels vary by skill-->
+								<NumberInput
+									size="sm"
+									step={1}
+									min={0}
+									bind:max={outputDivaPrayerGemRedMaxLevel}
+									bind:value={inputDivaPrayerGemRedLevel}
+									invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemRedMaxLevel}`}
+									label={'Diva Prayer Gem Level'}
+									disabled={inputDivaPrayerGemRed === 'None' ||
+										inputDivaPrayerGemYellow !== 'None'}
+								/>
+							</div>
+						</div>
+						<div class="diva-prayer-gem">
+							<div class="diva-prayer-gem-icon">
+								<!-- Container for the active icon -->
+								{#if inputDivaPrayerGemYellow !== 'None'}
+									<div
+										class="icon-wrapper"
+										in:send={{ key: iconKey }}
+										out:receive={{ key: iconKey }}
+									>
+										<DivaPrayerGem color={getDivaPrayerGemColor('Yellow')} />
+									</div>
+								{:else}
+									<!-- Container for the inactive icon -->
+
+									<div
+										class="icon-wrapper"
+										in:send={{ key: iconKey }}
+										out:receive={{ key: iconKey }}
+									>
+										<DivaPrayerGem color={getDivaPrayerGemColor('Inactive')} />
+									</div>
+								{/if}
+							</div>
+							<Dropdown
+								bind:selectedId={inputDivaPrayerGemYellow}
+								invalid={hasDivaPrayerGemDuplicates}
+								invalidText="Duplicate gem found"
+								titleText="Diva Prayer Gem Skill"
+								items={mappedDivaPrayerGems}
+								disabled={inputDivaPrayerGemRed === 'None' ||
+									inputDivaPrayerGemGreen !== 'None'}
+								on:select={(e) => {
+									if (inputDivaPrayerGemYellow === 'None') {
+										inputDivaPrayerGemYellowLevel = 0;
+										inputDivaPrayerGemGreen = 'None';
+										inputDivaPrayerGemGreenLevel = 0;
+										inputDivaPrayerGemBlue = 'None';
+										inputDivaPrayerGemBlueLevel = 0;
+									}
+								}}
+							/>
+							<div class="diva-prayer-gem-level">
+								<NumberInput
+									size="sm"
+									step={1}
+									min={0}
+									bind:max={outputDivaPrayerGemYellowMaxLevel}
+									bind:value={inputDivaPrayerGemYellowLevel}
+									invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemYellowMaxLevel}`}
+									label={'Diva Prayer Gem Level'}
+									disabled={inputDivaPrayerGemYellow === 'None' ||
+										inputDivaPrayerGemGreen !== 'None'}
+								/>
+							</div>
+						</div>
+						<div class="diva-prayer-gem">
+							<div class="diva-prayer-gem-icon">
+								<!-- Container for the active icon -->
+								{#if inputDivaPrayerGemGreen !== 'None'}
+									<div
+										class="icon-wrapper"
+										in:send={{ key: iconKey }}
+										out:receive={{ key: iconKey }}
+									>
+										<DivaPrayerGem color={getDivaPrayerGemColor('Green')} />
+									</div>
+								{:else}
+									<!-- Container for the inactive icon -->
+
+									<div
+										class="icon-wrapper"
+										in:send={{ key: iconKey }}
+										out:receive={{ key: iconKey }}
+									>
+										<DivaPrayerGem color={getDivaPrayerGemColor('Inactive')} />
+									</div>
+								{/if}
+							</div>
+							<Dropdown
+								bind:selectedId={inputDivaPrayerGemGreen}
+								invalid={hasDivaPrayerGemDuplicates}
+								invalidText="Duplicate gem found"
+								titleText="Diva Prayer Gem Skill"
+								items={mappedDivaPrayerGems}
+								disabled={inputDivaPrayerGemYellow === 'None' ||
+									inputDivaPrayerGemBlue !== 'None'}
+								on:select={(e) => {
+									if (inputDivaPrayerGemGreen === 'None') {
+										inputDivaPrayerGemGreenLevel = 0;
+										inputDivaPrayerGemBlue = 'None';
+										inputDivaPrayerGemBlueLevel = 0;
+									}
+								}}
+							/>
+							<div class="diva-prayer-gem-level">
+								<NumberInput
+									size="sm"
+									step={1}
+									min={0}
+									bind:max={outputDivaPrayerGemGreenMaxLevel}
+									bind:value={inputDivaPrayerGemGreenLevel}
+									invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemGreenMaxLevel}`}
+									label={'Diva Prayer Gem Level'}
+									disabled={inputDivaPrayerGemGreen === 'None' ||
+										inputDivaPrayerGemBlue !== 'None'}
+								/>
+							</div>
+						</div>
+						<div class="diva-prayer-gem">
+							<div class="diva-prayer-gem-icon">
+								<!-- Container for the active icon -->
+								{#if inputDivaPrayerGemBlue !== 'None'}
+									<div
+										class="icon-wrapper"
+										in:send={{ key: iconKey }}
+										out:receive={{ key: iconKey }}
+									>
+										<DivaPrayerGem color={getDivaPrayerGemColor('Blue')} />
+									</div>
+								{:else}
+									<!-- Container for the inactive icon -->
+
+									<div
+										class="icon-wrapper"
+										in:send={{ key: iconKey }}
+										out:receive={{ key: iconKey }}
+									>
+										<DivaPrayerGem color={getDivaPrayerGemColor('Inactive')} />
+									</div>
+								{/if}
+							</div>
+							<Dropdown
+								bind:selectedId={inputDivaPrayerGemBlue}
+								invalid={hasDivaPrayerGemDuplicates}
+								invalidText="Duplicate gem found"
+								titleText="Diva Prayer Gem Skill"
+								items={mappedDivaPrayerGems}
+								disabled={inputDivaPrayerGemGreen === 'None'}
+								on:select={(e) => {
+									if (inputDivaPrayerGemBlue === 'None') {
+										inputDivaPrayerGemBlueLevel = 0;
+									}
+								}}
+							/>
+							<div class="diva-prayer-gem-level">
+								<NumberInput
+									size="sm"
+									step={1}
+									min={0}
+									bind:max={outputDivaPrayerGemBlueMaxLevel}
+									bind:value={inputDivaPrayerGemBlueLevel}
+									invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemBlueMaxLevel}`}
+									label={'Diva Prayer Gem Level'}
+									disabled={inputDivaPrayerGemBlue === 'None'}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="calculator-results">
 					<div class="stats-header">
 						Internal Values and Final Displayed Attack
@@ -9682,9 +10058,9 @@ does not get multiplied by horn */
 						size="sm"
 						step={10}
 						min={minimumNumberValue}
-						max={maximumNumberValue}
+						max={maxTrueRaw}
 						bind:value={inputNumberIceAgeCalculatorWeaponTrueRaw}
-						invalidText={'Invalid value'}
+						invalidText={invalidTrueRawText}
 						label={'Weapon Base True Raw'}
 					/>
 				</div>
@@ -9771,9 +10147,9 @@ does not get multiplied by horn */
 						size="sm"
 						step={10}
 						min={minimumNumberValue}
-						max={maximumNumberValue}
+						max={100}
 						bind:value={inputNumberIceAgeCalculatorSRTrueRaw}
-						invalidText={invalidNumberValueText}
+						invalidText={'Invalid value. Must be between 0 and 100'}
 						label={'SR True Raw'}
 					/>
 				</div>
@@ -10102,6 +10478,28 @@ does not get multiplied by horn */
 					{
 						id: '40',
 						text: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
+					},
+				]}
+			/>
+			<Dropdown
+				titleText="Diva Prayer Gem Affinity"
+				bind:selectedId={critConversionCalculatorDivaPrayerGemAffinity}
+				items={[
+					{
+						id: '0',
+						text: 'None',
+					},
+					{
+						id: '25',
+						text: 'Affinity UP Lv1 (+25%)',
+					},
+					{
+						id: '50',
+						text: 'Affinity UP Lv2 (+50%)',
+					},
+					{
+						id: '100',
+						text: 'Affinity UP Lv3 (+100%)',
 					},
 				]}
 			/>
@@ -11679,227 +12077,19 @@ does not get multiplied by horn */
 					zebra
 					size="medium"
 					headers={[
-						{ key: 'gem', value: 'Prayer Gem' },
-						{ key: 'effects', value: 'Effects' },
+						{ key: 'name', value: 'Prayer Gem' },
+						{ key: 'description', value: 'Effects' },
 						{ key: 'maxLevel', value: 'Max Level' },
 						{ key: 'unused', value: 'Unused' },
 						{ key: 'partyEffect', value: 'Party Effect' },
 					]}
-					rows={[
-						{
-							id: '1',
-							gem: ezlion.SkillDivaPrayerGem[1],
-							effects:
-								'Sharpness does not decrease with blademaster weapons. Works for 5, 10 or 20 quests depending on level during the prayer active window.',
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '❌',
-						},
-						{
-							id: '2',
-							gem: ezlion.SkillDivaPrayerGem[2],
-							effects: 'Reduces the recoil and reload speed of Gunner weapons.',
-							maxLevel: '7',
-							unused: '✅',
-							partyEffect: '✅',
-						},
-						{
-							id: '3',
-							gem: ezlion.SkillDivaPrayerGem[3],
-							effects: 'Tails can be cut with any damage type.',
-							maxLevel: '1',
-							unused: '❌',
-							partyEffect: '❌',
-						},
-						{
-							id: '4',
-							gem: ezlion.SkillDivaPrayerGem[4],
-							effects: 'Adds passive HP recovery to all quests.',
-							maxLevel: '2',
-							unused: '❌',
-							partyEffect: '✅',
-						},
-						{
-							id: '5',
-							gem: ezlion.SkillDivaPrayerGem[5],
-							effects:
-								'Makes it easier to scare monsters by attacking with Earth Style.',
-							maxLevel: '4',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-						{
-							id: '6',
-							gem: ezlion.SkillDivaPrayerGem[6],
-							effects:
-								'Makes it easier to scare monsters by attacking with Heaven Style.',
-							maxLevel: '4',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-						{
-							id: '7',
-							gem: ezlion.SkillDivaPrayerGem[7],
-							effects:
-								'Makes it easier to scare monsters by attacking with Storm Style.',
-							maxLevel: '4',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-						{
-							id: '8',
-							gem: ezlion.SkillDivaPrayerGem[8],
-							effects:
-								'Increases the amount of raw damage dealt by a cutting weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '❌',
-						},
-						{
-							id: '9',
-							gem: ezlion.SkillDivaPrayerGem[9],
-							effects:
-								'Increases the amount of raw damage dealt by an impact weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '❌',
-						},
-						{
-							id: '10',
-							gem: ezlion.SkillDivaPrayerGem[10],
-							effects:
-								'Increases the amount of raw damage dealt by a ranged weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '❌',
-						},
-						{
-							id: '11',
-							gem: ezlion.SkillDivaPrayerGem[11],
-							effects:
-								'Increases the duration of status effects on monsters. +22/35/60 seconds increase. Around 10 seconds downtime with Abnormality, around 25 without.',
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '✅',
-						},
-						{
-							id: '12',
-							gem: ezlion.SkillDivaPrayerGem[12],
-							effects: 'Monsters are more susceptible to status ailments.',
-							maxLevel: '3',
-							unused: '✅',
-							partyEffect: '✅',
-						},
-						{
-							id: '13',
-							gem: ezlion.SkillDivaPrayerGem[13],
-							effects:
-								'Increases damage when striking body parts upon which your attacks are highly effective. However, element damage does not change.',
-							maxLevel: '3',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-						{
-							id: '14',
-							gem: ezlion.SkillDivaPrayerGem[14],
-							effects:
-								'Elemental damage increases based on level. +1/2/3 Elemental Hitzone increase.',
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '❌',
-						},
-						{
-							id: '15',
-							gem: ezlion.SkillDivaPrayerGem[15],
-							effects: 'Monsters cannot flee if in the same area as a hunter.',
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '✅',
-						},
-						{
-							id: '16',
-							gem: ezlion.SkillDivaPrayerGem[16],
-							effects: 'Adds new items to the GCP store based on level.',
-							maxLevel: '1',
-							unused: '❌',
-							partyEffect: '❌',
-						},
-						{
-							id: '17',
-							gem: ezlion.SkillDivaPrayerGem[17],
-							effects:
-								'Attack will go up based on the number of players in a quest. +30 True Raw increase if you are the only player.',
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '✅',
-						},
-						{
-							id: '18',
-							gem: ezlion.SkillDivaPrayerGem[18],
-							effects:
-								"Gives Divine Protection, Goddess' Embrace or Soul Revival based on level.",
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '❌',
-						},
-						{
-							id: '19',
-							gem: ezlion.SkillDivaPrayerGem[19],
-							effects:
-								'Increases affinity of all weapons based on the level of the song. +25/50/100% Affinity increase.',
-							maxLevel: '3',
-							unused: '❌',
-							partyEffect: '❌',
-						},
-						{
-							id: '20',
-							gem: ezlion.SkillDivaPrayerGem[20],
-							effects: 'Increases fire resistance.',
-							maxLevel: '3',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-						{
-							id: '21',
-							gem: ezlion.SkillDivaPrayerGem[21],
-							effects: 'Increases water resistance.',
-							maxLevel: '3',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-						{
-							id: '22',
-							gem: ezlion.SkillDivaPrayerGem[22],
-							effects: 'Increases thunder resistance.',
-							maxLevel: '3',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-						{
-							id: '23',
-							gem: ezlion.SkillDivaPrayerGem[23],
-							effects: 'Increases dragon resistance.',
-							maxLevel: '3',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-						{
-							id: '24',
-							gem: ezlion.SkillDivaPrayerGem[24],
-							effects: 'Increases ice resistance.',
-							maxLevel: '3',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-						{
-							id: '25',
-							gem: ezlion.SkillDivaPrayerGem[25],
-							effects: 'Increases resistance to all elements.',
-							maxLevel: '2',
-							unused: '✅',
-							partyEffect: '❌',
-						},
-					]}
+					rows={divaPrayerGems.map((e) => {
+						return {
+							...e,
+							unused: e.unused ? '✅' : '❌',
+							partyEffect: e.partyEffect ? '✅' : '❌',
+						};
+					})}
 					><Toolbar
 						><div class="toolbar">
 							<CopyButton
@@ -13613,8 +13803,7 @@ does not get multiplied by horn */
 		width: var(--cds-spacing-09);
 	}
 
-	.container-buttons {
-		grid-area: container-buttons;
+	.damage-calculator-container-buttons {
 		gap: 1rem;
 		display: flex;
 		align-items: start;
@@ -13761,7 +13950,6 @@ does not get multiplied by horn */
 	}
 
 	.calculator-results {
-		grid-area: stats;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
@@ -13770,6 +13958,47 @@ does not get multiplied by horn */
 		padding-bottom: 1rem;
 		background-color: var(--ctp-mantle);
 		margin-bottom: 2rem;
+	}
+
+	.damage-calculator-diva-prayer-gems-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		border-radius: 10px 10px 10px 10px;
+		border: 1px solid var(--ctp-surface0);
+		padding-bottom: 1rem;
+		background-color: var(--ctp-mantle);
+		margin-bottom: 2rem;
+	}
+
+	.diva-stats-values {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		flex-direction: column;
+		padding: 1rem;
+	}
+
+	.diva-prayer-gem {
+		display: grid;
+		grid-template-columns: auto 1fr 1fr;
+		grid-template-rows: auto;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.diva-prayer-gem-icon {
+		position: relative;
+		width: 100px; /* Adjust based on your icon size */
+		height: 100px; /* Adjust based on your icon size */
+	}
+
+	.icon-wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
 
 	.container-shiki {
@@ -13841,17 +14070,6 @@ does not get multiplied by horn */
 		padding: var(--cds-spacing-04);
 		border: 1px solid var(--ctp-surface0);
 		border-radius: 10px 10px 0px 0px;
-	}
-
-	.container-arena {
-		display: grid;
-		grid-template-areas:
-			'container-buttons container-buttons container-buttons'
-			'stats stats stats'
-			'motion-values motion-values motion-values'
-			'inputs-left inputs-middle inputs-right';
-		grid-template-columns: 1fr 1fr 1fr;
-		gap: var(--cds-spacing-08);
 	}
 
 	.ice-age-tables-container {
