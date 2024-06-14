@@ -125,6 +125,8 @@
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 
 	type dropdownItem = { id: string; text: string };
 	type levelQuantity = [level1: number, level2: number, level3: number];
@@ -2795,8 +2797,12 @@
 	<SectionHeadingTopLevel title="Smithy" />
 
 	<p>
-		In the Smithy, you can generate various equipment for display purposes, such
-		as <InlineTooltip text="Armor" icon={ArmorTypes[0].icon} tooltip="Armor" />, <InlineTooltip
+		In the Smithy, you can see the overview of various tools (e.g. Overlay), and
+		generate diverse equipment for display purposes, such as <InlineTooltip
+			text="Armor"
+			icon={ArmorTypes[0].icon}
+			tooltip="Armor"
+		/>, <InlineTooltip
 			text="Weapons"
 			icon={WeaponTypes[0].icon}
 			tooltip="Weapon"
@@ -2809,30 +2815,66 @@
 	</p>
 
 	<section>
-		<SectionHeading title="Weapon" level={2} />
-		<div class="inline-notification-container">
-			<InlineNotification
-				lowContrast
-				hideCloseButton
-				kind="info"
-				title="Sharpness:"
-				subtitle="The game uses integers. The values here is how it works internally. Defaults to a black bar on invalid values."
-			/>
-			<InlineNotification
-				lowContrast
-				hideCloseButton
-				kind="info"
-				title="Length:"
-				subtitle="The game uses Medium for Magnet Spike and Tonfa."
-			/>
-			<InlineNotification
-				lowContrast
-				hideCloseButton
-				kind="info"
-				title="Points:"
-				subtitle="The game uses values between -127 and 127 for skill and sigil points."
-			/>
-		</div>
+		<SectionHeading title="Overlay" level={2} />
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Project state:"
+			subtitle="The overlay is currently on major version 0, meaning that it is in beta."
+		/>
+		<p class="spaced-paragraph">
+			This tool is used to track and view your stats in the game in real-time.</p>
+		<p class="spaced-paragraph">
+			For more information, see the <Link href="/overlay">overlay page.</Link>
+		</p>
+		<Youtube id="A9ffbRICqZY" />
+	</section>
+
+	<section>
+		<SectionHeading title="EZlion" level={2} />
+		<p class="spaced-paragraph">
+			An API used as a reference for weapons, armors, monsters, skills, etc. For
+			example, you can search IDs and names by doing a request: <CodeSnippet
+				type="inline"
+				code="curl https://yourprojectname.vercel.app/api/v0/monsters/1
+"
+			/>, giving you <CodeSnippet
+				type="inline"
+				code={`{ id: 1, name: 'Rathian' }`}
+			/>.</p>
+
+			<p class="spaced-paragraph">
+				For more information, see the <OutboundLink
+				href="https://ezlion.vercel.app">EZlion API Reference.</OutboundLink
+			>
+		</p>
+	</section>
+
+	<section>
+		<SectionHeading title="Weapon Generator" level={2} />
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Sharpness:"
+			subtitle="The game uses integers. The values here is how it works internally. Defaults to a black bar on invalid values."
+		/>
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Length:"
+			subtitle="The game uses Medium for Magnet Spike and Tonfa."
+		/>
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Points:"
+			subtitle="The game uses values between -127 and 127 for skill and sigil points."
+		/>
+
 		<div class="container-weapon-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadWeaponImage}
 				>Download</Button
@@ -4261,7 +4303,7 @@
 	</section>
 
 	<section>
-		<SectionHeading level={2} title="Armor" />
+		<SectionHeading level={2} title="Armor Generator" />
 		<div class="container-armor-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadArmorImage}
 				>Download</Button
@@ -4794,7 +4836,7 @@
 		</div>
 	</section>
 	<section>
-		<SectionHeading level={2} title="Item" />
+		<SectionHeading level={2} title="Item Generator" />
 		<div class="container-item-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadItemsImage}
 				>Download</Button
@@ -5122,7 +5164,7 @@
 		</div>
 	</section>
 	<section>
-		<SectionHeading level={2} title="Tower Weapon" />
+		<SectionHeading level={2} title="Tower Weapon Simulator" />
 		<InlineNotification
 			lowContrast
 			hideCloseButton
@@ -5820,7 +5862,7 @@
 		</div>
 	</section>
 	<section>
-		<SectionHeading level={2} title="Icons" />
+		<SectionHeading level={2} title="Icons Preview" />
 		<p class="spaced-paragraph">
 			You can find the image for the monster backgrounds in our <OutboundLink
 				href="https://github.com/DorielRivalet/wycademy/blob/main/src/lib/client/images/monster/bg-512.webp"

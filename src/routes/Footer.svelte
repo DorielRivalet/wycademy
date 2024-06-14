@@ -6,7 +6,7 @@
 
 <script lang="ts">
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
+	import LogoGitHub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
 	import type { GitHubData } from '$lib/types';
 	import * as constant from '$lib/constants';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
@@ -77,7 +77,7 @@
 
 	<div class="item-container">
 		<Link aria-label="GitHub repository" href={constant.projectGitHub}>
-			<LogoGithub size={32} />
+			<LogoGitHub size={32} />
 		</Link>
 		<div class="subtle">v{constant.appVersion}</div>
 	</div>

@@ -1,4 +1,4 @@
-name: Github Status
+name: GitHub Status
 on: push
 
 jobs:

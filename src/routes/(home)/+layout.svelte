@@ -21,6 +21,7 @@
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
+	import { stickyHeaderStore } from '$lib/client/stores/toggles';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -40,13 +41,15 @@
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
 	});
+
+	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 </script>
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <div class="app">
 	<ViewTransition />
 
-	<div class="header">
+	<div class={headerClass}>
 		<Header />
 	</div>
 	<div class="banner">
@@ -91,19 +94,24 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: var(--cds-spacing-08);
 		width: 100%;
 		max-width: 100vw;
 		margin: 0 auto;
 		box-sizing: border-box;
 		min-height: 90vh;
 		background-color: var(--ctp-base);
-		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 	}
 
 	.header {
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		position: static;
+	}
+
+	.sticky {
+		position: -webkit-sticky; /* For Safari */
+		position: sticky;
+		top: 0;
+		z-index: 1000; /* Ensure it stays above other content */
 	}
 </style>
