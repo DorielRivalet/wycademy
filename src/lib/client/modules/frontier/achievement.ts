@@ -46,6 +46,7 @@ export type AchievementItem = {
 	IsSecret: boolean;
 	Hint: string;
 	Unused: boolean;
+	HunterName?: string;
 };
 
 export type AchievementObject = {
@@ -58,6 +59,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Akura Vashimu Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest.',
 			Image:
@@ -70,6 +72,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Akura Vashimu Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Akura Vashimu quests.',
 			Image:
@@ -82,6 +85,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Akura Vashimu Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Akura Vashimu quests.',
 			Image:
@@ -94,6 +98,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Akura Vashimu Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Akura Vashimu quests.',
 			Image:
@@ -106,6 +111,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Akura Vashimu's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest solo (Speedrun/Zen).',
 			Image:
@@ -118,6 +124,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Anorupatisu Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest.',
 			Image:
@@ -130,6 +137,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Anorupatisu Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Anorupatisu quests.',
 			Image:
@@ -142,6 +150,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Anorupatisu Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Anorupatisu quests.',
 			Image:
@@ -154,6 +163,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Anorupatisu Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Anorupatisu quests.',
 			Image:
@@ -166,6 +176,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Anorupatisu's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest solo (Speedrun/Zen).',
 			Image:
@@ -178,6 +189,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Blangonga Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest.',
 			Image:
@@ -190,6 +202,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Blangonga Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Blangonga quests.',
 			Image:
@@ -202,6 +215,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Blangonga Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Blangonga quests.',
 			Image:
@@ -214,6 +228,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Blangonga Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Blangonga quests.',
 			Image:
@@ -226,6 +241,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Blangonga's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest solo (Speedrun/Zen).',
 			Image:
@@ -238,6 +254,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Daimyo Hermitaur Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Daimyo Hermitaur quest.',
 			Image:
@@ -250,6 +267,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Daimyo Hermitaur Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Daimyo Hermitaur quests.',
 			Image:
@@ -262,6 +280,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Daimyo Hermitaur Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Daimyo Hermitaur quests.',
 			Image:
@@ -274,6 +293,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Daimyo Hermitaur Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Daimyo Hermitaur quests.',
 			Image:
@@ -286,6 +306,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Daimyo Hermitaur's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective:
 				'Complete 1 Zenith★4 Daimyo Hermitaur quest solo (Speedrun/Zen).',
@@ -299,6 +320,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Doragyurosu Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest.',
 			Image:
@@ -311,6 +333,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Doragyurosu Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Doragyurosu quests.',
 			Image:
@@ -323,6 +346,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Doragyurosu Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Doragyurosu quests.',
 			Image:
@@ -335,6 +359,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Doragyurosu Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Doragyurosu quests.',
 			Image:
@@ -347,6 +372,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Doragyurosu's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest solo (Speedrun/Zen).',
 			Image:
@@ -359,6 +385,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Espinas Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Espinas quest.',
 			Image:
@@ -371,6 +398,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Espinas Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Espinas quests.',
 			Image:
@@ -383,6 +411,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Espinas Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Espinas quests.',
 			Image:
@@ -395,6 +424,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Espinas Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Espinas quests.',
 			Image:
@@ -407,6 +437,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Espinas' Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Espinas quest solo (Speedrun/Zen).',
 			Image:
@@ -419,6 +450,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gasurabazura Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest.',
 			Image:
@@ -431,6 +463,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gasurabazura Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Gasurabazura quests.',
 			Image:
@@ -443,6 +476,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gasurabazura Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Gasurabazura quests.',
 			Image:
@@ -455,6 +489,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gasurabazura Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Gasurabazura quests.',
 			Image:
@@ -467,6 +502,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Gasurabazura's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest solo (Speedrun/Zen).',
 			Image:
@@ -479,6 +515,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Giaorugu Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest.',
 			Image:
@@ -491,6 +528,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Giaorugu Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Giaorugu quests.',
 			Image:
@@ -503,6 +541,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Giaorugu Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Giaorugu quests.',
 			Image:
@@ -515,6 +554,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Giaorugu Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Giaorugu quests.',
 			Image:
@@ -527,6 +567,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Giaorugu's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest solo (Speedrun/Zen).',
 			Image:
@@ -539,6 +580,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Hypnocatrice Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest.',
 			Image:
@@ -551,6 +593,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Hypnocatrice Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Hypnocatrice quests.',
 			Image:
@@ -563,6 +606,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Hypnocatrice Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Hypnocatrice quests.',
 			Image:
@@ -575,6 +619,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Hypnocatrice Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Hypnocatrice quests.',
 			Image:
@@ -587,6 +632,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Hypnocatrice's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest solo (Speedrun/Zen).',
 			Image:
@@ -599,6 +645,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Hyujikiki Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest.',
 			Image:
@@ -611,6 +658,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Hyujikiki Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Hyujikiki quests.',
 			Image:
@@ -623,6 +671,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Hyujikiki Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Hyujikiki quests.',
 			Image:
@@ -635,6 +684,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Hyujikiki Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Hyujikiki quests.',
 			Image:
@@ -647,6 +697,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Hyujikiki's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest solo (Speedrun/Zen).',
 			Image:
@@ -659,6 +710,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Inagami Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Inagami quest.',
 			Image:
@@ -671,6 +723,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Inagami Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Inagami quests.',
 			Image:
@@ -683,6 +736,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Inagami Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Inagami quests.',
 			Image:
@@ -695,6 +749,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Inagami Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Inagami quests.',
 			Image:
@@ -707,6 +762,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Inagami's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Inagami quest solo (Speedrun/Zen).',
 			Image:
@@ -719,6 +775,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Khezu Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Khezu quest.',
 			Image:
@@ -731,6 +788,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Khezu Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Khezu quests.',
 			Image:
@@ -743,6 +801,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Khezu Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Khezu quests.',
 			Image:
@@ -755,6 +814,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Khezu Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Khezu quests.',
 			Image:
@@ -767,6 +827,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Khezu's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Khezu quest solo (Speedrun/Zen).',
 			Image:
@@ -779,6 +840,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Midogaron Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest.',
 			Image:
@@ -791,6 +853,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Midogaron Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Midogaron quests.',
 			Image:
@@ -803,6 +866,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Midogaron Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Midogaron quests.',
 			Image:
@@ -815,6 +879,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Midogaron Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Midogaron quests.',
 			Image:
@@ -827,6 +892,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Midogaron's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest solo (Speedrun/Zen).',
 			Image:
@@ -839,6 +905,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Plesioth Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest.',
 			Image:
@@ -851,6 +918,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Plesioth Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Plesioth quest.',
 			Image:
@@ -863,6 +931,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Plesioth Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Plesioth quests.',
 			Image:
@@ -875,6 +944,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Plesioth Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Plesioth quests.',
 			Image:
@@ -887,6 +957,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Plesioth's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest solo (Speedrun/Zen).',
 			Image:
@@ -899,6 +970,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rathalos Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest.',
 			Image:
@@ -911,6 +983,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rathalos Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Rathalos quests.',
 			Image:
@@ -923,6 +996,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rathalos Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Rathalos quests.',
 			Image:
@@ -935,6 +1009,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rathalos Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Rathalos quests.',
 			Image:
@@ -947,6 +1022,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Rathalos' Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest solo (Speedrun/Zen).',
 			Image:
@@ -959,6 +1035,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rukodiora Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest.',
 			Image:
@@ -971,6 +1048,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rukodiora Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Rukodiora quests.',
 			Image:
@@ -983,6 +1061,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rukodiora Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Rukodiora quests.',
 			Image:
@@ -995,6 +1074,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rukodiora Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Rukodiora quests.',
 			Image:
@@ -1007,6 +1087,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Rukodiora's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest solo (Speedrun/Zen).',
 			Image:
@@ -1019,6 +1100,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Tigrex Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest.',
 			Image:
@@ -1031,6 +1113,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Tigrex Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Tigrex quests.',
 			Image:
@@ -1043,6 +1126,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Tigrex Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Tigrex quests.',
 			Image:
@@ -1055,6 +1139,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Tigrex Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Tigrex quests.',
 			Image:
@@ -1067,6 +1152,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Tigrex's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest solo (Speedrun/Zen).',
 			Image:
@@ -1079,6 +1165,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Toridcless Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest.',
 			Image:
@@ -1091,6 +1178,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Toridcless Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Toridcless quests.',
 			Image:
@@ -1103,6 +1191,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Toridcless Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Toridcless quests.',
 			Image:
@@ -1115,6 +1204,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Toridcless Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Toridcless quests.',
 			Image:
@@ -1127,6 +1217,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Toridcless' Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest solo (Speedrun/Zen).',
 			Image:
@@ -1139,6 +1230,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Baruragaru Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest.',
 			Image:
@@ -1151,6 +1243,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Baruragaru Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Baruragaru quests.',
 			Image:
@@ -1163,6 +1256,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Baruragaru Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Baruragaru quests.',
 			Image:
@@ -1175,6 +1269,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Baruragaru Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Baruragaru quests.',
 			Image:
@@ -1187,6 +1282,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Baruragaru's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest solo (Speedrun/Zen).',
 			Image:
@@ -1199,6 +1295,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bogabadorumu Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest.',
 			Image:
@@ -1211,6 +1308,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bogabadorumu Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Bogabadorumu quests.',
 			Image:
@@ -1223,6 +1321,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bogabadorumu Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Bogabadorumu quests.',
 			Image:
@@ -1235,6 +1334,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bogabadorumu Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Bogabadorumu quests.',
 			Image:
@@ -1247,6 +1347,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Bogabadorumu's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest solo (Speedrun/Zen).',
 			Image:
@@ -1259,6 +1360,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gravios Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Gravios quest.',
 			Image:
@@ -1271,6 +1373,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gravios Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Gravios quests.',
 			Image:
@@ -1283,6 +1386,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gravios Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Gravios quests.',
 			Image:
@@ -1295,6 +1399,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gravios Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Gravios quests.',
 			Image:
@@ -1307,6 +1412,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Gravios' Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Gravios quest solo (Speedrun/Zen).',
 			Image:
@@ -1319,6 +1425,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Harudomerugu Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest.',
 			Image:
@@ -1331,6 +1438,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Harudomerugu Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Harudomerugu quests.',
 			Image:
@@ -1343,6 +1451,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Harudomerugu Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Harudomerugu quests.',
 			Image:
@@ -1355,6 +1464,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Harudomerugu Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Harudomerugu quests.',
 			Image:
@@ -1367,6 +1477,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Harudomerugu's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest solo (Speedrun/Zen).',
 			Image:
@@ -1379,6 +1490,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Taikun Zamuza Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest.',
 			Image:
@@ -1391,6 +1503,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Taikun Zamuza Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Taikun Zamuza quests.',
 			Image:
@@ -1403,6 +1516,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Taikun Zamuza Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Taikun Zamuza quests.',
 			Image:
@@ -1415,6 +1529,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Taikun Zamuza Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Taikun Zamuza quests.',
 			Image:
@@ -1427,6 +1542,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Taikun Zamuza's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest solo (Speedrun/Zen).',
 			Image:
@@ -1439,6 +1555,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fatalis Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Fatalis quest.',
 			Image:
@@ -1451,6 +1568,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fatalis Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Lv9999 Fatalis quests.',
 			Image:
@@ -1463,6 +1581,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fatalis Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Lv9999 Fatalis quests.',
 			Image:
@@ -1475,6 +1594,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fatalis Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Lv9999 Fatalis quests.',
 			Image:
@@ -1487,6 +1607,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Fatalis' Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Fatalis quest solo (Speedrun/Zen).',
 			Image:
@@ -1499,6 +1620,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Crimson Fatalis Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest.',
 			Image:
@@ -1511,6 +1633,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Crimson Fatalis Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Lv9999 Crimson Fatalis quests.',
 			Image:
@@ -1523,6 +1646,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Crimson Fatalis Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Lv9999 Crimson Fatalis quests.',
 			Image:
@@ -1535,6 +1659,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Crimson Fatalis Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Lv9999 Crimson Fatalis quests.',
 			Image:
@@ -1547,6 +1672,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Crimson Fatalis' Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest solo (Speedrun/Zen).',
 			Image:
@@ -1559,6 +1685,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Shantien Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Shantien quest.',
 			Image:
@@ -1571,6 +1698,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Shantien Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Lv9999 Shantien quests.',
 			Image:
@@ -1583,6 +1711,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Shantien Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Lv9999 Shantien quests.',
 			Image:
@@ -1595,6 +1724,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Shantien Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Lv9999 Shantien quests.',
 			Image:
@@ -1607,6 +1737,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Shantien's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Shantien quest solo (Speedrun/Zen).',
 			Image:
@@ -1619,6 +1750,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Disufiroa Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest.',
 			Image:
@@ -1631,6 +1763,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Disufiroa Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Lv9999 Disufiroa quests.',
 			Image:
@@ -1643,6 +1776,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Disufiroa Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Lv9999 Disufiroa quests.',
 			Image:
@@ -1655,6 +1789,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Disufiroa Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Lv9999 Disufiroa quests.',
 			Image:
@@ -1667,6 +1802,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Disufiroa's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest solo (Speedrun/Zen).',
 			Image:
@@ -1679,6 +1815,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'UNKNOWN Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Upper Shiten Unknown quest.',
 			Image:
@@ -1691,6 +1828,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'UNKNOWN Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Upper Shiten Unknown quests.',
 			Image:
@@ -1703,6 +1841,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'UNKNOWN Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Upper Shiten Unknown quests.',
 			Image:
@@ -1715,6 +1854,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'UNKNOWN Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Upper Shiten Unknown quests.',
 			Image:
@@ -1727,6 +1867,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "UNKNOWN's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Upper Shiten Unknown quest solo (Speedrun/Zen).',
 			Image:
@@ -1739,6 +1880,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "At World's End",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Upper Shiten Disufiroa quest.',
 			Image:
@@ -1751,6 +1893,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Apocalyptic Red Moon',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Upper Shiten Disufiroa quests.',
 			Image:
@@ -1763,6 +1906,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Disufiroa's Last Stand",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Upper Shiten Disufiroa quests.',
 			Image:
@@ -1775,6 +1919,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Blood Moon Emperor',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Upper Shiten Disufiroa quests.',
 			Image:
@@ -1787,6 +1932,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Eclipse Conqueror',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Upper Shiten Disufiroa quest solo (Speedrun/Zen).',
 			Image:
@@ -1799,6 +1945,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Pariapuria Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Thirsty Pariapuria quest.',
 			Image:
@@ -1811,6 +1958,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Pariapuria Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Thirsty Pariapuria quests.',
 			Image:
@@ -1823,6 +1971,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Pariapuria Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Thirsty Pariapuria quests.',
 			Image:
@@ -1835,6 +1984,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Pariapuria Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Thirsty Pariapuria quests.',
 			Image:
@@ -1847,6 +1997,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Pariapuria's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Thirsty Pariapuria quest solo (Speedrun/Zen).',
 			Image:
@@ -1859,6 +2010,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Guanzorumu Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Ruling Guanzorumu True Slay quest.',
 			Image:
@@ -1871,6 +2023,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Guanzorumu Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Ruling Guanzorumu True Slay quests.',
 			Image:
@@ -1883,6 +2036,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Guanzorumu Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Ruling Guanzorumu True Slay quests.',
 			Image:
@@ -1895,6 +2049,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Guanzorumu Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Ruling Guanzorumu True Slay quests.',
 			Image:
@@ -1907,6 +2062,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Guanzorumu's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective:
 				'Complete 1 Ruling Guanzorumu True Slay quest solo (Speedrun/Zen).',
@@ -1920,6 +2076,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Mi Ru Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Shifting Mi Ru quest.',
 			Image:
@@ -1932,6 +2089,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Mi Ru Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Shifting Mi Ru quests.',
 			Image:
@@ -1944,6 +2102,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Mi Ru Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Shifting Mi Ru quests.',
 			Image:
@@ -1956,6 +2115,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Mi Ru Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Shifting Mi Ru quests.',
 			Image:
@@ -1968,6 +2128,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Mi Ru's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Shifting Mi Ru quest solo (Speedrun/Zen).',
 			Image:
@@ -1980,6 +2141,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Nargacuga Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Blinking Nargacuga True Slay quest.',
 			Image:
@@ -1992,6 +2154,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Nargacuga Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Blinking Nargacuga True Slay quests.',
 			Image:
@@ -2004,6 +2167,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Nargacuga Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Blinking Nargacuga True Slay quests.',
 			Image:
@@ -2016,6 +2180,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Nargacuga Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Blinking Nargacuga True Slay quests.',
 			Image:
@@ -2028,6 +2193,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Nargacuga's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Complete 1 Blinking Nargacuga True Slay quest solo (Speedrun/Zen).',
@@ -2041,6 +2207,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zinogre Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Howling Zinogre True Slay quest.',
 			Image:
@@ -2053,6 +2220,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zinogre Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Howling Zinogre True Slay quests.',
 			Image:
@@ -2065,6 +2233,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zinogre Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Howling Zinogre True Slay quests.',
 			Image:
@@ -2077,6 +2246,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zinogre Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Howling Zinogre True Slay quests.',
 			Image:
@@ -2089,6 +2259,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Zinogre's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Complete 1 Howling Zinogre True Slay quest solo (Speedrun/Zen).',
@@ -2102,6 +2273,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Deviljho Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Starving Deviljho True Slay quest.',
 			Image:
@@ -2114,6 +2286,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Deviljho Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Starving Deviljho True Slay quests.',
 			Image:
@@ -2126,6 +2299,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Deviljho Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Starving Deviljho True Slay quests.',
 			Image:
@@ -2138,6 +2312,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Deviljho Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Starving Deviljho True Slay quests.',
 			Image:
@@ -2150,6 +2325,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Deviljho's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Complete 1 Starving Deviljho True Slay quest solo (Speedrun/Zen).',
@@ -2163,6 +2339,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zerureusu Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Sparkling Zerureusu True Slay quest.',
 			Image:
@@ -2175,6 +2352,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zerureusu Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Sparkling Zerureusu True Slay quests.',
 			Image:
@@ -2187,6 +2365,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zerureusu Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Sparkling Zerureusu True Slay quests.',
 			Image:
@@ -2199,6 +2378,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zerureusu Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Sparkling Zerureusu True Slay quests.',
 			Image:
@@ -2211,6 +2391,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Zerureusu's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Complete 1 Sparkling Zerureusu True Slay quest solo (Speedrun/Zen).',
@@ -2224,6 +2405,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Duremudira Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Arrogant Duremudira True Slay quest.',
 			Image:
@@ -2236,6 +2418,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Duremudira Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Arrogant Duremudira True Slay quests.',
 			Image:
@@ -2248,6 +2431,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Duremudira Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Arrogant Duremudira True Slay quests.',
 			Image:
@@ -2260,6 +2444,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Duremudira Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Arrogant Duremudira True Slay quests.',
 			Image:
@@ -2272,6 +2457,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Duremudira's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Complete 1 Arrogant Duremudira True Slay quest solo (Speedrun/Zen).',
@@ -2285,6 +2471,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bombardier',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Bombardier Bogabadorumu True Slay quest.',
 			Image:
@@ -2297,6 +2484,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Blitzkrieg',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Bombardier Bogabadorumu True Slay quests.',
 			Image:
@@ -2309,6 +2497,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Boggy',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Bombardier Bogabadorumu True Slay quests.',
 			Image:
@@ -2321,6 +2510,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Boggers',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Bombardier Bogabadorumu True Slay quests.',
 			Image:
@@ -2333,6 +2523,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Explosion!',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Complete 1 Bombardier Bogabadorumu True Slay quest solo (Speedrun/Zen).',
@@ -2346,6 +2537,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Elzelion Slain',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Burning Freezing Elzelion True Slay quest.',
 			Image:
@@ -2358,6 +2550,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Elzelion Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 10 Burning Freezing Elzelion True Slay quests.',
 			Image:
@@ -2370,6 +2563,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Elzelion Annihilator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Burning Freezing Elzelion True Slay quests.',
 			Image:
@@ -2382,6 +2576,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Elzelion Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 50 Burning Freezing Elzelion True Slay quests.',
 			Image:
@@ -2394,6 +2589,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Elzelion's Nightmare",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Complete 1 Burning Freezing Elzelion True Slay quest solo (Speedrun/Zen).',
@@ -2407,6 +2603,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Seriously Thirsty',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective:
 				'Complete a Thirsty Pariapuria quest with a Serious Drink Affinity in your inventory.',
@@ -2420,6 +2617,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Back to the Past',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Complete a Ruling Guanzorumu True Slay quest with a non-extreme style.',
@@ -2433,6 +2631,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Shifty',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective:
 				'Complete a Shifting Mi Ru quest while having pressed Shift at the start.',
@@ -2446,6 +2645,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Ultra Instinct',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete a Blinking Nargacuga True Slay quest without getting hit (including blocks)',
@@ -2459,6 +2659,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'A Lonely and Starving Wolf',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete a Howling Zinogre True Slay quest solo with 40 max stamina.',
@@ -2472,6 +2673,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Majestic Lord of Ice and Fire',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete a Burning Freezing Elzelion True Slay quest with Blazing Majesty and Ice Age',
@@ -2485,6 +2687,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bombardment',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective:
 				'Complete a Bombardier Bogabadorumu True Slay quest with a Large Barrel Bomb in your inventory.',
@@ -2498,6 +2701,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Oblivion Negated',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Complete an Arrogant Duremudira True Slay quest with Soul Revival equipped.',
@@ -2511,6 +2715,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Lovely Vegetables',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete a certain quest on February 14th.',
 			Image:
@@ -2523,6 +2728,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Ultimate Gunlance Duel',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Defeat Producer Gogomoa with a Gunlance',
 			Image:
@@ -2535,6 +2741,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Emperor of Fire',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete a Four Heavenly King Deviljho quest.',
 			Image:
@@ -2547,6 +2754,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Dancing Gopher',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete a Hatsune Miku quest.',
 			Image:
@@ -2559,6 +2767,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Singing Rappy',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete a PSO2 quest.',
 			Image:
@@ -2571,6 +2780,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gears of Destiny',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete a Megaman quest.',
 			Image:
@@ -2583,6 +2793,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Higanjima',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete a Higanjima quest.',
 			Image:
@@ -2595,6 +2806,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Plesioth Transformation',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Defeat the huge Plesioth.',
 			Image:
@@ -2607,6 +2819,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Oh Noes! My Sunglasses!',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Defeat Sunglasses Kut-Ku.',
 			Image:
@@ -2619,6 +2832,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Quiz Time!',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 MHF-Q quest.',
 			Image:
@@ -2631,6 +2845,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Smell No Evil',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete a certain Congalala quest.',
 			Image:
@@ -2643,6 +2858,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zenny Galore',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Get the maximum amount of GZenny',
 			Image:
@@ -2655,6 +2871,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Diva's Friend",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Get the maximum amount of Diva Bond',
 			Image:
@@ -2667,6 +2884,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: '#1',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Obtain S Rank in Nyanrendo, Dokkan Battle Cats, Guuku Scoop and Panic Honey.',
@@ -2680,6 +2898,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Caravaneer',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Obtain the maximum Caravan points.',
 			Image:
@@ -2692,6 +2911,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Road Champion',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Get to Multiplayer Road Floor 50.',
 			Image:
@@ -2704,6 +2924,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rengoku',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Get to Multiplayer Road Floor 100.',
 			Image:
@@ -2716,6 +2937,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Expert Companion',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Obtain a Max Level partner.',
 			Image:
@@ -2728,6 +2950,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Solid Determination',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Attempt a quest 1000 times.',
 			Image:
@@ -2740,6 +2963,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Compensation',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Attempt a personal best 100 times.',
 			Image:
@@ -2752,6 +2976,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Chilling Monster Count',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Defeat 2nd District Duremudira 25 times.',
 			Image:
@@ -2764,6 +2989,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Emperor's Final Roar",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Defeat Road Fatalis 100 times.',
 			Image:
@@ -2776,6 +3002,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #1',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Click a Fumo in the configuration window.',
 			Image:
@@ -2788,6 +3015,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Monkey Bomb',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Defeat the Twinhead Rajangs.',
 			Image:
@@ -2800,6 +3028,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Akura Vashimu's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest under 10 minutes.',
 			Image:
@@ -2812,6 +3041,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Anorupatisu's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest under 10 minutes.',
 			Image:
@@ -2824,6 +3054,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Blangonga's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest under 10 minutes.',
 			Image:
@@ -2836,6 +3067,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Daimyo Hermitaur's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Daimyo Hermitaur quest under 10 minutes.',
 			Image:
@@ -2848,6 +3080,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Doragyurosu's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest under 10 minutes.',
 			Image:
@@ -2860,6 +3093,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Espinas' Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Espinas quest under 10 minutes.',
 			Image:
@@ -2872,6 +3106,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Gasurabazura's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest under 10 minutes.',
 			Image:
@@ -2884,6 +3119,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Giaorugu's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest under 10 minutes.',
 			Image:
@@ -2896,6 +3132,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Hypnocatrice's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest under 10 minutes.',
 			Image:
@@ -2908,6 +3145,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Hyujikiki's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest under 10 minutes.',
 			Image:
@@ -2920,6 +3158,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Inagami's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Inagami quest under 10 minutes.',
 			Image:
@@ -2932,6 +3171,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Khezu's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Khezu quest under 10 minutes.',
 			Image:
@@ -2944,6 +3184,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Midogaron's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest under 10 minutes.',
 			Image:
@@ -2956,6 +3197,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Plesioth's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest under 10 minutes.',
 			Image:
@@ -2968,6 +3210,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Rathalos' Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest under 10 minutes.',
 			Image:
@@ -2980,6 +3223,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Rukodiora's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest under 10 minutes.',
 			Image:
@@ -2992,6 +3236,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Tigrex's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest under 10 minutes.',
 			Image:
@@ -3004,6 +3249,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Toridcless' Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest under 10 minutes.',
 			Image:
@@ -3016,6 +3262,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Baruragaru's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest under 10 minutes.',
 			Image:
@@ -3028,6 +3275,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Bogabadorumu's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest under 10 minutes.',
 			Image:
@@ -3040,6 +3288,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Gravios' Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Gravios quest under 10 minutes.',
 			Image:
@@ -3052,6 +3301,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Harudomerugu's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest under 10 minutes.',
 			Image:
@@ -3064,6 +3314,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Taikun Zamuza's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest under 10 minutes.',
 			Image:
@@ -3076,6 +3327,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Fatalis' Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Lv9999 Fatalis quest under 10 minutes.',
 			Image:
@@ -3088,6 +3340,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Crimson Fatalis' Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest under 10 minutes.',
 			Image:
@@ -3100,6 +3353,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Shantien's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Lv9999 Shantien quest under 10 minutes.',
 			Image:
@@ -3112,6 +3366,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Disufiroa's Nemesis",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest under 10 minutes.',
 			Image:
@@ -3124,6 +3379,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Akura Vashimu's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest under 8 minutes.',
 			Image:
@@ -3136,6 +3392,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Anorupatisu's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest under 8 minutes.',
 			Image:
@@ -3148,6 +3405,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Blangonga's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest under 8 minutes.',
 			Image:
@@ -3160,6 +3418,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Daimyo Hermitaur's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Daimyo Hermitaur quest under 8 minutes.',
 			Image:
@@ -3172,6 +3431,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Doragyurosu's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest under 8 minutes.',
 			Image:
@@ -3184,6 +3444,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Espinas' Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Espinas quest under 8 minutes.',
 			Image:
@@ -3196,6 +3457,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Gasurabazura's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest under 8 minutes.',
 			Image:
@@ -3208,6 +3470,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Giaorugu's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest under 8 minutes.',
 			Image:
@@ -3220,6 +3483,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Hypnocatrice's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest under 8 minutes.',
 			Image:
@@ -3232,6 +3496,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Hyujikiki's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest under 8 minutes.',
 			Image:
@@ -3244,6 +3509,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Inagami's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Inagami quest under 8 minutes.',
 			Image:
@@ -3256,6 +3522,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Khezu's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Khezu quest under 8 minutes.',
 			Image:
@@ -3268,6 +3535,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Midogaron's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest under 8 minutes.',
 			Image:
@@ -3280,6 +3548,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Plesioth's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest under 8 minutes.',
 			Image:
@@ -3292,6 +3561,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Rathalos' Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest under 8 minutes.',
 			Image:
@@ -3304,6 +3574,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Rukodiora's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest under 8 minutes.',
 			Image:
@@ -3316,6 +3587,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Tigrex's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest under 8 minutes.',
 			Image:
@@ -3328,6 +3600,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Toridcless's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest under 8 minutes.',
 			Image:
@@ -3340,6 +3613,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Baruragaru's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest under 8 minutes.',
 			Image:
@@ -3352,6 +3626,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Bogabadorumu's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest under 8 minutes.',
 			Image:
@@ -3364,6 +3639,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Gravios's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Gravios quest under 8 minutes.',
 			Image:
@@ -3376,6 +3652,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Harudomerugu's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest under 8 minutes.',
 			Image:
@@ -3388,6 +3665,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Taikun Zamuza's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest under 8 minutes.',
 			Image:
@@ -3400,6 +3678,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Fatalis' Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Lv9999 Fatalis quest under 8 minutes.',
 			Image:
@@ -3412,6 +3691,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Crimson Fatalis' Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest under 8 minutes.',
 			Image:
@@ -3424,6 +3704,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Shantien's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Lv9999 Shantien quest under 8 minutes.',
 			Image:
@@ -3436,6 +3717,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Disufiroa's Archenemy",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest under 8 minutes.',
 			Image:
@@ -3448,6 +3730,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Akura Vashimu's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest under 5 minutes.',
 			Image:
@@ -3460,6 +3743,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Anorupatisu's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest under 5 minutes.',
 			Image:
@@ -3472,6 +3756,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Blangonga's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest under 5 minutes.',
 			Image:
@@ -3484,6 +3769,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Daimyo Hermitaur's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Daimyo Hermitaur quest under 5 minutes.',
 			Image:
@@ -3496,6 +3782,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Doragyurosu's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest under 5 minutes.',
 			Image:
@@ -3508,6 +3795,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Espinas' Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Espinas quest under 5 minutes.',
 			Image:
@@ -3520,6 +3808,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Gasurabazura's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest under 5 minutes.',
 			Image:
@@ -3532,6 +3821,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Giaorugu's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest under 5 minutes.',
 			Image:
@@ -3544,6 +3834,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Hypnocatrice's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest under 5 minutes.',
 			Image:
@@ -3556,6 +3847,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Hyujikiki's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest under 5 minutes.',
 			Image:
@@ -3568,6 +3860,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Inagami's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Inagami quest under 5 minutes.',
 			Image:
@@ -3580,6 +3873,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Khezu's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Khezu quest under 5 minutes.',
 			Image:
@@ -3592,6 +3886,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Midogaron's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest under 5 minutes.',
 			Image:
@@ -3604,6 +3899,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Plesioth's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest under 5 minutes.',
 			Image:
@@ -3616,6 +3912,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Rathalos' Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest under 5 minutes.',
 			Image:
@@ -3628,6 +3925,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Rukodiora's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest under 5 minutes.',
 			Image:
@@ -3640,6 +3938,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Tigrex's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest under 5 minutes.',
 			Image:
@@ -3652,6 +3951,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Toridcless' Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest under 5 minutes.',
 			Image:
@@ -3664,6 +3964,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Baruragaru' Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest under 5 minutes.',
 			Image:
@@ -3676,6 +3977,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Bogabadorumu's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest under 5 minutes.',
 			Image:
@@ -3688,6 +3990,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Gravios' Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Gravios quest under 5 minutes.',
 			Image:
@@ -3700,6 +4003,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Harudomerugu's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest under 5 minutes.',
 			Image:
@@ -3712,6 +4016,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Taikun Zamuza's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest under 5 minutes.',
 			Image:
@@ -3724,6 +4029,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Fatalis' Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Lv9999 Fatalis quest under 5 minutes.',
 			Image:
@@ -3736,6 +4042,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Crimson Fatalis' Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest under 5 minutes.',
 			Image:
@@ -3748,6 +4055,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Shantien's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Lv9999 Shantien quest under 5 minutes.',
 			Image:
@@ -3760,6 +4068,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Disufiroa's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest under 5 minutes.',
 			Image:
@@ -3772,6 +4081,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Pariapuria's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Thirsty Pariapuria quest under 3 minutes.',
 			Image:
@@ -3784,6 +4094,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Mi Ru's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Shifting Mi Ru quest under 5 minutes.',
 			Image:
@@ -3796,6 +4107,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Guanzorumu's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete 1 Ruling Guanzorumu True Slay quest under 5 minutes.',
@@ -3809,6 +4121,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Nargacuga's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete 1 Blinking Nargacuga True Slay quest under 7 minutes.',
@@ -3822,6 +4135,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Zinogre's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Howling Zinogre True Slay quest under 7 minutes.',
 			Image:
@@ -3834,6 +4148,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Zerureusu's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete 1 Sparkling Zerureusu True Slay quest under 9 minutes.',
@@ -3847,6 +4162,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Deviljho's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete 1 Starving Deviljho True Slay quest under 9 minutes.',
@@ -3860,6 +4176,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Duremudira's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete 1 Arrogant Duremudira True Slay quest under 9 minutes.',
@@ -3873,6 +4190,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Come on Big Guy!',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete 1 Bombardier Bogabadorumu True Slay quest under 9 minutes.',
@@ -3886,6 +4204,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Elzelion's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete 1 Burning Freezing Elzelion True Slay quest under 9 minutes.',
@@ -3899,6 +4218,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "UNKNOWN's Bane",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Upper Shiten Unknown quest under 9 minutes.',
 			Image:
@@ -3911,6 +4231,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bloodthirsty Moon',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 1 Upper Shiten Disufiroa quest under 9 minutes.',
 			Image:
@@ -3923,6 +4244,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Well, that was easy!',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete Bingo (Easy).',
 			Image:
@@ -3935,6 +4257,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Ramping Up The Difficulty',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete Bingo (Medium).',
 			Image:
@@ -3947,6 +4270,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bingo!',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete Bingo (Hard).',
 			Image:
@@ -3959,6 +4283,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'B I N G O',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete Bingo (Extreme).',
 			Image:
@@ -3971,6 +4296,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Shiny!',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Obtain a Gacha Card.',
 			Image:
@@ -3983,6 +4309,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Getting the hang of it',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Obtain 100 Gacha Cards.',
 			Image:
@@ -3995,6 +4322,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Collector',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Obtain 1000 Gacha Cards.',
 			Image:
@@ -4007,6 +4335,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Overlord',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all Gacha Cards.',
 			Image:
@@ -4019,6 +4348,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'This is just the beginning',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Zenith Gauntlet.',
 			Image:
@@ -4031,6 +4361,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Pinnacle of Hunting',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 10 Zenith Gauntlets.',
 			Image:
@@ -4043,6 +4374,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Zenith Exterminator',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Zenith Gauntlets.',
 			Image:
@@ -4055,6 +4387,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Speedster',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete a Zenith Gauntlet under 4 hours.',
 			Image:
@@ -4067,6 +4400,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Conqueror',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Solstice Gauntlet.',
 			Image:
@@ -4079,6 +4413,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Supreme Conqueror',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 10 Solstice Gauntlets.',
 			Image:
@@ -4091,6 +4426,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Solstice Conqueror',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 25 Solstice Gauntlets.',
 			Image:
@@ -4103,6 +4439,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Marathon Runner',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete a Solstice Gauntlet under an hour.',
 			Image:
@@ -4115,6 +4452,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Unstoppable',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 1 Musou Gauntlet.',
 			Image:
@@ -4127,6 +4465,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Peerless',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 10 Musou Gauntlets.',
 			Image:
@@ -4139,6 +4478,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Musou',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 25 Musou Gauntlets.',
 			Image:
@@ -4151,6 +4491,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Speedrunner',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete a Musou Gauntlet under 100 minutes.',
 			Image:
@@ -4163,6 +4504,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "We Gamin' Bois",
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Enable Discord Rich Presence',
 			Image:
@@ -4175,6 +4517,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'No Distractions',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Enable Zen mode',
 			Image:
@@ -4187,6 +4530,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Speed',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Enable one of the Speedrun modes',
 			Image:
@@ -4199,6 +4543,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Yummy',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 50 quests with Guild Food',
 			Image:
@@ -4211,6 +4556,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'More Skills!',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete 50 quests with a Diva Skill',
 			Image:
@@ -4223,6 +4569,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Best Gallery',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective:
 				'Earn 100,000 or more evaluation points in the gallery competition in My Gallery.',
@@ -4236,6 +4583,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Monster Hunter',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Hunt 1000 Large Monsters.',
 			Image:
@@ -4248,6 +4596,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Dedicated',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Have a total hunt time of 100 hours.',
 			Image:
@@ -4260,6 +4609,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: '20% More Damage for 99% More Effort',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete a quest with a Z100 weapon.',
 			Image:
@@ -4272,6 +4622,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Mosswine's Revenge",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Find a very peculiar mosswine.',
 			Image:
@@ -4284,6 +4635,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Jungle Puzzle',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete the Jungle Puzzle quest.',
 			Image:
@@ -4296,6 +4648,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Poogie's Best Friend",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 100 quests having used a Poogie item',
 			Image:
@@ -4308,6 +4661,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Gypceros' Judgment",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Defeat Nuclear Gypceros',
 			Image:
@@ -4320,6 +4674,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Mosswine's Rage",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Defeat Mosswine in an arena',
 			Image:
@@ -4332,6 +4687,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Mosswine's Last Stand",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Defeat the mosswine on the top of tower',
 			Image:
@@ -4344,6 +4700,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Winter General',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete the Halloween Speedster quest',
 			Image:
@@ -4356,6 +4713,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Perfect Bingo',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete a bingo run without fainting and with 4 lines being crossed at once.',
@@ -4369,6 +4727,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bingo Beginner',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete a bingo card.',
 			Image:
@@ -4381,6 +4740,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bingo Enthusiast',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Complete 10 bingo cards.',
 			Image:
@@ -4393,6 +4753,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bingo Expert',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Complete 25 bingo cards.',
 			Image:
@@ -4405,6 +4766,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Bingo Maniac',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete 50 bingo cards.',
 			Image:
@@ -4417,6 +4779,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Beginner',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Generate 1 gacha pull.',
 			Image:
@@ -4429,6 +4792,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Enthusiast',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Generate 10 gacha pulls.',
 			Image:
@@ -4441,6 +4805,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Expert',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Generate 100 gacha pulls.',
 			Image:
@@ -4453,6 +4818,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Maniac',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Generate 1000 gacha pulls.',
 			Image:
@@ -4465,6 +4831,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha God',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Generate 10,000 gacha pulls.',
 			Image:
@@ -4477,6 +4844,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'B O N U S',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Generate a gacha pull using gacha bonus coins.',
 			Image:
@@ -4489,6 +4857,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Shimmering Coins',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Generate a gacha pull using gacha prismatic coins.',
 			Image:
@@ -4501,6 +4870,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The First Generation',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MH1, MH1G and MHF1.',
 			Image:
@@ -4513,6 +4883,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Second Generation',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MH2, MHF2 and MHFU.',
 			Image:
@@ -4525,6 +4896,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Third Generation',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MH3, MHP3 and MH3U.',
 			Image:
@@ -4537,6 +4909,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Fourth Generation',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MH4, MH4U, MHG and MHGU.',
 			Image:
@@ -4549,6 +4922,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Fifth Generation',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MHW, MHWI, MHR and MHRS.',
 			Image:
@@ -4561,6 +4935,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Spinoffs',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MHXR, MHST and MHST2.',
 			Image:
@@ -4573,6 +4948,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Online',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from Monster Hunter Online.',
 			Image:
@@ -4585,6 +4961,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'In Search of a New Frontier',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from Monster Hunter Frontier',
 			Image:
@@ -4597,6 +4974,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'PRI',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Obtain a ★1 gacha card.',
 			Image:
@@ -4609,6 +4987,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'DUO',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Obtain 2 ★2 gacha cards.',
 			Image:
@@ -4621,6 +5000,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'TRI',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Obtain 3 ★3 gacha cards.',
 			Image:
@@ -4633,6 +5013,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'TET',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Obtain 4 ★4 gacha cards.',
 			Image:
@@ -4645,6 +5026,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'PEN',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Obtain 5 ★5 gacha cards.',
 			Image:
@@ -4657,6 +5039,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'HEX',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain 6 ★6 gacha cards.',
 			Image:
@@ -4669,6 +5052,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'HEP',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain 7 ★7 gacha cards.',
 			Image:
@@ -4681,6 +5065,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'OCT',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain 8 ★8 gacha cards.',
 			Image:
@@ -4693,6 +5078,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'NON',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain 9 ★9 gacha cards.',
 			Image:
@@ -4705,6 +5091,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'DEC',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain 10 ★10 gacha cards.',
 			Image:
@@ -4717,6 +5104,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'UND',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain 11 ★11 gacha cards.',
 			Image:
@@ -4729,6 +5117,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'DOD',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain 12 ★12 gacha cards.',
 			Image:
@@ -4741,6 +5130,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'One Star to Rule Them All',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain all ★1 gacha cards.',
 			Image:
@@ -4753,6 +5143,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Two Stars Make a Supernova',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain all ★2 gacha cards.',
 			Image:
@@ -4765,6 +5156,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Alpha Centauri',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain all ★3 gacha cards.',
 			Image:
@@ -4777,6 +5169,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Cosmic Tesseract',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain all ★4 gacha cards.',
 			Image:
@@ -4789,6 +5182,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'A 5-Star Collection',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain all ★5 gacha cards.',
 			Image:
@@ -4801,6 +5195,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Hexagram',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain all ★6 gacha cards.',
 			Image:
@@ -4813,6 +5208,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: '777',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain all ★7 gacha cards.',
 			Image:
@@ -4825,6 +5221,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Octagram',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain all ★8 gacha cards.',
 			Image:
@@ -4837,6 +5234,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Enneagram',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain all ★9 gacha cards.',
 			Image:
@@ -4849,6 +5247,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Ten',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all ★10 gacha cards.',
 			Image:
@@ -4861,6 +5260,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Up To Eleven',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all ★11 gacha cards.',
 			Image:
@@ -4873,6 +5273,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: '12',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Obtain all ★12 gacha cards.',
 			Image:
@@ -4885,6 +5286,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gacha Bonus',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete a gacha bonus quest.',
 			Image:
@@ -4897,6 +5299,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Solid Determination Up',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete a Zenith Gauntlet without fainting.',
 			Image:
@@ -4909,6 +5312,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Gauntlet Conqueror',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete a Solstice Gauntlet without fainting.',
 			Image:
@@ -4921,6 +5325,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Ultimate Gauntlet',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete a Musou Gauntlet without fainting.',
 			Image:
@@ -4933,6 +5338,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Embodiment of Scarlet Devil',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Lv9999 Crimson Fatalis solo without using Terrain Res.',
@@ -4946,6 +5352,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Crushing Palms',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Defeat Zenith★4 Gasurabazura solo without Anti-Venom.',
 			Image:
@@ -4958,6 +5365,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Twisted Fate',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Obtain a Special Gacha Card with all chance boosters active.',
 			Image:
@@ -4970,6 +5378,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'UNKNOWN Was Her?',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Defeat Upper Shiten Unknown solo without any items.',
 			Image:
@@ -4982,6 +5391,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Challenge Accepted',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Accept a rare gacha challenge.',
 			Image:
@@ -4994,6 +5404,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'No Cheats Allowed!',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Enter the Konami Code on the start of a quest.',
 			Image:
@@ -5006,6 +5417,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Blinky',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete 1 Blinking Nargacuga True Slay quest with a certain Switch Axe F.',
@@ -5019,6 +5431,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'A Very Stylish Hunter',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Complete a quest with Stylish Assault Up and Stylish Up.',
 			Image:
@@ -5031,6 +5444,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Rarest Guild Card',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Hunt 100 Ashen Lao-Shan Lung.',
 			Image:
@@ -5043,6 +5457,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Apparently Immortal Monsters',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective:
 				'Hunt 1 Ashen Lao-Shan Lung, HR3 Yama Tsukami and HR3 Shen Gaoren.',
@@ -5056,6 +5471,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Obtaining All the Buffs',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Complete 1 Arrogant Duremudira True Slay quest with Secret Technique.',
@@ -5069,6 +5485,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Bingo Gauntlet',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Start a bingo run with all gauntlet boosts active.',
 			Image:
@@ -5081,6 +5498,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Master of Bingo',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Buy all Bingo challenge upgrades.',
 			Image:
@@ -5093,6 +5511,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "The Sky's the Limit",
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Buy all Sky Corridor challenge upgrades.',
 			Image:
@@ -5105,6 +5524,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'No more upgrades!',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Buy all Gacha challenge upgrades.',
 			Image:
@@ -5117,6 +5537,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #2',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Click a fumo in Bingo challenge.',
 			Image:
@@ -5129,6 +5550,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #3',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective:
 				"Click a fumo in Gacha challenge. Or not, it's probably a scam.",
@@ -5142,6 +5564,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #4',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective:
 				'Click a fumo in Sky Corridor challenge. Looks like it underestimated your power.',
@@ -5155,6 +5578,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #5',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective:
 				'Click a fumo in Frontier Compendium website and follow the hints.',
@@ -5168,6 +5592,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'New Game+',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Fully transcend once in a Bingo challenge.',
 			Image:
@@ -5180,6 +5605,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Infinity Gauntlet',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Use the ancient gauntlet to get an infinite amount of points in Sky Corridor. Or at least, try to.',
@@ -5193,6 +5619,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'No More Heroes in Ruins',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete Tome I of the Book of Secrets (Challenge).',
 			Image:
@@ -5205,6 +5632,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Dubito, Ergo Cogito, Ergo Sum',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete Tome II of the Book of Secrets (Challenge).',
 			Image:
@@ -5217,6 +5645,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Friend or Foe',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete Tome III of the Book of Secrets (Challenge).',
 			Image:
@@ -5229,6 +5658,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Shattered Dimensions',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Complete Tome IV of the Book of Secrets (Challenge).',
 			Image:
@@ -5241,6 +5671,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #6',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Click a fumo in a chest.',
 			Image:
@@ -5253,6 +5684,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #7',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Click a fumo in a box.',
 			Image:
@@ -5265,6 +5697,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #8',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Click a fumo near a monster.',
 			Image:
@@ -5277,6 +5710,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #9',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Click a fumo inside a wooden chest.',
 			Image:
@@ -5289,6 +5723,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #10',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Click a fumo in the starry sky.',
 			Image:
@@ -5301,6 +5736,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #11',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Click a fumo near a knife.',
 			Image:
@@ -5313,6 +5749,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #12',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Click a fumo near a frog.',
 			Image:
@@ -5325,6 +5762,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #13',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: "Click a fumo near a monster's eye.",
 			Image:
@@ -5337,6 +5775,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #14',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective:
 				'Click a fumo in Frontier Compendium website and follow the hints.',
@@ -5350,6 +5789,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Fumo #15',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Click a fumo in Sky Corridor Headquarters Entrance.',
 			Image:
@@ -5362,6 +5802,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Back to the Land of Illusions',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Help Marisa go back to her universe.',
 			Image:
@@ -5374,6 +5815,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Unlimited Power',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Have the power to beat 100 Unlimited monsters.',
 			Image:
@@ -5386,6 +5828,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Muse',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Use Diva Song buff in 100 quests.',
 			Image:
@@ -5398,6 +5841,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Blessed Hunter',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Use Diva prayer gems in 777 quests.',
 			Image:
@@ -5410,6 +5854,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Oink oink!',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Use guild poogie skill in 100 quests.',
 			Image:
@@ -5422,6 +5867,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "Halk's Friend",
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective: 'Level up your halk to LV3.',
 			Image:
@@ -5434,6 +5880,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Active Hunter',
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Use the active features of all weapon types.',
 			Image:
@@ -5446,6 +5893,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: "That's a Lotta Damage!",
 			Description: '',
+			HunterName: '',
 			Rank: 2,
 			Objective: 'Reach the maximum true raw in a quest.',
 			Image:
@@ -5458,6 +5906,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The Long and Winding Road',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Reach a total of 10,000 road floors completed.',
 			Image:
@@ -5470,6 +5919,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Over the Hills and Far Away',
 			Description: '',
+			HunterName: '',
 			Rank: 3,
 			Objective:
 				'Complete 1 UL Azure Rathalos quest solo (Speedrun/Zen) in Forest and Hills under 5 minutes.',
@@ -5483,6 +5933,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'PLUS ULTRA',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Attempt a quest with all run buffs active at once.',
 			Image:
@@ -5495,6 +5946,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Skill Issue 💀',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Cart a total of 100 times.',
 			Image:
@@ -5507,6 +5959,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Start Me Up',
 			Description: '',
+			HunterName: '',
 			Rank: 1,
 			Objective: 'Start the overlay 1,000 times.',
 			Image:
@@ -5519,6 +5972,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The King of Hell',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Burning Freezing Elzelion solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5532,6 +5986,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Guardian of Tartarus',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Arrogant Duremudira solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5545,6 +6000,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Twin Demons',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Golden Deviljho solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5558,6 +6014,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Cerberus',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Howling Zinogre solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5571,6 +6028,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Rush Up',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Bombardier Bogabadorumu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5584,6 +6042,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Wyvern Specter',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Blinking Nargacuga solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5597,6 +6056,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Draconian',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Ruling Guanzorumu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5610,6 +6070,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Metamorphosis',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Shifting Mi Ru solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5623,6 +6084,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Olé!',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Thirsty Pariapuria solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5636,6 +6098,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Sparking!',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Sparkling Zerureusu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5649,6 +6112,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Sparking! Meteor',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Sparkling Zerureusu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode) under 6 minutes.',
@@ -5662,6 +6126,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Sparking! Zero',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Sparkling Zerureusu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode), without prayer gems and under 6 minutes.',
@@ -5675,6 +6140,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'High Voltage',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Howling Zinogre solo with Hunting Horn without getting hit (Speedrun mode).',
@@ -5688,6 +6154,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Absolute Carnage',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective: 'Hunt a total of 10,000 large monsters.',
 			Image:
@@ -5700,6 +6167,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'The King in Black',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Lv9999 Conquest Fatalis solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5713,6 +6181,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Dragon Slayer',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Lv9999 Conquest Crimson Fatalis solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5726,6 +6195,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Blazing Majesty',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Lv9999 Conquest Shantien solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5739,6 +6209,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Incognito',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Upper Shiten Unknown solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
@@ -5752,6 +6223,7 @@ export const achievementsInfo: AchievementObject[] = [
 			CompletionDate: '1970-01-01T00:00:00Z',
 			Title: 'Exsanguination',
 			Description: '',
+			HunterName: '',
 			Rank: 4,
 			Objective:
 				'Defeat Upper Shiten Disufiroa solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',

@@ -32,6 +32,7 @@
 		frontierMappers,
 		getTag,
 		getUniqueMonsters,
+		getWeaponIcon,
 	} from '$lib/client/modules/frontier/functions';
 	import { browser } from '$app/environment';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -2824,7 +2825,8 @@
 			subtitle="The overlay is currently on major version 0, meaning that it is in beta."
 		/>
 		<p class="spaced-paragraph">
-			This tool is used to track and view your stats in the game in real-time.</p>
+			This tool is used to track and view your stats in the game in real-time.
+		</p>
 		<p class="spaced-paragraph">
 			For more information, see the <Link href="/overlay">overlay page.</Link>
 		</p>
@@ -2842,10 +2844,11 @@
 			/>, giving you <CodeSnippet
 				type="inline"
 				code={`{ id: 1, name: 'Rathian' }`}
-			/>.</p>
+			/>.
+		</p>
 
-			<p class="spaced-paragraph">
-				For more information, see the <OutboundLink
+		<p class="spaced-paragraph">
+			For more information, see the <OutboundLink
 				href="https://ezlion.vercel.app">EZlion API Reference.</OutboundLink
 			>
 		</p>
@@ -5782,7 +5785,7 @@
 							tooltip={'Stat'}
 							text={`Shell LV${parseInt(towerWeaponGunlanceShellLevel) !== 8 ? parseInt(towerWeaponGunlanceShellLevel) + 1 : ' MAX'}`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
+							icon={getWeaponIcon('Gunlance')}
 						/>
 					</p>
 				{/if}
@@ -5812,7 +5815,7 @@
 							tooltip={'Stat'}
 							text={`Charge 1 LV${towerWeaponBowCharge1Level !== '4' ? towerWeaponBowCharge1Level : ' MAX'}`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={WeaponTypes.find((e) => e.name === 'Bow')?.icon}
+							icon={getWeaponIcon('Bow')}
 						/>
 					</p>
 				{/if}
@@ -5822,7 +5825,7 @@
 							tooltip={'Stat'}
 							text={`Charge 2 LV${towerWeaponBowCharge2Level !== '4' ? towerWeaponBowCharge2Level : ' MAX'}`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={WeaponTypes.find((e) => e.name === 'Bow')?.icon}
+							icon={getWeaponIcon('Bow')}
 						/>
 					</p>
 				{/if}
@@ -5832,7 +5835,7 @@
 							tooltip={'Stat'}
 							text={`Charge 3 LV${towerWeaponBowCharge3Level !== '4' ? towerWeaponBowCharge3Level : ' MAX'}`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={WeaponTypes.find((e) => e.name === 'Bow')?.icon}
+							icon={getWeaponIcon('Bow')}
 						/>
 					</p>
 				{/if}
@@ -5842,7 +5845,7 @@
 							tooltip={'Stat'}
 							text={`Charge 4 LV${towerWeaponBowCharge4Level !== '4' ? towerWeaponBowCharge4Level : ' MAX'}`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={WeaponTypes.find((e) => e.name === 'Bow')?.icon}
+							icon={getWeaponIcon('Bow')}
 						/>
 					</p>
 				{/if}

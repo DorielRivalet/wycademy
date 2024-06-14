@@ -4,9 +4,13 @@
 	export let name: string;
 	export let imageSource: string;
 	export let rank: 1 | 2 | 3 | 4;
+	export let hunterName: string | undefined;
 </script>
 
-<div class="container">
+<div
+	class="container"
+	style="opacity: {!hunterName || hunterName === '' ? 0.5 : 1}"
+>
 	<img width="128" class="icon" src={imageSource} alt="Achievement Icon" />
 	<p class="name" style="color: {getAchievementRankColor(rank)}">{name}</p>
 </div>

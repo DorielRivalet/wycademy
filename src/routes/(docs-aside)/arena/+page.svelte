@@ -97,6 +97,7 @@
 		getDivaPrayerGemColor,
 		getMonster,
 		getTag,
+		getWeaponIcon,
 	} from '$lib/client/modules/frontier/functions';
 	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
@@ -2966,17 +2967,6 @@
 	) {
 		let motionValue = getMotionValue(weaponName, section, cell.value);
 		return motionValue.animation !== '' && motionValue.animation !== undefined;
-	}
-
-	function getWeaponIcon(weaponName: FrontierWeaponName) {
-		let icon = WeaponTypes[4].icon;
-
-		const found = WeaponTypes.find((w) => w.name === weaponName);
-		if (!found) {
-			return icon;
-		}
-
-		return found.icon;
 	}
 
 	function saveInputsAsJSONFile(input: string) {
@@ -6396,9 +6386,9 @@ does not get multiplied by horn */
 					subtitle="A sword from a far away land"
 					description="Gauge your spirit with this weapon!"
 					iconType="component"
-					icon={WeaponTypes.find((e) => e.name === 'Long Sword')?.icon}
+					icon={getWeaponIcon('Long Sword')}
 					tag1="Blademaster"
-					popoverIcon={WeaponTypes.find((e) => e.name === 'Long Sword')?.icon}
+					popoverIcon={getWeaponIcon('Long Sword')}
 					popoverIconType="component"
 					link="/smithy"
 					on:openModal={(e) => handleOpenModal(e)}
@@ -6410,11 +6400,11 @@ does not get multiplied by horn */
 					subtitle="It's neither a lance nor a gun"
 					description="Prepare your shells!"
 					iconType="component"
-					icon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
+					icon={getWeaponIcon('Gunlance')}
 					tag1="Blademaster"
 					tag2="Gunlance"
 					tag3="Weapon"
-					popoverIcon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
+					popoverIcon={getWeaponIcon('Gunlance')}
 					popoverIconType="component"
 					link="/arena#gunlance-shells-and-wyvernfire"
 					on:openModal={(e) => handleOpenModal(e)}
@@ -10922,7 +10912,7 @@ does not get multiplied by horn */
 					<p class="spaced-paragraph">
 						<InlineTooltip
 							text="Heavy Bowgun"
-							icon={WeaponTypes.find((e) => e.name === 'Heavy Bowgun')?.icon}
+							icon={getWeaponIcon('Heavy Bowgun')}
 							tooltip="Weapon Type"
 						/> has a much larger impact animation while in the first half of critical
 						distance on standard shots making it easier to see when you are properly
@@ -13570,7 +13560,7 @@ does not get multiplied by horn */
 				that deals the most damage will take precedence. <InlineTooltip
 					text="Gunlance's"
 					tooltip="Weapon"
-					icon={WeaponTypes.find((e) => e.name === 'Gunlance')?.icon}
+					icon={getWeaponIcon('Gunlance')}
 				/> heatblade alternates the effect.
 			</p>
 			<p>

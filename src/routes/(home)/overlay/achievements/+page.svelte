@@ -18,6 +18,7 @@
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
 	import { Canvas } from '@threlte/core';
 	import RotatingCard from '$lib/client/components/scenes/RotatingCard.svelte';
+	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 
 	const totalObtainableAchievements = Object.values(achievementsInfo[0]).filter(
 		(e) => !e.Unused,
@@ -41,7 +42,7 @@
 		(e) => e.IsSecret,
 	);
 
-	const items = [
+	const breadcrumbItems = [
 		{ href: '/', text: 'Home' },
 		{ href: '/overlay', text: 'Overlay' },
 		{ href: '/overlay/achievements', text: 'Achievements' },
@@ -70,7 +71,7 @@
 
 	let currentAchievements = totalObtainableAchievements;
 
-	console.log(totalObtainableAchievements);
+	// TODO clicking the word secret adds an achievement.
 
 	$: {
 		let filteredAchievements = totalObtainableAchievements.filter(
@@ -88,11 +89,11 @@
 <div class="achievements-page">
 	<div class="breadcrumb">
 		<Breadcrumb noTrailingSlash>
-			{#each items as item, i}
+			{#each breadcrumbItems as item, i}
 				<BreadcrumbItem
-					href={i === items.length - 1 ? undefined : item.href}
-					isCurrentPage={i === items.length - 1}
-					>{#if i !== items.length - 1}
+					href={i === breadcrumbItems.length - 1 ? undefined : item.href}
+					isCurrentPage={i === breadcrumbItems.length - 1}
+					>{#if i !== breadcrumbItems.length - 1}
 						{item.text}
 					{/if}
 				</BreadcrumbItem>
@@ -101,10 +102,27 @@
 	</div>
 	<h1>Achievements</h1>
 	<hr />
-	<p class="spaced-paragraph">
-		There are currently {totalObtainableAchievementsCount} obtainable overlay achievements,
-		of which {obtainableSecretTrophies.length} are secret.
-	</p>
+	<div class="summary">
+		<p>
+			There are currently {totalObtainableAchievementsCount} obtainable overlay achievements,
+			of which {obtainableSecretTrophies.length} are <InlineTooltip
+				icon={TrophySecret}
+				iconType="file"
+				text="secret"
+				tooltip="Trophy"
+			/>.
+		</p>
+		<p>
+			Below is a list of all achievements from the overlay. The trophy numbers
+			denote the total amount of hunters that obtained that achievement, over
+			the total number of trophies of that rank respectively.
+		</p>
+		<p>
+			Whoever obtains an achievement first has their name marked next to the
+			selected achievement title, along with the reward date. In order to
+			qualify, you have to submit at least 10 quests into leaderboards.
+		</p>
+	</div>
 	<div class="achievements-container">
 		<div class="items">
 			{#each currentAchievements as achievement}
@@ -114,6 +132,7 @@
 						on:click={(e) => onAchievementClick(achievement)}
 					>
 						<Achievement
+							hunterName={achievement.HunterName}
 							rank={achievement.Rank}
 							name={achievement.Title}
 							imageSource={achievement.Image}
@@ -163,7 +182,7 @@
 					class="achievement-selected-title"
 					style="color: {getAchievementRankColor(achievementSelected.Rank)}"
 				>
-					{achievementSelected.Title}
+					{`${achievementSelected.Title}${!achievementSelected.HunterName || achievementSelected.HunterName === '' ? ' | Unclaimed' : ` | ${achievementSelected.HunterName} obtained at ${achievementSelected.CompletionDate}`}`}
 				</p>
 				{#if !achievementSelected.IsSecret}
 					<p class="objective">{achievementSelected.Objective}</p>
@@ -219,7 +238,7 @@
 		);
 	}
 
-	.spaced-paragraph {
+	.centered-paragraph {
 		text-align: center;
 	}
 
@@ -363,5 +382,15 @@
 	.breadcrumb {
 		padding-left: 1rem;
 		padding-bottom: 1rem;
+	}
+
+	.summary {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		width: 80%;
+		margin: auto;
+		padding-top: 1rem;
+		padding-bottom: 2rem;
 	}
 </style>
