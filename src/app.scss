@@ -339,3 +339,8 @@ body.wait * {
 .bx--content-switcher-btn.bx--content-switcher--selected {
 	color: var(--ctp-base);
 }
+
+.bx--list--unordered > li {
+	padding: 0.5rem;
+	line-height: 2em;
+}

@@ -13,6 +13,7 @@ import type {
 	FrontierElement,
 	FrontierItemColor,
 	FrontierMonsterInfo,
+	FrontierMonsterNameExpanded,
 	FrontierStatus,
 	FrontierWeaponSharpness,
 } from './types';
@@ -52,6 +53,7 @@ import type {
 	FrontierMonsterName,
 	FrontierRankBand,
 	FrontierWeaponID,
+	FrontierWeaponName,
 } from 'ezlion';
 import slugify from 'slugify';
 
@@ -86,6 +88,28 @@ export const frontierChecks = {
 		return isValid;
 	},
 };
+
+export function getWeaponIcon(weaponName: FrontierWeaponName) {
+	const icon = WeaponTypes[4].icon;
+
+	const found = WeaponTypes.find((w) => w.name === weaponName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.icon;
+}
+
+export function getMonsterIcon(monsterName: FrontierMonsterNameExpanded) {
+	const icon = monsterInfo[0].component;
+
+	const found = monsterInfo.find((w) => w.displayName === monsterName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.component;
+}
 
 export const frontierMappers = {
 	mapSharpnessValues: (sharpnessValues: FrontierWeaponSharpness) => {
