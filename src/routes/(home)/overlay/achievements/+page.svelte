@@ -67,6 +67,22 @@
 	let achievementSelected = achievementsInfo[0]['0'];
 	// TODO let firstUsersObtained = [];
 	// TODO let totalUsersObtained = [];
+
+	let currentAchievements = totalObtainableAchievements;
+
+	console.log(totalObtainableAchievements);
+
+	$: {
+		let filteredAchievements = totalObtainableAchievements.filter(
+			(achievement) =>
+				achievement.Title.toLowerCase().includes(searchTerm.toLowerCase()),
+		);
+
+		// Sort alphabetically
+		// filteredAchievements.sort((a, b) => a.Title.localeCompare(b.Title));
+
+		currentAchievements = filteredAchievements;
+	}
 </script>
 
 <div class="achievements-page">
@@ -91,21 +107,19 @@
 	</p>
 	<div class="achievements-container">
 		<div class="items">
-			{#each achievementsInfo as achievementObject}
-				{#each Object.values(achievementObject) as achievement}
-					{#if !achievement.Unused}
-						<button
-							class="achievement"
-							on:click={(e) => onAchievementClick(achievement)}
-						>
-							<Achievement
-								rank={achievement.Rank}
-								name={achievement.Title}
-								imageSource={achievement.Image}
-							/>
-						</button>
-					{/if}
-				{/each}
+			{#each currentAchievements as achievement}
+				{#if !achievement.Unused}
+					<button
+						class="achievement"
+						on:click={(e) => onAchievementClick(achievement)}
+					>
+						<Achievement
+							rank={achievement.Rank}
+							name={achievement.Title}
+							imageSource={achievement.Image}
+						/>
+					</button>
+				{/if}
 			{/each}
 		</div>
 		<div class="search">
@@ -249,7 +263,7 @@
 			width: 80%;
 			margin: auto;
 			padding: 1rem;
-			height: 80vh;
+			height: 85vh;
 			overflow-y: hidden;
 		}
 	}
