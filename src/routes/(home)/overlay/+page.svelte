@@ -156,7 +156,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 </script>
 
 <div class="overlay-page">
-	<div class="top-hero-section">
+	<section class="top-hero-section">
 		<TopHeroSection
 			starCount={data.stargazers_count}
 			title={heroTitles[Math.floor(Math.random() * heroTitles.length)]}
@@ -165,17 +165,17 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 			primaryButtonLink="https://github.com/DorielRivalet/mhfz-overlay?tab=readme-ov-file#installation"
 			heroVideoBackground={HeroVideoBackground}
 		/>
-	</div>
+	</section>
 
-	<div class="demo-section">
+	<section class="demo-section">
 		<h2>Demo</h2>
 		<hr />
 		<div class="youtube-embed">
 			<Youtube id="A9ffbRICqZY" />
 		</div>
-	</div>
+	</section>
 
-	<div class="pictograms-section">
+	<section class="pictograms-section">
 		<div class="pictograms-overview">
 			<p><strong>See our features.</strong></p>
 			<p>We provide many statistics to enhance your hunting experience.</p>
@@ -224,9 +224,9 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 				/>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<div class="testimonials-section">
+	<section class="testimonials-section">
 		<h2>What Our Users Say</h2>
 		<hr />
 		<Testimonial
@@ -235,9 +235,9 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 			quote="The overlay offers a preset configuration for speedruns, disabling any options that give an unfair advantage. It includes quest logging, storing completed runs in a local database for submission and validation. This ensures fair competition and prevents fake runs."
 			authorImage="https://yt3.googleusercontent.com/ytc/AOPolaQWKx3GIOgWWRu9YCHBI7lrkFjT2NxLP45IlnSM=s176-c-k-c0x00ffffff-no-rj"
 		/>
-	</div>
+	</section>
 
-	<div id="monster-info" class="features-section">
+	<section id="monster-info" class="features-section">
 		<h2>Features</h2>
 		<hr />
 		<LandingPageSection
@@ -250,9 +250,9 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		>
 			<Carousel images={images.monster}></Carousel>
 		</LandingPageSection>
-	</div>
+	</section>
 
-	<div id="hunter-stats">
+	<section id="hunter-stats">
 		<LandingPageSection
 			imagePosition="left"
 			title="Comprehensive Hunter's Notes"
@@ -263,9 +263,9 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		>
 			<Carousel images={images.hunter}></Carousel>
 		</LandingPageSection>
-	</div>
+	</section>
 
-	<div id="quest-history">
+	<section id="quest-history">
 		<LandingPageSection
 			imagePosition="right"
 			title="Revisit your previous hunts"
@@ -276,9 +276,9 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		>
 			<Carousel images={images.quest}></Carousel>
 		</LandingPageSection>
-	</div>
+	</section>
 
-	<div id="achievements">
+	<section id="achievements">
 		<LandingPageSection
 			callToActionButtonText="View Achievements"
 			callToActionButtonLink="/overlay/achievements"
@@ -292,9 +292,9 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		>
 			<Carousel images={images.achievement}></Carousel>
 		</LandingPageSection>
-	</div>
+	</section>
 
-	<div id="documentation">
+	<section id="documentation">
 		<LandingPageSection
 			imagePosition="center"
 			callToActionButtonText="Read Contributing File"
@@ -308,9 +308,9 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		>
 			<Carousel images={images.documentation}></Carousel>
 		</LandingPageSection>
-	</div>
+	</section>
 
-	<div class="faq-section">
+	<section class="faq-section">
 		<h2>Frequently Asked Questions</h2>
 		<hr />
 		<FrequentlyAskedQuestions {faq} />
@@ -326,24 +326,24 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 				>GitHub project</OutboundLink
 			> for all issues related to the game.
 		</p>
-	</div>
+	</section>
 
-	<div class="call-to-action-section">
+	<section class="call-to-action-section">
 		<CallToActionBanner
 			bodyText="Are you ready to upgrade your Frontier experience?"
 			buttonText="Download Now"
 			buttonLink="https://github.com/DorielRivalet/mhfz-overlay?tab=readme-ov-file#installation"
 		/>
-	</div>
+	</section>
 </div>
 
 <style lang="scss">
 	/* Apply background colors alternately */
-	.overlay-page > div:nth-child(odd) {
+	.overlay-page > section:nth-child(odd) {
 		background-color: var(--ctp-base); /* Light grey for odd-numbered divs */
 	}
 
-	.overlay-page > div:nth-child(even) {
+	.overlay-page > section:nth-child(even) {
 		background-color: var(
 			--ctp-mantle
 		); /* Darker grey for even-numbered divs */

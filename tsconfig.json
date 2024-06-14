@@ -12,7 +12,8 @@
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitOverride": true,
 		"noImplicitReturns": true,
-		"noUnusedLocals": true
+		"noUnusedLocals": true,
+		"moduleResolution": "Bundler"
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

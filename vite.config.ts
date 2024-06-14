@@ -27,7 +27,10 @@ export default defineConfig({
 		}),
 	],
 	ssr: {
-		noExternal: process.env.NODE_ENV === 'production' ? ['@carbon/charts'] : [],
+		noExternal:
+			process.env.NODE_ENV === 'production'
+				? ['@carbon/charts', 'three']
+				: ['three'],
 	},
 	define: {
 		'process.env.NODE_ENV':
