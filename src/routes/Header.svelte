@@ -103,7 +103,9 @@
 	</div>
 
 	<nav class="right">
-		<WycademySearch />
+		<div class="search-button">
+			<WycademySearch />
+		</div>
 
 		{#if $breakpointLargerThanMedium}
 			<ThemeChanger />
@@ -182,5 +184,10 @@
 		display: flex;
 		align-items: center;
 		list-style: none;
+	}
+
+	.search-button {
+		padding-right: 1rem;
+		margin: 0;
 	}
 </style>
