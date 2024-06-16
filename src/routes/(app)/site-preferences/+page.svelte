@@ -40,13 +40,9 @@
 	import mermaid from 'mermaid';
 	import {
 		soundStore,
-		pushNotificationsStore,
-		onSoundToggle,
-		onNotificationPress,
-		onScrollToTopToggle,
 		scrollToTopStore,
-		onStickyHeaderToggle,
 		stickyHeaderStore,
+		onStoreToggle,
 	} from '$lib/client/stores/toggles';
 	import { onVolumeChange, volumeStore } from '$lib/client/stores/volume';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
@@ -71,6 +67,12 @@
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import { page } from '$app/stores';
 	import Head from '$lib/client/components/Head.svelte';
+	import {
+		notificationsStore,
+		onNotificationPress,
+		overlayUpdatesStore,
+		pushNotificationsStore,
+	} from '$lib/client/stores/notifications';
 
 	onMount(() => {
 		mermaid.initialize({
@@ -232,6 +234,11 @@
 	bind:value={$pushNotificationsStore}
 	key="__push-notifications-enabled"
 />
+<LocalStorage bind:value={$notificationsStore} key="__notifications-enabled" />
+<LocalStorage
+	bind:value={$overlayUpdatesStore}
+	key="__overlay-updates-enabled"
+/>
 <LocalStorage bind:value={$volumeStore} key="__volume" />
 <LocalStorage bind:value={$cursorIcon} key="__cursor-icon" />
 <LocalStorage bind:value={$scrollToTopStore} key="__scroll-to-top-enabled" />
@@ -239,14 +246,6 @@
 
 <div>
 	<SectionHeadingTopLevel title="Site Preferences" />
-
-	<InlineNotification
-		lowContrast
-		hideCloseButton
-		kind="info"
-		title="Notifications:"
-		subtitle="Make sure notifications are also allowed in your operating system for the browser you are using. If you accept the permission, you will receive a notification to confirm it is working."
-	/>
 	<InlineNotification
 		lowContrast
 		hideCloseButton
@@ -254,12 +253,6 @@
 		title="Header:"
 		subtitle="The sticky header only works in certain layouts."
 	/>
-
-	<div class="setting-container">
-		<Button kind="tertiary" icon={Notification} on:click={onNotificationPress}
-			>Push notifications</Button
-		>
-	</div>
 
 	<div class="setting-container">
 		<Language size={32} />
@@ -282,7 +275,7 @@
 		</div>
 		<Toggle
 			labelText="Sound"
-			on:toggle={onSoundToggle}
+			on:toggle={(e) => onStoreToggle(soundStore, e)}
 			bind:toggled={$soundStore}
 		/>
 		<Slider
@@ -296,7 +289,7 @@
 	<div class="setting-container">
 		<Toggle
 			labelText="Scroll to Top Button"
-			on:toggle={onScrollToTopToggle}
+			on:toggle={(e) => onStoreToggle(scrollToTopStore, e)}
 			bind:toggled={$scrollToTopStore}
 		/>
 	</div>
@@ -304,7 +297,7 @@
 	<div class="setting-container">
 		<Toggle
 			labelText="Sticky Header"
-			on:toggle={onStickyHeaderToggle}
+			on:toggle={(e) => onStoreToggle(stickyHeaderStore, e)}
 			bind:toggled={$stickyHeaderStore}
 		/>
 	</div>
@@ -372,10 +365,49 @@
 	</div>
 
 	<section>
+		<SectionHeading level={2} title="Notifications" />
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Push Notifications:"
+			subtitle="Make sure notifications are also allowed in your operating system for the browser you are using. If you accept the permission, you will receive a notification to confirm it is working."
+		/>
+		<!--TODO: Link to panel page-->
+		<p class="spaced-paragraph">
+			If you wish to change your account's notifications, visit your account's
+			Notifications Panel <strong>(not currently available)</strong>.
+		</p>
+		<div class="setting-container">
+			<Toggle
+				labelText="Notifications"
+				on:toggle={(e) => onStoreToggle(notificationsStore, e)}
+				bind:toggled={$notificationsStore}
+			/>
+		</div>
+		<div class="setting-container">
+			<Button
+				disabled={$notificationsStore}
+				kind="tertiary"
+				icon={Notification}
+				on:click={onNotificationPress}>Push notifications</Button
+			>
+		</div>
+		<div class="setting-container">
+			<Toggle
+				disabled={$notificationsStore}
+				labelText="Overlay Updates"
+				on:toggle={(e) => onStoreToggle(overlayUpdatesStore, e)}
+				bind:toggled={$overlayUpdatesStore}
+			/>
+		</div>
+	</section>
+
+	<section>
 		<SectionHeading level={2} title={'Theme Preview'} />
 		<p>
-			Below are some colors and extra elements so you can test your current
-			theme.
+			Below are some colors and extra elements to demonstrate your current theme
+			selection.
 		</p>
 		<div>
 			{#each frontierColorNames as colorName, i}

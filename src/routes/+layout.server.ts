@@ -39,10 +39,11 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 		// public, max-age=60, s-maxage=60
 		const cacheControl = res.headers.get('cache-control');
 
-		if (cacheControl)
+		if (cacheControl) {
 			setHeaders({
 				'cache-control': `max-age=0, s-maxage=${apiCacheTimeouts.github}`,
 			});
+		}
 
 		if (!res.ok) {
 			console.error('Error fetching data from GitHub');

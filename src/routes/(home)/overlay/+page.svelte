@@ -53,6 +53,7 @@
 		'Track Your Hunts',
 		"Automatic Hunter's Notes",
 		'Cybernetically Enhanced Speedruns',
+		// TODO more examples
 	];
 
 	let images = {
