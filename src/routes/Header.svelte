@@ -33,20 +33,20 @@
 		notificationsStore,
 		overlayUpdatesStore,
 	} from '$lib/client/stores/notifications';
+	import { overlayVersion } from '$lib/constants';
 	// TODO if notifications are off, hide the icon
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	const currentVersion = 'v0.38.0'; // Replace with the current version of your C# program
 	const newVersionAvailable = writable(false);
 
 	async function checkForNewRelease() {
 		try {
 			const response = await fetch('/api/webhook/overlay');
 			const data = await response.json();
-			if (data && data.tag_name && data.tag_name !== currentVersion) {
+			if (data && data.tag_name && data.tag_name !== overlayVersion) {
 				newVersionAvailable.set(true);
 				console.log(`New version available: ${JSON.stringify(data)}`);
 			} else {
@@ -143,7 +143,7 @@
 		{/if}
 		{#if $breakpointLargerThanSmall}
 			{#if $notificationsStore}
-				<div class="container-link">
+				<div class="container-button">
 					<Button
 						kind="ghost"
 						iconDescription={$notificationsStore &&
@@ -163,7 +163,7 @@
 					</Button>
 				</div>
 			{/if}
-			<div class="container-link">
+			<div class="container-button">
 				<Button
 					kind="ghost"
 					iconDescription={'Profile'}
@@ -175,21 +175,21 @@
 				</Button>
 			</div>
 			<div class="container-link">
-				<Button
-					kind="ghost"
-					iconDescription="Site Preferences"
-					href="/site-preferences"
-				>
+				<Link title="Site Preferences" href="/site-preferences">
 					<span slot="icon">
 						<Settings size={48} />
 					</span>
-				</Button>
+				</Link>
 			</div>
 		{/if}
 	</nav>
 </header>
 
 <style lang="scss">
+	.container-link {
+		margin-right: 1rem;
+	}
+
 	.left {
 		margin-left: var(--cds-spacing-02);
 		display: flex;
@@ -221,10 +221,6 @@
 		align-items: center;
 		padding: var(--cds-spacing-02);
 		max-height: var(--cds-spacing-11);
-	}
-
-	.container-link {
-		padding-block: 0.5rem;
 	}
 
 	.banner {

@@ -12,6 +12,7 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
+	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
 
 	const version = 'v0.39.0';
 
@@ -195,11 +196,25 @@
 				</div>
 			</div>
 		</section>
-		<!-- <section>
+		<section>
 			<h2>Fixes</h2>
 			<hr />
+			<UnorderedList class="spaced-list">
+				<ListItem
+					><div class="list-item">
+						<p>
+							Fixed <span class="icon-text"
+								><LogoDiscord size={16} />
+								<span>Discord Rich Presence</span></span
+							>
+							character encoding. Now you can use full-width Japanese characters
+							in your hunter and guild name.
+						</p>
+					</div>
+				</ListItem>
+			</UnorderedList>
 		</section>
-		<section>
+		<!-- <section>
 			<h2>Other Changes</h2>
 			<hr />
 		</section> -->
@@ -271,6 +286,7 @@
 
 	.list-item {
 		max-width: 80ch;
+		font-size: 16px;
 	}
 
 	.previews {

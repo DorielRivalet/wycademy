@@ -17,3 +17,5 @@ export const apiCacheTimeouts = {
 	github: 60 * 60 * 24,
 } as const;
 export const license = 'MIT';
+
+export const overlayVersion = 'v0.38.0';

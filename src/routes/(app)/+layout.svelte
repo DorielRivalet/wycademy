@@ -114,7 +114,7 @@
 		</main>
 	</div>
 	{#key $page.url.pathname}
-		<div class="footer"><Footer githubData={data.github} /></div>
+		<div class="footer"><Footer gitHubData={data.github} /></div>
 	{/key}
 </div>
 
