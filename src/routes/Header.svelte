@@ -25,10 +25,39 @@
 	import OverflowMenuItem from 'carbon-components-svelte/src/OverflowMenu/OverflowMenuItem.svelte';
 	import Menu from 'carbon-icons-svelte/lib/Menu.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
+	import NotificationNew from 'carbon-icons-svelte/lib/NotificationNew.svelte';
+	import { onMount } from 'svelte';
+	import { writable } from 'svelte/store';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import {
+		notificationsStore,
+		overlayUpdatesStore,
+	} from '$lib/client/stores/notifications';
+	// TODO if notifications are off, hide the icon
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
+
+	const currentVersion = 'v0.38.0'; // Replace with the current version of your C# program
+	const newVersionAvailable = writable(false);
+
+	async function checkForNewRelease() {
+		try {
+			const response = await fetch('/api/webhook/overlay');
+			const data = await response.json();
+			if (data && data.tag_name && data.tag_name !== currentVersion) {
+				newVersionAvailable.set(true);
+				console.log(`New version available: ${JSON.stringify(data)}`);
+			} else {
+				console.log(`No new version found: ${JSON.stringify(data)}`);
+			}
+		} catch (error) {
+			console.error('Failed to fetch the latest release:', error);
+		}
+	}
+
+	onMount(checkForNewRelease);
 </script>
 
 <header>
@@ -108,27 +137,53 @@
 		</div>
 
 		{#if $breakpointLargerThanMedium}
-			<ThemeChanger />
+			<div class="theme-changer">
+				<ThemeChanger />
+			</div>
 		{/if}
 		{#if $breakpointLargerThanSmall}
+			{#if $notificationsStore}
+				<div class="container-link">
+					<Button
+						kind="ghost"
+						iconDescription={$notificationsStore &&
+						$overlayUpdatesStore &&
+						$newVersionAvailable
+							? 'New overlay version available'
+							: 'Notifications'}
+						on:click={(e) => newVersionAvailable.set(false)}
+					>
+						<span slot="icon">
+							{#if $notificationsStore && $overlayUpdatesStore && $newVersionAvailable}
+								<NotificationNew size={48} />
+							{:else}
+								<Notification size={48} />
+							{/if}
+						</span>
+					</Button>
+				</div>
+			{/if}
 			<div class="container-link">
-				<Link href="/site-preferences" class="link" aria-label="Notifications">
-					<Notification size={48} />
-				</Link>
-			</div>
-			<div class="container-link">
-				<Link href="/site-preferences" class="link" aria-label="Profile">
-					<UserAvatar size={48} />
-				</Link>
-			</div>
-			<div class="container-link">
-				<Link
-					href="/site-preferences"
-					class="link"
-					aria-label="Site preferences"
+				<Button
+					kind="ghost"
+					iconDescription={'Profile'}
+					on:click={(e) => console.log('Profile')}
 				>
-					<Settings size={48} />
-				</Link>
+					<span slot="icon">
+						<UserAvatar size={48} />
+					</span>
+				</Button>
+			</div>
+			<div class="container-link">
+				<Button
+					kind="ghost"
+					iconDescription="Site Preferences"
+					href="/site-preferences"
+				>
+					<span slot="icon">
+						<Settings size={48} />
+					</span>
+				</Button>
 			</div>
 		{/if}
 	</nav>
@@ -154,7 +209,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		gap: var(--cds-spacing-04);
+		gap: 0;
 		height: 100%;
 	}
 
@@ -189,5 +244,9 @@
 	.search-button {
 		padding-right: 1rem;
 		margin: 0;
+	}
+
+	.theme-changer {
+		margin-right: 0.5rem;
 	}
 </style>

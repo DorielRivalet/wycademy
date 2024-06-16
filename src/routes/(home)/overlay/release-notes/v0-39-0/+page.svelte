@@ -11,6 +11,7 @@
 	} from '$lib/client/modules/frontier/functions';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
+	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
 
 	const version = 'v0.39.0';
 
@@ -203,6 +204,13 @@
 			<hr />
 		</section> -->
 	</section>
+	<section class="call-to-action-section">
+		<CallToActionBanner
+			bodyText="Are you ready to upgrade your Frontier experience?"
+			buttonText="Download Now"
+			buttonLink="https://github.com/DorielRivalet/mhfz-overlay?tab=readme-ov-file#installation"
+		/>
+	</section>
 </div>
 
 <style lang="scss">
@@ -269,5 +277,12 @@
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
+	}
+
+	.call-to-action-section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 2rem;
 	}
 </style>

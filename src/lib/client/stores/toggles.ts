@@ -5,11 +5,9 @@
  */
 
 import { browser } from '$app/environment';
-import { writable } from 'svelte/store';
-import logo from '$lib/client/images/logo.webp';
+import { writable, type Writable } from 'svelte/store';
 
 let soundValue = false;
-let pushNotificationsValue = false;
 let scrollToTopValue = false;
 let stickyHeaderValue = false;
 
@@ -17,13 +15,6 @@ if (browser) {
 	const localStorageSoundValue = window.localStorage.getItem('__sound-enabled');
 	soundValue = localStorageSoundValue
 		? localStorageSoundValue === 'true'
-		: true;
-
-	const localStoragePushNotificationsValue = window.localStorage.getItem(
-		'__push-notifications-enabled',
-	);
-	pushNotificationsValue = localStoragePushNotificationsValue
-		? localStoragePushNotificationsValue === 'true'
 		: true;
 
 	const localStorageScrollToTopValue = window.localStorage.getItem(
@@ -41,46 +32,17 @@ if (browser) {
 		: true;
 } else {
 	soundValue = true;
-	pushNotificationsValue = true;
 	scrollToTopValue = true;
 	stickyHeaderValue = true;
 }
 
 export const soundStore = writable(soundValue);
-export const pushNotificationsStore = writable(pushNotificationsValue);
 export const scrollToTopStore = writable(scrollToTopValue);
 export const stickyHeaderStore = writable(stickyHeaderValue);
 
-export function onNotificationPress() {
-	if (!browser) return;
-	Notification.requestPermission().then((result) => {
-		if (result === 'granted') {
-			pushNotificationsStore.set(true);
-			randomNotification();
-		} else {
-			pushNotificationsStore.set(false);
-		}
-	});
-}
-
-function randomNotification() {
-	const notifBody = `Created by Doriel Rivalet.`;
-	const notifImg = logo;
-	const options = {
-		body: notifBody,
-		icon: notifImg,
-	};
-	new Notification('Wycademy', options);
-}
-
-export function onSoundToggle(e: { detail: { toggled: boolean } }) {
-	soundStore.set(e.detail.toggled);
-}
-
-export function onScrollToTopToggle(e: { detail: { toggled: boolean } }) {
-	scrollToTopStore.set(e.detail.toggled);
-}
-
-export function onStickyHeaderToggle(e: { detail: { toggled: boolean } }) {
-	stickyHeaderStore.set(e.detail.toggled);
+export function onStoreToggle(
+	store: Writable<boolean>,
+	e: { detail: { toggled: boolean } },
+) {
+	store.set(e.detail.toggled);
 }

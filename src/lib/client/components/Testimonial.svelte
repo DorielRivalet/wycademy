@@ -20,8 +20,8 @@
 		</a>
 		<div class="text">
 			<p class="quote">"{quote}"</p>
-			<a href={authorLink}>
-				<p class="author">{author}</p>
+			<a class="author" href={authorLink}>
+				<p>{author}</p>
 			</a>
 		</div>
 	</div>
@@ -47,6 +47,10 @@
 
 	.quote {
 		font-style: italic;
+	}
+
+	.author {
+		text-align: end;
 	}
 
 	img {
