@@ -387,7 +387,7 @@
 		</div>
 		<div class="setting-container">
 			<Button
-				disabled={$notificationsStore}
+				disabled={!$notificationsStore}
 				kind="tertiary"
 				icon={Notification}
 				on:click={onNotificationPress}>Push notifications</Button
@@ -395,7 +395,7 @@
 		</div>
 		<div class="setting-container">
 			<Toggle
-				disabled={$notificationsStore}
+				disabled={!$notificationsStore}
 				labelText="Overlay Updates"
 				on:toggle={(e) => onStoreToggle(overlayUpdatesStore, e)}
 				bind:toggled={$overlayUpdatesStore}

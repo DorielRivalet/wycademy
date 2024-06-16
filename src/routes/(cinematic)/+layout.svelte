@@ -69,7 +69,7 @@
 	</div>
 
 	{#key $page.url.pathname}
-		<Footer githubData={data.github} />
+		<Footer gitHubData={data.github} />
 	{/key}
 </div>
 

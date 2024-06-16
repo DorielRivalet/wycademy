@@ -17,12 +17,12 @@
 	import authorImage from '$lib/client/images/author.webp';
 	import { theme } from '$lib/client/stores/theme';
 
-	export let githubData: GitHubData = {
+	export let gitHubData: GitHubData = {
 		lastModified: '',
 		commitLink: '',
 		timesChanged: 0,
 	};
-	let { lastModified, commitLink, timesChanged } = githubData;
+	let { lastModified, commitLink, timesChanged } = gitHubData;
 </script>
 
 <footer>

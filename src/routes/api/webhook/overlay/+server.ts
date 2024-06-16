@@ -7,6 +7,55 @@ let latestRelease: { tag_name: string; published_at: string } | null = null; // 
 
 const apiTimeout = 60 * 2;
 
+function handleGitHubEvent(
+	gitHubEvent: string | null,
+	payload: {
+		issue: {
+			title: string;
+			user: {
+				login: string;
+			};
+		};
+		release: {
+			tag_name: string;
+			published_at: string;
+		};
+		action: string;
+	},
+) {
+	if (!gitHubEvent) {
+		console.log('GitHub event not found');
+		return;
+	}
+
+	if (gitHubEvent === 'issues') {
+		const action = payload.action;
+		if (action === 'opened') {
+			console.log(
+				`An issue was opened with this title: ${payload.issue.title}`,
+			);
+		} else if (action === 'closed') {
+			console.log(`An issue was closed by ${payload.issue.user.login}`);
+		} else {
+			console.log(`Unhandled action for the issue event: ${action}`);
+		}
+	} else if (gitHubEvent === 'ping') {
+		console.log('GitHub sent the ping event');
+	} else if (gitHubEvent === 'release') {
+		const action = payload.action;
+		// if (action === 'published') {
+		latestRelease = {
+			tag_name: payload.release.tag_name,
+			published_at: payload.release.published_at,
+		};
+		// console.log(`A release was published: ${githubEvent} ${action}`);
+		//};
+		console.log(`A release was changed: ${gitHubEvent} ${action}`);
+	} else {
+		console.log(`Unhandled event: ${gitHubEvent}`);
+	}
+}
+
 const handleWebhook = async (req: Request) => {
 	const signature = req.headers.get('x-hub-signature-256');
 	if (!signature) {
@@ -19,35 +68,10 @@ const handleWebhook = async (req: Request) => {
 		error(401, 'Unauthorized');
 	}
 
-	const githubEvent = req.headers.get('x-github-event');
+	const gitHubEvent = req.headers.get('x-github-event');
 	const payload = JSON.parse(body);
 
-	if (githubEvent === 'issues') {
-		const action = payload.action;
-		if (action === 'opened') {
-			console.log(
-				`An issue was opened with this title: ${payload.issue.title}`,
-			);
-		} else if (action === 'closed') {
-			console.log(`An issue was closed by ${payload.issue.user.login}`);
-		} else {
-			console.log(`Unhandled action for the issue event: ${action}`);
-		}
-	} else if (githubEvent === 'ping') {
-		console.log('GitHub sent the ping event');
-	} else if (githubEvent === 'release') {
-		const action = payload.action;
-		// if (action === 'published') {
-		latestRelease = {
-			tag_name: payload.release.tag_name,
-			published_at: payload.release.published_at,
-		};
-		// console.log(`A release was published: ${githubEvent} ${action}`);
-		//};
-		console.log(`A release was changed: ${githubEvent} ${action}`);
-	} else {
-		console.log(`Unhandled event: ${githubEvent}`);
-	}
+	handleGitHubEvent(gitHubEvent, payload);
 
 	return new Response(null, { status: 200 });
 };
