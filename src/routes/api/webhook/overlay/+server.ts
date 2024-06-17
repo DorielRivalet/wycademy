@@ -16,6 +16,9 @@ async function sendDiscordNotification(release: {
 	const version = release.tag_name.replaceAll('.', '-');
 	const description = getReleaseNotesSummary(version);
 
+	console.log(`Version: ${version}`);
+	console.log(`Description: ${description}`);
+
 	const discordMessage = {
 		content: null,
 		embeds: [
@@ -37,6 +40,8 @@ async function sendDiscordNotification(release: {
 			'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
 		attachments: [],
 	};
+
+	console.log('Sending to Discord: ' + JSON.stringify(discordMessage));
 
 	try {
 		const response = await fetch(WEBHOOK_DISCORD_URL_OVERLAY_RELEASE, {
