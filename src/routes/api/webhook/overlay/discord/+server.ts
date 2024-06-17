@@ -120,13 +120,20 @@ function handleGitHubEvent(
 		console.log('GitHub sent the ping event');
 	} else if (gitHubEvent === 'release') {
 		const action = payload.action;
-		console.log(`A release was changed: ${gitHubEvent} ${action}`);
-		const latestRelease = {
-			tag_name: payload.release.tag_name,
-			published_at: payload.release.published_at,
-		};
+		if (action === 'published') {
+			if (payload.release.tag_name === '' || !payload.release.published_at) {
+				console.error('Error: invalid properties.');
+				error(500, 'Internal Server Error');
+			}
 
-		sendDiscordNotification(latestRelease);
+			console.log(`A release was published: ${gitHubEvent} ${action}`);
+			const latestRelease = {
+				tag_name: payload.release.tag_name,
+				published_at: payload.release.published_at,
+			};
+
+			sendDiscordNotification(latestRelease);
+		}
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
 	}
@@ -153,8 +160,5 @@ const handleWebhook = async (req: Request) => {
 };
 
 export const POST: RequestHandler = async ({ request }) => {
-	// if (latestRelease){
-	// 	return new Response(null, { status: 304 });
-	// }
 	return await handleWebhook(request);
 };
