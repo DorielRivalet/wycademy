@@ -84,7 +84,7 @@ async function sendDiscordNotification(release: {
 	error(500, 'Internal Server Error');
 }
 
-function handleGitHubEvent(
+async function handleGitHubEvent(
 	gitHubEvent: string | null,
 	payload: {
 		issue: {
@@ -132,7 +132,8 @@ function handleGitHubEvent(
 				published_at: payload.release.published_at,
 			};
 
-			sendDiscordNotification(latestRelease);
+			// Await the completion of sendDiscordNotification
+			await sendDiscordNotification(latestRelease);
 		}
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
