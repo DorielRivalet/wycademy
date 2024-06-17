@@ -2416,7 +2416,7 @@
 			<div class="img-container">
 				<img
 					id="sliding-image"
-					src="$lib/client/offline/assets/img/berserk_raviente.webp"
+					src="./assets/img/berserk_raviente.webp"
 					alt="Sliding"
 				/>
 			</div>
