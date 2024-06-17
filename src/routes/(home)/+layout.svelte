@@ -25,7 +25,6 @@
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
-	console.log('layout.svelte');
 
 	onMount(() => {
 		let themeValue = $theme;

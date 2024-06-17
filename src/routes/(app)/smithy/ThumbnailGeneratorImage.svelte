@@ -16,7 +16,7 @@
 		ArmorTypes,
 		ColorCodes,
 		ElementIcons,
-		Games,
+		gameInfo,
 		Habitats,
 		ItemColors,
 		ItemIcons,
@@ -129,8 +129,8 @@
 				};
 			case 'Game':
 				return {
-					component: Games.find((e) => e.name === selectionID)?.icon,
-					image: Games.find((e) => e.name === selectionID)?.icon,
+					component: gameInfo.find((e) => e.name === selectionID)?.icon,
+					image: gameInfo.find((e) => e.name === selectionID)?.icon,
 				};
 		}
 	}
