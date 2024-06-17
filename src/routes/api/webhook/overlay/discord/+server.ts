@@ -10,6 +10,10 @@ async function sendDiscordNotification(release: {
 	tag_name: string;
 	published_at: string | null;
 }) {
+	let attempts = 0;
+	const maxAttempts = 3; // Maximum number of retries
+	let waitTime = 1000; // Initial wait time in milliseconds
+
 	if (release.tag_name === '' || !release.published_at) {
 		console.error('Failed to send Discord notification: invalid properties.');
 		error(500, 'Internal Server Error');
@@ -43,26 +47,41 @@ async function sendDiscordNotification(release: {
 		attachments: [],
 	};
 
-	console.log('Sending to Discord: ' + JSON.stringify(discordMessage));
+	while (attempts < maxAttempts) {
+		try {
+			const response = await fetch(
+				`${WEBHOOK_DISCORD_URL_OVERLAY_RELEASE}?wait=true`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(discordMessage),
+				},
+			);
 
-	const response = await fetch(
-		`${WEBHOOK_DISCORD_URL_OVERLAY_RELEASE}?wait=true`,
-		{
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(discordMessage),
-		},
-	);
+			if (!response.ok) {
+				error(
+					500,
+					`Failed to send Discord notification: ${response.statusText}`,
+				);
+			}
 
-	if (!response.ok) {
-		console.error('Failed to send Discord notification', response.statusText);
-		error(response.status, response.statusText);
-	} else {
-		console.log('Successfully sent Discord notification', response.statusText);
-		return json(null, { status: 200 });
+			console.log(
+				'Successfully sent Discord notification',
+				response.statusText,
+			);
+			return json(null, { status: 200 });
+		} catch (error) {
+			console.error(`Attempt ${attempts + 1}: ${error}`);
+			attempts++;
+			await new Promise((resolve) => setTimeout(resolve, waitTime));
+			waitTime *= 2; // Exponential backoff
+		}
 	}
+
+	console.error('Failed to send Discord notification after maximum attempts');
+	error(500, 'Internal Server Error');
 }
 
 function handleGitHubEvent(
