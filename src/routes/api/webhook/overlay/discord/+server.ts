@@ -1,9 +1,64 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { WEBHOOK_SECRET_OVERLAY_RELEASE } from '$env/static/private';
+import {
+	WEBHOOK_SECRET_OVERLAY_RELEASE,
+	WEBHOOK_DISCORD_URL_OVERLAY_RELEASE,
+} from '$env/static/private';
 import { verify } from '@octokit/webhooks-methods';
+import { getReleaseNotesSummary } from '$lib/client/modules/overlay-release-notes';
 
-/**TODO redis? Also techniqually speaking this can not be the latest release.*/
-let latestRelease: { tag_name: string; published_at: string } | null = null; // In-memory cache for latest release info
+async function sendDiscordNotification(release: {
+	tag_name: string;
+	published_at: string;
+}) {
+	const version = release.tag_name.replaceAll('.', '-');
+	const description = getReleaseNotesSummary(version);
+
+	console.log(`Version: ${version}`);
+	console.log(`Description: ${description}`);
+
+	const discordMessage = {
+		content: null,
+		embeds: [
+			{
+				title: release.tag_name,
+				description: description,
+				url: `https://wycademy.vercel.app/overlay/release-notes/${version}`,
+				color: 9024762,
+				author: {
+					name: 'Wycademy',
+				},
+				thumbnail: {
+					url: 'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
+				},
+			},
+		],
+		username: 'Overlay Updates',
+		avatar_url:
+			'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
+		attachments: [],
+	};
+
+	console.log('Sending to Discord: ' + JSON.stringify(discordMessage));
+
+	const response = await fetch(
+		`${WEBHOOK_DISCORD_URL_OVERLAY_RELEASE}?wait=true`,
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(discordMessage),
+		},
+	);
+
+	if (!response.ok) {
+		console.error('Failed to send Discord notification', response.statusText);
+		error(response.status, response.statusText);
+	} else {
+		console.log('Successfully sent Discord notification', response.statusText);
+		return json(null, { status: 200 });
+	}
+}
 
 function handleGitHubEvent(
 	gitHubEvent: string | null,
@@ -41,14 +96,13 @@ function handleGitHubEvent(
 		console.log('GitHub sent the ping event');
 	} else if (gitHubEvent === 'release') {
 		const action = payload.action;
-		// if (action === 'published') {
-		latestRelease = {
+		console.log(`A release was changed: ${gitHubEvent} ${action}`);
+		const latestRelease = {
 			tag_name: payload.release.tag_name,
 			published_at: payload.release.published_at,
 		};
-		// console.log(`A release was published: ${githubEvent} ${action}`);
-		//};
-		console.log(`A release was changed: ${gitHubEvent} ${action}`);
+
+		sendDiscordNotification(latestRelease);
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
 	}
@@ -79,12 +133,4 @@ export const POST: RequestHandler = async ({ request }) => {
 	// 	return new Response(null, { status: 304 });
 	// }
 	return await handleWebhook(request);
-};
-
-export const GET: RequestHandler = () => {
-	const res = json(latestRelease);
-	const apiTimeout = 60 * 2;
-
-	res.headers.set('cache-control', `max-age=0, s-maxage=${apiTimeout}`);
-	return res;
 };
