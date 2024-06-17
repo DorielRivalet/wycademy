@@ -8,8 +8,13 @@ import { getReleaseNotesSummary } from '$lib/client/modules/overlay-release-note
 
 async function sendDiscordNotification(release: {
 	tag_name: string;
-	published_at: string;
+	published_at: string | null;
 }) {
+	if (release.tag_name === '' || !release.published_at) {
+		console.error('Failed to send Discord notification: invalid properties.');
+		error(500, 'Internal Server Error');
+	}
+
 	const version = release.tag_name.replaceAll('.', '-');
 	const description = getReleaseNotesSummary(version);
 

@@ -3,7 +3,8 @@ import { WEBHOOK_SECRET_OVERLAY_RELEASE } from '$env/static/private';
 import { verify } from '@octokit/webhooks-methods';
 
 /**TODO redis? Also techniqually speaking this can not be the latest release.*/
-let latestRelease: { tag_name: string; published_at: string } | null = null; // In-memory cache for latest release info
+let latestRelease: { tag_name: string; published_at: string | null } | null =
+	null; // In-memory cache for latest release info
 
 function handleGitHubEvent(
 	gitHubEvent: string | null,
@@ -16,7 +17,7 @@ function handleGitHubEvent(
 		};
 		release: {
 			tag_name: string;
-			published_at: string;
+			published_at: string | null;
 		};
 		action: string;
 	},
@@ -42,6 +43,13 @@ function handleGitHubEvent(
 	} else if (gitHubEvent === 'release') {
 		const action = payload.action;
 		// if (action === 'published') {
+		if (payload.release.tag_name === '' || !payload.release.published_at) {
+			console.error(
+				'Failed to update latest release variable: invalid properties.',
+			);
+			error(500, 'Internal Server Error');
+		}
+
 		latestRelease = {
 			tag_name: payload.release.tag_name,
 			published_at: payload.release.published_at,
