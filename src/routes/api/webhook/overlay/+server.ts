@@ -6,7 +6,7 @@ import { verify } from '@octokit/webhooks-methods';
 let latestRelease: { tag_name: string; published_at: string | null } | null =
 	null; // In-memory cache for latest release info
 
-function handleGitHubEvent(
+async function handleGitHubEvent(
 	gitHubEvent: string | null,
 	payload: {
 		issue: {
