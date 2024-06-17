@@ -1167,7 +1167,7 @@ export const StatusIcons: { name: FrontierStatus; icon: any }[] = [
 	},
 ];
 
-export const Games: { name: string; icon: any }[] = [
+export const gameInfo: { name: string; icon: any }[] = [
 	{
 		name: 'Monster Hunter Frontier',
 		icon: GameLogoMonsterHunterFrontier,

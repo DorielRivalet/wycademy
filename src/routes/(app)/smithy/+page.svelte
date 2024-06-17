@@ -4,7 +4,7 @@
 		ArmorTypes,
 		ColorCodes,
 		ElementIcons,
-		Games,
+		gameInfo,
 		Habitats,
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
@@ -918,7 +918,7 @@
 				list = Habitats;
 				break;
 			case 'Game':
-				list = Games;
+				list = gameInfo;
 				break;
 		}
 
@@ -995,7 +995,7 @@
 				list = Habitats;
 				break;
 			case 'Game':
-				list = Games;
+				list = gameInfo;
 				break;
 		}
 
@@ -1097,8 +1097,8 @@
 				};
 			case 'Game':
 				return {
-					component: Games.find((e) => e.name === selectionID)?.icon,
-					image: Games.find((e) => e.name === selectionID)?.icon,
+					component: gameInfo.find((e) => e.name === selectionID)?.icon,
+					image: gameInfo.find((e) => e.name === selectionID)?.icon,
 				};
 		}
 	}

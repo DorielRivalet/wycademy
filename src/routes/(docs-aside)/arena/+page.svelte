@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {
-		HuntingHornWeaponNotesCombinations,
+		HuntingHornWeaponNotesCombinations, // TODO in hunter notes
 		ItemColors,
 		ItemIcons,
 		weaponMotionValues,
@@ -64,8 +64,6 @@
 		FrontierWeaponStyle,
 	} from 'ezlion';
 	import type {
-		FrontierDivaPrayerGem,
-		FrontierDivaPrayerGemColor,
 		FrontierDivaPrayerGemLevel,
 		FrontierElement,
 		FrontierMotionValue,
@@ -122,8 +120,9 @@
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
-	import { crossfade, fade } from 'svelte/transition';
+	import { crossfade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	let flashConversionChartLoaded = false;
 	let flashConversionChart: ComponentType<LineChart>;
@@ -6459,6 +6458,11 @@ does not get multiplied by horn */
 				iconType="component"
 				icon={getTag('Armor Skill').icon}
 			/>, and the formulas for your total damage.
+		</p>
+
+		<p>
+			If you are looking for guides on topics such as weapons, please refer to
+			the <Link href="/hunter-notes">Hunter's Notes page.</Link>
 		</p>
 
 		<section>
