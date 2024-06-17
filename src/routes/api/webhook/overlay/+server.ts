@@ -28,13 +28,13 @@ async function sendDiscordNotification(release: {
 					name: 'Wycademy',
 				},
 				thumbnail: {
-					url: 'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.webp',
+					url: 'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
 				},
 			},
 		],
 		username: 'Overlay Updates',
 		avatar_url:
-			'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.webp',
+			'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
 		attachments: [],
 	};
 
