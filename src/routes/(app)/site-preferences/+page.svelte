@@ -203,7 +203,7 @@
 		monsterHP,
 		defrate,
 	)}} = \\frac{${monsterHP}}{${defrate}}`;
-	let url = $page.url.toString();
+	const url = $page.url.toString();
 </script>
 
 <svelte:head>

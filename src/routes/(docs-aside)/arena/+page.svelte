@@ -3950,7 +3950,7 @@
 
 	let modalHeading = '';
 	let modalLabel = '';
-	let url = $page.url.toString();
+	const url = $page.url.toString();
 	let modalOpen = false;
 	let modalImage = '';
 	let modalNotes = '';

@@ -34,7 +34,6 @@
 		overlayUpdatesStore,
 	} from '$lib/client/stores/notifications';
 	import { overlayVersion } from '$lib/constants';
-	// TODO if notifications are off, hide the icon
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');

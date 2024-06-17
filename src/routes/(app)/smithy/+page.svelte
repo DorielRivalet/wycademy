@@ -530,7 +530,7 @@
 			let blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
 
 			// Create a URL for the Blob
-			let url = URL.createObjectURL(blob);
+			const url = URL.createObjectURL(blob);
 
 			// Create a link element for downloading
 			const link = document.createElement('a');
@@ -558,7 +558,7 @@
 		});
 	}
 
-	let url = $page.url.toString();
+	const url = $page.url.toString();
 	let currentWeaponPage = 1;
 	let currentArmorPage = 1;
 	let currentItemPage = 1;

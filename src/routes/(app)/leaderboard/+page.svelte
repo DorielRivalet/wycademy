@@ -20,8 +20,8 @@
 	import { page } from '$app/stores';
 	console.log('page.svelte');
 
-	let customTitle = 'Leaderboard';
-	let url = $page.url.toString();
+	const customTitle = 'Leaderboard';
+	const url = $page.url.toString();
 </script>
 
 <Head

@@ -19,8 +19,8 @@
 	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
 
-	let customTitle = 'Home';
-	let url = $page.url.toString();
+	const customTitle = 'Home';
+	const url = $page.url.toString();
 </script>
 
 <Head
