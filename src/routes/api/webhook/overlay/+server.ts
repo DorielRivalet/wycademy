@@ -44,13 +44,16 @@ async function sendDiscordNotification(release: {
 	console.log('Sending to Discord: ' + JSON.stringify(discordMessage));
 
 	try {
-		const response = await fetch(WEBHOOK_DISCORD_URL_OVERLAY_RELEASE, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
+		const response = await fetch(
+			`${WEBHOOK_DISCORD_URL_OVERLAY_RELEASE}?wait=true`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(discordMessage),
 			},
-			body: JSON.stringify(discordMessage),
-		});
+		);
 		if (!response.ok) {
 			console.error('Failed to send Discord notification', response.statusText);
 		} else {
