@@ -5,7 +5,6 @@ import {
 } from '$env/static/private';
 import { verify } from '@octokit/webhooks-methods';
 import { getReleaseNotesSummary } from '$lib/client/modules/overlay-release-notes';
-import axios from 'axios';
 
 /**TODO redis? Also techniqually speaking this can not be the latest release.*/
 let latestRelease: { tag_name: string; published_at: string } | null = null; // In-memory cache for latest release info
@@ -44,27 +43,24 @@ async function sendDiscordNotification(release: {
 
 	console.log('Sending to Discord: ' + JSON.stringify(discordMessage));
 
-	return await wrapWebhook(
-		WEBHOOK_DISCORD_URL_OVERLAY_RELEASE,
-		JSON.stringify(discordMessage),
+	const response = await fetch(
+		`${WEBHOOK_DISCORD_URL_OVERLAY_RELEASE}?wait=true`,
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(discordMessage),
+		},
 	);
-}
 
-function wrapWebhook(webhook: string, payload: Object): Promise<void> {
-	return (async function () {
-		try {
-			await axios.post(webhook, payload);
-			console.log('Sended to Discord');
-		} catch (e: any) {
-			if (e.response) {
-				console.error(
-					`Webhook response: ${e.response.status}: ${JSON.stringify(e.response.data)}`,
-				);
-			} else {
-				console.error(e);
-			}
-		}
-	})();
+	if (!response.ok) {
+		console.error('Failed to send Discord notification', response.statusText);
+		error(response.status, response.statusText);
+	} else {
+		console.log('Successfully sent Discord notification', response.statusText);
+		return json(null, { status: 200 });
+	}
 }
 
 function handleGitHubEvent(
