@@ -137,7 +137,7 @@ async function handleGitHubEvent(
 			};
 
 			// Await the completion of sendDiscordNotification
-			await sendDiscordNotification(latestRelease, fetch);
+			sendDiscordNotification(latestRelease, fetch);
 		}
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
