@@ -20,4 +20,4 @@ export const license = 'MIT';
 
 export const overlayVersion = 'v0.38.0';
 export const overlayDescription =
-	'A simple, customizable overlay with Discord Rich Presence integration for Monster Hunter Frontier Z on Windows';
+	'A simple, customizable overlay with Discord Rich Presence integration for Monster Hunter Frontier Z on Windows.';

@@ -18,27 +18,25 @@
 	} from '$lib/constants';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
-	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
 	import Head from '$lib/client/components/Head.svelte';
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
-	import ToastySound from '/assets/sound/toasty.mp3';
-	import GameOverSound from '/assets/sound/mixkit-arcade-retro-game-over-213.wav';
-	import FireballSound from '/assets/sound/flame.ogg';
-	import FireballHitSound from '/assets/sound/mixkit-wizard-fire-woosh-1326.wav';
-	import StartSound from '/assets/sound/mixkit-player-boost-recharging-2040.wav';
-	import PauseSound from '/assets/sound/mixkit-zippo-fire-close-1334.wav';
-	import ResumeSound from '/assets/sound/mixkit-quick-lock-sound-2854.wav';
-	import WinSound from '/assets/sound/mixkit-video-game-win-2016.wav';
-	import EatSound from '/assets/sound/mixkit-quick-jump-arcade-game-239.wav';
-	import snakeEnergyGainSound from '/assets/sound/mixkit-quick-win-video-game-notification-269.wav';
-	import snakeEnergyLossSound from '/assets/sound/mixkit-tech-break-fail-2947.wav';
-	import ParalysisSound from '/assets/sound/continuousspark.wav';
-	import NomNomNomSound from '/assets/sound/nomnomnom.mp3';
-	import RingOfFireStartSound from '/assets/sound/fire_sound_effect.mp3';
-	import BlueBorderActiveSound from '/assets/sound/shieldhit.wav';
-	import UltimateReadySound from '/assets/sound/powerup.wav';
-	import AudioConsole from 'carbon-icons-svelte/lib/AudioConsole.svelte';
+	import ToastySound from './assets/sound/toasty.mp3';
+	import GameOverSound from './assets/sound/mixkit-arcade-retro-game-over-213.wav';
+	import FireballSound from './assets/sound/flame.ogg';
+	import FireballHitSound from './assets/sound/mixkit-wizard-fire-woosh-1326.wav';
+	import StartSound from './assets/sound/mixkit-player-boost-recharging-2040.wav';
+	import PauseSound from './assets/sound/mixkit-zippo-fire-close-1334.wav';
+	import ResumeSound from './assets/sound/mixkit-quick-lock-sound-2854.wav';
+	import WinSound from './assets/sound/mixkit-video-game-win-2016.wav';
+	import EatSound from './assets/sound/mixkit-quick-jump-arcade-game-239.wav';
+	import snakeEnergyGainSound from './assets/sound/mixkit-quick-win-video-game-notification-269.wav';
+	import snakeEnergyLossSound from './assets/sound/mixkit-tech-break-fail-2947.wav';
+	import ParalysisSound from './assets/sound/continuousspark.wav';
+	import NomNomNomSound from './assets/sound/nomnomnom.mp3';
+	import RingOfFireStartSound from './assets/sound/fire_sound_effect.mp3';
+	import BlueBorderActiveSound from './assets/sound/shieldhit.wav';
+	import UltimateReadySound from './assets/sound/powerup.wav';
 	import GameConsole from 'carbon-icons-svelte/lib/GameConsole.svelte';
 	import Book from 'carbon-icons-svelte/lib/Book.svelte';
 	import DocumentDownload from 'carbon-icons-svelte/lib/DocumentDownload.svelte';
@@ -525,7 +523,7 @@
 			snakeSpeed: 0,
 			turnDelay: 5,
 			sound: SOUNDS.eat,
-			image: createImage('/assets/img/hunter_red.webp'),
+			image: createImage('assets/img/hunter_red.webp'),
 			messages: consoleMessages.redHunter,
 			consumable: true,
 			flammable: true,
@@ -555,7 +553,7 @@
 			snakeSpeed: 1,
 			turnDelay: 0,
 			sound: SOUNDS.snakeEnergyGain,
-			image: createImage('/assets/img/hunter_yellow.webp'),
+			image: createImage('assets/img/hunter_yellow.webp'),
 			messages: consoleMessages.yellowHunter,
 			consumable: true,
 			flammable: true,
@@ -585,7 +583,7 @@
 			snakeSpeed: -1,
 			turnDelay: 0,
 			sound: SOUNDS.snakeEnergyLoss,
-			image: createImage('/assets/img/hunter_black.webp'),
+			image: createImage('assets/img/hunter_black.webp'),
 			messages: consoleMessages.blackHunter,
 			consumable: true,
 			flammable: true,
@@ -617,7 +615,7 @@
 			turnDelay: 10,
 			// TODO
 			sound: SOUNDS.snakeEnergyGain,
-			image: createImage('/assets/img/hunter_white.webp'),
+			image: createImage('assets/img/hunter_white.webp'),
 			messages: consoleMessages.whiteHunter,
 			consumable: false,
 			flammable: false,
@@ -648,7 +646,7 @@
 			turnDelay: 20,
 			// TODO
 			sound: SOUNDS.snakeEnergyLoss,
-			image: createImage('/assets/img/hunter_purple.webp'),
+			image: createImage('assets/img/hunter_purple.webp'),
 			messages: consoleMessages.purpleHunterEat,
 			consumable: true,
 			flammable: true,
@@ -679,7 +677,7 @@
 			turnDelay: 30,
 			// TODO
 			sound: SOUNDS.snakeEnergyLoss,
-			image: createImage('/assets/img/hunter_blue.webp'),
+			image: createImage('assets/img/hunter_blue.webp'),
 			messages: consoleMessages.blueHunterHit,
 			consumable: true, // but u die if u do
 			flammable: true,
@@ -711,7 +709,7 @@
 			turnDelay: 0,
 			// TODO
 			sound: SOUNDS.nomnomnom,
-			image: createImage('/assets/img/hunter_orange.webp'),
+			image: createImage('assets/img/hunter_orange.webp'),
 			messages: consoleMessages.fireball,
 			consumable: true,
 			flammable: true,
@@ -741,7 +739,7 @@
 			snakeSpeed: 0,
 			turnDelay: 60,
 			sound: SOUNDS.eat,
-			image: createImage('/assets/img/hunter_green.webp'),
+			image: createImage('assets/img/hunter_green.webp'),
 			messages: [''],
 			consumable: false,
 			flammable: true,
@@ -888,13 +886,13 @@
 		paralysisTileImage = new Image();
 	}
 
-	headRightImage.src = '/assets/img/head_right.webp';
-	headLeftImage.src = '/assets/img/head_left.webp';
-	bodyImage.src = '/assets/img/body.webp';
-	tailRightImage.src = '/assets/img/tail_right.webp';
-	tailLeftImage.src = '/assets/img/tail_left.webp';
-	bodyParalysisImage.src = '/assets/img/body_paralysis.webp';
-	paralysisTileImage.src = '/assets/img/paralysis.webp';
+	headRightImage.src = './assets/img/head_right.webp';
+	headLeftImage.src = './assets/img/head_left.webp';
+	bodyImage.src = './assets/img/body.webp';
+	tailRightImage.src = './assets/img/tail_right.webp';
+	tailLeftImage.src = './assets/img/tail_left.webp';
+	bodyParalysisImage.src = './assets/img/body_paralysis.webp';
+	paralysisTileImage.src = './assets/img/paralysis.webp';
 
 	// Variables to keep track of the timer
 	let startTime = 0;
@@ -2418,7 +2416,7 @@
 			<div class="img-container">
 				<img
 					id="sliding-image"
-					src="/assets/img/berserk_raviente.webp"
+					src="$lib/client/offline/assets/img/berserk_raviente.webp"
 					alt="Sliding"
 				/>
 			</div>

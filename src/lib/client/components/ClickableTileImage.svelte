@@ -34,10 +34,6 @@
 </div>
 
 <style lang="scss">
-	.container {
-		height: 100%; /* Ensure container fills the parent */
-	}
-
 	.tile-content {
 		padding: var(--cds-spacing-02);
 		display: grid;
