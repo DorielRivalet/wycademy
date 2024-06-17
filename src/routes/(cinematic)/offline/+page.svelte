@@ -2325,7 +2325,7 @@
 	function downloadLogs() {
 		let text = historyLogs.join('\n'); // create a string from the historyLogs array, with each log on a new line
 		let blob = new Blob([text], { type: 'text/plain' }); // create a new Blob object representing the data in the specified formats
-		let url = URL.createObjectURL(blob); // create a URL representing the Blob object
+		const url = URL.createObjectURL(blob); // create a URL representing the Blob object
 
 		let a = document.createElement('a'); // create a new <a> element
 		a.href = url; // set the href of the <a> element to the URL
@@ -2333,7 +2333,7 @@
 		a.click(); // programmatically click the <a> element to trigger the download
 	}
 
-	let url = $page.url.toString();
+	const url = $page.url.toString();
 	let modalOpen = false;
 	let gameStateText = 'Play';
 

@@ -19,6 +19,17 @@
 	import { Canvas } from '@threlte/core';
 	import RotatingCard from '$lib/client/components/scenes/RotatingCard.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
+	import Head from '$lib/client/components/Head.svelte';
+	import {
+		overlayDescription,
+		website,
+		authorName,
+		datePublished,
+		authorUrl,
+		projectName,
+	} from '$lib/constants';
+	import pageThumbnail from '$lib/client/images/logo.png';
+	import { page } from '$app/stores';
 
 	const totalObtainableAchievements = Object.values(achievementsInfo[0]).filter(
 		(e) => !e.Unused,
@@ -84,7 +95,24 @@
 
 		currentAchievements = filteredAchievements;
 	}
+
+	const customTitle = 'Overlay Achievements';
+	const url = $page.url.toString();
 </script>
+
+<Head
+	title={customTitle}
+	description={overlayDescription}
+	image={pageThumbnail}
+	{url}
+	{website}
+	{authorName}
+	{datePublished}
+	{authorUrl}
+	contentType="SoftwareApplication"
+	name={projectName}
+	siteName={projectName}
+/>
 
 <div class="achievements-page">
 	<div class="breadcrumb">

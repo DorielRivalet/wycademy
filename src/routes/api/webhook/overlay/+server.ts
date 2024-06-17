@@ -1,11 +1,63 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { WEBHOOK_SECRET_OVERLAY_RELEASE } from '$env/static/private';
+import {
+	WEBHOOK_SECRET_OVERLAY_RELEASE,
+	WEBHOOK_DISCORD_URL_OVERLAY_RELEASE,
+} from '$env/static/private';
 import { verify } from '@octokit/webhooks-methods';
+import { getReleaseNotesSummary } from '$lib/client/modules/overlay-release-notes';
 
 /**TODO redis? Also techniqually speaking this can not be the latest release.*/
 let latestRelease: { tag_name: string; published_at: string } | null = null; // In-memory cache for latest release info
 
-const apiTimeout = 60 * 2;
+async function sendDiscordNotification(release: {
+	tag_name: string;
+	published_at: string;
+}) {
+	const version = release.tag_name.replaceAll('.', '-');
+	const description = getReleaseNotesSummary(version);
+
+	const discordMessage = {
+		content: null,
+		embeds: [
+			{
+				title: release.tag_name,
+				description: description,
+				url: `https://wycademy.vercel.app/overlay/release-notes/${version}`,
+				color: 9024762,
+				author: {
+					name: 'Wycademy',
+				},
+				thumbnail: {
+					url: 'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.webp',
+				},
+			},
+		],
+		username: 'Overlay Updates',
+		avatar_url:
+			'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.webp',
+		attachments: [],
+	};
+
+	try {
+		const response = await fetch(WEBHOOK_DISCORD_URL_OVERLAY_RELEASE, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(discordMessage),
+		});
+		if (!response.ok) {
+			console.error('Failed to send Discord notification', response.statusText);
+		} else {
+			console.log(
+				'Successfully sent Discord notification',
+				response.statusText,
+			);
+		}
+	} catch (error) {
+		console.error('Error sending Discord notification', error);
+	}
+}
 
 function handleGitHubEvent(
 	gitHubEvent: string | null,
@@ -51,6 +103,7 @@ function handleGitHubEvent(
 		// console.log(`A release was published: ${githubEvent} ${action}`);
 		//};
 		console.log(`A release was changed: ${gitHubEvent} ${action}`);
+		sendDiscordNotification(latestRelease);
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
 	}
@@ -85,6 +138,8 @@ export const POST: RequestHandler = async ({ request }) => {
 
 export const GET: RequestHandler = () => {
 	const res = json(latestRelease);
+	const apiTimeout = 60 * 2;
+
 	res.headers.set('cache-control', `max-age=0, s-maxage=${apiTimeout}`);
 	return res;
 };

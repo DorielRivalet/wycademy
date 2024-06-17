@@ -21,7 +21,7 @@
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
-	let url = $page.url.toString();
+	const url = $page.url.toString();
 </script>
 
 <Head

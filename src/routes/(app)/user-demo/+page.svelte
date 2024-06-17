@@ -20,8 +20,8 @@
 	import { page } from '$app/stores';
 	console.log('page.svelte');
 
-	let customTitle = 'User Demo';
-	let url = $page.url.toString();
+	const customTitle = 'User Demo';
+	const url = $page.url.toString();
 </script>
 
 <Head

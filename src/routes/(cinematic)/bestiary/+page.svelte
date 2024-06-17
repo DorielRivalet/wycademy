@@ -32,8 +32,8 @@
 	import { fade } from 'svelte/transition';
 	import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
 
-	let customTitle = 'Bestiary';
-	let url = $page.url.toString();
+	const customTitle = 'Bestiary';
+	const url = $page.url.toString();
 
 	const monsterIconSize = '256px';
 

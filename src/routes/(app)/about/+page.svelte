@@ -16,7 +16,7 @@
 		website,
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
-	let url = $page.url.toString();
+	const url = $page.url.toString();
 </script>
 
 <Head

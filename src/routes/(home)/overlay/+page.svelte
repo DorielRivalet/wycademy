@@ -1,16 +1,10 @@
 <script lang="ts">
 	import TopHeroSection from '$lib/client/components/TopHeroSection.svelte';
-	import Meter from 'carbon-pictograms-svelte/lib/Meter.svelte';
-	import ChartBar from 'carbon-pictograms-svelte/lib/ChartBar.svelte';
-	import Gear from 'carbon-pictograms-svelte/lib/Gear.svelte';
 	import Trophy from 'carbon-pictograms-svelte/lib/Trophy.svelte';
-	import AssetManagement from 'carbon-pictograms-svelte/lib/AssetManagement.svelte';
 	import Archive from 'carbon-pictograms-svelte/lib/Archive.svelte';
 	import Documentation from 'carbon-pictograms-svelte/lib/Documentation.svelte';
 	import ChartRadar from 'carbon-pictograms-svelte/lib/ChartRadar.svelte';
 	import ChartLine from 'carbon-pictograms-svelte/lib/ChartLine.svelte';
-	import Keyboard from 'carbon-pictograms-svelte/lib/Keyboard.svelte';
-	import Advocate from 'carbon-pictograms-svelte/lib/Advocate.svelte';
 	import Notifications from 'carbon-pictograms-svelte/lib/Notifications.svelte';
 	import HeroVideoBackground from '$lib/client/videos/hero-bg.webm';
 	import ClickableTilePictogram from '$lib/client/components/ClickableTilePictogram.svelte';
@@ -29,10 +23,21 @@
 	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
 	import FrequentlyAskedQuestions from '$lib/client/components/FrequentlyAskedQuestions.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
+	import Head from '$lib/client/components/Head.svelte';
+	import { page } from '$app/stores';
+	import {
+		authorName,
+		authorUrl,
+		datePublished,
+		overlayDescription,
+		projectName,
+		website,
+	} from '$lib/constants';
+	import pageThumbnail from '$lib/client/images/logo.png';
 
 	export let data: PageData;
 
-	let heroTitles = [
+	const heroTitles = [
 		'Explore the Frontier Like Never Before',
 		'Elevate Your Frontier Adventures',
 		'Unlock the Secrets of the Frontier',
@@ -49,14 +54,19 @@
 		'Elevate Your Frontier Expeditions',
 		'Boost your Frontier Experience',
 		'Hunt from Abiorugu to Zinogre',
-		'From Abiorugu to Zinogre: Master the Frontier',
 		'Track Your Hunts',
 		"Automatic Hunter's Notes",
 		'Cybernetically Enhanced Speedruns',
-		// TODO more examples
+		'Optimize Your Speedruns',
+		'Optimize Your Hunts',
+		'Cybernetically Enhanced Hunts',
+		'See Number Go Up',
+		'Keep Track of Your Damage',
+		'The Zenith of Data Visualization',
+		'Revitalize Your Frontier Gameplay',
 	];
 
-	let images = {
+	const images = {
 		monster: [
 			'https://github.com/DorielRivalet/mhfz-overlay/blob/main/demo/hp1.png?raw=true',
 			'https://github.com/DorielRivalet/mhfz-overlay/blob/main/demo/hp2.png?raw=true',
@@ -109,7 +119,7 @@
 		],
 	};
 
-	let faq: { question: string; answer: string }[] = [
+	const faq: { question: string; answer: string }[] = [
 		{
 			question: 'How to Enable Discord Rich Presence?',
 			answer:
@@ -154,7 +164,24 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 			The overlay is not a mod.`,
 		},
 	];
+
+	const customTitle = 'Overlay';
+	const url = $page.url.toString();
 </script>
+
+<Head
+	title={customTitle}
+	description={overlayDescription}
+	image={pageThumbnail}
+	{url}
+	{website}
+	{authorName}
+	{datePublished}
+	{authorUrl}
+	contentType="SoftwareApplication"
+	name={projectName}
+	siteName={projectName}
+/>
 
 <div class="overlay-page">
 	<section class="top-hero-section">
