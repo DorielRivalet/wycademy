@@ -42,21 +42,21 @@ function handleGitHubEvent(
 		console.log('GitHub sent the ping event');
 	} else if (gitHubEvent === 'release') {
 		const action = payload.action;
-		// if (action === 'published') {
-		if (payload.release.tag_name === '' || !payload.release.published_at) {
-			console.error(
-				'Failed to update latest release variable: invalid properties.',
-			);
-			error(500, 'Internal Server Error');
-		}
+		if (action === 'published') {
+			if (payload.release.tag_name === '' || !payload.release.published_at) {
+				console.error(
+					'Failed to update latest release variable: invalid properties.',
+				);
+				error(500, 'Internal Server Error');
+			}
 
-		latestRelease = {
-			tag_name: payload.release.tag_name,
-			published_at: payload.release.published_at,
-		};
-		// console.log(`A release was published: ${githubEvent} ${action}`);
-		//};
-		console.log(`A release was changed: ${gitHubEvent} ${action}`);
+			latestRelease = {
+				tag_name: payload.release.tag_name,
+				published_at: payload.release.published_at,
+			};
+
+			console.log(`A release was published: ${gitHubEvent} ${action}`);
+		}
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
 	}
