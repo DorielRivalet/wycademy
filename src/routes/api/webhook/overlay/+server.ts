@@ -83,9 +83,6 @@ const handleWebhook = async (req: Request) => {
 };
 
 export const POST: RequestHandler = async ({ request }) => {
-	// if (latestRelease){
-	// 	return new Response(null, { status: 304 });
-	// }
 	return await handleWebhook(request);
 };
 
