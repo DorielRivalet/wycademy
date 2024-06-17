@@ -42,7 +42,7 @@ async function handleGitHubEvent(
 		console.log('GitHub sent the ping event');
 	} else if (gitHubEvent === 'release') {
 		const action = payload.action;
-		if (action === 'published') {
+		if (action === 'released') {
 			if (payload.release.tag_name === '' || !payload.release.published_at) {
 				console.error(
 					'Failed to update latest release variable: invalid properties.',
@@ -55,7 +55,7 @@ async function handleGitHubEvent(
 				published_at: payload.release.published_at,
 			};
 
-			console.log(`A release was published: ${gitHubEvent} ${action}`);
+			console.log(`A release was released: ${gitHubEvent} ${action}`);
 		}
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
