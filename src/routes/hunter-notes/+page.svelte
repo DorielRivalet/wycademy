@@ -38,7 +38,7 @@
 		gameInfo,
 	} from '$lib/client/modules/frontier/objects';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
-	import ClickableTileBackgroundImage from '$lib/client/components/ClickableTileBackgroundImage.svelte';
+	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import GreatSwordRainbow from '$lib/client/images/weapon/gs_rainbow.gif';
 	import ExtremeFireblight from '$lib/client/components/frontier/icon/ailment/ExtremeFireblight.svelte';
 	import ExtremeParalysis from '$lib/client/components/frontier/icon/ailment/ExtremeParalysis.svelte';
@@ -140,19 +140,19 @@
 					<section>
 						<SectionHeading level={3} title="Getting Started" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Your First Hunts"
 								description="A walkthrough of the first tasks you should do when starting the game."
 								imageSource={BookIconWhite}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Elements"
 								description="The elements of weapons and monsters. Includes combo elements and elemental resistances."
 								imageSource={ExtremeFireblight}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Ailments"
 								description="The status effects of both weapons and monsters. Includes monsters' status immunities."
 								imageSource={ExtremeParalysis}
@@ -163,55 +163,55 @@
 					<section>
 						<SectionHeading level={3} title="Monsters" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Exotics"
 								description="The list of exotic monsters and the automatic skills they provide."
 								imageSource={StygianZinogre}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Origin"
 								description="The list of origin monsters and the automatic skills they provide."
 								imageSource={YamaKurai2}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Musou"
 								description="The list of musou monsters and how to beat them."
 								imageSource={BurningFreezingElzelion2}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Zenith"
 								description="The list of zenith monsters and how to beat them."
 								imageSource={Bogabadorumu6}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Duremudira"
 								description="An explanation of Tower gear and skills, and how to beat 2nd District Duremudira."
 								imageSource={Duremudira}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Raviente"
 								description="The list of Evolution weapons and their upgrade tree, Raviente armor,  and a tutorial for slaying and supporting during a Raviente raid."
 								imageSource={BerserkRaviente}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Supremacy"
 								description="The list of supremacy monsters and how to beat them."
 								imageSource={SupremacyTeostra}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Conquest"
 								description="The list of conquest monsters and how to beat them; their materials and stats."
 								imageSource={ConquestFatalis7}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Shiten"
 								description="The list of shiten monsters and how to beat them; their sigils and stats."
 								imageSource={UNKNOWN}
@@ -222,25 +222,25 @@
 					<section>
 						<SectionHeading level={3} title="Weapons" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="An overview of each weapon type, their multipliers, the recommended weapons, skills and sigils to use with them."
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Critical Distance"
 								description="An explanation of ranged weapons' Critical Distance mechanic."
 								imageSource={HeavyBowgunIconWhite2}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Active Feature"
 								description="A list of each weapon's active feature."
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Sharpness"
 								description="A list of each sharpness multipliers."
 								imageSource={WhetstoneIconWhite}
@@ -251,25 +251,25 @@
 					<section>
 						<SectionHeading level={3} title="Armor" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Armor Colors"
 								description="The list of armor pigment colors and how to unlock them."
 								imageSource={HelmetIconWhite}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
@@ -280,25 +280,25 @@
 					<section>
 						<SectionHeading level={3} title="Quests" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
@@ -309,27 +309,27 @@
 					<section>
 						<SectionHeading level={3} title="Locations" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Guild Hall"
 								description="The various facilities of the Guild Hall explained: Guild Food, Guild Poogies, Guild Store, etc."
 								imageSource={LocationIcons.find((e) => e.name === 'Guild Hall')
 									?.icon}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Bento"
 								description="The various buffs provided by bentos summarized."
 								imageSource={LocationIcons.find((e) => e.name === 'Bento')
 									?.icon}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Hunter's Road"
 								description="The road skills list and how to upgrade them."
 								imageSource={LocationIcons.find((e) => e.name === 'Road')?.icon}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
@@ -340,25 +340,25 @@
 					<section>
 						<SectionHeading level={3} title="Items" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
@@ -369,7 +369,7 @@
 					<section>
 						<SectionHeading level={3} title="Events" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Diva Defense"
 								description="The Diva Prayer Gems list, Song of War Chapter, Interception, etc."
 								imageSource={LocationIcons.find(
@@ -377,19 +377,19 @@
 								)?.icon}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
@@ -401,25 +401,25 @@
 					<section>
 						<SectionHeading level={3} title="Caravan" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
@@ -430,25 +430,25 @@
 					<section>
 						<SectionHeading level={3} title="Advanced" />
 						<div class="container-tiles">
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
-							<ClickableTileBackgroundImage
+							<ClickableTileImage
 								title="Overview"
 								description="Description"
 								imageSource={GreatSwordRainbow}
@@ -511,6 +511,6 @@
 	.container-tiles {
 		display: grid;
 		gap: 0.5rem;
-		grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
 	}
 </style>
