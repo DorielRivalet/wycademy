@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run commitlint ${1}
+gitleaks detect -v && npm run commitlint ${1}

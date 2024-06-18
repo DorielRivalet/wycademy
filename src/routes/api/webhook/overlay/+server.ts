@@ -50,12 +50,17 @@ async function handleGitHubEvent(
 				error(500, 'Internal Server Error');
 			}
 
+			console.log(
+				`Modifying current latestRelease: ${JSON.stringify(latestRelease)}`,
+			);
+
 			latestRelease = {
 				tag_name: payload.release.tag_name,
 				published_at: payload.release.published_at,
 			};
 
 			console.log(`A release was released: ${gitHubEvent} ${action}`);
+			console.log(`New latest release: ${JSON.stringify(latestRelease)}`);
 		}
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
