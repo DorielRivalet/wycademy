@@ -26,21 +26,7 @@ async function sendDiscordNotification(release: {
 	console.log(`Description: ${description}`);
 
 	const discordMessage = {
-		content: null,
-		embeds: [
-			{
-				title: release.tag_name,
-				description: description,
-				url: `https://wycademy.vercel.app/overlay/release-notes/${version}`,
-				color: 9024762,
-				author: {
-					name: 'Wycademy',
-				},
-				thumbnail: {
-					url: 'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
-				},
-			},
-		],
+		content: `https://wycademy.vercel.app/overlay/release-notes/${version}`,
 		username: 'Overlay Updates',
 		avatar_url:
 			'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
