@@ -6,13 +6,10 @@ import {
 import { verify } from '@octokit/webhooks-methods';
 import { getReleaseNotesSummary } from '$lib/client/modules/overlay-release-notes';
 
-async function sendDiscordNotification(
-	release: {
-		tag_name: string;
-		published_at: string | null;
-	},
-	fetch: any,
-) {
+async function sendDiscordNotification(release: {
+	tag_name: string;
+	published_at: string | null;
+}) {
 	let attempts = 0;
 	const maxAttempts = 3; // Maximum number of retries
 	let waitTime = 1000; // Initial wait time in milliseconds
@@ -102,7 +99,6 @@ async function handleGitHubEvent(
 		};
 		action: string;
 	},
-	fetch: any,
 ) {
 	if (!gitHubEvent) {
 		console.log('GitHub event not found');
@@ -137,14 +133,14 @@ async function handleGitHubEvent(
 			};
 
 			// Await the completion of sendDiscordNotification
-			sendDiscordNotification(latestRelease, fetch);
+			sendDiscordNotification(latestRelease);
 		}
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
 	}
 }
 
-const handleWebhook = async (req: Request, fetch: any) => {
+const handleWebhook = async (req: Request) => {
 	const signature = req.headers.get('x-hub-signature-256');
 	if (!signature) {
 		error(401, 'Unauthorized');
@@ -159,11 +155,11 @@ const handleWebhook = async (req: Request, fetch: any) => {
 	const gitHubEvent = req.headers.get('x-github-event');
 	const payload = JSON.parse(body);
 
-	handleGitHubEvent(gitHubEvent, payload, fetch);
+	handleGitHubEvent(gitHubEvent, payload);
 
 	return new Response(null, { status: 200 });
 };
 
-export const POST: RequestHandler = async ({ request, fetch }) => {
-	return await handleWebhook(request, fetch);
+export const POST: RequestHandler = async ({ request }) => {
+	return await handleWebhook(request);
 };
