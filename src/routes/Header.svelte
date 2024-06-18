@@ -27,9 +27,9 @@
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import NotificationNew from 'carbon-icons-svelte/lib/NotificationNew.svelte';
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import {
+		notificationSeenStore,
 		notificationsStore,
 		overlayUpdatesStore,
 	} from '$lib/client/stores/notifications';
@@ -39,15 +39,15 @@
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	const newVersionAvailable = writable(false);
+	let newVersionAvailable = '';
 
 	async function checkForNewRelease() {
 		try {
 			const response = await fetch('/api/webhook/overlay');
 			const data = await response.json();
 			if (data && data.tag_name && data.tag_name !== overlayVersion) {
-				newVersionAvailable.set(true);
 				console.log(`New version available: ${JSON.stringify(data)}`);
+				newVersionAvailable = data.tag_name;
 			} else {
 				console.log(`No new version found: ${JSON.stringify(data)}`);
 			}
@@ -145,15 +145,18 @@
 				<div class="container-button">
 					<Button
 						kind="ghost"
-						iconDescription={$notificationsStore &&
+						iconDescription={!$notificationSeenStore &&
+						$notificationsStore &&
 						$overlayUpdatesStore &&
-						$newVersionAvailable
-							? 'New overlay version available'
+						newVersionAvailable !== ''
+							? `New overlay version available: ${newVersionAvailable}`
 							: 'Notifications'}
-						on:click={(e) => newVersionAvailable.set(false)}
+						on:click={() => {
+							notificationSeenStore.set(true);
+						}}
 					>
 						<span slot="icon">
-							{#if $notificationsStore && $overlayUpdatesStore && $newVersionAvailable}
+							{#if $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
 								<NotificationNew size={48} />
 							{:else}
 								<Notification size={48} />

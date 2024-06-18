@@ -11,6 +11,7 @@ import logo from '$lib/client/images/logo.webp';
 let pushNotificationsValue = false;
 let notificationsValue = false;
 let overlayUpdatesValue = false;
+let notificationSeenValue = false;
 
 if (browser) {
 	const localStoragePushNotificationsValue = window.localStorage.getItem(
@@ -33,15 +34,24 @@ if (browser) {
 	overlayUpdatesValue = localStorageOverlayUpdatesValue
 		? localStorageOverlayUpdatesValue === 'true'
 		: true;
+
+	const localStorageNotificationSeenValue = window.localStorage.getItem(
+		'notification-seen-enabled',
+	);
+	notificationSeenValue = localStorageNotificationSeenValue
+		? localStorageNotificationSeenValue === 'true'
+		: true;
 } else {
 	pushNotificationsValue = true;
 	notificationsValue = true;
 	overlayUpdatesValue = true;
+	notificationSeenValue = true;
 }
 
 export const pushNotificationsStore = writable(pushNotificationsValue);
 export const notificationsStore = writable(notificationsValue);
 export const overlayUpdatesStore = writable(overlayUpdatesValue);
+export const notificationSeenStore = writable(notificationSeenValue);
 
 export function onNotificationPress() {
 	if (!browser || !notificationsValue) return;

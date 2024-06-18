@@ -111,7 +111,6 @@
 		"@threlte/theatre": "^2.1.7",
 		"@types/three": "^0.165.0",
 		"alex": "^11.0.1",
-		"axios": "^1.7.2",
 		"carbon-components": "^11.58.0",
 		"ezlion": "^6.0.0",
 		"flexsearch": "^0.7.43",
