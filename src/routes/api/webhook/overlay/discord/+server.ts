@@ -22,7 +22,7 @@ async function sendDiscordNotification(release: {
 	console.log(`Description: ${description}`);
 
 	const discordMessage = {
-		content: `https://wycademy.vercel.app/overlay/release-notes/${version}`,
+		content: `https://wycademy.vercel.app/overlay/release-notes/latest`,
 		username: 'Overlay Updates',
 		avatar_url:
 			'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
