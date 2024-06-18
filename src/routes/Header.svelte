@@ -46,6 +46,11 @@
 		try {
 			const response = await fetch('/api/webhook/overlay');
 			const data = await response.json();
+
+			//TODO
+			console.log(data);
+			console.log(data?.tag_name);
+
 			if (data && data.tag_name && data.tag_name !== overlayVersion) {
 				console.log(`New version available: ${JSON.stringify(data)}`);
 				newVersionAvailable = data.tag_name;
