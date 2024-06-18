@@ -34,6 +34,7 @@
 		overlayUpdatesStore,
 	} from '$lib/client/stores/notifications';
 	import { overlayVersion } from '$lib/constants';
+	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
@@ -58,6 +59,11 @@
 
 	onMount(checkForNewRelease);
 </script>
+
+<LocalStorage
+	bind:value={$notificationSeenStore}
+	key="notification-seen-enabled"
+/>
 
 <header>
 	<div class="left">
