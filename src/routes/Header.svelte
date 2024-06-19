@@ -160,14 +160,14 @@
 						$notificationsStore &&
 						$overlayUpdatesStore &&
 						newVersionAvailable !== ''
-							? `New overlay version available: ${newVersionAvailable}`
+							? `New overlay version available')}`
 							: 'Notifications'}
 						on:click={() => {
 							notificationSeenStore.set(true);
 						}}
 					>
 						<span slot="icon">
-							{#if $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
+							{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
 								<NotificationNew size={48} />
 							{:else}
 								<Notification size={48} />
