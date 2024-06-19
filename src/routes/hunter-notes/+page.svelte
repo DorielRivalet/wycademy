@@ -115,7 +115,6 @@
 	<div class="banner">
 		<InlineNotification
 			lowContrast
-			on:close={() => close()}
 			kind="warning"
 			title="Status:"
 			subtitle="This site is currently in {developmentStage}."
