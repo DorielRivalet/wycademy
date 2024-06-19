@@ -146,7 +146,7 @@ import ShotIconWhite from '$lib/client/components/frontier/icon/item/Shot_Icon_W
 import SmokeIconWhite from '$lib/client/components/frontier/icon/item/Smoke_Icon_White.svelte';
 import SteakIconWhite from '$lib/client/components/frontier/icon/item/Steak_Icon_White.svelte';
 import StreamstoneIconWhite from '$lib/client/components/frontier/icon/item/Streamstone_Icon_White.svelte';
-
+import SwordCrystalIconWhite from '$lib/client/components/frontier/icon/item/SwordCrystal.svelte';
 import TailIconWhite from '$lib/client/components/frontier/icon/item/Tail_Icon_White.svelte';
 import TalismanIconWhite from '$lib/client/components/frontier/icon/item/Talisman_Icon_White.svelte';
 import TicketIconWhite from '$lib/client/components/frontier/icon/item/Ticket_Icon_White.svelte';
@@ -1765,6 +1765,10 @@ export const itemInfo: { name: string; icon: any }[] = [
 	{
 		name: 'Streamstone',
 		icon: StreamstoneIconWhite,
+	},
+	{
+		name: 'Sword Crystal',
+		icon: SwordCrystalIconWhite,
 	},
 	{
 		name: 'Tail',
