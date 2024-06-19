@@ -22,7 +22,7 @@
 	import { stringReplacements } from '$lib/client/modules/frontier/functions';
 	import GRankEquipmentIcon from './icon/GRankEquipmentIcon.svelte';
 	import ZenithEquipmentIcon from './icon/ZenithEquipmentIcon2.svelte';
-	import { ItemIcons } from '$lib/client/modules/frontier/objects';
+	import { itemInfo } from '$lib/client/modules/frontier/objects';
 	import TowerEquipmentIcon from './icon/TowerEquipmentIcon.svelte';
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
 	import { browser } from '$app/environment';
@@ -138,7 +138,7 @@
 	$: rarityColor = stringReplacements.colorFromRarity(rarity);
 	$: maxPages = itemType === 'Other' || itemType === 'Sigil' ? 1 : 3;
 	$: icon =
-		ItemIcons.find((item) => item.name === iconName)?.icon ??
+		itemInfo.find((item) => item.name === iconName)?.icon ??
 		QuestionMarkIconWhite;
 
 	$: iconProps = {

@@ -8,7 +8,7 @@
 		Habitats,
 		HuntingHornWeaponNotesCombinations,
 		ItemColors,
-		ItemIcons,
+		itemInfo,
 		LocationIcons,
 		monsterInfo,
 		RarityColors,
@@ -30,6 +30,7 @@
 	import slugify from 'slugify';
 	import {
 		frontierMappers,
+		getItemIcon,
 		getTag,
 		getUniqueMonsters,
 		getWeaponIcon,
@@ -447,9 +448,9 @@
 		return array;
 	}
 
-	function getItemIcons() {
+	function getitemInfo() {
 		let array: dropdownItem[] = [];
-		ItemIcons.forEach((element, i) => {
+		itemInfo.forEach((element, i) => {
 			array = [...array, { id: element.name, text: element.name }];
 		});
 		return array;
@@ -896,7 +897,7 @@
 				list = ArmorTypes;
 				break;
 			case 'Item':
-				list = ItemIcons;
+				list = itemInfo;
 				break;
 			case 'Monster Icon':
 			case 'Monster Render':
@@ -973,7 +974,7 @@
 				list = ArmorTypes;
 				break;
 			case 'Item':
-				list = ItemIcons;
+				list = itemInfo;
 				break;
 			case 'Monster Icon':
 			case 'Monster Render':
@@ -1066,8 +1067,8 @@
 				};
 			case 'Item':
 				return {
-					component: ItemIcons.find((e) => e.name === selectionID)?.icon,
-					image: ItemIcons.find((e) => e.name === selectionID)?.icon,
+					component: itemInfo.find((e) => e.name === selectionID)?.icon,
+					image: itemInfo.find((e) => e.name === selectionID)?.icon,
 				};
 			case 'Location':
 				return {
@@ -2809,7 +2810,7 @@
 			tooltip="Weapon"
 		/> and <InlineTooltip
 			text="Items"
-			icon={ItemIcons[0].icon}
+			icon={getItemIcon('Mantle')}
 			tooltip="Item"
 		/>. Additionally, you can download the icons themselves and make thumbnails
 		for your videos.
@@ -4900,7 +4901,7 @@
 					type="inline"
 					hideLabel
 					bind:selectedId={itemIconName}
-					items={getItemIcons()}
+					items={getitemInfo()}
 				/>
 				<Dropdown
 					titleText="Item Color"
@@ -5221,7 +5222,7 @@
 			In order to remove a Tower Decoration, you need to buy a <InlineTooltip
 				tooltip={'Item'}
 				text="Twr Removal Solution"
-				icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+				icon={getItemIcon('Medicine')}
 			/>.
 		</p>
 
@@ -5234,7 +5235,7 @@
 			/>. Alternatively, you can replace them directly at the cost of losing the
 			previously slotted decoration. A <InlineTooltip
 				tooltip="Item"
-				icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+				icon={getItemIcon('Medicine')}
 				text="Pulsating Liquid"
 			/> lets you adjust the properties of Tower Hunting Horns, Bows, Bowguns and
 			Gunlances.
@@ -5685,7 +5686,7 @@
 					<InlineTooltip
 						tooltip="Item"
 						text={`${towerWeaponTotalGems.courage} Courage Gems`}
-						icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
+						icon={getItemIcon('Ball')}
 						iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
 						iconSize={'clamp(1rem, 2vw, 2rem)'}
 					/>
@@ -5694,7 +5695,7 @@
 					<InlineTooltip
 						tooltip="Item"
 						text={`${towerWeaponTotalGems.glittering} Glittering Gems`}
-						icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
+						icon={getItemIcon('Ball')}
 						iconColor={RarityColors[5]}
 						iconSize={'clamp(1rem, 2vw, 2rem)'}
 					/>
@@ -5703,7 +5704,7 @@
 					<InlineTooltip
 						tooltip="Item"
 						text={`${towerWeaponTotalGems.divine} Divine Gems`}
-						icon={ItemIcons.find((e) => e.name === 'Ball')?.icon}
+						icon={getItemIcon('Ball')}
 						iconColor={RarityColors[3]}
 						iconSize={'clamp(1rem, 2vw, 2rem)'}
 					/>
@@ -5715,7 +5716,7 @@
 						tooltip={'Stat'}
 						text={`${towerWeaponAttackValue} Attack (${towerWeaponAttackIndex !== towerWeaponSelected.attack.length - 1 ? towerWeaponAttackIndex : 'MAX'})`}
 						iconSize={'clamp(1rem, 2vw, 2rem)'}
-						icon={ItemIcons.find((e) => e.name === 'Knife')?.icon}
+						icon={getItemIcon('Knife')}
 						iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
 					/>
 				</p>
@@ -5763,7 +5764,7 @@
 							tooltip={'Stat'}
 							text={`${towerWeaponAffinityValue}% Affinity (${towerWeaponAffinityIndex !== towerWeaponSelected.affinity.length - 1 ? towerWeaponAffinityIndex : 'MAX'})`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={ItemIcons.find((e) => e.name === 'Knife')?.icon}
+							icon={getItemIcon('Knife')}
 							iconColor={ItemColors.find((e) => e.name === 'Cyan')?.value}
 						/>
 					</p>
@@ -5775,7 +5776,7 @@
 							text={`Sharpness LV${towerWeaponSharpnessIndex !== towerWeaponSelectedSeriesInfo.sharpnessLevels.length - 1 ? towerWeaponSharpnessIndex : ' MAX'}`}
 							iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={ItemIcons.find((e) => e.name === 'Whetstone')?.icon}
+							icon={getItemIcon('Whetstone')}
 						/>
 					</p>
 				{/if}
@@ -5795,7 +5796,7 @@
 							tooltip={'Stat'}
 							text={`${towerWeaponReloadSpeedValue} Reload`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={ItemIcons.find((e) => e.name === 'Shot')?.icon}
+							icon={getItemIcon('Shot')}
 						/>
 					</p>
 				{/if}
@@ -5805,7 +5806,7 @@
 							tooltip={'Stat'}
 							text={`${towerWeaponRecoilValue} Recoil`}
 							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={ItemIcons.find((e) => e.name === 'Shot')?.icon}
+							icon={getItemIcon('Shot')}
 						/>
 					</p>
 				{/if}

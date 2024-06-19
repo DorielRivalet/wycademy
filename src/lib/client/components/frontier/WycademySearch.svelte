@@ -10,13 +10,14 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
-	import { ArmorTypes, ItemIcons } from '$lib/client/modules/frontier/objects';
+	import { ArmorTypes } from '$lib/client/modules/frontier/objects';
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
 	import InlineTooltip from './InlineTooltip.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import RecentlyViewed from 'carbon-icons-svelte/lib/RecentlyViewed.svelte';
 	import TrashCan from 'carbon-icons-svelte/lib/TrashCan.svelte';
 	import { browser } from '$app/environment';
+	import { getItemIcon } from '$lib/client/modules/frontier/functions';
 
 	let search: 'idle' | 'load' | 'ready' = 'idle';
 	let searchTerm = '';
@@ -27,7 +28,7 @@
 	const categoryIcons: { name: SearchItemCategory; icon: any }[] = [
 		{
 			name: 'Monster',
-			icon: ItemIcons.find((e) => e.name === 'Monster Part')?.icon,
+			icon: getItemIcon('Monster Part'),
 		},
 		{
 			name: 'Armor',
@@ -35,23 +36,23 @@
 		},
 		{
 			name: 'Skill',
-			icon: ItemIcons.find((e) => e.name === 'Jewel')?.icon,
+			icon: getItemIcon('Jewel'),
 		},
 		{
 			name: 'Sigil',
-			icon: ItemIcons.find((e) => e.name === 'Sigil')?.icon,
+			icon: getItemIcon('Sigil'),
 		},
 		{
 			name: 'Item',
-			icon: ItemIcons.find((e) => e.name === 'Ticket')?.icon,
+			icon: getItemIcon('Ticket'),
 		},
 		{
 			name: 'Overview',
-			icon: ItemIcons.find((e) => e.name === 'Book')?.icon,
+			icon: getItemIcon('Book'),
 		},
 		{
 			name: 'Weapon',
-			icon: ItemIcons.find((e) => e.name === 'Whetstone')?.icon,
+			icon: getItemIcon('Whetstone'),
 		},
 		{
 			name: 'User',
@@ -59,11 +60,11 @@
 		},
 		{
 			name: 'Other',
-			icon: ItemIcons.find((e) => e.name === 'Question Mark')?.icon,
+			icon: getItemIcon('Question Mark'),
 		},
 		{
 			name: 'All',
-			icon: ItemIcons.find((e) => e.name === 'Mantle')?.icon,
+			icon: getItemIcon('Mantle'),
 		},
 	];
 

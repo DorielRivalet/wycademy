@@ -7,6 +7,7 @@ export const prerender = true;
 
 type PossibleArrays = FrontierMonsterInfo;
 
+// TODO should this be here or not?
 const pageInfo: SearchItem[] = [
 	{
 		title: 'Smithy',
