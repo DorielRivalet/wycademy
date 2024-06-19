@@ -56,7 +56,6 @@
 					text="Dual Swords"
 				/> users, read below to see why!
 			</p>
-			<p class="spaced-paragraph"></p>
 		</div>
 		<section>
 			<h2>New Features</h2>
