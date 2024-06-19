@@ -19,7 +19,7 @@
 		gameInfo,
 		Habitats,
 		ItemColors,
-		ItemIcons,
+		itemInfo,
 		LocationIcons,
 		monsterInfo,
 		RarityColors,
@@ -98,8 +98,8 @@
 				};
 			case 'Item':
 				return {
-					component: ItemIcons.find((e) => e.name === selectionID)?.icon,
-					image: ItemIcons.find((e) => e.name === selectionID)?.icon,
+					component: itemInfo.find((e) => e.name === selectionID)?.icon,
+					image: itemInfo.find((e) => e.name === selectionID)?.icon,
 				};
 			case 'Location':
 				return {

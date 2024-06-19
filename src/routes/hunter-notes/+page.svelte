@@ -46,7 +46,6 @@
 	import StygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
 	import YamaKurai2 from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
 	import BurningFreezingElzelion2 from '$lib/client/components/frontier/icon/monster/BurningFreezingElzelion2.svelte';
-	import HeavyBowgunIconWhite2 from '$lib/client/components/frontier/icon/weapon/Heavy_Bowgun_Icon_White2.svelte';
 	import WhetstoneIconWhite from '$lib/client/components/frontier/icon/item/Whetstone_Icon_White.svelte';
 	import Duremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
 	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
@@ -55,6 +54,17 @@
 	import ConquestFatalis7 from '$lib/client/components/frontier/icon/monster/ConquestFatalis7.svelte';
 	import UNKNOWN from '$lib/client/images/monster/shiten_unknown.webp';
 	import BerserkRaviente from '$lib/client/components/frontier/icon/monster/BerserkRaviente.svelte';
+	import MapIconWhite from '$lib/client/components/frontier/icon/item/Map_Icon_White.svelte';
+	import SacIconWhite from '$lib/client/components/frontier/icon/item/Sac_Icon_White.svelte';
+	import MedicineIconWhite from '$lib/client/components/frontier/icon/item/Medicine_Icon_White.svelte';
+	import BallIconWhite from '$lib/client/components/frontier/icon/item/Ball_Icon_White.svelte';
+	import Zerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';
+	import ShotIconWhite from '$lib/client/components/frontier/icon/item/Shot_Icon_White.svelte';
+	import TrapToolIconWhite from '$lib/client/components/frontier/icon/item/Trap_Tool_Icon_White.svelte';
+	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
+
+	//TODO svg: mezfes, caravan, festi, transcend, etc
+	//TODO animated webp: weapons, armors, items, monsters, locations, events, helmet rainbow, etc.
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -176,15 +186,15 @@
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Musou"
-								description="The list of musou monsters and how to beat them."
-								imageSource={BurningFreezingElzelion2}
+								title="Burst"
+								description="The list of burst monsters."
+								imageSource={Zerureusu}
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Zenith"
-								description="The list of zenith monsters and how to beat them."
-								imageSource={Bogabadorumu6}
+								title="Supremacy"
+								description="The list of supremacy monsters and how to beat them."
+								imageSource={SupremacyTeostra}
 								href="/"
 							/>
 							<ClickableTileImage
@@ -194,17 +204,19 @@
 								href="/"
 							/>
 							<ClickableTileImage
+								title="Zenith"
+								description="The list of zenith monsters and how to beat them; their gear and skills."
+								imageSource={Bogabadorumu6}
+								href="/"
+							/>
+
+							<ClickableTileImage
 								title="Raviente"
 								description="The list of Evolution weapons and their upgrade tree, Raviente armor,  and a tutorial for slaying and supporting during a Raviente raid."
 								imageSource={BerserkRaviente}
 								href="/"
 							/>
-							<ClickableTileImage
-								title="Supremacy"
-								description="The list of supremacy monsters and how to beat them."
-								imageSource={SupremacyTeostra}
-								href="/"
-							/>
+
 							<ClickableTileImage
 								title="Conquest"
 								description="The list of conquest monsters and how to beat them; their materials and stats."
@@ -215,6 +227,12 @@
 								title="Shiten"
 								description="The list of shiten monsters and how to beat them; their sigils and stats."
 								imageSource={UNKNOWN}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Musou"
+								description="The list of musou monsters and how to beat them."
+								imageSource={BurningFreezingElzelion2}
 								href="/"
 							/>
 						</div>
@@ -231,7 +249,7 @@
 							<ClickableTileImage
 								title="Critical Distance"
 								description="An explanation of ranged weapons' Critical Distance mechanic."
-								imageSource={HeavyBowgunIconWhite2}
+								imageSource={ShotIconWhite}
 								href="/"
 							/>
 							<ClickableTileImage
@@ -330,9 +348,16 @@
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
+								title="Gathering Maps"
+								description="The various gathering spots for all locations of the game."
+								imageSource={MapIconWhite}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Caravan"
+								description="Caravan gem, skills, colors, etc."
+								imageSource={LocationIcons.find((e) => e.name === 'Caravan')
+									?.icon}
 								href="/"
 							/>
 						</div>
@@ -341,9 +366,9 @@
 						<SectionHeading level={3} title="Items" />
 						<div class="container-tiles">
 							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
+								title="Item Box"
+								description="Item Box capacity, presets and combinations."
+								imageSource={TrapToolIconWhite}
 								href="/"
 							/>
 							<ClickableTileImage
@@ -378,45 +403,17 @@
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Overview"
+								title="Hunter Festival"
 								description="Description"
-								imageSource={GreatSwordRainbow}
+								imageSource={LocationIcons.find((e) => e.name === 'Festi')
+									?.icon}
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Overview"
+								title="Mezeporta Festival"
 								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-						</div>
-					</section>
-
-					<section>
-						<SectionHeading level={3} title="Caravan" />
-						<div class="container-tiles">
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
+								imageSource={LocationIcons.find((e) => e.name === 'Mezfes')
+									?.icon}
 								href="/"
 							/>
 							<ClickableTileImage
@@ -431,27 +428,27 @@
 						<SectionHeading level={3} title="Advanced" />
 						<div class="container-tiles">
 							<ClickableTileImage
-								title="Overview"
-								description="Description"
+								title="Item Sets"
+								description="The best item sets and how to obtain each item."
+								imageSource={MedicineIconWhite}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Item Interactions"
+								description="Specific item inteactions explained in greater detail."
+								imageSource={BallIconWhite}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Mechanics"
+								description="Various advanced mechanics of the game explained in great detail."
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
+								title="Skills"
+								description="An overview of specific skill interactions, and which ones to use."
+								imageSource={JewelIconWhite}
 								href="/"
 							/>
 						</div>

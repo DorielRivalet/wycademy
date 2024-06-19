@@ -21,6 +21,7 @@ import {
 	ArmorTypes,
 	divaPrayerGemColors,
 	ItemColors,
+	itemInfo,
 	monsterInfo,
 	tagInfo,
 	unlistedMonsterNames,
@@ -109,6 +110,17 @@ export function getMonsterIcon(monsterName: FrontierMonsterNameExpanded) {
 	}
 
 	return found.component;
+}
+
+export function getItemIcon(iconName: string) {
+	const icon = itemInfo[5].icon;
+
+	const found = itemInfo.find((w) => w.name === iconName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.icon;
 }
 
 export const frontierMappers = {

@@ -2,7 +2,6 @@
 	import {
 		HuntingHornWeaponNotesCombinations, // TODO in hunter notes
 		ItemColors,
-		ItemIcons,
 		weaponMotionValues,
 		sharedWeaponMotionValues,
 		sigilDropdownItems,
@@ -93,6 +92,7 @@
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import {
 		getDivaPrayerGemColor,
+		getItemIcon,
 		getMonster,
 		getTag,
 		getWeaponIcon,
@@ -11731,7 +11731,7 @@ does not get multiplied by horn */
 					text="Pugi Crackers"
 					tooltip="Item"
 					iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
-					icon={ItemIcons.find((e) => e.name === 'Scale')?.icon}
+					icon={getItemIcon('Scale')}
 				/> from the Guild Shop.
 			</p>
 
@@ -12756,7 +12756,7 @@ does not get multiplied by horn */
 				standard Zeny or <InlineTooltip
 					text="Guild Tickets"
 					tooltip="Item"
-					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
+					icon={getItemIcon('Ticket')}
 					iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 				/>, while the Adventure Boat relies on RNG with rare items needing
 				materials from the <InlineTooltip
@@ -12783,7 +12783,7 @@ does not get multiplied by horn */
 				be increased by using <InlineTooltip
 					text="Guild Tickets"
 					tooltip="Item"
-					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
+					icon={getItemIcon('Ticket')}
 					iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 				/> through the NPC on land after the boat departs.
 			</p>
@@ -12798,12 +12798,12 @@ does not get multiplied by horn */
 				<InlineTooltip
 					text="Guild Tickets"
 					tooltip="Item"
-					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
+					icon={getItemIcon('Ticket')}
 					iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 				/>, and six <InlineTooltip
 					text="Guild Ticket"
 					tooltip="Item"
-					icon={ItemIcons.find((e) => e.name === 'Ticket')?.icon}
+					icon={getItemIcon('Ticket')}
 					iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 				/> options that alter the results and minigame functions.
 			</p>
@@ -12916,7 +12916,7 @@ does not get multiplied by horn */
 								text="Spirit Mushrooms"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Orange')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Mushroom')?.icon}
+								icon={getItemIcon('Mushroom')}
 							/>
 						</ListItem>
 						<ListItem>
@@ -12924,7 +12924,7 @@ does not get multiplied by horn */
 								text="Frost Tomatoes"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Vegetable')?.icon}
+								icon={getItemIcon('Vegetable')}
 							/>
 						</ListItem>
 						<ListItem>
@@ -12932,7 +12932,7 @@ does not get multiplied by horn */
 								text="Poogie Crackers"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Scale')?.icon}
+								icon={getItemIcon('Scale')}
 							/>
 						</ListItem>
 					</UnorderedList>
@@ -12943,7 +12943,7 @@ does not get multiplied by horn */
 								text="Hot Oil"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+								icon={getItemIcon('Medicine')}
 							/>
 						</ListItem>
 						<ListItem>
@@ -12951,14 +12951,14 @@ does not get multiplied by horn */
 								text="Power Lard"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+								icon={getItemIcon('Medicine')}
 							/>
 						</ListItem>
 						<ListItem>
 							<InlineTooltip
 								text="Fist Rice"
 								tooltip="Item"
-								icon={ItemIcons.find((e) => e.name === 'Seed')?.icon}
+								icon={getItemIcon('Seed')}
 							/>
 						</ListItem>
 						<ListItem>
@@ -12966,7 +12966,7 @@ does not get multiplied by horn */
 								text="Pepper Bug"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Blue')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Bug')?.icon}
+								icon={getItemIcon('Bug')}
 							/>
 						</ListItem>
 						<ListItem>
@@ -12974,7 +12974,7 @@ does not get multiplied by horn */
 								text="Round Egg"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Egg')?.icon}
+								icon={getItemIcon('Egg')}
 							/>
 						</ListItem>
 						<ListItem>
@@ -12982,7 +12982,7 @@ does not get multiplied by horn */
 								text="Predator Honey (Rarely Available)"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+								icon={getItemIcon('Medicine')}
 							/>
 						</ListItem>
 					</UnorderedList>
@@ -12992,7 +12992,7 @@ does not get multiplied by horn */
 							<InlineTooltip
 								text="Ancient Bean"
 								tooltip="Item"
-								icon={ItemIcons.find((e) => e.name === 'Seed')?.icon}
+								icon={getItemIcon('Seed')}
 							/>
 						</ListItem>
 						<ListItem>
@@ -13000,7 +13000,7 @@ does not get multiplied by horn */
 								text="Gold Extract"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+								icon={getItemIcon('Medicine')}
 							/>
 						</ListItem>
 					</UnorderedList>
@@ -13011,7 +13011,7 @@ does not get multiplied by horn */
 								text="Predator Honey"
 								tooltip="Item"
 								iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
-								icon={ItemIcons.find((e) => e.name === 'Medicine')?.icon}
+								icon={getItemIcon('Medicine')}
 							/>
 						</ListItem>
 					</UnorderedList>
