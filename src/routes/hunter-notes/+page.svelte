@@ -42,11 +42,9 @@
 	import GreatSwordRainbow from '$lib/client/images/weapon/gs_rainbow.gif';
 	import ExtremeFireblight from '$lib/client/components/frontier/icon/ailment/ExtremeFireblight.svelte';
 	import ExtremeParalysis from '$lib/client/components/frontier/icon/ailment/ExtremeParalysis.svelte';
-	import HelmetIconWhite from '$lib/client/components/frontier/icon/armor/Helmet_Icon_White.svelte';
 	import StygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
 	import YamaKurai2 from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
 	import BurningFreezingElzelion2 from '$lib/client/components/frontier/icon/monster/BurningFreezingElzelion2.svelte';
-	import WhetstoneIconWhite from '$lib/client/components/frontier/icon/item/Whetstone_Icon_White.svelte';
 	import Duremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
 	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 	import Bogabadorumu6 from '$lib/client/components/frontier/icon/monster/Bogabadorumu6.svelte';
@@ -62,9 +60,14 @@
 	import ShotIconWhite from '$lib/client/components/frontier/icon/item/Shot_Icon_White.svelte';
 	import TrapToolIconWhite from '$lib/client/components/frontier/icon/item/Trap_Tool_Icon_White.svelte';
 	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
+	import Logo from '$lib/client/images/logo.svg';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/functions';
+	import AkuraJebia2 from '$lib/client/components/frontier/icon/monster/AkuraJebia2.svelte';
+	import AllWeapons from '$lib/client/components/frontier/icon/weapon/AllWeapons.svelte';
+	import AllArmors from '$lib/client/components/frontier/icon/armor/AllArmors.svelte';
 
 	//TODO svg: mezfes, caravan, festi, transcend, etc
-	//TODO animated webp: weapons, armors, items, monsters, locations, events, helmet rainbow, etc.
+	//TODO animated webp: items, monsters, locations, events, etc.
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -168,6 +171,13 @@
 								imageSource={ExtremeParalysis}
 								href="/"
 							/>
+							<ClickableTileImage
+								title="Transcend"
+								description="Learn how to upgrade transcend and see a list of burst effects."
+								imageSource={LocationIcons.find((e) => e.name === 'Transcend')
+									?.icon}
+								href="/"
+							/>
 						</div>
 					</section>
 					<section>
@@ -230,6 +240,12 @@
 								href="/"
 							/>
 							<ClickableTileImage
+								title="Unlimited"
+								description="The list of unlimited (UL) monsters and their rewards upon hunting them."
+								imageSource={AkuraJebia2}
+								href="/"
+							/>
+							<ClickableTileImage
 								title="Musou"
 								description="The list of musou monsters and how to beat them."
 								imageSource={BurningFreezingElzelion2}
@@ -242,8 +258,8 @@
 						<div class="container-tiles">
 							<ClickableTileImage
 								title="Overview"
-								description="An overview of each weapon type, their multipliers, the recommended weapons, skills and sigils to use with them."
-								imageSource={GreatSwordRainbow}
+								description="An overview of each weapon type, their multipliers (including sharpness), recommended weapons, skills and sigils."
+								imageSource={AllWeapons}
 								href="/"
 							/>
 							<ClickableTileImage
@@ -255,13 +271,13 @@
 							<ClickableTileImage
 								title="Active Feature"
 								description="A list of each weapon's active feature."
-								imageSource={GreatSwordRainbow}
+								imageSource={AllWeapons}
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Sharpness"
-								description="A list of each sharpness multipliers."
-								imageSource={WhetstoneIconWhite}
+								title="Hunting Horn Songs"
+								description="A list of hunting horn songs."
+								imageSource={getWeaponIcon('Hunting Horn')}
 								href="/"
 							/>
 						</div>
@@ -270,56 +286,27 @@
 						<SectionHeading level={3} title="Armor" />
 						<div class="container-tiles">
 							<ClickableTileImage
-								title="Armor Colors"
+								title="Overview"
+								description="An overview of armor types."
+								imageSource={AllArmors}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Skills"
+								description="The list of armor skills, including zenith skills."
+								imageSource={JewelIconWhite}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Colors"
 								description="The list of armor pigment colors and how to unlock them."
-								imageSource={HelmetIconWhite}
+								imageSource={AllArmors}
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-						</div>
-					</section>
-					<section>
-						<SectionHeading level={3} title="Quests" />
-						<div class="container-tiles">
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
+								title="Transmog"
+								description="How to unlock transmog."
+								imageSource={AllArmors}
 								href="/"
 							/>
 						</div>
@@ -327,6 +314,13 @@
 					<section>
 						<SectionHeading level={3} title="Locations" />
 						<div class="container-tiles">
+							<ClickableTileImage
+								title="Mezeporta Square"
+								description="List of NPC available at Mezeporta Square."
+								imageSource={LocationIcons.find((e) => e.name === 'Mezeporta')
+									?.icon}
+								href="/"
+							/>
 							<ClickableTileImage
 								title="Guild Hall"
 								description="The various facilities of the Guild Hall explained: Guild Food, Guild Poogies, Guild Store, etc."
@@ -360,6 +354,77 @@
 									?.icon}
 								href="/"
 							/>
+							<ClickableTileImage
+								title="Blacksmith"
+								description="List of NPC available at the Blacksmith."
+								imageSource={LocationIcons.find((e) => e.name === 'Blacksmith')
+									?.icon}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Diva Fountain"
+								description="See how to complete the Diva questline in order to earn various rewards."
+								imageSource={LocationIcons.find(
+									(e) => e.name === 'Diva Fountain',
+								)?.icon}
+								href="/"
+							/>
+
+							<ClickableTileImage
+								title="My House"
+								description="List of various options available in My House."
+								imageSource={LocationIcons.find((e) => e.name === 'My House')
+									?.icon}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="My Gallery"
+								description="List of various options available in My Gallery."
+								imageSource={LocationIcons.find((e) => e.name === 'My Gallery')
+									?.icon}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="My Garden"
+								description="List of various options available in My Garden."
+								imageSource={LocationIcons.find((e) => e.name === 'My Garden')
+									?.icon}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="My Missions"
+								description="List of various options available in My Missions."
+								imageSource={LocationIcons.find((e) => e.name === 'My Missions')
+									?.icon}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="My Support"
+								description="List of various options available in My Support."
+								imageSource={LocationIcons.find((e) => e.name === 'My Support')
+									?.icon}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="My Tore"
+								description="List of various options available in My Tore."
+								imageSource={LocationIcons.find((e) => e.name === 'My Tore')
+									?.icon}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Rasta Bar"
+								description="List of various options available in the Rasta Bar."
+								imageSource={LocationIcons.find((e) => e.name === 'Rasta Bar')
+									?.icon}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Tent"
+								description="List of various options available in the Tent."
+								imageSource={LocationIcons.find((e) => e.name === 'Tent')?.icon}
+								href="/"
+							/>
 						</div>
 					</section>
 					<section>
@@ -372,21 +437,27 @@
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Overview"
-								description="Description"
+								title="Decorations"
+								description="A list of decoration types."
+								imageSource={JewelIconWhite}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Armor Spheres"
+								description="List of armor spheres."
+								imageSource={BallIconWhite}
+								href="/"
+							/>
+							<ClickableTileImage
+								title="Special Items"
+								description="List of items that are unique to Frontier or adjust the quest rewards."
 								imageSource={GreatSwordRainbow}
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
-								href="/"
-							/>
-							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
+								title="Medal Trades"
+								description="List of items obtained by exchanging medals."
+								imageSource={SacIconWhite}
 								href="/"
 							/>
 						</div>
@@ -404,22 +475,22 @@
 							/>
 							<ClickableTileImage
 								title="Hunter Festival"
-								description="Description"
+								description="Hunting Competition, Soul gathering and Winner's Week information."
 								imageSource={LocationIcons.find((e) => e.name === 'Festi')
 									?.icon}
 								href="/"
 							/>
 							<ClickableTileImage
 								title="Mezeporta Festival"
-								description="Description"
+								description="A list of minigames available during the festival's duration, with tips to get a highscore."
 								imageSource={LocationIcons.find((e) => e.name === 'Mezfes')
 									?.icon}
 								href="/"
 							/>
 							<ClickableTileImage
-								title="Overview"
-								description="Description"
-								imageSource={GreatSwordRainbow}
+								title="Wycademy's Events"
+								description="Information about time-limited events hosted by Wycademy's developers."
+								imageSource={Logo}
 								href="/"
 							/>
 						</div>
@@ -442,7 +513,8 @@
 							<ClickableTileImage
 								title="Mechanics"
 								description="Various advanced mechanics of the game explained in great detail."
-								imageSource={GreatSwordRainbow}
+								imageSource={LocationIcons.find((e) => e.name === 'Blacksmith')
+									?.icon}
 								href="/"
 							/>
 							<ClickableTileImage
