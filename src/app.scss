@@ -344,3 +344,11 @@ body.wait * {
 	padding: 0.5rem;
 	line-height: 2em;
 }
+
+.bx--list__item a {
+	color: var(--ctp-blue);
+}
+
+.bx--list__item > a:hover {
+	color: var(--ctp-sky);
+}

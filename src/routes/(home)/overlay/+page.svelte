@@ -438,6 +438,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		padding-top: 2rem;
 	}
 
+	/*https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix*/
 	hr {
 		opacity: 1;
 		width: 100%;
@@ -445,7 +446,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		height: 1px;
 		background: radial-gradient(
 			circle,
-			rgba(0, 0, 0, 0.5) 0%,
+			color-mix(in srgb, var(--ctp-blue), transparent 50%) 0%,
 			rgba(0, 0, 0, 0) 50%
 		);
 	}
