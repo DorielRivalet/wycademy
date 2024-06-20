@@ -153,43 +153,35 @@
 		{/if}
 		{#if $breakpointLargerThanSmall}
 			<div class="container-button">
-				<Button
-					kind="ghost"
-					iconDescription={!$notificationSeenStore &&
+				<Link
+					on:click={() => {
+						notificationSeenStore.set(true);
+					}}
+					title={!$notificationSeenStore &&
 					$notificationsStore &&
 					$overlayUpdatesStore &&
 					newVersionAvailable !== ''
 						? `New overlay version available')}`
-						: 'Notifications'}
-					on:click={() => {
-						notificationSeenStore.set(true);
-					}}
+						: 'You have no unread notifications'}
+					href="/notifications"
 				>
-					<span slot="icon">
-						{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
-							<NotificationNew size={48} />
-						{:else}
-							<Notification size={48} />
-						{/if}
-					</span>
-				</Button>
+					{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
+						<NotificationNew size={48} color="var(--ctp-peach)" />
+					{:else}
+						<Notification size={48} color="var(--ctp-text)" />
+					{/if}
+				</Link>
 			</div>
-			<div class="container-button">
-				<Button
-					kind="ghost"
-					iconDescription={'Profile'}
-					on:click={(e) => console.log('Profile')}
-				>
-					<span slot="icon">
-						<UserAvatar size={48} />
-					</span>
-				</Button>
-			</div>
+			<Button
+				kind="ghost"
+				size="field"
+				iconDescription={'Profile'}
+				on:click={(e) => console.log('Profile')}
+				><UserAvatar slot="icon" size={48} color="var(--ctp-text)" /></Button
+			>
 			<div class="container-link">
 				<Link title="Site Preferences" href="/site-preferences">
-					<span slot="icon">
-						<Settings size={48} />
-					</span>
+					<Settings size={48} color="var(--ctp-text)" />
 				</Link>
 			</div>
 		{/if}

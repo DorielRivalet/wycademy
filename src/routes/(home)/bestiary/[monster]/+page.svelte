@@ -195,7 +195,7 @@
 						<strong>Generation: </strong>{monster.generation}
 					</p>
 				</div>
-				<div>
+				<div class="habitats">
 					<p>
 						<strong>Habitats: </strong>
 						{#if monster.habitats && monster.habitats.length > 0}
@@ -209,7 +209,7 @@
 						{/if}
 					</p>
 				</div>
-				<div>
+				<div class="related-monsters">
 					<p>
 						<strong>Related Monsters: </strong>
 					</p>
@@ -272,12 +272,20 @@
 {/if}
 
 <style lang="scss">
+	.container {
+		padding-top: 1rem;
+		padding-bottom: 2rem;
+		width: 90%;
+		margin: auto;
+	}
+
 	.not-found-container {
 		display: flex;
 		gap: 1rem;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		padding: 2rem;
 	}
 
 	.monster-icon {
@@ -305,5 +313,11 @@
 		flex-direction: column;
 		gap: 1rem;
 		flex-wrap: wrap;
+	}
+
+	.habitats,
+	.related-monsters {
+		max-height: 80vh;
+		overflow-y: auto;
 	}
 </style>

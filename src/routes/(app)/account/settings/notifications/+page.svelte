@@ -14,6 +14,12 @@
 	<p>
 		Select the push notifications and bell notifications you want to receive.
 	</p>
+	<p>
+		The settings shown here are for notifications related to accounts. To modify
+		the global notifications see the <Link href="/site-preferences"
+			>Site Preferences page</Link
+		>.
+	</p>
 	<section>
 		<SectionHeading level={2} title={'Push notifications'} />
 		<p class="spaced-paragraph">
@@ -35,31 +41,9 @@
 			<Toggle toggled={true}>
 				<span slot="labelText"
 					><TooltipDefinition>
-						Overlay updates
-						<span slot="tooltip">
-							Notifies when the overlay publishes a new release.
-						</span>
-					</TooltipDefinition></span
-				>
-			</Toggle>
-			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
 						Wycademy's Events updates
 						<span slot="tooltip">
 							Notifies when an event has updated information.
-						</span>
-					</TooltipDefinition></span
-				>
-			</Toggle>
-			<Toggle toggled={true} labelText="Someone obtained a world record" />
-			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						Someone claimed a global achievement
-						<span slot="tooltip">
-							Notifies when an achievement (found in /overlay/achievements) was
-							obtained for the first time ever.
 						</span>
 					</TooltipDefinition></span
 				>

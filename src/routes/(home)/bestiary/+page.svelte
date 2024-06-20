@@ -99,21 +99,19 @@
 	siteName={projectName}
 />
 
-<section class="top-level-section">
-	<SectionHeadingTopLevel title="Bestiary" />
+<section class="bestiary">
+	<div class="top-level-section">
+		<SectionHeadingTopLevel title="Bestiary" />
+	</div>
 
 	<div class="container">
 		<div class="content-switcher-container">
 			<ContentSwitcher bind:selectedIndex={contextSwitcherIndex}>
 				<Switch>
-					<div style="display: flex; align-items: center;">
-						<Grid title="Card view" />
-					</div>
+					<Grid title="Card view" />
 				</Switch>
 				<Switch>
-					<div style="display: flex; align-items: center;">
-						<List title="List view" />
-					</div>
+					<List title="List view" />
 				</Switch>
 			</ContentSwitcher>
 		</div>
@@ -187,7 +185,6 @@
 				</div>
 				<p>Results: {currentMonsters.length}</p>
 			</div>
-
 			{#if currentMonsters.length > 0}
 				<div class="monster-list">
 					{#each currentMonsters as monster}
@@ -278,6 +275,8 @@
 	.options {
 		display: flex;
 		gap: 1rem;
+		width: 80%;
+		margin: auto;
 		flex-direction: column;
 	}
 
@@ -296,6 +295,19 @@
 	}
 
 	.content-switcher-container {
-		max-width: max-content;
+		display: grid;
+		grid-template-columns: 128px 128px;
+		width: 80%;
+		margin: auto;
+	}
+
+	.top-level-section {
+		width: 80%;
+		margin: auto;
+		padding-top: 1rem;
+	}
+
+	.bestiary {
+		padding-bottom: 2rem;
 	}
 </style>
