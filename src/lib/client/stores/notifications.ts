@@ -58,19 +58,53 @@ export function onNotificationPress() {
 	Notification.requestPermission().then((result) => {
 		if (result === 'granted') {
 			pushNotificationsStore.set(true);
-			sampleNotification();
+			sendNotification(
+				`Created by Doriel Rivalet.`,
+				logo,
+				{ path: 'overlay' },
+				[
+					{
+						action: 'ok',
+						title: 'OK',
+					},
+					{
+						action: 'view_overlay',
+						title: 'Go to Overlay Page',
+					},
+				],
+				'notification_test',
+				'Wycademy',
+			);
 		} else {
 			pushNotificationsStore.set(false);
 		}
 	});
 }
 
-function sampleNotification() {
-	const notifBody = `Created by Doriel Rivalet.`;
-	const notifImg = logo;
+export const sendNotification = async (
+	body: string,
+	icon: string,
+	data: object,
+	actions: Array<{ action: string; title: string }>,
+	tag: string,
+	title: string,
+) => {
 	const options = {
-		body: notifBody,
-		icon: notifImg,
+		body: body,
+		icon: icon,
+		data: data,
+		actions: actions,
+		tag: tag,
 	};
-	new Notification('Wycademy', options);
-}
+	// Check if a service worker is registered
+	navigator.serviceWorker.ready
+		.then((registration) => {
+			// Use the registered service worker to show the notification
+			registration.showNotification(title, options);
+		})
+		.catch((error) => {
+			console.error('Service worker not found:', error);
+			// Handle the case where no service worker is registered
+			// For example, you could log an error, show a fallback UI, etc.
+		});
+};

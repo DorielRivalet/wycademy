@@ -26,3 +26,44 @@ const precache_list = [
 setDefaultHandler(new NetworkOnly());
 precacheAndRoute(precache_list); // this has to run early.
 offlineFallback();
+
+sw.addEventListener('notificationclick', (event) => {
+	event.notification.close();
+
+	switch (event.notification.tag) {
+		case 'notification_test': {
+			switch (event.action) {
+				case 'ok':
+					{
+						console.log('User clicked OK button: ', event.notification.data);
+					}
+					break;
+				case 'view_overlay':
+					{
+						// direct to profile page
+						event.waitUntil(
+							sw.clients
+								.matchAll({
+									type: 'window',
+									includeUncontrolled: true,
+								})
+								.then((windowClients) => {
+									const matchingClient = windowClients.find(
+										(wc) => wc.url === 'https://wycademy.vercel.app/',
+									);
+
+									if (matchingClient) {
+										return matchingClient.focus();
+									} else {
+										return sw.clients.openWindow(event.notification.data.path);
+									}
+								}),
+						);
+					}
+
+					break;
+				// Handle other actions ...
+			}
+		}
+	}
+});
