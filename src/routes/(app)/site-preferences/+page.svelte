@@ -73,6 +73,8 @@
 		overlayUpdatesStore,
 		pushNotificationsStore,
 	} from '$lib/client/stores/notifications';
+	import TooltipDefinition from 'carbon-components-svelte/src/TooltipDefinition/TooltipDefinition.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	onMount(() => {
 		mermaid.initialize({
@@ -376,7 +378,8 @@
 		<!--TODO: Link to panel page-->
 		<p class="spaced-paragraph">
 			If you wish to change your account's notifications, visit your account's
-			Notifications Panel <strong>(not currently available)</strong>.
+			<Link href="/account/settings/notifications">Notifications Settings.</Link
+			>
 		</p>
 		<div class="setting-container">
 			<Toggle
@@ -397,9 +400,36 @@
 		<div class="setting-container">
 			<Toggle
 				disabled={!$notificationsStore}
-				labelText="Overlay Updates"
 				on:toggle={(e) => onStoreToggle(overlayUpdatesStore, e)}
 				bind:toggled={$overlayUpdatesStore}
+				><span slot="labelText"
+					><TooltipDefinition>
+						Overlay updates
+						<span slot="tooltip">
+							Notifies when the overlay publishes a new release.
+						</span>
+					</TooltipDefinition></span
+				>
+			</Toggle>
+		</div>
+		<div class="setting-container">
+			<Toggle toggled={true} disabled={!$notificationsStore}>
+				<span slot="labelText"
+					><TooltipDefinition>
+						Someone claimed a global overlay achievement
+						<span slot="tooltip">
+							Notifies when an overlay achievement (found in
+							/overlay/achievements) was obtained for the first time ever.
+						</span>
+					</TooltipDefinition></span
+				>
+			</Toggle>
+		</div>
+		<div class="setting-container">
+			<Toggle
+				disabled={!$notificationsStore}
+				toggled={true}
+				labelText="Someone obtained a world record"
 			/>
 		</div>
 	</section>
