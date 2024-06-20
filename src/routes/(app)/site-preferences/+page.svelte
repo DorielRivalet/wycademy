@@ -390,7 +390,8 @@
 				disabled={!$notificationsStore}
 				kind="tertiary"
 				icon={Notification}
-				on:click={onNotificationPress}>Push notifications</Button
+				on:click={() => onNotificationPress($notificationsStore)}
+				>Push notifications</Button
 			>
 		</div>
 		<div class="setting-container">

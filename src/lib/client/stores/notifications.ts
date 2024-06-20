@@ -53,7 +53,7 @@ export const notificationsStore = writable(notificationsValue);
 export const overlayUpdatesStore = writable(overlayUpdatesValue);
 export const notificationSeenStore = writable(notificationSeenValue);
 
-export function onNotificationPress() {
+export function onNotificationPress(notificationsEnabled: boolean) {
 	if (!browser || !notificationsValue) return;
 	Notification.requestPermission().then((result) => {
 		if (result === 'granted') {
@@ -74,6 +74,7 @@ export function onNotificationPress() {
 				],
 				'notification_test',
 				'Wycademy',
+				notificationsEnabled,
 			);
 		} else {
 			pushNotificationsStore.set(false);
@@ -88,7 +89,12 @@ export const sendNotification = async (
 	actions: Array<{ action: string; title: string }>,
 	tag: string,
 	title: string,
+	notificationsEnabled: boolean,
 ) => {
+	if (!notificationsEnabled) {
+		return;
+	}
+
 	const options = {
 		body: body,
 		icon: icon,
