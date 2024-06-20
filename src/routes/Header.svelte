@@ -152,30 +152,28 @@
 			</div>
 		{/if}
 		{#if $breakpointLargerThanSmall}
-			{#if $notificationsStore}
-				<div class="container-button">
-					<Button
-						kind="ghost"
-						iconDescription={!$notificationSeenStore &&
-						$notificationsStore &&
-						$overlayUpdatesStore &&
-						newVersionAvailable !== ''
-							? `New overlay version available')}`
-							: 'Notifications'}
-						on:click={() => {
-							notificationSeenStore.set(true);
-						}}
-					>
-						<span slot="icon">
-							{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
-								<NotificationNew size={48} />
-							{:else}
-								<Notification size={48} />
-							{/if}
-						</span>
-					</Button>
-				</div>
-			{/if}
+			<div class="container-button">
+				<Button
+					kind="ghost"
+					iconDescription={!$notificationSeenStore &&
+					$notificationsStore &&
+					$overlayUpdatesStore &&
+					newVersionAvailable !== ''
+						? `New overlay version available')}`
+						: 'Notifications'}
+					on:click={() => {
+						notificationSeenStore.set(true);
+					}}
+				>
+					<span slot="icon">
+						{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
+							<NotificationNew size={48} />
+						{:else}
+							<Notification size={48} />
+						{/if}
+					</span>
+				</Button>
+			</div>
 			<div class="container-button">
 				<Button
 					kind="ghost"

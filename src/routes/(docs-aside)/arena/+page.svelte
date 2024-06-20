@@ -6488,7 +6488,11 @@ does not get multiplied by horn */
 						lowContrast
 					/>
 
-					<p>To load your gear from the game:</p>
+					<p>
+						To load your gear from the game <strong
+							>(this feature is not currently available in overlay)</strong
+						>:
+					</p>
 					<OrderedList class="spaced-list">
 						<ListItem>Load the overlay.</ListItem>
 						<ListItem>Go into a quest and open overlay settings.</ListItem>
