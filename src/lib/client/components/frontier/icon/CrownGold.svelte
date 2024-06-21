@@ -19,9 +19,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.-->
+<script lang="ts">
+	export let size = '100%';
+</script>
+
 <svg
-	width="100%"
-	height="100%"
+	width={size}
 	viewBox="0 0 64 64"
 	version="1.1"
 	xmlns="http://www.w3.org/2000/svg"

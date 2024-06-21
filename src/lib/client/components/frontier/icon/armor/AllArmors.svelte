@@ -8,7 +8,6 @@
 	import WaistIconWhite from './Waist_Icon_White.svelte';
 
 	export let colors = [...new Set(RarityColors)];
-	console.log(colors);
 	const armors = [
 		ArmIconWhite,
 		ChestIconWhite,

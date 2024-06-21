@@ -57,6 +57,16 @@
 	import Logo from '$lib/client/images/logo.webp';
 	import Transcend from '$lib/client/images/icon/transcend.webp';
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
+	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
+	import { stickyHeaderStore } from '$lib/client/stores/toggles';
+	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
+	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import { tocEnabledStore } from '$lib/client/stores/toc';
+	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
+
+	const breakpointSize = breakpointObserver();
+	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -621,7 +631,29 @@
 			icon: JewelIconWhite,
 		},
 	];
+
+	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+
+	let tocVisible = $tocEnabledStore;
+
+	function onTOCToggleButtonPress(e: MouseEvent) {
+		tocVisible = !tocVisible;
+		tocEnabledStore.set(tocVisible ? true : false);
+
+		if (tocVisible) {
+			tocClass = 'aside';
+			centerColumnClass = ''; // Reset to default width
+		} else {
+			tocClass = 'aside collapsed';
+			centerColumnClass = 'expanded'; // Increase width to full
+		}
+	}
+
+	let centerColumnClass = tocVisible ? '' : 'expanded';
+	let tocClass = tocVisible ? 'aside' : 'aside collapsed';
 </script>
+
+<LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
 
 <Head
 	title={deslugify(headTitle)}
@@ -638,10 +670,24 @@
 />
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
+
+{#if !tocVisible && $breakpointLargerThanMedium}
+	<div class="expand-TOC">
+		<Button
+			iconDescription="Expand Sidebar"
+			tooltipPosition="right"
+			size="small"
+			kind="ghost"
+			icon={ChevronRight}
+			on:click={onTOCToggleButtonPress}
+		/>
+	</div>
+{/if}
+
 <div class="app">
 	<ViewTransition />
 
-	<div class="header">
+	<div class={headerClass}>
 		<Header />
 	</div>
 	<div class="banner">
@@ -660,14 +706,21 @@
 		</InlineNotification>
 	</div>
 	<main>
-		<aside class="aside">
+		<aside class={tocClass}>
 			<TreeView
-				style="background-color: var(--ctp-surface0); height: 100%;"
-				hideLabel
+				style="background-color: var(--ctp-surface0);  position: sticky; top: 10vh;"
 				{activeId}
 				{children}
 				let:node
-			>
+				><span slot="labelText">
+					<Button
+						iconDescription={'Hide'}
+						kind="ghost"
+						size={'small'}
+						icon={ViewOff}
+						on:click={onTOCToggleButtonPress}
+					/></span
+				>
 				<a
 					class="tree-view-item"
 					href={node.id}
@@ -693,7 +746,7 @@
 				</a>
 			</TreeView>
 		</aside>
-		<div class="body">
+		<div class="center-column {centerColumnClass}">
 			<div class="breadcrumb">
 				<Breadcrumb noTrailingSlash>
 					{#each breadcrumbItems as item, i}
@@ -707,7 +760,9 @@
 					{/each}
 				</Breadcrumb>
 			</div>
-			<slot />
+			<div class="slot">
+				<slot />
+			</div>
 		</div>
 	</main>
 	{#key $page.url.pathname}
@@ -716,54 +771,78 @@
 </div>
 
 <style lang="scss">
+	@use '@carbon/motion' as motion;
+
+	.app {
+		display: flex;
+		flex-direction: column;
+		background-color: var(--ctp-mantle);
+		max-width: 100vw;
+	}
+
+	.header {
+		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		position: static;
+	}
+
+	.sticky {
+		position: -webkit-sticky; /* For Safari */
+		position: sticky;
+		top: 0;
+		z-index: 1000; /* Ensure it stays above other content */
+	}
+
 	.banner {
 		display: flex;
 		justify-content: center;
 		background-color: var(--ctp-mantle);
 	}
 
-	.app {
-		display: flex;
-		flex-direction: column;
-		background-color: var(--ctp-mantle);
-	}
-
 	main {
-		display: grid;
-		width: 100%;
-		max-width: 100vw;
-		margin: 0 auto;
-		box-sizing: border-box;
-		min-height: 90vh;
+		display: flex;
+		flex-direction: row;
 		background-color: var(--ctp-base);
 		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
-		grid-template-areas: 'aside body';
-		grid-template-columns: 10vw 90vw;
-		overflow: hidden;
-	}
-
-	.header {
-		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
-	}
-
-	.body {
-		padding-top: var(--cds-spacing-08);
-		padding-bottom: var(--cds-spacing-08);
-		padding-left: var(--cds-spacing-06);
-	}
-
-	.breadcrumb {
-		padding-bottom: var(--cds-spacing-06);
+		gap: 2rem;
+		padding-right: 1rem;
+		max-width: 100vw;
 	}
 
 	.aside {
-		grid-area: aside;
-		max-height: 100vh;
-		height: 100%;
-		padding: 0;
-		margin: 0;
+		flex: 0 0 auto;
+		transition: margin motion.$duration-fast-02
+			motion.motion(standard, expressive);
+		width: 16.67%;
+		background-color: var(--ctp-surface0);
+	}
+
+	.aside.collapsed {
+		margin-left: -16.67%;
+	}
+
+	.body {
+		margin: 0 auto;
+		flex-shrink: 1;
+		background-color: var(--ctp-base);
+		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
+		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
+		flex: 1 0 0%;
+		width: calc(
+			100% - 16.67%
+		); // Directly adds the TOC width to the main content width
+	}
+
+	.body.expanded {
+		width: 100%;
+		transition: width motion.$duration-fast-02
+			motion.motion(standard, expressive);
+	}
+
+	.breadcrumb {
+		margin-bottom: var(--cds-spacing-06);
+		margin-top: var(--cds-spacing-06);
 	}
 
 	.tree-view-item {
@@ -771,5 +850,19 @@
 		gap: 0.5rem;
 		align-items: center;
 		text-decoration: none;
+	}
+
+	.expand-TOC {
+		position: fixed; /* Position the button relative to the viewport */
+		top: 50%; /* Position it in the middle vertically */
+		left: 0%; /* Position it at the left edge of the viewport */
+		padding: 0;
+		margin: 0;
+		z-index: 1000; /* Ensure the button is above other content */
+	}
+
+	.slot {
+		padding-bottom: 2rem;
+		min-height: 90vh;
 	}
 </style>

@@ -129,7 +129,7 @@
 										size={'small'}
 										icon={ViewOff}
 										on:click={onTOCToggleButtonPress}
-									></Button>
+									/>
 								</span></span
 							>
 						</h2>
