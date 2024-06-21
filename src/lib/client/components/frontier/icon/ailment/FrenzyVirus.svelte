@@ -1,8 +1,10 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+<script lang="ts">
+	export let size = '100%';
+</script>
 
 <svg
-	width="100%"
-	height="100%"
+	width={size}
 	viewBox="0 0 128 128"
 	version="1.1"
 	id="svg5"

@@ -4,7 +4,6 @@
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 
 	export let colors = [...new Set(RarityColors)];
-	console.log(colors);
 	const weapons = [
 		getWeaponIcon('Great Sword'),
 		getWeaponIcon('Long Sword'),
