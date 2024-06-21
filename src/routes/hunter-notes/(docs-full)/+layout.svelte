@@ -117,12 +117,6 @@
 
 	let breadcrumbItems: URLItem[] = [];
 	let headTitle = 'Not Found';
-	onMount(() => {
-		const pageRouteId = $page.route.id || 'Not Found';
-		const { headTitle: title, items } = processRoute(pageRouteId);
-		headTitle = title;
-		breadcrumbItems = items;
-	});
 
 	$: {
 		const pageRouteId = $page.route.id || 'Not Found';
@@ -133,8 +127,7 @@
 
 	const url = $page.url.toString();
 
-	let activeId: TreeNodeId = 0; // TODO grab /text/ from /hunter-notes/text/other-text/more-text/...
-	let children: TreeNode[] = [
+	const children: TreeNode[] = [
 		{
 			id: '/hunter-notes/getting-started',
 			text: 'Getting started',
@@ -651,6 +644,22 @@
 
 	let centerColumnClass = tocVisible ? '' : 'expanded';
 	let tocClass = tocVisible ? 'aside' : 'aside collapsed';
+
+	onMount(() => {
+		const pageRouteId = $page.route.id || 'Not Found';
+		const { headTitle: title, items } = processRoute(pageRouteId);
+		headTitle = title;
+		breadcrumbItems = items;
+		const unsubscribe = page.subscribe(($page) => {
+			treeview?.showNode($page.route.id?.replace('(docs-full)/', '') || '');
+		});
+
+		return () => {
+			unsubscribe(); // Clean up the subscription on unmount
+		};
+	});
+
+	let treeview: TreeView | null = null;
 </script>
 
 <LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
@@ -709,9 +718,9 @@
 		<aside class={tocClass}>
 			<TreeView
 				style="background-color: var(--ctp-surface0);  position: sticky; top: 10vh;"
-				{activeId}
 				{children}
 				let:node
+				bind:this={treeview}
 				><span slot="labelText">
 					<Button
 						iconDescription={'Hide'}
