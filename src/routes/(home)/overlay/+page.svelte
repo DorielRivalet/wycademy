@@ -257,12 +257,14 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 	<section class="testimonials-section">
 		<h2>What Our Users Say</h2>
 		<hr />
-		<Testimonial
-			author="Kairi, MHF-Z Speedrunner"
-			authorLink="https://www.youtube.com/@kairi_mhfz"
-			quote="The overlay offers a preset configuration for speedruns, disabling any options that give an unfair advantage. It includes quest logging, storing completed runs in a local database for submission and validation. This ensures fair competition and prevents fake runs."
-			authorImage="https://yt3.googleusercontent.com/ytc/AOPolaQWKx3GIOgWWRu9YCHBI7lrkFjT2NxLP45IlnSM=s176-c-k-c0x00ffffff-no-rj"
-		/>
+		<div class="testimonials">
+			<Testimonial
+				author="Kairi, MHF-Z Speedrunner"
+				authorLink="https://www.youtube.com/@kairi_mhfz"
+				quote="The overlay offers a preset configuration for speedruns, disabling any options that give an unfair advantage. It includes quest logging, storing completed runs in a local database for submission and validation. This ensures fair competition and prevents fake runs."
+				authorImage="https://yt3.googleusercontent.com/ytc/AOPolaQWKx3GIOgWWRu9YCHBI7lrkFjT2NxLP45IlnSM=s176-c-k-c0x00ffffff-no-rj"
+			/>
+		</div>
 	</section>
 
 	<section id="monster-info" class="features-section">
@@ -342,18 +344,20 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		<h2>Frequently Asked Questions</h2>
 		<hr />
 		<FrequentlyAskedQuestions {faq} />
-		<p>
-			If your question was not answered here, check our <OutboundLink
-				href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md"
-				>FAQ file at the GitHub repository.</OutboundLink
-			>
-		</p>
-		<p>
-			If you are looking for a roadmap, the main developer uses a <OutboundLink
-				href="https://github.com/users/DorielRivalet/projects/1"
-				>GitHub project</OutboundLink
-			> for all issues related to the game.
-		</p>
+		<footer>
+			<p class="spaced-paragraph">
+				If your question was not answered here, check our <OutboundLink
+					href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md"
+					>FAQ file at the GitHub repository.</OutboundLink
+				>
+			</p>
+			<p>
+				If you are looking for a roadmap, the main developer uses a <OutboundLink
+					href="https://github.com/users/DorielRivalet/projects/1"
+					>GitHub project</OutboundLink
+				> for all issues related to the game.
+			</p>
+		</footer>
 	</section>
 
 	<section class="call-to-action-section">
@@ -386,7 +390,9 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 	.pictograms-section {
 		display: grid;
 		grid-template-columns: 1fr 3fr;
-		padding: 1rem;
+		padding-top: 1rem;
+		padding-right: 1rem;
+		padding-bottom: 2rem;
 		min-height: 90vh;
 	}
 
@@ -425,13 +431,19 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 2rem;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
 	}
 
 	.features-section {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.call-to-action-section {
+		padding-left: 1rem;
+		padding-right: 1rem;
 	}
 
 	.features-section h2 {
@@ -456,5 +468,14 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		width: 80%;
 		border: 8px solid var(--ctp-surface0);
 		border-radius: 4px 4px 4px 4px;
+	}
+
+	.testimonials {
+		margin-top: 2rem;
+	}
+
+	.faq-section footer {
+		width: 80%;
+		margin: auto;
 	}
 </style>

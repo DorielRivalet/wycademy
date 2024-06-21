@@ -17,9 +17,9 @@
 	.container {
 		border: 2px solid var(--ctp-overlay0);
 		background-color: var(--ctp-surface0);
-		display: flex;
-		align-items: center;
 		border-radius: 4px 4px 4px 4px;
+		display: grid;
+		grid-template-columns: 1fr 3fr;
 	}
 
 	p {
