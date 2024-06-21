@@ -762,6 +762,7 @@ export type FrontierMonsterNameExpanded =
 	| 'Supremacy Teostra'
 	| 'Supremacy Odibatorasu'
 	| 'Supremacy Pariapuria'
+	| 'Supremacy Doragyurosu'
 	| 'Thirsty Pariapuria'
 	| 'Supremacy Unknown'
 	| 'Conquest Fatalis'
