@@ -352,3 +352,7 @@ body.wait * {
 .bx--list__item > a:hover {
 	color: var(--ctp-sky);
 }
+
+.bx--tree {
+	overflow: auto;
+}

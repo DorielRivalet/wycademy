@@ -1317,9 +1317,11 @@ export const LocationIcons: { name: string; icon: any }[] = [
 	{ name: 'Diva Note', icon: LocationIconDivaNote },
 	{ name: 'Diva Prayer Gem', icon: LocationIconDivaPrayerGem },
 	{ name: 'Diva', icon: LocationIconDiva },
+	{ name: 'Diva Defense', icon: LocationIconInterception },
 	{ name: 'Duremudira', icon: LocationIconDuremudira },
 	{ name: 'Entrance', icon: LocationIconEntrance },
 	{ name: 'Festi', icon: LocationIconFesti },
+	{ name: 'Hunter Festival', icon: LocationIconFesti },
 	{ name: 'Flower Fields', icon: LocationIconFlowerFields },
 	{ name: 'Forest And Hills', icon: LocationIconForestAndHills },
 	{ name: 'Gorge', icon: LocationIconGorge },
@@ -1336,6 +1338,7 @@ export const LocationIcons: { name: string; icon: any }[] = [
 	{ name: 'Jungle', icon: LocationIconJungle },
 	{ name: 'Mezeporta', icon: LocationIconCattleya },
 	{ name: 'Mezfes', icon: LocationIconMezfes },
+	{ name: 'Mezeporta Festival', icon: LocationIconMezfes },
 	{ name: 'My Gallery', icon: LocationIconMyGallery },
 	{ name: 'My Garden', icon: LocationIconMyGarden },
 	{ name: 'My House', icon: LocationIconMyHouse },
@@ -8598,20 +8601,20 @@ export const tagInfo: {
 	{
 		color: 'blue',
 		icon: JewelIconWhite,
-		link: '/hunter-notes/armor-skills',
+		link: '/hunter-notes', /// TODO?
 		values: ['Armor Skill', 'Guild Food', 'Caravan Skill', 'Diva Skill'],
 	},
 	{
 		color: 'cyan',
 		icon: ArmorHelmetIcon,
-		link: '/hunter-notes/gear',
+		link: '/hunter-notes/armor',
 		values: ['Blademaster', 'Gunner', 'BM/GN'],
 	},
 	{ color: 'teal', icon: MapIconWhite, link: '/', values: ['Quest'] },
 	{
 		color: 'green',
 		icon: ArmorChestIcon,
-		link: '/hunter-notes/gear',
+		link: '/hunter-notes/armor',
 		values: ['Armor', 'Cuff'],
 	},
 	{

@@ -33,10 +33,35 @@
 	import pageThumbnail from '$lib/client/images/logo.png';
 	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
+	import TreeView, {
+		type TreeNode,
+		type TreeNodeId,
+	} from 'carbon-components-svelte/src/TreeView/TreeView.svelte';
+	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
+	import ExtremeDragonblight from '$lib/client/components/frontier/icon/ailment/ExtremeDragonblight.svelte';
+	import ExtremeSleep from '$lib/client/components/frontier/icon/ailment/ExtremeSleep.svelte';
+	import {
+		getItemIcon,
+		getMonsterIcon,
+		getWeaponIcon,
+	} from '$lib/client/modules/frontier/functions';
+	import ShotIcon from '$lib/client/components/frontier/icon/item/Shot_Icon_White.svelte';
+	import HelmetIconWhite from '$lib/client/components/frontier/icon/armor/Helmet_Icon_White.svelte';
+	import ChestIconWhite from '$lib/client/components/frontier/icon/armor/Chest_Icon_White.svelte';
+	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
+	import MapIconWhite from '$lib/client/components/frontier/icon/item/Map_Icon_White.svelte';
+	import { LocationIcons } from '$lib/client/modules/frontier/objects';
+	import MedicineIconWhite from '$lib/client/components/frontier/icon/item/Medicine_Icon_White.svelte';
+	import BallIconWhite from '$lib/client/components/frontier/icon/item/Ball_Icon_White.svelte';
+	import MantleIconWhite from '$lib/client/components/frontier/icon/item/Mantle_Icon_White.svelte';
+	import Logo from '$lib/client/images/logo.webp';
+	import Transcend from '$lib/client/images/icon/transcend.webp';
+	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
-	console.log('layout.svelte');
+
+	type URLItem = { href: string; text: string };
 
 	onMount(() => {
 		let themeValue = $theme;
@@ -53,38 +78,553 @@
 		});
 	});
 
-	function deslugify(slug: string): string {
-		// Replace hyphens with spaces
-		const words = slug.split('-');
-
-		// Capitalize the first letter of each word
-		const capitalizedWords = words.map(
-			(word) => word.charAt(0).toUpperCase() + word.slice(1),
-		);
-
-		// Join the words with spaces
-		return capitalizedWords.join(' ');
+	function deslugify(slug: string) {
+		return slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
 	}
 
-	const pageRouteId = $page.route.id || 'Not Found';
+	// Function to generate breadcrumb items and head title
+	function processRoute(routeId: string) {
+		// Split the route ID by '/'
+		let routeLevels = routeId.split('/').filter(Boolean);
 
-	const routeNameMatch = pageRouteId.match(
-		/hunter\-notes\/\(docs\-full\)\/([^\/]+)/,
-	);
-	const routeName = routeNameMatch ? routeNameMatch[1] : '';
+		// Remove elements that match the pattern (text in parentheses)
+		routeLevels = routeLevels.filter((level) => !/\(.*\)/.test(level));
 
-	const customTitle = deslugify(routeName);
+		// Set the last element as the head title
+		const headTitle = routeLevels[routeLevels.length - 1] || 'Not Found';
+
+		// Generate breadcrumb items
+		let items = [{ href: '/', text: 'Home' }];
+		for (let i = 0; i < routeLevels.length; i++) {
+			const levelSlug = routeLevels[i];
+			const levelText = deslugify(levelSlug); // Convert slug to title case
+			const levelHref = `/${routeLevels.slice(0, i + 1).join('/')}`; // Construct href
+			items.push({ href: levelHref, text: levelText });
+		}
+
+		return { headTitle, items };
+	}
+
+	let breadcrumbItems: URLItem[] = [];
+	let headTitle = 'Not Found';
+	onMount(() => {
+		const pageRouteId = $page.route.id || 'Not Found';
+		const { headTitle: title, items } = processRoute(pageRouteId);
+		headTitle = title;
+		breadcrumbItems = items;
+	});
+
+	$: {
+		const pageRouteId = $page.route.id || 'Not Found';
+		const { headTitle: title, items } = processRoute(pageRouteId);
+		headTitle = title;
+		breadcrumbItems = items;
+	}
+
 	const url = $page.url.toString();
 
-	const breadcrumbItems = [
-		{ href: '/', text: 'Home' },
-		{ href: '/hunter-notes', text: "Hunter's Notes" },
-		{ href: `/hunter-notes/${routeName}`, text: customTitle },
+	let activeId: TreeNodeId = 0; // TODO grab /text/ from /hunter-notes/text/other-text/more-text/...
+	let children: TreeNode[] = [
+		{
+			id: '/hunter-notes/getting-started',
+			text: 'Getting started',
+			children: [
+				{
+					id: '/hunter-notes/getting-started/your-first-hunts',
+					text: 'Your First Hunts',
+				},
+				{
+					id: '/hunter-notes/getting-started/elements',
+					text: 'Elements',
+				},
+				{
+					id: '/hunter-notes/getting-started/ailments',
+					text: 'Ailments',
+				},
+				{
+					id: '/hunter-notes/getting-started/transcend',
+					text: 'Transcend',
+				},
+			],
+		},
+		{
+			id: '/hunter-notes/monsters',
+			text: 'Monsters',
+			children: [
+				{
+					id: '/hunter-notes/monsters/exotics',
+					text: 'Exotics',
+				},
+				{
+					id: '/hunter-notes/monsters/origin',
+					text: 'Origin',
+				},
+				{
+					id: '/hunter-notes/monsters/burst',
+					text: 'Burst',
+				},
+				{
+					id: '/hunter-notes/monsters/supremacy',
+					text: 'Supremacy',
+				},
+				{
+					id: '/hunter-notes/monsters/duremudira',
+					text: 'Duremudira',
+				},
+				{
+					id: '/hunter-notes/monsters/zenith',
+					text: 'Zenith',
+				},
+				{
+					id: '/hunter-notes/monsters/raviente',
+					text: 'Raviente',
+				},
+				{
+					id: '/hunter-notes/monsters/conquest',
+					text: 'Conquest',
+				},
+				{
+					id: '/hunter-notes/monsters/shiten',
+					text: 'Shiten',
+				},
+				{
+					id: '/hunter-notes/monsters/unlimited',
+					text: 'Unlimited',
+				},
+				{
+					id: '/hunter-notes/monsters/musou',
+					text: 'Musou',
+				},
+			],
+		},
+		{
+			id: '/hunter-notes/weapons',
+			text: 'Weapons',
+			children: [
+				{
+					id: '/hunter-notes/weapons/overview',
+					text: 'Overview',
+				},
+				{
+					id: '/hunter-notes/weapons/sigils',
+					text: 'Sigils',
+				},
+				{
+					id: '/hunter-notes/weapons/critical-distance',
+					text: 'Critical Distance',
+				},
+				{
+					id: '/hunter-notes/weapons/active-feature',
+					text: 'Active Feature',
+				},
+				{
+					id: '/hunter-notes/weapons/hunting-horn-songs',
+					text: 'Hunting Horn Songs',
+				},
+			],
+		},
+		{
+			id: '/hunter-notes/armor',
+			text: 'Armor',
+			children: [
+				{
+					id: '/hunter-notes/armor/overview',
+					text: 'Overview',
+				},
+				{
+					id: '/hunter-notes/armor/skills',
+					text: 'Skills',
+				},
+				{
+					id: '/hunter-notes/armor/colors',
+					text: 'Colors',
+				},
+				{
+					id: '/hunter-notes/armor/transmog',
+					text: 'Transmog',
+				},
+			],
+		},
+		{
+			id: '/hunter-notes/locations',
+			text: 'Locations',
+			children: [
+				{
+					id: '/hunter-notes/locations/mezeporta-square',
+					text: 'Mezeporta Square',
+				},
+				{
+					id: '/hunter-notes/locations/guild-hall',
+					text: 'Guild Hall',
+				},
+				{
+					id: '/hunter-notes/locations/bento',
+					text: 'Bento',
+				},
+				{
+					id: '/hunter-notes/locations/road',
+					text: "Hunter's Road",
+				},
+				{
+					id: '/hunter-notes/locations/gathering-maps',
+					text: 'Gathering Maps',
+				},
+				{
+					id: '/hunter-notes/locations/caravan',
+					text: 'Caravan',
+				},
+				{
+					id: '/hunter-notes/locations/blacksmith',
+					text: 'Blacksmith',
+				},
+				{
+					id: '/hunter-notes/locations/diva-fountain',
+					text: 'Diva Fountain',
+				},
+				{
+					id: '/hunter-notes/locations/my-house',
+					text: 'My House',
+				},
+				{
+					id: '/hunter-notes/locations/my-gallery',
+					text: 'My Gallery',
+				},
+				{
+					id: '/hunter-notes/locations/my-garden',
+					text: 'My Garden',
+				},
+				{
+					id: '/hunter-notes/locations/my-missions',
+					text: 'My Missions',
+				},
+				{
+					id: '/hunter-notes/locations/my-support',
+					text: 'My Support',
+				},
+				{
+					id: '/hunter-notes/locations/my-tore',
+					text: 'My Tore',
+				},
+				{
+					id: '/hunter-notes/locations/rasta-bar',
+					text: 'Rasta Bar',
+				},
+				{
+					id: '/hunter-notes/locations/tent',
+					text: 'Tent',
+				},
+			],
+		},
+		{
+			id: '/hunter-notes/items',
+			text: 'Items',
+			children: [
+				{
+					id: '/hunter-notes/items/item-box',
+					text: 'Item Box',
+				},
+				{
+					id: '/hunter-notes/items/decorations',
+					text: 'Decorations',
+				},
+				{
+					id: '/hunter-notes/items/armor-spheres',
+					text: 'Armor Spheres',
+				},
+				{
+					id: '/hunter-notes/items/special-items',
+					text: 'Special Items',
+				},
+				{
+					id: '/hunter-notes/items/medal-trades',
+					text: 'Medal Trades',
+				},
+			],
+		},
+		{
+			id: '/hunter-notes/events',
+			text: 'Events',
+			children: [
+				{
+					id: '/hunter-notes/events/diva-defense',
+					text: 'Diva Defense',
+				},
+				{
+					id: '/hunter-notes/events/hunter-festival',
+					text: 'Hunter Festival',
+				},
+				{
+					id: '/hunter-notes/events/mezeporta-festival',
+					text: 'Mezeporta Festival',
+				},
+				{
+					id: '/hunter-notes/events/wycademy-events',
+					text: "Wycademy's Events",
+				},
+			],
+		},
+		{
+			id: '/hunter-notes/advanced',
+			text: 'Advanced',
+			children: [
+				{
+					id: '/hunter-notes/advanced/item-sets',
+					text: 'Item Sets',
+				},
+				{
+					id: '/hunter-notes/advanced/item-interactions',
+					text: 'Item Interactions',
+				},
+				{
+					id: '/hunter-notes/advanced/mechanics',
+					text: 'Mechanics',
+				},
+				{
+					id: '/hunter-notes/advanced/skills',
+					text: 'Skills',
+				},
+			],
+		},
+	];
+
+	const iconsMap = [
+		{ id: '/hunter-notes/getting-started', icon: BookIconWhite },
+		{
+			id: '/hunter-notes/getting-started/your-first-hunts',
+			icon: BookIconWhite,
+		},
+		{ id: '/hunter-notes/getting-started/elements', icon: ExtremeDragonblight },
+		{ id: '/hunter-notes/getting-started/ailments', icon: ExtremeSleep },
+		{ id: '/hunter-notes/getting-started/transcend', icon: Transcend },
+		{
+			id: '/hunter-notes/monsters',
+			icon: getMonsterIcon('Abiorugu'),
+		},
+		{
+			id: '/hunter-notes/monsters/exotics',
+			icon: getMonsterIcon('Stygian Zinogre'),
+		},
+		{
+			id: '/hunter-notes/monsters/origin',
+			icon: getMonsterIcon('Yama Kurai'),
+		},
+		{
+			id: '/hunter-notes/monsters/burst',
+			icon: getMonsterIcon('Zerureusu'),
+		},
+		{
+			id: '/hunter-notes/monsters/supremacy',
+			icon: getMonsterIcon('Supremacy Doragyurosu'),
+		},
+		{
+			id: '/hunter-notes/monsters/duremudira',
+			icon: getMonsterIcon('Duremudira'),
+		},
+		{
+			id: '/hunter-notes/monsters/zenith',
+			icon: getMonsterIcon('Bogabadorumu'),
+		},
+		{
+			id: '/hunter-notes/monsters/raviente',
+			icon: getMonsterIcon('Berserk Raviente'),
+		},
+		{
+			id: '/hunter-notes/monsters/conquest',
+			icon: getMonsterIcon('Conquest Fatalis'),
+		},
+		{
+			id: '/hunter-notes/monsters/shiten',
+			icon: getMonsterIcon('Blinking Nargacuga'),
+		},
+		{
+			id: '/hunter-notes/monsters/unlimited',
+			icon: getMonsterIcon('Akura Jebia'),
+		},
+		{
+			id: '/hunter-notes/monsters/musou',
+			icon: getMonsterIcon('Blinking Nargacuga'),
+		},
+		{
+			id: '/hunter-notes/weapons',
+			icon: getWeaponIcon('Dual Swords'),
+		},
+		{
+			id: '/hunter-notes/weapons/overview',
+			icon: getWeaponIcon('Great Sword'),
+		},
+		{
+			id: '/hunter-notes/weapons/sigils',
+			icon: SigilIconWhite,
+		},
+		{
+			id: '/hunter-notes/weapons/critical-distance',
+			icon: ShotIcon,
+		},
+		{
+			id: '/hunter-notes/weapons/active-feature',
+			icon: getWeaponIcon('Magnet Spike'),
+		},
+		{
+			id: '/hunter-notes/weapons/hunting-horn-songs',
+			icon: getWeaponIcon('Hunting Horn'),
+		},
+		{
+			id: '/hunter-notes/armor',
+			icon: HelmetIconWhite,
+		},
+		{
+			id: '/hunter-notes/armor/overview',
+			icon: ChestIconWhite,
+		},
+		{
+			id: '/hunter-notes/armor/skills',
+			icon: JewelIconWhite,
+		},
+		{
+			id: '/hunter-notes/armor/colors',
+			icon: HelmetIconWhite,
+		},
+		{
+			id: '/hunter-notes/armor/transmog',
+			icon: HelmetIconWhite,
+		},
+		{
+			id: '/hunter-notes/locations',
+			icon: MapIconWhite,
+		},
+		{
+			id: '/hunter-notes/locations/mezeporta-square',
+			icon: LocationIcons.find((e) => e.name === 'Mezeporta')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/guild-hall',
+			icon: LocationIcons.find((e) => e.name === 'Guild Hall')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/bento',
+			icon: LocationIcons.find((e) => e.name === 'Bento')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/road',
+			icon: LocationIcons.find((e) => e.name === 'Road')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/gathering-maps',
+			icon: MapIconWhite,
+		},
+		{
+			id: '/hunter-notes/locations/caravan',
+			icon: LocationIcons.find((e) => e.name === 'Caravan')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/blacksmith',
+			icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/diva-fountain',
+			icon: LocationIcons.find((e) => e.name === 'Diva Fountain')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/my-house',
+			icon: LocationIcons.find((e) => e.name === 'My House')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/my-gallery',
+			icon: LocationIcons.find((e) => e.name === 'My Gallery')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/my-garden',
+			icon: LocationIcons.find((e) => e.name === 'My Garden')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/my-missions',
+			icon: LocationIcons.find((e) => e.name === 'My Missions')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/my-support',
+			icon: LocationIcons.find((e) => e.name === 'My Support')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/my-tore',
+			icon: LocationIcons.find((e) => e.name === 'My Tore')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/rasta-bar',
+			icon: LocationIcons.find((e) => e.name === 'Rasta Bar')?.icon,
+		},
+		{
+			id: '/hunter-notes/locations/tent',
+			icon: LocationIcons.find((e) => e.name === 'Tent')?.icon,
+		},
+		{
+			id: '/hunter-notes/items',
+			icon: getItemIcon('Sac'),
+		},
+		{
+			id: '/hunter-notes/items/item-box',
+			icon: getItemIcon('Trap Tool'),
+		},
+		{
+			id: '/hunter-notes/items/decorations',
+			icon: getItemIcon('Jewel'),
+		},
+		{
+			id: '/hunter-notes/items/armor-spheres',
+			icon: getItemIcon('Ball'),
+		},
+		{
+			id: '/hunter-notes/items/special-items',
+			icon: getItemIcon('Ticket'),
+		},
+		{
+			id: '/hunter-notes/items/medal-trades',
+			icon: getItemIcon('Sac'),
+		},
+		{
+			id: '/hunter-notes/events',
+			icon: LocationIcons.find((e) => e.name === 'Diva Defense')?.icon,
+		},
+		{
+			id: '/hunter-notes/events/diva-defense',
+			icon: LocationIcons.find((e) => e.name === 'Diva Defense')?.icon,
+		},
+		{
+			id: '/hunter-notes/events/hunter-festival',
+			icon: LocationIcons.find((e) => e.name === 'Hunter Festival')?.icon,
+		},
+		{
+			id: '/hunter-notes/events/mezeporta-festival',
+			icon: LocationIcons.find((e) => e.name === 'Mezeporta Festival')?.icon,
+		},
+		{
+			id: '/hunter-notes/events/wycademy-events',
+			icon: Logo,
+		},
+		{
+			id: '/hunter-notes/advanced',
+			icon: MantleIconWhite,
+		},
+		{
+			id: '/hunter-notes/advanced/item-sets',
+			icon: MedicineIconWhite,
+		},
+		{
+			id: '/hunter-notes/advanced/item-interactions',
+			icon: BallIconWhite,
+		},
+		{
+			id: '/hunter-notes/advanced/mechanics',
+			icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
+		},
+		{
+			id: '/hunter-notes/advanced/skills',
+			icon: JewelIconWhite,
+		},
 	];
 </script>
 
 <Head
-	title={customTitle}
+	title={deslugify(headTitle)}
 	{description}
 	image={pageThumbnail}
 	{url}
@@ -120,20 +660,55 @@
 		</InlineNotification>
 	</div>
 	<main>
-		<div class="breadcrumb">
-			<Breadcrumb noTrailingSlash>
-				{#each breadcrumbItems as item, i}
-					<BreadcrumbItem
-						href={i === breadcrumbItems.length - 1 ? undefined : item.href}
-						isCurrentPage={i === breadcrumbItems.length - 1}
-						>{#if i !== breadcrumbItems.length - 1}
-							{item.text}
+		<aside class="aside">
+			<TreeView
+				style="background-color: var(--ctp-surface0); height: 100%;"
+				hideLabel
+				{activeId}
+				{children}
+				let:node
+			>
+				<a
+					class="tree-view-item"
+					href={node.id}
+					style:color={node.selected ? 'var(--cds-interactive-04)' : 'inherit'}
+				>
+					<div>
+						{#if typeof iconsMap.find((e) => e.id === node.id)?.icon === 'string'}
+							<img
+								width="24"
+								src={iconsMap.find((e) => e.id === node.id)?.icon}
+								alt="Tree Item Icon"
+							/>
+						{:else}
+							<svelte:component
+								this={iconsMap.find((e) => e.id === node.id)?.icon}
+								{...{ size: '24px' }}
+							/>
 						{/if}
-					</BreadcrumbItem>
-				{/each}
-			</Breadcrumb>
+					</div>
+					<p>
+						{node.text}
+					</p>
+				</a>
+			</TreeView>
+		</aside>
+		<div class="body">
+			<div class="breadcrumb">
+				<Breadcrumb noTrailingSlash>
+					{#each breadcrumbItems as item, i}
+						<BreadcrumbItem
+							href={i === breadcrumbItems.length - 1 ? undefined : item.href}
+							isCurrentPage={i === breadcrumbItems.length - 1}
+							>{#if i !== breadcrumbItems.length - 1}
+								{item.text}
+							{/if}
+						</BreadcrumbItem>
+					{/each}
+				</Breadcrumb>
+			</div>
+			<slot />
 		</div>
-		<slot />
 	</main>
 	{#key $page.url.pathname}
 		<Footer gitHubData={data.github} />
@@ -141,11 +716,6 @@
 </div>
 
 <style lang="scss">
-	.breadcrumb {
-		padding-left: 1rem;
-		padding-bottom: 1rem;
-	}
-
 	.banner {
 		display: flex;
 		justify-content: center;
@@ -159,11 +729,7 @@
 	}
 
 	main {
-		position: relative;
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: var(--cds-spacing-08);
+		display: grid;
 		width: 100%;
 		max-width: 100vw;
 		margin: 0 auto;
@@ -173,9 +739,37 @@
 		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		grid-template-areas: 'aside body';
+		grid-template-columns: 10vw 90vw;
+		overflow: hidden;
 	}
 
 	.header {
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+	}
+
+	.body {
+		padding-top: var(--cds-spacing-08);
+		padding-bottom: var(--cds-spacing-08);
+		padding-left: var(--cds-spacing-06);
+	}
+
+	.breadcrumb {
+		padding-bottom: var(--cds-spacing-06);
+	}
+
+	.aside {
+		grid-area: aside;
+		max-height: 100vh;
+		height: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.tree-view-item {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		text-decoration: none;
 	}
 </style>

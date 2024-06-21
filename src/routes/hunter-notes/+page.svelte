@@ -65,6 +65,8 @@
 	import AkuraJebia2 from '$lib/client/components/frontier/icon/monster/AkuraJebia2.svelte';
 	import AllWeapons from '$lib/client/components/frontier/icon/weapon/AllWeapons.svelte';
 	import AllArmors from '$lib/client/components/frontier/icon/armor/AllArmors.svelte';
+	import TicketIconWhite from '$lib/client/components/frontier/icon/item/Ticket_Icon_White.svelte';
+	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 
 	//TODO svg: mezfes, caravan, festi, transcend, etc
 	//TODO animated webp: items, monsters, locations, events, etc.
@@ -148,7 +150,7 @@
 				</p>
 
 				<section>
-					<SectionHeading level={2} title="Browse by category" />
+					<SectionHeading level={2} title="Browse by section" />
 					<section>
 						<SectionHeading level={3} title="Getting Started" />
 						<div class="container-tiles">
@@ -156,26 +158,26 @@
 								title="Your First Hunts"
 								description="A walkthrough of the first tasks you should do when starting the game."
 								imageSource={BookIconWhite}
-								href="/"
+								href="/hunter-notes/getting-started/your-first-hunts"
 							/>
 							<ClickableTileImage
 								title="Elements"
 								description="The elements of weapons and monsters. Includes combo elements and elemental resistances."
 								imageSource={ExtremeFireblight}
-								href="/"
+								href="/hunter-notes/getting-started/elements"
 							/>
 							<ClickableTileImage
 								title="Ailments"
 								description="The status effects of both weapons and monsters. Includes monsters' status immunities."
 								imageSource={ExtremeParalysis}
-								href="/"
+								href="/hunter-notes/getting-started/ailments"
 							/>
 							<ClickableTileImage
 								title="Transcend"
 								description="Learn how to upgrade transcend and see a list of burst effects."
 								imageSource={LocationIcons.find((e) => e.name === 'Transcend')
 									?.icon}
-								href="/"
+								href="/hunter-notes/getting-started/transcend"
 							/>
 						</div>
 					</section>
@@ -186,69 +188,69 @@
 								title="Exotics"
 								description="The list of exotic monsters and the automatic skills they provide."
 								imageSource={StygianZinogre}
-								href="/"
+								href="/hunter-notes/monsters/exotics"
 							/>
 							<ClickableTileImage
 								title="Origin"
 								description="The list of origin monsters and the automatic skills they provide."
 								imageSource={YamaKurai2}
-								href="/"
+								href="/hunter-notes/monsters/origin"
 							/>
 							<ClickableTileImage
 								title="Burst"
 								description="The list of burst monsters."
 								imageSource={Zerureusu}
-								href="/"
+								href="/hunter-notes/monsters/burst"
 							/>
 							<ClickableTileImage
 								title="Supremacy"
 								description="The list of supremacy monsters and how to beat them."
 								imageSource={SupremacyTeostra}
-								href="/"
+								href="/hunter-notes/monsters/supremacy"
 							/>
 							<ClickableTileImage
 								title="Duremudira"
 								description="An explanation of Tower gear and skills, and how to beat 2nd District Duremudira."
 								imageSource={Duremudira}
-								href="/"
+								href="/hunter-notes/monsters/duremudira"
 							/>
 							<ClickableTileImage
 								title="Zenith"
 								description="The list of zenith monsters and how to beat them; their gear and skills."
 								imageSource={Bogabadorumu6}
-								href="/"
+								href="/hunter-notes/monsters/zenith"
 							/>
 
 							<ClickableTileImage
 								title="Raviente"
 								description="The list of Evolution weapons and their upgrade tree, Raviente armor,  and a tutorial for slaying and supporting during a Raviente raid."
 								imageSource={BerserkRaviente}
-								href="/"
+								href="/hunter-notes/monsters/raviente"
 							/>
 
 							<ClickableTileImage
 								title="Conquest"
 								description="The list of conquest monsters and how to beat them; their materials and stats."
 								imageSource={ConquestFatalis7}
-								href="/"
+								href="/hunter-notes/monsters/conquest"
 							/>
 							<ClickableTileImage
 								title="Shiten"
 								description="The list of shiten monsters and how to beat them; their sigils and stats."
 								imageSource={UNKNOWN}
-								href="/"
+								href="/hunter-notes/monsters/shiten"
 							/>
 							<ClickableTileImage
 								title="Unlimited"
 								description="The list of unlimited (UL) monsters and their rewards upon hunting them."
 								imageSource={AkuraJebia2}
-								href="/"
+								href="/hunter-notes/monsters/unlimited"
 							/>
 							<ClickableTileImage
 								title="Musou"
 								description="The list of musou monsters and how to beat them."
 								imageSource={BurningFreezingElzelion2}
-								href="/"
+								href="/hunter-notes/monsters/musou"
 							/>
 						</div>
 					</section>
@@ -259,25 +261,31 @@
 								title="Overview"
 								description="An overview of each weapon type, their multipliers (including sharpness), recommended weapons, skills and sigils."
 								imageSource={AllWeapons}
-								href="/"
+								href="/hunter-notes/weapons/overview"
+							/>
+							<ClickableTileImage
+								title="Sigils"
+								description="View a list of sigils."
+								imageSource={SigilIconWhite}
+								href="/hunter-notes/weapons/sigils"
 							/>
 							<ClickableTileImage
 								title="Critical Distance"
 								description="An explanation of ranged weapons' Critical Distance mechanic."
 								imageSource={ShotIconWhite}
-								href="/"
+								href="/hunter-notes/weapons/critical-distance"
 							/>
 							<ClickableTileImage
 								title="Active Feature"
 								description="A list of each weapon's active feature."
 								imageSource={AllWeapons}
-								href="/"
+								href="/hunter-notes/weapons/active-feature"
 							/>
 							<ClickableTileImage
 								title="Hunting Horn Songs"
 								description="A list of hunting horn songs."
 								imageSource={getWeaponIcon('Hunting Horn')}
-								href="/"
+								href="/hunter-notes/weapons/hunting-horn-songs"
 							/>
 						</div>
 					</section>
@@ -288,25 +296,25 @@
 								title="Overview"
 								description="An overview of armor types."
 								imageSource={AllArmors}
-								href="/"
+								href="/hunter-notes/armor/overview"
 							/>
 							<ClickableTileImage
 								title="Skills"
 								description="The list of armor skills, including zenith skills."
 								imageSource={JewelIconWhite}
-								href="/"
+								href="/hunter-notes/armor/skills"
 							/>
 							<ClickableTileImage
 								title="Colors"
 								description="The list of armor pigment colors and how to unlock them."
 								imageSource={AllArmors}
-								href="/"
+								href="/hunter-notes/armor/colors"
 							/>
 							<ClickableTileImage
 								title="Transmog"
 								description="How to unlock transmog."
 								imageSource={AllArmors}
-								href="/"
+								href="/hunter-notes/armor/transmog"
 							/>
 						</div>
 					</section>
@@ -318,47 +326,47 @@
 								description="List of NPC available at Mezeporta Square."
 								imageSource={LocationIcons.find((e) => e.name === 'Mezeporta')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/mezeporta-square"
 							/>
 							<ClickableTileImage
 								title="Guild Hall"
 								description="The various facilities of the Guild Hall explained: Guild Food, Guild Poogies, Guild Store, etc."
 								imageSource={LocationIcons.find((e) => e.name === 'Guild Hall')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/guild-hall"
 							/>
 							<ClickableTileImage
 								title="Bento"
 								description="The various buffs provided by bentos summarized."
 								imageSource={LocationIcons.find((e) => e.name === 'Bento')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/bento"
 							/>
 							<ClickableTileImage
 								title="Hunter's Road"
 								description="The road skills list and how to upgrade them."
 								imageSource={LocationIcons.find((e) => e.name === 'Road')?.icon}
-								href="/"
+								href="/hunter-notes/locations/road"
 							/>
 							<ClickableTileImage
 								title="Gathering Maps"
 								description="The various gathering spots for all locations of the game."
 								imageSource={MapIconWhite}
-								href="/"
+								href="/hunter-notes/locations/gathering-maps"
 							/>
 							<ClickableTileImage
 								title="Caravan"
 								description="Caravan gem, skills, colors, etc."
 								imageSource={LocationIcons.find((e) => e.name === 'Caravan')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/caravan"
 							/>
 							<ClickableTileImage
 								title="Blacksmith"
 								description="List of NPC available at the Blacksmith."
 								imageSource={LocationIcons.find((e) => e.name === 'Blacksmith')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/blacksmith"
 							/>
 							<ClickableTileImage
 								title="Diva Fountain"
@@ -366,7 +374,7 @@
 								imageSource={LocationIcons.find(
 									(e) => e.name === 'Diva Fountain',
 								)?.icon}
-								href="/"
+								href="/hunter-notes/locations/diva-fountain"
 							/>
 
 							<ClickableTileImage
@@ -374,55 +382,55 @@
 								description="List of various options available in My House."
 								imageSource={LocationIcons.find((e) => e.name === 'My House')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/my-house"
 							/>
 							<ClickableTileImage
 								title="My Gallery"
 								description="List of various options available in My Gallery."
 								imageSource={LocationIcons.find((e) => e.name === 'My Gallery')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/my-gallery"
 							/>
 							<ClickableTileImage
 								title="My Garden"
 								description="List of various options available in My Garden."
 								imageSource={LocationIcons.find((e) => e.name === 'My Garden')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/my-garden"
 							/>
 							<ClickableTileImage
 								title="My Missions"
 								description="List of various options available in My Missions."
 								imageSource={LocationIcons.find((e) => e.name === 'My Missions')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/my-missions"
 							/>
 							<ClickableTileImage
 								title="My Support"
 								description="List of various options available in My Support."
 								imageSource={LocationIcons.find((e) => e.name === 'My Support')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/my-support"
 							/>
 							<ClickableTileImage
 								title="My Tore"
 								description="List of various options available in My Tore."
 								imageSource={LocationIcons.find((e) => e.name === 'My Tore')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/my-tore"
 							/>
 							<ClickableTileImage
 								title="Rasta Bar"
 								description="List of various options available in the Rasta Bar."
 								imageSource={LocationIcons.find((e) => e.name === 'Rasta Bar')
 									?.icon}
-								href="/"
+								href="/hunter-notes/locations/rasta-bar"
 							/>
 							<ClickableTileImage
 								title="Tent"
 								description="List of various options available in the Tent."
 								imageSource={LocationIcons.find((e) => e.name === 'Tent')?.icon}
-								href="/"
+								href="/hunter-notes/locations/tent"
 							/>
 						</div>
 					</section>
@@ -433,31 +441,31 @@
 								title="Item Box"
 								description="Item Box capacity, presets and combinations."
 								imageSource={TrapToolIconWhite}
-								href="/"
+								href="/hunter-notes/items/item-box"
 							/>
 							<ClickableTileImage
 								title="Decorations"
 								description="A list of decoration types."
 								imageSource={JewelIconWhite}
-								href="/"
+								href="/hunter-notes/items/decorations"
 							/>
 							<ClickableTileImage
 								title="Armor Spheres"
 								description="List of armor spheres."
 								imageSource={BallIconWhite}
-								href="/"
+								href="/hunter-notes/items/armor-spheres"
 							/>
 							<ClickableTileImage
 								title="Special Items"
 								description="List of items that are unique to Frontier or adjust the quest rewards."
-								imageSource={GreatSwordRainbow}
-								href="/"
+								imageSource={TicketIconWhite}
+								href="/hunter-notes/items/special-items"
 							/>
 							<ClickableTileImage
 								title="Medal Trades"
 								description="List of items obtained by exchanging medals."
 								imageSource={SacIconWhite}
-								href="/"
+								href="/hunter-notes/items/medal-trades"
 							/>
 						</div>
 					</section>
@@ -470,27 +478,27 @@
 								imageSource={LocationIcons.find(
 									(e) => e.name === 'Interception',
 								)?.icon}
-								href="/"
+								href="/hunter-notes/events/diva-defense"
 							/>
 							<ClickableTileImage
 								title="Hunter Festival"
 								description="Hunting Competition, Soul gathering and Winner's Week information."
 								imageSource={LocationIcons.find((e) => e.name === 'Festi')
 									?.icon}
-								href="/"
+								href="/hunter-notes/events/hunter-festival"
 							/>
 							<ClickableTileImage
 								title="Mezeporta Festival"
 								description="A list of minigames available during the festival's duration, with tips to get a highscore."
 								imageSource={LocationIcons.find((e) => e.name === 'Mezfes')
 									?.icon}
-								href="/"
+								href="/hunter-notes/events/mezeporta-festival"
 							/>
 							<ClickableTileImage
 								title="Wycademy's Events"
 								description="Information about time-limited events hosted by Wycademy's developers."
 								imageSource={Logo}
-								href="/"
+								href="/hunter-notes/events/wycademy-events"
 							/>
 						</div>
 					</section>
@@ -501,26 +509,26 @@
 								title="Item Sets"
 								description="The best item sets and how to obtain each item."
 								imageSource={MedicineIconWhite}
-								href="/"
+								href="/hunter-notes/advanced/item-sets"
 							/>
 							<ClickableTileImage
 								title="Item Interactions"
 								description="Specific item inteactions explained in greater detail."
 								imageSource={BallIconWhite}
-								href="/"
+								href="/hunter-notes/advanced/item-interactions"
 							/>
 							<ClickableTileImage
 								title="Mechanics"
 								description="Various advanced mechanics of the game explained in great detail."
 								imageSource={LocationIcons.find((e) => e.name === 'Blacksmith')
 									?.icon}
-								href="/"
+								href="/hunter-notes/advanced/mechanics"
 							/>
 							<ClickableTileImage
 								title="Skills"
 								description="An overview of specific skill interactions, and which ones to use."
 								imageSource={JewelIconWhite}
-								href="/"
+								href="/hunter-notes/advanced/skills"
 							/>
 						</div>
 					</section>
