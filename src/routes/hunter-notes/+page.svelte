@@ -39,7 +39,6 @@
 	} from '$lib/client/modules/frontier/objects';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
-	import GreatSwordRainbow from '$lib/client/images/weapon/gs_rainbow.gif';
 	import ExtremeFireblight from '$lib/client/components/frontier/icon/ailment/ExtremeFireblight.svelte';
 	import ExtremeParalysis from '$lib/client/components/frontier/icon/ailment/ExtremeParalysis.svelte';
 	import StygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
