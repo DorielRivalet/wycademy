@@ -333,7 +333,7 @@ The zenith skill does not need you to have over 100% affinity for it to take eff
 	},
 	{
 		title: 'Critical Distance',
-		slug: '/arena#critical-distance',
+		slug: '/hunter-notes/weapons/critical-distance',
 		content: `Critical Distance is indicated by the shot expanding fully and creating a circle indicator.
 
  Heavy Bowgun has a much larger impact animation while in the first half of critical distance on standard shots making it easier to see when you are properly spaced. This adds an extra 0.3x multiplier to damage in that zone (e.g. 2.0 in first half of Normal Shot range, 2.3x with an Origin or Zenith Piece and G Rank Weapon, etc.).
@@ -345,7 +345,7 @@ The zenith skill does not need you to have over 100% affinity for it to take eff
 	},
 	{
 		title: 'Weapon Multipliers',
-		slug: '/arena#weapon-multipliers',
+		slug: '/hunter-notes/weapons/overview#weapon-multipliers',
 		content: 'Weapon bloat multipliers.',
 		id: 0,
 		hex: '0x00',
@@ -353,7 +353,7 @@ The zenith skill does not need you to have over 100% affinity for it to take eff
 	},
 	{
 		title: 'Active Feature',
-		slug: '/arena#active-feature',
+		slug: '/hunter-notes/weapons/active-feature',
 		content:
 			'The Active Feature system is a daily effect to weapon types. These effects last from 12 PM to 12 PM the next day, at which time a new weapon type will be chosen. You can see up to one day in advance by looking behind the main Active Feature bar at the top of your screen while in Mezeporta Mezeporta.',
 		id: 0,
@@ -362,7 +362,7 @@ The zenith skill does not need you to have over 100% affinity for it to take eff
 	},
 	{
 		title: 'Sharpness',
-		slug: '/arena#sharpness',
+		slug: '/hunter-notes/weapons/overview#sharpness',
 		content: 'Melee weapon sharpness multipliers.',
 		id: 0,
 		hex: '0x00',
@@ -370,7 +370,7 @@ The zenith skill does not need you to have over 100% affinity for it to take eff
 	},
 	{
 		title: 'Guild Poogie',
-		slug: '/arena#guild-poogie',
+		slug: '/hunter-notes/locations/guild-hall#guild-poogie',
 		content: `Guild Poogies, found in the Guild Hall Guild Hall, can grant bonuses upon being successfully fed (indicated by them jumping up and down in a white flash), a Guild can have three different Poogie Outfit that each grant a different skill when fed successfully. The easiest way to get the buff is to to mass feed them  Pugi Crackers from the Guild Shop.
 
 You can only have one buff active at a time. You only need to feed once per log in. You can check your current skill in the last page of your equipment menu.
@@ -384,7 +384,7 @@ Only the guild leader can purchase and change clothes.`,
 	},
 	{
 		title: 'Guild Store Discount',
-		slug: '/arena#guild-store-discount',
+		slug: '/hunter-notes/locations/guild-hall#guild-store-discount',
 		content: `The discount, from guild rank 5, is activated by successfully completing the "pat on the head" and "it seems pretty happy" responses a specified number of times.
 
 5 times successful: Guild shop 5% discount.
@@ -401,7 +401,7 @@ Petting poogie for a long time and it getting angry`,
 	},
 	{
 		title: 'Guild Poogie Skills',
-		slug: '/arena#guild-poogie-skills',
+		slug: '/hunter-notes/locations/guild-hall#guild-poogie-skills',
 		content: `Guild Poogie Skills are unlocked at Guild Rank 6. Giving food and triggering the alert "seems to love it!" will activate a skill according to the Poogie's clothes with a probability.`,
 		id: 0,
 		hex: '0x00',
@@ -409,7 +409,7 @@ Petting poogie for a long time and it getting angry`,
 	},
 	{
 		title: 'Guild Poogie Clothing Materials',
-		slug: '/arena#guild-poogie-clothing-materials',
+		slug: '/hunter-notes/locations/guild-hall#guild-poogie-clothing-materials',
 		content: 'Clothing materials are RARE2 and can be put in the guild box.',
 		id: 0,
 		hex: '0x00',
@@ -417,7 +417,7 @@ Petting poogie for a long time and it getting angry`,
 	},
 	{
 		title: 'Armor Colors',
-		slug: '/arena#armor-colors',
+		slug: '/hunter-notes/armor/colors',
 		content: `Colors are unlocked by doing a number of different tasks. These colors are also the color that is displayed behind your weapon icon in Mezeporta Mezeporta.
 
 Colors other than Green, Red and White require that you have reached at least HR3 to be used.
@@ -431,7 +431,7 @@ If your total points for Green, Red or White pass 100, the total points of all t
 	},
 	{
 		title: 'Diva Prayer Gems',
-		slug: '/arena#diva-prayer-gems',
+		slug: '/hunter-notes/events/diva-defense#diva-prayer-gems',
 		content: `During the Diva Defense Diva Defense event, there are up to four different colors of Prayer gems, each of these will have a different effect based on the skills currently assigned to the individual colors.
 
 The buffs are only available in the second week of the event. The total number of times they can be used is based on the global server's Song Spheres. When Prayers are maxed out you will be forced to choose another color, locking you from contributing to it.
@@ -449,7 +449,7 @@ You can check your currently equipped gem names in Overlay Settings > Hunter Not
 	},
 	{
 		title: 'Guild Food',
-		slug: '/arena#guild-food',
+		slug: '/hunter-notes/locations/guild-hall#guild-food',
 		content: `Guild cooking is available at guild rank 15 in the Guild Hall Guild Hall and is a mini-game for up to four people. Cooking can activate effects independent of armor skills.
 
 The skill effect from cooking lasts for 90 minutes. If a new skill is obtained, it overwrites the previous effect.
@@ -491,7 +491,7 @@ Unless you are confident in consistently achieving Great Success, use recipes wi
 	},
 	{
 		title: 'Bento',
-		slug: '/arena#bento',
+		slug: '/hunter-notes/locations/bento',
 		content: `Lunchboxes (or Bentos) are buffs that you set at the quest counter menu, right before embarking on a quest.
 
 You can pack a Bento at the appropiate NPC:
@@ -505,7 +505,7 @@ The Guild Store Cat in the Guild Hall Guild Hall.`,
 	},
 	{
 		title: 'Recommended Bento',
-		slug: '/arena#recommended-bento',
+		slug: '/hunter-notes/locations/bento#recommended-bento',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -513,7 +513,7 @@ The Guild Store Cat in the Guild Hall Guild Hall.`,
 	},
 	{
 		title: 'Food Types and Locations',
-		slug: '/arena#food-types-and-locations',
+		slug: '/hunter-notes/locations/bento#food-types-and-locations',
 		content: `Guild Cat Store:
 
  Spirit Mushrooms
@@ -540,7 +540,7 @@ Poogie Farm General Store Lv3:
 	},
 	{
 		title: 'Exotics',
-		slug: '/arena#exotics',
+		slug: '/hunter-notes/monsters/exotics',
 		content:
 			'Only 1 armor piece is needed to activate the armor skill. All weapons give Speed Eating. Each Exotic monster has a set of associated G Finesse weapon.',
 		id: 0,
@@ -549,7 +549,7 @@ Poogie Farm General Store Lv3:
 	},
 	{
 		title: 'Origin',
-		slug: '/arena#origin',
+		slug: '/hunter-notes/monsters/origin',
 		content:
 			'Origin monsters are natural evolutions of the Gou monsters. These are required to upgrade Gou armors and weapons beyond G Supremacy level.',
 		id: 0,
@@ -578,7 +578,7 @@ Negative elemental hitzones will still apply their raw penalty normally if the '
 	},
 	{
 		title: 'Monster Status Immunities',
-		slug: '/arena#monster-status-immunities',
+		slug: '/hunter-notes/getting-started/ailments#monster-status-immunities',
 		content: `Subspecies and Zeniths are also immune, except Doragyurosu Doragyurosu which is immune to these statuses only in G Rank, and also as a Zenith.
 
 Only support can inflict poison to Raviente Raviente.`,
