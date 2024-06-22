@@ -1,4 +1,5 @@
 <script lang="ts">
+	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 </script>
 
@@ -113,6 +114,12 @@
 		lobortis feugiat vivamus at. Nullam non nisi est sit amet facilisis. Tempor
 		orci dapibus ultrices in.
 	</p>
+	<PageTurn
+		previous="/hunter-notes/getting-started/your-first-hunts"
+		previousTitle="Getting Started: Your First Hunts"
+		next="/hunter-notes/getting-started/ailments"
+		nextTitle="Getting Started: Ailments"
+	/>
 </div>
 
 <style lang="scss">
