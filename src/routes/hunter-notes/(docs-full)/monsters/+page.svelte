@@ -88,6 +88,8 @@
 		/>
 	</div>
 	<PageTurn
+		previous="/hunter-notes/getting-started/transcend"
+		previousTitle="Getting Started: Transcend"
 		next="/hunter-notes/monsters/exotics"
 		nextTitle="Monsters: Exotics"
 	/>

@@ -43,6 +43,8 @@
 		/>
 	</div>
 	<PageTurn
+		previous="/hunter-notes/monsters/musou"
+		previousTitle="Monsters: Musou"
 		next="/hunter-notes/weapons/overview"
 		nextTitle="Weapons: Overview"
 	/>

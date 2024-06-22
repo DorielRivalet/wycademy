@@ -108,6 +108,8 @@
 		/>
 	</div>
 	<PageTurn
+		previous="/hunter-notes/armor/transmog"
+		previousTitle="Armor: Transmog"
 		next="/hunter-notes/locations/mezeporta-square"
 		nextTitle="Locations: Mezeporta Square"
 	/>

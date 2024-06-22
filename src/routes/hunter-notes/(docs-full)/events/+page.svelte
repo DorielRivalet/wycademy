@@ -35,6 +35,8 @@
 		/>
 	</div>
 	<PageTurn
+		previous="/hunter-notes/items/medal-trades"
+		previousTitle="Items: Medal Trades"
 		next="/hunter-notes/events/diva-defense"
 		nextTitle="Events: Diva Defense"
 	/>

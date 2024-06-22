@@ -43,7 +43,12 @@
 			href="/hunter-notes/items/medal-trades"
 		/>
 	</div>
-	<PageTurn next="/hunter-notes/items/item-box" nextTitle="Items: Item Box" />
+	<PageTurn
+		previous="/hunter-notes/locations/tent"
+		previousTitle="Locations: Tent"
+		next="/hunter-notes/items/item-box"
+		nextTitle="Items: Item Box"
+	/>
 </div>
 
 <style lang="scss">
