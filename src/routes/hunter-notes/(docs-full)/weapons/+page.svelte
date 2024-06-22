@@ -53,7 +53,7 @@
 		display: grid;
 		gap: 0.5rem;
 		grid-template-columns: repeat(auto-fill, minmax(256px, 2fr));
-		margin-bottom: 2rem;
+		margin-bottom: 4rem;
 	}
 
 	.top-level-section {

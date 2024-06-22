@@ -62,7 +62,7 @@
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import { tocEnabledStore } from '$lib/client/stores/toc';
+	import { hunterNotesSidebarEnabledStore } from '$lib/client/stores/toc';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 
 	const breakpointSize = breakpointObserver();
@@ -627,11 +627,11 @@
 
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 
-	let tocVisible = $tocEnabledStore;
+	let tocVisible = $hunterNotesSidebarEnabledStore;
 
 	function onTOCToggleButtonPress(e: MouseEvent) {
 		tocVisible = !tocVisible;
-		tocEnabledStore.set(tocVisible ? true : false);
+		hunterNotesSidebarEnabledStore.set(tocVisible ? true : false);
 
 		if (tocVisible) {
 			tocClass = 'aside';
@@ -662,7 +662,10 @@
 	let treeview: TreeView | null = null;
 </script>
 
-<LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
+<LocalStorage
+	bind:value={$hunterNotesSidebarEnabledStore}
+	key="__hunter-notes-sidebar-enabled"
+/>
 
 <Head
 	title={deslugify(headTitle)}
