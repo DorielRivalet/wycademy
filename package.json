@@ -123,6 +123,6 @@
 		"svelte-add": "^2.0.10",
 		"svelte-moveable": "^0.45.0",
 		"svelte-toc": "^0.5.8",
-		"three": "^0.164.1"
+		"three": "^0.165.0"
 	}
 }
