@@ -558,7 +558,7 @@ Poogie Farm General Store Lv3:
 	},
 	{
 		title: 'Elements',
-		slug: '/arena#elements',
+		slug: '/hunter-notes/getting-started/elements',
 		content: `Combo elements are equivalent to having from two to three of them but at a percentage of your elemental value. For visual effects, the element that deals the most damage will take precedence.  Gunlance's heatblade alternates the effect.
 
 With Transcendence bursts, there is a hierarchy on which elements take precedence first. The order is  Fire >  Water >  Thunder >  Ice >  Dragon.
@@ -570,7 +570,7 @@ Negative elemental hitzones will still apply their raw penalty normally if the '
 	},
 	{
 		title: 'Ailments',
-		slug: '/arena#ailments',
+		slug: '/hunter-notes/getting-started/ailments',
 		content: '',
 		id: 0,
 		hex: '0x00',
