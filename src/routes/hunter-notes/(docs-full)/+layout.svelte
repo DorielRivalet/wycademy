@@ -54,7 +54,7 @@
 	import MedicineIconWhite from '$lib/client/components/frontier/icon/item/Medicine_Icon_White.svelte';
 	import BallIconWhite from '$lib/client/components/frontier/icon/item/Ball_Icon_White.svelte';
 	import MantleIconWhite from '$lib/client/components/frontier/icon/item/Mantle_Icon_White.svelte';
-	import Logo from '$lib/client/images/logo.webp';
+	import Logo from '$lib/client/images/logo.svg';
 	import Transcend from '$lib/client/images/icon/transcend.webp';
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
@@ -755,7 +755,7 @@
 				</a>
 			</TreeView>
 		</aside>
-		<div class="center-column {centerColumnClass}">
+		<div class="body {centerColumnClass}">
 			<div class="breadcrumb">
 				<Breadcrumb noTrailingSlash>
 					{#each breadcrumbItems as item, i}
@@ -819,34 +819,63 @@
 		max-width: 100vw;
 	}
 
-	.aside {
-		flex: 0 0 auto;
-		transition: margin motion.$duration-fast-02
-			motion.motion(standard, expressive);
-		width: 16.67%;
-		background-color: var(--ctp-surface0);
+	@media (min-width: 320px) {
+		.aside {
+			flex: 0 0 auto;
+			transition: margin motion.$duration-fast-02
+				motion.motion(standard, expressive);
+			width: 16.67%;
+			background-color: var(--ctp-surface0);
+			display: none;
+		}
+
+		.aside.collapsed {
+			margin-left: -16.67%;
+			display: none;
+		}
+
+		.body {
+			margin: auto;
+			background-color: var(--ctp-base);
+			width: 90%;
+		}
+
+		.body.expanded {
+			margin: auto;
+			width: 90%;
+		}
 	}
 
-	.aside.collapsed {
-		margin-left: -16.67%;
-	}
+	@media (min-width: 1056px) {
+		.aside {
+			display: block;
+			flex: 0 0 auto;
+			transition: margin motion.$duration-fast-02
+				motion.motion(standard, expressive);
+			width: 16.67%;
+			background-color: var(--ctp-surface0);
+		}
 
-	.body {
-		margin: 0 auto;
-		flex-shrink: 1;
-		background-color: var(--ctp-base);
-		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
-		flex: 1 0 0%;
-		width: calc(
-			100% - 16.67%
-		); // Directly adds the TOC width to the main content width
-	}
+		.aside.collapsed {
+			display: block;
+			margin-left: -16.67%;
+		}
 
-	.body.expanded {
-		width: 100%;
-		transition: width motion.$duration-fast-02
-			motion.motion(standard, expressive);
+		.body {
+			margin: 0 auto;
+			flex-shrink: 1;
+			background-color: var(--ctp-base);
+			flex: 1 0 0%;
+			width: calc(
+				100% - 16.67%
+			); // Directly adds the TOC width to the main content width
+		}
+
+		.body.expanded {
+			width: 100%;
+			transition: width motion.$duration-fast-02
+				motion.motion(standard, expressive);
+		}
 	}
 
 	.breadcrumb {
