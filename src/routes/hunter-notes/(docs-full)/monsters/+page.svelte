@@ -12,7 +12,7 @@
 	import SupremacyTeostra from '$lib/client/components/frontier/icon/monster/SupremacyTeostra.svelte';
 	import YamaKurai2 from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
 	import Zerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';
-	import UNKNOWN from '$lib/client/images/monster/UNKNOWN.webp';
+	import UNKNOWN from '$lib/client/images/monster/shiten_unknown.webp';
 </script>
 
 <div class="top-level-section">
