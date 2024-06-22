@@ -37,6 +37,8 @@
 		/>
 	</div>
 	<PageTurn
+		previous="/hunter-notes/events/wycademy-events"
+		previousTitle="Events: Wycademy's Events"
 		next="/hunter-notes/advanced/item-sets"
 		nextTitle="Advanced: Item Sets"
 	/>

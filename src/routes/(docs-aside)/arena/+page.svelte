@@ -6450,7 +6450,7 @@ does not get multiplied by horn */
 			<ListItem>And much more!</ListItem>
 		</UnorderedList>
 
-		<p>
+		<p class="spaced-paragraph">
 			Additionally, you can view motion values animations, graphs of armor
 			skills such as <InlineTooltip
 				tooltip="Armor Skill"

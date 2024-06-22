@@ -356,3 +356,7 @@ body.wait * {
 .bx--tree {
 	overflow: auto;
 }
+
+p {
+	max-width: 96ch;
+}

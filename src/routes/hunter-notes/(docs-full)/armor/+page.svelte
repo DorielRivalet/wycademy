@@ -34,7 +34,12 @@
 			href="/hunter-notes/armor/transmog"
 		/>
 	</div>
-	<PageTurn next="/hunter-notes/armor/overview" nextTitle="Armor: Overview" />
+	<PageTurn
+		previous="/hunter-notes/weapons/hunting-horn-songs"
+		previousTitle="Weapons: Hunting Horn Songs"
+		next="/hunter-notes/armor/overview"
+		nextTitle="Armor: Overview"
+	/>
 </div>
 
 <style lang="scss">
