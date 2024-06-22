@@ -107,7 +107,7 @@
 		"@theatre/core": "^0.7.2",
 		"@theatre/studio": "^0.7.2",
 		"@threlte/core": "^7.3.0",
-		"@threlte/extras": "^8.11.2",
+		"@threlte/extras": "^8.11.3",
 		"@threlte/theatre": "^2.1.7",
 		"@types/three": "^0.165.0",
 		"alex": "^11.0.1",
