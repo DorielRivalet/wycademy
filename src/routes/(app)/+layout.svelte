@@ -21,11 +21,7 @@
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
-	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import { stickyHeaderStore } from '$lib/client/stores/toggles';
-
-	const breakpointSize = breakpointObserver();
-	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -57,9 +53,6 @@
 			case '/arena': {
 				return 'bg-arena';
 			}
-			// case '/bestiary': {
-			// 	return 'bg-bestiary';
-			// }
 			case '/site-preferences': {
 				return 'bg-equipment-box';
 			}
@@ -72,9 +65,6 @@
 			case '/leaderboard': {
 				return 'bg-leaderboard';
 			}
-			// case '/hunter-notes': {
-			// 	return 'bg-hunter-notes';
-			// }
 			case '/user': {
 				return 'bg-profile';
 			}

@@ -8,6 +8,8 @@
 	import WaistIconWhite from './Waist_Icon_White.svelte';
 
 	export let colors = [...new Set(RarityColors)];
+	export let delay = 2000;
+
 	const armors = [
 		ArmIconWhite,
 		ChestIconWhite,
@@ -30,7 +32,7 @@
 		const intervalId = setInterval(() => {
 			randomArmor = getRandomItem(armors);
 			randomColor = getRandomItem(colors);
-		}, 1000);
+		}, delay);
 
 		return () => clearInterval(intervalId);
 	});

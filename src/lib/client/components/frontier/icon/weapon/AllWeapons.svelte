@@ -24,6 +24,8 @@
 	let randomWeapon = getWeaponIcon('Great Sword');
 	let randomColor = '#ffffff';
 
+	export let delay = 2000;
+
 	// Function to select a random item from an array
 	function getRandomItem(arr: any[]) {
 		return arr[Math.floor(Math.random() * arr.length)];
@@ -38,7 +40,7 @@
 		const intervalId = setInterval(() => {
 			randomWeapon = getRandomItem(weapons);
 			randomColor = getRandomItem(colors);
-		}, 1000); // Change every 1 second
+		}, delay); // Change every 1 second
 
 		// Cleanup function to clear the interval when the component is destroyed
 		return () => clearInterval(intervalId);
