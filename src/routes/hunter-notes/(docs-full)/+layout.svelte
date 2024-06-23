@@ -35,7 +35,6 @@
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
 	import TreeView, {
 		type TreeNode,
-		type TreeNodeId,
 	} from 'carbon-components-svelte/src/TreeView/TreeView.svelte';
 	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 	import ExtremeDragonblight from '$lib/client/components/frontier/icon/ailment/ExtremeDragonblight.svelte';

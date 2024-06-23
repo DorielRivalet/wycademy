@@ -172,10 +172,12 @@
 					{/if}
 				</Link>
 			</div>
+			<!-- TODO: profile disclosure-->
 			<Button
 				kind="ghost"
 				size="field"
 				iconDescription={'Profile'}
+				href="/user-demo"
 				on:click={(e) => console.log('Profile')}
 				><UserAvatar slot="icon" size={48} color="var(--ctp-text)" /></Button
 			>

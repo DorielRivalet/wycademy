@@ -921,3 +921,10 @@ export type FrontierDivaPrayerGem = {
 
 export type FrontierDivaPrayerGemColor = 'Red' | 'Yellow' | 'Green' | 'Blue';
 export type FrontierDivaPrayerGemLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+export type WycademyTrophy = {
+	title: string;
+	date: string;
+	serial: number;
+	icon: any;
+};

@@ -24,7 +24,7 @@
 
 <LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
 
-{#if !tocVisible && $breakpointLargerThanMedium}
+{#if !tocVisible && $breakpointLargerThanMedium && displayTOC}
 	<div class="expand-TOC">
 		<Button
 			iconDescription="Expand TOC"
