@@ -271,13 +271,15 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		<hr />
 		<div class="testimonials">
 			<Testimonial
-				author="Kairi, MHF-Z Speedrunner"
+				authorName="Kairi"
+				authorTitle="MHF-Z Speedrunner"
 				authorLink="https://www.youtube.com/@kairi_mhfz"
 				quote="The overlay offers a preset configuration for speedruns, disabling any options that give an unfair advantage. It includes quest logging and stores completed runs in a local database for submission and validation. This ensures fair competition and prevents fake runs."
 				authorImage="https://yt3.googleusercontent.com/ytc/AOPolaQWKx3GIOgWWRu9YCHBI7lrkFjT2NxLP45IlnSM=s176-c-k-c0x00ffffff-no-rj"
 			/>
 			<Testimonial
-				author="Sera, MHF-Z Speedrunner"
+				authorName="Sera"
+				authorTitle="MHF-Z Speedrunner"
 				authorLink="https://www.youtube.com/@Sera9145"
 				quote="The overlay verifies that the files are legitimate and unmodified to prevent gaining an advantage, then uploads the data to the leaderboard with linked YouTube videos. It can also show damage numbers and track musou kills, which are not displayed by the game."
 				authorImage="https://yt3.googleusercontent.com/2PmblC16_LZtoziuCn9ZMbivRpkLXi60t44bhp3WSl3KB_ShbDvvek-hRfZgfbf2HDOYetDP=s176-c-k-c0x00ffffff-no-rj"
@@ -500,7 +502,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		margin-top: 2rem;
 		display: flex;
 		flex-direction: column;
-		gap: 4rem;
+		gap: var(--cds-spacing-12);
 	}
 
 	.faq-section footer {
