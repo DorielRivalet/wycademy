@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Quotes from 'carbon-icons-svelte/lib/Quotes.svelte';
 
-	export let author: string;
+	export let authorName: string;
+	export let authorTitle: string;
 	export let quote: string;
 	export let authorImage: string;
 	export let authorLink = '';
@@ -9,7 +10,15 @@
 
 {#if authorLink === ''}
 	<figure class="testimonial">
-		<img src={authorImage} alt={author} />
+		<div class="image-container">
+			<img src={authorImage} alt={authorName} />
+			<cite class="author"
+				><a href={authorLink}>
+					<p class="author-name">{authorName}</p>
+					<p class="author-title">{authorTitle}</p>
+				</a></cite
+			>
+		</div>
 		<div class="text">
 			<blockquote class="quote">
 				<Quotes size={24} />
@@ -17,24 +26,26 @@
 					"{quote}"
 				</p>
 			</blockquote>
-			<cite class="author">—{author}></cite>
 		</div>
 	</figure>
 {:else}
 	<figure class="testimonial">
 		<a href={authorLink}>
-			<img src={authorImage} alt={author} />
+			<div class="image-container">
+				<img src={authorImage} alt={authorName} />
+				<cite class="author"
+					><a href={authorLink}>
+						<p class="author-name">{authorName}</p>
+						<p class="author-title">{authorTitle}</p>
+					</a></cite
+				>
+			</div>
 		</a>
 		<div class="text">
 			<blockquote class="quote">
 				<Quotes size={24} />
 				<p>{quote}</p>
 			</blockquote>
-			<cite class="author"
-				><a href={authorLink}>
-					—{author}
-				</a></cite
-			>
 		</div>
 	</figure>
 {/if}
@@ -69,16 +80,32 @@
 		}
 	}
 
+	.image-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
 	.quote:hover {
 		transform: scale(105%);
 	}
 
 	.author {
-		text-align: end;
+		text-align: center;
 	}
 
 	.author:hover {
 		text-decoration: underline;
+	}
+
+	.author-name {
+		color: var(--ctp-text);
+		@include type.type-style('fluid-heading-03', true);
+	}
+
+	.author-title {
+		color: var(--ctp-subtext0);
+		@include type.type-style('label-02');
 	}
 
 	img {
@@ -88,12 +115,6 @@
 
 	a {
 		all: unset;
-	}
-
-	.author > a {
-		font-style: italic;
-		color: var(--ctp-subtext0);
-		@include type.type-style('body-compact-02');
 	}
 
 	@media (min-width: 320px) {
