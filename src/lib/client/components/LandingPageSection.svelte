@@ -11,6 +11,10 @@
 	export let callToActionButtonText = '';
 	export let callToActionButtonLink = '';
 	export let callToActionButtonIcon: any = undefined;
+	export let headingLevel: 2 | 3 = 3;
+
+	const tag = 'h' + headingLevel;
+	const subheaderTag = 'h' + (headingLevel + 1);
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -19,11 +23,11 @@
 {#if $breakpointLargerThanMedium && imagePosition === 'right'}
 	<div class="landing-page-section">
 		<div class="content">
-			<h2 class="header">
+			<svelte:element this={subheaderTag} class="header">
 				<div><svelte:component this={sectionIcon} {...sectionIconProps} /></div>
-				<div>{section}</div>
-			</h2>
-			<p class="title">{title}</p>
+				<div class="header-text">{section}</div>
+			</svelte:element>
+			<svelte:element this={tag} class="title">{title}</svelte:element>
 			<p class="description">{description}</p>
 			<div class="button"></div>
 			{#if callToActionButtonText !== ''}
@@ -46,11 +50,11 @@
 			<slot />
 		</div>
 		<div class="content">
-			<h2 class="header">
+			<svelte:element this={subheaderTag} class="header">
 				<div><svelte:component this={sectionIcon} {...sectionIconProps} /></div>
-				<div>{section}</div>
-			</h2>
-			<p class="title">{title}</p>
+				<div class="header-text">{section}</div>
+			</svelte:element>
+			<svelte:element this={tag} class="title">{title}</svelte:element>
 			<p class="description">{description}</p>
 			<div class="button"></div>
 			{#if callToActionButtonText !== ''}
@@ -67,11 +71,11 @@
 {:else}
 	<div class="landing-page-section-center">
 		<div class="content">
-			<h2 class="header">
+			<svelte:element this={subheaderTag} class="header">
 				<div><svelte:component this={sectionIcon} {...sectionIconProps} /></div>
-				<div>{section}</div>
-			</h2>
-			<p class="title">{title}</p>
+				<div class="header-text">{section}</div>
+			</svelte:element>
+			<svelte:element this={tag} class="title">{title}</svelte:element>
 			<p class="description">{description}</p>
 			<div class="button"></div>
 			{#if callToActionButtonText !== ''}
@@ -97,6 +101,9 @@
 {/if}
 
 <style lang="scss">
+	@use '@carbon/motion' as motion;
+	@use '@carbon/type' as type;
+
 	.landing-page-section {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -144,29 +151,39 @@
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
-		gap: 0.5rem;
 	}
 
 	.description {
 		max-width: 48ch;
+		margin-top: 1rem;
+		@include type.type-style('fluid-paragraph-01', true);
 	}
 
 	.header {
 		all: unset;
 		display: flex;
 		align-items: center;
-		font-size: 1.5em;
-		font-weight: bold;
 		gap: 0.5rem;
 	}
 
 	.title {
-		font-weight: bold;
-		font-size: 36px;
 		max-width: 32ch;
 	}
 
 	.button {
-		margin-top: 1rem;
+		margin-top: 2rem;
+	}
+
+	h2 {
+		@include type.type-style('fluid-heading-05', true);
+	}
+
+	h3 {
+		@include type.type-style('fluid-heading-04', true);
+	}
+
+	h4 > .header-text {
+		color: var(--ctp-subtext0);
+		@include type.type-style('fluid-heading-03', true);
 	}
 </style>
