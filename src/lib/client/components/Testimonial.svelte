@@ -40,28 +40,8 @@
 {/if}
 
 <style lang="scss">
-	@media (min-width: 320px) {
-		.testimonial {
-			display: grid;
-			grid-template-rows: 1fr 3fr;
-			gap: 2rem;
-			width: 80vw;
-			margin: auto;
-			min-height: 90vh;
-			justify-items: center;
-		}
-	}
-
-	@media (min-width: 672px) {
-		.testimonial {
-			display: grid;
-			grid-template-columns: 1fr 3fr;
-			gap: 2rem;
-			width: 80vw;
-			margin: auto;
-			min-height: 90vh;
-		}
-	}
+	@use '@carbon/motion' as motion;
+	@use '@carbon/type' as type;
 
 	.text {
 		color: var(--ctp-subtext0);
@@ -78,17 +58,83 @@
 		background: var(--ctp-surface0);
 		border-radius: 8px 8px 8px 8px;
 		padding: 1rem;
+		filter: drop-shadow(8px 8px 4px #808080);
+		transition:
+			filter motion.$duration-slow-02 motion.motion(standard, expressive),
+			transform motion.$duration-slow-02 motion.motion(standard, expressive);
+
+		p {
+			@include type.type-style('fluid-quotation-01', true);
+			font-family: var(--font-serif);
+		}
+	}
+
+	.quote:hover {
+		transform: scale(105%);
 	}
 
 	.author {
 		text-align: end;
 	}
 
+	.author:hover {
+		text-decoration: underline;
+	}
+
 	img {
 		border-radius: 50%;
+		border: 2px solid var(--ctp-overlay0);
 	}
 
 	a {
 		all: unset;
+	}
+
+	.author > a {
+		font-style: italic;
+		color: var(--ctp-subtext0);
+		@include type.type-style('body-compact-02');
+	}
+
+	@media (min-width: 320px) {
+		.testimonial {
+			display: grid;
+			grid-template-rows: 1fr;
+			gap: 2rem;
+			width: 80vw;
+			margin: auto;
+			justify-items: center;
+
+			img {
+				width: 256px;
+				height: 256px;
+				object-fit: cover;
+				transition:
+					filter motion.$duration-slow-02 motion.motion(standard, expressive),
+					transform motion.$duration-slow-02 motion.motion(standard, expressive);
+			}
+
+			img:hover {
+				filter: brightness(110%);
+				transform: scale(105%);
+			}
+		}
+	}
+
+	@media (min-width: 672px) {
+		.testimonial {
+			display: grid;
+			grid-template-columns: 1fr 3fr;
+			grid-template-rows: 1fr;
+			gap: 2rem;
+			width: 80vw;
+			margin: auto;
+
+			img {
+				width: 256px;
+				height: 256px;
+				object-fit: cover;
+			}
+		}
 	}
 </style>

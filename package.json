@@ -99,6 +99,7 @@
 		"@carbon/grid": "^11.23.0",
 		"@carbon/layout": "^11.21.0",
 		"@carbon/motion": "^11.18.0",
+		"@carbon/type": "^11.28.1",
 		"@catppuccin/palette": "^1.2.0",
 		"@ibm/plex": "^6.4.1",
 		"@octokit/core": "^6.1.2",

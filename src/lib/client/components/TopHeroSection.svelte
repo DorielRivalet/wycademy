@@ -76,10 +76,18 @@
 {/if}
 
 <style lang="scss">
+	@use '@carbon/motion' as motion;
+	@use '@carbon/type' as type;
+
 	.hero-section {
 		position: relative;
 		overflow: hidden; // Ensures nothing spills outside the hero section
 		height: 100%; // Fill the entire height of.top-hero-section
+	}
+
+	.title {
+		@include type.type-style('fluid-heading-06', true);
+		text-align: center;
 	}
 
 	.background-video {
@@ -105,18 +113,12 @@
 		height: 100%; // Extend to full height of.hero-section
 	}
 
-	.title {
-		line-height: 1.125em;
-		font-weight: 800;
-		font-size: 4rem;
-		padding: 2rem;
-	}
-
 	.description {
+		@include type.type-style('fluid-paragraph-01', true);
 		text-wrap: wrap;
 		padding: 2rem;
 		text-align: center;
-		max-width: 80ch;
+		max-width: clamp(50vw, 80vw, 80ch);
 	}
 
 	.buttons {
