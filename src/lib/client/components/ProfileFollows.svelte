@@ -39,6 +39,7 @@
 	<Button
 		on:click={onFollowButtonClick}
 		icon={isFollowing ? undefined : UserFollow}
+		kind={isFollowing ? 'danger-ghost' : 'primary'}
 		iconDescription="Follow user">{isFollowing ? 'Unfollow' : 'Follow'}</Button
 	>
 </div>

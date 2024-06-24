@@ -34,6 +34,10 @@
 		website,
 	} from '$lib/constants';
 	import pageThumbnail from '$lib/client/images/logo.png';
+	import Quotes from 'carbon-icons-svelte/lib/Quotes.svelte';
+	import ListChecked from 'carbon-icons-svelte/lib/ListChecked.svelte';
+	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
+	import QuestionAnswering from 'carbon-icons-svelte/lib/QuestionAnswering.svelte';
 
 	export let data: PageData;
 
@@ -195,7 +199,11 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		/>
 	</section>
 
-	<section class="demo-section">
+	<section class="demo-section" id="demo">
+		<div class="subheader">
+			<VideoPlayer />
+			<p>Preview</p>
+		</div>
 		<h2>Demo</h2>
 		<hr />
 		<div class="youtube-embed">
@@ -205,7 +213,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 
 	<section class="pictograms-section">
 		<div class="pictograms-overview">
-			<p><strong>See our features.</strong></p>
+			<p><strong>Explore our features.</strong></p>
 			<p>We provide many statistics to enhance your hunting experience.</p>
 		</div>
 		<div class="pictograms">
@@ -255,6 +263,10 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 	</section>
 
 	<section class="testimonials-section">
+		<div class="subheader">
+			<Quotes />
+			<p>Testimonials</p>
+		</div>
 		<h2>What Our Users Say</h2>
 		<hr />
 		<div class="testimonials">
@@ -268,6 +280,10 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 	</section>
 
 	<section id="monster-info" class="features-section">
+		<div class="subheader">
+			<ListChecked />
+			<p>What We Offer</p>
+		</div>
 		<h2>Features</h2>
 		<hr />
 		<LandingPageSection
@@ -341,6 +357,10 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 	</section>
 
 	<section class="faq-section">
+		<div class="subheader">
+			<QuestionAnswering />
+			<p>FAQ</p>
+		</div>
 		<h2>Frequently Asked Questions</h2>
 		<hr />
 		<FrequentlyAskedQuestions {faq} />
@@ -439,15 +459,12 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		padding-top: 2rem;
 	}
 
 	.call-to-action-section {
 		padding-left: 1rem;
 		padding-right: 1rem;
-	}
-
-	.features-section h2 {
-		padding-top: 2rem;
 	}
 
 	/*https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix*/
@@ -477,5 +494,12 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 	.faq-section footer {
 		width: 80%;
 		margin: auto;
+	}
+
+	.subheader {
+		display: flex;
+		gap: 0.25rem;
+		align-items: center;
+		color: var(--ctp-subtext0);
 	}
 </style>
