@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Quotes from 'carbon-icons-svelte/lib/Quotes.svelte';
+
 	export let author: string;
 	export let quote: string;
 	export let authorImage: string;
@@ -9,7 +11,12 @@
 	<figure class="testimonial">
 		<img src={authorImage} alt={author} />
 		<div class="text">
-			<blockquote class="quote"><p>"{quote}"</p></blockquote>
+			<blockquote class="quote">
+				<Quotes size={24} />
+				<p>
+					"{quote}"
+				</p>
+			</blockquote>
 			<cite class="author">—{author}></cite>
 		</div>
 	</figure>
@@ -19,7 +26,10 @@
 			<img src={authorImage} alt={author} />
 		</a>
 		<div class="text">
-			<blockquote class="quote"><p>"{quote}"</p></blockquote>
+			<blockquote class="quote">
+				<Quotes size={24} />
+				<p>{quote}</p>
+			</blockquote>
 			<cite class="author"
 				><a href={authorLink}>
 					—{author}
@@ -61,6 +71,9 @@
 	}
 
 	.quote {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		font-style: italic;
 		background: var(--ctp-surface0);
 		border-radius: 8px 8px 8px 8px;

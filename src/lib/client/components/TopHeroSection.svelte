@@ -3,6 +3,7 @@
 	import ArrowRight from 'carbon-icons-svelte/lib/ArrowRight.svelte';
 	import StarFilled from 'carbon-icons-svelte/lib/StarFilled.svelte';
 	import Demo from 'carbon-icons-svelte/lib/Demo.svelte';
+	import ChevronDown from 'carbon-icons-svelte/lib/ChevronDown.svelte';
 
 	export let title = 'Title';
 	export let description = 'Description';
@@ -66,6 +67,10 @@
 					</a>
 				</button>
 			</div>
+			<a class="arrow-down" href="#demo">
+				<p>See Demo</p>
+				<ChevronDown />
+			</a>
 		</div>
 	</div>
 {/if}
@@ -164,5 +169,12 @@
 
 	.downloads {
 		all: unset;
+	}
+
+	.arrow-down {
+		margin-top: 4rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 </style>
