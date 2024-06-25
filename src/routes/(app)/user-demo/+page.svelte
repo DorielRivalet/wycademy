@@ -21,6 +21,9 @@
 	import ProfileFollows from '$lib/client/components/ProfileFollows.svelte';
 	import ProfileTrophyCase from '$lib/client/components/ProfileTrophyCase.svelte';
 	import ProfileStatsSummary from '$lib/client/components/ProfileStatsSummary.svelte';
+	import ProfilePinnedSets from '$lib/client/components/ProfilePinnedSets.svelte';
+	import { theme } from '$lib/client/stores/theme';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 
 	// import Pin from 'carbon-icons-svelte/lib/Pin.svelte';
 	// import Bookmark from 'carbon-icons-svelte/lib/Bookmark.svelte';
@@ -93,17 +96,28 @@
 />
 
 <div class="container">
-	<div class="top">
+	<section class="top">
 		<ProfileHeader />
 		<ProfileFollows />
-	</div>
+	</section>
 
-	<ProfileStatsSummary />
+	<section>
+		<ProfileStatsSummary />
+	</section>
 
 	<!-- This only shows if the user has at least one trophy.-->
-	<ProfileTrophyCase />
+	<section>
+		<ProfileTrophyCase />
+	</section>
 
-	<ProfileFooter />
+	<section>
+		<SectionHeading level={2} title="Wardrobe" />
+		<ProfilePinnedSets bind:theme={$theme} />
+	</section>
+
+	<section>
+		<ProfileFooter />
+	</section>
 </div>
 
 <style lang="scss">

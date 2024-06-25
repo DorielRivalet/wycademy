@@ -372,7 +372,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		<h2>Frequently Asked Questions</h2>
 		<hr />
 		<FrequentlyAskedQuestions {faq} />
-		<footer>
+		<section>
 			<p class="spaced-paragraph">
 				If your question was not answered here, check our <OutboundLink
 					href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md"
@@ -385,7 +385,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 					>GitHub project</OutboundLink
 				> for all issues related to the game.
 			</p>
-		</footer>
+		</section>
 	</section>
 
 	<section class="call-to-action-section">

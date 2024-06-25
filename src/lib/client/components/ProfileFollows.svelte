@@ -48,12 +48,12 @@
 	.container {
 		display: flex;
 		justify-content: space-between;
+		align-items: end;
 		gap: 1rem;
 	}
 
 	.stats {
 		display: flex;
 		gap: 1rem;
-		align-items: center;
 	}
 </style>
