@@ -1,7 +1,6 @@
 <script lang="ts">
 	import {
 		HuntingHornWeaponNotesCombinations, // TODO in hunter notes
-		ItemColors,
 		weaponMotionValues,
 		sharedWeaponMotionValues,
 		sigilDropdownItems,
@@ -20,8 +19,6 @@
 		gunnerDropdownItems,
 		ElementIcons,
 		StatusIcons,
-		bentoValues,
-		LocationIcons,
 		oldBlademasterSharpness,
 		greatSwordCharges,
 		obscurityValues,
@@ -68,7 +65,6 @@
 		FrontierMotionValueSection,
 		FrontierRarity,
 		FrontierStatus,
-		FrontierWeaponSharpness,
 		TagColor,
 	} from '$lib/client/modules/frontier/types';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
@@ -91,7 +87,6 @@
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import {
 		getDivaPrayerGemColor,
-		getItemIcon,
 		getMonster,
 		getTag,
 		getWeaponIcon,
@@ -106,9 +101,6 @@
 	import IceAgeStage1Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage2Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage3Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
-	import SharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
-	import ezlion from 'ezlion';
-	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import { type BundledLanguage } from 'shiki/langs';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';

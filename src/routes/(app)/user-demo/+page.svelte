@@ -21,6 +21,7 @@
 	import ProfileFollows from '$lib/client/components/ProfileFollows.svelte';
 	import ProfileTrophyCase from '$lib/client/components/ProfileTrophyCase.svelte';
 	import ProfileStatsSummary from '$lib/client/components/ProfileStatsSummary.svelte';
+
 	// import Pin from 'carbon-icons-svelte/lib/Pin.svelte';
 	// import Bookmark from 'carbon-icons-svelte/lib/Bookmark.svelte';
 	// import BookmarkFilled from 'carbon-icons-svelte/lib/BookmarkFilled.svelte';
