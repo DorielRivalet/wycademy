@@ -2798,7 +2798,7 @@
 <div>
 	<SectionHeadingTopLevel title="Smithy" />
 
-	<p>
+	<p class="spaced-paragraph">
 		In the Smithy, you can see the overview of various tools (e.g. Overlay), and
 		generate diverse equipment for display purposes, such as <InlineTooltip
 			text="Armor"
@@ -2814,6 +2814,17 @@
 			tooltip="Item"
 		/>. Additionally, you can download the icons themselves and make thumbnails
 		for your videos.
+	</p>
+
+	<p class="spaced-paragraph">
+		If you are looking to calculate things such as your damage, please refer to
+		the <Link href="/arena">Arena page.</Link>
+	</p>
+
+	<p>
+		If you are looking for guides on topics such as weapons, please refer to the <Link
+			href="/hunter-notes">Hunter's Notes page.</Link
+		>
 	</p>
 
 	<section>

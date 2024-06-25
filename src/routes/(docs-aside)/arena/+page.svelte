@@ -5745,9 +5745,14 @@ does not get multiplied by horn */
 			/>, and the formulas for your total damage.
 		</p>
 
-		<p>
+		<p class="spaced-paragraph">
 			If you are looking for guides on topics such as weapons, please refer to
 			the <Link href="/hunter-notes">Hunter's Notes page.</Link>
+		</p>
+
+		<p>
+			If you are looking for a tower weapon simulator, icon generators and other
+			tools, please refer to the <Link href="/smithy">Smithy page.</Link>
 		</p>
 
 		<section>

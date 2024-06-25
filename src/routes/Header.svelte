@@ -93,38 +93,13 @@
 		<nav>
 			<ul>
 				{#if $breakpointLargerThanSmall}
-					<NavigationItem
-						color="yellow"
-						path="/leaderboard"
-						description="Leaderboard"
-					>
-						<TrophyWhite
-							color={getHexStringFromCatppuccinColor('yellow', $theme)}
-						/>
-					</NavigationItem>
+					<NavigationItem path="/leaderboard" description="Speedruns" />
 				{/if}
 				{#if $breakpointLargerThanMedium}
-					<NavigationItem
-						color="rosewater"
-						path="/hunter-notes"
-						description="Hunter's Notes"
-					>
-						<BookIconWhite
-							color={getHexStringFromCatppuccinColor('rosewater', $theme)}
-						/>
-					</NavigationItem>
-
-					<NavigationItem color="pink" path="/arena" description="Arena">
-						<PvP color={getHexStringFromCatppuccinColor('pink', $theme)} />
-					</NavigationItem>
-					<NavigationItem color="mauve" path="/smithy" description="Smithy">
-						<Blacksmith
-							color={getHexStringFromCatppuccinColor('mauve', $theme)}
-						/>
-					</NavigationItem>
-					<NavigationItem color="red" path="/support" description="Support">
-						<MySupport color={getHexStringFromCatppuccinColor('red', $theme)} />
-					</NavigationItem>
+					<NavigationItem path="/hunter-notes" description="Game" />
+					<NavigationItem path="/arena" description="Arena" />
+					<NavigationItem path="/smithy" description="Tools" />
+					<NavigationItem path="/support" description="Support" />
 				{/if}
 			</ul>
 		</nav>
@@ -223,11 +198,12 @@
 	}
 
 	ul {
-		position: relative;
 		padding: 0;
 		margin: 0;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
 		list-style: none;
 	}
 
