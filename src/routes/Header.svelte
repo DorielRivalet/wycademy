@@ -8,15 +8,7 @@
 	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Banner from '$lib/client/components/Banner.svelte';
-	import Blacksmith from '$lib/client/components/frontier/icon/location/Blacksmith.svelte';
 	import UserAvatar from 'carbon-icons-svelte/lib/UserAvatar.svelte';
-	import PvP from '$lib/client/components/frontier/icon/location/PvP.svelte';
-	import MySupport from '$lib/client/components/frontier/icon/location/MySupport.svelte';
-	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
-	import MonsterPartIconWhite from '$lib/client/components/frontier/icon/item/Monster_Part_Icon_White.svelte';
-	import TrophyWhite from '$lib/client/components/frontier/icon/TrophyWhite.svelte';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
-	import { theme } from '$lib/client/stores/theme';
 	import NavigationItem from './NavigationItem.svelte';
 	import WycademySearch from '$lib/client/components/frontier/WycademySearch.svelte';
 	import ThemeChanger from './ThemeChanger.svelte';
@@ -137,18 +129,13 @@
 				</Link>
 			</div>
 			<!-- TODO: profile disclosure-->
-			<Button
-				kind="ghost"
-				size="field"
-				iconDescription={'Profile'}
-				href="/user-demo"
-				on:click={(e) => console.log('Profile')}
-				><UserAvatar slot="icon" size={48} color="var(--ctp-text)" /></Button
-			>
 			<div class="container-link">
 				<Link title="Site Preferences" href="/site-preferences">
 					<Settings size={48} color="var(--ctp-text)" />
 				</Link>
+			</div>
+			<div>
+				<Button href="/user-demo" size="field">Log In</Button>
 			</div>
 		{/if}
 	</nav>
