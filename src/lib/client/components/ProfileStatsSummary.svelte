@@ -28,11 +28,16 @@
 	export let huntCount = Math.trunc(Math.random() * 1000);
 	export let obtainedAchievements = Math.trunc(Math.random() * 1000);
 	export let totalAchievements =
-		obtainedAchievements + Math.trunc(Math.random() * 100);
+		obtainedAchievements + Math.trunc(Math.random() * 1000);
 	export let obtainedTitles = Math.trunc(Math.random() * 1000);
-	export let totalTitles = obtainedTitles + Math.trunc(Math.random() * 100);
-	export let huntCountRank = Math.trunc(Math.random() * 100);
+	export let totalTitles = obtainedTitles + Math.trunc(Math.random() * 1000);
+
+	export let huntCountRank = Math.trunc(Math.random() * 1000);
 	export let huntCountRankPercent = Math.trunc(Math.random() * 100);
+	export let obtainedAchievementsRank = Math.trunc(Math.random() * 1000);
+	export let obtainedAchievementsRankPercent = Math.trunc(Math.random() * 100);
+	export let titlesRank = Math.trunc(Math.random() * 1000);
+	export let titlesRankPercent = Math.trunc(Math.random() * 100);
 
 	function randomChoice(arr: any[]) {
 		return arr[Math.floor(arr.length * Math.random())];
@@ -175,7 +180,8 @@
 				iconType="component"
 				tooltip="Achievements"
 			/>
-			{obtainedAchievements}/{totalAchievements}
+			{obtainedAchievements}/{totalAchievements} (Rank #{obtainedAchievementsRank},
+			Top {obtainedAchievementsRankPercent}%)
 		</p>
 		<div class="meter">
 			{#if achievementsMeterLoaded}
@@ -197,7 +203,7 @@
 				iconType="component"
 				tooltip="Titles"
 			/>
-			{obtainedTitles}/{totalTitles}
+			{obtainedTitles}/{totalTitles} (Rank #{titlesRank}, Top {titlesRankPercent}%)
 		</p>
 		<div class="gauge">
 			{#if titlesGaugeLoaded}
