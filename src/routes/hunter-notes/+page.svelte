@@ -67,9 +67,10 @@
 	import TicketIconWhite from '$lib/client/components/frontier/icon/item/Ticket_Icon_White.svelte';
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 	import { stickyHeaderStore } from '$lib/client/stores/toggles';
+	import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 
 	//TODO svg: mezfes, caravan, festi, transcend, etc
-	//TODO animated webp: items, monsters, locations, events, etc.
+	//TODO animated webp: items, locations, events, etc.
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -154,10 +155,10 @@
 				<section>
 					<SectionHeading level={2} title="Browse by section" />
 					<section>
-						<SectionHeading level={3} title="Getting Started" />
+						<SectionHeading level={3} title="🔰 Getting Started" />
 						<div class="container-tiles">
 							<ClickableTileImage
-								title="Your First Hunts"
+								title="🔰 Your First Hunts"
 								description="A walkthrough of the first tasks you should do when starting the game."
 								imageSource={BookIconWhite}
 								href="/hunter-notes/getting-started/your-first-hunts"
@@ -186,6 +187,12 @@
 					<section>
 						<SectionHeading level={3} title="Monsters" />
 						<div class="container-tiles">
+							<ClickableTileImage
+								title="Overview"
+								description="The full list of monsters and their attributes, ecology, hitzone values and more."
+								imageSource={AllMonsters}
+								href="/hunter-notes/monsters/overview"
+							/>
 							<ClickableTileImage
 								title="Exotics"
 								description="The list of exotic monsters and the automatic skills they provide."

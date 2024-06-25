@@ -60,8 +60,8 @@ The Blue series of the tower weapons have 3 Tower Sigil slots. They have high en
 		category: 'Overview',
 	},
 	{
-		title: 'Bestiary',
-		slug: '/bestiary',
+		title: 'Monsters Overview',
+		slug: '/hunter-notes/monsters/overview',
 		content: 'Search monster information.',
 		id: 0,
 		hex: '0x00',

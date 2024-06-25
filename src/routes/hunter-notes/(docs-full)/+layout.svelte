@@ -154,6 +154,10 @@
 			text: 'Monsters',
 			children: [
 				{
+					id: '/hunter-notes/monsters/overview',
+					text: 'Overview',
+				},
+				{
 					id: '/hunter-notes/monsters/exotics',
 					text: 'Exotics',
 				},
@@ -403,6 +407,10 @@
 			icon: getMonsterIcon('Abiorugu'),
 		},
 		{
+			id: '/hunter-notes/monsters/overview',
+			icon: getMonsterIcon('Rathalos'),
+		},
+		{
 			id: '/hunter-notes/monsters/exotics',
 			icon: getMonsterIcon('Stygian Zinogre'),
 		},
@@ -436,7 +444,7 @@
 		},
 		{
 			id: '/hunter-notes/monsters/shiten',
-			icon: getMonsterIcon('Blinking Nargacuga'),
+			icon: getMonsterIcon('Disufiroa'),
 		},
 		{
 			id: '/hunter-notes/monsters/unlimited',

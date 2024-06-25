@@ -13,11 +13,18 @@
 	import YamaKurai2 from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
 	import Zerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';
 	import UNKNOWN from '$lib/client/images/monster/shiten_unknown.webp';
+	import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 </script>
 
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Monsters'} />
 	<div class="container-tiles">
+		<ClickableTileImage
+			title="Overview"
+			description="The full list of monsters and their attributes, ecology, hitzone values and more."
+			imageSource={AllMonsters}
+			href="/hunter-notes/monsters/overview"
+		/>
 		<ClickableTileImage
 			title="Exotics"
 			description="The list of exotic monsters and the automatic skills they provide."
@@ -90,8 +97,8 @@
 	<PageTurn
 		previous="/hunter-notes/getting-started/transcend"
 		previousTitle="Getting Started: Transcend"
-		next="/hunter-notes/monsters/exotics"
-		nextTitle="Monsters: Exotics"
+		next="/hunter-notes/monsters/overview"
+		nextTitle="Monsters: Overview"
 	/>
 </div>
 

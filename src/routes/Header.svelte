@@ -76,7 +76,6 @@
 			<OverflowMenu icon={Menu}>
 				<OverflowMenuItem href="/leaderboard" text="Leaderboard" />
 				<OverflowMenuItem href="/hunter-notes" text="Hunter's Notes" />
-				<OverflowMenuItem href="/bestiary" text="Bestiary" />
 				<OverflowMenuItem href="/arena" text="Arena" />
 				<OverflowMenuItem href="/smithy" text="Smithy" />
 				<OverflowMenuItem href="/support" text="Support" />
@@ -112,16 +111,6 @@
 					>
 						<BookIconWhite
 							color={getHexStringFromCatppuccinColor('rosewater', $theme)}
-						/>
-					</NavigationItem>
-
-					<NavigationItem
-						color="flamingo"
-						path="/bestiary"
-						description="Bestiary"
-					>
-						<MonsterPartIconWhite
-							color={getHexStringFromCatppuccinColor('flamingo', $theme)}
 						/>
 					</NavigationItem>
 
