@@ -1898,7 +1898,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: true,
 		displayName: 'Rathian',
 		type: 'Large',
-		link: '/bestiary/rathian',
+		link: '/hunter-notes/monsters/overview/rathian',
 		ecology:
 			'Flying Wyverns widely known as "Queens of the Land." With powerful legs and venomous tails, they are powerful predators and are especially dangerous during the breeding season. Legend holds there exists a rare golden varient.',
 		titles: ['Female Fire Wyvern', 'Queen of the Land'],
@@ -1979,7 +1979,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: false,
 		displayName: 'Fatalis',
 		type: 'Large',
-		link: '/bestiary/fatalis',
+		link: '/hunter-notes/monsters/overview/fatalis',
 		ecology:
 			'A legendary black dragon said to have prowled these lands from the days of old. Many skilled hunters have sought to challenge it, but none ever return. A monster shrouded in mystery...',
 		titles: ['Black Dragon', 'The Dark Demise', 'Black Flame'],
@@ -2003,7 +2003,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: true,
 		displayName: 'Kelbi',
 		type: 'Small',
-		link: '/bestiary/kelbi',
+		link: '/hunter-notes/monsters/overview/kelbi',
 
 		ecology:
 			'Small and docile Herbivores thier horns are famously used in a variety of medicines. The best way to harvest said horns is with a blunt weapon. During the evening or inclement weather, they will retreat into caves.',
@@ -2068,7 +2068,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterMosswine,
 		unusedComponent: true,
 		displayName: 'Mosswine',
-		link: '/bestiary/mosswine',
+		link: '/hunter-notes/monsters/overview/mosswine',
 
 		type: 'Small',
 		ecology:
@@ -2095,7 +2095,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterBullfango,
 		unusedComponent: true,
 		displayName: 'Bullfango',
-		link: '/bestiary/bullfango',
+		link: '/hunter-notes/monsters/overview/bullfango',
 
 		type: 'Small',
 		ecology:
@@ -2159,7 +2159,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterYianKutKu,
 		unusedComponent: true,
 		displayName: 'Yian Kut-Ku',
-		link: '/bestiary/yian-kut-ku',
+		link: '/hunter-notes/monsters/overview/yian-kut-ku',
 
 		type: 'Large',
 		ecology:
@@ -2202,7 +2202,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterLaoShanLung,
 		unusedComponent: true,
 		displayName: 'Lao-Shan Lung',
-		link: '/bestiary/lao-shan-lung',
+		link: '/hunter-notes/monsters/overview/lao-shan-lung',
 
 		type: 'Large',
 		ecology:
@@ -2227,7 +2227,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterCephadrome,
 		unusedComponent: true,
 		displayName: 'Cephadrome',
-		link: '/bestiary/cephadrome',
+		link: '/hunter-notes/monsters/overview/cephadrome',
 
 		type: 'Large',
 		ecology:
@@ -2263,7 +2263,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterFelyne,
 		unusedComponent: true,
 		displayName: 'Felyne',
-		link: '/bestiary/felyne',
+		link: '/hunter-notes/monsters/overview/felyne',
 
 		type: 'Small',
 		ecology:
@@ -2286,7 +2286,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterRathalos,
 		fullRender: FullMonsterRenderRathalos,
 		component: ComponentMonsterRathalos,
-		link: '/bestiary/rathalos',
+		link: '/hunter-notes/monsters/overview/rathalos',
 
 		unusedComponent: true,
 		displayName: 'Rathalos',
@@ -2355,7 +2355,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderAptonoth,
 		component: ComponentMonsterAptonoth,
 		unusedComponent: true,
-		link: '/bestiary/aptonoth',
+		link: '/hunter-notes/monsters/overview/aptonoth',
 
 		displayName: 'Aptonoth',
 		type: 'Small',
@@ -2383,7 +2383,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterGenprey,
 		unusedComponent: true,
 		displayName: 'Genprey',
-		link: '/bestiary/genprey',
+		link: '/hunter-notes/monsters/overview/genprey',
 
 		type: 'Small',
 		ecology:
@@ -2433,7 +2433,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterDiablos,
 		unusedComponent: true,
 		displayName: 'Diablos',
-		link: '/bestiary/diablos',
+		link: '/hunter-notes/monsters/overview/diablos',
 
 		type: 'Large',
 		ecology:
@@ -2489,7 +2489,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterKhezu,
 		unusedComponent: true,
 		displayName: 'Khezu',
-		link: '/bestiary/khezu',
+		link: '/hunter-notes/monsters/overview/khezu',
 
 		type: 'Large',
 		ecology:
@@ -2534,7 +2534,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterVelociprey,
 		unusedComponent: true,
 		displayName: 'Velociprey',
-		link: '/bestiary/velociprey',
+		link: '/hunter-notes/monsters/overview/velociprey',
 
 		type: 'Small',
 		ecology:
@@ -2589,7 +2589,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderGravios,
 		component: ComponentMonsterGravios,
 		unusedComponent: true,
-		link: '/bestiary/gravios',
+		link: '/hunter-notes/monsters/overview/gravios',
 
 		displayName: 'Gravios',
 		type: 'Large',
@@ -2648,7 +2648,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterVespoid,
 		unusedComponent: true,
 		displayName: 'Vespoid',
-		link: '/bestiary/vespoid',
+		link: '/hunter-notes/monsters/overview/vespoid',
 
 		type: 'Small',
 		ecology:
@@ -2716,7 +2716,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterGypceros,
 		unusedComponent: true,
 		displayName: 'Gypceros',
-		link: '/bestiary/gypceros',
+		link: '/hunter-notes/monsters/overview/gypceros',
 
 		type: 'Large',
 		ecology:
@@ -2759,7 +2759,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterPlesioth,
 		unusedComponent: true,
 		displayName: 'Plesioth',
-		link: '/bestiary/plesioth',
+		link: '/hunter-notes/monsters/overview/plesioth',
 
 		type: 'Large',
 		ecology:
@@ -2801,7 +2801,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterBasarios,
 		unusedComponent: true,
 		displayName: 'Basarios',
-		link: '/bestiary/basarios',
+		link: '/hunter-notes/monsters/overview/basarios',
 
 		type: 'Large',
 		ecology:
@@ -2853,7 +2853,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterMelynx,
 		fullRender: FullMonsterRenderMelynx,
 		component: ComponentMonsterMelynx,
-		link: '/bestiary/melynx',
+		link: '/hunter-notes/monsters/overview/melynx',
 
 		unusedComponent: true,
 		displayName: 'Melynx',
@@ -2880,7 +2880,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterHornetaur,
 		unusedComponent: true,
 		displayName: 'Hornetaur',
-		link: '/bestiary/hornetaur',
+		link: '/hunter-notes/monsters/overview/hornetaur',
 
 		type: 'Small',
 		ecology:
@@ -2907,7 +2907,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterApceros,
 		unusedComponent: true,
 		displayName: 'Apceros',
-		link: '/bestiary/apceros',
+		link: '/hunter-notes/monsters/overview/apceros',
 
 		type: 'Small',
 		ecology:
@@ -2947,7 +2947,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterMonoblos,
 		fullRender: FullMonsterRenderMonoblos,
 		component: ComponentMonsterMonoblos,
-		link: '/bestiary/monoblos',
+		link: '/hunter-notes/monsters/overview/monoblos',
 
 		unusedComponent: true,
 		ecology:
@@ -2962,7 +2962,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterVelocidrome,
 		fullRender: FullMonsterRenderVelocidrome,
 		component: ComponentMonsterVelocidrome,
-		link: '/bestiary/velocidrome',
+		link: '/hunter-notes/monsters/overview/velocidrome',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3006,7 +3006,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterGendrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterGendrome,
-		link: '/bestiary/gendrome',
+		link: '/hunter-notes/monsters/overview/gendrome',
 
 		fullRender: FullMonsterRenderGendrome,
 		component: ComponentMonsterGendrome,
@@ -3057,7 +3057,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderIoprey,
 		component: ComponentMonsterIoprey,
 		unusedComponent: true,
-		link: '/bestiary/ioprey',
+		link: '/hunter-notes/monsters/overview/ioprey',
 
 		type: 'Small',
 		ecology:
@@ -3111,7 +3111,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterIodrome,
 		fullRender: FullMonsterRenderIodrome,
 		component: ComponentMonsterIodrome,
-		link: '/bestiary/iodrome',
+		link: '/hunter-notes/monsters/overview/iodrome',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3160,7 +3160,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterKirin,
 		fullRender: FullMonsterRenderKirin,
 		component: ComponentMonsterKirin,
-		link: '/bestiary/kirin',
+		link: '/hunter-notes/monsters/overview/kirin',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3206,7 +3206,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterCephalos,
 		fullRender: FullMonsterRenderCephalos,
-		link: '/bestiary/cephalos',
+		link: '/hunter-notes/monsters/overview/cephalos',
 
 		component: ComponentMonsterCephalos,
 		unusedComponent: true,
@@ -3247,7 +3247,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterGiaprey,
 		fullRender: FullMonsterRenderGiaprey,
 		component: ComponentMonsterGiaprey,
-		link: '/bestiary/giaprey',
+		link: '/hunter-notes/monsters/overview/giaprey',
 
 		unusedComponent: true,
 		type: 'Small',
@@ -3291,7 +3291,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterCrimsonFatalis,
 		fullRender: FullMonsterRenderCrimsonFatalis,
 		component: ComponentMonsterCrimsonFatalis,
-		link: '/bestiary/crimson-fatalis',
+		link: '/hunter-notes/monsters/overview/crimson-fatalis',
 
 		unusedComponent: false,
 		type: 'Large',
@@ -3316,7 +3316,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterPinkRathian,
 		fullRender: FullMonsterRenderPinkRathian,
 		component: ComponentMonsterPinkRathian,
-		link: '/bestiary/pink-rathian',
+		link: '/hunter-notes/monsters/overview/pink-rathian',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3353,7 +3353,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBlueYianKutKu,
 		fullRender: FullMonsterRenderBlueYianKutKu,
 		component: ComponentMonsterBlueYianKutKu,
-		link: '/bestiary/blue-yian-kut-ku',
+		link: '/hunter-notes/monsters/overview/blue-yian-kut-ku',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3365,7 +3365,17 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ailments: [],
 		weaknesses: ['Water', 'Thunder'],
 		habitats: [
-			'Forest and Hills, Jungle, Old Jungle, Swamp, Old Swamp, Tide Island, Everwood, Ancestral Steppe, Hermit Forest, Clamorous Ridge, Dark Veil Forest, Pondry Hills',
+			'Forest and Hills',
+			'Jungle',
+			'Old Jungle, Swamp',
+			'Old Swamp',
+			'Tide Island',
+			'Everwood',
+			'Ancestral Steppe',
+			'Hermit Forest',
+			'Clamorous Ridge',
+			'Dark Veil Forest',
+			'Pondry Hills',
 		],
 		sizes: ['Gold Crown Large: 1195.7', 'Gold Crown Small: 449.3'],
 		relatedMonsters: ['Yian Kut-Ku', 'Yian Garuga'],
@@ -3380,7 +3390,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterPurpleGypceros,
 		fullRender: FullMonsterRenderPurpleGypceros,
 		component: ComponentMonsterPurpleGypceros,
-		link: '/bestiary/purple-gypceros',
+		link: '/hunter-notes/monsters/overview/purple-gypceros',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3406,7 +3416,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterYianGaruga,
 		fullRender: FullMonsterRenderYianGaruga,
 		component: ComponentMonsterYianGaruga,
-		link: '/bestiary/yian-garuga',
+		link: '/hunter-notes/monsters/overview/yian-garuga',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3452,7 +3462,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterSilverRathalos,
 		fullRender: FullMonsterRenderSilverRathalos,
 		component: ComponentMonsterSilverRathalos,
-		link: '/bestiary/silver-rathalos',
+		link: '/hunter-notes/monsters/overview/silver-rathalos',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3503,7 +3513,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterGoldRathian,
 		fullRender: FullMonsterRenderGoldRathian,
 		component: ComponentMonsterGoldRathian,
-		link: '/bestiary/gold-rathian',
+		link: '/hunter-notes/monsters/overview/gold-rathian',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3559,7 +3569,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderBlackDiablos,
 		component: ComponentMonsterBlackDiablos,
 		unusedComponent: true,
-		link: '/bestiary/black-diablos',
+		link: '/hunter-notes/monsters/overview/black-diablos',
 
 		type: 'Large',
 		ecology:
@@ -3613,7 +3623,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderWhiteMonoblos,
 		component: ComponentMonsterWhiteMonoblos,
 		unusedComponent: true,
-		link: '/bestiary/white-monoblos',
+		link: '/hunter-notes/monsters/overview/white-monoblos',
 
 		type: 'Large',
 		ecology:
@@ -3654,7 +3664,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterRedKhezu,
 		fullRender: FullMonsterRenderRedKhezu,
 		component: ComponentMonsterRedKhezu,
-		link: '/bestiary/red-khezu',
+		link: '/hunter-notes/monsters/overview/red-khezu',
 
 		unusedComponent: true,
 		ecology:
@@ -3682,7 +3692,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderGreenPlesioth,
 		component: ComponentMonsterGreenPlesioth,
 		unusedComponent: true,
-		link: '/bestiary/green-plesioth',
+		link: '/hunter-notes/monsters/overview/green-plesioth',
 
 		type: 'Large',
 		ecology:
@@ -3721,7 +3731,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBlackGravios,
 		fullRender: FullMonsterRenderBlackGravios,
 		component: ComponentMonsterBlackGravios,
-		link: '/bestiary/black-gravios',
+		link: '/hunter-notes/monsters/overview/black-gravios',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3776,7 +3786,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterDaimyoHermitaur,
 		fullRender: FullMonsterRenderDaimyoHermitaur,
 		component: ComponentMonsterDaimyoHermitaur,
-		link: '/bestiary/daimyo-hermitaur',
+		link: '/hunter-notes/monsters/overview/daimyo-hermitaur',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3807,7 +3817,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterAzureRathalos,
 		fullRender: FullMonsterRenderAzureRathalos,
 		component: ComponentMonsterAzureRathalos,
-		link: '/bestiary/azure-rathalos',
+		link: '/hunter-notes/monsters/overview/azure-rathalos',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3841,7 +3851,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderAshenLaoShanLung,
 		component: ComponentMonsterAshenLaoShanLung,
 		unusedComponent: true,
-		link: '/bestiary/ashen-lao-shan-lung',
+		link: '/hunter-notes/monsters/overview/ashen-lao-shan-lung',
 
 		type: 'Large',
 		ecology:
@@ -3866,7 +3876,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderBlangonga,
 		component: ComponentMonsterBlangonga,
 		unusedComponent: true,
-		link: '/bestiary/blangonga',
+		link: '/hunter-notes/monsters/overview/blangonga',
 
 		ecology:
 			'Leader of a Blango pack it is twice as large and recognized by its giant fangs whiskers, and head-crown. It sends its pack to attack any trespassers. Its jumping power allows it  great mobility in its home range of the snowy mountains.',
@@ -3900,7 +3910,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterCongalala,
 		fullRender: FullMonsterRenderCongalala,
 		component: ComponentMonsterCongalala,
-		link: '/bestiary/congalala',
+		link: '/hunter-notes/monsters/overview/congalala',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -3952,7 +3962,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterRajang,
 		fullRender: FullMonsterRenderRajang,
-		link: '/bestiary/rajang',
+		link: '/hunter-notes/monsters/overview/rajang',
 
 		component: ComponentMonsterRajang,
 		unusedComponent: true,
@@ -4034,7 +4044,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterKushalaDaora,
 		fullRender: FullMonsterRenderKushalaDaora,
 		component: ComponentMonsterKushalaDaora,
-		link: '/bestiary/kushala-daora',
+		link: '/hunter-notes/monsters/overview/kushala-daora',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -4091,7 +4101,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterShenGaoren,
 		fullRender: FullMonsterRenderShenGaoren,
-		link: '/bestiary/shen-gaoren',
+		link: '/hunter-notes/monsters/overview/shen-gaoren',
 
 		component: ComponentMonsterShenGaoren,
 		unusedComponent: false,
@@ -4167,7 +4177,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterShakalaka,
 		fullRender: FullMonsterRenderShakalaka,
-		link: '/bestiary/shakalaka',
+		link: '/hunter-notes/monsters/overview/shakalaka',
 
 		component: ComponentMonsterShakalaka,
 		unusedComponent: true,
@@ -4195,7 +4205,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterYamaTsukami,
 		fullRender: FullMonsterRenderYamaTsukami,
 		component: ComponentMonsterYamaTsukami,
-		link: '/bestiary/yama-tsukami',
+		link: '/hunter-notes/monsters/overview/yama-tsukami',
 
 		unusedComponent: false,
 		type: 'Large',
@@ -4219,7 +4229,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterChameleos,
 		fullRender: FullMonsterRenderChameleos,
-		link: '/bestiary/chameleos',
+		link: '/hunter-notes/monsters/overview/chameleos',
 
 		component: ComponentMonsterChameleos,
 		unusedComponent: true,
@@ -4232,7 +4242,25 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ailments: ['Poison', 'Fatigue', 'Defense Down', 'Vocal Cord Paralysis'],
 		weaknesses: ['Dragon', 'Fire', 'Thunder'],
 		habitats: [
-			'Forest and Hills, Jungle, Swamp, Town, Tower 3, Kumbel Wetlands, Flooded Forest, Ancestral Steppe, Primal Forest, Everwood, Battlequarters, Verdant Hills, Marshlands, Ruined Pinnacle, Shrine Ruins, Flooded Forest (Rise), Infernal Springs, Citadel, Jungle (MHRS)',
+			'Forest and Hills',
+			'Jungle',
+			'Swamp',
+			'Town',
+			'Tower 3',
+			'Kumbel Wetlands',
+			'Flooded Forest',
+			'Ancestral Steppe',
+			'Primal Forest',
+			'Everwood',
+			'Battlequarters',
+			'Verdant Hills',
+			'Marshlands',
+			'Ruined Pinnacle',
+			'Shrine Ruins',
+			'Flooded Forest (Rise)',
+			'Infernal Springs',
+			'Citadel',
+			'Jungle (MHRS)',
 		],
 		sizes: ['Gold Crown Large: 2811.32', 'Gold Crown Small: 1395.2'],
 		relatedMonsters: [],
@@ -4247,7 +4275,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterRustedKushalaDaora,
 		fullRender: FullMonsterRenderRustedKushalaDaora,
 		component: ComponentMonsterRustedKushalaDaora,
-		link: '/bestiary/rusted-kushala-daora',
+		link: '/hunter-notes/monsters/overview/rusted-kushala-daora',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -4285,7 +4313,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBlango,
 		fullRender: FullMonsterRenderBlango,
 		component: ComponentMonsterBlango,
-		link: '/bestiary/blango',
+		link: '/hunter-notes/monsters/overview/blango',
 
 		unusedComponent: true,
 		type: 'Small',
@@ -4319,7 +4347,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterConga,
 		fullRender: FullMonsterRenderConga,
-		link: '/bestiary/conga',
+		link: '/hunter-notes/monsters/overview/conga',
 
 		component: ComponentMonsterConga,
 		unusedComponent: true,
@@ -4370,7 +4398,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterRemobra,
 		fullRender: FullMonsterRenderRemobra,
-		link: '/bestiary/remobra',
+		link: '/hunter-notes/monsters/overview/remobra',
 
 		component: ComponentMonsterRemobra,
 		unusedComponent: true,
@@ -4426,7 +4454,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterLunastra,
 		fullRender: FullMonsterRenderLunastra,
-		link: '/bestiary/lunastra',
+		link: '/hunter-notes/monsters/overview/lunastra',
 
 		component: ComponentMonsterLunastra,
 		unusedComponent: true,
@@ -4453,7 +4481,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterTeostra,
 		fullRender: FullMonsterRenderTeostra,
-		link: '/bestiary/teostra',
+		link: '/hunter-notes/monsters/overview/teostra',
 
 		component: ComponentMonsterTeostra,
 		unusedComponent: true,
@@ -4481,7 +4509,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterHermitaur,
 		fullRender: FullMonsterRenderHermitaur,
 		component: ComponentMonsterHermitaur,
-		link: '/bestiary/hermitaur',
+		link: '/hunter-notes/monsters/overview/hermitaur',
 
 		unusedComponent: true,
 		type: 'Small',
@@ -4540,7 +4568,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterShogunCeanataur,
 		fullRender: FullMonsterRenderShogunCeanataur,
 		component: ComponentMonsterShogunCeanataur,
-		link: '/bestiary/shogun-ceanataur',
+		link: '/hunter-notes/monsters/overview/shogun-ceanataur',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -4571,7 +4599,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBulldrome,
 		fullRender: FullMonsterRenderBulldrome,
 		component: ComponentMonsterBulldrome,
-		link: '/bestiary/bulldrome',
+		link: '/hunter-notes/monsters/overview/bulldrome',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -4618,7 +4646,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterAnteka,
 		fullRender: FullMonsterRenderAnteka,
-		link: '/bestiary/anteka',
+		link: '/hunter-notes/monsters/overview/anteka',
 
 		component: ComponentMonsterAnteka,
 		unusedComponent: true,
@@ -4652,7 +4680,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterPopo,
 		fullRender: FullMonsterRenderPopo,
-		link: '/bestiary/popo',
+		link: '/hunter-notes/monsters/overview/popo',
 
 		component: ComponentMonsterPopo,
 		unusedComponent: true,
@@ -4676,7 +4704,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'White Fatalis',
 		displayName: 'White Fatalis',
 		icon: IconMonsterWhiteFatalis,
-		link: '/bestiary/white-fatalis',
+		link: '/hunter-notes/monsters/overview/white-fatalis',
 
 		rank: '',
 		render: IconRenderMonsterWhiteFatalis,
@@ -4705,7 +4733,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterCeanataur,
 		unusedComponent: true,
 		type: 'Small',
-		link: '/bestiary/ceanataur',
+		link: '/hunter-notes/monsters/overview/ceanataur',
 
 		ecology: `An adolescent Carapaceon with an organic shell firmly placed on it's back. Once grown their original shell falls off and is rplaced by a large monster's skull. Common in volcanic areas.`,
 		titles: [],
@@ -4744,7 +4772,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterHypnocatrice,
 		fullRender: FullMonsterRenderHypnocatrice,
 		component: ComponentMonsterHypnocatrice,
-		link: '/bestiary/hypnocatrice',
+		link: '/hunter-notes/monsters/overview/hypnocatrice',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -4785,7 +4813,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterLavasioth,
 		rank: 'G Rank',
 		render: IconRenderMonsterLavasioth,
-		link: '/bestiary/lavasioth',
+		link: '/hunter-notes/monsters/overview/lavasioth',
 		fullRender: FullMonsterRenderLavasioth,
 		component: ComponentMonsterLavasioth,
 		unusedComponent: false,
@@ -4827,7 +4855,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterTigrex,
 		fullRender: FullMonsterRenderTigrex,
-		link: '/bestiary/tigrex',
+		link: '/hunter-notes/monsters/overview/tigrex',
 
 		component: ComponentMonsterTigrex,
 		unusedComponent: true,
@@ -4895,7 +4923,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterAkantor,
 		fullRender: FullMonsterRenderAkantor,
 		component: ComponentMonsterAkantor,
-		link: '/bestiary/akantor',
+		link: '/hunter-notes/monsters/overview/akantor',
 
 		unusedComponent: false,
 		type: 'Large',
@@ -4927,7 +4955,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBrightHypnoc,
 		fullRender: FullMonsterRenderBrightHypnoc,
 		component: ComponentMonsterBrightHypnoc,
-		link: '/bestiary/bright-hypnoc',
+		link: '/hunter-notes/monsters/overview/bright-hypnoc',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -4959,7 +4987,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterRedLavasioth,
 		unusedComponent: false,
 		type: 'Large',
-		link: '/bestiary/red-lavasioth',
+		link: '/hunter-notes/monsters/overview/red-lavasioth',
 
 		ecology:
 			'A Lavasioth Sub-Species which has melted rare ores into its molten armor, causing it to remain red even when cooled. A more developed lava-storage organ allows them to utilize additional attacks.',
@@ -4989,7 +5017,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterEspinas,
 		rank: 'G Rank',
 		render: IconRenderMonsterEspinas,
-		link: '/bestiary/espinas',
+		link: '/hunter-notes/monsters/overview/espinas',
 
 		fullRender: FullMonsterRenderEspinas,
 		component: ComponentMonsterEspinas,
@@ -5045,7 +5073,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterOrangeEspinas,
 		fullRender: FullMonsterRenderOrangeEspinas,
 		component: ComponentMonsterOrangeEspinas,
-		link: '/bestiary/orange-espinas',
+		link: '/hunter-notes/monsters/overview/orange-espinas',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -5095,7 +5123,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterSilverHypnoc,
 		fullRender: FullMonsterRenderSilverHypnoc,
 		component: ComponentMonsterSilverHypnoc,
-		link: '/bestiary/silver-hypnoc',
+		link: '/hunter-notes/monsters/overview/silver-hypnoc',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -5132,7 +5160,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderAkuraVashimu,
 		component: ComponentMonsterAkuraVashimu,
 		unusedComponent: false,
-		link: '/bestiary/akura-vashimu',
+		link: '/hunter-notes/monsters/overview/akura-vashimu',
 
 		titles: ['Tail Crystal Scorpion'],
 		class: 'Carapaceon',
@@ -5162,7 +5190,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterAkuraJebia,
 		fullRender: FullMonsterRenderAkuraJebia,
 		component: ComponentMonsterAkuraJebia,
-		link: '/bestiary/akura-jebia',
+		link: '/hunter-notes/monsters/overview/akura-jebia',
 
 		unusedComponent: false,
 		ecology:
@@ -5186,7 +5214,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterBerukyurosu,
 		fullRender: FullMonsterRenderBerukyurosu,
-		link: '/bestiary/berukyurosu',
+		link: '/hunter-notes/monsters/overview/berukyurosu',
 
 		component: ComponentMonsterBerukyurosu,
 		unusedComponent: true,
@@ -5212,7 +5240,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterCactus,
 		fullRender: FullMonsterRenderCactus,
 		component: ComponentMonsterRandom,
-		link: '/bestiary/cactus',
+		link: '/hunter-notes/monsters/overview/cactus',
 
 		unusedComponent: true,
 		type: 'Small',
@@ -5228,7 +5256,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterPariapuria,
 		fullRender: FullMonsterRenderPariapuria,
 		component: ComponentMonsterPariapuria,
-		link: '/bestiary/pariapuria',
+		link: '/hunter-notes/monsters/overview/pariapuria',
 
 		unusedComponent: false,
 		ecology: `Foul Wyverns with a ceaseless appetite. They will devour any form of meat they find. Hunters may utilize this by placing meat of certain types near these beasts, causing them to over eat and vomit rare materials they've eaten.`,
@@ -5259,7 +5287,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterWhiteEspinas,
 		fullRender: FullMonsterRenderWhiteEspinas,
-		link: '/bestiary/white-espinas',
+		link: '/hunter-notes/monsters/overview/white-espinas',
 
 		component: ComponentMonsterWhiteEspinas,
 		unusedComponent: true,
@@ -5302,7 +5330,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderKamuOrugaron,
 		component: ComponentMonsterKamuOrugaron,
 		unusedComponent: true,
-		link: '/bestiary/kamu-orugaron',
+		link: '/hunter-notes/monsters/overview/kamu-orugaron',
 
 		type: 'Large',
 		ecology:
@@ -5323,7 +5351,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Nono Orugaron',
 		icon: IconMonsterNonoOrugaron,
 		rank: 'G Rank',
-		link: '/bestiary/nono-orugaron',
+		link: '/hunter-notes/monsters/overview/nono-orugaron',
 
 		render: IconRenderMonsterNonoOrugaron,
 		fullRender: FullMonsterRenderNonoOrugaron,
@@ -5347,7 +5375,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Raviente',
 		displayName: 'Raviente',
 		icon: IconMonsterRaviente,
-		link: '/bestiary/raviente',
+		link: '/hunter-notes/monsters/overview/raviente',
 
 		rank: 'G Rank',
 		render: IconRenderMonsterRaviente,
@@ -5376,7 +5404,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterDyuragaua,
 		fullRender: FullMonsterRenderDyuragaua,
 		component: ComponentMonsterDyuragaua,
-		link: '/bestiary/dyuragaua',
+		link: '/hunter-notes/monsters/overview/dyuragaua',
 
 		unusedComponent: true,
 		ecology:
@@ -5406,7 +5434,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterDoragyurosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterDoragyurosu,
-		link: '/bestiary/doragyurosu',
+		link: '/hunter-notes/monsters/overview/doragyurosu',
 
 		fullRender: FullMonsterRenderDoragyurosu,
 		component: ComponentMonsterDoragyurosu,
@@ -5434,7 +5462,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterGurenzeburu,
 		fullRender: FullMonsterRenderGurenzeburu,
-		link: '/bestiary/gurenzeburu',
+		link: '/hunter-notes/monsters/overview/gurenzeburu',
 
 		component: ComponentMonsterGurenzeburu,
 		unusedComponent: true,
@@ -5460,7 +5488,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBurukku,
 		fullRender: FullMonsterRenderBurukku,
 		component: ComponentMonsterBurukku,
-		link: '/bestiary/burukku',
+		link: '/hunter-notes/monsters/overview/burukku',
 
 		unusedComponent: true,
 		ecology:
@@ -5475,7 +5503,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterErupe,
 		fullRender: FullMonsterRenderErupe,
 		component: ComponentMonsterErupe,
-		link: '/bestiary/erupe',
+		link: '/hunter-notes/monsters/overview/erupe',
 
 		unusedComponent: true,
 		ecology:
@@ -5498,7 +5526,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterRukodiora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRukodiora,
-		link: '/bestiary/rukodiora',
+		link: '/hunter-notes/monsters/overview/rukodiora',
 
 		fullRender: FullMonsterRenderRukodiora,
 		component: ComponentMonsterRukodiora,
@@ -5530,7 +5558,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterUNKNOWN,
 		rank: 'G Rank',
 		render: IconRenderMonsterUNKNOWN,
-		link: '/bestiary/unknown',
+		link: '/hunter-notes/monsters/overview/unknown',
 
 		fullRender: FullMonsterRenderUNKNOWN,
 		component: ComponentMonsterUNKNOWN,
@@ -5543,7 +5571,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ailments: ['Poison', 'Defense Down'],
 		weaknesses: ['Water', 'Thunder', 'Ice', 'Dragon'],
 		habitats: [
-			'Forest and Hills, Jungle, Desert, Swamp, Great Forest, Tower, Tower 3, Gorge',
+			'Forest and Hills',
+			'Jungle',
+			'Desert',
+			'Swamp',
+			'Great Forest',
+			'Tower',
+			'Tower 3',
+			'Gorge',
 		],
 		sizes: ['Gold Crown Large: 2303.8'],
 		relatedMonsters: ['None'],
@@ -5557,7 +5592,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterUNKNOWN,
 		fullRender: FullMonsterRenderUNKNOWN,
-		link: '/bestiary/unknown',
+		link: '/hunter-notes/monsters/overview/unknown',
 
 		component: ComponentMonsterUNKNOWN,
 		unusedComponent: true,
@@ -5569,7 +5604,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ailments: ['Poison', 'Defense Down'],
 		weaknesses: ['Water', 'Thunder', 'Ice', 'Dragon'],
 		habitats: [
-			'Forest and Hills, Jungle, Desert, Swamp, Great Forest, Tower, Tower 3, Gorge',
+			'Forest and Hills',
+			'Jungle',
+			'Desert',
+			'Swamp',
+			'Great Forest',
+			'Tower',
+			'Tower 3',
+			'Gorge',
 		],
 		sizes: ['Gold Crown Large: 2303.8'],
 		relatedMonsters: ['None'],
@@ -5584,7 +5626,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterGogomoa,
 		fullRender: FullMonsterRenderGogomoa,
 		component: ComponentMonsterGogomoa,
-		link: '/bestiary/gogomoa',
+		link: '/hunter-notes/monsters/overview/gogomoa',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -5607,7 +5649,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterTaikunZamuza,
 		rank: 'G Rank',
 		render: IconRenderMonsterTaikunZamuza,
-		link: '/bestiary/taikun-zamuza',
+		link: '/hunter-notes/monsters/overview/taikun-zamuza',
 
 		fullRender: FullMonsterRenderTaikunZamuza,
 		component: ComponentMonsterTaikunZamuza,
@@ -5633,7 +5675,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterAbiorugu,
 		fullRender: FullMonsterRenderAbiorugu,
-		link: '/bestiary/abiorugu',
+		link: '/hunter-notes/monsters/overview/abiorugu',
 
 		component: ComponentMonsterAbiorugu,
 		unusedComponent: false,
@@ -5672,7 +5714,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterKuarusepusu,
 		rank: 'G Rank',
 		render: IconRenderMonsterKuarusepusu,
-		link: '/bestiary/kuarusepusu',
+		link: '/hunter-notes/monsters/overview/kuarusepusu',
 
 		fullRender: FullMonsterRenderKuarusepusu,
 		component: ComponentMonsterKuarusepusu,
@@ -5702,7 +5744,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Odibatorasu',
 		icon: IconMonsterOdibatorasu,
 		rank: 'G Rank',
-		link: '/bestiary/odibatorasu',
+		link: '/hunter-notes/monsters/overview/odibatorasu',
 
 		render: IconRenderMonsterOdibatorasu,
 		fullRender: FullMonsterRenderOdibatorasu,
@@ -5731,7 +5773,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterDisufiroa,
 		fullRender: FullMonsterRenderDisufiroa,
 		component: ComponentMonsterDisufiroa,
-		link: '/bestiary/disufiroa',
+		link: '/hunter-notes/monsters/overview/disufiroa',
 
 		unusedComponent: true,
 		type: 'Large',
@@ -5752,7 +5794,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterRebidiora,
 		rank: 'G Rank',
 		render: IconRenderMonsterRebidiora,
-		link: '/bestiary/rebidiora',
+		link: '/hunter-notes/monsters/overview/rebidiora',
 
 		fullRender: FullMonsterRenderRebidiora,
 		component: ComponentMonsterRebidiora,
@@ -5766,7 +5808,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterAnorupatisu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAnorupatisu,
-		link: '/bestiary/anorupatisu',
+		link: '/hunter-notes/monsters/overview/anorupatisu',
 
 		fullRender: FullMonsterRenderAnorupatisu,
 		component: ComponentMonsterAnorupatisu,
@@ -5791,7 +5833,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterHyujikiki,
 		rank: 'G Rank',
 		render: IconRenderMonsterHyujikiki,
-		link: '/bestiary/hyujikiki',
+		link: '/hunter-notes/monsters/overview/hyujikiki',
 
 		fullRender: FullMonsterRenderHyujikiki,
 		component: ComponentMonsterHyujikiki,
@@ -5817,7 +5859,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Midogaron',
 		icon: IconMonsterMidogaron,
 		rank: 'G Rank',
-		link: '/bestiary/midogaron',
+		link: '/hunter-notes/monsters/overview/midogaron',
 
 		render: IconRenderMonsterMidogaron,
 		fullRender: FullMonsterRenderMidogaron,
@@ -5840,7 +5882,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Giaorugu',
 		icon: IconMonsterGiaorugu,
 		rank: 'G Rank',
-		link: '/bestiary/giaorugu',
+		link: '/hunter-notes/monsters/overview/giaorugu',
 
 		render: IconRenderMonsterGiaorugu,
 		fullRender: FullMonsterRenderGiaorugu,
@@ -5873,7 +5915,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterMiRu,
 		rank: 'G Rank',
 		render: IconRenderMonsterMiRu,
-		link: '/bestiary/mi-ru',
+		link: '/hunter-notes/monsters/overview/mi-ru',
 
 		fullRender: FullMonsterRenderMiRu,
 		component: ComponentMonsterMiRu,
@@ -5897,7 +5939,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Farunokku',
 		icon: IconMonsterFarunokku,
 		rank: 'G Rank',
-		link: '/bestiary/farunokku',
+		link: '/hunter-notes/monsters/overview/farunokku',
 
 		ecology:
 			'Closely related to Hypnocatrice, these Wyverns possess extremely bright plumage, not to warn predators, but to attract potential mates. Naturally being highly visible to potential threats, these Wyverns are quite capable of defending themselves and are not to be taken lightly.',
@@ -5928,7 +5970,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterPokaradon,
 		rank: 'G Rank',
 		render: IconRenderMonsterPokaradon,
-		link: '/bestiary/pokaradon',
+		link: '/hunter-notes/monsters/overview/pokaradon',
 
 		fullRender: FullMonsterRenderPokaradon,
 		component: ComponentMonsterPokaradon,
@@ -5950,7 +5992,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 116,
 		name: 'Shantien',
 		displayName: 'Shantien',
-		link: '/bestiary/shantien',
+		link: '/hunter-notes/monsters/overview/shantien',
 
 		icon: IconMonsterShantien,
 		ecology:
@@ -5979,7 +6021,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ecology:
 			'Female Leviathans found in the Polar Sea. Roughly half the size of their male counterparts, they also possess smaller fangs, more suited to catching fish than for display. If their children or mate is threatened, they will attack ferociously.',
 		rank: 'G Rank',
-		link: '/bestiary/pokara',
+		link: '/hunter-notes/monsters/overview/pokara',
 		render: IconRenderMonsterPokara,
 		fullRender: FullMonsterRenderPokara,
 		component: ComponentMonsterPokara,
@@ -6000,7 +6042,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Goruganosu',
 		displayName: 'Goruganosu',
 		icon: IconMonsterGoruganosu,
-		link: '/bestiary/goruganosu',
+		link: '/hunter-notes/monsters/overview/goruganosu',
 
 		rank: 'G Rank',
 		render: IconRenderMonsterGoruganosu,
@@ -6034,7 +6076,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 120,
 		name: 'Aruganosu',
 		displayName: 'Aruganosu',
-		link: '/bestiary/aruganosu',
+		link: '/hunter-notes/monsters/overview/aruganosu',
 
 		icon: IconMonsterAruganosu,
 		rank: 'G Rank',
@@ -6070,7 +6112,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Baruragaru',
 		icon: IconMonsterBaruragaru,
 		rank: 'G Rank',
-		link: '/bestiary/baruragaru',
+		link: '/hunter-notes/monsters/overview/baruragaru',
 
 		render: IconRenderMonsterBaruragaru,
 		fullRender: FullMonsterRenderBaruragaru,
@@ -6095,7 +6137,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Zerureusu',
 		icon: IconMonsterZerureusu,
 		rank: 'G Rank',
-		link: '/bestiary/zerureusu',
+		link: '/hunter-notes/monsters/overview/zerureusu',
 
 		render: IconRenderMonsterZerureusu,
 		fullRender: FullMonsterRenderZerureusu,
@@ -6126,7 +6168,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 123,
 		name: 'Gougarf',
-		link: '/bestiary/gougarf',
+		link: '/hunter-notes/monsters/overview/gougarf',
 
 		displayName: 'Gougarf',
 		icon: IconMonsterGougarf,
@@ -6151,7 +6193,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 124,
 		name: 'Uruki',
 		displayName: 'Uruki',
-		link: '/bestiary/uruki',
+		link: '/hunter-notes/monsters/overview/uruki',
 
 		icon: IconMonsterUruki,
 		rank: 'G Rank',
@@ -6176,7 +6218,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Forokururu',
 		displayName: 'Forokururu',
 		icon: IconMonsterForokururu,
-		link: '/bestiary/forokururu',
+		link: '/hunter-notes/monsters/overview/forokururu',
 
 		ecology:
 			'Majestic Bird Wyverns native to the Flower Field. They possess a highly evolved beak, which allows them to feed from the various flowers in their habitat. Attention should be paid to the color of their wings and tail feathers.',
@@ -6209,7 +6251,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Meraginasu',
 		ecology:
 			'Previously known only from fossils and believed to be extinct until living specimens were sighted by the Guild. These black and gold Wyverns are seemingly blind and navigate their underground territories through sound.',
-		link: '/bestiary/meraginasu',
+		link: '/hunter-notes/monsters/overview/meraginasu',
 		icon: IconMonsterMeraginasu,
 		rank: 'G Rank',
 		render: IconRenderMonsterMeraginasu,
@@ -6250,7 +6292,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 127,
 		name: 'Diorex',
 		displayName: 'Diorex',
-		link: '/bestiary/diorex',
+		link: '/hunter-notes/monsters/overview/diorex',
 
 		icon: IconMonsterDiorex,
 		rank: 'G Rank',
@@ -6277,7 +6319,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Garuba Daora',
 		icon: IconMonsterGarubaDaora,
 		rank: 'G Rank',
-		link: '/bestiary/garuba-daora',
+		link: '/hunter-notes/monsters/overview/garuba-daora',
 
 		render: IconRenderMonsterGarubaDaora,
 		fullRender: FullMonsterRenderGarubaDaora,
@@ -6306,7 +6348,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 129,
 		name: 'Inagami',
-		link: '/bestiary/inagami',
+		link: '/hunter-notes/monsters/overview/inagami',
 
 		displayName: 'Inagami',
 		icon: IconMonsterInagami,
@@ -6333,7 +6375,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Varusaburosu',
 		displayName: 'Varusaburosu',
 		icon: IconMonsterVarusaburosu,
-		link: '/bestiary/varusaburosu',
+		link: '/hunter-notes/monsters/overview/varusaburosu',
 
 		rank: 'G Rank',
 		render: IconRenderMonsterVarusaburosu,
@@ -6372,7 +6414,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterPoborubarumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterPoborubarumu,
-		link: '/bestiary/poborubarumu',
+		link: '/hunter-notes/monsters/overview/poborubarumu',
 
 		fullRender: FullMonsterRenderPoborubarumu,
 		component: ComponentMonsterPoborubarumu,
@@ -6398,7 +6440,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterDuremudira,
 		fullRender: FullMonsterRenderDuremudira,
-		link: '/bestiary/duremudira',
+		link: '/hunter-notes/monsters/overview/duremudira',
 
 		component: ComponentMonsterDuremudira,
 		unusedComponent: false,
@@ -6421,7 +6463,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Gureadomosu',
 		icon: IconMonsterGureadomosu,
 		rank: 'G Rank',
-		link: '/bestiary/gureadomosu',
+		link: '/hunter-notes/monsters/overview/gureadomosu',
 
 		render: IconRenderMonsterGureadomosu,
 		fullRender: FullMonsterRenderGureadomosu,
@@ -6458,7 +6500,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 140,
 		name: 'Harudomerugu',
 		displayName: 'Harudomerugu',
-		link: '/bestiary/harudomerugu',
+		link: '/hunter-notes/monsters/overview/harudomerugu',
 
 		icon: IconMonsterHarudomerugu,
 		rank: 'G Rank',
@@ -6483,7 +6525,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 141,
 		name: 'Toridcless',
 		displayName: 'Toridcless',
-		link: '/bestiary/toridcless',
+		link: '/hunter-notes/monsters/overview/toridcless',
 
 		icon: IconMonsterToridcless,
 		rank: 'G Rank',
@@ -6516,7 +6558,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ecology: `Large Brute Wyverns endemic to White Lake, research shows they were previously semi aquatic, until the lake's waters receeded, forcing them to re-adapt to terrestrial life. They are able to store lagre quantities of poison gained from their prey.`,
 		displayName: 'Gasurabazura',
 		icon: IconMonsterGasurabazura,
-		link: '/bestiary/gasurabazura',
+		link: '/hunter-notes/monsters/overview/gasurabazura',
 
 		rank: 'G Rank',
 		render: IconRenderMonsterGasurabazura,
@@ -6537,7 +6579,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 143,
 		name: 'Kusubami',
-		link: '/bestiary/kusubami',
+		link: '/hunter-notes/monsters/overview/kusubami',
 
 		displayName: 'Kusubami',
 		icon: IconMonsterKusubami,
@@ -6563,7 +6605,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 144,
 		name: 'Yama Kurai',
 		displayName: 'Yama Kurai',
-		link: '/bestiary/yama-kurai',
+		link: '/hunter-notes/monsters/overview/yama-kurai',
 
 		icon: IconMonsterYamaKurai,
 		rank: 'G Rank',
@@ -6590,7 +6632,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZinogre,
 		rank: 'G Rank',
 		render: IconRenderMonsterZinogre,
-		link: '/bestiary/zinogre',
+		link: '/hunter-notes/monsters/overview/zinogre',
 
 		fullRender: FullMonsterRenderZinogre,
 		component: ComponentMonsterZinogre,
@@ -6644,7 +6686,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Deviljho',
 		displayName: 'Deviljho',
 		icon: IconMonsterDeviljho,
-		link: '/bestiary/deviljho',
+		link: '/hunter-notes/monsters/overview/deviljho',
 
 		rank: 'G Rank',
 		render: IconRenderMonsterDeviljho,
@@ -6718,7 +6760,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Brachydios',
 		displayName: 'Brachydios',
 		icon: IconMonsterBrachydios,
-		link: '/bestiary/brachydios',
+		link: '/hunter-notes/monsters/overview/brachydios',
 
 		rank: 'G Rank',
 		render: IconRenderMonsterBrachydios,
@@ -6761,7 +6803,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterBerserkRaviente,
 		rank: 'G Rank',
 		render: IconRenderMonsterBerserkRaviente,
-		link: '/bestiary/berserk-raviente',
+		link: '/hunter-notes/monsters/overview/berserk-raviente',
 
 		fullRender: FullMonsterRenderBerserkRaviente,
 		component: ComponentMonsterBerserkRaviente,
@@ -6785,7 +6827,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Toa Tesukatora',
 		icon: IconMonsterToaTesukatora,
 		rank: 'G Rank',
-		link: '/bestiary/toia-tesukatora',
+		link: '/hunter-notes/monsters/overview/toia-tesukatora',
 
 		render: IconRenderMonsterToaTesukatora,
 		fullRender: FullMonsterRenderToaTesukatora,
@@ -6808,7 +6850,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Barioth',
 		icon: IconMonsterBarioth,
 		rank: 'G Rank',
-		link: '/bestiary/barioth',
+		link: '/hunter-notes/monsters/overview/barioth',
 
 		render: IconRenderMonsterBarioth,
 		fullRender: FullMonsterRenderBarioth,
@@ -6848,7 +6890,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 152,
 		name: 'Uragaan',
 		displayName: 'Uragaan',
-		link: '/bestiary/uragaan',
+		link: '/hunter-notes/monsters/overview/uragaan',
 
 		icon: IconMonsterUragaan,
 		rank: 'G Rank',
@@ -6877,7 +6919,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Stygian Zinogre',
 		icon: IconMonsterStygianZinogre,
 		rank: 'G Rank',
-		link: '/bestiary/stygian-zinogre',
+		link: '/hunter-notes/monsters/overview/stygian-zinogre',
 
 		render: IconRenderMonsterStygianZinogre,
 		fullRender: FullMonsterRenderStygianZinogre,
@@ -6922,7 +6964,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterGuanzorumu,
 		rank: 'G Rank',
 		render: IconRenderMonsterGuanzorumu,
-		link: '/bestiary/guanzorumu',
+		link: '/hunter-notes/monsters/overview/guanzorumu',
 
 		fullRender: FullMonsterRenderGuanzorumu,
 		component: ComponentMonsterGuanzorumu,
@@ -6947,7 +6989,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Musou 1',
 		render: IconRenderMonsterStarvingDeviljho,
 		fullRender: FullMonsterRenderStarvingDeviljho,
-		link: '/bestiary/starving-deviljho',
+		link: '/hunter-notes/monsters/overview/starving-deviljho',
 
 		component: ComponentMonsterStarvingDeviljho,
 		unusedComponent: false,
@@ -6982,7 +7024,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterVoljang,
 		fullRender: FullMonsterRenderVoljang,
-		link: '/bestiary/voljang',
+		link: '/hunter-notes/monsters/overview/voljang',
 
 		component: ComponentMonsterVoljang,
 		unusedComponent: true,
@@ -7006,7 +7048,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterNargacuga,
 		rank: 'G Rank',
 		render: IconRenderMonsterNargacuga,
-		link: '/bestiary/nargacuga',
+		link: '/hunter-notes/monsters/overview/nargacuga',
 
 		fullRender: FullMonsterRenderNargacuga,
 		component: ComponentMonsterNargacuga,
@@ -7055,7 +7097,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Keoaruboru',
 		displayName: 'Keoaruboru',
 		icon: IconMonsterKeoaruboru,
-		link: '/bestiary/keoaruboru',
+		link: '/hunter-notes/monsters/overview/keoaruboru',
 
 		rank: 'G Rank',
 		render: IconRenderMonsterKeoaruboru,
@@ -7081,7 +7123,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenaserisu,
 		rank: 'G Rank',
 		render: IconRenderMonsterZenaserisu,
-		link: '/bestiary/zenaserisu',
+		link: '/hunter-notes/monsters/overview/zenaserisu',
 
 		fullRender: FullMonsterRenderZenaserisu,
 		component: ComponentMonsterZenaserisu,
@@ -7106,7 +7148,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterGoreMagala,
 		rank: 'G Rank',
 		render: IconRenderMonsterGoreMagala,
-		link: '/bestiary/gore-magala',
+		link: '/hunter-notes/monsters/overview/gore-magala',
 
 		fullRender: FullMonsterRenderGoreMagala,
 		component: ComponentMonsterGoreMagala,
@@ -7145,7 +7187,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Blinking Nargacuga',
 		displayName: 'Blinking Nargacuga',
 		icon: IconMonsterBlinkingNargacuga,
-		link: '/bestiary/blinking-nargacuga',
+		link: '/hunter-notes/monsters/overview/blinking-nargacuga',
 		rank: 'G Rank',
 		render: IconRenderMonsterBlinkingNargacuga,
 		fullRender: FullMonsterRenderBlinkingNargacuga,
@@ -7172,7 +7214,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterShagaruMagala,
 		fullRender: FullMonsterRenderShagaruMagala,
 		component: ComponentMonsterShagaruMagala,
-		link: '/bestiary/shagaru-magala',
+		link: '/hunter-notes/monsters/overview/shagaru-magala',
 
 		unusedComponent: true,
 		ecology: `The distinctive radiant light of the mature Gore Magala has has been seen in the Sanctuary of Heaven's Mount. Some believe Shagaru Magala was the "foul wind that withered a mountain," a calamity spoken of in ancient texts.`,
@@ -7191,7 +7233,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 165,
 		name: 'Amatsu',
 		displayName: 'Amatsu',
-		link: '/bestiary/amatsu',
+		link: '/hunter-notes/monsters/overview/amatsu',
 
 		icon: IconMonsterAmatsu,
 		rank: 'G Rank',
@@ -7224,7 +7266,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterElzelion,
 		rank: 'G Rank',
 		render: IconRenderMonsterElzelion,
-		link: '/bestiary/elzelion',
+		link: '/hunter-notes/monsters/overview/elzelion',
 
 		fullRender: FullMonsterRenderElzelion,
 		component: ComponentMonsterElzelion,
@@ -7246,7 +7288,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Arrogant Duremudira',
 		displayName: 'Arrogant Duremudira',
 		icon: IconMonsterArrogantDuremudira,
-		link: '/bestiary/arrogant-duremudira',
+		link: '/hunter-notes/monsters/overview/arrogant-duremudira',
 
 		rank: 'G Rank',
 		render: IconRenderMonsterArrogantDuremudira,
@@ -7270,7 +7312,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Seregios',
 		displayName: 'Seregios',
 		icon: IconMonsterSeregios,
-		link: '/bestiary/seregios',
+		link: '/hunter-notes/monsters/overview/seregios',
 
 		rank: 'G Rank',
 		render: IconRenderMonsterSeregios,
@@ -7316,7 +7358,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Bogabadorumu',
 		icon: IconMonsterBogabadorumu,
 		rank: 'G Rank',
-		link: '/bestiary/bogabadorumu',
+		link: '/hunter-notes/monsters/overview/bogabadorumu',
 
 		render: IconRenderMonsterBogabadorumu,
 		fullRender: FullMonsterRenderBogabadorumu,
@@ -7341,7 +7383,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Bombardier Bogabadorumu',
 		icon: IconMonsterBombardierBogabadorumu,
 		rank: 'G Rank',
-		link: '/bestiary/bombardier-bogabadorumu',
+		link: '/hunter-notes/monsters/overview/bombardier-bogabadorumu',
 
 		render: IconRenderMonsterBombardierBogabadorumu,
 		fullRender: FullMonsterRenderBombardierBogabadorumu,
@@ -7365,7 +7407,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Sparkling Zerureusu',
 		icon: IconMonsterSparklingZerureusu,
 		rank: 'G Rank',
-		link: '/bestiary/sparkling-zerureusu',
+		link: '/hunter-notes/monsters/overview/sparkling-zerureusu',
 
 		render: IconRenderMonsterSparklingZerureusu,
 		fullRender: FullMonsterRenderSparklingZerureusu,
@@ -7399,7 +7441,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterPSO2Rappy,
 		rank: 'G Rank',
 		render: IconRenderMonsterPSO2Rappy,
-		link: '/bestiary/pso2-rappy',
+		link: '/hunter-notes/monsters/overview/pso2-rappy',
 
 		fullRender: FullMonsterRenderPSO2Rappy,
 		component: ComponentMonsterPSO2Rappy,
@@ -7415,7 +7457,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterKingShakalaka,
 		fullRender: FullMonsterRenderKingShakalaka,
-		link: '/bestiary/king-shakalaka',
+		link: '/hunter-notes/monsters/overview/king-shakalaka',
 
 		component: ComponentMonsterKingShakalaka,
 		unusedComponent: true,
@@ -7436,7 +7478,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Akura Vashimu',
 		displayName: 'Zenith Akura Vashimu',
 		icon: IconMonsterZenithAkuraVashimu,
-		link: '/bestiary/zenith-akura-vashimu',
+		link: '/hunter-notes/monsters/overview/zenith-akura-vashimu',
 
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithAkuraVashimu,
@@ -7462,7 +7504,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithAnorupatisu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithAnorupatisu,
-		link: '/bestiary/zenith-anorupatisu',
+		link: '/hunter-notes/monsters/overview/zenith-anorupatisu',
 
 		fullRender: FullMonsterRenderZenithAnorupatisu,
 		component: ComponentMonsterZenithAnorupatisu,
@@ -7484,7 +7526,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Baruragaru',
 		displayName: 'Zenith Baruragaru',
 		icon: IconMonsterZenithBaruragaru,
-		link: '/bestiary/zenith-baruragaru',
+		link: '/hunter-notes/monsters/overview/zenith-baruragaru',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBaruragaru,
 		fullRender: FullMonsterRenderZenithBaruragaru,
@@ -7507,7 +7549,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Blangonga',
 		displayName: 'Zenith Blangonga',
 		icon: IconMonsterZenithBlangonga,
-		link: '/bestiary/zenith-blangonga',
+		link: '/hunter-notes/monsters/overview/zenith-blangonga',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBlangonga,
 		fullRender: FullMonsterRenderZenithBlangonga,
@@ -7542,7 +7584,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithBogabadorumu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithBogabadorumu,
-		link: '/bestiary/bogabadorumu',
+		link: '/hunter-notes/monsters/overview/bogabadorumu',
 		fullRender: FullMonsterRenderBogabadorumu,
 		component: ComponentMonsterBogabadorumu,
 		unusedComponent: true,
@@ -7557,7 +7599,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithDaimyoHermitaur,
 		fullRender: FullMonsterRenderZenithDaimyoHermitaur,
-		link: '/bestiary/zenith-daimyo-hermitaur',
+		link: '/hunter-notes/monsters/overview/zenith-daimyo-hermitaur',
 		component: ComponentMonsterZenithDaimyoHermitaur,
 		unusedComponent: true,
 		ecology: `Zenith Daimyo Hermitaur is usually calm when left undisturbed, but will quickly become aggressive if attacked by a foe. Strangely, Zenith Daimyo Hermitaur have only been reported living in the White Lake.`,
@@ -7586,7 +7628,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Zenith Doragyurosu',
 		icon: IconMonsterZenithDoragyurosu,
 		rank: 'Zenith★4',
-		link: '/bestiary/zenith-doragyurosu',
+		link: '/hunter-notes/monsters/overview/zenith-doragyurosu',
 		render: IconRenderMonsterZenithDoragyurosu,
 		fullRender: FullMonsterRenderZenithDoragyurosu,
 		component: ComponentMonsterZenithDoragyurosu,
@@ -7610,7 +7652,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithEspinas,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithEspinas,
-		link: '/bestiary/zenith-espinas',
+		link: '/hunter-notes/monsters/overview/zenith-espinas',
 		fullRender: FullMonsterRenderZenithEspinas,
 		component: ComponentMonsterZenithEspinas,
 		unusedComponent: true,
@@ -7649,7 +7691,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGasurabazura,
 		fullRender: FullMonsterRenderZenithGasurabazura,
-		link: '/bestiary/zenith-gasurabazura',
+		link: '/hunter-notes/monsters/overview/zenith-gasurabazura',
 		component: ComponentMonsterZenithGasurabazura,
 		unusedComponent: true,
 		ecology: `A stronger, more powerful counterpart of Gasurabazura. They are reported to feint attacks in order to catch hunters off-guard. It is said that when enraged, their arms grow to incredible sizes, destroying everything in sight. Their poison is known to be one of the most potent in the world.`,
@@ -7671,7 +7713,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithGiaorugu,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGiaorugu,
-		link: '/bestiary/zenith-giaorugu',
+		link: '/hunter-notes/monsters/overview/zenith-giaorugu',
 		fullRender: FullMonsterRenderZenithGiaorugu,
 		component: ComponentMonsterZenithGiaorugu,
 		unusedComponent: true,
@@ -7702,7 +7744,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithGravios,
 		fullRender: FullMonsterRenderZenithGravios,
-		link: '/bestiary/zenith-gravios',
+		link: '/hunter-notes/monsters/overview/zenith-gravios',
 		component: ComponentMonsterZenithGravios,
 		unusedComponent: true,
 		ecology: `Zenith Gravios are known to inhabit the Volcano, and can be found in the Battleground. It can use it's tail for swings and explosion-causing slams, the later of which it can use to propel itself towards a foe.`,
@@ -7736,7 +7778,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Harudomerugu',
 		displayName: 'Zenith Harudomerugu',
 		icon: IconMonsterZenithHarudomerugu,
-		link: '/bestiary/zenith-harudomerugu',
+		link: '/hunter-notes/monsters/overview/zenith-harudomerugu',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHarudomerugu,
 		fullRender: FullMonsterRenderZenithHarudomerugu,
@@ -7759,7 +7801,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Hypnocatrice',
 		displayName: 'Zenith Hypnocatrice',
 		icon: IconMonsterZenithHypnoc,
-		link: '/bestiary/zenith-hypnocatrice',
+		link: '/hunter-notes/monsters/overview/zenith-hypnocatrice',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHypnoc,
 		fullRender: FullMonsterRenderZenithHypnoc,
@@ -7791,7 +7833,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithHyujikiki,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithHyujikiki,
-		link: '/bestiary/zenith-hyujikiki',
+		link: '/hunter-notes/monsters/overview/zenith-hyujikiki',
 		fullRender: FullMonsterRenderZenithHyujikiki,
 		component: ComponentMonsterZenithHyujikiki,
 		ecology: `Zenith Hyujikiki share much of the same abilities as the normal ones, but the most noteworthy change is the heavier semi-metallic needles. Due to the changes to become like this the twisters no longer carry the needles, and Zenith Hyujikiki cannot use its venom anymore. To make up for this the needles Zenith Hyujikiki throws are much sharper piercing and inducing severe bleeding onto those struck by them, it also makes use of a few new attacks such as a roll which leaves clumps of needles in its wake, although some attacks normal Hyujikiki has are absent. Notably the needles will be stuck in the hunters that are struck by, or walk over the clumps of them.`,
@@ -7814,7 +7856,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterZenithInagami,
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithInagami,
-		link: '/bestiary/zenith-inagami',
+		link: '/hunter-notes/monsters/overview/zenith-inagami',
 		fullRender: FullMonsterRenderZenithInagami,
 		component: ComponentMonsterZenithInagami,
 		unusedComponent: true,
@@ -7835,7 +7877,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Khezu',
 		displayName: 'Zenith Khezu',
 		icon: IconMonsterZenithKhezu,
-		link: '/bestiary/zenith-khezu',
+		link: '/hunter-notes/monsters/overview/zenith-khezu',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithKhezu,
 		fullRender: FullMonsterRenderZenithKhezu,
@@ -7861,7 +7903,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithMidogaron,
 		fullRender: FullMonsterRenderZenithMidogaron,
-		link: '/bestiary/zenith-midogaron',
+		link: '/hunter-notes/monsters/overview/zenith-midogaron',
 		component: ComponentMonsterZenithMidogaron,
 		unusedComponent: true,
 		ecology: `An evolved Midogaron that are slightly larger and fierce than their counterpart. The mohawk-like mane that extended from their heads through tails has further developed to have longer violet hairs instead of an orange short ones. The quills on their heads grew longer with a pinkish color, while the rest of them on their necks through tails grew slightly larger with the same color as the ones on their heads. Zenith Midogaron's fur on its face and legs has the same violet color as the developed extended mane. Their claws heavy developed to have longer violet ones instead orange short ones with violet flame-like spikes on the back of their legs. Zenith Midogaron's tusks have also grown a bit longer.`,
@@ -7882,7 +7924,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Zenith Plesioth',
 		icon: IconMonsterZenithPlesioth,
 		rank: 'Zenith★4',
-		link: '/bestiary/zenith-plesioth',
+		link: '/hunter-notes/monsters/overview/zenith-plesioth',
 		render: IconRenderMonsterZenithPlesioth,
 		fullRender: FullMonsterRenderZenithPlesioth,
 		ecology: `Evolved Plesioth that are larger and more intimidating than their counterparts. Their heads in addition to having lighter scales have also heavily developed, now sporting a large, light blue tipped head fin with several light blue hooked spikes lining each side of it. Additionally, they have developed five long and jagged tusks located on the side of their lower jaws. Lastly, they have short and spiked appendages instead of normal fins on the side of their heads.`,
@@ -7912,7 +7954,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Zenith Rathalos',
 		icon: IconMonsterZenithRathalos,
 		rank: 'Zenith★4',
-		link: '/bestiary/zenith-rathalos',
+		link: '/hunter-notes/monsters/overview/zenith-rathalos',
 		render: IconRenderMonsterZenithRathalos,
 		fullRender: FullMonsterRenderZenithRathalos,
 		component: ComponentMonsterZenithRathalos,
@@ -7942,7 +7984,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Rukodiora',
 		displayName: 'Zenith Rukodiora',
 		icon: IconMonsterZenithRukodiora,
-		link: '/bestiary/zenith-rukodiora',
+		link: '/hunter-notes/monsters/overview/zenith-rukodiora',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithRukodiora,
 		fullRender: FullMonsterRenderZenithRukodiora,
@@ -7974,7 +8016,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithTaikunZamuza,
 		fullRender: FullMonsterRenderZenithTaikunZamuza,
-		link: '/bestiary/zenith-taikun-zamuza',
+		link: '/hunter-notes/monsters/overview/zenith-taikun-zamuza',
 		component: ComponentMonsterZenithTaikunZamuza,
 		unusedComponent: true,
 		ecology: `Zenith Taikun Zamuza are much more prone to attack compared to their kin, lacking the environmental armor they don't seem to try and hide as much, if at all. In the unarmored state, the spikes on the legs and claws are noticeably absent, with blue bulb-like electric organs present in their place. The claws are also quite a bit thicker, longer, and overall bigger compared to that of a standard unarmored Taikun Zamuza.`,
@@ -7994,7 +8036,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Tigrex',
 		displayName: 'Zenith Tigrex',
 		icon: IconMonsterZenithTigrex,
-		link: '/bestiary/zenith-tigrex',
+		link: '/hunter-notes/monsters/overview/zenith-tigrex',
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithTigrex,
 		fullRender: FullMonsterRenderZenithTigrex,
@@ -8020,7 +8062,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithToridcless,
 		fullRender: FullMonsterRenderZenithToridcless,
-		link: '/bestiary/zenith-toridcless',
+		link: '/hunter-notes/monsters/overview/zenith-toridcless',
 		component: ComponentMonsterZenithToridcless,
 		unusedComponent: true,
 		type: 'Large',
@@ -8041,7 +8083,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Conquest Fatalis',
 		icon: IconMonsterConquestFatalis,
 		rank: 'G Rank',
-		link: '/bestiary/conquest-fatalis',
+		link: '/hunter-notes/monsters/overview/conquest-fatalis',
 		render: IconRenderMonsterConquestFatalis,
 		fullRender: FullMonsterRenderConquestFatalis,
 		component: ComponentMonsterConquestFatalis,
@@ -8065,7 +8107,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterConquestShantien,
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestShantien,
-		link: '/bestiary/conquest-shantien',
+		link: '/hunter-notes/monsters/overview/conquest-shantien',
 		fullRender: FullMonsterRenderConquestShantien,
 		component: ComponentMonsterConquestShantien,
 		unusedComponent: true,
@@ -8089,7 +8131,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterConquestCrimsonFatalis,
 		fullRender: FullMonsterRenderConquestCrimsonFatalis,
-		link: '/bestiary/conquest-crimson-fatalis',
+		link: '/hunter-notes/monsters/overview/conquest-crimson-fatalis',
 		component: ComponentMonsterConquestCrimsonFatalis,
 		unusedComponent: false,
 		type: 'Large',
@@ -8112,7 +8154,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Upper Shiten',
 		render: IconRenderMonsterShitenDisufiroa,
 		fullRender: FullMonsterRenderShitenDisufiroa,
-		link: '/bestiary/shiten-disufiroa',
+		link: '/hunter-notes/monsters/overview/shiten-disufiroa',
 		component: ComponentMonsterShitenDisufiroa,
 		unusedComponent: true,
 		ecology: `According to one account from a lucky hunter, when it freezes itself at the end of the fight, instead of dying, it will break out and gain a new appearance which its chest protrusions become purple in addition to the blue stripes on its underbelly and the webbing of its wings. Its red scales also turn black in color and its attacks become much fiercer, as well as some new devastating large attacks utilizing its elements.`,
@@ -8132,7 +8174,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'UNKNOWN',
 		displayName: 'Shiten UNKNOWN',
 		icon: IconMonsterShitenUnknown,
-		link: '/bestiary/shiten-unknown',
+		link: '/hunter-notes/monsters/overview/shiten-unknown',
 		rank: 'Upper Shiten',
 		render: IconRenderMonsterShitenUnknown,
 		fullRender: FullMonsterRenderShitenUnknown,
@@ -8146,7 +8188,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ailments: ['Poison', 'Defense Down'],
 		weaknesses: ['Water', 'Thunder', 'Ice', 'Dragon'],
 		habitats: [
-			'Forest and Hills, Jungle, Desert, Swamp, Great Forest, Tower, Tower 3, Gorge',
+			'Forest and Hills',
+			'Jungle',
+			'Desert',
+			'Swamp',
+			'Great Forest',
+			'Tower',
+			'Tower 3',
+			'Gorge',
 		],
 		sizes: ['Gold Crown Large: 2303.8'],
 		relatedMonsters: ['None'],
@@ -8159,7 +8208,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterBurningFreezingElzelion,
 		rank: 'Musou 1',
 		render: IconRenderMonsterBurningFreezingElzelion,
-		link: '/bestiary/burning-freezing-elzelion',
+		link: '/hunter-notes/monsters/overview/burning-freezing-elzelion',
 		fullRender: FullMonsterRenderBurningFreezingElzelion,
 		component: ComponentMonsterBurningFreezingElzelion,
 		unusedComponent: false,
@@ -8181,7 +8230,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Howling Zinogre',
 		icon: IconMonsterHowlingZinogre,
 		rank: 'Musou 1',
-		link: '/bestiary/howling-zinogre',
+		link: '/hunter-notes/monsters/overview/howling-zinogre',
 		render: IconRenderMonsterHowlingZinogre,
 		fullRender: FullMonsterRenderHowlingZinogre,
 		component: ComponentMonsterHowlingZinogre,
@@ -8203,7 +8252,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Pariapuria',
 		displayName: 'Supremacy Pariapuria',
 		icon: IconMonsterSupremacyPariapuria,
-		link: '/bestiary/supremacy-pariapuria',
+		link: '/hunter-notes/monsters/overview/supremacy-pariapuria',
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyPariapuria,
 		fullRender: FullMonsterRenderSupremacyPariapuria,
@@ -8233,7 +8282,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 95,
 		name: 'Doragyurosu',
 		displayName: 'Supremacy Doragyurosu',
-		link: '/bestiary/supremacy-doragyurosu',
+		link: '/hunter-notes/monsters/overview/supremacy-doragyurosu',
 		icon: IconMonsterSupremacyDoragyurosu,
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyDoragyurosu,
@@ -8260,7 +8309,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Supremacy Teostra',
 		icon: IconMonsterSupremacyTeostra,
 		rank: 'Musou 1',
-		link: '/bestiary/supremacy-teostra',
+		link: '/hunter-notes/monsters/overview/supremacy-teostra',
 		render: IconRenderMonsterSupremacyTeostra,
 		fullRender: FullMonsterRenderSupremacyTeostra,
 		component: ComponentMonsterSupremacyTeostra,
@@ -8282,7 +8331,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Odibatorasu',
 		displayName: 'Odibatorasu',
 		icon: IconMonsterSupremacyOdibatorasu,
-		link: '/bestiary/supremacy-odibatorasu',
+		link: '/hunter-notes/monsters/overview/supremacy-odibatorasu',
 		rank: 'Musou 1',
 		render: IconRenderMonsterSupremacyOdibatorasu,
 		fullRender: FullMonsterRenderSupremacyOdibatorasu,
@@ -8306,7 +8355,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Golden Deviljho',
 		icon: IconMonsterGoldenDeviljho,
 		rank: 'Musou 2',
-		link: '/bestiary/golden-deviljho',
+		link: '/hunter-notes/monsters/overview/golden-deviljho',
 		render: IconRenderMonsterGoldenDeviljho,
 		fullRender: FullMonsterRenderGoldenDeviljho,
 		component: ComponentMonsterGoldenDeviljho,
@@ -8337,7 +8386,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'Musou 1',
 		render: IconRenderMonsterFuriousRajang,
 		fullRender: FullMonsterRenderFuriousRajang,
-		link: '/bestiary/furious-rajang',
+		link: '/hunter-notes/monsters/overview/furious-rajang',
 		component: ComponentMonsterFuriousRajang,
 		unusedComponent: true,
 		ecology: `Furious Rajang is a standard Rajang that has grown extremely powerful, and has lost its tail either by it falling off naturally or by tearing it off itself, allowing it to fully harness its abilities. Furious Rajang's appearance resembles that of an enraged Rajang by default. Its Rage mode shows that its fur stands up and it is visibly electrified by an electric aura.`,
@@ -8389,7 +8438,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Ruling Guanzorumu',
 		icon: IconMonsterRulingGuanzorumu,
 		rank: 'Musou 1',
-		link: '/bestiary/ruling-guanzorumu',
+		link: '/hunter-notes/monsters/overview/ruling-guanzorumu',
 		render: IconRenderMonsterRulingGuanzorumu,
 		fullRender: FullMonsterRenderRulingGuanzorumu,
 		component: ComponentMonsterRulingGuanzorumu,
@@ -8412,7 +8461,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Shifting Mi Ru',
 		icon: IconMonsterShiftingMiRu,
 		rank: 'Musou 1',
-		link: '/bestiary/shifting-mi-ru',
+		link: '/hunter-notes/monsters/overview/shifting-mi-ru',
 		render: IconRenderMonsterShiftingMiRu,
 		fullRender: FullMonsterRenderShiftingMiRu,
 		component: ComponentMonsterShiftingMiRu,
@@ -8436,7 +8485,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterTwinheadRajang,
 		rank: 'Twinhead 1',
 		render: IconRenderMonsterTwinheadRajang,
-		link: '/bestiary/twinhead-rajang',
+		link: '/hunter-notes/monsters/overview/twinhead-rajang',
 		fullRender: FullMonsterRenderTwinheadRajang,
 		component: ComponentMonsterTwinheadRajang,
 		unusedComponent: true,
@@ -8470,7 +8519,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterWhiteFatalis,
 		fullRender: FullMonsterRenderWhiteFatalis,
-		link: '/bestiary/road-white-fatalis',
+		link: '/hunter-notes/monsters/overview/road-white-fatalis',
 		component: ComponentMonsterRoadWhiteFatalis,
 		unusedComponent: false,
 		ecology: `This version of White Fatalis is exclusive to the Hunting Road, only appearing every tenth stage. Many of its attacks are with a mixed element called Emperor's Roar, but it can also create area-wide tremors and tremendous wind gusts to damage foes, rivaling that of a Zenith species. After some time during an intense battle, White Fatalis' spikes and horns will glow from blue to red.
@@ -8510,7 +8559,7 @@ export const tagInfo: {
 	{
 		color: 'red',
 		icon: MonsterPartIconWhite,
-		link: '/bestiary',
+		link: '/hunter-notes/monsters/overview',
 		values: [
 			'Monster',
 			'Musou',
@@ -8537,7 +8586,7 @@ export const tagInfo: {
 	{
 		color: 'cool-gray',
 		icon: MonsterPartIconWhite,
-		link: '/bestiary',
+		link: '/hunter-notes/monsters/overview',
 		values: [
 			'Lynian',
 			'Herbivore',
