@@ -49,7 +49,7 @@ export function getHexStringFromCatppuccinColor(
 	theme: CarbonTheme,
 ): string {
 	// Determine the current flavor based on the theme
-	let flavor: CatppuccinFlavorName = getCatppuccinFlavorFromTheme(theme);
+	const flavor: CatppuccinFlavorName = getCatppuccinFlavorFromTheme(theme);
 
 	// Access the flavor object
 	const flavorObject = flavors[flavor];

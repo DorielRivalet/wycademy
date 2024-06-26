@@ -292,7 +292,7 @@
 	}
 
 	.meter {
-		min-height: var(--cds-spacing-02);
+		min-height: var(--cds-spacing-04);
 		margin-bottom: 1rem;
 	}
 
