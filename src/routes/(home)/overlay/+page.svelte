@@ -413,7 +413,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 	}
 
 	.top-hero-section {
-		height: 100vh; /* Full viewport height */
+		height: 88vh;
 		padding: 0;
 		margin: 0;
 	}
@@ -505,7 +505,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		gap: var(--cds-spacing-12);
 	}
 
-	.faq-section footer {
+	.faq-section > section {
 		width: 80%;
 		margin: auto;
 	}

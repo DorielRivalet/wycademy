@@ -24,6 +24,10 @@
 	import ProfilePinnedSets from '$lib/client/components/ProfilePinnedSets.svelte';
 	import { theme } from '$lib/client/stores/theme';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import ProfileRecentHunts from '$lib/client/components/ProfileRecentHunts.svelte';
+	import ProfileHuntsGraph from '$lib/client/components/ProfileActivityOverviewGraph.svelte';
+	import ProfileRecentActivity from '$lib/client/components/ProfileRecentActivity.svelte';
+	import ProfileHuntsCalendarGraph from '$lib/client/components/ProfileHuntsCalendarGraph.svelte';
 
 	// import Pin from 'carbon-icons-svelte/lib/Pin.svelte';
 	// import Bookmark from 'carbon-icons-svelte/lib/Bookmark.svelte';
@@ -113,6 +117,23 @@
 	<section>
 		<SectionHeading level={2} title="Wardrobe" />
 		<ProfilePinnedSets bind:theme={$theme} />
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Quests Stats" />
+		<ProfileHuntsCalendarGraph bind:theme={$theme} />
+	</section>
+
+	<section>
+		<ProfileHuntsGraph />
+	</section>
+
+	<section>
+		<ProfileRecentActivity />
+	</section>
+
+	<section>
+		<ProfileRecentHunts />
 	</section>
 
 	<section>
