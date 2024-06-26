@@ -109,7 +109,7 @@
 		grid-template-columns: 1fr 1fr;
 		flex-wrap: wrap;
 		gap: 4rem;
-		padding: 2rem;
+		padding-top: var(--cds-spacing-10);
 		width: 80vw;
 		margin: auto;
 		min-height: 90vh;
@@ -120,7 +120,7 @@
 		align-items: center;
 		flex-direction: column;
 		gap: 4rem;
-		padding: 2rem;
+		padding-top: var(--cds-spacing-10);
 		width: 80vw;
 		margin: auto;
 		min-height: 90vh;

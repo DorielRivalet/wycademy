@@ -85,12 +85,13 @@
 		<nav>
 			<ul>
 				{#if $breakpointLargerThanSmall}
-					<NavigationItem path="/leaderboard" description="Speedruns" />
+					<NavigationItem path="/leaderboard" description="Leaderboards" />
 				{/if}
 				{#if $breakpointLargerThanMedium}
-					<NavigationItem path="/hunter-notes" description="Game" />
+					<NavigationItem path="/hunter-notes" description="Guides" />
 					<NavigationItem path="/arena" description="Arena" />
 					<NavigationItem path="/smithy" description="Tools" />
+					<!-- <NavigationItem path="/" description="Events" /> -->
 					<NavigationItem path="/support" description="Support" />
 				{/if}
 			</ul>

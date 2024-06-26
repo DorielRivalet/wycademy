@@ -23,7 +23,6 @@
 		getCatppuccinFlavorFromTheme,
 		getHexStringFromCatppuccinColor,
 	} from '../themes/catppuccin';
-	import InlineToggletip from './frontier/InlineToggletip.svelte';
 
 	export let huntCount = Math.trunc(Math.random() * 1000);
 	export let obtainedAchievements = Math.trunc(Math.random() * 1000);
