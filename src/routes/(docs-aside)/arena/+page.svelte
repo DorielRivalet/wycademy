@@ -5186,10 +5186,8 @@ does not get multiplied by horn */
 
 	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName =
 		'Sharpness UP';
-	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName =
-		'Cutting UP';
-	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName =
-		'Friendship UP';
+	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName = 'None';
 	let inputDivaPrayerGemBlueName: FrontierDivaPrayerGemSkillName = 'None';
 
 	const iconKey = 'divaPrayerGemIcon';

@@ -1,54 +1,429 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, type ComponentType } from 'svelte';
 	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import TooltipDefinition from 'carbon-components-svelte/src/TooltipDefinition/TooltipDefinition.svelte';
+	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
+	import SkeletonText from 'carbon-components-svelte/src/SkeletonText/SkeletonText.svelte';
+	import '@carbon/charts-svelte/styles.css';
+	import {
+		type RadarChart,
+		type RadarChartOptions,
+	} from '@carbon/charts-svelte';
+
+	let chart: ComponentType<RadarChart>;
+
+	// TODO the code in overlay contains the spaces (GetRankName)
+	type HuntRank =
+		| ''
+		| 'Low Rank '
+		| 'Low/High Rank '
+		| 'High Rank '
+		| 'HR5 '
+		| 'Supremacy '
+		| 'Lv1 '
+		| 'Lv200 '
+		| 'Lv1000 '
+		| 'Lv9999 '
+		| 'G Rank '
+		| 'Lower Shiten '
+		| 'Upper Shiten '
+		| 'Twinhead '
+		| 'Zenith★1 '
+		| 'Zenith★2 '
+		| 'Zenith★3 '
+		| 'Zenith★4 '
+		| 'Interception ';
 
 	// Type definition
 	type Hunt = {
 		date: string;
+		rankName: HuntRank;
+		objectiveName: string;
 	};
 
 	export let theme: CarbonTheme;
 
+	$: chartOptions = {
+		title: 'Quests overview',
+		radar: {
+			axes: {
+				angle: 'type',
+				value: 'count',
+			},
+			alignment: 'center',
+		},
+		data: {
+			groupMapsTo: 'user',
+		},
+		legend: {
+			alignment: 'center',
+		},
+		height: '400px',
+		theme: theme,
+	} as RadarChartOptions;
+
 	// Original data
 	const hunts: Hunt[] = [
-		{ date: '2024-06-11T11:58:42.0337156Z' },
-		{ date: '2024-06-12T12:58:42.0337156Z' },
-		{ date: '2024-06-13T13:58:42.0337156Z' },
-		{ date: '2024-06-13T11:58:42.0337156Z' },
-		{ date: '2024-06-13T11:58:42.0337156Z' },
-		{ date: '2024-06-14T11:58:42.0337156Z' },
-		{ date: '2024-06-14T11:58:42.0337156Z' },
-		{ date: '2024-06-14T11:58:42.0337156Z' },
-		{ date: '2024-06-14T11:58:42.0337156Z' },
-		{ date: '2024-06-15T11:58:42.0337156Z' },
-		{ date: '2024-06-15T11:58:42.0337156Z' },
-		{ date: '2024-06-15T11:58:42.0337156Z' },
-		{ date: '2024-06-15T11:58:42.0337156Z' },
-		{ date: '2024-06-15T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2024-06-17T11:58:42.0337156Z' },
-		{ date: '2022-06-17T11:58:42.0337156Z' },
-		{ date: '2023-06-17T11:58:42.0337156Z' },
-		{ date: '2022-06-17T11:58:42.0337156Z' },
-		{ date: '2025-06-17T11:58:42.0337156Z' },
-		{ date: '2022-06-17T11:58:42.0337156Z' },
+		{
+			date: '2024-06-11T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Sparkling Zerureusu',
+		},
+		{
+			date: '2024-06-12T12:58:42.0337156Z',
+			rankName: 'G Rank ',
+			objectiveName: 'Shogun Ceanataur',
+		},
+		{
+			date: '2024-06-13T13:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Blinking Nargacuga',
+		},
+		{
+			date: '2024-06-13T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-13T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Burning Freezing Elzelion',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: 'Upper Shiten ',
+			objectiveName: 'UNKNOWN',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: 'Zenith★4 ',
+			objectiveName: 'Taikun Zamuza',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: 'G Rank ',
+			objectiveName: 'Duremudira',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Blitzkrieg Bogabadorumu',
+		},
+		{
+			date: '2024-06-15T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Bombardier Bogabadorumu',
+		},
+		{
+			date: '2024-06-15T11:58:42.0337156Z',
+			rankName: 'Lv9999 ',
+			objectiveName: 'Fatalis',
+		},
+		{
+			date: '2024-06-15T11:58:42.0337156Z',
+			rankName: 'Lv9999 ',
+			objectiveName: 'Crimson Fatalis',
+		},
+		{
+			date: '2024-06-15T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-15T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2022-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2023-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2022-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2025-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2022-06-17T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+	];
+
+	const hunts2: Hunt[] = [
+		{
+			date: '2024-06-11T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Sparkling Zerureusu',
+		},
+		{
+			date: '2024-06-11T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Sparkling Zerureusu',
+		},
+		{
+			date: '2024-06-11T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Sparkling Zerureusu',
+		},
+		{
+			date: '2024-06-12T12:58:42.0337156Z',
+			rankName: 'G Rank ',
+			objectiveName: 'Shogun Ceanataur',
+		},
+		{
+			date: '2024-06-13T13:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Blinking Nargacuga',
+		},
+		{
+			date: '2024-06-13T11:58:42.0337156Z',
+			rankName: 'Supremacy ',
+			objectiveName: 'Doragyurosu',
+		},
+		{
+			date: '2024-06-13T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Burning Freezing Elzelion',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: 'Upper Shiten ',
+			objectiveName: 'UNKNOWN',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: 'Zenith★4 ',
+			objectiveName: 'Taikun Zamuza',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: 'Zenith★4 ',
+			objectiveName: 'Taikun Zamuza',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: 'Zenith★4 ',
+			objectiveName: 'Taikun Zamuza',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: 'G Rank ',
+			objectiveName: 'Duremudira',
+		},
+		{
+			date: '2024-06-14T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Blitzkrieg Bogabadorumu',
+		},
+		{
+			date: '2024-06-15T11:58:42.0337156Z',
+			rankName: '',
+			objectiveName: 'Bombardier Bogabadorumu',
+		},
+		{
+			date: '2024-06-15T11:58:42.0337156Z',
+			rankName: 'Lv9999 ',
+			objectiveName: 'Fatalis',
+		},
+		{
+			date: '2024-06-15T11:58:42.0337156Z',
+			rankName: 'Lv9999 ',
+			objectiveName: 'Crimson Fatalis',
+		},
 	];
 
 	const years = Array.from(
 		new Set(hunts.map((hunt) => new Date(hunt.date).getFullYear())),
 	).sort((a, b) => b - a);
+
+	function getQuestTypeCount(hunts: Hunt[]) {
+		let result = {
+			other: 0,
+			musou: 0,
+			upperShiten: 0,
+			conquestLv9999: 0,
+			zenith: 0,
+		};
+
+		hunts.forEach((hunt) => {
+			switch (hunt.rankName) {
+				default:
+					result.other += 1;
+					return;
+				case 'Upper Shiten ':
+					result.upperShiten += 1;
+					return;
+				case 'Lv9999 ':
+					result.conquestLv9999 += 1;
+					return;
+				case 'Zenith★4 ':
+					result.zenith += 1;
+					return;
+				case 'G Rank ':
+					switch (hunt.objectiveName) {
+						default:
+							result.other += 1;
+							return;
+					}
+
+				case '':
+					switch (hunt.objectiveName) {
+						default:
+							result.other += 1;
+							return;
+						case 'Thirsty Pariapuria':
+						case 'Shifting Mi Ru':
+						case 'Ruling Guanzorumu':
+						case 'Blinking Nargacuga':
+						case 'Blitzkrieg Bogabadorumu':
+						case 'Howling Zinogre':
+						case 'Sparkling Zerureusu':
+						case 'Bombardier Bogabadorumu':
+						case 'Burning Freezing Elzelion':
+						case 'Arrogant Duremudira':
+						case 'Golden Deviljho': // TODO?
+							result.musou += 1;
+							return;
+					}
+			}
+		});
+
+		return result;
+	}
+
+	async function generateChartData(selectedUser: string) {
+		const huntsQuestTypesCount = getQuestTypeCount(hunts);
+		let chartData = [];
+		if (selectedUser !== 'None') {
+			const huntsQuestTypesCount2 = getQuestTypeCount(hunts2);
+			chartData.push(
+				...[
+					{
+						user: 'User 2',
+						type: 'Musou',
+						count: huntsQuestTypesCount2.musou,
+					},
+					{
+						user: 'User 2',
+						type: 'Upper Shiten',
+						count: huntsQuestTypesCount2.upperShiten,
+					},
+					{
+						user: 'User 2',
+						type: 'Zenith★4',
+						count: huntsQuestTypesCount2.zenith,
+					},
+					{
+						user: 'User 2',
+						type: 'Conquest Lv9999',
+						count: huntsQuestTypesCount2.conquestLv9999,
+					},
+					{
+						user: 'User 2',
+						type: 'Other',
+						count: huntsQuestTypesCount2.other,
+					},
+				],
+			);
+		}
+		chartData.push(
+			...[
+				{
+					user: 'User',
+					type: 'Musou',
+					count: huntsQuestTypesCount.musou,
+				},
+				{
+					user: 'User',
+					type: 'Upper Shiten',
+					count: huntsQuestTypesCount.upperShiten,
+				},
+				{
+					user: 'User',
+					type: 'Zenith★4',
+					count: huntsQuestTypesCount.zenith,
+				},
+				{
+					user: 'User',
+					type: 'Conquest Lv9999',
+					count: huntsQuestTypesCount.conquestLv9999,
+				},
+				{
+					user: 'User',
+					type: 'Other',
+					count: huntsQuestTypesCount.other,
+				},
+			],
+		);
+
+		return chartData;
+	}
 
 	// Function to generate all days of a year
 	function getAllDaysOfYear(year: number) {
@@ -107,7 +482,7 @@
 	}
 
 	// Color function based on number of hunts
-	function getColor(count: number, date: Date | null) {
+	function getColor(count: number, date: string | null) {
 		if (!date) {
 			return getHexStringFromCatppuccinColor('surface0', theme);
 		}
@@ -139,120 +514,211 @@
 		}, 0);
 	}
 
+	function getUniqueMonths(weeks) {
+		const monthsSet = new Set();
+		weeks.forEach((week) => {
+			week.forEach((day) => {
+				const date = new Date(day.date);
+				monthsSet.add(date.toLocaleString('default', { month: 'short' }));
+			});
+		});
+		return Array.from(monthsSet);
+	}
+
 	let weeks = [];
 	let selectedYear = years[0];
+	let selectedUser = 'None';
 	let huntCount = 0;
+	let chartData: { user: string; type: string; count: number }[];
 
 	function updateWeeks(year: number) {
 		weeks = organizeByWeeks(hunts, year);
 		huntCount = countHuntsForYear(hunts, year);
 	}
 
-	onMount(() => {
-		updateWeeks(selectedYear);
+	let chartLoaded = false;
+
+	onMount(async () => {
+		try {
+			chartData = await generateChartData(selectedUser);
+			const charts = await import('@carbon/charts-svelte');
+			chart = charts.RadarChart;
+			updateWeeks(selectedYear);
+			chartLoaded = true;
+		} catch (error) {
+			console.error('Failed to initialize charts:', error);
+		}
 	});
 </script>
 
 <div class="container">
-	{#if weeks.length === 0}
-		<SkeletonPlaceholder style="width: 100%; height: 192px;" />
-		<DropdownSkeleton style="width: 100%; height: 192px;" />
+	{#if weeks.length === 0 || !chartLoaded || !chartData || chartData.length === 0}
+		<div class="loading-container">
+			<div class="loading-container-top">
+				<SkeletonText heading />
+				<DropdownSkeleton style="width: 100%; height: 192px;" />
+			</div>
+			<SkeletonPlaceholder style="width: 100%; height: 192px;" />
+			<Loading withOverlay={false} />
+		</div>
 	{:else}
 		<div class="calendar-container">
-			<p>
-				{huntCount} quests completed in {selectedYear}
-			</p>
-			<div class="calendar">
-				{#key theme}
-					<div class="calendar-graph">
-						{#each Array(7) as _, day}
-							{#each weeks as week}
-								<div
-									title={getTooltipText(week[day].count, week[day].date)}
+			<span class="year-dropdown-container">
+				<p>
+					{huntCount}
+					{huntCount === 1 ? 'quest' : 'quests'} completed in
+				</p>
+				<div>
+					<Dropdown
+						type="inline"
+						light={true}
+						titleText="Year"
+						hideLabel
+						selectedId={selectedYear}
+						items={years.map((year) => ({ id: year, text: year.toString() }))}
+						on:select={(e) => {
+							selectedYear = e.detail.selectedId;
+							updateWeeks(selectedYear);
+						}}
+					/>
+				</div>
+			</span>
+			<div class="overview">
+				<div class="calendar">
+					{#key theme}
+						<div class="calendar-graph-container">
+							<span class="calendar-day-labels">
+								{#each ['', '', 'Mon', '', 'Wed', '', 'Fri', ''] as day}
+									<span class="calendar-day-label">{day}</span>
+								{/each}
+							</span>
+							<div class="calendar-graph-labels-container">
+								<span class="calendar-month-labels">
+									{#each ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', ' Aug', 'Sep', 'Oct', 'Nov', 'Dec'] as month}
+										<span class="calendar-month-label">{month}</span>
+									{/each}
+								</span>
+								<div class="calendar-graph">
+									{#each Array(7) as _, day}
+										{#each weeks as week}
+											<TooltipDefinition
+												direction="top"
+												align="start"
+												tooltipText={getTooltipText(
+													week[day].count,
+													week[day].date,
+												)}
+											>
+												<span
+													class="day"
+													style="background-color: {getColor(
+														week[day].count,
+														week[day].date,
+													)}"
+												></span>
+											</TooltipDefinition>
+										{/each}
+									{/each}
+								</div>
+							</div>
+						</div>
+						<div class="calendar-legend">
+							<span>Less</span>
+							<span class="calendar-legend-slots">
+								<span
 									class="day"
 									style="background-color: {getColor(
-										week[day].count,
-										week[day].date,
+										0,
+										'2024-06-11T11:58:42.0337156Z',
 									)}"
-								></div>
-							{/each}
-						{/each}
+								></span>
+								<span
+									class="day"
+									style="background-color: {getColor(
+										1,
+										'2024-06-11T11:58:42.0337156Z',
+									)}"
+								></span>
+								<span
+									class="day"
+									style="background-color: {getColor(
+										2,
+										'2024-06-11T11:58:42.0337156Z',
+									)}"
+								></span>
+								<span
+									class="day"
+									style="background-color: {getColor(
+										3,
+										'2024-06-11T11:58:42.0337156Z',
+									)}"
+								></span>
+								<span
+									class="day"
+									style="background-color: {getColor(
+										5,
+										'2024-06-11T11:58:42.0337156Z',
+									)}"
+								></span>
+							</span>
+							<span>More</span>
+						</div>
+					{/key}
+				</div>
+				<div class="overview-graph-container">
+					<div>
+						<svelte:component
+							this={chart}
+							data={chartData}
+							options={chartOptions}
+						/>
+						<div class="comparison">
+							<p>Compare with user:</p>
+							<Dropdown
+								type="inline"
+								light={true}
+								titleText="User Comparison"
+								hideLabel
+								selectedId={selectedUser}
+								items={[
+									{ id: 'None', text: 'None' },
+									{ id: 'User2', text: 'User 2' },
+								]}
+								on:select={async (e) => {
+									selectedUser = e.detail.selectedId;
+									chartData = await generateChartData(selectedUser);
+								}}
+							/>
+						</div>
 					</div>
-					<div class="calendar-legend">
-						<span>Less</span>
-						<span class="calendar-legend-slots">
-							<span
-								class="day"
-								style="background-color: {getColor(
-									0,
-									'2024-06-11T11:58:42.0337156Z',
-								)}"
-							></span>
-							<span
-								class="day"
-								style="background-color: {getColor(
-									1,
-									'2024-06-11T11:58:42.0337156Z',
-								)}"
-							></span>
-							<span
-								class="day"
-								style="background-color: {getColor(
-									2,
-									'2024-06-11T11:58:42.0337156Z',
-								)}"
-							></span>
-							<span
-								class="day"
-								style="background-color: {getColor(
-									3,
-									'2024-06-11T11:58:42.0337156Z',
-								)}"
-							></span>
-							<span
-								class="day"
-								style="background-color: {getColor(
-									5,
-									'2024-06-11T11:58:42.0337156Z',
-								)}"
-							></span>
-						</span>
-						<span>More</span>
-					</div>
-				{/key}
+				</div>
 			</div>
-		</div>
-		<div>
-			<Dropdown
-				light={true}
-				titleText="Year"
-				hideLabel
-				selectedId={selectedYear}
-				items={years.map((year) => ({ id: year, text: year.toString() }))}
-				on:select={(e) => {
-					selectedYear = e.detail.selectedId;
-					updateWeeks(selectedYear);
-				}}
-			/>
 		</div>
 	{/if}
 </div>
 
 <style lang="scss">
-	@media (min-width: 320px) {
-		.container {
-			display: grid;
-			grid-template-rows: 1fr auto;
-			gap: 1rem;
-		}
+	.container {
+		display: flex;
 	}
 
-	@media (min-width: 1056px) {
-		.container {
-			display: grid;
-			grid-template-columns: 7fr 1fr;
-			gap: 1rem;
-		}
+	.comparison {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.loading-container {
+		display: flex;
+		width: 100%;
+		gap: 1rem;
+		flex-direction: column;
+	}
+
+	.loading-container-top {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: 192px 64px;
 	}
 
 	.calendar-graph {
@@ -262,11 +728,22 @@
 		justify-content: start;
 		gap: 4px;
 		max-width: 100%;
-		overflow-x: auto;
-		padding-left: 2rem;
 		padding-right: 2rem;
-		padding-top: 2rem;
 		border-radius: 4px;
+	}
+
+	.calendar-day-labels {
+		display: grid;
+		grid-template-rows: repeat(8, 1fr);
+		padding-top: 2rem;
+		padding-left: 2rem;
+	}
+
+	/*TODO*/
+	.calendar-month-labels {
+		display: grid;
+		grid-template-columns: repeat(12, 71px);
+		max-width: 100%;
 	}
 
 	.day {
@@ -283,11 +760,18 @@
 		gap: 1rem;
 	}
 
+	.overview {
+		border: 1px solid var(--ctp-surface1);
+		border-radius: 4px;
+		background-color: var(--ctp-mantle);
+	}
+
 	.calendar {
 		display: flex;
 		flex-direction: column;
-		border: 1px solid var(--ctp-surface1);
 		gap: 0.5rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid var(--ctp-surface1);
 	}
 
 	.calendar-legend {
@@ -302,5 +786,30 @@
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
+	}
+
+	.year-dropdown-container {
+		display: flex;
+		align-items: center;
+	}
+
+	.calendar-graph-container {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 0.5rem;
+	}
+
+	.calendar-graph-labels-container {
+		overflow-x: auto;
+		overflow-y: auto;
+		padding-top: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.overview-graph-container {
+		padding: 1rem;
+		text-align: start;
 	}
 </style>

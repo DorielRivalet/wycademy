@@ -462,7 +462,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding-top: 2rem;
+		padding-top: var(--cds-spacing-10);
 		padding-bottom: 2rem;
 	}
 
@@ -470,7 +470,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding-top: 2rem;
+		padding-top: var(--cds-spacing-10);
 	}
 
 	.call-to-action-section {
