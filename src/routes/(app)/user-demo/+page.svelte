@@ -28,6 +28,7 @@
 	import ProfileHuntsGraph from '$lib/client/components/ProfileActivityOverviewGraph.svelte';
 	import ProfileRecentActivity from '$lib/client/components/ProfileRecentActivity.svelte';
 	import ProfileHuntsCalendarGraph from '$lib/client/components/ProfileHuntsCalendarGraph.svelte';
+	import ProfileGuildCard from '$lib/client/components/ProfileGuildCard.svelte';
 
 	// import Pin from 'carbon-icons-svelte/lib/Pin.svelte';
 	// import Bookmark from 'carbon-icons-svelte/lib/Bookmark.svelte';
@@ -125,10 +126,16 @@
 	</section>
 
 	<section>
+		<SectionHeading level={2} title="Guild Card" />
+		<ProfileGuildCard />
+	</section>
+
+	<section>
 		<ProfileHuntsGraph />
 	</section>
 
 	<section>
+		<SectionHeading level={2} title="Recent Activity" />
 		<ProfileRecentActivity />
 	</section>
 

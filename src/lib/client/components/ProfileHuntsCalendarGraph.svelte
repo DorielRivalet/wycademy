@@ -62,7 +62,6 @@
 		legend: {
 			alignment: 'center',
 		},
-		height: '400px',
 		theme: theme,
 	} as RadarChartOptions;
 
@@ -666,7 +665,7 @@
 					{/key}
 				</div>
 				<div class="overview-graph-container">
-					<div>
+					<div class="overview-graph">
 						<svelte:component
 							this={chart}
 							data={chartData}
@@ -811,5 +810,10 @@
 	.overview-graph-container {
 		padding: 1rem;
 		text-align: start;
+	}
+
+	.overview-graph {
+		overflow: auto;
+		max-width: 80vw;
 	}
 </style>
