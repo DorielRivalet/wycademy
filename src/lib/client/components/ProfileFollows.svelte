@@ -32,8 +32,8 @@
 
 <div class="container">
 	<div class="stats">
-		<p><strong>{formattedFollowers}</strong> Followers</p>
-		<p><strong>{formattedFollowing}</strong> Following</p>
+		<a href="/"><p><strong>{formattedFollowers}</strong> Followers</p></a>
+		<a href="/"><p><strong>{formattedFollowing}</strong> Following</p></a>
 	</div>
 
 	<Button
@@ -55,5 +55,14 @@
 	.stats {
 		display: flex;
 		gap: 1rem;
+	}
+
+	a {
+		all: unset;
+	}
+
+	a:hover {
+		text-decoration: underline;
+		color: var(--ctp-sky);
 	}
 </style>
