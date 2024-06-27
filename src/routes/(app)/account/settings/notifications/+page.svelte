@@ -16,7 +16,7 @@
 	</p>
 	<p>
 		The settings shown here are for notifications related to accounts. To modify
-		the global notifications see the <Link href="/site-preferences"
+		the global notifications see the <Link inline href="/site-preferences"
 			>Site Preferences page</Link
 		>.
 	</p>
@@ -24,7 +24,8 @@
 		<SectionHeading level={2} title={'Push notifications'} />
 		<p class="spaced-paragraph">
 			You need to have push notifications enabled in your <Link
-				href="/site-preferences">Site Preferences</Link
+				href="/site-preferences"
+				inline>Site Preferences</Link
 			> in order for these settings to work.
 		</p>
 		<div class="container-toggles">

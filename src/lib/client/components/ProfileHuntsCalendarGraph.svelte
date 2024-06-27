@@ -63,6 +63,7 @@
 			alignment: 'center',
 		},
 		theme: theme,
+		resizable: true,
 	} as RadarChartOptions;
 
 	// Original data
@@ -671,24 +672,24 @@
 							data={chartData}
 							options={chartOptions}
 						/>
-						<div class="comparison">
-							<p>Compare with user:</p>
-							<Dropdown
-								type="inline"
-								light={true}
-								titleText="User Comparison"
-								hideLabel
-								selectedId={selectedUser}
-								items={[
-									{ id: 'None', text: 'None' },
-									{ id: 'User2', text: 'User 2' },
-								]}
-								on:select={async (e) => {
-									selectedUser = e.detail.selectedId;
-									chartData = await generateChartData(selectedUser);
-								}}
-							/>
-						</div>
+					</div>
+					<div class="comparison">
+						<p>Compare with user:</p>
+						<Dropdown
+							type="inline"
+							light={true}
+							titleText="User Comparison"
+							hideLabel
+							selectedId={selectedUser}
+							items={[
+								{ id: 'None', text: 'None' },
+								{ id: 'User2', text: 'User 2' },
+							]}
+							on:select={async (e) => {
+								selectedUser = e.detail.selectedId;
+								chartData = await generateChartData(selectedUser);
+							}}
+						/>
 					</div>
 				</div>
 			</div>
@@ -813,7 +814,9 @@
 	}
 
 	.overview-graph {
-		overflow: auto;
-		max-width: 80vw;
+		overflow-x: auto;
+		max-width: 70vw;
+		height: 100%;
+		overflow-y: hidden;
 	}
 </style>

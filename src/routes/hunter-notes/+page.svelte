@@ -149,12 +149,12 @@
 
 				<p class="spaced-paragraph">
 					If you are looking to calculate things such as your damage, please
-					refer to the <Link href="/arena">Arena page.</Link>
+					refer to the <Link inline href="/arena">Arena page.</Link>
 				</p>
 
 				<p>
 					If you are looking for a tower weapon simulator, icon generators and
-					other tools, please refer to the <Link href="/smithy"
+					other tools, please refer to the <Link inline href="/smithy"
 						>Smithy page.</Link
 					>
 				</p>

@@ -9,7 +9,7 @@
 	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
-	import CircleFilled from 'carbon-icons-svelte/lib/CircleFilled.svelte';
+	import RecordingFilledAlt from 'carbon-icons-svelte/lib/RecordingFilledAlt.svelte';
 
 	function randomChoice(arr: any[]) {
 		return arr[Math.floor(arr.length * Math.random())];
@@ -53,7 +53,7 @@
 					<div>
 						{#if isStreaming}
 							<OutboundLink href="https://youtube.com/{youtubeChannel}">
-								<CircleFilled color="var(--ctp-red)" />
+								<RecordingFilledAlt color="var(--ctp-red)" />
 								<strong class="live"> LIVE </strong></OutboundLink
 							>
 						{:else}
