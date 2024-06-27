@@ -29,6 +29,10 @@
 	import ProfileRecentActivity from '$lib/client/components/ProfileRecentActivity.svelte';
 	import ProfileHuntsCalendarGraph from '$lib/client/components/ProfileHuntsCalendarGraph.svelte';
 	import ProfileGuildCard from '$lib/client/components/ProfileGuildCard.svelte';
+	import ProfileFavoriteRuns from '$lib/client/components/ProfileFavoriteRuns.svelte';
+	import ProfileFavoriteSets from '$lib/client/components/ProfileFavoriteSets.svelte';
+	import Flag from 'carbon-icons-svelte/lib/Flag.svelte';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 
 	// import Pin from 'carbon-icons-svelte/lib/Pin.svelte';
 	// import Bookmark from 'carbon-icons-svelte/lib/Bookmark.svelte';
@@ -115,6 +119,10 @@
 		<ProfileTrophyCase />
 	</section>
 
+	<section class="report-section">
+		<Button kind="tertiary" icon={Flag}>Report Abuse</Button>
+	</section>
+
 	<section>
 		<SectionHeading level={2} title="Wardrobe" />
 		<ProfilePinnedSets bind:theme={$theme} />
@@ -144,6 +152,18 @@
 	</section>
 
 	<section>
+		<SectionHeading level={2} title="Favorites" />
+		<section>
+			<SectionHeading level={3} title="Runs" />
+			<ProfileFavoriteRuns />
+		</section>
+		<section>
+			<SectionHeading level={3} title="Armor Sets" />
+			<ProfileFavoriteSets />
+		</section>
+	</section>
+
+	<section>
 		<ProfileFooter />
 	</section>
 </div>
@@ -164,5 +184,10 @@
 		background-color: var(--ctp-mantle);
 		padding: 1rem;
 		border-radius: 8px;
+	}
+
+	.report-section {
+		display: flex;
+		justify-content: end;
 	}
 </style>

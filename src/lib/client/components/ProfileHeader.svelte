@@ -23,47 +23,52 @@
 	export let imageSource = Transcend;
 	export let countryCode: TCountryCode = randomChoice(Object.keys(countries));
 	const countryName = countries[countryCode].name;
-	export let badgeIcon = randomChoice(WeaponTypes).icon;
+	export let badge1Icon = randomChoice(WeaponTypes).icon;
+	export let badge2Icon = randomChoice(WeaponTypes).icon;
+	export let badge3Icon = randomChoice(WeaponTypes).icon;
 	export let isStreaming = Math.random() > 0.5 ? true : false;
 </script>
 
 <div class="container">
-	<div class="left">
-		<div class="images">
-			<div class="profile-picture">
-				<ImageDialog type="file" src={imageSource} alt="Avatar" />
+	<div class="images">
+		<div class="profile-picture">
+			<ImageDialog type="file" src={imageSource} alt="Avatar" />
+		</div>
+		<div class="badges">
+			<div class="badge">
+				<svelte:component this={badge1Icon} />
 			</div>
 			<div class="badge">
-				<svelte:component this={badgeIcon} />
+				<svelte:component this={badge2Icon} />
+			</div>
+			<div class="badge">
+				<svelte:component this={badge3Icon} />
 			</div>
 		</div>
 	</div>
-	<div class="right">
-		<div class="text">
-			<h1>{name} {medal}</h1>
-			<h2>{title}</h2>
-			<div class="bottom-info">
-				<div class="country">
-					<span class="fi fi-{countryCode.toLowerCase()}"></span>{countryName}
-				</div>
-				<div class="socials">
-					<div>
-						<Tooltip triggerText="" icon={LogoDiscord}>{discordName}</Tooltip>
-					</div>
-					<div>
-						{#if isStreaming}
-							<OutboundLink href="https://youtube.com/{youtubeChannel}">
-								<RecordingFilledAlt color="var(--ctp-red)" />
-								<strong class="live"> LIVE </strong></OutboundLink
-							>
-						{:else}
-							<OutboundLink href="https://youtube.com/{youtubeChannel}"
-								><LogoYoutube color="var(--ctp-red)" />
-							</OutboundLink>
-						{/if}
-					</div>
-				</div>
-			</div>
+	<h1 class="username">{name} {medal}</h1>
+	<h2 class="title">{title}</h2>
+	<div class="country">
+		<a href="/">
+			<span class="fi fi-{countryCode.toLowerCase()}"></span>
+			<span>{countryName}</span>
+		</a>
+	</div>
+	<div class="socials">
+		<div>
+			{#if isStreaming}
+				<OutboundLink href="https://youtube.com/{youtubeChannel}">
+					<RecordingFilledAlt color="var(--ctp-red)" />
+					<strong class="live"> LIVE </strong></OutboundLink
+				>
+			{:else}
+				<OutboundLink href="https://youtube.com/{youtubeChannel}"
+					><LogoYoutube color="var(--ctp-red)" />
+				</OutboundLink>
+			{/if}
+		</div>
+		<div>
+			<Tooltip triggerText="" icon={LogoDiscord}>{discordName}</Tooltip>
 		</div>
 	</div>
 </div>
@@ -72,70 +77,82 @@
 	@media (min-width: 320px) {
 		.container {
 			display: grid;
+			grid-template-areas:
+				'images username'
+				'images title'
+				'images country'
+				'images socials';
 			grid-template-columns: 1fr 7fr;
-			gap: 1rem;
+			row-gap: 0.5rem;
+			column-gap: 1rem;
 		}
 	}
 
-	.left {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
+	.title {
+		grid-area: title;
 	}
 
-	.text {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
+	.username {
+		grid-area: username;
 	}
 
 	.images {
-		position: relative;
-		display: inline-block;
-	}
-
-	.profile-picture {
-		width: 128px; // Adjust as needed
-		height: 128px; // Adjust as needed
-		border-radius: 50%;
-		border: 1px solid var(--ctp-surface0);
-		overflow: hidden;
-		position: relative;
-	}
-
-	.badge {
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		transform: translate(40%, 40%) scale(25%);
-		background-color: var(--ctp-surface0);
-		border: 1px solid var(--ctp-overlay0);
-		border-radius: 50%;
-		padding: 0.25rem;
+		grid-area: images;
+		display: flex;
+		gap: 0.5rem;
+		flex-direction: column;
 	}
 
 	.country {
-		display: flex;
-		gap: 0.5rem;
+		grid-area: country;
+
+		a {
+			display: flex;
+			gap: 0.5rem;
+		}
 	}
 
 	.socials {
 		display: flex;
 		gap: 1rem;
-		align-items: start;
+		grid-area: socials;
+		align-items: center;
+	}
+
+	.badges {
+		display: flex;
+		width: 100%;
+		gap: 1rem;
+		justify-content: end;
+	}
+
+	.profile-picture {
+		border-radius: 50%;
+		border: 1px solid var(--ctp-surface0);
+		overflow: hidden;
+	}
+
+	.badge {
+		background-color: var(--ctp-surface0);
+		border: 1px solid var(--ctp-overlay0);
+		border-radius: 50%;
+		padding: 0.125rem;
 	}
 
 	h2 {
 		margin-bottom: 0.5rem;
 	}
 
-	.bottom-info {
-		display: flex;
-		gap: 0.5rem;
-		align-items: start;
-	}
-
 	.live {
 		font-variant: small-caps;
+	}
+
+	a {
+		all: unset;
+	}
+
+	a:hover {
+		text-decoration: underline;
+		color: var(--ctp-sky);
 	}
 </style>

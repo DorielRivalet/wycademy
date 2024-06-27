@@ -10,42 +10,49 @@
 			date: '2024/12/21',
 			serial: 1,
 			icon: TrophyWhite,
+			link: '/',
 		},
 		{
 			title: 'Golden Nargacuga Statue',
 			date: '2024/12/23',
 			serial: 12,
 			icon: TrophyWhite,
+			link: '/',
 		},
 		{
 			title: 'Golden Nargacuga Statue',
 			date: '2024/12/22',
 			serial: 13,
 			icon: TrophyWhite,
+			link: '/',
 		},
 		{
 			title: 'Silver Nargacuga Statue',
 			date: '2024/12/21',
 			serial: 51,
 			icon: TrophyWhite,
+			link: '/',
 		},
 		{
 			title: 'Dual Swords Champion',
 			date: '2024/12/21',
 			serial: 11,
 			icon: TrophyWhite,
+			link: '/',
 		},
 		{
 			title: 'Bronze Nargacuga Statue',
 			date: '2024/12/21',
 			serial: 61,
 			icon: TrophyWhite,
+			link: '/',
 		},
 		{
 			title: 'Platinum Nargacuga Statue',
 			date: '2024/12/21',
 			serial: 122,
 			icon: TrophyWhite,
+			link: '/',
 		},
 	];
 
@@ -78,7 +85,7 @@
 
 <div class="container">
 	{#each displayedTrophies as trophy}
-		<div class="trophy-container">
+		<a class="trophy-container" href={trophy.link}>
 			<div class="icon">
 				{#if typeof trophy.icon === 'string'}
 					<img src={trophy.icon} alt="Trophy Icon" />
@@ -93,12 +100,12 @@
 				</p>
 				<p class="date">Most recent: {trophy.date}</p>
 			</div>
-		</div>
+		</a>
 	{/each}
 	<div>
 		<ClickableTileImage
 			imageSource={Trophy}
-			title="Explore trophies"
+			title="Explore Trophies"
 			href="/"
 			description="See the list of trophies for this user."
 			rounded={true}
@@ -107,6 +114,12 @@
 </div>
 
 <style lang="scss">
+	@use '@carbon/motion' as motion;
+
+	a {
+		all: unset;
+	}
+
 	.container {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
@@ -130,6 +143,14 @@
 		padding: 1rem;
 		border-radius: 0.5rem;
 		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		transition:
+			filter motion.$duration-fast-02 motion.motion(standard, expressive),
+			transform motion.$duration-fast-02 motion.motion(standard, expressive);
+	}
+
+	.trophy-container:hover {
+		transform: scale(105%);
+		filter: brightness(105%) drop-shadow(0px 0px 4px var(--ctp-blue));
 	}
 
 	.title {
