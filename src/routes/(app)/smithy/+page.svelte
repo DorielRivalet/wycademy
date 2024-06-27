@@ -2818,12 +2818,13 @@
 
 	<p class="spaced-paragraph">
 		If you are looking to calculate things such as your damage, please refer to
-		the <Link href="/arena">Arena page.</Link>
+		the <Link inline href="/arena">Arena page.</Link>
 	</p>
 
 	<p>
 		If you are looking for guides on topics such as weapons, please refer to the <Link
-			href="/hunter-notes">Hunter's Notes page.</Link
+			href="/hunter-notes"
+			inline>Hunter's Notes page.</Link
 		>
 	</p>
 
@@ -2840,7 +2841,9 @@
 			This tool is used to track and view your stats in the game in real-time.
 		</p>
 		<p class="spaced-paragraph">
-			For more information, see the <Link href="/overlay">overlay page.</Link>
+			For more information, see the <Link inline href="/overlay"
+				>overlay page.</Link
+			>
 		</p>
 		<Youtube id="A9ffbRICqZY" />
 	</section>

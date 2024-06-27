@@ -378,7 +378,8 @@
 		<!--TODO: Link to panel page-->
 		<p class="spaced-paragraph">
 			If you wish to change your account's notifications, visit your account's
-			<Link href="/account/settings/notifications">Notifications Settings.</Link
+			<Link href="/account/settings/notifications" inline
+				>Notifications Settings.</Link
 			>
 		</p>
 		<div class="setting-container">

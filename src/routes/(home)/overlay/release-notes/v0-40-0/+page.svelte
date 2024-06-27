@@ -52,7 +52,7 @@
 							><LogoDiscord size={16} />
 							<span> Discord Rich Presence </span></span
 						>
-						primary button links to <Link href="/overlay"
+						primary button links to <Link inline href="/overlay"
 							>the Overlay page.</Link
 						>
 					</div></ListItem

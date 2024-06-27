@@ -72,7 +72,9 @@
 						them. Possibly the hardest achievements to ever get! If you want to see
 						which ones they are without opening the overlay, you can check them on
 						the
-						<Link href="/overlay/achievements">overlay achievements page.</Link>
+						<Link inline href="/overlay/achievements"
+							>overlay achievements page.</Link
+						>
 					</div></ListItem
 				>
 				<ListItem
@@ -100,7 +102,7 @@
 				<ListItem
 					><div class="list-item">
 						Updated Monster icons to be based on the vector graphics ones found
-						in <Link href="/smithy#icons-preview">the Smithy page.</Link>
+						in <Link inline href="/smithy#icons-preview">the Smithy page.</Link>
 					</div></ListItem
 				>
 				<ListItem
@@ -118,6 +120,7 @@
 				<ListItem
 					><div class="list-item">
 						Added a link to Wycademy's Arena <Link
+							inline
 							href="/arena#damage-calculator">Damage Calculator.</Link
 						>
 					</div></ListItem

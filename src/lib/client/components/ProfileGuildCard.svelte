@@ -104,6 +104,11 @@
 	export let waistSlots = ['Extreme Ravi GN GX2', 'Bita GN GX2', 'Bita GN GX2'];
 	export let legsSlots = ['Elysium GN GX1', 'Elysium GN GX1', 'Zindol GN GX2'];
 
+	export let guildCardsUnlocked = Math.trunc(Math.random() * 100);
+	const totalGuildCards = guildCardBackgrounds.filter((e) => !e.unused).length;
+	export let guildCardsUnlockedRank = Math.trunc(Math.random() * 100);
+	export let guildCardsUnlockedRankPercent = Math.trunc(Math.random() * 100);
+
 	let selectedPage = 'page1';
 	export let selectedGuildCardBackground = 'Abiorugu';
 	$: background =
@@ -111,6 +116,10 @@
 			?.image || guildCardBackgrounds[0].image;
 </script>
 
+<p class="spaced-paragraph">
+	<strong>Backgrounds Unlocked:</strong>
+	{guildCardsUnlocked}/{totalGuildCards} (Rank #{guildCardsUnlockedRank}, Top {guildCardsUnlockedRankPercent}%)
+</p>
 <div class="container">
 	<div class="page-container">
 		{#if selectedPage === 'page1'}
@@ -365,6 +374,7 @@
 			display: grid;
 			gap: 1rem;
 			grid-template-columns: 1fr auto;
+			justify-content: start;
 		}
 	}
 
