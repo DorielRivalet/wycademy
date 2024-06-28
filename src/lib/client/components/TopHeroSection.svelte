@@ -105,7 +105,7 @@
 		position: relative;
 		z-index: 2; // Ensures content is above the video
 		color: var(--ctp-mocha-text);
-		backdrop-filter: blur(4px) brightness(50%);
+		backdrop-filter: brightness(50%);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
