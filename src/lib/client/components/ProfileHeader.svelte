@@ -26,6 +26,9 @@
 	export let badge1Icon = randomChoice(WeaponTypes).icon;
 	export let badge2Icon = randomChoice(WeaponTypes).icon;
 	export let badge3Icon = randomChoice(WeaponTypes).icon;
+	export let badge1Rank = Math.trunc(Math.random() * 99);
+	export let badge2Rank = Math.trunc(Math.random() * 99);
+	export let badge3Rank = Math.trunc(Math.random() * 99);
 	export let isStreaming = Math.random() > 0.5 ? true : false;
 </script>
 
@@ -35,14 +38,23 @@
 			<ImageDialog type="file" src={imageSource} alt="Avatar" />
 		</div>
 		<div class="badges">
-			<div class="badge">
-				<svelte:component this={badge1Icon} />
+			<div class="badge-container">
+				<div class="badge">
+					<svelte:component this={badge1Icon} />
+				</div>
+				<a href="/">#{badge1Rank}</a>
 			</div>
-			<div class="badge">
-				<svelte:component this={badge2Icon} />
+			<div class="badge-container">
+				<div class="badge">
+					<svelte:component this={badge2Icon} />
+				</div>
+				<a href="/">#{badge2Rank}</a>
 			</div>
-			<div class="badge">
-				<svelte:component this={badge3Icon} />
+			<div class="badge-container">
+				<div class="badge">
+					<svelte:component this={badge3Icon} />
+				</div>
+				<a href="/">#{badge3Rank}</a>
 			</div>
 		</div>
 	</div>
@@ -78,13 +90,28 @@
 		.container {
 			display: grid;
 			grid-template-areas:
+				'username'
+				'images'
+				'title'
+				'country'
+				'socials';
+			grid-template-columns: auto;
+			column-gap: 0rem;
+			row-gap: 1rem;
+		}
+	}
+
+	@media (min-width: 672px) {
+		.container {
+			display: grid;
+			grid-template-areas:
 				'images username'
 				'images title'
 				'images country'
 				'images socials';
 			grid-template-columns: 1fr 7fr;
-			row-gap: 0.5rem;
 			column-gap: 1rem;
+			row-gap: 0rem;
 		}
 	}
 
@@ -96,6 +123,12 @@
 		grid-area: username;
 	}
 
+	.badge-container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
 	.images {
 		grid-area: images;
 		display: flex;
@@ -105,7 +138,8 @@
 
 	.country {
 		grid-area: country;
-
+		display: flex;
+		align-items: end;
 		a {
 			display: flex;
 			gap: 0.5rem;
@@ -123,13 +157,16 @@
 		display: flex;
 		width: 100%;
 		gap: 1rem;
-		justify-content: end;
+		justify-content: center;
 	}
 
 	.profile-picture {
 		border-radius: 50%;
 		border: 1px solid var(--ctp-surface0);
 		overflow: hidden;
+		aspect-ratio: 1/1;
+		max-width: 192px;
+		margin: auto;
 	}
 
 	.badge {
@@ -137,10 +174,7 @@
 		border: 1px solid var(--ctp-overlay0);
 		border-radius: 50%;
 		padding: 0.125rem;
-	}
-
-	h2 {
-		margin-bottom: 0.5rem;
+		max-width: 32px;
 	}
 
 	.live {
