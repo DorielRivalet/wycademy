@@ -21,23 +21,11 @@
 	import WaistIconWhite from './frontier/icon/armor/Waist_Icon_White.svelte';
 	import LegIconWhite from './frontier/icon/armor/Leg_Icon_White.svelte';
 	import MyTore from '$lib/client/images/icon/my_tore.webp';
+	import { formatDateTime } from '../modules/time';
 
 	export let name = 'Hunter';
 	export let date = '2024-05-02T00:00:01Z';
-
-	// Create a Date object from the ISO string
-	const dateTime = new Date(date);
-
-	// Extract components
-	const year = dateTime.getFullYear();
-	const month = String(dateTime.getMonth() + 1).padStart(2, '0'); // Months are zero-based, so add 1 and pad with leading zero if necessary
-	const day = String(dateTime.getDate()).padStart(2, '0'); // Pad with leading zero if necessary
-	const hour = String(dateTime.getHours()).padStart(2, '0'); // Pad with leading zero if necessary
-	const minute = String(dateTime.getMinutes()).padStart(2, '0'); // Pad with leading zero if necessary
-	const second = String(dateTime.getSeconds()).padStart(2, '0'); // Pad with leading zero if necessary
-
-	// Assemble formatted string
-	const formattedDate = `${year}/${month}/${day} ${hour}:${minute}:${second}`;
+	const formattedDate = formatDateTime(date);
 
 	export let armorSkills: FrontierArmorSkillName[] = [
 		'Strong Attack+6',
@@ -117,8 +105,9 @@
 </script>
 
 <p class="spaced-paragraph">
-	<strong>Backgrounds Unlocked:</strong>
-	{guildCardsUnlocked}/{totalGuildCards} (Rank #{guildCardsUnlockedRank}, Top {guildCardsUnlockedRankPercent}%)
+	<strong>Backgrounds Unlocked: </strong><a href="/">
+		{guildCardsUnlocked}/{totalGuildCards} (Rank #{guildCardsUnlockedRank}, Top {guildCardsUnlockedRankPercent}%)</a
+	>
 </p>
 <div class="container">
 	<div class="page-container">
@@ -420,5 +409,14 @@
 		.text-yellow {
 			color: var(--fz-text-yellow);
 		}
+	}
+
+	a {
+		all: unset;
+	}
+
+	a:hover {
+		color: var(--ctp-sky);
+		text-decoration: underline;
 	}
 </style>

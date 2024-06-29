@@ -964,3 +964,25 @@ export type ProfilePinnedSet = {
 	legsSlot2: string;
 	legsSlot3: string;
 };
+
+// TODO the code in overlay contains the spaces (GetRankName)
+export type OverlayHuntRank =
+	| ''
+	| 'Low Rank '
+	| 'Low/High Rank '
+	| 'High Rank '
+	| 'HR5 '
+	| 'Supremacy '
+	| 'Lv1 '
+	| 'Lv200 '
+	| 'Lv1000 '
+	| 'Lv9999 '
+	| 'G Rank '
+	| 'Lower Shiten '
+	| 'Upper Shiten '
+	| 'Twinhead '
+	| 'Zenith★1 '
+	| 'Zenith★2 '
+	| 'Zenith★3 '
+	| 'Zenith★4 '
+	| 'Interception ';
