@@ -13,35 +13,14 @@
 		type RadarChart,
 		type RadarChartOptions,
 	} from '@carbon/charts-svelte';
+	import type { OverlayHuntRank } from '../modules/frontier/types';
 
 	let chart: ComponentType<RadarChart>;
-
-	// TODO the code in overlay contains the spaces (GetRankName)
-	type HuntRank =
-		| ''
-		| 'Low Rank '
-		| 'Low/High Rank '
-		| 'High Rank '
-		| 'HR5 '
-		| 'Supremacy '
-		| 'Lv1 '
-		| 'Lv200 '
-		| 'Lv1000 '
-		| 'Lv9999 '
-		| 'G Rank '
-		| 'Lower Shiten '
-		| 'Upper Shiten '
-		| 'Twinhead '
-		| 'Zenith★1 '
-		| 'Zenith★2 '
-		| 'Zenith★3 '
-		| 'Zenith★4 '
-		| 'Interception ';
 
 	// Type definition
 	type Hunt = {
 		date: string;
-		rankName: HuntRank;
+		rankName: OverlayHuntRank;
 		objectiveName: string;
 	};
 

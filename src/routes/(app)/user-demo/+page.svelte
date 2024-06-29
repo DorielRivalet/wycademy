@@ -43,6 +43,7 @@
 	import NextOutline from 'carbon-icons-svelte/lib/NextOutline.svelte';
 	import Send from 'carbon-icons-svelte/lib/Send.svelte';
 	import TextArea from 'carbon-components-svelte/src/TextArea/TextArea.svelte';
+	import ProfilePinnedRuns from '$lib/client/components/ProfilePinnedRuns.svelte';
 
 	// import Bookmark from 'carbon-icons-svelte/lib/Bookmark.svelte';
 	// import BookmarkFilled from 'carbon-icons-svelte/lib/BookmarkFilled.svelte';
@@ -342,6 +343,11 @@
 	<section>
 		<SectionHeading level={2} title="Wardrobe" />
 		<ProfilePinnedSets bind:theme={$theme} />
+	</section>
+
+	<section>
+		<SectionHeading level={2} title="Pinned Runs" />
+		<ProfilePinnedRuns bind:theme={$theme} />
 	</section>
 
 	<section>
