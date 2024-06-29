@@ -15,7 +15,7 @@
 		return arr[Math.floor(arr.length * Math.random())];
 	}
 
-	export let name = generateUsername();
+	export let name = generateUsername() + `#${Math.trunc(Math.random() * 1000)}`;
 	export let medal = '🥇';
 	export let title = randomChoice(WeaponTypes).hiden;
 	export let discordName = 'discordname123';

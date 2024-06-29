@@ -1,103 +1,55 @@
 <script lang="ts">
-	import Transcend from '$lib/client/images/icon/transcend.webp';
 	import ClickableTileImage from './ClickableTileImage.svelte';
 	import FavoriteFilled from 'carbon-icons-svelte/lib/FavoriteFilled.svelte';
 	import Favorite from 'carbon-icons-svelte/lib/Favorite.svelte';
+	import { getMonsterIcon } from '../modules/frontier/functions';
 
 	export let favoriteRuns = [
 		{
-			icon: Transcend,
+			icon: getMonsterIcon('Burning Freezing Elzelion'),
 			title: "User 2's Run #130",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: Transcend,
+			icon: getMonsterIcon('Conquest Crimson Fatalis'),
 			title: "User 2's Run #131",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: Transcend,
+			icon: getMonsterIcon('Supremacy Pariapuria'),
 			title: "User 3's Run #132",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: Transcend,
+			icon: getMonsterIcon('Bombardier Bogabadorumu'),
 			title: "User 4's Run #133",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: Transcend,
+			icon: getMonsterIcon('Ruling Guanzorumu'),
 			title: "User 5's Run #134",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: Transcend,
+			icon: getMonsterIcon('Zenith Espinas'),
 			title: "User 6's Run #135",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: Transcend,
+			icon: getMonsterIcon('Zenith Espinas'),
 			title: "User 7's Run #136",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: Transcend,
+			icon: getMonsterIcon('Conquest Fatalis'),
 			title: "User 8's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: Transcend,
-			title: "User 9's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: Transcend,
-			title: "User 10's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: Transcend,
-			title: "User 11's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: Transcend,
-			title: "User 12's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: Transcend,
-			title: "User 13's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: Transcend,
-			title: "User 14's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: Transcend,
-			title: "User 15's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: Transcend,
-			title: "User 16's Run #130",
 			link: '/',
 			totalFavorites: 0,
 		},

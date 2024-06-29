@@ -33,8 +33,17 @@
 	import ProfileFavoriteSets from '$lib/client/components/ProfileFavoriteSets.svelte';
 	import Flag from 'carbon-icons-svelte/lib/Flag.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
+	import Form from 'carbon-components-svelte/src/Form/Form.svelte';
+	import FormGroup from 'carbon-components-svelte/src/FormGroup/FormGroup.svelte';
+	import RadioButton from 'carbon-components-svelte/src/RadioButton/RadioButton.svelte';
+	import RadioButtonGroup from 'carbon-components-svelte/src/RadioButtonGroup/RadioButtonGroup.svelte';
+	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
+	import Security from 'carbon-icons-svelte/lib/Security.svelte';
+	import NextOutline from 'carbon-icons-svelte/lib/NextOutline.svelte';
+	import Send from 'carbon-icons-svelte/lib/Send.svelte';
+	import TextArea from 'carbon-components-svelte/src/TextArea/TextArea.svelte';
 
-	// import Pin from 'carbon-icons-svelte/lib/Pin.svelte';
 	// import Bookmark from 'carbon-icons-svelte/lib/Bookmark.svelte';
 	// import BookmarkFilled from 'carbon-icons-svelte/lib/BookmarkFilled.svelte';
 	// import Badge from 'carbon-icons-svelte/lib/Badge.svelte';
@@ -45,11 +54,6 @@
 	// import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	// import FaceActivatedAdd from 'carbon-icons-svelte/lib/FaceActivatedAdd.svelte';
 	// import Export from 'carbon-icons-svelte/lib/Export.svelte';
-	// import Favorite from 'carbon-icons-svelte/lib/Favorite.svelte';
-	// import FavoriteFilled from 'carbon-icons-svelte/lib/FavoriteFilled.svelte';
-	// import Fire from 'carbon-icons-svelte/lib/Fire.svelte';
-	// import Flag from 'carbon-icons-svelte/lib/Flag.svelte';
-	// import FlagFilled from 'carbon-icons-svelte/lib/FlagFilled.svelte';
 	// import GameConsole from 'carbon-icons-svelte/lib/GameConsole.svelte';
 	// import Home from 'carbon-icons-svelte/lib/Home.svelte';
 	// import InformationFilled from 'carbon-icons-svelte/lib/InformationFilled.svelte';
@@ -88,6 +92,57 @@
 
 	const customTitle = 'User Demo';
 	const url = $page.url.toString();
+
+	let open = false;
+	let modalPage: 1 | 2 | 3 = 1;
+	let selectedReportOption: string | number | undefined = undefined;
+	let reportDetails = '';
+
+	function getPrimaryButtonText(page: 1 | 2 | 3) {
+		switch (page) {
+			default:
+				return 'OK';
+			case 1:
+				return 'Next';
+			case 2:
+				return 'Submit';
+		}
+	}
+
+	function getSecondaryButtons(
+		page: 1 | 2 | 3,
+	): undefined | [{ text: string }, { text: string }] {
+		switch (page) {
+			default:
+				return [{ text: '' }];
+			case 1:
+				return [{ text: 'Cancel' }];
+			case 2:
+				return [{ text: 'Cancel' }, { text: 'Previous' }];
+		}
+	}
+
+	function getSecondaryButtonText(page: 1 | 2 | 3) {
+		switch (page) {
+			default:
+				return '';
+			case 1:
+				return 'Cancel';
+		}
+	}
+
+	function getPrimaryButtonIcon(page: 1 | 2 | 3) {
+		switch (page) {
+			default:
+				return undefined;
+			case 1:
+				return NextOutline;
+			case 2:
+				return Send;
+		}
+	}
+
+	const maxReportDetailsLength = 1024;
 </script>
 
 <Head
@@ -103,6 +158,165 @@
 	name={projectName}
 	siteName={projectName}
 />
+
+<Modal
+	bind:open
+	modalHeading="Report user"
+	primaryButtonDisabled={selectedReportOption === undefined}
+	primaryButtonText={getPrimaryButtonText(modalPage)}
+	secondaryButtonText={getSecondaryButtonText(modalPage)}
+	secondaryButtons={getSecondaryButtons(modalPage)}
+	primaryButtonIcon={getPrimaryButtonIcon(modalPage)}
+	hasForm
+	on:click:button--primary={() => {
+		switch (modalPage) {
+			case 1:
+				modalPage++;
+				return;
+			case 2:
+				modalPage++;
+				return;
+			case 3:
+				open = false;
+				return;
+		}
+	}}
+	shouldSubmitOnEnter={false}
+	on:click:button--secondary={({ detail }) => {
+		if (detail.text === 'Previous') modalPage--;
+		if (detail.text === 'Cancel') open = false;
+	}}
+	on:open
+	on:close={() => {
+		modalPage = 1;
+		reportDetails = '';
+	}}
+	on:submit={(e) => {
+		console.log('submit modal', e);
+	}}
+>
+	<Form
+		on:submit={(e) => {
+			e.preventDefault();
+			console.log('submit form', e);
+		}}
+	>
+		{#if modalPage === 1}
+			<FormGroup
+				invalid={selectedReportOption === undefined}
+				message={selectedReportOption === undefined}
+				messageText={selectedReportOption === undefined
+					? 'Please select an option.'
+					: ''}
+			>
+				<RadioButtonGroup
+					required={true}
+					orientation="vertical"
+					bind:selected={selectedReportOption}
+					name="radio-button-group"
+					><div class="radio-button-container">
+						<RadioButton id="radio-1" value="cheating" labelText="Cheating" />
+						<Tooltip>
+							<p>
+								Use of hacks, exploits, or other unfair methods to achieve their
+								speedrun times.
+							</p>
+						</Tooltip>
+					</div>
+					<div class="radio-button-container">
+						<RadioButton
+							id="radio-2"
+							value="impersonation"
+							labelText="Impersonation"
+						/>
+						<Tooltip>
+							<p>
+								Pretending to be someone they are not, possibly using similar
+								usernames or stolen identities.
+							</p>
+						</Tooltip>
+					</div>
+					<div class="radio-button-container">
+						<RadioButton
+							id="radio-3"
+							value="inappropriate"
+							labelText="Inappropriate Content"
+						/>
+						<Tooltip>
+							<p>
+								Inappropriate language or content in their profile descriptions,
+								usernames, or uploaded media (such as video titles or
+								thumbnails).
+							</p>
+						</Tooltip>
+					</div>
+					<div class="radio-button-container">
+						<RadioButton
+							id="radio-4"
+							value="inaccurate"
+							labelText="Inaccurate Information"
+						/>
+						<Tooltip>
+							<p>
+								False or misleading information about achievements, such as fake
+								statistics or incorrect claims.
+							</p>
+						</Tooltip>
+					</div>
+					<div class="radio-button-container">
+						<RadioButton id="radio-5" value="spam" labelText="Spam" />
+						<Tooltip>
+							<p>
+								Fake accounts or uploading irrelevant content just to clutter
+								the website.
+							</p>
+						</Tooltip>
+					</div>
+					<div class="radio-button-container">
+						<RadioButton
+							id="radio-6"
+							value="harassment"
+							labelText="Harassment or Abuse"
+						/>
+						<Tooltip>
+							<p>
+								Harassment through usernames, video titles, or indirect
+								references.
+							</p>
+						</Tooltip>
+					</div>
+					<div class="radio-button-container">
+						<RadioButton id="radio-7" value="other" labelText="Other" />
+						<Tooltip>
+							<p>
+								Any other option not found above, you can elaborate on the next
+								section.
+							</p>
+						</Tooltip>
+					</div>
+				</RadioButtonGroup>
+			</FormGroup>
+		{:else if modalPage === 2}
+			<div>
+				<TextArea
+					labelText="Submit details (optional)"
+					placeholder="Enter details..."
+					helperText="An explanation of your report helps us better understand your submission."
+					maxCount={1024}
+					bind:value={reportDetails}
+				/>
+			</div>
+		{:else if modalPage === 3}
+			<div class="report-end">
+				<Security size={32} />
+				<p>
+					Thank you for your report, our team of moderators will review your
+					submission and may notify you in the future.
+				</p>
+			</div>
+		{/if}
+	</Form>
+</Modal>
 
 <div class="container">
 	<section class="top">
@@ -120,7 +334,9 @@
 	</section>
 
 	<section class="report-section">
-		<Button kind="tertiary" icon={Flag}>Report Abuse</Button>
+		<Button kind="tertiary" icon={Flag} on:click={() => (open = true)}
+			>Report Abuse</Button
+		>
 	</section>
 
 	<section>
@@ -189,5 +405,16 @@
 	.report-section {
 		display: flex;
 		justify-content: end;
+	}
+
+	.radio-button-container {
+		display: flex;
+		gap: 0.25rem;
+		align-items: center;
+	}
+
+	.report-end {
+		display: flex;
+		gap: 0.5rem;
 	}
 </style>
