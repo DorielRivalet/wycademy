@@ -179,8 +179,10 @@
 				iconType="component"
 				tooltip="Achievements"
 			/>
-			{obtainedAchievements}/{totalAchievements} (Rank #{obtainedAchievementsRank},
-			Top {obtainedAchievementsRankPercent}%)
+			<a href="/"
+				>{obtainedAchievements}/{totalAchievements} (Rank #{obtainedAchievementsRank},
+				Top {obtainedAchievementsRankPercent}%)</a
+			>
 		</p>
 		<div class="meter">
 			{#if achievementsMeterLoaded}
@@ -202,7 +204,9 @@
 				iconType="component"
 				tooltip="Titles"
 			/>
-			{obtainedTitles}/{totalTitles} (Rank #{titlesRank}, Top {titlesRankPercent}%)
+			<a href="/"
+				>{obtainedTitles}/{totalTitles} (Rank #{titlesRank}, Top {titlesRankPercent}%)</a
+			>
 		</p>
 		<div class="gauge">
 			{#if titlesGaugeLoaded}
@@ -222,16 +226,16 @@
 				icon={getItemIcon('Ticket')}
 				tooltip="Quests"
 				text={'Total Hunts: '}
-			/>{huntCount} (Rank #{huntCountRank}, Top {huntCountRankPercent}%)
+			/><a href="/"
+				>{huntCount} (Rank #{huntCountRank}, Top {huntCountRankPercent}%)</a
+			>
 		</p>
 	</div>
 	<div class="server">
 		<p>
-			<InlineTooltip
-				icon={MapIconWhite}
-				tooltip="Server"
-				text={'Server: '}
-			/>{randomChoice(playerServers)}
+			<InlineTooltip icon={MapIconWhite} tooltip="Server" text={'Server: '} /><a
+				href="/">{randomChoice(playerServers)}</a
+			>
 		</p>
 	</div>
 </div>
@@ -298,5 +302,14 @@
 	.gauge {
 		min-height: 196px;
 		margin-bottom: 1rem;
+	}
+
+	a {
+		all: unset;
+	}
+
+	a:hover {
+		text-decoration: underline;
+		color: var(--ctp-sky);
 	}
 </style>
