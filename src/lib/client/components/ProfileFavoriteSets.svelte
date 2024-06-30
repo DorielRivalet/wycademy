@@ -5,7 +5,7 @@
 	import { LocationIcons } from '../modules/frontier/objects';
 	import { getMonsterIcon } from '../modules/frontier/functions';
 
-	export let favoriteRuns = [
+	export let favoriteSets = [
 		{
 			icon: LocationIcons.find((e) => e.name === 'Road')?.icon,
 			title: "User 2's Set #3",
@@ -46,7 +46,7 @@
 
 	const maxFavoritesToDisplay = 5;
 
-	const displayedFavorites = Object.values(favoriteRuns).slice(
+	const displayedFavorites = Object.values(favoriteSets).slice(
 		0,
 		maxFavoritesToDisplay,
 	);
@@ -83,7 +83,7 @@
 	<div class="see-more">
 		<ClickableTileImage
 			imageSource={Favorite}
-			title="View Favorite Sets"
+			title="View Favorite Sets ({favoriteSets.length})"
 			description="See a list of favorite armor sets for this user."
 			href="/"
 		/>

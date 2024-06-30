@@ -105,7 +105,7 @@
 	<div>
 		<ClickableTileImage
 			imageSource={Trophy}
-			title="Explore Trophies"
+			title="Explore Trophies ({trophies.length})"
 			href="/"
 			description="See the list of trophies for this user."
 			rounded={true}

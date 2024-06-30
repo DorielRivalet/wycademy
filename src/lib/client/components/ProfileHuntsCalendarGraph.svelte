@@ -528,6 +528,9 @@
 			console.error('Failed to initialize charts:', error);
 		}
 	});
+
+	export let totalHuntsRank = Math.trunc(Math.random() * 1000);
+	export let totalHuntsRankPercent = Math.trunc(Math.random() * 100);
 </script>
 
 <div class="container">
@@ -542,6 +545,12 @@
 		</div>
 	{:else}
 		<div class="calendar-container">
+			<p>
+				<strong>Total quests completed: </strong>
+				<a href="/">
+					{hunts.length} (Rank #{totalHuntsRank}, Top {totalHuntsRankPercent}%)</a
+				>
+			</p>
 			<span class="year-dropdown-container">
 				<p>
 					{huntCount}
@@ -797,5 +806,14 @@
 		max-width: 70vw;
 		height: 100%;
 		overflow-y: hidden;
+	}
+
+	a {
+		all: unset;
+	}
+
+	a:hover {
+		color: var(--ctp-sky);
+		text-decoration: underline;
 	}
 </style>
