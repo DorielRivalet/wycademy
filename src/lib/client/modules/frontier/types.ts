@@ -17,6 +17,7 @@ import type {
 	FrontierWeaponStyle,
 } from 'ezlion';
 import type { wikiaMonsters } from './objects';
+import type { ComponentType, SvelteComponent } from 'svelte';
 
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
 
@@ -932,8 +933,7 @@ export type WycademyTrophy = {
 export type ProfilePinnedSet = {
 	setName: string;
 	setColor: string;
-	setNotes: string;
-	setIcon: string;
+	setIcon: string | ComponentType<SvelteComponent>;
 	setTags: string[];
 	weaponType: FrontierWeaponName;
 	weaponName: string;
