@@ -1,0 +1,161 @@
+import type { ReactionType } from 'svelte-reactions';
+import { getWeaponIcon } from './frontier/functions';
+
+export const availableReactions: ReactionType[] = [
+	{
+		id: 'like',
+		reaction: '👍',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'heart',
+		reaction: '❤️',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'fire',
+		reaction: '🔥',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'tada',
+		reaction: '🎉',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'star',
+		reaction: '⭐',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'mindblown',
+		reaction: '🤯',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'sunglasses',
+		reaction: '😎',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'party',
+		reaction: '🥳',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'skull',
+		reaction: '💀',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: '100',
+		reaction: '💯',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'clap',
+		reaction: '👏',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'eyes',
+		reaction: '👀',
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'gs',
+		reaction: getWeaponIcon('Great Sword'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'ls',
+		reaction: getWeaponIcon('Long Sword'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'ds',
+		reaction: getWeaponIcon('Dual Swords'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'sns',
+		reaction: getWeaponIcon('Sword and Shield'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'lance',
+		reaction: getWeaponIcon('Lance'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'gl',
+		reaction: getWeaponIcon('Gunlance'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'hammer',
+		reaction: getWeaponIcon('Hammer'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'hh',
+		reaction: getWeaponIcon('Hunting Horn'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'tonfa',
+		reaction: getWeaponIcon('Tonfa'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'saf',
+		reaction: getWeaponIcon('Switch Axe F'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'ms',
+		reaction: getWeaponIcon('Magnet Spike'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'lbg',
+		reaction: getWeaponIcon('Light Bowgun'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'hbg',
+		reaction: getWeaponIcon('Heavy Bowgun'),
+		quantity: 0,
+		clicked: false,
+	},
+	{
+		id: 'bow',
+		reaction: getWeaponIcon('Bow'),
+		quantity: 0,
+		clicked: false,
+	},
+];

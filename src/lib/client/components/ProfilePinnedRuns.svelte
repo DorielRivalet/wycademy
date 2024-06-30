@@ -22,6 +22,10 @@
 	import type { LineChartOptions, ScaleTypes } from '@carbon/charts-svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
+	import 'svelte-reactions/global.css';
+	import { Trigger, type ReactionType } from 'svelte-reactions';
+	import { getWeaponIcon } from '../modules/frontier/functions';
+	import { availableReactions } from '../modules/reactions';
 
 	export let theme: CarbonTheme;
 
@@ -104,7 +108,7 @@
 		rankName: OverlayHuntRank;
 		favorites: number;
 		isFavorited: boolean;
-		reactions: { reaction: string; count: number }[];
+		reactions: ReactionType[];
 	};
 
 	function getGitHubImage(image: string) {
@@ -114,6 +118,21 @@
 				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/main/MHFZ_Overlay/',
 			)
 			.replace('blitzkrieg_bogabadorumu', 'bombardier_bogabadorumu');
+	}
+
+	function mergeReactions(reactions: ReactionType[]) {
+		return [
+			...availableReactions.map((reaction) => ({ ...reaction, quantity: 0 })),
+			...reactions,
+		].reduce((acc, reaction) => {
+			const existing = acc.find((r) => r.id === reaction.id);
+			if (existing) {
+				existing.quantity = reaction.quantity;
+			} else {
+				acc.push(reaction);
+			}
+			return acc;
+		}, [] as ReactionType[]);
 	}
 
 	export let runs: RunSummary[] = [
@@ -127,9 +146,16 @@
 			objectiveName: 'Sparkling Zerureusu',
 			rankName: '',
 			youtubeID: 'W0FOhCFAl0M',
-			favorites: 1,
+			favorites: 0,
 			isFavorited: false,
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: 'like',
+					reaction: '👍',
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 			dps: {
 				'17398': 1.6943521594684385,
 				'17397': 1.6915422885572138,
@@ -1869,7 +1895,14 @@
 			youtubeID: '8joz3kWMabc',
 			isFavorited: false,
 			favorites: 1,
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: 'heart',
+					reaction: '❤️',
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 
 			dps: {
 				'17419': 13.838209982788296,
@@ -3565,7 +3598,14 @@
 			rankName: '',
 			isFavorited: false,
 			youtubeID: '8joz3kWMabc',
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: 'fire',
+					reaction: '🔥',
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 
 			favorites: 1,
 			dps: {
@@ -13316,7 +13356,14 @@
 				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/shiten_unknown.png',
 			objectiveName: 'UNKNOWN',
 			rankName: 'Upper Shiten ',
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: 'tada',
+					reaction: '🎉',
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 
 			favorites: 1,
 			isFavorited: false,
@@ -13344,7 +13391,14 @@
 			objectiveName: 'Rukodiora',
 			rankName: 'Zenith★4 ',
 			youtubeID: '8joz3kWMabc',
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: 'star',
+					reaction: '⭐',
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 
 			favorites: 1,
 			isFavorited: false,
@@ -13371,7 +13425,14 @@
 			objectiveName: 'Blitzkrieg Bogabadorumu',
 			rankName: '',
 			youtubeID: '8joz3kWMabc',
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: 'mindblown',
+					reaction: '🤯',
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 
 			favorites: 1,
 			isFavorited: false,
@@ -13397,7 +13458,14 @@
 				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/bombardier_bogabadorumu.png',
 			objectiveName: 'Bombardier Bogabadorumu',
 			rankName: '',
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: 'sunglasses',
+					reaction: '😎',
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 
 			youtubeID: '8joz3kWMabc',
 			favorites: 1,
@@ -13426,7 +13494,14 @@
 			rankName: 'Upper Shiten ',
 			favorites: 1,
 			isFavorited: false,
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: 'party',
+					reaction: '🥳',
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 
 			youtubeID: '8joz3kWMabc',
 			dps: {
@@ -13451,7 +13526,14 @@
 				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/shiten_unknown.png',
 			objectiveName: 'UNKNOWN',
 			rankName: 'Upper Shiten ',
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: 'skull',
+					reaction: '💀',
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 
 			favorites: 1,
 			isFavorited: false,
@@ -13478,7 +13560,110 @@
 				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/shiten_unknown.png',
 			objectiveName: 'UNKNOWN',
 			rankName: 'Upper Shiten ',
-			reactions: [{ reaction: '', count: 1 }],
+			reactions: mergeReactions([
+				{
+					id: '100',
+					reaction: '💯',
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'clap',
+					reaction: '👏',
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'eyes',
+					reaction: '👀',
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'gs',
+					reaction: getWeaponIcon('Great Sword'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'ls',
+					reaction: getWeaponIcon('Long Sword'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'ds',
+					reaction: getWeaponIcon('Dual Swords'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'sns',
+					reaction: getWeaponIcon('Sword and Shield'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'lance',
+					reaction: getWeaponIcon('Lance'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'gl',
+					reaction: getWeaponIcon('Gunlance'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'hammer',
+					reaction: getWeaponIcon('Hammer'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'hh',
+					reaction: getWeaponIcon('Hunting Horn'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'tonfa',
+					reaction: getWeaponIcon('Tonfa'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'saf',
+					reaction: getWeaponIcon('Switch Axe F'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'ms',
+					reaction: getWeaponIcon('Magnet Spike'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'lbg',
+					reaction: getWeaponIcon('Light Bowgun'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'hbg',
+					reaction: getWeaponIcon('Heavy Bowgun'),
+					quantity: 100,
+					clicked: false,
+				},
+				{
+					id: 'bow',
+					reaction: getWeaponIcon('Bow'),
+					quantity: 100,
+					clicked: false,
+				},
+			]),
 
 			favorites: 1,
 			isFavorited: false,
@@ -13512,21 +13697,19 @@
 		youtubeID = cell.value;
 	}
 
-	function getAllReactionsCount(
-		reactions: { reaction: string; count: number }[],
-	) {
-		return reactions.reduce((total, { count }) => total + count, 0);
+	function getAllReactionsCount(reactions: ReactionType[]) {
+		return reactions.reduce((total, { quantity }) => total + quantity, 0);
 	}
 
-	function getReactionsCount(
-		reactions: { reaction: string; count: number }[],
-	): { [key: string]: number } {
+	function getReactionsCount(reactions: ReactionType[]): {
+		[key: string]: number;
+	} {
 		return reactions.reduce(
-			(acc, { reaction, count }) => {
-				if (acc[reaction]) {
-					acc[reaction] += count;
+			(acc, { id, quantity }) => {
+				if (acc[id]) {
+					acc[id] += quantity;
 				} else {
-					acc[reaction] = count;
+					acc[id] = quantity;
 				}
 				return acc;
 			},
@@ -13598,7 +13781,7 @@
 			{ key: 'rankName', value: 'Rank' },
 			{ key: 'youtubeID', value: 'YouTube' },
 			{ key: 'favorites', value: 'Favorites' },
-			{ key: 'reactions', value: 'Reactions' },
+			{ key: 'reactions', value: 'Reactions', minWidth: '192px' },
 			{ key: 'dps', value: 'DPS', minWidth: '192px' },
 			{ key: 'details', value: 'Run Details' },
 		]}
@@ -13682,6 +13865,8 @@
 						</Button>
 					{/key}
 				</div>
+			{:else if cell.key === 'reactions'}
+				<Trigger showLabels reactions={cell.value} />
 			{:else if cell.key === 'details'}
 				<Link href={cell.value}>View Run Details</Link>
 			{:else if cell.key === 'dps'}
