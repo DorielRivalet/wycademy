@@ -44,6 +44,9 @@
 	import Send from 'carbon-icons-svelte/lib/Send.svelte';
 	import TextArea from 'carbon-components-svelte/src/TextArea/TextArea.svelte';
 	import ProfilePinnedRuns from '$lib/client/components/ProfilePinnedRuns.svelte';
+	import Tabs from 'carbon-components-svelte/src/Tabs/Tabs.svelte';
+	import Tab from 'carbon-components-svelte/src/Tabs/Tab.svelte';
+	import TabContent from 'carbon-components-svelte/src/Tabs/TabContent.svelte';
 
 	// import Bookmark from 'carbon-icons-svelte/lib/Bookmark.svelte';
 	// import BookmarkFilled from 'carbon-icons-svelte/lib/BookmarkFilled.svelte';
@@ -340,50 +343,61 @@
 		>
 	</section>
 
-	<section>
-		<SectionHeading level={2} title="Wardrobe" />
-		<ProfilePinnedSets bind:theme={$theme} />
-	</section>
+	<Tabs autoWidth>
+		<Tab label="Overview" />
+		<Tab label="Quests" />
+		<Tab label="Achievements" />
+		<Tab label="Favorites" />
+		<Tab label="Events" />
 
-	<section>
-		<SectionHeading level={2} title="Pinned Runs" />
-		<ProfilePinnedRuns bind:theme={$theme} />
-	</section>
-
-	<section>
-		<SectionHeading level={2} title="Quests Stats" />
-		<ProfileHuntsCalendarGraph bind:theme={$theme} />
-	</section>
-
-	<section>
-		<SectionHeading level={2} title="Guild Card" />
-		<ProfileGuildCard />
-	</section>
-
-	<section>
-		<ProfileHuntsGraph />
-	</section>
-
-	<section>
-		<SectionHeading level={2} title="Recent Activity" />
-		<ProfileRecentActivity />
-	</section>
-
-	<section>
-		<ProfileRecentHunts />
-	</section>
-
-	<section>
-		<SectionHeading level={2} title="Favorites" />
-		<section>
-			<SectionHeading level={3} title="Runs" />
-			<ProfileFavoriteRuns />
-		</section>
-		<section>
-			<SectionHeading level={3} title="Armor Sets" />
-			<ProfileFavoriteSets />
-		</section>
-	</section>
+		<svelte:fragment slot="content">
+			<TabContent>
+				<section>
+					<SectionHeading level={2} title="Wardrobe" />
+					<ProfilePinnedSets bind:theme={$theme} />
+				</section>
+				<section>
+					<SectionHeading level={2} title="Pinned Runs" />
+					<ProfilePinnedRuns bind:theme={$theme} />
+				</section>
+				<section>
+					<SectionHeading level={2} title="Guild Card" />
+					<ProfileGuildCard />
+				</section>
+				<section>
+					<SectionHeading level={2} title="Recent Activity" />
+					<ProfileRecentActivity />
+				</section>
+			</TabContent>
+			<TabContent>
+				<section>
+					<SectionHeading level={2} title="Quests Stats" />
+					<ProfileHuntsCalendarGraph bind:theme={$theme} />
+				</section>
+				<section>
+					<ProfileHuntsGraph />
+				</section>
+				<section>
+					<ProfileRecentHunts />
+				</section>
+			</TabContent>
+			<TabContent>Achievements</TabContent>
+			<TabContent>
+				<section>
+					<SectionHeading level={2} title="Favorites" />
+					<section>
+						<SectionHeading level={3} title="Runs" />
+						<ProfileFavoriteRuns />
+					</section>
+					<section>
+						<SectionHeading level={3} title="Armor Sets" />
+						<ProfileFavoriteSets />
+					</section>
+				</section>
+			</TabContent>
+			<TabContent>Events</TabContent>
+		</svelte:fragment>
+	</Tabs>
 
 	<section>
 		<ProfileFooter />

@@ -94,7 +94,7 @@
 	<div class="see-more">
 		<ClickableTileImage
 			imageSource={Favorite}
-			title="View Favorite Runs"
+			title="View Favorite Runs ({favoriteRuns.length})"
 			description="See a list of favorite runs for this user."
 			href="/"
 		/>
