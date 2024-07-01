@@ -17,6 +17,8 @@
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import { scale } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
+	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 
 	let selectedSetName = '';
 
@@ -360,7 +362,7 @@
 						style:background-color={getHexStringFromCatppuccinColor(
 							armorSet.setColor,
 							theme,
-						) + '80'}><img src={MyTore} width="64" alt="Poogie Cuff" /></button
+						) + '80'}><img src={MyTore} alt="Poogie Cuff" /></button
 					>
 				</div>
 			{/each}
@@ -480,7 +482,7 @@
 					style:background-color={getHexStringFromCatppuccinColor(
 						selectedArmorSet?.setColor,
 						theme,
-					) + '80'}><img src={MyTore} width="64" alt="Poogie Cuff" /></button
+					) + '80'}><img src={MyTore} alt="Poogie Cuff" /></button
 				>
 			</div>
 			<div
@@ -490,6 +492,12 @@
 				}}
 				class="selected-armor-set-info"
 			>
+				<Button
+					iconDescription={'Back'}
+					kind="ghost"
+					on:click={(e) => onPieceClick(selectedArmorSet)}
+					><span slot="icon"><PreviousOutline size={24} /></span>
+				</Button>
 				<h3>{selectedArmorSet.setName}</h3>
 				<div class="tags">
 					{#each selectedArmorSet.setTags as tag}
@@ -554,14 +562,15 @@
 	.armor-sets {
 		display: flex;
 		gap: 2rem;
-		grid-template-columns: repeat(autofit, minmax(128px, 1fr));
-		justify-content: start;
+		grid-template-columns: repeat(autofit, minmax(64px, 1fr));
+		justify-content: flex-start;
 		flex-wrap: wrap;
 	}
 
 	.armor-set {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		gap: 1rem;
 	}
 
@@ -582,9 +591,13 @@
 	.set-slot {
 		border-radius: 8px;
 		padding: 0.5rem;
-		width: var(--cds-spacing-12);
-		height: var(--cds-spacing-12);
-		border: 4px outset var(--ctp-overlay0);
+		width: var(--cds-spacing-10);
+		height: var(--cds-spacing-10);
+		border: 2px outset var(--ctp-overlay0);
+
+		img {
+			width: 100%;
+		}
 	}
 
 	.set-slot:hover {
@@ -592,7 +605,7 @@
 	}
 
 	.set-slot:active {
-		border: 4px inset var(--ctp-overlay0);
+		border: 2px inset var(--ctp-overlay0);
 	}
 
 	.selected-armor-set {

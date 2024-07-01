@@ -9,7 +9,7 @@ export function generateUsername(): string {
 		randomChoice(names.types).toLowerCase() +
 		'-' +
 		randomChoice(names.monsters).toLowerCase()
-	);
+	).replaceAll(' ', '-');
 }
 
 function randomChoice(arr: string[]): string {

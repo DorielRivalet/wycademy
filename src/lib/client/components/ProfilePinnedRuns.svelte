@@ -26,6 +26,7 @@
 	import { Trigger, type ReactionType } from 'svelte-reactions';
 	import { getWeaponIcon } from '../modules/frontier/functions';
 	import { availableReactions } from '../modules/reactions';
+	import ImageDialog from './ImageDialog.svelte';
 
 	export let theme: CarbonTheme;
 
@@ -13424,7 +13425,7 @@
 				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/blitzkrieg_bogabadorumu.png',
 			objectiveName: 'Blitzkrieg Bogabadorumu',
 			rankName: '',
-			youtubeID: '8joz3kWMabc',
+			youtubeID: 'uk53thHe_nU',
 			reactions: mergeReactions([
 				{
 					id: 'mindblown',
@@ -13843,7 +13844,13 @@
 					</span>
 				</Button>
 			{:else if cell.key === 'objectiveImage'}
-				<img src={getGitHubImage(cell.value)} alt="Objective" width="64" />
+				<ImageDialog
+					width={64}
+					height={64}
+					src={getGitHubImage(cell.value)}
+					alt="Objective"
+					type="file"
+				/>
 			{:else if cell.key === 'favorites'}
 				<div class="favorites">
 					{#key changeFavorite}
