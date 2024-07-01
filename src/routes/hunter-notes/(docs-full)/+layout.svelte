@@ -733,7 +733,8 @@
 				bind:this={treeview}
 				><span slot="labelText">
 					<Button
-						iconDescription={'Hide'}
+						iconDescription={'Hide Sidebar'}
+						tooltipPosition="right"
 						kind="ghost"
 						size={'small'}
 						icon={ViewOff}
@@ -835,7 +836,7 @@
 			transition: margin motion.$duration-fast-02
 				motion.motion(standard, expressive);
 			width: 16.67%;
-			background-color: var(--ctp-surface0);
+			background-color: var(--ctp-mantle);
 			display: none;
 		}
 
@@ -863,7 +864,7 @@
 			transition: margin motion.$duration-fast-02
 				motion.motion(standard, expressive);
 			width: 16.67%;
-			background-color: var(--ctp-surface0);
+			background-color: var(--ctp-mantle);
 		}
 
 		.aside.collapsed {

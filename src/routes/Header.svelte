@@ -27,6 +27,7 @@
 	} from '$lib/client/stores/notifications';
 	import { overlayVersion } from '$lib/constants';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
+	import HeaderNavigationMenuButton from './HeaderNavigationMenuButton.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
@@ -88,7 +89,10 @@
 					<NavigationItem path="/leaderboard" description="Leaderboards" />
 				{/if}
 				{#if $breakpointLargerThanMedium}
-					<NavigationItem path="/hunter-notes" description="Guides" />
+					<HeaderNavigationMenuButton
+						path="/hunter-notes"
+						description="Guides"
+					/>
 					<NavigationItem path="/arena" description="Arena" />
 					<NavigationItem path="/smithy" description="Tools" />
 					<!-- <NavigationItem path="/" description="Events" /> -->
