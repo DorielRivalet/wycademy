@@ -14,6 +14,7 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Copy from 'carbon-icons-svelte/lib/Copy.svelte';
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
+	import { page } from '$app/stores';
 
 	let originsTablePageSize = 5;
 	let originsTablePage = 1;
@@ -349,12 +350,7 @@
 			</div>
 
 			<div class="page-turn">
-				<PageTurn
-					previous="/hunter-notes/monsters/exotics"
-					previousTitle="Monsters: Exotics"
-					next="/hunter-notes/monsters/burst"
-					nextTitle="Monsters: Burst"
-				/>
+				<PageTurn pageRouteId={$page.route.id} />
 			</div>
 		</div>
 	</div></HunterNotesPage

@@ -1,47 +1,27 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import { LocationIcons } from '$lib/client/modules/frontier/objects';
-	import MedicineIconWhite from '$lib/client/components/frontier/icon/item/Medicine_Icon_White.svelte';
-	import BallIconWhite from '$lib/client/components/frontier/icon/item/Ball_Icon_White.svelte';
-	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
+	import { guidesInfo } from '$lib/client/modules/routes';
+	const pages = guidesInfo.find((e) => e.category.name === 'Advanced')?.pages;
 </script>
 
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Advanced'} />
 	<div class="container-tiles">
-		<ClickableTileImage
-			title="Item Sets"
-			description="The best item sets and how to obtain each item."
-			imageSource={MedicineIconWhite}
-			href="/hunter-notes/advanced/item-sets"
-		/>
-		<ClickableTileImage
-			title="Item Interactions"
-			description="Specific item inteactions explained in greater detail."
-			imageSource={BallIconWhite}
-			href="/hunter-notes/advanced/item-interactions"
-		/>
-		<ClickableTileImage
-			title="Mechanics"
-			description="Various advanced mechanics of the game explained in great detail."
-			imageSource={LocationIcons.find((e) => e.name === 'Blacksmith')?.icon}
-			href="/hunter-notes/advanced/mechanics"
-		/>
-		<ClickableTileImage
-			title="Skills"
-			description="An overview of specific skill interactions, and which ones to use."
-			imageSource={JewelIconWhite}
-			href="/hunter-notes/advanced/skills"
-		/>
+		{#if pages}
+			{#each pages as page}
+				<ClickableTileImage
+					title={page.name}
+					description={page.description}
+					imageSource={page.image}
+					href={page.link}
+				/>
+			{/each}
+		{/if}
 	</div>
-	<PageTurn
-		previous="/hunter-notes/events/wycademy-events"
-		previousTitle="Events: Wycademy's Events"
-		next="/hunter-notes/advanced/item-sets"
-		nextTitle="Advanced: Item Sets"
-	/>
+	<PageTurn pageRouteId={$page.route.id} />
 </div>
 
 <style lang="scss">

@@ -16,6 +16,7 @@
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import { getItemIcon, getTag } from '$lib/client/modules/frontier/functions';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
+	import { page } from '$app/stores';
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -615,12 +616,7 @@
 			</section>
 		</section>
 		<div class="page-turn">
-			<PageTurn
-				previous="/hunter-notes/locations/mezeporta-square"
-				previousTitle="Locations: Mezeporta Square"
-				next="/hunter-notes/locations/bento"
-				nextTitle="Locations: Bento"
-			/>
+			<PageTurn pageRouteId={$page.route.id} />
 		</div>
 	</div>
 </HunterNotesPage>

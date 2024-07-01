@@ -11,6 +11,7 @@
 	import type { FrontierWeaponSharpness } from '$lib/client/modules/frontier/types';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
+	import { page } from '$app/stores';
 
 	function getSharpnessArray(input: string): FrontierWeaponSharpness {
 		// Split the input string into an array of strings
@@ -370,12 +371,7 @@
 			</div>
 		</section>
 		<div class="page-turn">
-			<PageTurn
-				previous="/hunter-notes/weapons"
-				previousTitle="Weapons"
-				next="/hunter-notes/weapons/sigils"
-				nextTitle="Weapons: Sigils"
-			/>
+			<PageTurn pageRouteId={$page.route.id} />
 		</div>
 	</div>
 </HunterNotesPage>

@@ -19,6 +19,7 @@
 	} from '@carbon/charts-svelte';
 	import { theme } from '$lib/client/stores/theme';
 	import '@carbon/charts-svelte/styles.css';
+	import { page } from '$app/stores';
 
 	let criticalDistanceChartLoaded = false;
 	let criticalDistanceChart: ComponentType<LineChart>;
@@ -816,12 +817,7 @@
 					</div>
 
 					<div class="page-turn">
-						<PageTurn
-							previous="/hunter-notes/weapons/sigils"
-							previousTitle="Weapons: Sigils"
-							next="/hunter-notes/weapons/active-feature"
-							nextTitle="Weapons: Active Feature"
-						/>
+						<PageTurn pageRouteId={$page.route.id} />
 					</div>
 				</section>
 			</div>

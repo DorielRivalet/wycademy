@@ -13,6 +13,7 @@
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import ezlion from 'ezlion';
+	import { page } from '$app/stores';
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -318,12 +319,7 @@
 			</div>
 		</section>
 		<div class="page-turn">
-			<PageTurn
-				previous="/hunter-notes/events"
-				previousTitle="Events"
-				next="/hunter-notes/events/hunter-festival"
-				nextTitle="Events: Hunter Festival"
-			/>
+			<PageTurn pageRouteId={$page.route.id} />
 		</div>
 	</div>
 </HunterNotesPage>

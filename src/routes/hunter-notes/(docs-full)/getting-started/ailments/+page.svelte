@@ -11,6 +11,8 @@
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import { page } from '$app/stores';
+
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 
 	function getStatusArray(input: string) {
@@ -281,12 +283,7 @@
 			</div>
 		</section>
 		<div class="page-turn">
-			<PageTurn
-				previous="/hunter-notes/getting-started/elements"
-				previousTitle="Getting Started: Elements"
-				next="/hunter-notes/getting-started/transcend"
-				nextTitle="Getting Started: Transcend"
-			/>
+			<PageTurn pageRouteId={$page.route.id} />
 		</div>
 	</div>
 </HunterNotesPage>

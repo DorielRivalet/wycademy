@@ -10,6 +10,8 @@
 		bentoValues,
 	} from '$lib/client/modules/frontier/objects';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
+	import { page } from '$app/stores';
+
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
@@ -17,6 +19,7 @@
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import { getItemIcon } from '$lib/client/modules/frontier/functions';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import { page } from '$app/stores';
 
 	function getBentoSectionValues(section: string) {
 		let defaultResult = [
@@ -272,12 +275,7 @@
 			</section>
 		</div>
 		<div class="page-turn">
-			<PageTurn
-				previous="/hunter-notes/locations/guild-hall"
-				previousTitle="Locations: Guild Hall"
-				next="/hunter-notes/locations/road"
-				nextTitle="Locations: Road"
-			/>
+			<PageTurn pageRouteId={$page.route.id} />
 		</div>
 	</div>
 </HunterNotesPage>

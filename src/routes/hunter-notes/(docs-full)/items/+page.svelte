@@ -2,53 +2,26 @@
 	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import BallIconWhite from '$lib/client/components/frontier/icon/item/Ball_Icon_White.svelte';
-	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
-	import SacIconWhite from '$lib/client/components/frontier/icon/item/Sac_Icon_White.svelte';
-	import TicketIconWhite from '$lib/client/components/frontier/icon/item/Ticket_Icon_White.svelte';
-	import TrapToolIconWhite from '$lib/client/components/frontier/icon/item/Trap_Tool_Icon_White.svelte';
+	import { guidesInfo } from '$lib/client/modules/routes';
+	const pages = guidesInfo.find((e) => e.category.name === 'Items')?.pages;
+	import { page } from '$app/stores';
 </script>
 
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Items'} />
 	<div class="container-tiles">
-		<ClickableTileImage
-			title="Item Box"
-			description="Item Box capacity, presets and combinations."
-			imageSource={TrapToolIconWhite}
-			href="/hunter-notes/items/item-box"
-		/>
-		<ClickableTileImage
-			title="Decorations"
-			description="A list of decoration types."
-			imageSource={JewelIconWhite}
-			href="/hunter-notes/items/decorations"
-		/>
-		<ClickableTileImage
-			title="Armor Spheres"
-			description="List of armor spheres."
-			imageSource={BallIconWhite}
-			href="/hunter-notes/items/armor-spheres"
-		/>
-		<ClickableTileImage
-			title="Special Items"
-			description="List of items that are unique to Frontier or adjust the quest rewards."
-			imageSource={TicketIconWhite}
-			href="/hunter-notes/items/special-items"
-		/>
-		<ClickableTileImage
-			title="Medal Trades"
-			description="List of items obtained by exchanging medals."
-			imageSource={SacIconWhite}
-			href="/hunter-notes/items/medal-trades"
-		/>
+		{#if pages}
+			{#each pages as page}
+				<ClickableTileImage
+					title={page.name}
+					description={page.description}
+					imageSource={page.image}
+					href={page.link}
+				/>
+			{/each}
+		{/if}
 	</div>
-	<PageTurn
-		previous="/hunter-notes/locations/tent"
-		previousTitle="Locations: Tent"
-		next="/hunter-notes/items/item-box"
-		nextTitle="Items: Item Box"
-	/>
+	<PageTurn pageRouteId={$page.route.id} />
 </div>
 
 <style lang="scss">

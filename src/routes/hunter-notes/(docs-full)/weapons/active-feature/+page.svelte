@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -288,12 +289,7 @@
 			</div>
 		</div>
 		<div class="page-turn">
-			<PageTurn
-				previous="/hunter-notes/weapons/critical-distance"
-				previousTitle="Weapons: Critical Distance"
-				next="/hunter-notes/weapons/hunting-horn-songs"
-				nextTitle="Weapons: Hunting Horn Songs"
-			/>
+			<PageTurn pageRouteId={$page.route.id} />
 		</div>
 	</section>
 </HunterNotesPage>

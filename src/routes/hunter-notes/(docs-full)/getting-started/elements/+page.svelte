@@ -15,6 +15,7 @@
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
+	import { page } from '$app/stores';
 
 	function getElementArray(input: string) {
 		// Step 1: Split the string into individual elements
@@ -330,12 +331,7 @@
 		</div>
 
 		<div class="page-turn">
-			<PageTurn
-				previous="/hunter-notes/getting-started/your-first-hunts"
-				previousTitle="Getting Started: Your First Hunts"
-				next="/hunter-notes/getting-started/ailments"
-				nextTitle="Getting Started: Ailments"
-			/>
+			<PageTurn pageRouteId={$page.route.id} />
 		</div>
 	</div>
 </HunterNotesPage>
