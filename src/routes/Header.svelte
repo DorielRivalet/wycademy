@@ -9,13 +9,9 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Banner from '$lib/client/components/Banner.svelte';
 	import UserAvatar from 'carbon-icons-svelte/lib/UserAvatar.svelte';
-	import NavigationItem from './NavigationItem.svelte';
 	import WycademySearch from '$lib/client/components/frontier/WycademySearch.svelte';
 	import ThemeChanger from './ThemeChanger.svelte';
 	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
-	import OverflowMenu from 'carbon-components-svelte/src/OverflowMenu/OverflowMenu.svelte';
-	import OverflowMenuItem from 'carbon-components-svelte/src/OverflowMenu/OverflowMenuItem.svelte';
-	import Menu from 'carbon-icons-svelte/lib/Menu.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import NotificationNew from 'carbon-icons-svelte/lib/NotificationNew.svelte';
 	import { onMount } from 'svelte';
@@ -29,6 +25,7 @@
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import HeaderNavigationMenuButton from './HeaderNavigationMenuButton.svelte';
 	import HeaderNavigationButton from './HeaderNavigationButton.svelte';
+	import HeaderHamburgerMenu from './HeaderHamburgerMenu.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
@@ -67,16 +64,19 @@
 <header>
 	<div class="left">
 		{#if !$breakpointLargerThanMedium}
-			<OverflowMenu icon={Menu}>
-				<OverflowMenuItem href="/leaderboard" text="Leaderboard" />
-				<OverflowMenuItem href="/hunter-notes" text="Hunter's Notes" />
-				<OverflowMenuItem href="/arena" text="Arena" />
-				<OverflowMenuItem href="/smithy" text="Smithy" />
-				<OverflowMenuItem href="/support" text="Support" />
-				<OverflowMenuItem href="/site-preferences" text="Notifications" />
-				<OverflowMenuItem href="/site-preferences" text="Profile" />
-				<OverflowMenuItem href="/site-preferences" text="Site Preferences" />
-			</OverflowMenu>
+			<HeaderHamburgerMenu
+				items={[
+					{ href: '/leaderboard', text: 'Leaderboards' },
+					{ href: '/hunter-notes', text: "Hunter's Notes" },
+					{ href: '/arena', text: 'Arena' },
+					{ href: '/smithy', text: 'Smithy' },
+					{ href: '/support', text: 'Support' },
+					{ href: '/notifications', text: 'Notifications' },
+					{ href: '/user-demo', text: 'Profile' },
+					{ href: '/site-preferences', text: 'Site Preferences' },
+					{ href: '/events', text: 'Events' },
+				]}
+			/>
 		{/if}
 		<div class="banner">
 			<Banner />

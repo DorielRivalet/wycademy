@@ -1,11 +1,9 @@
 <script lang="ts">
 	import ClickableTile from 'carbon-components-svelte/src/Tile/ClickableTile.svelte';
 	import {
-		guidesInfo,
-		supportInfo,
-		toolsInfo,
 		type NavigationItem,
 		type CategoryInfo,
+		getRoutesSection,
 	} from '../modules/routes';
 
 	export let pageRouteId: string | null;
@@ -23,18 +21,6 @@
 		const cleanedUrlPath = urlPath.replace(regex, '');
 
 		return cleanedUrlPath;
-	}
-
-	function getRoutesSection(url: string) {
-		if (url.startsWith('/hunter-notes')) {
-			return guidesInfo;
-		} else if (url.startsWith('/support')) {
-			return supportInfo;
-		} else if (url.startsWith('/tools')) {
-			return toolsInfo;
-		} else {
-			return null;
-		}
 	}
 
 	function getCurrentCategoryInfo(

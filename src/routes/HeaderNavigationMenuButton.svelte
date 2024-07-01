@@ -5,7 +5,7 @@
 	import ChevronDown from 'carbon-icons-svelte/lib/ChevronDown.svelte';
 	import ChevronUp from 'carbon-icons-svelte/lib/ChevronUp.svelte';
 	import { slide } from 'svelte/transition';
-	import { guidesInfo } from '$lib/client/modules/routes';
+	import { getRoutesSection } from '$lib/client/modules/routes';
 	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import { cubicInOut } from 'svelte/easing';
 
@@ -14,6 +14,8 @@
 
 	let open = false;
 	let selectedCategory = 0;
+
+	const section = getRoutesSection(path);
 </script>
 
 <li class="container">
@@ -36,72 +38,75 @@
 			class="mega-menu"
 			style="width: 100%; height: 80vh;"
 		>
-			<div class="mega-menu-content">
-				<div class="categories">
-					{#each guidesInfo as item, i}
-						<div class="category">
-							<ClickableTile on:click={() => (selectedCategory = i)}
-								><div class="clickable-tile-content">
-									{item.category.name}
-								</div></ClickableTile
-							>
-						</div>
-					{/each}
-				</div>
-				<div class="view-all">
-					<ClickableTile on:click={() => (open = false)} href={path}>
-						<div class="clickable-tile-content">
-							<p>View all categories</p>
-							<ArrowRight />
-						</div>
-					</ClickableTile>
-				</div>
-				<div class="selected-category-content">
-					<div class="selected-category-header">
-						<a
-							on:click={() => (open = false)}
-							class="selected-category-link"
-							href={guidesInfo[selectedCategory].category.link}
-						>
-							<div class="category-image">
-								{#if typeof guidesInfo[selectedCategory].category.image === 'string'}
-									<img
-										src={guidesInfo[selectedCategory].category.image}
-										alt={guidesInfo[selectedCategory].category.name}
-										width="64"
-									/>
-								{:else}
-									<svelte:component
-										this={guidesInfo[selectedCategory].category.image}
-									/>
-								{/if}
+			{#if section}
+				<div class="mega-menu-content">
+					<div class="categories">
+						{#each section as item, i}
+							<div class="category">
+								<ClickableTile on:click={() => (selectedCategory = i)}
+									><div class="clickable-tile-content">
+										{item.category.name}
+									</div></ClickableTile
+								>
 							</div>
-							<h3>{guidesInfo[selectedCategory].category.name}</h3>
-							<ArrowRight size={24} />
-						</a>
-						<p class="category-description">
-							{guidesInfo[selectedCategory].category.description}
-						</p>
-					</div>
-
-					<div class="grid-container">
-						{#each guidesInfo[selectedCategory].pages as page}
-							<button
-								on:click={() => (open = false)}
-								class="page-tile-container"
-							>
-								<ClickableTileImage
-									title={page.name}
-									description={page.description}
-									imageSource={page.image}
-									href={page.link}
-								/>
-							</button>
 						{/each}
 					</div>
+					<div class="view-all">
+						<ClickableTile on:click={() => (open = false)} href={path}>
+							<div class="clickable-tile-content">
+								<p>View all categories</p>
+								<ArrowRight />
+							</div>
+						</ClickableTile>
+					</div>
+					<div class="selected-category-content">
+						<div class="selected-category-header">
+							<a
+								on:click={() => (open = false)}
+								class="selected-category-link"
+								href={section[selectedCategory].category.link}
+							>
+								<div class="category-image">
+									{#if typeof section[selectedCategory].category.image === 'string'}
+										<img
+											src={section[selectedCategory].category.image}
+											alt={section[selectedCategory].category.name}
+											width="64"
+										/>
+									{:else}
+										<svelte:component
+											this={section[selectedCategory].category.image}
+										/>
+									{/if}
+								</div>
+								<h3>{section[selectedCategory].category.name}</h3>
+								<ArrowRight size={24} />
+							</a>
+							<p class="category-description">
+								{section[selectedCategory].category.description}
+							</p>
+						</div>
+
+						<div class="grid-container">
+							{#each section[selectedCategory].pages as page}
+								<button
+									on:click={() => (open = false)}
+									class="page-tile-container"
+								>
+									<ClickableTileImage
+										title={page.name}
+										description={page.description}
+										imageSource={page.image}
+										href={page.link}
+									/>
+								</button>
+							{/each}
+						</div>
+					</div>
 				</div>
-			</div>
+			{/if}
 		</div>
+
 		<button on:click={() => (open = !open)} class="dark-background"></button>
 	{/if}
 </li>
