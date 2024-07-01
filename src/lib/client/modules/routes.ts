@@ -41,6 +41,18 @@ export type CategoryInfo = {
 	pages: NavigationItem[];
 };
 
+export function getRoutesSection(url: string) {
+	if (url.startsWith('/hunter-notes')) {
+		return guidesInfo;
+	} else if (url.startsWith('/support')) {
+		return supportInfo;
+	} else if (url.startsWith('/tools')) {
+		return toolsInfo;
+	} else {
+		return null;
+	}
+}
+
 /**Meta information about the website. */
 export const supportInfo: CategoryInfo[] = [];
 
