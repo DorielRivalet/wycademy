@@ -28,6 +28,7 @@
 	import { overlayVersion } from '$lib/constants';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import HeaderNavigationMenuButton from './HeaderNavigationMenuButton.svelte';
+	import HeaderNavigationButton from './HeaderNavigationButton.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
@@ -85,18 +86,19 @@
 	<div class="middle">
 		<nav>
 			<ul>
-				{#if $breakpointLargerThanSmall}
-					<NavigationItem path="/leaderboard" description="Leaderboards" />
-				{/if}
 				{#if $breakpointLargerThanMedium}
+					<HeaderNavigationButton
+						path="/leaderboard"
+						description="Leaderboards"
+					/>
 					<HeaderNavigationMenuButton
 						path="/hunter-notes"
 						description="Guides"
 					/>
-					<NavigationItem path="/arena" description="Arena" />
-					<NavigationItem path="/smithy" description="Tools" />
-					<!-- <NavigationItem path="/" description="Events" /> -->
-					<NavigationItem path="/support" description="Support" />
+					<HeaderNavigationButton path="/arena" description="Arena" />
+					<HeaderNavigationButton path="/smithy" description="Tools" />
+					<HeaderNavigationButton path="/support" description="Support" />
+					<HeaderNavigationButton path="/events" description="Events" />
 				{/if}
 			</ul>
 		</nav>
@@ -147,6 +149,8 @@
 </header>
 
 <style lang="scss">
+	@use '@carbon/type' as type;
+
 	.container-link {
 		margin-right: 1rem;
 	}
@@ -195,7 +199,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1rem;
 		list-style: none;
 	}
 
