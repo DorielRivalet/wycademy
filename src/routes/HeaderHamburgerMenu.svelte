@@ -28,7 +28,7 @@
 		{
 			name: 'Site Preferences',
 			categories: [],
-			href: '/site-ppreferences',
+			href: '/site-preferences',
 		},
 		{ name: 'Events', categories: [], href: '/events' },
 	];

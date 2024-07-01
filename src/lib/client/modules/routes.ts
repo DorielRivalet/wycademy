@@ -29,6 +29,7 @@ import UNKNOWN from '$lib/client/images/monster/shiten_unknown.webp';
 import Logo from '$lib/client/images/logo.svg';
 import MedicineIconWhite from '../components/frontier/icon/item/Medicine_Icon_White.svelte';
 
+// TODO more fields? for search index
 export type NavigationItem = {
 	name: string;
 	description: string;
