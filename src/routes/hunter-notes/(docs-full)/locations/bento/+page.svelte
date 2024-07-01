@@ -10,8 +10,6 @@
 		bentoValues,
 	} from '$lib/client/modules/frontier/objects';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
-	import { page } from '$app/stores';
-
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
