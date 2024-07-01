@@ -9,6 +9,7 @@
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
+	import { page } from '$app/stores';
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -177,12 +178,7 @@
 			</div>
 
 			<div class="page-turn">
-				<PageTurn
-					previous="/hunter-notes/monsters/"
-					previousTitle="Monsters"
-					next="/hunter-notes/monsters/origin"
-					nextTitle="Monsters: Origin"
-				/>
+				<PageTurn pageRouteId={$page.route.id} />
 			</div>
 		</div>
 	</div></HunterNotesPage

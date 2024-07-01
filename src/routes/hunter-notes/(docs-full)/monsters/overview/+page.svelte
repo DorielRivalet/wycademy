@@ -243,12 +243,7 @@
 			{/if}
 		{/if}
 		<div class="page-turn">
-			<PageTurn
-				previous="/hunter-notes/monsters"
-				previousTitle="Monsters"
-				next="/hunter-notes/monsters/exotics"
-				nextTitle="Monsters: Exotics"
-			/>
+			<PageTurn pageRouteId={$page.route.id} />
 		</div>
 	</div>
 </section>

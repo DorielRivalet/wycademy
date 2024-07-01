@@ -2,6 +2,7 @@
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import { page } from '$app/stores';
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -14,12 +15,7 @@
 			</p>
 
 			<div class="page-turn">
-				<PageTurn
-					previous="/hunter-notes/monsters/origin"
-					previousTitle="Monsters: Origin"
-					next="/hunter-notes/monsters/supremacy"
-					nextTitle="Monsters: Supremacy"
-				/>
+				<PageTurn pageRouteId={$page.route.id} />
 			</div>
 		</div>
 	</div></HunterNotesPage

@@ -2,44 +2,26 @@
 	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import AllArmors from '$lib/client/components/frontier/icon/armor/AllArmors.svelte';
-	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
+	import { guidesInfo } from '$lib/client/modules/routes';
+	const pages = guidesInfo.find((e) => e.category.name === 'Armor')?.pages;
+	import { page } from '$app/stores';
 </script>
 
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Armor'} />
 	<div class="container-tiles">
-		<ClickableTileImage
-			title="Overview"
-			description="An overview of armor types."
-			imageSource={AllArmors}
-			href="/hunter-notes/armor/overview"
-		/>
-		<ClickableTileImage
-			title="Skills"
-			description="The list of armor skills, including zenith skills."
-			imageSource={JewelIconWhite}
-			href="/hunter-notes/armor/skills"
-		/>
-		<ClickableTileImage
-			title="Colors"
-			description="The list of armor pigment colors and how to unlock them."
-			imageSource={AllArmors}
-			href="/hunter-notes/armor/colors"
-		/>
-		<ClickableTileImage
-			title="Transmog"
-			description="How to unlock transmog."
-			imageSource={AllArmors}
-			href="/hunter-notes/armor/transmog"
-		/>
+		{#if pages}
+			{#each pages as page}
+				<ClickableTileImage
+					title={page.name}
+					description={page.description}
+					imageSource={page.image}
+					href={page.link}
+				/>
+			{/each}
+		{/if}
 	</div>
-	<PageTurn
-		previous="/hunter-notes/weapons/hunting-horn-songs"
-		previousTitle="Weapons: Hunting Horn Songs"
-		next="/hunter-notes/armor/overview"
-		nextTitle="Armor: Overview"
-	/>
+	<PageTurn pageRouteId={$page.route.id} />
 </div>
 
 <style lang="scss">

@@ -36,17 +36,26 @@ export type NavigationItem = {
 	image: string | ComponentType<SvelteComponent>;
 };
 
-export const guidesInfo: {
+export type CategoryInfo = {
 	category: NavigationItem;
 	pages: NavigationItem[];
-}[] = [
+};
+
+/**Meta information about the website. */
+export const supportInfo: CategoryInfo[] = [];
+
+/**Tools for the game */
+export const toolsInfo: CategoryInfo[] = [];
+
+/**Guides for the game */
+export const guidesInfo: CategoryInfo[] = [
 	{
 		category: {
 			name: 'Getting Started',
 			description:
 				'The tutorials for new hunters and an overview of the main mechanics of the game.',
 			image: BookIconWhite,
-			link: '/',
+			link: '/hunter-notes/getting-started',
 		},
 		pages: [
 			{
@@ -83,7 +92,7 @@ export const guidesInfo: {
 		category: {
 			name: 'Monsters',
 			description: 'Information about monsters in the game.',
-			link: '/',
+			link: '/hunter-notes/monsters',
 			image: AllMonsters,
 		},
 		pages: [
@@ -174,7 +183,7 @@ export const guidesInfo: {
 		category: {
 			name: 'Weapons',
 			description: 'Information about weapons in the game.',
-			link: '/',
+			link: '/hunter-notes/weapons',
 			image: AllWeapons,
 		},
 		pages: [
@@ -216,7 +225,7 @@ export const guidesInfo: {
 		category: {
 			name: 'Armor',
 			description: 'Information about armor in the game.',
-			link: '/',
+			link: '/hunter-notes/armor',
 			image: AllArmors,
 		},
 		pages: [
