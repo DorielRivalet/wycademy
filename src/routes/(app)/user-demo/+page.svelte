@@ -73,8 +73,6 @@
 	// import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
 	// import Share from 'carbon-icons-svelte/lib/Share.svelte';
 	// import Keyboard from 'carbon-icons-svelte/lib/Keyboard.svelte';
-	// import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
-	// import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
 	// import Edit from 'carbon-icons-svelte/lib/Edit.svelte';
 	// import StarFilled from 'carbon-icons-svelte/lib/StarFilled.svelte';
 	// import ChartRadar from 'carbon-icons-svelte/lib/ChartRadar.svelte';

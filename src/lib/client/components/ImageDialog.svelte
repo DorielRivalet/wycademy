@@ -22,7 +22,7 @@
 		};
 	}
 
-	export let type;
+	export let type: 'component' | 'file';
 	export let src: any;
 	export let alt = 'Dialog';
 	export let componentSize = '100%';

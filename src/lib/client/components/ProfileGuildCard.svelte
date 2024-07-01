@@ -22,6 +22,9 @@
 	import LegIconWhite from './frontier/icon/armor/Leg_Icon_White.svelte';
 	import MyTore from '$lib/client/images/icon/my_tore.webp';
 	import { formatDateTime } from '../modules/time';
+	import { browser } from '$app/environment';
+	import { domToPng } from 'modern-screenshot';
+	import slugify from 'slugify';
 
 	export let name = 'Hunter';
 	export let date = '2024-05-02T00:00:01Z';
@@ -102,15 +105,32 @@
 	$: background =
 		guildCardBackgrounds.find((e) => e.name === selectedGuildCardBackground)
 			?.image || guildCardBackgrounds[0].image;
+
+	export let username = 'UserDemo';
+
+	function downloadImage() {
+		if (!browser) return;
+		let node = document.getElementById('guild-card-dom');
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(
+				`${username}-Guild-Card-${new Date().toISOString()}.png`,
+			)}`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
 </script>
 
+<p class="spaced-paragraph">Information from the last quest completed.</p>
 <p class="spaced-paragraph">
 	<strong>Backgrounds Unlocked: </strong><a href="/">
 		{guildCardsUnlocked}/{totalGuildCards} (Rank #{guildCardsUnlockedRank}, Top {guildCardsUnlockedRankPercent}%)</a
 	>
 </p>
 <div class="container">
-	<div class="page-container">
+	<div id="guild-card-dom" class="page-container">
 		{#if selectedPage === 'page1'}
 			<div class="page-1">
 				<div class="image-container">
@@ -327,7 +347,9 @@
 		{/if}
 	</div>
 	<div class="inputs">
-		<Button kind="tertiary" icon={Download}>Download</Button>
+		<Button kind="tertiary" on:click={downloadImage} icon={Download}
+			>Download</Button
+		>
 		<Dropdown
 			bind:selectedId={selectedPage}
 			items={[

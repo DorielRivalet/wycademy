@@ -47,6 +47,7 @@
 <style lang="scss">
 	.container {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: end;
 		gap: 1rem;
