@@ -3,7 +3,6 @@
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import { page } from '$app/stores';
-	import { browser } from '$app/environment';
 </script>
 
 <HunterNotesPage displayTOC={true}>
