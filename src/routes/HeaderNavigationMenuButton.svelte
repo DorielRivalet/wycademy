@@ -6,6 +6,8 @@
 	import ChevronUp from 'carbon-icons-svelte/lib/ChevronUp.svelte';
 	import { slide } from 'svelte/transition';
 	import { guidesInfo } from '$lib/client/modules/routes';
+	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
+	import { cubicInOut } from 'svelte/easing';
 
 	export let description;
 	export let path;
@@ -30,7 +32,7 @@
 	</Button>
 	{#if open}
 		<div
-			out:slide={{ duration: 250 }}
+			out:slide={{ duration: 250, easing: cubicInOut }}
 			class="mega-menu"
 			style="width: 100%; height: 80vh;"
 		>
@@ -60,9 +62,23 @@
 							on:click={() => (open = false)}
 							class="selected-category-link"
 							href={guidesInfo[selectedCategory].category.link}
-							><h3>{guidesInfo[selectedCategory].category.name}</h3>
-							<ArrowRight size={24} /></a
 						>
+							<div class="category-image">
+								{#if typeof guidesInfo[selectedCategory].category.image === 'string'}
+									<img
+										src={guidesInfo[selectedCategory].category.image}
+										alt={guidesInfo[selectedCategory].category.name}
+										width="64"
+									/>
+								{:else}
+									<svelte:component
+										this={guidesInfo[selectedCategory].category.image}
+									/>
+								{/if}
+							</div>
+							<h3>{guidesInfo[selectedCategory].category.name}</h3>
+							<ArrowRight size={24} />
+						</a>
 						<p class="category-description">
 							{guidesInfo[selectedCategory].category.description}
 						</p>
@@ -70,12 +86,17 @@
 
 					<div class="grid-container">
 						{#each guidesInfo[selectedCategory].pages as page}
-							<div class="page-tile-container">
-								<ClickableTile on:click={() => (open = false)} href={page.link}>
-									<h4>{page.name}</h4>
-									<p>{page.description}</p>
-								</ClickableTile>
-							</div>
+							<button
+								on:click={() => (open = false)}
+								class="page-tile-container"
+							>
+								<ClickableTileImage
+									title={page.name}
+									description={page.description}
+									imageSource={page.image}
+									href={page.link}
+								/>
+							</button>
 						{/each}
 					</div>
 				</div>
@@ -106,6 +127,11 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+	}
+
+	.category-image {
+		height: 64px;
+		width: 64px;
 	}
 
 	.category-description {
