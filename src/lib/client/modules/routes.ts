@@ -43,7 +43,8 @@ export const guidesInfo: {
 	{
 		category: {
 			name: 'Getting Started',
-			description: 'The tutorials for new hunters and an overview of the game.',
+			description:
+				'The tutorials for new hunters and an overview of the main mechanics of the game.',
 			image: BookIconWhite,
 			link: '/',
 		},
