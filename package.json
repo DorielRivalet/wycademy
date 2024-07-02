@@ -125,7 +125,7 @@
 		"numbro": "^2.5.0",
 		"schema-dts": "^1.1.2",
 		"slugify": "^1.6.6",
-		"svelte-add": "^2.3.0",
+		"svelte-add": "^2.3.3",
 		"svelte-moveable": "^0.45.0",
 		"svelte-reactions": "^2.5.4",
 		"svelte-toc": "^0.5.9",
