@@ -291,7 +291,7 @@
 	);
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Icons Preview'} />
 		<p class="spaced-paragraph">

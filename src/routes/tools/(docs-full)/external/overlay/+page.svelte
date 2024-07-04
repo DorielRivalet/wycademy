@@ -8,7 +8,7 @@
 	import Youtube from 'svelte-youtube-embed';
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'mhfz-overlay'} />
 		<InlineNotification

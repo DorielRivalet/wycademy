@@ -325,7 +325,7 @@
 	let currentWeaponPage = 1;
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Weapon Generator'} />
 		<InlineNotification

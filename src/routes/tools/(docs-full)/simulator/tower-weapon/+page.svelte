@@ -803,7 +803,7 @@
 		towerWeaponTotalCost > towerWeaponSelectedSeriesInfo.maxTotalCost;
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Tower Weapon Simulator'} />
 		<InlineNotification

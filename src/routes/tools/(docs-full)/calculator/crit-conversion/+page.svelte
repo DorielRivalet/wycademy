@@ -188,7 +188,7 @@
 	/>
 </svelte:head>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Crit Conversion / Flash Conversion'} />
 		<p class="spaced-paragraph">
