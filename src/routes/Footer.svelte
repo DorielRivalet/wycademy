@@ -16,6 +16,7 @@
 	import Raviente from '$lib/client/images/icon/berserk_raviente_raid.webp';
 	import authorImage from '$lib/client/images/author.webp';
 	import { theme } from '$lib/client/stores/theme';
+	import Banner from '$lib/client/components/Banner.svelte';
 
 	export let gitHubData: GitHubData = {
 		lastModified: '',
@@ -26,23 +27,87 @@
 </script>
 
 <footer>
-	<div class="subtle item-container">
-		{#if lastModified !== ''}
-			<em>Page last modified</em>
-			<Link href={commitLink}>{lastModified}</Link>
-			<div>
-				Times changed: <span>{timesChanged}</span>
+	<div class="footer-main-content-container">
+		<div class="banner">
+			<Banner />
+			<div class="banner-text">
+				<p>A compendium of resources for MHF-Z by</p>
+				<span class="icon-info-container">
+					<img
+						class="rounded-image"
+						src={authorImage}
+						width="32"
+						alt="Author"
+					/>
+					<Link href={constant.authorUrl}>{constant.authorName}.</Link>
+				</span>
 			</div>
-		{:else}
-			<div>Want to play as Raviente?</div>
 			<div class="icon-info-container">
-				<img src={Raviente} width="32" alt="Raviente" />
-				<Link href="/offline">Try this game!</Link>
+				<Link aria-label="GitHub repository" href={constant.projectGitHub}>
+					<LogoGitHub size={32} color="var(--ctp-text)" />
+				</Link>
+				<div class="subtle">v{constant.appVersion}</div>
 			</div>
-		{/if}
+			<div class="subtle github-info-container">
+				{#if lastModified !== ''}
+					<em>Page last modified:</em>
+					<Link href={commitLink}>{lastModified}</Link>
+					<div>
+						Times changed: <span>{timesChanged}</span>
+					</div>
+				{:else}
+					<div>Want to play as Raviente?</div>
+					<div class="icon-info-container">
+						<img src={Raviente} width="32" alt="Raviente" />
+						<Link href="/offline">Try this game!</Link>
+					</div>
+				{/if}
+			</div>
+		</div>
+
+		<div class="footer-sections">
+			<section class="section-container">
+				<h5>Frontier</h5>
+				<Link href="/leaderboard">Leaderboards</Link>
+				<Link href="/hunter-notes">Guides and Tutorials</Link>
+				<Link href="/tools">Tools and Utilities</Link>
+			</section>
+
+			<section class="section-container">
+				<h5>Guides and Tutorials</h5>
+				<Link href="/hunter-notes/getting-started">Getting Started</Link>
+				<Link href="/hunter-notes/weapons">Weapons</Link>
+				<Link href="/hunter-notes/armor">Armor</Link>
+				<Link href="/hunter-notes/monsters">Monsters</Link>
+				<Link href="/hunter-notes/locations">Locations</Link>
+				<Link href="/hunter-notes/items">Items</Link>
+				<Link href="/hunter-notes/events">Events</Link>
+				<Link href="/hunter-notes/advanced">Advanced</Link>
+			</section>
+
+			<section class="section-container">
+				<h5>Tools and Utilities</h5>
+				<Link href="/tools/calculator">Calculators</Link>
+				<Link href="/tools/simulator">Simulators</Link>
+				<Link href="/tools/generator">Generators</Link>
+				<Link href="/tools/external">External</Link>
+			</section>
+
+			<section class="section-container">
+				<h5>Support</h5>
+				<Link href="/">About Us</Link>
+				<Link href="/">Donate</Link>
+				<Link href="/">Contribute</Link>
+				<Link href="/">Terms of Service</Link>
+				<Link href="/">Privacy Policy</Link>
+				<Link href="/about-development-stages">Development</Link>
+				<Link href="/">FAQ</Link>
+				<Link href="/">Contact</Link>
+			</section>
+		</div>
 	</div>
 
-	<div class="item-container">
+	<div class="footer-bottom">
 		<div class="icon-info-container">
 			<img class="rounded-image" src={authorImage} width="32" alt="Author" />
 			<Link href={constant.authorUrl}
@@ -50,7 +115,7 @@
 			>
 		</div>
 		<div class="icon-info-container">
-			<p>Powered by</p>
+			<p>Site powered by</p>
 			<span class="logo-container">
 				<OutboundLink href="https://vercel.com/">
 					{#if $theme === 'g10'}
@@ -74,13 +139,6 @@
 			Code licensed {constant.license}</OutboundLink
 		>
 	</div>
-
-	<div class="item-container">
-		<Link aria-label="GitHub repository" href={constant.projectGitHub}>
-			<LogoGitHub size={32} />
-		</Link>
-		<div class="subtle">v{constant.appVersion}</div>
-	</div>
 </footer>
 
 <style lang="scss">
@@ -91,48 +149,78 @@
 		align-items: center;
 	}
 
+	.banner-text {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
 	.rounded-image {
 		border-radius: 50%;
 	}
 
-	@media (min-width: 320px) {
-		footer {
-			padding: var(--cds-spacing-02);
-			background-color: var(--ctp-crust);
-			display: flex;
-			justify-content: space-between;
-			flex-wrap: wrap;
-			align-items: center;
-			flex-direction: column;
-			gap: 2rem;
-			padding-top: 2rem;
-			font-size: 0.75rem;
-		}
-
-		.item-container {
-			display: flex;
-			flex-direction: column;
-			gap: 0.25rem;
-			align-items: center;
-		}
+	footer {
+		padding-top: 4rem;
+		background-color: var(--ctp-crust);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		align-items: start;
+		gap: 2rem;
 	}
 
-	@media (min-width: 672px) {
-		footer {
-			padding: var(--cds-spacing-07);
-			background-color: var(--ctp-crust);
-			flex-wrap: wrap;
-			display: flex;
-			justify-content: space-between;
-			flex-direction: row;
-			align-items: center;
-		}
+	.footer-main-content-container {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		align-items: start;
+		gap: 2rem;
+	}
 
-		.item-container {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-			align-items: center;
-		}
+	.footer-sections {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: start;
+		flex-direction: row;
+		gap: 1rem;
+	}
+
+	.github-info-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.section-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-left: var(--cds-spacing-04);
+		padding-right: var(--cds-spacing-04);
+		gap: 0.25rem;
+	}
+
+	.footer-bottom {
+		width: 100%;
+		align-items: center;
+		gap: 1rem;
+		display: flex;
+		flex-direction: column;
+		padding: var(--cds-spacing-04);
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+		background-color: var(--ctp-surface0);
+		border-top: 1px solid var(--ctp-surface1);
+	}
+
+	.banner {
+		padding-left: var(--cds-spacing-04);
+		padding-right: var(--cds-spacing-04);
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		gap: 0.5rem;
 	}
 </style>

@@ -26,7 +26,6 @@
 	import TowerEquipmentIcon from './icon/TowerEquipmentIcon.svelte';
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
 	import { browser } from '$app/environment';
-	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import type {
 		FrontierArmorSkillName,
 		FrontierArmorSkillTree,
