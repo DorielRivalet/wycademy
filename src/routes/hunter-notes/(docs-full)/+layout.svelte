@@ -85,6 +85,8 @@
 		Object.keys(cssVarMap).forEach((key) => {
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
+
+		window.addEventListener('scroll', handleScroll);
 	});
 
 	function deslugify(slug: string) {
@@ -125,6 +127,22 @@
 	}
 
 	const url = $page.url.toString();
+
+	let lastScrollTop = 0; // Variable to store the last scroll position
+
+	// Function to handle scroll events
+	function handleScroll() {
+		const currentScrollPos =
+			window.scrollY || document.documentElement.scrollTop;
+		if (currentScrollPos > lastScrollTop) {
+			// Scrolling down - hide the header
+			headerClass = 'header-hidden';
+		} else {
+			// Scrolling up - show the header
+			headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+		}
+		lastScrollTop = currentScrollPos;
+	}
 
 	const children: TreeNode[] = [
 		{
@@ -802,7 +820,9 @@
 
 	.header {
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		top: 0;
 		position: static;
+		transition: top motion.$duration-fast-02 motion.motion(standard, productive);
 	}
 
 	.sticky {
@@ -810,6 +830,11 @@
 		position: sticky;
 		top: 0;
 		z-index: 1000; /* Ensure it stays above other content */
+	}
+
+	.header-hidden {
+		position: absolute;
+		top: -3rem; /* Match the height of the header */
 	}
 
 	.banner {

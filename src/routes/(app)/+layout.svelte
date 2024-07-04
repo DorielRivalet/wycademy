@@ -39,6 +39,9 @@
 		Object.keys(cssVarMap).forEach((key) => {
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
+
+		// Add event listener for scroll events
+		window.addEventListener('scroll', handleScroll);
 	});
 
 	$: bgClass =
@@ -74,6 +77,22 @@
 	}
 
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+
+	let lastScrollTop = 0; // Variable to store the last scroll position
+
+	// Function to handle scroll events
+	function handleScroll() {
+		const currentScrollPos =
+			window.scrollY || document.documentElement.scrollTop;
+		if (currentScrollPos > lastScrollTop) {
+			// Scrolling down - hide the header
+			headerClass = 'header-hidden';
+		} else {
+			// Scrolling up - show the header
+			headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+		}
+		lastScrollTop = currentScrollPos;
+	}
 </script>
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
@@ -107,7 +126,9 @@
 	{/key}
 </div>
 
-<style lang="css">
+<style lang="scss">
+	@use '@carbon/motion' as motion;
+
 	.banner {
 		display: flex;
 		justify-content: center;
@@ -120,35 +141,35 @@
 	}
 
 	.bg-arena {
-		background-image: url($lib/client/images/background/bg-arena.webp);
+		background-image: url('$lib/client/images/background/bg-arena.webp');
 	}
 
 	.bg-profile {
-		background-image: url($lib/client/images/background/bg-profile.webp);
+		background-image: url('$lib/client/images/background/bg-profile.webp');
 	}
 
 	.bg-smithy {
-		background-image: url($lib/client/images/background/bg-smithy.webp);
+		background-image: url('$lib/client/images/background/bg-smithy.webp');
 	}
 
 	.bg-leaderboard {
-		background-image: url($lib/client/images/background/bg-leaderboard.webp);
+		background-image: url('$lib/client/images/background/bg-leaderboard.webp');
 	}
 
 	.bg-hunter-notes {
-		background-image: url($lib/client/images/background/bg-hunter-notes.webp);
+		background-image: url('$lib/client/images/background/bg-hunter-notes.webp');
 	}
 
 	.bg-equipment-box {
-		background-image: url($lib/client/images/background/bg-equipment-box.webp);
+		background-image: url('$lib/client/images/background/bg-equipment-box.webp');
 	}
 
 	.bg-bestiary {
-		background-image: url($lib/client/images/background/bg-bestiary.webp);
+		background-image: url('$lib/client/images/background/bg-bestiary.webp');
 	}
 
 	.bg-support {
-		background-image: url($lib/client/images/background/bg-support.webp);
+		background-image: url('$lib/client/images/background/bg-support.webp');
 	}
 
 	.app {
@@ -200,7 +221,9 @@
 
 	.header {
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		top: 0;
 		position: static;
+		transition: top motion.$duration-fast-02 motion.motion(standard, productive);
 	}
 
 	.sticky {
@@ -208,6 +231,11 @@
 		position: sticky;
 		top: 0;
 		z-index: 1000; /* Ensure it stays above other content */
+	}
+
+	.header-hidden {
+		position: absolute;
+		top: -3rem; /* Match the height of the header */
 	}
 
 	.none {
@@ -227,7 +255,7 @@
 		width: 100%;
 		height: 100%;
 		opacity: 0.9;
-		background-image: url($lib/client/images/background/noise.webp);
+		background-image: url('$lib/client/images/background/noise.webp');
 		background-size: 5%;
 	}
 
@@ -248,7 +276,7 @@
 		width: 100%;
 		height: 100%;
 		opacity: 0.9;
-		background-image: url($lib/client/images/background/noise-light.webp);
+		background-image: url('$lib/client/images/background/noise-light.webp');
 		background-size: 5%;
 	}
 
@@ -280,7 +308,7 @@
 		height: 100%;
 		opacity: 0.9;
 		background-color: #fff;
-		background-image: url($lib/client/images/background/noise-light.webp);
+		background-image: url('$lib/client/images/background/noise-light.webp');
 		background-size: 5%;
 	}
 
@@ -294,7 +322,7 @@
 		height: 100%;
 		opacity: 0.9;
 		background-color: #000;
-		background-image: url($lib/client/images/background/noise.webp);
+		background-image: url('$lib/client/images/background/noise.webp');
 		background-size: 5%;
 	}
 </style>
