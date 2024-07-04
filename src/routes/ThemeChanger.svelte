@@ -41,12 +41,11 @@
 	@use '@carbon/motion' as motion;
 
 	button {
-		width: var(--cds-spacing-09);
-		background-color: var(--ctp-surface0);
-		border: 2px solid var(--ctp-overlay0);
-		border-radius: 10%;
+		width: 48px;
+		height: 100%;
+		background-color: transparent;
+		border: 0px solid transparent;
 		display: flex;
-		padding: var(--cds-spacing-01);
 		transition:
 			border-color motion.$duration-slow-02 motion.motion(standard, expressive),
 			background-color motion.$duration-slow-02
@@ -59,6 +58,8 @@
 	}
 
 	img {
-		width: var(--cds-spacing-09);
+		width: 20px;
+		aspect-ratio: 1;
+		margin: auto;
 	}
 </style>

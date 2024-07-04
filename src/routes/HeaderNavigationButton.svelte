@@ -29,6 +29,6 @@
 		color: var(--ctp-text);
 		align-items: center;
 		gap: 0.5rem;
-		@include type.type-style('body-compact-02');
+		@include type.type-style('body-compact-01');
 	}
 </style>

@@ -6,7 +6,6 @@
 
 <script lang="ts">
 	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
-	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Banner from '$lib/client/components/Banner.svelte';
 	import UserAvatar from 'carbon-icons-svelte/lib/UserAvatar.svelte';
 	import WycademySearch from '$lib/client/components/frontier/WycademySearch.svelte';
@@ -79,16 +78,19 @@
 		<div class="banner">
 			<Banner />
 		</div>
+		<div class="banner-border" />
 	</div>
 
-	<div class="middle">
-		<nav>
-			<ul>
-				{#if $breakpointLargerThanMedium}
+	<nav class="right">
+		<ul>
+			{#if $breakpointLargerThanMedium}
+				<div class="container-link">
 					<HeaderNavigationButton
 						path="/leaderboard"
 						description="Leaderboards"
 					/>
+				</div>
+				<div class="container-link">
 					<HeaderNavigationMenuButton
 						path="/hunter-notes"
 						description="Guides"
@@ -96,6 +98,8 @@
 						{openMenu}
 						on:toggle={handleToggle}
 					/>
+				</div>
+				<div class="container-link">
 					<HeaderNavigationMenuButton
 						path="/tools"
 						description="Tools"
@@ -103,30 +107,34 @@
 						{openMenu}
 						on:toggle={handleToggle}
 					/>
+				</div>
+				<div class="container-link">
 					<HeaderNavigationButton path="/support" description="Support" />
+				</div>
+				<div class="container-link">
 					<HeaderNavigationButton path="/events" description="Events" />
-				{/if}
-			</ul>
-		</nav>
-	</div>
+				</div>
+			{/if}
+		</ul>
 
-	<nav class="right">
-		<div class="search-button">
+		<div class="container-header-action">
 			<WycademySearch />
 		</div>
 
 		{#if $breakpointLargerThanMedium}
-			<div class="theme-changer">
+			<div class="container-header-action">
 				<ThemeChanger />
 			</div>
 		{/if}
 		{#if $breakpointLargerThanSmall}
-			<div class="container-button">
-				<Link
+			<div class="container-header-action">
+				<Button
+					tooltipPosition="left"
+					kind="ghost"
 					on:click={() => {
 						notificationSeenStore.set(true);
 					}}
-					title={!$notificationSeenStore &&
+					iconDescription={!$notificationSeenStore &&
 					$notificationsStore &&
 					$overlayUpdatesStore &&
 					newVersionAvailable !== ''
@@ -134,21 +142,37 @@
 						: 'You have no unread notifications'}
 					href="/notifications"
 				>
-					{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
-						<NotificationNew size={48} color="var(--ctp-peach)" />
-					{:else}
-						<Notification size={48} color="var(--ctp-text)" />
-					{/if}
-				</Link>
+					<span slot="icon">
+						{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
+							<NotificationNew size={20} color="var(--ctp-peach)" />
+						{:else}
+							<Notification size={20} color="var(--ctp-text)" />
+						{/if}</span
+					>
+				</Button>
 			</div>
 			<!-- TODO: profile disclosure-->
-			<div class="container-link">
-				<Link title="Site Preferences" href="/site-preferences">
-					<Settings size={48} color="var(--ctp-text)" />
-				</Link>
+			<div class="container-header-action">
+				<Button
+					kind="ghost"
+					href="/site-preferences"
+					tooltipPosition="left"
+					iconDescription="Site Preferences"
+				>
+					<span slot="icon"><Settings size={20} color="var(--ctp-text)" /></span
+					>
+				</Button>
 			</div>
-			<div>
-				<Button href="/user-demo" size="field">Log In</Button>
+			<div class="container-header-action">
+				<Button
+					kind="ghost"
+					href="/user-demo"
+					tooltipPosition="left"
+					iconDescription="Account"
+					><span slot="icon">
+						<UserAvatar size={20} color="var(--ctp-text" /></span
+					>
+				</Button>
 			</div>
 		{/if}
 	</nav>
@@ -157,46 +181,52 @@
 <style lang="scss">
 	@use '@carbon/type' as type;
 
+	header {
+		display: flex;
+		justify-content: space-between;
+		height: 3rem;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		background-color: var(--ctp-crust);
+	}
+
+	.banner {
+		height: 100%;
+		padding-left: var(--cds-spacing-05);
+		padding-right: var(--cds-spacing-07);
+	}
+
+	.banner-border {
+		border-right: 1px solid var(--ctp-surface1);
+		height: 50%;
+		display: flex;
+		transform: translateY(50%);
+	}
+
 	.container-link {
-		margin-right: 1rem;
+		padding-left: var(--cds-spacing-05);
+		padding-right: var(--cds-spacing-05);
+	}
+
+	.container-header-action {
+		height: 48px;
+		width: 100%;
+
+		span {
+			height: 20px;
+			width: 20px;
+		}
 	}
 
 	.left {
-		margin-left: var(--cds-spacing-02);
 		display: flex;
-		gap: 1rem;
-		align-items: center;
-		height: 100%;
-	}
-
-	.middle {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
 		height: 100%;
 	}
 
 	.right {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 0;
 		height: 100%;
-	}
-
-	header {
-		display: flex;
-		justify-content: space-between;
-		min-height: 10vh;
-		background-color: var(--ctp-crust);
-		align-items: center;
-		padding: var(--cds-spacing-02);
-		max-height: var(--cds-spacing-11);
-	}
-
-	.banner {
-		height: 100%;
-		transform: scale(60%) translateX(-30%);
 	}
 
 	ul {
@@ -206,14 +236,6 @@
 		align-items: center;
 		justify-content: space-between;
 		list-style: none;
-	}
-
-	.search-button {
-		padding-right: 1rem;
-		margin: 0;
-	}
-
-	.theme-changer {
-		margin-right: 0.5rem;
+		height: 100%;
 	}
 </style>
