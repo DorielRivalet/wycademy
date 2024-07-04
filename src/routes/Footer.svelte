@@ -66,44 +66,47 @@
 		</div>
 
 		<div class="footer-sections">
-			<section class="section-container">
-				<h5>Frontier</h5>
-				<Link href="/leaderboard">Leaderboards</Link>
-				<Link href="/hunter-notes">Guides and Tutorials</Link>
-				<Link href="/tools">Tools and Utilities</Link>
-			</section>
+			<div class="footer-sections-group">
+				<section class="section-container">
+					<h5>Frontier</h5>
+					<Link href="/leaderboard">Leaderboards</Link>
+					<Link href="/hunter-notes">Guides and Tutorials</Link>
+					<Link href="/tools">Tools and Utilities</Link>
+				</section>
 
-			<section class="section-container">
-				<h5>Guides and Tutorials</h5>
-				<Link href="/hunter-notes/getting-started">Getting Started</Link>
-				<Link href="/hunter-notes/weapons">Weapons</Link>
-				<Link href="/hunter-notes/armor">Armor</Link>
-				<Link href="/hunter-notes/monsters">Monsters</Link>
-				<Link href="/hunter-notes/locations">Locations</Link>
-				<Link href="/hunter-notes/items">Items</Link>
-				<Link href="/hunter-notes/events">Events</Link>
-				<Link href="/hunter-notes/advanced">Advanced</Link>
-			</section>
+				<section class="section-container">
+					<h5>Support</h5>
+					<Link href="/">About Us</Link>
+					<Link href="/">Donate</Link>
+					<Link href="/">Contribute</Link>
+					<Link href="/">Terms of Service</Link>
+					<Link href="/">Privacy Policy</Link>
+					<Link href="/about-development-stages">Development</Link>
+					<Link href="/">FAQ</Link>
+					<Link href="/">Contact</Link>
+				</section>
+			</div>
 
-			<section class="section-container">
-				<h5>Tools and Utilities</h5>
-				<Link href="/tools/calculator">Calculators</Link>
-				<Link href="/tools/simulator">Simulators</Link>
-				<Link href="/tools/generator">Generators</Link>
-				<Link href="/tools/external">External</Link>
-			</section>
-
-			<section class="section-container">
-				<h5>Support</h5>
-				<Link href="/">About Us</Link>
-				<Link href="/">Donate</Link>
-				<Link href="/">Contribute</Link>
-				<Link href="/">Terms of Service</Link>
-				<Link href="/">Privacy Policy</Link>
-				<Link href="/about-development-stages">Development</Link>
-				<Link href="/">FAQ</Link>
-				<Link href="/">Contact</Link>
-			</section>
+			<div class="footer-sections-group">
+				<section class="section-container">
+					<h5>Guides and Tutorials</h5>
+					<Link href="/hunter-notes/getting-started">Getting Started</Link>
+					<Link href="/hunter-notes/weapons">Weapons</Link>
+					<Link href="/hunter-notes/armor">Armor</Link>
+					<Link href="/hunter-notes/monsters">Monsters</Link>
+					<Link href="/hunter-notes/locations">Locations</Link>
+					<Link href="/hunter-notes/items">Items</Link>
+					<Link href="/hunter-notes/events">Events</Link>
+					<Link href="/hunter-notes/advanced">Advanced</Link>
+				</section>
+				<section class="section-container">
+					<h5>Tools and Utilities</h5>
+					<Link href="/tools/calculator">Calculators</Link>
+					<Link href="/tools/simulator">Simulators</Link>
+					<Link href="/tools/generator">Generators</Link>
+					<Link href="/tools/external">External</Link>
+				</section>
+			</div>
 		</div>
 	</div>
 
@@ -149,6 +152,13 @@
 		align-items: center;
 	}
 
+	.footer-sections-group {
+		flex-wrap: wrap;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
 	.banner-text {
 		display: flex;
 		flex-wrap: wrap;
@@ -189,7 +199,6 @@
 	.github-info-container {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		gap: 0.5rem;
 	}
 
@@ -197,8 +206,8 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding-left: var(--cds-spacing-04);
-		padding-right: var(--cds-spacing-04);
+		padding-left: var(--cds-spacing-08);
+		padding-right: var(--cds-spacing-08);
 		gap: 0.25rem;
 	}
 
@@ -208,7 +217,8 @@
 		gap: 1rem;
 		display: flex;
 		flex-direction: column;
-		padding: var(--cds-spacing-04);
+		padding-left: var(--cds-spacing-04);
+		padding-right: var(--cds-spacing-04);
 		padding-top: 2rem;
 		padding-bottom: 2rem;
 		background-color: var(--ctp-surface0);
@@ -216,8 +226,8 @@
 	}
 
 	.banner {
-		padding-left: var(--cds-spacing-04);
-		padding-right: var(--cds-spacing-04);
+		padding-left: var(--cds-spacing-08);
+		padding-right: var(--cds-spacing-08);
 		display: flex;
 		flex-direction: column;
 		align-items: start;
