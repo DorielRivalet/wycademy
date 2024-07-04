@@ -172,7 +172,7 @@
 
 	.mega-menu {
 		position: absolute;
-		top: 100%; /* Position it right below the header */
+		top: 3rem; /* Position it right below the header */
 		left: 0;
 		background-color: var(--ctp-surface0); /* Or any color you prefer */
 		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Optional: adds shadow for depth */
