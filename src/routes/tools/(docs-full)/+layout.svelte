@@ -185,7 +185,7 @@
 			text: 'External',
 			children: [
 				{
-					id: '/tools/external/mhfz-overlay',
+					id: '/tools/external/overlay',
 					text: 'mhfz-overlay',
 				},
 				{
@@ -253,7 +253,7 @@
 			icon: Logo,
 		},
 		{
-			id: '/tools/external/mhfz-overlay',
+			id: '/tools/external/overlay',
 			icon: Logo,
 		},
 		{

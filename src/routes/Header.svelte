@@ -54,6 +54,16 @@
 	}
 
 	onMount(checkForNewRelease);
+
+	// Shared state to track which menu is open
+	let openMenu: null | MenuId = null;
+
+	type MenuId = 'guides' | 'tools';
+
+	const handleToggle = ({ detail }) => {
+		// Update openMenu based on received id
+		openMenu = detail.id !== null ? detail.id : null;
+	};
 </script>
 
 <LocalStorage
@@ -82,8 +92,17 @@
 					<HeaderNavigationMenuButton
 						path="/hunter-notes"
 						description="Guides"
+						id="guides"
+						{openMenu}
+						on:toggle={handleToggle}
 					/>
-					<HeaderNavigationButton path="/tools" description="Tools" />
+					<HeaderNavigationMenuButton
+						path="/tools"
+						description="Tools"
+						id="tools"
+						{openMenu}
+						on:toggle={handleToggle}
+					/>
 					<HeaderNavigationButton path="/support" description="Support" />
 					<HeaderNavigationButton path="/events" description="Events" />
 				{/if}

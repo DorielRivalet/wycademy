@@ -8,12 +8,30 @@
 	import { getRoutesSection } from '$lib/client/modules/routes';
 	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import { cubicInOut } from 'svelte/easing';
+	import { createEventDispatcher } from 'svelte';
 
 	export let description;
 	export let path;
+	export let id; // Unique identifier for each menu button
+	export let openMenu; // Receive the global openMenu state as a prop
 
-	let open = false;
+	const dispatch = createEventDispatcher();
+
 	let selectedCategory = 0;
+
+	// Determine if this menu should be open based on global state
+	$: isOpen = openMenu === id;
+
+	// Updated toggleOpen function
+	const toggleOpen = () => {
+		if (isOpen) {
+			// If the menu is already open, close it
+			dispatch('toggle', { id: null }); // Dispatch event to close the menu
+		} else {
+			// Otherwise, proceed to open it
+			dispatch('toggle', { id }); // Dispatch event to open the menu
+		}
+	};
 
 	const section = getRoutesSection(path);
 </script>
@@ -21,10 +39,10 @@
 <li class="container">
 	<Button as let:props kind="ghost" iconDescription={description}>
 		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-		<p {...props} on:click={() => (open = !open)}>
+		<p {...props} on:click={() => toggleOpen()}>
 			<button class="button">
 				<span>{description}</span>
-				{#if open}
+				{#if isOpen}
 					<ChevronUp />
 				{:else}
 					<ChevronDown />
@@ -32,7 +50,7 @@
 			</button>
 		</p>
 	</Button>
-	{#if open}
+	{#if isOpen}
 		<div
 			out:slide={{ duration: 250, easing: cubicInOut }}
 			class="mega-menu"
@@ -52,7 +70,7 @@
 						{/each}
 					</div>
 					<div class="view-all">
-						<ClickableTile on:click={() => (open = false)} href={path}>
+						<ClickableTile on:click={() => (isOpen = false)} href={path}>
 							<div class="clickable-tile-content">
 								<p>View all categories</p>
 								<ArrowRight />
@@ -62,7 +80,7 @@
 					<div class="selected-category-content">
 						<div class="selected-category-header">
 							<a
-								on:click={() => (open = false)}
+								on:click={() => (isOpen = false)}
 								class="selected-category-link"
 								href={section[selectedCategory].category.link}
 							>
@@ -90,7 +108,7 @@
 						<div class="grid-container">
 							{#each section[selectedCategory].pages as page}
 								<button
-									on:click={() => (open = false)}
+									on:click={() => (isOpen = false)}
 									class="page-tile-container"
 								>
 									<ClickableTileImage
@@ -107,7 +125,7 @@
 			{/if}
 		</div>
 
-		<button on:click={() => (open = !open)} class="dark-background"></button>
+		<button on:click={() => (isOpen = false)} class="dark-background"></button>
 	{/if}
 </li>
 
