@@ -39,13 +39,18 @@
 						width="32"
 						alt="Author"
 					/>
-					<Link href={constant.authorUrl}>{constant.authorName}.</Link>
+					<OutboundLink href={constant.authorUrl}
+						>{constant.authorName}.</OutboundLink
+					>
 				</span>
 			</div>
 			<div class="icon-info-container">
-				<Link aria-label="GitHub repository" href={constant.projectGitHub}>
+				<OutboundLink
+					aria-label="GitHub repository"
+					href={constant.projectGitHub}
+				>
 					<LogoGitHub size={32} color="var(--ctp-text)" />
-				</Link>
+				</OutboundLink>
 				<div class="subtle">v{constant.appVersion}</div>
 			</div>
 			<div class="subtle github-info-container">
@@ -78,11 +83,11 @@
 					<h5>Support</h5>
 					<Link href="/">About Us</Link>
 					<Link href="/">Donate</Link>
+					<Link href="/">FAQ</Link>
 					<Link href="/">Contribute</Link>
+					<Link href="/about-development-stages">Development</Link>
 					<Link href="/">Terms of Service</Link>
 					<Link href="/">Privacy Policy</Link>
-					<Link href="/about-development-stages">Development</Link>
-					<Link href="/">FAQ</Link>
 					<Link href="/">Contact</Link>
 				</section>
 			</div>
@@ -113,8 +118,8 @@
 	<div class="footer-bottom">
 		<div class="icon-info-container">
 			<img class="rounded-image" src={authorImage} width="32" alt="Author" />
-			<Link href={constant.authorUrl}
-				>{constant.authorName} &copy {new Date().getUTCFullYear()}</Link
+			<OutboundLink href={constant.authorUrl}
+				>{constant.authorName} &copy {new Date().getUTCFullYear()}</OutboundLink
 			>
 		</div>
 		<div class="icon-info-container">

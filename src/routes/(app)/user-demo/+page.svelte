@@ -5,7 +5,7 @@
 -->
 
 <script lang="ts">
-	import pageThumbnail from '$lib/client/images/transcend.png';
+	import pageThumbnail from '$lib/client/images/icon/transcend.png';
 	import {
 		authorName,
 		authorUrl,
