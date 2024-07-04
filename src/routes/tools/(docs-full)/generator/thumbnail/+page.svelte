@@ -1090,7 +1090,7 @@
 	</div>
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Thumbnail Generator'} />
 		<InlineNotification

@@ -5,7 +5,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Heavy Bowgun Heat Beam'} />
 		<p>

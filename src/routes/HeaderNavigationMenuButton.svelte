@@ -242,6 +242,6 @@
 		display: grid;
 		gap: 1rem;
 		justify-content: flex-start;
-		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 24rem));
 	}
 </style>

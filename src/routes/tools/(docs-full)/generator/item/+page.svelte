@@ -243,7 +243,7 @@
 	let currentItemPage = 1;
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Item Generator'} />
 		<div class="container-item-buttons">

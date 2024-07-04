@@ -291,7 +291,7 @@
 	};
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Armor Generator'} />
 		<div class="container-armor-buttons">

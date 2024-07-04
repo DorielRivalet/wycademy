@@ -460,7 +460,7 @@
 </Modal>
 
 <div class={modalBlurClass}>
-	<HunterNotesPage displayTOC={true}>
+	<HunterNotesPage displayTOC={false}>
 		<div>
 			<SectionHeadingTopLevel title={'Ice Age'} />
 			<div class="ice-age-section">

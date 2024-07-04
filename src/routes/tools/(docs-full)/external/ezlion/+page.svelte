@@ -7,7 +7,7 @@
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'EZlion'} />
 		<p class="spaced-paragraph">
