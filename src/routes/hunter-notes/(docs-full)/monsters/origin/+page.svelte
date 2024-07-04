@@ -371,7 +371,6 @@
 		margin-top: 2rem;
 		display: flex;
 		flex-wrap: wrap;
-		overflow-x: auto;
 		max-width: 800px;
 	}
 

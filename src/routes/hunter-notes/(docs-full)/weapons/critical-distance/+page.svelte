@@ -731,88 +731,114 @@
 							</DataTable>
 						</div>
 						<div class="chart">
-							{#if criticalDistanceBowChartLoaded}
-								<svelte:component
-									this={criticalDistanceBowChart}
-									data={[
-										{ group: 'Rapid', multiplier: 1, distance: 'Close' },
-										{ group: 'Rapid', multiplier: 1.5, distance: 'Mid 1' },
-										{ group: 'Rapid', multiplier: 1.5, distance: 'Mid 2' },
-										{ group: 'Rapid', multiplier: 1, distance: 'Far 1' },
-										{ group: 'Rapid', multiplier: 0.8, distance: 'Far 2' },
-										{ group: 'Rapid', multiplier: 0.8, distance: 'Far 3' },
-										{ group: 'Rapid', multiplier: 0.5, distance: 'Far 4' },
-										{ group: 'Rapid', multiplier: 0, distance: 'Far 5' },
-										{ group: 'Pierce', multiplier: 1, distance: 'Close' },
-										{ group: 'Pierce', multiplier: 1.5, distance: 'Mid 1' },
-										{ group: 'Pierce', multiplier: 1.5, distance: 'Mid 2' },
-										{ group: 'Pierce', multiplier: 1.5, distance: 'Far 1' },
-										{ group: 'Pierce', multiplier: 1, distance: 'Far 2' },
-										{ group: 'Pierce', multiplier: 0.8, distance: 'Far 3' },
-										{ group: 'Pierce', multiplier: 0.5, distance: 'Far 4' },
-										{ group: 'Pierce', multiplier: 0, distance: 'Far 5' },
-										{ group: 'Spread', multiplier: 1, distance: 'Close' },
-										{ group: 'Spread', multiplier: 1.5, distance: 'Mid 1' },
-										{ group: 'Spread', multiplier: 1, distance: 'Mid 2' },
-										{ group: 'Spread', multiplier: 0.8, distance: 'Far 1' },
-										{ group: 'Spread', multiplier: 0.8, distance: 'Far 2' },
-										{ group: 'Spread', multiplier: 0.5, distance: 'Far 3' },
-										{ group: 'Spread', multiplier: 0, distance: 'Far 4' },
-										{ group: 'Spread', multiplier: 0, distance: 'Far 5' },
-										{ group: 'Spread', multiplier: 1, distance: 'Close' },
-										{ group: 'Aura Shot', multiplier: 1.5, distance: 'Mid 1' },
-										{ group: 'Aura Shot', multiplier: 1.5, distance: 'Mid 2' },
-										{ group: 'Aura Shot', multiplier: 1.5, distance: 'Far 1' },
-										{ group: 'Aura Shot', multiplier: 1.5, distance: 'Far 2' },
-										{ group: 'Aura Shot', multiplier: 1.5, distance: 'Far 3' },
-										{ group: 'Aura Shot', multiplier: 1, distance: 'Far 4' },
-										{ group: 'Aura Shot', multiplier: 0.8, distance: 'Far 5' },
-										{
-											group: 'Piercing Aura',
-											multiplier: 1.5,
-											distance: 'Close',
-										},
-										{
-											group: 'Piercing Aura',
-											multiplier: 1.5,
-											distance: 'Mid 1',
-										},
-										{
-											group: 'Piercing Aura',
-											multiplier: 1.5,
-											distance: 'Mid 2',
-										},
-										{
-											group: 'Piercing Aura',
-											multiplier: 1.5,
-											distance: 'Far 1',
-										},
-										{
-											group: 'Piercing Aura',
-											multiplier: 1.5,
-											distance: 'Far 2',
-										},
-										{
-											group: 'Piercing Aura',
-											multiplier: 1.5,
-											distance: 'Far 3',
-										},
-										{
-											group: 'Piercing Aura',
-											multiplier: 0.8,
-											distance: 'Far 4',
-										},
-										{
-											group: 'Piercing Aura',
-											multiplier: 0.5,
-											distance: 'Far 5',
-										},
-									]}
-									options={criticalDistanceBowChartOptions}
-								/>
-							{:else}
-								<Loading withOverlay={false} />
-							{/if}
+							<div>
+								{#if criticalDistanceBowChartLoaded}
+									<svelte:component
+										this={criticalDistanceBowChart}
+										data={[
+											{ group: 'Rapid', multiplier: 1, distance: 'Close' },
+											{ group: 'Rapid', multiplier: 1.5, distance: 'Mid 1' },
+											{ group: 'Rapid', multiplier: 1.5, distance: 'Mid 2' },
+											{ group: 'Rapid', multiplier: 1, distance: 'Far 1' },
+											{ group: 'Rapid', multiplier: 0.8, distance: 'Far 2' },
+											{ group: 'Rapid', multiplier: 0.8, distance: 'Far 3' },
+											{ group: 'Rapid', multiplier: 0.5, distance: 'Far 4' },
+											{ group: 'Rapid', multiplier: 0, distance: 'Far 5' },
+											{ group: 'Pierce', multiplier: 1, distance: 'Close' },
+											{ group: 'Pierce', multiplier: 1.5, distance: 'Mid 1' },
+											{ group: 'Pierce', multiplier: 1.5, distance: 'Mid 2' },
+											{ group: 'Pierce', multiplier: 1.5, distance: 'Far 1' },
+											{ group: 'Pierce', multiplier: 1, distance: 'Far 2' },
+											{ group: 'Pierce', multiplier: 0.8, distance: 'Far 3' },
+											{ group: 'Pierce', multiplier: 0.5, distance: 'Far 4' },
+											{ group: 'Pierce', multiplier: 0, distance: 'Far 5' },
+											{ group: 'Spread', multiplier: 1, distance: 'Close' },
+											{ group: 'Spread', multiplier: 1.5, distance: 'Mid 1' },
+											{ group: 'Spread', multiplier: 1, distance: 'Mid 2' },
+											{ group: 'Spread', multiplier: 0.8, distance: 'Far 1' },
+											{ group: 'Spread', multiplier: 0.8, distance: 'Far 2' },
+											{ group: 'Spread', multiplier: 0.5, distance: 'Far 3' },
+											{ group: 'Spread', multiplier: 0, distance: 'Far 4' },
+											{ group: 'Spread', multiplier: 0, distance: 'Far 5' },
+											{ group: 'Spread', multiplier: 1, distance: 'Close' },
+											{
+												group: 'Aura Shot',
+												multiplier: 1.5,
+												distance: 'Mid 1',
+											},
+											{
+												group: 'Aura Shot',
+												multiplier: 1.5,
+												distance: 'Mid 2',
+											},
+											{
+												group: 'Aura Shot',
+												multiplier: 1.5,
+												distance: 'Far 1',
+											},
+											{
+												group: 'Aura Shot',
+												multiplier: 1.5,
+												distance: 'Far 2',
+											},
+											{
+												group: 'Aura Shot',
+												multiplier: 1.5,
+												distance: 'Far 3',
+											},
+											{ group: 'Aura Shot', multiplier: 1, distance: 'Far 4' },
+											{
+												group: 'Aura Shot',
+												multiplier: 0.8,
+												distance: 'Far 5',
+											},
+											{
+												group: 'Piercing Aura',
+												multiplier: 1.5,
+												distance: 'Close',
+											},
+											{
+												group: 'Piercing Aura',
+												multiplier: 1.5,
+												distance: 'Mid 1',
+											},
+											{
+												group: 'Piercing Aura',
+												multiplier: 1.5,
+												distance: 'Mid 2',
+											},
+											{
+												group: 'Piercing Aura',
+												multiplier: 1.5,
+												distance: 'Far 1',
+											},
+											{
+												group: 'Piercing Aura',
+												multiplier: 1.5,
+												distance: 'Far 2',
+											},
+											{
+												group: 'Piercing Aura',
+												multiplier: 1.5,
+												distance: 'Far 3',
+											},
+											{
+												group: 'Piercing Aura',
+												multiplier: 0.8,
+												distance: 'Far 4',
+											},
+											{
+												group: 'Piercing Aura',
+												multiplier: 0.5,
+												distance: 'Far 5',
+											},
+										]}
+										options={criticalDistanceBowChartOptions}
+									/>
+								{:else}
+									<Loading withOverlay={false} />
+								{/if}
+							</div>
 						</div>
 					</div>
 
@@ -840,7 +866,7 @@
 	}
 
 	.chart {
-		width: 50%;
+		min-width: 50%;
 		aspect-ratio: 2/1;
 		margin: auto;
 		margin-top: 2rem;
