@@ -18,7 +18,7 @@
 	import TrashCan from 'carbon-icons-svelte/lib/TrashCan.svelte';
 	import { browser } from '$app/environment';
 	import { getItemIcon } from '$lib/client/modules/frontier/functions';
-	import Logo from '$lib/client/images/Logo.webp';
+	import Logo from '$lib/client/images/logo.webp';
 
 	let search: 'idle' | 'load' | 'ready' = 'idle';
 	let searchTerm = '';
