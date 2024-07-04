@@ -17,6 +17,7 @@
 	import { goto } from '$app/navigation';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import { stickyHeaderStore } from '$lib/client/stores/toggles';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	$: bgClass =
@@ -44,11 +45,13 @@
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
 	});
+
+	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 </script>
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <div class="app">
-	<div class="header">
+	<div class={headerClass}>
 		<Header />
 	</div>
 	<div class="banner">
@@ -153,6 +156,14 @@
 
 	.header {
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
+		position: static;
+	}
+
+	.sticky {
+		position: -webkit-sticky; /* For Safari */
+		position: sticky;
+		top: 0;
+		z-index: 1000; /* Ensure it stays above other content */
 	}
 
 	.background {

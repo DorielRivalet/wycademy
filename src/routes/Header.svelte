@@ -126,32 +126,32 @@
 				<ThemeChanger />
 			</div>
 		{/if}
-		{#if $breakpointLargerThanSmall}
-			<div class="container-header-action">
-				<Button
-					tooltipPosition="left"
-					kind="ghost"
-					on:click={() => {
-						notificationSeenStore.set(true);
-					}}
-					iconDescription={!$notificationSeenStore &&
-					$notificationsStore &&
-					$overlayUpdatesStore &&
-					newVersionAvailable !== ''
-						? `New overlay version available')}`
-						: 'You have no unread notifications'}
-					href="/notifications"
+		<div class="container-header-action">
+			<Button
+				tooltipPosition="left"
+				kind="ghost"
+				on:click={() => {
+					notificationSeenStore.set(true);
+				}}
+				iconDescription={!$notificationSeenStore &&
+				$notificationsStore &&
+				$overlayUpdatesStore &&
+				newVersionAvailable !== ''
+					? `New overlay version available')}`
+					: 'You have no unread notifications'}
+				href="/notifications"
+			>
+				<span slot="icon">
+					{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
+						<NotificationNew size={20} color="var(--ctp-peach)" />
+					{:else}
+						<Notification size={20} color="var(--ctp-text)" />
+					{/if}</span
 				>
-					<span slot="icon">
-						{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
-							<NotificationNew size={20} color="var(--ctp-peach)" />
-						{:else}
-							<Notification size={20} color="var(--ctp-text)" />
-						{/if}</span
-					>
-				</Button>
-			</div>
-			<!-- TODO: profile disclosure-->
+			</Button>
+		</div>
+		<!-- TODO: profile disclosure-->
+		{#if $breakpointLargerThanSmall}
 			<div class="container-header-action">
 				<Button
 					kind="ghost"
@@ -163,18 +163,18 @@
 					>
 				</Button>
 			</div>
-			<div class="container-header-action">
-				<Button
-					kind="ghost"
-					href="/user-demo"
-					tooltipPosition="left"
-					iconDescription="Account"
-					><span slot="icon">
-						<UserAvatar size={20} color="var(--ctp-text" /></span
-					>
-				</Button>
-			</div>
 		{/if}
+		<div class="container-header-action">
+			<Button
+				kind="ghost"
+				href="/user-demo"
+				tooltipPosition="left"
+				iconDescription="Account"
+				><span slot="icon">
+					<UserAvatar size={20} color="var(--ctp-text" /></span
+				>
+			</Button>
+		</div>
 	</nav>
 </header>
 
