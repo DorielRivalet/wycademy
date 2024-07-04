@@ -307,13 +307,15 @@
 						{/each}
 					</Accordion>
 				{:else if recentSearchesJSON.length > 0}
-					<Button
-						class="spaced-button"
-						iconDescription="Delete"
-						kind="tertiary"
-						icon={TrashCan}
-						on:click={deleteAllSearchTerms}>Delete all recent searches</Button
-					>
+					<div class="delete-all-button">
+						<Button
+							class="spaced-button"
+							iconDescription="Delete"
+							kind="danger-tertiary"
+							icon={TrashCan}
+							on:click={deleteAllSearchTerms}>Delete all recent searches</Button
+						>
+					</div>
 					{#each [...recentSearchesJSON].reverse() as recentSearch}
 						<div class="recent-search-container">
 							<div class="recent-search-info">
@@ -342,6 +344,10 @@
 </dialog>
 
 <style lang="scss">
+	.delete-all-button {
+		text-align: end;
+	}
+
 	.recent-search-container {
 		display: flex;
 		flex-direction: row;
