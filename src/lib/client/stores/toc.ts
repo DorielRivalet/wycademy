@@ -28,6 +28,7 @@ if (browser) {
 }
 
 export const tocEnabledStore = writable(tocEnabled);
+/** also for tools pages */
 export const hunterNotesSidebarEnabledStore = writable(
 	hunterNotesSidebarEnabled,
 );

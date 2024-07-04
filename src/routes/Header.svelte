@@ -64,19 +64,7 @@
 <header>
 	<div class="left">
 		{#if !$breakpointLargerThanMedium}
-			<HeaderHamburgerMenu
-				items={[
-					{ href: '/leaderboard', text: 'Leaderboards' },
-					{ href: '/hunter-notes', text: "Hunter's Notes" },
-					{ href: '/arena', text: 'Arena' },
-					{ href: '/smithy', text: 'Smithy' },
-					{ href: '/support', text: 'Support' },
-					{ href: '/notifications', text: 'Notifications' },
-					{ href: '/user-demo', text: 'Profile' },
-					{ href: '/site-preferences', text: 'Site Preferences' },
-					{ href: '/events', text: 'Events' },
-				]}
-			/>
+			<HeaderHamburgerMenu />
 		{/if}
 		<div class="banner">
 			<Banner />
@@ -95,8 +83,7 @@
 						path="/hunter-notes"
 						description="Guides"
 					/>
-					<HeaderNavigationButton path="/arena" description="Arena" />
-					<HeaderNavigationButton path="/smithy" description="Tools" />
+					<HeaderNavigationButton path="/tools" description="Tools" />
 					<HeaderNavigationButton path="/support" description="Support" />
 					<HeaderNavigationButton path="/events" description="Events" />
 				{/if}

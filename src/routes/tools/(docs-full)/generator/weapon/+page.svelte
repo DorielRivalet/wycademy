@@ -1,0 +1,1850 @@
+<script lang="ts">
+	import PageTurn from '$lib/client/components/PageTurn.svelte';
+	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
+	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import { page } from '$app/stores';
+	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
+	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
+	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
+	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
+	import {
+		defaultWeaponComponentValues,
+		HuntingHornWeaponNotesCombinations,
+		SharpnessNames,
+	} from '$lib/client/modules/frontier/objects';
+	import type {
+		FrontierGunlanceShell,
+		FrontierGunlanceShellLevel,
+		FrontierHuntingHornWeaponNote,
+		FrontierSwitchAxeFPhial,
+	} from '$lib/client/modules/frontier/types';
+	import { frontierMappers } from '$lib/client/modules/frontier/functions';
+	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
+	import ezlion from 'ezlion';
+	import Checkbox from 'carbon-components-svelte/src/Checkbox/Checkbox.svelte';
+	import { browser } from '$app/environment';
+	import slugify from 'slugify';
+	import { domToPng } from 'modern-screenshot';
+
+	function downloadWeaponImage() {
+		if (!browser) return;
+		let node = document.getElementById('weapon-dom');
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(
+				`${frontierMappers.getWeaponNameById(
+					weaponTypeId,
+				)}-${weaponName}-${new Date().toISOString()}.png`,
+			)}`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
+
+	function resetWeaponValues() {
+		// TODO idk why this doesnt work with default
+		weaponSharpness = [170, 170, 170, 170, 170, 200, 250, 350];
+
+		weaponName = defaultWeaponComponentValues.weaponName;
+		weaponLevel = defaultWeaponComponentValues.weaponLevel;
+		weaponRarity = defaultWeaponComponentValues.weaponRarity;
+		weaponTypeId = defaultWeaponComponentValues.weaponTypeId;
+		weaponRank = defaultWeaponComponentValues.weaponRank;
+		weaponLength = defaultWeaponComponentValues.weaponLength;
+		weaponElementBoost = defaultWeaponComponentValues.weaponElementBoost;
+		weaponStatusBoost = defaultWeaponComponentValues.weaponStatusBoost;
+		weaponAttackBoost = defaultWeaponComponentValues.weaponAttackBoost;
+		weaponAttack = defaultWeaponComponentValues.weaponAttack;
+		weaponElementValue = defaultWeaponComponentValues.weaponElementValue;
+		weaponStatusValue = defaultWeaponComponentValues.weaponStatusValue;
+		weaponElementType = defaultWeaponComponentValues.weaponElementType;
+		weaponStatusType = defaultWeaponComponentValues.weaponStatusType;
+		weaponZenithSkill = defaultWeaponComponentValues.weaponZenithSkill;
+		weaponSharpnessBoost = defaultWeaponComponentValues.weaponSharpnessBoost;
+		weaponDescription = defaultWeaponComponentValues.weaponDescription;
+		weaponExtraIcons = defaultWeaponComponentValues.weaponExtraIcons;
+		weaponType = defaultWeaponComponentValues.weaponType;
+		weaponAffinity = defaultWeaponComponentValues.weaponAffinity;
+		weaponSigil1Id = defaultWeaponComponentValues.weaponSigil1Id;
+		weaponSigil2Id = defaultWeaponComponentValues.weaponSigil2Id;
+		weaponSigil3Id = defaultWeaponComponentValues.weaponSigil3Id;
+		weaponSigil4Id = defaultWeaponComponentValues.weaponSigil4Id;
+		weaponSigil5Id = defaultWeaponComponentValues.weaponSigil5Id;
+		weaponSigil6Id = defaultWeaponComponentValues.weaponSigil6Id;
+		weaponSigil7Id = defaultWeaponComponentValues.weaponSigil7Id;
+		weaponSigil8Id = defaultWeaponComponentValues.weaponSigil8Id;
+		weaponSigil9Id = defaultWeaponComponentValues.weaponSigil9Id;
+		weaponSigil1Value = defaultWeaponComponentValues.weaponSigil1Value;
+		weaponSigil2Value = defaultWeaponComponentValues.weaponSigil2Value;
+		weaponSigil3Value = defaultWeaponComponentValues.weaponSigil3Value;
+		weaponSigil4Value = defaultWeaponComponentValues.weaponSigil4Value;
+		weaponSigil5Value = defaultWeaponComponentValues.weaponSigil5Value;
+		weaponSigil6Value = defaultWeaponComponentValues.weaponSigil6Value;
+		weaponSigil7Value = defaultWeaponComponentValues.weaponSigil7Value;
+		weaponSigil8Value = defaultWeaponComponentValues.weaponSigil8Value;
+		weaponSigil9Value = defaultWeaponComponentValues.weaponSigil9Value;
+		weaponAutomaticSkill = defaultWeaponComponentValues.weaponAutomaticSkill;
+		huntingHornNote1 = defaultWeaponComponentValues.huntingHornNote1;
+		huntingHornNote2 = defaultWeaponComponentValues.huntingHornNote2;
+		huntingHornNote3 = defaultWeaponComponentValues.huntingHornNote3;
+		huntingHornNotes = `${huntingHornNote1} ${huntingHornNote2} ${huntingHornNote3}`;
+		safPhial = defaultWeaponComponentValues.safPhial;
+		gunlanceShellType = defaultWeaponComponentValues.gunlanceShellType;
+		gunlanceShellLevel = defaultWeaponComponentValues.gunlanceShellLevel;
+		bowArc = defaultWeaponComponentValues.bowArc;
+		bowChargeType1 = defaultWeaponComponentValues.bowChargeType1;
+		bowChargeLevel1 = defaultWeaponComponentValues.bowChargeLevel1;
+		bowChargeType2 = defaultWeaponComponentValues.bowChargeType2;
+		bowChargeLevel2 = defaultWeaponComponentValues.bowChargeLevel2;
+		bowChargeType3 = defaultWeaponComponentValues.bowChargeType3;
+		bowChargeLevel3 = defaultWeaponComponentValues.bowChargeLevel3;
+		bowPoisonCoatingAvailable =
+			defaultWeaponComponentValues.bowPoisonCoatingAvailable;
+		bowParalysisCoatingAvailable =
+			defaultWeaponComponentValues.bowParalysisCoatingAvailable;
+		bowSleepCoatingAvailable =
+			defaultWeaponComponentValues.bowSleepCoatingAvailable;
+		bowImpactCoatingAvailable =
+			defaultWeaponComponentValues.bowImpactCoatingAvailable;
+		bowPowerCoatingAvailable =
+			defaultWeaponComponentValues.bowPowerCoatingAvailable;
+		bowgunReload = defaultWeaponComponentValues.bowgunReload;
+		bowgunRecoil = defaultWeaponComponentValues.bowgunRecoil;
+		bowgunScope = defaultWeaponComponentValues.bowgunScope;
+		lightBowgunUpgrade = defaultWeaponComponentValues.lightBowgunUpgrade;
+		heavyBowgunUpgrade = defaultWeaponComponentValues.heavyBowgunUpgrade;
+		bowgunAttackLevel = defaultWeaponComponentValues.bowgunAttackLevel;
+		bowgunNormalAmmo = [9, 9, 12];
+		bowgunPierceAmmo = [6, 6, 6];
+		bowgunPelletAmmo = [6, 6, 6];
+		bowgunCragAmmo = [2, 2, 2];
+		bowgunClusterAmmo = [0, 0, 0];
+		bowgunRecoveryAmmo = [0, 0, 0];
+		bowgunPoisonAmmo = [0, 0, 0];
+		bowgunParalysisAmmo = [0, 0, 0];
+		bowgunSleepAmmo = [0, 0, 0];
+		bowgunFlamingAmmo = [6, 0, 0];
+		bowgunWaterAmmo = [0, 0, 0];
+		bowgunThunderAmmo = [0, 0, 0];
+		bowgunFreezeAmmo = [0, 0, 0];
+		bowgunDragonAmmo = [0, 0, 0];
+		bowgunTranqAmmo = [2, 0, 0];
+		bowgunPaintAmmo = [2, 0, 0];
+		bowgunDemonAmmo = [1, 0, 0];
+		bowgunArmorAmmo = [1, 0, 0];
+	}
+
+	type dropdownItem = { id: string; text: string };
+
+	function getZenithSkills() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		Object.values(ezlion.SkillZenith).forEach((element) => {
+			if (element !== '' && element !== 'None') {
+				array = [...array, { id: element, text: element }];
+			}
+		});
+		return array;
+	}
+
+	function getHHNotes() {
+		let array: dropdownItem[] = [];
+		HuntingHornWeaponNotesCombinations.forEach((element) => {
+			let result = `${element[0]} ${element[1]} ${element[2]}`;
+			array = [...array, { id: result, text: result }];
+		});
+		return array;
+	}
+
+	function getArmorSkills() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		Object.values(ezlion.SkillArmor).forEach((element) => {
+			if (element !== '' && element !== 'None') {
+				array = [...array, { id: element, text: element }];
+			}
+		});
+
+		return array;
+	}
+
+	function getSigilSkills() {
+		let array: dropdownItem[] = [{ id: '', text: 'None' }];
+		Object.values(ezlion.SkillSigil).forEach((element) => {
+			if (element !== '' && element !== 'None') {
+				array = [...array, { id: element, text: element }];
+			}
+		});
+
+		return array;
+	}
+
+	type levelQuantity = [level1: number, level2: number, level3: number];
+
+	const minimumRarity = 1;
+	const maximumRarity = 12;
+	const invalidWeaponRarityText = `Value must be between ${minimumRarity} and ${maximumRarity}.`;
+	const minimumWeaponLevel = 0;
+	const maximumWeaponLevel = 100;
+	const minimumSharpnessValue = 0;
+	const maximumSharpnessValue = 400;
+	const minimumWeaponStatus = -2550;
+	const maximumWeaponStatus = 2550;
+	const minimumWeaponAttack = 1;
+	const maximumWeaponAttack = 65535;
+	const minimumWeaponElement = -2550;
+	const maximumWeaponElement = 2550;
+
+	const minimumGunlanceShellLevel = 1;
+	const maximumGunlanceShellLevel = 9;
+	const minimumBowgunAttackLevel = 0;
+	const maximumBowgunAttackLevel = 5;
+	const minimumWeaponAffinity = -2250;
+	const maximumWeaponAffinity = 2250;
+	const minimumBowChargeLevel = 1;
+	const maximumBowChargeLevel = 4;
+	const minimumBowgunAmmo = 0;
+	const maximumBowgunAmmo = 64;
+	const minimumSigilPoints = -127;
+	const maximumSigilPoints = 127;
+
+	const invalidSharpnessValueText = `Value must be between ${minimumSharpnessValue} and ${maximumSharpnessValue}.`;
+	const invalidWeaponLevelText = `Value must be between ${minimumWeaponLevel} and ${maximumWeaponLevel}.`;
+	const invalidWeaponAttackText = `Value must be between ${minimumWeaponAttack} and ${maximumWeaponAttack}.`;
+	const invalidWeaponElementStatusText = `Value must be between ${minimumWeaponElement} and ${maximumWeaponElement}.`;
+	const invalidWeaponAffinityText = `Value must be between ${minimumWeaponAffinity} and ${maximumWeaponAffinity}.`;
+	const invalidWeaponSigilValueText = `Value must be between ${minimumSigilPoints} and ${maximumSigilPoints}.`;
+	const invalidGunlanceShellLevelText = `Value must be between ${minimumGunlanceShellLevel} and ${maximumGunlanceShellLevel}.`;
+	const invalidBowChargeLevelText = `Value must be between ${minimumBowChargeLevel} and ${maximumBowChargeLevel}.`;
+	const invalidBowgunAttackLevelText = `Value must be between ${minimumBowgunAttackLevel} and ${maximumBowgunAttackLevel}.`;
+	const invalidBowgunAmmoText = `Value must be between ${minimumBowgunAmmo} and ${maximumBowgunAmmo}.`;
+
+	let weaponSharpness = defaultWeaponComponentValues.weaponSharpness;
+	let weaponName = defaultWeaponComponentValues.weaponName;
+	let weaponLevel = defaultWeaponComponentValues.weaponLevel;
+	let weaponRarity = defaultWeaponComponentValues.weaponRarity;
+	let weaponTypeId = defaultWeaponComponentValues.weaponTypeId;
+	let weaponRank = defaultWeaponComponentValues.weaponRank;
+	let weaponLength = defaultWeaponComponentValues.weaponLength;
+	let weaponElementBoost = defaultWeaponComponentValues.weaponElementBoost;
+	let weaponStatusBoost = defaultWeaponComponentValues.weaponStatusBoost;
+	let weaponAttackBoost = defaultWeaponComponentValues.weaponAttackBoost;
+	let weaponAttack = defaultWeaponComponentValues.weaponAttack;
+	let weaponElementValue = defaultWeaponComponentValues.weaponElementValue;
+	let weaponStatusValue = defaultWeaponComponentValues.weaponStatusValue;
+	let weaponElementType = defaultWeaponComponentValues.weaponElementType;
+	let weaponStatusType = defaultWeaponComponentValues.weaponStatusType;
+	let weaponZenithSkill = defaultWeaponComponentValues.weaponZenithSkill;
+	let weaponSharpnessBoost = defaultWeaponComponentValues.weaponSharpnessBoost;
+	let weaponDescription = defaultWeaponComponentValues.weaponDescription;
+	let weaponExtraIcons = defaultWeaponComponentValues.weaponExtraIcons;
+	let weaponType = defaultWeaponComponentValues.weaponType;
+	let weaponAffinity = defaultWeaponComponentValues.weaponAffinity;
+	let weaponSigil1Id = defaultWeaponComponentValues.weaponSigil1Id;
+	let weaponSigil2Id = defaultWeaponComponentValues.weaponSigil2Id;
+	let weaponSigil3Id = defaultWeaponComponentValues.weaponSigil3Id;
+	let weaponSigil4Id = defaultWeaponComponentValues.weaponSigil4Id;
+	let weaponSigil5Id = defaultWeaponComponentValues.weaponSigil5Id;
+	let weaponSigil6Id = defaultWeaponComponentValues.weaponSigil6Id;
+	let weaponSigil7Id = defaultWeaponComponentValues.weaponSigil7Id;
+	let weaponSigil8Id = defaultWeaponComponentValues.weaponSigil8Id;
+	let weaponSigil9Id = defaultWeaponComponentValues.weaponSigil9Id;
+	let weaponSigil1Value = defaultWeaponComponentValues.weaponSigil1Value;
+	let weaponSigil2Value = defaultWeaponComponentValues.weaponSigil2Value;
+	let weaponSigil3Value = defaultWeaponComponentValues.weaponSigil3Value;
+	let weaponSigil4Value = defaultWeaponComponentValues.weaponSigil4Value;
+	let weaponSigil5Value = defaultWeaponComponentValues.weaponSigil5Value;
+	let weaponSigil6Value = defaultWeaponComponentValues.weaponSigil6Value;
+	let weaponSigil7Value = defaultWeaponComponentValues.weaponSigil7Value;
+	let weaponSigil8Value = defaultWeaponComponentValues.weaponSigil8Value;
+	let weaponSigil9Value = defaultWeaponComponentValues.weaponSigil9Value;
+	let weaponAutomaticSkill = defaultWeaponComponentValues.weaponAutomaticSkill;
+	let huntingHornNote1: FrontierHuntingHornWeaponNote =
+		defaultWeaponComponentValues.huntingHornNote1;
+	let huntingHornNote2: FrontierHuntingHornWeaponNote =
+		defaultWeaponComponentValues.huntingHornNote2;
+	let huntingHornNote3: FrontierHuntingHornWeaponNote =
+		defaultWeaponComponentValues.huntingHornNote3;
+	let huntingHornNotes = `${huntingHornNote1} ${huntingHornNote2} ${huntingHornNote3}`;
+	let safPhial: FrontierSwitchAxeFPhial = defaultWeaponComponentValues.safPhial;
+	let gunlanceShellType: FrontierGunlanceShell =
+		defaultWeaponComponentValues.gunlanceShellType;
+	let gunlanceShellLevel: FrontierGunlanceShellLevel =
+		defaultWeaponComponentValues.gunlanceShellLevel;
+	let bowArc = defaultWeaponComponentValues.bowArc;
+	let bowChargeType1 = defaultWeaponComponentValues.bowChargeType1;
+	let bowChargeLevel1 = defaultWeaponComponentValues.bowChargeLevel1;
+	let bowChargeType2 = defaultWeaponComponentValues.bowChargeType2;
+	let bowChargeLevel2 = defaultWeaponComponentValues.bowChargeLevel2;
+	let bowChargeType3 = defaultWeaponComponentValues.bowChargeType3;
+	let bowChargeLevel3 = defaultWeaponComponentValues.bowChargeLevel3;
+	let bowPoisonCoatingAvailable =
+		defaultWeaponComponentValues.bowPoisonCoatingAvailable;
+	let bowParalysisCoatingAvailable =
+		defaultWeaponComponentValues.bowParalysisCoatingAvailable;
+	let bowSleepCoatingAvailable =
+		defaultWeaponComponentValues.bowSleepCoatingAvailable;
+	let bowImpactCoatingAvailable =
+		defaultWeaponComponentValues.bowImpactCoatingAvailable;
+	let bowPowerCoatingAvailable =
+		defaultWeaponComponentValues.bowPowerCoatingAvailable;
+	let bowgunReload = defaultWeaponComponentValues.bowgunReload;
+	let bowgunRecoil = defaultWeaponComponentValues.bowgunRecoil;
+	let bowgunScope = defaultWeaponComponentValues.bowgunScope;
+	let lightBowgunUpgrade = defaultWeaponComponentValues.lightBowgunUpgrade;
+	let heavyBowgunUpgrade = defaultWeaponComponentValues.heavyBowgunUpgrade;
+	let bowgunAttackLevel = defaultWeaponComponentValues.bowgunAttackLevel;
+	let bowgunNormalAmmo: levelQuantity = [9, 9, 12];
+	let bowgunPierceAmmo: levelQuantity = [6, 6, 6];
+	let bowgunPelletAmmo: levelQuantity = [6, 6, 6];
+	let bowgunCragAmmo: levelQuantity = [2, 2, 2];
+	let bowgunClusterAmmo: levelQuantity = [0, 0, 0];
+	let bowgunRecoveryAmmo: levelQuantity = [0, 0, 0];
+	let bowgunPoisonAmmo: levelQuantity = [0, 0, 0];
+	let bowgunParalysisAmmo: levelQuantity = [0, 0, 0];
+	let bowgunSleepAmmo: levelQuantity = [0, 0, 0];
+	let bowgunFlamingAmmo: levelQuantity = [6, 0, 0];
+	let bowgunWaterAmmo: levelQuantity = [0, 0, 0];
+	let bowgunThunderAmmo: levelQuantity = [0, 0, 0];
+	let bowgunFreezeAmmo: levelQuantity = [0, 0, 0];
+	let bowgunDragonAmmo: levelQuantity = [0, 0, 0];
+	let bowgunTranqAmmo: levelQuantity = [2, 0, 0];
+	let bowgunPaintAmmo: levelQuantity = [2, 0, 0];
+	let bowgunDemonAmmo: levelQuantity = [1, 0, 0];
+	let bowgunArmorAmmo: levelQuantity = [1, 0, 0];
+
+	$: huntingHornNotesArray = [
+		huntingHornNotes.split(' ')[0],
+		huntingHornNotes.split(' ')[1],
+		huntingHornNotes.split(' ')[2],
+	] as FrontierHuntingHornWeaponNote[];
+
+	let currentWeaponPage = 1;
+</script>
+
+<HunterNotesPage displayTOC={true}>
+	<div>
+		<SectionHeadingTopLevel title={'Weapon Generator'} />
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Sharpness:"
+			subtitle="The game uses integers. The values here is how it works internally. Defaults to a black bar on invalid values."
+		/>
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Length:"
+			subtitle="The game uses Medium for Magnet Spike and Tonfa."
+		/>
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Points:"
+			subtitle="The game uses values between -127 and 127 for skill and sigil points."
+		/>
+
+		<div class="container-weapon-buttons">
+			<Button kind="tertiary" icon={Download} on:click={downloadWeaponImage}
+				>Download</Button
+			>
+
+			<Button kind="tertiary" icon={Restart} on:click={resetWeaponValues}
+				>Restore values</Button
+			>
+
+			<Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} />
+		</div>
+		<div class="container-weapon">
+			<div class="weapon-info">
+				{#key weaponRarity}
+					<div id="weapon-dom">
+						<Weapon
+							{bowgunAttackLevel}
+							{bowgunRecoil}
+							{bowgunReload}
+							{bowgunScope}
+							{heavyBowgunUpgrade}
+							{lightBowgunUpgrade}
+							bowgunAmmo={[
+								{ type: 'Norm S.', levelQuantity: bowgunNormalAmmo },
+								{ type: 'Pierce S.', levelQuantity: bowgunPierceAmmo },
+								{ type: 'Pellet S.', levelQuantity: bowgunPelletAmmo },
+								{ type: 'Crag S.', levelQuantity: bowgunCragAmmo },
+								{ type: 'Cluster S.', levelQuantity: bowgunClusterAmmo },
+								{ type: 'Rec S.', levelQuantity: bowgunRecoveryAmmo },
+								{ type: 'Psn S.', levelQuantity: bowgunPoisonAmmo },
+								{ type: 'Para S.', levelQuantity: bowgunParalysisAmmo },
+								{ type: 'Slp S.', levelQuantity: bowgunSleepAmmo },
+								{ type: 'Flaming S', levelQuantity: bowgunFlamingAmmo },
+								{ type: 'Water S', levelQuantity: bowgunWaterAmmo },
+								{ type: 'Thunder S', levelQuantity: bowgunThunderAmmo },
+								{ type: 'Freeze S', levelQuantity: bowgunFreezeAmmo },
+								{ type: 'Dragon S', levelQuantity: bowgunDragonAmmo },
+								{ type: 'Tranq S', levelQuantity: bowgunTranqAmmo },
+								{ type: 'Paint S', levelQuantity: bowgunPaintAmmo },
+								{ type: 'Demon S.', levelQuantity: bowgunDemonAmmo },
+								{ type: 'Armor S.', levelQuantity: bowgunArmorAmmo },
+							]}
+							{bowArc}
+							bowCoatings={{
+								power: bowPowerCoatingAvailable,
+								poison: bowPoisonCoatingAvailable,
+								para: bowParalysisCoatingAvailable,
+								sleep: bowSleepCoatingAvailable,
+								impact: bowImpactCoatingAvailable,
+							}}
+							bowCharges={[
+								{ type: bowChargeType1, level: bowChargeLevel1 },
+								{ type: bowChargeType2, level: bowChargeLevel2 },
+								{ type: bowChargeType3, level: bowChargeLevel3 },
+							]}
+							gunlanceShell={gunlanceShellType}
+							{gunlanceShellLevel}
+							huntingHornNotes={[
+								huntingHornNotesArray[0],
+								huntingHornNotesArray[1],
+								huntingHornNotesArray[2],
+							]}
+							phial={safPhial}
+							automaticSkill={weaponAutomaticSkill}
+							sigils={[
+								weaponSigil1Id,
+								weaponSigil2Id,
+								weaponSigil3Id,
+								weaponSigil4Id,
+								weaponSigil5Id,
+								weaponSigil6Id,
+								weaponSigil7Id,
+								weaponSigil8Id,
+								weaponSigil9Id,
+							]}
+							sigilPoints={[
+								weaponSigil1Value,
+								weaponSigil2Value,
+								weaponSigil3Value,
+								weaponSigil4Value,
+								weaponSigil5Value,
+								weaponSigil6Value,
+								weaponSigil7Value,
+								weaponSigil8Value,
+								weaponSigil9Value,
+							]}
+							extraIcons={weaponExtraIcons}
+							bind:currentPage={currentWeaponPage}
+							name={weaponName}
+							length={weaponLength}
+							weaponID={frontierMappers.getWeaponIdFromString(weaponTypeId)}
+							attack={weaponAttack}
+							attackBoost={weaponAttackBoost}
+							sharpnessValues={weaponSharpness}
+							sharpnessBoost={weaponSharpnessBoost}
+							elementValue={weaponElementValue}
+							statusValue={weaponStatusValue}
+							element={weaponElementType}
+							status={weaponStatusType}
+							elementBoost={weaponElementBoost}
+							statusBoost={weaponStatusBoost}
+							rank={weaponRank}
+							level={weaponLevel >= 0 && weaponLevel <= 100 ? weaponLevel : 0}
+							rarity={weaponRarity >= 1 && weaponRarity <= 12
+								? weaponRarity
+								: 1}
+							zenithSkill={weaponZenithSkill}
+							description={weaponDescription}
+							affinity={weaponAffinity}
+							{weaponType}
+						/>
+					</div>
+				{/key}
+			</div>
+			<div class="weapon-info-values">
+				<Dropdown
+					titleText="Type"
+					type="inline"
+					hideLabel
+					bind:selectedId={weaponTypeId}
+					items={[
+						{ id: '0', text: 'Great Sword' },
+						{ id: '7', text: 'Long Sword' },
+						{ id: '4', text: 'Sword and Shield' },
+						{ id: '6', text: 'Dual Swords' },
+						{ id: '2', text: 'Hammer' },
+						{ id: '8', text: 'Hunting Horn' },
+						{ id: '3', text: 'Lance' },
+						{ id: '9', text: 'Gunlance' },
+						{ id: '1', text: 'Heavy Bowgun' },
+						{ id: '5', text: 'Light Bowgun' },
+						{ id: '10', text: 'Bow' },
+						{ id: '11', text: 'Tonfa' },
+						{ id: '12', text: 'Switch Axe F' },
+						{ id: '13', text: 'Magnet Spike' },
+					]}
+				/>
+				<TextInput
+					labelText="Name"
+					placeholder="Enter weapon name"
+					hideLabel
+					bind:value={weaponName}
+				/>
+
+				<NumberInput
+					size="sm"
+					step={1}
+					min={minimumRarity}
+					max={maximumRarity}
+					bind:value={weaponRarity}
+					invalidText={invalidWeaponRarityText}
+					label={'Rarity'}
+				/>
+				<NumberInput
+					size="sm"
+					step={1}
+					min={minimumWeaponLevel}
+					max={maximumWeaponLevel}
+					bind:value={weaponLevel}
+					invalidText={invalidWeaponLevelText}
+					label={'Level'}
+				/>
+			</div>
+			{#if currentWeaponPage === 1}
+				<div class="page-1-blademaster">
+					<div class="weapon-sharpness-values">
+						{#each SharpnessNames as name, i}
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSharpnessValue}
+								max={maximumSharpnessValue}
+								bind:value={weaponSharpness[i]}
+								invalidText={invalidSharpnessValueText}
+								label={name}
+							/>
+						{/each}
+					</div>
+					<div class="weapon-info-values-bottom">
+						<Toggle
+							labelText="Sharpness Boost"
+							bind:toggled={weaponSharpnessBoost}
+						/>
+						<Toggle labelText="Attack Boost" bind:toggled={weaponAttackBoost} />
+						<Toggle
+							labelText="Element Boost"
+							bind:toggled={weaponElementBoost}
+						/>
+						<Toggle labelText="Status Boost" bind:toggled={weaponStatusBoost} />
+						<Dropdown
+							titleText="Rank"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponRank}
+							items={[
+								{ id: '', text: 'None' },
+								{ id: 'G', text: 'G' },
+								{ id: 'Z', text: 'Zenith' },
+							]}
+						/>
+
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumWeaponAttack}
+							max={maximumWeaponAttack}
+							bind:value={weaponAttack}
+							invalidText={invalidWeaponAttackText}
+							label={'Attack'}
+						/>
+						<NumberInput
+							size="sm"
+							step={10}
+							min={minimumWeaponElement}
+							max={maximumWeaponElement}
+							bind:value={weaponElementValue}
+							invalidText={invalidWeaponElementStatusText}
+							label={'Element'}
+						/>
+						<NumberInput
+							size="sm"
+							step={10}
+							min={minimumWeaponStatus}
+							max={maximumWeaponStatus}
+							bind:value={weaponStatusValue}
+							invalidText={invalidWeaponElementStatusText}
+							label={'Status'}
+						/>
+						<Dropdown
+							titleText="Zenith Skill"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponZenithSkill}
+							items={getZenithSkills()}
+						/>
+						<Dropdown
+							titleText="Length"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponLength}
+							items={[
+								{ id: 'Very Short', text: 'Very Short' },
+								{ id: 'Short', text: 'Short' },
+								{ id: 'Medium', text: 'Medium' },
+								{ id: 'Long', text: 'Long' },
+								{ id: 'Very Long', text: 'Very Long' },
+							]}
+						/>
+						<Dropdown
+							titleText="Element"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponElementType}
+							items={[
+								{ id: '', text: 'None' },
+								{ id: 'Fire', text: 'Fire' },
+								{ id: 'Water', text: 'Water' },
+								{ id: 'Thunder', text: 'Thunder' },
+								{ id: 'Ice', text: 'Ice' },
+								{ id: 'Dragon', text: 'Dragon' },
+								{ id: 'Light', text: 'Light' },
+								{ id: 'Dark', text: 'Dark' },
+								{ id: 'Blaze', text: 'Blaze' },
+								{ id: 'L. Rod', text: 'Lightning Rod' },
+								{ id: 'Tenshou', text: 'Tenshou' },
+								{ id: 'Okiko', text: 'Okiko' },
+								{ id: 'Music', text: 'Music' },
+								{ id: 'Sound', text: 'Sound' },
+								{ id: 'Wind', text: 'Wind' },
+								{ id: 'B. Flame', text: 'Black Flame' },
+								{ id: 'C. Demon', text: 'Crimson Demon' },
+								{ id: 'E. Roar', text: "Emperor's Roar" },
+								{ id: 'B. Zero', text: 'Burning Zero' },
+							]}
+						/>
+						<Dropdown
+							titleText="Status"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponStatusType}
+							items={[
+								{ id: '', text: 'None' },
+								{ id: 'Poison', text: 'Poison' },
+								{ id: 'Paralysis', text: 'Paralysis' },
+								{ id: 'Sleep', text: 'Sleep' },
+								{ id: 'Blast', text: 'Blast' },
+								{ id: 'Def', text: 'Defense' },
+							]}
+						/>
+					</div>
+					{#if frontierMappers.getWeaponNameById(weaponTypeId) === 'Hunting Horn'}
+						<Dropdown
+							titleText="Hunting Horn Notes"
+							type="inline"
+							hideLabel
+							bind:selectedId={huntingHornNotes}
+							items={getHHNotes()}
+						/>
+					{:else if frontierMappers.getWeaponNameById(weaponTypeId) === 'Switch Axe F'}
+						<Dropdown
+							titleText="Switch Axe F Phial"
+							type="inline"
+							hideLabel
+							bind:selectedId={safPhial}
+							items={[
+								{ id: 'Stun', text: 'Stun' },
+								{ id: 'Power', text: 'Power' },
+								{ id: 'Ele', text: 'Element' },
+								{ id: 'Status', text: 'Status' },
+							]}
+						/>
+					{:else if frontierMappers.getWeaponNameById(weaponTypeId) === 'Gunlance'}
+						<Dropdown
+							titleText="Shell Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={gunlanceShellType}
+							items={[
+								{ id: 'Spread', text: 'Spread' },
+								{ id: 'Long', text: 'Long' },
+								{ id: 'Normal', text: 'Normal' },
+							]}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumGunlanceShellLevel}
+							max={maximumGunlanceShellLevel}
+							bind:value={gunlanceShellLevel}
+							invalidText={invalidGunlanceShellLevelText}
+							label={'Shell Level'}
+						/>
+					{:else if frontierMappers.getWeaponNameById(weaponTypeId) === 'Bow'}
+						<Dropdown
+							titleText="Bow Arc"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowArc}
+							items={[
+								{ id: 'Wide', text: 'Wide' },
+								{ id: 'Narrow', text: 'Narrow' },
+								{ id: 'Bomb', text: 'Bomb' },
+								{ id: 'Slicing', text: 'Slicing' },
+							]}
+						/>
+					{:else if frontierMappers.getWeaponNameById(weaponTypeId) === 'Heavy Bowgun'}
+						<Dropdown
+							titleText="Reload Speed"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowgunReload}
+							items={[
+								{ id: 'Very Slow', text: 'Very Slow' },
+								{ id: 'Slow', text: 'Slow' },
+								{ id: 'Normal', text: 'Normal' },
+								{ id: 'Fast', text: 'Fast' },
+								{ id: 'Very Fast', text: 'Very Fast' },
+							]}
+						/>
+						<Dropdown
+							titleText="Recoil"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowgunRecoil}
+							items={[
+								{ id: 'Medium', text: 'Medium' },
+								{ id: 'Small', text: 'Small' },
+								{ id: 'Smaller', text: 'Smaller' },
+							]}
+						/>
+						<Dropdown
+							titleText="Scope"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowgunScope}
+							items={[
+								{ id: 'Fixed', text: 'Fixed' },
+								{ id: 'Zoom', text: 'Zoom' },
+							]}
+						/>
+						<Dropdown
+							titleText="Upgrade"
+							type="inline"
+							hideLabel
+							bind:selectedId={heavyBowgunUpgrade}
+							items={[
+								{ id: '', text: 'None' },
+								{ id: 'Shield', text: 'Shield' },
+								{ id: 'Power Barrel', text: 'Power Barrel' },
+								{ id: 'Heavy Barrel', text: 'Heavy Barrel' },
+								{ id: 'Heat Beam', text: 'Heat Beam' },
+							]}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAttackLevel}
+							max={maximumBowgunAttackLevel}
+							bind:value={bowgunAttackLevel}
+							invalidText={invalidBowgunAttackLevelText}
+							label={'Attack Level'}
+						/>
+					{:else if frontierMappers.getWeaponNameById(weaponTypeId) === 'Light Bowgun'}
+						<Dropdown
+							titleText="Reload Speed"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowgunReload}
+							items={[
+								{ id: 'Very Slow', text: 'Very Slow' },
+								{ id: 'Slow', text: 'Slow' },
+								{ id: 'Normal', text: 'Normal' },
+								{ id: 'Fast', text: 'Fast' },
+								{ id: 'Very Fast', text: 'Very Fast' },
+							]}
+						/>
+						<Dropdown
+							titleText="Recoil"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowgunRecoil}
+							items={[
+								{ id: 'Medium', text: 'Medium' },
+								{ id: 'Small', text: 'Small' },
+								{ id: 'Smaller', text: 'Smaller' },
+							]}
+						/>
+						<Dropdown
+							titleText="Scope"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowgunScope}
+							items={[
+								{ id: 'Fixed', text: 'Fixed' },
+								{ id: 'Zoom', text: 'Zoom' },
+							]}
+						/>
+						<Dropdown
+							titleText="Upgrade"
+							type="inline"
+							hideLabel
+							bind:selectedId={lightBowgunUpgrade}
+							items={[
+								{ id: '', text: 'None' },
+								{ id: 'Silencer', text: 'Silencer' },
+								{ id: 'Long Barrel', text: 'Long Barrel' },
+							]}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAttackLevel}
+							max={maximumBowgunAttackLevel}
+							bind:value={bowgunAttackLevel}
+							invalidText={invalidBowgunAttackLevelText}
+							label={'Attack Level'}
+						/>
+					{/if}
+				</div>
+			{:else if currentWeaponPage === 2}
+				<div class="page-2-blademaster">
+					<TextInput
+						labelText="Description"
+						placeholder="Enter weapon description"
+						hideLabel
+						bind:value={weaponDescription}
+					/>
+					<Dropdown
+						titleText="Type"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponType}
+						items={[
+							{ id: 'Standard', text: 'Standard' },
+							{ id: 'SP', text: 'SP' },
+							{ id: 'HC', text: 'HC' },
+							{ id: "Master's Mark", text: "Master's Mark" },
+							{ id: 'Evolution', text: 'Evolution' },
+							{ id: 'Gou', text: 'Gou' },
+							{ id: 'Heavenly Storm', text: 'Heavenly Storm' },
+							{ id: 'Supremacy', text: 'Supremacy' },
+							{ id: 'G Supremacy', text: 'G Supremacy' },
+							{ id: 'Burst', text: 'Burst' },
+							{ id: 'Origin', text: 'Origin' },
+							{ id: 'G Rank', text: 'G Rank' },
+							{ id: 'G Rank Finesse', text: 'G Rank Finesse' },
+							{ id: 'Tower', text: 'Tower' },
+							{ id: 'Exotic', text: 'Exotic' },
+							{ id: 'Prayer', text: 'Prayer' },
+							{ id: 'Zenith', text: 'Zenith' },
+							{ id: 'Z Finesse', text: 'Z Finesse' },
+						]}
+					/>
+					<NumberInput
+						size="sm"
+						step={1}
+						min={minimumWeaponAffinity}
+						max={maximumWeaponAffinity}
+						bind:value={weaponAffinity}
+						invalidText={invalidWeaponAffinityText}
+						label={'Affinity'}
+					/>
+					<Dropdown
+						titleText="Automatic Skill"
+						type="inline"
+						hideLabel
+						bind:selectedId={weaponAutomaticSkill}
+						items={getArmorSkills()}
+					/>
+				</div>
+			{:else if currentWeaponPage === 3}
+				{#if frontierMappers.getWeaponNameById(weaponTypeId) === 'Bow'}
+					<div class="page-3-bow">
+						<Dropdown
+							titleText="Bow Charge 1"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowChargeType1}
+							items={[
+								{ id: 'Pierce', text: 'Pierce' },
+								{ id: 'Rapid', text: 'Rapid' },
+								{ id: 'Spread', text: 'Spread' },
+								{ id: 'Rising', text: 'Rising' },
+							]}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowChargeLevel}
+							max={maximumBowChargeLevel}
+							bind:value={bowChargeLevel1}
+							invalidText={invalidBowChargeLevelText}
+							label={'Charge Level 1'}
+						/>
+						<Dropdown
+							titleText="Bow Charge 2"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowChargeType2}
+							items={[
+								{ id: 'Pierce', text: 'Pierce' },
+								{ id: 'Rapid', text: 'Rapid' },
+								{ id: 'Spread', text: 'Spread' },
+								{ id: 'Rising', text: 'Rising' },
+							]}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowChargeLevel}
+							max={maximumBowChargeLevel}
+							bind:value={bowChargeLevel2}
+							invalidText={invalidBowChargeLevelText}
+							label={'Charge Level 2'}
+						/>
+						<Dropdown
+							titleText="Bow Charge 3"
+							type="inline"
+							hideLabel
+							bind:selectedId={bowChargeType3}
+							items={[
+								{ id: 'Pierce', text: 'Pierce' },
+								{ id: 'Rapid', text: 'Rapid' },
+								{ id: 'Spread', text: 'Spread' },
+								{ id: 'Rising', text: 'Rising' },
+							]}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowChargeLevel}
+							max={maximumBowChargeLevel}
+							bind:value={bowChargeLevel3}
+							invalidText={invalidBowChargeLevelText}
+							label={'Charge Level 3'}
+						/>
+					</div>
+				{:else if frontierMappers.getWeaponNameById(weaponTypeId) === 'Light Bowgun' || frontierMappers.getWeaponNameById(weaponTypeId) === 'Heavy Bowgun'}
+					<div class="page-3-bowgun">
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunNormalAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Normal LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunNormalAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Normal LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunNormalAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Normal LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPierceAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Pierce LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPierceAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Pierce LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPierceAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Pierce LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPelletAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Pellet LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPelletAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Pellet LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPelletAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Pellet LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunCragAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Crag LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunCragAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Crag LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunCragAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Crag LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunClusterAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Cluster LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunClusterAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Cluster LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunClusterAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Cluster LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunRecoveryAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Recovery LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunRecoveryAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Recovery LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunRecoveryAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Recovery LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPoisonAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Poison LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPoisonAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Poison LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPoisonAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Poison LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunParalysisAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Paralysis LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunParalysisAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Paralysis LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunParalysisAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Paralysis LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunSleepAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Sleep LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunSleepAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Sleep LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunSleepAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Sleep LV3'}
+						/>
+					</div>
+				{:else}
+					<div class="page-3-blademaster" />
+				{/if}
+			{:else if currentWeaponPage === 4}
+				{#if frontierMappers.getWeaponNameById(weaponTypeId) === 'Bow'}
+					<div class="page-4-bow">
+						<div class="bow-coatings">
+							<Checkbox
+								labelText="Power Coating"
+								bind:checked={bowPowerCoatingAvailable}
+							/>
+							<Checkbox
+								labelText="Poison Coating"
+								bind:checked={bowPoisonCoatingAvailable}
+							/>
+							<Checkbox
+								labelText="Paralysis Coating"
+								bind:checked={bowParalysisCoatingAvailable}
+							/>
+							<Checkbox
+								labelText="Sleep Coating"
+								bind:checked={bowSleepCoatingAvailable}
+							/>
+							<Checkbox
+								labelText="Impact Coating"
+								bind:checked={bowImpactCoatingAvailable}
+							/>
+						</div>
+					</div>
+				{:else if frontierMappers.getWeaponNameById(weaponTypeId) === 'Light Bowgun' || frontierMappers.getWeaponNameById(weaponTypeId) === 'Heavy Bowgun'}
+					<div class="page-4-bowgun">
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunFlamingAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Flaming LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunFlamingAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Flaming LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunFlamingAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Flaming LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunWaterAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Water LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunWaterAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Water LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunWaterAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Water LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunThunderAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Thunder LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunThunderAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Thunder LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunThunderAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Thunder LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunFreezeAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Freeze LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunFreezeAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Freeze LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunFreezeAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Freeze LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunDragonAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Dragon LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunDragonAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Dragon LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunDragonAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Dragon LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunTranqAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Tranq LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunTranqAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Tranq LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunTranqAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Tranq LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPaintAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Paint LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPaintAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Paint LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunPaintAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Paint LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunDemonAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Demon LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunDemonAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Demon LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunDemonAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Demon LV3'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunArmorAmmo[0]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Armor LV1'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunArmorAmmo[1]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Armor LV2'}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumBowgunAmmo}
+							max={maximumBowgunAmmo}
+							bind:value={bowgunArmorAmmo[2]}
+							invalidText={invalidBowgunAmmoText}
+							label={'Armor LV3'}
+						/>
+					</div>
+				{:else}
+					<div class="page-4-blademaster">
+						<div class="sigils">
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil1Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil1Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 1'}
+							/>
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil2Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil2Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 2'}
+							/>
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil3Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil3Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 3'}
+							/>
+						</div>
+					</div>
+				{/if}
+			{:else if currentWeaponPage === 5}
+				{#if frontierMappers.getWeaponClassById(weaponTypeId) === 'Gunner'}
+					<div class="page-5-gunner" />
+				{:else}
+					<div class="page-5-blademaster">
+						<div class="sigils">
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil4Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil4Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 4'}
+							/>
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil5Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil5Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 5'}
+							/>
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil6Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil6Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 6'}
+							/>
+						</div>
+					</div>
+				{/if}
+			{:else if currentWeaponPage === 6}
+				{#if frontierMappers.getWeaponClassById(weaponTypeId) === 'Gunner'}
+					<div class="page-6-gunner">
+						<div class="sigils">
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil1Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil1Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 1'}
+							/>
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil2Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil2Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 2'}
+							/>
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil3Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil3Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 3'}
+							/>
+						</div>
+					</div>
+				{:else}
+					<div class="page-6-blademaster">
+						<div class="sigils">
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil7Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil7Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 7'}
+							/>
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil8Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil8Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 8'}
+							/>
+							<Dropdown
+								titleText="Type"
+								type="inline"
+								hideLabel
+								bind:selectedId={weaponSigil9Id}
+								items={getSigilSkills()}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={minimumSigilPoints}
+								max={maximumSigilPoints}
+								bind:value={weaponSigil9Value}
+								invalidText={invalidWeaponSigilValueText}
+								label={'Sigil 9'}
+							/>
+						</div>
+					</div>
+				{/if}
+			{:else if currentWeaponPage === 7}
+				<div class="page-7-gunner">
+					<div class="sigils">
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil4Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
+							bind:value={weaponSigil4Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 4'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil5Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
+							bind:value={weaponSigil5Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 5'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil6Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
+							bind:value={weaponSigil6Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 6'}
+						/>
+					</div>
+				</div>
+			{:else if currentWeaponPage === 8}
+				<div class="page-8-gunner">
+					<div class="sigils">
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil7Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
+							bind:value={weaponSigil7Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 7'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil8Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
+							bind:value={weaponSigil8Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 8'}
+						/>
+						<Dropdown
+							titleText="Type"
+							type="inline"
+							hideLabel
+							bind:selectedId={weaponSigil9Id}
+							items={getSigilSkills()}
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={minimumSigilPoints}
+							max={maximumSigilPoints}
+							bind:value={weaponSigil9Value}
+							invalidText={invalidWeaponSigilValueText}
+							label={'Sigil 9'}
+						/>
+					</div>
+				</div>
+			{/if}
+		</div>
+		<div class="page-turn">
+			<PageTurn pageRouteId={$page.route.id} />
+		</div>
+	</div>
+</HunterNotesPage>
+
+<style lang="scss">
+	.page-turn {
+		margin-top: 4rem;
+	}
+
+	.weapon-info {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		align-items: center;
+	}
+
+	.weapon-info-values,
+	.weapon-info-values-bottom,
+	.weapon-sharpness-values {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+		margin: 1rem;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.container-weapon {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+
+	.container-weapon-buttons {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-bottom: 1rem;
+	}
+
+	.page-2-blademaster,
+	.bow-coatings {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.page-3-bow {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+		margin: 1rem;
+		gap: 1rem;
+	}
+
+	.sigils {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+		margin: 1rem;
+		gap: 1rem;
+	}
+
+	.page-3-bowgun,
+	.page-4-bowgun {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+		margin: 1rem;
+		gap: 1rem;
+	}
+</style>

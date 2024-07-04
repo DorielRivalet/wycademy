@@ -1,3 +1,6 @@
+<!--@component
+Also for Tools pages
+-->
 <script lang="ts">
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
