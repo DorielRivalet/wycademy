@@ -3,7 +3,6 @@ import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_W
 import ExtremeFireblight from '$lib/client/components/frontier/icon/ailment/ExtremeFireblight.svelte';
 import ExtremeParalysis from '$lib/client/components/frontier/icon/ailment/ExtremeParalysis.svelte';
 import { LocationIcons } from './frontier/objects';
-import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 import StygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
 import YamaKurai2 from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
 import Zerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';
@@ -26,13 +25,12 @@ import SacIconWhite from '$lib/client/components/frontier/icon/item/Sac_Icon_Whi
 import UNKNOWN from '$lib/client/images/monster/shiten_unknown.webp';
 import Logo from '$lib/client/images/logo.svg';
 import MedicineIconWhite from '../components/frontier/icon/item/Medicine_Icon_White.svelte';
-import MantleIconWhite from '../components/frontier/icon/item/Mantle_Icon_White.svelte';
-import Abiorugu3 from '../components/frontier/icon/monster/Abiorugu3.svelte';
 import { LogoYoutube } from 'carbon-icons-svelte';
 import Duremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
 import KnifeIconWhite from '../components/frontier/icon/item/Knife_Icon_White.svelte';
 import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
 import AllItems from '../components/frontier/icon/item/AllItems.svelte';
+import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -109,7 +107,7 @@ export const toolsInfo: CategoryInfo[] = [
 			name: 'Generator',
 			description:
 				'Allows you to create various items found in the game to your liking.',
-			image: Logo,
+			image: AllMonsters,
 			link: '/tools/generator',
 		},
 		pages: [
