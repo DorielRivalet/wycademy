@@ -240,15 +240,16 @@
 						bind:selectedId={scopeFilterId}
 						items={[
 							{ id: 'All', text: 'All' },
-							{ id: 'Monster', text: 'Monster' },
 							{ id: 'Armor', text: 'Armor' },
-							{ id: 'Skill', text: 'Skill' },
-							{ id: 'Sigil', text: 'Sigil' },
+							{ id: 'Guide', text: 'Guide' },
 							{ id: 'Item', text: 'Item' },
-							{ id: 'Overview', text: 'Overview' },
-							{ id: 'Weapon', text: 'Weapon' },
+							{ id: 'Monster', text: 'Monster' },
+							{ id: 'Sigil', text: 'Sigil' },
+							{ id: 'Skill', text: 'Skill' },
+							{ id: 'Support', text: 'Support' },
+							{ id: 'Tool', text: 'Tool' },
 							{ id: 'User', text: 'User' },
-							{ id: 'Other', text: 'Other' },
+							{ id: 'Weapon', text: 'Weapon' },
 						]}
 					/>
 				</div>
@@ -394,7 +395,7 @@
 	}
 
 	.results {
-		max-height: 60vh;
+		height: 60vh;
 		padding: var(--cds-spacing-06);
 		background-color: var(--ctp-surface0);
 		overflow-y: auto;
