@@ -21,7 +21,7 @@
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import pageThumbnail from '$lib/client/images/icon/book.png';
+	import pageThumbnail from '$lib/client/images/icon/blacksmith.png';
 	import {
 		authorName,
 		authorUrl,

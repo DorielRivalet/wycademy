@@ -70,7 +70,7 @@ SOFTWARE.
 			datePublished: mainEntity.datePublished,
 			dateModified: mainEntity.dateModified,
 			thumbnailUrl:
-				'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.webp',
+				'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
 			typicalAgeRange: '13+',
 			isAccessibleForFree: true,
 			author: {
