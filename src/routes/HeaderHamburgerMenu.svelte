@@ -20,8 +20,7 @@
 	const sections = [
 		{ name: 'Leaderboard', categories: [], href: '/leaderboard' },
 		{ name: "Hunter's Notes", categories: guidesInfo, href: '/hunter-notes' },
-		{ name: 'Arena', categories: toolsInfo, href: '/arena' },
-		{ name: 'Tools', categories: toolsInfo, href: '/smithy' },
+		{ name: 'Tools', categories: toolsInfo, href: '/tools' },
 		{ name: 'Support', categories: supportInfo, href: '/support' },
 		{ name: 'Notifications', categories: [], href: '/notifications' },
 		{ name: 'Profile', categories: [], href: '/user-demo' },

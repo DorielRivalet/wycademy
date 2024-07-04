@@ -8,7 +8,6 @@ import StygianZinogre from '$lib/client/components/frontier/icon/monster/Stygian
 import YamaKurai2 from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
 import Zerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';
 import SupremacyTeostra from '$lib/client/components/frontier/icon/monster/SupremacyTeostra.svelte';
-import Duremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
 import Bogabadorumu6 from '$lib/client/components/frontier/icon/monster/Bogabadorumu6.svelte';
 import BerserkRaviente from '$lib/client/components/frontier/icon/monster/BerserkRaviente.svelte';
 import ConquestFatalis7 from '$lib/client/components/frontier/icon/monster/ConquestFatalis7.svelte';
@@ -17,9 +16,8 @@ import BurningFreezingElzelion2 from '$lib/client/components/frontier/icon/monst
 import AllWeapons from '$lib/client/components/frontier/icon/weapon/AllWeapons.svelte';
 import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 import ShotIconWhite from '$lib/client/components/frontier/icon/item/Shot_Icon_White.svelte';
-import { getWeaponIcon } from './frontier/functions';
+import { getMonsterIcon, getWeaponIcon } from './frontier/functions';
 import AllArmors from '$lib/client/components/frontier/icon/armor/AllArmors.svelte';
-import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
 import MapIconWhite from '$lib/client/components/frontier/icon/item/Map_Icon_White.svelte';
 import TrapToolIconWhite from '$lib/client/components/frontier/icon/item/Trap_Tool_Icon_White.svelte';
 import BallIconWhite from '$lib/client/components/frontier/icon/item/Ball_Icon_White.svelte';
@@ -28,6 +26,13 @@ import SacIconWhite from '$lib/client/components/frontier/icon/item/Sac_Icon_Whi
 import UNKNOWN from '$lib/client/images/monster/shiten_unknown.webp';
 import Logo from '$lib/client/images/logo.svg';
 import MedicineIconWhite from '../components/frontier/icon/item/Medicine_Icon_White.svelte';
+import MantleIconWhite from '../components/frontier/icon/item/Mantle_Icon_White.svelte';
+import Abiorugu3 from '../components/frontier/icon/monster/Abiorugu3.svelte';
+import { LogoYoutube } from 'carbon-icons-svelte';
+import Duremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
+import KnifeIconWhite from '../components/frontier/icon/item/Knife_Icon_White.svelte';
+import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
+import AllItems from '../components/frontier/icon/item/AllItems.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -58,7 +63,130 @@ export function getRoutesSection(url: string) {
 export const supportInfo: CategoryInfo[] = [];
 
 /**Tools for the game */
-export const toolsInfo: CategoryInfo[] = [];
+export const toolsInfo: CategoryInfo[] = [
+	{
+		category: {
+			name: 'Calculator',
+			description: 'Calculators for the game.',
+			link: '/tools/calculator',
+			image: KnifeIconWhite,
+		},
+		pages: [
+			{
+				name: 'Damage',
+				description: 'A damage calculator.',
+				image: AllWeapons,
+				link: '/tools/calculator/damage',
+			},
+			{
+				name: 'Ice Age',
+				description: 'An Ice Age calculator.',
+				image: JewelIconWhite,
+				link: '/tools/calculator/ice-age',
+			},
+			{
+				name: 'Crit Conversion',
+				description: 'A Crit Conversion calculator.',
+				image: JewelIconWhite,
+				link: '/tools/calculator/crit-conversion',
+			},
+			{
+				name: 'Gunlance Shells & Wyvernfire',
+				description: 'A Gunlance Shells & Wyvernfire calculator.',
+				image: getWeaponIcon('Gunlance'),
+				link: '/tools/calculator/gunlance-shells-and-wyvernfire',
+			},
+			{
+				name: 'Heavy Bowgun Heat Beam',
+				description: 'A Heavy Bowgun Heat Beam calculator.',
+				image: getWeaponIcon('Heavy Bowgun'),
+				link: '/tools/calculator/heavy-bowgun-heat-beam',
+			},
+		],
+	},
+	{
+		category: {
+			name: 'Generator',
+			description:
+				'Allows you to create various items found in the game to your liking.',
+			image: Logo,
+			link: '/tools/generator',
+		},
+		pages: [
+			{
+				name: 'Weapon',
+				description: 'A weapon generator.',
+				image: AllWeapons,
+				link: '/tools/generator/weapon',
+			},
+			{
+				name: 'Armor',
+				description: 'An armor generator.',
+				image: AllArmors,
+				link: '/tools/generator/armor',
+			},
+			{
+				name: 'Item',
+				description: 'An item generator.',
+				image: AllItems,
+				link: '/tools/generator/item',
+			},
+			{
+				name: 'Icon',
+				description: 'An icon generator.',
+				image: getMonsterIcon('Abiorugu'),
+				link: '/tools/generator/icon',
+			},
+			{
+				name: 'Thumbnail',
+				description: 'A thumbnail generator, for example YouTube thumbnails.',
+				image: LogoYoutube,
+				link: '/tools/generator/thumbnail',
+			},
+		],
+	},
+	{
+		category: {
+			name: 'Simulator',
+			description:
+				'Allows you to simulate various items found in the game to your liking, reflecting what would be shown in the game.',
+			image: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
+			link: '/tools/simulator',
+		},
+		pages: [
+			{
+				name: 'Tower Weapon',
+				description: 'A tower weapon simulator.',
+				image: Duremudira,
+				link: '/tools/simulator/tower-weapon',
+			},
+		],
+	},
+	{
+		category: {
+			name: 'External',
+			description: 'External tools for the game.',
+			image: Logo,
+			link: '/tools/external',
+		},
+		pages: [
+			{
+				name: 'mhfz-overlay',
+				description:
+					'A simple, customizable overlay with Discord Rich Presence integration for Monster Hunter Frontier Z on Windows.',
+				link: '/tools/external/overlay',
+				image: Logo,
+			},
+			{
+				name: 'EZlion',
+				description: 'The Frontier API',
+				link: '/tools/external/ezlion',
+				image:
+					'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
+			},
+		],
+	},
+];
 
 /**Guides for the game */
 export const guidesInfo: CategoryInfo[] = [
@@ -382,7 +510,7 @@ export const guidesInfo: CategoryInfo[] = [
 			name: 'Items',
 			description: 'Information about various items in the game.',
 			link: '/hunter-notes/items',
-			image: TrapToolIconWhite,
+			image: AllItems,
 		},
 		pages: [
 			{
@@ -474,7 +602,7 @@ export const guidesInfo: CategoryInfo[] = [
 				name: 'Item Interactions',
 				description: 'Specific item interactions explained in greater detail.',
 				link: '/hunter-notes/advanced/item-interactions',
-				image: BallIconWhite,
+				image: AllItems,
 			},
 			{
 				name: 'Mechanics',

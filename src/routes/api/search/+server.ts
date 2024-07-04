@@ -10,17 +10,16 @@ type PossibleArrays = FrontierMonsterInfo;
 // TODO should this be here or not?
 const pageInfo: SearchItem[] = [
 	{
-		title: 'Smithy',
-		slug: '/smithy',
-		content:
-			'In the Smithy, you can generate various equipment for display purposes, such as  Armor, Weapons and Items. Additionally, you can download the icons themselves and make thumbnails for your videos.',
+		title: 'Tools and Utilities',
+		slug: '/tools',
+		content: 'Tools and Utilities hub page',
 		id: 0,
 		hex: '0x00',
 		category: 'Tool',
 	},
 	{
 		title: 'Tower Weapon',
-		slug: '/smithy#tower-weapon',
+		slug: '/tools/simulator/tower-weapon',
 		content: `A customisable weapon made from materials found by playing through the Sky Corridor Sky Corridor.
 
 You can customize weapon attributes such as Sharpness, Raw, Elemental, Status, Shelling Type, Shot Type, etc. They are comparable to Lv50 G Rank weapons when fully upgraded. You can insert Tower Decorations, which gives skills without using slots, making it a powerful weapon when built correctly. You cannot reverse most of the attribute upgrades.
@@ -43,8 +42,8 @@ The Blue series of the tower weapons have 3 Tower Sigil slots. They have high en
 		category: 'Tool',
 	},
 	{
-		title: 'Icons',
-		slug: '/smithy#icons',
+		title: 'Icons Preview',
+		slug: '/tools/generator/icon',
 		content:
 			'You can find the image for the monster backgrounds in our repository.',
 		id: 0,
@@ -53,7 +52,7 @@ The Blue series of the tower weapons have 3 Tower Sigil slots. They have high en
 	},
 	{
 		title: 'Thumbnail Generator',
-		slug: '/smithy#thumbnail-generator',
+		slug: '/tools/generator/thumbnail',
 		content: `Here you can download the thumbnail generated below, with the resulting size being 1280x720 pixels, perfect for things such as YouTube thumbnails. Additionally, for text, vector and raster images you can drag and drop them in order to change their position in the thumbnail, as an alternative to the number inputs.`,
 		id: 0,
 		hex: '0x00',
@@ -67,30 +66,30 @@ The Blue series of the tower weapons have 3 Tower Sigil slots. They have high en
 		hex: '0x00',
 		category: 'Guide',
 	},
-	{
-		title: 'Arena',
-		slug: '/arena',
-		content: `Welcome to Wycademy's Arena! Here you can calculate various game statistics, such as your total damage, by selecting the gear and weapon values. You can, for example:
+	// 	{
+	// 		title: 'Arena',
+	// 		slug: '/arena',
+	// 		content: `Welcome to Wycademy's Arena! Here you can calculate various game statistics, such as your total damage, by selecting the gear and weapon values. You can, for example:
 
-Select a weapon type such as  Long Sword
-Calculate  Gunlance Shell and Wyvernfire damage.
-Calculate  Ice Age damage.
-Compare your attack values against Blinking Nargacuga Blinking Nargacuga or Zenith Rathalos Zenith Rathalos defense rate.
-View element damage.
-And much more!
-Additionally, you can view motion values animations, graphs of armor skills such as  Flash Conversion, and the formulas for your total damage.`,
-		id: 0,
-		hex: '0x00',
-		category: 'Tool',
-	},
+	// Select a weapon type such as  Long Sword
+	// Calculate  Gunlance Shell and Wyvernfire damage.
+	// Calculate  Ice Age damage.
+	// Compare your attack values against Blinking Nargacuga Blinking Nargacuga or Zenith Rathalos Zenith Rathalos defense rate.
+	// View element damage.
+	// And much more!
+	// Additionally, you can view motion values animations, graphs of armor skills such as  Flash Conversion, and the formulas for your total damage.`,
+	// 		id: 0,
+	// 		hex: '0x00',
+	// 		category: 'Tool',
+	// 	},
 	{
 		title: 'Damage Calculator',
-		slug: '/arena#damage-calculator',
+		slug: '/tools/calculator/damage',
 		content: `To load your gear from the game:
 
 Load the overlay.
 Go into a quest and open overlay settings.
-Go to Hunter's Notes tab, right-click your guild card and select "Copy stats for Wycademy's Arena".
+Go to Hunter's Notes tab, right-click your guild card and select "Copy stats for Wycademy's Damage Calculator".
 Paste them here.`,
 		id: 0,
 		hex: '0x00',
@@ -98,7 +97,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Weapon Motion Values',
-		slug: '/arena#weapon-motion-values',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -106,7 +105,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Shared Motion Values',
-		slug: '/arena#shared-motion-values',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -114,7 +113,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Formulas',
-		slug: '/arena#formulas',
+		slug: '/tools/calculator/damage',
 		content:
 			'Below are the formulas for the above damage calculator. Your current inputs values are reflected below each formula.',
 		id: 0,
@@ -123,7 +122,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Internal True Raw',
-		slug: '/arena#internal-true-raw',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -131,7 +130,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Attack A',
-		slug: '/arena#attack-a',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -139,7 +138,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Attack B',
-		slug: '/arena/#attack-b',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -147,7 +146,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Multipliers',
-		slug: '/arena#multipliers',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -155,15 +154,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Flat Additions',
-		slug: '/arena#flat-additions',
-		content: '',
-		id: 0,
-		hex: '0x00',
-		category: 'Tool',
-	},
-	{
-		title: 'Internal Attack',
-		slug: '/arena#internal-attack',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -171,7 +162,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Internal Fire',
-		slug: '/arena#internal-fire',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -179,7 +170,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Internal Water',
-		slug: '/arena#internal-water',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -187,7 +178,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Internal Thunder',
-		slug: '/arena#internal-thunder',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -195,7 +186,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Internal Ice',
-		slug: '/arena#internal-ice',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -203,15 +194,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Internal Dragon',
-		slug: '/arena#internal-dragon',
-		content: '',
-		id: 0,
-		hex: '0x00',
-		category: 'Tool',
-	},
-	{
-		title: 'Internal Attack',
-		slug: '/arena#internal-attack',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -219,7 +202,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Internal Status',
-		slug: '/arena#internal-status',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -227,7 +210,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Internal Affinity',
-		slug: '/arena#internal-affinity',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -235,7 +218,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Total Affinity',
-		slug: '/arena#internal-affinity',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -243,15 +226,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Drug Knowledge Total True Raw',
-		slug: '/arena#drug-knowledge-total-true-raw',
-		content: '',
-		id: 0,
-		hex: '0x00',
-		category: 'Tool',
-	},
-	{
-		title: 'Internal Attack',
-		slug: '/arena#internal-attack',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -259,7 +234,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Critical Multiplier',
-		slug: '/arena#critical-multiplier',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -267,7 +242,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Internal Attack',
-		slug: '/arena#internal-attack',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -275,7 +250,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Other Multipliers',
-		slug: '/arena#other-multipliers',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -283,15 +258,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Status Assault Total',
-		slug: '/arena#status-assault-total',
-		content: '',
-		id: 0,
-		hex: '0x00',
-		category: 'Tool',
-	},
-	{
-		title: 'Internal Attack',
-		slug: '/arena#internal-attack',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -299,7 +266,7 @@ Paste them here.`,
 	},
 	{
 		title: 'Monster Total Defense',
-		slug: '/arena#monster-total-defense',
+		slug: '/tools/calculator/damage',
 		content: '',
 		id: 0,
 		hex: '0x00',
@@ -307,7 +274,7 @@ Paste them here.`,
 	}, // TODO missing sections
 	{
 		title: 'Ice Age',
-		slug: '/arena#ice-age',
+		slug: '/tools/calculator/ice-age',
 		content: `Upon hitting a monster (can be dead), the hunter becomes enveloped in an icy aura, which inflicts damage on all nearby monsters while providing extra skills. This aura progresses through three stages as you deal more hits to a monster. Additionally, it bestows  Stamina Recovery Up and  Razor Sharp to all hunters within its range, with the wielder also gaining  Winter General. Damage occurs in fixed intervals of one second rather than gradually over time.
 
 Typically, damage output ranges between 800 to 1600 per minute, contingent on the level, surpassing the poison output for most G Rank monsters. Within a group of four hunters equipped with  Ice Age, the damage stacks and thus escalates from 800-1600 (1p) to 3200-6400 (4p).
@@ -321,7 +288,7 @@ Ice Age's required hits can be reached faster with  Fencing+2.`,
 	},
 	{
 		title: 'Critical Conversion / Flash Conversion',
-		slug: '/arena#critical-conversion-flash-conversion',
+		slug: '/tools/calculator/crit-conversion',
 		content: `Adds 30% affinity and converts any excess affinity past 100% into extra true raw.
 
 Critical Conversion Up only uses the base affinity of your weapon (natural affinity). Sigils, Skills, SR Skills and the +5-10% from having above blue sharpness do not count towards the increase. In game, the sharpness bonus is always displayed, so deduct 10% from most weapons for getting the correct value.

@@ -37,10 +37,7 @@
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import { stickyHeaderStore } from '$lib/client/stores/toggles';
-	import { guidesInfo } from '$lib/client/modules/routes';
-
-	//TODO svg: mezfes, caravan, festi, transcend, etc
-	//TODO animated webp: items, locations, events, etc.
+	import { toolsInfo } from '$lib/client/modules/routes';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -60,7 +57,7 @@
 		});
 	});
 
-	const customTitle = "Hunter's Notes";
+	const customTitle = 'Tools';
 	const url = $page.url.toString();
 
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
@@ -105,42 +102,35 @@
 	<main>
 		<div class="container">
 			<section class="top-level-section">
-				<SectionHeadingTopLevel title="Hunter's Notes" />
+				<SectionHeadingTopLevel title="Tools and Utilities" />
 
 				<p class="spaced-paragraph">
-					Explore our guides and tutorials of <InlineTooltip
+					Explore our tools and utilities of <InlineTooltip
 						tooltip="Game"
 						text="Monster Hunter Frontier Z"
 						iconType="file"
 						icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier Z')
 							?.icon}
-					/>.
+					/>. Calculate things such as your damage, use a tower weapon
+					simulator, generate icons and armor, and much more.
 				</p>
 
-				<p>
-					If you are looking for a damage calculator, tower weapon simulator,
-					icon generators and other tools, please refer to the <Link
+				<p class="spaced-paragraph">
+					If you are looking for guides and tutorials, please refer to the <Link
 						inline
-						href="/tools">Tools and Utilities page.</Link
+						href="/hunter-notes">Hunter's Notes page.</Link
 					>
 				</p>
 
 				<section>
 					<SectionHeading level={2} title="Browse by section" />
-					{#each guidesInfo as section}
+					{#each toolsInfo as section}
 						<section>
-							<SectionHeading
-								level={3}
-								title={section.category.name === 'Getting Started'
-									? '🔰 ' + section.category.name
-									: section.category.name}
-							/>
+							<SectionHeading level={3} title={section.category.name} />
 							<div class="container-tiles">
 								{#each section.pages as page}
 									<ClickableTileImage
-										title={page.name === 'Your First Hunts'
-											? '🔰 ' + page.name
-											: page.name}
+										title={page.name}
 										description={page.description}
 										imageSource={page.image}
 										href={page.link}

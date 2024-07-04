@@ -102,7 +102,9 @@
 				<ListItem
 					><div class="list-item">
 						Updated Monster icons to be based on the vector graphics ones found
-						in <Link inline href="/smithy#icons-preview">the Smithy page.</Link>
+						in <Link inline href="/tools/generator/icon"
+							>the Icons Preview page.</Link
+						>
 					</div></ListItem
 				>
 				<ListItem
@@ -119,9 +121,9 @@
 				>
 				<ListItem
 					><div class="list-item">
-						Added a link to Wycademy's Arena <Link
+						Added a link to Wycademy's <Link
 							inline
-							href="/arena#damage-calculator">Damage Calculator.</Link
+							href="/tools/calculator/damage">Damage Calculator.</Link
 						>
 					</div></ListItem
 				>
