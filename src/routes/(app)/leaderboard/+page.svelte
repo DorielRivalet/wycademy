@@ -7,7 +7,7 @@
 <script>
 	import Counter from '$lib/client/components/Counter.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import pageThumbnail from '$lib/client/images/achievement/gold_trophy.png';
+	import pageThumbnail from '$lib/client/images/icon/pvp.png';
 	import {
 		authorName,
 		authorUrl,
