@@ -220,12 +220,13 @@
 	<div class="overlay" in:fade={{ duration: 150 }}></div>
 {/if}
 
-<Button
-	iconDescription="Search"
-	icon={SearchIcon}
-	kind="ghost"
-	on:click={initialize}
-/>
+<div class="button-container">
+	<Button iconDescription="Search" kind="ghost" on:click={initialize}>
+		<span slot="icon">
+			<SearchIcon size={20} color="var(--ctp-text)" />
+		</span>
+	</Button>
+</div>
 
 <dialog bind:this={dialogElement} class={dialogClass} on:close={closeDialog}>
 	{#if showModal}
@@ -443,5 +444,15 @@
 	.accordion-item-title {
 		display: flex;
 		align-items: center;
+	}
+
+	.button-container {
+		height: 100%;
+		width: 100%;
+
+		span {
+			width: 20px;
+			height: 20px;
+		}
 	}
 </style>
