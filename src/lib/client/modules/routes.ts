@@ -334,6 +334,105 @@ export const guidesInfo: CategoryInfo[] = [
 				image: AllWeapons,
 			},
 			{
+				name: 'Sword and Shield',
+				description:
+					'An overview of the Sword and Shield. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/sword-and-shield',
+				image: getWeaponIcon('Sword and Shield'),
+			},
+			{
+				name: 'Dual Swords',
+				description:
+					'An overview of the Dual Swords. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/dual-swords',
+				image: getWeaponIcon('Dual Swords'),
+			},
+			{
+				name: 'Great Sword',
+				description:
+					'An overview of the Great Sword. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/great-sword',
+				image: getWeaponIcon('Great Sword'),
+			},
+			{
+				name: 'Long Sword',
+				description:
+					'An overview of the Long Sword. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/long-sword',
+				image: getWeaponIcon('Long Sword'),
+			},
+			{
+				name: 'Lance',
+				description:
+					'An overview of the Lance. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/lance',
+				image: getWeaponIcon('Lance'),
+			},
+			{
+				name: 'Gunlance',
+				description:
+					'An overview of the Gunlance. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/gunlance',
+				image: getWeaponIcon('Gunlance'),
+			},
+			{
+				name: 'Hammer',
+				description:
+					'An overview of the Hammer. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/hammer',
+				image: getWeaponIcon('Hammer'),
+			},
+			{
+				name: 'Hunting Horn',
+				description:
+					'An overview of the Hunting Horn. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/hunting-horn',
+				image: getWeaponIcon('Hunting Horn'),
+			},
+
+			{
+				name: 'Tonfa',
+				description:
+					'An overview of the Tonfa. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/tonfa',
+				image: getWeaponIcon('Tonfa'),
+			},
+			{
+				name: 'Switch Axe F',
+				description:
+					'An overview of the Switch Axe F. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/switch-axe-f',
+				image: getWeaponIcon('Switch Axe F'),
+			},
+			{
+				name: 'Magnet Spike',
+				description:
+					'An overview of the Magnet Spike. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/magnet-spike',
+				image: getWeaponIcon('Magnet Spike'),
+			},
+			{
+				name: 'Light Bowgun',
+				description:
+					'An overview of the Light Bowgun. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/light-bowgun',
+				image: getWeaponIcon('Light Bowgun'),
+			},
+			{
+				name: 'Heavy Bowgun',
+				description:
+					'An overview of the Heavy Bowgun. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/heavy-bowgun',
+				image: getWeaponIcon('Heavy Bowgun'),
+			},
+			{
+				name: 'Bow',
+				description:
+					'An overview of the Bow. See the Frontier exclusive moveset, tips, best weapons, recommended armor skills and special mechanics.',
+				link: '/hunter-notes/weapons/bow',
+				image: getWeaponIcon('Bow'),
+			},
+			{
 				name: 'Sigils',
 				description: 'View a list of sigils.',
 				link: '/hunter-notes/weapons/sigils',
@@ -351,12 +450,6 @@ export const guidesInfo: CategoryInfo[] = [
 				description: "A list of each weapon's active feature.",
 				link: '/hunter-notes/weapons/active-feature',
 				image: AllWeapons,
-			},
-			{
-				name: 'Hunting Horn Songs',
-				description: 'A list of hunting horn songs.',
-				link: '/hunter-notes/weapons/hunting-horn-songs',
-				image: getWeaponIcon('Hunting Horn'),
 			},
 		],
 	},

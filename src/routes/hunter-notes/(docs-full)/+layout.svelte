@@ -230,6 +230,72 @@
 					text: 'Overview',
 				},
 				{
+					text: 'Sword and Shield',
+					id: '/hunter-notes/weapons/sword-and-shield',
+				},
+				{
+					text: 'Dual Swords',
+					id: '/hunter-notes/weapons/dual-swords',
+				},
+				{
+					text: 'Great Sword',
+					id: '/hunter-notes/weapons/great-sword',
+				},
+				{
+					text: 'Long Sword',
+					id: '/hunter-notes/weapons/long-sword',
+				},
+				{
+					text: 'Lance',
+
+					id: '/hunter-notes/weapons/lance',
+				},
+				{
+					text: 'Gunlance',
+
+					id: '/hunter-notes/weapons/gunlance',
+				},
+				{
+					text: 'Hammer',
+
+					id: '/hunter-notes/weapons/hammer',
+				},
+				{
+					text: 'Hunting Horn',
+
+					id: '/hunter-notes/weapons/hunting-horn',
+				},
+
+				{
+					text: 'Tonfa',
+
+					id: '/hunter-notes/weapons/tonfa',
+				},
+				{
+					text: 'Switch Axe F',
+
+					id: '/hunter-notes/weapons/switch-axe-f',
+				},
+				{
+					text: 'Magnet Spike',
+
+					id: '/hunter-notes/weapons/magnet-spike',
+				},
+				{
+					text: 'Light Bowgun',
+
+					id: '/hunter-notes/weapons/light-bowgun',
+				},
+				{
+					text: 'Heavy Bowgun',
+
+					id: '/hunter-notes/weapons/heavy-bowgun',
+				},
+				{
+					text: 'Bow',
+					id: '/hunter-notes/weapons/bow',
+				},
+				{
 					id: '/hunter-notes/weapons/sigils',
 					text: 'Sigils',
 				},
@@ -240,10 +306,6 @@
 				{
 					id: '/hunter-notes/weapons/active-feature',
 					text: 'Active Feature',
-				},
-				{
-					id: '/hunter-notes/weapons/hunting-horn-songs',
-					text: 'Hunting Horn Songs',
 				},
 			],
 		},
@@ -481,6 +543,63 @@
 			icon: getWeaponIcon('Great Sword'),
 		},
 		{
+			id: '/hunter-notes/weapons/sword-and-shield',
+			icon: getWeaponIcon('Sword and Shield'),
+		},
+		{
+			id: '/hunter-notes/weapons/dual-swords',
+			icon: getWeaponIcon('Dual Swords'),
+		},
+		{
+			id: '/hunter-notes/weapons/great-sword',
+			icon: getWeaponIcon('Great Sword'),
+		},
+		{
+			id: '/hunter-notes/weapons/long-sword',
+			icon: getWeaponIcon('Long Sword'),
+		},
+		{
+			id: '/hunter-notes/weapons/lance',
+			icon: getWeaponIcon('Lance'),
+		},
+		{
+			id: '/hunter-notes/weapons/gunlance',
+			icon: getWeaponIcon('Gunlance'),
+		},
+		{
+			id: '/hunter-notes/weapons/hammer',
+			icon: getWeaponIcon('Hammer'),
+		},
+		{
+			id: '/hunter-notes/weapons/hunting-horn',
+			icon: getWeaponIcon('Hunting Horn'),
+		},
+
+		{
+			id: '/hunter-notes/weapons/tonfa',
+			icon: getWeaponIcon('Tonfa'),
+		},
+		{
+			id: '/hunter-notes/weapons/switch-axe-f',
+			icon: getWeaponIcon('Switch Axe F'),
+		},
+		{
+			id: '/hunter-notes/weapons/magnet-spike',
+			icon: getWeaponIcon('Magnet Spike'),
+		},
+		{
+			id: '/hunter-notes/weapons/light-bowgun',
+			icon: getWeaponIcon('Light Bowgun'),
+		},
+		{
+			id: '/hunter-notes/weapons/heavy-bowgun',
+			icon: getWeaponIcon('Heavy Bowgun'),
+		},
+		{
+			id: '/hunter-notes/weapons/bow',
+			icon: getWeaponIcon('Bow'),
+		},
+		{
 			id: '/hunter-notes/weapons/sigils',
 			icon: SigilIconWhite,
 		},
@@ -491,10 +610,6 @@
 		{
 			id: '/hunter-notes/weapons/active-feature',
 			icon: getWeaponIcon('Magnet Spike'),
-		},
-		{
-			id: '/hunter-notes/weapons/hunting-horn-songs',
-			icon: getWeaponIcon('Hunting Horn'),
 		},
 		{
 			id: '/hunter-notes/armor',
