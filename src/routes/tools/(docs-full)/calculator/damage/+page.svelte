@@ -4077,6 +4077,7 @@ does not get multiplied by horn */
 		outputRoadLastStandAttack.toString(),
 	);
 
+	/**Also HBG*/
 	$: outputLanceRedPhialAttack =
 		multipliedBaseDropdownItems.find((item) => item.name === inputLanceHbg)
 			?.value || 0;

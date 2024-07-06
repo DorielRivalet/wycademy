@@ -215,7 +215,7 @@
 			border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
 			border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 			border-radius: 0px 0px 10px 10px;
-			box-shadow: 0px 32px 32px #00000080;
+			box-shadow: 0px 0px 32px #00000080;
 		}
 	}
 
@@ -224,6 +224,7 @@
 		top: 0;
 		position: static;
 		transition: top motion.$duration-fast-02 motion.motion(standard, productive);
+		z-index: 1;
 	}
 
 	.sticky {

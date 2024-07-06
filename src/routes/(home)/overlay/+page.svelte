@@ -413,7 +413,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 	}
 
 	.top-hero-section {
-		height: 88vh;
+		height: 90vh;
 		padding: 0;
 		margin: 0;
 	}
