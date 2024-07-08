@@ -19,6 +19,8 @@
 	import { cubicInOut } from 'svelte/easing';
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import ArmorStandIcon from '$lib/client/components/frontier/icon/armor/MHRise_Item_Icon-Armor_Stand_Equipment_White.svelte';
+	import SetIcon from '$lib/client/components/frontier/icon/armor/Set.svelte';
 
 	let selectedSetName = '';
 
@@ -308,62 +310,17 @@
 							armorSet.setColor,
 							theme,
 						) + '80'}
-						><HelmetIconWhite
-							color={getHexStringFromCatppuccinColor(armorSet.setColor, theme)}
-						/></button
 					>
-					<button
-						on:click={(e) => onPieceClick(armorSet)}
-						class="set-slot"
-						style:background-color={getHexStringFromCatppuccinColor(
-							armorSet.setColor,
-							theme,
-						) + '80'}
-						><ChestIconWhite
-							color={getHexStringFromCatppuccinColor(armorSet.setColor, theme)}
-						/></button
-					>
-					<button
-						on:click={(e) => onPieceClick(armorSet)}
-						class="set-slot"
-						style:background-color={getHexStringFromCatppuccinColor(
-							armorSet.setColor,
-							theme,
-						) + '80'}
-						><ArmIconWhite
-							color={getHexStringFromCatppuccinColor(armorSet.setColor, theme)}
-						/></button
-					>
-					<button
-						class="set-slot"
-						on:click={(e) => onPieceClick(armorSet)}
-						style:background-color={getHexStringFromCatppuccinColor(
-							armorSet.setColor,
-							theme,
-						) + '80'}
-						><WaistIconWhite
-							color={getHexStringFromCatppuccinColor(armorSet.setColor, theme)}
-						/></button
-					>
-					<button
-						class="set-slot"
-						on:click={(e) => onPieceClick(armorSet)}
-						style:background-color={getHexStringFromCatppuccinColor(
-							armorSet.setColor,
-							theme,
-						) + '80'}
-						><LegIconWhite
-							color={getHexStringFromCatppuccinColor(armorSet.setColor, theme)}
-						/></button
-					>
-					<button
-						class="set-slot"
-						on:click={(e) => onPieceClick(armorSet)}
-						style:background-color={getHexStringFromCatppuccinColor(
-							armorSet.setColor,
-							theme,
-						) + '80'}><img src={MyTore} alt="Poogie Cuff" /></button
-					>
+						<svelte:component
+							this={ArmorStandIcon}
+							{...{
+								color: getHexStringFromCatppuccinColor(
+									armorSet.setColor,
+									theme,
+								),
+							}}
+						/>
+					</button>
 				</div>
 			{/each}
 		</div>
