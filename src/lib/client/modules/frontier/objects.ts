@@ -648,7 +648,7 @@ import LightBowgunIconSmallRed from '$lib/client/images/weapon/small/small_lbg_r
 import HeavyBowgunIconSmallRed from '$lib/client/images/weapon/small/small_hbg_red.webp';
 
 import ComponentMonsterRandom from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRathian from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRathian from '$lib/client/components/frontier/icon/monster/Rathian.svelte';
 import ComponentMonsterFatalis from '$lib/client/components/frontier/icon/monster/Fatalis.svelte';
 import ComponentMonsterKelbi from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterMosswine from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -657,7 +657,7 @@ import ComponentMonsterYianKutKu from '$lib/client/components/frontier/icon/mons
 import ComponentMonsterLaoShanLung from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterCephadrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterFelyne from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRathalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterRathalos from '$lib/client/components/frontier/icon/monster/Rathalos.svelte';
 import ComponentMonsterAptonoth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterGenprey from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterDiablos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -680,19 +680,19 @@ import ComponentMonsterKirin from '$lib/client/components/frontier/icon/monster/
 import ComponentMonsterCephalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterGiaprey from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterCrimsonFatalis from '$lib/client/components/frontier/icon/monster/CrimsonFatalis3.svelte';
-import ComponentMonsterPinkRathian from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterPinkRathian from '$lib/client/components/frontier/icon/monster/PinkRathian.svelte';
 import ComponentMonsterBlueYianKutKu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterPurpleGypceros from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterYianGaruga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterSilverRathalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGoldRathian from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterSilverRathalos from '$lib/client/components/frontier/icon/monster/SilverRathalos.svelte';
+import ComponentMonsterGoldRathian from '$lib/client/components/frontier/icon/monster/GoldRathian.svelte';
 import ComponentMonsterBlackDiablos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterWhiteMonoblos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterRedKhezu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterGreenPlesioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterBlackGravios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterAzureRathalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterAzureRathalos from '$lib/client/components/frontier/icon/monster/AzureRathalos.svelte';
 import ComponentMonsterAshenLaoShanLung from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterBlangonga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterCongalala from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -739,13 +739,13 @@ import ComponentMonsterGurenzeburu from '$lib/client/components/frontier/icon/mo
 import ComponentMonsterBurukku from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterErupe from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterRukodiora from '$lib/client/components/frontier/icon/monster/Rukodiora2.svelte';
-import ComponentMonsterUNKNOWN from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterUNKNOWN from '$lib/client/components/frontier/icon/monster/UnknownPhase1.svelte';
 import ComponentMonsterGogomoa from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterTaikunZamuza from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterAbiorugu from '$lib/client/components/frontier/icon/monster/Abiorugu3.svelte';
 import ComponentMonsterKuarusepusu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterOdibatorasu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterDisufiroa from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterDisufiroa from '$lib/client/components/frontier/icon/monster/Disufiroa.svelte';
 import ComponentMonsterRebidiora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterAnorupatisu from '$lib/client/components/frontier/icon/monster/Anorupatisu2.svelte';
 import ComponentMonsterHyujikiki from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -754,7 +754,7 @@ import ComponentMonsterGiaorugu from '$lib/client/components/frontier/icon/monst
 import ComponentMonsterMiRu from '$lib/client/components/frontier/icon/monster/MiRu2.svelte';
 import ComponentMonsterFarunokku from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterPokaradon from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterShantien from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterShantien from '$lib/client/components/frontier/icon/monster/Shantien.svelte';
 import ComponentMonsterPokara from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterGoruganosu from '$lib/client/components/frontier/icon/monster/Goruganosu2.svelte';
 import ComponentMonsterAruganosu from '$lib/client/components/frontier/icon/monster/Aruganosu2.svelte';
@@ -826,10 +826,10 @@ import ComponentMonsterZenithTaikunZamuza from '$lib/client/components/frontier/
 import ComponentMonsterZenithTigrex from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterZenithToridcless from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterConquestFatalis from '$lib/client/components/frontier/icon/monster/ConquestFatalis7.svelte';
-import ComponentMonsterConquestShantien from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterConquestShantien from '$lib/client/components/frontier/icon/monster/ConquestShantien.svelte';
 import ComponentMonsterConquestCrimsonFatalis from '$lib/client/components/frontier/icon/monster/ConquestCrimsonFatalis7.svelte';
-import ComponentMonsterShitenDisufiroa from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterShitenUnknown from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
+import ComponentMonsterShitenDisufiroa from '$lib/client/components/frontier/icon/monster/ShitenDisufiroa.svelte';
+import ComponentMonsterShitenUnknown from '$lib/client/components/frontier/icon/monster/ShitenUnknown3.svelte';
 import ComponentMonsterBurningFreezingElzelion from '$lib/client/components/frontier/icon/monster/BurningFreezingElzelion2.svelte';
 import ComponentMonsterHowlingZinogre from '$lib/client/components/frontier/icon/monster/HowlingZinogre4.svelte';
 import ComponentMonsterSupremacyPariapuria from '$lib/client/components/frontier/icon/monster/ThirstyPariapuria.svelte';
@@ -2034,7 +2034,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterRathian,
 		fullRender: FullMonsterRenderRathian,
 		component: ComponentMonsterRathian,
-		unusedComponent: true,
+		unusedComponent: false,
 		displayName: 'Rathian',
 		type: 'Large',
 		link: '/hunter-notes/monsters/overview/rathian',
@@ -2427,7 +2427,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterRathalos,
 		link: '/hunter-notes/monsters/overview/rathalos',
 
-		unusedComponent: true,
+		unusedComponent: false,
 		displayName: 'Rathalos',
 		type: 'Large',
 		ecology: `Terrible Wyvern's also known as the "Kings of the Sky". Together with Rathian, they  claim large and diverse territories. Rathalos descend upon prey and foe alike from high altitudes, striking with poison talons and fire.`,
@@ -3457,7 +3457,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterPinkRathian,
 		link: '/hunter-notes/monsters/overview/pink-rathian',
 
-		unusedComponent: true,
+		unusedComponent: false,
 		type: 'Large',
 		ecology:
 			'A Sub-Species of Rathian with striking pink scales. Pink Rathian are far more adept at aerial combat than thier green cousins and will incorporate their venomous tails into more attacks. They are extremely aggressive.',
@@ -3603,7 +3603,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterSilverRathalos,
 		link: '/hunter-notes/monsters/overview/silver-rathalos',
 
-		unusedComponent: true,
+		unusedComponent: false,
 		type: 'Large',
 		ecology:
 			'A legendary and rare variant of Rathalos with shining, silver scales. Often referred to as the "Silver Sun", little is known of their ecology, including the nature of their appearence. Their deadliness however, is well documented.',
@@ -3654,7 +3654,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterGoldRathian,
 		link: '/hunter-notes/monsters/overview/gold-rathian',
 
-		unusedComponent: true,
+		unusedComponent: false,
 		type: 'Large',
 		ecology: `A legendary and rare variant of Rathian with glittering, golden scales. Often referred to as the "Golden Moon", little is known of this Wyvern's ecology, save for it's ability to dispatch unwary hunters with ease.`,
 		titles: ['Gold Fire Wyvern', 'Golden Moon', 'Illustrious Queen'],
@@ -3958,7 +3958,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterAzureRathalos,
 		link: '/hunter-notes/monsters/overview/azure-rathalos',
 
-		unusedComponent: true,
+		unusedComponent: false,
 		type: 'Large',
 		ecology: `Terrible Wyvern's also known as the "Kings of the Sky". Together with Rathian, they claim large and diverse territories. Rathalos descend upon prey and foe alike from high altitudes, striking with poison talons and fire.`,
 		titles: ['Azure Fire Wyvern'],
@@ -5914,7 +5914,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterDisufiroa,
 		link: '/hunter-notes/monsters/overview/disufiroa',
 
-		unusedComponent: true,
+		unusedComponent: false,
 		type: 'Large',
 		titles: ['Frozen Seraphim Dragon'],
 		class: 'Elder Dragon',
@@ -6140,7 +6140,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterShantien,
 		fullRender: FullMonsterRenderShantien,
 		component: ComponentMonsterShantien,
-		unusedComponent: true,
+		unusedComponent: false,
 		type: 'Large',
 		titles: ['Heavenly Flying Dragon'],
 		class: 'Elder Dragon',
@@ -8249,7 +8249,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/conquest-shantien',
 		fullRender: FullMonsterRenderConquestShantien,
 		component: ComponentMonsterConquestShantien,
-		unusedComponent: true,
+		unusedComponent: false,
 		ecology: `Shantien have been sighted flying around far above in the skies, often over oceans or around volcanic areas. Usually the only way to get anywhere near them is with a Large Exploration Ship. Shantien is enormously powerful when fully enraged and will attack with reckless abandon. This can also be its undoing, as attempting to use some of its strongest attacks while severely injured may cause them to implode inside its body, accomplishing its own demise.`,
 		type: 'Large',
 		titles: ['Heavenly Flying Dragon'],
@@ -8295,7 +8295,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderShitenDisufiroa,
 		link: '/hunter-notes/monsters/overview/shiten-disufiroa',
 		component: ComponentMonsterShitenDisufiroa,
-		unusedComponent: true,
+		unusedComponent: false,
 		ecology: `According to one account from a lucky hunter, when it freezes itself at the end of the fight, instead of dying, it will break out and gain a new appearance which its chest protrusions become purple in addition to the blue stripes on its underbelly and the webbing of its wings. Its red scales also turn black in color and its attacks become much fiercer, as well as some new devastating large attacks utilizing its elements.`,
 		type: 'Large',
 		titles: ['Frozen Seraphim Dragon'],
@@ -8318,7 +8318,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterShitenUnknown,
 		fullRender: FullMonsterRenderShitenUnknown,
 		component: ComponentMonsterShitenUnknown,
-		unusedComponent: true,
+		unusedComponent: false,
 		ecology: `For those lucky enough to witness it, it is said that upon reaching unthinkable rage, it creates an area wide black cloud of gas that leaves only its eyes completely visible, during this time the Unknown will be quickly moving all around the hunters, occasionally taking to the air and flying towards them. Afterwards, it will stop moving, inhale all the gas towards its mouth, before releasing it all at once in a huge shockwave, it will then finish with a roar in the typical Rathian fashion.`,
 		type: 'Large',
 		titles: ['Black Flying Wyvern'],

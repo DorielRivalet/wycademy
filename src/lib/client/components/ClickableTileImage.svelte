@@ -1,16 +1,27 @@
 <script lang="ts">
 	import ClickableTile from 'carbon-components-svelte/src/Tile/ClickableTile.svelte';
 	import ArrowRight from 'carbon-icons-svelte/lib/ArrowRight.svelte';
+	import { createEventDispatcher } from 'svelte';
 
 	export let imageSource;
 	export let title;
 	export let description;
 	export let href;
 	export let rounded = true;
+
+	const dispatch = createEventDispatcher();
+
+	function handleClick() {
+		dispatch('click');
+	}
 </script>
 
 <div class="container">
-	<ClickableTile {href} style={rounded ? 'border-radius: 8px;' : ''}>
+	<ClickableTile
+		{href}
+		style={rounded ? 'border-radius: 8px;' : ''}
+		on:click={handleClick}
+	>
 		<div class="tile-content">
 			<div class="left">
 				<p class="title">{title}</p>

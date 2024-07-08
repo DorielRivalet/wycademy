@@ -67,7 +67,10 @@
 			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
 				'#ffffff',
 				targetColor,
-			)};fill-opacity:1;fill-rule:evenodd;stroke:#d5d5d5;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+			)};fill-opacity:1;fill-rule:evenodd;stroke:{blendColor(
+				'#d5d5d5',
+				targetColor,
+			)};stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
 			d="m 7.15315,287.07811 h 0.529168 v 0.52917 l 0.264582,0.26458 h 0.529167 v 0.52917 H 7.9469 l -0.264582,0.26458 v 0.52917 H 7.15315 v -0.52917 L 6.8885676,288.40103 H 6.3594004 v -0.52917 H 6.8885676 L 7.15315,287.60728 Z"
 			id="path4218"
 		/>
