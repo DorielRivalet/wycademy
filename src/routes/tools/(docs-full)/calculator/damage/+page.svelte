@@ -101,6 +101,8 @@
 	import { crossfade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
+	import { Save } from 'carbon-icons-svelte';
+	import * as zip from '@zip.js/zip.js';
 
 	type DataTableKey = string;
 
@@ -2345,6 +2347,128 @@
 		}
 
 		return newData;
+	}
+
+	async function migrateLegacyCalculatorSaveSlots() {
+		const zipWriter = new zip.ZipWriter(new zip.BlobWriter());
+
+		let legacyInputs;
+
+		try {
+			legacyInputs = await getLegacySaveSlotsFileContents();
+		} catch {
+			console.error('Could not load legacy inputs');
+			return false;
+		}
+
+		for (let slotNumber = 1; slotNumber <= 20; slotNumber++) {
+			try {
+				if (typeof legacyInputs !== 'string') {
+					console.error('Could not migrate legacy inputs');
+					return false;
+				}
+
+				const transformedData = transformLegacySaveSlot(
+					slotNumber,
+					legacyInputs,
+				);
+
+				if (!transformedData) {
+					continue;
+				}
+
+				await zipWriter.add(
+					`slot_${slotNumber}.json`,
+					new zip.TextReader(transformedData),
+				);
+			} catch (error) {
+				console.error(`Failed to process slot ${slotNumber}:`, error);
+				continue; // Or break depending on your error handling strategy
+			}
+		}
+
+		const zipFileBlob = await zipWriter.close();
+
+		// Trigger download or handle the blob as needed
+		const url = URL.createObjectURL(zipFileBlob);
+		const link = document.createElement('a');
+		link.href = url;
+		link.download = 'legacy_calculator_saves.zip';
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+		URL.revokeObjectURL(url);
+
+		return true;
+	}
+
+	async function getLegacySaveSlotsFileContents() {
+		return new Promise((resolve, reject) => {
+			const input = document.createElement('input');
+			input.type = 'file';
+			input.accept = '.json'; // Accept only JSON files
+
+			input.onchange = async (event) => {
+				const file = event.target.files[0];
+				if (!file) {
+					reject(new Error('No file selected.'));
+					return;
+				}
+
+				const reader = new FileReader();
+				reader.onload = (e) => {
+					try {
+						let jsonData: { [key: string]: any } = {};
+						try {
+							jsonData = JSON.parse(e.target?.result as string);
+						} catch {
+							showDamageCalculatorLegacyInputsJSONError = true;
+							resolve(jsonData);
+						}
+
+						showDamageCalculatorLegacyInputsJSONError = false;
+
+						// Load the mapped data into your application
+						// Assuming updateInputs is a function that takes the mapped data and updates your UI
+						resolve(JSON.stringify(jsonData, null, 2));
+					} catch (err) {
+						reject(err);
+					}
+				};
+
+				reader.onerror = (err) => reject(err);
+				reader.readAsText(file);
+			};
+
+			input.click(); // Trigger the file selection dialog
+		});
+	}
+
+	function transformLegacySaveSlot(
+		legacyCalculatorSaveSlot: number,
+		jsonData: string,
+	) {
+		const jsonResult = JSON.parse(jsonData);
+
+		// Filter keys based on the specified save slot
+		const filteredKeys = Object.keys(jsonResult).filter((key) =>
+			key.startsWith(`save${legacyCalculatorSaveSlot}`),
+		);
+
+		if (filteredKeys.length === 0) {
+			return false;
+		}
+
+		// Remove the saveX prefix and prepare for mapping
+		const transformedData: { [key: string]: string } = {};
+		filteredKeys.forEach((key) => {
+			const newKey = key.replace(`save${legacyCalculatorSaveSlot}`, '');
+			transformedData[newKey] = jsonResult[key];
+		});
+
+		const mappedData = transformLegacyData(transformedData);
+
+		return JSON.stringify(mappedData, null, 2);
 	}
 
 	function loadLegacyInputsFromJSONFile(legacyCalculatorSaveSlot: number) {
@@ -5520,6 +5644,12 @@ does not get multiplied by horn */
 								on:click={() =>
 									loadLegacyInputsFromJSONFile(legacyCalculatorSaveSlotNumber)}
 								>Import legacy save file</Button
+							>
+							<Button
+								kind="tertiary"
+								icon={Save}
+								on:click={() => migrateLegacyCalculatorSaveSlots()}
+								>Migrate all save slots</Button
 							>
 						</div>
 					</div>
