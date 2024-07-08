@@ -13,7 +13,7 @@
 	export let description;
 	export let path;
 	export let id; // Unique identifier for each menu button
-	export let openMenu; // Receive the global openMenu state as a prop
+	export let openMenu: null | 'guides' | 'tools' | 'support'; // Receive the global openMenu state as a prop
 
 	const dispatch = createEventDispatcher();
 
@@ -70,7 +70,7 @@
 						{/each}
 					</div>
 					<div class="view-all">
-						<ClickableTile on:click={() => (isOpen = false)} href={path}>
+						<ClickableTile on:click={() => (openMenu = null)} href={path}>
 							<div class="clickable-tile-content">
 								<p>View all categories</p>
 								<ArrowRight />
@@ -80,7 +80,7 @@
 					<div class="selected-category-content">
 						<div class="selected-category-header">
 							<a
-								on:click={() => (isOpen = false)}
+								on:click={() => (openMenu = null)}
 								class="selected-category-link"
 								href={section[selectedCategory].category.link}
 							>
@@ -108,7 +108,7 @@
 						<div class="grid-container">
 							{#each section[selectedCategory].pages as page}
 								<button
-									on:click={() => (isOpen = false)}
+									on:click={() => (openMenu = null)}
 									class="page-tile-container"
 								>
 									<ClickableTileImage
@@ -116,6 +116,7 @@
 										description={page.description}
 										imageSource={page.image}
 										href={page.link}
+										on:click={() => (openMenu = null)}
 									/>
 								</button>
 							{/each}
