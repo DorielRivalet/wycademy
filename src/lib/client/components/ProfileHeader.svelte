@@ -2,7 +2,7 @@
 	import Transcend from '$lib/client/images/icon/transcend.webp';
 	import ImageDialog from './ImageDialog.svelte';
 	import '/node_modules/flag-icons/css/flag-icons.min.css';
-	import { generateUsername } from '../modules/username-generator';
+	import { generateRandomUsername } from '../modules/username-generator';
 	import { WeaponTypes } from '../modules/frontier/objects';
 	import { countries, type TCountryCode } from 'countries-list';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
@@ -16,7 +16,8 @@
 		return arr[Math.floor(arr.length * Math.random())];
 	}
 
-	export let name = generateUsername() + `#${Math.trunc(Math.random() * 1000)}`;
+	export let name =
+		generateRandomUsername() + `#${Math.trunc(Math.random() * 1000)}`;
 	export let medal = '🥇';
 	export let title = randomChoice(WeaponTypes).hiden;
 	export let discordName = 'discordname123';
