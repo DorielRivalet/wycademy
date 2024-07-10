@@ -4,20 +4,29 @@
  * found in the LICENSE file.
  */
 
-export function generateUsername(): string {
-	return (
-		randomChoice(names.types).toLowerCase() +
-		'-' +
-		randomChoice(names.monsters).toLowerCase()
-	).replaceAll(' ', '-');
+export function generateRandomUsername(): string {
+	const prefix = randomChoice(usernames.types).toLowerCase();
+	const monster = randomChoice(usernames.monsters).toLowerCase();
+	const separator = prefix === '' ? '' : '-';
+	return (prefix + separator + monster).replaceAll(' ', '-');
+}
+
+export function generateUsername(prefix: string, monster: string): string {
+	const separator = prefix === '' ? '' : '-';
+	return (prefix.toLowerCase() + separator + monster.toLowerCase()).replaceAll(
+		' ',
+		'-',
+	);
 }
 
 function randomChoice(arr: string[]): string {
 	return arr[Math.floor(arr.length * Math.random())];
 }
 
-const names = {
-	types: ['Zenith', 'Supremacy', 'Musou'],
+export type UsernameMonsterType = '' | 'Zenith' | 'Supremacy' | 'Musou';
+
+export const usernames: { types: UsernameMonsterType[]; monsters: string[] } = {
+	types: ['', 'Zenith', 'Supremacy', 'Musou'],
 	monsters: [
 		'Rathian',
 		'Fatalis',

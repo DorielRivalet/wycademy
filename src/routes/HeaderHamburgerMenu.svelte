@@ -23,7 +23,7 @@
 		{ name: 'Tools', categories: toolsInfo, href: '/tools' },
 		{ name: 'Support', categories: supportInfo, href: '/support' },
 		{ name: 'Notifications', categories: [], href: '/notifications' },
-		{ name: 'Profile', categories: [], href: '/user-demo' },
+		{ name: 'Profile', categories: [], href: '/signup' },
 		{
 			name: 'Site Preferences',
 			categories: [],

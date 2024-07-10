@@ -167,7 +167,7 @@
 		<div class="container-header-action">
 			<Button
 				kind="ghost"
-				href="/user-demo"
+				href="/signup"
 				tooltipPosition="left"
 				iconDescription="Account"
 				><span slot="icon">
