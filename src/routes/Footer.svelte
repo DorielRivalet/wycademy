@@ -81,14 +81,14 @@
 
 				<section class="section-container">
 					<h5>Support</h5>
-					<Link href="/">About Us</Link>
-					<Link href="/">Donate</Link>
-					<Link href="/">FAQ</Link>
-					<Link href="/">Contribute</Link>
-					<Link href="/about-development-stages">Development</Link>
-					<Link href="/">Terms of Service</Link>
-					<Link href="/">Privacy Policy</Link>
-					<Link href="/">Contact</Link>
+					<Link href="/support/website/about">About Us</Link>
+					<Link href="/support/website/donate">Donate</Link>
+					<Link href="/support/website/faq">FAQ</Link>
+					<Link href="/support/website/contribute">Contribute</Link>
+					<Link href="/support/website/development">Development</Link>
+					<Link href="/support/website/contact">Contact</Link>
+					<Link href="/support/legal/development">Terms of Service</Link>
+					<Link href="/support/legal/development">Privacy Policy</Link>
 				</section>
 			</div>
 

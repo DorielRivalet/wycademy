@@ -851,7 +851,7 @@
 		>
 			<svelte:fragment slot="actions">
 				<NotificationActionButton
-					on:click={() => goto('/about-development-stages')}
+					on:click={() => goto('/support/website/development')}
 					>Learn more</NotificationActionButton
 				>
 			</svelte:fragment>

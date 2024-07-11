@@ -57,7 +57,7 @@
 	// Shared state to track which menu is open
 	let openMenu: null | MenuId = null;
 
-	type MenuId = 'guides' | 'tools';
+	type MenuId = 'guides' | 'tools' | 'support';
 
 	const handleToggle = ({ detail }) => {
 		// Update openMenu based on received id
@@ -109,7 +109,13 @@
 					/>
 				</div>
 				<div class="container-link">
-					<HeaderNavigationButton path="/support" description="Support" />
+					<HeaderNavigationMenuButton
+						path="/support"
+						description="Support"
+						id="support"
+						{openMenu}
+						on:toggle={handleToggle}
+					/>
 				</div>
 				<div class="container-link">
 					<HeaderNavigationButton path="/events" description="Events" />
