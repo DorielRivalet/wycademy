@@ -199,8 +199,12 @@
 				<ListItem
 					><div class="list-item">
 						<span
-							><strong>Speedrun Categories Only:</strong> Runs with overlay watermark
-							numbers are not submitted. See the FAQ for more details on run buffs.</span
+							><strong>Speedrun Categories Only:</strong> Runs with overlay
+							watermark numbers are not submitted. See the <OutboundLink
+								inline
+								href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md#what-are-run-buffs-in-the-quest-logs-section"
+								>FAQ</OutboundLink
+							> for more details on run buffs.</span
 						>
 					</div></ListItem
 				>
@@ -374,8 +378,12 @@
 					<ListItem
 						><div class="list-item">
 							<span
-								><strong>Speedrun Categories Only:</strong> Runs with overlay watermark
-								numbers are not submitted. See the FAQ for more details on run buffs.</span
+								><strong>Speedrun Categories Only:</strong> Runs with overlay
+								watermark numbers are not submitted. See the <OutboundLink
+									inline
+									href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md#what-are-run-buffs-in-the-quest-logs-section"
+									>FAQ</OutboundLink
+								> for more details on run buffs.</span
 							>
 						</div></ListItem
 					>
