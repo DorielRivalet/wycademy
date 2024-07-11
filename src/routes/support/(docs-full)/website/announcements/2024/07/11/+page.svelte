@@ -181,8 +181,11 @@
 						<span
 							>Use the speedrun preset in overlay settings. If the overlay
 							watermark shows numbers in parentheses, those runs are not
-							submitted. Refer to the FAQ for more details on the run buffs
-							question.</span
+							submitted. Refer to the <OutboundLink
+								inline
+								href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md#what-are-run-buffs-in-the-quest-logs-section"
+								>FAQ</OutboundLink
+							> for more details on the run buffs question.</span
 						>
 					</div></ListItem
 				>
@@ -204,7 +207,7 @@
 				<ListItem
 					><div class="list-item">
 						<span
-							><strong>No Custom Quests:</strong> Only Z4, Musous, ConquestLV999,
+							><strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV999,
 							2nd District Duremudira, and Upper Shiten are allowed.</span
 						>
 					</div></ListItem
@@ -304,8 +307,11 @@
 				<p class="answer">
 					Yes, use the speedrun preset in the overlay settings. Ensure the
 					overlay watermark does not show numbers in parentheses, as these runs
-					will not be submitted. Refer to the FAQ for more details on the run
-					buffs question.
+					will not be submitted. Refer to the <OutboundLink
+						inline
+						href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md#what-are-run-buffs-in-the-quest-logs-section"
+						>FAQ</OutboundLink
+					> for more details on the run buffs question.
 				</p>
 			</AccordionItem>
 			<AccordionItem>
@@ -350,8 +356,11 @@
 							<span
 								>Use the speedrun preset in overlay settings. If the overlay
 								watermark shows numbers in parentheses, those runs are not
-								submitted. Refer to the FAQ for more details on the run buffs
-								question.</span
+								submitted. Refer to the <OutboundLink
+									inline
+									href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md#what-are-run-buffs-in-the-quest-logs-section"
+									>FAQ</OutboundLink
+								> for more details on the run buffs question.</span
 							>
 						</div></ListItem
 					>
@@ -373,7 +382,7 @@
 					<ListItem
 						><div class="list-item">
 							<span
-								><strong>No Custom Quests:</strong> Only Z4, Musous, ConquestLV999,
+								><strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV999,
 								2nd District Duremudira, and Upper Shiten are allowed.</span
 							>
 						</div></ListItem
