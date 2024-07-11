@@ -56,7 +56,7 @@
 			>
 				<svelte:fragment slot="actions">
 					<NotificationActionButton
-						on:click={() => goto('/about-development-stages')}
+						on:click={() => goto('/support/website/development')}
 						>Learn more</NotificationActionButton
 					>
 				</svelte:fragment>
@@ -100,8 +100,8 @@
 			<Checkbox bind:checked={userAgreed} required
 				><span slot="labelText">
 					By signing up with Wycademy, you agree to our <Link inline href="/"
-						>Terms of Service.</Link
-					></span
+						>Terms of Service</Link
+					> and <Link href="/" inline>Privacy Policy.</Link></span
 				></Checkbox
 			>
 		</div>

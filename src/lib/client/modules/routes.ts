@@ -25,7 +25,17 @@ import SacIconWhite from '$lib/client/components/frontier/icon/item/Sac_Icon_Whi
 import UNKNOWN from '$lib/client/images/monster/shiten_unknown.webp';
 import Logo from '$lib/client/images/logo.svg';
 import MedicineIconWhite from '../components/frontier/icon/item/Medicine_Icon_White.svelte';
-import { LogoYoutube } from 'carbon-icons-svelte';
+import {
+	Bullhorn,
+	Development,
+	DocumentRequirements,
+	Email,
+	Group,
+	InformationSquare,
+	LogoYoutube,
+	PiggyBank,
+	QuestionAnswering,
+} from 'carbon-icons-svelte';
 import Duremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
 import KnifeIconWhite from '../components/frontier/icon/item/Knife_Icon_White.svelte';
 import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
@@ -58,7 +68,82 @@ export function getRoutesSection(url: string) {
 }
 
 /**Meta information about the website. */
-export const supportInfo: CategoryInfo[] = [];
+export const supportInfo: CategoryInfo[] = [
+	{
+		category: {
+			name: 'Website',
+			description: 'General information about the website.',
+			link: '/support/website',
+			image: Logo,
+		},
+		pages: [
+			{
+				name: 'Announcements',
+				description: 'Announcements from the developers of the website.',
+				link: '/support/website/announcements',
+				image: Bullhorn,
+			},
+			{
+				name: 'About Us',
+				description: 'About the website.',
+				link: '/support/website/about',
+				image: InformationSquare,
+			},
+			{
+				name: 'Donate',
+				description: 'Donations and sponsors.',
+				link: '/support/website/donate',
+				image: PiggyBank,
+			},
+			{
+				name: 'FAQ',
+				description: 'Frequently Asked Questions.',
+				link: '/support/website/faq',
+				image: QuestionAnswering,
+			},
+			{
+				name: 'Contribute',
+				description: 'How to contribute to the website.',
+				link: '/support/website/contribute',
+				image: Group,
+			},
+			{
+				name: 'Develoment',
+				description: 'Development process for the website.',
+				link: '/support/website/development',
+				image: Development,
+			},
+			{
+				name: 'Contact',
+				description: 'Contact information.',
+				link: '/support/website/contact',
+				image: Email,
+			},
+		],
+	},
+	{
+		category: {
+			name: 'Legal',
+			description: 'Legal information about the website.',
+			link: '/support/legal',
+			image: BookIconWhite,
+		},
+		pages: [
+			{
+				name: 'Terms of Service',
+				description: 'Terms of Service.',
+				link: '/support/legal/terms-of-service',
+				image: DocumentRequirements,
+			},
+			{
+				name: 'Privacy Policy',
+				description: 'Privacy Policy.',
+				link: '/support/legal/privacy-policy',
+				image: DocumentRequirements,
+			},
+		],
+	},
+];
 
 /**Tools for the game */
 export const toolsInfo: CategoryInfo[] = [

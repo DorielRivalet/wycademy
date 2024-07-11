@@ -3,7 +3,6 @@
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
-
 <script lang="ts">
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
@@ -21,7 +20,22 @@
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
+	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
+	import pageThumbnail from '$lib/client/images/icon/blacksmith.png';
+	import {
+		authorName,
+		authorUrl,
+		datePublished,
+		description,
+		projectName,
+		website,
+	} from '$lib/constants';
+	import Head from '$lib/client/components/Head.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import { stickyHeaderStore } from '$lib/client/stores/toggles';
+	import { supportInfo } from '$lib/client/modules/routes';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -43,6 +57,9 @@
 		window.addEventListener('scroll', handleScroll);
 	});
 
+	const customTitle = 'Support';
+	const url = $page.url.toString();
+
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
@@ -63,6 +80,20 @@
 </script>
 
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
+<Head
+	title={customTitle}
+	{description}
+	image={pageThumbnail}
+	{url}
+	{website}
+	{authorName}
+	{datePublished}
+	{authorUrl}
+	contentType="SoftwareApplication"
+	name={projectName}
+	siteName={projectName}
+/>
+
 <div class="app">
 	<ViewTransition />
 
@@ -85,7 +116,51 @@
 		</InlineNotification>
 	</div>
 	<main>
-		<slot />
+		<div class="container">
+			<section class="top-level-section">
+				<SectionHeadingTopLevel title="Support Center" />
+
+				<p class="spaced-paragraph">
+					This is a dedicated section where users can find help and resources to
+					resolve issues, learn how to use the site, and get answers to common
+					questions.
+				</p>
+
+				<p class="spaced-paragraph">
+					If you are looking for guides and tutorials, please refer to the <Link
+						inline
+						href="/hunter-notes">Hunter's Notes page.</Link
+					>
+				</p>
+
+				<p>
+					If you are looking for a damage calculator, tower weapon simulator,
+					icon generators and other tools, please refer to the <Link
+						inline
+						href="/tools">Tools and Utilities page.</Link
+					>
+				</p>
+
+				<section>
+					<SectionHeading level={2} title="Browse by section" />
+					{#each supportInfo as section}
+						<section>
+							<SectionHeading level={3} title={section.category.name} />
+							<div class="container-tiles">
+								{#each section.pages as page}
+									<ClickableTileImage
+										title={page.name}
+										description={page.description}
+										imageSource={page.image}
+										href={page.link}
+									/>
+								{/each}
+							</div>
+						</section>
+					{/each}
+				</section>
+			</section>
+		</div>
 	</main>
 	{#key $page.url.pathname}
 		<Footer gitHubData={data.github} />
@@ -112,12 +187,15 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
+		padding: var(--cds-spacing-08);
 		width: 100%;
 		max-width: 100vw;
 		margin: 0 auto;
 		box-sizing: border-box;
 		min-height: 90vh;
 		background-color: var(--ctp-base);
+		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
+		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 	}
 
@@ -138,5 +216,20 @@
 	.header-hidden {
 		position: absolute;
 		top: -3rem; /* Match the height of the header */
+	}
+
+	.container {
+		width: 100%;
+	}
+
+	.top-level-section {
+		width: 80%;
+		margin: auto;
+	}
+
+	.container-tiles {
+		display: grid;
+		gap: 0.5rem;
+		grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
 	}
 </style>

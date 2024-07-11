@@ -36,13 +36,6 @@
 	import TreeView, {
 		type TreeNode,
 	} from 'carbon-components-svelte/src/TreeView/TreeView.svelte';
-	import {
-		getMonsterIcon,
-		getWeaponIcon,
-	} from '$lib/client/modules/frontier/functions';
-	import HelmetIconWhite from '$lib/client/components/frontier/icon/armor/Helmet_Icon_White.svelte';
-	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
-	import MantleIconWhite from '$lib/client/components/frontier/icon/item/Mantle_Icon_White.svelte';
 	import Logo from '$lib/client/images/logo.svg';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import { stickyHeaderStore } from '$lib/client/stores/toggles';
@@ -51,9 +44,17 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import { hunterNotesSidebarEnabledStore } from '$lib/client/stores/toc';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
-	import KnifeIconWhite from '$lib/client/components/frontier/icon/item/Knife_Icon_White.svelte';
-	import { LogoYoutube } from 'carbon-icons-svelte';
-	import { LocationIcons } from '$lib/client/modules/frontier/objects';
+	import {
+		Bullhorn,
+		Development,
+		DocumentRequirements,
+		Email,
+		Group,
+		InformationSquare,
+		PiggyBank,
+		QuestionAnswering,
+	} from 'carbon-icons-svelte';
+	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -137,146 +138,96 @@
 
 	const children: TreeNode[] = [
 		{
-			id: '/tools/calculator',
-			text: 'Calculator',
+			id: '/support/website',
+			text: 'Website',
 			children: [
 				{
-					id: '/tools/calculator/damage',
-					text: 'Damage',
+					id: '/support/website/announcements',
+					text: 'Announcements',
 				},
 				{
-					id: '/tools/calculator/ice-age',
-					text: 'Ice Age',
+					id: '/support/website/about',
+					text: 'About',
 				},
 				{
-					id: '/tools/calculator/crit-conversion',
-					text: 'Crit Conversion',
+					id: '/support/website/donate',
+					text: 'Donate',
 				},
 				{
-					id: '/tools/calculator/gunlance-shells-and-wyvernfire',
-					text: 'Gunlance Shells & Wyvernfire',
+					id: '/support/website/faq',
+					text: 'FAQ',
 				},
 				{
-					id: '/tools/calculator/heavy-bowgun-heat-beam',
-					text: 'Heavy Bowgun Heat Beam',
+					id: '/support/website/contribute',
+					text: 'Contribute',
+				},
+				{
+					id: '/support/website/development',
+					text: 'Development',
+				},
+				{
+					id: '/support/website/contact',
+					text: 'Contact',
 				},
 			],
 		},
 		{
-			id: '/tools/generator',
-			text: 'Generator',
+			id: '/support/legal',
+			text: 'Legal',
 			children: [
 				{
-					id: '/tools/generator/weapon',
-					text: 'Weapon',
+					id: '/support/legal/terms-of-service',
+					text: 'Terms of Service',
 				},
 				{
-					id: '/tools/generator/armor',
-					text: 'Armor',
-				},
-				{
-					id: '/tools/generator/item',
-					text: 'Item',
-				},
-				{
-					id: '/tools/generator/icon',
-					text: 'Icon',
-				},
-				{
-					id: '/tools/generator/thumbnail',
-					text: 'Thumbnail',
-				},
-			],
-		},
-		{
-			id: '/tools/simulator',
-			text: 'Simulator',
-			children: [
-				{
-					id: '/tools/simulator/tower-weapon',
-					text: 'Tower Weapon',
-				},
-			],
-		},
-		{
-			id: '/tools/external',
-			text: 'External',
-			children: [
-				{
-					id: '/tools/external/overlay',
-					text: 'mhfz-overlay',
-				},
-				{
-					id: '/tools/external/ezlion',
-					text: 'EZlion',
+					id: '/support/legal/privacy-policy',
+					text: 'Privacy Policy',
 				},
 			],
 		},
 	];
 
 	const iconsMap = [
-		{ id: '/tools/calculator', icon: KnifeIconWhite },
+		{ id: '/support/website', icon: Logo },
 		{
-			id: '/tools/calculator/damage',
-			icon: getWeaponIcon('Great Sword'),
-		},
-		{ id: '/tools/calculator/ice-age', icon: JewelIconWhite },
-		{ id: '/tools/calculator/crit-conversion', icon: JewelIconWhite },
-		{
-			id: '/tools/calculator/gunlance-shells-and-wyvernfire',
-			icon: getWeaponIcon('Gunlance'),
+			id: '/support/website/announcements',
+			icon: Bullhorn,
 		},
 		{
-			id: '/tools/calculator/heavy-bowgun-heat-beam',
-			icon: getWeaponIcon('Heavy Bowgun'),
+			id: '/support/website/about',
+			icon: InformationSquare,
 		},
 		{
-			id: '/tools/generator',
-			icon: getMonsterIcon('Abiorugu'),
+			id: '/support/website/donate',
+			icon: PiggyBank,
 		},
 		{
-			id: '/tools/generator/weapon',
-			icon: getWeaponIcon('Long Sword'),
+			id: '/support/website/faq',
+			icon: QuestionAnswering,
 		},
 		{
-			id: '/tools/generator/armor',
-			icon: HelmetIconWhite,
+			id: '/support/website/contribute',
+			icon: Group,
 		},
 		{
-			id: '/tools/generator/item',
-			icon: MantleIconWhite,
+			id: '/support/website/development',
+			icon: Development,
 		},
 		{
-			id: '/tools/generator/burst',
-			icon: getMonsterIcon('Zerureusu'),
+			id: '/support/website/contact',
+			icon: Email,
 		},
 		{
-			id: '/tools/generator/icon',
-			icon: getMonsterIcon('Supremacy Teostra'),
+			id: '/support/legal',
+			icon: BookIconWhite,
 		},
 		{
-			id: '/tools/generator/thumbnail',
-			icon: LogoYoutube,
+			id: '/support/legal/terms-of-service',
+			icon: DocumentRequirements,
 		},
 		{
-			id: '/tools/simulator',
-			icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
-		},
-		{
-			id: '/tools/simulator/tower-weapon',
-			icon: getMonsterIcon('Duremudira'),
-		},
-		{
-			id: '/tools/external',
-			icon: Logo,
-		},
-		{
-			id: '/tools/external/overlay',
-			icon: Logo,
-		},
-		{
-			id: '/tools/external/ezlion',
-			icon: 'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
+			id: '/support/legal/privacy-policy',
+			icon: DocumentRequirements,
 		},
 	];
 

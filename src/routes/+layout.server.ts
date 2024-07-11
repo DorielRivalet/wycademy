@@ -8,12 +8,7 @@ function stringToCustomDateFormat(date: string): string {
 	return new Date(date).toISOString().substring(0, 16).replace('T', ' ');
 }
 
-const whitelist = [
-	'/',
-	'/about',
-	'/about-development-stages',
-	'/site-preferences',
-];
+const whitelist = ['/', '/site-preferences'];
 
 export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 	console.log('async layout server load');
