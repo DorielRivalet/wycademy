@@ -211,7 +211,7 @@
 				<ListItem
 					><div class="list-item">
 						<span
-							><strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV999,
+							><strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV9999,
 							2nd District Duremudira, and Upper Shiten are allowed.</span
 						>
 					</div></ListItem
@@ -390,7 +390,7 @@
 					<ListItem
 						><div class="list-item">
 							<span
-								><strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV999,
+								><strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV9999,
 								2nd District Duremudira, and Upper Shiten are allowed.</span
 							>
 						</div></ListItem
