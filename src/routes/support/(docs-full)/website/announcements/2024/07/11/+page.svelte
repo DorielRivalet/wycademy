@@ -84,9 +84,9 @@
 					><div class="list-item">
 						<CheckmarkFilled color="var(--ctp-green)" />
 						<span
-							>Consider using platforms such as NicoNico, Bilibili or
-							archive.org for video submissions. We do not recommend using
-							Twitch or YouTube. We recommend archive.org.</span
+							>Consider using platforms such as Bilibili or archive.org for
+							video submissions. We do not recommend using Twitch or YouTube. We
+							recommend archive.org.</span
 						>
 					</div></ListItem
 				>
@@ -293,8 +293,8 @@
 				</svelte:fragment>
 				<p class="answer">
 					If your video is removed, consider re-uploading it to an alternative
-					platform like archive.org, NicoNico, or Bilibili. Ensure your video
-					complies with the guidelines to avoid future issues.
+					platform like archive.org or Bilibili. Ensure your video complies with
+					the guidelines to avoid future issues.
 				</p>
 			</AccordionItem>
 			<AccordionItem>
@@ -405,9 +405,9 @@
 					</p>
 				</svelte:fragment>
 				<p class="answer">
-					We recommend using platforms such as archive.org, NicoNico, and
-					Bilibili for video submissions. Avoid using Twitch or YouTube due to
-					the risk of copyright strikes.
+					We recommend using platforms such as archive.org and Bilibili for
+					video submissions. Avoid using Twitch or YouTube due to the risk of
+					copyright strikes.
 				</p>
 			</AccordionItem>
 		</Accordion>
