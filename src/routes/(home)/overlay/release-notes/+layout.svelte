@@ -13,20 +13,20 @@
 	import { getReleaseNotesSummary } from '$lib/client/modules/overlay-release-notes';
 
 	const url = $page.url.toString();
-	const pageRouteId = $page.route.id || '';
+	const pageUrlPathName = $page.url.pathname || '';
 
-	const overlayVersionMatch = pageRouteId.match(
-		/\/\(home\)\/overlay\/release-notes\/([^\/]+)/,
+	const overlayVersionMatch = pageUrlPathName.match(
+		/\/overlay\/release-notes\/([^\/]+)/,
 	);
 	const overlayVersion = overlayVersionMatch ? overlayVersionMatch[1] : '';
 
 	const customTitle =
-		pageRouteId === '/(home)/overlay/release-notes'
+		pageUrlPathName === '/overlay/release-notes'
 			? 'Release Notes'
 			: overlayVersion.replaceAll('-', '.');
 
 	const description =
-		pageRouteId === '/(home)/overlay/release-notes'
+		pageUrlPathName === '/overlay/release-notes'
 			? overlayDescription
 			: getReleaseNotesSummary(overlayVersion);
 </script>

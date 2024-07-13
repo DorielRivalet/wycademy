@@ -23,7 +23,6 @@
 		authorName,
 		authorUrl,
 		datePublished,
-		description,
 		developmentStage,
 		projectName,
 		website,
@@ -63,6 +62,10 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import { hunterNotesSidebarEnabledStore } from '$lib/client/stores/toc';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
+	import {
+		getNavigationItemFromLink,
+		guidesInfo,
+	} from '$lib/client/modules/routes';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -72,37 +75,19 @@
 
 	type URLItem = { href: string; text: string };
 
-	onMount(() => {
-		let themeValue = $theme;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
-		let cursorValue = $cursorIcon;
-		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
-		window.addEventListener('scroll', handleScroll);
-	});
-
 	function deslugify(slug: string) {
 		return slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
 	}
 
-	// Function to generate breadcrumb items and head title
-	function processRoute(routeId: string) {
+	/**Generate breadcrumb items and get navigation item from path name*/
+	function processRoute(pathName: string) {
 		// Split the route ID by '/'
-		let routeLevels = routeId.split('/').filter(Boolean);
+		let routeLevels = pathName.split('/').filter(Boolean);
 
 		// Remove elements that match the pattern (text in parentheses)
 		routeLevels = routeLevels.filter((level) => !/\(.*\)/.test(level));
 
-		// Set the last element as the head title
-		const headTitle = routeLevels[routeLevels.length - 1] || 'Not Found';
+		const navigationItem = getNavigationItemFromLink(guidesInfo, pathName);
 
 		// Generate breadcrumb items
 		let items = [{ href: '/', text: 'Home' }];
@@ -113,22 +98,8 @@
 			items.push({ href: levelHref, text: levelText });
 		}
 
-		return { headTitle, items };
+		return { navigationItem, items };
 	}
-
-	let breadcrumbItems: URLItem[] = [];
-	let headTitle = 'Not Found';
-
-	$: {
-		const pageRouteId = $page.route.id || 'Not Found';
-		const { headTitle: title, items } = processRoute(pageRouteId);
-		headTitle = title;
-		breadcrumbItems = items;
-	}
-
-	const url = $page.url.toString();
-
-	let lastScrollTop = 0; // Variable to store the last scroll position
 
 	// Function to handle scroll events
 	function handleScroll() {
@@ -143,6 +114,28 @@
 		}
 		lastScrollTop = currentScrollPos;
 	}
+
+	function onTOCToggleButtonPress(e: MouseEvent) {
+		tocVisible = !tocVisible;
+		hunterNotesSidebarEnabledStore.set(tocVisible ? true : false);
+
+		if (tocVisible) {
+			tocClass = 'aside';
+			centerColumnClass = ''; // Reset to default width
+		} else {
+			tocClass = 'aside collapsed';
+			centerColumnClass = 'expanded'; // Increase width to full
+		}
+	}
+
+	let breadcrumbItems: URLItem[] = [];
+	let headTitle = "Hunter's Notes";
+	let description =
+		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.';
+
+	const url = $page.url.toString();
+
+	let lastScrollTop = 0; // Variable to store the last scroll position
 
 	const children: TreeNode[] = [
 		{
@@ -765,41 +758,52 @@
 		},
 	];
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
-
 	let tocVisible = $hunterNotesSidebarEnabledStore;
-
-	function onTOCToggleButtonPress(e: MouseEvent) {
-		tocVisible = !tocVisible;
-		hunterNotesSidebarEnabledStore.set(tocVisible ? true : false);
-
-		if (tocVisible) {
-			tocClass = 'aside';
-			centerColumnClass = ''; // Reset to default width
-		} else {
-			tocClass = 'aside collapsed';
-			centerColumnClass = 'expanded'; // Increase width to full
-		}
-	}
 
 	let centerColumnClass = tocVisible ? '' : 'expanded';
 	let tocClass = tocVisible ? 'aside' : 'aside collapsed';
 
+	let treeview: TreeView | null = null;
+
+	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+
+	$: {
+		const pageUrlPathName = $page.url.pathname || '/';
+		const { navigationItem, items } = processRoute(pageUrlPathName);
+		headTitle = navigationItem?.name ?? "Hunter's Notes";
+		description = navigationItem?.description ?? description;
+		breadcrumbItems = items;
+	}
+
 	onMount(() => {
-		const pageRouteId = $page.route.id || 'Not Found';
-		const { headTitle: title, items } = processRoute(pageRouteId);
-		headTitle = title;
+		let themeValue = $theme;
+		let cssVarMap =
+			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+
+		let cursorValue = $cursorIcon;
+		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+
+		window.addEventListener('scroll', handleScroll);
+
+		const pageUrlPathName = $page.url.pathname || '/';
+		const { navigationItem, items } = processRoute(pageUrlPathName);
+		headTitle = navigationItem?.name ?? "Hunter's Notes";
+		description = navigationItem?.description ?? description;
 		breadcrumbItems = items;
 		const unsubscribe = page.subscribe(($page) => {
-			treeview?.showNode($page.route.id?.replace('(docs-full)/', '') || '');
+			treeview?.showNode($page.url.pathname || '');
 		});
 
 		return () => {
 			unsubscribe(); // Clean up the subscription on unmount
 		};
 	});
-
-	let treeview: TreeView | null = null;
 </script>
 
 <LocalStorage

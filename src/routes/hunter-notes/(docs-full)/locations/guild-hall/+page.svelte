@@ -616,7 +616,7 @@
 			</section>
 		</section>
 		<div class="page-turn">
-			<PageTurn pageRouteId={$page.route.id} />
+			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
 </HunterNotesPage>

@@ -25,7 +25,7 @@
 			{/each}
 		{/if}
 	</div>
-	<PageTurn pageRouteId={$page.route.id} />
+	<PageTurn pageUrlPathName={$page.url.pathname} />
 </div>
 
 <style lang="scss">
