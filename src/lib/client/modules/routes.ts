@@ -157,19 +157,21 @@ export const toolsInfo: CategoryInfo[] = [
 		pages: [
 			{
 				name: 'Damage',
-				description: 'A damage calculator.',
+				description:
+					'A damage calculator that includes motion values of all weapons and damage formulas that update with your calculations.',
 				image: AllWeapons,
 				link: '/tools/calculator/damage',
 			},
 			{
 				name: 'Ice Age',
-				description: 'An Ice Age calculator.',
+				description: 'An Ice Age calculator; includes formulas.',
 				image: JewelIconWhite,
 				link: '/tools/calculator/ice-age',
 			},
 			{
 				name: 'Crit Conversion',
-				description: 'A Crit Conversion calculator.',
+				description:
+					'A Crit Conversion calculator; includes formulas and graphs.',
 				image: JewelIconWhite,
 				link: '/tools/calculator/crit-conversion',
 			},
