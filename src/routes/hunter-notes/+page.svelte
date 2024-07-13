@@ -64,7 +64,7 @@
 	const customTitle = "Hunter's Notes";
 	const url = $page.url.toString();
 	const description =
-		'Explore our guides and tutorials of Monster Hunter Frontier Z.';
+		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.';
 
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 

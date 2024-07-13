@@ -60,7 +60,7 @@
 
 	const customTitle = 'Tools';
 	const description =
-		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weaponsimulator, generate icons and armor, and much more.';
+		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weaponsimulator, generate icons and armor, and much more.\n\nDeveloped by Doriel Rivalet.';
 	const url = $page.url.toString();
 
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';

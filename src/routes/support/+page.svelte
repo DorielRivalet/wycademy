@@ -59,7 +59,7 @@
 	const customTitle = 'Support';
 	const url = $page.url.toString();
 	const description =
-		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.';
+		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Doriel Rivalet.';
 
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 
