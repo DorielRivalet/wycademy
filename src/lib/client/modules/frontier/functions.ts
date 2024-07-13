@@ -237,6 +237,10 @@ export function getUniqueMonsters() {
 	return result;
 }
 
+export function getMonsterByPathName(pathName: string) {
+	return monsterInfo.find((e) => e.link === pathName);
+}
+
 /** https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value*/
 export function getKeyByValue(object: { [x: string]: any }, value: any) {
 	return Object.keys(object).find(

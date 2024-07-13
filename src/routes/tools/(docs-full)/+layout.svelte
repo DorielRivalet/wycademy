@@ -326,7 +326,7 @@
 />
 
 <Head
-	title={deslugify(headTitle)}
+	title={headTitle}
 	{description}
 	image={pageThumbnail}
 	{url}

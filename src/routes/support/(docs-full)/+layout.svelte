@@ -58,6 +58,7 @@
 		getNavigationItemFromLink,
 		supportInfo,
 	} from '$lib/client/modules/routes';
+	import { getAnnouncementByPathName } from '$lib/client/modules/announcements';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -94,6 +95,7 @@
 		routeLevels = routeLevels.filter((level) => !/\(.*\)/.test(level));
 
 		const navigationItem = getNavigationItemFromLink(supportInfo, pathName);
+		const announcement = getAnnouncementByPathName(pathName);
 
 		// Generate breadcrumb items
 		let items = [{ href: '/', text: 'Home' }];
@@ -104,7 +106,7 @@
 			items.push({ href: levelHref, text: levelText });
 		}
 
-		return { navigationItem, items };
+		return { navigationItem, items, announcement };
 	}
 
 	function onTOCToggleButtonPress(e: MouseEvent) {
@@ -232,9 +234,14 @@
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 	$: {
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items } = processRoute(pageUrlPathName);
-		headTitle = navigationItem?.name ?? 'Support Center';
-		description = navigationItem?.description ?? description;
+		const { navigationItem, items, announcement } =
+			processRoute(pageUrlPathName);
+		headTitle = announcement
+			? announcement.title
+			: navigationItem?.name ?? 'Support Center';
+		description = announcement
+			? announcement.summary
+			: navigationItem?.description ?? description;
 		breadcrumbItems = items;
 	}
 
@@ -255,9 +262,14 @@
 		window.addEventListener('scroll', handleScroll);
 
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items } = processRoute(pageUrlPathName);
-		headTitle = navigationItem?.name ?? 'Support Center';
-		description = navigationItem?.description ?? description;
+		const { navigationItem, items, announcement } =
+			processRoute(pageUrlPathName);
+		headTitle = announcement
+			? announcement.title
+			: navigationItem?.name ?? 'Support Center';
+		description = announcement
+			? announcement.summary
+			: navigationItem?.description ?? description;
 		breadcrumbItems = items;
 		const unsubscribe = page.subscribe(($page) => {
 			treeview?.showNode($page.url.pathname || '');
@@ -277,7 +289,7 @@
 />
 
 <Head
-	title={deslugify(headTitle)}
+	title={headTitle}
 	{description}
 	image={pageThumbnail}
 	{url}
