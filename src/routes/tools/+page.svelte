@@ -26,7 +26,6 @@
 		authorName,
 		authorUrl,
 		datePublished,
-		description,
 		projectName,
 		website,
 	} from '$lib/constants';
@@ -60,6 +59,8 @@
 	});
 
 	const customTitle = 'Tools';
+	const description =
+		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weaponsimulator, generate icons and armor, and much more.';
 	const url = $page.url.toString();
 
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';

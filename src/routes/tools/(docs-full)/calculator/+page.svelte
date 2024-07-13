@@ -7,6 +7,8 @@
 	const pages = toolsInfo.find((e) => e.category.name === 'Calculator')?.pages;
 </script>
 
+<code>{$page.url.pathname}</code>
+
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Calculators'} />
 	<div class="container-tiles">
@@ -21,7 +23,7 @@
 			{/each}
 		{/if}
 	</div>
-	<PageTurn pageRouteId={$page.route.id} />
+	<PageTurn pageUrlPathName={$page.url.pathname} />
 </div>
 
 <style lang="scss">

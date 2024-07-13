@@ -26,7 +26,6 @@
 		authorName,
 		authorUrl,
 		datePublished,
-		description,
 		projectName,
 		website,
 	} from '$lib/constants';
@@ -59,6 +58,8 @@
 
 	const customTitle = 'Support';
 	const url = $page.url.toString();
+	const description =
+		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.';
 
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 

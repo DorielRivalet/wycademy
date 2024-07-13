@@ -55,6 +55,28 @@ export type CategoryInfo = {
 	pages: NavigationItem[];
 };
 
+export function getNavigationItemFromLink(
+	section: CategoryInfo[],
+	link: string,
+) {
+	for (const categoryInfo of section) {
+		// Check if the link matches the category link
+		if (categoryInfo.category.link === link) {
+			return categoryInfo.category;
+		}
+
+		// Check if the link matches any page link within the category
+		for (const page of categoryInfo.pages) {
+			if (page.link === link) {
+				return page;
+			}
+		}
+	}
+
+	// Return null or a default message if no match is found
+	return null; // Or return a default message like "Description not found."
+}
+
 export function getRoutesSection(url: string) {
 	if (url.startsWith('/hunter-notes')) {
 		return guidesInfo;

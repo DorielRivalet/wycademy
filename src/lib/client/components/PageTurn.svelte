@@ -6,22 +6,7 @@
 		getRoutesSection,
 	} from '../modules/routes';
 
-	export let pageRouteId: string | null;
-
-	function removeParenthesizedLevels(urlPath: string | null) {
-		if (!urlPath) {
-			return '/';
-		}
-
-		// Adjusted regular expression to match any occurrence of the pattern
-		// The pattern now includes the entire segment, including leading/trailing slashes.
-		const regex = /\(.*?\)\//g;
-
-		// Replace matched patterns with an empty string
-		const cleanedUrlPath = urlPath.replace(regex, '');
-
-		return cleanedUrlPath;
-	}
+	export let pageUrlPathName: string | null;
 
 	function getCurrentCategoryInfo(
 		section: CategoryInfo[] | null,
@@ -222,7 +207,7 @@
 		return foundIndex >= 0 ? foundIndex : null;
 	}
 
-	const cleanedUrlPath = removeParenthesizedLevels(pageRouteId);
+	const cleanedUrlPath = pageUrlPathName || '/';
 	const routesSection = getRoutesSection(cleanedUrlPath);
 	const currentCategoryInfo = getCurrentCategoryInfo(
 		routesSection,

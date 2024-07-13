@@ -10,7 +10,7 @@
 		<SectionHeadingTopLevel title={'Contact Us'} />
 		<p class="spaced-paragraph"></p>
 		<div class="page-turn">
-			<PageTurn pageRouteId={$page.route.id} />
+			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
 </HunterNotesPage>
