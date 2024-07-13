@@ -23,7 +23,6 @@
 		authorName,
 		authorUrl,
 		datePublished,
-		description,
 		developmentStage,
 		projectName,
 		website,
