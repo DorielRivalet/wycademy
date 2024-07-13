@@ -158,7 +158,7 @@ export const toolsInfo: CategoryInfo[] = [
 			{
 				name: 'Damage',
 				description:
-					'A damage calculator that includes motion values of all weapons and damage formulas that update with your calculations.',
+					'A damage calculator that includes motion values of all weapons and formulas that update with your calculations.',
 				image: AllWeapons,
 				link: '/tools/calculator/damage',
 			},
