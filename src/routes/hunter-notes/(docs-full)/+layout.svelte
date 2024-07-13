@@ -40,6 +40,7 @@
 	import ExtremeSleep from '$lib/client/components/frontier/icon/ailment/ExtremeSleep.svelte';
 	import {
 		getItemIcon,
+		getMonsterByPathName,
 		getMonsterIcon,
 		getWeaponIcon,
 	} from '$lib/client/modules/frontier/functions';
@@ -88,6 +89,7 @@
 		routeLevels = routeLevels.filter((level) => !/\(.*\)/.test(level));
 
 		const navigationItem = getNavigationItemFromLink(guidesInfo, pathName);
+		const monster = getMonsterByPathName(pathName);
 
 		// Generate breadcrumb items
 		let items = [{ href: '/', text: 'Home' }];
@@ -98,7 +100,7 @@
 			items.push({ href: levelHref, text: levelText });
 		}
 
-		return { navigationItem, items };
+		return { navigationItem, items, monster };
 	}
 
 	// Function to handle scroll events
@@ -769,9 +771,13 @@
 
 	$: {
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items } = processRoute(pageUrlPathName);
-		headTitle = navigationItem?.name ?? "Hunter's Notes";
-		description = navigationItem?.description ?? description;
+		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
+		headTitle = monster
+			? monster.displayName
+			: navigationItem?.name ?? "Hunter's Notes";
+		description = monster?.ecology
+			? monster.ecology
+			: navigationItem?.description ?? description;
 		breadcrumbItems = items;
 	}
 
@@ -792,9 +798,13 @@
 		window.addEventListener('scroll', handleScroll);
 
 		const pageUrlPathName = $page.url.pathname || '/';
-		const { navigationItem, items } = processRoute(pageUrlPathName);
-		headTitle = navigationItem?.name ?? "Hunter's Notes";
-		description = navigationItem?.description ?? description;
+		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
+		headTitle = monster
+			? monster.displayName
+			: navigationItem?.name ?? "Hunter's Notes";
+		description = monster?.ecology
+			? monster.ecology
+			: navigationItem?.description ?? description;
 		breadcrumbItems = items;
 		const unsubscribe = page.subscribe(($page) => {
 			treeview?.showNode($page.url.pathname || '');
@@ -812,7 +822,7 @@
 />
 
 <Head
-	title={deslugify(headTitle)}
+	title={headTitle}
 	{description}
 	image={pageThumbnail}
 	{url}
