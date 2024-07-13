@@ -459,8 +459,8 @@
 	{/if}
 </Modal>
 
-<div class={modalBlurClass}>
-	<HunterNotesPage displayTOC={false}>
+<HunterNotesPage displayTOC={true}>
+	<div class={modalBlurClass}>
 		<div>
 			<SectionHeadingTopLevel title={'Ice Age'} />
 			<div class="ice-age-section">
@@ -1042,8 +1042,8 @@
 				<PageTurn pageRouteId={$page.route.id} />
 			</div>
 		</div>
-	</HunterNotesPage>
-</div>
+	</div>
+</HunterNotesPage>
 
 <style lang="scss">
 	.page-turn {

@@ -519,7 +519,7 @@
 	.armor-sets {
 		display: flex;
 		gap: 2rem;
-		grid-template-columns: repeat(autofit, minmax(64px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
 		justify-content: flex-start;
 		flex-wrap: wrap;
 	}

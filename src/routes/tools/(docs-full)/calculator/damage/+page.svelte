@@ -5067,8 +5067,8 @@ does not get multiplied by horn */
 		}));
 
 	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 1;
-	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 3;
-	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 3;
+	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 0;
 	let inputNumberDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
 
 	function hasDuplicateValues(obj: Object, ignoredString: string) {
@@ -5497,8 +5497,8 @@ does not get multiplied by horn */
 	{/if}
 </Modal>
 
-<div class={modalBlurClass}>
-	<HunterNotesPage displayTOC={true}>
+<HunterNotesPage displayTOC={true}>
+	<div class={modalBlurClass}>
 		<div>
 			<SectionHeadingTopLevel title={'Damage Calculator Overview'} />
 			<p>
@@ -8678,7 +8678,6 @@ does not get multiplied by horn */
 						sortable
 						zebra
 						size="short"
-						useStaticWidth
 						headers={[
 							{ key: 'name', value: 'Name', minWidth: '2rem' },
 							{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
@@ -8798,7 +8797,6 @@ does not get multiplied by horn */
 						sortable
 						zebra
 						size="short"
-						useStaticWidth
 						headers={[
 							{ key: 'name', value: 'Name', minWidth: '2rem' },
 							{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
@@ -9126,8 +9124,8 @@ does not get multiplied by horn */
 				<PageTurn pageRouteId={$page.route.id} />
 			</div>
 		</div>
-	</HunterNotesPage>
-</div>
+	</div>
+</HunterNotesPage>
 
 <style lang="scss">
 	.page-turn {
@@ -9231,28 +9229,15 @@ does not get multiplied by horn */
 	.container-inputs {
 		display: grid;
 		gap: 1rem;
-	}
-
-	@media (min-width: 320px) {
-		.container-inputs {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	@media (min-width: 672px) {
-		.container-inputs {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	@media (min-width: 1056px) {
-		.container-inputs {
-			grid-template-columns: 1fr 1fr 1fr;
-		}
+		width: 98%;
+		margin: 0 auto;
+		grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
 	}
 
 	.motion-values {
 		overflow-x: auto;
+		width: 98%;
+		margin: 0 auto;
 	}
 
 	.attack {
@@ -9346,6 +9331,8 @@ does not get multiplied by horn */
 		border: 1px solid var(--ctp-surface0);
 		padding-bottom: 1rem;
 		background-color: var(--ctp-mantle);
+		width: 98%;
+		margin: 0 auto;
 		margin-bottom: 2rem;
 	}
 
@@ -9356,6 +9343,8 @@ does not get multiplied by horn */
 		border-radius: 10px 10px 10px 10px;
 		border: 1px solid var(--ctp-surface0);
 		padding-bottom: 1rem;
+		width: 98%;
+		margin: 0 auto;
 		background-color: var(--ctp-mantle);
 		margin-bottom: 2rem;
 	}
@@ -9461,56 +9450,8 @@ does not get multiplied by horn */
 		border-radius: 10px 10px 0px 0px;
 	}
 
-	.ice-age-tables-container {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
-		margin-bottom: 2rem;
-		align-items: start;
-	}
-
-	.ice-age-table-stages {
-		grid-area: ice-age-table-stages;
-	}
-
-	.ice-age-descriptions {
-		grid-area: ice-age-descriptions;
-		display: flex;
-		gap: 1rem;
-		flex-direction: column;
-	}
-
-	.ice-age-table-hits {
-		grid-area: ice-age-table-hits;
-	}
-
 	.datatable-bottom {
 		margin-top: 2rem;
-	}
-
-	.flash-conversion-calculator {
-		display: flex;
-		gap: 1rem;
-		flex-wrap: wrap;
-		align-items: center;
-		margin: 1rem;
-	}
-
-	@media (min-width: 320px) {
-		.ice-age-calculator {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-		}
-	}
-
-	@media (min-width: 1056px) {
-		.ice-age-calculator {
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 1rem;
-			align-items: center;
-		}
 	}
 
 	.modal-mobile-popover-image {
@@ -9636,6 +9577,18 @@ does not get multiplied by horn */
 	.formula-container {
 		margin-bottom: 1rem;
 		margin-top: 1rem;
+	}
+
+	@media (min-width: 320px) {
+		.formula-container {
+			max-width: 95vw;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		.formula-container {
+			max-width: 80vw;
+		}
 	}
 
 	.dropdown-tooltip-container {
