@@ -7,8 +7,6 @@
 	const pages = toolsInfo.find((e) => e.category.name === 'Calculator')?.pages;
 </script>
 
-<code>{$page.url.pathname}</code>
-
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Calculators'} />
 	<div class="container-tiles">
