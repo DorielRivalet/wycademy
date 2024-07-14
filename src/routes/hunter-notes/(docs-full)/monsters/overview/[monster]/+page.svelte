@@ -538,11 +538,6 @@
 		margin: auto;
 	}
 
-	.silhouette {
-		width: 50%;
-		margin: 0 auto;
-	}
-
 	.hitzone-options {
 		display: flex;
 		gap: 1rem;
@@ -602,11 +597,18 @@
 	}
 
 	.hitzone-table {
+		grid-area: hitzone-table;
 		width: 100%;
 		overflow-x: auto;
 	}
 
 	@media (min-width: 320px) {
+		.silhouette {
+			grid-area: silhouette;
+			width: 50%;
+			margin: 0 auto;
+		}
+
 		.hitzone-info-container {
 			align-items: start;
 			display: flex;
@@ -618,9 +620,15 @@
 	}
 
 	@media (min-width: 1312px) {
+		.silhouette {
+			grid-area: silhouette;
+			width: 100%;
+			margin: 1rem;
+		}
 		.hitzone-info-container {
-			grid-template-columns: 1fr 1fr;
 			align-items: center;
+			grid-template-areas: 'hitzone-table silhouette';
+			grid-template-columns: 1fr 1fr;
 			display: grid;
 			width: 100%;
 			gap: 1rem;
