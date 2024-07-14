@@ -1271,6 +1271,7 @@ import GuildCardYianKutKu from '$lib/client/images/guild_card/yian_kut-ku.webp';
 import GuildCardZenaserisu from '$lib/client/images/guild_card/zenaserisu.webp';
 import GuildCardZerureusu from '$lib/client/images/guild_card/zerureusu.webp';
 import GuildCardZinogre from '$lib/client/images/guild_card/zinogre.webp';
+import SilhouetteAbiorugu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAbiorugu.svelte';
 
 // TODO the colors arrays should be grouped together.
 
@@ -5815,7 +5816,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterAbiorugu,
 		fullRender: FullMonsterRenderAbiorugu,
 		link: '/hunter-notes/monsters/overview/abiorugu',
-
+		hitzoneComponent: SilhouetteAbiorugu,
 		component: ComponentMonsterAbiorugu,
 		unusedComponent: false,
 		ecology:
@@ -24799,6 +24800,13 @@ export const divaPrayerGemsDropdownItems: DropdownItemOption[] = [
 		name: 'Friendship UP Lv3',
 		value: 30,
 	},
+];
+
+export const hitzoneColors = [
+	'var(--ctp-green)',
+	'var(--ctp-yellow)',
+	'var(--ctp-peach)',
+	'var(--ctp-red)',
 ];
 
 export const guildCardBackgrounds: {

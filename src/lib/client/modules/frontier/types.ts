@@ -703,6 +703,100 @@ export type TagColor =
 
 export type FrontierElementStatus = FrontierElement | FrontierStatus;
 
+export type FrontierMonsterPart =
+	| 'None'
+	| 'Body'
+	| 'Left Wing'
+	| 'Right Wing'
+	| 'Wings'
+	| 'Left Leg'
+	| 'Right Leg'
+	| 'Legs'
+	| 'Neck'
+	| 'Head'
+	| 'Tail Tip'
+	| 'Tail'
+	| 'Ice'
+	| 'Belly'
+	| 'Chest'
+	| 'Torso'
+	| 'Back'
+	| 'Left Hindleg'
+	| 'Right Hindleg'
+	| 'Hindlegs'
+	| 'Left Foreleg'
+	| 'Right Foreleg'
+	| 'Forelegs'
+	| 'Face'
+	| 'Horns'
+	| 'Tail/Back'
+	| 'Right Limbs'
+	| 'Left Limbs'
+	| 'Body'
+	| 'Arms'
+	| 'Left Claw'
+	| 'Right Claw'
+	| 'Skull'
+	| 'Feelers'
+	| 'Tentacles'
+	| 'Crystal'
+	| 'Right Wingclaw'
+	| 'Left Wingclaw'
+	| 'Wingclaws'
+	| 'Sub Tails'
+	| 'Throat'
+	| 'Tail/Legs'
+	| 'Shell'
+	| 'Right Winged Foot'
+	| 'Left Winged Foot'
+	| 'Wing Foot'
+	| 'Spikes'
+	| 'Belly/Legs'
+	| 'Tongue'
+	| 'Shoulders'
+	| 'Fangs'
+	| 'Mouth'
+	| 'Forewings'
+	| 'Weakpoint';
+
+export type FrontierMonsterHitzoneType =
+	| 'Cutting'
+	| 'Impact'
+	| 'Shot'
+	| 'Fire'
+	| 'Water'
+	| 'Thunder'
+	| 'Dragon'
+	| 'Ice'
+	| 'Stun';
+
+export type FrontierMonsterHitzoneRankBand =
+	| 'Low Rank'
+	| 'High Rank'
+	| 'HR5'
+	| 'Supremacy'
+	| 'G Rank'
+	| 'Musou'
+	| 'Zenith'
+	| 'Upper Shiten'
+	| 'Interception'
+	| 'Tower'
+	| 'Gou'
+	| 'Default';
+
+export type FrontierMonsterPartInfo = {
+	monsterState: string;
+	displayName: FrontierMonsterName;
+	rankBand: FrontierMonsterHitzoneRankBand;
+	parts: {
+		part: FrontierMonsterPart;
+		values: {
+			type: FrontierMonsterHitzoneType;
+			value: number;
+		}[];
+	}[];
+};
+
 export type FrontierMonsterInfo = {
 	id: number;
 	name: FrontierMonsterName;
@@ -725,7 +819,7 @@ export type FrontierMonsterInfo = {
 	generation?: string;
 	ecology?: string;
 	link?: string;
-	// TODO hitzones
+	hitzoneComponent?: ComponentType<SvelteComponent>;
 };
 
 export type FrontierMonsterNameExpanded =

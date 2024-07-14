@@ -4,7 +4,13 @@
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import slugify from 'slugify';
 	import BestiaryMonsterGameInfo from '../BestiaryMonsterGameInfo.svelte';
-	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
+	import {
+		convertHitzoneInfo,
+		getAllHitzoneValuesForHitzones,
+		getHitzoneValuesObject,
+		getUniqueMonsters,
+		isFieldEmpty,
+	} from '$lib/client/modules/frontier/functions';
 	import {
 		AilmentIcons,
 		ElementIcons,
@@ -12,8 +18,13 @@
 		monsterInfo,
 	} from '$lib/client/modules/frontier/objects';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import ezlion from 'ezlion';
-	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
+	import ezlion, { type FrontierMonsterName } from 'ezlion';
+	import type {
+		FrontierMonsterHitzoneRankBand,
+		FrontierMonsterHitzoneType,
+		FrontierMonsterInfo,
+		FrontierMonsterNameExpanded,
+	} from '$lib/client/modules/frontier/types';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
@@ -22,20 +33,28 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import { goto } from '$app/navigation';
+	import Dropdown, {
+		type DropdownItem,
+	} from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
+	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
+	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
+	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
+	import { getCSVFromArray } from '$lib/client/modules/csv';
+	import { fade } from 'svelte/transition';
+	import { cubicInOut } from 'svelte/easing';
+	import { hitzoneInfo } from '$lib/client/modules/frontier/hitzones';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
 			(monster) =>
-				$page.params.monster.toLowerCase() ===
-				slugify(monster.displayName).toLowerCase(),
+				params.toLowerCase() === slugify(monster.displayName).toLowerCase(),
 		);
 
 		if (found) {
 			return found;
 		} else {
-			let foundKey = Object.keys(ezlion.Monster).find(
-				(e) => `${e}` === $page.params.monster,
-			);
+			let foundKey = Object.keys(ezlion.Monster).find((e) => `${e}` === params);
 			if (foundKey) {
 				return monsterInfo.find((m) => m.id === Number(foundKey));
 			} else {
@@ -57,8 +76,131 @@
 		return monster?.id ?? 'Not found';
 	}
 
+	function shouldFilterItem(item: { text: string }, value: string) {
+		if (!value) return true;
+		return item.text.toLowerCase().includes(value.toLowerCase());
+	}
+
+	function getCurrentMonsters() {
+		let list:
+			| { name: string; icon: any }[]
+			| FrontierMonsterInfo[]
+			| { name: string; image: any }[];
+
+		list = uniqueMonsters;
+
+		list = list.filter((e) => e.icon !== '');
+
+		let result: DropdownItem[] = [];
+		list.forEach((element) => {
+			if ('displayName' in element) {
+				// TypeScript now knows that element is of type FrontierMonsterInfo
+				// Ensure 'displayName' is a string before pushing to result
+				if (
+					typeof element.displayName === 'string' &&
+					!result.find((e) => e.id === element.displayName)
+				) {
+					result.push({
+						id: `${element.displayName}`,
+						text: element.displayName,
+					});
+				}
+			} else {
+				result.push({ id: element.name, text: element.name });
+			}
+		});
+
+		result.sort((a, b) => a.text.localeCompare(b.text));
+
+		return result;
+	}
+
+	function getAvailableRankBands(
+		displayName: FrontierMonsterName,
+	): { id: string; text: string }[] {
+		// Filter HitzoneInfo by displayName and extract unique rankBands
+		const rankBands = new Set<FrontierMonsterHitzoneRankBand>();
+		hitzoneInfo.forEach((info) => {
+			if (info.displayName === displayName) {
+				rankBands.add(info.rankBand);
+			}
+		});
+		return Array.from(rankBands).map((rank) => ({ id: rank, text: rank }));
+	}
+
+	function getAvailableMonsterStates(
+		displayName: FrontierMonsterName,
+	): { id: string; text: string }[] {
+		// Filter HitzoneInfo by displayName and extract unique monsterStates
+		const monsterStates = new Set<string>();
+		hitzoneInfo.forEach((info) => {
+			if (info.displayName === displayName) {
+				monsterStates.add(info.monsterState);
+			}
+		});
+		return Array.from(monsterStates).map((state) => ({
+			id: state,
+			text: state,
+		}));
+	}
+
+	let uniqueMonsters = getUniqueMonsters().sort(
+		(a, b) =>
+			(a?.displayName?.codePointAt(0) ?? 0) -
+			(b?.displayName?.codePointAt(0) ?? 0),
+	);
+
+	/** TODO this changes depending on monster*/
+	let selectedRankBand: FrontierMonsterHitzoneRankBand = 'Default';
+	let selectedHitzoneType: FrontierMonsterHitzoneType = 'Cutting';
+	let selectedMonsterState = 'Default';
+
+	const currentMonsters = getCurrentMonsters();
+
 	$: monster = findMonster($page.params.monster);
 	$: monsterID = findMonsterID(monster);
+
+	let selectedMonsterIdFromList: FrontierMonsterName = findMonster(
+		$page.params.monster,
+	)?.displayName;
+
+	$: hitzones =
+		convertHitzoneInfo(
+			selectedMonsterIdFromList,
+			selectedRankBand,
+			selectedMonsterState,
+		) || [];
+
+	$: hitzoneValues = Object.entries(
+		getAllHitzoneValuesForHitzones(
+			hitzones,
+			selectedMonsterState,
+			selectedRankBand,
+		),
+	).map(([partName, hitzoneValues]) => ({
+		id: partName,
+		part: partName,
+		...Object.fromEntries(
+			Object.entries(hitzoneValues).map(([type, value]) => [
+				type.toLowerCase(),
+				value,
+			]),
+		),
+	}));
+
+	$: hitzoneHighestValues = getHitzoneValuesObject(
+		hitzones,
+		selectedMonsterState,
+		selectedRankBand,
+	);
+
+	$: availableRankBands = getAvailableRankBands(selectedMonsterIdFromList) || [
+		{ id: 'Default', text: 'Default' },
+	];
+
+	$: availableMonsterStates = getAvailableMonsterStates(
+		selectedMonsterIdFromList,
+	) || [{ id: 'Default', text: 'Default' }];
 </script>
 
 {#if monster}
@@ -256,6 +398,118 @@
 		</div>
 		<section>
 			<SectionHeading title="Hitzone Values" level={2} />
+			<div class="hitzone-options">
+				<ComboBox
+					on:select={() => {
+						selectedMonsterState = 'Default';
+						selectedRankBand = availableRankBands[0].id;
+					}}
+					titleText="Monster"
+					placeholder="Select monster"
+					bind:selectedId={selectedMonsterIdFromList}
+					items={currentMonsters}
+					{shouldFilterItem}
+				/>
+				{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
+					<Dropdown
+						titleText="Rank Band"
+						bind:selectedId={selectedRankBand}
+						items={availableRankBands}
+					/>
+				{/if}
+				<Dropdown
+					titleText="Hitzone Type"
+					bind:selectedId={selectedHitzoneType}
+					items={[
+						{ id: 'Cutting', text: '⚔️ Cutting' },
+						{ id: 'Impact', text: '🔨 Impact' },
+						{ id: 'Shot', text: '🏹 Shot' },
+						{ id: 'Fire', text: '🔥 Fire' },
+						{ id: 'Water', text: '💧 Water' },
+						{ id: 'Thunder', text: '⚡ Thunder' },
+						{ id: 'Dragon', text: '🐲 Dragon' },
+						{ id: 'Ice', text: '❄️ Ice' },
+						{ id: 'Stun', text: '💫 Stun' },
+					]}
+				/>
+				{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
+					<Dropdown
+						titleText="Monster State"
+						bind:selectedId={selectedMonsterState}
+						items={availableMonsterStates}
+					/>
+				{/if}
+			</div>
+			<div class="silhouette">
+				{#if selectedMonsterIdFromList}
+					<div
+						transition:fade={{
+							duration: 150,
+							easing: cubicInOut,
+						}}
+					>
+						<svelte:component
+							this={monsterInfo.find(
+								(e) => e.displayName === selectedMonsterIdFromList,
+							)?.hitzoneComponent}
+							{selectedHitzoneType}
+							{selectedMonsterState}
+							{selectedRankBand}
+							{hitzones}
+						/>
+					</div>
+				{/if}
+			</div>
+			{#if selectedMonsterIdFromList}
+				<div
+					transition:fade={{
+						duration: 150,
+						easing: cubicInOut,
+					}}
+				>
+					<DataTable
+						sortable
+						zebra
+						title={selectedMonsterIdFromList +
+							' | ' +
+							selectedRankBand +
+							' | ' +
+							selectedMonsterState}
+						size="medium"
+						headers={[
+							{ key: 'part', value: 'Part' },
+							{ key: 'cutting', value: '⚔️' },
+							{ key: 'impact', value: '🔨' },
+							{ key: 'shot', value: '🏹' },
+							{ key: 'fire', value: '🔥' },
+							{ key: 'water', value: '💧' },
+							{ key: 'thunder', value: '⚡' },
+							{ key: 'ice', value: '❄️' },
+							{ key: 'dragon', value: '🐲' },
+							{ key: 'stun', value: '💫' },
+						]}
+						rows={hitzoneValues}
+						><Toolbar
+							><div class="toolbar">
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray(hitzoneValues)}
+								/>
+							</div>
+						</Toolbar>
+
+						<svelte:fragment slot="cell" let:cell>
+							{#if hitzoneHighestValues[cell.key
+									.charAt(0)
+									.toUpperCase() + cell.key.slice(1)]?.find((e) => e === cell.value)}
+								<p><strong>{cell.value}</strong></p>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						</svelte:fragment>
+					</DataTable>
+				</div>
+			{/if}
 		</section>
 		<section>
 			<SectionHeading title="Fastest Hunts" level={2} />
@@ -279,6 +533,18 @@
 		padding-bottom: 2rem;
 		width: 90%;
 		margin: auto;
+	}
+
+	.silhouette {
+		width: 50%;
+		margin: 0 auto;
+	}
+
+	.hitzone-options {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+		margin-bottom: 1rem;
 	}
 
 	.not-found-container {
@@ -321,5 +587,14 @@
 	.related-monsters {
 		max-height: 80vh;
 		overflow-y: auto;
+	}
+
+	.toolbar {
+		padding: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-grow: 1;
+		flex-shrink: 1;
 	}
 </style>
