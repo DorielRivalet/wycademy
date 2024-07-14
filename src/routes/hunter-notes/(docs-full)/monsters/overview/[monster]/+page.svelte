@@ -242,158 +242,155 @@
 					</div>
 				</BestiaryMonsterGameInfo>
 			</div>
-			<div class="monster-properties">
-				<div>
-					<div class="elements">
-						<strong>Elements: </strong>
-						{#if monster.elements !== undefined && monster.elements.length > 0}
-							{#each monster.elements as element}
+			<div>
+				<div class="elements">
+					<strong>Elements: </strong>
+					{#if monster.elements !== undefined && monster.elements.length > 0}
+						{#each monster.elements as element}
+							<InlineTooltip
+								text={element}
+								tooltip="Element"
+								iconType="component"
+								icon={ElementIcons.find((e) => e.displayName === element)?.icon}
+							/>
+						{/each}
+					{:else}
+						None
+					{/if}
+				</div>
+				<div class="ailments">
+					<strong>Ailments: </strong>
+					{#if monster.ailments !== undefined && monster.ailments.length > 0}
+						{#each monster.ailments as ailment}
+							<InlineTooltip
+								text={ailment}
+								tooltip="Ailment"
+								iconType="component"
+								icon={AilmentIcons.find((e) => e.name === ailment)?.icon}
+							/>
+						{/each}
+					{:else}
+						None
+					{/if}
+				</div>
+				<div class="weaknesses">
+					<strong>Weaknesses: </strong>
+					{#if monster.weaknesses !== undefined && monster.weaknesses.length > 0}
+						{#each monster.weaknesses as weakness}
+							{#if ElementIcons.find((e) => e.name === weakness)}
 								<InlineTooltip
-									text={element}
+									text={weakness}
 									tooltip="Element"
 									iconType="component"
-									icon={ElementIcons.find((e) => e.displayName === element)
-										?.icon}
+									icon={ElementIcons.find((e) => e.name === weakness)?.icon}
 								/>
-							{/each}
-						{:else}
-							None
-						{/if}
-					</div>
-					<div class="ailments">
-						<strong>Ailments: </strong>
-						{#if monster.ailments !== undefined && monster.ailments.length > 0}
-							{#each monster.ailments as ailment}
+							{:else if StatusIcons.find((e) => e.name === weakness)}
 								<InlineTooltip
-									text={ailment}
-									tooltip="Ailment"
+									text={weakness}
+									tooltip="Status"
 									iconType="component"
-									icon={AilmentIcons.find((e) => e.name === ailment)?.icon}
+									icon={StatusIcons.find((e) => e.name === weakness)?.icon}
 								/>
-							{/each}
-						{:else}
-							None
-						{/if}
-					</div>
-					<div class="weaknesses">
-						<strong>Weaknesses: </strong>
-						{#if monster.weaknesses !== undefined && monster.weaknesses.length > 0}
-							{#each monster.weaknesses as weakness}
-								{#if ElementIcons.find((e) => e.name === weakness)}
-									<InlineTooltip
-										text={weakness}
-										tooltip="Element"
-										iconType="component"
-										icon={ElementIcons.find((e) => e.name === weakness)?.icon}
-									/>
-								{:else if StatusIcons.find((e) => e.name === weakness)}
-									<InlineTooltip
-										text={weakness}
-										tooltip="Status"
-										iconType="component"
-										icon={StatusIcons.find((e) => e.name === weakness)?.icon}
-									/>
-								{/if}
-							{/each}
-						{:else}
-							None
-						{/if}
-					</div>
-					<p>
-						<strong>ID: </strong>{monsterID} (0x{Number.parseInt(`${monsterID}`)
-							.toString(16)
-							.toUpperCase()
-							.padStart(2, '0')})
-					</p>
-					<p>
-						<strong>Size Type: </strong>{monster.type}
-					</p>
-					<p>
-						<strong>Sizes: </strong>
-						{#if monster.sizes && monster.sizes.length > 0}
-							<UnorderedList class="spaced-list">
-								{#each monster.sizes as size}
-									<ListItem>{size}</ListItem>
-								{/each}
-							</UnorderedList>
-						{:else}
-							<p>Not found.</p>
-						{/if}
-					</p>
-					<p>
-						<strong>Rank: </strong>{monster.rank}
-					</p>
-					<p>
-						<strong>Render (click to expand): </strong>
-						<ImageDialog
-							type="file"
-							src={monster.fullRender}
-							alt="Monster Render"
-							width={32}
-							height={32}
-						/>
-					</p>
-					<p>
-						<strong>Generation: </strong>{monster.generation}
-					</p>
+							{/if}
+						{/each}
+					{:else}
+						None
+					{/if}
 				</div>
-				<div class="habitats">
-					<p>
-						<strong>Habitats: </strong>
-						{#if monster.habitats && monster.habitats.length > 0}
-							<UnorderedList class="spaced-list">
-								{#each monster.habitats as habitat}
-									<ListItem>{habitat}</ListItem>
-								{/each}
-							</UnorderedList>
-						{:else}
-							<p>Not found.</p>
-						{/if}
-					</p>
-				</div>
-				<div class="related-monsters">
-					<p>
-						<strong>Related Monsters: </strong>
-					</p>
-
-					{#if monster.relatedMonsters && monster.relatedMonsters.length > 0}
+				<p>
+					<strong>ID: </strong>{monsterID} (0x{Number.parseInt(`${monsterID}`)
+						.toString(16)
+						.toUpperCase()
+						.padStart(2, '0')})
+				</p>
+				<p>
+					<strong>Size Type: </strong>{monster.type}
+				</p>
+				<p>
+					<strong>Sizes: </strong>
+					{#if monster.sizes && monster.sizes.length > 0}
 						<UnorderedList class="spaced-list">
-							{#each monster.relatedMonsters as relatedMonster}
-								<ListItem>
-									{#if findMonsterInfo(relatedMonster)}
-										<Link
-											href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(relatedMonster)?.displayName ?? '/hunter-notes/monsters/overview', { lower: true })}`}
-										>
-											{#if findMonsterInfo(relatedMonster)?.unusedComponent}
-												<InlineTooltip
-													iconType="file"
-													tooltip={relatedMonster}
-													text={relatedMonster}
-													gap={'.5rem'}
-													iconSize={'32px'}
-													icon={findMonsterInfo(relatedMonster)?.icon}
-												/>
-											{:else}
-												<InlineTooltip
-													iconType="component"
-													gap={'.5rem'}
-													tooltip={relatedMonster}
-													text={relatedMonster}
-													iconSize={'32px'}
-													icon={findMonsterInfo(relatedMonster)?.component}
-												/>
-											{/if}
-										</Link>
-									{:else}
-										{relatedMonster}
-									{/if}
-								</ListItem>
+							{#each monster.sizes as size}
+								<ListItem>{size}</ListItem>
 							{/each}
 						</UnorderedList>
 					{:else}
 						<p>Not found.</p>
 					{/if}
-				</div>
+				</p>
+				<p>
+					<strong>Rank: </strong>{monster.rank}
+				</p>
+				<p>
+					<strong>Render (click to expand): </strong>
+					<ImageDialog
+						type="file"
+						src={monster.fullRender}
+						alt="Monster Render"
+						width={32}
+						height={32}
+					/>
+				</p>
+				<p>
+					<strong>Generation: </strong>{monster.generation}
+				</p>
+			</div>
+			<div class="habitats">
+				<p>
+					<strong>Habitats: </strong>
+					{#if monster.habitats && monster.habitats.length > 0}
+						<UnorderedList class="spaced-list">
+							{#each monster.habitats as habitat}
+								<ListItem>{habitat}</ListItem>
+							{/each}
+						</UnorderedList>
+					{:else}
+						<p>Not found.</p>
+					{/if}
+				</p>
+			</div>
+			<div class="related-monsters">
+				<p>
+					<strong>Related Monsters: </strong>
+				</p>
+
+				{#if monster.relatedMonsters && monster.relatedMonsters.length > 0}
+					<UnorderedList class="spaced-list">
+						{#each monster.relatedMonsters as relatedMonster}
+							<ListItem>
+								{#if findMonsterInfo(relatedMonster)}
+									<Link
+										href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(relatedMonster)?.displayName ?? '/hunter-notes/monsters/overview', { lower: true })}`}
+									>
+										{#if findMonsterInfo(relatedMonster)?.unusedComponent}
+											<InlineTooltip
+												iconType="file"
+												tooltip={relatedMonster}
+												text={relatedMonster}
+												gap={'.5rem'}
+												iconSize={'32px'}
+												icon={findMonsterInfo(relatedMonster)?.icon}
+											/>
+										{:else}
+											<InlineTooltip
+												iconType="component"
+												gap={'.5rem'}
+												tooltip={relatedMonster}
+												text={relatedMonster}
+												iconSize={'32px'}
+												icon={findMonsterInfo(relatedMonster)?.component}
+											/>
+										{/if}
+									</Link>
+								{:else}
+									{relatedMonster}
+								{/if}
+							</ListItem>
+						{/each}
+					</UnorderedList>
+				{:else}
+					<p>Not found.</p>
+				{/if}
 			</div>
 		</div>
 		<section>
@@ -567,17 +564,10 @@
 		gap: 2rem;
 	}
 
-	.monster-properties {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		gap: 4rem;
-	}
-
-	.monster-properties > div {
+	.overview > div {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 0.5rem;
 		flex-wrap: wrap;
 	}
 
@@ -600,6 +590,7 @@
 		grid-area: hitzone-table;
 		width: 100%;
 		overflow-x: auto;
+		background-color: var(--ctp-surface0);
 	}
 
 	@media (min-width: 320px) {
