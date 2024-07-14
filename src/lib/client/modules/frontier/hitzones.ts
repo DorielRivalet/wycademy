@@ -42876,7 +42876,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 10,
 		impact: 10,
 		stun: 100,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'White Fatalis',
@@ -42892,7 +42892,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 10,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'White Fatalis',
@@ -42908,7 +42908,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 10,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'White Fatalis',
@@ -42924,7 +42924,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 10,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'White Fatalis',
@@ -42940,7 +42940,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 10,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'White Fatalis',
@@ -42956,7 +42956,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 10,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'White Fatalis',
@@ -42972,7 +42972,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 10,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'White Fatalis',
@@ -43100,7 +43100,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 10,
 		impact: 40,
 		stun: 100,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
 
 		displayName: 'White Fatalis',
@@ -43116,7 +43116,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 25,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
 
 		displayName: 'White Fatalis',
@@ -43132,7 +43132,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 15,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
 
 		displayName: 'White Fatalis',
@@ -43148,7 +43148,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 25,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
 
 		displayName: 'White Fatalis',
@@ -43164,7 +43164,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 25,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
 
 		displayName: 'White Fatalis',
@@ -43180,7 +43180,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 20,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
 
 		displayName: 'White Fatalis',
@@ -43196,7 +43196,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 15,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
 
 		displayName: 'White Fatalis',
@@ -43324,7 +43324,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 10,
 		stun: 100,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'Crimson Fatalis',
@@ -43340,7 +43340,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'Crimson Fatalis',
@@ -43356,7 +43356,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'Crimson Fatalis',
@@ -43372,7 +43372,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'Crimson Fatalis',
@@ -43388,7 +43388,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'Crimson Fatalis',
@@ -43404,7 +43404,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'Crimson Fatalis',
@@ -43420,7 +43420,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 5,
 		impact: 10,
 		stun: 0,
-		monsterState: '50 to 20% HP Left',
+		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
 
 		displayName: 'Crimson Fatalis',

@@ -402,7 +402,7 @@
 				<ComboBox
 					on:select={() => {
 						selectedMonsterState = 'Default';
-						selectedRankBand = availableRankBands[0].id;
+						selectedRankBand = availableRankBands[0]?.id || 'Default';
 					}}
 					titleText="Monster"
 					placeholder="Select monster"
@@ -440,76 +440,79 @@
 					/>
 				{/if}
 			</div>
-			<div class="silhouette">
+			<div class="hitzone-info-container">
+				<div class="silhouette">
+					{#if selectedMonsterIdFromList}
+						<div
+							transition:fade={{
+								duration: 150,
+								easing: cubicInOut,
+							}}
+						>
+							<svelte:component
+								this={monsterInfo.find(
+									(e) => e.displayName === selectedMonsterIdFromList,
+								)?.hitzoneComponent}
+								{selectedHitzoneType}
+								{selectedMonsterState}
+								{selectedRankBand}
+								{hitzones}
+							/>
+						</div>
+					{/if}
+				</div>
 				{#if selectedMonsterIdFromList}
 					<div
+						class="hitzone-table"
 						transition:fade={{
 							duration: 150,
 							easing: cubicInOut,
 						}}
 					>
-						<svelte:component
-							this={monsterInfo.find(
-								(e) => e.displayName === selectedMonsterIdFromList,
-							)?.hitzoneComponent}
-							{selectedHitzoneType}
-							{selectedMonsterState}
-							{selectedRankBand}
-							{hitzones}
-						/>
+						<DataTable
+							sortable
+							zebra
+							title={selectedMonsterIdFromList +
+								' | ' +
+								selectedRankBand +
+								' | ' +
+								selectedMonsterState}
+							size="medium"
+							headers={[
+								{ key: 'part', value: 'Part' },
+								{ key: 'cutting', value: '⚔️' },
+								{ key: 'impact', value: '🔨' },
+								{ key: 'shot', value: '🏹' },
+								{ key: 'fire', value: '🔥' },
+								{ key: 'water', value: '💧' },
+								{ key: 'thunder', value: '⚡' },
+								{ key: 'ice', value: '❄️' },
+								{ key: 'dragon', value: '🐲' },
+								{ key: 'stun', value: '💫' },
+							]}
+							rows={hitzoneValues}
+							><Toolbar
+								><div class="toolbar">
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(hitzoneValues)}
+									/>
+								</div>
+							</Toolbar>
+
+							<svelte:fragment slot="cell" let:cell>
+								{#if hitzoneHighestValues[cell.key
+										.charAt(0)
+										.toUpperCase() + cell.key.slice(1)]?.find((e) => e === cell.value)}
+									<p><strong>{cell.value}</strong></p>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							</svelte:fragment>
+						</DataTable>
 					</div>
 				{/if}
 			</div>
-			{#if selectedMonsterIdFromList}
-				<div
-					transition:fade={{
-						duration: 150,
-						easing: cubicInOut,
-					}}
-				>
-					<DataTable
-						sortable
-						zebra
-						title={selectedMonsterIdFromList +
-							' | ' +
-							selectedRankBand +
-							' | ' +
-							selectedMonsterState}
-						size="medium"
-						headers={[
-							{ key: 'part', value: 'Part' },
-							{ key: 'cutting', value: '⚔️' },
-							{ key: 'impact', value: '🔨' },
-							{ key: 'shot', value: '🏹' },
-							{ key: 'fire', value: '🔥' },
-							{ key: 'water', value: '💧' },
-							{ key: 'thunder', value: '⚡' },
-							{ key: 'ice', value: '❄️' },
-							{ key: 'dragon', value: '🐲' },
-							{ key: 'stun', value: '💫' },
-						]}
-						rows={hitzoneValues}
-						><Toolbar
-							><div class="toolbar">
-								<CopyButton
-									iconDescription={'Copy as CSV'}
-									text={getCSVFromArray(hitzoneValues)}
-								/>
-							</div>
-						</Toolbar>
-
-						<svelte:fragment slot="cell" let:cell>
-							{#if hitzoneHighestValues[cell.key
-									.charAt(0)
-									.toUpperCase() + cell.key.slice(1)]?.find((e) => e === cell.value)}
-								<p><strong>{cell.value}</strong></p>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
-					</DataTable>
-				</div>
-			{/if}
 		</section>
 		<section>
 			<SectionHeading title="Fastest Hunts" level={2} />
@@ -596,5 +599,31 @@
 		gap: 1rem;
 		flex-grow: 1;
 		flex-shrink: 1;
+	}
+
+	.hitzone-table {
+		width: 100%;
+		overflow-x: auto;
+	}
+
+	@media (min-width: 320px) {
+		.hitzone-info-container {
+			align-items: start;
+			display: flex;
+			width: 100%;
+			gap: 1rem;
+			flex-direction: column;
+			flex-wrap: wrap;
+		}
+	}
+
+	@media (min-width: 1312px) {
+		.hitzone-info-container {
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			display: grid;
+			width: 100%;
+			gap: 1rem;
+		}
 	}
 </style>
