@@ -1274,6 +1274,7 @@ import GuildCardZinogre from '$lib/client/images/guild_card/zinogre.webp';
 import SilhouetteAbiorugu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAbiorugu.svelte';
 import SilhouetteAkantor from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkantor.svelte';
 import SilhouetteAkuraJebia from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkuraJebia.svelte';
+import SilhouetteAmatsu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAmatsu.svelte';
 
 // TODO the colors arrays should be grouped together.
 
@@ -5298,6 +5299,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Akura Vashimu',
 		icon: IconMonsterAkuraVashimu,
 		rank: 'G Rank',
+		hitzoneComponent: SilhouetteAkuraJebia,
+
 		render: IconRenderMonsterAkuraVashimu,
 		fullRender: FullMonsterRenderAkuraVashimu,
 		component: ComponentMonsterAkuraVashimu,
@@ -7377,7 +7380,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Amatsu',
 		displayName: 'Amatsu',
 		link: '/hunter-notes/monsters/overview/amatsu',
-
+		hitzoneComponent: SilhouetteAmatsu,
 		icon: IconMonsterAmatsu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAmatsu,
@@ -7622,7 +7625,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Zenith Akura Vashimu',
 		icon: IconMonsterZenithAkuraVashimu,
 		link: '/hunter-notes/monsters/overview/zenith-akura-vashimu',
-
 		rank: 'Zenith★4',
 		render: IconRenderMonsterZenithAkuraVashimu,
 		fullRender: FullMonsterRenderZenithAkuraVashimu,
@@ -24806,6 +24808,7 @@ export const divaPrayerGemsDropdownItems: DropdownItemOption[] = [
 ];
 
 export const hitzoneColors = [
+	'var(--ctp-blue)',
 	'var(--ctp-green)',
 	'var(--ctp-yellow)',
 	'var(--ctp-peach)',

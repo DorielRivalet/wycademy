@@ -17,6 +17,9 @@ export type HitzoneInfo = {
 	impact: number;
 	stun: number;
 	monsterState: string;
+	shot: number;
+	water: number;
+	thunder: number;
 	rankBand: FrontierMonsterHitzoneRankBand;
 	displayName: FrontierMonsterName;
 };
@@ -47,7 +50,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 10,
@@ -63,7 +65,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -94,7 +95,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -110,7 +110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -126,7 +125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 5,
@@ -142,7 +140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 10,
@@ -158,7 +155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 10,
@@ -174,7 +170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -190,7 +185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -206,7 +200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -222,7 +215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -238,7 +230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 5,
@@ -254,7 +245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 10,
@@ -270,7 +260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 40,
 		thunder: 10,
@@ -286,7 +275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -302,7 +290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -318,7 +305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -334,7 +320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -350,7 +335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 40,
 		thunder: 5,
@@ -366,7 +350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 40,
 		thunder: 10,
@@ -382,7 +365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 45,
 		thunder: 10,
@@ -398,7 +380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -414,7 +395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -430,7 +410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -446,7 +425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 5,
@@ -462,7 +440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'Abiorugu',
 		shot: 45,
 		thunder: 5,
@@ -478,7 +455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 10,
@@ -494,7 +470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 10,
@@ -510,7 +485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 15,
 		thunder: 5,
@@ -526,7 +500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 15,
 		thunder: 5,
@@ -542,7 +515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 15,
 		thunder: 5,
@@ -558,7 +530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -574,7 +545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -590,7 +560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 15,
@@ -606,7 +575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 15,
@@ -622,7 +590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -638,7 +605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 15,
 		thunder: 5,
@@ -654,7 +620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 15,
 		thunder: 5,
@@ -670,7 +635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -686,7 +650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 5,
@@ -702,7 +665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 20,
@@ -718,7 +680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 20,
@@ -734,7 +695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -750,7 +710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 15,
 		thunder: 5,
@@ -766,7 +725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 15,
 		thunder: 5,
@@ -782,7 +740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -798,7 +755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 5,
@@ -814,7 +770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 25,
@@ -830,7 +785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 40,
 		thunder: 25,
@@ -846,7 +800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -862,7 +815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -878,7 +830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 15,
 		thunder: 5,
@@ -894,7 +845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -910,7 +860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Abiorugu',
 		shot: 40,
 		thunder: 5,
@@ -926,7 +875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 10,
@@ -942,7 +890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 10,
@@ -958,7 +905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -974,7 +920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -990,7 +935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -1006,7 +950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -1022,7 +965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 5,
@@ -1038,7 +980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 10,
@@ -1054,7 +995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 10,
@@ -1070,7 +1010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -1086,7 +1025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -1102,7 +1040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -1118,7 +1055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -1134,7 +1070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 5,
@@ -1150,7 +1085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 35,
 		thunder: 10,
@@ -1166,7 +1100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 40,
 		thunder: 10,
@@ -1182,7 +1115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -1198,7 +1130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -1214,7 +1145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -1230,7 +1160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -1246,7 +1175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 40,
 		thunder: 5,
@@ -1262,7 +1190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 40,
 		thunder: 10,
@@ -1278,7 +1205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 45,
 		thunder: 10,
@@ -1294,7 +1220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -1310,7 +1235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 25,
 		thunder: 5,
@@ -1326,7 +1250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 20,
 		thunder: 5,
@@ -1342,7 +1265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 30,
 		thunder: 5,
@@ -1358,7 +1280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'Abiorugu',
 		shot: 45,
 		thunder: 5,
@@ -1374,7 +1295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Felyne',
 		shot: 120,
 		thunder: 100,
@@ -1390,7 +1310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 40,
 		thunder: 20,
@@ -1406,7 +1325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 25,
 		thunder: 15,
@@ -1422,7 +1340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 25,
 		thunder: 15,
@@ -1438,7 +1355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 30,
 		thunder: 15,
@@ -1454,7 +1370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 40,
 		thunder: 30,
@@ -1470,7 +1385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 10,
@@ -1486,7 +1400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 25,
 		thunder: 15,
@@ -1502,7 +1415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 30,
 		thunder: 20,
@@ -1518,7 +1430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 25,
 		thunder: 15,
@@ -1534,7 +1445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 25,
 		thunder: 40,
@@ -1550,7 +1460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 40,
 		thunder: 15,
@@ -1566,7 +1475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 30,
@@ -1582,7 +1490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 25,
 		thunder: 15,
@@ -1598,7 +1505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 15,
@@ -1614,7 +1520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 30,
 		thunder: 20,
@@ -1630,7 +1535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: 15,
@@ -1646,7 +1550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: 15,
@@ -1662,7 +1565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 15,
@@ -1678,7 +1580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 30,
 		thunder: 30,
@@ -1694,7 +1595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 10,
 		thunder: 10,
@@ -1710,7 +1610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: 15,
@@ -1726,7 +1625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 20,
@@ -1742,7 +1640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: 15,
@@ -1758,7 +1655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: 40,
@@ -1774,7 +1670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 30,
 		thunder: 15,
@@ -1790,7 +1685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: 30,
@@ -1806,7 +1700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 10,
 		thunder: 15,
@@ -1822,7 +1715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Akantor',
 		shot: 10,
 		thunder: 15,
@@ -1838,7 +1730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 0,
@@ -1854,7 +1745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 30,
 		thunder: 5,
@@ -1870,7 +1760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: 5,
@@ -1886,7 +1775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 5,
@@ -1902,7 +1790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 0,
@@ -1918,7 +1805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 10,
 		thunder: -5,
@@ -1934,7 +1820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: -5,
@@ -1950,7 +1835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: 5,
@@ -1966,7 +1850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 40,
 		thunder: 0,
@@ -1982,7 +1865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 15,
 		thunder: 0,
@@ -1998,7 +1880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 0,
@@ -2014,7 +1895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 20,
 		thunder: 5,
@@ -2030,7 +1910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 10,
 		thunder: 5,
@@ -2046,14 +1925,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Akantor',
 		shot: 10,
 		thunder: 5,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Head',
 		cutting: 31,
 		dragon: 25,
 		fire: 20,
@@ -2062,14 +1940,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 25,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Neck',
 		cutting: 22,
 		dragon: 5,
 		fire: 15,
@@ -2078,14 +1955,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 15,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Back',
 		cutting: 18,
 		dragon: 10,
 		fire: 15,
@@ -2094,14 +1970,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 15,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Belly',
 		cutting: 27,
 		dragon: 15,
 		fire: 20,
@@ -2110,14 +1985,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 20,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Forelegs',
 		cutting: 24,
 		dragon: 15,
 		fire: 15,
@@ -2126,14 +2000,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 20,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Hindlegs',
 		cutting: 15,
 		dragon: 10,
 		fire: 10,
@@ -2142,14 +2015,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 35,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Tail',
 		cutting: 21,
 		dragon: 10,
 		fire: 15,
@@ -2158,14 +2030,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 20,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Head',
 		cutting: 36,
 		dragon: 25,
 		fire: 20,
@@ -2174,14 +2045,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 25,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Neck',
 		cutting: 22,
 		dragon: 5,
 		fire: 15,
@@ -2190,14 +2060,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 15,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Back',
 		cutting: 18,
 		dragon: 10,
 		fire: 15,
@@ -2206,14 +2075,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 15,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Belly',
 		cutting: 27,
 		dragon: 15,
 		fire: 20,
@@ -2222,14 +2090,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 20,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Forelegs',
 		cutting: 24,
 		dragon: 15,
 		fire: 15,
@@ -2238,14 +2105,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 20,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Hindlegs',
 		cutting: 15,
 		dragon: 10,
 		fire: 10,
@@ -2254,14 +2120,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 35,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Tail',
 		cutting: 21,
 		dragon: 10,
 		fire: 15,
@@ -2270,14 +2135,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Amatsu',
 		shot: 20,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Head',
 		cutting: 35,
 		dragon: 35,
 		fire: 25,
@@ -2286,14 +2150,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 38,
 		thunder: 15,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Neck',
 		cutting: 28,
 		dragon: 5,
 		fire: 15,
@@ -2302,14 +2165,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 12,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Back',
 		cutting: 24,
 		dragon: 10,
 		fire: 15,
@@ -2318,14 +2180,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 12,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Belly',
 		cutting: 34,
 		dragon: 20,
 		fire: 20,
@@ -2334,14 +2195,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 24,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Forelegs',
 		cutting: 27,
 		dragon: 20,
 		fire: 20,
@@ -2350,14 +2210,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 27,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Hindlegs',
 		cutting: 20,
 		dragon: 20,
 		fire: 15,
@@ -2366,14 +2225,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 10,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Tail',
 		cutting: 37,
 		dragon: 10,
 		fire: 20,
@@ -2382,14 +2240,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 12,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Head',
 		cutting: 40,
 		dragon: 35,
 		fire: 25,
@@ -2398,14 +2255,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 43,
 		thunder: 15,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Neck',
 		cutting: 28,
 		dragon: 5,
 		fire: 15,
@@ -2414,14 +2270,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 12,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Back',
 		cutting: 24,
 		dragon: 10,
 		fire: 15,
@@ -2430,14 +2285,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 12,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Belly',
 		cutting: 34,
 		dragon: 20,
 		fire: 20,
@@ -2446,14 +2300,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 24,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Forelegs',
 		cutting: 27,
 		dragon: 20,
 		fire: 20,
@@ -2462,14 +2315,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 27,
 		thunder: 10,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Hindlegs',
 		cutting: 20,
 		dragon: 20,
 		fire: 15,
@@ -2478,14 +2330,13 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 10,
 		thunder: 0,
 		water: 0,
 	},
 	{
-		part: 'None',
+		part: 'Tail',
 		cutting: 37,
 		dragon: 10,
 		fire: 20,
@@ -2494,7 +2345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Amatsu',
 		shot: 12,
 		thunder: 0,
@@ -2510,7 +2360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 40,
 		thunder: 40,
@@ -2526,7 +2375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 25,
 		thunder: 10,
@@ -2542,7 +2390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 20,
 		thunder: 25,
@@ -2558,7 +2405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 30,
 		thunder: 15,
@@ -2574,7 +2420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 35,
 		thunder: 15,
@@ -2590,7 +2435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 30,
 		thunder: 10,
@@ -2606,7 +2450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 45,
 		thunder: 35,
@@ -2622,7 +2465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 45,
 		thunder: 45,
@@ -2638,7 +2480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 25,
 		thunder: 10,
@@ -2654,7 +2495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 25,
 		thunder: 30,
@@ -2670,7 +2510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 30,
 		thunder: 15,
@@ -2686,7 +2525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 40,
 		thunder: 15,
@@ -2702,7 +2540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 35,
 		thunder: 10,
@@ -2718,7 +2555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Anorupatisu',
 		shot: 50,
 		thunder: 40,
@@ -2734,7 +2570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 30,
 		thunder: 10,
@@ -2750,7 +2585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 15,
 		thunder: 5,
@@ -2766,7 +2600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 10,
 		thunder: 15,
@@ -2782,7 +2615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 20,
 		thunder: 10,
@@ -2798,7 +2630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 20,
 		thunder: 10,
@@ -2814,7 +2645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 15,
 		thunder: 5,
@@ -2830,7 +2660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 30,
 		thunder: 10,
@@ -2846,7 +2675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 35,
 		thunder: 15,
@@ -2862,7 +2690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 20,
 		thunder: 10,
@@ -2878,7 +2705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 15,
 		thunder: 20,
@@ -2894,7 +2720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 20,
 		thunder: 15,
@@ -2910,7 +2735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 25,
 		thunder: 15,
@@ -2926,7 +2750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 20,
 		thunder: 10,
@@ -2942,7 +2765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Anorupatisu',
 		shot: 35,
 		thunder: 20,
@@ -2958,7 +2780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Aptonoth',
 		shot: 110,
 		thunder: 50,
@@ -2974,7 +2795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Apceros',
 		shot: 90,
 		thunder: 40,
@@ -2990,7 +2810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Apceros',
 		shot: 70,
 		thunder: 40,
@@ -3006,7 +2825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 20,
 		thunder: 0,
@@ -3022,7 +2840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3038,7 +2855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3054,7 +2870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3070,7 +2885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3086,7 +2900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 30,
 		thunder: 15,
@@ -3102,7 +2915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3118,7 +2930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 20,
 		thunder: 0,
@@ -3134,7 +2945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3150,7 +2960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3166,7 +2975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3182,7 +2990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3198,7 +3005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 30,
 		thunder: 15,
@@ -3214,7 +3020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3230,7 +3035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3246,7 +3050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3262,7 +3065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3278,7 +3080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3294,7 +3095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3310,7 +3110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 30,
 		thunder: 15,
@@ -3326,7 +3125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3342,7 +3140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3358,7 +3155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3374,7 +3170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3390,7 +3185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 20,
 		thunder: 0,
@@ -3406,7 +3200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 80,
 		thunder: 0,
@@ -3422,7 +3215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 50,
 		thunder: 20,
@@ -3438,7 +3230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Jebia',
 		shot: 80,
 		thunder: 0,
@@ -3454,7 +3245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 20,
 		thunder: 0,
@@ -3470,7 +3260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3486,7 +3275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3502,7 +3290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3518,7 +3305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3534,7 +3320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 25,
 		thunder: 20,
@@ -3550,7 +3335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -3566,7 +3350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 20,
 		thunder: 0,
@@ -3582,7 +3365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3598,7 +3380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3614,7 +3395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3630,7 +3410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3646,7 +3425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 30,
 		thunder: 20,
@@ -3662,7 +3440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3678,7 +3455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -3694,7 +3470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -3710,7 +3485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -3726,7 +3500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3742,7 +3515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3758,7 +3530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 25,
 		thunder: 20,
@@ -3774,7 +3545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -3790,7 +3560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3806,7 +3575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3822,7 +3590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -3838,7 +3605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 25,
 		thunder: 0,
@@ -3854,7 +3620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 80,
 		thunder: 0,
@@ -3870,7 +3635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 30,
@@ -3886,7 +3650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Jebia',
 		shot: 70,
 		thunder: 0,
@@ -3902,7 +3665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 20,
 		thunder: 0,
@@ -3918,7 +3680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3934,7 +3695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -3950,7 +3710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3966,7 +3725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -3982,7 +3740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 25,
 		thunder: 20,
@@ -3998,7 +3755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -4014,7 +3770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 20,
 		thunder: 0,
@@ -4030,7 +3785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -4046,7 +3800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 15,
 		thunder: 0,
@@ -4062,7 +3815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -4078,7 +3830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -4094,7 +3845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 30,
 		thunder: 20,
@@ -4110,7 +3860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -4126,7 +3875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -4142,7 +3890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -4158,7 +3905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -4174,7 +3920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -4190,7 +3935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 10,
 		thunder: 0,
@@ -4206,7 +3950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 25,
 		thunder: 20,
@@ -4222,7 +3965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 35,
 		thunder: 0,
@@ -4238,7 +3980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -4254,7 +3995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -4270,7 +4010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 0,
@@ -4286,7 +4025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 25,
 		thunder: 0,
@@ -4302,7 +4040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 80,
 		thunder: 0,
@@ -4318,7 +4055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 40,
 		thunder: 30,
@@ -4334,7 +4070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Jebia',
 		shot: 70,
 		thunder: 0,
@@ -4350,7 +4085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -4366,7 +4100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -4382,7 +4115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -4398,7 +4130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4414,7 +4145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4430,7 +4160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 0,
@@ -4446,7 +4175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4462,7 +4190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -4478,7 +4205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -4494,7 +4220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -4510,7 +4235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4526,7 +4250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4542,7 +4265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 0,
@@ -4558,7 +4280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4574,7 +4295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4590,7 +4310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4606,7 +4325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4622,7 +4340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4638,7 +4355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4654,7 +4370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 0,
@@ -4670,7 +4385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4686,7 +4400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4702,7 +4415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4718,7 +4430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4734,7 +4445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -4750,7 +4460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 80,
 		thunder: 0,
@@ -4766,7 +4475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 50,
 		thunder: 0,
@@ -4782,7 +4490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Default',
-
 		displayName: 'Akura Vashimu',
 		shot: 80,
 		thunder: 0,
@@ -4798,7 +4505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -4814,7 +4520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -4830,7 +4535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -4846,7 +4550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4862,7 +4565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4878,7 +4580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -4894,7 +4595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 60,
 		thunder: 0,
@@ -4910,7 +4610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -4926,7 +4625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -4942,7 +4640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -4958,7 +4655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4974,7 +4670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -4990,7 +4685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -5006,7 +4700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 60,
 		thunder: 0,
@@ -5022,7 +4715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -5038,7 +4730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -5054,7 +4745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -5070,7 +4760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -5086,7 +4775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -5102,7 +4790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -5118,7 +4805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 60,
 		thunder: 0,
@@ -5134,7 +4820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -5150,7 +4835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -5166,7 +4850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 0,
@@ -5182,7 +4865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -5198,7 +4880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 80,
 		thunder: 0,
@@ -5214,7 +4895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 60,
 		thunder: 0,
@@ -5230,7 +4910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'G Rank',
-
 		displayName: 'Akura Vashimu',
 		shot: 80,
 		thunder: 0,
@@ -5246,7 +4925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -5262,7 +4940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 20,
@@ -5278,7 +4955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -5294,7 +4970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: -10,
@@ -5310,7 +4985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: -10,
@@ -5326,7 +5000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -5342,7 +5015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 0,
@@ -5358,7 +5030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -5374,7 +5045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 25,
@@ -5390,7 +5060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -5406,7 +5075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: -10,
@@ -5422,7 +5090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: -15,
@@ -5438,7 +5105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 25,
 		thunder: 0,
@@ -5454,7 +5120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -5470,7 +5135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 0,
@@ -5486,7 +5150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 30,
@@ -5502,7 +5165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 0,
@@ -5518,7 +5180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: -10,
@@ -5534,7 +5195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 10,
 		thunder: -20,
@@ -5550,7 +5210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 0,
@@ -5566,7 +5225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 0,
@@ -5582,7 +5240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 5,
@@ -5598,7 +5255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 5,
@@ -5614,7 +5270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 30,
 		thunder: 5,
@@ -5630,7 +5285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 20,
 		thunder: 5,
@@ -5646,7 +5300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 70,
 		thunder: 5,
@@ -5662,7 +5315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 40,
 		thunder: 5,
@@ -5678,7 +5330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Gou',
-
 		displayName: 'Akura Vashimu',
 		shot: 70,
 		thunder: 5,
@@ -5694,7 +5345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -5710,7 +5360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -5726,7 +5375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -5742,7 +5390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -5758,7 +5405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -5774,7 +5420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -5790,7 +5435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 45,
 		thunder: 0,
@@ -5806,7 +5450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '1x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -5822,7 +5465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -5838,7 +5480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -5854,7 +5495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -5870,7 +5510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -5886,7 +5525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -5902,7 +5540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '1x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 45,
 		thunder: 0,
@@ -5918,7 +5555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: '2x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -5934,7 +5570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 30,
 		thunder: 0,
@@ -5950,7 +5585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 30,
 		thunder: 0,
@@ -5966,7 +5600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -5982,7 +5615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 10,
 		thunder: 0,
@@ -5998,7 +5630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -6014,7 +5645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '2x Break',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 45,
 		thunder: 0,
@@ -6030,7 +5660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Fell Over',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -6046,7 +5675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -6062,7 +5690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -6078,7 +5705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 15,
 		thunder: 0,
@@ -6094,7 +5720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -6110,7 +5735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 35,
 		thunder: 0,
@@ -6126,7 +5750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fell Over',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Akura Vashimu',
 		shot: 45,
 		thunder: 0,
@@ -6142,7 +5765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 60,
 		thunder: 10,
@@ -6158,7 +5780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 35,
 		thunder: 10,
@@ -6174,7 +5795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 35,
 		thunder: 10,
@@ -6190,7 +5810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 40,
 		thunder: 10,
@@ -6206,7 +5825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 25,
 		thunder: 10,
@@ -6222,7 +5840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 60,
 		thunder: 10,
@@ -6238,7 +5855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 15,
 		thunder: 10,
@@ -6254,7 +5870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 15,
 		thunder: 10,
@@ -6270,7 +5885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 5,
 		thunder: 0,
@@ -6286,7 +5900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Congalala',
 		shot: 15,
 		thunder: 10,
@@ -6302,7 +5915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 40,
 		thunder: 10,
@@ -6318,7 +5930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 25,
 		thunder: 10,
@@ -6334,7 +5945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 25,
 		thunder: 10,
@@ -6350,7 +5960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 15,
 		thunder: 10,
@@ -6366,7 +5975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 30,
 		thunder: 10,
@@ -6382,7 +5990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 40,
 		thunder: 10,
@@ -6398,7 +6005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 15,
 		thunder: 10,
@@ -6414,7 +6020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 15,
 		thunder: 10,
@@ -6430,7 +6035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 5,
 		thunder: 0,
@@ -6446,7 +6050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Congalala',
 		shot: 20,
 		thunder: 10,
@@ -6462,7 +6065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 50,
 		thunder: 0,
@@ -6478,7 +6080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 40,
 		thunder: 0,
@@ -6494,7 +6095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 30,
 		thunder: 0,
@@ -6510,7 +6110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 35,
 		thunder: 0,
@@ -6526,7 +6125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 30,
 		thunder: 5,
@@ -6542,7 +6140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 80,
 		thunder: 0,
@@ -6558,7 +6155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 35,
 		thunder: 0,
@@ -6574,7 +6170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 20,
 		thunder: 0,
@@ -6590,7 +6185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 5,
 		thunder: 0,
@@ -6606,7 +6200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Congalala',
 		shot: 20,
 		thunder: 5,
@@ -6622,7 +6215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 10,
@@ -6638,7 +6230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 50,
 		thunder: 20,
@@ -6654,7 +6245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 20,
 		thunder: 10,
@@ -6670,7 +6260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 30,
 		thunder: 5,
@@ -6686,7 +6275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -6702,7 +6290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -6718,7 +6305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 40,
 		thunder: 15,
@@ -6734,7 +6320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Bleed',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 35,
 		thunder: 10,
@@ -6750,7 +6335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 60,
 		thunder: 10,
@@ -6766,7 +6350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 30,
 		thunder: 10,
@@ -6782,7 +6365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 40,
 		thunder: 10,
@@ -6798,7 +6380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 5,
@@ -6814,7 +6395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 5,
@@ -6830,7 +6410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 50,
 		thunder: 15,
@@ -6846,7 +6425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 10,
@@ -6862,7 +6440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 50,
 		thunder: 20,
@@ -6878,7 +6455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 20,
 		thunder: 10,
@@ -6894,7 +6470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 30,
 		thunder: 5,
@@ -6910,7 +6485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -6926,7 +6500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -6942,7 +6515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 40,
 		thunder: 15,
@@ -6958,7 +6530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Wet',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 0,
@@ -6974,7 +6545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 50,
 		thunder: 0,
@@ -6990,7 +6560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 20,
 		thunder: 0,
@@ -7006,7 +6575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 30,
 		thunder: 0,
@@ -7022,7 +6590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -7038,7 +6605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -7054,7 +6620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'G Rank',
-
 		displayName: 'Baruragaru',
 		shot: 40,
 		thunder: 0,
@@ -7070,7 +6635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 10,
@@ -7086,7 +6650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 50,
 		thunder: 20,
@@ -7102,7 +6665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 20,
 		thunder: 10,
@@ -7118,7 +6680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 30,
 		thunder: 5,
@@ -7134,7 +6695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -7150,7 +6710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -7166,7 +6725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 40,
 		thunder: 15,
@@ -7182,7 +6740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Bleed',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 35,
 		thunder: 10,
@@ -7198,7 +6755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 60,
 		thunder: 10,
@@ -7214,7 +6770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 30,
 		thunder: 10,
@@ -7230,7 +6785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 40,
 		thunder: 10,
@@ -7246,7 +6800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 5,
@@ -7262,7 +6815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 5,
@@ -7278,7 +6830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 50,
 		thunder: 15,
@@ -7294,7 +6845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 10,
@@ -7310,7 +6860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 50,
 		thunder: 20,
@@ -7326,7 +6875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 20,
 		thunder: 10,
@@ -7342,7 +6890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 30,
 		thunder: 5,
@@ -7358,7 +6905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -7374,7 +6920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -7390,7 +6935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 40,
 		thunder: 15,
@@ -7406,7 +6950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Wet',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 25,
 		thunder: 0,
@@ -7422,7 +6965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 50,
 		thunder: 0,
@@ -7438,7 +6980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 20,
 		thunder: 0,
@@ -7454,7 +6995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 30,
 		thunder: 0,
@@ -7470,7 +7010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -7486,7 +7025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 15,
 		thunder: 0,
@@ -7502,7 +7040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Gou',
-
 		displayName: 'Baruragaru',
 		shot: 40,
 		thunder: 0,
@@ -7518,7 +7055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 100,
 		thunder: 100,
@@ -7534,7 +7070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 100,
 		thunder: 100,
@@ -7550,7 +7085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 100,
 		thunder: 100,
@@ -7566,7 +7100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 100,
 		thunder: 100,
@@ -7582,7 +7115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 100,
 		thunder: 100,
@@ -7598,7 +7130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 100,
 		thunder: 100,
@@ -7614,7 +7145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 100,
 		thunder: 100,
@@ -7630,7 +7160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Bleed',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 30,
 		thunder: 15,
@@ -7646,7 +7175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Bleed',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 40,
 		thunder: 40,
@@ -7662,7 +7190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 20,
 		thunder: 15,
@@ -7678,7 +7205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 30,
 		thunder: 15,
@@ -7694,7 +7220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 30,
 		thunder: 15,
@@ -7710,7 +7235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 30,
 		thunder: 15,
@@ -7726,7 +7250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Bleed',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 30,
 		thunder: 20,
@@ -7742,7 +7265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 25,
 		thunder: 15,
@@ -7758,7 +7280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 30,
 		thunder: 25,
@@ -7774,7 +7295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 15,
 		thunder: 15,
@@ -7790,7 +7310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 10,
 		thunder: 15,
@@ -7806,7 +7325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 20,
 		thunder: 15,
@@ -7822,7 +7340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 10,
 		thunder: 10,
@@ -7838,7 +7355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Poison Paralysis',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 20,
 		thunder: 15,
@@ -7854,7 +7370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Wet',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 30,
 		thunder: 10,
@@ -7870,7 +7385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Wet',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 35,
 		thunder: 15,
@@ -7886,7 +7400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 15,
 		thunder: 5,
@@ -7902,7 +7415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 10,
 		thunder: 5,
@@ -7918,7 +7430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 20,
 		thunder: 5,
@@ -7934,7 +7445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 10,
 		thunder: 5,
@@ -7950,7 +7460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wet',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Baruragaru',
 		shot: 20,
 		thunder: 10,
@@ -7966,7 +7475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -7982,7 +7490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -7998,7 +7505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -8014,7 +7520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Basarios',
 		shot: 50,
 		thunder: 10,
@@ -8030,7 +7535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Basarios',
 		shot: 15,
 		thunder: 10,
@@ -8046,7 +7550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -8062,7 +7565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Basarios',
 		shot: 30,
 		thunder: 10,
@@ -8078,7 +7580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Basarios',
 		shot: 35,
 		thunder: 30,
@@ -8094,7 +7595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -8110,7 +7610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -8126,7 +7625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Basarios',
 		shot: 40,
 		thunder: 10,
@@ -8142,7 +7640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Basarios',
 		shot: 15,
 		thunder: 10,
@@ -8158,7 +7655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -8174,7 +7670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Basarios',
 		shot: 30,
 		thunder: 10,
@@ -8190,7 +7685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 0,
@@ -8206,7 +7700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 0,
@@ -8222,7 +7715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 0,
@@ -8238,7 +7730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 15,
@@ -8254,7 +7745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Basarios',
 		shot: 15,
 		thunder: 0,
@@ -8270,7 +7760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Basarios',
 		shot: 30,
 		thunder: 0,
@@ -8286,7 +7775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 0,
@@ -8302,7 +7790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Basarios',
 		shot: 35,
 		thunder: 30,
@@ -8318,7 +7805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -8334,7 +7820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -8350,7 +7835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Basarios',
 		shot: 40,
 		thunder: 10,
@@ -8366,7 +7850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Basarios',
 		shot: 15,
 		thunder: 10,
@@ -8382,7 +7865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Basarios',
 		shot: 20,
 		thunder: 10,
@@ -8398,7 +7880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Basarios',
 		shot: 30,
 		thunder: 10,
@@ -8414,7 +7895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Barioth',
 		shot: 49,
 		thunder: 25,
@@ -8430,7 +7910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Barioth',
 		shot: 21,
 		thunder: 5,
@@ -8446,7 +7925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Barioth',
 		shot: 28,
 		thunder: 5,
@@ -8462,7 +7940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Barioth',
 		shot: 17,
 		thunder: 25,
@@ -8478,7 +7955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Barioth',
 		shot: 21,
 		thunder: 10,
@@ -8494,7 +7970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Barioth',
 		shot: 24,
 		thunder: 5,
@@ -8510,7 +7985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Barioth',
 		shot: 21,
 		thunder: 10,
@@ -8526,7 +8000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Barioth',
 		shot: 49,
 		thunder: 25,
@@ -8542,7 +8015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Barioth',
 		shot: 21,
 		thunder: 5,
@@ -8558,7 +8030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Barioth',
 		shot: 28,
 		thunder: 5,
@@ -8574,7 +8045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Barioth',
 		shot: 17,
 		thunder: 25,
@@ -8590,7 +8060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Barioth',
 		shot: 21,
 		thunder: 10,
@@ -8606,7 +8075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Barioth',
 		shot: 24,
 		thunder: 5,
@@ -8622,7 +8090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Barioth',
 		shot: 21,
 		thunder: 10,
@@ -8638,7 +8105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 15,
 		thunder: 0,
@@ -8654,7 +8120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 10,
 		thunder: 0,
@@ -8670,7 +8135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 30,
 		thunder: 0,
@@ -8686,7 +8150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 60,
 		thunder: 0,
@@ -8702,7 +8165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 15,
 		thunder: 0,
@@ -8718,7 +8180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 50,
 		thunder: 0,
@@ -8734,7 +8195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 40,
 		thunder: 0,
@@ -8750,7 +8210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Varies',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 25,
 		thunder: 0,
@@ -8766,7 +8225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 20,
 		thunder: 0,
@@ -8782,7 +8240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 40,
 		thunder: 0,
@@ -8798,7 +8255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 70,
 		thunder: 0,
@@ -8814,7 +8270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 15,
 		thunder: 0,
@@ -8830,7 +8285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 60,
 		thunder: 0,
@@ -8846,7 +8300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Default',
-
 		displayName: 'Berukyurosu',
 		shot: 50,
 		thunder: 0,
@@ -8862,7 +8315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 15,
 		thunder: 0,
@@ -8878,7 +8330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 10,
 		thunder: 0,
@@ -8894,7 +8345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 25,
 		thunder: 0,
@@ -8910,7 +8360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 50,
 		thunder: 0,
@@ -8926,7 +8375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 15,
 		thunder: 0,
@@ -8942,7 +8390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 40,
 		thunder: 0,
@@ -8958,7 +8405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 35,
 		thunder: 0,
@@ -8974,7 +8420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Varies',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 20,
 		thunder: 0,
@@ -8990,7 +8435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 20,
 		thunder: 0,
@@ -9006,7 +8450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 35,
 		thunder: 0,
@@ -9022,7 +8465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 60,
 		thunder: 0,
@@ -9038,7 +8480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 15,
 		thunder: 0,
@@ -9054,7 +8495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 50,
 		thunder: 0,
@@ -9070,7 +8510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'G Rank',
-
 		displayName: 'Berukyurosu',
 		shot: 50,
 		thunder: 0,
@@ -9086,7 +8525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 15,
 		thunder: 0,
@@ -9102,7 +8540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 10,
 		thunder: 0,
@@ -9118,7 +8555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 30,
 		thunder: 0,
@@ -9134,7 +8570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 60,
 		thunder: 0,
@@ -9150,7 +8585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 15,
 		thunder: 0,
@@ -9166,7 +8600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 50,
 		thunder: 0,
@@ -9182,7 +8615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 40,
 		thunder: 0,
@@ -9198,7 +8630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Varies',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 25,
 		thunder: 0,
@@ -9214,7 +8645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 20,
 		thunder: 0,
@@ -9230,7 +8660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 40,
 		thunder: 0,
@@ -9246,7 +8675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 70,
 		thunder: 0,
@@ -9262,7 +8690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 15,
 		thunder: 0,
@@ -9278,7 +8705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 60,
 		thunder: 0,
@@ -9294,7 +8720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Varies',
 		rankBand: 'Gou',
-
 		displayName: 'Berukyurosu',
 		shot: 50,
 		thunder: 0,
@@ -9310,7 +8735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 25,
 		thunder: 10,
@@ -9326,7 +8750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9342,7 +8765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 5,
 		thunder: 10,
@@ -9358,7 +8780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9374,7 +8795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9390,7 +8810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9406,7 +8825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 20,
 		thunder: 10,
@@ -9422,7 +8840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 30,
 		thunder: 10,
@@ -9438,7 +8855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9454,7 +8870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 5,
 		thunder: 10,
@@ -9470,7 +8885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9486,7 +8900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 25,
 		thunder: 10,
@@ -9502,7 +8915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9518,7 +8930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 25,
 		thunder: 10,
@@ -9534,7 +8945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 25,
 		thunder: 10,
@@ -9550,7 +8960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9566,7 +8975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 5,
 		thunder: 10,
@@ -9582,7 +8990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9598,7 +9005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9614,7 +9020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9630,7 +9035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 20,
 		thunder: 10,
@@ -9646,7 +9050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 30,
 		thunder: 10,
@@ -9662,7 +9065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9678,7 +9080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 5,
 		thunder: 10,
@@ -9694,7 +9095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9710,7 +9110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 25,
 		thunder: 10,
@@ -9726,7 +9125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9742,7 +9140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bogabadorumu',
 		shot: 25,
 		thunder: 10,
@@ -9758,7 +9155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 25,
 		thunder: 10,
@@ -9774,7 +9170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9790,7 +9185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 5,
 		thunder: 10,
@@ -9806,7 +9200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9822,7 +9215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9838,7 +9230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9854,7 +9245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 20,
 		thunder: 10,
@@ -9870,7 +9260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 30,
 		thunder: 10,
@@ -9886,7 +9275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9902,7 +9290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 5,
 		thunder: 10,
@@ -9918,7 +9305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9934,7 +9320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 25,
 		thunder: 10,
@@ -9950,7 +9335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 15,
 		thunder: 10,
@@ -9966,7 +9350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Bogabadorumu',
 		shot: 25,
 		thunder: 10,
@@ -9982,7 +9365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Burukku',
 		shot: 50,
 		thunder: 10,
@@ -9998,7 +9380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Brachydios',
 		shot: 11,
 		thunder: 5,
@@ -10014,7 +9395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Brachydios',
 		shot: 36,
 		thunder: 10,
@@ -10030,7 +9410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Brachydios',
 		shot: 15,
 		thunder: 0,
@@ -10046,7 +9425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Brachydios',
 		shot: 23,
 		thunder: 5,
@@ -10062,7 +9440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Brachydios',
 		shot: 27,
 		thunder: 5,
@@ -10078,7 +9455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Brachydios',
 		shot: 36,
 		thunder: 10,
@@ -10094,7 +9470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Brachydios',
 		shot: 10,
 		thunder: 5,
@@ -10110,7 +9485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Brachydios',
 		shot: 13,
 		thunder: 5,
@@ -10126,7 +9500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Brachydios',
 		shot: 40,
 		thunder: 10,
@@ -10142,7 +9515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Brachydios',
 		shot: 17,
 		thunder: 0,
@@ -10158,7 +9530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Brachydios',
 		shot: 26,
 		thunder: 5,
@@ -10174,7 +9545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Brachydios',
 		shot: 30,
 		thunder: 5,
@@ -10190,7 +9560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Brachydios',
 		shot: 40,
 		thunder: 10,
@@ -10206,7 +9575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Brachydios',
 		shot: 10,
 		thunder: 5,
@@ -10222,7 +9590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blango',
 		shot: 75,
 		thunder: 15,
@@ -10238,7 +9605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blango',
 		shot: 50,
 		thunder: 15,
@@ -10254,7 +9620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blango',
 		shot: 50,
 		thunder: 15,
@@ -10270,7 +9635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blango',
 		shot: 55,
 		thunder: 15,
@@ -10286,7 +9650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blango',
 		shot: 40,
 		thunder: 15,
@@ -10302,7 +9665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bullfango',
 		shot: 160,
 		thunder: 100,
@@ -10318,7 +9680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'King Shakalaka',
 		shot: 70,
 		thunder: 20,
@@ -10334,7 +9695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shakalaka',
 		shot: 70,
 		thunder: 20,
@@ -10350,7 +9710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 40,
 		thunder: 35,
@@ -10366,7 +9725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 30,
 		thunder: 20,
@@ -10382,7 +9740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 25,
 		thunder: 25,
@@ -10398,7 +9755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 30,
 		thunder: 15,
@@ -10414,7 +9770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 20,
@@ -10430,7 +9785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 30,
 		thunder: 15,
@@ -10446,7 +9800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 20,
 		thunder: 35,
@@ -10462,7 +9815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 20,
@@ -10478,7 +9830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 25,
@@ -10494,7 +9845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -10510,7 +9860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 25,
 		thunder: 20,
@@ -10526,7 +9875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -10542,7 +9890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Guarding',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 20,
 		thunder: 35,
@@ -10558,7 +9905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 20,
@@ -10574,7 +9920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 25,
@@ -10590,7 +9935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -10606,7 +9950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 10,
 		thunder: 20,
@@ -10622,7 +9965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Default',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -10638,7 +9980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 40,
 		thunder: 35,
@@ -10654,7 +9995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 20,
 		thunder: 20,
@@ -10670,7 +10010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 25,
 		thunder: 30,
@@ -10686,7 +10025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 20,
 		thunder: 15,
@@ -10702,7 +10040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 5,
@@ -10718,7 +10055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 25,
 		thunder: 5,
@@ -10734,7 +10070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 35,
@@ -10750,7 +10085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 20,
@@ -10766,7 +10100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 30,
@@ -10782,7 +10115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -10798,7 +10130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 25,
 		thunder: 5,
@@ -10814,7 +10145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 5,
@@ -10830,7 +10160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 5,
 		thunder: 35,
@@ -10846,7 +10175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 5,
 		thunder: 20,
@@ -10862,7 +10190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 5,
 		thunder: 30,
@@ -10878,7 +10205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 5,
 		thunder: 15,
@@ -10894,7 +10220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 5,
 		thunder: 5,
@@ -10910,7 +10235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 5,
 		thunder: 5,
@@ -10926,7 +10250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 20,
 		thunder: 0,
@@ -10942,7 +10265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 35,
 		thunder: 0,
@@ -10958,7 +10280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 20,
 		thunder: 10,
@@ -10974,7 +10295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 40,
 		thunder: 0,
@@ -10990,7 +10310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 20,
 		thunder: 0,
@@ -11006,7 +10325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 0,
@@ -11022,7 +10340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 0,
@@ -11038,7 +10355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 20,
 		thunder: 0,
@@ -11054,7 +10370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 10,
@@ -11070,7 +10385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 20,
 		thunder: 0,
@@ -11086,7 +10400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 10,
 		thunder: 0,
@@ -11102,7 +10415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 10,
 		thunder: 0,
@@ -11118,7 +10430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Guarding',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 10,
 		thunder: 0,
@@ -11134,7 +10445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 0,
@@ -11150,7 +10460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 10,
@@ -11166,7 +10475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 0,
@@ -11182,7 +10490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 15,
 		thunder: 0,
@@ -11198,7 +10505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Gou',
-
 		displayName: 'Daimyo Hermitaur',
 		shot: 10,
 		thunder: 0,
@@ -11214,7 +10520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 30,
 		thunder: 25,
@@ -11230,7 +10535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 10,
 		thunder: 10,
@@ -11246,7 +10550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -11262,7 +10565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 10,
 		thunder: 15,
@@ -11278,7 +10580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 5,
@@ -11294,7 +10595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 5,
@@ -11310,7 +10610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Sand Cloak (Broken Claw)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 35,
 		thunder: 30,
@@ -11326,7 +10625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Broken Claw)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -11342,7 +10640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Broken Claw)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 25,
 		thunder: 20,
@@ -11358,7 +10655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Broken Claw)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 25,
 		thunder: 15,
@@ -11374,7 +10670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Broken Claw)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 25,
 		thunder: 10,
@@ -11390,7 +10685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Broken Claw)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 30,
 		thunder: 10,
@@ -11406,7 +10700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 25,
@@ -11422,7 +10715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 10,
@@ -11438,7 +10730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 15,
@@ -11454,7 +10745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 15,
@@ -11470,7 +10760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 5,
@@ -11486,7 +10775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 5,
@@ -11502,7 +10790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Sand Cloak Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 20,
 		thunder: 30,
@@ -11518,7 +10805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -11534,7 +10820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 20,
@@ -11550,7 +10835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -11566,7 +10850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 20,
 		thunder: 10,
@@ -11582,7 +10865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 10,
@@ -11598,7 +10880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Claws Broken',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 30,
 		thunder: 25,
@@ -11614,7 +10895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Claws Broken',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 10,
 		thunder: 10,
@@ -11630,7 +10910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Claws Broken',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -11646,7 +10925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Claws Broken',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 10,
 		thunder: 15,
@@ -11662,7 +10940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Claws Broken',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 35,
 		thunder: 5,
@@ -11678,7 +10955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Claws Broken',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 5,
@@ -11694,7 +10970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Sand Cloak (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 35,
 		thunder: 30,
@@ -11710,7 +10985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -11726,7 +11000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 25,
 		thunder: 20,
@@ -11742,7 +11015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 25,
 		thunder: 15,
@@ -11758,7 +11030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 40,
 		thunder: 10,
@@ -11774,7 +11045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 30,
 		thunder: 10,
@@ -11790,7 +11060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 25,
@@ -11806,7 +11075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 10,
@@ -11822,7 +11090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 15,
@@ -11838,7 +11105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 15,
@@ -11854,7 +11120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 20,
 		thunder: 5,
@@ -11870,7 +11135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 5,
 		thunder: 5,
@@ -11886,7 +11150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Sand Cloak Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 20,
 		thunder: 30,
@@ -11902,7 +11165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -11918,7 +11180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 20,
@@ -11934,7 +11195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 15,
@@ -11950,7 +11210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 30,
 		thunder: 10,
@@ -11966,7 +11225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sand Cloak Guarding (Claws Broken)',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Daimyo Hermitaur',
 		shot: 15,
 		thunder: 10,
@@ -11982,7 +11240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Diablos',
 		shot: 25,
 		thunder: 25,
@@ -11998,7 +11255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Diablos',
 		shot: 50,
 		thunder: 20,
@@ -12014,7 +11270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Diablos',
 		shot: 35,
 		thunder: 30,
@@ -12030,7 +11285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Diablos',
 		shot: 25,
 		thunder: 20,
@@ -12046,7 +11300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Diablos',
 		shot: 80,
 		thunder: 10,
@@ -12062,7 +11315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Diablos',
 		shot: 45,
 		thunder: 10,
@@ -12078,7 +11330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Diablos',
 		shot: 35,
 		thunder: 15,
@@ -12094,7 +11345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Diablos',
 		shot: 15,
 		thunder: 50,
@@ -12110,7 +11360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Diablos',
 		shot: 40,
 		thunder: 10,
@@ -12126,7 +11375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Diablos',
 		shot: 25,
 		thunder: 30,
@@ -12142,7 +11390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Diablos',
 		shot: 15,
 		thunder: 10,
@@ -12158,7 +11405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Diablos',
 		shot: 70,
 		thunder: 10,
@@ -12174,7 +11420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Diablos',
 		shot: 45,
 		thunder: 10,
@@ -12190,7 +11435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Diablos',
 		shot: 25,
 		thunder: 5,
@@ -12206,7 +11450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Diablos',
 		shot: 25,
 		thunder: 25,
@@ -12222,7 +11465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Diablos',
 		shot: 45,
 		thunder: 25,
@@ -12238,7 +11480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Diablos',
 		shot: 35,
 		thunder: 30,
@@ -12254,7 +11495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Diablos',
 		shot: 25,
 		thunder: 25,
@@ -12270,7 +11510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Diablos',
 		shot: 50,
 		thunder: 10,
@@ -12286,7 +11525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Diablos',
 		shot: 40,
 		thunder: 10,
@@ -12302,7 +11540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Diablos',
 		shot: 30,
 		thunder: 15,
@@ -12318,7 +11555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Diablos',
 		shot: 25,
 		thunder: 15,
@@ -12334,7 +11570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Diablos',
 		shot: 55,
 		thunder: 15,
@@ -12350,7 +11585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Diablos',
 		shot: 35,
 		thunder: 15,
@@ -12366,7 +11600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Diablos',
 		shot: 25,
 		thunder: 15,
@@ -12382,7 +11615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Diablos',
 		shot: 85,
 		thunder: 15,
@@ -12398,7 +11630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Diablos',
 		shot: 45,
 		thunder: 15,
@@ -12414,7 +11645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Diablos',
 		shot: 35,
 		thunder: 15,
@@ -12430,7 +11660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diablos',
 		shot: 15,
 		thunder: 15,
@@ -12446,7 +11675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diablos',
 		shot: 40,
 		thunder: 15,
@@ -12462,7 +11690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diablos',
 		shot: 25,
 		thunder: 15,
@@ -12478,7 +11705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diablos',
 		shot: 15,
 		thunder: 15,
@@ -12494,7 +11720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diablos',
 		shot: 75,
 		thunder: 15,
@@ -12510,7 +11735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diablos',
 		shot: 35,
 		thunder: 15,
@@ -12526,7 +11750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diablos',
 		shot: 25,
 		thunder: 15,
@@ -12542,7 +11765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diablos',
 		shot: 30,
 		thunder: 10,
@@ -12558,7 +11780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diablos',
 		shot: 65,
 		thunder: 0,
@@ -12574,7 +11795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diablos',
 		shot: 10,
 		thunder: -5,
@@ -12590,7 +11810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diablos',
 		shot: 30,
 		thunder: 20,
@@ -12606,7 +11825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diablos',
 		shot: 40,
 		thunder: 5,
@@ -12622,7 +11840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diablos',
 		shot: 30,
 		thunder: 0,
@@ -12638,7 +11855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diablos',
 		shot: 30,
 		thunder: 0,
@@ -12654,7 +11870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 15,
 		thunder: -20,
@@ -12670,7 +11885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: -20,
@@ -12686,7 +11900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: -20,
@@ -12702,7 +11915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: -20,
@@ -12718,7 +11930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: -20,
@@ -12734,7 +11945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: -20,
@@ -12750,7 +11960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 15,
 		thunder: -20,
@@ -12766,7 +11975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Parts Broken',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 25,
 		thunder: 0,
@@ -12782,7 +11990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Parts Broken',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: 0,
@@ -12798,7 +12005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 20,
 		thunder: 0,
@@ -12814,7 +12020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 20,
 		thunder: 0,
@@ -12830,7 +12035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 20,
 		thunder: 0,
@@ -12846,7 +12050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 20,
 		thunder: 0,
@@ -12862,7 +12065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -12878,7 +12080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Broken Part',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 35,
 		thunder: 0,
@@ -12894,7 +12095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Broken Part',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: 0,
@@ -12910,7 +12110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 25,
 		thunder: 0,
@@ -12926,7 +12125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 25,
 		thunder: 0,
@@ -12942,7 +12140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -12958,7 +12155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -12974,7 +12170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 35,
 		thunder: 0,
@@ -12990,7 +12185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 40,
 		thunder: 0,
@@ -13006,7 +12200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: 0,
@@ -13022,7 +12215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -13038,7 +12230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -13054,7 +12245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 35,
 		thunder: 0,
@@ -13070,7 +12260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 35,
 		thunder: 0,
@@ -13086,7 +12275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Diorex',
 		shot: 40,
 		thunder: 0,
@@ -13102,7 +12290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 20,
 		thunder: -20,
@@ -13118,7 +12305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: -20,
@@ -13134,7 +12320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 15,
 		thunder: -20,
@@ -13150,7 +12335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 15,
 		thunder: -20,
@@ -13166,7 +12350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 15,
 		thunder: -20,
@@ -13182,7 +12365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 15,
 		thunder: -20,
@@ -13198,7 +12380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 25,
 		thunder: -20,
@@ -13214,7 +12395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Parts Broken',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 25,
 		thunder: 0,
@@ -13230,7 +12410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Parts Broken',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: 0,
@@ -13246,7 +12425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 20,
 		thunder: 0,
@@ -13262,7 +12440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 20,
 		thunder: 0,
@@ -13278,7 +12455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 20,
 		thunder: 0,
@@ -13294,7 +12470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 20,
 		thunder: 0,
@@ -13310,7 +12485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Parts Broken',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -13326,7 +12500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Broken Part',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 35,
 		thunder: 0,
@@ -13342,7 +12515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Broken Part',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: 0,
@@ -13358,7 +12530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 25,
 		thunder: 0,
@@ -13374,7 +12545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 25,
 		thunder: 0,
@@ -13390,7 +12560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -13406,7 +12575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -13422,7 +12590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Part',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 35,
 		thunder: 0,
@@ -13438,7 +12605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Charging',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 40,
 		thunder: 0,
@@ -13454,7 +12620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Charging',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 10,
 		thunder: 0,
@@ -13470,7 +12635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -13486,7 +12650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 30,
 		thunder: 0,
@@ -13502,7 +12665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 35,
 		thunder: 0,
@@ -13518,7 +12680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 35,
 		thunder: 0,
@@ -13534,7 +12695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'Gou',
-
 		displayName: 'Diorex',
 		shot: 40,
 		thunder: 0,
@@ -13550,7 +12710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 50,
 		thunder: 20,
@@ -13566,7 +12725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 20,
 		thunder: 20,
@@ -13582,7 +12740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 20,
 		thunder: 15,
@@ -13598,7 +12755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 40,
 		thunder: 15,
@@ -13614,7 +12770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 35,
 		thunder: 15,
@@ -13630,7 +12785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 20,
 		thunder: 15,
@@ -13646,7 +12800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Awakening',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 45,
 		thunder: 15,
@@ -13662,7 +12815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Awakening',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 15,
 		thunder: 15,
@@ -13678,7 +12830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Awakening',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 15,
 		thunder: 10,
@@ -13694,7 +12845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Awakening',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 35,
 		thunder: 10,
@@ -13710,7 +12860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Awakening',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 30,
 		thunder: 10,
@@ -13726,7 +12875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Awakening',
 		rankBand: 'G Rank',
-
 		displayName: 'Disufiroa',
 		shot: 15,
 		thunder: 10,
@@ -13742,7 +12890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blangonga',
 		shot: 75,
 		thunder: 15,
@@ -13758,7 +12905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blangonga',
 		shot: 30,
 		thunder: 15,
@@ -13774,7 +12920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blangonga',
 		shot: 30,
 		thunder: 15,
@@ -13790,7 +12935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blangonga',
 		shot: 40,
 		thunder: 15,
@@ -13806,7 +12950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blangonga',
 		shot: 25,
 		thunder: 15,
@@ -13822,7 +12965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blangonga',
 		shot: 45,
 		thunder: 15,
@@ -13838,7 +12980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blangonga',
 		shot: 30,
 		thunder: 15,
@@ -13854,7 +12995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blangonga',
 		shot: 30,
 		thunder: 15,
@@ -13870,7 +13010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blangonga',
 		shot: 40,
 		thunder: 15,
@@ -13886,7 +13025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blangonga',
 		shot: 35,
 		thunder: 15,
@@ -13902,7 +13040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blangonga',
 		shot: 20,
 		thunder: 5,
@@ -13918,7 +13055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blangonga',
 		shot: 30,
 		thunder: 5,
@@ -13934,7 +13070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blangonga',
 		shot: 30,
 		thunder: -5,
@@ -13950,7 +13085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blangonga',
 		shot: 40,
 		thunder: 5,
@@ -13966,7 +13100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blangonga',
 		shot: 25,
 		thunder: 15,
@@ -13982,7 +13115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Blangonga',
 		shot: 35,
 		thunder: 15,
@@ -13998,7 +13130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Blangonga',
 		shot: 20,
 		thunder: 15,
@@ -14014,7 +13145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Blangonga',
 		shot: 20,
 		thunder: 15,
@@ -14030,7 +13160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Blangonga',
 		shot: 30,
 		thunder: 15,
@@ -14046,7 +13175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Blangonga',
 		shot: 25,
 		thunder: 15,
@@ -14062,7 +13190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: '（Area 1）',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 35,
 		thunder: 5,
@@ -14078,7 +13205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '（Area 1）',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 20,
 		thunder: 5,
@@ -14094,7 +13220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '（Area 1）',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 20,
 		thunder: 5,
@@ -14110,7 +13235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '（Area 1）',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 35,
 		thunder: 5,
@@ -14126,7 +13250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '（Area 1）',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 15,
 		thunder: 5,
@@ -14142,7 +13265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '（Area 1）',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 15,
 		thunder: 5,
@@ -14158,7 +13280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '（Area 1）',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 15,
 		thunder: 5,
@@ -14174,7 +13295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Area 2',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 35,
 		thunder: 5,
@@ -14190,7 +13310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Area 2',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 20,
 		thunder: 5,
@@ -14206,7 +13325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Area 2',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 20,
 		thunder: 5,
@@ -14222,7 +13340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Area 2',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 35,
 		thunder: 5,
@@ -14238,7 +13355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Area 2',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 15,
 		thunder: 5,
@@ -14254,7 +13370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Area 2',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 15,
 		thunder: 5,
@@ -14270,7 +13385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Area 2',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 15,
 		thunder: 5,
@@ -14286,7 +13400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 30,
 		thunder: 0,
@@ -14302,7 +13415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 10,
 		thunder: 0,
@@ -14318,7 +13430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 15,
 		thunder: 0,
@@ -14334,7 +13445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 25,
 		thunder: 0,
@@ -14350,7 +13460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 10,
 		thunder: 0,
@@ -14366,7 +13475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 10,
 		thunder: 0,
@@ -14382,7 +13490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Duremudira',
 		shot: 15,
 		thunder: 0,
@@ -14398,7 +13505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 30,
 		thunder: 0,
@@ -14414,7 +13520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -14430,7 +13535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -14446,7 +13550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 50,
 		thunder: 0,
@@ -14462,7 +13565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 15,
 		thunder: 0,
@@ -14478,7 +13580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 45,
 		thunder: 0,
@@ -14494,7 +13595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 30,
 		thunder: 0,
@@ -14510,7 +13610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 35,
 		thunder: 0,
@@ -14526,7 +13625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -14542,7 +13640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 30,
 		thunder: 0,
@@ -14558,7 +13655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 55,
 		thunder: 0,
@@ -14574,7 +13670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 15,
 		thunder: 0,
@@ -14590,7 +13685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 50,
 		thunder: 0,
@@ -14606,7 +13700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Doragyurosu',
 		shot: 40,
 		thunder: 0,
@@ -14622,7 +13715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 25,
 		thunder: 0,
@@ -14638,7 +13730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -14654,7 +13745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 15,
 		thunder: 0,
@@ -14670,7 +13760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 40,
 		thunder: 0,
@@ -14686,7 +13775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -14702,7 +13790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 35,
 		thunder: 0,
@@ -14718,7 +13805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 25,
 		thunder: 0,
@@ -14734,7 +13820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 30,
 		thunder: 0,
@@ -14750,7 +13835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 15,
 		thunder: 0,
@@ -14766,7 +13850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -14782,7 +13865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 45,
 		thunder: 0,
@@ -14798,7 +13880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -14814,7 +13895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 40,
 		thunder: 0,
@@ -14830,7 +13910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Doragyurosu',
 		shot: 30,
 		thunder: 0,
@@ -14846,7 +13925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 25,
 		thunder: 0,
@@ -14862,7 +13940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -14878,7 +13955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 15,
 		thunder: 0,
@@ -14894,7 +13970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 40,
 		thunder: 0,
@@ -14910,7 +13985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -14926,7 +14000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 35,
 		thunder: 0,
@@ -14942,7 +14015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 25,
 		thunder: 0,
@@ -14958,7 +14030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 30,
 		thunder: 0,
@@ -14974,7 +14045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 15,
 		thunder: 0,
@@ -14990,7 +14060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -15006,7 +14075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 45,
 		thunder: 0,
@@ -15022,7 +14090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -15038,7 +14105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 40,
 		thunder: 0,
@@ -15054,7 +14120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 30,
 		thunder: 0,
@@ -15070,7 +14135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Resurrected',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -15086,7 +14150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -15102,7 +14165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -15118,7 +14180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 40,
 		thunder: 0,
@@ -15134,7 +14195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 15,
 		thunder: 0,
@@ -15150,7 +14210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 25,
 		thunder: 0,
@@ -15166,7 +14225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -15182,7 +14240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Resurrected (Enraged)',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 25,
 		thunder: 0,
@@ -15198,7 +14255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected (Enraged)',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -15214,7 +14270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected (Enraged)',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -15230,7 +14285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected (Enraged)',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 45,
 		thunder: 0,
@@ -15246,7 +14300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected (Enraged)',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 15,
 		thunder: 0,
@@ -15262,7 +14315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected (Enraged)',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 30,
 		thunder: 0,
@@ -15278,7 +14330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Resurrected (Enraged)',
 		rankBand: 'Gou',
-
 		displayName: 'Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -15294,7 +14345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 17,
 		thunder: 0,
@@ -15310,7 +14360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -15326,7 +14375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -15342,7 +14390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 27,
 		thunder: 0,
@@ -15358,7 +14405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 10,
 		thunder: 0,
@@ -15374,7 +14420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 22,
 		thunder: 0,
@@ -15390,7 +14435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 17,
 		thunder: 0,
@@ -15406,7 +14450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -15422,7 +14465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 12,
 		thunder: 0,
@@ -15438,7 +14480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 12,
 		thunder: 0,
@@ -15454,7 +14495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 30,
 		thunder: 0,
@@ -15470,7 +14510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 12,
 		thunder: 0,
@@ -15486,7 +14525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 25,
 		thunder: 0,
@@ -15502,7 +14540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Doragyurosu',
 		shot: 20,
 		thunder: 0,
@@ -15518,7 +14555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bulldrome',
 		shot: 80,
 		thunder: 120,
@@ -15534,7 +14570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bulldrome',
 		shot: 80,
 		thunder: 120,
@@ -15550,7 +14585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bulldrome',
 		shot: 40,
 		thunder: 30,
@@ -15566,7 +14600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bulldrome',
 		shot: 40,
 		thunder: 30,
@@ -15582,7 +14615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 250,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Bulldrome',
 		shot: 15,
 		thunder: -15,
@@ -15598,7 +14630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Bulldrome',
 		shot: 15,
 		thunder: -15,
@@ -15614,7 +14645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Bulldrome',
 		shot: 40,
 		thunder: 60,
@@ -15630,7 +14660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Bulldrome',
 		shot: 40,
 		thunder: 60,
@@ -15646,7 +14675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 80,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephadrome',
 		shot: 60,
 		thunder: 15,
@@ -15662,7 +14690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephadrome',
 		shot: 150,
 		thunder: 15,
@@ -15678,7 +14705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephadrome',
 		shot: 150,
 		thunder: 20,
@@ -15694,7 +14720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephadrome',
 		shot: 100,
 		thunder: 15,
@@ -15710,7 +14735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephadrome',
 		shot: 60,
 		thunder: 10,
@@ -15726,7 +14750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephadrome',
 		shot: 60,
 		thunder: 10,
@@ -15742,7 +14765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephadrome',
 		shot: 35,
 		thunder: 10,
@@ -15758,7 +14780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 80,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Cephadrome',
 		shot: 30,
 		thunder: 15,
@@ -15774,7 +14795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Cephadrome',
 		shot: 70,
 		thunder: 15,
@@ -15790,7 +14810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Cephadrome',
 		shot: 70,
 		thunder: 30,
@@ -15806,7 +14825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Cephadrome',
 		shot: 50,
 		thunder: 15,
@@ -15822,7 +14840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Cephadrome',
 		shot: 30,
 		thunder: 10,
@@ -15838,7 +14855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Cephadrome',
 		shot: 20,
 		thunder: 10,
@@ -15854,7 +14870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Cephadrome',
 		shot: 30,
 		thunder: 10,
@@ -15870,7 +14885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 80,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Cephadrome',
 		shot: 40,
 		thunder: 15,
@@ -15886,7 +14900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Cephadrome',
 		shot: 10,
 		thunder: 5,
@@ -15902,7 +14915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Cephadrome',
 		shot: 20,
 		thunder: 20,
@@ -15918,7 +14930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Cephadrome',
 		shot: 60,
 		thunder: 15,
@@ -15934,7 +14945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Cephadrome',
 		shot: 25,
 		thunder: 15,
@@ -15950,7 +14960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Cephadrome',
 		shot: 30,
 		thunder: 15,
@@ -15966,7 +14975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Cephadrome',
 		shot: 35,
 		thunder: 0,
@@ -15982,7 +14990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gendrome',
 		shot: 90,
 		thunder: 40,
@@ -15998,7 +15005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gendrome',
 		shot: 55,
 		thunder: 25,
@@ -16014,7 +15020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gendrome',
 		shot: 40,
 		thunder: 5,
@@ -16030,7 +15035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Iodrome',
 		shot: 80,
 		thunder: 30,
@@ -16046,7 +15050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Iodrome',
 		shot: 50,
 		thunder: 30,
@@ -16062,7 +15065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Iodrome',
 		shot: 45,
 		thunder: 10,
@@ -16078,7 +15080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Velocidrome',
 		shot: 100,
 		thunder: 50,
@@ -16094,7 +15095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Velocidrome',
 		shot: 60,
 		thunder: 20,
@@ -16110,7 +15110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Velocidrome',
 		shot: 40,
 		thunder: 10,
@@ -16126,7 +15125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Velocidrome',
 		shot: 60,
 		thunder: 50,
@@ -16142,7 +15140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 15,
@@ -16158,7 +15155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 15,
@@ -16174,7 +15170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 10,
@@ -16190,7 +15185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 10,
@@ -16206,7 +15200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 10,
@@ -16222,7 +15215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 10,
@@ -16238,7 +15230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 15,
@@ -16254,7 +15245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 10,
@@ -16270,7 +15260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 10,
@@ -16286,7 +15275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 50,
 		thunder: 15,
@@ -16302,7 +15290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 45,
 		thunder: 15,
@@ -16318,7 +15305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 40,
 		thunder: 15,
@@ -16334,7 +15320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 15,
@@ -16350,7 +15335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 40,
 		thunder: 10,
@@ -16366,7 +15350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Spinning',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 15,
@@ -16382,7 +15365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 15,
@@ -16398,7 +15380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 10,
@@ -16414,7 +15395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 10,
@@ -16430,7 +15410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 10,
@@ -16446,7 +15425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 10,
@@ -16462,7 +15440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Default',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 15,
@@ -16478,7 +15455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 30,
@@ -16494,7 +15470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 30,
@@ -16510,7 +15485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 10,
@@ -16526,7 +15500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 10,
@@ -16542,7 +15515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 10,
@@ -16558,7 +15530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 10,
@@ -16574,7 +15545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 15,
@@ -16590,7 +15560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 25,
@@ -16606,7 +15575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 20,
@@ -16622,7 +15590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 50,
 		thunder: 15,
@@ -16638,7 +15605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 45,
 		thunder: 15,
@@ -16654,7 +15620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 40,
 		thunder: 15,
@@ -16670,7 +15635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 15,
@@ -16686,7 +15650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 40,
 		thunder: 10,
@@ -16702,7 +15665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Spinning',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 30,
@@ -16718,7 +15680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 30,
@@ -16734,7 +15695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 10,
@@ -16750,7 +15710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 10,
@@ -16766,7 +15725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 10,
@@ -16782,7 +15740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 10,
@@ -16798,7 +15755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'G Rank',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 15,
@@ -16814,7 +15770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 10,
@@ -16830,7 +15785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 15,
 		thunder: 10,
@@ -16846,7 +15800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 5,
@@ -16862,7 +15815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 5,
@@ -16878,7 +15830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 15,
 		thunder: 5,
@@ -16894,7 +15845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 15,
 		thunder: 5,
@@ -16910,7 +15860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 10,
@@ -16926,7 +15875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 5,
@@ -16942,7 +15890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 5,
@@ -16958,7 +15905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 40,
 		thunder: 10,
@@ -16974,7 +15920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 10,
@@ -16990,7 +15935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 10,
@@ -17006,7 +15950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 15,
 		thunder: 10,
@@ -17022,7 +15965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 5,
@@ -17038,7 +15980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Spinning',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 10,
@@ -17054,7 +15995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 15,
 		thunder: 10,
@@ -17070,7 +16010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 5,
@@ -17086,7 +16025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 15,
 		thunder: 5,
@@ -17102,7 +16040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 5,
@@ -17118,7 +16055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 15,
 		thunder: 5,
@@ -17134,7 +16070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Gou',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 10,
@@ -17150,7 +16085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 30,
@@ -17166,7 +16100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 30,
@@ -17182,7 +16115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 10,
@@ -17198,7 +16130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 10,
@@ -17214,7 +16145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 10,
@@ -17230,7 +16160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 10,
@@ -17246,7 +16175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 15,
@@ -17262,7 +16190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 25,
@@ -17278,7 +16205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 20,
@@ -17294,7 +16220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 50,
 		thunder: 15,
@@ -17310,7 +16235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 45,
 		thunder: 15,
@@ -17326,7 +16250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 40,
 		thunder: 15,
@@ -17342,7 +16265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 15,
@@ -17358,7 +16280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 40,
 		thunder: 10,
@@ -17374,7 +16295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Spinning',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 30,
@@ -17390,7 +16310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 30,
@@ -17406,7 +16325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 10,
@@ -17422,7 +16340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 30,
 		thunder: 10,
@@ -17438,7 +16355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 25,
 		thunder: 10,
@@ -17454,7 +16370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 20,
 		thunder: 10,
@@ -17470,7 +16385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Spinning',
 		rankBand: 'Tower',
-
 		displayName: 'Dyuragaua',
 		shot: 35,
 		thunder: 15,
@@ -17486,7 +16400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Egyurasu',
 		shot: 55,
 		thunder: 5,
@@ -17502,7 +16415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Egyurasu',
 		shot: 45,
 		thunder: 5,
@@ -17518,7 +16430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Egyurasu',
 		shot: 35,
 		thunder: 5,
@@ -17534,7 +16445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Egyurasu',
 		shot: 45,
 		thunder: 15,
@@ -17550,7 +16460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Egyurasu',
 		shot: 30,
 		thunder: 5,
@@ -17566,7 +16475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Egyurasu',
 		shot: 40,
 		thunder: 5,
@@ -17582,7 +16490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Egyurasu',
 		shot: 55,
 		thunder: 25,
@@ -17598,7 +16505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 40,
 		thunder: 10,
@@ -17614,7 +16520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 15,
 		thunder: 0,
@@ -17630,7 +16535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 20,
 		thunder: 0,
@@ -17646,7 +16550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 20,
 		thunder: 15,
@@ -17662,7 +16565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 15,
 		thunder: 0,
@@ -17678,7 +16580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 15,
 		thunder: 10,
@@ -17694,7 +16595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 25,
 		thunder: 5,
@@ -17710,7 +16610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 35,
 		thunder: 5,
@@ -17726,7 +16625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 15,
 		thunder: 0,
@@ -17742,7 +16640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 20,
 		thunder: 0,
@@ -17758,7 +16655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 20,
 		thunder: 10,
@@ -17774,7 +16670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 15,
 		thunder: 0,
@@ -17790,7 +16685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 15,
 		thunder: 5,
@@ -17806,7 +16700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Elzelion',
 		shot: 25,
 		thunder: 0,
@@ -17822,7 +16715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Erupe',
 		shot: 100,
 		thunder: 10,
@@ -17838,7 +16730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 10,
@@ -17854,7 +16745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -17870,7 +16760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -17886,7 +16775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 50,
 		thunder: 5,
@@ -17902,7 +16790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 5,
@@ -17918,7 +16805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 10,
@@ -17934,7 +16820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 45,
 		thunder: 5,
@@ -17950,7 +16835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 15,
@@ -17966,7 +16850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 10,
@@ -17982,7 +16865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -17998,7 +16880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 15,
@@ -18014,7 +16895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 5,
@@ -18030,7 +16910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 10,
@@ -18046,7 +16925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 5,
@@ -18062,7 +16940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 15,
@@ -18078,7 +16955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -18094,7 +16970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 10,
@@ -18110,7 +16985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 15,
@@ -18126,7 +17000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 5,
@@ -18142,7 +17015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -18158,7 +17030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 5,
@@ -18174,7 +17045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 10,
@@ -18190,7 +17060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -18206,7 +17075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -18222,7 +17090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 5,
@@ -18238,7 +17105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 5,
@@ -18254,7 +17120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 10,
@@ -18270,7 +17135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 5,
@@ -18286,7 +17150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 15,
@@ -18302,7 +17165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -18318,7 +17180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 10,
@@ -18334,7 +17195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 15,
@@ -18350,7 +17210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 5,
@@ -18366,7 +17225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -18382,7 +17240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 5,
@@ -18398,7 +17255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 15,
@@ -18414,7 +17270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -18430,7 +17285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 10,
@@ -18446,7 +17300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 15,
@@ -18462,7 +17315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 5,
@@ -18478,7 +17330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -18494,7 +17345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 5,
@@ -18510,7 +17360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 10,
@@ -18526,7 +17375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -18542,7 +17390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -18558,7 +17405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 5,
@@ -18574,7 +17420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 5,
@@ -18590,7 +17435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 10,
@@ -18606,7 +17450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 5,
@@ -18622,7 +17465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 15,
@@ -18638,7 +17480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -18654,7 +17495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 10,
@@ -18670,7 +17510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 55,
 		thunder: 15,
@@ -18686,7 +17525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 5,
@@ -18702,7 +17540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -18718,7 +17555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 5,
@@ -18734,7 +17570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 60,
 		thunder: 15,
@@ -18750,7 +17585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 55,
 		thunder: 10,
@@ -18766,7 +17600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 50,
 		thunder: 10,
@@ -18782,7 +17615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 90,
 		thunder: 15,
@@ -18798,7 +17630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 50,
 		thunder: 5,
@@ -18814,7 +17645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 50,
 		thunder: 10,
@@ -18830,7 +17660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Orange Espinas',
 		shot: 60,
 		thunder: 5,
@@ -18846,7 +17675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 5,
@@ -18862,7 +17690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 5,
@@ -18878,7 +17705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 5,
@@ -18894,7 +17720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 5,
@@ -18910,7 +17735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 5,
@@ -18926,7 +17750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 10,
@@ -18942,7 +17765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 5,
@@ -18958,7 +17780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 10,
@@ -18974,7 +17795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 5,
@@ -18990,7 +17810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 5,
@@ -19006,7 +17825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 5,
@@ -19022,7 +17840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 5,
@@ -19038,7 +17855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -19054,7 +17870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 5,
@@ -19070,7 +17885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Idle',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 10,
@@ -19086,7 +17900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 5,
@@ -19102,7 +17915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 5,
@@ -19118,7 +17930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 5,
@@ -19134,7 +17945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 5,
@@ -19150,7 +17960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -19166,7 +17975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Gou',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 5,
@@ -19182,7 +17990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 10,
@@ -19198,7 +18005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -19214,7 +18020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 10,
@@ -19230,7 +18035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 50,
 		thunder: 5,
@@ -19246,7 +18050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 5,
@@ -19262,7 +18065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 10,
@@ -19278,7 +18080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 45,
 		thunder: 5,
@@ -19294,7 +18095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 25,
 		thunder: 15,
@@ -19310,7 +18110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 10,
@@ -19326,7 +18125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -19342,7 +18140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 40,
 		thunder: 15,
@@ -19358,7 +18155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 5,
@@ -19374,7 +18170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 10,
@@ -19390,7 +18185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 5,
@@ -19406,7 +18200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Idle',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 20,
 		thunder: 15,
@@ -19422,7 +18215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -19438,7 +18230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 10,
 		thunder: 10,
@@ -19454,7 +18245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 35,
 		thunder: 15,
@@ -19470,7 +18260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 5,
@@ -19486,7 +18275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 15,
 		thunder: 10,
@@ -19502,7 +18290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Tower',
-
 		displayName: 'Orange Espinas',
 		shot: 30,
 		thunder: 5,
@@ -19518,7 +18305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 30,
 		thunder: 5,
@@ -19534,7 +18320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -19550,7 +18335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -19566,7 +18350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 40,
 		thunder: 5,
@@ -19582,7 +18365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -19598,7 +18380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 10,
 		thunder: 5,
@@ -19614,7 +18395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 35,
 		thunder: 5,
@@ -19630,7 +18410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 20,
 		thunder: 5,
@@ -19646,7 +18425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 20,
 		thunder: 5,
@@ -19662,7 +18440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 60,
 		thunder: 5,
@@ -19678,7 +18455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 20,
 		thunder: 5,
@@ -19694,7 +18470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -19710,7 +18485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -19726,7 +18500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 25,
 		thunder: 5,
@@ -19742,7 +18515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 30,
 		thunder: 5,
@@ -19758,7 +18530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 30,
 		thunder: 5,
@@ -19774,7 +18545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 70,
 		thunder: 5,
@@ -19790,7 +18560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 30,
 		thunder: 5,
@@ -19806,7 +18575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 25,
 		thunder: 5,
@@ -19822,7 +18590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 25,
 		thunder: 5,
@@ -19838,7 +18605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'Default',
-
 		displayName: 'Espinas Rare Species',
 		shot: 35,
 		thunder: 5,
@@ -19854,7 +18620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 25,
 		thunder: 5,
@@ -19870,7 +18635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -19886,7 +18650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -19902,7 +18665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 30,
 		thunder: 5,
@@ -19918,7 +18680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -19934,7 +18695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 10,
 		thunder: 5,
@@ -19950,7 +18710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 30,
 		thunder: 5,
@@ -19966,7 +18725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 20,
 		thunder: 5,
@@ -19982,7 +18740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 20,
 		thunder: 5,
@@ -19998,7 +18755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 60,
 		thunder: 5,
@@ -20014,7 +18770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -20030,7 +18785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -20046,7 +18800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 5,
 		thunder: 5,
@@ -20062,7 +18815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 25,
 		thunder: 5,
@@ -20078,7 +18830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 30,
 		thunder: 5,
@@ -20094,7 +18845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 30,
 		thunder: 5,
@@ -20110,7 +18860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 60,
 		thunder: 5,
@@ -20126,7 +18875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 25,
 		thunder: 5,
@@ -20142,7 +18890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 25,
 		thunder: 5,
@@ -20158,7 +18905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 15,
 		thunder: 5,
@@ -20174,7 +18920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Idle',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas Rare Species',
 		shot: 30,
 		thunder: 5,
@@ -20190,7 +18935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 40,
 		thunder: 5,
@@ -20206,7 +18950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20222,7 +18965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20238,7 +18980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 50,
 		thunder: 5,
@@ -20254,7 +18995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20270,7 +19010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 10,
 		thunder: 5,
@@ -20286,7 +19025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 45,
 		thunder: 5,
@@ -20302,7 +19040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 30,
 		thunder: 5,
@@ -20318,7 +19055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20334,7 +19070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 20,
 		thunder: 5,
@@ -20350,7 +19085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 45,
 		thunder: 5,
@@ -20366,7 +19100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20382,7 +19115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20398,7 +19130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Espinas',
 		shot: 40,
 		thunder: 5,
@@ -20414,7 +19145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 35,
 		thunder: 5,
@@ -20430,7 +19160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20446,7 +19175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20462,7 +19190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 40,
 		thunder: 5,
@@ -20478,7 +19205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20494,7 +19220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 10,
 		thunder: 5,
@@ -20510,7 +19235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 40,
 		thunder: 5,
@@ -20526,7 +19250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 30,
 		thunder: 5,
@@ -20542,7 +19265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20558,7 +19280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 20,
 		thunder: 5,
@@ -20574,7 +19295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 35,
 		thunder: 5,
@@ -20590,7 +19310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20606,7 +19325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20622,7 +19340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Espinas',
 		shot: 30,
 		thunder: 5,
@@ -20638,7 +19355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 30,
 		thunder: 5,
@@ -20654,7 +19370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 10,
 		thunder: 5,
@@ -20670,7 +19385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 40,
 		thunder: 5,
@@ -20686,7 +19400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 30,
 		thunder: 5,
@@ -20702,7 +19415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 20,
 		thunder: 5,
@@ -20718,7 +19430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 10,
 		thunder: 5,
@@ -20734,7 +19445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 30,
 		thunder: 5,
@@ -20750,7 +19460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 45,
 		thunder: 15,
@@ -20766,7 +19475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 10,
 		thunder: 5,
@@ -20782,7 +19490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 20,
 		thunder: -5,
@@ -20798,7 +19505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 30,
 		thunder: -5,
@@ -20814,7 +19520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 10,
 		thunder: -5,
@@ -20830,7 +19535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 10,
 		thunder: -5,
@@ -20846,7 +19550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: -5,
@@ -20862,7 +19565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 10,
 		thunder: 5,
@@ -20878,7 +19580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 15,
 		thunder: 5,
@@ -20894,7 +19595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 5,
 		thunder: 5,
@@ -20910,7 +19610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20926,7 +19625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 15,
 		thunder: 5,
@@ -20942,7 +19640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 10,
 		thunder: 5,
@@ -20958,7 +19655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 5,
 		thunder: 5,
@@ -20974,7 +19670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 25,
 		thunder: 5,
@@ -20990,7 +19685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 15,
 		thunder: 5,
@@ -21006,7 +19700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 5,
 		thunder: 5,
@@ -21022,7 +19715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 30,
 		thunder: 5,
@@ -21038,7 +19730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 20,
 		thunder: 5,
@@ -21054,7 +19745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 25,
 		thunder: 5,
@@ -21070,7 +19760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Espinas',
 		shot: 10,
 		thunder: 5,
@@ -21086,7 +19775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 35,
 		thunder: 5,
@@ -21102,7 +19790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -21118,7 +19805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -21134,7 +19820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 40,
 		thunder: 5,
@@ -21150,7 +19835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -21166,7 +19850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 10,
 		thunder: 5,
@@ -21182,7 +19865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 40,
 		thunder: 5,
@@ -21198,7 +19880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 30,
 		thunder: 5,
@@ -21214,7 +19895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -21230,7 +19910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 20,
 		thunder: 5,
@@ -21246,7 +19925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 35,
 		thunder: 5,
@@ -21262,7 +19940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -21278,7 +19955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 25,
 		thunder: 5,
@@ -21294,7 +19970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Espinas',
 		shot: 30,
 		thunder: 5,
@@ -21310,7 +19985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Farunokku',
 		shot: 50,
 		thunder: 0,
@@ -21326,7 +20000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Farunokku',
 		shot: 40,
 		thunder: 0,
@@ -21342,7 +20015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Farunokku',
 		shot: 30,
 		thunder: 0,
@@ -21358,7 +20030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Farunokku',
 		shot: 20,
 		thunder: 0,
@@ -21374,7 +20045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Farunokku',
 		shot: 25,
 		thunder: 0,
@@ -21390,7 +20060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Farunokku',
 		shot: 25,
 		thunder: 0,
@@ -21406,7 +20075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Farunokku',
 		shot: 50,
 		thunder: 0,
@@ -21422,7 +20090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Forokururu',
 		shot: 30,
 		thunder: 20,
@@ -21438,7 +20105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Forokururu',
 		shot: 40,
 		thunder: 15,
@@ -21454,7 +20120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Forokururu',
 		shot: 10,
 		thunder: 0,
@@ -21470,7 +20135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Forokururu',
 		shot: 20,
 		thunder: 0,
@@ -21486,7 +20150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Forokururu',
 		shot: 35,
 		thunder: 5,
@@ -21502,7 +20165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Forokururu',
 		shot: 15,
 		thunder: 0,
@@ -21518,7 +20180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Forokururu',
 		shot: 40,
 		thunder: 25,
@@ -21534,7 +20195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Forokururu',
 		shot: 30,
 		thunder: 20,
@@ -21550,7 +20210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Forokururu',
 		shot: 40,
 		thunder: 15,
@@ -21566,7 +20225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Forokururu',
 		shot: 10,
 		thunder: 0,
@@ -21582,7 +20240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Forokururu',
 		shot: 20,
 		thunder: 0,
@@ -21598,7 +20255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Forokururu',
 		shot: 35,
 		thunder: 5,
@@ -21614,7 +20270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Forokururu',
 		shot: 15,
 		thunder: 0,
@@ -21630,7 +20285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Forokururu',
 		shot: 40,
 		thunder: 25,
@@ -21646,7 +20300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Khezu',
 		shot: 70,
 		thunder: 0,
@@ -21662,7 +20315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Khezu',
 		shot: 65,
 		thunder: 0,
@@ -21678,7 +20330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Khezu',
 		shot: 20,
 		thunder: 0,
@@ -21694,7 +20345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Khezu',
 		shot: 20,
 		thunder: 0,
@@ -21710,7 +20360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Khezu',
 		shot: 30,
 		thunder: 0,
@@ -21726,7 +20375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Khezu',
 		shot: 35,
 		thunder: 0,
@@ -21742,7 +20390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Khezu',
 		shot: 30,
 		thunder: 0,
@@ -21758,7 +20405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Khezu',
 		shot: 45,
 		thunder: 0,
@@ -21774,7 +20420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Khezu',
 		shot: 45,
 		thunder: 0,
@@ -21790,7 +20435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Khezu',
 		shot: 20,
 		thunder: 0,
@@ -21806,7 +20450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Khezu',
 		shot: 20,
 		thunder: 0,
@@ -21822,7 +20465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Khezu',
 		shot: 25,
 		thunder: 0,
@@ -21838,7 +20480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Khezu',
 		shot: 25,
 		thunder: 0,
@@ -21854,7 +20495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Khezu',
 		shot: 20,
 		thunder: 0,
@@ -21870,7 +20510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Khezu',
 		shot: 40,
 		thunder: 0,
@@ -21886,7 +20525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Khezu',
 		shot: 60,
 		thunder: 0,
@@ -21902,7 +20540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Khezu',
 		shot: 20,
 		thunder: 0,
@@ -21918,7 +20555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Khezu',
 		shot: 20,
 		thunder: 0,
@@ -21934,7 +20570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Khezu',
 		shot: 30,
 		thunder: 0,
@@ -21950,7 +20585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Khezu',
 		shot: 35,
 		thunder: 0,
@@ -21966,7 +20600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Khezu',
 		shot: 30,
 		thunder: 0,
@@ -21982,7 +20615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Khezu',
 		shot: 90,
 		thunder: 0,
@@ -21998,7 +20630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Khezu',
 		shot: 70,
 		thunder: 0,
@@ -22014,7 +20645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Khezu',
 		shot: 20,
 		thunder: 0,
@@ -22030,7 +20660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Khezu',
 		shot: 20,
 		thunder: 0,
@@ -22046,7 +20675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Khezu',
 		shot: 30,
 		thunder: 0,
@@ -22062,7 +20690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Khezu',
 		shot: 40,
 		thunder: 0,
@@ -22078,7 +20705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Khezu',
 		shot: 30,
 		thunder: 0,
@@ -22094,7 +20720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Khezu',
 		shot: 60,
 		thunder: 0,
@@ -22110,7 +20735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Khezu',
 		shot: 50,
 		thunder: 0,
@@ -22126,7 +20750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Khezu',
 		shot: 20,
 		thunder: 0,
@@ -22142,7 +20765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Khezu',
 		shot: 20,
 		thunder: 0,
@@ -22158,7 +20780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Khezu',
 		shot: 30,
 		thunder: 0,
@@ -22174,7 +20795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Khezu',
 		shot: 35,
 		thunder: 0,
@@ -22190,7 +20810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Khezu',
 		shot: 30,
 		thunder: 0,
@@ -22206,7 +20825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Khezu',
 		shot: 35,
 		thunder: 0,
@@ -22222,7 +20840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Khezu',
 		shot: 65,
 		thunder: 0,
@@ -22238,7 +20855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Khezu',
 		shot: 25,
 		thunder: 0,
@@ -22254,7 +20870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Khezu',
 		shot: 25,
 		thunder: 0,
@@ -22270,7 +20885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Khezu',
 		shot: 35,
 		thunder: 0,
@@ -22286,7 +20900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Khezu',
 		shot: 50,
 		thunder: 0,
@@ -22302,7 +20915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Khezu',
 		shot: 35,
 		thunder: 0,
@@ -22318,7 +20930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Khezu',
 		shot: 25,
 		thunder: 0,
@@ -22334,7 +20945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Khezu',
 		shot: 35,
 		thunder: 0,
@@ -22350,7 +20960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Khezu',
 		shot: 10,
 		thunder: 0,
@@ -22366,7 +20975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Khezu',
 		shot: 40,
 		thunder: 0,
@@ -22382,7 +20990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Khezu',
 		shot: 20,
 		thunder: 0,
@@ -22398,7 +21005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Khezu',
 		shot: 15,
 		thunder: 0,
@@ -22414,7 +21020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Khezu',
 		shot: 10,
 		thunder: 0,
@@ -22430,7 +21035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Remobra',
 		shot: 70,
 		thunder: 0,
@@ -22446,7 +21050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Remobra',
 		shot: 40,
 		thunder: 5,
@@ -22462,7 +21065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Remobra',
 		shot: 35,
 		thunder: 5,
@@ -22478,7 +21080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Remobra',
 		shot: 90,
 		thunder: 5,
@@ -22494,7 +21095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Remobra',
 		shot: 25,
 		thunder: 0,
@@ -22510,7 +21110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Remobra',
 		shot: 25,
 		thunder: 5,
@@ -22526,7 +21125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Remobra',
 		shot: 50,
 		thunder: 0,
@@ -22542,7 +21140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 25,
 		thunder: 15,
@@ -22558,7 +21155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 10,
@@ -22574,7 +21170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 15,
@@ -22590,7 +21185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 20,
 		thunder: 15,
@@ -22606,7 +21200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 10,
 		thunder: 5,
@@ -22622,7 +21215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 5,
@@ -22638,7 +21230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 10,
 		thunder: 20,
@@ -22654,7 +21245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 35,
 		thunder: 25,
@@ -22670,7 +21260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 15,
@@ -22686,7 +21275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 20,
 		thunder: 20,
@@ -22702,7 +21290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 25,
 		thunder: 20,
@@ -22718,7 +21305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 10,
@@ -22734,7 +21320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 10,
@@ -22750,7 +21335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 30,
@@ -22766,7 +21350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 25,
 		thunder: 15,
@@ -22782,7 +21365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 10,
@@ -22798,7 +21380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 15,
@@ -22814,7 +21395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 20,
 		thunder: 15,
@@ -22830,7 +21410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 10,
 		thunder: 5,
@@ -22846,7 +21425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 5,
@@ -22862,7 +21440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 10,
 		thunder: 20,
@@ -22878,7 +21455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 35,
 		thunder: 25,
@@ -22894,7 +21470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 15,
@@ -22910,7 +21485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 20,
 		thunder: 20,
@@ -22926,7 +21500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 25,
 		thunder: 20,
@@ -22942,7 +21515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 10,
@@ -22958,7 +21530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 10,
@@ -22974,7 +21545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Garuba Daora',
 		shot: 15,
 		thunder: 30,
@@ -22990,7 +21560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Hermitaur',
 		shot: 65,
 		thunder: 30,
@@ -23006,7 +21575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Green Plesioth',
 		shot: 60,
 		thunder: 20,
@@ -23022,7 +21590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Green Plesioth',
 		shot: 100,
 		thunder: 25,
@@ -23038,7 +21605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Green Plesioth',
 		shot: 20,
 		thunder: 20,
@@ -23054,7 +21620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Green Plesioth',
 		shot: 80,
 		thunder: 30,
@@ -23070,7 +21635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Green Plesioth',
 		shot: 60,
 		thunder: 25,
@@ -23086,7 +21650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Green Plesioth',
 		shot: 30,
 		thunder: 15,
@@ -23102,7 +21665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Green Plesioth',
 		shot: 30,
 		thunder: 5,
@@ -23118,7 +21680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Green Plesioth',
 		shot: 40,
 		thunder: 10,
@@ -23134,7 +21695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Green Plesioth',
 		shot: 60,
 		thunder: 15,
@@ -23150,7 +21710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Green Plesioth',
 		shot: 20,
 		thunder: 15,
@@ -23166,7 +21725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Green Plesioth',
 		shot: 40,
 		thunder: 30,
@@ -23182,7 +21740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Green Plesioth',
 		shot: 25,
 		thunder: 20,
@@ -23198,7 +21755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Green Plesioth',
 		shot: 25,
 		thunder: 10,
@@ -23214,7 +21770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Green Plesioth',
 		shot: 30,
 		thunder: 5,
@@ -23230,7 +21785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Green Plesioth',
 		shot: 30,
 		thunder: 5,
@@ -23246,7 +21800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Green Plesioth',
 		shot: 70,
 		thunder: 5,
@@ -23262,7 +21815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Green Plesioth',
 		shot: 20,
 		thunder: 0,
@@ -23278,7 +21830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Green Plesioth',
 		shot: 50,
 		thunder: 25,
@@ -23294,7 +21845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Green Plesioth',
 		shot: 50,
 		thunder: 5,
@@ -23310,7 +21860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Green Plesioth',
 		shot: 40,
 		thunder: 5,
@@ -23326,7 +21875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Green Plesioth',
 		shot: 30,
 		thunder: -5,
@@ -23342,7 +21890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Plesioth',
 		shot: 60,
 		thunder: 25,
@@ -23358,7 +21905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Plesioth',
 		shot: 100,
 		thunder: 30,
@@ -23374,7 +21920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Plesioth',
 		shot: 20,
 		thunder: 25,
@@ -23390,7 +21935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Plesioth',
 		shot: 80,
 		thunder: 35,
@@ -23406,7 +21950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Plesioth',
 		shot: 60,
 		thunder: 30,
@@ -23422,7 +21965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Plesioth',
 		shot: 30,
 		thunder: 20,
@@ -23438,7 +21980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Plesioth',
 		shot: 30,
 		thunder: 10,
@@ -23454,7 +21995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Plesioth',
 		shot: 40,
 		thunder: 25,
@@ -23470,7 +22010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Plesioth',
 		shot: 70,
 		thunder: 30,
@@ -23486,7 +22025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Plesioth',
 		shot: 20,
 		thunder: 20,
@@ -23502,7 +22040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Plesioth',
 		shot: 45,
 		thunder: 35,
@@ -23518,7 +22055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Plesioth',
 		shot: 25,
 		thunder: 30,
@@ -23534,7 +22070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Plesioth',
 		shot: 25,
 		thunder: 15,
@@ -23550,7 +22085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Plesioth',
 		shot: 30,
 		thunder: 5,
@@ -23566,7 +22100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Plesioth',
 		shot: 30,
 		thunder: 5,
@@ -23582,7 +22115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Plesioth',
 		shot: 20,
 		thunder: 15,
@@ -23598,7 +22130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Plesioth',
 		shot: 30,
 		thunder: 20,
@@ -23614,7 +22145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Plesioth',
 		shot: 50,
 		thunder: 10,
@@ -23630,7 +22160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Plesioth',
 		shot: 30,
 		thunder: 10,
@@ -23646,7 +22175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Plesioth',
 		shot: 40,
 		thunder: 10,
@@ -23662,7 +22190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Plesioth',
 		shot: 30,
 		thunder: 5,
@@ -23678,7 +22205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Plesioth',
 		shot: 25,
 		thunder: 15,
@@ -23694,7 +22220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Plesioth',
 		shot: 30,
 		thunder: 20,
@@ -23710,7 +22235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Plesioth',
 		shot: 15,
 		thunder: 10,
@@ -23726,7 +22250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Plesioth',
 		shot: 35,
 		thunder: 20,
@@ -23742,7 +22265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Plesioth',
 		shot: 25,
 		thunder: 15,
@@ -23758,7 +22280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Plesioth',
 		shot: 30,
 		thunder: 15,
@@ -23774,7 +22295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Plesioth',
 		shot: 30,
 		thunder: 5,
@@ -23790,7 +22310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 90,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephalos',
 		shot: 80,
 		thunder: 40,
@@ -23806,7 +22325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephalos',
 		shot: 140,
 		thunder: 40,
@@ -23822,7 +22340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephalos',
 		shot: 150,
 		thunder: 40,
@@ -23838,7 +22355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephalos',
 		shot: 150,
 		thunder: 40,
@@ -23854,7 +22370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephalos',
 		shot: 60,
 		thunder: 20,
@@ -23870,7 +22385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephalos',
 		shot: 60,
 		thunder: 20,
@@ -23886,7 +22400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Cephalos',
 		shot: 50,
 		thunder: 10,
@@ -23902,7 +22415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Garuga',
 		shot: 60,
 		thunder: 0,
@@ -23918,7 +22430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Garuga',
 		shot: 40,
 		thunder: 0,
@@ -23934,7 +22445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 5,
@@ -23950,7 +22460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Garuga',
 		shot: 60,
 		thunder: 15,
@@ -23966,7 +22475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 5,
@@ -23982,7 +22490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 0,
@@ -23998,7 +22505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Garuga',
 		shot: 25,
 		thunder: 0,
@@ -24014,7 +22520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Garuga',
 		shot: 60,
 		thunder: 0,
@@ -24030,7 +22535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Garuga',
 		shot: 30,
 		thunder: 0,
@@ -24046,7 +22550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 5,
@@ -24062,7 +22565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Garuga',
 		shot: 60,
 		thunder: 15,
@@ -24078,7 +22580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 5,
@@ -24094,7 +22595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 0,
@@ -24110,7 +22610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Garuga',
 		shot: 35,
 		thunder: 0,
@@ -24126,7 +22625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Garuga',
 		shot: 40,
 		thunder: 0,
@@ -24142,7 +22640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Garuga',
 		shot: 45,
 		thunder: 0,
@@ -24158,7 +22655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Garuga',
 		shot: 25,
 		thunder: 0,
@@ -24174,7 +22670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Garuga',
 		shot: 20,
 		thunder: 0,
@@ -24190,7 +22685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Garuga',
 		shot: 45,
 		thunder: 35,
@@ -24206,7 +22700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 0,
@@ -24222,7 +22715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Garuga',
 		shot: 20,
 		thunder: 0,
@@ -24238,7 +22730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Yian Garuga',
 		shot: 60,
 		thunder: 0,
@@ -24254,7 +22745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Yian Garuga',
 		shot: 30,
 		thunder: 0,
@@ -24270,7 +22760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 5,
@@ -24286,7 +22775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Yian Garuga',
 		shot: 60,
 		thunder: 15,
@@ -24302,7 +22790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 5,
@@ -24318,7 +22805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Yian Garuga',
 		shot: 10,
 		thunder: 0,
@@ -24334,7 +22820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Yian Garuga',
 		shot: 35,
 		thunder: 0,
@@ -24350,7 +22835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 20,
 		thunder: 30,
@@ -24366,7 +22850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 25,
 		thunder: 15,
@@ -24382,7 +22865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 30,
 		thunder: 45,
@@ -24398,7 +22880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 15,
 		thunder: 15,
@@ -24414,7 +22895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 15,
 		thunder: 25,
@@ -24430,7 +22910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 20,
 		thunder: 20,
@@ -24446,7 +22925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 40,
 		thunder: 20,
@@ -24462,7 +22940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 30,
 		thunder: 15,
@@ -24478,7 +22955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 35,
 		thunder: 5,
@@ -24494,7 +22970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 40,
 		thunder: 30,
@@ -24510,7 +22985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 25,
 		thunder: 5,
@@ -24526,7 +23000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 25,
 		thunder: 10,
@@ -24542,7 +23015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 30,
 		thunder: 5,
@@ -24558,7 +23030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gasurabazura',
 		shot: 50,
 		thunder: 5,
@@ -24574,7 +23045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 30,
 		thunder: 40,
@@ -24590,7 +23060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 35,
 		thunder: 25,
@@ -24606,7 +23075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 40,
 		thunder: 50,
@@ -24622,7 +23090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 25,
 		thunder: 25,
@@ -24638,7 +23105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 25,
 		thunder: 35,
@@ -24654,7 +23120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 30,
 		thunder: 30,
@@ -24670,7 +23135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 50,
 		thunder: 30,
@@ -24686,7 +23150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 40,
 		thunder: 20,
@@ -24702,7 +23165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 45,
 		thunder: 5,
@@ -24718,7 +23180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 50,
 		thunder: 30,
@@ -24734,7 +23195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 35,
 		thunder: 5,
@@ -24750,7 +23210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 35,
 		thunder: 15,
@@ -24766,7 +23225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 40,
 		thunder: 10,
@@ -24782,7 +23240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gasurabazura',
 		shot: 60,
 		thunder: 10,
@@ -24798,7 +23255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 20,
 		thunder: 20,
@@ -24814,7 +23270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 15,
 		thunder: 10,
@@ -24830,7 +23285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 20,
 		thunder: 25,
@@ -24846,7 +23300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 15,
 		thunder: 10,
@@ -24862,7 +23315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 15,
 		thunder: 20,
@@ -24878,7 +23330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 20,
 		thunder: 15,
@@ -24894,7 +23345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 35,
 		thunder: 15,
@@ -24910,7 +23360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 25,
 		thunder: 10,
@@ -24926,7 +23375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 20,
 		thunder: 0,
@@ -24942,7 +23390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 25,
 		thunder: 15,
@@ -24958,7 +23405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 15,
 		thunder: 0,
@@ -24974,7 +23420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 30,
 		thunder: 10,
@@ -24990,7 +23435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 25,
 		thunder: 5,
@@ -25006,7 +23450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gasurabazura',
 		shot: 35,
 		thunder: 5,
@@ -25022,7 +23465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Anteka',
 		shot: 90,
 		thunder: 10,
@@ -25038,7 +23480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Genprey',
 		shot: 100,
 		thunder: 20,
@@ -25054,7 +23495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Purple Gypceros',
 		shot: 90,
 		thunder: 0,
@@ -25070,7 +23510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Purple Gypceros',
 		shot: 50,
 		thunder: 0,
@@ -25086,7 +23525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Purple Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25102,7 +23540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Purple Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25118,7 +23555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Purple Gypceros',
 		shot: 80,
 		thunder: 0,
@@ -25134,7 +23570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Purple Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25150,7 +23585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Purple Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25166,7 +23600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Purple Gypceros',
 		shot: 65,
 		thunder: 0,
@@ -25182,7 +23615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Purple Gypceros',
 		shot: 35,
 		thunder: 0,
@@ -25198,7 +23630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Purple Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25214,7 +23645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Purple Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25230,7 +23660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Purple Gypceros',
 		shot: 60,
 		thunder: 0,
@@ -25246,7 +23675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Purple Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25262,7 +23690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Purple Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25278,7 +23705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Purple Gypceros',
 		shot: 50,
 		thunder: 0,
@@ -25294,7 +23720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Purple Gypceros',
 		shot: 40,
 		thunder: 0,
@@ -25310,7 +23735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Purple Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25326,7 +23750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Purple Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25342,7 +23765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Purple Gypceros',
 		shot: 50,
 		thunder: 0,
@@ -25358,7 +23780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Purple Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25374,7 +23795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Purple Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25390,7 +23810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Purple Gypceros',
 		shot: 65,
 		thunder: 0,
@@ -25406,7 +23825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Purple Gypceros',
 		shot: 35,
 		thunder: 0,
@@ -25422,7 +23840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Purple Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25438,7 +23855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Purple Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25454,7 +23870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Purple Gypceros',
 		shot: 60,
 		thunder: 0,
@@ -25470,7 +23885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Purple Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25486,7 +23900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Purple Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25502,7 +23915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gypceros',
 		shot: 100,
 		thunder: 0,
@@ -25518,7 +23930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gypceros',
 		shot: 50,
 		thunder: 0,
@@ -25534,7 +23945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25550,7 +23960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25566,7 +23975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gypceros',
 		shot: 80,
 		thunder: 0,
@@ -25582,7 +23990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25598,7 +24005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25614,7 +24020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gypceros',
 		shot: 70,
 		thunder: 0,
@@ -25630,7 +24035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gypceros',
 		shot: 35,
 		thunder: 0,
@@ -25646,7 +24050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25662,7 +24065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25678,7 +24080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gypceros',
 		shot: 60,
 		thunder: 0,
@@ -25694,7 +24095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25710,7 +24110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25726,7 +24125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25742,7 +24140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gypceros',
 		shot: 10,
 		thunder: 0,
@@ -25758,7 +24155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25774,7 +24170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25790,7 +24185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gypceros',
 		shot: 40,
 		thunder: 0,
@@ -25806,7 +24200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25822,7 +24215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25838,7 +24230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gypceros',
 		shot: 70,
 		thunder: 0,
@@ -25854,7 +24245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gypceros',
 		shot: 35,
 		thunder: 0,
@@ -25870,7 +24260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25886,7 +24275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gypceros',
 		shot: 20,
 		thunder: 0,
@@ -25902,7 +24290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gypceros',
 		shot: 60,
 		thunder: 0,
@@ -25918,7 +24305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25934,7 +24320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gypceros',
 		shot: 30,
 		thunder: 0,
@@ -25950,7 +24335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Giaprey',
 		shot: 80,
 		thunder: 30,
@@ -25966,7 +24350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 35,
 		thunder: 10,
@@ -25982,7 +24365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -25998,7 +24380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -26014,7 +24395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 15,
 		thunder: 10,
@@ -26030,7 +24410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -26046,7 +24425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 25,
 		thunder: 10,
@@ -26062,7 +24440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 35,
 		thunder: 5,
@@ -26078,7 +24455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 35,
 		thunder: 10,
@@ -26094,7 +24470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 25,
 		thunder: 5,
@@ -26110,7 +24485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -26126,7 +24500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 10,
@@ -26142,7 +24515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -26158,7 +24530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 25,
 		thunder: 10,
@@ -26174,7 +24545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 40,
 		thunder: 5,
@@ -26190,7 +24560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 40,
 		thunder: 10,
@@ -26206,7 +24575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 30,
 		thunder: 5,
@@ -26222,7 +24590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -26238,7 +24605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 10,
@@ -26254,7 +24620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -26270,7 +24635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 30,
 		thunder: 10,
@@ -26286,7 +24650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 45,
 		thunder: 5,
@@ -26302,7 +24665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 40,
 		thunder: 10,
@@ -26318,7 +24680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 40,
 		thunder: 15,
@@ -26334,7 +24695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 25,
 		thunder: 5,
@@ -26350,7 +24710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 10,
@@ -26366,7 +24725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -26382,7 +24740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 30,
 		thunder: 10,
@@ -26398,7 +24755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'Giaorugu',
 		shot: 60,
 		thunder: 10,
@@ -26414,7 +24770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 25,
 		thunder: 10,
@@ -26430,7 +24785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 10,
 		thunder: 5,
@@ -26446,7 +24800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 10,
 		thunder: 5,
@@ -26462,7 +24815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 10,
 		thunder: 10,
@@ -26478,7 +24830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -26494,7 +24845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 15,
 		thunder: 10,
@@ -26510,7 +24860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 20,
 		thunder: 5,
@@ -26526,7 +24875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 1',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 30,
 		thunder: 10,
@@ -26542,7 +24890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 10,
 		thunder: 5,
@@ -26558,7 +24905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 10,
 		thunder: 5,
@@ -26574,7 +24920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 15,
 		thunder: 10,
@@ -26590,7 +24935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 25,
 		thunder: 5,
@@ -26606,7 +24950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 20,
 		thunder: 10,
@@ -26622,7 +24965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 25,
 		thunder: 5,
@@ -26638,7 +24980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 35,
 		thunder: 10,
@@ -26654,7 +24995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 10,
 		thunder: 5,
@@ -26670,7 +25010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 10,
 		thunder: 5,
@@ -26686,7 +25025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 15,
 		thunder: 10,
@@ -26702,7 +25040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 25,
 		thunder: 5,
@@ -26718,7 +25055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 20,
 		thunder: 10,
@@ -26734,7 +25070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 30,
 		thunder: 5,
@@ -26750,7 +25085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 3',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 35,
 		thunder: 10,
@@ -26766,7 +25100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 10,
 		thunder: 15,
@@ -26782,7 +25115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 10,
 		thunder: 5,
@@ -26798,7 +25130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 15,
 		thunder: 10,
@@ -26814,7 +25145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 25,
 		thunder: 5,
@@ -26830,7 +25160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 20,
 		thunder: 10,
@@ -26846,7 +25175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Giaorugu',
 		shot: 30,
 		thunder: 10,
@@ -26862,7 +25190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gureadomosu',
 		shot: 20,
 		thunder: 15,
@@ -26878,7 +25205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gureadomosu',
 		shot: 60,
 		thunder: 35,
@@ -26894,7 +25220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gureadomosu',
 		shot: 45,
 		thunder: 10,
@@ -26910,7 +25235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gureadomosu',
 		shot: 10,
 		thunder: 15,
@@ -26926,7 +25250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gureadomosu',
 		shot: 30,
 		thunder: 20,
@@ -26942,7 +25265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gureadomosu',
 		shot: 15,
 		thunder: 15,
@@ -26958,7 +25280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gureadomosu',
 		shot: 20,
 		thunder: 5,
@@ -26974,7 +25295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gureadomosu',
 		shot: 30,
 		thunder: 20,
@@ -26990,7 +25310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gureadomosu',
 		shot: 60,
 		thunder: 45,
@@ -27006,7 +25325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gureadomosu',
 		shot: 50,
 		thunder: 20,
@@ -27022,7 +25340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gureadomosu',
 		shot: 15,
 		thunder: 15,
@@ -27038,7 +25355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gureadomosu',
 		shot: 25,
 		thunder: 30,
@@ -27054,7 +25370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gureadomosu',
 		shot: 20,
 		thunder: 20,
@@ -27070,7 +25385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gureadomosu',
 		shot: 20,
 		thunder: 10,
@@ -27086,7 +25400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 28,
 		thunder: 15,
@@ -27102,7 +25415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 17,
 		thunder: 5,
@@ -27118,7 +25430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 25,
 		thunder: 15,
@@ -27134,7 +25445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 15,
 		thunder: 5,
@@ -27150,7 +25460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 12,
 		thunder: 5,
@@ -27166,7 +25475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 18,
 		thunder: 5,
@@ -27182,7 +25490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 28,
 		thunder: 5,
@@ -27198,7 +25505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 35,
 		thunder: 15,
@@ -27214,7 +25520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 17,
 		thunder: 5,
@@ -27230,7 +25535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 25,
 		thunder: 15,
@@ -27246,7 +25550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 15,
 		thunder: 5,
@@ -27262,7 +25565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 12,
 		thunder: 5,
@@ -27278,7 +25580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 18,
 		thunder: 5,
@@ -27294,7 +25595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Gore Magala',
 		shot: 28,
 		thunder: 5,
@@ -27310,7 +25610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 40,
 		thunder: 15,
@@ -27326,7 +25625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 25,
 		thunder: 5,
@@ -27342,7 +25640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 30,
 		thunder: 15,
@@ -27358,7 +25655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 35,
 		thunder: 5,
@@ -27374,7 +25670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 25,
 		thunder: 5,
@@ -27390,7 +25685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 20,
 		thunder: 10,
@@ -27406,7 +25700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 40,
 		thunder: 10,
@@ -27422,7 +25715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 50,
 		thunder: 15,
@@ -27438,7 +25730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 25,
 		thunder: 5,
@@ -27454,7 +25745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 30,
 		thunder: 15,
@@ -27470,7 +25760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 35,
 		thunder: 5,
@@ -27486,7 +25775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 25,
 		thunder: 5,
@@ -27502,7 +25790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 20,
 		thunder: 10,
@@ -27518,7 +25805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Gore Magala',
 		shot: 40,
 		thunder: 10,
@@ -27534,7 +25820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -27550,7 +25835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 25,
 		thunder: 0,
@@ -27566,7 +25850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -27582,7 +25865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -27598,7 +25880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 40,
 		thunder: 0,
@@ -27614,7 +25895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 40,
 		thunder: 0,
@@ -27630,7 +25910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 30,
 		thunder: 0,
@@ -27646,7 +25925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 25,
 		thunder: 0,
@@ -27662,7 +25940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -27678,7 +25955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Ray Gougarf',
 		shot: 45,
 		thunder: 0,
@@ -27694,7 +25970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -27710,7 +25985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 25,
 		thunder: 0,
@@ -27726,7 +26000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -27742,7 +26015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -27758,7 +26030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 40,
 		thunder: 0,
@@ -27774,7 +26045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 40,
 		thunder: 0,
@@ -27790,7 +26060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 30,
 		thunder: 0,
@@ -27806,7 +26075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 25,
 		thunder: 0,
@@ -27822,7 +26090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -27838,7 +26105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Ray Gougarf',
 		shot: 45,
 		thunder: 0,
@@ -27854,7 +26120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -27870,7 +26135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 15,
 		thunder: 0,
@@ -27886,7 +26150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -27902,7 +26165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 15,
 		thunder: 0,
@@ -27918,7 +26180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 25,
 		thunder: 0,
@@ -27934,7 +26195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 40,
 		thunder: 0,
@@ -27950,7 +26210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -27966,7 +26225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 25,
 		thunder: 0,
@@ -27982,7 +26240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 15,
 		thunder: 0,
@@ -27998,7 +26255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -28014,7 +26270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 60,
 		thunder: 0,
@@ -28030,7 +26285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -28046,7 +26300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -28062,7 +26315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -28078,7 +26330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'Lolo Gougarf',
 		shot: 55,
 		thunder: 0,
@@ -28094,7 +26345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -28110,7 +26360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 15,
 		thunder: 0,
@@ -28126,7 +26375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -28142,7 +26390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 15,
 		thunder: 0,
@@ -28158,7 +26405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 25,
 		thunder: 0,
@@ -28174,7 +26420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 40,
 		thunder: 0,
@@ -28190,7 +26435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -28206,7 +26450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 25,
 		thunder: 0,
@@ -28222,7 +26465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 15,
 		thunder: 0,
@@ -28238,7 +26480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -28254,7 +26495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 60,
 		thunder: 0,
@@ -28270,7 +26510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -28286,7 +26525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 35,
 		thunder: 0,
@@ -28302,7 +26540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 20,
 		thunder: 0,
@@ -28318,7 +26555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'Lolo Gougarf',
 		shot: 55,
 		thunder: 0,
@@ -28334,7 +26570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 60,
 		thunder: 10,
@@ -28350,7 +26585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 40,
 		thunder: 10,
@@ -28366,7 +26600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 45,
 		thunder: 10,
@@ -28382,7 +26615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 50,
 		thunder: 10,
@@ -28398,7 +26630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 80,
 		thunder: 10,
@@ -28414,7 +26645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 60,
 		thunder: 10,
@@ -28430,7 +26660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 40,
 		thunder: 10,
@@ -28446,7 +26675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 45,
 		thunder: 10,
@@ -28462,7 +26690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 50,
 		thunder: 10,
@@ -28478,7 +26705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 80,
 		thunder: 10,
@@ -28494,7 +26720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 60,
 		thunder: 10,
@@ -28510,7 +26735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 40,
 		thunder: 10,
@@ -28526,7 +26750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 45,
 		thunder: 10,
@@ -28542,7 +26765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 50,
 		thunder: 10,
@@ -28558,7 +26780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Default',
-
 		displayName: 'Gogomoa',
 		shot: 80,
 		thunder: 10,
@@ -28574,7 +26795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 30,
 		thunder: 10,
@@ -28590,7 +26810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 10,
@@ -28606,7 +26825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 10,
@@ -28622,7 +26840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 25,
 		thunder: 10,
@@ -28638,7 +26855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 40,
 		thunder: 10,
@@ -28654,7 +26870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 30,
 		thunder: 10,
@@ -28670,7 +26885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 10,
@@ -28686,7 +26900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 10,
@@ -28702,7 +26915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 25,
 		thunder: 10,
@@ -28718,7 +26930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 40,
 		thunder: 10,
@@ -28734,7 +26945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 30,
 		thunder: 10,
@@ -28750,7 +26960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 10,
@@ -28766,7 +26975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 10,
@@ -28782,7 +26990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 25,
 		thunder: 10,
@@ -28798,7 +27005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'G Rank',
-
 		displayName: 'Gogomoa',
 		shot: 40,
 		thunder: 10,
@@ -28814,7 +27020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 30,
 		thunder: 5,
@@ -28830,7 +27035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 5,
@@ -28846,7 +27050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 5,
@@ -28862,7 +27065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 25,
 		thunder: 5,
@@ -28878,7 +27080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 45,
 		thunder: 5,
@@ -28894,7 +27095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 30,
 		thunder: 5,
@@ -28910,7 +27110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 5,
@@ -28926,7 +27125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 5,
@@ -28942,7 +27140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 25,
 		thunder: 5,
@@ -28958,7 +27155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 45,
 		thunder: 5,
@@ -28974,7 +27170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 30,
 		thunder: 5,
@@ -28990,7 +27185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 5,
@@ -29006,7 +27200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 20,
 		thunder: 5,
@@ -29022,7 +27215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 25,
 		thunder: 5,
@@ -29038,7 +27230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Countering (x4 Damage)',
 		rankBand: 'Gou',
-
 		displayName: 'Gogomoa',
 		shot: 45,
 		thunder: 5,
@@ -29054,7 +27245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 5,
@@ -29070,7 +27260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 5,
@@ -29086,7 +27275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 5,
@@ -29102,7 +27290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 25,
 		thunder: 15,
@@ -29118,7 +27305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 5,
@@ -29134,7 +27320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 5,
@@ -29150,7 +27335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 25,
@@ -29166,7 +27350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 30,
 		thunder: 5,
@@ -29182,7 +27365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 5,
@@ -29198,7 +27380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 5,
@@ -29214,7 +27395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 15,
@@ -29230,7 +27410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 5,
@@ -29246,7 +27425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 5,
@@ -29262,7 +27440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 25,
@@ -29278,7 +27455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 30,
 		thunder: 10,
@@ -29294,7 +27470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 10,
@@ -29310,7 +27485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 10,
@@ -29326,7 +27500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 20,
@@ -29342,7 +27515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 5,
 		thunder: 10,
@@ -29358,7 +27530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 10,
@@ -29374,7 +27545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 25,
@@ -29390,7 +27560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 25,
 		thunder: 10,
@@ -29406,7 +27575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 15,
@@ -29422,7 +27590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 10,
@@ -29438,7 +27605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 25,
@@ -29454,7 +27620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 5,
 		thunder: 10,
@@ -29470,7 +27635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 10,
@@ -29486,7 +27650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 25,
@@ -29502,7 +27665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 25,
 		thunder: 10,
@@ -29518,7 +27680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 10,
@@ -29534,7 +27695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 10,
@@ -29550,7 +27710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 20,
@@ -29566,7 +27725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 5,
 		thunder: 10,
@@ -29582,7 +27740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 10,
@@ -29598,7 +27755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 25,
@@ -29614,7 +27770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 25,
 		thunder: 10,
@@ -29630,7 +27785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 15,
@@ -29646,7 +27800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 10,
@@ -29662,7 +27815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 25,
@@ -29678,7 +27830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 5,
 		thunder: 10,
@@ -29694,7 +27845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 10,
@@ -29710,7 +27860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 25,
@@ -29726,7 +27875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 55,
 		thunder: 5,
@@ -29742,7 +27890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 45,
 		thunder: 5,
@@ -29758,7 +27905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 5,
@@ -29774,7 +27920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 45,
 		thunder: 15,
@@ -29790,7 +27935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 30,
 		thunder: 5,
@@ -29806,7 +27950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 40,
 		thunder: 5,
@@ -29822,7 +27965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 55,
 		thunder: 25,
@@ -29838,7 +27980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 30,
 		thunder: 5,
@@ -29854,7 +27995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 5,
@@ -29870,7 +28010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 25,
 		thunder: 5,
@@ -29886,7 +28025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 15,
@@ -29902,7 +28040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 5,
@@ -29918,7 +28055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 5,
@@ -29934,7 +28070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 25,
@@ -29950,7 +28085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 25,
 		thunder: 10,
@@ -29966,7 +28100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 10,
@@ -29982,7 +28115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 10,
@@ -29998,7 +28130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 20,
@@ -30014,7 +28145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 5,
 		thunder: 10,
@@ -30030,7 +28160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 10,
@@ -30046,7 +28175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 25,
@@ -30062,7 +28190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 25,
 		thunder: 10,
@@ -30078,7 +28205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 15,
@@ -30094,7 +28220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 10,
 		thunder: 10,
@@ -30110,7 +28235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 20,
 		thunder: 25,
@@ -30126,7 +28250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 5,
 		thunder: 10,
@@ -30142,7 +28265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 15,
 		thunder: 10,
@@ -30158,7 +28280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Guanzorumu',
 		shot: 35,
 		thunder: 25,
@@ -30174,7 +28295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30190,7 +28310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30206,7 +28325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30222,7 +28340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30238,7 +28355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30254,7 +28370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30270,7 +28385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30286,7 +28400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30302,7 +28415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30318,7 +28430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30334,7 +28445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 75,
 		thunder: 5,
@@ -30350,7 +28460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30366,7 +28475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30382,7 +28490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30398,7 +28505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30414,7 +28520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30430,7 +28535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30446,7 +28550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30462,7 +28565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30478,7 +28580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30494,7 +28595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30510,7 +28610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30526,7 +28625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30542,7 +28640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30558,7 +28655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 70,
 		thunder: 5,
@@ -30574,7 +28670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30590,7 +28685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30606,7 +28700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Black Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30622,7 +28715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30638,7 +28730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30654,7 +28745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 35,
 		thunder: 5,
@@ -30670,7 +28760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 25,
 		thunder: 5,
@@ -30686,7 +28775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30702,7 +28790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30718,7 +28805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30734,7 +28820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30750,7 +28835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30766,7 +28850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 35,
 		thunder: 5,
@@ -30782,7 +28865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 70,
 		thunder: 5,
@@ -30798,7 +28880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30814,7 +28895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30830,7 +28910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Black Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30846,7 +28925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30862,7 +28940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30878,7 +28955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30894,7 +28970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -30910,7 +28985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30926,7 +29000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30942,7 +29015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30958,7 +29030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30974,7 +29045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -30990,7 +29060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31006,7 +29075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 75,
 		thunder: 5,
@@ -31022,7 +29090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31038,7 +29105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31054,7 +29120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Default',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31070,7 +29135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -31086,7 +29150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31102,7 +29165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31118,7 +29180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 35,
 		thunder: 5,
@@ -31134,7 +29195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31150,7 +29210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31166,7 +29225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -31182,7 +29240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -31198,7 +29255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31214,7 +29270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31230,7 +29285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 65,
 		thunder: 5,
@@ -31246,7 +29300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31262,7 +29315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31278,7 +29330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'G Rank',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -31294,7 +29345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31310,7 +29360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -31326,7 +29375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31342,7 +29390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: -5,
@@ -31358,7 +29405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31374,7 +29420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31390,7 +29435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31406,7 +29450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31422,7 +29465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -31438,7 +29480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31454,7 +29495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 40,
 		thunder: 20,
@@ -31470,7 +29510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31486,7 +29525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31502,7 +29540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Gou',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31518,7 +29555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 30,
 		thunder: 0,
@@ -31534,7 +29570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 15,
 		thunder: 0,
@@ -31550,7 +29585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 15,
 		thunder: 0,
@@ -31566,7 +29600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 10,
 		thunder: 0,
@@ -31582,7 +29615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 20,
 		thunder: 0,
@@ -31598,7 +29630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 10,
 		thunder: 0,
@@ -31614,7 +29645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 10,
 		thunder: 0,
@@ -31630,7 +29660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 30,
 		thunder: 0,
@@ -31646,7 +29675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 15,
 		thunder: 0,
@@ -31662,7 +29690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 20,
 		thunder: 0,
@@ -31678,7 +29705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 15,
 		thunder: 0,
@@ -31694,7 +29720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 20,
 		thunder: 0,
@@ -31710,7 +29735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 10,
 		thunder: 0,
@@ -31726,7 +29750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 10,
 		thunder: 0,
@@ -31742,7 +29765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 30,
 		thunder: 0,
@@ -31758,7 +29780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 15,
 		thunder: 0,
@@ -31774,7 +29795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 20,
 		thunder: 0,
@@ -31790,7 +29810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 15,
 		thunder: 0,
@@ -31806,7 +29825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 20,
 		thunder: 0,
@@ -31822,7 +29840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 10,
 		thunder: 0,
@@ -31838,7 +29855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 10,
 		thunder: 0,
@@ -31854,7 +29870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 30,
 		thunder: 0,
@@ -31870,7 +29885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 15,
 		thunder: 0,
@@ -31886,7 +29900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 15,
 		thunder: 0,
@@ -31902,7 +29915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 30,
 		thunder: 0,
@@ -31918,7 +29930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 25,
 		thunder: 0,
@@ -31934,7 +29945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 20,
 		thunder: 0,
@@ -31950,7 +29960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Gravios',
 		shot: 10,
 		thunder: 0,
@@ -31966,7 +29975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -31982,7 +29990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -31998,7 +30005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -32014,7 +30020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 35,
 		thunder: 5,
@@ -32030,7 +30035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -32046,7 +30050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -32062,7 +30065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -32078,7 +30080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Weak Belly',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -32094,7 +30095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -32110,7 +30110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -32126,7 +30125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 65,
 		thunder: 5,
@@ -32142,7 +30140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -32158,7 +30155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 20,
 		thunder: 5,
@@ -32174,7 +30170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Belly',
 		rankBand: 'Tower',
-
 		displayName: 'Gravios',
 		shot: 30,
 		thunder: 5,
@@ -32190,7 +30185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 15,
 		thunder: 15,
@@ -32206,7 +30200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 20,
 		thunder: 10,
@@ -32222,7 +30215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 50,
 		thunder: 10,
@@ -32238,7 +30230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 10,
@@ -32254,7 +30245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 30,
 		thunder: 10,
@@ -32270,7 +30260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 20,
 		thunder: 10,
@@ -32286,7 +30275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 10,
@@ -32302,7 +30290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 15,
@@ -32318,7 +30305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 20,
 		thunder: 10,
@@ -32334,7 +30320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 55,
 		thunder: 10,
@@ -32350,7 +30335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 30,
 		thunder: 10,
@@ -32366,7 +30350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 35,
 		thunder: 10,
@@ -32382,7 +30365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 10,
@@ -32398,7 +30380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Gurenzeburu',
 		shot: 30,
 		thunder: 10,
@@ -32414,7 +30395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 15,
 		thunder: 35,
@@ -32430,7 +30410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 20,
 		thunder: 10,
@@ -32446,7 +30425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 50,
 		thunder: 10,
@@ -32462,7 +30440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 10,
@@ -32478,7 +30455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 30,
 		thunder: 10,
@@ -32494,7 +30470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 30,
 		thunder: 10,
@@ -32510,7 +30485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 20,
@@ -32526,7 +30500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 40,
@@ -32542,7 +30515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 20,
 		thunder: 10,
@@ -32558,7 +30530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 55,
 		thunder: 10,
@@ -32574,7 +30545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 30,
 		thunder: 10,
@@ -32590,7 +30560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 35,
 		thunder: 10,
@@ -32606,7 +30575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 35,
 		thunder: 10,
@@ -32622,7 +30590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Gurenzeburu',
 		shot: 30,
 		thunder: 20,
@@ -32638,7 +30605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 15,
 		thunder: 10,
@@ -32654,7 +30620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 10,
 		thunder: 5,
@@ -32670,7 +30635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 40,
 		thunder: 5,
@@ -32686,7 +30650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 20,
 		thunder: 5,
@@ -32702,7 +30665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 5,
@@ -32718,7 +30680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 15,
 		thunder: 5,
@@ -32734,7 +30695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 20,
 		thunder: 5,
@@ -32750,7 +30710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 20,
 		thunder: 10,
@@ -32766,7 +30725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 15,
 		thunder: 5,
@@ -32782,7 +30740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 45,
 		thunder: 5,
@@ -32798,7 +30755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 5,
@@ -32814,7 +30770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 30,
 		thunder: 5,
@@ -32830,7 +30785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 20,
 		thunder: 5,
@@ -32846,7 +30800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Gurenzeburu',
 		shot: 25,
 		thunder: 5,
@@ -32862,7 +30815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 10,
@@ -32878,7 +30830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 15,
 		thunder: 5,
@@ -32894,7 +30845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 10,
 		thunder: 10,
@@ -32910,7 +30860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 20,
 		thunder: 10,
@@ -32926,7 +30875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 5,
@@ -32942,7 +30890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 10,
 		thunder: 5,
@@ -32958,7 +30905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 5,
@@ -32974,7 +30920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Unarmored',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 40,
 		thunder: 20,
@@ -32990,7 +30935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 30,
 		thunder: 15,
@@ -33006,7 +30950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 20,
@@ -33022,7 +30965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 35,
 		thunder: 20,
@@ -33038,7 +30980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 40,
 		thunder: 15,
@@ -33054,7 +30995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 15,
@@ -33070,7 +31010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'G Rank',
-
 		displayName: 'Harudomerugu',
 		shot: 40,
 		thunder: 15,
@@ -33086,7 +31025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 10,
@@ -33102,7 +31040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 15,
 		thunder: 5,
@@ -33118,7 +31055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 10,
 		thunder: 10,
@@ -33134,7 +31070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 20,
 		thunder: 10,
@@ -33150,7 +31085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 5,
@@ -33166,7 +31100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 10,
 		thunder: 5,
@@ -33182,7 +31115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 5,
@@ -33198,7 +31130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Unarmored',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 40,
 		thunder: 20,
@@ -33214,7 +31145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 30,
 		thunder: 15,
@@ -33230,7 +31160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 20,
@@ -33246,7 +31175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 35,
 		thunder: 20,
@@ -33262,7 +31190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 40,
 		thunder: 15,
@@ -33278,7 +31205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 25,
 		thunder: 15,
@@ -33294,7 +31220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Gou',
-
 		displayName: 'Harudomerugu',
 		shot: 40,
 		thunder: 15,
@@ -33310,7 +31235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 25,
 		thunder: 10,
@@ -33326,7 +31250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 15,
 		thunder: 5,
@@ -33342,7 +31265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 5,
 		thunder: 10,
@@ -33358,7 +31280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 25,
 		thunder: 10,
@@ -33374,7 +31295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 25,
 		thunder: 5,
@@ -33390,7 +31310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 10,
 		thunder: 5,
@@ -33406,7 +31325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 25,
 		thunder: 5,
@@ -33422,7 +31340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Unarmored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 40,
 		thunder: 20,
@@ -33438,7 +31355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 25,
 		thunder: 15,
@@ -33454,7 +31370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 20,
 		thunder: 20,
@@ -33470,7 +31385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 35,
 		thunder: 20,
@@ -33486,7 +31400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 30,
 		thunder: 15,
@@ -33502,7 +31415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 20,
 		thunder: 15,
@@ -33518,7 +31430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Unarmored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Harudomerugu',
 		shot: 30,
 		thunder: 15,
@@ -33534,7 +31445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bright Hypnoc',
 		shot: 50,
 		thunder: 10,
@@ -33550,7 +31460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bright Hypnoc',
 		shot: 40,
 		thunder: 10,
@@ -33566,7 +31475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bright Hypnoc',
 		shot: 30,
 		thunder: 20,
@@ -33582,7 +31490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bright Hypnoc',
 		shot: 90,
 		thunder: 30,
@@ -33598,7 +31505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bright Hypnoc',
 		shot: 25,
 		thunder: 10,
@@ -33614,7 +31520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bright Hypnoc',
 		shot: 25,
 		thunder: 20,
@@ -33630,7 +31535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Bright Hypnoc',
 		shot: 50,
 		thunder: 10,
@@ -33646,7 +31550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bright Hypnoc',
 		shot: 40,
 		thunder: 35,
@@ -33662,7 +31565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bright Hypnoc',
 		shot: 35,
 		thunder: 20,
@@ -33678,7 +31580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bright Hypnoc',
 		shot: 20,
 		thunder: 30,
@@ -33694,7 +31595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bright Hypnoc',
 		shot: 45,
 		thunder: 40,
@@ -33710,7 +31610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bright Hypnoc',
 		shot: 25,
 		thunder: 20,
@@ -33726,7 +31625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bright Hypnoc',
 		shot: 15,
 		thunder: 30,
@@ -33742,7 +31640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Bright Hypnoc',
 		shot: 30,
 		thunder: 20,
@@ -33758,7 +31655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Bright Hypnoc',
 		shot: 35,
 		thunder: 25,
@@ -33774,7 +31670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Bright Hypnoc',
 		shot: 55,
 		thunder: -5,
@@ -33790,7 +31685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Bright Hypnoc',
 		shot: 25,
 		thunder: -5,
@@ -33806,7 +31700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Bright Hypnoc',
 		shot: 50,
 		thunder: 25,
@@ -33822,7 +31715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Bright Hypnoc',
 		shot: 40,
 		thunder: 5,
@@ -33838,7 +31730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Bright Hypnoc',
 		shot: 30,
 		thunder: 5,
@@ -33854,7 +31745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Bright Hypnoc',
 		shot: 45,
 		thunder: 5,
@@ -33870,7 +31760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Hypnoc',
 		shot: 30,
 		thunder: 0,
@@ -33886,7 +31775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Hypnoc',
 		shot: 15,
 		thunder: 0,
@@ -33902,7 +31790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Hypnoc',
 		shot: 40,
 		thunder: 0,
@@ -33918,7 +31805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Hypnoc',
 		shot: 30,
 		thunder: 5,
@@ -33934,7 +31820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Hypnoc',
 		shot: 50,
 		thunder: 0,
@@ -33950,7 +31835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Hypnoc',
 		shot: 25,
 		thunder: 0,
@@ -33966,7 +31850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Hypnoc',
 		shot: 30,
 		thunder: 0,
@@ -33982,7 +31865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Hypnoc',
 		shot: 30,
 		thunder: 0,
@@ -33998,7 +31880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Hypnoc',
 		shot: 15,
 		thunder: 0,
@@ -34014,7 +31895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Hypnoc',
 		shot: 35,
 		thunder: 0,
@@ -34030,7 +31910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Hypnoc',
 		shot: 30,
 		thunder: 5,
@@ -34046,7 +31925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Hypnoc',
 		shot: 45,
 		thunder: 0,
@@ -34062,7 +31940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Hypnoc',
 		shot: 25,
 		thunder: 0,
@@ -34078,7 +31955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Hypnoc',
 		shot: 30,
 		thunder: 0,
@@ -34094,7 +31970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Hypnocatrice',
 		shot: 50,
 		thunder: 10,
@@ -34110,7 +31985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Hypnocatrice',
 		shot: 40,
 		thunder: 10,
@@ -34126,7 +32000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Hypnocatrice',
 		shot: 30,
 		thunder: 5,
@@ -34142,7 +32015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Hypnocatrice',
 		shot: 90,
 		thunder: 10,
@@ -34158,7 +32030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Hypnocatrice',
 		shot: 25,
 		thunder: 15,
@@ -34174,7 +32045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Hypnocatrice',
 		shot: 25,
 		thunder: 20,
@@ -34190,7 +32060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Hypnocatrice',
 		shot: 50,
 		thunder: 5,
@@ -34206,7 +32075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hypnocatrice',
 		shot: 40,
 		thunder: 10,
@@ -34222,7 +32090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hypnocatrice',
 		shot: 35,
 		thunder: 10,
@@ -34238,7 +32105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hypnocatrice',
 		shot: 20,
 		thunder: 5,
@@ -34254,7 +32120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hypnocatrice',
 		shot: 45,
 		thunder: 10,
@@ -34270,7 +32135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hypnocatrice',
 		shot: 25,
 		thunder: 15,
@@ -34286,7 +32150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hypnocatrice',
 		shot: 15,
 		thunder: 20,
@@ -34302,7 +32165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hypnocatrice',
 		shot: 30,
 		thunder: 5,
@@ -34318,7 +32180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Hypnocatrice',
 		shot: 70,
 		thunder: 0,
@@ -34334,7 +32195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Hypnocatrice',
 		shot: 30,
 		thunder: 0,
@@ -34350,7 +32210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Hypnocatrice',
 		shot: 50,
 		thunder: 20,
@@ -34366,7 +32225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Hypnocatrice',
 		shot: 30,
 		thunder: 10,
@@ -34382,7 +32240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Hypnocatrice',
 		shot: 30,
 		thunder: 15,
@@ -34398,7 +32255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Hypnocatrice',
 		shot: 30,
 		thunder: 15,
@@ -34414,7 +32270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Hypnocatrice',
 		shot: 55,
 		thunder: 5,
@@ -34430,7 +32285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hypnocatrice',
 		shot: 35,
 		thunder: 25,
@@ -34446,7 +32300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hypnocatrice',
 		shot: 15,
 		thunder: 10,
@@ -34462,7 +32315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hypnocatrice',
 		shot: 20,
 		thunder: 5,
@@ -34478,7 +32330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hypnocatrice',
 		shot: 25,
 		thunder: 10,
@@ -34494,7 +32345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hypnocatrice',
 		shot: 20,
 		thunder: 15,
@@ -34510,7 +32360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hypnocatrice',
 		shot: 15,
 		thunder: 20,
@@ -34526,7 +32375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hypnocatrice',
 		shot: 20,
 		thunder: 5,
@@ -34542,7 +32390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Hypnocatrice',
 		shot: 40,
 		thunder: 10,
@@ -34558,7 +32405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Hypnocatrice',
 		shot: 35,
 		thunder: 10,
@@ -34574,7 +32420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Hypnocatrice',
 		shot: 20,
 		thunder: 5,
@@ -34590,7 +32435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Hypnocatrice',
 		shot: 45,
 		thunder: 10,
@@ -34606,7 +32450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Hypnocatrice',
 		shot: 25,
 		thunder: 15,
@@ -34622,7 +32465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Hypnocatrice',
 		shot: 15,
 		thunder: 20,
@@ -34638,7 +32480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Hypnocatrice',
 		shot: 30,
 		thunder: 5,
@@ -34654,7 +32495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 40,
 		thunder: 25,
@@ -34670,7 +32510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 20,
 		thunder: 15,
@@ -34686,7 +32525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 20,
 		thunder: 25,
@@ -34702,7 +32540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 20,
 		thunder: 20,
@@ -34718,7 +32555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 25,
 		thunder: 15,
@@ -34734,7 +32570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 25,
 		thunder: 10,
@@ -34750,7 +32585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 30,
 		thunder: 20,
@@ -34766,7 +32600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 10,
 		thunder: 20,
@@ -34782,7 +32615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 10,
 		thunder: 20,
@@ -34798,7 +32630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 10,
 		thunder: 20,
@@ -34814,7 +32645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 10,
 		thunder: 20,
@@ -34830,7 +32660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 10,
 		thunder: 20,
@@ -34846,7 +32675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 10,
 		thunder: 20,
@@ -34862,7 +32690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'G Rank',
-
 		displayName: 'Hyujikiki',
 		shot: 10,
 		thunder: 20,
@@ -34878,7 +32705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 35,
 		thunder: 25,
@@ -34894,7 +32720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 20,
 		thunder: 15,
@@ -34910,7 +32735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 15,
 		thunder: 20,
@@ -34926,7 +32750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 15,
 		thunder: 15,
@@ -34942,7 +32765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 25,
 		thunder: 10,
@@ -34958,7 +32780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 25,
 		thunder: 10,
@@ -34974,7 +32795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 30,
 		thunder: 15,
@@ -34990,7 +32810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 10,
 		thunder: 15,
@@ -35006,7 +32825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 10,
 		thunder: 15,
@@ -35022,7 +32840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 10,
 		thunder: 15,
@@ -35038,7 +32855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 10,
 		thunder: 15,
@@ -35054,7 +32870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 10,
 		thunder: 15,
@@ -35070,7 +32885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 10,
 		thunder: 15,
@@ -35086,7 +32900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Guarding',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Hyujikiki',
 		shot: 10,
 		thunder: 15,
@@ -35102,7 +32915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 50,
 		thunder: 15,
@@ -35118,7 +32930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 10,
 		thunder: 5,
@@ -35134,7 +32945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 25,
 		thunder: 15,
@@ -35150,7 +32960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 25,
 		thunder: 15,
@@ -35166,7 +32975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 25,
 		thunder: 15,
@@ -35182,7 +32990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 25,
 		thunder: 15,
@@ -35198,7 +33005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 55,
 		thunder: 20,
@@ -35214,7 +33020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Armored',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 30,
 		thunder: 5,
@@ -35230,7 +33035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 10,
 		thunder: 5,
@@ -35246,7 +33050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 20,
 		thunder: 0,
@@ -35262,7 +33065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 20,
 		thunder: 0,
@@ -35278,7 +33080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 20,
 		thunder: 0,
@@ -35294,7 +33095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 20,
 		thunder: 0,
@@ -35310,7 +33110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'G Rank',
-
 		displayName: 'Inagami',
 		shot: 35,
 		thunder: 10,
@@ -35326,7 +33125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 50,
 		thunder: 15,
@@ -35342,7 +33140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 10,
 		thunder: 5,
@@ -35358,7 +33155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 25,
 		thunder: 15,
@@ -35374,7 +33170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 25,
 		thunder: 15,
@@ -35390,7 +33185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 25,
 		thunder: 15,
@@ -35406,7 +33200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 25,
 		thunder: 15,
@@ -35422,7 +33215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 55,
 		thunder: 20,
@@ -35438,7 +33230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Armored',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 30,
 		thunder: 5,
@@ -35454,7 +33245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 10,
 		thunder: 5,
@@ -35470,7 +33260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 20,
 		thunder: 0,
@@ -35486,7 +33275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 20,
 		thunder: 0,
@@ -35502,7 +33290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 20,
 		thunder: 0,
@@ -35518,7 +33305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 20,
 		thunder: 0,
@@ -35534,7 +33320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Gou',
-
 		displayName: 'Inagami',
 		shot: 35,
 		thunder: 10,
@@ -35550,7 +33335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 35,
 		thunder: 15,
@@ -35566,7 +33350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 5,
 		thunder: 5,
@@ -35582,7 +33365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 20,
 		thunder: 15,
@@ -35598,7 +33380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 20,
 		thunder: 15,
@@ -35614,7 +33395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 20,
 		thunder: 15,
@@ -35630,7 +33410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 20,
 		thunder: 15,
@@ -35646,7 +33425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 30,
 		thunder: 20,
@@ -35662,7 +33440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Armored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 20,
 		thunder: 10,
@@ -35678,7 +33455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 5,
 		thunder: 5,
@@ -35694,7 +33470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 15,
 		thunder: 10,
@@ -35710,7 +33485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 15,
 		thunder: 10,
@@ -35726,7 +33500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 15,
 		thunder: 10,
@@ -35742,7 +33515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 15,
 		thunder: 10,
@@ -35758,7 +33530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Inagami',
 		shot: 15,
 		thunder: 15,
@@ -35774,7 +33545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Ioprey',
 		shot: 90,
 		thunder: 50,
@@ -35790,7 +33560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 18,
 		thunder: 30,
@@ -35806,7 +33575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 39,
 		thunder: 25,
@@ -35822,7 +33590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 15,
 		thunder: 30,
@@ -35838,7 +33605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 21,
 		thunder: 25,
@@ -35854,7 +33620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 14,
 		thunder: 30,
@@ -35870,7 +33635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 18,
 		thunder: 35,
@@ -35886,7 +33650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 39,
 		thunder: 0,
@@ -35902,7 +33665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 32,
 		thunder: 25,
@@ -35918,7 +33680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 11,
 		thunder: 30,
@@ -35934,7 +33695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 21,
 		thunder: 25,
@@ -35950,7 +33710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 14,
 		thunder: 30,
@@ -35966,7 +33725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Starving Deviljho',
 		shot: 18,
 		thunder: 35,
@@ -35982,7 +33740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 36,
 		thunder: 15,
@@ -35998,7 +33755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 25,
 		thunder: 20,
@@ -36014,7 +33770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 18,
 		thunder: 20,
@@ -36030,7 +33785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 21,
 		thunder: 15,
@@ -36046,7 +33800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 25,
 		thunder: 10,
@@ -36062,7 +33815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 21,
 		thunder: 20,
@@ -36078,7 +33830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 21,
 		thunder: 20,
@@ -36094,7 +33845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 36,
 		thunder: 15,
@@ -36110,7 +33860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 14,
 		thunder: 25,
@@ -36126,7 +33875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 21,
 		thunder: 20,
@@ -36142,7 +33890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 18,
 		thunder: 15,
@@ -36158,7 +33905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Deviljho',
 		shot: 21,
 		thunder: 20,
@@ -36174,7 +33920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 48,
 		thunder: 15,
@@ -36190,7 +33935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 35,
 		thunder: 20,
@@ -36206,7 +33950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 25,
 		thunder: 20,
@@ -36222,7 +33965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 30,
 		thunder: 15,
@@ -36238,7 +33980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 35,
 		thunder: 10,
@@ -36254,7 +33995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 30,
 		thunder: 20,
@@ -36270,7 +34010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 30,
 		thunder: 20,
@@ -36286,7 +34025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 48,
 		thunder: 15,
@@ -36302,7 +34040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 20,
 		thunder: 25,
@@ -36318,7 +34055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 30,
 		thunder: 20,
@@ -36334,7 +34070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 25,
 		thunder: 15,
@@ -36350,7 +34085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Deviljho',
 		shot: 30,
 		thunder: 20,
@@ -36366,7 +34100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Hornetaur',
 		shot: 100,
 		thunder: 60,
@@ -36382,7 +34115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 35,
 		thunder: 0,
@@ -36398,7 +34130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 30,
 		thunder: 0,
@@ -36414,7 +34145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 15,
 		thunder: 0,
@@ -36430,7 +34160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 25,
 		thunder: 0,
@@ -36446,7 +34175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 25,
 		thunder: 0,
@@ -36462,7 +34190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 20,
 		thunder: 0,
@@ -36478,7 +34205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 35,
 		thunder: 0,
@@ -36494,7 +34220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 50,
 		thunder: 15,
@@ -36510,7 +34235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 25,
 		thunder: 5,
@@ -36526,7 +34250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 30,
 		thunder: 15,
@@ -36542,7 +34265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 35,
 		thunder: 5,
@@ -36558,7 +34280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 25,
 		thunder: 5,
@@ -36574,7 +34295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 20,
 		thunder: 10,
@@ -36590,7 +34310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Keoaruboru',
 		shot: 40,
 		thunder: 10,
@@ -36606,7 +34325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kelbi',
 		shot: 150,
 		thunder: 100,
@@ -36622,7 +34340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kirin',
 		shot: 60,
 		thunder: 0,
@@ -36638,7 +34355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kirin',
 		shot: 20,
 		thunder: 0,
@@ -36654,7 +34370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kirin',
 		shot: 80,
 		thunder: 0,
@@ -36670,7 +34385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kirin',
 		shot: 30,
 		thunder: 0,
@@ -36686,7 +34400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kirin',
 		shot: 15,
 		thunder: 0,
@@ -36702,7 +34415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kirin',
 		shot: 50,
 		thunder: 0,
@@ -36718,7 +34430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kirin',
 		shot: 30,
 		thunder: 10,
@@ -36734,7 +34445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kirin',
 		shot: 10,
 		thunder: -15,
@@ -36750,7 +34460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kirin',
 		shot: 50,
 		thunder: 25,
@@ -36766,7 +34475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Conga',
 		shot: 60,
 		thunder: 10,
@@ -36782,7 +34490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Conga',
 		shot: 45,
 		thunder: 10,
@@ -36798,7 +34505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Conga',
 		shot: 45,
 		thunder: 10,
@@ -36814,7 +34520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Conga',
 		shot: 50,
 		thunder: 10,
@@ -36830,7 +34535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Conga',
 		shot: 35,
 		thunder: 10,
@@ -36846,7 +34550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 90,
 		thunder: 25,
@@ -36862,7 +34565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 50,
 		thunder: 40,
@@ -36878,7 +34580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 40,
 		thunder: 15,
@@ -36894,7 +34595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 70,
 		thunder: 15,
@@ -36910,7 +34610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 30,
 		thunder: 15,
@@ -36926,7 +34625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 60,
 		thunder: 20,
@@ -36942,7 +34640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 30,
 		thunder: 5,
@@ -36958,7 +34655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 60,
 		thunder: 25,
@@ -36974,7 +34670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 35,
 		thunder: 40,
@@ -36990,7 +34685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 20,
 		thunder: 15,
@@ -37006,7 +34700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 45,
 		thunder: 15,
@@ -37022,7 +34715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 20,
 		thunder: 15,
@@ -37038,7 +34730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 40,
 		thunder: 20,
@@ -37054,7 +34745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 25,
 		thunder: 5,
@@ -37070,7 +34760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 60,
 		thunder: 15,
@@ -37086,7 +34775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 50,
 		thunder: 30,
@@ -37102,7 +34790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 45,
 		thunder: 15,
@@ -37118,7 +34805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 50,
 		thunder: 15,
@@ -37134,7 +34820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 35,
 		thunder: 15,
@@ -37150,7 +34835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 60,
 		thunder: 10,
@@ -37166,7 +34850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Blue Yian Kut-Ku',
 		shot: 30,
 		thunder: 5,
@@ -37182,7 +34865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 100,
 		thunder: 30,
@@ -37198,7 +34880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 50,
 		thunder: 50,
@@ -37214,7 +34895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 40,
 		thunder: 15,
@@ -37230,7 +34910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 80,
 		thunder: 15,
@@ -37246,7 +34925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 30,
 		thunder: 15,
@@ -37262,7 +34940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 70,
 		thunder: 25,
@@ -37278,7 +34955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 30,
 		thunder: 5,
@@ -37294,7 +34970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 80,
 		thunder: 20,
@@ -37310,7 +34985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 40,
 		thunder: 40,
@@ -37326,7 +35000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 30,
 		thunder: 5,
@@ -37342,7 +35015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 60,
 		thunder: 5,
@@ -37358,7 +35030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 20,
 		thunder: 5,
@@ -37374,7 +35045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 50,
 		thunder: 15,
@@ -37390,7 +35060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 20,
 		thunder: 5,
@@ -37406,7 +35075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 60,
 		thunder: 5,
@@ -37422,7 +35090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 30,
 		thunder: 5,
@@ -37438,7 +35105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 30,
 		thunder: 5,
@@ -37454,7 +35120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 40,
 		thunder: 5,
@@ -37470,7 +35135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 75,
 		thunder: 5,
@@ -37486,7 +35150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 50,
 		thunder: 5,
@@ -37502,7 +35165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yian Kut-Ku',
 		shot: 40,
 		thunder: -5,
@@ -37518,7 +35180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 30,
 		thunder: 20,
@@ -37534,7 +35195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 25,
 		thunder: 15,
@@ -37550,7 +35210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 30,
 		thunder: 15,
@@ -37566,7 +35225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 40,
 		thunder: 30,
@@ -37582,7 +35240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: 15,
@@ -37598,7 +35255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 25,
 		thunder: 15,
@@ -37614,7 +35270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: 15,
@@ -37630,7 +35285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 30,
 		thunder: 25,
@@ -37646,7 +35300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 25,
 		thunder: 20,
@@ -37662,7 +35315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: 20,
@@ -37678,7 +35330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 40,
 		thunder: 30,
@@ -37694,7 +35345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: 20,
@@ -37710,7 +35360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 25,
 		thunder: 20,
@@ -37726,7 +35375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: 20,
@@ -37742,7 +35390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 25,
 		thunder: 20,
@@ -37758,7 +35405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: -10,
@@ -37774,7 +35420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 25,
 		thunder: -10,
@@ -37790,7 +35435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 35,
 		thunder: 30,
@@ -37806,7 +35450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: -10,
@@ -37822,7 +35465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 25,
 		thunder: -10,
@@ -37838,7 +35480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: 15,
@@ -37854,7 +35495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: 20,
@@ -37870,7 +35510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 15,
 		thunder: -15,
@@ -37886,7 +35525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 20,
 		thunder: -15,
@@ -37902,7 +35540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 30,
 		thunder: 30,
@@ -37918,7 +35555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 10,
 		thunder: -15,
@@ -37934,7 +35570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 15,
 		thunder: -15,
@@ -37950,7 +35585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Rusted Kushala Daora',
 		shot: 15,
 		thunder: 15,
@@ -37966,7 +35600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 30,
 		thunder: 20,
@@ -37982,7 +35615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: 15,
@@ -37998,7 +35630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 30,
 		thunder: 15,
@@ -38014,7 +35645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 40,
 		thunder: 30,
@@ -38030,7 +35660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: 15,
@@ -38046,7 +35675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: 15,
@@ -38062,7 +35690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: 15,
@@ -38078,7 +35705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 30,
 		thunder: 25,
@@ -38094,7 +35720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: 20,
@@ -38110,7 +35735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: 20,
@@ -38126,7 +35750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 40,
 		thunder: 30,
@@ -38142,7 +35765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: 20,
@@ -38158,7 +35780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: 20,
@@ -38174,7 +35795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Default',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: 20,
@@ -38190,7 +35810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 35,
 		thunder: 20,
@@ -38206,7 +35825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 15,
 		thunder: 15,
@@ -38222,7 +35840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: 15,
@@ -38238,7 +35855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 40,
 		thunder: 20,
@@ -38254,7 +35870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: 10,
@@ -38270,7 +35885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: 10,
@@ -38286,7 +35900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 15,
 		thunder: 15,
@@ -38302,7 +35915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Wind Aura',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 35,
 		thunder: 25,
@@ -38318,7 +35930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 15,
 		thunder: 15,
@@ -38334,7 +35945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: 20,
@@ -38350,7 +35960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 35,
 		thunder: 25,
@@ -38366,7 +35975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 10,
 		thunder: 15,
@@ -38382,7 +35990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 15,
 		thunder: 15,
@@ -38398,7 +36005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'G Rank',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: 20,
@@ -38414,7 +36020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: 20,
@@ -38430,7 +36035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: -10,
@@ -38446,7 +36050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: -10,
@@ -38462,7 +36065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 35,
 		thunder: 30,
@@ -38478,7 +36080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: -10,
@@ -38494,7 +36095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 25,
 		thunder: -10,
@@ -38510,7 +36110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: 15,
@@ -38526,7 +36125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: 20,
@@ -38542,7 +36140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 15,
 		thunder: -15,
@@ -38558,7 +36155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 20,
 		thunder: -15,
@@ -38574,7 +36170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 30,
 		thunder: 30,
@@ -38590,7 +36185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 10,
 		thunder: -15,
@@ -38606,7 +36200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 15,
 		thunder: -15,
@@ -38622,7 +36215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Wind Aura',
 		rankBand: 'Gou',
-
 		displayName: 'Kushala Daora',
 		shot: 15,
 		thunder: 15,
@@ -38638,7 +36230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rappy',
 		shot: 100,
 		thunder: 50,
@@ -38654,7 +36245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 10,
@@ -38670,7 +36260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 40,
 		thunder: 25,
@@ -38686,7 +36275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 40,
 		thunder: 25,
@@ -38702,7 +36290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 30,
@@ -38718,7 +36305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 50,
 		thunder: 35,
@@ -38734,7 +36320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 25,
@@ -38750,7 +36335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 0,
@@ -38766,7 +36350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 5,
@@ -38782,7 +36365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 15,
@@ -38798,7 +36380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 15,
@@ -38814,7 +36395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 20,
@@ -38830,7 +36410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 40,
 		thunder: 25,
@@ -38846,7 +36425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 25,
 		thunder: 15,
@@ -38862,7 +36440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 0,
@@ -38878,7 +36455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 10,
@@ -38894,7 +36470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 40,
 		thunder: 25,
@@ -38910,7 +36485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 40,
 		thunder: 25,
@@ -38926,7 +36500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 30,
@@ -38942,7 +36515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 50,
 		thunder: 35,
@@ -38958,7 +36530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 25,
@@ -38974,7 +36545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 80,
 		thunder: 0,
@@ -38990,7 +36560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 5,
@@ -39006,7 +36575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 15,
@@ -39022,7 +36590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 15,
@@ -39038,7 +36605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 20,
@@ -39054,7 +36620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 40,
 		thunder: 25,
@@ -39070,7 +36635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 25,
 		thunder: 15,
@@ -39086,7 +36650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 60,
 		thunder: 0,
@@ -39102,7 +36665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 80,
 		thunder: 30,
@@ -39118,7 +36680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 60,
 		thunder: 30,
@@ -39134,7 +36695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 40,
 		thunder: 25,
@@ -39150,7 +36710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 30,
@@ -39166,7 +36725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 50,
 		thunder: 35,
@@ -39182,7 +36740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 25,
@@ -39198,7 +36755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 0,
@@ -39214,7 +36770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 70,
 		thunder: 20,
@@ -39230,7 +36785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 50,
 		thunder: 20,
@@ -39246,7 +36800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 15,
@@ -39262,7 +36815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 20,
@@ -39278,7 +36830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 40,
 		thunder: 25,
@@ -39294,7 +36845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 25,
 		thunder: 15,
@@ -39310,7 +36860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 0,
@@ -39326,7 +36875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 10,
@@ -39342,7 +36890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 25,
@@ -39358,7 +36905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 25,
 		thunder: 25,
@@ -39374,7 +36920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 30,
@@ -39390,7 +36935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 35,
 		thunder: 35,
@@ -39406,7 +36950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 25,
@@ -39422,7 +36965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 0,
@@ -39438,7 +36980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 5,
@@ -39454,7 +36995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 15,
@@ -39470,7 +37010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 15,
 		thunder: 15,
@@ -39486,7 +37025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 20,
@@ -39502,7 +37040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 25,
 		thunder: 25,
@@ -39518,7 +37055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 15,
@@ -39534,7 +37070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 0,
@@ -39550,7 +37085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 10,
@@ -39566,7 +37100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 25,
@@ -39582,7 +37115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 25,
 		thunder: 25,
@@ -39598,7 +37130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 30,
@@ -39614,7 +37145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 35,
 		thunder: 35,
@@ -39630,7 +37160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 25,
@@ -39646,7 +37175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 60,
 		thunder: 0,
@@ -39662,7 +37190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 5,
@@ -39678,7 +37205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 15,
@@ -39694,7 +37220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 15,
 		thunder: 15,
@@ -39710,7 +37235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 20,
@@ -39726,7 +37250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 25,
 		thunder: 25,
@@ -39742,7 +37265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 15,
@@ -39758,7 +37280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 45,
 		thunder: 0,
@@ -39774,7 +37295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 45,
 		thunder: 30,
@@ -39790,7 +37310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 30,
@@ -39806,7 +37325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 25,
 		thunder: 25,
@@ -39822,7 +37340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 30,
@@ -39838,7 +37355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 35,
@@ -39854,7 +37370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 25,
@@ -39870,7 +37385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 0,
@@ -39886,7 +37400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 30,
 		thunder: 20,
@@ -39902,7 +37415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 20,
@@ -39918,7 +37430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 15,
 		thunder: 15,
@@ -39934,7 +37445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 20,
@@ -39950,7 +37460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 20,
 		thunder: 25,
@@ -39966,7 +37475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 15,
@@ -39982,7 +37490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme Rage',
 		rankBand: 'G Rank',
-
 		displayName: 'Berserk Laviente',
 		shot: 10,
 		thunder: 0,
@@ -39998,7 +37505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 60,
 		thunder: 20,
@@ -40014,7 +37520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 40,
 		thunder: 20,
@@ -40030,7 +37535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 40,
 		thunder: 20,
@@ -40046,7 +37550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40062,7 +37565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 50,
 		thunder: 20,
@@ -40078,7 +37580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40094,7 +37595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40110,7 +37610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 50,
 		thunder: 20,
@@ -40126,7 +37625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40142,7 +37640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40158,7 +37655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 20,
 		thunder: 20,
@@ -40174,7 +37670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 40,
 		thunder: 20,
@@ -40190,7 +37685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 25,
 		thunder: 20,
@@ -40206,7 +37700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Laviente',
 		shot: 25,
 		thunder: 20,
@@ -40222,7 +37715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 60,
 		thunder: 20,
@@ -40238,7 +37730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 40,
 		thunder: 20,
@@ -40254,7 +37745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 40,
 		thunder: 20,
@@ -40270,7 +37760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40286,7 +37775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 50,
 		thunder: 20,
@@ -40302,7 +37790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40318,7 +37805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40334,7 +37820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 50,
 		thunder: 20,
@@ -40350,7 +37835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40366,7 +37850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 30,
 		thunder: 20,
@@ -40382,7 +37865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 20,
 		thunder: 20,
@@ -40398,7 +37880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 40,
 		thunder: 20,
@@ -40414,7 +37895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 25,
 		thunder: 20,
@@ -40430,7 +37910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Violent Laviente',
 		shot: 25,
 		thunder: 20,
@@ -40446,7 +37925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 40,
 		thunder: 0,
@@ -40462,7 +37940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 35,
 		thunder: 0,
@@ -40478,7 +37955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 35,
 		thunder: 0,
@@ -40494,7 +37970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 45,
 		thunder: 0,
@@ -40510,7 +37985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 30,
 		thunder: 0,
@@ -40526,7 +38000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 30,
 		thunder: 0,
@@ -40542,7 +38015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 35,
 		thunder: 0,
@@ -40558,7 +38030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 40,
 		thunder: 0,
@@ -40574,7 +38045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 35,
 		thunder: 0,
@@ -40590,7 +38060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 35,
 		thunder: 0,
@@ -40606,7 +38075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 45,
 		thunder: 0,
@@ -40622,7 +38090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 30,
 		thunder: 0,
@@ -40638,7 +38105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 30,
 		thunder: 0,
@@ -40654,7 +38120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rebidiora',
 		shot: 35,
 		thunder: 0,
@@ -40670,7 +38135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 20,
@@ -40686,7 +38150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 10,
 		thunder: 5,
@@ -40702,7 +38165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 10,
 		thunder: 5,
@@ -40718,7 +38180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 10,
 		thunder: 5,
@@ -40734,7 +38195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 25,
 		thunder: 20,
@@ -40750,7 +38210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 10,
 		thunder: 5,
@@ -40766,7 +38225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -40782,7 +38240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 25,
 		thunder: 20,
@@ -40798,7 +38255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -40814,7 +38270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -40830,7 +38285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -40846,7 +38300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 30,
 		thunder: 20,
@@ -40862,7 +38315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -40878,7 +38330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -40894,7 +38345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Hearing',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 30,
 		thunder: 20,
@@ -40910,7 +38360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -40926,7 +38375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -40942,7 +38390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -40958,7 +38405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 35,
 		thunder: 20,
@@ -40974,7 +38420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -40990,7 +38435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'G Rank',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -41006,7 +38450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 25,
 		thunder: 20,
@@ -41022,7 +38465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -41038,7 +38480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -41054,7 +38495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -41070,7 +38510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 25,
 		thunder: 20,
@@ -41086,7 +38525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 15,
 		thunder: 5,
@@ -41102,7 +38540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 25,
 		thunder: 5,
@@ -41118,7 +38555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 30,
 		thunder: 20,
@@ -41134,7 +38570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -41150,7 +38585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -41166,7 +38600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -41182,7 +38615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 30,
 		thunder: 20,
@@ -41198,7 +38630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -41214,7 +38645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 25,
 		thunder: 5,
@@ -41230,7 +38660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Hearing',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 40,
 		thunder: 20,
@@ -41246,7 +38675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -41262,7 +38690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -41278,7 +38705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -41294,7 +38720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 35,
 		thunder: 20,
@@ -41310,7 +38735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 20,
 		thunder: 5,
@@ -41326,7 +38750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hearing',
 		rankBand: 'Gou',
-
 		displayName: 'Meraginasu',
 		shot: 25,
 		thunder: 5,
@@ -41342,7 +38765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Melynx',
 		shot: 100,
 		thunder: 100,
@@ -41358,7 +38780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 0,
@@ -41374,7 +38795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41390,7 +38810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41406,7 +38825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41422,7 +38840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41438,7 +38855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41454,7 +38870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 0,
@@ -41470,7 +38885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Blue?',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -41486,7 +38900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue?',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 45,
 		thunder: 0,
@@ -41502,7 +38915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue?',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41518,7 +38930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue?',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 0,
@@ -41534,7 +38945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue?',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 30,
@@ -41550,7 +38960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue?',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41566,7 +38975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue?',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -41582,7 +38990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -41598,7 +39005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 0,
@@ -41614,7 +39020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 45,
 		thunder: 0,
@@ -41630,7 +39035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41646,7 +39050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 30,
@@ -41662,7 +39065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41678,7 +39080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -41694,7 +39095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Crystal',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -41710,7 +39110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Crystal',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41726,7 +39125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Crystal',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41742,7 +39140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Crystal',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41758,7 +39155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Crystal',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 45,
 		thunder: 30,
@@ -41774,7 +39170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Crystal',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 0,
@@ -41790,7 +39185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Crystal',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -41806,7 +39200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -41822,7 +39215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41838,7 +39230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41854,7 +39245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41870,7 +39260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 30,
@@ -41886,7 +39275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 45,
 		thunder: 0,
@@ -41902,7 +39290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -41918,7 +39305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Hybrid',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -41934,7 +39320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hybrid',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 0,
@@ -41950,7 +39335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hybrid',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 30,
 		thunder: 0,
@@ -41966,7 +39350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hybrid',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 45,
 		thunder: 0,
@@ -41982,7 +39365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hybrid',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 30,
@@ -41998,7 +39380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hybrid',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 30,
 		thunder: 0,
@@ -42014,7 +39395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Hybrid',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 40,
 		thunder: 10,
@@ -42030,7 +39410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Ammo Bounce',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 30,
 		thunder: 0,
@@ -42046,7 +39425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Ammo Bounce',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 0,
@@ -42062,7 +39440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Ammo Bounce',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 0,
@@ -42078,7 +39455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Ammo Bounce',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 0,
@@ -42094,7 +39470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Ammo Bounce',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 0,
@@ -42110,7 +39485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Ammo Bounce',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 0,
@@ -42126,7 +39500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Ammo Bounce',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 30,
 		thunder: 0,
@@ -42142,7 +39515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 25,
 		thunder: 5,
@@ -42158,7 +39530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 0,
@@ -42174,7 +39545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 20,
 		thunder: 0,
@@ -42190,7 +39560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 30,
 		thunder: 0,
@@ -42206,7 +39575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 15,
 		thunder: 15,
@@ -42222,7 +39590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 20,
 		thunder: 0,
@@ -42238,7 +39605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Mi Ru',
 		shot: 35,
 		thunder: 5,
@@ -42254,7 +39620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 40,
 		thunder: 5,
@@ -42270,7 +39635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 40,
 		thunder: 5,
@@ -42286,7 +39650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 20,
 		thunder: 5,
@@ -42302,7 +39665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 20,
 		thunder: 5,
@@ -42318,7 +39680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 30,
 		thunder: 5,
@@ -42334,7 +39695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 45,
 		thunder: 5,
@@ -42350,7 +39710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 40,
 		thunder: 5,
@@ -42366,7 +39725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 25,
 		thunder: 5,
@@ -42382,7 +39740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 25,
 		thunder: 5,
@@ -42398,7 +39755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 35,
 		thunder: 5,
@@ -42414,7 +39770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42430,7 +39785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42446,7 +39800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42462,7 +39815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42478,7 +39830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42494,7 +39845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 30,
 		thunder: 5,
@@ -42510,7 +39860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 30,
 		thunder: 5,
@@ -42526,7 +39875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 10,
 		thunder: 5,
@@ -42542,7 +39890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 25,
 		thunder: 5,
@@ -42558,7 +39905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 20,
 		thunder: 5,
@@ -42574,7 +39920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 30,
 		thunder: 5,
@@ -42590,7 +39935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 35,
 		thunder: 5,
@@ -42606,7 +39950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42622,7 +39965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 25,
 		thunder: 5,
@@ -42638,7 +39980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 20,
 		thunder: 5,
@@ -42654,7 +39995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Roar',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42670,7 +40010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42686,7 +40025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42702,7 +40040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42718,7 +40055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 5,
 		thunder: 5,
@@ -42734,7 +40070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 5,
 		thunder: 0,
@@ -42750,7 +40085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Midogaron',
 		shot: 5,
 		thunder: 0,
@@ -42766,7 +40100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 45,
 		thunder: 10,
@@ -42782,7 +40115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 30,
 		thunder: 10,
@@ -42798,7 +40130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 20,
 		thunder: 10,
@@ -42814,7 +40145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 25,
 		thunder: 10,
@@ -42830,7 +40160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 20,
 		thunder: 10,
@@ -42846,7 +40175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 20,
 		thunder: 10,
@@ -42862,7 +40190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 20,
 		thunder: 10,
@@ -42878,7 +40205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -42894,7 +40220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -42910,7 +40235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -42926,7 +40250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -42942,7 +40265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -42958,7 +40280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -42974,7 +40295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -42990,7 +40310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 30,
 		thunder: 10,
@@ -43006,7 +40325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 20,
 		thunder: 10,
@@ -43022,7 +40340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: 10,
@@ -43038,7 +40355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 15,
 		thunder: 10,
@@ -43054,7 +40370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 25,
 		thunder: 10,
@@ -43070,7 +40385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: 10,
@@ -43086,7 +40400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 15,
 		thunder: 10,
@@ -43102,7 +40415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 35,
 		thunder: -15,
@@ -43118,7 +40430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 25,
 		thunder: -10,
@@ -43134,7 +40445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 10,
 		thunder: -5,
@@ -43150,7 +40460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 20,
 		thunder: -10,
@@ -43166,7 +40475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 30,
 		thunder: -10,
@@ -43182,7 +40490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 15,
 		thunder: -5,
@@ -43198,7 +40505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'G Rank',
-
 		displayName: 'White Fatalis',
 		shot: 15,
 		thunder: -10,
@@ -43214,7 +40520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 45,
 		thunder: 10,
@@ -43230,7 +40535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 30,
 		thunder: 10,
@@ -43246,7 +40550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 20,
 		thunder: 10,
@@ -43262,7 +40565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 25,
 		thunder: 10,
@@ -43278,7 +40580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 20,
 		thunder: 10,
@@ -43294,7 +40595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 20,
 		thunder: 10,
@@ -43310,7 +40610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 20,
 		thunder: 10,
@@ -43326,7 +40625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -43342,7 +40640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -43358,7 +40655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -43374,7 +40670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -43390,7 +40685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -43406,7 +40700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -43422,7 +40715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Armored (50-20% HP Left)',
 		rankBand: 'Default',
-
 		displayName: 'Crimson Fatalis',
 		shot: 10,
 		thunder: 5,
@@ -43438,7 +40730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Crimson Fatalis',
 		shot: 60,
 		thunder: 0,
@@ -43454,7 +40745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Crimson Fatalis',
 		shot: 40,
 		thunder: 0,
@@ -43470,7 +40760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Crimson Fatalis',
 		shot: 15,
 		thunder: 0,
@@ -43486,7 +40775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Crimson Fatalis',
 		shot: 40,
 		thunder: 0,
@@ -43502,7 +40790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Crimson Fatalis',
 		shot: 40,
 		thunder: 0,
@@ -43518,7 +40805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Crimson Fatalis',
 		shot: 10,
 		thunder: 0,
@@ -43534,7 +40820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Crimson Fatalis',
 		shot: 20,
 		thunder: 0,
@@ -43550,7 +40835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Fatalis',
 		shot: 45,
 		thunder: 5,
@@ -43566,7 +40850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Fatalis',
 		shot: 30,
 		thunder: 5,
@@ -43582,7 +40865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Fatalis',
 		shot: 30,
 		thunder: 5,
@@ -43598,7 +40880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Fatalis',
 		shot: 35,
 		thunder: 5,
@@ -43614,7 +40895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Fatalis',
 		shot: 35,
 		thunder: 5,
@@ -43630,7 +40910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Fatalis',
 		shot: 35,
 		thunder: 5,
@@ -43646,7 +40925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Fatalis',
 		shot: 30,
 		thunder: 5,
@@ -43662,7 +40940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 60,
 		thunder: 0,
@@ -43678,7 +40955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 20,
 		thunder: 15,
@@ -43694,7 +40970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 15,
 		thunder: 15,
@@ -43710,7 +40985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 15,
 		thunder: 15,
@@ -43726,7 +41000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 35,
 		thunder: 0,
@@ -43742,7 +41015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 40,
 		thunder: 15,
@@ -43758,7 +41030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 20,
 		thunder: 15,
@@ -43774,7 +41045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 70,
 		thunder: 0,
@@ -43790,7 +41060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 30,
 		thunder: 15,
@@ -43806,7 +41075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 25,
 		thunder: 15,
@@ -43822,7 +41090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 25,
 		thunder: 15,
@@ -43838,7 +41105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 45,
 		thunder: 0,
@@ -43854,7 +41120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 50,
 		thunder: 15,
@@ -43870,7 +41135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 30,
 		thunder: 15,
@@ -43886,7 +41150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: '肉質(溜め中)',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 60,
 		thunder: 0,
@@ -43902,7 +41165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '肉質(溜め中)',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 20,
 		thunder: 15,
@@ -43918,7 +41180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '肉質(溜め中)',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 15,
 		thunder: 15,
@@ -43934,7 +41195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '肉質(溜め中)',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 15,
 		thunder: 15,
@@ -43950,7 +41210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '肉質(溜め中)',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 35,
 		thunder: 0,
@@ -43966,7 +41225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '肉質(溜め中)',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 40,
 		thunder: 15,
@@ -43982,7 +41240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '肉質(溜め中)',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 20,
 		thunder: 15,
@@ -43998,7 +41255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 70,
 		thunder: 0,
@@ -44014,7 +41270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 30,
 		thunder: 15,
@@ -44030,7 +41285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 25,
 		thunder: 15,
@@ -44046,7 +41300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 25,
 		thunder: 15,
@@ -44062,7 +41315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 45,
 		thunder: 0,
@@ -44078,7 +41330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 50,
 		thunder: 15,
@@ -44094,7 +41345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charging',
 		rankBand: 'G Rank',
-
 		displayName: 'Fatalis',
 		shot: 30,
 		thunder: 15,
@@ -44110,7 +41360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Monoblos',
 		shot: 40,
 		thunder: 15,
@@ -44126,7 +41375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Monoblos',
 		shot: 70,
 		thunder: 10,
@@ -44142,7 +41390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Monoblos',
 		shot: 40,
 		thunder: 15,
@@ -44158,7 +41405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Monoblos',
 		shot: 50,
 		thunder: 15,
@@ -44174,7 +41420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Monoblos',
 		shot: 90,
 		thunder: 15,
@@ -44190,7 +41435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Monoblos',
 		shot: 50,
 		thunder: 15,
@@ -44206,7 +41450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'White Monoblos',
 		shot: 50,
 		thunder: 10,
@@ -44222,7 +41465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Monoblos',
 		shot: 30,
 		thunder: 15,
@@ -44238,7 +41480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Monoblos',
 		shot: 50,
 		thunder: 10,
@@ -44254,7 +41495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Monoblos',
 		shot: 20,
 		thunder: 15,
@@ -44270,7 +41510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Monoblos',
 		shot: 20,
 		thunder: 15,
@@ -44286,7 +41525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Monoblos',
 		shot: 70,
 		thunder: 15,
@@ -44302,7 +41540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Monoblos',
 		shot: 30,
 		thunder: 15,
@@ -44318,7 +41555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'White Monoblos',
 		shot: 30,
 		thunder: 10,
@@ -44334,7 +41570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Monoblos',
 		shot: 40,
 		thunder: 20,
@@ -44350,7 +41585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Monoblos',
 		shot: 80,
 		thunder: 30,
@@ -44366,7 +41600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Monoblos',
 		shot: 40,
 		thunder: 20,
@@ -44382,7 +41615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Monoblos',
 		shot: 50,
 		thunder: 30,
@@ -44398,7 +41630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Monoblos',
 		shot: 120,
 		thunder: 25,
@@ -44414,7 +41645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Monoblos',
 		shot: 50,
 		thunder: 30,
@@ -44430,7 +41660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Monoblos',
 		shot: 50,
 		thunder: 20,
@@ -44446,7 +41675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Monoblos',
 		shot: 40,
 		thunder: 20,
@@ -44462,7 +41690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Monoblos',
 		shot: 45,
 		thunder: 30,
@@ -44478,7 +41705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Monoblos',
 		shot: 20,
 		thunder: 20,
@@ -44494,7 +41720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Monoblos',
 		shot: 20,
 		thunder: 30,
@@ -44510,7 +41735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Monoblos',
 		shot: 30,
 		thunder: 25,
@@ -44526,7 +41750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Monoblos',
 		shot: 30,
 		thunder: 30,
@@ -44542,7 +41765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Monoblos',
 		shot: 30,
 		thunder: 20,
@@ -44558,7 +41780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Mosswine',
 		shot: 120,
 		thunder: 100,
@@ -44574,7 +41795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 39,
 		thunder: 25,
@@ -44590,7 +41810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 24,
 		thunder: 5,
@@ -44606,7 +41825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 16,
 		thunder: 25,
@@ -44622,7 +41840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 18,
 		thunder: 10,
@@ -44638,7 +41855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 25,
 		thunder: 15,
@@ -44654,7 +41870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 18,
 		thunder: 10,
@@ -44670,7 +41885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 22,
 		thunder: 30,
@@ -44686,7 +41900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 35,
 		thunder: 20,
@@ -44702,7 +41915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 14,
 		thunder: 5,
@@ -44718,7 +41930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 10,
 		thunder: 20,
@@ -44734,7 +41945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 18,
 		thunder: 5,
@@ -44750,7 +41960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 24,
 		thunder: 10,
@@ -44766,7 +41975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 18,
 		thunder: 10,
@@ -44782,7 +41990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Blinking Nargacuga',
 		shot: 22,
 		thunder: 25,
@@ -44798,7 +42005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 39,
 		thunder: 25,
@@ -44814,7 +42020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 24,
 		thunder: 5,
@@ -44830,7 +42035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 16,
 		thunder: 25,
@@ -44846,7 +42050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 18,
 		thunder: 10,
@@ -44862,7 +42065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 25,
 		thunder: 15,
@@ -44878,7 +42080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 18,
 		thunder: 10,
@@ -44894,7 +42095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 22,
 		thunder: 30,
@@ -44910,7 +42110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 42,
 		thunder: 30,
@@ -44926,7 +42125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 24,
 		thunder: 5,
@@ -44942,7 +42140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 16,
 		thunder: 25,
@@ -44958,7 +42155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 18,
 		thunder: 10,
@@ -44974,7 +42170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 25,
 		thunder: 15,
@@ -44990,7 +42185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 18,
 		thunder: 15,
@@ -45006,7 +42200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nargacuga',
 		shot: 22,
 		thunder: 30,
@@ -45022,7 +42215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 45,
 		thunder: 25,
@@ -45038,7 +42230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 24,
 		thunder: 5,
@@ -45054,7 +42245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 18,
 		thunder: 25,
@@ -45070,7 +42260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 22,
 		thunder: 10,
@@ -45086,7 +42275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 32,
 		thunder: 15,
@@ -45102,7 +42290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 22,
 		thunder: 10,
@@ -45118,7 +42305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 25,
 		thunder: 30,
@@ -45134,7 +42320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 50,
 		thunder: 30,
@@ -45150,7 +42335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 24,
 		thunder: 5,
@@ -45166,7 +42350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 18,
 		thunder: 25,
@@ -45182,7 +42365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 22,
 		thunder: 10,
@@ -45198,7 +42380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 32,
 		thunder: 15,
@@ -45214,7 +42395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 22,
 		thunder: 15,
@@ -45230,7 +42410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nargacuga',
 		shot: 25,
 		thunder: 30,
@@ -45246,7 +42425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 30,
 		thunder: 10,
@@ -45262,7 +42440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 25,
 		thunder: 5,
@@ -45278,7 +42455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 30,
 		thunder: 5,
@@ -45294,7 +42470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 60,
 		thunder: 5,
@@ -45310,7 +42485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 20,
 		thunder: 5,
@@ -45326,7 +42500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 25,
 		thunder: 5,
@@ -45342,7 +42515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 20,
 		thunder: 5,
@@ -45358,7 +42530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 20,
 		thunder: 10,
@@ -45374,7 +42545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 25,
 		thunder: 5,
@@ -45390,7 +42560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 20,
 		thunder: 5,
@@ -45406,7 +42575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 40,
 		thunder: 5,
@@ -45422,7 +42590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 20,
 		thunder: 5,
@@ -45438,7 +42605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 25,
 		thunder: 5,
@@ -45454,7 +42620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Lunastra',
 		shot: 20,
 		thunder: 5,
@@ -45470,7 +42635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 10,
@@ -45486,7 +42650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45502,7 +42665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 15,
 		thunder: 5,
@@ -45518,7 +42680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 30,
 		thunder: 5,
@@ -45534,7 +42695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45550,7 +42710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45566,7 +42725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45582,7 +42740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 10,
@@ -45598,7 +42755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45614,7 +42770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 15,
 		thunder: 5,
@@ -45630,7 +42785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 30,
 		thunder: 5,
@@ -45646,7 +42800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45662,7 +42815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45678,7 +42830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45694,7 +42845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 10,
@@ -45710,7 +42860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 15,
 		thunder: 5,
@@ -45726,7 +42875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 20,
 		thunder: 5,
@@ -45742,7 +42890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 30,
 		thunder: 5,
@@ -45758,7 +42905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 15,
 		thunder: 5,
@@ -45774,7 +42920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 15,
 		thunder: 5,
@@ -45790,7 +42935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45806,7 +42950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 15,
 		thunder: 10,
@@ -45822,7 +42965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45838,7 +42980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 30,
 		thunder: 5,
@@ -45854,7 +42995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 25,
 		thunder: 5,
@@ -45870,7 +43010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45886,7 +43025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 10,
 		thunder: 5,
@@ -45902,7 +43040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Lunastra',
 		shot: 20,
 		thunder: 5,
@@ -45918,7 +43055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 10,
@@ -45934,7 +43070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 35,
 		thunder: 5,
@@ -45950,7 +43085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 10,
 		thunder: 5,
@@ -45966,7 +43100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 10,
@@ -45982,7 +43115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 25,
 		thunder: 5,
@@ -45998,7 +43130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 10,
 		thunder: 10,
@@ -46014,7 +43145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 5,
@@ -46030,7 +43160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 10,
@@ -46046,7 +43175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 40,
 		thunder: 5,
@@ -46062,7 +43190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 10,
 		thunder: 5,
@@ -46078,7 +43205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 10,
@@ -46094,7 +43220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 25,
 		thunder: 5,
@@ -46110,7 +43235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 10,
 		thunder: 10,
@@ -46126,7 +43250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 5,
@@ -46142,7 +43265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 10,
@@ -46158,7 +43280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 35,
 		thunder: 5,
@@ -46174,7 +43295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 10,
 		thunder: 5,
@@ -46190,7 +43310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 10,
@@ -46206,7 +43325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 25,
 		thunder: 5,
@@ -46222,7 +43340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 10,
 		thunder: 10,
@@ -46238,7 +43355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 5,
@@ -46254,7 +43370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 10,
@@ -46270,7 +43385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 40,
 		thunder: 5,
@@ -46286,7 +43400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 10,
 		thunder: 5,
@@ -46302,7 +43415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 10,
@@ -46318,7 +43430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 25,
 		thunder: 5,
@@ -46334,7 +43445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 10,
 		thunder: 10,
@@ -46350,7 +43460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Odibatorasu',
 		shot: 15,
 		thunder: 5,
@@ -46366,7 +43475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -46382,7 +43490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -46398,7 +43505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -46414,7 +43520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -46430,7 +43535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -46446,7 +43550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -46462,7 +43565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 40,
 		thunder: 10,
@@ -46478,7 +43580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -46494,7 +43595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -46510,7 +43610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -46526,7 +43625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46542,7 +43640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46558,7 +43655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46574,7 +43670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46590,7 +43685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46606,7 +43700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -46622,7 +43715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -46638,7 +43730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -46654,7 +43745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -46670,7 +43760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -46686,7 +43775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -46702,7 +43790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 40,
 		thunder: 10,
@@ -46718,7 +43805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -46734,7 +43820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -46750,7 +43835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -46766,7 +43850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46782,7 +43865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46798,7 +43880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46814,7 +43895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46830,7 +43910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46846,7 +43925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 15,
 		thunder: 10,
@@ -46862,7 +43940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -46878,7 +43955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 15,
 		thunder: 10,
@@ -46894,7 +43970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 0,
@@ -46910,7 +43985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -46926,7 +44000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46942,7 +44015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 15,
 		thunder: 10,
@@ -46958,7 +44030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -46974,7 +44045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 0,
@@ -46990,7 +44060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kamu Orugaron',
 		shot: 15,
 		thunder: 10,
@@ -47006,7 +44075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 15,
 		thunder: 5,
@@ -47022,7 +44090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 5,
@@ -47038,7 +44105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 15,
 		thunder: 5,
@@ -47054,7 +44120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 15,
 		thunder: 5,
@@ -47070,7 +44135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 20,
 		thunder: 5,
@@ -47086,7 +44150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 25,
 		thunder: 5,
@@ -47102,7 +44165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 5,
@@ -47118,7 +44180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 20,
 		thunder: 5,
@@ -47134,7 +44195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 20,
 		thunder: 5,
@@ -47150,7 +44210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 30,
 		thunder: 5,
@@ -47166,7 +44225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -47182,7 +44240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -47198,7 +44255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -47214,7 +44270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -47230,7 +44285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Kamu Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -47246,7 +44300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -47262,7 +44315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -47278,7 +44330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -47294,7 +44345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -47310,7 +44360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -47326,7 +44375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -47342,7 +44390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 40,
 		thunder: 10,
@@ -47358,7 +44405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -47374,7 +44420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -47390,7 +44435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -47406,7 +44450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47422,7 +44465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47438,7 +44480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47454,7 +44495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47470,7 +44510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Default',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47486,7 +44525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -47502,7 +44540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -47518,7 +44555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -47534,7 +44570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 20,
 		thunder: 10,
@@ -47550,7 +44585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -47566,7 +44600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -47582,7 +44615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 40,
 		thunder: 10,
@@ -47598,7 +44630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -47614,7 +44645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -47630,7 +44660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 10,
@@ -47646,7 +44675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47662,7 +44690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47678,7 +44705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47694,7 +44720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47710,7 +44735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47726,7 +44750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 15,
 		thunder: 10,
@@ -47742,7 +44765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -47758,7 +44780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 15,
 		thunder: 10,
@@ -47774,7 +44795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 0,
@@ -47790,7 +44810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 25,
 		thunder: 10,
@@ -47806,7 +44825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47822,7 +44840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 15,
 		thunder: 10,
@@ -47838,7 +44855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 10,
@@ -47854,7 +44870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 0,
@@ -47870,7 +44885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Nono Orugaron',
 		shot: 15,
 		thunder: 10,
@@ -47886,7 +44900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 15,
 		thunder: 5,
@@ -47902,7 +44915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 5,
@@ -47918,7 +44930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 15,
 		thunder: 5,
@@ -47934,7 +44945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 15,
 		thunder: 5,
@@ -47950,7 +44960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 20,
 		thunder: 5,
@@ -47966,7 +44975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 25,
 		thunder: 5,
@@ -47982,7 +44990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 5,
@@ -47998,7 +45005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 20,
 		thunder: 5,
@@ -48014,7 +45020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 20,
 		thunder: 5,
@@ -48030,7 +45035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 30,
 		thunder: 5,
@@ -48046,7 +45050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -48062,7 +45065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -48078,7 +45080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -48094,7 +45095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -48110,7 +45110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Roar',
 		rankBand: 'Gou',
-
 		displayName: 'Nono Orugaron',
 		shot: 5,
 		thunder: 5,
@@ -48126,7 +45125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 40,
 		thunder: 20,
@@ -48142,7 +45140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 15,
@@ -48158,7 +45155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 15,
@@ -48174,7 +45170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 20,
@@ -48190,7 +45185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 30,
 		thunder: 10,
@@ -48206,7 +45200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 15,
@@ -48222,7 +45215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 10,
@@ -48238,7 +45230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Stealth',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 50,
 		thunder: 20,
@@ -48254,7 +45245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 15,
@@ -48270,7 +45260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 10,
 		thunder: 15,
@@ -48286,7 +45275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 10,
@@ -48302,7 +45290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 15,
@@ -48318,7 +45305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 5,
@@ -48334,7 +45320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Default',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 10,
@@ -48350,7 +45335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 36,
 		thunder: 5,
@@ -48366,7 +45350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 5,
@@ -48382,7 +45365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 5,
@@ -48398,7 +45380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 0,
@@ -48414,7 +45395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 25,
 		thunder: 20,
@@ -48430,7 +45410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 20,
@@ -48446,7 +45425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 25,
@@ -48462,7 +45440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Stealth',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 42,
 		thunder: 10,
@@ -48478,7 +45455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 5,
@@ -48494,7 +45470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 10,
 		thunder: 5,
@@ -48510,7 +45485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 0,
@@ -48526,7 +45500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 20,
@@ -48542,7 +45515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 20,
@@ -48558,7 +45530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'G Rank',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 25,
@@ -48574,7 +45545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 40,
 		thunder: 5,
@@ -48590,7 +45560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: -5,
@@ -48606,7 +45575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: -5,
@@ -48622,7 +45590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 5,
@@ -48638,7 +45605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 30,
 		thunder: 30,
@@ -48654,7 +45620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 30,
@@ -48670,7 +45635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 5,
@@ -48686,7 +45650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Stealth',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 55,
 		thunder: 5,
@@ -48702,7 +45665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: -10,
@@ -48718,7 +45680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 10,
 		thunder: -10,
@@ -48734,7 +45695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 5,
@@ -48750,7 +45710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 25,
@@ -48766,7 +45725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 25,
@@ -48782,7 +45740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Stealth',
 		rankBand: 'Gou',
-
 		displayName: 'Chameleos',
 		shot: 15,
 		thunder: 5,
@@ -48798,7 +45755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 40,
 		thunder: 5,
@@ -48814,7 +45770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 20,
 		thunder: 10,
@@ -48830,7 +45785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 25,
@@ -48846,7 +45800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 25,
@@ -48862,7 +45815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 75,
 		thunder: 20,
@@ -48878,7 +45830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Sated',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 40,
 		thunder: 20,
@@ -48894,7 +45845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 20,
 		thunder: 20,
@@ -48910,7 +45860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 30,
@@ -48926,7 +45875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 30,
@@ -48942,7 +45890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Default',
-
 		displayName: 'Pariapuria',
 		shot: 75,
 		thunder: 40,
@@ -48958,7 +45905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 40,
 		thunder: 5,
@@ -48974,7 +45920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 20,
 		thunder: 10,
@@ -48990,7 +45935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 25,
@@ -49006,7 +45950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 25,
@@ -49022,7 +45965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 55,
 		thunder: 20,
@@ -49038,7 +45980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Sated',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 40,
 		thunder: 20,
@@ -49054,7 +45995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 20,
 		thunder: 20,
@@ -49070,7 +46010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 30,
@@ -49086,7 +46025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 30,
@@ -49102,7 +46040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'G Rank',
-
 		displayName: 'Pariapuria',
 		shot: 55,
 		thunder: 40,
@@ -49118,7 +46055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 30,
 		thunder: 5,
@@ -49134,7 +46070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 10,
 		thunder: 10,
@@ -49150,7 +46085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 15,
 		thunder: 25,
@@ -49166,7 +46100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 15,
 		thunder: 25,
@@ -49182,7 +46115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 65,
 		thunder: 20,
@@ -49198,7 +46130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Sated',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 30,
 		thunder: 30,
@@ -49214,7 +46145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 10,
 		thunder: 20,
@@ -49230,7 +46160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 15,
 		thunder: 10,
@@ -49246,7 +46175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 15,
 		thunder: 10,
@@ -49262,7 +46190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Gou',
-
 		displayName: 'Pariapuria',
 		shot: 65,
 		thunder: 20,
@@ -49278,7 +46205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 40,
 		thunder: 5,
@@ -49294,7 +46220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 20,
 		thunder: 10,
@@ -49310,7 +46235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 25,
@@ -49326,7 +46250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 25,
@@ -49342,7 +46265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 55,
 		thunder: 20,
@@ -49358,7 +46280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Sated',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 40,
 		thunder: 20,
@@ -49374,7 +46295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 20,
 		thunder: 20,
@@ -49390,7 +46310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 30,
@@ -49406,7 +46325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 25,
 		thunder: 30,
@@ -49422,7 +46340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Sated',
 		rankBand: 'Tower',
-
 		displayName: 'Pariapuria',
 		shot: 55,
 		thunder: 40,
@@ -49438,7 +46355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Poborubarumu',
 		shot: 15,
 		thunder: 15,
@@ -49454,7 +46370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Poborubarumu',
 		shot: 30,
 		thunder: 15,
@@ -49470,7 +46385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Poborubarumu',
 		shot: 25,
 		thunder: 10,
@@ -49486,7 +46400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Poborubarumu',
 		shot: 15,
 		thunder: 10,
@@ -49502,7 +46415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Poborubarumu',
 		shot: 30,
 		thunder: 10,
@@ -49518,7 +46430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Poborubarumu',
 		shot: 35,
 		thunder: 15,
@@ -49534,7 +46445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Poborubarumu',
 		shot: 30,
 		thunder: 10,
@@ -49550,7 +46460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Poborubarumu',
 		shot: 20,
 		thunder: 15,
@@ -49566,7 +46475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Poborubarumu',
 		shot: 40,
 		thunder: 15,
@@ -49582,7 +46490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Poborubarumu',
 		shot: 35,
 		thunder: 10,
@@ -49598,7 +46505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Poborubarumu',
 		shot: 20,
 		thunder: 10,
@@ -49614,7 +46520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Poborubarumu',
 		shot: 35,
 		thunder: 10,
@@ -49630,7 +46535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Poborubarumu',
 		shot: 40,
 		thunder: 15,
@@ -49646,7 +46550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Poborubarumu',
 		shot: 40,
 		thunder: 10,
@@ -49662,7 +46565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokaradon',
 		shot: 25,
 		thunder: 15,
@@ -49678,7 +46580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokaradon',
 		shot: 20,
 		thunder: 10,
@@ -49694,7 +46595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokaradon',
 		shot: 15,
 		thunder: 15,
@@ -49710,7 +46610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokaradon',
 		shot: 35,
 		thunder: 10,
@@ -49726,7 +46625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokaradon',
 		shot: 40,
 		thunder: 10,
@@ -49742,7 +46640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokaradon',
 		shot: 30,
 		thunder: 0,
@@ -49758,7 +46655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokaradon',
 		shot: 20,
 		thunder: 5,
@@ -49774,7 +46670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokara',
 		shot: 15,
 		thunder: 20,
@@ -49790,7 +46685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokara',
 		shot: 20,
 		thunder: 20,
@@ -49806,7 +46700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokara',
 		shot: 35,
 		thunder: 20,
@@ -49822,7 +46715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokara',
 		shot: 10,
 		thunder: 20,
@@ -49838,7 +46730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pokara',
 		shot: 15,
 		thunder: 20,
@@ -49854,7 +46745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Popo',
 		shot: 100,
 		thunder: 10,
@@ -49870,7 +46760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kuarusepusu',
 		shot: 25,
 		thunder: 10,
@@ -49886,7 +46775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kuarusepusu',
 		shot: 20,
 		thunder: 10,
@@ -49902,7 +46790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kuarusepusu',
 		shot: 15,
 		thunder: 30,
@@ -49918,7 +46805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kuarusepusu',
 		shot: 20,
 		thunder: 10,
@@ -49934,7 +46820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kuarusepusu',
 		shot: 25,
 		thunder: 10,
@@ -49950,7 +46835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kuarusepusu',
 		shot: 35,
 		thunder: 0,
@@ -49966,7 +46850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Kuarusepusu',
 		shot: 20,
 		thunder: 10,
@@ -49982,7 +46865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kuarusepusu',
 		shot: 25,
 		thunder: 5,
@@ -49998,7 +46880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kuarusepusu',
 		shot: 15,
 		thunder: 5,
@@ -50014,7 +46895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kuarusepusu',
 		shot: 10,
 		thunder: 30,
@@ -50030,7 +46910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kuarusepusu',
 		shot: 20,
 		thunder: 10,
@@ -50046,7 +46925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kuarusepusu',
 		shot: 20,
 		thunder: 10,
@@ -50062,7 +46940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kuarusepusu',
 		shot: 35,
 		thunder: 0,
@@ -50078,7 +46955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Kuarusepusu',
 		shot: 20,
 		thunder: 5,
@@ -50094,7 +46970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kuarusepusu',
 		shot: 25,
 		thunder: 5,
@@ -50110,7 +46985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kuarusepusu',
 		shot: 15,
 		thunder: 5,
@@ -50126,7 +47000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kuarusepusu',
 		shot: 10,
 		thunder: 15,
@@ -50142,7 +47015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kuarusepusu',
 		shot: 20,
 		thunder: 5,
@@ -50158,7 +47030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kuarusepusu',
 		shot: 20,
 		thunder: 5,
@@ -50174,7 +47045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kuarusepusu',
 		shot: 30,
 		thunder: 0,
@@ -50190,7 +47060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Kuarusepusu',
 		shot: 20,
 		thunder: 5,
@@ -50206,7 +47075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -50222,7 +47090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 20,
@@ -50238,7 +47105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 10,
@@ -50254,7 +47120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 70,
 		thunder: 20,
@@ -50270,7 +47135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -50286,7 +47150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -50302,7 +47165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 10,
@@ -50318,7 +47180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -50334,7 +47195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 20,
@@ -50350,7 +47210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 10,
@@ -50366,7 +47225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 80,
 		thunder: 20,
@@ -50382,7 +47240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -50398,7 +47255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -50414,7 +47270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -50430,7 +47285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -50446,7 +47300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 15,
@@ -50462,7 +47315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -50478,7 +47330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 15,
@@ -50494,7 +47345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -50510,7 +47360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -50526,7 +47375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -50542,7 +47390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -50558,7 +47405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -50574,7 +47420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -50590,7 +47435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 10,
@@ -50606,7 +47450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -50622,7 +47465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -50638,7 +47480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -50654,7 +47495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 4',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 0,
@@ -50670,7 +47510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -50686,7 +47525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 0,
@@ -50702,7 +47540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 5,
@@ -50718,7 +47555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -50734,7 +47570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -50750,7 +47585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -50766,7 +47600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 5',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -50782,7 +47615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -50798,7 +47630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -50814,7 +47645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 35,
 		thunder: 5,
@@ -50830,7 +47660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -50846,7 +47675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -50862,7 +47690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Default',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -50878,7 +47705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -50894,7 +47720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 20,
@@ -50910,7 +47735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 10,
@@ -50926,7 +47750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 70,
 		thunder: 20,
@@ -50942,7 +47765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -50958,7 +47780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -50974,7 +47795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 10,
@@ -50990,7 +47810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -51006,7 +47825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 20,
@@ -51022,7 +47840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 10,
@@ -51038,7 +47855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 80,
 		thunder: 20,
@@ -51054,7 +47870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -51070,7 +47885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -51086,7 +47900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -51102,7 +47915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51118,7 +47930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 15,
@@ -51134,7 +47945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51150,7 +47960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 15,
@@ -51166,7 +47975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -51182,7 +47990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -51198,7 +48005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51214,7 +48020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51230,7 +48035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -51246,7 +48050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51262,7 +48065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 10,
@@ -51278,7 +48080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -51294,7 +48095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -51310,7 +48110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -51326,7 +48125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 4',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 0,
@@ -51342,7 +48140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51358,7 +48155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 0,
@@ -51374,7 +48170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 5,
@@ -51390,7 +48185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51406,7 +48200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51422,7 +48215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51438,7 +48230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 5',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51454,7 +48245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51470,7 +48260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51486,7 +48275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 35,
 		thunder: 5,
@@ -51502,7 +48290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -51518,7 +48305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -51534,7 +48320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -51550,7 +48335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 6',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51566,7 +48350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 6',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51582,7 +48365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 6',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51598,7 +48380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 6',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 35,
 		thunder: 5,
@@ -51614,7 +48395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 6',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -51630,7 +48410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 6',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -51646,7 +48425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 6',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -51662,7 +48440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 7',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51678,7 +48455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 7',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51694,7 +48470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 7',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51710,7 +48485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 7',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -51726,7 +48500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 7',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -51742,7 +48515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 7',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -51758,7 +48530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 7',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -51774,7 +48545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 0,
@@ -51790,7 +48560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 35,
 		thunder: 5,
@@ -51806,7 +48575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 0,
@@ -51822,7 +48590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 35,
 		thunder: 5,
@@ -51838,7 +48605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51854,7 +48620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51870,7 +48635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -51886,7 +48650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -51902,7 +48665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 20,
@@ -51918,7 +48680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 10,
@@ -51934,7 +48695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 70,
 		thunder: 20,
@@ -51950,7 +48710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -51966,7 +48725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -51982,7 +48740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 10,
@@ -51998,7 +48755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -52014,7 +48770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 20,
@@ -52030,7 +48785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 10,
@@ -52046,7 +48800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 80,
 		thunder: 20,
@@ -52062,7 +48815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -52078,7 +48830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 10,
@@ -52094,7 +48845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 1',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -52110,7 +48860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -52126,7 +48875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 15,
@@ -52142,7 +48890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -52158,7 +48905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 15,
@@ -52174,7 +48920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -52190,7 +48935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -52206,7 +48950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 2',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -52222,7 +48965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -52238,7 +48980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 10,
@@ -52254,7 +48995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -52270,7 +49010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 50,
 		thunder: 10,
@@ -52286,7 +49025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -52302,7 +49040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -52318,7 +49055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 3',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 5,
@@ -52334,7 +49070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 4',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 0,
@@ -52350,7 +49085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -52366,7 +49100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 25,
 		thunder: 0,
@@ -52382,7 +49115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 40,
 		thunder: 5,
@@ -52398,7 +49130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -52414,7 +49145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -52430,7 +49160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 4',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -52446,7 +49175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged 5',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -52462,7 +49190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -52478,7 +49205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -52494,7 +49220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 35,
 		thunder: 5,
@@ -52510,7 +49235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -52526,7 +49250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -52542,7 +49265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged 5',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -52558,7 +49280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Super Enraged 6',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -52574,7 +49295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Super Enraged 6',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 30,
 		thunder: 5,
@@ -52590,7 +49310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Super Enraged 6',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 20,
 		thunder: 0,
@@ -52606,7 +49325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Super Enraged 6',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 35,
 		thunder: 5,
@@ -52622,7 +49340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Super Enraged 6',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -52638,7 +49355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Super Enraged 6',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -52654,7 +49370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Super Enraged 6',
 		rankBand: 'Gou',
-
 		displayName: 'UNKNOWN',
 		shot: 15,
 		thunder: 0,
@@ -52670,7 +49385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Great Thunderbug',
 		shot: 70,
 		thunder: 20,
@@ -52686,7 +49400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Vespoid',
 		shot: 110,
 		thunder: 10,
@@ -52702,7 +49415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Velociprey',
 		shot: 120,
 		thunder: 50,
@@ -52718,7 +49430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Ashen Lao-Shan Lung',
 		shot: 30,
 		thunder: 15,
@@ -52734,7 +49445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Ashen Lao-Shan Lung',
 		shot: 20,
 		thunder: 15,
@@ -52750,7 +49460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Ashen Lao-Shan Lung',
 		shot: 20,
 		thunder: 15,
@@ -52766,7 +49475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Ashen Lao-Shan Lung',
 		shot: 80,
 		thunder: 15,
@@ -52782,7 +49490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Ashen Lao-Shan Lung',
 		shot: 20,
 		thunder: 15,
@@ -52798,7 +49505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Ashen Lao-Shan Lung',
 		shot: 40,
 		thunder: 15,
@@ -52814,7 +49520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Ashen Lao-Shan Lung',
 		shot: 25,
 		thunder: 15,
@@ -52830,7 +49535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 30,
 		thunder: 15,
@@ -52846,7 +49550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 20,
 		thunder: 15,
@@ -52862,7 +49565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 20,
 		thunder: 15,
@@ -52878,7 +49580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 80,
 		thunder: 15,
@@ -52894,7 +49595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 20,
 		thunder: 15,
@@ -52910,7 +49610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 40,
 		thunder: 15,
@@ -52926,7 +49625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 25,
 		thunder: 15,
@@ -52942,7 +49640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 30,
 		thunder: 5,
@@ -52958,7 +49655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 20,
 		thunder: 5,
@@ -52974,7 +49670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 20,
 		thunder: 5,
@@ -52990,7 +49685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 50,
 		thunder: 5,
@@ -53006,7 +49700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 15,
 		thunder: 5,
@@ -53022,7 +49715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 20,
 		thunder: 5,
@@ -53038,7 +49730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lao-Shan Lung',
 		shot: 25,
 		thunder: 5,
@@ -53054,7 +49745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rajang',
 		shot: 60,
 		thunder: 0,
@@ -53070,7 +49760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rajang',
 		shot: 40,
 		thunder: 0,
@@ -53086,7 +49775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rajang',
 		shot: 40,
 		thunder: 0,
@@ -53102,7 +49790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rajang',
 		shot: 45,
 		thunder: 0,
@@ -53118,7 +49805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rajang',
 		shot: 30,
 		thunder: 0,
@@ -53134,7 +49820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rajang',
 		shot: 60,
 		thunder: 0,
@@ -53150,7 +49835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rajang',
 		shot: 30,
 		thunder: 0,
@@ -53166,7 +49850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rajang',
 		shot: 30,
 		thunder: 0,
@@ -53182,7 +49865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rajang',
 		shot: 35,
 		thunder: 0,
@@ -53198,7 +49880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rajang',
 		shot: 40,
 		thunder: 0,
@@ -53214,7 +49895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rajang',
 		shot: 50,
 		thunder: -5,
@@ -53230,7 +49910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rajang',
 		shot: 40,
 		thunder: -5,
@@ -53246,7 +49925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rajang',
 		shot: 20,
 		thunder: -5,
@@ -53262,7 +49940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rajang',
 		shot: 45,
 		thunder: -5,
@@ -53278,7 +49955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rajang',
 		shot: 20,
 		thunder: -5,
@@ -53294,7 +49970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Rajang',
 		shot: 60,
 		thunder: 0,
@@ -53310,7 +49985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Rajang',
 		shot: 30,
 		thunder: 0,
@@ -53326,7 +50000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Rajang',
 		shot: 30,
 		thunder: 0,
@@ -53342,7 +50015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Rajang',
 		shot: 35,
 		thunder: 0,
@@ -53358,7 +50030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Rajang',
 		shot: 40,
 		thunder: 0,
@@ -53374,7 +50045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gold Rathian',
 		shot: 40,
 		thunder: 30,
@@ -53390,7 +50060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gold Rathian',
 		shot: 40,
 		thunder: 20,
@@ -53406,7 +50075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gold Rathian',
 		shot: 40,
 		thunder: 20,
@@ -53422,7 +50090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gold Rathian',
 		shot: 20,
 		thunder: 15,
@@ -53438,7 +50105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gold Rathian',
 		shot: 60,
 		thunder: 10,
@@ -53454,7 +50120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gold Rathian',
 		shot: 20,
 		thunder: 30,
@@ -53470,7 +50135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Gold Rathian',
 		shot: 50,
 		thunder: 10,
@@ -53486,7 +50150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gold Rathian',
 		shot: 40,
 		thunder: 35,
@@ -53502,7 +50165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gold Rathian',
 		shot: 40,
 		thunder: 20,
@@ -53518,7 +50180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gold Rathian',
 		shot: 40,
 		thunder: 20,
@@ -53534,7 +50195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gold Rathian',
 		shot: 20,
 		thunder: 15,
@@ -53550,7 +50210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gold Rathian',
 		shot: 50,
 		thunder: 5,
@@ -53566,7 +50225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gold Rathian',
 		shot: 20,
 		thunder: 35,
@@ -53582,7 +50240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Gold Rathian',
 		shot: 45,
 		thunder: 10,
@@ -53598,7 +50255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 50,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gold Rathian',
 		shot: 30,
 		thunder: 5,
@@ -53614,7 +50270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gold Rathian',
 		shot: 20,
 		thunder: 5,
@@ -53630,7 +50285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gold Rathian',
 		shot: 30,
 		thunder: 5,
@@ -53646,7 +50300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gold Rathian',
 		shot: 20,
 		thunder: 5,
@@ -53662,7 +50315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gold Rathian',
 		shot: 50,
 		thunder: 5,
@@ -53678,7 +50330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gold Rathian',
 		shot: 20,
 		thunder: 5,
@@ -53694,7 +50345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Gold Rathian',
 		shot: 30,
 		thunder: 5,
@@ -53710,7 +50360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pink Rathian',
 		shot: 40,
 		thunder: 10,
@@ -53726,7 +50375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pink Rathian',
 		shot: 35,
 		thunder: 10,
@@ -53742,7 +50390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pink Rathian',
 		shot: 30,
 		thunder: 10,
@@ -53758,7 +50405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pink Rathian',
 		shot: 80,
 		thunder: 10,
@@ -53774,7 +50420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pink Rathian',
 		shot: 20,
 		thunder: 5,
@@ -53790,7 +50435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pink Rathian',
 		shot: 20,
 		thunder: 10,
@@ -53806,7 +50450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Pink Rathian',
 		shot: 60,
 		thunder: 5,
@@ -53822,7 +50465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pink Rathian',
 		shot: 30,
 		thunder: 10,
@@ -53838,7 +50480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pink Rathian',
 		shot: 25,
 		thunder: 5,
@@ -53854,7 +50495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pink Rathian',
 		shot: 20,
 		thunder: 5,
@@ -53870,7 +50510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pink Rathian',
 		shot: 50,
 		thunder: 10,
@@ -53886,7 +50525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pink Rathian',
 		shot: 15,
 		thunder: 5,
@@ -53902,7 +50540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pink Rathian',
 		shot: 10,
 		thunder: 10,
@@ -53918,7 +50555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Pink Rathian',
 		shot: 35,
 		thunder: 5,
@@ -53934,7 +50570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pink Rathian',
 		shot: 30,
 		thunder: 5,
@@ -53950,7 +50585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pink Rathian',
 		shot: 45,
 		thunder: 10,
@@ -53966,7 +50600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pink Rathian',
 		shot: 25,
 		thunder: 5,
@@ -53982,7 +50615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pink Rathian',
 		shot: 60,
 		thunder: 5,
@@ -53998,7 +50630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pink Rathian',
 		shot: 20,
 		thunder: 0,
@@ -54014,7 +50645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pink Rathian',
 		shot: 20,
 		thunder: 0,
@@ -54030,7 +50660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Pink Rathian',
 		shot: 50,
 		thunder: 5,
@@ -54046,7 +50675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathian',
 		shot: 50,
 		thunder: 20,
@@ -54062,7 +50690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathian',
 		shot: 40,
 		thunder: 15,
@@ -54078,7 +50705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathian',
 		shot: 30,
 		thunder: 15,
@@ -54094,7 +50720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathian',
 		shot: 90,
 		thunder: 20,
@@ -54110,7 +50735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathian',
 		shot: 25,
 		thunder: 10,
@@ -54126,7 +50750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathian',
 		shot: 25,
 		thunder: 15,
@@ -54142,7 +50765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathian',
 		shot: 50,
 		thunder: 10,
@@ -54158,7 +50780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathian',
 		shot: 30,
 		thunder: 20,
@@ -54174,7 +50795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathian',
 		shot: 20,
 		thunder: 10,
@@ -54190,7 +50810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathian',
 		shot: 10,
 		thunder: 10,
@@ -54206,7 +50825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathian',
 		shot: 50,
 		thunder: 20,
@@ -54222,7 +50840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathian',
 		shot: 15,
 		thunder: 10,
@@ -54238,7 +50855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathian',
 		shot: 15,
 		thunder: 15,
@@ -54254,7 +50870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathian',
 		shot: 30,
 		thunder: 10,
@@ -54270,7 +50885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathian',
 		shot: 40,
 		thunder: -5,
@@ -54286,7 +50900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathian',
 		shot: 25,
 		thunder: 25,
@@ -54302,7 +50915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathian',
 		shot: 25,
 		thunder: 20,
@@ -54318,7 +50930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathian',
 		shot: 40,
 		thunder: 10,
@@ -54334,7 +50945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathian',
 		shot: 60,
 		thunder: 0,
@@ -54350,7 +50960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathian',
 		shot: 30,
 		thunder: 0,
@@ -54366,7 +50975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathian',
 		shot: 35,
 		thunder: -5,
@@ -54382,7 +50990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Azure Rathalos',
 		shot: 50,
 		thunder: 30,
@@ -54398,7 +51005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Azure Rathalos',
 		shot: 40,
 		thunder: 15,
@@ -54414,7 +51020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Azure Rathalos',
 		shot: 30,
 		thunder: 20,
@@ -54430,7 +51035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Azure Rathalos',
 		shot: 70,
 		thunder: 20,
@@ -54446,7 +51050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Azure Rathalos',
 		shot: 25,
 		thunder: 10,
@@ -54462,7 +51065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Azure Rathalos',
 		shot: 25,
 		thunder: 20,
@@ -54478,7 +51080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Azure Rathalos',
 		shot: 55,
 		thunder: 10,
@@ -54494,7 +51095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Azure Rathalos',
 		shot: 30,
 		thunder: 30,
@@ -54510,7 +51110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Azure Rathalos',
 		shot: 20,
 		thunder: 5,
@@ -54526,7 +51125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Azure Rathalos',
 		shot: 15,
 		thunder: 10,
@@ -54542,7 +51140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Azure Rathalos',
 		shot: 55,
 		thunder: 20,
@@ -54558,7 +51155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Azure Rathalos',
 		shot: 25,
 		thunder: 5,
@@ -54574,7 +51170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Azure Rathalos',
 		shot: 10,
 		thunder: 10,
@@ -54590,7 +51185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Azure Rathalos',
 		shot: 35,
 		thunder: 10,
@@ -54606,7 +51200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Azure Rathalos',
 		shot: 30,
 		thunder: 30,
@@ -54622,7 +51215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Azure Rathalos',
 		shot: 45,
 		thunder: -5,
@@ -54638,7 +51230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Azure Rathalos',
 		shot: 25,
 		thunder: 0,
@@ -54654,7 +51245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Azure Rathalos',
 		shot: 55,
 		thunder: 25,
@@ -54670,7 +51260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Azure Rathalos',
 		shot: 20,
 		thunder: 0,
@@ -54686,7 +51275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Azure Rathalos',
 		shot: 20,
 		thunder: 5,
@@ -54702,7 +51290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Azure Rathalos',
 		shot: 50,
 		thunder: 10,
@@ -54718,7 +51305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Rathalos',
 		shot: 25,
 		thunder: 30,
@@ -54734,7 +51320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Rathalos',
 		shot: 40,
 		thunder: 20,
@@ -54750,7 +51335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Rathalos',
 		shot: 40,
 		thunder: 20,
@@ -54766,7 +51350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Rathalos',
 		shot: 50,
 		thunder: 15,
@@ -54782,7 +51365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Rathalos',
 		shot: 70,
 		thunder: 10,
@@ -54798,7 +51380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Rathalos',
 		shot: 30,
 		thunder: 30,
@@ -54814,7 +51395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Silver Rathalos',
 		shot: 50,
 		thunder: 10,
@@ -54830,7 +51410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Rathalos',
 		shot: 25,
 		thunder: 25,
@@ -54846,7 +51425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Rathalos',
 		shot: 25,
 		thunder: 15,
@@ -54862,7 +51440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Rathalos',
 		shot: 20,
 		thunder: 15,
@@ -54878,7 +51455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Rathalos',
 		shot: 30,
 		thunder: 10,
@@ -54894,7 +51470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Rathalos',
 		shot: 60,
 		thunder: 10,
@@ -54910,7 +51485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Rathalos',
 		shot: 25,
 		thunder: 30,
@@ -54926,7 +51500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Silver Rathalos',
 		shot: 35,
 		thunder: 10,
@@ -54942,7 +51515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Silver Rathalos',
 		shot: 25,
 		thunder: 10,
@@ -54958,7 +51530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Silver Rathalos',
 		shot: 20,
 		thunder: 5,
@@ -54974,7 +51545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Silver Rathalos',
 		shot: 40,
 		thunder: 5,
@@ -54990,7 +51560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Silver Rathalos',
 		shot: 30,
 		thunder: 10,
@@ -55006,7 +51575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Silver Rathalos',
 		shot: 50,
 		thunder: 5,
@@ -55022,7 +51590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Silver Rathalos',
 		shot: 20,
 		thunder: 10,
@@ -55038,7 +51605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Silver Rathalos',
 		shot: 30,
 		thunder: 5,
@@ -55054,7 +51620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathalos',
 		shot: 50,
 		thunder: 15,
@@ -55070,7 +51635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathalos',
 		shot: 40,
 		thunder: 10,
@@ -55086,7 +51650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathalos',
 		shot: 40,
 		thunder: 15,
@@ -55102,7 +51665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathalos',
 		shot: 90,
 		thunder: 15,
@@ -55118,7 +51680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathalos',
 		shot: 30,
 		thunder: 5,
@@ -55134,7 +51695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathalos',
 		shot: 30,
 		thunder: 15,
@@ -55150,7 +51710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rathalos',
 		shot: 40,
 		thunder: 5,
@@ -55166,7 +51725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathalos',
 		shot: 30,
 		thunder: 10,
@@ -55182,7 +51740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathalos',
 		shot: 20,
 		thunder: 5,
@@ -55198,7 +51755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathalos',
 		shot: 15,
 		thunder: 5,
@@ -55214,7 +51770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathalos',
 		shot: 50,
 		thunder: 5,
@@ -55230,7 +51785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathalos',
 		shot: 35,
 		thunder: 5,
@@ -55246,7 +51800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathalos',
 		shot: 10,
 		thunder: 5,
@@ -55262,7 +51815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rathalos',
 		shot: 25,
 		thunder: 5,
@@ -55278,7 +51830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathalos',
 		shot: 40,
 		thunder: 0,
@@ -55294,7 +51845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathalos',
 		shot: 20,
 		thunder: 0,
@@ -55310,7 +51860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathalos',
 		shot: 50,
 		thunder: 0,
@@ -55326,7 +51875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathalos',
 		shot: 20,
 		thunder: 15,
@@ -55342,7 +51890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathalos',
 		shot: 30,
 		thunder: 5,
@@ -55358,7 +51905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathalos',
 		shot: 25,
 		thunder: 0,
@@ -55374,7 +51920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rathalos',
 		shot: 40,
 		thunder: 0,
@@ -55390,7 +51935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rathalos',
 		shot: 20,
 		thunder: 5,
@@ -55406,7 +51950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rathalos',
 		shot: 15,
 		thunder: 5,
@@ -55422,7 +51965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rathalos',
 		shot: 15,
 		thunder: 5,
@@ -55438,7 +51980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rathalos',
 		shot: 40,
 		thunder: 5,
@@ -55454,7 +51995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rathalos',
 		shot: 35,
 		thunder: 5,
@@ -55470,7 +52010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rathalos',
 		shot: 15,
 		thunder: 5,
@@ -55486,7 +52025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rathalos',
 		shot: 20,
 		thunder: 5,
@@ -55502,7 +52040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55518,7 +52055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 45,
 		thunder: 0,
@@ -55534,7 +52070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 35,
 		thunder: 0,
@@ -55550,7 +52085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 40,
 		thunder: 0,
@@ -55566,7 +52100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55582,7 +52115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55598,7 +52130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55614,7 +52145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Magnetic',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55630,7 +52160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 45,
 		thunder: 0,
@@ -55646,7 +52175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 35,
 		thunder: 0,
@@ -55662,7 +52190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 40,
 		thunder: 0,
@@ -55678,7 +52205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55694,7 +52220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55710,7 +52235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Default',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55726,7 +52250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55742,7 +52265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 35,
 		thunder: 0,
@@ -55758,7 +52280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 25,
 		thunder: 0,
@@ -55774,7 +52295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 40,
 		thunder: 0,
@@ -55790,7 +52310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -55806,7 +52325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -55822,7 +52340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -55838,7 +52355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55854,7 +52370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 35,
 		thunder: 0,
@@ -55870,7 +52385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 25,
 		thunder: 0,
@@ -55886,7 +52400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 40,
 		thunder: 0,
@@ -55902,7 +52415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -55918,7 +52430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -55934,7 +52445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'G Rank',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -55950,7 +52460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -55966,7 +52475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 35,
 		thunder: 0,
@@ -55982,7 +52490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 25,
 		thunder: 0,
@@ -55998,7 +52505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 40,
 		thunder: 0,
@@ -56014,7 +52520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56030,7 +52535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56046,7 +52550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56062,7 +52565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Magnetic',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -56078,7 +52580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 35,
 		thunder: 0,
@@ -56094,7 +52595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 25,
 		thunder: 0,
@@ -56110,7 +52610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 40,
 		thunder: 0,
@@ -56126,7 +52625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56142,7 +52640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56158,7 +52655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Gou',
-
 		displayName: 'Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56174,7 +52670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -56190,7 +52685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 15,
 		thunder: 0,
@@ -56206,7 +52700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 10,
 		thunder: 0,
@@ -56222,7 +52715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 15,
 		thunder: 0,
@@ -56238,7 +52730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 15,
 		thunder: 0,
@@ -56254,7 +52745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 10,
 		thunder: 0,
@@ -56270,7 +52760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56286,7 +52775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Magnetic',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 30,
 		thunder: 0,
@@ -56302,7 +52790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 35,
 		thunder: 0,
@@ -56318,7 +52805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 25,
 		thunder: 0,
@@ -56334,7 +52820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 40,
 		thunder: 0,
@@ -56350,7 +52835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56366,7 +52850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56382,7 +52865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Magnetic',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Rukodiora',
 		shot: 20,
 		thunder: 0,
@@ -56398,7 +52880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 25,
 		thunder: 20,
@@ -56414,7 +52895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 20,
 		thunder: 10,
@@ -56430,7 +52910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 25,
 		thunder: 15,
@@ -56446,7 +52925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 15,
 		thunder: 10,
@@ -56462,7 +52940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 22,
 		thunder: 10,
@@ -56478,7 +52955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 30,
 		thunder: 15,
@@ -56494,7 +52970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 15,
 		thunder: 10,
@@ -56510,7 +52985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 25,
 		thunder: 20,
@@ -56526,7 +53000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 20,
 		thunder: 10,
@@ -56542,7 +53015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 25,
 		thunder: 15,
@@ -56558,7 +53030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 20,
 		thunder: 10,
@@ -56574,7 +53045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 22,
 		thunder: 10,
@@ -56590,7 +53060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 30,
 		thunder: 15,
@@ -56606,7 +53075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Seregios',
 		shot: 15,
 		thunder: 10,
@@ -56622,7 +53090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 30,
 		thunder: 25,
@@ -56638,7 +53105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 20,
 		thunder: 15,
@@ -56654,7 +53120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 25,
 		thunder: 20,
@@ -56670,7 +53135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 15,
 		thunder: 15,
@@ -56686,7 +53150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 26,
 		thunder: 15,
@@ -56702,7 +53165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 30,
 		thunder: 20,
@@ -56718,7 +53180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 20,
 		thunder: 10,
@@ -56734,7 +53195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 30,
 		thunder: 25,
@@ -56750,7 +53210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 20,
 		thunder: 15,
@@ -56766,7 +53225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 25,
 		thunder: 20,
@@ -56782,7 +53240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 24,
 		thunder: 15,
@@ -56798,7 +53255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 26,
 		thunder: 15,
@@ -56814,7 +53270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 30,
 		thunder: 20,
@@ -56830,7 +53285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Seregios',
 		shot: 20,
 		thunder: 10,
@@ -56846,7 +53300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 28,
 		thunder: 15,
@@ -56862,7 +53315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 17,
 		thunder: 5,
@@ -56878,7 +53330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 25,
 		thunder: 15,
@@ -56894,7 +53345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 15,
 		thunder: 5,
@@ -56910,7 +53360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 12,
 		thunder: 5,
@@ -56926,7 +53375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 18,
 		thunder: 5,
@@ -56942,7 +53390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 28,
 		thunder: 5,
@@ -56958,7 +53405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 35,
 		thunder: 15,
@@ -56974,7 +53420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 17,
 		thunder: 5,
@@ -56990,7 +53435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 25,
 		thunder: 15,
@@ -57006,7 +53450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 15,
 		thunder: 5,
@@ -57022,7 +53465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 12,
 		thunder: 5,
@@ -57038,7 +53480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 18,
 		thunder: 5,
@@ -57054,7 +53495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 28,
 		thunder: 5,
@@ -57070,7 +53510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'True Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 35,
 		thunder: 10,
@@ -57086,7 +53525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'True Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 17,
 		thunder: 5,
@@ -57102,7 +53540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'True Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 25,
 		thunder: 10,
@@ -57118,7 +53555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'True Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 15,
 		thunder: 5,
@@ -57134,7 +53570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'True Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 12,
 		thunder: 5,
@@ -57150,7 +53585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'True Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 18,
 		thunder: 5,
@@ -57166,7 +53600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'True Frenzy',
 		rankBand: 'G Rank',
-
 		displayName: 'Shagaru Magala',
 		shot: 33,
 		thunder: 5,
@@ -57182,7 +53615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 35,
 		thunder: 15,
@@ -57198,7 +53630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 25,
 		thunder: 5,
@@ -57214,7 +53645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 30,
 		thunder: 15,
@@ -57230,7 +53660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 35,
 		thunder: 5,
@@ -57246,7 +53675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 25,
 		thunder: 5,
@@ -57262,7 +53690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 20,
 		thunder: 10,
@@ -57278,7 +53705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 30,
 		thunder: 10,
@@ -57294,7 +53720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 40,
 		thunder: 15,
@@ -57310,7 +53735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 25,
 		thunder: 5,
@@ -57326,7 +53750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 30,
 		thunder: 15,
@@ -57342,7 +53765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 35,
 		thunder: 5,
@@ -57358,7 +53780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 25,
 		thunder: 5,
@@ -57374,7 +53795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 20,
 		thunder: 10,
@@ -57390,7 +53810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Frenzy',
 		rankBand: 'Gou',
-
 		displayName: 'Shagaru Magala',
 		shot: 30,
 		thunder: 10,
@@ -57406,7 +53825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 25,
 		thunder: 0,
@@ -57422,7 +53840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 15,
 		thunder: 0,
@@ -57438,7 +53855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 15,
 		thunder: 0,
@@ -57454,7 +53870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 20,
 		thunder: 0,
@@ -57470,7 +53885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 20,
 		thunder: 0,
@@ -57486,7 +53900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 35,
 		thunder: 0,
@@ -57502,7 +53915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 20,
 		thunder: 0,
@@ -57518,7 +53930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 30,
 		thunder: 0,
@@ -57534,7 +53945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 20,
 		thunder: 0,
@@ -57550,7 +53960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 20,
 		thunder: 0,
@@ -57566,7 +53975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 30,
 		thunder: 0,
@@ -57582,7 +53990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 25,
 		thunder: 0,
@@ -57598,7 +54005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 25,
 		thunder: 0,
@@ -57614,7 +54020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Shantien',
 		shot: 45,
 		thunder: 0,
@@ -57630,7 +54035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shen Gaoren',
 		shot: 40,
 		thunder: 20,
@@ -57646,7 +54050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shen Gaoren',
 		shot: 30,
 		thunder: 15,
@@ -57662,7 +54065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shen Gaoren',
 		shot: 20,
 		thunder: 15,
@@ -57678,7 +54080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shen Gaoren',
 		shot: 25,
 		thunder: 15,
@@ -57694,7 +54095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shen Gaoren',
 		shot: 20,
 		thunder: 15,
@@ -57710,7 +54110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shen Gaoren',
 		shot: 20,
 		thunder: 15,
@@ -57726,7 +54125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shen Gaoren',
 		shot: 80,
 		thunder: 20,
@@ -57742,7 +54140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shen Gaoren',
 		shot: 30,
 		thunder: 40,
@@ -57758,7 +54155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shen Gaoren',
 		shot: 20,
 		thunder: -30,
@@ -57774,7 +54170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shen Gaoren',
 		shot: 10,
 		thunder: -30,
@@ -57790,7 +54185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shen Gaoren',
 		shot: 15,
 		thunder: -30,
@@ -57806,7 +54200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shen Gaoren',
 		shot: 15,
 		thunder: -30,
@@ -57822,7 +54215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shen Gaoren',
 		shot: 15,
 		thunder: -30,
@@ -57838,7 +54230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shen Gaoren',
 		shot: 70,
 		thunder: 0,
@@ -57854,7 +54245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 35,
 		thunder: 35,
@@ -57870,7 +54260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 25,
 		thunder: 20,
@@ -57886,7 +54275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 25,
@@ -57902,7 +54290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 30,
 		thunder: 15,
@@ -57918,7 +54305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 15,
 		thunder: 20,
@@ -57934,7 +54320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 25,
 		thunder: 15,
@@ -57950,7 +54335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Broken Shell',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 40,
 		thunder: 35,
@@ -57966,7 +54350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 30,
 		thunder: 20,
@@ -57982,7 +54365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 25,
@@ -57998,7 +54380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 30,
 		thunder: 15,
@@ -58014,7 +54395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 15,
 		thunder: 20,
@@ -58030,7 +54410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Default',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 25,
 		thunder: 15,
@@ -58046,7 +54425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 35,
 		thunder: 30,
@@ -58062,7 +54440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 25,
 		thunder: 20,
@@ -58078,7 +54455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 20,
@@ -58094,7 +54470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 15,
 		thunder: 15,
@@ -58110,7 +54485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 20,
@@ -58126,7 +54500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 25,
 		thunder: 15,
@@ -58142,7 +54515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Broken Shell',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 40,
 		thunder: 30,
@@ -58158,7 +54530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 30,
 		thunder: 20,
@@ -58174,7 +54545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 20,
@@ -58190,7 +54560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 15,
@@ -58206,7 +54575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 20,
@@ -58222,7 +54590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'G Rank',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 30,
 		thunder: 15,
@@ -58238,7 +54605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 10,
 		thunder: 15,
@@ -58254,7 +54620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 10,
 		thunder: -5,
@@ -58270,7 +54635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: -5,
@@ -58286,7 +54650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 30,
 		thunder: 0,
@@ -58302,7 +54665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 35,
 		thunder: 0,
@@ -58318,7 +54680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 25,
 		thunder: 0,
@@ -58334,7 +54695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Broken Shell',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 10,
 		thunder: 15,
@@ -58350,7 +54710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 10,
 		thunder: -5,
@@ -58366,7 +54725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: -5,
@@ -58382,7 +54740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 30,
 		thunder: 0,
@@ -58398,7 +54755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 40,
 		thunder: 0,
@@ -58414,7 +54770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Gou',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 0,
@@ -58430,7 +54785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 35,
 		thunder: 35,
@@ -58446,7 +54800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 25,
 		thunder: 20,
@@ -58462,7 +54815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 25,
@@ -58478,7 +54830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 15,
 		thunder: 15,
@@ -58494,7 +54845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 20,
@@ -58510,7 +54860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 25,
 		thunder: 15,
@@ -58526,7 +54875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Broken Shell',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 40,
 		thunder: 35,
@@ -58542,7 +54890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 30,
 		thunder: 20,
@@ -58558,7 +54905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 25,
@@ -58574,7 +54920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 15,
@@ -58590,7 +54935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 20,
 		thunder: 20,
@@ -58606,7 +54950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Shell',
 		rankBand: 'Tower',
-
 		displayName: 'Shogun Ceanataur',
 		shot: 30,
 		thunder: 15,
@@ -58622,7 +54965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 35,
 		thunder: 0,
@@ -58638,7 +54980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 25,
 		thunder: 0,
@@ -58654,7 +54995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 35,
 		thunder: 0,
@@ -58670,7 +55010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 40,
 		thunder: 0,
@@ -58686,7 +55025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 45,
 		thunder: 0,
@@ -58702,7 +55040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 30,
 		thunder: 0,
@@ -58718,7 +55055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Red',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 40,
 		thunder: 0,
@@ -58734,7 +55070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 25,
 		thunder: 0,
@@ -58750,7 +55085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 35,
 		thunder: 0,
@@ -58766,7 +55100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 50,
 		thunder: 0,
@@ -58782,7 +55115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 55,
 		thunder: 0,
@@ -58798,7 +55130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 30,
 		thunder: 0,
@@ -58814,7 +55145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Blue',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 45,
 		thunder: 0,
@@ -58830,7 +55160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 25,
 		thunder: 0,
@@ -58846,7 +55175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 45,
 		thunder: 0,
@@ -58862,7 +55190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 60,
 		thunder: 0,
@@ -58878,7 +55205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Default',
-
 		displayName: 'Taikun Zamuza',
 		shot: 60,
 		thunder: 0,
@@ -58894,7 +55220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 25,
 		thunder: 0,
@@ -58910,7 +55235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 15,
 		thunder: 0,
@@ -58926,7 +55250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 25,
 		thunder: 0,
@@ -58942,7 +55265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 30,
 		thunder: 0,
@@ -58958,7 +55280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 35,
 		thunder: 0,
@@ -58974,7 +55295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 20,
 		thunder: 0,
@@ -58990,7 +55310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 30,
 		thunder: 0,
@@ -59006,7 +55325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 20,
 		thunder: 0,
@@ -59022,7 +55340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 30,
 		thunder: 0,
@@ -59038,7 +55355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 35,
 		thunder: 0,
@@ -59054,7 +55370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 40,
 		thunder: 0,
@@ -59070,7 +55385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 25,
 		thunder: 0,
@@ -59086,7 +55400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Blue',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 45,
 		thunder: 0,
@@ -59102,7 +55415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 25,
 		thunder: 0,
@@ -59118,7 +55430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 30,
 		thunder: 0,
@@ -59134,7 +55445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 35,
 		thunder: 0,
@@ -59150,7 +55460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Gou',
-
 		displayName: 'Taikun Zamuza',
 		shot: 40,
 		thunder: 0,
@@ -59166,7 +55475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 20,
 		thunder: 0,
@@ -59182,7 +55490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 5,
 		thunder: 0,
@@ -59198,7 +55505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 10,
 		thunder: 0,
@@ -59214,7 +55520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 20,
 		thunder: 0,
@@ -59230,7 +55535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 20,
 		thunder: 0,
@@ -59246,7 +55550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 15,
 		thunder: 0,
@@ -59262,7 +55565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Blue',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 30,
 		thunder: 0,
@@ -59278,7 +55580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 10,
 		thunder: 0,
@@ -59294,7 +55595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 15,
 		thunder: 0,
@@ -59310,7 +55610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 25,
 		thunder: 0,
@@ -59326,7 +55625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Blue',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Taikun Zamuza',
 		shot: 25,
 		thunder: 0,
@@ -59342,7 +55640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 30,
 		thunder: 10,
@@ -59358,7 +55655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -59374,7 +55670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 30,
 		thunder: 5,
@@ -59390,7 +55685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 60,
 		thunder: 5,
@@ -59406,7 +55700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59422,7 +55715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -59438,7 +55730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59454,7 +55745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 10,
@@ -59470,7 +55760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -59486,7 +55775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59502,7 +55790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 40,
 		thunder: 5,
@@ -59518,7 +55805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59534,7 +55820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -59550,7 +55835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Default',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59566,7 +55850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 35,
 		thunder: 10,
@@ -59582,7 +55865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -59598,7 +55880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59614,7 +55895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 40,
 		thunder: 5,
@@ -59630,7 +55910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -59646,7 +55925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 10,
 		thunder: 5,
@@ -59662,7 +55940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59678,7 +55955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 45,
 		thunder: 10,
@@ -59694,7 +55970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -59710,7 +55985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59726,7 +56000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -59742,7 +56015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -59758,7 +56030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 10,
 		thunder: 5,
@@ -59774,7 +56045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59790,7 +56060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Broken Head',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 40,
 		thunder: 10,
@@ -59806,7 +56075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Head',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59822,7 +56090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Head',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -59838,7 +56105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Head',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 45,
 		thunder: 5,
@@ -59854,7 +56120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Head',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59870,7 +56135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Head',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -59886,7 +56150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Broken Head',
 		rankBand: 'G Rank',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -59902,7 +56165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59918,7 +56180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59934,7 +56195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59950,7 +56210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 40,
 		thunder: 5,
@@ -59966,7 +56225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59982,7 +56240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -59998,7 +56255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -60014,7 +56270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -60030,7 +56285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -60046,7 +56300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -60062,7 +56315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 30,
 		thunder: 5,
@@ -60078,7 +56330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -60094,7 +56345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -60110,7 +56360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fiery',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -60126,7 +56375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -60142,7 +56390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -60158,7 +56405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -60174,7 +56420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 40,
 		thunder: 5,
@@ -60190,7 +56435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -60206,7 +56450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -60222,7 +56465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -60238,7 +56480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 20,
 		thunder: 5,
@@ -60254,7 +56495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -60270,7 +56510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -60286,7 +56525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 30,
 		thunder: 5,
@@ -60302,7 +56540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -60318,7 +56555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 15,
 		thunder: 5,
@@ -60334,7 +56570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Fierce',
 		rankBand: 'Gou',
-
 		displayName: 'Teostra',
 		shot: 25,
 		thunder: 5,
@@ -60350,7 +56585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 110,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 40,
 		thunder: 30,
@@ -60366,7 +56600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -60382,7 +56615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -60398,7 +56630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 25,
 		thunder: 25,
@@ -60414,7 +56645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 15,
 		thunder: 15,
@@ -60430,7 +56660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -60446,7 +56675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: 10,
@@ -60462,7 +56690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 45,
 		thunder: 35,
@@ -60478,7 +56705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -60494,7 +56720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -60510,7 +56735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -60526,7 +56750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 10,
 		thunder: 15,
@@ -60542,7 +56765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: 25,
@@ -60558,7 +56780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Default',
-
 		displayName: 'Tigrex',
 		shot: 40,
 		thunder: 10,
@@ -60574,7 +56795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 110,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: 30,
@@ -60590,7 +56810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -60606,7 +56825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -60622,7 +56840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 25,
 		thunder: 25,
@@ -60638,7 +56855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 15,
 		thunder: 15,
@@ -60654,7 +56870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -60670,7 +56885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: 10,
@@ -60686,7 +56900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 35,
 		thunder: 35,
@@ -60702,7 +56915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -60718,7 +56930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -60734,7 +56945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -60750,7 +56960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 10,
 		thunder: 15,
@@ -60766,7 +56975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 25,
 		thunder: 25,
@@ -60782,7 +56990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Tigrex',
 		shot: 40,
 		thunder: 10,
@@ -60798,7 +57005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 110,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: -5,
@@ -60814,7 +57020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -60830,7 +57035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: 5,
@@ -60846,7 +57050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 10,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 25,
 		thunder: 5,
@@ -60862,7 +57065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: 0,
@@ -60878,7 +57080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 15,
 		thunder: 0,
@@ -60894,7 +57095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 0,
@@ -60910,7 +57110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: -5,
@@ -60926,7 +57125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 30,
@@ -60942,7 +57140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 40,
 		thunder: 5,
@@ -60958,7 +57155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 5,
@@ -60974,7 +57170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 10,
 		thunder: 0,
@@ -60990,7 +57185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 25,
 		thunder: 0,
@@ -61006,7 +57200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: 0,
@@ -61022,7 +57215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 110,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 30,
 		thunder: 20,
@@ -61038,7 +57230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 15,
 		thunder: 10,
@@ -61054,7 +57245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 15,
 		thunder: 15,
@@ -61070,7 +57260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 25,
 		thunder: 15,
@@ -61086,7 +57275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 15,
 		thunder: 5,
@@ -61102,7 +57290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 20,
 		thunder: 10,
@@ -61118,7 +57305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 30,
 		thunder: 0,
@@ -61134,7 +57320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 35,
 		thunder: 25,
@@ -61150,7 +57335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 20,
 		thunder: 15,
@@ -61166,7 +57350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -61182,7 +57365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -61198,7 +57380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 15,
 		thunder: 10,
@@ -61214,7 +57395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 25,
 		thunder: 15,
@@ -61230,7 +57410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Tigrex',
 		shot: 30,
 		thunder: 0,
@@ -61246,7 +57425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 110,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: 30,
@@ -61262,7 +57440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -61278,7 +57455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -61294,7 +57470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 25,
 		thunder: 25,
@@ -61310,7 +57485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 15,
 		thunder: 15,
@@ -61326,7 +57500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -61342,7 +57515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 30,
 		thunder: 10,
@@ -61358,7 +57530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 150,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 35,
 		thunder: 35,
@@ -61374,7 +57545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 20,
@@ -61390,7 +57560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -61406,7 +57575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 20,
 		thunder: 25,
@@ -61422,7 +57590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 10,
 		thunder: 15,
@@ -61438,7 +57605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 25,
 		thunder: 25,
@@ -61454,7 +57620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Tower',
-
 		displayName: 'Tigrex',
 		shot: 40,
 		thunder: 10,
@@ -61470,7 +57635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toa Tesukatora',
 		shot: 21,
 		thunder: 10,
@@ -61486,7 +57650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toa Tesukatora',
 		shot: 12,
 		thunder: 5,
@@ -61502,7 +57665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toa Tesukatora',
 		shot: 12,
 		thunder: 5,
@@ -61518,7 +57680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toa Tesukatora',
 		shot: 30,
 		thunder: 5,
@@ -61534,7 +57695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toa Tesukatora',
 		shot: 13,
 		thunder: 5,
@@ -61550,7 +57710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toa Tesukatora',
 		shot: 40,
 		thunder: 10,
@@ -61566,7 +57725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toa Tesukatora',
 		shot: 26,
 		thunder: 10,
@@ -61582,7 +57740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toa Tesukatora',
 		shot: 17,
 		thunder: 5,
@@ -61598,7 +57755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toa Tesukatora',
 		shot: 17,
 		thunder: 5,
@@ -61614,7 +57770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toa Tesukatora',
 		shot: 35,
 		thunder: 5,
@@ -61630,7 +57785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toa Tesukatora',
 		shot: 18,
 		thunder: 5,
@@ -61646,7 +57800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toa Tesukatora',
 		shot: 45,
 		thunder: 10,
@@ -61662,7 +57815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 20,
 		thunder: 0,
@@ -61678,7 +57830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 10,
 		thunder: 0,
@@ -61694,7 +57845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 30,
 		thunder: 0,
@@ -61710,7 +57860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 5,
 		thunder: 0,
@@ -61726,7 +57875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 10,
 		thunder: 0,
@@ -61742,7 +57890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 35,
 		thunder: 0,
@@ -61758,7 +57905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 10,
 		thunder: 0,
@@ -61774,7 +57920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 30,
 		thunder: 0,
@@ -61790,7 +57935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 20,
 		thunder: 0,
@@ -61806,7 +57950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 40,
 		thunder: 0,
@@ -61822,7 +57965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 15,
 		thunder: 0,
@@ -61838,7 +57980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 20,
 		thunder: 0,
@@ -61854,7 +57995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 45,
 		thunder: 0,
@@ -61870,7 +58010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Toridcless',
 		shot: 20,
 		thunder: 0,
@@ -61886,7 +58025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 25,
 		thunder: 0,
@@ -61902,7 +58040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 15,
 		thunder: 0,
@@ -61918,7 +58055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 35,
 		thunder: 0,
@@ -61934,7 +58070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 10,
 		thunder: 0,
@@ -61950,7 +58085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 15,
 		thunder: 0,
@@ -61966,7 +58100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 40,
 		thunder: 0,
@@ -61982,7 +58115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 15,
 		thunder: 0,
@@ -61998,7 +58130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 35,
 		thunder: 0,
@@ -62014,7 +58145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 25,
 		thunder: 0,
@@ -62030,7 +58160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 45,
 		thunder: 0,
@@ -62046,7 +58175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 20,
 		thunder: 0,
@@ -62062,7 +58190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 25,
 		thunder: 0,
@@ -62078,7 +58205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 50,
 		thunder: 0,
@@ -62094,7 +58220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Toridcless',
 		shot: 25,
 		thunder: 0,
@@ -62110,7 +58235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 15,
 		thunder: 0,
@@ -62126,7 +58250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 10,
 		thunder: 0,
@@ -62142,7 +58265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 25,
 		thunder: 0,
@@ -62158,7 +58280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 10,
 		thunder: 0,
@@ -62174,7 +58295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 10,
 		thunder: 0,
@@ -62190,7 +58310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 30,
 		thunder: 0,
@@ -62206,7 +58325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 10,
 		thunder: 0,
@@ -62222,7 +58340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 25,
 		thunder: 0,
@@ -62238,7 +58355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 15,
 		thunder: 0,
@@ -62254,7 +58370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 35,
 		thunder: 0,
@@ -62270,7 +58385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 10,
 		thunder: 0,
@@ -62286,7 +58400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 15,
 		thunder: 0,
@@ -62302,7 +58415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 35,
 		thunder: 0,
@@ -62318,7 +58430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Zenith',
-
 		displayName: 'Zenith Toridcless',
 		shot: 15,
 		thunder: 0,
@@ -62334,7 +58445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 5,
@@ -62350,7 +58460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 21,
 		thunder: 0,
@@ -62366,7 +58475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 0,
@@ -62382,7 +58490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 35,
 		thunder: 5,
@@ -62398,7 +58505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 17,
 		thunder: 0,
@@ -62414,7 +58520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 21,
 		thunder: 0,
@@ -62430,7 +58535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 5,
@@ -62446,7 +58550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Weak Chin',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 32,
 		thunder: 15,
@@ -62462,7 +58565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 21,
 		thunder: 0,
@@ -62478,7 +58580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 0,
@@ -62494,7 +58595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 35,
 		thunder: 5,
@@ -62510,7 +58610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 17,
 		thunder: 0,
@@ -62526,7 +58625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 21,
 		thunder: 0,
@@ -62542,7 +58640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'G Rank',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 5,
@@ -62558,7 +58655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 5,
@@ -62574,7 +58670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 23,
 		thunder: 0,
@@ -62590,7 +58685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 0,
@@ -62606,7 +58700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 41,
 		thunder: 5,
@@ -62622,7 +58715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 17,
 		thunder: 0,
@@ -62638,7 +58730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 23,
 		thunder: 0,
@@ -62654,7 +58745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 5,
@@ -62670,7 +58760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Weak Chin',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 32,
 		thunder: 15,
@@ -62686,7 +58775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 23,
 		thunder: 0,
@@ -62702,7 +58790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 0,
@@ -62718,7 +58805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 41,
 		thunder: 5,
@@ -62734,7 +58820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 17,
 		thunder: 0,
@@ -62750,7 +58835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 23,
 		thunder: 0,
@@ -62766,7 +58850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Weak Chin',
 		rankBand: 'Gou',
-
 		displayName: 'Uragaan',
 		shot: 10,
 		thunder: 5,
@@ -62782,7 +58865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 30,
 		thunder: 5,
@@ -62798,7 +58880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 50,
 		thunder: 10,
@@ -62814,7 +58895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 30,
 		thunder: 0,
@@ -62830,7 +58910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 40,
 		thunder: 10,
@@ -62846,7 +58925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 55,
 		thunder: 5,
@@ -62862,7 +58940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 40,
 		thunder: 0,
@@ -62878,7 +58955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 25,
 		thunder: 15,
@@ -62894,7 +58970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 20,
 		thunder: 5,
@@ -62910,7 +58985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 40,
 		thunder: 10,
@@ -62926,7 +59000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 20,
 		thunder: 0,
@@ -62942,7 +59015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 30,
 		thunder: 10,
@@ -62958,7 +59030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 50,
 		thunder: 5,
@@ -62974,7 +59045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 30,
 		thunder: 0,
@@ -62990,7 +59060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 15,
 		thunder: 15,
@@ -63006,7 +59075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 20,
 		thunder: 5,
@@ -63022,7 +59090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 35,
 		thunder: 10,
@@ -63038,7 +59105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 15,
 		thunder: 0,
@@ -63054,7 +59120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 30,
 		thunder: 10,
@@ -63070,7 +59135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 45,
 		thunder: 5,
@@ -63086,7 +59150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 25,
 		thunder: 0,
@@ -63102,7 +59165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'G Rank',
-
 		displayName: 'Varusaburosu',
 		shot: 10,
 		thunder: 15,
@@ -63118,7 +59180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 30,
 		thunder: 5,
@@ -63134,7 +59195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 50,
 		thunder: 10,
@@ -63150,7 +59210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 45,
 		thunder: 0,
@@ -63166,7 +59225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 40,
 		thunder: 10,
@@ -63182,7 +59240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 55,
 		thunder: 5,
@@ -63198,7 +59255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 40,
 		thunder: 0,
@@ -63214,7 +59270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 25,
 		thunder: 15,
@@ -63230,7 +59285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 20,
 		thunder: 5,
@@ -63246,7 +59300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 40,
 		thunder: 10,
@@ -63262,7 +59315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 25,
 		thunder: 0,
@@ -63278,7 +59330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 35,
 		thunder: 10,
@@ -63294,7 +59345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 50,
 		thunder: 5,
@@ -63310,7 +59360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 30,
 		thunder: 0,
@@ -63326,7 +59375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 20,
 		thunder: 15,
@@ -63342,7 +59390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 20,
 		thunder: 5,
@@ -63358,7 +59405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 35,
 		thunder: 10,
@@ -63374,7 +59420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 20,
 		thunder: 0,
@@ -63390,7 +59435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 30,
 		thunder: 10,
@@ -63406,7 +59450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 45,
 		thunder: 5,
@@ -63422,7 +59465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 25,
 		thunder: 0,
@@ -63438,7 +59480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Inflamed Horn',
 		rankBand: 'Gou',
-
 		displayName: 'Varusaburosu',
 		shot: 15,
 		thunder: 15,
@@ -63454,7 +59495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 30,
 		thunder: 20,
@@ -63470,7 +59510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 10,
 		thunder: 10,
@@ -63486,7 +59525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 20,
 		thunder: 15,
@@ -63502,7 +59540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 15,
 		thunder: 15,
@@ -63518,7 +59555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 15,
 		thunder: 20,
@@ -63534,7 +59570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 35,
 		thunder: 25,
@@ -63550,7 +59585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 15,
 		thunder: 10,
@@ -63566,7 +59600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 25,
 		thunder: 15,
@@ -63582,7 +59615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 10,
 		thunder: 15,
@@ -63598,7 +59630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Voljang',
 		shot: 20,
 		thunder: 25,
@@ -63614,7 +59645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 35,
 		thunder: 20,
@@ -63630,7 +59660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 15,
 		thunder: 10,
@@ -63646,7 +59675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 25,
 		thunder: 15,
@@ -63662,7 +59690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 20,
 		thunder: 15,
@@ -63678,7 +59705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 20,
 		thunder: 20,
@@ -63694,7 +59720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 35,
 		thunder: 25,
@@ -63710,7 +59735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 20,
 		thunder: 10,
@@ -63726,7 +59750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 30,
 		thunder: 15,
@@ -63742,7 +59765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 15,
 		thunder: 15,
@@ -63758,7 +59780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Voljang',
 		shot: 25,
 		thunder: 25,
@@ -63774,7 +59795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Lavasioth',
 		shot: 30,
 		thunder: 5,
@@ -63790,7 +59810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Lavasioth',
 		shot: 20,
 		thunder: 5,
@@ -63806,7 +59825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Lavasioth',
 		shot: 30,
 		thunder: 5,
@@ -63822,7 +59840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Lavasioth',
 		shot: 30,
 		thunder: 10,
@@ -63838,7 +59855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Lavasioth',
 		shot: 25,
 		thunder: 5,
@@ -63854,7 +59870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Lavasioth',
 		shot: 25,
 		thunder: 10,
@@ -63870,7 +59885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Red Lavasioth',
 		shot: 20,
 		thunder: 5,
@@ -63886,7 +59900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Lavasioth',
 		shot: 20,
 		thunder: 5,
@@ -63902,7 +59915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Lavasioth',
 		shot: 35,
 		thunder: 5,
@@ -63918,7 +59930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Lavasioth',
 		shot: 35,
 		thunder: 5,
@@ -63934,7 +59945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Lavasioth',
 		shot: 20,
 		thunder: 10,
@@ -63950,7 +59960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Lavasioth',
 		shot: 25,
 		thunder: 5,
@@ -63966,7 +59975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Lavasioth',
 		shot: 25,
 		thunder: 10,
@@ -63982,7 +59990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Red Lavasioth',
 		shot: 20,
 		thunder: 5,
@@ -63998,7 +60005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Lavasioth',
 		shot: 30,
 		thunder: 5,
@@ -64014,7 +60020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Lavasioth',
 		shot: 35,
 		thunder: 5,
@@ -64030,7 +60035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Lavasioth',
 		shot: 35,
 		thunder: 5,
@@ -64046,7 +60050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Lavasioth',
 		shot: 30,
 		thunder: 5,
@@ -64062,7 +60065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Lavasioth',
 		shot: 30,
 		thunder: 5,
@@ -64078,7 +60080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Lavasioth',
 		shot: 30,
 		thunder: 5,
@@ -64094,7 +60095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Red Lavasioth',
 		shot: 30,
 		thunder: 5,
@@ -64110,7 +60110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Aruganosu',
 		shot: 30,
 		thunder: 25,
@@ -64126,7 +60125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Aruganosu',
 		shot: 20,
 		thunder: 25,
@@ -64142,7 +60140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Aruganosu',
 		shot: 30,
 		thunder: 25,
@@ -64158,7 +60155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Aruganosu',
 		shot: 30,
 		thunder: 25,
@@ -64174,7 +60170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Aruganosu',
 		shot: 25,
 		thunder: 25,
@@ -64190,7 +60185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Aruganosu',
 		shot: 25,
 		thunder: 25,
@@ -64206,7 +60200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Aruganosu',
 		shot: 20,
 		thunder: 25,
@@ -64222,7 +60215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Goruganosu',
 		shot: 30,
 		thunder: 0,
@@ -64238,7 +60230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Goruganosu',
 		shot: 20,
 		thunder: 0,
@@ -64254,7 +60245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Goruganosu',
 		shot: 30,
 		thunder: 0,
@@ -64270,7 +60260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Goruganosu',
 		shot: 30,
 		thunder: 0,
@@ -64286,7 +60275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Goruganosu',
 		shot: 25,
 		thunder: 0,
@@ -64302,7 +60290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Goruganosu',
 		shot: 25,
 		thunder: 0,
@@ -64318,7 +60305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Goruganosu',
 		shot: 20,
 		thunder: 0,
@@ -64334,7 +60320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lavasioth',
 		shot: 30,
 		thunder: 5,
@@ -64350,7 +60335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lavasioth',
 		shot: 20,
 		thunder: 15,
@@ -64366,7 +60350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lavasioth',
 		shot: 30,
 		thunder: 5,
@@ -64382,7 +60365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lavasioth',
 		shot: 30,
 		thunder: 15,
@@ -64398,7 +60380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lavasioth',
 		shot: 25,
 		thunder: 15,
@@ -64414,7 +60395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lavasioth',
 		shot: 25,
 		thunder: 10,
@@ -64430,7 +60410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Lavasioth',
 		shot: 20,
 		thunder: 5,
@@ -64446,7 +60425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lavasioth',
 		shot: 25,
 		thunder: 5,
@@ -64462,7 +60440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lavasioth',
 		shot: 20,
 		thunder: 15,
@@ -64478,7 +60455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lavasioth',
 		shot: 20,
 		thunder: 5,
@@ -64494,7 +60470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lavasioth',
 		shot: 20,
 		thunder: 15,
@@ -64510,7 +60485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lavasioth',
 		shot: 25,
 		thunder: 15,
@@ -64526,7 +60500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lavasioth',
 		shot: 35,
 		thunder: 10,
@@ -64542,7 +60515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Lavasioth',
 		shot: 35,
 		thunder: 5,
@@ -64558,7 +60530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lavasioth',
 		shot: 50,
 		thunder: 0,
@@ -64574,7 +60545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lavasioth',
 		shot: 20,
 		thunder: 0,
@@ -64590,7 +60560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lavasioth',
 		shot: 30,
 		thunder: 0,
@@ -64606,7 +60575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lavasioth',
 		shot: 10,
 		thunder: 5,
@@ -64622,7 +60590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lavasioth',
 		shot: 10,
 		thunder: 5,
@@ -64638,7 +60605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lavasioth',
 		shot: 10,
 		thunder: 15,
@@ -64654,7 +60620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Lavasioth',
 		shot: 25,
 		thunder: 0,
@@ -64670,7 +60635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Lavasioth',
 		shot: 25,
 		thunder: 5,
@@ -64686,7 +60650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Lavasioth',
 		shot: 20,
 		thunder: 15,
@@ -64702,7 +60665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Lavasioth',
 		shot: 20,
 		thunder: 5,
@@ -64718,7 +60680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Lavasioth',
 		shot: 20,
 		thunder: 15,
@@ -64734,7 +60695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Lavasioth',
 		shot: 25,
 		thunder: 15,
@@ -64750,7 +60710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Lavasioth',
 		shot: 35,
 		thunder: 10,
@@ -64766,7 +60725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Tower',
-
 		displayName: 'Lavasioth',
 		shot: 35,
 		thunder: 5,
@@ -64782,7 +60740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 50,
 		thunder: 5,
@@ -64798,7 +60755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 25,
 		thunder: 5,
@@ -64814,7 +60770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 60,
 		thunder: 20,
@@ -64830,7 +60785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 30,
 		thunder: 5,
@@ -64846,7 +60800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 45,
 		thunder: 0,
@@ -64862,7 +60815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 0,
@@ -64878,7 +60830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 30,
 		thunder: 0,
@@ -64894,7 +60845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 50,
 		thunder: 5,
@@ -64910,7 +60860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 25,
 		thunder: 5,
@@ -64926,7 +60875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 60,
 		thunder: 20,
@@ -64942,7 +60890,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 30,
 		thunder: 5,
@@ -64958,7 +60905,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 45,
 		thunder: 0,
@@ -64974,7 +60920,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 0,
@@ -64990,7 +60935,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 30,
 		thunder: 0,
@@ -65006,7 +60950,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 50,
 		thunder: 5,
@@ -65022,7 +60965,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 25,
 		thunder: 5,
@@ -65038,7 +60980,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 60,
 		thunder: 20,
@@ -65054,7 +60995,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 30,
 		thunder: 5,
@@ -65070,7 +61010,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 45,
 		thunder: 0,
@@ -65086,7 +61025,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 0,
@@ -65102,7 +61040,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'G Rank',
-
 		displayName: 'Yama Kurai',
 		shot: 30,
 		thunder: 0,
@@ -65118,7 +61055,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 60,
 		thunder: 5,
@@ -65134,7 +61070,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 5,
@@ -65150,7 +61085,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 65,
 		thunder: 20,
@@ -65166,7 +61100,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 5,
@@ -65182,7 +61115,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 55,
 		thunder: 0,
@@ -65198,7 +61130,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 40,
 		thunder: 0,
@@ -65214,7 +61145,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 0,
@@ -65230,7 +61160,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 60,
 		thunder: 5,
@@ -65246,7 +61175,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 5,
@@ -65262,7 +61190,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 65,
 		thunder: 20,
@@ -65278,7 +61205,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 5,
@@ -65294,7 +61220,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 55,
 		thunder: 0,
@@ -65310,7 +61235,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 40,
 		thunder: 0,
@@ -65326,7 +61250,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Enraged',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 0,
@@ -65342,7 +61265,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 60,
 		thunder: 5,
@@ -65358,7 +61280,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 5,
@@ -65374,7 +61295,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 65,
 		thunder: 20,
@@ -65390,7 +61310,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 5,
@@ -65406,7 +61325,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 55,
 		thunder: 0,
@@ -65422,7 +61340,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 40,
 		thunder: 0,
@@ -65438,7 +61355,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Storm',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Kurai',
 		shot: 35,
 		thunder: 0,
@@ -65454,7 +61370,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yama Tsukami',
 		shot: 50,
 		thunder: 0,
@@ -65470,7 +61385,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yama Tsukami',
 		shot: 25,
 		thunder: 0,
@@ -65486,7 +61400,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yama Tsukami',
 		shot: 60,
 		thunder: 0,
@@ -65502,7 +61415,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yama Tsukami',
 		shot: 20,
 		thunder: 0,
@@ -65518,7 +61430,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yama Tsukami',
 		shot: 90,
 		thunder: 0,
@@ -65534,7 +61445,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yama Tsukami',
 		shot: 30,
 		thunder: 0,
@@ -65550,7 +61460,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Yama Tsukami',
 		shot: 20,
 		thunder: 0,
@@ -65566,7 +61475,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 50,
 		thunder: 15,
@@ -65582,7 +61490,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 25,
 		thunder: 20,
@@ -65598,7 +61505,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 45,
 		thunder: 25,
@@ -65614,7 +61520,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 20,
 		thunder: 10,
@@ -65630,7 +61535,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 40,
 		thunder: 20,
@@ -65646,7 +61550,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 30,
 		thunder: 15,
@@ -65662,7 +61565,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 20,
 		thunder: 15,
@@ -65678,7 +61580,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 45,
 		thunder: 15,
@@ -65694,7 +61595,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 20,
 		thunder: 20,
@@ -65710,7 +61610,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 40,
 		thunder: 25,
@@ -65726,7 +61625,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 15,
 		thunder: 10,
@@ -65742,7 +61640,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 35,
 		thunder: 20,
@@ -65758,7 +61655,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 25,
 		thunder: 15,
@@ -65774,7 +61670,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Red',
 		rankBand: 'Gou',
-
 		displayName: 'Yama Tsukami',
 		shot: 15,
 		thunder: 15,
@@ -65790,7 +61685,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 200,
 		monsterState: 'Default',
 		rankBand: 'Default',
-
 		displayName: 'Ceanataur',
 		shot: 65,
 		thunder: 60,
@@ -65806,7 +61700,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zenaserisu',
 		shot: 25,
 		thunder: 25,
@@ -65822,7 +61715,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zenaserisu',
 		shot: 15,
 		thunder: 15,
@@ -65838,7 +61730,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zenaserisu',
 		shot: 20,
 		thunder: 20,
@@ -65854,7 +61745,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zenaserisu',
 		shot: 35,
 		thunder: 30,
@@ -65870,7 +61760,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zenaserisu',
 		shot: 35,
 		thunder: 15,
@@ -65886,7 +61775,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zenaserisu',
 		shot: 25,
 		thunder: 25,
@@ -65902,7 +61790,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Sparkling Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -65918,7 +61805,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Sparkling Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -65934,7 +61820,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Sparkling Zerureusu',
 		shot: 15,
 		thunder: 0,
@@ -65950,7 +61835,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Sparkling Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -65966,7 +61850,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Sparkling Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -65982,7 +61865,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Sparkling Zerureusu',
 		shot: 35,
 		thunder: 0,
@@ -65998,7 +61880,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Sparkling Zerureusu',
 		shot: 15,
 		thunder: 0,
@@ -66014,7 +61895,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66030,7 +61910,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66046,7 +61925,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66062,7 +61940,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66078,7 +61955,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 30,
 		thunder: 0,
@@ -66094,7 +61970,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 50,
 		thunder: 0,
@@ -66110,7 +61985,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66126,7 +62000,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66142,7 +62015,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66158,7 +62030,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66174,7 +62045,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66190,7 +62060,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 30,
 		thunder: 0,
@@ -66206,7 +62075,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 50,
 		thunder: 0,
@@ -66222,7 +62090,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66238,7 +62105,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Anti-Impact',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66254,7 +62120,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66270,7 +62135,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66286,7 +62150,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66302,7 +62165,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 30,
 		thunder: 0,
@@ -66318,7 +62180,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 50,
 		thunder: 0,
@@ -66334,7 +62195,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66350,7 +62210,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Anti-Shot',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66366,7 +62225,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66382,7 +62240,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66398,7 +62255,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66414,7 +62270,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 30,
 		thunder: 0,
@@ -66430,7 +62285,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 15,
 		thunder: 0,
@@ -66446,7 +62300,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66462,7 +62315,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 10,
 		thunder: 0,
@@ -66478,7 +62330,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 10,
 		thunder: 0,
@@ -66494,7 +62345,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66510,7 +62360,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66526,7 +62375,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 30,
 		thunder: 0,
@@ -66542,7 +62390,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 50,
 		thunder: 0,
@@ -66558,7 +62405,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: '?',
 		rankBand: 'G Rank',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66574,7 +62420,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66590,7 +62435,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66606,7 +62450,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66622,7 +62465,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66638,7 +62480,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 30,
 		thunder: 0,
@@ -66654,7 +62495,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 50,
 		thunder: 0,
@@ -66670,7 +62510,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66686,7 +62525,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66702,7 +62540,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66718,7 +62555,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66734,7 +62570,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66750,7 +62585,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 30,
 		thunder: 0,
@@ -66766,7 +62600,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 50,
 		thunder: 0,
@@ -66782,7 +62615,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Cutting',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66798,7 +62630,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Anti-Impact',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66814,7 +62645,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66830,7 +62660,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66846,7 +62675,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66862,7 +62690,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 30,
 		thunder: 0,
@@ -66878,7 +62705,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 50,
 		thunder: 0,
@@ -66894,7 +62720,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Impact',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66910,7 +62735,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Anti-Shot',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66926,7 +62750,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66942,7 +62765,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 20,
 		thunder: 0,
@@ -66958,7 +62780,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -66974,7 +62795,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 30,
 		thunder: 0,
@@ -66990,7 +62810,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 15,
 		thunder: 0,
@@ -67006,7 +62825,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Anti-Shot',
 		rankBand: 'Gou',
-
 		displayName: 'Zerureusu',
 		shot: 25,
 		thunder: 0,
@@ -67022,7 +62840,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 35,
 		thunder: 20,
@@ -67038,7 +62855,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 13,
 		thunder: 10,
@@ -67054,7 +62870,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 21,
 		thunder: 15,
@@ -67070,7 +62885,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 14,
 		thunder: 10,
@@ -67086,7 +62900,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 18,
 		thunder: 10,
@@ -67102,7 +62915,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 15,
 		thunder: 10,
@@ -67118,7 +62930,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 10,
 		thunder: 20,
@@ -67134,7 +62945,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 35,
 		thunder: 25,
@@ -67150,7 +62960,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 16,
 		thunder: 15,
@@ -67166,7 +62975,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 29,
 		thunder: 0,
@@ -67182,7 +62990,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 13,
 		thunder: 20,
@@ -67198,7 +63005,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 18,
 		thunder: 15,
@@ -67214,7 +63020,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 17,
 		thunder: 15,
@@ -67230,7 +63035,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Stygian Zinogre',
 		shot: 5,
 		thunder: 25,
@@ -67246,7 +63050,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 45,
 		thunder: 35,
@@ -67262,7 +63065,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 18,
 		thunder: 15,
@@ -67278,7 +63080,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 26,
 		thunder: 25,
@@ -67294,7 +63095,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 19,
 		thunder: 15,
@@ -67310,7 +63110,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 24,
 		thunder: 15,
@@ -67326,7 +63125,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 22,
 		thunder: 10,
@@ -67342,7 +63140,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 20,
 		thunder: 25,
@@ -67358,7 +63155,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 35,
 		thunder: 30,
@@ -67374,7 +63170,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 16,
 		thunder: 15,
@@ -67390,7 +63185,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 34,
 		thunder: 0,
@@ -67406,7 +63200,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 18,
 		thunder: 25,
@@ -67422,7 +63215,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 23,
 		thunder: 15,
@@ -67438,7 +63230,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 22,
 		thunder: 15,
@@ -67454,7 +63245,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Stygian Zinogre',
 		shot: 10,
 		thunder: 25,
@@ -67470,7 +63260,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 42,
 		thunder: 0,
@@ -67486,7 +63275,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 18,
 		thunder: 0,
@@ -67502,7 +63290,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 21,
 		thunder: 0,
@@ -67518,7 +63305,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 18,
 		thunder: 0,
@@ -67534,7 +63320,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 21,
 		thunder: 0,
@@ -67550,7 +63335,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 18,
 		thunder: 0,
@@ -67566,7 +63350,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 10,
 		thunder: 0,
@@ -67582,7 +63365,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 42,
 		thunder: 0,
@@ -67598,7 +63380,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 21,
 		thunder: 0,
@@ -67614,7 +63395,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 33,
 		thunder: 0,
@@ -67630,7 +63410,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 18,
 		thunder: 0,
@@ -67646,7 +63425,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 24,
 		thunder: 0,
@@ -67662,7 +63440,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 22,
 		thunder: 0,
@@ -67678,7 +63455,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 10,
 		thunder: 0,
@@ -67694,7 +63470,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 17,
 		thunder: 0,
@@ -67710,7 +63485,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 16,
 		thunder: 0,
@@ -67726,7 +63500,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 25,
 		thunder: 0,
@@ -67742,7 +63515,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 12,
 		thunder: 0,
@@ -67758,7 +63530,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 30,
 		thunder: 0,
@@ -67774,7 +63545,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 17,
 		thunder: 0,
@@ -67790,7 +63560,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Extreme',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 5,
 		thunder: 0,
@@ -67806,7 +63575,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Thunder Cloak',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 15,
 		thunder: 0,
@@ -67822,7 +63590,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Thunder Cloak',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 13,
 		thunder: 0,
@@ -67838,7 +63605,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Thunder Cloak',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 20,
 		thunder: 0,
@@ -67854,7 +63620,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Thunder Cloak',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 10,
 		thunder: 0,
@@ -67870,7 +63635,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Thunder Cloak',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 30,
 		thunder: 0,
@@ -67886,7 +63650,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Thunder Cloak',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 13,
 		thunder: 0,
@@ -67902,7 +63665,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Thunder Cloak',
 		rankBand: 'G Rank',
-
 		displayName: 'Zinogre',
 		shot: 5,
 		thunder: 0,
@@ -67918,7 +63680,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 42,
 		thunder: 0,
@@ -67934,7 +63695,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 18,
 		thunder: 0,
@@ -67950,7 +63710,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 26,
 		thunder: 0,
@@ -67966,7 +63725,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 18,
 		thunder: 0,
@@ -67982,7 +63740,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 24,
 		thunder: 0,
@@ -67998,7 +63755,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 25,
 		thunder: 0,
@@ -68014,7 +63770,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Default',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 10,
 		thunder: 0,
@@ -68030,7 +63785,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 120,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 42,
 		thunder: 0,
@@ -68046,7 +63800,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 21,
 		thunder: 0,
@@ -68062,7 +63815,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 33,
 		thunder: 0,
@@ -68078,7 +63830,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 18,
 		thunder: 0,
@@ -68094,7 +63845,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 28,
 		thunder: 0,
@@ -68110,7 +63860,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 25,
 		thunder: 0,
@@ -68126,7 +63875,6 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 		monsterState: 'Charged',
 		rankBand: 'Gou',
-
 		displayName: 'Zinogre',
 		shot: 10,
 		thunder: 0,

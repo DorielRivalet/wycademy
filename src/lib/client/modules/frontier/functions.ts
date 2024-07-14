@@ -277,10 +277,10 @@ export function convertHitzoneInfo(
 			values: [
 				{ type: 'Cutting', value: curr.cutting },
 				{ type: 'Impact', value: curr.impact },
-				{ type: 'Shot', value: 0 }, // Assuming shot value is missing in HitzoneInfo
+				{ type: 'Shot', value: curr.shot },
 				{ type: 'Fire', value: curr.fire },
-				{ type: 'Water', value: 0 }, // Assuming water value is missing in HitzoneInfo
-				{ type: 'Thunder', value: 0 }, // Assuming thunder value is missing in HitzoneInfo
+				{ type: 'Water', value: curr.water },
+				{ type: 'Thunder', value: curr.thunder },
 				{ type: 'Dragon', value: curr.dragon },
 				{ type: 'Ice', value: curr.ice },
 				{ type: 'Stun', value: curr.stun },
@@ -390,18 +390,21 @@ export function getHitzoneColorsForHitzones(
 	const hitzoneColorsMap: { [key: string]: string } = {};
 	sortedValues.forEach((value, index) => {
 		const parts = groupedByValue[value];
-		if (index === 0) {
+
+		if (value <= 0) {
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[0]));
+		} else if (index === 0) {
 			// Highest value(s)
-			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[3]));
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[4]));
 		} else if (index === 1) {
 			// Second highest value(s)
-			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[2]));
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[3]));
 		} else if (index === 2) {
 			// Third highest value(s)
-			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[1]));
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[2]));
 		} else {
 			// The rest
-			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[0]));
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[1]));
 		}
 	});
 
