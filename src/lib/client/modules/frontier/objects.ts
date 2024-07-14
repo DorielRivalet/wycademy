@@ -1272,6 +1272,8 @@ import GuildCardZenaserisu from '$lib/client/images/guild_card/zenaserisu.webp';
 import GuildCardZerureusu from '$lib/client/images/guild_card/zerureusu.webp';
 import GuildCardZinogre from '$lib/client/images/guild_card/zinogre.webp';
 import SilhouetteAbiorugu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAbiorugu.svelte';
+import SilhouetteAkantor from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkantor.svelte';
+import SilhouetteAkuraJebia from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkuraJebia.svelte';
 
 // TODO the colors arrays should be grouped together.
 
@@ -5064,7 +5066,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderAkantor,
 		component: ComponentMonsterAkantor,
 		link: '/hunter-notes/monsters/overview/akantor',
-
+		hitzoneComponent: SilhouetteAkantor,
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -5327,6 +5329,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Akura Jebia',
 		icon: IconMonsterAkuraJebia,
 		rank: 'G Rank',
+		hitzoneComponent: SilhouetteAkuraJebia,
 		render: IconRenderMonsterAkuraJebia,
 		fullRender: FullMonsterRenderAkuraJebia,
 		component: ComponentMonsterAkuraJebia,
