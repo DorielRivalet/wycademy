@@ -150,8 +150,13 @@
 			(b?.displayName?.codePointAt(0) ?? 0),
 	);
 
+	let selectedMonsterIdFromList: FrontierMonsterName = findMonster(
+		$page.params.monster,
+	)?.displayName;
+
 	/** TODO this changes depending on monster*/
-	let selectedRankBand: FrontierMonsterHitzoneRankBand = 'Default';
+	let selectedRankBand: FrontierMonsterHitzoneRankBand =
+		getAvailableRankBands(selectedMonsterIdFromList)[0].id || 'Default';
 	let selectedHitzoneType: FrontierMonsterHitzoneType = 'Cutting';
 	let selectedMonsterState = 'Default';
 
@@ -159,10 +164,6 @@
 
 	$: monster = findMonster($page.params.monster);
 	$: monsterID = findMonsterID(monster);
-
-	let selectedMonsterIdFromList: FrontierMonsterName = findMonster(
-		$page.params.monster,
-	)?.displayName;
 
 	$: hitzones =
 		convertHitzoneInfo(
