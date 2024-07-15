@@ -758,7 +758,8 @@ export type FrontierMonsterPart =
 	| 'Fangs'
 	| 'Mouth'
 	| 'Forewings'
-	| 'Weakpoint';
+	| 'Weakpoint'
+	| 'Spine';
 
 export type FrontierMonsterHitzoneType =
 	| 'Cutting'
