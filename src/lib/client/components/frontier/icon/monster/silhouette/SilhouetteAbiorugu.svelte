@@ -246,7 +246,8 @@
 	}
 
 	path {
-		transition: fill motion.$duration-moderate-02
-			motion.motion(standard, productive);
+		transition:
+			fill motion.$duration-moderate-02 motion.motion(standard, productive),
+			stroke motion.$duration-moderate-02 motion.motion(standard, productive);
 	}
 </style>

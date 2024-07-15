@@ -751,6 +751,7 @@ export type FrontierMonsterPart =
 	| 'Left Winged Foot'
 	| 'Wing Foot'
 	| 'Spikes'
+	| 'Wingspikes'
 	| 'Belly/Legs'
 	| 'Tongue'
 	| 'Shoulders'
@@ -799,7 +800,7 @@ export type FrontierMonsterPartInfo = {
 
 export type FrontierMonsterInfo = {
 	id: number;
-	name: FrontierMonsterName;
+	name: FrontierMonsterName | 'Violent Raviente'; // TODO update ezlion
 	rank: FrontierRankBand;
 	icon: any;
 	render: any;

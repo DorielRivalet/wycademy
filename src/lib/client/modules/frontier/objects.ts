@@ -311,6 +311,7 @@ import IconMonsterWhiteEspinas from '$lib/client/images/monster/white_espinas.we
 import IconMonsterKamuOrugaron from '$lib/client/images/monster/kamu_orugaron.webp';
 import IconMonsterNonoOrugaron from '$lib/client/images/monster/nono_orugaron.webp';
 import IconMonsterRaviente from '$lib/client/images/monster/raviente.webp';
+import IconMonsterViolentRaviente from '$lib/client/images/monster/violent_raviente.webp';
 import IconMonsterDyuragaua from '$lib/client/images/monster/dyuragaua.webp';
 import IconMonsterDoragyurosu from '$lib/client/images/monster/doragyurosu.webp';
 import IconMonsterGurenzeburu from '$lib/client/images/monster/gurenzeburu.webp';
@@ -467,6 +468,8 @@ import IconRenderMonsterWhiteEspinas from '$lib/client/images/monster/render/whi
 import IconRenderMonsterKamuOrugaron from '$lib/client/images/monster/render/kamu_orugaron.webp';
 import IconRenderMonsterNonoOrugaron from '$lib/client/images/monster/render/nono_orugaron.webp';
 import IconRenderMonsterRaviente from '$lib/client/images/monster/render/raviente.webp';
+import IconRenderMonsterViolentRaviente from '$lib/client/images/monster/render/violent_raviente.webp';
+
 import IconRenderMonsterDyuragaua from '$lib/client/images/monster/render/dyuragaua.webp';
 import IconRenderMonsterDoragyurosu from '$lib/client/images/monster/render/doragyurosu.webp';
 import IconRenderMonsterGurenzeburu from '$lib/client/images/monster/render/gurenzeburu.webp';
@@ -733,6 +736,7 @@ import ComponentMonsterWhiteEspinas from '$lib/client/components/frontier/icon/m
 import ComponentMonsterKamuOrugaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterNonoOrugaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterRaviente from '$lib/client/components/frontier/icon/monster/Raviente3.svelte';
+import ComponentMonsterViolentRaviente from '$lib/client/components/frontier/icon/monster/ViolentRaviente2.svelte';
 import ComponentMonsterDyuragaua from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterDoragyurosu from '$lib/client/components/frontier/icon/monster/Doragyurosu.svelte';
 import ComponentMonsterGurenzeburu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
@@ -1016,6 +1020,7 @@ import FullMonsterRenderWhiteEspinas from '$lib/client/images/monster/render/ful
 import FullMonsterRenderKamuOrugaron from '$lib/client/images/monster/render/full/kamu-orugaron.webp';
 import FullMonsterRenderNonoOrugaron from '$lib/client/images/monster/render/full/nono-orugaron.webp';
 import FullMonsterRenderRaviente from '$lib/client/images/monster/render/full/raviente.webp';
+import FullMonsterRenderViolentRaviente from '$lib/client/images/monster/render/full/violent-raviente.webp';
 import FullMonsterRenderDyuragaua from '$lib/client/images/monster/render/full/dyuragaua.webp';
 import FullMonsterRenderDoragyurosu from '$lib/client/images/monster/render/full/doragyurosu.webp';
 import FullMonsterRenderGurenzeburu from '$lib/client/images/monster/render/full/gurenzeburu.webp';
@@ -1275,6 +1280,14 @@ import SilhouetteAbiorugu from '$lib/client/components/frontier/icon/monster/sil
 import SilhouetteAkantor from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkantor.svelte';
 import SilhouetteAkuraJebia from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkuraJebia.svelte';
 import SilhouetteAmatsu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAmatsu.svelte';
+import SilhouetteAnorupatisu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAnorupatisu.svelte';
+import SilhouetteAruganosu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte';
+import SilhouetteAshenLaoShanLung from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAshenLaoShanLung.svelte';
+import SilhouetteAzureRathalos from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAzureRathalos.svelte';
+import SilhouetteBarioth from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBarioth.svelte';
+import SilhouetteBaruragaru from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBaruragaru.svelte';
+import SilhouetteBasarios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBasarios.svelte';
+import SilhouetteBerserkRaviente from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerserkRaviente.svelte';
 
 // TODO the colors arrays should be grouped together.
 
@@ -2018,6 +2031,7 @@ export const ArmorTypes: FrontierArmor[] = [
 
 export const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
 
+/**TODO: violent raviente? */
 export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 0,
@@ -2340,6 +2354,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Lao-Shan Lung',
 		icon: IconMonsterLaoShanLung,
 		rank: 'G Rank',
+		hitzoneComponent: SilhouetteAshenLaoShanLung,
 		render: IconRenderMonsterLaoShanLung,
 		fullRender: FullMonsterRenderLaoShanLung,
 		component: ComponentMonsterLaoShanLung,
@@ -2430,7 +2445,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderRathalos,
 		component: ComponentMonsterRathalos,
 		link: '/hunter-notes/monsters/overview/rathalos',
-
+		hitzoneComponent: SilhouetteAzureRathalos,
 		unusedComponent: false,
 		displayName: 'Rathalos',
 		type: 'Large',
@@ -2942,6 +2957,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterBasarios,
 		fullRender: FullMonsterRenderBasarios,
 		component: ComponentMonsterBasarios,
+		hitzoneComponent: SilhouetteBasarios,
 		unusedComponent: true,
 		displayName: 'Basarios',
 		link: '/hunter-notes/monsters/overview/basarios',
@@ -3606,6 +3622,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderSilverRathalos,
 		component: ComponentMonsterSilverRathalos,
 		link: '/hunter-notes/monsters/overview/silver-rathalos',
+		hitzoneComponent: SilhouetteAzureRathalos,
 
 		unusedComponent: false,
 		type: 'Large',
@@ -3955,6 +3972,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 49,
 		name: 'Azure Rathalos',
 		displayName: 'Azure Rathalos',
+		hitzoneComponent: SilhouetteAzureRathalos,
+
 		icon: IconMonsterAzureRathalos,
 		rank: 'G Rank',
 		render: IconRenderMonsterAzureRathalos,
@@ -3989,6 +4008,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Ashen Lao-Shan Lung',
 		displayName: 'Ashen Lao-Shan Lung',
 		icon: IconMonsterAshenLaoShanLung,
+		hitzoneComponent: SilhouetteAshenLaoShanLung,
+
 		rank: 'G Rank',
 		render: IconRenderMonsterAshenLaoShanLung,
 		fullRender: FullMonsterRenderAshenLaoShanLung,
@@ -4954,6 +4975,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Lavasioth',
 		displayName: 'Lavasioth',
 		icon: IconMonsterLavasioth,
+		hitzoneComponent: SilhouetteAruganosu,
+
 		rank: 'G Rank',
 		render: IconRenderMonsterLavasioth,
 		link: '/hunter-notes/monsters/overview/lavasioth',
@@ -5131,6 +5154,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: false,
 		type: 'Large',
 		link: '/hunter-notes/monsters/overview/red-lavasioth',
+		hitzoneComponent: SilhouetteAruganosu,
 
 		ecology:
 			'A Lavasioth Sub-Species which has melted rare ores into its molten armor, causing it to remain red even when cooled. A more developed lava-storage organ allows them to utilize additional attacks.',
@@ -5522,7 +5546,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Raviente',
 		icon: IconMonsterRaviente,
 		link: '/hunter-notes/monsters/overview/raviente',
-
+		hitzoneComponent: SilhouetteBerserkRaviente,
 		rank: 'G Rank',
 		render: IconRenderMonsterRaviente,
 		fullRender: FullMonsterRenderRaviente,
@@ -5539,6 +5563,31 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		habitats: ['Solitude Island'],
 		sizes: ['45000cm'],
 		relatedMonsters: ['Violent Raviente', 'Berserk Raviente'],
+		generation: 'Frontier',
+	},
+	{
+		id: 93,
+		name: 'Violent Raviente',
+		displayName: 'Violent Raviente',
+		icon: IconMonsterViolentRaviente,
+		link: '/hunter-notes/monsters/overview/violent-raviente',
+		hitzoneComponent: SilhouetteBerserkRaviente,
+		rank: 'G Rank',
+		render: IconRenderMonsterViolentRaviente,
+		fullRender: FullMonsterRenderViolentRaviente,
+		component: ComponentMonsterViolentRaviente,
+		unusedComponent: false,
+		type: 'Large',
+		ecology:
+			'A monster in a state of near starvation, hence their deadly off-white color schemes. They are more aggressive than their normal counterpart and will seek to devour any living thing they see.',
+		titles: ['Great Crag Wyvern'],
+		class: 'Unclassified Monster',
+		elements: ['Fire'],
+		ailments: ['Stun', 'Paralysis'],
+		weaknesses: [],
+		habitats: ['Solitude Island'],
+		sizes: ['45000cm'],
+		relatedMonsters: ['Raviente', 'Berserk Raviente'],
 		generation: 'Frontier',
 	},
 	{
@@ -5951,6 +6000,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 109,
 		name: 'Anorupatisu',
 		displayName: 'Anorupatisu',
+		hitzoneComponent: SilhouetteAnorupatisu,
 		icon: IconMonsterAnorupatisu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAnorupatisu,
@@ -6189,6 +6239,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Goruganosu',
 		icon: IconMonsterGoruganosu,
 		link: '/hunter-notes/monsters/overview/goruganosu',
+		hitzoneComponent: SilhouetteAruganosu,
 
 		rank: 'G Rank',
 		render: IconRenderMonsterGoruganosu,
@@ -6223,7 +6274,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Aruganosu',
 		displayName: 'Aruganosu',
 		link: '/hunter-notes/monsters/overview/aruganosu',
-
+		hitzoneComponent: SilhouetteAruganosu,
 		icon: IconMonsterAruganosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterAruganosu,
@@ -6257,6 +6308,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Baruragaru',
 		displayName: 'Baruragaru',
 		icon: IconMonsterBaruragaru,
+		hitzoneComponent: SilhouetteBaruragaru,
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/baruragaru',
 
@@ -6950,6 +7002,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterBerserkRaviente,
 		link: '/hunter-notes/monsters/overview/berserk-raviente',
+		hitzoneComponent: SilhouetteBerserkRaviente,
 
 		fullRender: FullMonsterRenderBerserkRaviente,
 		component: ComponentMonsterBerserkRaviente,
@@ -6997,7 +7050,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterBarioth,
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/barioth',
-
+		hitzoneComponent: SilhouetteBarioth,
 		render: IconRenderMonsterBarioth,
 		fullRender: FullMonsterRenderBarioth,
 		component: ComponentMonsterBarioth,
