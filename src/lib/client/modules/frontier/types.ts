@@ -729,6 +729,7 @@ export type FrontierMonsterPart =
 	| 'Forelegs'
 	| 'Face'
 	| 'Horns'
+	| 'Horn'
 	| 'Tail/Back'
 	| 'Right Limbs'
 	| 'Left Limbs'
