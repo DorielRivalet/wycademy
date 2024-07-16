@@ -1288,6 +1288,10 @@ import SilhouetteBarioth from '$lib/client/components/frontier/icon/monster/silh
 import SilhouetteBaruragaru from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBaruragaru.svelte';
 import SilhouetteBasarios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBasarios.svelte';
 import SilhouetteBerserkRaviente from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerserkRaviente.svelte';
+import SilhouetteBerukyurosu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerukyurosu.svelte';
+import SilhouetteBlackDiablos from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackDiablos.svelte';
+import SilhouetteBlackFatalis from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte';
+import SilhouetteBlackGravios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackGravios.svelte';
 
 // TODO the colors arrays should be grouped together.
 
@@ -2134,6 +2138,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderFatalis,
 		component: ComponentMonsterFatalis,
 		unusedComponent: false,
+		hitzoneComponent: SilhouetteBlackFatalis,
 		displayName: 'Fatalis',
 		type: 'Large',
 		link: '/hunter-notes/monsters/overview/fatalis',
@@ -2592,7 +2597,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: true,
 		displayName: 'Diablos',
 		link: '/hunter-notes/monsters/overview/diablos',
-
+		hitzoneComponent: SilhouetteBlackDiablos,
 		type: 'Large',
 		ecology:
 			'Large Wyverns with a pair of massive horns. Though they feed exclusively on desert cacti, they are violently territorial and are capable of burrowing through sand, as well as charging at high speed. Approach with caution.',
@@ -2748,6 +2753,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterGravios,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/gravios',
+		hitzoneComponent: SilhouetteBlackGravios,
 
 		displayName: 'Gravios',
 		type: 'Large',
@@ -3447,6 +3453,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Crimson Fatalis',
 		icon: IconMonsterCrimsonFatalis,
 		rank: '',
+		hitzoneComponent: SilhouetteBlackFatalis,
+
 		render: IconRenderMonsterCrimsonFatalis,
 		fullRender: FullMonsterRenderCrimsonFatalis,
 		component: ComponentMonsterCrimsonFatalis,
@@ -3730,6 +3738,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterBlackDiablos,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/black-diablos',
+		hitzoneComponent: SilhouetteBlackDiablos,
 
 		type: 'Large',
 		ecology:
@@ -3892,7 +3901,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderBlackGravios,
 		component: ComponentMonsterBlackGravios,
 		link: '/hunter-notes/monsters/overview/black-gravios',
-
+		hitzoneComponent: SilhouetteBlackGravios,
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -4867,6 +4876,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 71,
 		name: 'White Fatalis',
 		displayName: 'White Fatalis',
+		hitzoneComponent: SilhouetteBlackFatalis,
+
 		icon: IconMonsterWhiteFatalis,
 		link: '/hunter-notes/monsters/overview/white-fatalis',
 
@@ -5381,6 +5392,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Berukyurosu',
 		displayName: 'Berukyurosu',
 		icon: IconMonsterBerukyurosu,
+		hitzoneComponent: SilhouetteBerukyurosu,
 		rank: 'G Rank',
 		render: IconRenderMonsterBerukyurosu,
 		fullRender: FullMonsterRenderBerukyurosu,
@@ -5630,6 +5642,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		rank: 'G Rank',
 		render: IconRenderMonsterDoragyurosu,
 		link: '/hunter-notes/monsters/overview/doragyurosu',
+		hitzoneComponent: SilhouetteBerukyurosu,
 
 		fullRender: FullMonsterRenderDoragyurosu,
 		component: ComponentMonsterDoragyurosu,
@@ -8719,6 +8732,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderWhiteFatalis,
 		link: '/hunter-notes/monsters/overview/road-white-fatalis',
 		component: ComponentMonsterRoadWhiteFatalis,
+		hitzoneComponent: SilhouetteBlackFatalis, // todo?
+
 		unusedComponent: false,
 		ecology: `This version of White Fatalis is exclusive to the Hunting Road, only appearing every tenth stage. Many of its attacks are with a mixed element called Emperor's Roar, but it can also create area-wide tremors and tremendous wind gusts to damage foes, rivaling that of a Zenith species. After some time during an intense battle, White Fatalis' spikes and horns will glow from blue to red.
 
