@@ -1304,6 +1304,9 @@ import SilhouetteChameleos from '$lib/client/components/frontier/icon/monster/si
 import SilhouetteCongalala from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteCongalala.svelte';
 import SilhouetteDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDaimyoHermitaur.svelte';
 import SilhouetteDeviljho from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDeviljho.svelte';
+import SilhouetteDiorex from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDiorex.svelte';
+import SilhouetteDisufiroa from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDisufiroa.svelte';
+import SilhouetteDuremudira from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDuremudira.svelte';
 
 // TODO the colors arrays should be grouped together.
 
@@ -5996,6 +5999,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Disufiroa',
 		displayName: 'Disufiroa',
 		icon: IconMonsterDisufiroa,
+		hitzoneComponent: SilhouetteDisufiroa,
+
 		ecology: `Mysterious, yet overwhelmingly powerful, this dragon dwells in an area dubbed the "World's End", which was previously thought to be incapable of supporting life. Ominously, no records of this beast exist and its ecology is a mystery. '`,
 		rank: 'G Rank',
 		render: IconRenderMonsterDisufiroa,
@@ -6524,7 +6529,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Diorex',
 		displayName: 'Diorex',
 		link: '/hunter-notes/monsters/overview/diorex',
-
+		hitzoneComponent: SilhouetteDiorex,
 		icon: IconMonsterDiorex,
 		rank: 'G Rank',
 		ecology:
@@ -6672,7 +6677,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterDuremudira,
 		fullRender: FullMonsterRenderDuremudira,
 		link: '/hunter-notes/monsters/overview/duremudira',
-
+		hitzoneComponent: SilhouetteDuremudira,
 		component: ComponentMonsterDuremudira,
 		unusedComponent: false,
 		ecology:
@@ -7525,7 +7530,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Arrogant Duremudira',
 		icon: IconMonsterArrogantDuremudira,
 		link: '/hunter-notes/monsters/overview/arrogant-duremudira',
-
+		hitzoneComponent: SilhouetteDuremudira,
 		rank: 'G Rank',
 		render: IconRenderMonsterArrogantDuremudira,
 		fullRender: FullMonsterRenderArrogantDuremudira,
@@ -8372,6 +8377,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Disufiroa',
 		displayName: 'Shiten Disufiroa',
 		icon: IconMonsterShitenDisufiroa,
+		hitzoneComponent: SilhouetteDisufiroa,
 		rank: 'Upper Shiten',
 		render: IconRenderMonsterShitenDisufiroa,
 		fullRender: FullMonsterRenderShitenDisufiroa,

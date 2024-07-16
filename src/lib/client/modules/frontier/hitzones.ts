@@ -9145,7 +9145,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 25,
 		stun: 0,
 	},
-	{
+	/*{
 		part: 'None', // TODO unused?
 		cutting: 25,
 		impact: 30,
@@ -9354,7 +9354,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		dragon: 5,
 		ice: 25,
 		stun: 0,
-	},
+	},*/
 	{
 		displayName: 'Burukku',
 		rankBand: 'Default',
@@ -13183,7 +13183,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: '（Area 1）',
+		monsterState: '1st District',
 		part: 'Head',
 		cutting: 30,
 		impact: 35,
@@ -13198,7 +13198,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: '（Area 1）',
+		monsterState: '1st District',
 		part: 'Belly',
 		cutting: 20,
 		impact: 20,
@@ -13213,7 +13213,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: '（Area 1）',
+		monsterState: '1st District',
 		part: 'Back',
 		cutting: 20,
 		impact: 20,
@@ -13228,7 +13228,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: '（Area 1）',
+		monsterState: '1st District',
 		part: 'Tail',
 		cutting: 35,
 		impact: 25,
@@ -13243,7 +13243,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: '（Area 1）',
+		monsterState: '1st District',
 		part: 'Forelegs',
 		cutting: 25,
 		impact: 30,
@@ -13258,7 +13258,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: '（Area 1）',
+		monsterState: '1st District',
 		part: 'Hindlegs',
 		cutting: 25,
 		impact: 25,
@@ -13273,7 +13273,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: '（Area 1）',
+		monsterState: '1st District',
 		part: 'Wings',
 		cutting: 35,
 		impact: 30,
@@ -13288,7 +13288,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: 'Area 2',
+		monsterState: '2nd District',
 		part: 'Head',
 		cutting: 30,
 		impact: 35,
@@ -13303,7 +13303,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: 'Area 2',
+		monsterState: '2nd District',
 		part: 'Belly',
 		cutting: 20,
 		impact: 20,
@@ -13318,7 +13318,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: 'Area 2',
+		monsterState: '2nd District',
 		part: 'Back',
 		cutting: 20,
 		impact: 20,
@@ -13333,7 +13333,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: 'Area 2',
+		monsterState: '2nd District',
 		part: 'Tail',
 		cutting: 35,
 		impact: 25,
@@ -13348,7 +13348,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: 'Area 2',
+		monsterState: '2nd District',
 		part: 'Forelegs',
 		cutting: 25,
 		impact: 30,
@@ -13363,7 +13363,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: 'Area 2',
+		monsterState: '2nd District',
 		part: 'Hindlegs',
 		cutting: 25,
 		impact: 25,
@@ -13378,7 +13378,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Duremudira',
 		rankBand: 'Tower',
-		monsterState: 'Area 2',
+		monsterState: '2nd District',
 		part: 'Wings',
 		cutting: 35,
 		impact: 30,
@@ -13391,8 +13391,8 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 	},
 	{
-		displayName: 'Duremudira',
-		rankBand: 'Tower',
+		displayName: 'Arrogant Duremudira',
+		rankBand: 'Musou',
 		monsterState: 'Default',
 		part: 'Head',
 		cutting: 25,
@@ -13406,8 +13406,8 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 100,
 	},
 	{
-		displayName: 'Duremudira',
-		rankBand: 'Tower',
+		displayName: 'Arrogant Duremudira',
+		rankBand: 'Musou',
 		monsterState: 'Default',
 		part: 'Belly',
 		cutting: 10,
@@ -13421,8 +13421,8 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 	},
 	{
-		displayName: 'Duremudira',
-		rankBand: 'Tower',
+		displayName: 'Arrogant Duremudira',
+		rankBand: 'Musou',
 		monsterState: 'Default',
 		part: 'Back',
 		cutting: 15,
@@ -13436,8 +13436,8 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 	},
 	{
-		displayName: 'Duremudira',
-		rankBand: 'Tower',
+		displayName: 'Arrogant Duremudira',
+		rankBand: 'Musou',
 		monsterState: 'Default',
 		part: 'Tail',
 		cutting: 30,
@@ -13451,8 +13451,8 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 	},
 	{
-		displayName: 'Duremudira',
-		rankBand: 'Tower',
+		displayName: 'Arrogant Duremudira',
+		rankBand: 'Musou',
 		monsterState: 'Default',
 		part: 'Forelegs',
 		cutting: 15,
@@ -13466,8 +13466,8 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 	},
 	{
-		displayName: 'Duremudira',
-		rankBand: 'Tower',
+		displayName: 'Arrogant Duremudira',
+		rankBand: 'Musou',
 		monsterState: 'Default',
 		part: 'Hindlegs',
 		cutting: 15,
@@ -13481,8 +13481,8 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		stun: 0,
 	},
 	{
-		displayName: 'Duremudira',
-		rankBand: 'Tower',
+		displayName: 'Arrogant Duremudira',
+		rankBand: 'Musou',
 		monsterState: 'Default',
 		part: 'Wings',
 		cutting: 25,
