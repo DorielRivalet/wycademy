@@ -1292,6 +1292,18 @@ import SilhouetteBerukyurosu from '$lib/client/components/frontier/icon/monster/
 import SilhouetteBlackDiablos from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackDiablos.svelte';
 import SilhouetteBlackFatalis from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte';
 import SilhouetteBlackGravios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackGravios.svelte';
+import SilhouetteBlangonga from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlangonga.svelte';
+import SilhouetteBlinkingNargacuga from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlinkingNargacuga.svelte';
+import SilhouetteBlueYianKutKu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlueYianKutKu.svelte';
+import SilhouetteBombardierBogabadorumu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBombardierBogabadorumu.svelte';
+import SilhouetteBrachydios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrachydios.svelte';
+import SilhouetteBrightHypnoc from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrightHypnoc.svelte';
+import SilhouetteBulldrome from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBulldrome.svelte';
+import SilhouetteCephadrome from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteCephadrome.svelte';
+import SilhouetteChameleos from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteChameleos.svelte';
+import SilhouetteCongalala from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteCongalala.svelte';
+import SilhouetteDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDaimyoHermitaur.svelte';
+import SilhouetteDeviljho from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDeviljho.svelte';
 
 // TODO the colors arrays should be grouped together.
 
@@ -2315,6 +2327,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 6,
 		name: 'Yian Kut-Ku',
 		icon: IconMonsterYianKutKu,
+		hitzoneComponent: SilhouetteBlueYianKutKu,
 		rank: 'G Rank',
 		render: IconRenderMonsterYianKutKu,
 		fullRender: FullMonsterRenderYianKutKu,
@@ -2391,7 +2404,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		unusedComponent: true,
 		displayName: 'Cephadrome',
 		link: '/hunter-notes/monsters/overview/cephadrome',
-
+		hitzoneComponent: SilhouetteCephadrome,
 		type: 'Large',
 		ecology:
 			'The alpha leader of Cephalos Packs. Much larger than their kin and with darker scales, these beasts possess enhanced paralytic saliva.',
@@ -2706,7 +2719,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Bird Wyvern',
 		elements: [],
 		ailments: [],
-		weaknesses: [],
+		weaknesses: ['Ice'],
 		habitats: [
 			'Forest and Hills',
 			'Old Jungle',
@@ -3516,6 +3529,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Blue Yian Kut-Ku',
 		displayName: 'Blue Yian Kut-Ku',
 		icon: IconMonsterBlueYianKutKu,
+		hitzoneComponent: SilhouetteBlueYianKutKu,
+
 		rank: 'G Rank',
 		render: IconRenderMonsterBlueYianKutKu,
 		fullRender: FullMonsterRenderBlueYianKutKu,
@@ -3951,6 +3966,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Daimyo Hermitaur',
 		displayName: 'Daimyo Hermitaur',
 		icon: IconMonsterDaimyoHermitaur,
+		hitzoneComponent: SilhouetteDaimyoHermitaur,
 		rank: 'G Rank',
 		render: IconRenderMonsterDaimyoHermitaur,
 		fullRender: FullMonsterRenderDaimyoHermitaur,
@@ -4050,7 +4066,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		component: ComponentMonsterBlangonga,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/blangonga',
-
+		hitzoneComponent: SilhouetteBlangonga,
 		ecology:
 			'Leader of a Blango pack it is twice as large and recognized by its giant fangs whiskers, and head-crown. It sends its pack to attack any trespassers. Its jumping power allows it  great mobility in its home range of the snowy mountains.',
 		type: 'Large',
@@ -4079,6 +4095,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Congalala',
 		displayName: 'Congalala',
 		icon: IconMonsterCongalala,
+		hitzoneComponent: SilhouetteCongalala,
 		rank: 'G Rank',
 		render: IconRenderMonsterCongalala,
 		fullRender: FullMonsterRenderCongalala,
@@ -4403,7 +4420,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterChameleos,
 		fullRender: FullMonsterRenderChameleos,
 		link: '/hunter-notes/monsters/overview/chameleos',
-
+		hitzoneComponent: SilhouetteChameleos,
 		component: ComponentMonsterChameleos,
 		unusedComponent: true,
 		type: 'Large',
@@ -4768,6 +4785,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Bulldrome',
 		displayName: 'Bulldrome',
 		icon: IconMonsterBulldrome,
+		hitzoneComponent: SilhouetteBulldrome,
 		rank: 'G Rank',
 		render: IconRenderMonsterBulldrome,
 		fullRender: FullMonsterRenderBulldrome,
@@ -4948,7 +4966,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderHypnocatrice,
 		component: ComponentMonsterHypnocatrice,
 		link: '/hunter-notes/monsters/overview/hypnocatrice',
-
+		hitzoneComponent: SilhouetteBrightHypnoc,
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -5133,6 +5151,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderBrightHypnoc,
 		component: ComponentMonsterBrightHypnoc,
 		link: '/hunter-notes/monsters/overview/bright-hypnoc',
+		hitzoneComponent: SilhouetteBrightHypnoc,
 
 		unusedComponent: true,
 		type: 'Large',
@@ -5302,6 +5321,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender: FullMonsterRenderSilverHypnoc,
 		component: ComponentMonsterSilverHypnoc,
 		link: '/hunter-notes/monsters/overview/silver-hypnoc',
+		hitzoneComponent: SilhouetteBrightHypnoc,
 
 		unusedComponent: true,
 		type: 'Large',
@@ -5621,7 +5641,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Flying Wyvern',
 		elements: ['Ice'],
 		ailments: ['Frostbite', 'Sleep', 'Stun'],
-		weaknesses: [],
+		weaknesses: ['Dragon'],
 		habitats: [
 			'Gorge',
 			'Nest Hole',
@@ -6898,7 +6918,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Deviljho',
 		icon: IconMonsterDeviljho,
 		link: '/hunter-notes/monsters/overview/deviljho',
-
+		hitzoneComponent: SilhouetteDeviljho,
 		rank: 'G Rank',
 		render: IconRenderMonsterDeviljho,
 		fullRender: FullMonsterRenderDeviljho,
@@ -6972,7 +6992,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Brachydios',
 		icon: IconMonsterBrachydios,
 		link: '/hunter-notes/monsters/overview/brachydios',
-
+		hitzoneComponent: SilhouetteBrachydios,
 		rank: 'G Rank',
 		render: IconRenderMonsterBrachydios,
 		fullRender: FullMonsterRenderBrachydios,
@@ -7202,6 +7222,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render: IconRenderMonsterStarvingDeviljho,
 		fullRender: FullMonsterRenderStarvingDeviljho,
 		link: '/hunter-notes/monsters/overview/starving-deviljho',
+		hitzoneComponent: SilhouetteDeviljho,
 
 		component: ComponentMonsterStarvingDeviljho,
 		unusedComponent: false,
@@ -7259,6 +7280,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Nargacuga',
 		icon: IconMonsterNargacuga,
 		rank: 'G Rank',
+		hitzoneComponent: SilhouetteBlinkingNargacuga,
+
 		render: IconRenderMonsterNargacuga,
 		link: '/hunter-notes/monsters/overview/nargacuga',
 
@@ -7398,6 +7421,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 163,
 		name: 'Blinking Nargacuga',
 		displayName: 'Blinking Nargacuga',
+		hitzoneComponent: SilhouetteBlinkingNargacuga,
 		icon: IconMonsterBlinkingNargacuga,
 		link: '/hunter-notes/monsters/overview/blinking-nargacuga',
 		rank: 'G Rank',
@@ -7569,11 +7593,11 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Bogabadorumu',
 		displayName: 'Bogabadorumu',
 		icon: IconMonsterBogabadorumu,
-		rank: 'G Rank',
+		rank: 'Zenith★4',
 		link: '/hunter-notes/monsters/overview/bogabadorumu',
-
 		render: IconRenderMonsterBogabadorumu,
 		fullRender: FullMonsterRenderBogabadorumu,
+		hitzoneComponent: SilhouetteBombardierBogabadorumu,
 		component: ComponentMonsterBogabadorumu,
 		unusedComponent: false,
 		ecology:
@@ -7583,8 +7607,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Flying Wyvern',
 		elements: [],
 		ailments: ['Blast'],
-		weaknesses: [],
-		habitats: ['White Lake, Painted Waterfalls'],
+		weaknesses: ['Ice', 'Water'],
+		habitats: ['White Lake', 'Painted Waterfalls'],
 		sizes: ['Large'],
 		relatedMonsters: ['Bombardier Bogabadorumu'],
 		generation: 'Frontier',
@@ -7596,7 +7620,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		icon: IconMonsterBombardierBogabadorumu,
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/bombardier-bogabadorumu',
-
+		hitzoneComponent: SilhouetteBombardierBogabadorumu,
 		render: IconRenderMonsterBombardierBogabadorumu,
 		fullRender: FullMonsterRenderBombardierBogabadorumu,
 		component: ComponentMonsterBombardierBogabadorumu,
@@ -7607,7 +7631,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Flying Wyvern',
 		elements: [],
 		ailments: ['Blast'],
-		weaknesses: [],
+		weaknesses: ['Ice', 'Water'],
 		habitats: ['Historical Site'],
 		sizes: ['Large'],
 		relatedMonsters: ['Bogabadorumu'],
@@ -7681,7 +7705,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ailments: ['Sleep'],
 		weaknesses: ['Ice'],
 		habitats: ['Forest and Hills', 'Great Forest', 'Clamorous Ridge'],
-		sizes: ['None Listed'],
+		sizes: [],
 		relatedMonsters: ['Shakalaka'],
 		generation: 'Second Generation',
 	},
@@ -7789,20 +7813,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Frontier',
 	},
 	{
-		id: 170,
-		name: 'Bogabadorumu',
-		displayName: 'Bogabadorumu',
-		icon: IconMonsterZenithBogabadorumu,
-		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithBogabadorumu,
-		link: '/hunter-notes/monsters/overview/bogabadorumu',
-		fullRender: FullMonsterRenderBogabadorumu,
-		component: ComponentMonsterBogabadorumu,
-		unusedComponent: true,
-		ecology: `Bogabadorumu are slow and sluggish but very powerful creatures. They are capable of digging and crushing opponent's with their enormous strength, but the real threat comes from the tube like structures all around their bodies, when prepped they can spray out large clouds of explosive gas which take but one strike of their claws or even a roar to detonate the clouds and blow their opponents to smithereens.`,
-		type: 'Large',
-	},
-	{
 		id: 48,
 		name: 'Daimyo Hermitaur',
 		displayName: 'Zenith Daimyo Hermitaur',
@@ -7850,7 +7860,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Flying Wyvern',
 		elements: ['Dragon'],
 		ailments: ['Extreme Dragonblight'],
-		weaknesses: [],
+		weaknesses: ['Fire', 'Water'],
 		habitats: ['Great Forest Peak'],
 		sizes: ['Large'],
 		relatedMonsters: ['Doragyurosu', 'Berukyurosu', 'Zenaserisu'],
@@ -8001,7 +8011,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Elder Dragon',
 		elements: [],
 		ailments: [],
-		weaknesses: [],
+		weaknesses: ['Dragon', 'Fire'],
 		habitats: ["Tower 3, Interceptor's Base"],
 		sizes: [],
 		relatedMonsters: ['Harudomerugu'],
@@ -8236,7 +8246,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Carapaceon',
 		elements: ['Thunder'],
 		ailments: ['Extreme Thunderblight'],
-		weaknesses: [],
+		weaknesses: ['Ice', 'Fire', 'Water'],
 		habitats: ['Tidal Island'],
 		sizes: [],
 		relatedMonsters: ['Taikun Zamuza'],
@@ -8259,7 +8269,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Flying Wyvern',
 		elements: [],
 		ailments: ['Bleed'],
-		weaknesses: [],
+		weaknesses: ['Thunder', 'Dragon'],
 		habitats: ['Desert, Snowy Mountains, Polar Sea, Interception Base, Road'],
 		sizes: ['Gold Crown Large: 2464.1', 'Gold Crown Small: 1388.2'],
 		relatedMonsters: ['Tigrex', 'Diorex'],
@@ -8564,6 +8574,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 155,
 		name: 'Starving Deviljho',
 		displayName: 'Golden Deviljho',
+		hitzoneComponent: SilhouetteDeviljho,
+
 		icon: IconMonsterGoldenDeviljho,
 		rank: 'Musou 2',
 		link: '/hunter-notes/monsters/overview/golden-deviljho',
@@ -8577,7 +8589,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Brute Wyvern',
 		elements: ['Dragon'],
 		ailments: ['Defense Down'],
-		weaknesses: [],
+		weaknesses: ['Thunder', 'Dragon'],
 		habitats: ['Historical Site', 'Competition Arena'],
 		sizes: [],
 		relatedMonsters: [
@@ -8683,7 +8695,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		class: 'Unclassified Monster',
 		elements: ['Fire'],
 		ailments: ['Crystal', 'Stun'],
-		weaknesses: [],
+		weaknesses: ['Fire', 'Water', 'Thunder', 'Ice', 'Dragon'],
 		habitats: ['Nest Hole', ''],
 		sizes: ['Large'],
 		relatedMonsters: ['Mi Ru', 'Dyuragaua'],

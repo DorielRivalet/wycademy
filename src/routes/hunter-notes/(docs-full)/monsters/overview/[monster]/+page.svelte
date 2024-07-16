@@ -202,6 +202,8 @@
 	$: availableMonsterStates = getAvailableMonsterStates(
 		selectedMonsterIdFromList,
 	) || [{ id: 'Default', text: 'Default' }];
+
+	// TODO remove from monster name list ones with unused svg
 </script>
 
 {#if monster}
