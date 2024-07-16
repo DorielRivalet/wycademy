@@ -209,6 +209,7 @@
 {#if monster}
 	<div class="container">
 		<SectionHeadingTopLevel title={monster.displayName} />
+
 		<div class="overview">
 			<div>
 				<BestiaryMonsterGameInfo

@@ -880,7 +880,9 @@ export type FrontierMonsterNameExpanded =
 	| 'Shifting Mi Ru'
 	| 'Ruling Guanzorumu'
 	| 'Four Heavenly King Deviljho'
-	| 'Burning Freezing Elzelion';
+	| 'Burning Freezing Elzelion'
+	| 'Ray Gougarf'
+	| 'Lolo Gougarf';
 
 export type IconSize =
 	| '64px'
