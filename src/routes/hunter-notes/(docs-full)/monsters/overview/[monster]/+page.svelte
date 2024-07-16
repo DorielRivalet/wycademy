@@ -415,21 +415,23 @@
 						items={availableRankBands}
 					/>
 				{/if}
-				<Dropdown
-					titleText="Hitzone Type"
-					bind:selectedId={selectedHitzoneType}
-					items={[
-						{ id: 'Cutting', text: '⚔️ Cutting' },
-						{ id: 'Impact', text: '🔨 Impact' },
-						{ id: 'Shot', text: '🏹 Shot' },
-						{ id: 'Fire', text: '🔥 Fire' },
-						{ id: 'Water', text: '💧 Water' },
-						{ id: 'Thunder', text: '⚡ Thunder' },
-						{ id: 'Dragon', text: '🐲 Dragon' },
-						{ id: 'Ice', text: '❄️ Ice' },
-						{ id: 'Stun', text: '💫 Stun' },
-					]}
-				/>
+				{#if monsterInfo.find((e) => e.displayName === selectedMonsterIdFromList)?.hitzoneComponent}
+					<Dropdown
+						titleText="Hitzone Type"
+						bind:selectedId={selectedHitzoneType}
+						items={[
+							{ id: 'Cutting', text: '⚔️ Cutting' },
+							{ id: 'Impact', text: '🔨 Impact' },
+							{ id: 'Shot', text: '🏹 Shot' },
+							{ id: 'Fire', text: '🔥 Fire' },
+							{ id: 'Water', text: '💧 Water' },
+							{ id: 'Thunder', text: '⚡ Thunder' },
+							{ id: 'Dragon', text: '🐲 Dragon' },
+							{ id: 'Ice', text: '❄️ Ice' },
+							{ id: 'Stun', text: '💫 Stun' },
+						]}
+					/>
+				{/if}
 				{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
 					<Dropdown
 						titleText="Monster State"
