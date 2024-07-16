@@ -398,10 +398,32 @@
 		</div>
 		<section>
 			<SectionHeading title="Hitzone Values" level={2} />
+			<p class="spaced-paragraph">
+				The colors in the silhouette denotes the highest and lowest values for
+				the hitzone type, while the values in bold in the table denotes the
+				highest and second highest values for that column.
+			</p>
+			<div class="hitzone-colors-description">
+				<UnorderedList>
+					<ListItem>Red: Highest values for this hitzone type.</ListItem>
+					<ListItem
+						>Orange: Second highest values for this hitzone type.</ListItem
+					>
+					<ListItem
+						>Yellow: Third highest values for this hitzone type.</ListItem
+					>
+					<ListItem>Green: Values higher than 0 for this hitzone type.</ListItem
+					>
+					<ListItem
+						>Blue: Values lower or equal to 0 for this hitzone type.</ListItem
+					>
+				</UnorderedList>
+			</div>
+
 			<div class="hitzone-options">
 				<ComboBox
 					on:select={() => {
-						selectedMonsterState = 'Default';
+						selectedMonsterState = availableMonsterStates[0]?.id || 'Default';
 						selectedRankBand = availableRankBands[0]?.id || 'Default';
 					}}
 					titleText="Monster"
@@ -545,6 +567,7 @@
 		gap: 1rem;
 		flex-wrap: wrap;
 		margin-bottom: 1rem;
+		margin-top: 1rem;
 	}
 
 	.not-found-container {
