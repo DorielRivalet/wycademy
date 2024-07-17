@@ -8,12 +8,17 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import { page } from '$app/stores';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Rss from 'carbon-icons-svelte/lib/Rss.svelte';
 </script>
 
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title="Announcements" />
-		<p>Select an announcement post to view.</p>
+		<p class="spaced-paragraph">Select an announcement post to view.</p>
+		<Button href="/rss" kind="primary" icon={Rss}
+			>Subscribe to our RSS feed</Button
+		>
 		<div>
 			{#each [...Object.entries(groupedAnnouncements)].reverse() as [year, months]}
 				<section>
