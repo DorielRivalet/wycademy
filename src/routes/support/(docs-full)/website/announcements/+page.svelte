@@ -8,7 +8,7 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import { page } from '$app/stores';
-	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import Rss from 'carbon-icons-svelte/lib/Rss.svelte';
 </script>
 
@@ -16,9 +16,12 @@
 	<div>
 		<SectionHeadingTopLevel title="Announcements" />
 		<p class="spaced-paragraph">Select an announcement post to view.</p>
-		<Button href="/rss" kind="primary" icon={Rss}
-			>Subscribe to our RSS feed</Button
-		>
+		<p>
+			Subscribe to our <Rss /> RSS feed: <CodeSnippet
+				type="inline"
+				code="https://wycademy.vercel.app/rss"
+			/>
+		</p>
 		<div>
 			{#each [...Object.entries(groupedAnnouncements)].reverse() as [year, months]}
 				<section>
