@@ -12,7 +12,10 @@ const announcements: {
 	{
 		slug: '2024/07/11',
 		title: 'Urgent Notice for YouTube Content Creators',
-		description: `<![CDATA[This is the <strong>full content</strong> of the announcement with <a href="https://wycademy.vercel.app">links</a> and other HTML elements.]]>`,
+		description: `<![CDATA[<p>Since late 2023, there have been multiple reports of people receiving copyright strikes on YouTube due to the use, or apparent use, of mods or any external programs, even if they are not technically mods, in Monster Hunter games. It is unclear what specifically triggers these strikes on YouTube or why this issue has only recently emerged, although there are videos clueing into some answers. For more information, see their video policy and their video about the topic in general.</p>
+		<p>YouTube has a history of being a less-than-ideal platform for archiving speedruns. Therefore, we recommend using alternatives such as archive.org for this purpose.</p>
+		<a href="https://wycademy.vercel.app/support/website/announcements/2024/07/11">Read more</a>
+		]]>`,
 		published: 'Thu, 11 Jul 2024 17:25:53 GMT',
 	},
 ];
