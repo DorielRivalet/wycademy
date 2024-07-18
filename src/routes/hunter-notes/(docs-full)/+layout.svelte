@@ -29,7 +29,6 @@
 	} from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import Head from '$lib/client/components/Head.svelte';
-	import pageThumbnail from '$lib/client/images/logo.png';
 	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
 	import TreeView, {
@@ -65,6 +64,7 @@
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import {
 		getNavigationItemFromLink,
+		getPageThumbnail,
 		guidesInfo,
 	} from '$lib/client/modules/routes';
 
@@ -824,7 +824,7 @@
 <Head
 	title={headTitle}
 	{description}
-	image={pageThumbnail}
+	image={getPageThumbnail(guidesInfo, $page.url.pathname)}
 	{url}
 	{website}
 	{authorName}
