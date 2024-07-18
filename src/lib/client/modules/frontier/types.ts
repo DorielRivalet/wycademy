@@ -707,6 +707,7 @@ export type FrontierMonsterPart =
 	| 'None'
 	| 'Body'
 	| 'Left Wing'
+	| 'Wing Membrane'
 	| 'Right Wing'
 	| 'Wings'
 	| 'Left Leg'

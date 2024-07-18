@@ -144,6 +144,26 @@
 		}));
 	}
 
+	function getDuplicateEntries(): HitzoneInfo[] {
+		// Create a map to count occurrences of each unique combination of displayName, rankBand, and monsterState
+		const occurrenceMap: { [key: string]: number } = {};
+
+		hitzoneInfo.forEach((entry) => {
+			const key = `${entry.displayName}-${entry.rankBand}-${entry.monsterState}-${entry.part}`;
+			if (!occurrenceMap[key]) {
+				occurrenceMap[key] = 1;
+			} else {
+				occurrenceMap[key]++;
+			}
+		});
+
+		// Filter hitzoneInfo to find entries that occur more than once
+		return hitzoneInfo.filter((entry) => {
+			const key = `${entry.displayName}-${entry.rankBand}-${entry.monsterState}-${entry.part}`;
+			return occurrenceMap[key] > 1;
+		});
+	}
+
 	let uniqueMonsters = getUniqueMonsters().sort(
 		(a, b) =>
 			(a?.displayName?.codePointAt(0) ?? 0) -
@@ -540,7 +560,32 @@
 			</div>
 		</section>
 		<section>
+			<SectionHeading level={2} title="Stats Tables" />
+			<div></div>
+		</section>
+		<section>
+			<SectionHeading level={2} title="Status Resistances" />
+			<div></div>
+		</section>
+		<section>
+			<SectionHeading level={2} title="Stagger Resistance" />
+			<div></div>
+		</section>
+		<section>
+			<SectionHeading level={2} title="Attacks" />
+			<div></div>
+		</section>
+		<section>
+			<SectionHeading level={2} title="Carves" />
+			<div></div>
+		</section>
+		<section>
+			<SectionHeading level={2} title="Trivia" />
+			<div></div>
+		</section>
+		<section>
 			<SectionHeading title="Fastest Hunts" level={2} />
+			<div></div>
 		</section>
 	</div>
 {:else}
