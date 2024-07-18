@@ -17,6 +17,7 @@
 	import { getItemIcon, getTag } from '$lib/client/modules/frontier/functions';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import { page } from '$app/stores';
+	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -38,16 +39,14 @@
 					The skill effect from cooking lasts for 90 minutes. If a new skill is
 					obtained, it overwrites the previous effect.
 				</p>
-				<figure class="centered-figure">
-					<ImageDialog
-						width={81}
-						height={105}
-						type="file"
-						src="https://github.com/DorielRivalet/mhfz-overlay/raw/main/demo/buffs.png"
-						alt="overlay timers"
-					/>
-					<figcaption>You can check the duration with the overlay.</figcaption>
-				</figure>
+				<CenteredFigure
+					width={81}
+					height={105}
+					type="file"
+					src="https://github.com/DorielRivalet/mhfz-overlay/raw/main/demo/buffs.png"
+					alt="Overlay timers"
+					figcaption="You can check the duration with the overlay."
+				/>
 
 				<p class="spaced-paragraph">
 					Up to 6 dishes can be stored as "leftovers" for 1 hour at the cat in

@@ -41,6 +41,8 @@ import KnifeIconWhite from '../components/frontier/icon/item/Knife_Icon_White.sv
 import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
 import AllItems from '../components/frontier/icon/item/AllItems.svelte';
 import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
+import pageThumbnail from '$lib/client/images/logo.png';
+import thumbnailActiveFeature from '$lib/client/images/page-thumbnail/active-feature.png';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -48,12 +50,26 @@ export type NavigationItem = {
 	description: string;
 	link: string;
 	image: string | ComponentType<SvelteComponent>;
+	thumbnail?: string;
 };
 
 export type CategoryInfo = {
 	category: NavigationItem;
 	pages: NavigationItem[];
 };
+
+export function getPageThumbnail(section: CategoryInfo[], link: string) {
+	for (const categoryInfo of section) {
+		// Check if the link matches any page link within the category
+		for (const page of categoryInfo.pages) {
+			if (page.link === link && page.thumbnail) {
+				return page.thumbnail;
+			}
+		}
+	}
+
+	return pageThumbnail;
+}
 
 export function getNavigationItemFromLink(
 	section: CategoryInfo[],
@@ -559,6 +575,7 @@ export const guidesInfo: CategoryInfo[] = [
 				description: "A list of each weapon's active feature.",
 				link: '/hunter-notes/weapons/active-feature',
 				image: AllWeapons,
+				thumbnail: thumbnailActiveFeature,
 			},
 		],
 	},
