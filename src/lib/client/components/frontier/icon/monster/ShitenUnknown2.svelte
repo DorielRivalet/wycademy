@@ -1842,8 +1842,9 @@
 				d="M 54.719256,14.236659 C 53.679644,10.817894 51.547737,7.5678669 44.999999,5 L 17.243619,4.0000002 h 27.935035 c 8.268847,3.3301447 9.355355,6.7761338 9.540602,10.2366588 z"
 				id="path396"
 			/></g
-		><metadata id="metadata310"
-			><rdf:RDF
+		><metadata id="metadata310">
+			<!-- svelte-ignore illegal-attribute-character -->
+			<rdf:RDF
 				><cc:Work rdf:about=""
 					><dc:creator
 						><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent

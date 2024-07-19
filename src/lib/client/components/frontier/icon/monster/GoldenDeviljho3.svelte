@@ -651,8 +651,9 @@
 				id="g80339"
 				transform="matrix(0.951311,0,0,0.951311,-1.5300308,6.2241364)"
 			/></g
-		><metadata id="metadata31866"
-			><rdf:RDF
+		><metadata id="metadata31866">
+			<!-- svelte-ignore illegal-attribute-character -->
+			<rdf:RDF
 				><cc:Work rdf:about=""
 					><dc:creator
 						><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent

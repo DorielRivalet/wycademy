@@ -1221,8 +1221,9 @@
 				cy="83.581322"
 				r="1.9141601"
 			/></g
-		><metadata id="metadata5865"
-			><rdf:RDF
+		><metadata id="metadata5865">
+			<!-- svelte-ignore illegal-attribute-character -->
+			<rdf:RDF
 				><cc:Work rdf:about=""
 					><dc:creator
 						><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent
