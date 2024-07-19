@@ -1157,6 +1157,7 @@
 		</g>
 		<metadata id="metadata212">
 			<rdf:RDF>
+				<!-- svelte-ignore illegal-attribute-character -->
 				<cc:Work rdf:about="">
 					<dc:creator>
 						<cc:Agent>

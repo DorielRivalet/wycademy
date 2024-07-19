@@ -68,9 +68,11 @@
 				id="path11"
 			/></g
 		></g
-	><metadata id="metadata11"
-		><rdf:RDF
-			><cc:License rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+	><metadata id="metadata11">
+		<!-- svelte-ignore illegal-attribute-character -->
+
+		<rdf:RDF>
+			<cc:License rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 				><cc:permits
 					rdf:resource="http://creativecommons.org/ns#Reproduction"
 				/><cc:permits
