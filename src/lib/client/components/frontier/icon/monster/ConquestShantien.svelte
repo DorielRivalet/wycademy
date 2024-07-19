@@ -1167,6 +1167,8 @@
 						rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 					/>
 				</cc:Work>
+				<!-- svelte-ignore illegal-attribute-character -->
+
 				<cc:License
 					rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 				>

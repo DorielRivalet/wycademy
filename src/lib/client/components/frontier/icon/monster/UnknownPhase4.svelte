@@ -1762,8 +1762,9 @@
 				transform="matrix(0.87766274,0,0,0.87766274,10.187937,4.2665517)"
 			/></g
 		><metadata id="metadata310"
-			><rdf:RDF
-				><cc:License
+			><rdf:RDF>
+				<!-- svelte-ignore illegal-attribute-character -->
+				<cc:License
 					rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 					><cc:permits
 						rdf:resource="http://creativecommons.org/ns#Reproduction"
@@ -1780,7 +1781,9 @@
 					/><cc:requires
 						rdf:resource="http://creativecommons.org/ns#ShareAlike"
 					/></cc:License
-				><cc:Work rdf:about=""
+				>
+				<!-- svelte-ignore illegal-attribute-character -->
+				<cc:Work rdf:about=""
 					><cc:license
 						rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 					/><dc:creator

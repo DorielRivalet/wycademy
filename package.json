@@ -24,6 +24,7 @@
 		"url": "https://github.com/DorielRivalet/wycademy.git"
 	},
 	"scripts": {
+		"svelte-check": "svelte-check",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",

@@ -54,11 +54,7 @@
 	);
 </script>
 
-<div
-	id="tooltip"
-	display="none"
-	style="position: absolute; display: none;"
-></div>
+<div id="tooltip" style="position: absolute; display: none;"></div>
 
 <div class="container">
 	<svg
@@ -1875,6 +1871,8 @@
 				/></filter
 			></defs
 		>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 		<g id="layer1" style="stroke: var(--ctp-mocha-surface1); stroke-width: 1.0;"
 			><path
 				d="m 118.88112,44.134257 c -1.36739,-0.0123 -3.11498,0.299781 -4.15117,0.851628 -0.36646,0.195171 -0.75322,0.355684 -0.85938,0.357084 -0.65701,0.0084 -4.35004,3.132914 -4.5682,3.86488 -0.0805,0.270082 -0.26981,0.612353 -0.42064,0.760677 -0.15083,0.148324 -0.29381,0.328799 -0.31781,0.401009 l 7.6972,15.29054 c 0.51886,-0.368894 0.60146,-0.39019 1.09347,-0.285254 1.0031,0.213938 3.34713,-1.194573 5.2493,-3.154329 0.42458,-0.437435 0.86062,-0.795685 0.96893,-0.796334 0.10829,-6.29e-4 0.3356,-0.12996 0.50539,-0.287321 0.1698,-0.157361 0.6061,-0.408478 0.96945,-0.558106 0.68203,-0.280862 0.65591,-0.251688 1.79783,-2.030884 0.86015,-1.340171 1.3115,-3.198602 1.01751,-4.188891 -0.24044,-0.810246 -0.24495,-0.902325 -0.0677,-1.326534 0.55908,-1.338048 -0.10549,-4.260868 -1.03766,-4.564063 -0.36078,-0.117344 -0.44473,-0.219182 -0.56328,-0.681612 -0.15555,-0.606706 -0.4803,-1.284991 -0.67127,-1.403015 -0.069,-0.04262 -0.23139,-0.286053 -0.36122,-0.540535 -0.2333,-0.457298 -0.24815,-0.464029 -1.25677,-0.598413 -2.34287,-0.31216 -2.85883,-0.427933 -3.20911,-0.719853 -0.31087,-0.259074 -0.99445,-0.383296 -1.81487,-0.390674 z"
@@ -1933,8 +1931,9 @@
 				id="path1357"><title id="title1370"></title></path
 			></g
 		><metadata id="metadata17"
-			><rdf:RDF
-				><cc:License
+			><rdf:RDF>
+				<!-- svelte-ignore illegal-attribute-character -->
+				<cc:License
 					rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 					><cc:permits
 						rdf:resource="http://creativecommons.org/ns#Reproduction"
@@ -1951,7 +1950,9 @@
 					/><cc:requires
 						rdf:resource="http://creativecommons.org/ns#ShareAlike"
 					/></cc:License
-				><cc:Work rdf:about=""
+				>
+				<!-- svelte-ignore illegal-attribute-character -->
+				<cc:Work rdf:about=""
 					><cc:license
 						rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 					/><dc:creator
