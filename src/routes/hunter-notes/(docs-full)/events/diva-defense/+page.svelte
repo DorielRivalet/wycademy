@@ -4,16 +4,14 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import {
-		LocationIcons,
-		divaPrayerGems,
-	} from '$lib/client/modules/frontier/objects';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import ezlion from 'ezlion';
 	import { page } from '$app/stores';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { divaPrayerGems } from '$lib/client/modules/frontier/diva';
 </script>
 
 <HunterNotesPage displayTOC={false}>

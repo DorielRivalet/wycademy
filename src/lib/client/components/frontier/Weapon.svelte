@@ -16,7 +16,7 @@ Does not handle decorations because sigils are optimal.
 		type FrontierWeaponID,
 		type FrontierZenithSkill,
 	} from 'ezlion';
-	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
+	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 	import type {
 		FrontierBowArcShot,
 		FrontierBowAvailableCoatings,
@@ -54,7 +54,7 @@ Does not handle decorations because sigils are optimal.
 	import ZenithWeaponIcon from './icon/ZenithEquipmentIcon2.svelte';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 	import NoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
-	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/objects';
+	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/weapons';
 
 	/** Truncated to 18 characters.*/
 	export let name: string = 'Name';

@@ -5,14 +5,6 @@
 	import { page } from '$app/stores';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import {
-		ElementIcons,
-		ItemColors,
-		LocationIcons,
-		RarityColors,
-		StatusIcons,
-		WeaponTypes,
-	} from '$lib/client/modules/frontier/objects';
-	import {
 		getItemIcon,
 		getTag,
 		getWeaponIcon,
@@ -45,6 +37,12 @@
 	import { browser } from '$app/environment';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
+	import { RarityColors } from '$lib/client/modules/frontier/objects';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { ItemColors } from '$lib/client/modules/frontier/items';
+	import { StatusIcons } from '$lib/client/modules/frontier/ailments';
+	import { ElementIcons } from '$lib/client/modules/frontier/elements';
+	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 
 	function onSelectTowerWeaponOption() {
 		towerWeaponSelected = getTowerWeaponSelected(

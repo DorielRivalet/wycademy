@@ -3,14 +3,14 @@ import BugIconWhite from '$lib/client/components/frontier/icon/item/Bug_Icon_Whi
 import CarapaceIconWhite from '$lib/client/components/frontier/icon/item/Carapace_Icon_White.svelte';
 import FishIconWhite from '$lib/client/components/frontier/icon/item/Fish_Icon_White.svelte';
 import HerbIconWhite from '$lib/client/components/frontier/icon/item/Herb_Icon_White.svelte';
-import MeatIconWhite from '$lib/client/components/frontier/icon/item/Meat_Icon_White.svelte';
 import MushroomIconWhite from '$lib/client/components/frontier/icon/item/Mushroom_Icon_White.svelte';
 import SacIconWhite from '$lib/client/components/frontier/icon/item/Sac_Icon_White.svelte';
 import SeedIconWhite from '$lib/client/components/frontier/icon/item/Seed_Icon_White.svelte';
 import VegetableIconWhite from '$lib/client/components/frontier/icon/item/Vegetable_Icon_White.svelte';
 import type { FrontierArmorSkillName } from 'ezlion';
 import type { ComponentType } from 'svelte';
-import { ItemColors } from './objects';
+import { ItemColors } from './items';
+import SteakIconWhite from '$lib/client/components/frontier/icon/item/Steak_Icon_White.svelte';
 
 // Function to simulate parsing HTML and filling the recipes array
 function parseRecipes(htmlContent: string): Recipe[] {
@@ -259,7 +259,7 @@ export const ingredients: {
 	},
 	{
 		name: 'Gutsy Meat',
-		icon: MeatIconWhite,
+		icon: SteakIconWhite,
 		color:
 			ItemColors.find((e) => e.name === 'Red')?.value || ItemColors[0].value,
 	},

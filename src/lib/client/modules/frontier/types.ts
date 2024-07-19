@@ -16,8 +16,8 @@ import type {
 	FrontierWeaponName,
 	FrontierWeaponStyle,
 } from 'ezlion';
-import type { wikiaMonsters } from './objects';
-import type { ComponentType, SvelteComponent } from 'svelte';
+import type { wikiaMonsters } from './monsters';
+import type { ComponentType } from 'svelte';
 
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
 

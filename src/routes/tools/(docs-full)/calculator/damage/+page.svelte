@@ -3,39 +3,6 @@
 
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
-	import {
-		HuntingHornWeaponNotesCombinations, // TODO in hunter notes
-		weaponMotionValues,
-		sharedWeaponMotionValues,
-		sigilDropdownItems,
-		affinityDropdownItems,
-		multipliedBaseDropdownItems,
-		multipliersDropdownItems,
-		flatAdditionsDropdownItems,
-		missionRequirementAttackCeilings,
-		gunlanceShellValues,
-		blademasterDropdownItems,
-		elementalSkillsDropdownItems,
-		otherDropdownItems,
-		elementMultipliers,
-		hitzoneValueModifiersDropdownItems,
-		statusSkillsDropdownItems,
-		gunnerDropdownItems,
-		ElementIcons,
-		StatusIcons,
-		oldBlademasterSharpness,
-		greatSwordCharges,
-		obscurityValues,
-		affinityBaseCritMultiplierBonusDropdownItems,
-		legacyCalculatorKeysMap,
-		legacyCalculatorNumberInputs,
-		legacyCalculatorValuesMap,
-		monsterStatusDropdownOptions,
-		elementDropdownItems,
-		bowChargeLevels,
-		divaPrayerGems,
-		divaPrayerGemsDropdownItems,
-	} from '$lib/client/modules/frontier/objects';
 	import DivaPrayerGem from '$lib/client/components/frontier/icon/DivaPrayerGem.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
@@ -62,7 +29,6 @@
 		TagColor,
 	} from '$lib/client/modules/frontier/types';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
-	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
@@ -103,6 +69,45 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import { Save } from 'carbon-icons-svelte';
 	import * as zip from '@zip.js/zip.js';
+	import { StatusIcons } from '$lib/client/modules/frontier/ailments';
+	import { obscurityValues } from '$lib/client/modules/frontier/armor-skills';
+	import {
+		legacyCalculatorNumberInputs,
+		legacyCalculatorValuesMap,
+		legacyCalculatorKeysMap,
+		affinityBaseCritMultiplierBonusDropdownItems,
+		affinityDropdownItems,
+		sigilDropdownItems,
+		multipliedBaseDropdownItems,
+		multipliersDropdownItems,
+		statusSkillsDropdownItems,
+		monsterStatusDropdownOptions,
+		gunnerDropdownItems,
+		elementDropdownItems,
+		flatAdditionsDropdownItems,
+		blademasterDropdownItems,
+		hitzoneValueModifiersDropdownItems,
+		otherDropdownItems,
+		elementalSkillsDropdownItems,
+		divaPrayerGemsDropdownItems,
+	} from '$lib/client/modules/frontier/damage-calculator';
+	import { divaPrayerGems } from '$lib/client/modules/frontier/diva';
+	import {
+		elementMultipliers,
+		ElementIcons,
+	} from '$lib/client/modules/frontier/elements';
+	import {
+		weaponMotionValues,
+		sharedWeaponMotionValues,
+	} from '$lib/client/modules/frontier/motion-values';
+	import {
+		greatSwordCharges,
+		bowChargeLevels,
+		gunlanceShellValues,
+		oldBlademasterSharpness,
+		WeaponTypes,
+	} from '$lib/client/modules/frontier/weapons';
+	import { missionRequirementAttackCeilings } from '$lib/client/modules/frontier/objects';
 
 	type DataTableKey = string;
 

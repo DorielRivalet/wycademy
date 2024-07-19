@@ -1,22 +1,16 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import type { SearchItemCategory, SearchResult } from '$lib/search.ts';
-	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import SearchIcon from 'carbon-icons-svelte/lib/Search.svelte';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
-	import { ArmorTypes } from '$lib/client/modules/frontier/objects';
-	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import RecentlyViewed from 'carbon-icons-svelte/lib/RecentlyViewed.svelte';
-	import TrashCan from 'carbon-icons-svelte/lib/TrashCan.svelte';
-	import { browser } from '$app/environment';
 	import { getItemIcon } from '$lib/client/modules/frontier/functions';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import Logo from '$lib/client/images/logo.webp';
 	import QuestionMarkIconWhite from '$lib/client/components/frontier/icon/item/Question_Mark_Icon_White.svelte';
+	import { ArmorTypes } from '$lib/client/modules/frontier/armor';
 
 	const categoryIcons: { name: SearchItemCategory; icon: any }[] = [
 		{

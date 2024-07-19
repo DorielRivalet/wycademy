@@ -4,10 +4,6 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import {
-		ItemColors,
-		LocationIcons,
-	} from '$lib/client/modules/frontier/objects';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
@@ -32,7 +28,6 @@
 	import PoogieBewitchingPink from '$lib/client/images/supplemental/bewitching-pink.webp';
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import Copy from 'carbon-icons-svelte/lib/Copy.svelte';
 	import { page } from '$app/stores';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import {
@@ -43,6 +38,8 @@
 	import { browser } from '$app/environment';
 	import slugify from 'slugify';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { ItemColors } from '$lib/client/modules/frontier/items';
 
 	function downloadDomAsPng(id: string) {
 		if (!browser) return;

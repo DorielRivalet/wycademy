@@ -22,7 +22,7 @@
 	import { stringReplacements } from '$lib/client/modules/frontier/functions';
 	import GRankEquipmentIcon from './icon/GRankEquipmentIcon.svelte';
 	import ZenithEquipmentIcon from './icon/ZenithEquipmentIcon2.svelte';
-	import { itemInfo } from '$lib/client/modules/frontier/objects';
+	import { itemInfo } from '$lib/client/modules/frontier/items';
 	import TowerEquipmentIcon from './icon/TowerEquipmentIcon.svelte';
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
 	import { browser } from '$app/environment';

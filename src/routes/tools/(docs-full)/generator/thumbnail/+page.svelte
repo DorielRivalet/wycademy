@@ -42,22 +42,23 @@
 	import Moveable from 'svelte-moveable';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Youtube from 'svelte-youtube-embed';
+	import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
 	import {
-		WeaponTypes,
-		monsterInfo,
-		ArmorTypes,
-		itemInfo,
-		LocationIcons,
-		ElementIcons,
 		AilmentIcons,
 		StatusIcons,
-		Habitats,
+	} from '$lib/client/modules/frontier/ailments';
+	import { ArmorTypes } from '$lib/client/modules/frontier/armor';
+	import { ElementIcons } from '$lib/client/modules/frontier/elements';
+	import { Habitats } from '$lib/client/modules/frontier/habitat';
+	import { itemInfo, ItemColors } from '$lib/client/modules/frontier/items';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import {
 		gameInfo,
-		ColorCodes,
-		ItemColors,
 		RarityColors,
+		ColorCodes,
 	} from '$lib/client/modules/frontier/objects';
-	import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
+	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 
 	let thumbnailElementsOrderReversed = false;
 

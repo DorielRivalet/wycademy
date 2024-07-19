@@ -3,7 +3,7 @@
 	import ImageDialog from './ImageDialog.svelte';
 	import '/node_modules/flag-icons/css/flag-icons.min.css';
 	import { generateRandomUsername } from '../modules/username-generator';
-	import { WeaponTypes } from '../modules/frontier/objects';
+	import { WeaponTypes } from '../modules/frontier/weapons';
 	import { countries, type TCountryCode } from 'countries-list';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
 	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';

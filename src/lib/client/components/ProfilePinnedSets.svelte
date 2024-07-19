@@ -6,21 +6,18 @@
 	import WaistIconWhite from './frontier/icon/armor/Waist_Icon_White.svelte';
 	import LegIconWhite from './frontier/icon/armor/Leg_Icon_White.svelte';
 	import MyTore from '$lib/client/images/icon/my_tore.webp';
-	import JewelIconWhite from './frontier/icon/item/Jewel_Icon_White.svelte';
 	import type { ProfilePinnedSet } from '$lib/client/modules/frontier/types';
 	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getMonsterIcon, getWeaponIcon } from '../modules/frontier/functions';
-	import { LocationIcons } from '../modules/frontier/objects';
+	import { LocationIcons } from '../modules/frontier/locations';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import { getTag } from '$lib/client/modules/frontier/functions';
-	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import { scale } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ArmorStandIcon from '$lib/client/components/frontier/icon/armor/MHRise_Item_Icon-Armor_Stand_Equipment_White.svelte';
-	import SetIcon from '$lib/client/components/frontier/icon/armor/Set.svelte';
 
 	let selectedSetName = '';
 

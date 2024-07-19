@@ -3,10 +3,6 @@
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import {
-		WeaponTypes,
-		monsterInfo,
-	} from '$lib/client/modules/frontier/objects';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
@@ -15,6 +11,8 @@
 	import Copy from 'carbon-icons-svelte/lib/Copy.svelte';
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
 	import { page } from '$app/stores';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 
 	let originsTablePageSize = 5;
 	let originsTablePage = 1;
