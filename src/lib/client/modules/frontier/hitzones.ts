@@ -29,674 +29,838 @@ export const silhouetteInfo: {
 	silhouette: string;
 }[] = [
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
 		displayName: 'Rathian',
 	},
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
 		displayName: 'Fatalis',
 	},
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlueYianKutKu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlueYianKutKu.svelte',
 		displayName: 'Yian Kut-Ku',
 	},
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAshenLaoShanLung.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAshenLaoShanLung.svelte',
 		displayName: 'Lao-Shan Lung',
 	},
 	{
 		displayName: 'Cephadrome',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteCephadrome.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteCephadrome.svelte',
 	},
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAzureRathalos.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAzureRathalos.svelte',
 		displayName: 'Rathalos',
 	},
 
 	{
 		displayName: 'Diablos',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackDiablos.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackDiablos.svelte',
 	},
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKhezu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKhezu.svelte',
 		displayName: 'Khezu',
 	},
 
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackGravios.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackGravios.svelte',
 		displayName: 'Gravios',
 	},
 
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGypceros.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGypceros.svelte',
 		displayName: 'Gypceros',
 	},
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGreenPlesioth.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGreenPlesioth.svelte',
 		displayName: 'Plesioth',
 	},
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBasarios.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBasarios.svelte',
 		displayName: 'Basarios',
 	},
 
 	{
 		displayName: 'Monoblos',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMonoblos.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMonoblos.svelte',
 	},
 	{
 		displayName: 'Velocidrome',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteVelocidrome.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteVelocidrome.svelte',
 	},
 	{
 		displayName: 'Gendrome',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGendrome.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGendrome.svelte',
 	},
 
 	{
 		displayName: 'Iodrome',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteIodrome.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteIodrome.svelte',
 	},
 	{
 		displayName: 'Kirin',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKirin.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKirin.svelte',
 	},
 
 	{
 		displayName: 'Crimson Fatalis',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
 	},
 	{
 		displayName: 'Pink Rathian',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
 	},
 	{
 		displayName: 'Blue Yian Kut-Ku',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlueYianKutKu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlueYianKutKu.svelte',
 	},
 	{
 		displayName: 'Purple Gypceros',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGypceros.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGypceros.svelte',
 	},
 	{
 		displayName: 'Yian Garuga',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteYianGaruga.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteYianGaruga.svelte',
 	},
 	{
 		displayName: 'Silver Rathalos',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAzureRathalos.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAzureRathalos.svelte',
 	},
 	{
 		displayName: 'Gold Rathian',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
 	},
 	{
 		displayName: 'Black Diablos',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackDiablos.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackDiablos.svelte',
 	},
 	{
 		displayName: 'White Monoblos',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMonoblos.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMonoblos.svelte',
 	},
 	{
 		displayName: 'Red Khezu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKhezu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKhezu.svelte',
 	},
 	{
 		displayName: 'Green Plesioth',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGreenPlesioth.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGreenPlesioth.svelte',
 	},
 	{
 		displayName: 'Black Gravios',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackGravios.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackGravios.svelte',
 	},
 	{
 		displayName: 'Daimyo Hermitaur',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDaimyoHermitaur.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDaimyoHermitaur.svelte',
 	},
 	{
 		displayName: 'Azure Rathalos',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAzureRathalos.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAzureRathalos.svelte',
 	},
 	{
 		displayName: 'Ashen Lao-Shan Lung',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAshenLaoShanLung.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAshenLaoShanLung.svelte',
 	},
 	{
 		displayName: 'Blangonga',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlangonga.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlangonga.svelte',
 	},
 	{
 		displayName: 'Congalala',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteCongalala.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteCongalala.svelte',
 	},
 	{
 		displayName: 'Rajang',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRajang.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRajang.svelte',
 	},
 	{
 		displayName: 'Kushala Daora',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKushalaDaora.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKushalaDaora.svelte',
 	},
 	{
 		displayName: 'Shen Gaoren',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShenGaoren.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShenGaoren.svelte',
 	},
 
 	{
 		displayName: 'Yama Tsukami',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteYamaKurai.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteYamaKurai.svelte',
 	},
 	{
 		displayName: 'Chameleos',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteChameleos.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteChameleos.svelte',
 	},
 	{
 		displayName: 'Rusted Kushala Daora',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKushalaDaora.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKushalaDaora.svelte',
 	},
 
 	{
 		displayName: 'Lunastra',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteLunastra.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteLunastra.svelte',
 	},
 	{
 		displayName: 'Teostra',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTeostra.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTeostra.svelte',
 	},
 	{
 		displayName: 'Shogun Ceanataur',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShogunCeanataur.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShogunCeanataur.svelte',
 	},
 	{
 		displayName: 'Bulldrome',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBulldrome.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBulldrome.svelte',
 	},
 
 	{
 		displayName: 'White Fatalis',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
 	},
 
 	{
 		displayName: 'Hypnocatrice',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrightHypnoc.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrightHypnoc.svelte',
 	},
 	{
 		displayName: 'Lavasioth',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte',
 	},
 	{
 		displayName: 'Tigrex',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTigrex.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTigrex.svelte',
 	},
 	{
 		displayName: 'Akantor',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkantor.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkantor.svelte',
 	},
 	{
 		displayName: 'Bright Hypnoc',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrightHypnoc.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrightHypnoc.svelte',
 	},
 	{
 		displayName: 'Red Lavasioth',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte',
 	},
 	{
 		displayName: 'Espinas',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteEspinas.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteEspinas.svelte',
 	},
 	{
 		displayName: 'Orange Espinas',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteEspinas.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteEspinas.svelte',
 	},
 	{
 		displayName: 'Silver Hypnoc',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrightHypnoc.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrightHypnoc.svelte',
 	},
 	{
 		displayName: 'Akura Vashimu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkuraJebia.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkuraJebia.svelte',
 	},
 	{
 		displayName: 'Akura Jebia',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkuraJebia.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkuraJebia.svelte',
 	},
 	{
 		displayName: 'Berukyurosu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerukyurosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerukyurosu.svelte',
 	},
 
 	{
 		displayName: 'Pariapuria',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouettePariapuria.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouettePariapuria.svelte',
 	},
 	{
 		displayName: 'White Espinas',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteEspinas.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteEspinas.svelte',
 	},
 	{
 		displayName: 'Kamu Orugaron',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKamuOrugaron.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKamuOrugaron.svelte',
 	},
 	{
 		displayName: 'Nono Orugaron',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteNonoOrugaron.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteNonoOrugaron.svelte',
 	},
 	{
 		displayName: 'Raviente',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerserkRaviente.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerserkRaviente.svelte',
 	},
 	{
 		displayName: 'Violent Raviente',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerserkRaviente.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerserkRaviente.svelte',
 	},
 	{
 		displayName: 'Dyuragaua',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDyuragaua.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDyuragaua.svelte',
 	},
 	{
 		displayName: 'Doragyurosu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerukyurosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerukyurosu.svelte',
 	},
 	{
 		displayName: 'Gurenzeburu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGurenzeburu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGurenzeburu.svelte',
 	},
 
 	{
 		displayName: 'Rukodiora',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRukodiora.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRukodiora.svelte',
 	},
 	{
 		displayName: 'UNKNOWN',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
 	},
 	{
 		displayName: 'Gogomoa',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGogomoa.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGogomoa.svelte',
 	},
 	{
 		displayName: 'Taikun Zamuza',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTaikunZamuza.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTaikunZamuza.svelte',
 	},
 	{
 		displayName: 'Abiorugu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAbiorugu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAbiorugu.svelte',
 	},
 	{
 		displayName: 'Kuarusepusu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKuarusepusu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKuarusepusu.svelte',
 	},
 	{
 		displayName: 'Odibatorasu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteOdibatorasu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteOdibatorasu.svelte',
 	},
 	{
 		displayName: 'Disufiroa',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDisufiroa.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDisufiroa.svelte',
 	},
 	{
 		displayName: 'Rebidiora',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRebidiora.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRebidiora.svelte',
 	},
 	{
 		displayName: 'Anorupatisu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAnorupatisu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAnorupatisu.svelte',
 	},
 	{
 		displayName: 'Hyujikiki',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHyujikiki.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHyujikiki.svelte',
 	},
 	{
 		displayName: 'Midogaron',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMidogaron.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMidogaron.svelte',
 	},
 	{
 		displayName: 'Giaorugu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGiaorugu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGiaorugu.svelte',
 	},
 	{
 		displayName: 'Mi Ru',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDyuragaua.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDyuragaua.svelte',
 	},
 	{
 		displayName: 'Farunokku',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteFarunokku.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteFarunokku.svelte',
 	},
 	{
 		displayName: 'Pokaradon',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouettePokaradon.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouettePokaradon.svelte',
 	},
 	{
 		displayName: 'Shantien',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShantien.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShantien.svelte',
 	},
 	{
 		displayName: 'Goruganosu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte',
 	},
 	{
 		displayName: 'Aruganosu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte',
 	},
 	{
 		displayName: 'Baruragaru',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBaruragaru.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBaruragaru.svelte',
 	},
 	{
 		displayName: 'Zerureusu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteSparklingZerureusu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteSparklingZerureusu.svelte',
 	},
 	{
 		displayName: 'Ray Gougarf',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRayGougarf.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRayGougarf.svelte',
 	},
 	{
 		displayName: 'Lolo Gougarf',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteLoloGougarf.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteLoloGougarf.svelte',
 	},
 	{
 		displayName: 'Forokururu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteForokururu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteForokururu.svelte',
 	},
 	{
 		displayName: 'Meraginasu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMeraginasu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMeraginasu.svelte',
 	},
 	{
 		displayName: 'Diorex',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDiorex.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDiorex.svelte',
 	},
 	{
 		displayName: 'Garuba Daora',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGarubaDaora.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGarubaDaora.svelte',
 	},
 	{
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteInagami.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteInagami.svelte',
 		displayName: 'Inagami',
 	},
 	{
 		displayName: 'Varusaburosu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteVarusaburosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteVarusaburosu.svelte',
 	},
 	{
 		displayName: 'Poborubarumu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouettePoborubarumu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouettePoborubarumu.svelte',
 		// todo correct?
 	},
 	{
 		displayName: 'Duremudira',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDuremudira.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDuremudira.svelte',
 	},
 	{
 		displayName: 'Gureadomosu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGureadomosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGureadomosu.svelte',
 	},
 	{
 		displayName: 'Harudomerugu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHarudomerugu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHarudomerugu.svelte',
 	},
 	{
 		displayName: 'Toridcless',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteToridcless.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteToridcless.svelte',
 	},
 	{
 		displayName: 'Gasurabazura',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGasurabazura.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGasurabazura.svelte',
 	},
 	{
 		displayName: 'Yama Kurai',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteYamaKurai.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteYamaKurai.svelte',
 	},
 	{
 		displayName: 'Zinogre',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHowlingZinogre.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHowlingZinogre.svelte',
 	},
 	{
 		displayName: 'Deviljho',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDeviljho.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDeviljho.svelte',
 	},
 	{
 		displayName: 'Brachydios',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrachydios.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrachydios.svelte',
 	},
 	{
 		displayName: 'Berserk Raviente',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerserkRaviente.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerserkRaviente.svelte',
 	},
 	{
 		displayName: 'Toa Tesukatora',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteToaTesukatora.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteToaTesukatora.svelte',
 	},
 	{
 		displayName: 'Barioth',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBarioth.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBarioth.svelte',
 	},
 	{
 		displayName: 'Uragaan',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteUragaan.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteUragaan.svelte',
 	},
 	{
 		displayName: 'Stygian Zinogre',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHowlingZinogre.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHowlingZinogre.svelte',
 	},
 	{
 		displayName: 'Guanzorumu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGuanzorumu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGuanzorumu.svelte',
 	},
 	{
 		displayName: 'Starving Deviljho',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDeviljho.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDeviljho.svelte',
 	},
 	{
 		displayName: 'Voljang',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteVoljang.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteVoljang.svelte',
 	},
 	{
 		displayName: 'Nargacuga',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlinkingNargacuga.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlinkingNargacuga.svelte',
 	},
 	{
 		displayName: 'Keoaruboru',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKeoaruboru.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKeoaruboru.svelte',
 	},
 	{
 		displayName: 'Zenaserisu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenaserisu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenaserisu.svelte',
 	},
 	{
 		displayName: 'Gore Magala',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoreMagala.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoreMagala.svelte',
 	},
 	{
 		displayName: 'Blinking Nargacuga',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlinkingNargacuga.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlinkingNargacuga.svelte',
 	},
 	{
 		displayName: 'Shagaru Magala',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShagaruMagala.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShagaruMagala.svelte',
 	},
 	{
 		displayName: 'Amatsu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAmatsu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAmatsu.svelte',
 	},
 	{
 		displayName: 'Elzelion',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteElzelion.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteElzelion.svelte',
 	},
 	{
 		displayName: 'Arrogant Duremudira',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDuremudira.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDuremudira.svelte',
 	},
 	{
 		displayName: 'Seregios',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteSeregios.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteSeregios.svelte',
 	},
 	{
 		displayName: 'Bogabadorumu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBombardierBogabadorumu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBombardierBogabadorumu.svelte',
 	},
 	{
 		displayName: 'Bombardier Bogabadorumu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBombardierBogabadorumu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBombardierBogabadorumu.svelte',
 	},
 	{
 		displayName: 'Sparkling Zerureusu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteSparklingZerureusu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteSparklingZerureusu.svelte',
 	},
 
 	{
 		displayName: 'Zenith Akura Vashimu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithAkuraVashimu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithAkuraVashimu.svelte',
 	},
 	{
 		displayName: 'Zenith Anorupatisu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithAnorupatisu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithAnorupatisu.svelte',
 	},
 	{
 		displayName: 'Zenith Baruragaru',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithBaruragaru.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithBaruragaru.svelte',
 	},
 	{
 		displayName: 'Zenith Blangonga',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithBlangonga.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithBlangonga.svelte',
 	},
 	{
 		displayName: 'Zenith Daimyo Hermitaur',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithDaimyoHermitaur.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithDaimyoHermitaur.svelte',
 	},
 	{
 		displayName: 'Zenith Doragyurosu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithDoragyurosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithDoragyurosu.svelte',
 	},
 	{
 		displayName: 'Zenith Espinas',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithEspinas.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithEspinas.svelte',
 	},
 	{
 		displayName: 'Zenith Gasurabazura',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithGasurabazura.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithGasurabazura.svelte',
 	},
 	{
 		displayName: 'Zenith Giaorugu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithGiaorugu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithGiaorugu.svelte',
 	},
 	{
 		displayName: 'Zenith Gravios',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithGravios.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithGravios.svelte',
 	},
 	{
 		displayName: 'Zenith Harudomerugu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithHarudomerugu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithHarudomerugu.svelte',
 	},
 	{
 		displayName: 'Zenith Hypnocatrice',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithHypnoc.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithHypnoc.svelte',
 	},
 	{
 		displayName: 'Zenith Hyujikiki',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithHyujikiki.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithHyujikiki.svelte',
 	},
 	{
 		displayName: 'Zenith Inagami',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithInagami.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithInagami.svelte',
 	},
 	{
 		displayName: 'Zenith Khezu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithKhezu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithKhezu.svelte',
 	},
 	{
 		displayName: 'Zenith Midogaron',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithMidogaron.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithMidogaron.svelte',
 	},
 	{
 		displayName: 'Zenith Plesioth',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithPlesioth.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithPlesioth.svelte',
 	},
 	{
 		displayName: 'Zenith Rathalos',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithRathalos.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithRathalos.svelte',
 	},
 	{
 		displayName: 'Zenith Rukodiora',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithRukodiora.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithRukodiora.svelte',
 	},
 	{
 		displayName: 'Zenith Taikun Zamuza',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithTaikunZamuza.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithTaikunZamuza.svelte',
 	},
 	{
 		displayName: 'Zenith Tigrex',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithTigrex.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithTigrex.svelte',
 	},
 	{
 		displayName: 'Zenith Toridcless',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithToridcless.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithToridcless.svelte',
 	},
 	{
 		displayName: 'Conquest Fatalis',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
 	},
 	{
 		displayName: 'Conquest Shantien',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShantien.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShantien.svelte',
 	},
 	{
 		displayName: 'Conquest Crimson Fatalis',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
 	},
 	{
 		displayName: 'Shiten Disufiroa',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDisufiroa.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDisufiroa.svelte',
 	},
 	{
 		displayName: 'Shiten UNKNOWN',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte',
 	},
 	{
 		displayName: 'Burning Freezing Elzelion',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteElzelion.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteElzelion.svelte',
 	},
 	{
 		displayName: 'Howling Zinogre',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHowlingZinogre.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHowlingZinogre.svelte',
 	},
 	{
 		displayName: 'Supremacy Pariapuria',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouettePariapuria.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouettePariapuria.svelte',
 	},
 	{
 		displayName: 'Supremacy Doragyurosu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerukyurosu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerukyurosu.svelte',
 	},
 	{
 		displayName: 'Supremacy Teostra',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTeostra.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTeostra.svelte',
 	},
 	{
 		displayName: 'Golden Deviljho',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDeviljho.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDeviljho.svelte',
 	},
 	{
 		displayName: 'Furious Rajang',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRajang.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRajang.svelte',
 	},
 	{
 		displayName: 'Ruling Guanzorumu',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGuanzorumu.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGuanzorumu.svelte',
 	},
 	{
 		displayName: 'Shifting Mi Ru',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDyuragaua.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDyuragaua.svelte',
 	},
 	{
 		displayName: 'Twinhead Rajang',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRajang.svelte',
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRajang.svelte',
 	},
 	{
 		displayName: 'Road White Fatalis',
-		silhouette: '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte', // todo?
+		silhouette:
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte', // todo?
 	},
 ];
 

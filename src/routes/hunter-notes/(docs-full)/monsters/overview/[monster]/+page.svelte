@@ -47,7 +47,7 @@
 		silhouetteInfo,
 		type HitzoneInfo,
 	} from '$lib/client/modules/frontier/hitzones';
-	import { onMount } from 'svelte';
+	import MonsterSilhouette from '../MonsterSilhouette.svelte';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
@@ -229,9 +229,9 @@
 
 	// TODO remove from monster name list ones with unused svg
 
-	$: currentSilhouette = silhouetteInfo
-		.find((e) => e.displayName === selectedMonsterIdFromList)
-		?.silhouette.replace('$lib/', '/src/lib/');
+	$: currentSilhouette = silhouetteInfo.find(
+		(e) => e.displayName === selectedMonsterIdFromList,
+	)?.silhouette;
 </script>
 
 {#if monster}
@@ -502,14 +502,13 @@
 								easing: cubicInOut,
 							}}
 						>
-							{#await import(currentSilhouette) then Module}
-								<Module.default
-									{selectedHitzoneType}
-									{selectedMonsterState}
-									{selectedRankBand}
-									{hitzones}
-								/>
-							{/await}
+							<MonsterSilhouette
+								{currentSilhouette}
+								{selectedHitzoneType}
+								{selectedMonsterState}
+								{selectedRankBand}
+								{hitzones}
+							/>
 						</div>
 					{/if}
 				</div>
