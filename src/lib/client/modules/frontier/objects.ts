@@ -182,16 +182,16 @@ import IconElementDragon from '$lib/client/components/frontier/icon/element/Drag
 import IconElementDark from '$lib/client/components/frontier/icon/element/Dark.svelte';
 import IconElementLight from '$lib/client/components/frontier/icon/element/Light.svelte';
 import IconElementLightingRod from '$lib/client/components/frontier/icon/element/LightningRod.svelte';
-import IconElementSound from '$lib/client/components/frontier/icon/element/Sound.svelte';
+import IconElementSound from '$lib/client/components/frontier/icon/element/Sound2.svelte';
 import IconElementWind from '$lib/client/components/frontier/icon/element/Wind.svelte';
-import IconElementMusic from '$lib/client/components/frontier/icon/element/Music.svelte';
+import IconElementMusic from '$lib/client/components/frontier/icon/element/Music2.svelte';
 import IconElementBlaze from '$lib/client/components/frontier/icon/element/Blaze.svelte';
 import IconElementTenshou from '$lib/client/components/frontier/icon/element/Tenshou.svelte';
 import IconElementOkiko from '$lib/client/components/frontier/icon/element/Okiko.svelte';
 import IconElementBlackFlame from '$lib/client/components/frontier/icon/element/BlackFlame.svelte';
 import IconElementCrimsonDemon from '$lib/client/components/frontier/icon/element/CrimsonDemon.svelte';
 import IconElementEmperorRoar from '$lib/client/components/frontier/icon/element/EmperorRoar.svelte';
-import IconElementBurningZero from '$lib/client/components/frontier/icon/element/BurningZero.svelte';
+import IconElementBurningZero from '$lib/client/components/frontier/icon/element/BurningZero3.svelte';
 
 import IconStatusPoison from '$lib/client/components/frontier/icon/status/Poison.svelte';
 import IconStatusSleep from '$lib/client/components/frontier/icon/status/Sleep.svelte';
@@ -1302,15 +1302,15 @@ export const Sharpness = {
 } as const;
 
 export const ItemColors: { name: FrontierItemColor; value: string }[] = [
-	{ name: 'White', value: '#ffffff' },
+	{ name: 'White', value: '#efefe9' },
 	{ name: 'Red', value: '#ff435d' },
-	{ name: 'Green', value: '#56ff56' },
-	{ name: 'Blue', value: '#4040ff' },
-	{ name: 'Yellow', value: '#ffff50' },
+	{ name: 'Green', value: '#73cb8d' },
+	{ name: 'Blue', value: '#96b5fd' },
+	{ name: 'Yellow', value: '#f3c832' },
 	{ name: 'Purple', value: '#cba6fa' },
-	{ name: 'Cyan', value: '#57ffff' },
-	{ name: 'Orange', value: '#ffc850' }, // unk
-	{ name: 'Pink', value: '#ff84ff' },
+	{ name: 'Cyan', value: '#68ecec' },
+	{ name: 'Orange', value: '#ff985d' }, // unk
+	{ name: 'Pink', value: '#ed93a4' },
 	{ name: 'Brown', value: '#bf6464' }, // unk
 	{ name: 'Gray', value: '#7f7f7f' },
 ];
@@ -8925,7 +8925,7 @@ export const tagInfo: {
 	{
 		color: 'gray',
 		icon: SacIconWhite,
-		link: '/hunter-notes/lookup',
+		link: '/tools/search',
 		values: ['Item', 'Sigil', 'Z Sigil', 'Decoration', 'Consumable'],
 	},
 	{
