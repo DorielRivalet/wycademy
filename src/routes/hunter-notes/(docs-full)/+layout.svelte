@@ -815,9 +815,6 @@
 			unsubscribe(); // Clean up the subscription on unmount
 		};
 	});
-
-	const searchParams = browser && $page.url.searchParams;
-	$: console.log(`searchParams: ${searchParams}`);
 </script>
 
 <LocalStorage
@@ -830,7 +827,7 @@
 	{description}
 	image={getPageThumbnail(
 		$page.url.pathname,
-		searchParams ? searchParams.get('embed') : null,
+		$page.url.searchParams.get('embed'),
 	)}
 	{url}
 	{website}
