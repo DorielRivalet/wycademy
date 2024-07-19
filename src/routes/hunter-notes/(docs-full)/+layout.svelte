@@ -67,7 +67,6 @@
 		guidesInfo,
 	} from '$lib/client/modules/routes';
 	import { page } from '$app/stores';
-	import { browser } from '$app/environment';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
