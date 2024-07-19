@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { FrontierMonsterHitzoneType } from '$lib/client/modules/frontier/types';
+	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 
 	const silhouetteImports = {
 		SilhouetteAbiorugu: () =>
@@ -478,14 +479,16 @@
 </script>
 
 {#await getSilhouette(currentSilhouette)}
-	<p>Loading...</p>
+	<SkeletonPlaceholder style="width: 100%; height: 40rem" />
 {:then { default: Component }}
-	<Component
-		{selectedHitzoneType}
-		{selectedMonsterState}
-		{selectedRankBand}
-		{hitzones}
-	/>
+	{#if Component}
+		<Component
+			{selectedHitzoneType}
+			{selectedMonsterState}
+			{selectedRankBand}
+			{hitzones}
+		/>
+	{/if}
 {/await}
 
 <style lang="scss">
