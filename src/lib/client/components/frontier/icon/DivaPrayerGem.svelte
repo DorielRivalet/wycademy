@@ -64,8 +64,9 @@
 				r="7.282053"
 			/></g
 		></g
-	><metadata id="metadata5"
-		><rdf:RDF
+	><metadata id="metadata5">
+		<!-- svelte-ignore illegal-attribute-character -->
+		<rdf:RDF
 			><cc:Work rdf:about=""
 				><dc:creator
 					><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent></dc:creator
