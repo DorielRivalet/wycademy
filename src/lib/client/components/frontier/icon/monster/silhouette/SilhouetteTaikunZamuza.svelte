@@ -120,7 +120,10 @@
 					id="feComposite2"
 				/></filter
 			></defs
-		><g id="layer1"
+		>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+		<g id="layer1"
 			><g
 				id="g9"
 				style="stroke: var(--ctp-mocha-surface1); stroke-width: 1.5;"

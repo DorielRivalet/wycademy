@@ -26,7 +26,7 @@
 	"scripts": {
 		"svelte-check": "svelte-check",
 		"dev": "vite dev",
-		"build": "cross-env NODE_OPTIONS=--max-old-space-size=6144 && vite build",
+		"build": "cross-env NODE_OPTIONS=--max-old-space-size=6144 vite build",
 		"preview": "vite preview",
 		"test": "npm run test:integration && npm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
