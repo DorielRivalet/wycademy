@@ -3,6 +3,122 @@ import type {
 	FrontierMonsterHitzoneRankBand,
 	FrontierMonsterPart,
 } from './types';
+import type { ComponentType } from 'svelte';
+
+import SilhouetteAbiorugu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAbiorugu.svelte';
+import SilhouetteAkantor from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkantor.svelte';
+import SilhouetteAkuraJebia from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAkuraJebia.svelte';
+import SilhouetteAmatsu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAmatsu.svelte';
+import SilhouetteAnorupatisu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAnorupatisu.svelte';
+import SilhouetteAruganosu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAruganosu.svelte';
+import SilhouetteAshenLaoShanLung from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAshenLaoShanLung.svelte';
+import SilhouetteAzureRathalos from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteAzureRathalos.svelte';
+import SilhouetteBarioth from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBarioth.svelte';
+import SilhouetteBaruragaru from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBaruragaru.svelte';
+import SilhouetteBasarios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBasarios.svelte';
+import SilhouetteBerserkRaviente from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerserkRaviente.svelte';
+import SilhouetteBerukyurosu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBerukyurosu.svelte';
+import SilhouetteBlackDiablos from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackDiablos.svelte';
+import SilhouetteBlackFatalis from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte';
+import SilhouetteBlackGravios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackGravios.svelte';
+import SilhouetteBlangonga from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlangonga.svelte';
+import SilhouetteBlinkingNargacuga from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlinkingNargacuga.svelte';
+import SilhouetteBlueYianKutKu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlueYianKutKu.svelte';
+import SilhouetteBombardierBogabadorumu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBombardierBogabadorumu.svelte';
+import SilhouetteBrachydios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrachydios.svelte';
+import SilhouetteBrightHypnoc from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBrightHypnoc.svelte';
+import SilhouetteBulldrome from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBulldrome.svelte';
+import SilhouetteCephadrome from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteCephadrome.svelte';
+import SilhouetteChameleos from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteChameleos.svelte';
+import SilhouetteCongalala from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteCongalala.svelte';
+import SilhouetteDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDaimyoHermitaur.svelte';
+import SilhouetteDeviljho from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDeviljho.svelte';
+import SilhouetteDiorex from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDiorex.svelte';
+import SilhouetteDisufiroa from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDisufiroa.svelte';
+import SilhouetteDuremudira from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDuremudira.svelte';
+import SilhouetteGoldRathian from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoldRathian.svelte';
+import SilhouetteKhezu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKhezu.svelte';
+import SilhouetteGypceros from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGypceros.svelte';
+import SilhouetteGreenPlesioth from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGreenPlesioth.svelte';
+import SilhouetteMonoblos from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMonoblos.svelte';
+import SilhouetteVelocidrome from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteVelocidrome.svelte';
+import SilhouetteGendrome from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGendrome.svelte';
+import SilhouetteIodrome from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteIodrome.svelte';
+import SilhouetteKirin from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKirin.svelte';
+import SilhouetteYianGaruga from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteYianGaruga.svelte';
+import SilhouetteRajang from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRajang.svelte';
+import SilhouetteKushalaDaora from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKushalaDaora.svelte';
+import SilhouetteShenGaoren from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShenGaoren.svelte';
+import SilhouetteYamaKurai from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteYamaKurai.svelte';
+import SilhouetteLunastra from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteLunastra.svelte';
+import SilhouetteTeostra from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTeostra.svelte';
+import SilhouetteShogunCeanataur from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShogunCeanataur.svelte';
+import SilhouetteTigrex from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTigrex.svelte';
+import SilhouetteEspinas from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteEspinas.svelte';
+import SilhouettePariapuria from '$lib/client/components/frontier/icon/monster/silhouette/SilhouettePariapuria.svelte';
+import SilhouetteKamuOrugaron from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKamuOrugaron.svelte';
+import SilhouetteNonoOrugaron from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteNonoOrugaron.svelte';
+import SilhouetteDyuragaua from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteDyuragaua.svelte';
+import SilhouetteGurenzeburu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGurenzeburu.svelte';
+import SilhouetteRukodiora from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRukodiora.svelte';
+import SilhouetteGogomoa from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGogomoa.svelte';
+import SilhouetteZenithTaikunZamuza from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithTaikunZamuza.svelte';
+import SilhouetteKuarusepusu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKuarusepusu.svelte';
+import SilhouetteOdibatorasu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteOdibatorasu.svelte';
+import SilhouetteRebidiora from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRebidiora.svelte';
+import SilhouetteHyujikiki from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHyujikiki.svelte';
+import SilhouetteMidogaron from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMidogaron.svelte';
+import SilhouetteGiaorugu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGiaorugu.svelte';
+import SilhouetteFarunokku from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteFarunokku.svelte';
+import SilhouettePokaradon from '$lib/client/components/frontier/icon/monster/silhouette/SilhouettePokaradon.svelte';
+import SilhouetteShantien from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShantien.svelte';
+import SilhouetteZenithRukodiora from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithRukodiora.svelte';
+import SilhouetteRayGougarf from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteRayGougarf.svelte';
+import SilhouetteLoloGougarf from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteLoloGougarf.svelte';
+import SilhouetteForokururu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteForokururu.svelte';
+import SilhouetteMeraginasu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteMeraginasu.svelte';
+import SilhouetteGarubaDaora from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGarubaDaora.svelte';
+import SilhouetteInagami from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteInagami.svelte';
+import SilhouetteVarusaburosu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteVarusaburosu.svelte';
+import SilhouettePoborubarumu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouettePoborubarumu.svelte';
+import SilhouetteGureadomosu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGureadomosu.svelte';
+import SilhouetteHarudomerugu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHarudomerugu.svelte';
+import SilhouetteToridcless from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteToridcless.svelte';
+import SilhouetteGasurabazura from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGasurabazura.svelte';
+import SilhouetteHowlingZinogre from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteHowlingZinogre2.svelte';
+import SilhouetteToaTesukatora from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteToaTesukatora.svelte';
+import SilhouetteUragaan from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteUragaan2.svelte';
+import SilhouetteGuanzorumu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGuanzorumu2.svelte';
+import SilhouetteVoljang from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteVoljang.svelte';
+import SilhouetteKeoaruboru from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteKeoaruboru.svelte';
+import SilhouetteZenaserisu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenaserisu.svelte';
+import SilhouetteGoreMagala from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteGoreMagala.svelte';
+import SilhouetteShagaruMagala from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteShagaruMagala2.svelte';
+import SilhouetteElzelion from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteElzelion.svelte';
+import SilhouetteSeregios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteSeregios.svelte';
+import SilhouetteSparklingZerureusu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteSparklingZerureusu.svelte';
+import SilhouetteZenithAkuraVashimu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithAkuraVashimu.svelte';
+import SilhouetteZenithAnorupatisu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithAnorupatisu.svelte';
+import SilhouetteZenithBaruragaru from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithBaruragaru.svelte';
+import SilhouetteZenithBlangonga from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithBlangonga.svelte';
+import SilhouetteZenithDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithDaimyoHermitaur.svelte';
+import SilhouetteZenithDoragyurosu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithDoragyurosu.svelte';
+import SilhouetteZenithEspinas from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithEspinas.svelte';
+import SilhouetteZenithGasurabazura from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithGasurabazura2.svelte';
+import SilhouetteZenithGiaorugu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithGiaorugu.svelte';
+import SilhouetteZenithGravios from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithGravios.svelte';
+import SilhouetteZenithHarudomerugu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithHarudomerugu.svelte';
+import SilhouetteZenithHypnoc from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithHypnoc.svelte';
+import SilhouetteZenithHyujikiki from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithHyujikiki.svelte';
+import SilhouetteZenithInagami from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithInagami.svelte';
+import SilhouetteZenithKhezu from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithKhezu.svelte';
+import SilhouetteZenithMidogaron from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithMidogaron.svelte';
+import SilhouetteZenithPlesioth from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithPlesioth.svelte';
+import SilhouetteZenithRathalos from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithRathalos.svelte';
+import SilhouetteZenithTigrex from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithTigrex.svelte';
+import SilhouetteZenithToridcless from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteZenithToridcless.svelte';
+import SilhouetteTaikunZamuza from '$lib/client/components/frontier/icon/monster/silhouette/SilhouetteTaikunZamuza.svelte';
+import AzureRathalos from '$lib/client/components/frontier/icon/monster/AzureRathalos.svelte';
 
 export function getMonsterHitzoneDataFromDisplayName(name: string) {
 	return hitzoneInfo.find((e) => e.displayName === name);
@@ -23,6 +139,682 @@ export type HitzoneInfo = {
 	rankBand: FrontierMonsterHitzoneRankBand;
 	displayName: FrontierMonsterName;
 };
+
+export const silhouetteInfo: {
+	displayName: string;
+	silhouette: ComponentType;
+}[] = [
+	{
+		silhouette: SilhouetteGoldRathian,
+		displayName: 'Rathian',
+	},
+	{
+		silhouette: SilhouetteBlackFatalis,
+		displayName: 'Fatalis',
+	},
+	{
+		silhouette: SilhouetteBlueYianKutKu,
+		displayName: 'Yian Kut-Ku',
+	},
+	{
+		silhouette: SilhouetteAshenLaoShanLung,
+		displayName: 'Lao-Shan Lung',
+	},
+	{
+		displayName: 'Cephadrome',
+		silhouette: SilhouetteCephadrome,
+	},
+	{
+		silhouette: SilhouetteAzureRathalos,
+		displayName: 'Rathalos',
+	},
+
+	{
+		displayName: 'Diablos',
+		silhouette: SilhouetteBlackDiablos,
+	},
+	{
+		silhouette: SilhouetteKhezu,
+		displayName: 'Khezu',
+	},
+
+	{
+		silhouette: SilhouetteBlackGravios,
+		displayName: 'Gravios',
+	},
+
+	{
+		silhouette: SilhouetteGypceros,
+		displayName: 'Gypceros',
+	},
+	{
+		silhouette: SilhouetteGreenPlesioth,
+		displayName: 'Plesioth',
+	},
+	{
+		silhouette: SilhouetteBasarios,
+		displayName: 'Basarios',
+	},
+
+	{
+		displayName: 'Monoblos',
+		silhouette: SilhouetteMonoblos,
+	},
+	{
+		displayName: 'Velocidrome',
+		silhouette: SilhouetteVelocidrome,
+	},
+	{
+		displayName: 'Gendrome',
+		silhouette: SilhouetteGendrome,
+	},
+
+	{
+		displayName: 'Iodrome',
+		silhouette: SilhouetteIodrome,
+	},
+	{
+		displayName: 'Kirin',
+		silhouette: SilhouetteKirin,
+	},
+
+	{
+		displayName: 'Crimson Fatalis',
+		silhouette: SilhouetteBlackFatalis,
+	},
+	{
+		displayName: 'Pink Rathian',
+		silhouette: SilhouetteGoldRathian,
+	},
+	{
+		displayName: 'Blue Yian Kut-Ku',
+		silhouette: SilhouetteBlueYianKutKu,
+	},
+	{
+		displayName: 'Purple Gypceros',
+		silhouette: SilhouetteGypceros,
+	},
+	{
+		displayName: 'Yian Garuga',
+		silhouette: SilhouetteYianGaruga,
+	},
+	{
+		displayName: 'Silver Rathalos',
+		silhouette: SilhouetteAzureRathalos,
+	},
+	{
+		displayName: 'Gold Rathian',
+		silhouette: SilhouetteGoldRathian,
+	},
+	{
+		displayName: 'Black Diablos',
+		silhouette: SilhouetteBlackDiablos,
+	},
+	{
+		displayName: 'White Monoblos',
+		silhouette: SilhouetteMonoblos,
+	},
+	{
+		displayName: 'Red Khezu',
+		silhouette: SilhouetteKhezu,
+	},
+	{
+		displayName: 'Green Plesioth',
+		silhouette: SilhouetteGreenPlesioth,
+	},
+	{
+		displayName: 'Black Gravios',
+		silhouette: SilhouetteBlackGravios,
+	},
+	{
+		displayName: 'Daimyo Hermitaur',
+		silhouette: SilhouetteDaimyoHermitaur,
+	},
+	{
+		displayName: 'Azure Rathalos',
+		silhouette: AzureRathalos,
+	},
+	{
+		displayName: 'Ashen Lao-Shan Lung',
+		silhouette: SilhouetteAshenLaoShanLung,
+	},
+	{
+		displayName: 'Blangonga',
+		silhouette: SilhouetteBlangonga,
+	},
+	{
+		displayName: 'Congalala',
+		silhouette: SilhouetteCongalala,
+	},
+	{
+		displayName: 'Rajang',
+		silhouette: SilhouetteRajang,
+	},
+	{
+		displayName: 'Kushala Daora',
+		silhouette: SilhouetteKushalaDaora,
+	},
+	{
+		displayName: 'Shen Gaoren',
+		silhouette: SilhouetteShenGaoren,
+	},
+
+	{
+		displayName: 'Yama Tsukami',
+		silhouette: SilhouetteYamaKurai,
+	},
+	{
+		displayName: 'Chameleos',
+		silhouette: SilhouetteChameleos,
+	},
+	{
+		displayName: 'Rusted Kushala Daora',
+		silhouette: SilhouetteKushalaDaora,
+	},
+
+	{
+		displayName: 'Lunastra',
+		silhouette: SilhouetteLunastra,
+	},
+	{
+		displayName: 'Teostra',
+		silhouette: SilhouetteTeostra,
+	},
+	{
+		displayName: 'Shogun Ceanataur',
+		silhouette: SilhouetteShogunCeanataur,
+	},
+	{
+		displayName: 'Bulldrome',
+		silhouette: SilhouetteBulldrome,
+	},
+
+	{
+		displayName: 'White Fatalis',
+		silhouette: SilhouetteBlackFatalis,
+	},
+
+	{
+		displayName: 'Hypnocatrice',
+		silhouette: SilhouetteBrightHypnoc,
+	},
+	{
+		displayName: 'Lavasioth',
+		silhouette: SilhouetteAruganosu,
+	},
+	{
+		displayName: 'Tigrex',
+		silhouette: SilhouetteTigrex,
+	},
+	{
+		displayName: 'Akantor',
+		silhouette: SilhouetteAkantor,
+	},
+	{
+		displayName: 'Bright Hypnoc',
+		silhouette: SilhouetteBrightHypnoc,
+	},
+	{
+		displayName: 'Red Lavasioth',
+		silhouette: SilhouetteAruganosu,
+	},
+	{
+		displayName: 'Espinas',
+		silhouette: SilhouetteEspinas,
+	},
+	{
+		displayName: 'Orange Espinas',
+		silhouette: SilhouetteEspinas,
+	},
+	{
+		displayName: 'Silver Hypnoc',
+		silhouette: SilhouetteBrightHypnoc,
+	},
+	{
+		displayName: 'Akura Vashimu',
+		silhouette: SilhouetteAkuraJebia,
+	},
+	{
+		displayName: 'Akura Jebia',
+		silhouette: SilhouetteAkuraJebia,
+	},
+	{
+		displayName: 'Berukyurosu',
+		silhouette: SilhouetteBerukyurosu,
+	},
+
+	{
+		displayName: 'Pariapuria',
+		silhouette: SilhouettePariapuria,
+	},
+	{
+		displayName: 'White Espinas',
+		silhouette: SilhouetteEspinas,
+	},
+	{
+		displayName: 'Kamu Orugaron',
+		silhouette: SilhouetteKamuOrugaron,
+	},
+	{
+		displayName: 'Nono Orugaron',
+		silhouette: SilhouetteNonoOrugaron,
+	},
+	{
+		displayName: 'Raviente',
+		silhouette: SilhouetteBerserkRaviente,
+	},
+	{
+		displayName: 'Violent Raviente',
+		silhouette: SilhouetteBerserkRaviente,
+	},
+	{
+		displayName: 'Dyuragaua',
+		silhouette: SilhouetteDyuragaua,
+	},
+	{
+		displayName: 'Doragyurosu',
+		silhouette: SilhouetteBerukyurosu,
+	},
+	{
+		displayName: 'Gurenzeburu',
+		silhouette: SilhouetteGurenzeburu,
+	},
+
+	{
+		displayName: 'Rukodiora',
+		silhouette: SilhouetteRukodiora,
+	},
+	{
+		displayName: 'UNKNOWN',
+		silhouette: SilhouetteGoldRathian,
+	},
+	{
+		displayName: 'Gogomoa',
+		silhouette: SilhouetteGogomoa,
+	},
+	{
+		displayName: 'Taikun Zamuza',
+		silhouette: SilhouetteTaikunZamuza,
+	},
+	{
+		displayName: 'Abiorugu',
+		silhouette: SilhouetteAbiorugu,
+	},
+	{
+		displayName: 'Kuarusepusu',
+		silhouette: SilhouetteKuarusepusu,
+	},
+	{
+		displayName: 'Odibatorasu',
+		silhouette: SilhouetteOdibatorasu,
+	},
+	{
+		displayName: 'Disufiroa',
+		silhouette: SilhouetteDisufiroa,
+	},
+	{
+		displayName: 'Rebidiora',
+		silhouette: SilhouetteRebidiora,
+	},
+	{
+		displayName: 'Anorupatisu',
+		silhouette: SilhouetteAnorupatisu,
+	},
+	{
+		displayName: 'Hyujikiki',
+		silhouette: SilhouetteHyujikiki,
+	},
+	{
+		displayName: 'Midogaron',
+		silhouette: SilhouetteMidogaron,
+	},
+	{
+		displayName: 'Giaorugu',
+		silhouette: SilhouetteGiaorugu,
+	},
+	{
+		displayName: 'Mi Ru',
+		silhouette: SilhouetteDyuragaua,
+	},
+	{
+		displayName: 'Farunokku',
+		silhouette: SilhouetteFarunokku,
+	},
+	{
+		displayName: 'Pokaradon',
+		silhouette: SilhouettePokaradon,
+	},
+	{
+		displayName: 'Shantien',
+		silhouette: SilhouetteShantien,
+	},
+	{
+		displayName: 'Goruganosu',
+		silhouette: SilhouetteAruganosu,
+	},
+	{
+		displayName: 'Aruganosu',
+		silhouette: SilhouetteAruganosu,
+	},
+	{
+		displayName: 'Baruragaru',
+		silhouette: SilhouetteBaruragaru,
+	},
+	{
+		displayName: 'Zerureusu',
+		silhouette: SilhouetteSparklingZerureusu,
+	},
+	{
+		displayName: 'Ray Gougarf',
+		silhouette: SilhouetteRayGougarf,
+	},
+	{
+		displayName: 'Lolo Gougarf',
+		silhouette: SilhouetteLoloGougarf,
+	},
+	{
+		displayName: 'Forokururu',
+		silhouette: SilhouetteForokururu,
+	},
+	{
+		displayName: 'Meraginasu',
+		silhouette: SilhouetteMeraginasu,
+	},
+	{
+		displayName: 'Diorex',
+		silhouette: SilhouetteDiorex,
+	},
+	{
+		displayName: 'Garuba Daora',
+		silhouette: SilhouetteGarubaDaora,
+	},
+	{
+		silhouette: SilhouetteInagami,
+		displayName: 'Inagami',
+	},
+	{
+		displayName: 'Varusaburosu',
+		silhouette: SilhouetteVarusaburosu,
+	},
+	{
+		displayName: 'Poborubarumu',
+		silhouette: SilhouettePoborubarumu,
+		// todo correct?
+	},
+	{
+		displayName: 'Duremudira',
+		silhouette: SilhouetteDuremudira,
+	},
+	{
+		displayName: 'Gureadomosu',
+		silhouette: SilhouetteGureadomosu,
+	},
+	{
+		displayName: 'Harudomerugu',
+		silhouette: SilhouetteHarudomerugu,
+	},
+	{
+		displayName: 'Toridcless',
+		silhouette: SilhouetteToridcless,
+	},
+	{
+		displayName: 'Gasurabazura',
+		silhouette: SilhouetteGasurabazura,
+	},
+	{
+		displayName: 'Yama Kurai',
+		silhouette: SilhouetteYamaKurai,
+	},
+	{
+		displayName: 'Zinogre',
+		silhouette: SilhouetteHowlingZinogre,
+	},
+	{
+		displayName: 'Deviljho',
+		silhouette: SilhouetteDeviljho,
+	},
+	{
+		displayName: 'Brachydios',
+		silhouette: SilhouetteBrachydios,
+	},
+	{
+		displayName: 'Berserk Raviente',
+		silhouette: SilhouetteBerserkRaviente,
+	},
+	{
+		displayName: 'Toa Tesukatora',
+		silhouette: SilhouetteToaTesukatora,
+	},
+	{
+		displayName: 'Barioth',
+		silhouette: SilhouetteBarioth,
+	},
+	{
+		displayName: 'Uragaan',
+		silhouette: SilhouetteUragaan,
+	},
+	{
+		displayName: 'Stygian Zinogre',
+		silhouette: SilhouetteHowlingZinogre,
+	},
+	{
+		displayName: 'Guanzorumu',
+		silhouette: SilhouetteGuanzorumu,
+	},
+	{
+		displayName: 'Starving Deviljho',
+		silhouette: SilhouetteDeviljho,
+	},
+	{
+		displayName: 'Voljang',
+		silhouette: SilhouetteVoljang,
+	},
+	{
+		displayName: 'Nargacuga',
+		silhouette: SilhouetteBlinkingNargacuga,
+	},
+	{
+		displayName: 'Keoaruboru',
+		silhouette: SilhouetteKeoaruboru,
+	},
+	{
+		displayName: 'Zenaserisu',
+		silhouette: SilhouetteZenaserisu,
+	},
+	{
+		displayName: 'Gore Magala',
+		silhouette: SilhouetteGoreMagala,
+	},
+	{
+		displayName: 'Blinking Nargacuga',
+		silhouette: SilhouetteBlinkingNargacuga,
+	},
+	{
+		displayName: 'Shagaru Magala',
+		silhouette: SilhouetteShagaruMagala,
+	},
+	{
+		displayName: 'Amatsu',
+		silhouette: SilhouetteAmatsu,
+	},
+	{
+		displayName: 'Elzelion',
+		silhouette: SilhouetteElzelion,
+	},
+	{
+		displayName: 'Arrogant Duremudira',
+		silhouette: SilhouetteDuremudira,
+	},
+	{
+		displayName: 'Seregios',
+		silhouette: SilhouetteSeregios,
+	},
+	{
+		displayName: 'Bogabadorumu',
+		silhouette: SilhouetteBombardierBogabadorumu,
+	},
+	{
+		displayName: 'Bombardier Bogabadorumu',
+		silhouette: SilhouetteBombardierBogabadorumu,
+	},
+	{
+		displayName: 'Sparkling Zerureusu',
+		silhouette: SilhouetteSparklingZerureusu,
+	},
+
+	{
+		displayName: 'Zenith Akura Vashimu',
+		silhouette: SilhouetteZenithAkuraVashimu,
+	},
+	{
+		displayName: 'Zenith Anorupatisu',
+		silhouette: SilhouetteZenithAnorupatisu,
+	},
+	{
+		displayName: 'Zenith Baruragaru',
+		silhouette: SilhouetteZenithBaruragaru,
+	},
+	{
+		displayName: 'Zenith Blangonga',
+		silhouette: SilhouetteZenithBlangonga,
+	},
+	{
+		displayName: 'Zenith Daimyo Hermitaur',
+		silhouette: SilhouetteZenithDaimyoHermitaur,
+	},
+	{
+		displayName: 'Zenith Doragyurosu',
+		silhouette: SilhouetteZenithDoragyurosu,
+	},
+	{
+		displayName: 'Zenith Espinas',
+		silhouette: SilhouetteZenithEspinas,
+	},
+	{
+		displayName: 'Zenith Gasurabazura',
+		silhouette: SilhouetteZenithGasurabazura,
+	},
+	{
+		displayName: 'Zenith Giaorugu',
+		silhouette: SilhouetteZenithGiaorugu,
+	},
+	{
+		displayName: 'Zenith Gravios',
+		silhouette: SilhouetteZenithGravios,
+	},
+	{
+		displayName: 'Zenith Harudomerugu',
+		silhouette: SilhouetteZenithHarudomerugu,
+	},
+	{
+		displayName: 'Zenith Hypnocatrice',
+		silhouette: SilhouetteZenithHypnoc,
+	},
+	{
+		displayName: 'Zenith Hyujikiki',
+		silhouette: SilhouetteZenithHyujikiki,
+	},
+	{
+		displayName: 'Zenith Inagami',
+		silhouette: SilhouetteZenithInagami,
+	},
+	{
+		displayName: 'Zenith Khezu',
+		silhouette: SilhouetteZenithKhezu,
+	},
+	{
+		displayName: 'Zenith Midogaron',
+		silhouette: SilhouetteZenithMidogaron,
+	},
+	{
+		displayName: 'Zenith Plesioth',
+		silhouette: SilhouetteZenithPlesioth,
+	},
+	{
+		displayName: 'Zenith Rathalos',
+		silhouette: SilhouetteZenithRathalos,
+	},
+	{
+		displayName: 'Zenith Rukodiora',
+		silhouette: SilhouetteZenithRukodiora,
+	},
+	{
+		displayName: 'Zenith Taikun Zamuza',
+		silhouette: SilhouetteZenithTaikunZamuza,
+	},
+	{
+		displayName: 'Zenith Tigrex',
+		silhouette: SilhouetteZenithTigrex,
+	},
+	{
+		displayName: 'Zenith Toridcless',
+		silhouette: SilhouetteZenithToridcless,
+	},
+	{
+		displayName: 'Conquest Fatalis',
+		silhouette: SilhouetteBlackFatalis,
+	},
+	{
+		displayName: 'Conquest Shantien',
+		silhouette: SilhouetteShantien,
+	},
+	{
+		displayName: 'Conquest Crimson Fatalis',
+		silhouette: SilhouetteBlackFatalis,
+	},
+	{
+		displayName: 'Shiten Disufiroa',
+		silhouette: SilhouetteDisufiroa,
+	},
+	{
+		displayName: 'Shiten UNKNOWN',
+		silhouette: SilhouetteGoldRathian,
+	},
+	{
+		displayName: 'Burning Freezing Elzelion',
+		silhouette: SilhouetteElzelion,
+	},
+	{
+		displayName: 'Howling Zinogre',
+		silhouette: SilhouetteHowlingZinogre,
+	},
+	{
+		displayName: 'Supremacy Pariapuria',
+		silhouette: SilhouettePariapuria,
+	},
+	{
+		displayName: 'Supremacy Doragyurosu',
+		silhouette: SilhouetteBerukyurosu,
+	},
+	{
+		displayName: 'Supremacy Teostra',
+		silhouette: SilhouetteTeostra,
+	},
+	{
+		displayName: 'Golden Deviljho',
+		silhouette: SilhouetteDeviljho,
+	},
+	{
+		displayName: 'Furious Rajang',
+		silhouette: SilhouetteRajang,
+	},
+	{
+		displayName: 'Ruling Guanzorumu',
+		silhouette: SilhouetteGuanzorumu,
+	},
+	{
+		displayName: 'Shifting Mi Ru',
+		silhouette: SilhouetteDyuragaua,
+	},
+	{
+		displayName: 'Twinhead Rajang',
+		silhouette: SilhouetteRajang,
+	},
+	{
+		displayName: 'Road White Fatalis',
+		silhouette: SilhouetteBlackFatalis, // todo?
+	},
+];
 
 export const hitzoneInfo: HitzoneInfo[] = [
 	{
@@ -66333,4 +67125,4 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 12,
 		stun: 0,
 	},
-];
+] as const;

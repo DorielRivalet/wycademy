@@ -23,7 +23,6 @@
 		FrontierMonsterHitzoneRankBand,
 		FrontierMonsterHitzoneType,
 		FrontierMonsterInfo,
-		FrontierMonsterNameExpanded,
 	} from '$lib/client/modules/frontier/types';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
@@ -43,7 +42,11 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import { fade } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
-	import { hitzoneInfo } from '$lib/client/modules/frontier/hitzones';
+	import {
+		hitzoneInfo,
+		silhouetteInfo,
+		type HitzoneInfo,
+	} from '$lib/client/modules/frontier/hitzones';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
@@ -116,7 +119,7 @@
 	}
 
 	function getAvailableRankBands(
-		displayName: FrontierMonsterName,
+		displayName: string,
 	): { id: string; text: string }[] {
 		// Filter HitzoneInfo by displayName and extract unique rankBands
 		const rankBands = new Set<FrontierMonsterHitzoneRankBand>();
@@ -170,7 +173,7 @@
 			(b?.displayName?.codePointAt(0) ?? 0),
 	);
 
-	let selectedMonsterIdFromList: FrontierMonsterName = findMonster(
+	let selectedMonsterIdFromList = findMonster(
 		$page.params.monster,
 	)?.displayName;
 
@@ -460,7 +463,7 @@
 						items={availableRankBands}
 					/>
 				{/if}
-				{#if monsterInfo.find((e) => e.displayName === selectedMonsterIdFromList)?.hitzoneComponent}
+				{#if silhouetteInfo.find((e) => e.displayName === selectedMonsterIdFromList)?.silhouette}
 					<Dropdown
 						titleText="Hitzone Type"
 						bind:selectedId={selectedHitzoneType}
@@ -495,9 +498,9 @@
 							}}
 						>
 							<svelte:component
-								this={monsterInfo.find(
+								this={silhouetteInfo.find(
 									(e) => e.displayName === selectedMonsterIdFromList,
-								)?.hitzoneComponent}
+								)?.silhouette}
 								{selectedHitzoneType}
 								{selectedMonsterState}
 								{selectedRankBand}

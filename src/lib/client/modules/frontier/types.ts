@@ -827,7 +827,6 @@ export type FrontierMonsterInfo = {
 	generation?: string;
 	ecology?: string;
 	link?: string;
-	hitzoneComponent?: ComponentType<SvelteComponent>;
 };
 
 export type FrontierMonsterNameExpanded =
@@ -1037,7 +1036,7 @@ export type WycademyTrophy = {
 export type ProfilePinnedSet = {
 	setName: string;
 	setColor: string;
-	setIcon: string | ComponentType<SvelteComponent>;
+	setIcon: string | ComponentType;
 	setTags: string[];
 	weaponType: FrontierWeaponName;
 	weaponName: string;
