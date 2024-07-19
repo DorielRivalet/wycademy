@@ -305,18 +305,6 @@ type Recipe = {
 
 export const recipes: Recipe[] = [
 	{
-		id: 23,
-		dish: "Guild's Yaminabe",
-		base: [],
-		auxiliary1: [],
-		auxiliary2: [],
-		auxiliary3: [],
-		greatFailure: 'Hunger Up Lg',
-		failure: 'Random',
-		success: 'Random',
-		greatSuccess: 'Random',
-	},
-	{
 		id: 1,
 		dish: 'Spicy Bakudandon',
 		base: ['Bright Grain', 'Snow Powder'],
@@ -779,5 +767,17 @@ export const recipes: Recipe[] = [
 		failure: 'Blue Soul',
 		success: 'Incitement',
 		greatSuccess: 'Red Soul',
+	},
+	{
+		id: 23,
+		dish: "Guild's Yaminabe",
+		base: [],
+		auxiliary1: [],
+		auxiliary2: [],
+		auxiliary3: [],
+		greatFailure: 'Hunger Up Lg',
+		failure: 'Random',
+		success: 'Random',
+		greatSuccess: 'Random',
 	},
 ];

@@ -774,12 +774,14 @@
 		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
 		headTitle = monster
 			? monster.displayName
-			: navigationItem?.name ?? "Hunter's Notes";
+			: (navigationItem?.name ?? "Hunter's Notes");
 		description = monster?.ecology
 			? monster.ecology
-			: navigationItem?.description ?? description;
+			: (navigationItem?.description ?? description);
 		breadcrumbItems = items;
 	}
+
+	let embedImage: string;
 
 	onMount(() => {
 		let themeValue = $theme;
@@ -801,14 +803,16 @@
 		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
 		headTitle = monster
 			? monster.displayName
-			: navigationItem?.name ?? "Hunter's Notes";
+			: (navigationItem?.name ?? "Hunter's Notes");
 		description = monster?.ecology
 			? monster.ecology
-			: navigationItem?.description ?? description;
+			: (navigationItem?.description ?? description);
 		breadcrumbItems = items;
 		const unsubscribe = page.subscribe(($page) => {
 			treeview?.showNode($page.url.pathname || '');
 		});
+
+		embedImage = getPageThumbnail($page.url.pathname + $page.url.hash);
 
 		return () => {
 			unsubscribe(); // Clean up the subscription on unmount
@@ -824,7 +828,7 @@
 <Head
 	title={headTitle}
 	{description}
-	image={getPageThumbnail(guidesInfo, $page.url.pathname)}
+	image={embedImage}
 	{url}
 	{website}
 	{authorName}
