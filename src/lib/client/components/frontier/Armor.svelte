@@ -5,12 +5,10 @@
 -->
 
 <script lang="ts">
-	import { ArmorTypes } from '$lib/client/modules/frontier/objects';
+	import { ArmorTypes } from '$lib/client/modules/frontier/armor';
 	import type {
 		FrontierArmorGRLevel,
 		FrontierArmorLevel,
-		FrontierArmorSkillName,
-		FrontierArmorSkillTree,
 		FrontierArmorClass,
 		FrontierEquipmentDecorations,
 		FrontierEquipmentRank,
@@ -18,7 +16,6 @@
 		FrontierArmorType,
 		FrontierEquipmentSkillPoints,
 		FrontierArmorID,
-		FrontierZenithSkill,
 	} from '$lib/client/modules/frontier/types';
 	import ArrowIcon from '$lib/client/components/frontier/icon/ArrowIcon.svelte';
 
@@ -26,6 +23,11 @@
 	import { stringReplacements } from '$lib/client/modules/frontier/functions';
 	import GRankEquipmentIcon from './icon/GRankEquipmentIcon.svelte';
 	import ZenithEquipmentIcon from './icon/ZenithEquipmentIcon2.svelte';
+	import type {
+		FrontierArmorSkillName,
+		FrontierArmorSkillTree,
+		FrontierZenithSkill,
+	} from 'ezlion';
 	//TODO Transmog icon
 
 	/** Truncated to 18 characters.*/

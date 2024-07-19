@@ -11,11 +11,6 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
-	import {
-		defaultWeaponComponentValues,
-		HuntingHornWeaponNotesCombinations,
-		SharpnessNames,
-	} from '$lib/client/modules/frontier/objects';
 	import type {
 		FrontierGunlanceShell,
 		FrontierGunlanceShellLevel,
@@ -29,6 +24,11 @@
 	import { browser } from '$app/environment';
 	import slugify from 'slugify';
 	import { domToPng } from 'modern-screenshot';
+	import { defaultWeaponComponentValues } from '$lib/client/modules/frontier/weapons';
+	import {
+		HuntingHornWeaponNotesCombinations,
+		SharpnessNames,
+	} from '$lib/client/modules/frontier/weapons';
 
 	function downloadWeaponImage() {
 		if (!browser) return;

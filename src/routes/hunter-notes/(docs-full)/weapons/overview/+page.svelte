@@ -10,7 +10,7 @@
 	import SharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
 	import type { FrontierWeaponSharpness } from '$lib/client/modules/frontier/types';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import { WeaponTypes } from '$lib/client/modules/frontier/objects';
+	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 	import { page } from '$app/stores';
 
 	function getSharpnessArray(input: string): FrontierWeaponSharpness {

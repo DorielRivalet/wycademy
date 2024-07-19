@@ -11,12 +11,6 @@
 		getUniqueMonsters,
 		isFieldEmpty,
 	} from '$lib/client/modules/frontier/functions';
-	import {
-		AilmentIcons,
-		ElementIcons,
-		StatusIcons,
-		monsterInfo,
-	} from '$lib/client/modules/frontier/objects';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import ezlion, { type FrontierMonsterName } from 'ezlion';
 	import type {
@@ -48,6 +42,12 @@
 		type HitzoneInfo,
 	} from '$lib/client/modules/frontier/hitzones';
 	import MonsterSilhouette from '../MonsterSilhouette.svelte';
+	import {
+		AilmentIcons,
+		StatusIcons,
+	} from '$lib/client/modules/frontier/ailments';
+	import { ElementIcons } from '$lib/client/modules/frontier/elements';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(

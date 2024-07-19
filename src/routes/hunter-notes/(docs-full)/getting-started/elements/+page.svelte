@@ -4,10 +4,6 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import {
-		ElementIcons,
-		monsterInfo,
-	} from '$lib/client/modules/frontier/objects';
-	import {
 		getWeaponIcon,
 		getTag,
 	} from '$lib/client/modules/frontier/functions';
@@ -16,6 +12,8 @@
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import { page } from '$app/stores';
+	import { ElementIcons } from '$lib/client/modules/frontier/elements';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 
 	function getElementArray(input: string) {
 		// Step 1: Split the string into individual elements

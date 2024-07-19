@@ -8,7 +8,6 @@ import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 import { format } from 'mathjs';
 import type {
 	FrontierArmorID,
-	FrontierDivaPrayerGem,
 	FrontierDivaPrayerGemColor,
 	FrontierElement,
 	FrontierItemColor,
@@ -16,22 +15,10 @@ import type {
 	FrontierMonsterHitzoneType,
 	FrontierMonsterInfo,
 	FrontierMonsterNameExpanded,
-	FrontierMonsterPart,
 	FrontierMonsterPartInfo,
 	FrontierStatus,
 	FrontierWeaponSharpness,
 } from './types';
-import {
-	ArmorTypes,
-	divaPrayerGemColors,
-	hitzoneColors,
-	ItemColors,
-	itemInfo,
-	monsterInfo,
-	tagInfo,
-	unlistedMonsterNames,
-	WeaponTypes,
-} from './objects';
 import FireIcon from '$lib/client/images/icon/element/fire.webp';
 import WaterIcon from '$lib/client/images/icon/element/water.webp';
 import ThunderIcon from '$lib/client/images/icon/element/thunder.webp';
@@ -57,12 +44,18 @@ import DefenseIcon from '$lib/client/images/icon/defense_icon.webp';
 import BlastIcon from '$lib/client/images/icon/status/blast.webp';
 import type {
 	FrontierMonsterName,
-	FrontierRankBand,
 	FrontierWeaponID,
 	FrontierWeaponName,
 } from 'ezlion';
 import slugify from 'slugify';
 import { hitzoneInfo } from './hitzones';
+import { ItemColors, itemInfo } from './items';
+import { WeaponTypes } from './weapons';
+import { monsterInfo, unlistedMonsterNames } from './monsters';
+import { ArmorTypes } from './armor';
+import { divaPrayerGemColors } from './diva';
+import { hitzoneColors } from './objects';
+import { tagInfo } from './tags';
 
 export const frontierMath = {
 	calculateEHP: (monsterHP: number, defrate: number) =>

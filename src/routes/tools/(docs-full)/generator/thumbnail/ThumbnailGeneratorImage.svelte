@@ -11,23 +11,24 @@
 	import type { FrontierImageType } from '$lib/client/modules/frontier/types';
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
-	import {
-		AilmentIcons,
-		ArmorTypes,
-		ColorCodes,
-		ElementIcons,
-		gameInfo,
-		Habitats,
-		ItemColors,
-		itemInfo,
-		LocationIcons,
-		monsterInfo,
-		RarityColors,
-		StatusIcons,
-		WeaponTypes,
-	} from '$lib/client/modules/frontier/objects';
 	import { createEventDispatcher } from 'svelte';
 	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
+	import {
+		AilmentIcons,
+		StatusIcons,
+	} from '$lib/client/modules/frontier/ailments';
+	import { ArmorTypes } from '$lib/client/modules/frontier/armor';
+	import { ElementIcons } from '$lib/client/modules/frontier/elements';
+	import { Habitats } from '$lib/client/modules/frontier/habitat';
+	import { itemInfo, ItemColors } from '$lib/client/modules/frontier/items';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import {
+		gameInfo,
+		RarityColors,
+		ColorCodes,
+	} from '$lib/client/modules/frontier/objects';
 
 	export let top = 0;
 	export let left = 0;

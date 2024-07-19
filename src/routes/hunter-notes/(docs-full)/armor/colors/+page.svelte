@@ -4,7 +4,7 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import { LocationIcons } from '$lib/client/modules/frontier/objects';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';

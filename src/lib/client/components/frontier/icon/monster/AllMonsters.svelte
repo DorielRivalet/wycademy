@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { monsterInfo } from '$lib/client/modules/frontier/objects';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 
 	export let monsters = [...new Set(monsterInfo)];
 	export let delay = 2000;

@@ -3,7 +3,7 @@
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import { monsterInfo } from '$lib/client/modules/frontier/objects';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';

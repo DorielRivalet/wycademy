@@ -48,7 +48,7 @@
 	import ChestIconWhite from '$lib/client/components/frontier/icon/armor/Chest_Icon_White.svelte';
 	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
 	import MapIconWhite from '$lib/client/components/frontier/icon/item/Map_Icon_White.svelte';
-	import { LocationIcons } from '$lib/client/modules/frontier/objects';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import MedicineIconWhite from '$lib/client/components/frontier/icon/item/Medicine_Icon_White.svelte';
 	import BallIconWhite from '$lib/client/components/frontier/icon/item/Ball_Icon_White.svelte';
 	import MantleIconWhite from '$lib/client/components/frontier/icon/item/Mantle_Icon_White.svelte';

@@ -4,11 +4,6 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import {
-		ItemColors,
-		LocationIcons,
-		bentoValues,
-	} from '$lib/client/modules/frontier/objects';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
@@ -18,6 +13,9 @@
 	import { getItemIcon } from '$lib/client/modules/frontier/functions';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { page } from '$app/stores';
+	import { bentoValues } from '$lib/client/modules/frontier/bento';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { ItemColors } from '$lib/client/modules/frontier/items';
 
 	function getBentoSectionValues(section: string) {
 		let defaultResult = [

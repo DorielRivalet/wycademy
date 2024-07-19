@@ -10,10 +10,7 @@
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import { getWeaponIcon } from '../modules/frontier/functions';
-	import {
-		guildCardBackgrounds,
-		RarityColors,
-	} from '../modules/frontier/objects';
+	import { RarityColors } from '../modules/frontier/objects';
 	import JewelIconWhite from './frontier/icon/item/Jewel_Icon_White.svelte';
 	import HelmetIconWhite from './frontier/icon/armor/Helmet_Icon_White.svelte';
 	import ChestIconWhite from './frontier/icon/armor/Chest_Icon_White.svelte';
@@ -25,6 +22,7 @@
 	import { browser } from '$app/environment';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
+	import { guildCardBackgrounds } from '../modules/frontier/guild-card';
 
 	export let name = 'Hunter';
 	export let date = '2024-05-02T00:00:01Z';

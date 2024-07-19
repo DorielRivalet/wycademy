@@ -5,11 +5,6 @@
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
-	import {
-		gameInfo,
-		LocationIcons,
-		WeaponTypes,
-	} from '$lib/client/modules/frontier/objects';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
@@ -24,6 +19,9 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { gameInfo } from '$lib/client/modules/frontier/objects';
+	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 
 	function downloadDom(id: string) {
 		if (!browser) return;

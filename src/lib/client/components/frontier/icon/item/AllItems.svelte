@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { itemInfo, RarityColors } from '$lib/client/modules/frontier/objects';
+	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import { browser } from '$app/environment';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
+	import { itemInfo } from '$lib/client/modules/frontier/items';
 
 	export let colors = [...new Set(RarityColors)];
 	export let delay = 2000;

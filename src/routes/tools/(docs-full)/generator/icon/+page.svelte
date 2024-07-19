@@ -28,19 +28,20 @@
 	import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
 	import {
 		AilmentIcons,
-		ArmorTypes,
-		ColorCodes,
-		ElementIcons,
-		gameInfo,
-		Habitats,
-		ItemColors,
-		itemInfo,
-		LocationIcons,
-		monsterInfo,
-		RarityColors,
 		StatusIcons,
-		WeaponTypes,
+	} from '$lib/client/modules/frontier/ailments';
+	import { ArmorTypes } from '$lib/client/modules/frontier/armor';
+	import { ElementIcons } from '$lib/client/modules/frontier/elements';
+	import { Habitats } from '$lib/client/modules/frontier/habitat';
+	import { ItemColors, itemInfo } from '$lib/client/modules/frontier/items';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import {
+		RarityColors,
+		ColorCodes,
+		gameInfo,
 	} from '$lib/client/modules/frontier/objects';
+	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 
 	function downloadIconImage() {
 		if (!browser) return;

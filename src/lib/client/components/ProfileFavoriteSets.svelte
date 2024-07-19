@@ -2,7 +2,7 @@
 	import ClickableTileImage from './ClickableTileImage.svelte';
 	import FavoriteFilled from 'carbon-icons-svelte/lib/FavoriteFilled.svelte';
 	import Favorite from 'carbon-icons-svelte/lib/Favorite.svelte';
-	import { LocationIcons } from '../modules/frontier/objects';
+	import { LocationIcons } from '../modules/frontier/locations';
 	import { getMonsterIcon } from '../modules/frontier/functions';
 
 	export let favoriteSets = [

@@ -52,7 +52,7 @@
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import KnifeIconWhite from '$lib/client/components/frontier/icon/item/Knife_Icon_White.svelte';
 	import { LogoYoutube } from 'carbon-icons-svelte';
-	import { LocationIcons } from '$lib/client/modules/frontier/objects';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import {
 		getNavigationItemFromLink,
 		toolsInfo,

@@ -18,7 +18,7 @@
 	import {
 		affinityDropdownItems,
 		multipliersDropdownItems,
-	} from '$lib/client/modules/frontier/objects';
+	} from '$lib/client/modules/frontier/damage-calculator';
 
 	function getCritConversionTrueRaw(
 		totalAffinity: number,

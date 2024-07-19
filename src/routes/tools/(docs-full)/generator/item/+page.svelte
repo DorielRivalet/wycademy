@@ -11,11 +11,6 @@
 	import Item from '$lib/client/components/frontier/Item.svelte';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import { browser } from '$app/environment';
-	import {
-		defaultItemComponentValues,
-		ItemColors,
-		itemInfo,
-	} from '$lib/client/modules/frontier/objects';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
 	import type {
@@ -35,6 +30,8 @@
 		FrontierWeaponClass,
 	} from 'ezlion';
 	import ezlion from 'ezlion';
+	import { ItemColors, itemInfo } from '$lib/client/modules/frontier/items';
+	import { defaultItemComponentValues } from '$lib/client/modules/frontier/objects';
 
 	type dropdownItem = { id: string; text: string };
 

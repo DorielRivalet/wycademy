@@ -4,15 +4,6 @@
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import { getCSVFromArray } from '$lib/client/modules/csv';
-	import {
-		LocationIcons,
-		WeaponTypes,
-	} from '$lib/client/modules/frontier/objects';
-	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
-	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
-	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 </script>
 
 <HunterNotesPage displayTOC={true}>

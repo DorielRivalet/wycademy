@@ -26,7 +26,7 @@
 	import IceAgeStage1Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage2Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage3Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
-	import { weaponMotionValues } from '$lib/client/modules/frontier/objects';
+	import { weaponMotionValues } from '$lib/client/modules/frontier/motion-values';
 	import { display } from 'mathlifier';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';

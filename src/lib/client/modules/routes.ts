@@ -2,7 +2,7 @@ import type { ComponentType, SvelteComponent } from 'svelte';
 import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 import ExtremeFireblight from '$lib/client/components/frontier/icon/ailment/ExtremeFireblight.svelte';
 import ExtremeParalysis from '$lib/client/components/frontier/icon/ailment/ExtremeParalysis.svelte';
-import { LocationIcons } from './frontier/objects';
+import { LocationIcons } from './frontier/locations';
 import StygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
 import YamaKurai2 from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
 import Zerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';

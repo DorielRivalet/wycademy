@@ -4,16 +4,14 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import {
-		StatusIcons,
-		monsterInfo,
-	} from '$lib/client/modules/frontier/objects';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { page } from '$app/stores';
 
 	import { getCSVFromArray } from '$lib/client/modules/csv';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import { StatusIcons } from '$lib/client/modules/frontier/ailments';
 
 	function getStatusArray(input: string) {
 		const values = input.split(',');
