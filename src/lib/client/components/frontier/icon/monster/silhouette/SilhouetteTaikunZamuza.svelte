@@ -54,11 +54,7 @@
 	);
 </script>
 
-<div
-	id="tooltip"
-	display="none"
-	style="position: absolute; display: none;"
-></div>
+<div id="tooltip" style="position: absolute; display: none;"></div>
 
 <div class="container">
 	<svg

@@ -54,11 +54,7 @@
 	);
 </script>
 
-<div
-	id="tooltip"
-	display="none"
-	style="position: absolute; display: none;"
-></div>
+<div id="tooltip" style="position: absolute; display: none;"></div>
 
 <div class="container">
 	<svg
@@ -1874,8 +1870,11 @@
 					id="feComposite573"
 				/></filter
 			></defs
-		><g id="g1" style="stroke: var(--ctp-mocha-surface1); stroke-width: 1.0;"
-			><path
+		>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+		<g id="g1" style="stroke: var(--ctp-mocha-surface1); stroke-width: 1.0;">
+			<path
 				d="m 35.00329,61.803922 h 0.330931 0.331407 v 0.38243 0.381954 l 0.868335,1.876385 0.868811,1.875908 -0.154974,0.834003 -0.154975,0.834478 -0.586043,0.46111 -0.586042,0.460632 -0.459679,1.039045 -0.459679,1.039046 -0.295167,0.961796 -0.295644,0.961797 -0.258927,0.531682 -0.258926,0.531683 0.11778,0.616083 0.117781,0.615607 -0.329023,0.126364 -0.328546,0.125887 -0.520238,-0.703823 -0.520715,-0.703823 -0.457295,-0.119689 -0.457294,-0.119688 v -0.679504 -0.679504 l -0.290398,-1.405263 -0.2904,-1.405262 0.318056,-2.027545 0.317579,-2.027546 0.589858,-1.031415 0.58938,-1.031416 1.126786,-0.860706 z"
 				id="path1205"
 				style="fill: {hitzoneColors['Forelegs']}"
@@ -1961,8 +1960,9 @@
 				on:mouseout={(e) => hideTooltip()}
 			/></g
 		><metadata id="metadata17"
-			><rdf:RDF
-				><cc:License
+			><rdf:RDF>
+				<!-- svelte-ignore illegal-attribute-character -->
+				<cc:License
 					rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 					><cc:permits
 						rdf:resource="http://creativecommons.org/ns#Reproduction"
@@ -1979,7 +1979,9 @@
 					/><cc:requires
 						rdf:resource="http://creativecommons.org/ns#ShareAlike"
 					/></cc:License
-				><cc:Work rdf:about=""
+				>
+				<!-- svelte-ignore illegal-attribute-character -->
+				<cc:Work rdf:about=""
 					><cc:license
 						rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 					/><dc:creator

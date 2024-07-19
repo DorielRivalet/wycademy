@@ -54,11 +54,7 @@
 	);
 </script>
 
-<div
-	id="tooltip"
-	display="none"
-	style="position: absolute; display: none;"
-></div>
+<div id="tooltip" style="position: absolute; display: none;"></div>
 
 <div class="container">
 	<svg
@@ -1824,6 +1820,8 @@
 				/>
 			</filter>
 		</defs>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 		<g
 			id="layer1"
 			style="stroke: var(--ctp-mocha-surface1); stroke-width: 1.0;"
@@ -1903,6 +1901,8 @@
 		</g>
 		<metadata id="metadata17">
 			<rdf:RDF>
+				<!-- svelte-ignore illegal-attribute-character -->
+
 				<cc:License
 					rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 				>
@@ -1926,6 +1926,7 @@
 						rdf:resource="http://creativecommons.org/ns#ShareAlike"
 					/>
 				</cc:License>
+				<!-- svelte-ignore illegal-attribute-character -->
 				<cc:Work rdf:about="">
 					<cc:license
 						rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
