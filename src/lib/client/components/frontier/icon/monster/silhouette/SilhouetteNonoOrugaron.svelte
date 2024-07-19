@@ -1869,8 +1869,10 @@
 					result="composite2"
 					id="feComposite573"
 				/></filter
-			></defs
-		><g id="layer1"
+></defs>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+<g id="layer1"
 			><g
 				id="g848"
 				transform="matrix(-1,0,0,1,128.0001,0)"
