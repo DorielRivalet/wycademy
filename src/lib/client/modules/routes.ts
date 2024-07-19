@@ -320,11 +320,6 @@ export const thumbnailInfo: {
 		thumbnail: thumbnailActiveFeature,
 	},
 	{
-		embed: null,
-		link: '/hunter-notes/locations/guild-hall',
-		thumbnail: thumbnailActiveFeature,
-	},
-	{
 		embed: 'recipes',
 		link: '/hunter-notes/locations/guild-hall',
 		thumbnail: thumbnailRecipes,
