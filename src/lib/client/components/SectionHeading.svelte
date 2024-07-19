@@ -27,6 +27,7 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	// https://stackoverflow.com/questions/61303237/how-to-set-dynamic-html-tag-according-to-props-in-svelte
 	import slugify from 'slugify';
 	import LinkIcon from 'carbon-icons-svelte/lib/Link.svelte';
+	import { browser } from '$app/environment';
 	/** The name of the section heading*/
 	export let title: string;
 	/** The level of the section heading*/
@@ -35,10 +36,22 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	export let withSeparator: boolean = true;
 	const tag = 'h' + level;
 	//https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-one-element-is-hovered
+
+	const slug = slugify(title, { lower: true });
+
+	function updateQueryStringParameter(key: string, value: string) {
+		if (!browser) return;
+		const url = new URL(window.location.href);
+		url.searchParams.set(key, value);
+		window.history.replaceState({}, '', url);
+	}
 </script>
 
-<svelte:element this={tag} id={slugify(title, { lower: true })}>
-	<a href={'#' + slugify(title, { lower: true })}>
+<svelte:element this={tag} id={slug}>
+	<a
+		href={'#' + slug}
+		on:click={() => updateQueryStringParameter('embed', slug)}
+	>
 		{title}
 		{#if withIcon}
 			<span class="icon">

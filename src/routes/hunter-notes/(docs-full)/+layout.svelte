@@ -15,7 +15,6 @@
 	import { onMount } from 'svelte';
 	import { cursorIcon } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
-	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
@@ -67,6 +66,7 @@
 		getPageThumbnail,
 		guidesInfo,
 	} from '$lib/client/modules/routes';
+	import { page } from '$app/stores';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -781,8 +781,6 @@
 		breadcrumbItems = items;
 	}
 
-	let embedImage: string;
-
 	onMount(() => {
 		let themeValue = $theme;
 		let cssVarMap =
@@ -812,8 +810,6 @@
 			treeview?.showNode($page.url.pathname || '');
 		});
 
-		embedImage = getPageThumbnail($page.url.pathname + $page.url.hash);
-
 		return () => {
 			unsubscribe(); // Clean up the subscription on unmount
 		};
@@ -828,7 +824,10 @@
 <Head
 	title={headTitle}
 	{description}
-	image={embedImage}
+	image={getPageThumbnail(
+		$page.url.pathname,
+		$page.url.searchParams.get('embed'),
+	)}
 	{url}
 	{website}
 	{authorName}

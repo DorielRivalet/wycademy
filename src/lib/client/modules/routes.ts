@@ -59,9 +59,9 @@ export type CategoryInfo = {
 	pages: NavigationItem[];
 };
 
-export function getPageThumbnail(link: string) {
+export function getPageThumbnail(link: string, query: string | null) {
 	for (const entry of thumbnailInfo) {
-		if (entry.link === link) {
+		if (entry.link === link && entry.embed === query) {
 			return entry.thumbnail;
 		}
 	}
@@ -309,21 +309,29 @@ export const toolsInfo: CategoryInfo[] = [
 	},
 ];
 
-export const thumbnailInfo: { link: string; thumbnail: string }[] = [
+export const thumbnailInfo: {
+	link: string;
+	thumbnail: string;
+	embed: string | null;
+}[] = [
 	{
 		link: '/hunter-notes/weapons/active-feature',
+		embed: null,
 		thumbnail: thumbnailActiveFeature,
 	},
 	{
+		embed: null,
 		link: '/hunter-notes/locations/guild-hall',
 		thumbnail: thumbnailActiveFeature,
 	},
 	{
-		link: '/hunter-notes/locations/guild-hall#recipes',
+		embed: 'recipes',
+		link: '/hunter-notes/locations/guild-hall',
 		thumbnail: thumbnailRecipes,
 	},
 	{
-		link: '/hunter-notes/locations/guild-hall#guild-poogie-skills',
+		embed: 'guild-poogie-skills',
+		link: '/hunter-notes/locations/guild-hall',
 		thumbnail: thumbnailGuildPoogies,
 	},
 ];
