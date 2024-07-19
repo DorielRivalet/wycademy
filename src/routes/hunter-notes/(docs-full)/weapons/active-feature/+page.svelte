@@ -13,14 +13,17 @@
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
-	import image1 from '$lib/client/images/supplemental/active-feature.png';
-	import image2 from '$lib/client/images/supplemental/active-feature-shine.gif';
+	import image1 from '$lib/client/images/supplemental/active-feature.webp';
+	import image2 from '$lib/client/images/supplemental/active-feature-shine.webp';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import { browser } from '$app/environment';
 	import slugify from 'slugify';
 	import { domToPng } from 'modern-screenshot';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 
 	function downloadDom(id: string) {
 		if (!browser) return;
@@ -242,6 +245,22 @@
 				</DataTable>
 			</div>
 		</div>
+
+		<section>
+			<SectionHeading level={2} title="Trivia" />
+			<div>
+				<UnorderedList>
+					<ListItem
+						><p>
+							The Taiwanese version of the game used to give x1.5 extra damage
+							to the weapon, in addition to its other Active Feature effects.
+							Additionally, it gave the Active Feature effect to all weapons at
+							the same time, during the last day before shutdown.
+						</p></ListItem
+					>
+				</UnorderedList>
+			</div>
+		</section>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>

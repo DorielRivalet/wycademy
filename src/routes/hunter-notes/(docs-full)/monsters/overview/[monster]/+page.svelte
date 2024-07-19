@@ -434,17 +434,45 @@
 			</p>
 			<div class="hitzone-colors-description">
 				<UnorderedList>
-					<ListItem>Red: Highest values for this hitzone type.</ListItem>
-					<ListItem
-						>Orange: Second highest values for this hitzone type.</ListItem
+					<ListItem>
+						<button
+							type="button"
+							class="dot"
+							aria-label={'Color'}
+							style="background-color: var(--ctp-red)"
+						/>Red: Highest values for this hitzone type.</ListItem
 					>
 					<ListItem
-						>Yellow: Third highest values for this hitzone type.</ListItem
-					>
-					<ListItem>Green: Values higher than 0 for this hitzone type.</ListItem
+						><button
+							type="button"
+							class="dot"
+							aria-label={'Color'}
+							style="background-color: var(--ctp-peach)"
+						/>Orange: Second highest values for this hitzone type.</ListItem
 					>
 					<ListItem
-						>Blue: Values lower or equal to 0 for this hitzone type.</ListItem
+						><button
+							type="button"
+							class="dot"
+							aria-label={'Color'}
+							style="background-color: var(--ctp-yellow)"
+						/>Yellow: Third highest values for this hitzone type.</ListItem
+					>
+					<ListItem
+						><button
+							type="button"
+							class="dot"
+							aria-label={'Color'}
+							style="background-color: var(--ctp-green)"
+						/>Green: Values higher than 0 for this hitzone type.</ListItem
+					>
+					<ListItem
+						><button
+							type="button"
+							class="dot"
+							aria-label={'Color'}
+							style="background-color: var(--ctp-blue)"
+						/>Blue: Values lower or equal to 0 for this hitzone type.</ListItem
 					>
 				</UnorderedList>
 			</div>
@@ -704,5 +732,14 @@
 			width: 100%;
 			gap: 1rem;
 		}
+	}
+
+	.dot {
+		width: 1rem;
+		height: 1rem;
+		margin-right: 0.25rem;
+		border-color: var(--ctp-surface1);
+		border-radius: 50%;
+		border-style: solid;
 	}
 </style>

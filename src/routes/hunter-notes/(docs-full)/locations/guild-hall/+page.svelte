@@ -15,9 +15,27 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import { getItemIcon, getTag } from '$lib/client/modules/frontier/functions';
-	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
+	import imageGuildFood from '$lib/client/images/supplemental/guild-food.webp';
+	import imageGuildFoodCat from '$lib/client/images/supplemental/guild-food-cat.webp';
+	import imageGuildPoogie from '$lib/client/images/supplemental/guild-poogie.webp';
+
+	import PoogieRedAndWhite from '$lib/client/images/supplemental/red-and-white.webp';
+	import PoogieSoporificWhite from '$lib/client/images/supplemental/soporific-white.webp';
+	import PoogieGentleGreen from '$lib/client/images/supplemental/gentle-green.webp';
+	import PoogieNakedEmperor from '$lib/client/images/supplemental/naked-emperor.webp';
+	import PoogieSoothingSky from '$lib/client/images/supplemental/soothing-sky.webp';
+	import PoogieRestlessBrown from '$lib/client/images/supplemental/restless-brown.webp';
+	import PoogieNostalgicStripes from '$lib/client/images/supplemental/nostalgic-stripes.webp';
+	import PoogieSilentSuit from '$lib/client/images/supplemental/silent-suit.webp';
+	import PoogieBlackGreenClash from '$lib/client/images/supplemental/black-green-clash.webp';
+	import PoogieBewitchingPink from '$lib/client/images/supplemental/bewitching-pink.webp';
+
 	import { page } from '$app/stores';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
+	import {
+		ingredients,
+		recipes,
+	} from '$lib/client/modules/frontier/guild-food';
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -48,10 +66,15 @@
 					figcaption="You can check the duration with the overlay."
 				/>
 
-				<p class="spaced-paragraph">
-					Up to 6 dishes can be stored as "leftovers" for 1 hour at the cat in
-					the cooking area.
-				</p>
+				<CenteredFigure
+					width={'100%'}
+					type="file"
+					src={imageGuildFoodCat}
+					alt="Dishes"
+					figcaption="Up to 6 dishes can be stored as leftovers for 1 hour at the cat in the cooking area."
+				/>
+
+				<p class="spaced-paragraph"></p>
 				<p class="spaced-paragraph">
 					Yellow ingredients are "base ingredients" and pink ingredients are
 					"auxiliary." These allow you to create dishes via the menu. Selecting
@@ -91,6 +114,15 @@
 					you get the desired skill. The skills available depend on the success
 					level, with +20 to elemental resistances in the normal success pool.
 				</p>
+
+				<CenteredFigure
+					width={'100%'}
+					type="file"
+					src={imageGuildFood}
+					alt="Cooking"
+					figcaption="The cooking minigame."
+				/>
+
 				<p class="spaced-paragraph">
 					Many ingredients can be used for cooking, obtained from the Guild
 					Store or the Adventure Boat. The Guild Store requires payment with
@@ -163,7 +195,223 @@
 					recipes with red ingredients and the Success Level Up cooking option
 					to upgrade success into Great Success.
 				</p>
+
+				<div>
+					<DataTable
+						title="Chef's Wisdom"
+						useStaticWidth
+						sortable
+						zebra
+						size="medium"
+						headers={[
+							{ key: 'option', value: 'Option' },
+							{ key: 'tickets', value: 'Tickets' },
+							{ key: 'effect', value: 'Effect' },
+						]}
+						rows={[
+							{
+								id: '1',
+								option: 'Secret of Success',
+								tickets: '10',
+								effect: 'Widens the green success area.',
+							},
+							{
+								id: '2',
+								option: 'No failure allowed	',
+								tickets: '10',
+								effect: 'Removes the red large failure area.',
+							},
+							{
+								id: '3',
+								option: 'Ultimate Success',
+								tickets: '10',
+								effect: 'Doubles the size of the blue great success area.',
+							},
+							{
+								id: '4',
+								option: 'Cooking Technique',
+								tickets: '10',
+								effect: 'The cursor moves backwards slower.',
+							},
+							{
+								id: '5',
+								option: 'Secret seasoning	',
+								tickets: '20',
+								effect: 'Raises the success level by one.',
+							},
+							{
+								id: '6',
+								option: 'Mystery seasoning	',
+								tickets: '5',
+								effect: 'Randomizes the results within the recipe band.',
+							},
+						]}
+						><Toolbar
+							><div class="toolbar">
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray([
+										{
+											id: '1',
+											option: 'Secret of Success',
+											tickets: '10',
+											effect: 'Widens the green success area.',
+										},
+										{
+											id: '2',
+											option: 'No Failure Allowed',
+											tickets: '10',
+											effect: 'Removes the red large failure area.',
+										},
+										{
+											id: '3',
+											option: 'Ultimate Success',
+											tickets: '10',
+											effect:
+												'Doubles the size of the blue great success area.',
+										},
+										{
+											id: '4',
+											option: 'Cooking Technique',
+											tickets: '10',
+											effect: 'The cursor moves backwards slower.',
+										},
+										{
+											id: '5',
+											option: 'Secret Seasoning',
+											tickets: '20',
+											effect: 'Raises the success level by one.',
+										},
+										{
+											id: '6',
+											option: 'Mystery Seasoning',
+											tickets: '5',
+											effect: 'Randomizes the results within the recipe band.',
+										},
+									])}
+								/>
+							</div>
+						</Toolbar>
+
+						<svelte:fragment slot="cell" let:cell>
+							{#if cell.key === 'tickets'}
+								<InlineTooltip
+									text={cell.value}
+									tooltip="Guild Ticket"
+									icon={getItemIcon('Ticket')}
+									iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+								/>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						</svelte:fragment>
+					</DataTable>
+				</div>
 			</div>
+
+			<section>
+				<SectionHeading level={3} title="Recipes" />
+				<div>
+					<p class="spaced-paragraph">
+						The locations to purchase guild food ingredients can vary by private
+						server. The possible locations can be: General Store, Grocery Store,
+						Road Shop, Guild Shop, Adventure Cat, Adventure Cat (Grand Voyage
+						Destinations) and Interception Rewards.
+					</p>
+					<div class="table">
+						<DataTable
+							useStaticWidth
+							sortable
+							zebra
+							size="medium"
+							headers={[
+								{ key: 'dish', value: 'Dish' },
+								{ key: 'base', value: 'Base Ingredient', minWidth: '12rem' },
+								{
+									key: 'auxiliary1',
+									value: 'Auxiliary Ingredient 1',
+									minWidth: '12rem',
+								},
+								{
+									key: 'auxiliary2',
+									value: 'Auxiliary Ingredient 2',
+									minWidth: '12rem',
+								},
+								{
+									key: 'auxiliary3',
+									value: 'Auxiliary Ingredient 3',
+									minWidth: '12rem',
+								},
+								{ key: 'greatFailure', value: 'Great Failure' },
+								{ key: 'failure', value: 'Failure' },
+								{ key: 'success', value: 'Success' },
+								{ key: 'greatSuccess', value: 'Great Success' },
+							]}
+							rows={recipes.map((e) => {
+								return {
+									id: `${e.id}-${JSON.stringify(e.base)}-${JSON.stringify(e.auxiliary1)}-${JSON.stringify(e.auxiliary2)}-${JSON.stringify(e.auxiliary3)}-${e.greatSuccess}`,
+									dish: e.dish,
+									base: JSON.stringify(e.base),
+									auxiliary1: JSON.stringify(e.auxiliary1),
+									auxiliary2: JSON.stringify(e.auxiliary2),
+									auxiliary3: JSON.stringify(e.auxiliary3),
+									greatFailure: e.greatFailure,
+									failure: e.failure,
+									success: e.success,
+									greatSuccess: e.greatSuccess,
+								};
+							})}
+							><Toolbar
+								><div class="toolbar">
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(
+											recipes.map((e) => {
+												return {
+													dish: e.dish,
+													base: JSON.stringify(e.base),
+													auxiliary1: JSON.stringify(e.auxiliary1),
+													auxiliary2: JSON.stringify(e.auxiliary2),
+													auxiliary3: JSON.stringify(e.auxiliary3),
+													greatFailure: e.greatFailure,
+													failure: e.failure,
+													success: e.success,
+													greatSuccess: e.greatSuccess,
+												};
+											}),
+										)}
+									/>
+								</div>
+							</Toolbar>
+
+							<svelte:fragment slot="cell" let:cell>
+								{#if cell.key === 'base' || cell.key === 'auxiliary1' || cell.key === 'auxiliary2' || cell.key === 'auxiliary3'}
+									{#if cell.value === '[]'}
+										<p>-</p>
+									{:else}
+										<div class="ingredients">
+											{#each JSON.parse(cell.value) as ingredient}
+												<InlineTooltip
+													text={ingredient}
+													tooltip="Ingredient"
+													icon={ingredients.find((e) => e.name === ingredient)
+														?.icon}
+													iconType="component"
+													iconColor={ingredients.find(
+														(e) => e.name === ingredient,
+													)?.color}
+												/>
+											{/each}
+										</div>
+									{/if}
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							</svelte:fragment>
+						</DataTable>
+					</div>
+				</div>
+			</section>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Guild Poogie" />
@@ -185,6 +433,14 @@
 						icon={getItemIcon('Scale')}
 					/> from the Guild Shop.
 				</p>
+
+				<CenteredFigure
+					width={'100%'}
+					type="file"
+					src={imageGuildPoogie}
+					alt="Guild poogie"
+					figcaption="Poogie after succesful skill activation."
+				/>
 
 				<p class="spaced-paragraph">
 					You can only have one buff active at a time. You only need to feed
@@ -246,13 +502,14 @@
 						according to the Poogie's clothes with a probability.
 					</p>
 
-					<div class="guild-poogie-table">
+					<div class="table">
 						<DataTable
-							useStaticWidth
 							sortable
+							useStaticWidth
 							zebra
 							size="medium"
 							headers={[
+								{ key: 'image', value: 'Image' },
 								{ key: 'rank', value: 'Rank' },
 								{ key: 'costume', value: 'Costume' },
 								{ key: 'skill', value: 'Skill' },
@@ -261,6 +518,7 @@
 							]}
 							rows={[
 								{
+									image: PoogieRedAndWhite,
 									id: '1',
 									rank: '6',
 									costume: 'Red & White',
@@ -270,6 +528,8 @@
 									materials: '-',
 								},
 								{
+									image: PoogieNakedEmperor,
+
 									id: '2',
 									rank: '6',
 									costume: 'Naked Emperor',
@@ -279,6 +539,8 @@
 									materials: 'Wht Durable Fabricx45, Appropriate Partsx15',
 								},
 								{
+									image: PoogieSoporificWhite,
+
 									id: '3',
 									rank: '6',
 									costume: 'Soporific White',
@@ -289,6 +551,8 @@
 										'Wht Durable Fabricx75, Flexible Medicinex22, Appropriate Partsx30',
 								},
 								{
+									image: PoogieBlackGreenClash,
+
 									id: '4',
 									rank: '6',
 									costume: 'Black Green Clash',
@@ -298,6 +562,8 @@
 									materials: 'Striped Fabricx45, Green Fabricx30',
 								},
 								{
+									image: PoogieSilentSuit,
+
 									id: '5',
 									rank: '8',
 									costume: 'Silent Suit',
@@ -308,6 +574,8 @@
 										'Wht Durable Fabricx30, Black Fabricx50, Appropriate Partsx20',
 								},
 								{
+									image: PoogieBewitchingPink,
+
 									id: '6',
 									rank: '8',
 									costume: 'Bewitching Pink',
@@ -317,6 +585,8 @@
 									materials: 'Wht Durable Fabricx2, Peach Fabricx45',
 								},
 								{
+									image: PoogieNostalgicStripes,
+
 									id: '7',
 									rank: '8',
 									costume: 'Nostalgic Stripe',
@@ -325,6 +595,8 @@
 									materials: 'Striped Fabricx45, Blue Fabricx25',
 								},
 								{
+									image: PoogieSoothingSky,
+
 									id: '8',
 									rank: '8',
 									costume: 'Soothing Sky',
@@ -336,6 +608,8 @@
 								},
 
 								{
+									image: PoogieGentleGreen,
+
 									id: '9',
 									rank: '9',
 									costume: 'Gentle Green',
@@ -345,6 +619,8 @@
 										'Green Fabricx35, Blue Fabricx20, Appropriate Partsx20',
 								},
 								{
+									image: PoogieRestlessBrown,
+
 									id: '10',
 									rank: '9',
 									costume: 'Restless Brown',
@@ -462,7 +738,11 @@
 							</Toolbar>
 
 							<svelte:fragment slot="cell" let:cell>
-								<p>{cell.value}</p>
+								{#if cell.key === 'image'}
+									<img src={cell.value} alt="Guild poogie" />
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
 							</svelte:fragment>
 						</DataTable>
 					</div>
@@ -625,11 +905,9 @@
 		margin-top: 4rem;
 	}
 
-	.guild-poogie-table {
-		display: flex;
-		flex-wrap: wrap;
-		overflow-x: auto;
+	.table {
 		max-width: 90vw;
+		overflow-x: auto;
 	}
 
 	.toolbar {
@@ -639,5 +917,11 @@
 		gap: 1rem;
 		flex-grow: 1;
 		flex-shrink: 1;
+	}
+
+	.ingredients {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
 </style>
