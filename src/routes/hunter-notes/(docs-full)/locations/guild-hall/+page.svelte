@@ -18,6 +18,7 @@
 	import imageGuildFood from '$lib/client/images/supplemental/guild-food.webp';
 	import imageGuildFoodCat from '$lib/client/images/supplemental/guild-food-cat.webp';
 	import imageGuildPoogie from '$lib/client/images/supplemental/guild-poogie.webp';
+	import Pagination from 'carbon-components-svelte/src/Pagination/Pagination.svelte';
 
 	import PoogieRedAndWhite from '$lib/client/images/supplemental/red-and-white.webp';
 	import PoogieSoporificWhite from '$lib/client/images/supplemental/soporific-white.webp';
@@ -29,13 +30,47 @@
 	import PoogieSilentSuit from '$lib/client/images/supplemental/silent-suit.webp';
 	import PoogieBlackGreenClash from '$lib/client/images/supplemental/black-green-clash.webp';
 	import PoogieBewitchingPink from '$lib/client/images/supplemental/bewitching-pink.webp';
-
+	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Copy from 'carbon-icons-svelte/lib/Copy.svelte';
 	import { page } from '$app/stores';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import {
 		ingredients,
 		recipes,
 	} from '$lib/client/modules/frontier/guild-food';
+	import { domToPng } from 'modern-screenshot';
+	import { browser } from '$app/environment';
+	import slugify from 'slugify';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+
+	function downloadDomAsPng(id: string) {
+		if (!browser) return;
+		let node = document.getElementById(id);
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(`Recipes-${new Date().toISOString()}.png`)}`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
+
+	function downloadPoogiesDomAsPng(id: string) {
+		if (!browser) return;
+		let node = document.getElementById(id);
+		if (!node) return;
+		domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify(`Guild-Poogies-${new Date().toISOString()}.png`)}`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
+
+	let recipesTablePageSize = 7;
+	let recipesTablePage = 1;
+	let recipesTableFilteredRowIds: string[] = [];
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -318,9 +353,12 @@
 						Road Shop, Guild Shop, Adventure Cat, Adventure Cat (Grand Voyage
 						Destinations) and Interception Rewards.
 					</p>
-					<div class="table">
+					<div class="table table-with-pagination">
 						<DataTable
+							id="recipes-dom"
 							useStaticWidth
+							pageSize={recipesTablePageSize}
+							page={recipesTablePage}
 							sortable
 							zebra
 							size="medium"
@@ -381,6 +419,17 @@
 											}),
 										)}
 									/>
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={() => downloadDomAsPng('recipes-dom')}
+										>Download</Button
+									>
+									<ToolbarSearch
+										shouldFilterRows
+										value="Incitement"
+										bind:filteredRowIds={recipesTableFilteredRowIds}
+									/>
 								</div>
 							</Toolbar>
 
@@ -409,6 +458,12 @@
 								{/if}
 							</svelte:fragment>
 						</DataTable>
+						<Pagination
+							pageSizes={[7, 32]}
+							bind:pageSize={recipesTablePageSize}
+							bind:page={recipesTablePage}
+							totalItems={recipesTableFilteredRowIds.length}
+						/>
 					</div>
 				</div>
 			</section>
@@ -504,6 +559,7 @@
 
 					<div class="table">
 						<DataTable
+							id="guild-poogies-dom"
 							sortable
 							useStaticWidth
 							zebra
@@ -734,6 +790,13 @@
 											},
 										])}
 									/>
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={() =>
+											downloadPoogiesDomAsPng('guild-poogies-dom')}
+										>Download</Button
+									>
 								</div>
 							</Toolbar>
 
@@ -923,5 +986,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
+	}
+
+	.table-with-pagination {
+		display: flex;
+		flex-direction: column;
 	}
 </style>

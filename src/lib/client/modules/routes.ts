@@ -43,6 +43,8 @@ import AllItems from '../components/frontier/icon/item/AllItems.svelte';
 import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 import pageThumbnail from '$lib/client/images/logo.png';
 import thumbnailActiveFeature from '$lib/client/images/page-thumbnail/active-feature.png';
+import thumbnailGuildPoogies from '$lib/client/images/page-thumbnail/guild-poogies.png';
+import thumbnailRecipes from '$lib/client/images/page-thumbnail/recipes.png';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -50,7 +52,6 @@ export type NavigationItem = {
 	description: string;
 	link: string;
 	image: string | ComponentType<SvelteComponent>;
-	thumbnail?: string;
 };
 
 export type CategoryInfo = {
@@ -58,13 +59,10 @@ export type CategoryInfo = {
 	pages: NavigationItem[];
 };
 
-export function getPageThumbnail(section: CategoryInfo[], link: string) {
-	for (const categoryInfo of section) {
-		// Check if the link matches any page link within the category
-		for (const page of categoryInfo.pages) {
-			if (page.link === link && page.thumbnail) {
-				return page.thumbnail;
-			}
+export function getPageThumbnail(link: string) {
+	for (const entry of thumbnailInfo) {
+		if (entry.link === link) {
+			return entry.thumbnail;
 		}
 	}
 
@@ -308,6 +306,25 @@ export const toolsInfo: CategoryInfo[] = [
 					'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
 			},
 		],
+	},
+];
+
+export const thumbnailInfo: { link: string; thumbnail: string }[] = [
+	{
+		link: '/hunter-notes/weapons/active-feature',
+		thumbnail: thumbnailActiveFeature,
+	},
+	{
+		link: '/hunter-notes/locations/guild-hall',
+		thumbnail: thumbnailActiveFeature,
+	},
+	{
+		link: '/hunter-notes/locations/guild-hall#recipes',
+		thumbnail: thumbnailRecipes,
+	},
+	{
+		link: '/hunter-notes/locations/guild-hall#guild-poogie-skills',
+		thumbnail: thumbnailGuildPoogies,
 	},
 ];
 
@@ -575,7 +592,6 @@ export const guidesInfo: CategoryInfo[] = [
 				description: "A list of each weapon's active feature.",
 				link: '/hunter-notes/weapons/active-feature',
 				image: AllWeapons,
-				thumbnail: thumbnailActiveFeature,
 			},
 		],
 	},
