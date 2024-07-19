@@ -1436,8 +1436,9 @@
 			style="fill:#89dceb;fill-opacity:1;fill-rule:evenodd;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-opacity:0.498674;paint-order:stroke fill markers"
 			d="M 17.197916,44.979166 18.520833,46.0375 18.25625,44.979167 19.579167,45.772917 19.05,44.714583 20.6375,45.24375 19.579167,44.185417 c -1.001742,0.45706 -1.776544,0.704109 -2.381251,0.793749 z"
 			id="path119076"
-		/><metadata id="metadata122445"
-			><rdf:RDF
+		/><metadata id="metadata122445">
+			<!-- svelte-ignore illegal-attribute-character -->
+			<rdf:RDF
 				><cc:Work rdf:about=""
 					><dc:creator
 						><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent

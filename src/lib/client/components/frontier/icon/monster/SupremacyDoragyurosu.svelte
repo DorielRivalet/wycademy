@@ -123,8 +123,9 @@
 					id="feComposite43838"
 				/></filter
 			></defs
-		><metadata id="metadata145514"
-			><rdf:RDF
+		><metadata id="metadata145514">
+			<!-- svelte-ignore illegal-attribute-character -->
+			<rdf:RDF
 				><cc:Work rdf:about=""
 					><dc:creator
 						><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent

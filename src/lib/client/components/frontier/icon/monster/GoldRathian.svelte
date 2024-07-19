@@ -123,8 +123,9 @@
 					id="feComposite127"
 				/></filter
 			></defs
-		><metadata id="metadata102"
-			><rdf:RDF
+		><metadata id="metadata102">
+			<!-- svelte-ignore illegal-attribute-character -->
+			<rdf:RDF
 				><cc:Work rdf:about=""
 					><cc:license
 						rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"

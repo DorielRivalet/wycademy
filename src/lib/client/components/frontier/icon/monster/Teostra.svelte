@@ -622,8 +622,9 @@
 					id="path16989"
 				/></g
 			></g
-		><metadata id="metadata21205"
-			><rdf:RDF
+		><metadata id="metadata21205">
+			<!-- svelte-ignore illegal-attribute-character -->
+			<rdf:RDF
 				><cc:Work rdf:about=""
 					><dc:creator
 						><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent

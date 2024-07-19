@@ -696,8 +696,9 @@
 			style="fill:#d88e2a;fill-opacity:1;fill-rule:evenodd;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-opacity:0.498674;paint-order:stroke fill markers"
 			d="m 73.025,88.9 v -6.35 c -1.63706,2.505595 -3.55165,4.78613 -6.35,6.35 z"
 			id="path10180"
-		/><metadata id="metadata28739"
-			><rdf:RDF
+		/><metadata id="metadata28739">
+			<!-- svelte-ignore illegal-attribute-character -->
+			<rdf:RDF
 				><cc:Work rdf:about=""
 					><dc:creator
 						><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent
