@@ -73,7 +73,10 @@
 					id="feComposite6014"
 				/></filter
 			></defs
-		><g id="layer1"
+		>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+		<g id="layer1"
 			><g
 				id="g5637"
 				style="filter:url(#filter6016)"

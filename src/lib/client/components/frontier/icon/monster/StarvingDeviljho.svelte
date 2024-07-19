@@ -173,7 +173,10 @@
 					id="feComposite96292"
 				/></filter
 			></defs
-		><g id="layer1"
+		>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+		<g id="layer1"
 			><g
 				id="g80339"
 				transform="matrix(0.951311,0,0,0.951311,-1.5300308,6.2241364)"
