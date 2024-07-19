@@ -67,6 +67,7 @@
 		guidesInfo,
 	} from '$lib/client/modules/routes';
 	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -814,6 +815,9 @@
 			unsubscribe(); // Clean up the subscription on unmount
 		};
 	});
+
+	const searchParams = browser && $page.url.searchParams;
+	$: console.log(`searchParams: ${searchParams}`);
 </script>
 
 <LocalStorage
@@ -826,7 +830,7 @@
 	{description}
 	image={getPageThumbnail(
 		$page.url.pathname,
-		$page.url.searchParams.get('embed'),
+		searchParams ? searchParams.get('embed') : null,
 	)}
 	{url}
 	{website}
