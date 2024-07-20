@@ -739,6 +739,10 @@ export type FrontierMonsterPart =
 	| 'Arms'
 	| 'Left Claw'
 	| 'Right Claw'
+	| 'Claws'
+	| 'Fins'
+	| 'Back/Tail'
+	| 'Eyes'
 	| 'Skull'
 	| 'Feelers'
 	| 'Tentacles'
@@ -1031,6 +1035,7 @@ export type WycademyTrophy = {
 	date: string;
 	serial: number;
 	icon: any;
+	link: string;
 };
 
 export type ProfilePinnedSet = {

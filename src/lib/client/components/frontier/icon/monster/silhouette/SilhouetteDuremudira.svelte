@@ -64,10 +64,6 @@
 		id="svg5"
 		xml:space="preserve"
 		xmlns="http://www.w3.org/2000/svg"
-		xmlns:svg="http://www.w3.org/2000/svg"
-		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-		xmlns:cc="http://creativecommons.org/ns#"
-		xmlns:dc="http://purl.org/dc/elements/1.1/"
 		><defs id="defs2"
 			><filter
 				style="color-interpolation-filters:sRGB;"
@@ -1607,10 +1603,7 @@
 				on:mouseout={(e) => hideTooltip()}
 				style="fill: {hitzoneColors['Tail']}"
 				id="path460"
-				>style="fill: {hitzoneColors['Tail']}" on:mousemove={(e) =>
-					showTooltip(e, `Tail: ${hitzoneValues['Tail']}`)}
-				on:mouseout={(e) => hideTooltip()}</path
-			><path
+			></path><path
 				d="m 99.082841,75.17939 c 0.183261,-0.0067 0.36587,-0.0051 0.546737,0.0041 2.170402,0.110951 4.100332,1.340492 4.136182,2.983797 0.008,0.352181 0.0749,0.79479 0.14986,0.983919 0.1868,0.471215 3.45185,2.851995 4.29121,3.129008 2.12968,0.702858 1.61142,3.523895 -1.20613,6.564457 -1.26622,1.366457 -2.65007,2.995081 -3.07526,3.618901 -3.63644,5.335237 -13.669698,7.863903 -19.607072,4.941817 -3.03441,-1.493392 -2.719457,-3.456914 1.089855,-6.795968 1.777061,-1.55768 2.146676,-1.997195 2.973462,-3.535184 0.944123,-1.75626 0.944022,-1.756152 2.494422,-1.862419 3.401087,-0.233117 5.633041,-5.0277 3.891235,-8.35918 -0.241214,-0.461357 -0.500243,-0.327896 2.672705,-1.381311 0.536828,-0.178225 1.09301,-0.271914 1.642794,-0.291972 z"
 				on:mousemove={(e) => showTooltip(e, `Belly: ${hitzoneValues['Belly']}`)}
 				on:mouseout={(e) => hideTooltip()}

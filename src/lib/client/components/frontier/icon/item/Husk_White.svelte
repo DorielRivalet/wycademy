@@ -9,12 +9,7 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-	xmlns:cc="http://creativecommons.org/ns#"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:svg="http://www.w3.org/2000/svg"
 	xmlns="http://www.w3.org/2000/svg"
-	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
 	width={size}
 	viewBox="0 0 16.933333 16.933334"
 	version="1.1"

@@ -1,5 +1,5 @@
 import MotionSwordAndShieldNoneJumpSlash from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
-import type { FrontierMotionValueSection } from './types';
+import type { FrontierMotionValues, FrontierMotionValueSection } from './types';
 
 // TODO dmg calc
 export const sharedWeaponMotionValues: FrontierMotionValueSection = {
