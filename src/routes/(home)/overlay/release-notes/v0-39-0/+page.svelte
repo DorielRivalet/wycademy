@@ -5,14 +5,12 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import {
-		getMonsterIcon,
-		getWeaponIcon,
-	} from '$lib/client/modules/frontier/functions';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
+	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 
 	const version = 'v0.39.0';
 

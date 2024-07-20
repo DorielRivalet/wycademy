@@ -35,10 +35,7 @@
 	import TreeView, {
 		type TreeNode,
 	} from 'carbon-components-svelte/src/TreeView/TreeView.svelte';
-	import {
-		getMonsterIcon,
-		getWeaponIcon,
-	} from '$lib/client/modules/frontier/functions';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import HelmetIconWhite from '$lib/client/components/frontier/icon/armor/Helmet_Icon_White.svelte';
 	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
 	import MantleIconWhite from '$lib/client/components/frontier/icon/item/Mantle_Icon_White.svelte';
@@ -57,6 +54,7 @@
 		getNavigationItemFromLink,
 		toolsInfo,
 	} from '$lib/client/modules/routes';
+	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');

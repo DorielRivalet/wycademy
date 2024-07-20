@@ -1,8 +1,264 @@
 import type { FrontierMonsterName } from 'ezlion';
 import type {
 	FrontierMonsterHitzoneRankBand,
+	FrontierMonsterHitzoneType,
+	FrontierMonsterNameExpanded,
 	FrontierMonsterPart,
+	FrontierMonsterPartInfo,
 } from './types';
+
+export function convertHitzoneInfo(
+	selectedName: FrontierMonsterNameExpanded,
+	selectedRankBand: FrontierMonsterHitzoneRankBand,
+	selectedMonsterState: string,
+): FrontierMonsterPartInfo[] {
+	// Filter HitzoneInfo by selectedName and selectedRankBand
+	const filteredHitzoneInfo = hitzoneInfo.filter(
+		(info) =>
+			info.displayName === selectedName &&
+			info.rankBand === selectedRankBand &&
+			info.monsterState === selectedMonsterState,
+	);
+
+	// Group by monsterState and displayName
+	const groupedInfo = filteredHitzoneInfo.reduce((acc, curr) => {
+		const key = `${curr.monsterState}-${curr.displayName}`;
+		if (!acc[key]) {
+			acc[key] = {
+				monsterState: curr.monsterState,
+				displayName: curr.displayName,
+				rankBand: curr.rankBand,
+				parts: [],
+			};
+		}
+
+		acc[key].parts.push({
+			part: curr.part,
+			values: [
+				{ type: 'Cutting', value: curr.cutting },
+				{ type: 'Impact', value: curr.impact },
+				{ type: 'Shot', value: curr.shot },
+				{ type: 'Fire', value: curr.fire },
+				{ type: 'Water', value: curr.water },
+				{ type: 'Thunder', value: curr.thunder },
+				{ type: 'Dragon', value: curr.dragon },
+				{ type: 'Ice', value: curr.ice },
+				{ type: 'Stun', value: curr.stun },
+			],
+		});
+		return acc;
+	}, {});
+
+	// Convert grouped info to the desired format
+	const FrontierMonsterPartInfo: FrontierMonsterPartInfo[] =
+		Object.values(groupedInfo);
+
+	return FrontierMonsterPartInfo;
+}
+
+export function getHitzoneValuesObject(
+	hitzones: FrontierMonsterPartInfo[],
+	selectedMonsterState: string,
+	selectedRankBand: FrontierMonsterHitzoneRankBand,
+): { [key in FrontierMonsterHitzoneType]: [number, number] } {
+	// Step 1: Create the initial object
+	const hitzoneValuesObject: {
+		[key in FrontierMonsterHitzoneType]: [number, number];
+	} = {
+		Cutting: [0, 0],
+		Impact: [0, 0],
+		Shot: [0, 0],
+		Fire: [0, 0],
+		Water: [0, 0],
+		Thunder: [0, 0],
+		Dragon: [0, 0],
+		Ice: [0, 0],
+		Stun: [0, 0],
+	};
+
+	// Step 2: Filter the hitzones array
+	const filteredHitzones = hitzones.filter(
+		(hitzone) =>
+			hitzone.monsterState === selectedMonsterState &&
+			hitzone.rankBand === selectedRankBand,
+	);
+
+	// Step 3: Convert parts structure to a new structure
+	const newStructure = filteredHitzones.flatMap(({ parts }) =>
+		parts.flatMap(({ part, values }) =>
+			values.map((v) => ({ type: v.type, part, value: v.value })),
+		),
+	);
+
+	// Step 4: Update the object with highest and second highest values
+	newStructure.forEach(({ type, value }) => {
+		const [highest, secondHighest] = hitzoneValuesObject[type];
+
+		if (value > highest) {
+			hitzoneValuesObject[type] = [value, highest];
+		} else if (value > secondHighest && value !== highest) {
+			// Check for different values
+			hitzoneValuesObject[type][1] = value;
+		}
+	});
+
+	// Step 5: Return the object
+	return hitzoneValuesObject;
+}
+
+export const hitzoneColors = [
+	'var(--ctp-blue)',
+	'var(--ctp-green)',
+	'var(--ctp-yellow)',
+	'var(--ctp-peach)',
+	'var(--ctp-red)',
+];
+
+export function getHitzoneColorsForHitzones(
+	hitzones: FrontierMonsterPartInfo[],
+	selectedHitzoneType: FrontierMonsterHitzoneType,
+	selectedMonsterState: string,
+	selectedRankBand: FrontierMonsterHitzoneRankBand,
+): { [key: string]: string } {
+	// Filter hitzones to include only the selected monster state
+	const filteredHitzones = hitzones.filter(
+		(hitzone) =>
+			hitzone.monsterState === selectedMonsterState &&
+			hitzone.rankBand === selectedRankBand,
+	);
+
+	// Flatten the parts array for easier processing, considering only the selected monster state
+	const flattenedParts = filteredHitzones.flatMap(({ parts }) =>
+		parts.map((part) => ({
+			part: part.part,
+			value:
+				part.values.find((value) => value.type === selectedHitzoneType)
+					?.value ?? 0,
+		})),
+	);
+
+	// Group parts by their values
+	const groupedByValue = flattenedParts.reduce(
+		(groups, { part, value }) => {
+			if (!groups[value]) {
+				groups[value] = [];
+			}
+			groups[value].push(part);
+			return groups;
+		},
+		{} as Record<number, string[]>,
+	);
+
+	// Get all unique values and sort them in descending order
+	const sortedValues = Object.keys(groupedByValue)
+		.map(Number)
+		.sort((a, b) => b - a);
+
+	// Assign colors based on the sorted values
+	const hitzoneColorsMap: { [key: string]: string } = {};
+	sortedValues.forEach((value, index) => {
+		const parts = groupedByValue[value];
+
+		if (value <= 0) {
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[0]));
+		} else if (index === 0) {
+			// Highest value(s)
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[4]));
+		} else if (index === 1) {
+			// Second highest value(s)
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[3]));
+		} else if (index === 2) {
+			// Third highest value(s)
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[2]));
+		} else {
+			// The rest
+			parts.forEach((part) => (hitzoneColorsMap[part] = hitzoneColors[1]));
+		}
+	});
+
+	return hitzoneColorsMap;
+}
+
+export function getHitzoneValuesForHitzones(
+	hitzones: FrontierMonsterPartInfo[],
+	selectedHitzoneType: FrontierMonsterHitzoneType,
+	selectedMonsterState: string,
+	selectedRankBand: FrontierMonsterHitzoneRankBand,
+): { [key: string]: number } {
+	// Filter hitzones to include only the selected monster state
+	const filteredHitzones = hitzones.filter(
+		(hitzone) =>
+			hitzone.monsterState === selectedMonsterState &&
+			hitzone.rankBand === selectedRankBand,
+	);
+
+	// Initialize an empty object to store the part values
+	const hitzoneValuesMap: { [key: string]: number } = {};
+
+	// Iterate over each hitzone info and its parts
+	filteredHitzones.forEach(({ parts }) => {
+		parts.forEach(({ part, values }) => {
+			// Find the value for the selected hitzone type
+			const value =
+				values.find((v) => v.type === selectedHitzoneType)?.value ?? 0;
+
+			// Store the value in the map, keyed by the part name
+			hitzoneValuesMap[part] = value;
+		});
+	});
+
+	return hitzoneValuesMap;
+}
+
+export function getAllHitzoneValuesForHitzones(
+	hitzones: FrontierMonsterPartInfo[],
+	selectedMonsterState: string,
+	selectedRankBand: FrontierMonsterHitzoneRankBand,
+): { [key: string]: { [type: string]: number } } {
+	// Define all possible FrontierMonsterHitzoneType values
+	const allHitzoneTypes: FrontierMonsterHitzoneType[] = [
+		'Cutting',
+		'Impact',
+		'Shot',
+		'Fire',
+		'Water',
+		'Thunder',
+		'Dragon',
+		'Ice',
+		'Stun',
+	]; // Add any other types as needed
+
+	// Filter hitzones to include only the selected monster state and rank band
+	const filteredHitzones = hitzones.filter(
+		(hitzone) =>
+			hitzone.monsterState === selectedMonsterState &&
+			hitzone.rankBand === selectedRankBand,
+	);
+
+	// Initialize an empty object to store the part values for all hitzone types
+	const allHitzoneValuesMap: { [key: string]: { [type: string]: number } } = {};
+
+	// Iterate over each hitzone info and its parts
+	filteredHitzones.forEach(({ parts }) => {
+		parts.forEach(({ part, values }) => {
+			// For each part, initialize an object to hold values for all hitzone types
+			if (!allHitzoneValuesMap[part]) {
+				allHitzoneValuesMap[part] = {};
+			}
+
+			// Iterate through all possible hitzone types
+			allHitzoneTypes.forEach((hitzoneType) => {
+				// Find the value for the current hitzone type
+				const value = values.find((v) => v.type === hitzoneType)?.value ?? 0;
+
+				// Store the value in the map, keyed by the part name and hitzone type
+				allHitzoneValuesMap[part][hitzoneType] = value;
+			});
+		});
+	});
+
+	return allHitzoneValuesMap;
+}
 
 export function getMonsterHitzoneDataFromDisplayName(name: string) {
 	return hitzoneInfo.find((e) => e.displayName === name);

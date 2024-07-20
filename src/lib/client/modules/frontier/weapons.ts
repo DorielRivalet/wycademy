@@ -68,8 +68,20 @@ import type {
 import type {
 	FrontierArmorSkillName,
 	FrontierSigil,
+	FrontierWeaponName,
 	FrontierZenithSkill,
 } from 'ezlion';
+
+export function getWeaponIcon(weaponName: FrontierWeaponName) {
+	const icon = WeaponTypes[4].icon;
+
+	const found = WeaponTypes.find((w) => w.name === weaponName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.icon;
+}
 
 export const HuntingHornWeaponNotesCombinations: FrontierHuntingHornWeaponNote[][] =
 	[

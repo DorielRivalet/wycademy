@@ -17,7 +17,7 @@
 	import RecentlyViewed from 'carbon-icons-svelte/lib/RecentlyViewed.svelte';
 	import TrashCan from 'carbon-icons-svelte/lib/TrashCan.svelte';
 	import { browser } from '$app/environment';
-	import { getItemIcon } from '$lib/client/modules/frontier/functions';
+	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import Logo from '$lib/client/images/logo.webp';
 
 	let search: 'idle' | 'load' | 'ready' = 'idle';

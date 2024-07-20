@@ -5,10 +5,7 @@
 	import { page } from '$app/stores';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import {
-		getTag,
-		getWeaponIcon,
-	} from '$lib/client/modules/frontier/functions';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import DataTable, {
 		type DataTableCell,
 	} from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -32,6 +29,7 @@
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import MotionSwordAndShieldNoneJumpSlash from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
+	import { getTag } from '$lib/client/modules/frontier/tags';
 
 	let modalHeading = '';
 	let modalLabel = '';

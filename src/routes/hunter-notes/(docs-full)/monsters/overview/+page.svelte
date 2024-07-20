@@ -30,7 +30,7 @@
 	import List from 'carbon-icons-svelte/lib/List.svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
+	import { getUniqueMonsters } from '$lib/client/modules/frontier/monsters';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 
 	const customTitle = 'Monsters Overview';

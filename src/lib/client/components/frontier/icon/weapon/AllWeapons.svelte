@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getWeaponIcon } from '$lib/client/modules/frontier/functions';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 
 	export let colors = [...new Set(RarityColors)];

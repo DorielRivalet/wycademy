@@ -785,7 +785,8 @@ import FullMonsterRenderFuriousRajang from '$lib/client/images/monster/render/fu
 import FullMonsterRenderRulingGuanzorumu from '$lib/client/images/monster/render/full/ruling-guanzorumu.webp';
 import FullMonsterRenderShiftingMiRu from '$lib/client/images/monster/render/full/shifting-mi-ru.webp';
 import FullMonsterRenderTwinheadRajang from '$lib/client/images/monster/render/full/hc-rajang.webp';
-import type { FrontierMonsterInfo } from './types';
+import type { FrontierMonsterInfo, FrontierMonsterNameExpanded } from './types';
+import type { FrontierMonsterName } from 'ezlion';
 
 export const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
 
@@ -7761,3 +7762,52 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 ];
+
+export function getMonsterIcon(monsterName: FrontierMonsterNameExpanded) {
+	const icon = monsterInfo[0].component;
+
+	const found = monsterInfo.find((w) => w.displayName === monsterName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.component;
+}
+
+export function getUniqueMonsters() {
+	const names: string[] = [];
+	const result: FrontierMonsterInfo[] = [];
+	monsterInfo.forEach((element) => {
+		if (!names.find((e) => element.displayName === e)) {
+			if (!unlistedMonsterNames.find((e) => e === element.displayName)) {
+				names.push(element.displayName);
+				result.push(element);
+			}
+		}
+	});
+
+	return result;
+}
+
+export function getMonsterByPathName(pathName: string) {
+	return monsterInfo.find((e) => e.link === pathName);
+}
+
+export function getMonster(name: FrontierMonsterName, rank: string) {
+	for (const monster of monsterInfo) {
+		if (
+			monster.rank.toLowerCase().includes(rank.toLowerCase()) &&
+			monster.name.toLowerCase() === name.toLowerCase()
+		) {
+			return monster;
+		}
+	}
+
+	for (const monster of monsterInfo) {
+		if (monster.name.toLowerCase() === name.toLowerCase()) {
+			return monster;
+		}
+	}
+
+	return monsterInfo[0];
+}

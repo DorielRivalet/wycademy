@@ -44,12 +44,7 @@
 	import { getCatppuccinFlavorFromThemeForShiki } from '$lib/client/themes/catppuccin';
 	import { theme } from '$lib/client/stores/theme';
 	import { browser } from '$app/environment';
-	import {
-		getDivaPrayerGemColor,
-		getMonster,
-		getTag,
-		getWeaponIcon,
-	} from '$lib/client/modules/frontier/functions';
+	import { getDivaPrayerGemColor } from '$lib/client/modules/frontier/diva';
 	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import '@carbon/charts-svelte/styles.css';
@@ -106,8 +101,11 @@
 		gunlanceShellValues,
 		oldBlademasterSharpness,
 		WeaponTypes,
+		getWeaponIcon,
 	} from '$lib/client/modules/frontier/weapons';
 	import { missionRequirementAttackCeilings } from '$lib/client/modules/frontier/objects';
+	import { getMonster } from '$lib/client/modules/frontier/monsters';
+	import { getTag } from '$lib/client/modules/frontier/tags';
 
 	type DataTableKey = string;
 

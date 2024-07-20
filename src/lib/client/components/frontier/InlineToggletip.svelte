@@ -9,7 +9,7 @@ Shows text next to an icon inline. You can use either a component or a image imp
 	import QuestionMarkIconWhite from '$lib/client/components/frontier/icon/item/Question_Mark_Icon_White.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import { createEventDispatcher } from 'svelte';
-	import { getTag } from '$lib/client/modules/frontier/functions';
+	import { getTag } from '$lib/client/modules/frontier/tags';
 
 	const dispatch = createEventDispatcher();
 	const breakpointSize = breakpointObserver();

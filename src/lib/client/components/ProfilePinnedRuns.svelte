@@ -24,7 +24,7 @@
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 	import 'svelte-reactions/global.css';
 	import { Trigger, type ReactionType } from 'svelte-reactions';
-	import { getWeaponIcon } from '../modules/frontier/functions';
+	import { getWeaponIcon } from '../modules/frontier/weapons';
 	import { availableReactions } from '../modules/reactions';
 	import ImageDialog from './ImageDialog.svelte';
 

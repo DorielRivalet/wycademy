@@ -3,7 +3,7 @@
 	import FavoriteFilled from 'carbon-icons-svelte/lib/FavoriteFilled.svelte';
 	import Favorite from 'carbon-icons-svelte/lib/Favorite.svelte';
 	import { LocationIcons } from '../modules/frontier/locations';
-	import { getMonsterIcon } from '../modules/frontier/functions';
+	import { getMonsterIcon } from '../modules/frontier/monsters';
 
 	export let favoriteSets = [
 		{

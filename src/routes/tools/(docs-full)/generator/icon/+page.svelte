@@ -25,7 +25,7 @@
 		FrontierWeapon,
 		IconSize,
 	} from '$lib/client/modules/frontier/types';
-	import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
+	import { getUniqueMonsters } from '$lib/client/modules/frontier/monsters';
 	import {
 		AilmentIcons,
 		StatusIcons,

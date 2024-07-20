@@ -5,7 +5,7 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/functions';
+	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import Logo from '$lib/client/images/logo.webp';

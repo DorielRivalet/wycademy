@@ -3,7 +3,7 @@
 	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 	import Rotate from 'carbon-icons-svelte/lib/Rotate.svelte';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
-	import { getTag } from '$lib/client/modules/frontier/functions';
+	import { getTag } from '$lib/client/modules/frontier/tags';
 	import type { PopoverPosition } from '$lib/client/modules/frontier/types';
 	const positions: PopoverPosition[] = ['top', 'right', 'bottom', 'left'];
 

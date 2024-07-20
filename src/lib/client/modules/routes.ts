@@ -15,7 +15,7 @@ import BurningFreezingElzelion2 from '$lib/client/components/frontier/icon/monst
 import AllWeapons from '$lib/client/components/frontier/icon/weapon/AllWeapons.svelte';
 import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 import ShotIconWhite from '$lib/client/components/frontier/icon/item/Shot_Icon_White.svelte';
-import { getMonsterIcon, getWeaponIcon } from './frontier/functions';
+import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 import AllArmors from '$lib/client/components/frontier/icon/armor/AllArmors.svelte';
 import MapIconWhite from '$lib/client/components/frontier/icon/item/Map_Icon_White.svelte';
 import TrapToolIconWhite from '$lib/client/components/frontier/icon/item/Trap_Tool_Icon_White.svelte';
@@ -49,6 +49,7 @@ import thumbnailLightRecipes from '$lib/client/images/page-thumbnail/light/recip
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
 import thumbnailDarkRecipes from '$lib/client/images/page-thumbnail/dark/recipes.png';
+import { getWeaponIcon } from './frontier/weapons';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -66,7 +67,7 @@ export type CategoryInfo = {
 export function getPageThumbnail(
 	link: string,
 	query: string | null,
-	embedTheme: 'light' | 'dark' | null,
+	embedTheme: string | null,
 ) {
 	if (embedTheme === 'light') {
 		for (const entry of lightThumbnailInfo) {

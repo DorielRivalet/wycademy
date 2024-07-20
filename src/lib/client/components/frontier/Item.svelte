@@ -19,7 +19,7 @@
 	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 
 	import DecoratedBorder from '$lib/client/components/frontier/DecoratedBorder.svelte';
-	import { stringReplacements } from '$lib/client/modules/frontier/functions';
+	import { stringReplacements } from '$lib/client/modules/frontier/strings';
 	import GRankEquipmentIcon from './icon/GRankEquipmentIcon.svelte';
 	import ZenithEquipmentIcon from './icon/ZenithEquipmentIcon2.svelte';
 	import { itemInfo } from '$lib/client/modules/frontier/items';

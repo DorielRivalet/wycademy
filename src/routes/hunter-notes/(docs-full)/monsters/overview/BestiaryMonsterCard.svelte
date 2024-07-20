@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { getTag, isFieldEmpty } from '$lib/client/modules/frontier/functions';
+	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
+	import { getTag } from '$lib/client/modules/frontier/tags';
 
 	export let monster: FrontierMonsterInfo;
 	export let tags = ['Brute Wyvern', 'Hardcore', 'Unlimited', 'Fire'];

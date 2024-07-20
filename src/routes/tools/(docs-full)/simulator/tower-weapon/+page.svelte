@@ -4,11 +4,7 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import { page } from '$app/stores';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
-	import {
-		getItemIcon,
-		getTag,
-		getWeaponIcon,
-	} from '$lib/client/modules/frontier/functions';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import Dropdown, {
 		type DropdownItem,
 	} from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
@@ -39,10 +35,11 @@
 	import slugify from 'slugify';
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
-	import { ItemColors } from '$lib/client/modules/frontier/items';
+	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
 	import { StatusIcons } from '$lib/client/modules/frontier/ailments';
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { getTag } from '$lib/client/modules/frontier/tags';
 
 	function onSelectTowerWeaponOption() {
 		towerWeaponSelected = getTowerWeaponSelected(
