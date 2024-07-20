@@ -827,6 +827,7 @@
 	image={getPageThumbnail(
 		$page.url.pathname,
 		$page.url.searchParams.get('embed'),
+		$page.url.searchParams.get('embed-theme'),
 	)}
 	{url}
 	{website}
