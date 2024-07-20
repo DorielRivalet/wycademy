@@ -46,15 +46,13 @@ Does not handle decorations because sigils are optimal.
 
 	import FrontierWeaponSharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
 	import DecoratedBorder from '$lib/client/components/frontier/DecoratedBorder.svelte';
-	import {
-		frontierMappers,
-		stringReplacements,
-	} from '$lib/client/modules/frontier/functions';
+	import { frontierMappers } from '$lib/client/modules/frontier/functions';
 	import GRankWeaponIcon from './icon/GRankEquipmentIcon.svelte';
 	import ZenithWeaponIcon from './icon/ZenithEquipmentIcon2.svelte';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 	import NoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
 	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/weapons';
+	import { stringReplacements } from '$lib/client/modules/frontier/strings';
 
 	/** Truncated to 18 characters.*/
 	export let name: string = 'Name';

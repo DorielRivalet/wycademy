@@ -9,7 +9,7 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
-	import { getWeaponIcon } from '$lib/client/modules/frontier/functions';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { onMount, type ComponentType } from 'svelte';
 	import {

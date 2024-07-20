@@ -42,7 +42,7 @@
 	import Moveable from 'svelte-moveable';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Youtube from 'svelte-youtube-embed';
-	import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
+	import { getUniqueMonsters } from '$lib/client/modules/frontier/monsters';
 	import {
 		AilmentIcons,
 		StatusIcons,

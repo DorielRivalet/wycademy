@@ -47,6 +47,7 @@
 	import { onVolumeChange, volumeStore } from '$lib/client/stores/volume';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
 	import { frontierMath } from '$lib/client/modules/frontier/functions';
+
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { browser } from '$app/environment';
 	import {

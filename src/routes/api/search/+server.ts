@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
-import { getUniqueMonsters } from '$lib/client/modules/frontier/functions';
+import { getUniqueMonsters } from '$lib/client/modules/frontier/monsters';
 import type { SearchItem } from '$lib/search';
 
 export const prerender = true;

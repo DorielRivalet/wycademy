@@ -3,10 +3,7 @@
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import {
-		getWeaponIcon,
-		getTag,
-	} from '$lib/client/modules/frontier/functions';
+	import { getTag } from '$lib/client/modules/frontier/tags';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -14,6 +11,7 @@
 	import { page } from '$app/stores';
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 
 	function getElementArray(input: string) {
 		// Step 1: Split the string into individual elements

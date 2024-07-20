@@ -428,3 +428,14 @@ export const itemInfo: { name: string; icon: any }[] = [
 		icon: WoodIconWhite,
 	},
 ];
+
+export function getItemIcon(iconName: string) {
+	const icon = itemInfo[5].icon;
+
+	const found = itemInfo.find((w) => w.name === iconName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.icon;
+}

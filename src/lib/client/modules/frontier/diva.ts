@@ -245,3 +245,9 @@ export const divaPrayerGems: {
 		partyEffect: false,
 	},
 ];
+
+export function getDivaPrayerGemColor(
+	color: FrontierDivaPrayerGemColor | 'Inactive',
+) {
+	return divaPrayerGemColors.find((e) => e.name === color)?.color ?? '#ffffff';
+}

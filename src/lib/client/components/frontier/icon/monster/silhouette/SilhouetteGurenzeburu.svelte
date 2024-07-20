@@ -4,7 +4,7 @@
 	import {
 		getHitzoneColorsForHitzones,
 		getHitzoneValuesForHitzones,
-	} from '$lib/client/modules/frontier/functions';
+	} from '$lib/client/modules/frontier/hitzones';
 	import type {
 		FrontierMonsterHitzoneRankBand,
 		FrontierMonsterHitzoneType,

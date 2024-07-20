@@ -9,7 +9,7 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import { getWeaponIcon } from '../modules/frontier/functions';
+	import { getWeaponIcon } from '../modules/frontier/weapons';
 	import { RarityColors } from '../modules/frontier/objects';
 	import JewelIconWhite from './frontier/icon/item/Jewel_Icon_White.svelte';
 	import HelmetIconWhite from './frontier/icon/armor/Helmet_Icon_White.svelte';

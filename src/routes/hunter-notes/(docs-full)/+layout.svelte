@@ -36,12 +36,7 @@
 	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 	import ExtremeDragonblight from '$lib/client/components/frontier/icon/ailment/ExtremeDragonblight.svelte';
 	import ExtremeSleep from '$lib/client/components/frontier/icon/ailment/ExtremeSleep.svelte';
-	import {
-		getItemIcon,
-		getMonsterByPathName,
-		getMonsterIcon,
-		getWeaponIcon,
-	} from '$lib/client/modules/frontier/functions';
+	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import ShotIcon from '$lib/client/components/frontier/icon/item/Shot_Icon_White.svelte';
 	import HelmetIconWhite from '$lib/client/components/frontier/icon/armor/Helmet_Icon_White.svelte';
 	import ChestIconWhite from '$lib/client/components/frontier/icon/armor/Chest_Icon_White.svelte';
@@ -67,6 +62,11 @@
 		guidesInfo,
 	} from '$lib/client/modules/routes';
 	import { page } from '$app/stores';
+	import {
+		getMonsterByPathName,
+		getMonsterIcon,
+	} from '$lib/client/modules/frontier/monsters';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');

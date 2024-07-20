@@ -490,3 +490,12 @@ export const tagInfo: {
 		values: ['Frenzy Virus'],
 	},
 ];
+
+export function getTag(value: string) {
+	for (const tagType of tagInfo) {
+		if (tagType.values.includes(value)) {
+			return tagType;
+		}
+	}
+	return tagInfo[0];
+}

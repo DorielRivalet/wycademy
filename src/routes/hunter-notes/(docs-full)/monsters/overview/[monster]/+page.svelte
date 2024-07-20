@@ -8,9 +8,7 @@
 		convertHitzoneInfo,
 		getAllHitzoneValuesForHitzones,
 		getHitzoneValuesObject,
-		getUniqueMonsters,
-		isFieldEmpty,
-	} from '$lib/client/modules/frontier/functions';
+	} from '$lib/client/modules/frontier/hitzones';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import ezlion, { type FrontierMonsterName } from 'ezlion';
 	import type {
@@ -47,7 +45,11 @@
 		StatusIcons,
 	} from '$lib/client/modules/frontier/ailments';
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
-	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import {
+		getUniqueMonsters,
+		monsterInfo,
+	} from '$lib/client/modules/frontier/monsters';
+	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(

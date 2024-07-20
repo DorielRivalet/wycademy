@@ -10,7 +10,7 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
-	import { getItemIcon, getTag } from '$lib/client/modules/frontier/functions';
+	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import imageGuildFood from '$lib/client/images/supplemental/guild-food.webp';
 	import imageGuildFoodCat from '$lib/client/images/supplemental/guild-food-cat.webp';
 	import imageGuildPoogie from '$lib/client/images/supplemental/guild-poogie.webp';
@@ -40,6 +40,7 @@
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { ItemColors } from '$lib/client/modules/frontier/items';
+	import { getTag } from '$lib/client/modules/frontier/tags';
 
 	function downloadDomAsPng(id: string) {
 		if (!browser) return;

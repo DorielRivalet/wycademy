@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getItemIcon } from '../modules/frontier/functions';
+	import { getItemIcon } from '../modules/frontier/items';
 	import InlineTooltip from './frontier/InlineTooltip.svelte';
 	import TrophyWhite from './frontier/icon/TrophyWhite.svelte';
 	import BookIconWhite from './frontier/icon/item/Book_Icon_White.svelte';
@@ -8,21 +8,14 @@
 	import { theme } from '$lib/client/stores/theme';
 	import { onMount, type ComponentType } from 'svelte';
 	import {
-		type LineChart,
 		type GaugeChart,
 		type MeterChart,
 		type MeterChartOptions,
 		type GaugeChartOptions,
-		type LineChartOptions,
-		Statuses,
-		ScaleTypes,
 	} from '@carbon/charts-svelte';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import {
-		getCatppuccinFlavorFromTheme,
-		getHexStringFromCatppuccinColor,
-	} from '../themes/catppuccin';
+	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 
 	export let huntCount = Math.trunc(Math.random() * 1000);
 	export let obtainedAchievements = Math.trunc(Math.random() * 1000);

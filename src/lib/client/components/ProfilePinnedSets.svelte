@@ -9,15 +9,16 @@
 	import type { ProfilePinnedSet } from '$lib/client/modules/frontier/types';
 	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { getMonsterIcon, getWeaponIcon } from '../modules/frontier/functions';
+	import { getWeaponIcon } from '../modules/frontier/weapons';
 	import { LocationIcons } from '../modules/frontier/locations';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
-	import { getTag } from '$lib/client/modules/frontier/functions';
+	import { getTag } from '$lib/client/modules/frontier/tags';
 	import { scale } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ArmorStandIcon from '$lib/client/components/frontier/icon/armor/MHRise_Item_Icon-Armor_Stand_Equipment_White.svelte';
+	import { getMonsterIcon } from '../modules/frontier/monsters';
 
 	let selectedSetName = '';
 

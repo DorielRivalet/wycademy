@@ -4,7 +4,7 @@
 	import {
 		getHitzoneColorsForHitzones,
 		getHitzoneValuesForHitzones,
-	} from '$lib/client/modules/frontier/functions';
+	} from '$lib/client/modules/frontier/hitzones';
 	import type {
 		FrontierMonsterHitzoneRankBand,
 		FrontierMonsterHitzoneType,
@@ -1869,10 +1869,11 @@
 					result="composite2"
 					id="feComposite573"
 				/></filter
-></defs>
+			></defs
+		>
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<!-- svelte-ignore a11y-mouse-events-have-key-events -->
-<g id="layer1"
+		<g id="layer1"
 			><g
 				id="g848"
 				transform="matrix(-1,0,0,1,128.0001,0)"

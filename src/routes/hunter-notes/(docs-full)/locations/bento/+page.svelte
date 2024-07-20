@@ -10,7 +10,7 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/functions';
+	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { page } from '$app/stores';
 	import { bentoValues } from '$lib/client/modules/frontier/bento';

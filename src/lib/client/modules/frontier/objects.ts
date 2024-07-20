@@ -364,14 +364,6 @@ export const missionRequirementAttackCeilings = [
 	233, 235, 236, 237, 238, 239, 240, 241, 243, 244, 245, 246, 247, 248, 249,
 ];
 
-export const hitzoneColors = [
-	'var(--ctp-blue)',
-	'var(--ctp-green)',
-	'var(--ctp-yellow)',
-	'var(--ctp-peach)',
-	'var(--ctp-red)',
-];
-
 /*
 // It requires an extra line to pull out the values
 type Direction = typeof ODirection[keyof typeof ODirection];
