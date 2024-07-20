@@ -1,4 +1,3 @@
-import type { FrontierMonsterName } from 'ezlion';
 import type {
 	FrontierMonsterHitzoneRankBand,
 	FrontierMonsterHitzoneType,
@@ -277,7 +276,7 @@ export type HitzoneInfo = {
 	water: number;
 	thunder: number;
 	rankBand: FrontierMonsterHitzoneRankBand;
-	displayName: FrontierMonsterName;
+	displayName: string;
 };
 
 export const silhouetteInfo: {

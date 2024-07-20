@@ -80,6 +80,7 @@
 		action: Action;
 		description: string;
 		date: string;
+		link: string;
 	}[] = [
 		{
 			action: 'Submitted',
