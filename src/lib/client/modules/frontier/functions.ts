@@ -4,6 +4,7 @@
  * found in the LICENSE file.
  */
 
+// TODO split into more files
 import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 import { format } from 'mathjs';
 import type {

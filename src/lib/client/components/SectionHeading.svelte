@@ -28,6 +28,7 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	import slugify from 'slugify';
 	import LinkIcon from 'carbon-icons-svelte/lib/Link.svelte';
 	import { browser } from '$app/environment';
+	import { theme } from '../stores/theme';
 	/** The name of the section heading*/
 	export let title: string;
 	/** The level of the section heading*/
@@ -39,10 +40,15 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 
 	const slug = slugify(title, { lower: true });
 
-	function updateQueryStringParameter(key: string, value: string) {
+	function updateQueryStringParameter(
+		queryData: { key: string; value: string }[],
+	) {
 		if (!browser) return;
 		const url = new URL(window.location.href);
-		url.searchParams.set(key, value);
+		queryData.forEach((e) => {
+			url.searchParams.set(e.key, e.value);
+		});
+
 		window.history.replaceState({}, '', url);
 	}
 </script>
@@ -50,7 +56,11 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 <svelte:element this={tag} id={slug}>
 	<a
 		href={'#' + slug}
-		on:click={() => updateQueryStringParameter('embed', slug)}
+		on:click={() =>
+			updateQueryStringParameter([
+				{ key: 'embed', value: slug },
+				{ key: 'embed-theme', value: $theme === 'g10' ? 'light' : 'dark' },
+			])}
 	>
 		{title}
 		{#if withIcon}

@@ -42,9 +42,13 @@ import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon
 import AllItems from '../components/frontier/icon/item/AllItems.svelte';
 import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 import pageThumbnail from '$lib/client/images/logo.png';
-import thumbnailActiveFeature from '$lib/client/images/page-thumbnail/active-feature.png';
-import thumbnailGuildPoogies from '$lib/client/images/page-thumbnail/guild-poogies.png';
-import thumbnailRecipes from '$lib/client/images/page-thumbnail/recipes.png';
+import thumbnailLightActiveFeature from '$lib/client/images/page-thumbnail/light/active-feature.png';
+import thumbnailLightGuildPoogies from '$lib/client/images/page-thumbnail/light/guild-poogies.png';
+import thumbnailLightRecipes from '$lib/client/images/page-thumbnail/light/recipes.png';
+
+import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
+import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
+import thumbnailDarkRecipes from '$lib/client/images/page-thumbnail/dark/recipes.png';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -59,10 +63,22 @@ export type CategoryInfo = {
 	pages: NavigationItem[];
 };
 
-export function getPageThumbnail(link: string, query: string | null) {
-	for (const entry of thumbnailInfo) {
-		if (entry.link === link && entry.embed === query) {
-			return entry.thumbnail;
+export function getPageThumbnail(
+	link: string,
+	query: string | null,
+	embedTheme: 'light' | 'dark' | null,
+) {
+	if (embedTheme === 'light') {
+		for (const entry of lightThumbnailInfo) {
+			if (entry.link === link && entry.embed === query) {
+				return entry.thumbnail;
+			}
+		}
+	} else {
+		for (const entry of darkThumbnailInfo) {
+			if (entry.link === link && entry.embed === query) {
+				return entry.thumbnail;
+			}
 		}
 	}
 
@@ -309,7 +325,7 @@ export const toolsInfo: CategoryInfo[] = [
 	},
 ];
 
-export const thumbnailInfo: {
+const lightThumbnailInfo: {
 	link: string;
 	thumbnail: string;
 	embed: string | null;
@@ -317,17 +333,39 @@ export const thumbnailInfo: {
 	{
 		link: '/hunter-notes/weapons/active-feature',
 		embed: null,
-		thumbnail: thumbnailActiveFeature,
+		thumbnail: thumbnailLightActiveFeature,
 	},
 	{
 		embed: 'recipes',
 		link: '/hunter-notes/locations/guild-hall',
-		thumbnail: thumbnailRecipes,
+		thumbnail: thumbnailLightRecipes,
 	},
 	{
 		embed: 'guild-poogie-skills',
 		link: '/hunter-notes/locations/guild-hall',
-		thumbnail: thumbnailGuildPoogies,
+		thumbnail: thumbnailLightGuildPoogies,
+	},
+];
+
+const darkThumbnailInfo: {
+	link: string;
+	thumbnail: string;
+	embed: string | null;
+}[] = [
+	{
+		link: '/hunter-notes/weapons/active-feature',
+		embed: null,
+		thumbnail: thumbnailDarkActiveFeature,
+	},
+	{
+		embed: 'recipes',
+		link: '/hunter-notes/locations/guild-hall',
+		thumbnail: thumbnailDarkRecipes,
+	},
+	{
+		embed: 'guild-poogie-skills',
+		link: '/hunter-notes/locations/guild-hall',
+		thumbnail: thumbnailDarkGuildPoogies,
 	},
 ];
 
