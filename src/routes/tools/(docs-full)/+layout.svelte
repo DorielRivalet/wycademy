@@ -12,7 +12,7 @@
 	import { theme } from '$lib/client/stores/theme';
 	import { themeTokens } from '$lib/client/themes/tokens';
 	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
-	import { onMount } from 'svelte';
+	import { onMount, SvelteComponent, type ComponentType } from 'svelte';
 	import { cursorIcon } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
@@ -55,6 +55,8 @@
 		toolsInfo,
 	} from '$lib/client/modules/routes';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
+	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -205,7 +207,15 @@
 		},
 	];
 
-	const iconsMap = [
+	const iconsMap: {
+		id: string;
+		icon: string | ComponentType<SvelteComponent>;
+		iconProps?: {
+			size?: string;
+			currentMonster?: FrontierMonsterNameExpanded;
+			background?: boolean;
+		};
+	}[] = [
 		{ id: '/tools/calculator', icon: KnifeIconWhite },
 		{
 			id: '/tools/calculator/damage',
@@ -223,7 +233,11 @@
 		},
 		{
 			id: '/tools/generator',
-			icon: monsterInfo.find((e) => e.displayName === 'Abiorugu')?.icon, // TODO: works?
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Abiorugu',
+				background: false,
+			},
 		},
 		{
 			id: '/tools/generator/weapon',
@@ -238,13 +252,12 @@
 			icon: MantleIconWhite,
 		},
 		{
-			id: '/tools/generator/burst',
-			icon: monsterInfo.find((e) => e.displayName === 'Zerureusu')?.icon,
-		},
-		{
 			id: '/tools/generator/icon',
-			icon: monsterInfo.find((e) => e.displayName === 'Supremacy Teostra')
-				?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Supremacy Teostra',
+				background: false,
+			},
 		},
 		{
 			id: '/tools/generator/thumbnail',
@@ -256,7 +269,11 @@
 		},
 		{
 			id: '/tools/simulator/tower-weapon',
-			icon: monsterInfo.find((e) => e.displayName === 'Duremudira')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Duremudira',
+				background: false,
+			},
 		},
 		{
 			id: '/tools/external',
@@ -406,7 +423,13 @@
 						{:else}
 							<svelte:component
 								this={iconsMap.find((e) => e.id === node.id)?.icon}
-								{...{ size: '24px' }}
+								{...{
+									background: iconsMap.find((e) => e.id === node.id)?.iconProps
+										?.background,
+									size: '24px',
+									currentMonster: iconsMap.find((e) => e.id === node.id)
+										?.iconProps?.currentMonster,
+								}}
 							/>
 						{/if}
 					</div>
