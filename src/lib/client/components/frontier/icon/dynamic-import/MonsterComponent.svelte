@@ -736,7 +736,7 @@
 			return monsterImports[monsterKey]();
 		} else {
 			switch (displayName) {
-				case 'Shiten UNKNOWN':
+				case 'Shiten UNKNOWN': // TODO?
 					return monsterImports['ShitenUnknown'];
 			}
 
