@@ -4,18 +4,17 @@ import ExtremeFireblight from '$lib/client/components/frontier/icon/ailment/Extr
 import ExtremeParalysis from '$lib/client/components/frontier/icon/ailment/ExtremeParalysis.svelte';
 import { LocationIcons } from './frontier/locations';
 import StygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
-import YamaKurai2 from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
+import YamaKurai from '$lib/client/components/frontier/icon/monster/YamaKurai.svelte';
 import Zerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';
 import SupremacyTeostra from '$lib/client/components/frontier/icon/monster/SupremacyTeostra.svelte';
-import Bogabadorumu6 from '$lib/client/components/frontier/icon/monster/Bogabadorumu6.svelte';
+import Bogabadorumu6 from '$lib/client/components/frontier/icon/monster/Bogabadorumu.svelte';
 import BerserkRaviente from '$lib/client/components/frontier/icon/monster/BerserkRaviente.svelte';
-import ConquestFatalis7 from '$lib/client/components/frontier/icon/monster/ConquestFatalis7.svelte';
-import AkuraJebia2 from '$lib/client/components/frontier/icon/monster/AkuraJebia2.svelte';
-import BurningFreezingElzelion2 from '$lib/client/components/frontier/icon/monster/BurningFreezingElzelion2.svelte';
+import ConquestFatalis7 from '$lib/client/components/frontier/icon/monster/ConquestFatalis.svelte';
+import AkuraJebia2 from '$lib/client/components/frontier/icon/monster/AkuraJebia.svelte';
+import BurningFreezingElzelion2 from '$lib/client/components/frontier/icon/monster/BurningFreezingElzelion.svelte';
 import AllWeapons from '$lib/client/components/frontier/icon/weapon/AllWeapons.svelte';
 import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 import ShotIconWhite from '$lib/client/components/frontier/icon/item/Shot_Icon_White.svelte';
-import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 import AllArmors from '$lib/client/components/frontier/icon/armor/AllArmors.svelte';
 import MapIconWhite from '$lib/client/components/frontier/icon/item/Map_Icon_White.svelte';
 import TrapToolIconWhite from '$lib/client/components/frontier/icon/item/Trap_Tool_Icon_White.svelte';
@@ -25,17 +24,16 @@ import SacIconWhite from '$lib/client/components/frontier/icon/item/Sac_Icon_Whi
 import UNKNOWN from '$lib/client/images/monster/shiten_unknown.webp';
 import Logo from '$lib/client/images/logo.svg';
 import MedicineIconWhite from '../components/frontier/icon/item/Medicine_Icon_White.svelte';
-import {
-	Bullhorn,
-	Development,
-	DocumentRequirements,
-	Email,
-	Group,
-	InformationSquare,
-	LogoYoutube,
-	PiggyBank,
-	QuestionAnswering,
-} from 'carbon-icons-svelte';
+import Bullhorn from 'carbon-icons-svelte/lib/Bullhorn.svelte';
+import Development from 'carbon-icons-svelte/lib/Development.svelte';
+import DocumentRequirements from 'carbon-icons-svelte/lib/DocumentRequirements.svelte';
+import Email from 'carbon-icons-svelte/lib/Email.svelte';
+import Group from 'carbon-icons-svelte/lib/Group.svelte';
+import InformationSquare from 'carbon-icons-svelte/lib/InformationSquare.svelte';
+import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
+import PiggyBank from 'carbon-icons-svelte/lib/PiggyBank.svelte';
+import QuestionAnswering from 'carbon-icons-svelte/lib/QuestionAnswering.svelte';
+
 import Duremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
 import KnifeIconWhite from '../components/frontier/icon/item/Knife_Icon_White.svelte';
 import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
@@ -50,13 +48,14 @@ import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/a
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
 import thumbnailDarkRecipes from '$lib/client/images/page-thumbnail/dark/recipes.png';
 import { getWeaponIcon } from './frontier/weapons';
+import { monsterInfo } from './frontier/monsters';
 
 // TODO more fields? for search index
 export type NavigationItem = {
 	name: string;
 	description: string;
 	link: string;
-	image: string | ComponentType<SvelteComponent>;
+	image: string | ComponentType<SvelteComponent> | undefined;
 };
 
 export type CategoryInfo = {
@@ -272,13 +271,13 @@ export const toolsInfo: CategoryInfo[] = [
 			{
 				name: 'Icon',
 				description: 'An icon generator.',
-				image: getMonsterIcon('Abiorugu'),
+				image: monsterInfo.find((e) => e.displayName === 'Abiorugu')?.icon,
 				link: '/tools/generator/icon',
 			},
 			{
 				name: 'Thumbnail',
 				description: 'A thumbnail generator, for example YouTube thumbnails.',
-				image: LogoYoutube,
+				image: VideoPlayer,
 				link: '/tools/generator/thumbnail',
 			},
 		],
@@ -438,7 +437,7 @@ export const guidesInfo: CategoryInfo[] = [
 				description:
 					'The list of origin monsters and the automatic skills they provide.',
 				link: '/hunter-notes/monsters/origin',
-				image: YamaKurai2,
+				image: YamaKurai,
 			},
 			{
 				name: 'Burst',

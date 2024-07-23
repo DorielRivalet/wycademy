@@ -5,7 +5,7 @@
 	import { page } from '$app/stores';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
+	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
@@ -266,7 +266,7 @@
 			case 'Monster Icon':
 				return {
 					component: monsterInfo.find((e) => e.displayName === selectionID)
-						?.component,
+						?.icon,
 					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Monster Render':
@@ -1115,7 +1115,7 @@
 				><Button
 					on:click={() => changeModal('', 'YouTube')}
 					size="default"
-					icon={LogoYoutube}
+					icon={VideoPlayer}
 					kind="ghost">YouTube thumbnails.</Button
 				></span
 			>

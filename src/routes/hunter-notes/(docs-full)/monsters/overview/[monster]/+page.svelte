@@ -266,11 +266,13 @@
 								type="file"
 							/>
 						{:else}
+							<!--TODO use slots instead?-->
 							<ImageDialog
-								src={monster.component}
+								src={monster.icon}
 								alt={monster.displayName}
-								componentSize={'100%'}
-								type="component"
+								width={256}
+								height={256}
+								type="file"
 							/>
 						{/if}
 					</div>
@@ -356,7 +358,7 @@
 					<strong>Rank: </strong>{monster.rank}
 				</p>
 				<p>
-					<strong>Render (click to expand): </strong>
+					<strong>Render: </strong>
 					<ImageDialog
 						type="file"
 						src={monster.fullRender}
@@ -407,12 +409,12 @@
 											/>
 										{:else}
 											<InlineTooltip
-												iconType="component"
+												iconType="file"
 												gap={'.5rem'}
 												tooltip={relatedMonster}
 												text={relatedMonster}
 												iconSize={'32px'}
-												icon={findMonsterInfo(relatedMonster)?.component}
+												icon={findMonsterInfo(relatedMonster)?.icon}
 											/>
 										{/if}
 									</Link>

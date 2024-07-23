@@ -205,7 +205,7 @@
 			case 'Monster Icon':
 				return {
 					component: monsterInfo.find((e) => e.displayName === selectionID)
-						?.component,
+						?.icon, // TODO svg?
 					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Monster Render':
@@ -401,7 +401,8 @@
 		</div>
 		<div class="icon-preview">
 			<div id={'icon-dom'} style="width: {selectedIconSize}">
-				{#if ((selectedIconType === 'Monster Icon' || selectedIconType === 'Weapon') && selectedIconFormat === 'Vector') || selectedIconType === 'Element' || selectedIconType === 'Ailment' || selectedIconType === 'Status' || selectedIconType === 'Item' || selectedIconType === 'Armor'}
+				<!--TODO: monster icon svg loading-->
+				{#if (selectedIconType === 'Weapon' && selectedIconFormat === 'Vector') || selectedIconType === 'Element' || selectedIconType === 'Ailment' || selectedIconType === 'Status' || selectedIconType === 'Item' || selectedIconType === 'Armor'}
 					<div
 						style="filter: drop-shadow(0 0 {selectedIconShadowWidth}px {selectedIconShadowColor});"
 					>

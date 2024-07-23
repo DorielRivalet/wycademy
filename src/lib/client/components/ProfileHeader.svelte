@@ -6,10 +6,8 @@
 	import { WeaponTypes } from '../modules/frontier/weapons';
 	import { countries, type TCountryCode } from 'countries-list';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
-	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
-	import RecordingFilledAlt from 'carbon-icons-svelte/lib/RecordingFilledAlt.svelte';
 	import LogoX from 'carbon-icons-svelte/lib/LogoX.svelte';
 
 	function randomChoice(arr: any[]) {
@@ -21,9 +19,7 @@
 	export let medal = '🥇';
 	export let title = randomChoice(WeaponTypes).hiden;
 	export let discordName = 'discordname123';
-	export let youtubeChannel = '@kairi_mhfz';
 	export let twitterName = 'randomTwitterName123';
-	export let twitchChannel = 'randomTwitchName123';
 	export let imageSource = Transcend;
 	export let countryCode: TCountryCode = randomChoice(Object.keys(countries));
 	const countryName = countries[countryCode].name;
@@ -33,7 +29,6 @@
 	export let badge1Rank = Math.trunc(Math.random() * 99);
 	export let badge2Rank = Math.trunc(Math.random() * 99);
 	export let badge3Rank = Math.trunc(Math.random() * 99);
-	export let isYouTubeStreaming = Math.random() > 0.5 ? true : false;
 </script>
 
 <div class="container">
@@ -73,26 +68,6 @@
 	<div class="socials">
 		<div>
 			<OutboundLink href="https://x.com/{twitterName}"><LogoX /></OutboundLink>
-		</div>
-		<div>
-			{#if isYouTubeStreaming}
-				<OutboundLink href="https://youtube.com/{youtubeChannel}">
-					<RecordingFilledAlt color="var(--ctp-red)" />
-					<strong class="live"> LIVE </strong></OutboundLink
-				>
-			{:else}
-				<OutboundLink href="https://youtube.com/{youtubeChannel}"
-					><LogoYoutube color="var(--ctp-red)" />
-				</OutboundLink>
-			{/if}
-		</div>
-		<div>
-			<OutboundLink href="https://twitch.tv/{twitchChannel}"
-				><img
-					alt="Twitch Status"
-					src="https://img.shields.io/twitch/status/{twitchChannel}?style=flat-square&logo=twitch&cacheSeconds=86400"
-				/>
-			</OutboundLink>
 		</div>
 		<div>
 			<Tooltip triggerText="" icon={LogoDiscord}>{discordName}</Tooltip>

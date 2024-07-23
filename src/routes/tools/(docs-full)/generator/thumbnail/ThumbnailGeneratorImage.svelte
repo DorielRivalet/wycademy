@@ -83,7 +83,7 @@
 			case 'Monster Icon':
 				return {
 					component: monsterInfo.find((e) => e.displayName === selectionID)
-						?.component,
+						?.icon, // TODO svg?
 					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Monster Render':

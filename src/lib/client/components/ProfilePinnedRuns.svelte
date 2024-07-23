@@ -12,7 +12,7 @@
 	import slugify from 'slugify';
 	import Youtube from 'svelte-youtube-embed';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
-	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
+	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import { formatDateTime } from '../modules/time';
 	import ezlion from 'ezlion';
 	import type { OverlayHuntRank } from '../modules/frontier/types';
@@ -13841,7 +13841,7 @@
 					kind="ghost"
 				>
 					<span slot="icon">
-						<LogoYoutube size={24} color="var(--ctp-red)" />
+						<VideoPlayer size={24} color="var(--ctp-blue)" />
 					</span>
 				</Button>
 			{:else if cell.key === 'objectiveImage'}

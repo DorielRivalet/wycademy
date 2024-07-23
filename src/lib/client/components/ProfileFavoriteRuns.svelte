@@ -2,53 +2,54 @@
 	import ClickableTileImage from './ClickableTileImage.svelte';
 	import FavoriteFilled from 'carbon-icons-svelte/lib/FavoriteFilled.svelte';
 	import Favorite from 'carbon-icons-svelte/lib/Favorite.svelte';
-	import { getMonsterIcon } from '../modules/frontier/monsters';
+	import { monsterInfo } from '../modules/frontier/monsters';
+	import MonsterComponent from './frontier/icon/dynamic-import/MonsterComponent.svelte';
 
 	export let favoriteRuns = [
 		{
-			icon: getMonsterIcon('Burning Freezing Elzelion'),
+			displayName: 'Burning Freezing Elzelion',
 			title: "User 2's Run #130",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Conquest Crimson Fatalis'),
+			displayName: 'Conquest Crimson Fatalis',
 			title: "User 2's Run #131",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Supremacy Pariapuria'),
+			displayName: 'Supremacy Pariapuria',
 			title: "User 3's Run #132",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Bombardier Bogabadorumu'),
+			displayName: 'Bombardier Bogabadorumu',
 			title: "User 4's Run #133",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Ruling Guanzorumu'),
+			displayName: 'Ruling Guanzorumu',
 			title: "User 5's Run #134",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Zenith Espinas'),
+			displayName: 'Zenith Espinas',
 			title: "User 6's Run #135",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Zenith Espinas'),
+			displayName: 'Zenith Espinas',
 			title: "User 7's Run #136",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Conquest Fatalis'),
+			displayName: 'Conquest Fatalis',
 			title: "User 8's Run #130",
 			link: '/',
 			totalFavorites: 0,
@@ -67,10 +68,19 @@
 	{#each displayedFavorites as favoriteRun}
 		<a class="run-container" href={favoriteRun.link}>
 			<div class="icon">
-				{#if typeof favoriteRun.icon === 'string'}
-					<img src={favoriteRun.icon} width="64" alt="Favorite Icon" />
+				{#if monsterInfo.find((e) => e.displayName === favoriteRun.displayName)?.unusedComponent === true}
+					<img
+						src={monsterInfo.find(
+							(e) => e.displayName === favoriteRun.displayName,
+						)?.icon}
+						width="64"
+						alt="Favorite Icon"
+					/>
 				{:else}
-					<svelte:component this={favoriteRun.icon} {...{ size: '64px' }} />
+					<MonsterComponent
+						currentMonster={favoriteRun.displayName}
+						size="64px"
+					/>
 				{/if}
 			</div>
 			<div class="text">
