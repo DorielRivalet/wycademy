@@ -266,7 +266,7 @@
 			case 'Monster Icon':
 				return {
 					component: monsterInfo.find((e) => e.displayName === selectionID)
-						?.icon,
+						?.icon, // TODO svg?
 					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Monster Render':
@@ -1619,7 +1619,8 @@
 			>
 				{#if thumbnailImages.length !== undefined && thumbnailImages.length > 0}
 					{#each thumbnailImages as image, i}
-						{#if image.fileType === 'Location' || image.fileType === 'Habitat' || image.fileType === 'Monster Render' || image.fileType === 'Game'}
+						<!--TODO: monster icon svg, remove from here -->
+						{#if image.fileType === 'Location' || image.fileType === 'Habitat' || image.fileType === 'Monster Render' || image.fileType === 'Monster Icon' || image.fileType === 'Game'}
 							<img
 								src={image.fileType === 'Monster Render'
 									? image.monsterRenderSize === 'Small'
