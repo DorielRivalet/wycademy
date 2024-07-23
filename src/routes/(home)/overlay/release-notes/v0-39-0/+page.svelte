@@ -10,7 +10,7 @@
 	import ImageDialog from '$lib/client/components/ImageDialog.svelte';
 	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
-	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 
 	const version = 'v0.39.0';
 
@@ -132,68 +132,78 @@
 			<div class="previews">
 				<div>
 					<ImageDialog
-						src={getMonsterIcon('Burning Freezing Elzelion')}
+						src={monsterInfo.find(
+							(e) => e.displayName === 'Burning Freezing Elzelion',
+						)?.icon}
 						alt={'Burning Freezing Elzelion'}
-						componentSize={'128px'}
-						type="component"
+						width={'128px'}
+						type="file"
 					/>
 				</div>
 				<div>
 					<ImageDialog
-						src={getMonsterIcon('Arrogant Duremudira')}
+						src={monsterInfo.find(
+							(e) => e.displayName === 'Arrogant Duremudira',
+						)?.icon}
 						alt={'Arrogant Duremudira'}
-						componentSize={'128px'}
-						type="component"
+						width={'128px'}
+						type="file"
 					/>
 				</div>
 				<div>
 					<ImageDialog
-						src={getMonsterIcon('Starving Deviljho')}
+						src={monsterInfo.find((e) => e.displayName === 'Starving Deviljho')
+							?.icon}
 						alt={'Starving Deviljho'}
-						componentSize={'128px'}
-						type="component"
+						width={'128px'}
+						type="file"
 					/>
 				</div>
 				<div>
 					<ImageDialog
-						src={getMonsterIcon('Conquest Fatalis')}
+						src={monsterInfo.find((e) => e.displayName === 'Conquest Fatalis')
+							?.icon}
 						alt={'Conquest Fatalis'}
-						componentSize={'128px'}
-						type="component"
+						width={'128px'}
+						type="file"
 					/>
 				</div>
 				<div>
 					<ImageDialog
-						src={getMonsterIcon('Shifting Mi Ru')}
+						src={monsterInfo.find((e) => e.displayName === 'Shifting Mi Ru')
+							?.icon}
 						alt={'Shifting Mi Ru'}
-						componentSize={'128px'}
-						type="component"
+						width={'128px'}
+						type="file"
 					/>
 				</div>
 				<div>
 					<ImageDialog
-						src={getMonsterIcon('Road White Fatalis')}
+						src={monsterInfo.find((e) => e.displayName === 'Road White Fatalis')
+							?.icon}
 						alt={'Road White Fatalis'}
-						componentSize={'128px'}
-						type="component"
+						width={'128px'}
+						type="file"
 					/>
 				</div>
 
 				<div>
 					<ImageDialog
-						src={getMonsterIcon('Ruling Guanzorumu')}
+						src={monsterInfo.find((e) => e.displayName === 'Ruling Guanzorumu')
+							?.icon}
 						alt={'Ruling Guanzorumu'}
-						componentSize={'128px'}
-						type="component"
+						width={'128px'}
+						type="file"
 					/>
 				</div>
-
+				<!--TODO svg-->
 				<div>
 					<ImageDialog
-						src={getMonsterIcon('Supremacy Teostra')}
+						src={monsterInfo.find((e) => e.displayName === 'Supremacy Teostra')
+							?.icon}
 						alt={'Supremacy Teostra'}
-						componentSize={'128px'}
-						type="component"
+						width={'128px'}
+						type="file"
 					/>
 				</div>
 			</div>

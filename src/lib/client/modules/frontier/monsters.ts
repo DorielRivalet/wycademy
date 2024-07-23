@@ -1,202 +1,5 @@
-import ComponentMonsterRandom from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRathian from '$lib/client/components/frontier/icon/monster/Rathian.svelte';
-import ComponentMonsterFatalis from '$lib/client/components/frontier/icon/monster/Fatalis.svelte';
-import ComponentMonsterKelbi from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterMosswine from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBullfango from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterYianKutKu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterLaoShanLung from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterCephadrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterFelyne from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRathalos from '$lib/client/components/frontier/icon/monster/Rathalos.svelte';
-import ComponentMonsterAptonoth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGenprey from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterDiablos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterKhezu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterVelociprey from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGravios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterVespoid from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGypceros from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterPlesioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBasarios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterMelynx from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterHornetaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterApceros from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterMonoblos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterVelocidrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGendrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterIoprey from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterIodrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterKirin from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterCephalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGiaprey from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterCrimsonFatalis from '$lib/client/components/frontier/icon/monster/CrimsonFatalis3.svelte';
-import ComponentMonsterPinkRathian from '$lib/client/components/frontier/icon/monster/PinkRathian.svelte';
-import ComponentMonsterBlueYianKutKu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterPurpleGypceros from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterYianGaruga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterSilverRathalos from '$lib/client/components/frontier/icon/monster/SilverRathalos.svelte';
-import ComponentMonsterGoldRathian from '$lib/client/components/frontier/icon/monster/GoldRathian.svelte';
-import ComponentMonsterBlackDiablos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterWhiteMonoblos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRedKhezu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGreenPlesioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBlackGravios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterAzureRathalos from '$lib/client/components/frontier/icon/monster/AzureRathalos.svelte';
-import ComponentMonsterAshenLaoShanLung from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBlangonga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterCongalala from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRajang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterKushalaDaora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterShenGaoren from '$lib/client/components/frontier/icon/monster/ShenGaoren.svelte';
-import ComponentMonsterGreatThunderbug from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterShakalaka from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterYamaTsukami from '$lib/client/components/frontier/icon/monster/YamaTsukami2.svelte';
-import ComponentMonsterChameleos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRustedKushalaDaora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBlango from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterConga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRemobra from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterLunastra from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterTeostra from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterHermitaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterShogunCeanataur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBulldrome from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterAnteka from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterPopo from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterWhiteFatalis from '$lib/client/components/frontier/icon/monster/WhiteFatalis6.svelte';
-import ComponentMonsterCeanataur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterHypnocatrice from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterLavasioth from '$lib/client/components/frontier/icon/monster/Lavasioth2.svelte';
-import ComponentMonsterTigrex from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterAkantor from '$lib/client/components/frontier/icon/monster/Akantor.svelte';
-import ComponentMonsterBrightHypnoc from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRedLavasioth from '$lib/client/components/frontier/icon/monster/RedLavasioth.svelte';
-import ComponentMonsterEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterOrangeEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterSilverHypnoc from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterAkuraVashimu from '$lib/client/components/frontier/icon/monster/AkuraVashimu2.svelte';
-import ComponentMonsterAkuraJebia from '$lib/client/components/frontier/icon/monster/AkuraJebia2.svelte';
-import ComponentMonsterBerukyurosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterPariapuria from '$lib/client/components/frontier/icon/monster/Pariapuria.svelte';
-import ComponentMonsterWhiteEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterKamuOrugaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterNonoOrugaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRaviente from '$lib/client/components/frontier/icon/monster/Raviente3.svelte';
-import ComponentMonsterViolentRaviente from '$lib/client/components/frontier/icon/monster/ViolentRaviente2.svelte';
-import ComponentMonsterDyuragaua from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterDoragyurosu from '$lib/client/components/frontier/icon/monster/Doragyurosu.svelte';
-import ComponentMonsterGurenzeburu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBurukku from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterErupe from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRukodiora from '$lib/client/components/frontier/icon/monster/Rukodiora2.svelte';
-import ComponentMonsterUNKNOWN from '$lib/client/components/frontier/icon/monster/UnknownPhase1.svelte';
-import ComponentMonsterGogomoa from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterTaikunZamuza from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterAbiorugu from '$lib/client/components/frontier/icon/monster/Abiorugu3.svelte';
-import ComponentMonsterKuarusepusu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterOdibatorasu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterDisufiroa from '$lib/client/components/frontier/icon/monster/Disufiroa.svelte';
-import ComponentMonsterRebidiora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterAnorupatisu from '$lib/client/components/frontier/icon/monster/Anorupatisu2.svelte';
-import ComponentMonsterHyujikiki from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterMidogaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGiaorugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterMiRu from '$lib/client/components/frontier/icon/monster/MiRu2.svelte';
-import ComponentMonsterFarunokku from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterPokaradon from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterShantien from '$lib/client/components/frontier/icon/monster/Shantien.svelte';
-import ComponentMonsterPokara from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGoruganosu from '$lib/client/components/frontier/icon/monster/Goruganosu2.svelte';
-import ComponentMonsterAruganosu from '$lib/client/components/frontier/icon/monster/Aruganosu2.svelte';
-import ComponentMonsterBaruragaru from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZerureusu from '$lib/client/components/frontier/icon/monster/Zerureusu.svelte';
-import ComponentMonsterGougarf from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterUruki from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterForokururu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterMeraginasu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterDiorex from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGarubaDaora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterInagami from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterVarusaburosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterPoborubarumu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterDuremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
-import ComponentMonsterGureadomosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterHarudomerugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterToridcless from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGasurabazura from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterKusubami from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterYamaKurai from '$lib/client/components/frontier/icon/monster/YamaKurai2.svelte';
-import ComponentMonsterZinogre from '$lib/client/components/frontier/icon/monster/Zinogre2.svelte';
-import ComponentMonsterDeviljho from '$lib/client/components/frontier/icon/monster/Deviljho.svelte';
-import ComponentMonsterBrachydios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBerserkRaviente from '$lib/client/components/frontier/icon/monster/BerserkRaviente.svelte';
-import ComponentMonsterToaTesukatora from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBarioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterUragaan from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterStygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
-import ComponentMonsterGuanzorumu from '$lib/client/components/frontier/icon/monster/Guanzorumu.svelte';
-import ComponentMonsterStarvingDeviljho from '$lib/client/components/frontier/icon/monster/StarvingDeviljho.svelte';
-import ComponentMonsterVoljang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterNargacuga from '$lib/client/components/frontier/icon/monster/Nargacuga.svelte';
-import ComponentMonsterKeoaruboru from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenaserisu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGoreMagala from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBlinkingNargacuga from '$lib/client/components/frontier/icon/monster/BlinkingNargacuga2.svelte';
-import ComponentMonsterShagaruMagala from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterAmatsu from '$lib/client/components/frontier/icon/monster/Amatsu2.svelte';
-import ComponentMonsterElzelion from '$lib/client/components/frontier/icon/monster/Elzelion.svelte';
-import ComponentMonsterArrogantDuremudira from '$lib/client/components/frontier/icon/monster/ArrogantDuremudira2.svelte';
-import ComponentMonsterSeregios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterBogabadorumu from '$lib/client/components/frontier/icon/monster/Bogabadorumu6.svelte';
-import ComponentMonsterBombardierBogabadorumu from '$lib/client/components/frontier/icon/monster/BombardierBogabadorumu2.svelte';
-import ComponentMonsterSparklingZerureusu from '$lib/client/components/frontier/icon/monster/SparklingZerureusu.svelte';
-import ComponentMonsterPSO2Rappy from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterKingShakalaka from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-
-import ComponentMonsterZenithAkuraVashimu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithAnorupatisu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithBaruragaru from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithBlangonga from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithDaimyoHermitaur from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithDoragyurosu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithEspinas from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithGasurabazura from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithGiaorugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithGravios from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithHarudomerugu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithHypnoc from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithHyujikiki from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithInagami from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithKhezu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithMidogaron from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithPlesioth from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithRathalos from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithRukodiora from '$lib/client/components/frontier/icon/monster/ZenithRukodiora3.svelte';
-import ComponentMonsterZenithTaikunZamuza from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithTigrex from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterZenithToridcless from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterConquestFatalis from '$lib/client/components/frontier/icon/monster/ConquestFatalis7.svelte';
-import ComponentMonsterConquestShantien from '$lib/client/components/frontier/icon/monster/ConquestShantien.svelte';
-import ComponentMonsterConquestCrimsonFatalis from '$lib/client/components/frontier/icon/monster/ConquestCrimsonFatalis7.svelte';
-import ComponentMonsterShitenDisufiroa from '$lib/client/components/frontier/icon/monster/ShitenDisufiroa.svelte';
-import ComponentMonsterShitenUnknown from '$lib/client/components/frontier/icon/monster/ShitenUnknown3.svelte';
-import ComponentMonsterBurningFreezingElzelion from '$lib/client/components/frontier/icon/monster/BurningFreezingElzelion2.svelte';
-import ComponentMonsterHowlingZinogre from '$lib/client/components/frontier/icon/monster/HowlingZinogre4.svelte';
-import ComponentMonsterSupremacyPariapuria from '$lib/client/components/frontier/icon/monster/ThirstyPariapuria.svelte';
-import ComponentMonsterSupremacyDoragyurosu from '$lib/client/components/frontier/icon/monster/SupremacyDoragyurosu.svelte';
-import ComponentMonsterSupremacyTeostra from '$lib/client/components/frontier/icon/monster/SupremacyTeostra.svelte';
-import ComponentMonsterSupremacyOdibatorasu from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterGoldenDeviljho from '$lib/client/components/frontier/icon/monster/GoldenDeviljho3.svelte';
-import ComponentMonsterFuriousRajang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRulingGuanzorumu from '$lib/client/components/frontier/icon/monster/RulingGuanzorumu.svelte';
-import ComponentMonsterShiftingMiRu from '$lib/client/components/frontier/icon/monster/ShiftingMiRu2.svelte';
-import ComponentMonsterTwinheadRajang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
-import ComponentMonsterRoadWhiteFatalis from '$lib/client/components/frontier/icon/monster/RoadWhiteFatalis3.svelte';
-
-import type { FrontierMonsterInfo, FrontierMonsterNameExpanded } from './types';
 import type { FrontierMonsterName } from 'ezlion';
+import type { FrontierMonsterInfo } from './types';
 
 export const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
 
@@ -409,7 +212,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/random',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/random',
-		component: ComponentMonsterRandom,
+
 		unusedComponent: false,
 		displayName: 'Random',
 	},
@@ -422,13 +225,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rathian',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rathian',
-		component: ComponentMonsterRathian,
+
 		unusedComponent: false,
 		displayName: 'Rathian',
 		type: 'Large',
 		link: '/hunter-notes/monsters/overview/rathian',
 		ecology:
-			'Flying Wyverns widely known as "Queens of the Land." With powerful legs and venomous tails, they are powerful predators and are especially dangerous during the breeding season. Legend holds there exists a rare golden varient.',
+			'Flying Wyverns widely known as "Queens of the Land." With powerful legs and venomous tails, they are powerful predators and are especially dangerous during the breeding season. Legend holds there exists a rare golden variant.',
 		titles: ['Female Fire Wyvern', 'Queen of the Land'],
 		class: 'Flying Wyvern',
 		elements: ['Fire'],
@@ -505,7 +308,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/fatalis',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/fatalis',
-		component: ComponentMonsterFatalis,
+
 		unusedComponent: false,
 
 		displayName: 'Fatalis',
@@ -532,7 +335,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kelbi',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kelbi',
-		component: ComponentMonsterKelbi,
+
 		unusedComponent: true,
 		displayName: 'Kelbi',
 		type: 'Small',
@@ -600,7 +403,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/mosswine',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/mosswine',
-		component: ComponentMonsterMosswine,
+
 		unusedComponent: true,
 		displayName: 'Mosswine',
 		link: '/hunter-notes/monsters/overview/mosswine',
@@ -629,7 +432,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/bullfango',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/bullfango',
-		component: ComponentMonsterBullfango,
+
 		unusedComponent: true,
 		displayName: 'Bullfango',
 		link: '/hunter-notes/monsters/overview/bullfango',
@@ -696,7 +499,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/yian_kut-ku',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/yian-kut-ku',
-		component: ComponentMonsterYianKutKu,
+
 		unusedComponent: true,
 		displayName: 'Yian Kut-Ku',
 		link: '/hunter-notes/monsters/overview/yian-kut-ku',
@@ -742,7 +545,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/lao-shan_lung',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/lao-shan-lung',
-		component: ComponentMonsterLaoShanLung,
+
 		unusedComponent: true,
 		displayName: 'Lao-Shan Lung',
 		link: '/hunter-notes/monsters/overview/lao-shan-lung',
@@ -769,7 +572,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/cephadrome',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/cephadrome',
-		component: ComponentMonsterCephadrome,
+
 		unusedComponent: true,
 		displayName: 'Cephadrome',
 		link: '/hunter-notes/monsters/overview/cephadrome',
@@ -807,7 +610,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/felyne',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/felyne',
-		component: ComponentMonsterFelyne,
+
 		unusedComponent: true,
 		displayName: 'Felyne',
 		link: '/hunter-notes/monsters/overview/felyne',
@@ -834,7 +637,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rathalos',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rathalos',
-		component: ComponentMonsterRathalos,
+
 		link: '/hunter-notes/monsters/overview/rathalos',
 
 		unusedComponent: false,
@@ -904,7 +707,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/aptonoth',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/aptonoth',
-		component: ComponentMonsterAptonoth,
+
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/aptonoth',
 
@@ -933,7 +736,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/genprey',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/genprey',
-		component: ComponentMonsterGenprey,
+
 		unusedComponent: true,
 		displayName: 'Genprey',
 		link: '/hunter-notes/monsters/overview/genprey',
@@ -985,7 +788,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/diablos',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/diablos',
-		component: ComponentMonsterDiablos,
+
 		unusedComponent: true,
 		displayName: 'Diablos',
 		link: '/hunter-notes/monsters/overview/diablos',
@@ -1043,7 +846,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/khezu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/khezu',
-		component: ComponentMonsterKhezu,
 
 		unusedComponent: true,
 		displayName: 'Khezu',
@@ -1091,7 +893,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/velociprey',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/velociprey',
-		component: ComponentMonsterVelociprey,
+
 		unusedComponent: true,
 		displayName: 'Velociprey',
 		link: '/hunter-notes/monsters/overview/velociprey',
@@ -1149,7 +951,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gravios',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gravios',
-		component: ComponentMonsterGravios,
+
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/gravios',
 
@@ -1209,7 +1011,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/vespoid',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/vespoid',
-		component: ComponentMonsterVespoid,
+
 		unusedComponent: true,
 		displayName: 'Vespoid',
 		link: '/hunter-notes/monsters/overview/vespoid',
@@ -1280,7 +1082,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gypceros',
 
-		component: ComponentMonsterGypceros,
 		unusedComponent: true,
 		displayName: 'Gypceros',
 		link: '/hunter-notes/monsters/overview/gypceros',
@@ -1326,7 +1127,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/plesioth',
-		component: ComponentMonsterPlesioth,
+
 		unusedComponent: true,
 		displayName: 'Plesioth',
 		link: '/hunter-notes/monsters/overview/plesioth',
@@ -1370,7 +1171,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/basarios',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/basarios',
-		component: ComponentMonsterBasarios,
 
 		unusedComponent: true,
 		displayName: 'Basarios',
@@ -1427,7 +1227,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/melynx',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/melynx',
-		component: ComponentMonsterMelynx,
+
 		link: '/hunter-notes/monsters/overview/melynx',
 
 		unusedComponent: true,
@@ -1454,7 +1254,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hornetaur',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hornetaur',
-		component: ComponentMonsterHornetaur,
+
 		unusedComponent: true,
 		displayName: 'Hornetaur',
 		link: '/hunter-notes/monsters/overview/hornetaur',
@@ -1483,7 +1283,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/apceros',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/apceros',
-		component: ComponentMonsterApceros,
+
 		unusedComponent: true,
 		displayName: 'Apceros',
 		link: '/hunter-notes/monsters/overview/apceros',
@@ -1527,7 +1327,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/monoblos',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/monoblos',
-		component: ComponentMonsterMonoblos,
+
 		link: '/hunter-notes/monsters/overview/monoblos',
 
 		unusedComponent: true,
@@ -1544,7 +1344,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/velocidrome',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/velocidrome',
-		component: ComponentMonsterVelocidrome,
+
 		link: '/hunter-notes/monsters/overview/velocidrome',
 
 		unusedComponent: true,
@@ -1594,7 +1394,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gendrome',
-		component: ComponentMonsterGendrome,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -1642,7 +1442,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ioprey',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ioprey',
-		component: ComponentMonsterIoprey,
+
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/ioprey',
 
@@ -1699,7 +1499,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/iodrome',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/iodrome',
-		component: ComponentMonsterIodrome,
+
 		link: '/hunter-notes/monsters/overview/iodrome',
 
 		unusedComponent: true,
@@ -1750,7 +1550,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kirin',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kirin',
-		component: ComponentMonsterKirin,
+
 		link: '/hunter-notes/monsters/overview/kirin',
 
 		unusedComponent: true,
@@ -1801,7 +1601,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/cephalos',
 		link: '/hunter-notes/monsters/overview/cephalos',
 
-		component: ComponentMonsterCephalos,
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -1841,7 +1640,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/giaprey',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/giaprey',
-		component: ComponentMonsterGiaprey,
+
 		link: '/hunter-notes/monsters/overview/giaprey',
 
 		unusedComponent: true,
@@ -1888,7 +1687,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/crimson_fatalis',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/crimson-fatalis',
-		component: ComponentMonsterCrimsonFatalis,
+
 		link: '/hunter-notes/monsters/overview/crimson-fatalis',
 
 		unusedComponent: false,
@@ -1915,7 +1714,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/pink_rathian',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pink-rathian',
-		component: ComponentMonsterPinkRathian,
+
 		link: '/hunter-notes/monsters/overview/pink-rathian',
 
 		unusedComponent: false,
@@ -1955,7 +1754,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/blue_yian_kut-ku',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/blue-yian-kut-ku',
-		component: ComponentMonsterBlueYianKutKu,
+
 		link: '/hunter-notes/monsters/overview/blue-yian-kut-ku',
 
 		unusedComponent: true,
@@ -1994,7 +1793,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/purple_gypceros',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/purple-gypceros',
-		component: ComponentMonsterPurpleGypceros,
+
 		link: '/hunter-notes/monsters/overview/purple-gypceros',
 
 		unusedComponent: true,
@@ -2022,7 +1821,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/yian_garuga',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/yian-garuga',
-		component: ComponentMonsterYianGaruga,
+
 		link: '/hunter-notes/monsters/overview/yian-garuga',
 
 		unusedComponent: true,
@@ -2070,7 +1869,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/silver_rathalos',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/silver-rathalos',
-		component: ComponentMonsterSilverRathalos,
+
 		link: '/hunter-notes/monsters/overview/silver-rathalos',
 
 		unusedComponent: false,
@@ -2123,7 +1922,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gold_rathian',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gold-rathian',
-		component: ComponentMonsterGoldRathian,
+
 		link: '/hunter-notes/monsters/overview/gold-rathian',
 
 		unusedComponent: false,
@@ -2180,7 +1979,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/black_diablos',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/black-diablos',
-		component: ComponentMonsterBlackDiablos,
+
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/black-diablos',
 
@@ -2236,7 +2035,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/white_monoblos',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/white-monoblos',
-		component: ComponentMonsterWhiteMonoblos,
+
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/white-monoblos',
 
@@ -2280,7 +2079,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/red_khezu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/red-khezu',
-		component: ComponentMonsterRedKhezu,
+
 		link: '/hunter-notes/monsters/overview/red-khezu',
 
 		unusedComponent: true,
@@ -2309,7 +2108,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/green_plesioth',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/green-plesioth',
-		component: ComponentMonsterGreenPlesioth,
+
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/green-plesioth',
 
@@ -2351,7 +2150,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/black_gravios',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/black-gravios',
-		component: ComponentMonsterBlackGravios,
+
 		link: '/hunter-notes/monsters/overview/black-gravios',
 
 		unusedComponent: true,
@@ -2409,7 +2208,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/daimyo_hermitaur',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/daimyo-hermitaur',
-		component: ComponentMonsterDaimyoHermitaur,
+
 		link: '/hunter-notes/monsters/overview/daimyo-hermitaur',
 
 		unusedComponent: true,
@@ -2443,7 +2242,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/azure_rathalos',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/azure-rathalos',
-		component: ComponentMonsterAzureRathalos,
+
 		link: '/hunter-notes/monsters/overview/azure-rathalos',
 
 		unusedComponent: false,
@@ -2479,7 +2278,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ashen_lao-shan_lung',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ashen-lao-shan_lung',
-		component: ComponentMonsterAshenLaoShanLung,
+
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/ashen-lao-shan-lung',
 
@@ -2506,7 +2305,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/blangonga',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/blangonga',
-		component: ComponentMonsterBlangonga,
+
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/blangonga',
 
@@ -2544,7 +2343,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/congalala',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/congalala',
-		component: ComponentMonsterCongalala,
+
 		link: '/hunter-notes/monsters/overview/congalala',
 
 		unusedComponent: true,
@@ -2601,7 +2400,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rajang',
 		link: '/hunter-notes/monsters/overview/rajang',
 
-		component: ComponentMonsterRajang,
 		unusedComponent: true,
 		ecology:
 			'An ultra-aggressive creature that is rarely sighted and seldom survived. Survivors report it exhibits a strange attack. The Rajang s said to be a loner and this isolated life has made it difficult to pin down its territorial leanings.',
@@ -2682,7 +2480,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kushala_daora',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kushala-daora',
-		component: ComponentMonsterKushalaDaora,
+
 		link: '/hunter-notes/monsters/overview/kushala-daora',
 
 		unusedComponent: true,
@@ -2744,7 +2542,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shen-gaoren',
 		link: '/hunter-notes/monsters/overview/shen-gaoren',
 
-		component: ComponentMonsterShenGaoren,
 		unusedComponent: false,
 		type: 'Large',
 		ecology: `A giant Carapaceon with an an equally giant monster's skull on it's back. Prone to roaming and with a nearly impenetrable shell, nearby forts and towns must be alerted to its movements or potentially face total annihilation.`,
@@ -2768,7 +2565,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/great_thunderbug',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/great-thunderbug',
-		component: ComponentMonsterGreatThunderbug,
+
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -2824,7 +2621,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shakalaka',
 		link: '/hunter-notes/monsters/overview/shakalaka',
 
-		component: ComponentMonsterShakalaka,
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -2851,7 +2647,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/yama_tsukami',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/yama-tsukami',
-		component: ComponentMonsterYamaTsukami,
+
 		link: '/hunter-notes/monsters/overview/yama-tsukami',
 
 		unusedComponent: false,
@@ -2880,7 +2676,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/chameleos',
 		link: '/hunter-notes/monsters/overview/chameleos',
 
-		component: ComponentMonsterChameleos,
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -2925,7 +2720,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rusted_kushala_daora',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rusted-kushala-daora',
-		component: ComponentMonsterRustedKushalaDaora,
+
 		link: '/hunter-notes/monsters/overview/rusted-kushala-daora',
 
 		unusedComponent: true,
@@ -2965,7 +2760,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/blango',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/blango',
-		component: ComponentMonsterBlango,
+
 		link: '/hunter-notes/monsters/overview/blango',
 
 		unusedComponent: true,
@@ -3004,7 +2799,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/conga',
 		link: '/hunter-notes/monsters/overview/conga',
 
-		component: ComponentMonsterConga,
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -3057,7 +2851,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/remobra',
 		link: '/hunter-notes/monsters/overview/remobra',
 
-		component: ComponentMonsterRemobra,
 		unusedComponent: true,
 		ecology:
 			'Flying, serpentine Wyverns that attack with poisonous saliva. Though found in a wide variety of enviroments , such as deserts and volcanos, they often accompany Elder Dragons and are seen as omens of destruction.',
@@ -3115,7 +2908,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/lunastra',
 		link: '/hunter-notes/monsters/overview/lunastra',
 
-		component: ComponentMonsterLunastra,
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3144,7 +2936,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/teostra',
 		link: '/hunter-notes/monsters/overview/teostra',
 
-		component: ComponentMonsterTeostra,
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3171,7 +2962,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hermitaur',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hermitaur',
-		component: ComponentMonsterHermitaur,
+
 		link: '/hunter-notes/monsters/overview/hermitaur',
 
 		unusedComponent: true,
@@ -3232,7 +3023,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shogun_ceanataur',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shogun-ceanataur',
-		component: ComponentMonsterShogunCeanataur,
+
 		link: '/hunter-notes/monsters/overview/shogun-ceanataur',
 
 		unusedComponent: true,
@@ -3266,7 +3057,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/bulldrome',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/bulldrome',
-		component: ComponentMonsterBulldrome,
+
 		link: '/hunter-notes/monsters/overview/bulldrome',
 
 		unusedComponent: true,
@@ -3318,7 +3109,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/anteka',
 		link: '/hunter-notes/monsters/overview/anteka',
 
-		component: ComponentMonsterAnteka,
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -3354,7 +3144,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/popo',
 		link: '/hunter-notes/monsters/overview/popo',
 
-		component: ComponentMonsterPopo,
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -3384,7 +3173,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/white_fatalis',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/white-fatalis',
-		component: ComponentMonsterWhiteFatalis,
+
 		unusedComponent: false,
 		type: 'Large',
 		titles: ['Ancestral Dragon'],
@@ -3407,7 +3196,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ceanataur',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ceanataur',
-		component: ComponentMonsterCeanataur,
+
 		unusedComponent: true,
 		type: 'Small',
 		link: '/hunter-notes/monsters/overview/ceanataur',
@@ -3450,7 +3239,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hypnoc',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hypnoc',
-		component: ComponentMonsterHypnocatrice,
+
 		link: '/hunter-notes/monsters/overview/hypnocatrice',
 
 		unusedComponent: true,
@@ -3497,7 +3286,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/lavasioth',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/lavasioth',
-		component: ComponentMonsterLavasioth,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -3541,7 +3330,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/tigrex',
 		link: '/hunter-notes/monsters/overview/tigrex',
 
-		component: ComponentMonsterTigrex,
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `A primitive looking Wyvern found in such disperate locations as the Desert and the Snowy Mountains. While their wings don't allow for great aerial agility, their powerful jaws and legs allow them to easily overpower prey.`,
@@ -3608,7 +3396,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/akantor',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/akantor',
-		component: ComponentMonsterAkantor,
+
 		link: '/hunter-notes/monsters/overview/akantor',
 
 		unusedComponent: false,
@@ -3642,7 +3430,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/bright_hypnoc',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/bright-hypnoc',
-		component: ComponentMonsterBrightHypnoc,
+
 		link: '/hunter-notes/monsters/overview/bright-hypnoc',
 
 		unusedComponent: true,
@@ -3674,7 +3462,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/red_lavasioth',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/red-lavasioth',
-		component: ComponentMonsterRedLavasioth,
+
 		unusedComponent: false,
 		type: 'Large',
 		link: '/hunter-notes/monsters/overview/red-lavasioth',
@@ -3712,7 +3500,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/espinas',
-		component: ComponentMonsterEspinas,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -3766,7 +3554,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/orange_espinas',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/orange-espinas',
-		component: ComponentMonsterOrangeEspinas,
+
 		link: '/hunter-notes/monsters/overview/orange-espinas',
 
 		unusedComponent: true,
@@ -3818,7 +3606,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/silver_hypnoc',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/silver-hypnoc',
-		component: ComponentMonsterSilverHypnoc,
+
 		link: '/hunter-notes/monsters/overview/silver-hypnoc',
 
 		unusedComponent: true,
@@ -3857,7 +3645,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/akura_vashimu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/akura-vashimu',
-		component: ComponentMonsterAkuraVashimu,
+
 		unusedComponent: false,
 		link: '/hunter-notes/monsters/overview/akura-vashimu',
 
@@ -3891,7 +3679,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/akura_jebia',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/akura-jebia',
-		component: ComponentMonsterAkuraJebia,
+
 		link: '/hunter-notes/monsters/overview/akura-jebia',
 
 		unusedComponent: false,
@@ -3921,7 +3709,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/berukyurosu',
 		link: '/hunter-notes/monsters/overview/berukyurosu',
 
-		component: ComponentMonsterBerukyurosu,
 		unusedComponent: true,
 		ecology:
 			'Magnificent Wyverns adept at creating and utilizing electricity. Rarely found outside of remote canyons, research on their biology is lacking however it has been claimed that if sufficiently injured, they may lose control of their electrical organs.',
@@ -3946,7 +3733,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/cactus',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/cactus',
-		component: ComponentMonsterRandom,
+
 		link: '/hunter-notes/monsters/overview/cactus',
 
 		unusedComponent: true,
@@ -3964,7 +3751,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/pariapuria',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pariapuria',
-		component: ComponentMonsterPariapuria,
+
 		link: '/hunter-notes/monsters/overview/pariapuria',
 
 		unusedComponent: false,
@@ -4000,7 +3787,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/white-espinas',
 		link: '/hunter-notes/monsters/overview/white-espinas',
 
-		component: ComponentMonsterWhiteEspinas,
 		unusedComponent: true,
 		ecology:
 			'Extremely rare Espinas which possess snow white scales and violet thorns. They are far more aggressive than regular Espinas and will fly into a rage if awakened from sleep. They can produce enormous toxic fireballs while attacking.',
@@ -4041,7 +3827,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kamu_orugaron',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kamu-orugaron',
-		component: ComponentMonsterKamuOrugaron,
+
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/kamu-orugaron',
 
@@ -4070,7 +3856,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/nono_orugaron',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/nono-orugaron',
-		component: ComponentMonsterNonoOrugaron,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -4097,7 +3883,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/raviente',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/raviente',
-		component: ComponentMonsterRaviente,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -4124,7 +3910,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/violent_raviente',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/violent-raviente',
-		component: ComponentMonsterViolentRaviente,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -4149,7 +3935,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/dyuragaua',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/dyuragaua',
-		component: ComponentMonsterDyuragaua,
+
 		link: '/hunter-notes/monsters/overview/dyuragaua',
 
 		unusedComponent: true,
@@ -4185,7 +3971,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/doragyurosu',
-		component: ComponentMonsterDoragyurosu,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -4214,7 +4000,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gurenzeburu',
 		link: '/hunter-notes/monsters/overview/gurenzeburu',
 
-		component: ComponentMonsterGurenzeburu,
 		unusedComponent: true,
 		ecology:
 			'Also known as "Barbarian Wyverns", these large, horned creatures are famously brutal. Interestingly though, reports indicate they guide and protect herds of Burukku in their native range, defending them from any  potential threat.',
@@ -4239,7 +4024,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/burukku',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/burukku',
-		component: ComponentMonsterBurukku,
+
 		link: '/hunter-notes/monsters/overview/burukku',
 
 		unusedComponent: true,
@@ -4256,7 +4041,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/erupe',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/erupe',
-		component: ComponentMonsterErupe,
+
 		link: '/hunter-notes/monsters/overview/erupe',
 
 		unusedComponent: true,
@@ -4285,7 +4070,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rukodiora',
-		component: ComponentMonsterRukodiora,
+
 		unusedComponent: false,
 		ecology:
 			'An Elder Dragon with beautiful shining wings. While mentions of its existance are found in various ancient texts, only after it appeared and began attacking settlments, was it officially documented. It is reported to possess a strange power.',
@@ -4319,7 +4104,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
-		component: ComponentMonsterUNKNOWN,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `A Wyvern with pitch-black scales and crimson talons occasionally seen at ancient towers. The abilities of this Wyvern seems to vary between witnesses and so little is known of it's biology, that it has yet to be officially named.`,
@@ -4354,7 +4139,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
 		link: '/hunter-notes/monsters/overview/unknown',
 
-		component: ComponentMonsterUNKNOWN,
 		unusedComponent: true,
 		ecology: `A Wyvern with pitch-black scales and crimson talons occasionally seen at ancient towers. The abilities of this Wyvern seems to vary between witnesses and so little is known of it's biology, that it has yet to be officially named.`,
 		type: 'Large',
@@ -4387,7 +4171,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gogomoa',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gogomoa',
-		component: ComponentMonsterGogomoa,
+
 		link: '/hunter-notes/monsters/overview/gogomoa',
 
 		unusedComponent: true,
@@ -4416,7 +4200,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/taikun-zamuza',
-		component: ComponentMonsterTaikunZamuza,
+
 		unusedComponent: true,
 		ecology:
 			'Strange cave dwelling creatures that cover their carapaces with rocks and fungi for camouflage. Leveraging their unique claws, these Carapaceons can both slash and crush foes with ease. Hunt with caution.',
@@ -4443,7 +4227,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/abiorugu',
 		link: '/hunter-notes/monsters/overview/abiorugu',
 
-		component: ComponentMonsterAbiorugu,
 		unusedComponent: false,
 		ecology:
 			'Brute Wyverns that utilize their bladed tails and sharp claws to dispatch prey. When angered the plates covering their backs will flush with blood to further intimidate their foes. They are known to possess extremely acidic saliva.',
@@ -4485,7 +4268,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kuarusepusu',
-		component: ComponentMonsterKuarusepusu,
+
 		unusedComponent: true,
 		ecology:
 			'Leviathans adapted to terrestrial life, they are rather cautious preferring to scatter some of the many dangerous crystals covering their bodies to harm unwary attackers. The organic crystals they grow also allow them to harness sunlight and lightning depending on the weather.',
@@ -4518,7 +4301,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/odibatorasu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/odibatorasu',
-		component: ComponentMonsterOdibatorasu,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -4545,7 +4328,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/disufiroa',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/disufiroa',
-		component: ComponentMonsterDisufiroa,
+
 		link: '/hunter-notes/monsters/overview/disufiroa',
 
 		unusedComponent: false,
@@ -4572,7 +4355,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rebidiora',
-		component: ComponentMonsterRebidiora,
+
 		unusedComponent: true,
 		ecology: `A powerful dragon clad in purple scales and shining wings. It's origin is unknown but scholars believe it may be a Sub-Species of Rukodiora. It is able to generate far more powerful magnetic fields than its relative. `,
 	},
@@ -4589,7 +4372,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/anorupatisu',
-		component: ComponentMonsterAnorupatisu,
+
 		unusedComponent: false,
 		ecology:
 			'Flying Wyverns adapted to life in cold, marine enviroments. They utilize their strange barbed snouts and body spikes for traversal as well as offense. They are also able to expel a freezing substance.',
@@ -4616,7 +4399,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hyujikiki',
-		component: ComponentMonsterHyujikiki,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -4645,7 +4428,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/midogaron',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/midogaron',
-		component: ComponentMonsterMidogaron,
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Explosion Wolf'],
@@ -4670,7 +4453,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/giaorugu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/giaorugu',
-		component: ComponentMonsterGiaorugu,
+
 		unusedComponent: true,
 		ecology:
 			'Closely related to Abiorugu, they inhabit freezing enviroments such as the Polar Sea, where they utilize ice to increase the power of their attacks. They are able to shoot beams of pressurized ice water at targets.',
@@ -4704,7 +4487,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/mi-ru',
-		component: ComponentMonsterMiRu,
+
 		unusedComponent: false,
 		ecology:
 			'Mi Ru is very territorial and will attempt to kill anything that enters its territory. From this only a limited few hunters are actually allowed to hunt Mi Ru from how dangerous and rare it is.',
@@ -4733,7 +4516,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/farunokku',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/farunokku',
-		component: ComponentMonsterFarunokku,
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Thunder Bird'],
@@ -4763,7 +4546,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pokaradon',
-		component: ComponentMonsterPokaradon,
+
 		unusedComponent: true,
 		ecology:
 			'Male Leviathans native to the Polar Sea. Twice the size of their female counterparts they possess massive fangs used to intimidate rivals and predators alike. Though aggressive towards percieved threats, they are known to play with their mates and offspring.',
@@ -4792,7 +4575,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shantien',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shantien',
-		component: ComponentMonsterShantien,
+
 		unusedComponent: false,
 		type: 'Large',
 		titles: ['Heavenly Flying Dragon'],
@@ -4818,7 +4601,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/pokara',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pokara',
-		component: ComponentMonsterPokara,
+
 		unusedComponent: true,
 		type: 'Small',
 		titles: [],
@@ -4843,7 +4626,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/goruganosu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/goruganosu',
-		component: ComponentMonsterGoruganosu,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -4880,7 +4663,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/aruganosu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/aruganosu',
-		component: ComponentMonsterAruganosu,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology: `Aruganosu are extremely territorial monsters that are mostly known for the constant fights with their gilded cousins, although if anything disturbs these fights they'll put things aside to take down the intruder.`,
@@ -4917,7 +4700,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/baruragaru',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/baruragaru',
-		component: ComponentMonsterBaruragaru,
+
 		unusedComponent: true,
 		ecology:
 			'A foreign Leviathan which was discovered following reports of a large number of montsers drained of blood. They seem to prefer areas near the ocean or underground, where they stalk and overpower any creature smaller than themselves before draining them of blood.',
@@ -4944,7 +4727,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zerureusu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zerureusu',
-		component: ComponentMonsterZerureusu,
+
 		unusedComponent: false,
 		ecology:
 			'A Wyvern seemingly related to Rathalos, but with shining white scales and flickering blue flames. While painfully rare ancient texts from various cultures describe them as everything from divine messengers, to unholy envoys of death and suffering.',
@@ -4973,14 +4756,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Gougarf',
 		link: '/hunter-notes/monsters/overview/ray-gougarf',
 		displayName: 'Ray Gougarf',
-		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/ray_gougarf',
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gougarf',
 		rank: 'G Rank',
 		render:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ray_gougarf',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ray-gougarf',
 
-		component: ComponentMonsterGougarf,
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `Social creatures always observed as a pair. The colour difference often seen between them isn't sexual dimorphism as originally thought, but rather simple genetic variation, with the red variety being more common. They fight as a team and can generate magnetic fields.`,
@@ -5005,14 +4787,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Gougarf',
 		link: '/hunter-notes/monsters/overview/lolo-gougarf',
 		displayName: 'Lolo Gougarf',
-		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/lolo_gougarf',
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gougarf',
 		rank: 'G Rank',
 		render:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/lolo_gougarf',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/lolo-gougarf',
 
-		component: ComponentMonsterGougarf,
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `Social creatures always observed as a pair. The colour difference often seen between them isn't sexual dimorphism as originally thought, but rather simple genetic variation, with the red variety being more common. They fight as a team and can generate magnetic fields.`,
@@ -5044,7 +4825,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/uruki',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/uruki',
-		component: ComponentMonsterUruki,
+
 		unusedComponent: true,
 		ecology: `Bipedal creatures native to the Flower Field. Though uncommon, research suggests that they are quite peaceful, unless attacked by a  large monster. In such a situation, they've been observed working together to defeat said monster. The Guild has received reports that Uruki will seemingly assist hunters as well.`,
 		type: 'Small',
@@ -5072,7 +4853,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/forokururu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/forokururu',
-		component: ComponentMonsterForokururu,
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Flower Phoenix Bird'],
@@ -5105,7 +4886,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/meraginasu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/meraginasu',
-		component: ComponentMonsterMeraginasu,
 
 		unusedComponent: true,
 		type: 'Large',
@@ -5152,7 +4932,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/diorex',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/diorex',
-		component: ComponentMonsterDiorex,
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Thunder Roaring Wyvern'],
@@ -5177,7 +4957,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/garuba_daora',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/garuba-daora',
-		component: ComponentMonsterGarubaDaora,
+
 		unusedComponent: true,
 		ecology:
 			'A shimmering dragon of golden scale and precious crystal, its existance was revealed rather recently. While its natural habitat is currently unknown, research indicates it may be descended from Kushala Daora that ingested gold-bearing minerals over many years.',
@@ -5213,7 +4993,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/inagami',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/inagami',
-		component: ComponentMonsterInagami,
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Elegant Elderly Dragon'],
@@ -5238,7 +5018,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/varusaburosu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/varusaburosu',
-		component: ComponentMonsterVarusaburosu,
+
 		unusedComponent: true,
 		ecology: `Only recently being discovered following an attack on Guild researchers, little is known of this Wyvern's biology. It has however been hypothesized that its flames are the result of it consuming a unique type of thermophilic cactus.`,
 		type: 'Large',
@@ -5277,7 +5057,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/poborubarumu',
-		component: ComponentMonsterPoborubarumu,
+
 		unusedComponent: true,
 		ecology:
 			'An enormous Wyvern only recently discovered by the Guild. It was discovered after reports from the Highlands of strange sounds driving hunters to madness. These voracious beasts can emit sounds with odd properties from various organs.',
@@ -5304,7 +5084,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/duremudira',
 		link: '/hunter-notes/monsters/overview/duremudira',
 
-		component: ComponentMonsterDuremudira,
 		unusedComponent: false,
 		ecology:
 			'Duremudira are very aggressive monsters and will attack any hunters that enter the Sky Corridor. These monsters were left by the Ancient Civilization to guard the Sky Corridor from any intruders that dare enter the tower for its treasures and secrets.',
@@ -5331,7 +5110,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gureadomosu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gureadomosu',
-		component: ComponentMonsterGureadomosu,
+
 		unusedComponent: true,
 		ecology:
 			'A newly discovered Wyvern that is speculated to be a more primitive cousin of Gravios. They possess numerous tube-like structures from which they can eject water at deadly speeds. Research on these creatures is ongoing.',
@@ -5372,7 +5151,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/harudomerugu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/harudomerugu',
-		component: ComponentMonsterHarudomerugu,
+
 		ecology:
 			'Often enrobed in a strange liquid metal, which it is seemingly able to control at a whim; this dragon is a curious beast. First hand accounts claim it is highly intelligent, being able to learn and counter a hunters combat techniques with ease.',
 		unusedComponent: true,
@@ -5401,7 +5180,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Powerful Bird Wyverns found in the Highlands, they are violently territorial and will attack any intruder with impunity. Possessing unique feathers and scales they can gather sunlight and convert it into deadly electrical attacks.',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/toridcless',
-		component: ComponentMonsterToridcless,
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Shining Thunder Bird'],
@@ -5433,7 +5212,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gasurabazura',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gasurabazura',
-		component: ComponentMonsterGasurabazura,
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Angry Appearance Wyvern'],
@@ -5458,7 +5237,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kusubami',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kusubami',
-		component: ComponentMonsterKusubami,
+
 		unusedComponent: true,
 		ecology:
 			'Small Carapaceons native to the White Lake, they normally remain buried beneath the sand, only rising when they detect potential prey. Their tails possess a well developed venom gland, allowing them to easily dispatch prey.',
@@ -5486,7 +5265,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/yama_kurai',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/yama-kurai',
-		component: ComponentMonsterYamaKurai,
+
 		unusedComponent: false,
 		type: 'Large',
 		titles: ['Floating Peak Dragon'],
@@ -5511,7 +5290,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zinogre',
-		component: ComponentMonsterZinogre,
+
 		unusedComponent: false,
 		ecology:
 			'Fanged wyverns whose bodies are streaked with electricity. Sharp claws and strong limbs allow them to thrive in mountainous terrain. During hunts, they gather numerous Thunderbugs to boost their power and enter a supercharged state. They house their Thunderbugs within their dorsal shells.',
@@ -5571,7 +5350,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/deviljho',
 		ecology:
 			'The dreaded, nomadic Deviljho have no specific territory of their own. Their muscles swell if provoked, revealing old wounds. Needing to feed constantly due to their extremely high metabolism they can easily hunt nearby animals to extinction. Hunt with extreme caution.',
-		component: ComponentMonsterDeviljho,
+
 		unusedComponent: false,
 		type: 'Large',
 		titles: ['Violent Wyvern'],
@@ -5645,7 +5424,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/brachydios',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/brachydios',
-		component: ComponentMonsterBrachydios,
+
 		ecology: `Brute wyverns coated with an explosive green substance. The material is thought to be a unique myxomycete--or slime mold that is primed to explode by the Brachydios's own saliva. Note that these crafty creatures can also deliver powerful foreleg strikes. Fond of volcanic areas.`,
 		unusedComponent: true,
 		type: 'Large',
@@ -5688,7 +5467,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/berserk-raviente',
-		component: ComponentMonsterBerserkRaviente,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology: `Berserk Ravientes are ancient individuals of Ravientes. Their color is the result of spending many hibernation periods sleeping near underwater volcanoes. These colossal creatures are the most destructive type of Raviente.`,
@@ -5715,7 +5494,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/toa_tesukatora',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/toa-tesukatora',
-		component: ComponentMonsterToaTesukatora,
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Frozen King Dragon'],
@@ -5740,7 +5519,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/barioth',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/barioth',
-		component: ComponentMonsterBarioth,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology:
@@ -5784,7 +5563,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/uragaan',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/uragaan',
-		component: ComponentMonsterUragaan,
+
 		unusedComponent: true,
 		ecology:
 			'Brute wyverns that feed on ore, using their mighty jaws to crush bedrock into powder. They cleverly affix rock and ore to themselves with lava, then spread them about, using vibrations to make them explode. They are also capable of releasing seering hot gases.',
@@ -5813,7 +5592,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/stygian_zinogre',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/stygian-zinogre',
-		component: ComponentMonsterStygianZinogre,
+
 		unusedComponent: false,
 		ecology:
 			'A subspecies of Zinogre with a jet-black body. It gathers Dracophage bugs which eat Dragonfell Berries and uses their Dragon Element energy to dramatically boost its power. Perhaps this is why it can survive in such varied enviroments as the Snowy Mountains and ancient towers.',
@@ -5859,7 +5638,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/guanzorumu',
-		component: ComponentMonsterGuanzorumu,
+
 		unusedComponent: false,
 		ecology: `Spoken of in ancient texts as the " Dragon of Conquest", this imposing creature has been sighted at the Cloud Viewing Fortress. Never without an entourage of Egyurasu It's claws spawn tremors and its breath immolates everything before it.`,
 		type: 'Large',
@@ -5885,7 +5664,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/savage-deviljho',
 		link: '/hunter-notes/monsters/overview/starving-deviljho',
 
-		component: ComponentMonsterStarvingDeviljho,
 		unusedComponent: false,
 		type: 'Large',
 		ecology:
@@ -5922,7 +5700,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/voljang',
 		link: '/hunter-notes/monsters/overview/voljang',
 
-		component: ComponentMonsterVoljang,
 		unusedComponent: true,
 		ecology:
 			'Brutal creatures recently found in certain volcanic areas. Utilizing flint-like growths on their arms, they are able to wield vicious, flaming punches. Research indicates these beasts are closely related to Rajang, but their exact relationship is still unknown.',
@@ -5950,7 +5727,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/nargacuga',
-		component: ComponentMonsterNargacuga,
+
 		unusedComponent: false,
 		ecology:
 			'Flying Wyverns that have evolved to live in densely wooded areas. These sly beasts stalk their prey from the shadows with ferocious speed. Their massive tails are extremely deadly and can kill small monsters with a single strike.',
@@ -6003,7 +5780,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/keoaruboru',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/keoaruboru',
-		component: ComponentMonsterKeoaruboru,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `Enormous and incredibly violent the immense stature and magma like heat produced by this Elder Dragon have earned it the moniker of "living volcano". The Guild fears the incredible destruction this beast could wreak, should it destroy the Inteceptor's Base.`,
@@ -6029,7 +5806,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenaserisu',
-		component: ComponentMonsterZenaserisu,
+
 		unusedComponent: true,
 		ecology:
 			'Wyverns native to the Painted Waterfalls, they are characterized by their sharp black scales and long whip-like wing appendages. In addition to water based attacks, their claws are capable of cutting stone. Parts of their bodies turn red enraged.',
@@ -6056,7 +5833,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gore-magala',
-		component: ComponentMonsterGoreMagala,
+
 		unusedComponent: true,
 		ecology:
 			'A curious, and unnerving monster that, when threatened, scatters pollen like scales that heighten its own senses while causing detrimental effects to any other creatures that inhale them. Elusive and mysterious, much about their biology remains unknown.',
@@ -6099,7 +5876,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/blinking_nargacuga',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/blinking-nargacuga',
-		component: ComponentMonsterBlinkingNargacuga,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology: `Blinking Nargacuga is extremely aggressive. It will fight with unrivaled, swift ferocity, barely giving hunters any time to catch their breath. It is prone to combine attacks in quick succession in order to hit hunters as much as possible in short time windows.`,
@@ -6123,7 +5900,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shagaru_magala',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shagaru-magala',
-		component: ComponentMonsterShagaruMagala,
+
 		link: '/hunter-notes/monsters/overview/shagaru-magala',
 
 		unusedComponent: true,
@@ -6151,7 +5928,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/amatsu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/amatsu',
-		component: ComponentMonsterAmatsu,
+
 		ecology: `A legendary elder dragon spotted on Sacred Pinnacle. An avatar of storms in the folklore of a certain village, Amatsu's appearance is accompanied by furious cyclones and horrific storms. Its fearsome power is said to outscale that of natural disasters.`,
 		unusedComponent: false,
 		type: 'Large',
@@ -6183,7 +5960,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/elzelion',
-		component: ComponentMonsterElzelion,
+
 		unusedComponent: false,
 		ecology: `Discovered after assaulting a Guild expedition exploring an ancient Tower, it is also known as the "Burning Ice" dragon, due to it's unique physiology. While it possesses control over ice and fire, it segregates control over each element to one side of it's body. A fascinating creature.`,
 		type: 'Large',
@@ -6209,7 +5986,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/arrogant_duremudira',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/arrogant-duremudira2',
-		component: ComponentMonsterArrogantDuremudira,
+
 		unusedComponent: false,
 		ecology: `Arrogant Duremudira, much like the standard one, is incredibly aggressive, attacking anything that enters the Sky Corridor immediately on sight. Possesses even greater speed and tenacity than its normal counterpart.`,
 		type: 'Large',
@@ -6235,7 +6012,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/seregios',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/seregios',
-		component: ComponentMonsterSeregios,
+
 		unusedComponent: true,
 		ecology:
 			'Invasive Wyverns native to distant lands, they are marked by lustrus, golden scales as sharp as blades. They are extremely agile and can launch their razor sharp scales at prey before shredding it with their talons.',
@@ -6282,7 +6059,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-bogabadorumu',
 
-		component: ComponentMonsterBogabadorumu,
 		unusedComponent: false,
 		ecology:
 			'Strange Wyverns found near areas with fast moving water. While rather sluggish they utilize explosive mist generated from specialized organs to kill potential prey. Despite their lack of agility, they are stubborn, vicious predators.',
@@ -6309,7 +6085,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/bombardier_bogabadorumu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/bombardier-bogabadorumu',
-		component: ComponentMonsterBombardierBogabadorumu,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology: `Bombardier Bogabadorumu retains the aggressive behavior of the normal ones, attacking anything in sight.`,
@@ -6335,7 +6111,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/sparkling_zerureusu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/sparkling-zerureusu',
-		component: ComponentMonsterSparklingZerureusu,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology: `Much like the standard Zerureusu, Sparkling Zerureusu are quite hostile. They seem to be less reliant on the use of their crystal producing abilities compared to the standard versions, replacing it with crimson-colored forcefields and explosions.`,
@@ -6370,7 +6146,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pso2-rappy',
-		component: ComponentMonsterPSO2Rappy,
+
 		unusedComponent: true,
 		ecology: `The Rappy is a large, fluffy bird-like creature present in another dimension. Appears to be the representative of that dimension as a whole.`,
 		type: 'Small',
@@ -6387,7 +6163,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/king-shakalaka',
 		link: '/hunter-notes/monsters/overview/king-shakalaka',
 
-		component: ComponentMonsterKingShakalaka,
 		unusedComponent: true,
 		ecology: `A crown-like object sits upon this leader of the Shakalaka's brow. Many a skilled hunter have been frustrated by the minions it attracts to its side. But be wary, for it's one powerful foe. When infuriated, it will unleash an unimaginably strong attack.`,
 		type: 'Large',
@@ -6412,7 +6187,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_akura_vashimu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-akura-vashimu',
-		component: ComponentMonsterZenithAkuraVashimu,
 
 		unusedComponent: true,
 		ecology: `Zenith Akura Vashimu has become more persistent in hunting down prey. Once it has a prey item in its pincers, Zenith Akura Vashimu is known to constantly stab the prey item with one of them until the creature dies.`,
@@ -6422,7 +6196,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		elements: [],
 		ailments: ['Crystal', 'Extreme Paralysis'],
 		weaknesses: [],
-		habitats: ["Swamp, Desert, White Lake, Fortress Ruins, Interceptor's Base"],
+		habitats: [
+			'Swamp',
+			'Desert',
+			'White Lake',
+			'Fortress Ruins',
+			"Interceptor's Base",
+		],
 		sizes: ['Large'],
 		relatedMonsters: ['Akura Vashimu', 'Akura Jebia', 'Kusubami'],
 		generation: 'Frontier',
@@ -6439,7 +6219,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-anorupatisu',
-		component: ComponentMonsterZenithAnorupatisu,
+
 		unusedComponent: true,
 		ecology: `Zenith Anorupatisu behave relatively the same as normal individuals but overall more aggressive. Resembles a torpedo.`,
 		type: 'Large',
@@ -6465,7 +6245,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-baruragaru',
-		component: ComponentMonsterZenithBaruragaru,
+
 		unusedComponent: true,
 		ecology: `Evolved Baruragaru that are larger and intimidating than their counterpart. Their head developed to become huge with a pair of thin plate-like appendages growing on the sides of their lower jaws. They even grew large and small teeth on their face while the fins on their head grew large. Its tongue developed to have protrusions overlap each other making them thicker.`,
 		type: 'Large',
@@ -6491,7 +6271,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-blangonga',
 
-		component: ComponentMonsterZenithBlangonga,
 		ecology: `Zenith Blangonga are kings amongst leaders even commanding normal Blangonga as if they were Blango. They retain the hyper aggressive behavior of normal individuals only amplified, trying to take down any foe as quickly as possible to protect themselves and their troops.`,
 		unusedComponent: true,
 		type: 'Large',
@@ -6527,7 +6306,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-daimyo-hermitaur',
 		link: '/hunter-notes/monsters/overview/zenith-daimyo-hermitaur',
-		component: ComponentMonsterZenithDaimyoHermitaur,
+
 		unusedComponent: true,
 		ecology: `Zenith Daimyo Hermitaur is usually calm when left undisturbed, but will quickly become aggressive if attacked by a foe. Strangely, Zenith Daimyo Hermitaur have only been reported living in the White Lake.`,
 		type: 'Large',
@@ -6561,7 +6340,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-doragyurosu',
 
-		component: ComponentMonsterZenithDoragyurosu,
 		unusedComponent: true,
 		ecology: `Zenith Doragyurosu is much more aggressive than Doragyurosu, so great care should be taken while hunting one. Zenith Doragyurosu are quite careless with their powerful beam attacks. If hunters manage to go underneath them, when they shoot their powerful beam attacks, they will land on the ground to sink in the huge chunk of melting ground leaving them open for hunters to attack them.`,
 		type: 'Large',
@@ -6587,7 +6365,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-espinas',
-		component: ComponentMonsterZenithEspinas,
+
 		unusedComponent: true,
 		ecology: `Like normal Espinas, Zenith Espinas are fairly docile until awakened. When awakened, Zenith Espinas are known for violently flying in the air and raining globs of poison around them for defense. Once they land, Zenith Espinas will attack and try to eliminate the threat. Occasionally, Zenith Espinas have been seen wandering side by side with other Espinas.`,
 		type: 'Large',
@@ -6628,7 +6406,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-gasurabazura',
 		link: '/hunter-notes/monsters/overview/zenith-gasurabazura',
-		component: ComponentMonsterZenithGasurabazura,
+
 		unusedComponent: true,
 		ecology: `A stronger, more powerful counterpart of Gasurabazura. They are reported to feint attacks in order to catch hunters off-guard. It is said that when enraged, their arms grow to incredible sizes, destroying everything in sight. Their poison is known to be one of the most potent in the world.`,
 		type: 'Large',
@@ -6654,7 +6432,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/zenith-giaorugu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-giaorugu',
-		component: ComponentMonsterZenithGiaorugu,
+
 		unusedComponent: true,
 		ecology: `Like its normal counterpart, Zenith Giaorugu can only be found at the Polar Sea, where its ice tail attacks depend on the frozen ground. However, it can also be encountered in Road. Similar to Glavenus, Zenith Giaorugu would stay in its current spot, hold its tail up in the air sideways, and then unleash tail spin attacks on hunters. It can also make a combo attack with the tail.`,
 		type: 'Large',
@@ -6687,7 +6465,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-gravios',
 		link: '/hunter-notes/monsters/overview/zenith-gravios',
-		component: ComponentMonsterZenithGravios,
+
 		unusedComponent: true,
 		ecology: `Zenith Gravios are known to inhabit the Volcano, and can be found in the Battleground. It can use it's tail for swings and explosion-causing slams, the later of which it can use to propel itself towards a foe.`,
 		type: 'Large',
@@ -6727,7 +6505,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_harudomerugu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-harudomerugu',
-		component: ComponentMonsterZenithHarudomerugu,
+
 		unusedComponent: true,
 		ecology: `Beneath the silver armor Zenith Harudomerugu appear mostly identical to standard Harudomerugu individuals. The biggest exception is the head. The upper half has an overall red tint, the organ in the center has grown larger, with an extra horn extending from it straight forward, while the existing horns at the back of the head have also grown larger, with the central one having two smaller extensions growing from its sides. Zenith Harudomerugu have been sighted atop the Tower and have been reported attacking the Interception Base.`,
 		type: 'Large',
@@ -6753,7 +6531,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_hypnoc',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-hypnoc',
-		component: ComponentMonsterZenithHypnoc,
+
 		unusedComponent: true,
 		ecology: `The Zenith Hypnocatrice is a variant of a Hypnocatrice and is an older individual who has undergone a few changes. The Zenith Hypnocatrice still has dark brown feathers, although now the feathers are gray near the tips- most prominently the wings. Most noticeably the Zenith Hypnocatrice's beak has changed. It is now larger and thicker, as well as curved. It has a spike on its forehead, just above its beak. It is rumored that they are capable of producing a lullaby so enticing that they could put even the most strong-willed hunter to sleep.`,
 		type: 'Large',
@@ -6786,7 +6564,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/zenith-hyujikiki',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-hyujikiki',
-		component: ComponentMonsterZenithHyujikiki,
+
 		ecology: `Zenith Hyujikiki share much of the same abilities as the normal ones, but the most noteworthy change is the heavier semi-metallic needles. Due to the changes to become like this the twisters no longer carry the needles, and Zenith Hyujikiki cannot use its venom anymore. To make up for this the needles Zenith Hyujikiki throws are much sharper piercing and inducing severe bleeding onto those struck by them, it also makes use of a few new attacks such as a roll which leaves clumps of needles in its wake, although some attacks normal Hyujikiki has are absent. Notably the needles will be stuck in the hunters that are struck by, or walk over the clumps of them.`,
 		unusedComponent: true,
 		type: 'Large',
@@ -6811,7 +6589,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/zenith-inagami',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-inagami',
-		component: ComponentMonsterZenithInagami,
 
 		unusedComponent: true,
 		ecology: `An evolved Inagami with a unique appearance. The tufts of orange fur have a slight white tint to them, while also generally being longer. Zenith Inagami's legs and tail are covered in the same special substances that normal individuals use to cover their wounds. The developed claws are a white tipped, deep indigo color, while - together with the monster's ears - also appearing to be longer.`,
@@ -6838,7 +6615,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-khezu',
-		component: ComponentMonsterZenithKhezu,
+
 		unusedComponent: true,
 		ecology: `Evolved Khezu that are unique and more terrifying than their counterparts. Zenith Khezu's faces develop throughout the years to become an odd shape, and have crest-like structures on the top. A single ridge of knobby bumps is present along the spine.`,
 		type: 'Large',
@@ -6864,7 +6641,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-midogaron',
 
 		link: '/hunter-notes/monsters/overview/zenith-midogaron',
-		component: ComponentMonsterZenithMidogaron,
+
 		unusedComponent: true,
 		ecology: `An evolved Midogaron that are slightly larger and fierce than their counterpart. The mohawk-like mane that extended from their heads through tails has further developed to have longer violet hairs instead of an orange short ones. The quills on their heads grew longer with a pinkish color, while the rest of them on their necks through tails grew slightly larger with the same color as the ones on their heads. Zenith Midogaron's fur on its face and legs has the same violet color as the developed extended mane. Their claws heavy developed to have longer violet ones instead orange short ones with violet flame-like spikes on the back of their legs. Zenith Midogaron's tusks have also grown a bit longer.`,
 		type: 'Large',
@@ -6891,7 +6668,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-plesioth',
 		ecology: `Evolved Plesioth that are larger and more intimidating than their counterparts. Their heads in addition to having lighter scales have also heavily developed, now sporting a large, light blue tipped head fin with several light blue hooked spikes lining each side of it. Additionally, they have developed five long and jagged tusks located on the side of their lower jaws. Lastly, they have short and spiked appendages instead of normal fins on the side of their heads.`,
-		component: ComponentMonsterZenithPlesioth,
+
 		unusedComponent: true,
 		type: 'Large',
 		titles: ['Water Wyvern'],
@@ -6923,7 +6700,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-rathalos',
 
-		component: ComponentMonsterZenithRathalos,
 		unusedComponent: true,
 		ecology: `Zenith Rathalos is far more dangerous than others of its kind. From this Rathalos constantly trying to annihilate enemies with its immense firepower, few hunters are actually allowed to hunt down this rarely seen individual. Their manipulation of fire is so powerful that anyone near the monster's presence can feel the scorching heat.`,
 		type: 'Large',
@@ -6957,7 +6733,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-rukodiora',
-		component: ComponentMonsterZenithRukodiora,
+
 		unusedComponent: false,
 		ecology: `Unlike Rukodiora, Zenith Rukodiora are capable of lifting large boulders surrounding them with their advance magnetic fields while flying. When spotting hunters, Zenith Rukodiora will land on the ground to trap the hunters beside them with the boulders. After a while, They will let out a powerful roar that hurt the hunters and break the boulders trapping them. They are capable of producing a fountain of dragon element with energy so condensed it can break even the most durable of armors.`,
 		type: 'Large',
@@ -6989,7 +6765,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-taikun-zamuza',
 		link: '/hunter-notes/monsters/overview/zenith-taikun-zamuza',
 
-		component: ComponentMonsterZenithTaikunZamuza,
 		unusedComponent: true,
 		ecology: `Zenith Taikun Zamuza are much more prone to attack compared to their kin, lacking the environmental armor they don't seem to try and hide as much, if at all. In the unarmored state, the spikes on the legs and claws are noticeably absent, with blue bulb-like electric organs present in their place. The claws are also quite a bit thicker, longer, and overall bigger compared to that of a standard unarmored Taikun Zamuza.`,
 		type: 'Large',
@@ -7015,7 +6790,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_tigrex',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-tigrex',
-		component: ComponentMonsterZenithTigrex,
+
 		ecology: `Zenith Tigrex might very well be the most brutal and vicious Flying Wyverns of all time. When attacking a hunter or prey, they focus on heavily wounding their target. If successful, the prey will start to bleed and Zenith Tigrex will, much like sharks, go into a feeding frenzy and become even more dangerous and relentless than they already are.`,
 		unusedComponent: true,
 		type: 'Large',
@@ -7041,7 +6816,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-toridcless',
 		link: '/hunter-notes/monsters/overview/zenith-toridcless',
-		component: ComponentMonsterZenithToridcless,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `Evolved Toridcless that are larger and more elegant than their counterpart. Their wings heavily developed to have longer spikes as well as advance sky blue feathers on their wings. The two long blue feathers on their heads further developed to be longer and an orange whitish horn-like feather grew in the center of their heads. Also, the feathers on their back hind legs grew longer. They are capable of producing a beam of light that can annihilate anything in its path, even if only making contact for a fraction of a second.`,
@@ -7067,7 +6842,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/conquest-fatalis',
 
-		component: ComponentMonsterConquestFatalis,
 		unusedComponent: false,
 		ecology: `Apart from a few key differences from its standard counterpart, it has six horns instead of the Fatalis's four horns, and the chest now is glowing faint blue, which is possibly a new element never found before. It utilizes new and unique attacks, one among them said to be capable of ravaging a whole kingdom instantly.`,
 		type: 'Large',
@@ -7093,7 +6867,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/conquest-shantien',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shantien',
-		component: ComponentMonsterConquestShantien,
+
 		unusedComponent: false,
 		ecology: `Shantien have been sighted flying around far above in the skies, often over oceans or around volcanic areas. Usually the only way to get anywhere near them is with a Large Exploration Ship. Shantien is enormously powerful when fully enraged and will attack with reckless abandon. This can also be its undoing, as attempting to use some of its strongest attacks while severely injured may cause them to implode inside its body, accomplishing its own demise.`,
 		type: 'Large',
@@ -7119,7 +6893,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/conquest-crimson-fatalis',
 		link: '/hunter-notes/monsters/overview/conquest-crimson-fatalis',
-		component: ComponentMonsterConquestCrimsonFatalis,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology: `A monster with unparalleled hatred for humanity, it is an inhabitant of the Deep Crater. It is the only known monster to use the new Crimson Demon Element.`,
@@ -7145,7 +6919,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/disufiroa',
 		link: '/hunter-notes/monsters/overview/shiten-disufiroa',
-		component: ComponentMonsterShitenDisufiroa,
+
 		unusedComponent: false,
 		ecology: `According to one account from a lucky hunter, when it freezes itself at the end of the fight, instead of dying, it will break out and gain a new appearance which its chest protrusions become purple in addition to the blue stripes on its underbelly and the webbing of its wings. Its red scales also turn black in color and its attacks become much fiercer, as well as some new devastating large attacks utilizing its elements.`,
 		type: 'Large',
@@ -7154,7 +6928,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		elements: ['Okiko'],
 		ailments: [],
 		weaknesses: ['Fire', 'Water', 'Thunder', 'Dragon'],
-		habitats: ["World's End (Location)"],
+		habitats: ["World's End"],
 		sizes: ['Gold Crown Large: 2057.0', 'Gold Crown Small: 1316.5'],
 		relatedMonsters: [],
 		generation: 'Frontier',
@@ -7170,9 +6944,9 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shiten_unknown',
 
 		fullRender:
-			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
-		component: ComponentMonsterShitenUnknown,
-		unusedComponent: false,
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shiten-unknown',
+
+		unusedComponent: true, // TODO fix component
 		ecology: `For those lucky enough to witness it, it is said that upon reaching unthinkable rage, it creates an area wide black cloud of gas that leaves only its eyes completely visible, during this time the Unknown will be quickly moving all around the hunters, occasionally taking to the air and flying towards them. Afterwards, it will stop moving, inhale all the gas towards its mouth, before releasing it all at once in a huge shockwave, it will then finish with a roar in the typical Rathian fashion.`,
 		type: 'Large',
 		titles: ['Black Flying Wyvern'],
@@ -7205,7 +6979,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/burning-freezing-elzelion',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/burning-freezing-elzelion',
-		component: ComponentMonsterBurningFreezingElzelion,
 
 		unusedComponent: false,
 		ecology: `Burning Freezing Elzelion greatly resembles the standard Elzelion, but has some color changes to set itself apart. Its teeth, claws and small spines are golden, along with some gold streaks being present on the head, and certain much of each of its horns are also the color of gold. Its scales are also notably much darker, being dark grey as opposed to silver. It is the only known monster able to fully master more than one element.`,
@@ -7231,7 +7004,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/howling_zinogre',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/howling-zinogre2',
-		component: ComponentMonsterHowlingZinogre,
 
 		unusedComponent: false,
 		ecology: `Similarly to Thunderlord Zinogre, Howling Zinoge also has an "Ultra Charged State" it can enter by using a certain move a few times. In this state the electrical aura is even larger, with green and blue colors mixed in with the white, along with a swarm of Fulgur Bugs flying around it.`,
@@ -7257,7 +7029,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/abiorugu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/abiorugu',
-		component: ComponentMonsterSupremacyPariapuria,
 
 		unusedComponent: false,
 		ecology: `Supremacy Pariapuria's appearance has changed considerably compared to its standard counterpart; it has a glowing red eye trail similar to an enraged Nargacuga's, a mouth slathered in what could very well be blood, and scars all over its body. Bloodstains cover its body, most notably on its front claws. It also has tinges of purple on various places of its body.`,
@@ -7292,7 +7063,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-doragyurosu',
 
-		component: ComponentMonsterSupremacyDoragyurosu,
 		unusedComponent: false,
 		ecology: `This overpowering monster is one of the most deadly monsters the guild has found, with completely unbelievable power. So much power that the reason for parts of it turning red in rage is from it burning its own skin. Appearance changes are burnt red tail spikes, claws, feet and horns. Green wing webbing, dark end of its beak and bright yellow eyes. In rage, it becomes burnt and overflowing with Dragon Element from head to tail and its eyes turn red.`,
 		type: 'Large',
@@ -7320,7 +7090,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-teostra',
 
-		component: ComponentMonsterSupremacyTeostra,
 		ecology: `A more fiery counterpart of the standard Teostra, the Supremacy Teostra has an aura of unrelenting heat. If not careful, Supremacy Teostra can end the battle with a few powerful fire explosions. Capable of producing a huge fire tornado when enraged.`,
 		unusedComponent: false,
 		type: 'Large',
@@ -7345,7 +7114,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/supremacy_odibatorasu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-odibatorasu',
-		component: ComponentMonsterSupremacyOdibatorasu,
 
 		unusedComponent: true,
 		ecology: `Relatively docile when undisturbed, Odibatorasu spend a vast majority of their time burrowing and searching for food. But due to their large size and strength they can cause massive and powerful sandstorms that are capable of destroying entire villages or towns. Where as Akantor is called the "Black God" and Ukanlos the "White God", the Odibatorasu is known as the "Sand God".`,
@@ -7372,7 +7140,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/golden_deviljho',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/golden-deviljho',
-		component: ComponentMonsterGoldenDeviljho,
+
 		unusedComponent: false,
 		type: 'Large',
 		ecology: `In its normal state, it behaves the same as Savage Deviljho. When enraged however, its attacks are infused with Dragon element. Unlike Deviljho or Savage Deviljho, Starving Deviljho can shoot three balls of Dragon energy that explode upon impact. When Starving Deviljho does its stomp attack during rage mode, the stomp will create a burst of Dragon energy around the impact, sending hunters flying. It can throw three boulders at once when not enraged. When enraged however, it will throw a giant boulder instead.`,
@@ -7404,7 +7172,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/furious-rajang',
 		link: '/hunter-notes/monsters/overview/furious-rajang',
-		component: ComponentMonsterFuriousRajang,
+
 		unusedComponent: true,
 		ecology: `Furious Rajang is a standard Rajang that has grown extremely powerful, and has lost its tail either by it falling off naturally or by tearing it off itself, allowing it to fully harness its abilities. Furious Rajang's appearance resembles that of an enraged Rajang by default. Its Rage mode shows that its fur stands up and it is visibly electrified by an electric aura.`,
 		type: 'Large',
@@ -7461,7 +7229,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ruling_guanzorumu',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ruling-guanzorumu',
-		component: ComponentMonsterRulingGuanzorumu,
+
 		unusedComponent: false,
 		ecology: `Ruling Guanzorumu, much like his relative, is extremely aggressive and will not hesitate to use it's Golden Flame to scorch the hunter. Instead of using fire and dragon seperately, it combines them into a golden flame. The Egyurasu are also capable of breathing this Golden Flame.`,
 		type: 'Large',
@@ -7487,7 +7255,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shifting_mi_ru',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shifting-mi-ru',
-		component: ComponentMonsterShiftingMiRu,
+
 		unusedComponent: false,
 		ecology: `Shifting Mi Ru has much more control over its various forms, and thus stays in each form much longer than its standard counterpart. Each form is also significantly stronger, and its abilities far surpass those of a regular Mi Ru.`,
 		type: 'Large',
@@ -7505,7 +7273,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 53,
 		name: 'Rajang',
 		displayName: 'Twinhead Rajang',
-		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/hc_rajang',
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/twinhead_rajang',
 		rank: 'Twinhead 1',
 		render:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hc_rajang',
@@ -7513,7 +7281,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/twinhead-rajang',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hc-rajang',
-		component: ComponentMonsterTwinheadRajang,
+
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `A Rajang who is capable of fiercer attacks including one where it raises its arms and creates a large electrical sphere that Rajang will leap into the air and send towards the ground when fully-charged, it slowly descends to the ground and causes a large electrical explosion upon impact. It should be mentioned that finding a Phantom Rajang really is rare and is a low chance to find when choosing to fight a Rajang. This Rajang has blue eyes and very long hair on its back with a golden aura when enraged.`,
@@ -7548,7 +7316,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/white-fatalis', // TODO
 		link: '/hunter-notes/monsters/overview/road-white-fatalis',
-		component: ComponentMonsterRoadWhiteFatalis,
+
 		// todo?
 
 		unusedComponent: false,
@@ -7567,17 +7335,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		generation: 'Second Generation',
 	},
 ];
-
-export function getMonsterIcon(monsterName: FrontierMonsterNameExpanded) {
-	const icon = monsterInfo[0].component;
-
-	const found = monsterInfo.find((w) => w.displayName === monsterName);
-	if (!found) {
-		return icon;
-	}
-
-	return found.component;
-}
 
 export function getUniqueMonsters() {
 	const names: string[] = [];

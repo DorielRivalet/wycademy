@@ -48,13 +48,13 @@
 	import { hunterNotesSidebarEnabledStore } from '$lib/client/stores/toc';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import KnifeIconWhite from '$lib/client/components/frontier/icon/item/Knife_Icon_White.svelte';
-	import { LogoYoutube } from 'carbon-icons-svelte';
+	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import {
 		getNavigationItemFromLink,
 		toolsInfo,
 	} from '$lib/client/modules/routes';
-	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -223,7 +223,7 @@
 		},
 		{
 			id: '/tools/generator',
-			icon: getMonsterIcon('Abiorugu'),
+			icon: monsterInfo.find((e) => e.displayName === 'Abiorugu')?.icon, // TODO: works?
 		},
 		{
 			id: '/tools/generator/weapon',
@@ -239,15 +239,16 @@
 		},
 		{
 			id: '/tools/generator/burst',
-			icon: getMonsterIcon('Zerureusu'),
+			icon: monsterInfo.find((e) => e.displayName === 'Zerureusu')?.icon,
 		},
 		{
 			id: '/tools/generator/icon',
-			icon: getMonsterIcon('Supremacy Teostra'),
+			icon: monsterInfo.find((e) => e.displayName === 'Supremacy Teostra')
+				?.icon,
 		},
 		{
 			id: '/tools/generator/thumbnail',
-			icon: LogoYoutube,
+			icon: VideoPlayer,
 		},
 		{
 			id: '/tools/simulator',
@@ -255,7 +256,7 @@
 		},
 		{
 			id: '/tools/simulator/tower-weapon',
-			icon: getMonsterIcon('Duremudira'),
+			icon: monsterInfo.find((e) => e.displayName === 'Duremudira')?.icon,
 		},
 		{
 			id: '/tools/external',

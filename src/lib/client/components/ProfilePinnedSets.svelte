@@ -18,7 +18,7 @@
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ArmorStandIcon from '$lib/client/components/frontier/icon/armor/MHRise_Item_Icon-Armor_Stand_Equipment_White.svelte';
-	import { getMonsterIcon } from '../modules/frontier/monsters';
+	import { monsterInfo } from '../modules/frontier/monsters';
 
 	let selectedSetName = '';
 
@@ -68,7 +68,8 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			setIcon: getMonsterIcon('Bogabadorumu'),
+			// TODO svg?
+			setIcon: monsterInfo.find((e) => e.displayName === 'Bogabadorumu')?.icon,
 			setTags: ['Zenith', 'Multiplayer', 'Premium'],
 			setName: 'Armor Set 2',
 			setColor: 'green',
@@ -103,7 +104,8 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			setIcon: getMonsterIcon('Howling Zinogre'),
+			setIcon: monsterInfo.find((e) => e.displayName === 'Howling Zinogre')
+				?.icon,
 			setTags: ['Musou', 'Multiplayer', 'Premium'],
 			setName: 'Armor Set 3',
 			setColor: 'blue',
@@ -138,7 +140,9 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			setIcon: getMonsterIcon('Conquest Crimson Fatalis'),
+			setIcon: monsterInfo.find(
+				(e) => e.displayName === 'Conquest Crimson Fatalis',
+			)?.icon,
 			setTags: ['Conquest', 'Multiplayer', 'Premium'],
 			setName: 'Armor Set 4',
 			setColor: 'yellow',
@@ -173,7 +177,8 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			setIcon: getMonsterIcon('Blinking Nargacuga'),
+			setIcon: monsterInfo.find((e) => e.displayName === 'Blinking Nargacuga')
+				?.icon,
 			setTags: ['Musou', 'Solo', 'Premium'],
 			setName: 'Armor Set 5',
 			setColor: 'mauve',
@@ -208,7 +213,8 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			setIcon: getMonsterIcon('Supremacy Pariapuria'),
+			setIcon: monsterInfo.find((e) => e.displayName === 'Supremacy Pariapuria')
+				?.icon,
 			setTags: ['Supremacy', 'Solo', 'Premium'],
 			setName: 'Armor Set 6',
 			setColor: 'sky',

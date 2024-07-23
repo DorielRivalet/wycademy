@@ -816,7 +816,6 @@ export type FrontierMonsterInfo = {
 	icon: string;
 	render: string;
 	fullRender: string;
-	component: ComponentType<SvelteComponent>;
 	unusedComponent: boolean;
 	displayName: string;
 	titles?: string[];
@@ -1041,7 +1040,7 @@ export type WycademyTrophy = {
 export type ProfilePinnedSet = {
 	setName: string;
 	setColor: string;
-	setIcon: string | ComponentType<SvelteComponent>;
+	setIcon: string | undefined | ComponentType<SvelteComponent>;
 	setTags: string[];
 	weaponType: FrontierWeaponName;
 	weaponName: string;

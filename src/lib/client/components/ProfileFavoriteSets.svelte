@@ -3,41 +3,42 @@
 	import FavoriteFilled from 'carbon-icons-svelte/lib/FavoriteFilled.svelte';
 	import Favorite from 'carbon-icons-svelte/lib/Favorite.svelte';
 	import { LocationIcons } from '../modules/frontier/locations';
-	import { getMonsterIcon } from '../modules/frontier/monsters';
+	import { monsterInfo } from '../modules/frontier/monsters';
 
 	export let favoriteSets = [
 		{
-			icon: LocationIcons.find((e) => e.name === 'Road')?.icon,
+			icon: LocationIcons.find((e) => e.name === 'Road')?.icon, // TODO?
 			title: "User 2's Set #3",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Bogabadorumu'),
+			icon: monsterInfo.find((e) => e.displayName === 'Bogabadorumu')?.icon,
 			title: "User 2's Set #3",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Howling Zinogre'),
+			icon: monsterInfo.find((e) => e.displayName === 'Howling Zinogre')?.icon,
 			title: "User 3's Set #2",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Duremudira'),
+			icon: monsterInfo.find((e) => e.displayName === 'Duremudira')?.icon,
 			title: "User 4's Set #3",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Sparkling Zerureusu'),
+			icon: monsterInfo.find((e) => e.displayName === 'Sparkling Zerureusu')
+				?.icon,
 			title: "User 5's Set #4",
 			link: '/',
 			totalFavorites: 0,
 		},
 		{
-			icon: getMonsterIcon('Golden Deviljho'),
+			icon: monsterInfo.find((e) => e.displayName === 'Golden Deviljho')?.icon,
 			title: "User 6's Set #5",
 			link: '/',
 			totalFavorites: 0,

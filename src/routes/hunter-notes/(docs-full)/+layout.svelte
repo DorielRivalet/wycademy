@@ -64,7 +64,7 @@
 	import { page } from '$app/stores';
 	import {
 		getMonsterByPathName,
-		getMonsterIcon,
+		monsterInfo,
 	} from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 
@@ -479,55 +479,57 @@
 		{ id: '/hunter-notes/getting-started/transcend', icon: Transcend },
 		{
 			id: '/hunter-notes/monsters',
-			icon: getMonsterIcon('Abiorugu'),
+			icon: monsterInfo.find((e) => e.displayName === 'Abiorugu')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/overview',
-			icon: getMonsterIcon('Rathalos'),
+			icon: monsterInfo.find((e) => e.displayName === 'Rathalos')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/exotics',
-			icon: getMonsterIcon('Stygian Zinogre'),
+			icon: monsterInfo.find((e) => e.displayName === 'Stygian Zinogre')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/origin',
-			icon: getMonsterIcon('Yama Kurai'),
+			icon: monsterInfo.find((e) => e.displayName === 'Yama Kurai')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/burst',
-			icon: getMonsterIcon('Zerureusu'),
+			icon: monsterInfo.find((e) => e.displayName === 'Zerureusu')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/supremacy',
-			icon: getMonsterIcon('Supremacy Doragyurosu'),
+			icon: monsterInfo.find((e) => e.displayName === 'Supremacy Doragyurosu')
+				?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/duremudira',
-			icon: getMonsterIcon('Duremudira'),
+			icon: monsterInfo.find((e) => e.displayName === 'Duremudira')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/zenith',
-			icon: getMonsterIcon('Bogabadorumu'),
+			icon: monsterInfo.find((e) => e.displayName === 'Bogabadorumu')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/raviente',
-			icon: getMonsterIcon('Berserk Raviente'),
+			icon: monsterInfo.find((e) => e.displayName === 'Berserk Raviente')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/conquest',
-			icon: getMonsterIcon('Conquest Fatalis'),
+			icon: monsterInfo.find((e) => e.displayName === 'Conquest Fatalis')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/shiten',
-			icon: getMonsterIcon('Disufiroa'),
+			icon: monsterInfo.find((e) => e.displayName === 'Disufiroa')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/unlimited',
-			icon: getMonsterIcon('Akura Jebia'),
+			icon: monsterInfo.find((e) => e.displayName === 'Akura Jebia')?.icon,
 		},
 		{
 			id: '/hunter-notes/monsters/musou',
-			icon: getMonsterIcon('Blinking Nargacuga'),
+			icon: monsterInfo.find((e) => e.displayName === 'Blinking Nargacuga')
+				?.icon,
 		},
 		{
 			id: '/hunter-notes/weapons',

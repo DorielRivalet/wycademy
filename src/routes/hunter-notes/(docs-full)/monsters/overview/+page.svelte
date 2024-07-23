@@ -32,6 +32,7 @@
 	import { fade } from 'svelte/transition';
 	import { getUniqueMonsters } from '$lib/client/modules/frontier/monsters';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
+	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 
 	const customTitle = 'Monsters Overview';
 	const url = $page.url.toString();
@@ -216,16 +217,17 @@
 									<Link
 										href={`/hunter-notes/monsters/overview/${slugify(monster.displayName, { lower: true })}`}
 									>
-										{#if monster.unusedComponent}
+										{#if monster.unusedComponent === true}
 											<img
 												src={monster.icon}
 												alt={monster.displayName}
 												width={monsterIconSize}
 											/>
 										{:else}
-											<svelte:component
-												this={monster.component}
-												{...iconProps}
+											<MonsterComponent
+												currentMonster={monster.displayName}
+												size={iconProps.size}
+												background={iconProps.background}
 											/>
 										{/if}
 									</Link>

@@ -1,5 +1,9 @@
 <script lang="ts">
-	import type { FrontierMonsterHitzoneType } from '$lib/client/modules/frontier/types';
+	import type {
+		FrontierMonsterHitzoneRankBand,
+		FrontierMonsterHitzoneType,
+		FrontierMonsterPartInfo,
+	} from '$lib/client/modules/frontier/types';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 
 	const silhouetteImports = {
@@ -473,9 +477,9 @@
 
 	export let currentSilhouette: string;
 	export let selectedHitzoneType: FrontierMonsterHitzoneType;
-	export let selectedMonsterState;
-	export let selectedRankBand;
-	export let hitzones;
+	export let selectedMonsterState: string;
+	export let selectedRankBand: FrontierMonsterHitzoneRankBand;
+	export let hitzones: FrontierMonsterPartInfo[];
 </script>
 
 {#await getSilhouette(currentSilhouette)}
