@@ -30,11 +30,14 @@
 	export let color = '#ffffff';
 	export let width: string | number = 0;
 	export let height: string | number = 0;
+	/**TODO*/
+	export let currentMonster = '';
 
 	let componentProps = {
 		size: componentSize,
 		background: background,
 		color: color,
+		currentMonster: currentMonster,
 	};
 
 	let svgComponent: any;
