@@ -425,7 +425,7 @@
 									>
 									<ToolbarSearch
 										shouldFilterRows
-										value="Incitement"
+										value="all res"
 										bind:filteredRowIds={recipesTableFilteredRowIds}
 									/>
 								</div>

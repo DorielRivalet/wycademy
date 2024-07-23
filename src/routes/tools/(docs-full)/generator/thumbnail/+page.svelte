@@ -1098,8 +1098,8 @@
 			lowContrast
 			hideCloseButton
 			kind="warning"
-			title="Browser compatibility:"
-			subtitle="Many features on this section may not work on Firefox. It is confirmed to work with Chromium based browsers."
+			title="Status:"
+			subtitle="Due to an update to monster icons the downloading and previewing features do not work."
 		/>
 		<InlineNotification
 			lowContrast
