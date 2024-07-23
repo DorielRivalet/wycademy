@@ -1,4 +1,3 @@
-import TrophyWhite from '$lib/client/components/frontier/icon/TrophyWhite.svelte';
 import TrophyBronze from '$lib/client/images/achievement/bronze_trophy.webp';
 import TrophySilver from '$lib/client/images/achievement/silver_trophy.webp';
 import TrophyGold from '$lib/client/images/achievement/gold_trophy.webp';
@@ -63,7 +62,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -76,7 +75,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Akura Vashimu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -89,7 +88,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Akura Vashimu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -102,7 +101,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Akura Vashimu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -115,7 +114,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -128,7 +127,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -141,7 +140,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Anorupatisu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -154,7 +153,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Anorupatisu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -167,7 +166,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Anorupatisu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -180,7 +179,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -193,7 +192,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -206,7 +205,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Blangonga quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -219,7 +218,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Blangonga quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -232,7 +231,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Blangonga quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -245,7 +244,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -258,7 +257,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Daimyo Hermitaur quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -271,7 +270,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Daimyo Hermitaur quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -284,7 +283,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Daimyo Hermitaur quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -297,7 +296,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Daimyo Hermitaur quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -311,7 +310,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Zenith★4 Daimyo Hermitaur quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -324,7 +323,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -337,7 +336,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Doragyurosu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -350,7 +349,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Doragyurosu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -363,7 +362,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Doragyurosu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -376,7 +375,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -389,7 +388,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Espinas quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -402,7 +401,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Espinas quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -415,7 +414,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Espinas quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -428,7 +427,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Espinas quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -441,7 +440,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Espinas quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -454,7 +453,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -467,7 +466,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Gasurabazura quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -480,7 +479,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Gasurabazura quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -493,7 +492,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Gasurabazura quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -506,7 +505,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -519,7 +518,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -532,7 +531,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Giaorugu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -545,7 +544,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Giaorugu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -558,7 +557,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Giaorugu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -571,7 +570,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -584,7 +583,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -597,7 +596,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Hypnocatrice quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -610,7 +609,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Hypnocatrice quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -623,7 +622,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Hypnocatrice quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -636,7 +635,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -649,7 +648,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -662,7 +661,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Hyujikiki quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -675,7 +674,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Hyujikiki quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -688,7 +687,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Hyujikiki quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -701,7 +700,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -714,7 +713,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Inagami quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -727,7 +726,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Inagami quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -740,7 +739,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Inagami quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -753,7 +752,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Inagami quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -766,7 +765,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Inagami quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -779,7 +778,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Khezu quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -792,7 +791,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Khezu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -805,7 +804,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Khezu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -818,7 +817,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Khezu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -831,7 +830,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Khezu quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -844,7 +843,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -857,7 +856,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Midogaron quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -870,7 +869,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Midogaron quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -883,7 +882,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Midogaron quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -896,7 +895,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -909,7 +908,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -922,7 +921,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Plesioth quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -935,7 +934,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Plesioth quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -948,7 +947,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Plesioth quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -961,7 +960,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -974,7 +973,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -987,7 +986,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Rathalos quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1000,7 +999,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Rathalos quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1013,7 +1012,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Rathalos quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1026,7 +1025,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1039,7 +1038,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1052,7 +1051,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Rukodiora quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1065,7 +1064,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Rukodiora quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1078,7 +1077,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Rukodiora quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1091,7 +1090,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1104,7 +1103,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1117,7 +1116,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Tigrex quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1130,7 +1129,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Tigrex quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1143,7 +1142,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Tigrex quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1156,7 +1155,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1169,7 +1168,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1182,7 +1181,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Toridcless quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1195,7 +1194,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Toridcless quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1208,7 +1207,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Toridcless quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1221,7 +1220,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1234,7 +1233,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1247,7 +1246,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Baruragaru quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1260,7 +1259,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Baruragaru quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1273,7 +1272,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Baruragaru quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1286,7 +1285,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1299,7 +1298,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1312,7 +1311,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Bogabadorumu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1325,7 +1324,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Bogabadorumu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1338,7 +1337,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Bogabadorumu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1351,7 +1350,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1364,7 +1363,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Gravios quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1377,7 +1376,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Gravios quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1390,7 +1389,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Gravios quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1403,7 +1402,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Gravios quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1416,7 +1415,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Gravios quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1429,7 +1428,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1442,7 +1441,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Harudomerugu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1455,7 +1454,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Harudomerugu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1468,7 +1467,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Harudomerugu quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1481,7 +1480,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1494,7 +1493,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1507,7 +1506,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Zenith★4 Taikun Zamuza quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1520,7 +1519,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith★4 Taikun Zamuza quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1533,7 +1532,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Zenith★4 Taikun Zamuza quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1546,7 +1545,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1559,7 +1558,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Fatalis quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1572,7 +1571,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Lv9999 Fatalis quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1585,7 +1584,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Lv9999 Fatalis quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1598,7 +1597,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Lv9999 Fatalis quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1611,7 +1610,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Fatalis quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1624,7 +1623,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1637,7 +1636,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Lv9999 Crimson Fatalis quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1650,7 +1649,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Lv9999 Crimson Fatalis quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1663,7 +1662,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Lv9999 Crimson Fatalis quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1676,7 +1675,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1689,7 +1688,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Shantien quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1702,7 +1701,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Lv9999 Shantien quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1715,7 +1714,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Lv9999 Shantien quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1728,7 +1727,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Lv9999 Shantien quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1741,7 +1740,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Shantien quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1754,7 +1753,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1767,7 +1766,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Lv9999 Disufiroa quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1780,7 +1779,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Lv9999 Disufiroa quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1793,7 +1792,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Lv9999 Disufiroa quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1806,7 +1805,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1819,7 +1818,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Upper Shiten Unknown quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1832,7 +1831,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Upper Shiten Unknown quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1845,7 +1844,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Upper Shiten Unknown quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1858,7 +1857,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Upper Shiten Unknown quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1871,7 +1870,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Upper Shiten Unknown quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1884,7 +1883,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Upper Shiten Disufiroa quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1897,7 +1896,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Upper Shiten Disufiroa quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1910,7 +1909,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Upper Shiten Disufiroa quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1923,7 +1922,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Upper Shiten Disufiroa quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1936,7 +1935,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Upper Shiten Disufiroa quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1949,7 +1948,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Thirsty Pariapuria quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1962,7 +1961,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Thirsty Pariapuria quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1975,7 +1974,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Thirsty Pariapuria quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -1988,7 +1987,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Thirsty Pariapuria quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2001,7 +2000,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Thirsty Pariapuria quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2014,7 +2013,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Ruling Guanzorumu True Slay quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2027,7 +2026,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Ruling Guanzorumu True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2040,7 +2039,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Ruling Guanzorumu True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2053,7 +2052,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Ruling Guanzorumu True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2067,7 +2066,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Ruling Guanzorumu True Slay quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2080,7 +2079,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Shifting Mi Ru quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2093,7 +2092,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Shifting Mi Ru quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2106,7 +2105,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Shifting Mi Ru quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2119,7 +2118,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Shifting Mi Ru quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2132,7 +2131,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Shifting Mi Ru quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2145,7 +2144,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Blinking Nargacuga True Slay quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2158,7 +2157,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Blinking Nargacuga True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2171,7 +2170,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Blinking Nargacuga True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2184,7 +2183,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Blinking Nargacuga True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2198,7 +2197,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Blinking Nargacuga True Slay quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2211,7 +2210,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Howling Zinogre True Slay quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2224,7 +2223,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Howling Zinogre True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2237,7 +2236,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Howling Zinogre True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2250,7 +2249,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Howling Zinogre True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2264,7 +2263,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Howling Zinogre True Slay quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2277,7 +2276,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Starving Deviljho True Slay quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2290,7 +2289,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Starving Deviljho True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2303,7 +2302,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Starving Deviljho True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2316,7 +2315,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Starving Deviljho True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2330,7 +2329,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Starving Deviljho True Slay quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2343,7 +2342,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Sparkling Zerureusu True Slay quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2356,7 +2355,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Sparkling Zerureusu True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2369,7 +2368,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Sparkling Zerureusu True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2382,7 +2381,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Sparkling Zerureusu True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2396,7 +2395,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Sparkling Zerureusu True Slay quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2409,7 +2408,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Arrogant Duremudira True Slay quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2422,7 +2421,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Arrogant Duremudira True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2435,7 +2434,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Arrogant Duremudira True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2448,7 +2447,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Arrogant Duremudira True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2462,7 +2461,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Arrogant Duremudira True Slay quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2475,7 +2474,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Bombardier Bogabadorumu True Slay quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2488,7 +2487,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Bombardier Bogabadorumu True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2501,7 +2500,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Bombardier Bogabadorumu True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2514,7 +2513,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Bombardier Bogabadorumu True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2528,7 +2527,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Bombardier Bogabadorumu True Slay quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2541,7 +2540,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Burning Freezing Elzelion True Slay quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2554,7 +2553,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 10 Burning Freezing Elzelion True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2567,7 +2566,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Burning Freezing Elzelion True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2580,7 +2579,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 50 Burning Freezing Elzelion True Slay quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2594,7 +2593,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Burning Freezing Elzelion True Slay quest solo (Speedrun/Zen).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2608,7 +2607,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete a Thirsty Pariapuria quest with a Serious Drink Affinity in your inventory.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: true,
 			Hint: 'I wish I had something to drink...seriously!',
 			Unused: false,
@@ -2622,7 +2621,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete a Ruling Guanzorumu True Slay quest with a non-extreme style.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_yellow.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_yellow',
 			IsSecret: true,
 			Hint: 'Do I really need to run to beat this monster?',
 			Unused: false,
@@ -2636,7 +2635,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete a Shifting Mi Ru quest while having pressed Shift at the start.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: true,
 			Hint: 'What if the hunter is also shifting?',
 			Unused: false,
@@ -2650,7 +2649,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete a Blinking Nargacuga True Slay quest without getting hit (including blocks)',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_blue2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_blue2',
 			IsSecret: true,
 			Hint: 'Do you have the instinct to dodge everything?',
 			Unused: false,
@@ -2664,7 +2663,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete a Howling Zinogre True Slay quest solo with 40 max stamina.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_blue2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_blue2',
 			IsSecret: true,
 			Hint: "I'm starving and lonely.",
 			Unused: false,
@@ -2678,7 +2677,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete a Burning Freezing Elzelion True Slay quest with Blazing Majesty and Ice Age',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_blue2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_blue2',
 			IsSecret: true,
 			Hint: 'Fire and flame? No, ice and blaze!',
 			Unused: false,
@@ -2692,7 +2691,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete a Bombardier Bogabadorumu True Slay quest with a Large Barrel Bomb in your inventory.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: true,
 			Hint: 'We are going to need bigger bombs for this guy...',
 			Unused: false,
@@ -2706,7 +2705,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete an Arrogant Duremudira True Slay quest with Soul Revival equipped.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: true,
 			Hint: 'This thunder brings oblivion! Unless...',
 			Unused: false,
@@ -2719,7 +2718,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete a certain quest on February 14th.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'Veggie Elder! How I missed you...',
 			Unused: false,
@@ -2732,7 +2731,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Defeat Producer Gogomoa with a Gunlance',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: true,
 			Hint: 'If he uses a Gunlance, so do I!',
 			Unused: false,
@@ -2745,7 +2744,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete a Four Heavenly King Deviljho quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: true,
 			Hint: 'Slay an emperor of fire.',
 			Unused: false,
@@ -2758,7 +2757,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete a Hatsune Miku quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'Erupe thinks we should dance!',
 			Unused: false,
@@ -2771,7 +2770,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete a PSO2 quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'Rappy thinks we should sing!',
 			Unused: false,
@@ -2784,7 +2783,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete a Megaman quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_white.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_white',
 			IsSecret: true,
 			Hint: 'Obtain the Gears of Destiny.',
 			Unused: false,
@@ -2797,7 +2796,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete a Higanjima quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'Higanjima.',
 			Unused: false,
@@ -2810,7 +2809,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Defeat the huge Plesioth.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: true,
 			Hint: "Don't let the Plesioth grow.",
 			Unused: false,
@@ -2823,7 +2822,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Defeat Sunglasses Kut-Ku.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: true,
 			Hint: 'I need a new pair of sunglasses...',
 			Unused: false,
@@ -2836,7 +2835,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 MHF-Q quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_white.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_white',
 			IsSecret: true,
 			Hint: 'You need an extreme amount of knowledge in order to complete this quest.',
 			Unused: false,
@@ -2849,7 +2848,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete a certain Congalala quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_white2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_white2',
 			IsSecret: true,
 			Hint: 'See no evil, hear no evil, speak no evil.',
 			Unused: false,
@@ -2862,7 +2861,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Get the maximum amount of GZenny',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: true,
 			Hint: 'I should probably hunt a Zenith Hypnoc.',
 			Unused: false,
@@ -2875,7 +2874,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Get the maximum amount of Diva Bond',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/diva.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/diva',
 			IsSecret: true,
 			Hint: 'Do you like fluffy cakes?',
 			Unused: false,
@@ -2889,7 +2888,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Obtain S Rank in Nyanrendo, Dokkan Battle Cats, Guuku Scoop and Panic Honey.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_stamp',
 			IsSecret: true,
 			Hint: 'Do you like minigames?',
 			Unused: false,
@@ -2902,7 +2901,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Obtain the maximum Caravan points.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/points.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/points',
 			IsSecret: true,
 			Hint: 'Carry me Caravan take me away',
 			Unused: false,
@@ -2915,7 +2914,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Get to Multiplayer Road Floor 50.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/tower.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/tower',
 			IsSecret: true,
 			Hint: 'A long road ahead...',
 			Unused: false,
@@ -2928,7 +2927,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Get to Multiplayer Road Floor 100.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/tower.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/tower',
 			IsSecret: true,
 			Hint: 'End of the road?',
 			Unused: false,
@@ -2941,7 +2940,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Obtain a Max Level partner.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/hunters.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/hunters',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -2954,7 +2953,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Attempt a quest 1000 times.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/ticket_silver.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/ticket_silver',
 			IsSecret: true,
 			Hint: 'You need a strong determination for doing this quest this many times.',
 			Unused: false,
@@ -2967,7 +2966,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Attempt a personal best 100 times.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/ticket_gold.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/ticket_gold',
 			IsSecret: true,
 			Hint: "You haven't gotten a new record yet, hopefully this cheers you up.",
 			Unused: false,
@@ -2980,7 +2979,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Defeat 2nd District Duremudira 25 times.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/duremudira.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/duremudira',
 			IsSecret: true,
 			Hint: 'You killed that many monsters?!',
 			Unused: false,
@@ -2993,7 +2992,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Defeat Road Fatalis 100 times.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/tower.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/tower',
 			IsSecret: true,
 			Hint: 'How many times will this monster roar?!',
 			Unused: false,
@@ -3006,7 +3005,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Click a Fumo in the configuration window.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'Fumo.',
 			Unused: false,
@@ -3019,7 +3018,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Defeat the Twinhead Rajangs.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/monster_red2.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/monster_red2',
 			IsSecret: true,
 			Hint: 'You will need to go even further beyond in order to beat this quest.',
 			Unused: false,
@@ -3032,7 +3031,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3045,7 +3044,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3058,7 +3057,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3071,7 +3070,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Daimyo Hermitaur quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3084,7 +3083,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3097,7 +3096,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Espinas quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3110,7 +3109,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3123,7 +3122,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3136,7 +3135,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3149,7 +3148,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3162,7 +3161,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Inagami quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3175,7 +3174,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Khezu quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3188,7 +3187,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3201,7 +3200,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3214,7 +3213,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3227,7 +3226,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3240,7 +3239,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3253,7 +3252,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3266,7 +3265,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3279,7 +3278,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3292,7 +3291,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Gravios quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3305,7 +3304,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3318,7 +3317,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3331,7 +3330,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Lv9999 Fatalis quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3344,7 +3343,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3357,7 +3356,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Lv9999 Shantien quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3370,7 +3369,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest under 10 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3383,7 +3382,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3396,7 +3395,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3409,7 +3408,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3422,7 +3421,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Daimyo Hermitaur quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3435,7 +3434,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3448,7 +3447,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Espinas quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3461,7 +3460,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3474,7 +3473,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3487,7 +3486,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3500,7 +3499,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3513,7 +3512,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Inagami quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3526,7 +3525,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Khezu quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3539,7 +3538,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3552,7 +3551,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3565,7 +3564,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3578,7 +3577,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3591,7 +3590,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3604,7 +3603,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3617,7 +3616,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3630,7 +3629,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3643,7 +3642,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Gravios quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3656,7 +3655,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3669,7 +3668,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3682,7 +3681,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Lv9999 Fatalis quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3695,7 +3694,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3708,7 +3707,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Lv9999 Shantien quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3721,7 +3720,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest under 8 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/award_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/award_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3734,7 +3733,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Akura Vashimu quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3747,7 +3746,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Anorupatisu quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3760,7 +3759,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Blangonga quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3773,7 +3772,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Daimyo Hermitaur quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3786,7 +3785,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Doragyurosu quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3799,7 +3798,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Espinas quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3812,7 +3811,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Gasurabazura quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3825,7 +3824,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Giaorugu quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3838,7 +3837,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Hypnocatrice quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3851,7 +3850,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Hyujikiki quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3864,7 +3863,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Inagami quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3877,7 +3876,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Khezu quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3890,7 +3889,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Midogaron quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3903,7 +3902,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Plesioth quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3916,7 +3915,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Rathalos quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3929,7 +3928,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Rukodiora quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3942,7 +3941,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Tigrex quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3955,7 +3954,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Toridcless quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3968,7 +3967,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Baruragaru quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3981,7 +3980,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Bogabadorumu quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -3994,7 +3993,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Gravios quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4007,7 +4006,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Harudomerugu quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4020,7 +4019,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Zenith★4 Taikun Zamuza quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4033,7 +4032,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Lv9999 Fatalis quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4046,7 +4045,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Lv9999 Crimson Fatalis quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4059,7 +4058,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Lv9999 Shantien quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4072,7 +4071,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Lv9999 Disufiroa quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4085,7 +4084,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Thirsty Pariapuria quest under 3 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4098,7 +4097,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Shifting Mi Ru quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4112,7 +4111,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Ruling Guanzorumu True Slay quest under 5 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4126,7 +4125,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Blinking Nargacuga True Slay quest under 7 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4139,7 +4138,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Howling Zinogre True Slay quest under 7 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4153,7 +4152,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Sparkling Zerureusu True Slay quest under 9 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4167,7 +4166,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Starving Deviljho True Slay quest under 9 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4181,7 +4180,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Arrogant Duremudira True Slay quest under 9 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4195,7 +4194,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Bombardier Bogabadorumu True Slay quest under 9 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4209,7 +4208,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Burning Freezing Elzelion True Slay quest under 9 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4222,7 +4221,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Upper Shiten Unknown quest under 9 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4235,7 +4234,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 1 Upper Shiten Disufiroa quest under 9 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/clock.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/clock',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4248,7 +4247,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete Bingo (Easy).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4261,7 +4260,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete Bingo (Medium).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4274,7 +4273,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete Bingo (Hard).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4287,7 +4286,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete Bingo (Extreme).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4300,7 +4299,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Obtain a Gacha Card.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/book_guild.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/book_guild',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4313,7 +4312,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Obtain 100 Gacha Cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/book_guild.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/book_guild',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4326,7 +4325,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Obtain 1000 Gacha Cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/book_guild.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/book_guild',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4339,7 +4338,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all Gacha Cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/book_guild.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/book_guild',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4352,7 +4351,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Zenith Gauntlet.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/hunter.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/hunter',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4365,7 +4364,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 10 Zenith Gauntlets.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4378,7 +4377,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Zenith Gauntlets.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4391,7 +4390,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete a Zenith Gauntlet under 4 hours.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_platinum.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_platinum',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4404,7 +4403,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Solstice Gauntlet.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/hunter.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/hunter',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4417,7 +4416,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 10 Solstice Gauntlets.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4430,7 +4429,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 25 Solstice Gauntlets.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4443,7 +4442,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete a Solstice Gauntlet under an hour.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_platinum.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_platinum',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4456,7 +4455,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 1 Musou Gauntlet.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/hunter.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/hunter',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4469,7 +4468,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 10 Musou Gauntlets.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_silver.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_silver',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4482,7 +4481,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 25 Musou Gauntlets.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_gold.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_gold',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4495,7 +4494,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete a Musou Gauntlet under 100 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_platinum.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_platinum',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4508,7 +4507,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Enable Discord Rich Presence',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/transcend.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/transcend',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4521,7 +4520,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Enable Zen mode',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/transcend.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/transcend',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4534,7 +4533,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Enable one of the Speedrun modes',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/transcend.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/transcend',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4547,7 +4546,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 50 quests with Guild Food',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/plate.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/plate',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4560,7 +4559,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete 50 quests with a Diva Skill',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/diva.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/diva',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4574,7 +4573,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Earn 100,000 or more evaluation points in the gallery competition in My Gallery.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/gem.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/gem',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4587,7 +4586,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Hunt 1000 Large Monsters.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/book_monster.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/book_monster',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4600,7 +4599,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Have a total hunt time of 100 hours.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/book_weapon.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/book_weapon',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4613,7 +4612,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete a quest with a Z100 weapon.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/berserk_raviente.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/berserk_raviente',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4626,7 +4625,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Find a very peculiar mosswine.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_white.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_white',
 			IsSecret: true,
 			Hint: "I have no gear and I'm hunting a White Fatalis?!",
 			Unused: false,
@@ -4639,7 +4638,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete the Jungle Puzzle quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_white.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_white',
 			IsSecret: true,
 			Hint: 'I found some rocks in this jungle, I wonder what they are for...',
 			Unused: false,
@@ -4652,7 +4651,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 100 quests having used a Poogie item',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/poogie.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/poogie',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -4665,7 +4664,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Defeat Nuclear Gypceros',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_white.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_white',
 			IsSecret: true,
 			Hint: 'Can you survive the nuclear explosion?',
 			Unused: false,
@@ -4678,7 +4677,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Defeat Mosswine in an arena',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_white.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_white',
 			IsSecret: true,
 			Hint: 'This mosswine wants a duel.',
 			Unused: false,
@@ -4691,7 +4690,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Defeat the mosswine on the top of tower',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_black.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_black',
 			IsSecret: true,
 			Hint: 'You escaped from the White Fatalis, but can you reach the top back in time?',
 			Unused: false,
@@ -4704,7 +4703,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete the Halloween Speedster quest',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: true,
 			Hint: 'Can you place the guild flags on this snowy mountain fast enough?',
 			Unused: false,
@@ -4718,7 +4717,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete a bingo run without fainting and with 4 lines being crossed at once.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4731,7 +4730,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete a bingo card.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4744,7 +4743,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Complete 10 bingo cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4757,7 +4756,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Complete 25 bingo cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4770,7 +4769,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete 50 bingo cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4783,7 +4782,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Generate 1 gacha pull.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4796,7 +4795,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Generate 10 gacha pulls.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4809,7 +4808,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Generate 100 gacha pulls.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4822,7 +4821,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Generate 1000 gacha pulls.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4835,7 +4834,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Generate 10,000 gacha pulls.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4848,7 +4847,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Generate a gacha pull using gacha bonus coins.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4861,7 +4860,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Generate a gacha pull using gacha prismatic coins.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4874,7 +4873,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MH1, MH1G and MHF1.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4887,7 +4886,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MH2, MHF2 and MHFU.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4900,7 +4899,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MH3, MHP3 and MH3U.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4913,7 +4912,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MH4, MH4U, MHG and MHGU.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4926,7 +4925,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MHW, MHWI, MHR and MHRS.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4939,7 +4938,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from MHXR, MHST and MHST2.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4952,7 +4951,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from Monster Hunter Online.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4965,7 +4964,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all gacha cards from Monster Hunter Frontier',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4978,7 +4977,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Obtain a ★1 gacha card.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -4991,7 +4990,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Obtain 2 ★2 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5004,7 +5003,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Obtain 3 ★3 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5017,7 +5016,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Obtain 4 ★4 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5030,7 +5029,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Obtain 5 ★5 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5043,7 +5042,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain 6 ★6 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5056,7 +5055,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain 7 ★7 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5069,7 +5068,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain 8 ★8 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5082,7 +5081,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain 9 ★9 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5095,7 +5094,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain 10 ★10 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5108,7 +5107,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain 11 ★11 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5121,7 +5120,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain 12 ★12 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5134,7 +5133,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain all ★1 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5147,7 +5146,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain all ★2 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5160,7 +5159,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain all ★3 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5173,7 +5172,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain all ★4 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5186,7 +5185,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain all ★5 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5199,7 +5198,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain all ★6 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5212,7 +5211,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain all ★7 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5225,7 +5224,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain all ★8 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5238,7 +5237,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain all ★9 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5251,7 +5250,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all ★10 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5264,7 +5263,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all ★11 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5277,7 +5276,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Obtain all ★12 gacha cards.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5290,7 +5289,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete a gacha bonus quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5303,7 +5302,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete a Zenith Gauntlet without fainting.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_platinum.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_platinum',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5316,7 +5315,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete a Solstice Gauntlet without fainting.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_platinum.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_platinum',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5329,7 +5328,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete a Musou Gauntlet without fainting.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/medal_platinum.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/medal_platinum',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5343,7 +5342,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Lv9999 Crimson Fatalis solo without using Terrain Res.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/Element_Crimson_Demon.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/element/Element_Crimson_Demon',
 			IsSecret: true,
 			Hint: "Eternity cutting through the hot wind,\r\nImmortal flares swaying, wrapped in flames in a dimension that\r\ntranscends the boundary between life and death,\r\nthe journey of rebirth repeats itself\r\n\r\nInto the Lava\r\nBurned by scorching flames\r\nthat beautiful bird regains its brilliance\r\n\r\nDive Again It's the soul that endured pain many times,\r\nIt's the soul that can grasp eternity,\r\nJust now, reduced to ashes",
 			Unused: false,
@@ -5356,7 +5355,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Defeat Zenith★4 Gasurabazura solo without Anti-Venom.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/extreme_poison.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/ailment/extreme_poison',
 			IsSecret: true,
 			Hint: 'No cures allowed! But your halk is allowed to help.',
 			Unused: false,
@@ -5369,7 +5368,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Obtain a Special Gacha Card with all chance boosters active.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5382,7 +5381,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Defeat Upper Shiten Unknown solo without any items.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5395,7 +5394,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Accept a rare gacha challenge.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/stamp.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/stamp',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5408,7 +5407,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Enter the Konami Code on the start of a quest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: "Sorry, but that cheat code won't give you 30 more tries on this quest.",
 			Unused: false,
@@ -5422,7 +5421,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Blinking Nargacuga True Slay quest with a certain Switch Axe F.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: true,
 			Hint: "You found a book and a weapon.\r\n\r\nThe book reads:\r\n\"For those who are new to this environment, perfection is not something you achieve but something all must eventually fall into the ranks to.\r\n\r\nIt is a forced compulsion to be better, and that is what's enjoyable about entering this community.\r\n\r\nIn time, I will steal everything there is to need in order to trivialise content as people have done.\r\n\r\nWell, the alternative is to believe you're a failure who will never survive in this game which I am not pessimistic about.\r\n\r\nSo yuh, it will be worthwhile because inevitably you will be forced to be stronger, even if you have to beat up your body just so that it cooperates.\r\n\r\nWell, no merits are earned yet to justify a personality. So in the meantime, being humble and full of self-doubt is correct. At least until you proved your place in this game as, not being a failure.\r\n\r\nThe only question is how long it'll take to be competent, hmmm.\"\r\n\r\nYou turn the pages...\r\n\r\n\"I feel like garbage right now, because I haven't done anything. But instead of looking up at those people and being awe-inspired about how they're better than me, I seek to take that for myself. Because that's how you survive in this community, it is a compulsory progression, otherwise you can screw off and die somewhere.\r\n\r\nI have the utmost gratitude for people who are strong, but it's also the source of dissatisfaction that I will settle for nothing less than to take that for myself.\r\n\r\nOtherwise, crash and burn if I'm not good enough.\r\nI'm sure everyone will do great in the end o wo\r\n\r\nAs long as they don't quit.\r\n\r\nThat's why we came here, right? We wouldn't find this place if we err, sucked at MH.\"\r\n\r\nHaving read the inspiring notes, you decide to equip the Black Savage Charaxt and embark on a quest.\r\n\r\nDuring the travel to your destination, the top of the Great Forest, you notice that the weapon seems to have been made before Zeniths were known.",
 			Unused: false,
@@ -5435,7 +5434,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Complete a quest with Stylish Assault Up and Stylish Up.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/hunter.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/hunter',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5448,7 +5447,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Hunt 100 Ashen Lao-Shan Lung.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5462,7 +5461,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Hunt 1 Ashen Lao-Shan Lung, HR3 Yama Tsukami and HR3 Shen Gaoren.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'These monsters only die when they want to.',
 			Unused: false,
@@ -5476,7 +5475,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Complete 1 Arrogant Duremudira True Slay quest with Secret Technique.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: true,
 			Hint: "Who said it's only useful for the knife attack?",
 			Unused: false,
@@ -5502,7 +5501,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Buy all Bingo challenge upgrades.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5515,7 +5514,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Buy all Sky Corridor challenge upgrades.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5528,7 +5527,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Buy all Gacha challenge upgrades.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/zenny.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/zenny',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5541,7 +5540,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Click a fumo in Bingo challenge.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: '[] [] [] [] [S]\r\n[] [] [] [O] []\r\n[] [] [M] [] []\r\n[] [U] [] [] []\r\n[F] [] [] [] []',
 			Unused: true,
@@ -5555,7 +5554,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				"Click a fumo in Gacha challenge. Or not, it's probably a scam.",
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'Fumo is very expensive.',
 			Unused: true,
@@ -5569,7 +5568,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Click a fumo in Sky Corridor challenge. Looks like it underestimated your power.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: "Fumo says it's over, it has the high ground.",
 			Unused: true,
@@ -5583,7 +5582,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Click a fumo in Frontier Compendium website and follow the hints.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'Get a hint from a fumo, not here!',
 			Unused: true,
@@ -5596,7 +5595,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Fully transcend once in a Bingo challenge.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: true,
 			Hint: "There's more to bingo than meets the eye.",
 			Unused: true,
@@ -5610,7 +5609,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Use the ancient gauntlet to get an infinite amount of points in Sky Corridor. Or at least, try to.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: true,
 			Hint: "There's not one, but multiple gauntlets.",
 			Unused: true,
@@ -5623,7 +5622,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete Tome I of the Book of Secrets (Challenge).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5636,7 +5635,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete Tome II of the Book of Secrets (Challenge).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5649,7 +5648,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete Tome III of the Book of Secrets (Challenge).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5662,7 +5661,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Complete Tome IV of the Book of Secrets (Challenge).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: false,
 			Hint: '',
 			Unused: true,
@@ -5675,7 +5674,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Click a fumo in a chest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'These chests can hold many hidden treasures.',
 			Unused: true,
@@ -5688,7 +5687,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Click a fumo in a box.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'These boxes can have more than just ammo.',
 			Unused: true,
@@ -5701,7 +5700,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Click a fumo near a monster.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'This fumo reminds me of a certain fanged beast.',
 			Unused: true,
@@ -5714,7 +5713,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Click a fumo inside a wooden chest.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_red.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_red',
 			IsSecret: true,
 			Hint: 'Why was it hiding inside a wooden chest?',
 			Unused: true,
@@ -5727,7 +5726,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Click a fumo in the starry sky.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_white.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_white',
 			IsSecret: true,
 			Hint: 'You saw a comet and asked for a wish.',
 			Unused: true,
@@ -5740,7 +5739,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Click a fumo near a knife.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_white.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_white',
 			IsSecret: true,
 			Hint: 'I wonder why we use transcend burst with the carving knife.',
 			Unused: true,
@@ -5753,7 +5752,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Click a fumo near a frog.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_white.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_white',
 			IsSecret: true,
 			Hint: 'This frog was hiding a secret!',
 			Unused: true,
@@ -5766,7 +5765,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: "Click a fumo near a monster's eye.",
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_black.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_black',
 			IsSecret: true,
 			Hint: 'We might find something if we go where these eyes are pointing.',
 			Unused: true,
@@ -5780,7 +5779,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Click a fumo in Frontier Compendium website and follow the hints.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_black.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_black',
 			IsSecret: true,
 			Hint: 'Get a hint from a fumo, not here!',
 			Unused: true,
@@ -5793,7 +5792,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Click a fumo in Sky Corridor Headquarters Entrance.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: true,
 			Hint: 'Get a hint from a fumo, not here!',
 			Unused: true,
@@ -5806,7 +5805,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Help Marisa go back to her universe.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: true,
 			Hint: "Hopefully we don't have any more dimensional shenanigans.",
 			Unused: true,
@@ -5819,7 +5818,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Have the power to beat 100 Unlimited monsters.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/unknown_blue.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/unknown_blue',
 			IsSecret: true,
 			Hint: 'POWER!',
 			Unused: false,
@@ -5832,7 +5831,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Use Diva Song buff in 100 quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/diva_fountain.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/area/diva_fountain',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5858,7 +5857,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Use guild poogie skill in 100 quests.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/my_tore.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/area/my_tore',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5871,7 +5870,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 3,
 			Objective: 'Level up your halk to LV3.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/my_support.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/area/my_support',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5884,7 +5883,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 2,
 			Objective: 'Use the active features of all weapon types.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Great_Sword_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Great_Sword_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5910,7 +5909,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 4,
 			Objective: 'Reach a total of 10,000 road floors completed.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/rengoku.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/area/rengoku',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5937,7 +5936,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Rank: 1,
 			Objective: 'Attempt a quest with all run buffs active at once.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/achievement/hunter.jpg',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/achievement/hunter',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5977,7 +5976,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Burning Freezing Elzelion solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -5991,7 +5990,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Arrogant Duremudira solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6005,7 +6004,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Golden Deviljho solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6019,7 +6018,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Howling Zinogre solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6033,7 +6032,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Bombardier Bogabadorumu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6047,7 +6046,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Blinking Nargacuga solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6061,7 +6060,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Ruling Guanzorumu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6075,7 +6074,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Shifting Mi Ru solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6089,7 +6088,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Thirsty Pariapuria solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6103,7 +6102,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Sparkling Zerureusu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6117,7 +6116,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Sparkling Zerureusu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode) under 6 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6131,7 +6130,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Sparkling Zerureusu solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode), without prayer gems and under 6 minutes.',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6145,7 +6144,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Howling Zinogre solo with Hunting Horn without getting hit (Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Hunting_Horn_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Hunting_Horn_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6172,7 +6171,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Lv9999 Conquest Fatalis solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6186,7 +6185,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Lv9999 Conquest Crimson Fatalis solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6200,7 +6199,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Lv9999 Conquest Shantien solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6214,7 +6213,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Upper Shiten Unknown solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,
@@ -6228,7 +6227,7 @@ export const achievementsInfo: AchievementObject[] = [
 			Objective:
 				'Defeat Upper Shiten Disufiroa solo with Dual Swords without dropping the combo (maximum sharpening buff, Speedrun mode).',
 			Image:
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/release/MHFZ_Overlay/Assets/Icons/png/weapon/Dual_Blades_Icon_White.png',
+				'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/weapon/Dual_Blades_Icon_White',
 			IsSecret: false,
 			Hint: '',
 			Unused: false,

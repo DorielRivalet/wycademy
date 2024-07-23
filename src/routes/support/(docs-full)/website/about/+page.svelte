@@ -28,7 +28,7 @@
 						<h3>Small button</h3>
 						<img src={BlinkiesSmall} alt="Blinkies small" />
 						<CodeSnippet
-							code={"<a href='https://wycademy.vercel.app/' target='_blank'><img src='https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/blinkies-wycademy-small.gif' alt='Wycademy | MHF-Z Knowledge Base'></a>"}
+							code={`<a href='https://wycademy.vercel.app/' target='_blank'><img src='${BlinkiesSmall}' alt='Wycademy | MHF-Z Knowledge Base'></a>`}
 							type="multi"
 						/>
 					</div>
@@ -36,7 +36,7 @@
 						<h3>Large button</h3>
 						<img src={Blinkies} alt="Blinkies" />
 						<CodeSnippet
-							code={"<a href='https://wycademy.vercel.app/' target='_blank'><img src='https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/blinkies-wycademy.gif' alt='Wycademy | MHF-Z Knowledge Base'></a>"}
+							code={`<a href='https://wycademy.vercel.app/' target='_blank'><img src='${Blinkies}' alt='Wycademy | MHF-Z Knowledge Base'></a>`}
 							type="multi"
 						/>
 					</div>

@@ -23,6 +23,7 @@ SOFTWARE.
 -->
 
 <script lang="ts">
+	import LogoImage from '$lib/client/images/logo.webp';
 	import type { SchemaOrgProps } from '$lib/schema-org-props';
 	import * as constant from '$lib/constants';
 	export let schemaOrgProps: SchemaOrgProps;
@@ -69,8 +70,7 @@ SOFTWARE.
 			image: mainEntity.image,
 			datePublished: mainEntity.datePublished,
 			dateModified: mainEntity.dateModified,
-			thumbnailUrl:
-				'https://raw.githubusercontent.com/DorielRivalet/wycademy/main/src/lib/client/images/logo.png',
+			thumbnailUrl: LogoImage,
 			typicalAgeRange: '13+',
 			isAccessibleForFree: true,
 			author: {
