@@ -9,9 +9,8 @@
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import { browser } from '$app/environment';
 	import { domToPng } from 'modern-screenshot';
+	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import slugify from 'slugify';
-	import Youtube from 'svelte-youtube-embed';
-	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import { formatDateTime } from '../modules/time';
 	import ezlion from 'ezlion';
@@ -26,7 +25,8 @@
 	import { Trigger, type ReactionType } from 'svelte-reactions';
 	import { getWeaponIcon } from '../modules/frontier/weapons';
 	import { availableReactions } from '../modules/reactions';
-	import ImageDialog from './ImageDialog.svelte';
+	import MonsterComponent from './frontier/icon/dynamic-import/MonsterComponent.svelte';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 
 	export let theme: CarbonTheme;
 
@@ -102,8 +102,7 @@
 		date: string;
 		questID: number;
 		time: string;
-		objectiveImage: string;
-		youtubeID: string;
+		videoLink: string;
 		dps: { [key: string]: number };
 		objectiveName: string;
 		rankName: OverlayHuntRank;
@@ -111,16 +110,6 @@
 		isFavorited: boolean;
 		reactions: ReactionType[];
 	};
-
-	/**TODO image cdn or from monsterInfo*/
-	function getGitHubImage(image: string) {
-		return image
-			.replace(
-				'pack://application:,,,/MHFZ_Overlay;component/',
-				'https://raw.githubusercontent.com/DorielRivalet/mhfz-overlay/main/MHFZ_Overlay/',
-			)
-			.replace('blitzkrieg_bogabadorumu', 'bombardier_bogabadorumu');
-	}
 
 	function mergeReactions(reactions: ReactionType[]) {
 		return [
@@ -143,11 +132,10 @@
 			date: '2015-06-07T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/sparkling_zerureusu.png',
+
 			objectiveName: 'Sparkling Zerureusu',
 			rankName: '',
-			youtubeID: 'W0FOhCFAl0M',
+			videoLink: '/',
 			favorites: 0,
 			isFavorited: false,
 			reactions: mergeReactions([
@@ -1890,11 +1878,10 @@
 			date: '2015-06-08T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/blinking_nargacuga.png',
+
 			objectiveName: 'Blinking Nargacuga',
 			rankName: '',
-			youtubeID: '8joz3kWMabc',
+			videoLink: '/',
 			isFavorited: false,
 			favorites: 1,
 			reactions: mergeReactions([
@@ -3594,12 +3581,11 @@
 			date: '2015-06-08T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/burning_freezing_elzelion.png',
+
 			objectiveName: 'Burning Freezing Elzelion',
 			rankName: '',
 			isFavorited: false,
-			youtubeID: '8joz3kWMabc',
+			videoLink: '/',
 			reactions: mergeReactions([
 				{
 					id: 'fire',
@@ -13354,8 +13340,7 @@
 			date: '2015-06-08T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/shiten_unknown.png',
+
 			objectiveName: 'UNKNOWN',
 			rankName: 'Upper Shiten ',
 			reactions: mergeReactions([
@@ -13369,7 +13354,7 @@
 
 			favorites: 1,
 			isFavorited: false,
-			youtubeID: '8joz3kWMabc',
+			videoLink: '/',
 			dps: {
 				'89653': 34.75504322766571,
 				'89650': 34.457142857142856,
@@ -13388,11 +13373,10 @@
 			date: '2015-06-08T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/zenith_rukodiora.gif',
+
 			objectiveName: 'Rukodiora',
 			rankName: 'Zenith★4 ',
-			youtubeID: '8joz3kWMabc',
+			videoLink: '/',
 			reactions: mergeReactions([
 				{
 					id: 'star',
@@ -13422,11 +13406,10 @@
 			date: '2015-06-08T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/blitzkrieg_bogabadorumu.png',
+
 			objectiveName: 'Blitzkrieg Bogabadorumu',
 			rankName: '',
-			youtubeID: 'uk53thHe_nU',
+			videoLink: '/',
 			reactions: mergeReactions([
 				{
 					id: 'mindblown',
@@ -13456,8 +13439,7 @@
 			date: '2015-06-08T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/bombardier_bogabadorumu.png',
+
 			objectiveName: 'Bombardier Bogabadorumu',
 			rankName: '',
 			reactions: mergeReactions([
@@ -13469,7 +13451,7 @@
 				},
 			]),
 
-			youtubeID: '8joz3kWMabc',
+			videoLink: '/',
 			favorites: 1,
 			isFavorited: false,
 			dps: {
@@ -13490,8 +13472,7 @@
 			date: '2015-06-08T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/shiten_unknown.png',
+
 			objectiveName: 'UNKNOWN',
 			rankName: 'Upper Shiten ',
 			favorites: 1,
@@ -13505,7 +13486,7 @@
 				},
 			]),
 
-			youtubeID: '8joz3kWMabc',
+			videoLink: '/',
 			dps: {
 				'89653': 34.75504322766571,
 				'89650': 34.457142857142856,
@@ -13524,8 +13505,7 @@
 			date: '2015-06-08T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/shiten_unknown.png',
+
 			objectiveName: 'UNKNOWN',
 			rankName: 'Upper Shiten ',
 			reactions: mergeReactions([
@@ -13539,7 +13519,7 @@
 
 			favorites: 1,
 			isFavorited: false,
-			youtubeID: '8joz3kWMabc',
+			videoLink: '/',
 			dps: {
 				'89653': 34.75504322766571,
 				'89650': 34.457142857142856,
@@ -13558,8 +13538,7 @@
 			date: '2015-06-08T00:00:01Z',
 			questID: 1,
 			time: '02:22.23',
-			objectiveImage:
-				'pack://application:,,,/MHFZ_Overlay;component/Assets/Icons/png/monster/shiten_unknown.png',
+
 			objectiveName: 'UNKNOWN',
 			rankName: 'Upper Shiten ',
 			reactions: mergeReactions([
@@ -13669,7 +13648,7 @@
 
 			favorites: 1,
 			isFavorited: false,
-			youtubeID: '8joz3kWMabc',
+			videoLink: '/',
 			dps: {
 				'89653': 34.75504322766571,
 				'89650': 34.457142857142856,
@@ -13687,17 +13666,6 @@
 	const displayedRuns = Object.values(runs).slice(0, maxPinnedRuns);
 
 	export let username = 'UserDemo';
-	let modalOpen = false;
-	let modalHeading = '';
-	let modalLabel = '';
-	let youtubeID = '';
-
-	function changeModal(cell: DataTableCell) {
-		modalOpen = true;
-		modalHeading = '';
-		modalLabel = username;
-		youtubeID = cell.value;
-	}
 
 	function getAllReactionsCount(reactions: ReactionType[]) {
 		return reactions.reduce((total, { quantity }) => total + quantity, 0);
@@ -13749,25 +13717,6 @@
 	}
 </script>
 
-<Modal
-	passiveModal
-	bind:open={modalOpen}
-	{modalHeading}
-	{modalLabel}
-	on:open
-	on:close
->
-	<div class="modal-content">
-		<div class="video-container">
-			{#if youtubeID !== ''}
-				{#key youtubeID}
-					<Youtube id={youtubeID} />
-				{/key}
-			{/if}
-		</div>
-	</div>
-</Modal>
-
 <div class="container">
 	<DataTable
 		id="pinned-runs-dom"
@@ -13778,10 +13727,9 @@
 			{ key: 'date', value: 'Date', minWidth: '128px' },
 			{ key: 'quest', value: 'Quest', minWidth: '192px' },
 			{ key: 'time', value: 'Time' },
-			{ key: 'objectiveImage', value: 'Image' },
-			{ key: 'objectiveName', value: 'Name', minWidth: '192px' },
+			{ key: 'objectiveName', value: 'Objective', minWidth: '64px' },
 			{ key: 'rankName', value: 'Rank' },
-			{ key: 'youtubeID', value: 'YouTube' },
+			{ key: 'videoLink', value: 'Video' },
 			{ key: 'favorites', value: 'Favorites' },
 			{ key: 'reactions', value: 'Reactions', minWidth: '192px' },
 			{ key: 'dps', value: 'DPS', minWidth: '192px' },
@@ -13793,10 +13741,9 @@
 				date: formatDateTime(e.date),
 				quest: ezlion.Quest[e.questID],
 				time: e.time,
-				objectiveImage: e.objectiveImage,
 				objectiveName: e.objectiveName.replace('Blitzkrieg', 'Bombardier'),
 				rankName: e.rankName,
-				youtubeID: e.youtubeID,
+				videoLink: e.videoLink,
 				favorites: e.favorites,
 				reactions: e.reactions,
 				dps: e.dps,
@@ -13820,7 +13767,7 @@
 									'Bombardier',
 								),
 								rankName: e.rankName,
-								youtubeID: e.youtubeID,
+								videoLink: e.videoLink,
 								favorites: e.favorites,
 								reactions: getAllReactionsCount(e.reactions),
 							};
@@ -13833,25 +13780,21 @@
 			</div>
 		</Toolbar>
 		<svelte:fragment slot="cell" let:cell let:row>
-			{#if cell.key === 'youtubeID'}
-				<Button
-					iconDescription="Watch Video"
-					on:click={() => changeModal(cell)}
-					size="small"
-					kind="ghost"
+			{#if cell.key === 'videoLink'}
+				<OutboundLink href={cell.value}>
+					<VideoPlayer size={24} color="var(--ctp-blue)" />
+				</OutboundLink>
+			{:else if cell.key === 'objectiveName'}
+				<Tooltip hideIcon>
+					<span slot="triggerText">
+						<MonsterComponent
+							currentMonster={cell.value}
+							size={'64px'}
+							background={false}
+						/></span
+					>
+					<p>{cell.value}</p></Tooltip
 				>
-					<span slot="icon">
-						<VideoPlayer size={24} color="var(--ctp-blue)" />
-					</span>
-				</Button>
-			{:else if cell.key === 'objectiveImage'}
-				<ImageDialog
-					width={64}
-					height={64}
-					src={getGitHubImage(cell.value)}
-					alt="Objective"
-					type="file"
-				/>
 			{:else if cell.key === 'favorites'}
 				<div class="favorites">
 					{#key changeFavorite}

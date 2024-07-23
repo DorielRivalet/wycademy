@@ -19,6 +19,7 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ArmorStandIcon from '$lib/client/components/frontier/icon/armor/MHRise_Item_Icon-Armor_Stand_Equipment_White.svelte';
 	import { monsterInfo } from '../modules/frontier/monsters';
+	import MonsterComponent from './frontier/icon/dynamic-import/MonsterComponent.svelte';
 
 	let selectedSetName = '';
 
@@ -37,7 +38,6 @@
 			setTags: ['Road', 'Multiplayer', 'Premium'],
 			setName: 'Armor Set 1',
 			setColor: 'red',
-
 			weaponType: 'Great Sword',
 			weaponName: 'Weapon',
 			head: 'Helmet',
@@ -68,8 +68,11 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			// TODO svg?
-			setIcon: monsterInfo.find((e) => e.displayName === 'Bogabadorumu')?.icon,
+			setIcon: MonsterComponent,
+			setIconProps: {
+				currentMonster: 'Bogabadorumu',
+				background: false,
+			},
 			setTags: ['Zenith', 'Multiplayer', 'Premium'],
 			setName: 'Armor Set 2',
 			setColor: 'green',
@@ -104,8 +107,11 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			setIcon: monsterInfo.find((e) => e.displayName === 'Howling Zinogre')
-				?.icon,
+			setIcon: MonsterComponent,
+			setIconProps: {
+				currentMonster: 'Howling Zinogre',
+				background: false,
+			},
 			setTags: ['Musou', 'Multiplayer', 'Premium'],
 			setName: 'Armor Set 3',
 			setColor: 'blue',
@@ -140,9 +146,11 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			setIcon: monsterInfo.find(
-				(e) => e.displayName === 'Conquest Crimson Fatalis',
-			)?.icon,
+			setIcon: MonsterComponent,
+			setIconProps: {
+				currentMonster: 'Conquest Crimson Fatalis',
+				background: false,
+			},
 			setTags: ['Conquest', 'Multiplayer', 'Premium'],
 			setName: 'Armor Set 4',
 			setColor: 'yellow',
@@ -177,8 +185,11 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			setIcon: monsterInfo.find((e) => e.displayName === 'Blinking Nargacuga')
-				?.icon,
+			setIcon: MonsterComponent,
+			setIconProps: {
+				currentMonster: 'Blinking Nargacuga',
+				background: false,
+			},
 			setTags: ['Musou', 'Solo', 'Premium'],
 			setName: 'Armor Set 5',
 			setColor: 'mauve',
@@ -213,8 +224,11 @@
 			legsSlot3: 'Slot 3',
 		},
 		{
-			setIcon: monsterInfo.find((e) => e.displayName === 'Supremacy Pariapuria')
-				?.icon,
+			setIcon: MonsterComponent,
+			setIconProps: {
+				currentMonster: 'Supremacy Pariapuria',
+				background: false,
+			},
 			setTags: ['Supremacy', 'Solo', 'Premium'],
 			setName: 'Armor Set 6',
 			setColor: 'sky',
@@ -275,7 +289,11 @@
 								<div class="set-header-image">
 									<svelte:component
 										this={armorSet.setIcon}
-										{...{ size: '64px' }}
+										{...{
+											size: '64px',
+											currentMonster: armorSet.setIconProps?.currentMonster,
+											background: armorSet.setIconProps?.background,
+										}}
 									/>
 								</div>
 							{/if}
@@ -343,7 +361,12 @@
 							<div class="set-header-image">
 								<svelte:component
 									this={selectedArmorSet?.setIcon}
-									{...{ size: '64px' }}
+									{...{
+										size: '64px',
+										currentMonster:
+											selectedArmorSet?.setIconProps?.currentMonster,
+										background: selectedArmorSet?.setIconProps?.background,
+									}}
 								/>
 							</div>
 						{/if}

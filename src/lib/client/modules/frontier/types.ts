@@ -1041,6 +1041,12 @@ export type ProfilePinnedSet = {
 	setName: string;
 	setColor: string;
 	setIcon: string | undefined | ComponentType<SvelteComponent>;
+	setIconProps?: {
+		currentMonster?: FrontierMonsterNameExpanded;
+		size?: string;
+		color?: string;
+		background?: boolean;
+	};
 	setTags: string[];
 	weaponType: FrontierWeaponName;
 	weaponName: string;
