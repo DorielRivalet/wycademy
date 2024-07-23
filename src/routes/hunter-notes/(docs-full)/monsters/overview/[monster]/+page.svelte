@@ -50,6 +50,7 @@
 		monsterInfo,
 	} from '$lib/client/modules/frontier/monsters';
 	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
+	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
@@ -251,31 +252,34 @@
 							: monster.titles[0]
 						: 'None'}
 				>
-					<div
-						class="monster-icon"
-						style:--monster-icon="monster-icon-{slugify(monster.displayName, {
-							lower: true,
-						})}"
-					>
-						{#if monster.unusedComponent}
-							<ImageDialog
-								src={monster.icon}
-								alt={monster.displayName}
-								width={256}
-								height={256}
-								type="file"
-							/>
-						{:else}
-							<!--TODO use slots instead?-->
-							<ImageDialog
-								src={monster.icon}
-								alt={monster.displayName}
-								width={256}
-								height={256}
-								type="file"
-							/>
-						{/if}
-					</div>
+					{#key monster.displayName}
+						<div
+							class="monster-icon"
+							style:--monster-icon="monster-icon-{slugify(monster.displayName, {
+								lower: true,
+							})}"
+						>
+							{#if monster.unusedComponent === true}
+								<ImageDialog
+									src={monster.icon}
+									alt={monster.displayName}
+									width={256}
+									height={256}
+									type="file"
+								/>
+							{:else}
+								<!--TODO use slots instead?-->
+								<ImageDialog
+									src={MonsterComponent}
+									alt={monster.displayName}
+									componentSize={'256px'}
+									background={true}
+									currentMonster={monster.displayName}
+									type="component"
+								/>
+							{/if}
+						</div>
+					{/key}
 				</BestiaryMonsterGameInfo>
 			</div>
 			<div>

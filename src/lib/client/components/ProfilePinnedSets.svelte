@@ -18,8 +18,8 @@
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ArmorStandIcon from '$lib/client/components/frontier/icon/armor/MHRise_Item_Icon-Armor_Stand_Equipment_White.svelte';
-	import { monsterInfo } from '../modules/frontier/monsters';
 	import MonsterComponent from './frontier/icon/dynamic-import/MonsterComponent.svelte';
+	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 
 	let selectedSetName = '';
 
@@ -280,21 +280,31 @@
 					<div class="set-header">
 						<div class="set-header-image-container">
 							{#if typeof armorSet.setIcon === 'string'}
-								<img
-									class="set-header-image"
-									src={armorSet.setIcon}
-									alt="Armot Set Piece"
-								/>
+								<Tooltip hideIcon>
+									<span slot="triggerText">
+										<img
+											class="set-header-image"
+											src={armorSet.setIcon}
+											alt="Armot Set Piece"
+										/></span
+									>
+									<p>{armorSet.setName}</p></Tooltip
+								>
 							{:else}
 								<div class="set-header-image">
-									<svelte:component
-										this={armorSet.setIcon}
-										{...{
-											size: '64px',
-											currentMonster: armorSet.setIconProps?.currentMonster,
-											background: armorSet.setIconProps?.background,
-										}}
-									/>
+									<Tooltip hideIcon>
+										<span slot="triggerText">
+											<svelte:component
+												this={armorSet.setIcon}
+												{...{
+													size: '64px',
+													currentMonster: armorSet.setIconProps?.currentMonster,
+													background: armorSet.setIconProps?.background,
+												}}
+											/></span
+										>
+										<p>{armorSet.setName}</p></Tooltip
+									>
 								</div>
 							{/if}
 						</div>

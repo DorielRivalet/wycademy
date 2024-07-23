@@ -110,7 +110,11 @@
 				<div class="dialog-image">
 					<svelte:component
 						this={svgComponent}
-						{...{ size: 'clamp(50vh, 50vw, 50%)' }}
+						{...{
+							size: 'clamp(50vh, 50vw, 50%)',
+							currentMonster: currentMonster,
+							background: false,
+						}}
 					/>
 				</div>
 			{/if}
