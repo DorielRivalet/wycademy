@@ -112,6 +112,7 @@
 		reactions: ReactionType[];
 	};
 
+	/**TODO image cdn or from monsterInfo*/
 	function getGitHubImage(image: string) {
 		return image
 			.replace(
