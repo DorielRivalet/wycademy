@@ -12,7 +12,7 @@
 	import { theme } from '$lib/client/stores/theme';
 	import { themeTokens } from '$lib/client/themes/tokens';
 	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
-	import { onMount } from 'svelte';
+	import { onMount, SvelteComponent, type ComponentType } from 'svelte';
 	import { cursorIcon } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import type { LayoutData } from './$types';
@@ -67,6 +67,8 @@
 		monsterInfo,
 	} from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
+	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -468,7 +470,15 @@
 		},
 	];
 
-	const iconsMap = [
+	const iconsMap: {
+		id: string;
+		icon: string | ComponentType<SvelteComponent>;
+		iconProps?: {
+			size?: string;
+			currentMonster?: FrontierMonsterNameExpanded;
+			background?: boolean;
+		};
+	}[] = [
 		{ id: '/hunter-notes/getting-started', icon: BookIconWhite },
 		{
 			id: '/hunter-notes/getting-started/your-first-hunts',
@@ -479,57 +489,107 @@
 		{ id: '/hunter-notes/getting-started/transcend', icon: Transcend },
 		{
 			id: '/hunter-notes/monsters',
-			icon: monsterInfo.find((e) => e.displayName === 'Abiorugu')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Abiorugu',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/overview',
-			icon: monsterInfo.find((e) => e.displayName === 'Rathalos')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Rathalos',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/exotics',
-			icon: monsterInfo.find((e) => e.displayName === 'Stygian Zinogre')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Stygian Zinogre',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/origin',
-			icon: monsterInfo.find((e) => e.displayName === 'Yama Kurai')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Yama Kurai',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/burst',
-			icon: monsterInfo.find((e) => e.displayName === 'Zerureusu')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Zerureusu',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/supremacy',
-			icon: monsterInfo.find((e) => e.displayName === 'Supremacy Doragyurosu')
-				?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Supremacy Doragyurosu',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/duremudira',
-			icon: monsterInfo.find((e) => e.displayName === 'Duremudira')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Duremudira',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/zenith',
-			icon: monsterInfo.find((e) => e.displayName === 'Bogabadorumu')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Bogabadorumu',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/raviente',
-			icon: monsterInfo.find((e) => e.displayName === 'Berserk Raviente')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Berserk Raviente',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/conquest',
-			icon: monsterInfo.find((e) => e.displayName === 'Conquest Fatalis')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Conquest Fatalis',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/shiten',
-			icon: monsterInfo.find((e) => e.displayName === 'Disufiroa')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Disufiroa',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/unlimited',
-			icon: monsterInfo.find((e) => e.displayName === 'Akura Jebia')?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Akura Jebia',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/monsters/musou',
-			icon: monsterInfo.find((e) => e.displayName === 'Blinking Nargacuga')
-				?.icon,
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Blinking Nargacuga',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/weapons',
@@ -909,7 +969,13 @@
 						{:else}
 							<svelte:component
 								this={iconsMap.find((e) => e.id === node.id)?.icon}
-								{...{ size: '24px' }}
+								{...{
+									background: iconsMap.find((e) => e.id === node.id)?.iconProps
+										?.background,
+									size: '24px',
+									currentMonster: iconsMap.find((e) => e.id === node.id)
+										?.iconProps?.currentMonster,
+								}}
 							/>
 						{/if}
 					</div>
