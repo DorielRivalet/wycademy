@@ -18,10 +18,6 @@
 		xml:space="preserve"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		xmlns="http://www.w3.org/2000/svg"
-		xmlns:svg="http://www.w3.org/2000/svg"
-		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-		xmlns:cc="http://creativecommons.org/ns#"
-		xmlns:dc="http://purl.org/dc/elements/1.1/"
 	>
 		<defs id="defs2">
 			<linearGradient id="linearGradient12735">
@@ -1377,6 +1373,7 @@
 			</g>
 		</g>
 		<metadata id="metadata26865">
+			<!-- svelte-ignore illegal-attribute-character -->
 			<rdf:RDF>
 				<cc:Work rdf:about="">
 					<dc:creator>

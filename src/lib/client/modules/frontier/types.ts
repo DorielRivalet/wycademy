@@ -17,7 +17,7 @@ import type {
 	FrontierWeaponStyle,
 } from 'ezlion';
 import type { wikiaMonsters } from './monsters';
-import type { ComponentType } from 'svelte';
+import type { ComponentType, SvelteComponent } from 'svelte';
 
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
 
@@ -181,7 +181,7 @@ export type FrontierSlot = 0 | 1 | 2 | 3;
 export type FrontierArmor = {
 	id: FrontierArmorID;
 	name: FrontierArmorName | 'Set';
-	icon: any;
+	icon: ComponentType<SvelteComponent>;
 };
 /**0 does not show. Shows in 2nd page. */
 export type FrontierArmorGRLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -199,13 +199,13 @@ export type FrontierWeapon = {
 	id: FrontierWeaponID;
 	name: FrontierWeaponName;
 	class: FrontierWeaponClass;
-	icon: any;
+	icon: ComponentType<SvelteComponent>;
 	hiden: FrontierMaxHiden;
 	bloatAttackMultiplier: FrontierWeaponMultiplier;
 	statusAssaultPoison: number;
 	statusAssaultParalysis: number;
-	smallIcon: any;
-	smallIconRed: any;
+	smallIcon: string;
+	smallIconRed: string;
 	activeFeatureValue: number;
 	elementalExploitModifier: number;
 	// TODO should be in motion values instead
@@ -615,7 +615,7 @@ export type FrontierShotAttackMultiplier = 0.5 | 0.6 | 0.73 | 1 | 1.3 | 1.4 | 2;
 
 export type FrontierMotionValue = {
 	name: string;
-	animation?: any;
+	animation?: string;
 	values: string; // TODO: to number array?
 	hitCount: number;
 	elementMultiplier: number;
@@ -811,12 +811,12 @@ export type FrontierMonsterPartInfo = {
 
 export type FrontierMonsterInfo = {
 	id: number;
-	name: FrontierMonsterName | 'Violent Raviente'; // TODO update ezlion
+	name: FrontierMonsterName | 'Violent Raviente' | 'Giaprey'; // TODO update ezlion
 	rank: FrontierRankBand;
-	icon: any;
-	render: any;
-	fullRender: any;
-	component: any;
+	icon: string;
+	render: string;
+	fullRender: string;
+	component: ComponentType<SvelteComponent>;
 	unusedComponent: boolean;
 	displayName: string;
 	titles?: string[];
@@ -960,7 +960,7 @@ export type FrontierTowerWeapon = {
 	name: string;
 	series: FrontierTowerWeaponSeries;
 	type: FrontierWeaponName;
-	image: any;
+	image: string;
 	attack: FrontierTowerWeaponLevelUpgrade[];
 	element?: FrontierTowerWeaponLevelUpgrade[];
 	paralysis?: FrontierTowerWeaponLevelUpgrade[];
@@ -1041,7 +1041,7 @@ export type WycademyTrophy = {
 export type ProfilePinnedSet = {
 	setName: string;
 	setColor: string;
-	setIcon: string | ComponentType;
+	setIcon: string | ComponentType<SvelteComponent>;
 	setTags: string[];
 	weaponType: FrontierWeaponName;
 	weaponName: string;
