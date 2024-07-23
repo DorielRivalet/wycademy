@@ -12,6 +12,9 @@
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 	import { page } from '$app/stores';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 
 	function getSharpnessArray(input: string): FrontierWeaponSharpness {
 		// Split the input string into an array of strings
@@ -41,6 +44,7 @@
 					<DataTable
 						sortable
 						useStaticWidth
+						id="weapon-multipliers-dom"
 						zebra
 						size="medium"
 						headers={[
@@ -200,6 +204,15 @@
 										},
 									])}
 								/>
+								<Button
+									kind="tertiary"
+									icon={Download}
+									on:click={() =>
+										downloadDomAsPng(
+											'weapon-multipliers-dom',
+											'weapon-multipliers',
+										)}>Download</Button
+								>
 							</div>
 						</Toolbar>
 						<svelte:fragment slot="cell" let:cell>
@@ -219,8 +232,14 @@
 		</section>
 		<section>
 			<SectionHeading level={2} title="Sharpness" />
+			<p class="spaced-paragraph">
+				The multiplier applies to both raw and element. The status multiplier is
+				1. On attack bounce, the bounce multiplier is applied instead of the
+				main multiplier.
+			</p>
 			<div class="sharpness-table">
 				<DataTable
+					id="sharpness-dom"
 					useStaticWidth
 					sortable
 					zebra
@@ -229,6 +248,7 @@
 						{ key: 'name', value: 'Color', minWidth: '1rem' },
 						{ key: 'bar', value: 'Sharpness Bar', minWidth: '1rem' },
 						{ key: 'multiplier', value: 'Multiplier' },
+						{ key: 'bounce', value: 'Bounce Multiplier' },
 						{ key: 'affinity', value: 'Affinity' },
 					]}
 					rows={[
@@ -237,21 +257,24 @@
 							name: 'Red',
 							bar: '400,400,400,400,400,400,400,400',
 							multiplier: 'x0.6',
-							affinity: '0%',
+							affinity: 'Disabled',
+							bounce: 'x0.5',
 						},
 						{
 							id: '2',
 							name: 'Orange',
 							bar: '0,400,400,400,400,400,400,400',
 							multiplier: 'x0.85',
-							affinity: '0%',
+							affinity: 'Disabled',
+							bounce: 'x0.75',
 						},
 						{
 							id: '3',
 							name: 'Yellow',
 							bar: '0,0,400,400,400,400,400,400',
 							multiplier: 'x1.1',
-							affinity: '0%',
+							affinity: 'Disabled',
+							bounce: 'x1',
 						},
 						{
 							id: '4',
@@ -259,6 +282,7 @@
 							bar: '0,0,0,400,400,400,400,400',
 							multiplier: 'x1.325',
 							affinity: '0%',
+							bounce: 'x1.125',
 						},
 						{
 							id: '5',
@@ -266,6 +290,7 @@
 							bar: '0,0,0,0,400,400,400,400',
 							multiplier: 'x1.45',
 							affinity: '10%',
+							bounce: 'x1.25',
 						},
 						{
 							id: '6',
@@ -273,6 +298,7 @@
 							bar: '0,0,0,0,0,400,400,400',
 							multiplier: 'x1.60',
 							affinity: '10%',
+							bounce: 'x1.4',
 						},
 						{
 							id: '7',
@@ -280,6 +306,7 @@
 							bar: '0,0,0,0,0,0,400,400',
 							multiplier: 'x1.7',
 							affinity: '10%',
+							bounce: 'x1.5',
 						},
 						{
 							id: '8',
@@ -287,6 +314,7 @@
 							bar: '0,0,0,0,0,0,0,400',
 							multiplier: 'x1.8',
 							affinity: '10%',
+							bounce: 'x1.6',
 						},
 					]}
 					><Toolbar
@@ -352,6 +380,12 @@
 									},
 								])}
 							/>
+							<Button
+								kind="tertiary"
+								icon={Download}
+								on:click={() => downloadDomAsPng('sharpness-dom', 'sharpness')}
+								>Download</Button
+							>
 						</div>
 					</Toolbar>
 
