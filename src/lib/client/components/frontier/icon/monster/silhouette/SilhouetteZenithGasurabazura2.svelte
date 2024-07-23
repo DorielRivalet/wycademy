@@ -57,6 +57,8 @@
 <div id="tooltip" style="position: absolute; display: none;"></div>
 
 <div class="container">
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
+	<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 	<svg
 		width={size}
 		viewBox="0 0 128 128"

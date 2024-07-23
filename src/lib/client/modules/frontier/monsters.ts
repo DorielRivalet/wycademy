@@ -1,397 +1,3 @@
-import IconMonsterRandom from '$lib/client/images/monster/random.webp';
-import IconMonsterRathian from '$lib/client/images/monster/rathian.webp';
-import IconMonsterFatalis from '$lib/client/images/monster/fatalis.webp';
-import IconMonsterKelbi from '$lib/client/images/monster/kelbi.webp';
-import IconMonsterMosswine from '$lib/client/images/monster/mosswine.webp';
-import IconMonsterBullfango from '$lib/client/images/monster/bullfango.webp';
-import IconMonsterYianKutKu from '$lib/client/images/monster/yian_kut-ku.webp';
-import IconMonsterLaoShanLung from '$lib/client/images/monster/lao-shan_lung.webp';
-import IconMonsterCephadrome from '$lib/client/images/monster/cephadrome.webp';
-import IconMonsterFelyne from '$lib/client/images/monster/felyne.webp';
-import IconMonsterRathalos from '$lib/client/images/monster/rathalos.webp';
-import IconMonsterAptonoth from '$lib/client/images/monster/aptonoth.webp';
-import IconMonsterGenprey from '$lib/client/images/monster/genprey.webp';
-import IconMonsterDiablos from '$lib/client/images/monster/diablos.webp';
-import IconMonsterKhezu from '$lib/client/images/monster/khezu.webp';
-import IconMonsterVelociprey from '$lib/client/images/monster/velociprey.webp';
-import IconMonsterGravios from '$lib/client/images/monster/gravios.webp';
-import IconMonsterVespoid from '$lib/client/images/monster/vespoid.webp';
-import IconMonsterGypceros from '$lib/client/images/monster/gypceros.webp';
-import IconMonsterPlesioth from '$lib/client/images/monster/plesioth.webp';
-import IconMonsterBasarios from '$lib/client/images/monster/basarios.webp';
-import IconMonsterMelynx from '$lib/client/images/monster/melynx.webp';
-import IconMonsterHornetaur from '$lib/client/images/monster/hornetaur.webp';
-import IconMonsterApceros from '$lib/client/images/monster/apceros.webp';
-import IconMonsterMonoblos from '$lib/client/images/monster/monoblos.webp';
-import IconMonsterVelocidrome from '$lib/client/images/monster/velocidrome.webp';
-import IconMonsterGendrome from '$lib/client/images/monster/gendrome.webp';
-import IconMonsterIoprey from '$lib/client/images/monster/ioprey.webp';
-import IconMonsterIodrome from '$lib/client/images/monster/iodrome.webp';
-import IconMonsterKirin from '$lib/client/images/monster/kirin.webp';
-import IconMonsterCephalos from '$lib/client/images/monster/cephalos.webp';
-import IconMonsterGiaprey from '$lib/client/images/monster/giaprey.webp';
-import IconMonsterCrimsonFatalis from '$lib/client/images/monster/crimson_fatalis.webp';
-import IconMonsterPinkRathian from '$lib/client/images/monster/pink_rathian.webp';
-import IconMonsterBlueYianKutKu from '$lib/client/images/monster/blue_yian_kut-ku.webp';
-import IconMonsterPurpleGypceros from '$lib/client/images/monster/purple_gypceros.webp';
-import IconMonsterYianGaruga from '$lib/client/images/monster/yian_garuga.webp';
-import IconMonsterSilverRathalos from '$lib/client/images/monster/silver_rathalos.webp';
-import IconMonsterGoldRathian from '$lib/client/images/monster/gold_rathian.webp';
-import IconMonsterBlackDiablos from '$lib/client/images/monster/black_diablos.webp';
-import IconMonsterWhiteMonoblos from '$lib/client/images/monster/white_monoblos.webp';
-import IconMonsterRedKhezu from '$lib/client/images/monster/red_khezu.webp';
-import IconMonsterGreenPlesioth from '$lib/client/images/monster/green_plesioth.webp';
-import IconMonsterBlackGravios from '$lib/client/images/monster/black_gravios.webp';
-import IconMonsterDaimyoHermitaur from '$lib/client/images/monster/daimyo_hermitaur.webp';
-import IconMonsterAzureRathalos from '$lib/client/images/monster/azure_rathalos.webp';
-import IconMonsterAshenLaoShanLung from '$lib/client/images/monster/ashen_lao-shan_lung.webp';
-import IconMonsterBlangonga from '$lib/client/images/monster/blangonga.webp';
-import IconMonsterCongalala from '$lib/client/images/monster/congalala.webp';
-import IconMonsterRajang from '$lib/client/images/monster/rajang.webp';
-import IconMonsterKushalaDaora from '$lib/client/images/monster/kushala_daora.webp';
-import IconMonsterShenGaoren from '$lib/client/images/monster/shen_gaoren.webp';
-import IconMonsterGreatThunderbug from '$lib/client/images/monster/great_thunderbug.webp';
-import IconMonsterShakalaka from '$lib/client/images/monster/shakalaka.webp';
-import IconMonsterYamaTsukami from '$lib/client/images/monster/yama_tsukami.webp';
-import IconMonsterChameleos from '$lib/client/images/monster/chameleos.webp';
-import IconMonsterRustedKushalaDaora from '$lib/client/images/monster/rusted_kushala_daora.webp';
-import IconMonsterBlango from '$lib/client/images/monster/blango.webp';
-import IconMonsterConga from '$lib/client/images/monster/conga.webp';
-import IconMonsterRemobra from '$lib/client/images/monster/remobra.webp';
-import IconMonsterLunastra from '$lib/client/images/monster/lunastra.webp';
-import IconMonsterTeostra from '$lib/client/images/monster/teostra.webp';
-import IconMonsterHermitaur from '$lib/client/images/monster/hermitaur.webp';
-import IconMonsterShogunCeanataur from '$lib/client/images/monster/shogun_ceanataur.webp';
-import IconMonsterBulldrome from '$lib/client/images/monster/bulldrome.webp';
-import IconMonsterAnteka from '$lib/client/images/monster/anteka.webp';
-import IconMonsterPopo from '$lib/client/images/monster/popo.webp';
-import IconMonsterWhiteFatalis from '$lib/client/images/monster/white_fatalis.webp';
-import IconMonsterCeanataur from '$lib/client/images/monster/ceanataur.webp';
-import IconMonsterHypnocatrice from '$lib/client/images/monster/hypnoc.webp';
-import IconMonsterLavasioth from '$lib/client/images/monster/lavasioth.webp';
-import IconMonsterTigrex from '$lib/client/images/monster/tigrex.webp';
-import IconMonsterAkantor from '$lib/client/images/monster/akantor.webp';
-import IconMonsterBrightHypnoc from '$lib/client/images/monster/bright_hypnoc.webp';
-import IconMonsterRedLavasioth from '$lib/client/images/monster/red_lavasioth.webp';
-import IconMonsterEspinas from '$lib/client/images/monster/espinas.webp';
-import IconMonsterOrangeEspinas from '$lib/client/images/monster/orange_espinas.webp';
-import IconMonsterSilverHypnoc from '$lib/client/images/monster/silver_hypnoc.webp';
-import IconMonsterAkuraVashimu from '$lib/client/images/monster/akura_vashimu.webp';
-import IconMonsterAkuraJebia from '$lib/client/images/monster/akura_jebia.webp';
-import IconMonsterBerukyurosu from '$lib/client/images/monster/berukyurosu.webp';
-import IconMonsterCactus from '$lib/client/images/monster/cactus.webp';
-import IconMonsterPariapuria from '$lib/client/images/monster/pariapuria.webp';
-import IconMonsterWhiteEspinas from '$lib/client/images/monster/white_espinas.webp';
-import IconMonsterKamuOrugaron from '$lib/client/images/monster/kamu_orugaron.webp';
-import IconMonsterNonoOrugaron from '$lib/client/images/monster/nono_orugaron.webp';
-import IconMonsterRaviente from '$lib/client/images/monster/raviente.webp';
-import IconMonsterViolentRaviente from '$lib/client/images/monster/violent_raviente.webp';
-import IconMonsterDyuragaua from '$lib/client/images/monster/dyuragaua.webp';
-import IconMonsterDoragyurosu from '$lib/client/images/monster/doragyurosu.webp';
-import IconMonsterGurenzeburu from '$lib/client/images/monster/gurenzeburu.webp';
-import IconMonsterBurukku from '$lib/client/images/monster/burukku.webp';
-import IconMonsterErupe from '$lib/client/images/monster/erupe.webp';
-import IconMonsterRukodiora from '$lib/client/images/monster/rukodiora.webp';
-import IconMonsterUNKNOWN from '$lib/client/images/monster/unknown.webp';
-import IconMonsterGogomoa from '$lib/client/images/monster/gogomoa.webp';
-import IconMonsterTaikunZamuza from '$lib/client/images/monster/taikun_zamuza.webp';
-import IconMonsterAbiorugu from '$lib/client/images/monster/abiorugu.webp';
-import IconMonsterKuarusepusu from '$lib/client/images/monster/kuarusepusu.webp';
-import IconMonsterOdibatorasu from '$lib/client/images/monster/odibatorasu.webp';
-import IconMonsterDisufiroa from '$lib/client/images/monster/disufiroa.webp';
-import IconMonsterRebidiora from '$lib/client/images/monster/rebidiora.webp';
-import IconMonsterAnorupatisu from '$lib/client/images/monster/anorupatisu.webp';
-import IconMonsterHyujikiki from '$lib/client/images/monster/hyujikiki.webp';
-import IconMonsterMidogaron from '$lib/client/images/monster/midogaron.webp';
-import IconMonsterGiaorugu from '$lib/client/images/monster/giaorugu.webp';
-import IconMonsterMiRu from '$lib/client/images/monster/mi_ru.webp';
-import IconMonsterFarunokku from '$lib/client/images/monster/farunokku.webp';
-import IconMonsterPokaradon from '$lib/client/images/monster/pokaradon.webp';
-import IconMonsterShantien from '$lib/client/images/monster/shantien.webp';
-import IconMonsterPokara from '$lib/client/images/monster/pokara.webp';
-import IconMonsterGoruganosu from '$lib/client/images/monster/goruganosu.webp';
-import IconMonsterAruganosu from '$lib/client/images/monster/aruganosu.webp';
-import IconMonsterBaruragaru from '$lib/client/images/monster/baruragaru.webp';
-import IconMonsterZerureusu from '$lib/client/images/monster/zerureusu.webp';
-import IconMonsterGougarf from '$lib/client/images/monster/gougarf.webp';
-import IconMonsterUruki from '$lib/client/images/monster/uruki.webp';
-import IconMonsterForokururu from '$lib/client/images/monster/forokururu.webp';
-import IconMonsterMeraginasu from '$lib/client/images/monster/meraginasu.webp';
-import IconMonsterDiorex from '$lib/client/images/monster/diorex.webp';
-import IconMonsterGarubaDaora from '$lib/client/images/monster/garuba_daora.webp';
-import IconMonsterInagami from '$lib/client/images/monster/inagami.webp';
-import IconMonsterVarusaburosu from '$lib/client/images/monster/varusaburosu.webp';
-import IconMonsterPoborubarumu from '$lib/client/images/monster/poborubarumu.webp';
-import IconMonsterDuremudira from '$lib/client/images/monster/duremudira.webp';
-import IconMonsterGureadomosu from '$lib/client/images/monster/gureadomosu.webp';
-import IconMonsterHarudomerugu from '$lib/client/images/monster/harudomerugu.webp';
-import IconMonsterToridcless from '$lib/client/images/monster/toridcless.webp';
-import IconMonsterGasurabazura from '$lib/client/images/monster/gasurabazura.webp';
-import IconMonsterKusubami from '$lib/client/images/monster/kusubami.webp';
-import IconMonsterYamaKurai from '$lib/client/images/monster/yama_kurai.webp';
-import IconMonsterZinogre from '$lib/client/images/monster/zinogre.webp';
-import IconMonsterDeviljho from '$lib/client/images/monster/deviljho.webp';
-import IconMonsterBrachydios from '$lib/client/images/monster/brachydios.webp';
-import IconMonsterBerserkRaviente from '$lib/client/images/monster/berserk_raviente.webp';
-import IconMonsterToaTesukatora from '$lib/client/images/monster/toa_tesukatora.webp';
-import IconMonsterBarioth from '$lib/client/images/monster/barioth.webp';
-import IconMonsterUragaan from '$lib/client/images/monster/uragaan.webp';
-import IconMonsterStygianZinogre from '$lib/client/images/monster/stygian_zinogre.webp';
-import IconMonsterGuanzorumu from '$lib/client/images/monster/guanzorumu.webp';
-import IconMonsterStarvingDeviljho from '$lib/client/images/monster/starving_deviljho.webp';
-import IconMonsterVoljang from '$lib/client/images/monster/voljang.webp';
-import IconMonsterNargacuga from '$lib/client/images/monster/nargacuga.webp';
-import IconMonsterKeoaruboru from '$lib/client/images/monster/keoaruboru.webp';
-import IconMonsterZenaserisu from '$lib/client/images/monster/zenaserisu.webp';
-import IconMonsterGoreMagala from '$lib/client/images/monster/gore_magala.webp';
-import IconMonsterBlinkingNargacuga from '$lib/client/images/monster/blinking_nargacuga.webp';
-import IconMonsterShagaruMagala from '$lib/client/images/monster/shagaru_magala.webp';
-import IconMonsterAmatsu from '$lib/client/images/monster/amatsu.webp';
-import IconMonsterElzelion from '$lib/client/images/monster/elzelion.webp';
-import IconMonsterArrogantDuremudira from '$lib/client/images/monster/arrogant_duremudira.webp';
-import IconMonsterSeregios from '$lib/client/images/monster/seregios.webp';
-import IconMonsterBogabadorumu from '$lib/client/images/monster/zenith_bogabadorumu.gif';
-import IconMonsterBombardierBogabadorumu from '$lib/client/images/monster/bombardier_bogabadorumu.webp';
-import IconMonsterSparklingZerureusu from '$lib/client/images/monster/sparkling_zerureusu.webp';
-import IconMonsterPSO2Rappy from '$lib/client/images/monster/pso2_rappy.webp';
-import IconMonsterKingShakalaka from '$lib/client/images/monster/king_shakalaka.webp';
-
-import IconRenderMonsterRathian from '$lib/client/images/monster/render/rathian.webp';
-import IconRenderMonsterFatalis from '$lib/client/images/monster/render/fatalis.webp';
-import IconRenderMonsterKelbi from '$lib/client/images/monster/render/kelbi.webp';
-import IconRenderMonsterMosswine from '$lib/client/images/monster/render/mosswine.webp';
-import IconRenderMonsterBullfango from '$lib/client/images/monster/render/bullfango.webp';
-import IconRenderMonsterYianKutKu from '$lib/client/images/monster/render/yian_kut-ku.webp';
-import IconRenderMonsterLaoShanLung from '$lib/client/images/monster/render/lao-shan_lung.webp';
-import IconRenderMonsterCephadrome from '$lib/client/images/monster/render/cephadrome.webp';
-import IconRenderMonsterFelyne from '$lib/client/images/monster/render/felyne.webp';
-import IconRenderMonsterRathalos from '$lib/client/images/monster/render/rathalos.webp';
-import IconRenderMonsterAptonoth from '$lib/client/images/monster/render/aptonoth.webp';
-import IconRenderMonsterGenprey from '$lib/client/images/monster/render/genprey.webp';
-import IconRenderMonsterDiablos from '$lib/client/images/monster/render/diablos.webp';
-import IconRenderMonsterKhezu from '$lib/client/images/monster/render/khezu.webp';
-import IconRenderMonsterVelociprey from '$lib/client/images/monster/render/velociprey.webp';
-import IconRenderMonsterGravios from '$lib/client/images/monster/render/gravios.webp';
-import IconRenderMonsterVespoid from '$lib/client/images/monster/render/vespoid.webp';
-import IconRenderMonsterGypceros from '$lib/client/images/monster/render/gypceros.webp';
-import IconRenderMonsterPlesioth from '$lib/client/images/monster/render/plesioth.webp';
-import IconRenderMonsterBasarios from '$lib/client/images/monster/render/basarios.webp';
-import IconRenderMonsterMelynx from '$lib/client/images/monster/render/melynx.webp';
-import IconRenderMonsterHornetaur from '$lib/client/images/monster/render/hornetaur.webp';
-import IconRenderMonsterApceros from '$lib/client/images/monster/render/apceros.webp';
-import IconRenderMonsterMonoblos from '$lib/client/images/monster/render/monoblos.webp';
-import IconRenderMonsterVelocidrome from '$lib/client/images/monster/render/velocidrome.webp';
-import IconRenderMonsterGendrome from '$lib/client/images/monster/render/gendrome.webp';
-import IconRenderMonsterIoprey from '$lib/client/images/monster/render/ioprey.webp';
-import IconRenderMonsterIodrome from '$lib/client/images/monster/render/iodrome.webp';
-import IconRenderMonsterKirin from '$lib/client/images/monster/render/kirin.webp';
-import IconRenderMonsterCephalos from '$lib/client/images/monster/render/cephalos.webp';
-import IconRenderMonsterGiaprey from '$lib/client/images/monster/render/giaprey.webp';
-import IconRenderMonsterCrimsonFatalis from '$lib/client/images/monster/render/crimson_fatalis.webp';
-import IconRenderMonsterPinkRathian from '$lib/client/images/monster/render/pink_rathian.webp';
-import IconRenderMonsterBlueYianKutKu from '$lib/client/images/monster/render/blue_yian_kut-ku.webp';
-import IconRenderMonsterPurpleGypceros from '$lib/client/images/monster/render/purple_gypceros.webp';
-import IconRenderMonsterYianGaruga from '$lib/client/images/monster/render/yian_garuga.webp';
-import IconRenderMonsterSilverRathalos from '$lib/client/images/monster/render/silver_rathalos.webp';
-import IconRenderMonsterGoldRathian from '$lib/client/images/monster/render/gold_rathian.webp';
-import IconRenderMonsterBlackDiablos from '$lib/client/images/monster/render/black_diablos.webp';
-import IconRenderMonsterWhiteMonoblos from '$lib/client/images/monster/render/white_monoblos.webp';
-import IconRenderMonsterRedKhezu from '$lib/client/images/monster/render/red_khezu.webp';
-import IconRenderMonsterGreenPlesioth from '$lib/client/images/monster/render/green_plesioth.webp';
-import IconRenderMonsterBlackGravios from '$lib/client/images/monster/render/black_gravios.webp';
-import IconRenderMonsterDaimyoHermitaur from '$lib/client/images/monster/render/daimyo_hermitaur.webp';
-import IconRenderMonsterAzureRathalos from '$lib/client/images/monster/render/azure_rathalos.webp';
-import IconRenderMonsterAshenLaoShanLung from '$lib/client/images/monster/render/ashen_lao-shan_lung.webp';
-import IconRenderMonsterBlangonga from '$lib/client/images/monster/render/blangonga.webp';
-import IconRenderMonsterCongalala from '$lib/client/images/monster/render/congalala.webp';
-import IconRenderMonsterRajang from '$lib/client/images/monster/render/rajang.webp';
-import IconRenderMonsterKushalaDaora from '$lib/client/images/monster/render/kushala_daora.webp';
-import IconRenderMonsterShenGaoren from '$lib/client/images/monster/render/shen_gaoren.webp';
-import IconRenderMonsterGreatThunderbug from '$lib/client/images/monster/render/great_thunderbug.webp';
-import IconRenderMonsterShakalaka from '$lib/client/images/monster/render/shakalaka.webp';
-import IconRenderMonsterYamaTsukami from '$lib/client/images/monster/render/yama_tsukami.webp';
-import IconRenderMonsterChameleos from '$lib/client/images/monster/render/chameleos.webp';
-import IconRenderMonsterRustedKushalaDaora from '$lib/client/images/monster/render/rusted_kushala_daora.webp';
-import IconRenderMonsterBlango from '$lib/client/images/monster/render/blango.webp';
-import IconRenderMonsterConga from '$lib/client/images/monster/render/conga.webp';
-import IconRenderMonsterRemobra from '$lib/client/images/monster/render/remobra.webp';
-import IconRenderMonsterLunastra from '$lib/client/images/monster/render/lunastra.webp';
-import IconRenderMonsterTeostra from '$lib/client/images/monster/render/teostra.webp';
-import IconRenderMonsterHermitaur from '$lib/client/images/monster/render/hermitaur.webp';
-import IconRenderMonsterShogunCeanataur from '$lib/client/images/monster/render/shogun_ceanataur.webp';
-import IconRenderMonsterBulldrome from '$lib/client/images/monster/render/bulldrome.webp';
-import IconRenderMonsterAnteka from '$lib/client/images/monster/render/anteka.webp';
-import IconRenderMonsterPopo from '$lib/client/images/monster/render/popo.webp';
-import IconRenderMonsterWhiteFatalis from '$lib/client/images/monster/render/white_fatalis.webp';
-import IconRenderMonsterCeanataur from '$lib/client/images/monster/render/ceanataur.webp';
-import IconRenderMonsterHypnocatrice from '$lib/client/images/monster/render/hypnoc.webp';
-import IconRenderMonsterLavasioth from '$lib/client/images/monster/render/lavasioth.webp';
-import IconRenderMonsterTigrex from '$lib/client/images/monster/render/tigrex.webp';
-import IconRenderMonsterAkantor from '$lib/client/images/monster/render/akantor.webp';
-import IconRenderMonsterBrightHypnoc from '$lib/client/images/monster/render/bright_hypnoc.webp';
-import IconRenderMonsterRedLavasioth from '$lib/client/images/monster/render/red_lavasioth.webp';
-import IconRenderMonsterEspinas from '$lib/client/images/monster/render/espinas.webp';
-import IconRenderMonsterOrangeEspinas from '$lib/client/images/monster/render/orange_espinas.webp';
-import IconRenderMonsterSilverHypnoc from '$lib/client/images/monster/render/silver_hypnoc.webp';
-import IconRenderMonsterAkuraVashimu from '$lib/client/images/monster/render/akura_vashimu.webp';
-import IconRenderMonsterAkuraJebia from '$lib/client/images/monster/render/akura_jebia.webp';
-import IconRenderMonsterBerukyurosu from '$lib/client/images/monster/render/berukyurosu.webp';
-import IconRenderMonsterCactus from '$lib/client/images/monster/cactus.webp';
-import IconRenderMonsterPariapuria from '$lib/client/images/monster/render/pariapuria.webp';
-import IconRenderMonsterWhiteEspinas from '$lib/client/images/monster/render/white_espinas.webp';
-import IconRenderMonsterKamuOrugaron from '$lib/client/images/monster/render/kamu_orugaron.webp';
-import IconRenderMonsterNonoOrugaron from '$lib/client/images/monster/render/nono_orugaron.webp';
-import IconRenderMonsterRaviente from '$lib/client/images/monster/render/raviente.webp';
-import IconRenderMonsterViolentRaviente from '$lib/client/images/monster/render/violent_raviente.webp';
-
-import IconRenderMonsterDyuragaua from '$lib/client/images/monster/render/dyuragaua.webp';
-import IconRenderMonsterDoragyurosu from '$lib/client/images/monster/render/doragyurosu.webp';
-import IconRenderMonsterGurenzeburu from '$lib/client/images/monster/render/gurenzeburu.webp';
-import IconRenderMonsterBurukku from '$lib/client/images/monster/render/burukku.webp';
-import IconRenderMonsterErupe from '$lib/client/images/monster/render/erupe.webp';
-import IconRenderMonsterRukodiora from '$lib/client/images/monster/render/rukodiora.webp';
-import IconRenderMonsterUNKNOWN from '$lib/client/images/monster/render/unknown.webp';
-import IconRenderMonsterGogomoa from '$lib/client/images/monster/render/gogomoa.webp';
-import IconRenderMonsterTaikunZamuza from '$lib/client/images/monster/render/taikun_zamuza.webp';
-import IconRenderMonsterAbiorugu from '$lib/client/images/monster/render/abiorugu.webp';
-import IconRenderMonsterKuarusepusu from '$lib/client/images/monster/render/kuarusepusu.webp';
-import IconRenderMonsterOdibatorasu from '$lib/client/images/monster/render/odibatorasu.webp';
-import IconRenderMonsterDisufiroa from '$lib/client/images/monster/render/disufiroa.webp';
-import IconRenderMonsterRebidiora from '$lib/client/images/monster/render/rebidiora.webp';
-import IconRenderMonsterAnorupatisu from '$lib/client/images/monster/render/anorupatisu.webp';
-import IconRenderMonsterHyujikiki from '$lib/client/images/monster/render/hyujikiki.webp';
-import IconRenderMonsterMidogaron from '$lib/client/images/monster/render/midogaron.webp';
-import IconRenderMonsterGiaorugu from '$lib/client/images/monster/render/giaorugu.webp';
-import IconRenderMonsterMiRu from '$lib/client/images/monster/render/mi_ru.webp';
-import IconRenderMonsterFarunokku from '$lib/client/images/monster/render/farunokku.webp';
-import IconRenderMonsterPokaradon from '$lib/client/images/monster/render/pokaradon.webp';
-import IconRenderMonsterShantien from '$lib/client/images/monster/render/shantien.webp';
-import IconRenderMonsterPokara from '$lib/client/images/monster/render/pokara.webp';
-import IconRenderMonsterGoruganosu from '$lib/client/images/monster/render/goruganosu.webp';
-import IconRenderMonsterAruganosu from '$lib/client/images/monster/render/aruganosu.webp';
-import IconRenderMonsterBaruragaru from '$lib/client/images/monster/render/baruragaru.webp';
-import IconRenderMonsterZerureusu from '$lib/client/images/monster/render/zerureusu.webp';
-import IconRenderMonsterGougarf from '$lib/client/images/monster/render/gougarf.webp';
-import IconRenderMonsterUruki from '$lib/client/images/monster/render/uruki.webp';
-import IconRenderMonsterForokururu from '$lib/client/images/monster/render/forokururu.webp';
-import IconRenderMonsterMeraginasu from '$lib/client/images/monster/render/meraginasu.webp';
-import IconRenderMonsterDiorex from '$lib/client/images/monster/render/diorex.webp';
-import IconRenderMonsterGarubaDaora from '$lib/client/images/monster/render/garuba_daora.webp';
-import IconRenderMonsterInagami from '$lib/client/images/monster/render/inagami.webp';
-import IconRenderMonsterVarusaburosu from '$lib/client/images/monster/render/varusaburosu.webp';
-import IconRenderMonsterPoborubarumu from '$lib/client/images/monster/render/poborubarumu.webp';
-import IconRenderMonsterDuremudira from '$lib/client/images/monster/render/duremudira.webp';
-import IconRenderMonsterGureadomosu from '$lib/client/images/monster/render/gureadomosu.webp';
-import IconRenderMonsterHarudomerugu from '$lib/client/images/monster/render/harudomerugu.webp';
-import IconRenderMonsterToridcless from '$lib/client/images/monster/render/toridcless.webp';
-import IconRenderMonsterGasurabazura from '$lib/client/images/monster/render/gasurabazura.webp';
-import IconRenderMonsterKusubami from '$lib/client/images/monster/render/kusubami.webp';
-import IconRenderMonsterYamaKurai from '$lib/client/images/monster/render/yama_kurai.webp';
-import IconRenderMonsterZinogre from '$lib/client/images/monster/render/zinogre.webp';
-import IconRenderMonsterDeviljho from '$lib/client/images/monster/render/deviljho.webp';
-import IconRenderMonsterBrachydios from '$lib/client/images/monster/render/brachydios.webp';
-import IconRenderMonsterBerserkRaviente from '$lib/client/images/monster/render/berserk_raviente.webp';
-import IconRenderMonsterToaTesukatora from '$lib/client/images/monster/render/toa_tesukatora.webp';
-import IconRenderMonsterBarioth from '$lib/client/images/monster/render/barioth.webp';
-import IconRenderMonsterUragaan from '$lib/client/images/monster/render/uragaan.webp';
-import IconRenderMonsterStygianZinogre from '$lib/client/images/monster/render/stygian_zinogre.webp';
-import IconRenderMonsterGuanzorumu from '$lib/client/images/monster/render/guanzorumu.webp';
-import IconRenderMonsterStarvingDeviljho from '$lib/client/images/monster/render/starving_deviljho.webp';
-import IconRenderMonsterVoljang from '$lib/client/images/monster/render/voljang.webp';
-import IconRenderMonsterNargacuga from '$lib/client/images/monster/render/nargacuga.webp';
-import IconRenderMonsterKeoaruboru from '$lib/client/images/monster/render/keoaruboru.webp';
-import IconRenderMonsterZenaserisu from '$lib/client/images/monster/render/zenaserisu.webp';
-import IconRenderMonsterGoreMagala from '$lib/client/images/monster/render/gore_magala.webp';
-import IconRenderMonsterBlinkingNargacuga from '$lib/client/images/monster/render/blinking_nargacuga.webp';
-import IconRenderMonsterShagaruMagala from '$lib/client/images/monster/render/shagaru_magala.webp';
-import IconRenderMonsterAmatsu from '$lib/client/images/monster/render/amatsu.webp';
-import IconRenderMonsterElzelion from '$lib/client/images/monster/render/elzelion.webp';
-import IconRenderMonsterArrogantDuremudira from '$lib/client/images/monster/render/arrogant_duremudira.webp';
-import IconRenderMonsterSeregios from '$lib/client/images/monster/render/seregios.webp';
-import IconRenderMonsterBogabadorumu from '$lib/client/images/monster/render/zenith_bogabadorumu.webp';
-import IconRenderMonsterBombardierBogabadorumu from '$lib/client/images/monster/render/bombardier_bogabadorumu.webp';
-import IconRenderMonsterSparklingZerureusu from '$lib/client/images/monster/render/sparkling_zerureusu.webp';
-import IconRenderMonsterPSO2Rappy from '$lib/client/images/monster/render/pso2_rappy.webp';
-import IconRenderMonsterKingShakalaka from '$lib/client/images/monster/render/king_shakalaka.webp';
-
-import IconMonsterZenithAkuraVashimu from '$lib/client/images/monster/zenith_akura_vashimu.gif';
-import IconMonsterZenithAnorupatisu from '$lib/client/images/monster/zenith_anorupatisu.gif';
-import IconMonsterZenithBaruragaru from '$lib/client/images/monster/zenith_baruragaru.gif';
-import IconMonsterZenithBlangonga from '$lib/client/images/monster/zenith_blangonga.gif';
-import IconMonsterZenithDaimyoHermitaur from '$lib/client/images/monster/zenith_daimyo_hermitaur.gif';
-import IconMonsterZenithDoragyurosu from '$lib/client/images/monster/zenith_doragyurosu.gif';
-import IconMonsterZenithEspinas from '$lib/client/images/monster/zenith_espinas.gif';
-import IconMonsterZenithGasurabazura from '$lib/client/images/monster/zenith_gasurabazura.gif';
-import IconMonsterZenithGiaorugu from '$lib/client/images/monster/zenith_giaorugu.gif';
-import IconMonsterZenithGravios from '$lib/client/images/monster/zenith_gravios.gif';
-import IconMonsterZenithHarudomerugu from '$lib/client/images/monster/zenith_harudomerugu.gif';
-import IconMonsterZenithHypnoc from '$lib/client/images/monster/zenith_hypnoc.gif';
-import IconMonsterZenithHyujikiki from '$lib/client/images/monster/zenith_hyujikiki.gif';
-import IconMonsterZenithInagami from '$lib/client/images/monster/zenith_inagami.gif';
-import IconMonsterZenithKhezu from '$lib/client/images/monster/zenith_khezu.gif';
-import IconMonsterZenithMidogaron from '$lib/client/images/monster/zenith_midogaron.gif';
-import IconMonsterZenithPlesioth from '$lib/client/images/monster/zenith_plesioth.gif';
-import IconMonsterZenithRathalos from '$lib/client/images/monster/zenith_rathalos.gif';
-import IconMonsterZenithRukodiora from '$lib/client/images/monster/zenith_rukodiora.gif';
-import IconMonsterZenithTaikunZamuza from '$lib/client/images/monster/zenith_taikun_zamuza.gif';
-import IconMonsterZenithTigrex from '$lib/client/images/monster/zenith_tigrex.gif';
-import IconMonsterZenithToridcless from '$lib/client/images/monster/zenith_toridcless.gif';
-import IconMonsterConquestFatalis from '$lib/client/images/monster/conquest_fatalis.webp';
-import IconMonsterConquestShantien from '$lib/client/images/monster/conquest_shantien.webp';
-import IconMonsterConquestCrimsonFatalis from '$lib/client/images/monster/conquest_crimson_fatalis.webp';
-import IconMonsterShitenDisufiroa from '$lib/client/images/monster/shiten_disufiroa.webp';
-import IconMonsterShitenUnknown from '$lib/client/images/monster/shiten_unknown.webp';
-import IconMonsterBurningFreezingElzelion from '$lib/client/images/monster/burning_freezing_elzelion.webp';
-import IconMonsterHowlingZinogre from '$lib/client/images/monster/howling_zinogre.webp';
-import IconMonsterSupremacyPariapuria from '$lib/client/images/monster/thirsty_pariapuria.webp';
-import IconMonsterSupremacyDoragyurosu from '$lib/client/images/monster/supremacy_doragyurosu.webp';
-import IconMonsterSupremacyTeostra from '$lib/client/images/monster/supremacy_teostra.webp';
-import IconMonsterSupremacyOdibatorasu from '$lib/client/images/monster/odibatorasu.webp';
-import IconMonsterGoldenDeviljho from '$lib/client/images/monster/golden_deviljho.webp';
-import IconMonsterFuriousRajang from '$lib/client/images/monster/furious_rajang.webp';
-import IconMonsterRulingGuanzorumu from '$lib/client/images/monster/ruling_guanzorumu.webp';
-import IconMonsterShiftingMiRu from '$lib/client/images/monster/shifting_mi_ru.webp';
-import IconMonsterTwinheadRajang from '$lib/client/images/monster/twinhead_rajang.webp';
-
-import IconRenderMonsterZenithAkuraVashimu from '$lib/client/images/monster/render/zenith_akura_vashimu.webp';
-import IconRenderMonsterZenithAnorupatisu from '$lib/client/images/monster/render/zenith_anorupatisu.webp';
-import IconRenderMonsterZenithBaruragaru from '$lib/client/images/monster/render/zenith_baruragaru.webp';
-import IconRenderMonsterZenithBlangonga from '$lib/client/images/monster/render/zenith_blangonga.webp';
-import IconRenderMonsterZenithDaimyoHermitaur from '$lib/client/images/monster/render/zenith_daimyo_hermitaur.webp';
-import IconRenderMonsterZenithDoragyurosu from '$lib/client/images/monster/render/zenith_doragyurosu.webp';
-import IconRenderMonsterZenithEspinas from '$lib/client/images/monster/render/zenith_espinas.webp';
-import IconRenderMonsterZenithGasurabazura from '$lib/client/images/monster/render/zenith_gasurabazura.webp';
-import IconRenderMonsterZenithGiaorugu from '$lib/client/images/monster/render/zenith_giaorugu.webp';
-import IconRenderMonsterZenithGravios from '$lib/client/images/monster/render/zenith_gravios.webp';
-import IconRenderMonsterZenithHarudomerugu from '$lib/client/images/monster/render/zenith_harudomerugu.webp';
-import IconRenderMonsterZenithHypnoc from '$lib/client/images/monster/render/zenith_hypnoc.webp';
-import IconRenderMonsterZenithHyujikiki from '$lib/client/images/monster/render/zenith_hyujikiki.webp';
-import IconRenderMonsterZenithInagami from '$lib/client/images/monster/render/zenith_inagami.webp';
-import IconRenderMonsterZenithKhezu from '$lib/client/images/monster/render/zenith_khezu.webp';
-import IconRenderMonsterZenithMidogaron from '$lib/client/images/monster/render/zenith_midogaron.webp';
-import IconRenderMonsterZenithPlesioth from '$lib/client/images/monster/render/zenith_plesioth.webp';
-import IconRenderMonsterZenithRathalos from '$lib/client/images/monster/render/zenith_rathalos.webp';
-import IconRenderMonsterZenithRukodiora from '$lib/client/images/monster/render/zenith_rukodiora.webp';
-import IconRenderMonsterZenithTaikunZamuza from '$lib/client/images/monster/render/zenith_taikun_zamuza.webp';
-import IconRenderMonsterZenithTigrex from '$lib/client/images/monster/render/zenith_tigrex.webp';
-import IconRenderMonsterZenithToridcless from '$lib/client/images/monster/render/zenith_toridcless.webp';
-import IconRenderMonsterConquestFatalis from '$lib/client/images/monster/render/conquest_fatalis.webp';
-import IconRenderMonsterConquestShantien from '$lib/client/images/monster/render/shantien.webp';
-import IconRenderMonsterConquestCrimsonFatalis from '$lib/client/images/monster/render/conquest_crimson_fatalis.webp';
-import IconRenderMonsterShitenDisufiroa from '$lib/client/images/monster/render/shiten_disufiroa.webp';
-import IconRenderMonsterShitenUnknown from '$lib/client/images/monster/render/shiten_unknown.webp';
-import IconRenderMonsterBurningFreezingElzelion from '$lib/client/images/monster/render/burning_freezing_elzelion.webp';
-import IconRenderMonsterHowlingZinogre from '$lib/client/images/monster/render/howling_zinogre.webp';
-import IconRenderMonsterSupremacyPariapuria from '$lib/client/images/monster/render/thirsty_pariapuria.webp';
-import IconRenderMonsterSupremacyDoragyurosu from '$lib/client/images/monster/render/supremacy_doragyurosu.webp';
-import IconRenderMonsterSupremacyTeostra from '$lib/client/images/monster/render/supremacy_teostra.webp';
-import IconRenderMonsterSupremacyOdibatorasu from '$lib/client/images/monster/render/supremacy_odibatorasu.webp';
-import IconRenderMonsterGoldenDeviljho from '$lib/client/images/monster/render/golden_deviljho.webp';
-import IconRenderMonsterFuriousRajang from '$lib/client/images/monster/render/hc_rajang.webp';
-import IconRenderMonsterRulingGuanzorumu from '$lib/client/images/monster/render/ruling_guanzorumu.webp';
-import IconRenderMonsterShiftingMiRu from '$lib/client/images/monster/render/shifting_mi_ru.webp';
-import IconRenderMonsterTwinheadRajang from '$lib/client/images/monster/render/hc_rajang.webp';
-
 import ComponentMonsterRandom from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterRathian from '$lib/client/components/frontier/icon/monster/Rathian.svelte';
 import ComponentMonsterFatalis from '$lib/client/components/frontier/icon/monster/Fatalis.svelte';
@@ -589,202 +195,6 @@ import ComponentMonsterShiftingMiRu from '$lib/client/components/frontier/icon/m
 import ComponentMonsterTwinheadRajang from '$lib/client/components/frontier/icon/monster/MonsterRandom.svelte';
 import ComponentMonsterRoadWhiteFatalis from '$lib/client/components/frontier/icon/monster/RoadWhiteFatalis3.svelte';
 
-import FullMonsterRenderRandom from '$lib/client/images/monster/random.webp';
-import FullMonsterRenderRathian from '$lib/client/images/monster/render/full/rathian.webp';
-import FullMonsterRenderFatalis from '$lib/client/images/monster/render/full/fatalis.webp';
-import FullMonsterRenderKelbi from '$lib/client/images/monster/render/full/kelbi.webp';
-import FullMonsterRenderMosswine from '$lib/client/images/monster/render/full/mosswine.webp';
-import FullMonsterRenderBullfango from '$lib/client/images/monster/render/full/bullfango.webp';
-import FullMonsterRenderYianKutKu from '$lib/client/images/monster/render/full/yian-kut-ku.webp';
-import FullMonsterRenderLaoShanLung from '$lib/client/images/monster/render/full/lao-shan-lung.webp';
-import FullMonsterRenderCephadrome from '$lib/client/images/monster/render/full/cephadrome.webp';
-import FullMonsterRenderFelyne from '$lib/client/images/monster/render/full/felyne.webp';
-import FullMonsterRenderRathalos from '$lib/client/images/monster/render/full/rathalos.webp';
-import FullMonsterRenderAptonoth from '$lib/client/images/monster/render/full/aptonoth.webp';
-import FullMonsterRenderGenprey from '$lib/client/images/monster/render/full/genprey.webp';
-import FullMonsterRenderDiablos from '$lib/client/images/monster/render/full/diablos.webp';
-import FullMonsterRenderKhezu from '$lib/client/images/monster/render/full/khezu.webp';
-import FullMonsterRenderVelociprey from '$lib/client/images/monster/render/full/velocidrome.webp';
-import FullMonsterRenderGravios from '$lib/client/images/monster/render/full/gravios.webp';
-import FullMonsterRenderVespoid from '$lib/client/images/monster/render/full/vespoid.webp';
-import FullMonsterRenderGypceros from '$lib/client/images/monster/render/full/gypceros.webp';
-import FullMonsterRenderPlesioth from '$lib/client/images/monster/render/full/plesioth.webp';
-import FullMonsterRenderBasarios from '$lib/client/images/monster/render/full/basarios.webp';
-import FullMonsterRenderMelynx from '$lib/client/images/monster/render/full/melynx.webp';
-import FullMonsterRenderHornetaur from '$lib/client/images/monster/render/full/hornetaur.webp';
-import FullMonsterRenderApceros from '$lib/client/images/monster/render/full/apceros.webp';
-import FullMonsterRenderMonoblos from '$lib/client/images/monster/render/full/monoblos.webp';
-import FullMonsterRenderVelocidrome from '$lib/client/images/monster/render/full/velocidrome.webp';
-import FullMonsterRenderGendrome from '$lib/client/images/monster/render/full/gendrome.webp';
-import FullMonsterRenderIoprey from '$lib/client/images/monster/render/full/ioprey.webp';
-import FullMonsterRenderIodrome from '$lib/client/images/monster/render/full/iodrome.webp';
-import FullMonsterRenderKirin from '$lib/client/images/monster/render/full/kirin.webp';
-import FullMonsterRenderCephalos from '$lib/client/images/monster/render/full/cephalos.webp';
-import FullMonsterRenderGiaprey from '$lib/client/images/monster/render/full/giaprey.webp';
-import FullMonsterRenderCrimsonFatalis from '$lib/client/images/monster/render/full/crimson-fatalis.webp';
-import FullMonsterRenderPinkRathian from '$lib/client/images/monster/render/full/pink-rathian.webp';
-import FullMonsterRenderBlueYianKutKu from '$lib/client/images/monster/render/full/blue-yian-kut-ku.webp';
-import FullMonsterRenderPurpleGypceros from '$lib/client/images/monster/render/full/purple-gypceros.webp';
-import FullMonsterRenderYianGaruga from '$lib/client/images/monster/render/full/yian-garuga.webp';
-import FullMonsterRenderSilverRathalos from '$lib/client/images/monster/render/full/silver-rathalos.webp';
-import FullMonsterRenderGoldRathian from '$lib/client/images/monster/render/full/gold-rathian.webp';
-import FullMonsterRenderBlackDiablos from '$lib/client/images/monster/render/full/black-diablos.webp';
-import FullMonsterRenderWhiteMonoblos from '$lib/client/images/monster/render/full/white-monoblos.webp';
-import FullMonsterRenderRedKhezu from '$lib/client/images/monster/render/full/red-khezu.webp';
-import FullMonsterRenderGreenPlesioth from '$lib/client/images/monster/render/full/green-plesioth.webp';
-import FullMonsterRenderBlackGravios from '$lib/client/images/monster/render/full/black-gravios.webp';
-import FullMonsterRenderDaimyoHermitaur from '$lib/client/images/monster/render/full/daimyo-hermitaur.webp';
-import FullMonsterRenderAzureRathalos from '$lib/client/images/monster/render/full/azure-rathalos.webp';
-import FullMonsterRenderAshenLaoShanLung from '$lib/client/images/monster/render/full/ashen-lao-shan-lung.webp';
-import FullMonsterRenderBlangonga from '$lib/client/images/monster/render/full/blangonga.webp';
-import FullMonsterRenderCongalala from '$lib/client/images/monster/render/full/congalala.webp';
-import FullMonsterRenderRajang from '$lib/client/images/monster/render/full/rajang.webp';
-import FullMonsterRenderKushalaDaora from '$lib/client/images/monster/render/full/kushala-daora.webp';
-import FullMonsterRenderShenGaoren from '$lib/client/images/monster/render/full/shen-gaoren.webp';
-import FullMonsterRenderGreatThunderbug from '$lib/client/images/monster/render/full/great-thunderbug.webp';
-import FullMonsterRenderShakalaka from '$lib/client/images/monster/render/full/shakalaka.webp';
-import FullMonsterRenderYamaTsukami from '$lib/client/images/monster/render/full/yama-tsukami.webp';
-import FullMonsterRenderChameleos from '$lib/client/images/monster/render/full/chameleos.webp';
-import FullMonsterRenderRustedKushalaDaora from '$lib/client/images/monster/render/full/rusted-kushala-daora.webp';
-import FullMonsterRenderBlango from '$lib/client/images/monster/render/full/blango.webp';
-import FullMonsterRenderConga from '$lib/client/images/monster/render/full/conga.webp';
-import FullMonsterRenderRemobra from '$lib/client/images/monster/render/full/remobra.webp';
-import FullMonsterRenderLunastra from '$lib/client/images/monster/render/full/lunastra.webp';
-import FullMonsterRenderTeostra from '$lib/client/images/monster/render/full/teostra.webp';
-import FullMonsterRenderHermitaur from '$lib/client/images/monster/render/full/hermitaur.webp';
-import FullMonsterRenderShogunCeanataur from '$lib/client/images/monster/render/full/shogun-ceanataur.webp';
-import FullMonsterRenderBulldrome from '$lib/client/images/monster/render/full/bulldrome.webp';
-import FullMonsterRenderAnteka from '$lib/client/images/monster/render/full/anteka.webp';
-import FullMonsterRenderPopo from '$lib/client/images/monster/render/full/popo.webp';
-import FullMonsterRenderWhiteFatalis from '$lib/client/images/monster/render/full/white-fatalis.webp';
-import FullMonsterRenderCeanataur from '$lib/client/images/monster/render/full/ceanataur.webp';
-import FullMonsterRenderHypnocatrice from '$lib/client/images/monster/render/full/hypnoc.webp';
-import FullMonsterRenderLavasioth from '$lib/client/images/monster/render/full/lavasioth.webp';
-import FullMonsterRenderTigrex from '$lib/client/images/monster/render/full/tigrex.webp';
-import FullMonsterRenderAkantor from '$lib/client/images/monster/render/full/akantor.webp';
-import FullMonsterRenderBrightHypnoc from '$lib/client/images/monster/render/full/bright-hypnoc.webp';
-import FullMonsterRenderRedLavasioth from '$lib/client/images/monster/render/full/red-lavasioth.webp';
-import FullMonsterRenderEspinas from '$lib/client/images/monster/render/full/espinas.webp';
-import FullMonsterRenderOrangeEspinas from '$lib/client/images/monster/render/full/orange-espinas.webp';
-import FullMonsterRenderSilverHypnoc from '$lib/client/images/monster/render/full/silver-hypnoc.webp';
-import FullMonsterRenderAkuraVashimu from '$lib/client/images/monster/render/full/akura-vashimu.webp';
-import FullMonsterRenderAkuraJebia from '$lib/client/images/monster/render/full/akura-jebia.webp';
-import FullMonsterRenderBerukyurosu from '$lib/client/images/monster/render/full/berukyurosu.webp';
-import FullMonsterRenderCactus from '$lib/client/images/monster/cactus.webp';
-import FullMonsterRenderPariapuria from '$lib/client/images/monster/render/full/pariapuria.webp';
-import FullMonsterRenderWhiteEspinas from '$lib/client/images/monster/render/full/white-espinas.webp';
-import FullMonsterRenderKamuOrugaron from '$lib/client/images/monster/render/full/kamu-orugaron.webp';
-import FullMonsterRenderNonoOrugaron from '$lib/client/images/monster/render/full/nono-orugaron.webp';
-import FullMonsterRenderRaviente from '$lib/client/images/monster/render/full/raviente.webp';
-import FullMonsterRenderViolentRaviente from '$lib/client/images/monster/render/full/violent-raviente.webp';
-import FullMonsterRenderDyuragaua from '$lib/client/images/monster/render/full/dyuragaua.webp';
-import FullMonsterRenderDoragyurosu from '$lib/client/images/monster/render/full/doragyurosu.webp';
-import FullMonsterRenderGurenzeburu from '$lib/client/images/monster/render/full/gurenzeburu.webp';
-import FullMonsterRenderBurukku from '$lib/client/images/monster/render/full/burukku.webp';
-import FullMonsterRenderErupe from '$lib/client/images/monster/render/full/erupe.webp';
-import FullMonsterRenderRukodiora from '$lib/client/images/monster/render/full/rukodiora.webp';
-import FullMonsterRenderUNKNOWN from '$lib/client/images/monster/render/full/unknown.webp';
-import FullMonsterRenderGogomoa from '$lib/client/images/monster/render/full/gogomoa.webp';
-import FullMonsterRenderTaikunZamuza from '$lib/client/images/monster/render/full/taikun-zamuza.webp';
-import FullMonsterRenderAbiorugu from '$lib/client/images/monster/render/full/abiorugu.webp';
-import FullMonsterRenderKuarusepusu from '$lib/client/images/monster/render/full/kuarusepusu.webp';
-import FullMonsterRenderOdibatorasu from '$lib/client/images/monster/render/full/odibatorasu.webp';
-import FullMonsterRenderDisufiroa from '$lib/client/images/monster/render/full/disufiroa.webp';
-import FullMonsterRenderRebidiora from '$lib/client/images/monster/render/full/rebidiora.webp';
-import FullMonsterRenderAnorupatisu from '$lib/client/images/monster/render/full/anorupatisu.webp';
-import FullMonsterRenderHyujikiki from '$lib/client/images/monster/render/full/hyujikiki.webp';
-import FullMonsterRenderMidogaron from '$lib/client/images/monster/render/full/midogaron.webp';
-import FullMonsterRenderGiaorugu from '$lib/client/images/monster/render/full/giaorugu.webp';
-import FullMonsterRenderMiRu from '$lib/client/images/monster/render/full/mi-ru.webp';
-import FullMonsterRenderFarunokku from '$lib/client/images/monster/render/full/farunokku.webp';
-import FullMonsterRenderPokaradon from '$lib/client/images/monster/render/full/pokaradon.webp';
-import FullMonsterRenderShantien from '$lib/client/images/monster/render/full/shantien.webp';
-import FullMonsterRenderPokara from '$lib/client/images/monster/render/full/pokara.webp';
-import FullMonsterRenderGoruganosu from '$lib/client/images/monster/render/full/goruganosu.webp';
-import FullMonsterRenderAruganosu from '$lib/client/images/monster/render/full/aruganosu.webp';
-import FullMonsterRenderBaruragaru from '$lib/client/images/monster/render/full/baruragaru.webp';
-import FullMonsterRenderZerureusu from '$lib/client/images/monster/render/full/zerureusu.webp';
-import FullMonsterRenderGougarf from '$lib/client/images/monster/render/full/gourgarf.webp';
-import FullMonsterRenderUruki from '$lib/client/images/monster/render/full/uruki.webp';
-import FullMonsterRenderForokururu from '$lib/client/images/monster/render/full/forokururu.webp';
-import FullMonsterRenderMeraginasu from '$lib/client/images/monster/render/full/meraginasu.webp';
-import FullMonsterRenderDiorex from '$lib/client/images/monster/render/full/diorex.webp';
-import FullMonsterRenderGarubaDaora from '$lib/client/images/monster/render/full/garuba-daora.webp';
-import FullMonsterRenderInagami from '$lib/client/images/monster/render/full/inagami.webp';
-import FullMonsterRenderVarusaburosu from '$lib/client/images/monster/render/full/varusaburosu.webp';
-import FullMonsterRenderPoborubarumu from '$lib/client/images/monster/render/full/poborubarumu.webp';
-import FullMonsterRenderDuremudira from '$lib/client/images/monster/render/full/duremudira.webp';
-import FullMonsterRenderGureadomosu from '$lib/client/images/monster/render/full/gureadomosu.webp';
-import FullMonsterRenderHarudomerugu from '$lib/client/images/monster/render/full/harudomerugu.webp';
-import FullMonsterRenderToridcless from '$lib/client/images/monster/render/full/toridcless.webp';
-import FullMonsterRenderGasurabazura from '$lib/client/images/monster/render/full/gasurabazura.webp';
-import FullMonsterRenderKusubami from '$lib/client/images/monster/render/full/kusubami.webp';
-import FullMonsterRenderYamaKurai from '$lib/client/images/monster/render/full/yama-kurai.webp';
-import FullMonsterRenderZinogre from '$lib/client/images/monster/render/full/zinogre.webp';
-import FullMonsterRenderDeviljho from '$lib/client/images/monster/render/full/deviljho.webp';
-import FullMonsterRenderBrachydios from '$lib/client/images/monster/render/full/brachydios.webp';
-import FullMonsterRenderBerserkRaviente from '$lib/client/images/monster/render/full/berserk-raviente.webp';
-import FullMonsterRenderToaTesukatora from '$lib/client/images/monster/render/full/toa-tesukatora.webp';
-import FullMonsterRenderBarioth from '$lib/client/images/monster/render/full/barioth.webp';
-import FullMonsterRenderUragaan from '$lib/client/images/monster/render/full/uragaan.webp';
-import FullMonsterRenderStygianZinogre from '$lib/client/images/monster/render/full/stygian-zinogre.webp';
-import FullMonsterRenderGuanzorumu from '$lib/client/images/monster/render/full/guanzorumu.webp';
-import FullMonsterRenderStarvingDeviljho from '$lib/client/images/monster/render/full/savage-deviljho.webp';
-import FullMonsterRenderVoljang from '$lib/client/images/monster/render/full/voljang.webp';
-import FullMonsterRenderNargacuga from '$lib/client/images/monster/render/full/nargacuga.webp';
-import FullMonsterRenderKeoaruboru from '$lib/client/images/monster/render/full/keoaruboru.webp';
-import FullMonsterRenderZenaserisu from '$lib/client/images/monster/render/full/zenaserisu.webp';
-import FullMonsterRenderGoreMagala from '$lib/client/images/monster/render/full/gore-magala.webp';
-import FullMonsterRenderBlinkingNargacuga from '$lib/client/images/monster/render/full/blinking-nargacuga.webp';
-import FullMonsterRenderShagaruMagala from '$lib/client/images/monster/render/full/shagaru-magala.webp';
-import FullMonsterRenderAmatsu from '$lib/client/images/monster/render/full/amatsu.webp';
-import FullMonsterRenderElzelion from '$lib/client/images/monster/render/full/elzelion.webp';
-import FullMonsterRenderArrogantDuremudira from '$lib/client/images/monster/render/full/arrogant-duremudira2.webp';
-import FullMonsterRenderSeregios from '$lib/client/images/monster/render/full/seregios.webp';
-import FullMonsterRenderBogabadorumu from '$lib/client/images/monster/render/full/zenith-bogabadorumu.webp';
-import FullMonsterRenderBombardierBogabadorumu from '$lib/client/images/monster/render/full/bombardier-bogabadorumu.webp';
-import FullMonsterRenderSparklingZerureusu from '$lib/client/images/monster/render/full/sparkling-zerureusu.webp';
-import FullMonsterRenderPSO2Rappy from '$lib/client/images/monster/render/full/pso2-rappy.webp';
-import FullMonsterRenderKingShakalaka from '$lib/client/images/monster/render/full/king-shakalaka.webp';
-
-import FullMonsterRenderZenithAkuraVashimu from '$lib/client/images/monster/render/full/zenith-akura-vashimu.webp';
-import FullMonsterRenderZenithAnorupatisu from '$lib/client/images/monster/render/full/zenith-anorupatisu.webp';
-import FullMonsterRenderZenithBaruragaru from '$lib/client/images/monster/render/full/zenith-baruragaru.webp';
-import FullMonsterRenderZenithBlangonga from '$lib/client/images/monster/render/full/zenith-blangonga.webp';
-import FullMonsterRenderZenithDaimyoHermitaur from '$lib/client/images/monster/render/full/zenith-daimyo-hermitaur.webp';
-import FullMonsterRenderZenithDoragyurosu from '$lib/client/images/monster/render/full/zenith-doragyurosu.webp';
-import FullMonsterRenderZenithEspinas from '$lib/client/images/monster/render/full/zenith-espinas.webp';
-import FullMonsterRenderZenithGasurabazura from '$lib/client/images/monster/render/full/zenith-gasurabazura.webp';
-import FullMonsterRenderZenithGiaorugu from '$lib/client/images/monster/render/full/zenith-giaorugu.webp';
-import FullMonsterRenderZenithGravios from '$lib/client/images/monster/render/full/zenith-gravios.webp';
-import FullMonsterRenderZenithHarudomerugu from '$lib/client/images/monster/render/full/zenith-harudomerugu.webp';
-import FullMonsterRenderZenithHypnoc from '$lib/client/images/monster/render/full/zenith-hypnoc.webp';
-import FullMonsterRenderZenithHyujikiki from '$lib/client/images/monster/render/full/zenith-hyujikiki.webp';
-import FullMonsterRenderZenithInagami from '$lib/client/images/monster/render/full/zenith-inagami.webp';
-import FullMonsterRenderZenithKhezu from '$lib/client/images/monster/render/full/zenith-khezu.webp';
-import FullMonsterRenderZenithMidogaron from '$lib/client/images/monster/render/full/zenith-midogaron.webp';
-import FullMonsterRenderZenithPlesioth from '$lib/client/images/monster/render/full/zenith-plesioth.webp';
-import FullMonsterRenderZenithRathalos from '$lib/client/images/monster/render/full/zenith-rathalos.webp';
-import FullMonsterRenderZenithRukodiora from '$lib/client/images/monster/render/full/zenith-rukodiora.webp';
-import FullMonsterRenderZenithTaikunZamuza from '$lib/client/images/monster/render/full/zenith-taikun-zamuza.webp';
-import FullMonsterRenderZenithTigrex from '$lib/client/images/monster/render/full/zenith-tigrex.webp';
-import FullMonsterRenderZenithToridcless from '$lib/client/images/monster/render/full/zenith-toridcless.webp';
-import FullMonsterRenderConquestFatalis from '$lib/client/images/monster/render/full/conquest-fatalis.webp';
-import FullMonsterRenderConquestShantien from '$lib/client/images/monster/render/full/shantien.webp';
-import FullMonsterRenderConquestCrimsonFatalis from '$lib/client/images/monster/render/full/conquest-crimson-fatalis.webp';
-import FullMonsterRenderShitenDisufiroa from '$lib/client/images/monster/render/full/disufiroa.webp';
-import FullMonsterRenderShitenUnknown from '$lib/client/images/monster/render/full/unknown.webp';
-import FullMonsterRenderBurningFreezingElzelion from '$lib/client/images/monster/render/full/burning-freezing-elzelion.webp';
-import FullMonsterRenderHowlingZinogre from '$lib/client/images/monster/render/full/howling-zinogre2.webp';
-import FullMonsterRenderSupremacyPariapuria from '$lib/client/images/monster/render/full/supremacy-pariapuria.webp';
-import FullMonsterRenderSupremacyDoragyurosu from '$lib/client/images/monster/render/full/supremacy-doragyurosu.webp';
-import FullMonsterRenderSupremacyTeostra from '$lib/client/images/monster/render/full/supremacy-teostra.webp';
-import FullMonsterRenderSupremacyOdibatorasu from '$lib/client/images/monster/render/full/supremacy-odibatorasu.webp';
-import FullMonsterRenderGoldenDeviljho from '$lib/client/images/monster/render/full/golden-deviljho.webp';
-import FullMonsterRenderFuriousRajang from '$lib/client/images/monster/render/full/furious-rajang.webp';
-import FullMonsterRenderRulingGuanzorumu from '$lib/client/images/monster/render/full/ruling-guanzorumu.webp';
-import FullMonsterRenderShiftingMiRu from '$lib/client/images/monster/render/full/shifting-mi-ru.webp';
-import FullMonsterRenderTwinheadRajang from '$lib/client/images/monster/render/full/hc-rajang.webp';
 import type { FrontierMonsterInfo, FrontierMonsterNameExpanded } from './types';
 import type { FrontierMonsterName } from 'ezlion';
 
@@ -993,10 +403,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 0,
 		name: '',
-		icon: IconMonsterRandom,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/random',
 		rank: '',
-		render: IconMonsterRandom,
-		fullRender: FullMonsterRenderRandom,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/random',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/random',
 		component: ComponentMonsterRandom,
 		unusedComponent: false,
 		displayName: 'Random',
@@ -1004,12 +416,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 1,
 		name: 'Rathian',
-		icon: IconMonsterRathian,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/rathian',
 		rank: 'G Rank',
-		render: IconRenderMonsterRathian,
-		fullRender: FullMonsterRenderRathian,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rathian',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rathian',
 		component: ComponentMonsterRathian,
-
 		unusedComponent: false,
 		displayName: 'Rathian',
 		type: 'Large',
@@ -1086,10 +499,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 2,
 		name: 'Fatalis',
-		icon: IconMonsterFatalis,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/fatalis',
 		rank: '',
-		render: IconRenderMonsterFatalis,
-		fullRender: FullMonsterRenderFatalis,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/fatalis',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/fatalis',
 		component: ComponentMonsterFatalis,
 		unusedComponent: false,
 
@@ -1111,10 +526,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 3,
 		name: 'Kelbi',
-		icon: IconMonsterKelbi,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/kelbi',
 		rank: 'G Rank',
-		render: IconRenderMonsterKelbi,
-		fullRender: FullMonsterRenderKelbi,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kelbi',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kelbi',
 		component: ComponentMonsterKelbi,
 		unusedComponent: true,
 		displayName: 'Kelbi',
@@ -1177,10 +594,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 4,
 		name: 'Mosswine',
-		icon: IconMonsterMosswine,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/mosswine',
 		rank: 'G Rank',
-		render: IconRenderMonsterMosswine,
-		fullRender: FullMonsterRenderMosswine,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/mosswine',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/mosswine',
 		component: ComponentMonsterMosswine,
 		unusedComponent: true,
 		displayName: 'Mosswine',
@@ -1204,10 +623,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 5,
 		name: 'Bullfango',
-		icon: IconMonsterBullfango,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/bullfango',
 		rank: 'G Rank',
-		render: IconRenderMonsterBullfango,
-		fullRender: FullMonsterRenderBullfango,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/bullfango',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/bullfango',
 		component: ComponentMonsterBullfango,
 		unusedComponent: true,
 		displayName: 'Bullfango',
@@ -1268,11 +689,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 6,
 		name: 'Yian Kut-Ku',
-		icon: IconMonsterYianKutKu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/yian_kut-ku',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterYianKutKu,
-		fullRender: FullMonsterRenderYianKutKu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/yian_kut-ku',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/yian-kut-ku',
 		component: ComponentMonsterYianKutKu,
 		unusedComponent: true,
 		displayName: 'Yian Kut-Ku',
@@ -1312,11 +735,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 7,
 		name: 'Lao-Shan Lung',
-		icon: IconMonsterLaoShanLung,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/lao-shan_lung',
 		rank: 'G Rank',
 
-		render: IconRenderMonsterLaoShanLung,
-		fullRender: FullMonsterRenderLaoShanLung,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/lao-shan_lung',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/lao-shan-lung',
 		component: ComponentMonsterLaoShanLung,
 		unusedComponent: true,
 		displayName: 'Lao-Shan Lung',
@@ -1338,10 +763,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 8,
 		name: 'Cephadrome',
-		icon: IconMonsterCephadrome,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/cephadrome',
 		rank: 'G Rank',
-		render: IconRenderMonsterCephadrome,
-		fullRender: FullMonsterRenderCephadrome,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/cephadrome',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/cephadrome',
 		component: ComponentMonsterCephadrome,
 		unusedComponent: true,
 		displayName: 'Cephadrome',
@@ -1374,10 +801,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 9,
 		name: 'Felyne',
-		icon: IconMonsterFelyne,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/felyne',
 		rank: 'G Rank',
-		render: IconRenderMonsterFelyne,
-		fullRender: FullMonsterRenderFelyne,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/felyne',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/felyne',
 		component: ComponentMonsterFelyne,
 		unusedComponent: true,
 		displayName: 'Felyne',
@@ -1399,10 +828,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 11,
 		name: 'Rathalos',
-		icon: IconMonsterRathalos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616517/monster/rathalos.webp',
 		rank: 'G Rank',
-		render: IconRenderMonsterRathalos,
-		fullRender: FullMonsterRenderRathalos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rathalos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rathalos',
 		component: ComponentMonsterRathalos,
 		link: '/hunter-notes/monsters/overview/rathalos',
 
@@ -1467,10 +898,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 12,
 		name: 'Aptonoth',
-		icon: IconMonsterAptonoth,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/aptonoth',
 		rank: 'G Rank',
-		render: IconRenderMonsterAptonoth,
-		fullRender: FullMonsterRenderAptonoth,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/aptonoth',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/aptonoth',
 		component: ComponentMonsterAptonoth,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/aptonoth',
@@ -1494,10 +927,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 13,
 		name: 'Genprey',
-		icon: IconMonsterGenprey,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/genprey',
 		rank: 'G Rank',
-		render: IconRenderMonsterGenprey,
-		fullRender: FullMonsterRenderGenprey,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/genprey',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/genprey',
 		component: ComponentMonsterGenprey,
 		unusedComponent: true,
 		displayName: 'Genprey',
@@ -1544,10 +979,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 14,
 		name: 'Diablos',
-		icon: IconMonsterDiablos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/diablos',
 		rank: 'G Rank',
-		render: IconRenderMonsterDiablos,
-		fullRender: FullMonsterRenderDiablos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/diablos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/diablos',
 		component: ComponentMonsterDiablos,
 		unusedComponent: true,
 		displayName: 'Diablos',
@@ -1600,10 +1037,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 15,
 		name: 'Khezu',
-		icon: IconMonsterKhezu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/khezu',
 		rank: 'G Rank',
-		render: IconRenderMonsterKhezu,
-		fullRender: FullMonsterRenderKhezu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/khezu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/khezu',
 		component: ComponentMonsterKhezu,
 
 		unusedComponent: true,
@@ -1646,10 +1085,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 16,
 		name: 'Velociprey',
-		icon: IconMonsterVelociprey,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/velociprey',
 		rank: 'G Rank',
-		render: IconRenderMonsterVelociprey,
-		fullRender: FullMonsterRenderVelociprey,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/velociprey',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/velociprey',
 		component: ComponentMonsterVelociprey,
 		unusedComponent: true,
 		displayName: 'Velociprey',
@@ -1702,10 +1143,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 17,
 		name: 'Gravios',
-		icon: IconMonsterGravios,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gravios',
 		rank: 'G Rank',
-		render: IconRenderMonsterGravios,
-		fullRender: FullMonsterRenderGravios,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gravios',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gravios',
 		component: ComponentMonsterGravios,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/gravios',
@@ -1760,10 +1203,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 19,
 		name: 'Vespoid',
-		icon: IconMonsterVespoid,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/vespoid',
 		rank: 'G Rank',
-		render: IconRenderMonsterVespoid,
-		fullRender: FullMonsterRenderVespoid,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/vespoid',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/vespoid',
 		component: ComponentMonsterVespoid,
 		unusedComponent: true,
 		displayName: 'Vespoid',
@@ -1828,10 +1273,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 20,
 		name: 'Gypceros',
-		icon: IconMonsterGypceros,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gypceros',
 		rank: 'G Rank',
-		render: IconRenderMonsterGypceros,
-		fullRender: FullMonsterRenderGypceros,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gypceros',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gypceros',
 
 		component: ComponentMonsterGypceros,
 		unusedComponent: true,
@@ -1872,11 +1319,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 21,
 		name: 'Plesioth',
-		icon: IconMonsterPlesioth,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/plesioth',
 		rank: 'G Rank',
-		render: IconRenderMonsterPlesioth,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/plesioth',
 
-		fullRender: FullMonsterRenderPlesioth,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/plesioth',
 		component: ComponentMonsterPlesioth,
 		unusedComponent: true,
 		displayName: 'Plesioth',
@@ -1915,10 +1364,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 22,
 		name: 'Basarios',
-		icon: IconMonsterBasarios,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/basarios',
 		rank: 'G Rank',
-		render: IconRenderMonsterBasarios,
-		fullRender: FullMonsterRenderBasarios,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/basarios',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/basarios',
 		component: ComponentMonsterBasarios,
 
 		unusedComponent: true,
@@ -1970,10 +1421,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 23,
 		name: 'Melynx',
-		icon: IconMonsterMelynx,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/melynx',
 		rank: 'G Rank',
-		render: IconRenderMonsterMelynx,
-		fullRender: FullMonsterRenderMelynx,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/melynx',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/melynx',
 		component: ComponentMonsterMelynx,
 		link: '/hunter-notes/monsters/overview/melynx',
 
@@ -1995,10 +1448,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 24,
 		name: 'Hornetaur',
-		icon: IconMonsterHornetaur,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/hornetaur',
 		rank: 'G Rank',
-		render: IconRenderMonsterHornetaur,
-		fullRender: FullMonsterRenderHornetaur,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hornetaur',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hornetaur',
 		component: ComponentMonsterHornetaur,
 		unusedComponent: true,
 		displayName: 'Hornetaur',
@@ -2022,10 +1477,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	{
 		id: 25,
 		name: 'Apceros',
-		icon: IconMonsterApceros,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/apceros',
 		rank: 'G Rank',
-		render: IconRenderMonsterApceros,
-		fullRender: FullMonsterRenderApceros,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/apceros',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/apceros',
 		component: ComponentMonsterApceros,
 		unusedComponent: true,
 		displayName: 'Apceros',
@@ -2064,10 +1521,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 26,
 		name: 'Monoblos',
 		displayName: 'Monoblos',
-		icon: IconMonsterMonoblos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/monoblos',
 		rank: 'G Rank',
-		render: IconRenderMonsterMonoblos,
-		fullRender: FullMonsterRenderMonoblos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/monoblos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/monoblos',
 		component: ComponentMonsterMonoblos,
 		link: '/hunter-notes/monsters/overview/monoblos',
 
@@ -2079,10 +1538,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 27,
 		name: 'Velocidrome',
 		displayName: 'Velocidrome',
-		icon: IconMonsterVelocidrome,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/velocidrome',
 		rank: 'G Rank',
-		render: IconRenderMonsterVelocidrome,
-		fullRender: FullMonsterRenderVelocidrome,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/velocidrome',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/velocidrome',
 		component: ComponentMonsterVelocidrome,
 		link: '/hunter-notes/monsters/overview/velocidrome',
 
@@ -2125,12 +1586,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 28,
 		name: 'Gendrome',
 		displayName: 'Gendrome',
-		icon: IconMonsterGendrome,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gendrome',
 		rank: 'G Rank',
-		render: IconRenderMonsterGendrome,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gendrome',
 		link: '/hunter-notes/monsters/overview/gendrome',
 
-		fullRender: FullMonsterRenderGendrome,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gendrome',
 		component: ComponentMonsterGendrome,
 		unusedComponent: true,
 		type: 'Large',
@@ -2173,10 +1636,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 30,
 		name: 'Ioprey',
 		displayName: 'Ioprey',
-		icon: IconMonsterIoprey,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/ioprey',
 		rank: 'G Rank',
-		render: IconRenderMonsterIoprey,
-		fullRender: FullMonsterRenderIoprey,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ioprey',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ioprey',
 		component: ComponentMonsterIoprey,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/ioprey',
@@ -2228,10 +1693,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 31,
 		name: 'Iodrome',
 		displayName: 'Iodrome',
-		icon: IconMonsterIodrome,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/iodrome',
 		rank: 'G Rank',
-		render: IconRenderMonsterIodrome,
-		fullRender: FullMonsterRenderIodrome,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/iodrome',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/iodrome',
 		component: ComponentMonsterIodrome,
 		link: '/hunter-notes/monsters/overview/iodrome',
 
@@ -2277,10 +1744,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 33,
 		name: 'Kirin',
 		displayName: 'Kirin',
-		icon: IconMonsterKirin,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/kirin',
 		rank: 'G Rank',
-		render: IconRenderMonsterKirin,
-		fullRender: FullMonsterRenderKirin,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kirin',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kirin',
 		component: ComponentMonsterKirin,
 		link: '/hunter-notes/monsters/overview/kirin',
 
@@ -2324,10 +1793,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 34,
 		name: 'Cephalos',
 		displayName: 'Cephalos',
-		icon: IconMonsterCephalos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/cephalos',
 		rank: 'G Rank',
-		render: IconRenderMonsterCephalos,
-		fullRender: FullMonsterRenderCephalos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/cephalos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/cephalos',
 		link: '/hunter-notes/monsters/overview/cephalos',
 
 		component: ComponentMonsterCephalos,
@@ -2362,12 +1833,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 	},
 	{
 		id: 35,
-		name: 'Giaprey',
+		name: 'Giaprey', // TODO
 		displayName: 'Giaprey',
-		icon: IconMonsterGiaprey,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/giaprey',
 		rank: 'G Rank',
-		render: IconRenderMonsterGiaprey,
-		fullRender: FullMonsterRenderGiaprey,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/giaprey',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/giaprey',
 		component: ComponentMonsterGiaprey,
 		link: '/hunter-notes/monsters/overview/giaprey',
 
@@ -2408,11 +1881,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 36,
 		name: 'Crimson Fatalis',
 		displayName: 'Crimson Fatalis',
-		icon: IconMonsterCrimsonFatalis,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/crimson_fatalis',
 		rank: '',
 
-		render: IconRenderMonsterCrimsonFatalis,
-		fullRender: FullMonsterRenderCrimsonFatalis,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/crimson_fatalis',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/crimson-fatalis',
 		component: ComponentMonsterCrimsonFatalis,
 		link: '/hunter-notes/monsters/overview/crimson-fatalis',
 
@@ -2434,10 +1909,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 37,
 		name: 'Pink Rathian',
 		displayName: 'Pink Rathian',
-		icon: IconMonsterPinkRathian,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/pink_rathian',
 		rank: 'G Rank',
-		render: IconRenderMonsterPinkRathian,
-		fullRender: FullMonsterRenderPinkRathian,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/pink_rathian',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pink-rathian',
 		component: ComponentMonsterPinkRathian,
 		link: '/hunter-notes/monsters/overview/pink-rathian',
 
@@ -2471,11 +1948,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 38,
 		name: 'Blue Yian Kut-Ku',
 		displayName: 'Blue Yian Kut-Ku',
-		icon: IconMonsterBlueYianKutKu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/blue_yian_kut-ku',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterBlueYianKutKu,
-		fullRender: FullMonsterRenderBlueYianKutKu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/blue_yian_kut-ku',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/blue-yian-kut-ku',
 		component: ComponentMonsterBlueYianKutKu,
 		link: '/hunter-notes/monsters/overview/blue-yian-kut-ku',
 
@@ -2509,10 +1988,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 39,
 		name: 'Purple Gypceros',
 		displayName: 'Purple Gypceros',
-		icon: IconMonsterPurpleGypceros,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/purple_gypceros',
 		rank: 'G Rank',
-		render: IconRenderMonsterPurpleGypceros,
-		fullRender: FullMonsterRenderPurpleGypceros,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/purple_gypceros',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/purple-gypceros',
 		component: ComponentMonsterPurpleGypceros,
 		link: '/hunter-notes/monsters/overview/purple-gypceros',
 
@@ -2535,10 +2016,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 40,
 		name: 'Yian Garuga',
 		displayName: 'Yian Garuga',
-		icon: IconMonsterYianGaruga,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/yian_garuga',
 		rank: 'G Rank',
-		render: IconRenderMonsterYianGaruga,
-		fullRender: FullMonsterRenderYianGaruga,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/yian_garuga',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/yian-garuga',
 		component: ComponentMonsterYianGaruga,
 		link: '/hunter-notes/monsters/overview/yian-garuga',
 
@@ -2581,10 +2064,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 41,
 		name: 'Silver Rathalos',
 		displayName: 'Silver Rathalos',
-		icon: IconMonsterSilverRathalos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616757/monster/silver_rathalos.webp',
 		rank: 'G Rank',
-		render: IconRenderMonsterSilverRathalos,
-		fullRender: FullMonsterRenderSilverRathalos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/silver_rathalos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/silver-rathalos',
 		component: ComponentMonsterSilverRathalos,
 		link: '/hunter-notes/monsters/overview/silver-rathalos',
 
@@ -2632,10 +2117,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 42,
 		name: 'Gold Rathian',
 		displayName: 'Gold Rathian',
-		icon: IconMonsterGoldRathian,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616489/monster/gold_rathian.webp',
 		rank: 'G Rank',
-		render: IconRenderMonsterGoldRathian,
-		fullRender: FullMonsterRenderGoldRathian,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gold_rathian',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gold-rathian',
 		component: ComponentMonsterGoldRathian,
 		link: '/hunter-notes/monsters/overview/gold-rathian',
 
@@ -2687,10 +2174,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 43,
 		name: 'Black Diablos',
 		displayName: 'Black Diablos',
-		icon: IconMonsterBlackDiablos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/black_diablos',
 		rank: 'G Rank',
-		render: IconRenderMonsterBlackDiablos,
-		fullRender: FullMonsterRenderBlackDiablos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/black_diablos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/black-diablos',
 		component: ComponentMonsterBlackDiablos,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/black-diablos',
@@ -2741,10 +2230,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 44,
 		name: 'White Monoblos',
 		displayName: 'White Monoblos',
-		icon: IconMonsterWhiteMonoblos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/white_monoblos',
 		rank: 'G Rank',
-		render: IconRenderMonsterWhiteMonoblos,
-		fullRender: FullMonsterRenderWhiteMonoblos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/white_monoblos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/white-monoblos',
 		component: ComponentMonsterWhiteMonoblos,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/white-monoblos',
@@ -2783,10 +2274,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 45,
 		name: 'Red Khezu',
 		displayName: 'Red Khezu',
-		icon: IconMonsterRedKhezu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/red_khezu',
 		rank: 'G Rank',
-		render: IconRenderMonsterRedKhezu,
-		fullRender: FullMonsterRenderRedKhezu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/red_khezu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/red-khezu',
 		component: ComponentMonsterRedKhezu,
 		link: '/hunter-notes/monsters/overview/red-khezu',
 
@@ -2810,10 +2303,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 46,
 		name: 'Green Plesioth',
 		displayName: 'Green Plesioth',
-		icon: IconMonsterGreenPlesioth,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/green_plesioth',
 		rank: 'G Rank',
-		render: IconRenderMonsterGreenPlesioth,
-		fullRender: FullMonsterRenderGreenPlesioth,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/green_plesioth',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/green-plesioth',
 		component: ComponentMonsterGreenPlesioth,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/green-plesioth',
@@ -2850,10 +2345,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 47,
 		name: 'Black Gravios',
 		displayName: 'Black Gravios',
-		icon: IconMonsterBlackGravios,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/black_gravios',
 		rank: 'G Rank',
-		render: IconRenderMonsterBlackGravios,
-		fullRender: FullMonsterRenderBlackGravios,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/black_gravios',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/black-gravios',
 		component: ComponentMonsterBlackGravios,
 		link: '/hunter-notes/monsters/overview/black-gravios',
 
@@ -2905,11 +2402,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 48,
 		name: 'Daimyo Hermitaur',
 		displayName: 'Daimyo Hermitaur',
-		icon: IconMonsterDaimyoHermitaur,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/daimyo_hermitaur',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterDaimyoHermitaur,
-		fullRender: FullMonsterRenderDaimyoHermitaur,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/daimyo_hermitaur',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/daimyo-hermitaur',
 		component: ComponentMonsterDaimyoHermitaur,
 		link: '/hunter-notes/monsters/overview/daimyo-hermitaur',
 
@@ -2938,10 +2437,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Azure Rathalos',
 		displayName: 'Azure Rathalos',
 
-		icon: IconMonsterAzureRathalos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/azure_rathalos',
 		rank: 'G Rank',
-		render: IconRenderMonsterAzureRathalos,
-		fullRender: FullMonsterRenderAzureRathalos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/azure_rathalos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/azure-rathalos',
 		component: ComponentMonsterAzureRathalos,
 		link: '/hunter-notes/monsters/overview/azure-rathalos',
 
@@ -2971,11 +2472,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 50,
 		name: 'Ashen Lao-Shan Lung',
 		displayName: 'Ashen Lao-Shan Lung',
-		icon: IconMonsterAshenLaoShanLung,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/ashen_lao-shan_lung',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterAshenLaoShanLung,
-		fullRender: FullMonsterRenderAshenLaoShanLung,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ashen_lao-shan_lung',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ashen-lao-shan_lung',
 		component: ComponentMonsterAshenLaoShanLung,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/ashen-lao-shan-lung',
@@ -2997,10 +2500,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 51,
 		name: 'Blangonga',
 		displayName: 'Blangonga',
-		icon: IconMonsterBlangonga,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/blangonga',
 		rank: 'G Rank',
-		render: IconRenderMonsterBlangonga,
-		fullRender: FullMonsterRenderBlangonga,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/blangonga',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/blangonga',
 		component: ComponentMonsterBlangonga,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/blangonga',
@@ -3032,11 +2537,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 52,
 		name: 'Congalala',
 		displayName: 'Congalala',
-		icon: IconMonsterCongalala,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/congalala',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterCongalala,
-		fullRender: FullMonsterRenderCongalala,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/congalala',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/congalala',
 		component: ComponentMonsterCongalala,
 		link: '/hunter-notes/monsters/overview/congalala',
 
@@ -3086,10 +2593,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 53,
 		name: 'Rajang',
 		displayName: 'Rajang',
-		icon: IconMonsterRajang,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/rajang',
 		rank: 'G Rank',
-		render: IconRenderMonsterRajang,
-		fullRender: FullMonsterRenderRajang,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rajang',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rajang',
 		link: '/hunter-notes/monsters/overview/rajang',
 
 		component: ComponentMonsterRajang,
@@ -3167,10 +2676,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 54,
 		name: 'Kushala Daora',
 		displayName: 'Kushala Daora',
-		icon: IconMonsterKushalaDaora,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/kushala_daora',
 		rank: 'G Rank',
-		render: IconRenderMonsterKushalaDaora,
-		fullRender: FullMonsterRenderKushalaDaora,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kushala_daora',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kushala-daora',
 		component: ComponentMonsterKushalaDaora,
 		link: '/hunter-notes/monsters/overview/kushala-daora',
 
@@ -3225,10 +2736,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 55,
 		name: 'Shen Gaoren',
 		displayName: 'Shen Gaoren',
-		icon: IconMonsterShenGaoren,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616633/monster/shen_gaoren.webp',
 		rank: 'G Rank',
-		render: IconRenderMonsterShenGaoren,
-		fullRender: FullMonsterRenderShenGaoren,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shen_gaoren',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shen-gaoren',
 		link: '/hunter-notes/monsters/overview/shen-gaoren',
 
 		component: ComponentMonsterShenGaoren,
@@ -3249,10 +2762,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 56,
 		name: 'Great Thunderbug',
 		displayName: 'Great Thunderbug',
-		icon: IconMonsterGreatThunderbug,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/great_thunderbug',
 		rank: 'G Rank',
-		render: IconRenderMonsterGreatThunderbug,
-		fullRender: FullMonsterRenderGreatThunderbug,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/great_thunderbug',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/great-thunderbug',
 		component: ComponentMonsterGreatThunderbug,
 		unusedComponent: true,
 		type: 'Small',
@@ -3294,17 +2809,19 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Terga',
 		],
 		sizes: ['80cm'],
-		relatedMonsters: ['Vespoid', 'Vespoid Queen', 'Hornetaur'],
+		relatedMonsters: ['Vespoid', 'Hornetaur'],
 		generation: 'Second Generation',
 	},
 	{
 		id: 57,
 		name: 'Shakalaka',
 		displayName: 'Shakalaka',
-		icon: IconMonsterShakalaka,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/shakalaka',
 		rank: 'G Rank',
-		render: IconRenderMonsterShakalaka,
-		fullRender: FullMonsterRenderShakalaka,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shakalaka',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shakalaka',
 		link: '/hunter-notes/monsters/overview/shakalaka',
 
 		component: ComponentMonsterShakalaka,
@@ -3328,10 +2845,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 58,
 		name: 'Yama Tsukami',
 		displayName: 'Yama Tsukami',
-		icon: IconMonsterYamaTsukami,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/yama_tsukami',
 		rank: 'G Rank',
-		render: IconRenderMonsterYamaTsukami,
-		fullRender: FullMonsterRenderYamaTsukami,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/yama_tsukami',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/yama-tsukami',
 		component: ComponentMonsterYamaTsukami,
 		link: '/hunter-notes/monsters/overview/yama-tsukami',
 
@@ -3353,10 +2872,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 59,
 		name: 'Chameleos',
 		displayName: 'Chameleos',
-		icon: IconMonsterChameleos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/chameleos',
 		rank: 'G Rank',
-		render: IconRenderMonsterChameleos,
-		fullRender: FullMonsterRenderChameleos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/chameleos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/chameleos',
 		link: '/hunter-notes/monsters/overview/chameleos',
 
 		component: ComponentMonsterChameleos,
@@ -3398,10 +2919,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 60,
 		name: 'Rusted Kushala Daora',
 		displayName: 'Rusted Kushala Daora',
-		icon: IconMonsterRustedKushalaDaora,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/rusted_kushala_daora',
 		rank: 'G Rank',
-		render: IconRenderMonsterRustedKushalaDaora,
-		fullRender: FullMonsterRenderRustedKushalaDaora,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rusted_kushala_daora',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rusted-kushala-daora',
 		component: ComponentMonsterRustedKushalaDaora,
 		link: '/hunter-notes/monsters/overview/rusted-kushala-daora',
 
@@ -3436,10 +2959,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 61,
 		name: 'Blango',
 		displayName: 'Blango',
-		icon: IconMonsterBlango,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/blango',
 		rank: 'G Rank',
-		render: IconRenderMonsterBlango,
-		fullRender: FullMonsterRenderBlango,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/blango',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/blango',
 		component: ComponentMonsterBlango,
 		link: '/hunter-notes/monsters/overview/blango',
 
@@ -3471,10 +2996,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 62,
 		name: 'Conga',
 		displayName: 'Conga',
-		icon: IconMonsterConga,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/conga',
 		rank: 'G Rank',
-		render: IconRenderMonsterConga,
-		fullRender: FullMonsterRenderConga,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/conga',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/conga',
 		link: '/hunter-notes/monsters/overview/conga',
 
 		component: ComponentMonsterConga,
@@ -3522,10 +3049,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 63,
 		name: 'Remobra',
 		displayName: 'Remobra',
-		icon: IconMonsterRemobra,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/remobra',
 		rank: 'G Rank',
-		render: IconRenderMonsterRemobra,
-		fullRender: FullMonsterRenderRemobra,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/remobra',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/remobra',
 		link: '/hunter-notes/monsters/overview/remobra',
 
 		component: ComponentMonsterRemobra,
@@ -3578,10 +3107,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 64,
 		name: 'Lunastra',
 		displayName: 'Lunastra',
-		icon: IconMonsterLunastra,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/lunastra',
 		rank: 'G Rank',
-		render: IconRenderMonsterLunastra,
-		fullRender: FullMonsterRenderLunastra,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/lunastra',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/lunastra',
 		link: '/hunter-notes/monsters/overview/lunastra',
 
 		component: ComponentMonsterLunastra,
@@ -3605,10 +3136,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 65,
 		name: 'Teostra',
 		displayName: 'Teostra',
-		icon: IconMonsterTeostra,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/teostra',
 		rank: 'G Rank',
-		render: IconRenderMonsterTeostra,
-		fullRender: FullMonsterRenderTeostra,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/teostra',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/teostra',
 		link: '/hunter-notes/monsters/overview/teostra',
 
 		component: ComponentMonsterTeostra,
@@ -3632,10 +3165,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 66,
 		name: 'Hermitaur',
 		displayName: 'Hermitaur',
-		icon: IconMonsterHermitaur,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/hermitaur',
 		rank: 'G Rank',
-		render: IconRenderMonsterHermitaur,
-		fullRender: FullMonsterRenderHermitaur,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hermitaur',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hermitaur',
 		component: ComponentMonsterHermitaur,
 		link: '/hunter-notes/monsters/overview/hermitaur',
 
@@ -3691,10 +3226,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 67,
 		name: 'Shogun Ceanataur',
 		displayName: 'Shogun Ceanataur',
-		icon: IconMonsterShogunCeanataur,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/shogun_ceanataur',
 		rank: 'G Rank',
-		render: IconRenderMonsterShogunCeanataur,
-		fullRender: FullMonsterRenderShogunCeanataur,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shogun_ceanataur',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shogun-ceanataur',
 		component: ComponentMonsterShogunCeanataur,
 		link: '/hunter-notes/monsters/overview/shogun-ceanataur',
 
@@ -3722,11 +3259,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 68,
 		name: 'Bulldrome',
 		displayName: 'Bulldrome',
-		icon: IconMonsterBulldrome,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/bulldrome',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterBulldrome,
-		fullRender: FullMonsterRenderBulldrome,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/bulldrome',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/bulldrome',
 		component: ComponentMonsterBulldrome,
 		link: '/hunter-notes/monsters/overview/bulldrome',
 
@@ -3771,10 +3310,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 69,
 		name: 'Anteka',
 		displayName: 'Anteka',
-		icon: IconMonsterAnteka,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/anteka',
 		rank: 'G Rank',
-		render: IconRenderMonsterAnteka,
-		fullRender: FullMonsterRenderAnteka,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/anteka',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/anteka',
 		link: '/hunter-notes/monsters/overview/anteka',
 
 		component: ComponentMonsterAnteka,
@@ -3805,10 +3346,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 70,
 		name: 'Popo',
 		displayName: 'Popo',
-		icon: IconMonsterPopo,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/popo',
 		rank: 'G Rank',
-		render: IconRenderMonsterPopo,
-		fullRender: FullMonsterRenderPopo,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/popo',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/popo',
 		link: '/hunter-notes/monsters/overview/popo',
 
 		component: ComponentMonsterPopo,
@@ -3833,12 +3376,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'White Fatalis',
 		displayName: 'White Fatalis',
 
-		icon: IconMonsterWhiteFatalis,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/white_fatalis',
 		link: '/hunter-notes/monsters/overview/white-fatalis',
 
 		rank: '',
-		render: IconRenderMonsterWhiteFatalis,
-		fullRender: FullMonsterRenderWhiteFatalis,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/white_fatalis',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/white-fatalis',
 		component: ComponentMonsterWhiteFatalis,
 		unusedComponent: false,
 		type: 'Large',
@@ -3856,10 +3401,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 73,
 		name: 'Ceanataur',
 		displayName: 'Ceanataur',
-		icon: IconMonsterCeanataur,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/ceanataur',
 		rank: 'G Rank',
-		render: IconRenderMonsterCeanataur,
-		fullRender: FullMonsterRenderCeanataur,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ceanataur',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ceanataur',
 		component: ComponentMonsterCeanataur,
 		unusedComponent: true,
 		type: 'Small',
@@ -3897,10 +3444,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 74,
 		name: 'Hypnocatrice',
 		displayName: 'Hypnocatrice',
-		icon: IconMonsterHypnocatrice,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/hypnoc',
 		rank: 'G Rank',
-		render: IconRenderMonsterHypnocatrice,
-		fullRender: FullMonsterRenderHypnocatrice,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hypnoc',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hypnoc',
 		component: ComponentMonsterHypnocatrice,
 		link: '/hunter-notes/monsters/overview/hypnocatrice',
 
@@ -3940,12 +3489,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 75,
 		name: 'Lavasioth',
 		displayName: 'Lavasioth',
-		icon: IconMonsterLavasioth,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616506/monster/lavasioth.webp',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterLavasioth,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/lavasioth',
 		link: '/hunter-notes/monsters/overview/lavasioth',
-		fullRender: FullMonsterRenderLavasioth,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/lavasioth',
 		component: ComponentMonsterLavasioth,
 		unusedComponent: false,
 		type: 'Large',
@@ -3982,10 +3533,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 76,
 		name: 'Tigrex',
 		displayName: 'Tigrex',
-		icon: IconMonsterTigrex,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/tigrex',
 		rank: 'G Rank',
-		render: IconRenderMonsterTigrex,
-		fullRender: FullMonsterRenderTigrex,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/tigrex',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/tigrex',
 		link: '/hunter-notes/monsters/overview/tigrex',
 
 		component: ComponentMonsterTigrex,
@@ -4049,10 +3602,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 77,
 		name: 'Akantor',
 		displayName: 'Akantor',
-		icon: IconMonsterAkantor,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/akantor',
 		rank: 'G Rank',
-		render: IconRenderMonsterAkantor,
-		fullRender: FullMonsterRenderAkantor,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/akantor',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/akantor',
 		component: ComponentMonsterAkantor,
 		link: '/hunter-notes/monsters/overview/akantor',
 
@@ -4081,10 +3636,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 78,
 		name: 'Bright Hypnoc',
 		displayName: 'Bright Hypnoc',
-		icon: IconMonsterBrightHypnoc,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/bright_hypnoc',
 		rank: 'G Rank',
-		render: IconRenderMonsterBrightHypnoc,
-		fullRender: FullMonsterRenderBrightHypnoc,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/bright_hypnoc',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/bright-hypnoc',
 		component: ComponentMonsterBrightHypnoc,
 		link: '/hunter-notes/monsters/overview/bright-hypnoc',
 
@@ -4111,10 +3668,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 79,
 		name: 'Red Lavasioth',
 		displayName: 'Red Lavasioth',
-		icon: IconMonsterRedLavasioth,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616520/monster/red_lavasioth.webp',
 		rank: 'G Rank',
-		render: IconRenderMonsterRedLavasioth,
-		fullRender: FullMonsterRenderRedLavasioth,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/red_lavasioth',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/red-lavasioth',
 		component: ComponentMonsterRedLavasioth,
 		unusedComponent: false,
 		type: 'Large',
@@ -4145,12 +3704,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 80,
 		name: 'Espinas',
 		displayName: 'Espinas',
-		icon: IconMonsterEspinas,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/espinas',
 		rank: 'G Rank',
-		render: IconRenderMonsterEspinas,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/espinas',
 		link: '/hunter-notes/monsters/overview/espinas',
 
-		fullRender: FullMonsterRenderEspinas,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/espinas',
 		component: ComponentMonsterEspinas,
 		unusedComponent: true,
 		type: 'Large',
@@ -4199,10 +3760,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 81,
 		name: 'Orange Espinas',
 		displayName: 'Orange Espinas',
-		icon: IconMonsterOrangeEspinas,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/orange_espinas',
 		rank: 'G Rank',
-		render: IconRenderMonsterOrangeEspinas,
-		fullRender: FullMonsterRenderOrangeEspinas,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/orange_espinas',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/orange-espinas',
 		component: ComponentMonsterOrangeEspinas,
 		link: '/hunter-notes/monsters/overview/orange-espinas',
 
@@ -4249,10 +3812,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 82,
 		name: 'Silver Hypnoc',
 		displayName: 'Silver Hypnoc',
-		icon: IconMonsterSilverHypnoc,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/silver_hypnoc',
 		rank: 'G Rank',
-		render: IconRenderMonsterSilverHypnoc,
-		fullRender: FullMonsterRenderSilverHypnoc,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/silver_hypnoc',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/silver-hypnoc',
 		component: ComponentMonsterSilverHypnoc,
 		link: '/hunter-notes/monsters/overview/silver-hypnoc',
 
@@ -4285,11 +3850,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 83,
 		name: 'Akura Vashimu',
 		displayName: 'Akura Vashimu',
-		icon: IconMonsterAkuraVashimu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/akura_vashimu',
 		rank: 'G Rank',
 
-		render: IconRenderMonsterAkuraVashimu,
-		fullRender: FullMonsterRenderAkuraVashimu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/akura_vashimu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/akura-vashimu',
 		component: ComponentMonsterAkuraVashimu,
 		unusedComponent: false,
 		link: '/hunter-notes/monsters/overview/akura-vashimu',
@@ -4317,11 +3884,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 84,
 		name: 'Akura Jebia',
 		displayName: 'Akura Jebia',
-		icon: IconMonsterAkuraJebia,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/akura_jebia',
 		rank: 'G Rank',
 
-		render: IconRenderMonsterAkuraJebia,
-		fullRender: FullMonsterRenderAkuraJebia,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/akura_jebia',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/akura-jebia',
 		component: ComponentMonsterAkuraJebia,
 		link: '/hunter-notes/monsters/overview/akura-jebia',
 
@@ -4343,11 +3912,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 85,
 		name: 'Berukyurosu',
 		displayName: 'Berukyurosu',
-		icon: IconMonsterBerukyurosu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/berukyurosu',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterBerukyurosu,
-		fullRender: FullMonsterRenderBerukyurosu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/berukyurosu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/berukyurosu',
 		link: '/hunter-notes/monsters/overview/berukyurosu',
 
 		component: ComponentMonsterBerukyurosu,
@@ -4369,10 +3940,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 86,
 		name: 'Cactus',
 		displayName: 'Cactus',
-		icon: IconMonsterCactus,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/cactus',
 		rank: 'G Rank',
-		render: IconRenderMonsterCactus,
-		fullRender: FullMonsterRenderCactus,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/cactus',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/cactus',
 		component: ComponentMonsterRandom,
 		link: '/hunter-notes/monsters/overview/cactus',
 
@@ -4385,10 +3958,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 89,
 		name: 'Pariapuria',
 		displayName: 'Pariapuria',
-		icon: IconMonsterPariapuria,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/pariapuria',
 		rank: 'G Rank',
-		render: IconRenderMonsterPariapuria,
-		fullRender: FullMonsterRenderPariapuria,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/pariapuria',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pariapuria',
 		component: ComponentMonsterPariapuria,
 		link: '/hunter-notes/monsters/overview/pariapuria',
 
@@ -4417,10 +3992,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 90,
 		name: 'White Espinas',
 		displayName: 'White Espinas',
-		icon: IconMonsterWhiteEspinas,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/white_espinas',
 		rank: 'G Rank',
-		render: IconRenderMonsterWhiteEspinas,
-		fullRender: FullMonsterRenderWhiteEspinas,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/white_espinas',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/white-espinas',
 		link: '/hunter-notes/monsters/overview/white-espinas',
 
 		component: ComponentMonsterWhiteEspinas,
@@ -4458,10 +4035,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 91,
 		name: 'Kamu Orugaron',
 		displayName: 'Kamu Orugaron',
-		icon: IconMonsterKamuOrugaron,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/kamu_orugaron',
 		rank: 'G Rank',
-		render: IconRenderMonsterKamuOrugaron,
-		fullRender: FullMonsterRenderKamuOrugaron,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kamu_orugaron',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kamu-orugaron',
 		component: ComponentMonsterKamuOrugaron,
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/kamu-orugaron',
@@ -4483,12 +4062,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 92,
 		name: 'Nono Orugaron',
 		displayName: 'Nono Orugaron',
-		icon: IconMonsterNonoOrugaron,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/nono_orugaron',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/nono-orugaron',
 
-		render: IconRenderMonsterNonoOrugaron,
-		fullRender: FullMonsterRenderNonoOrugaron,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/nono_orugaron',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/nono-orugaron',
 		component: ComponentMonsterNonoOrugaron,
 		unusedComponent: true,
 		type: 'Large',
@@ -4508,12 +4089,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 93,
 		name: 'Raviente',
 		displayName: 'Raviente',
-		icon: IconMonsterRaviente,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616519/monster/raviente.webp',
 		link: '/hunter-notes/monsters/overview/raviente',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterRaviente,
-		fullRender: FullMonsterRenderRaviente,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/raviente',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/raviente',
 		component: ComponentMonsterRaviente,
 		unusedComponent: false,
 		type: 'Large',
@@ -4533,12 +4116,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 93,
 		name: 'Violent Raviente',
 		displayName: 'Violent Raviente',
-		icon: IconMonsterViolentRaviente,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616900/monster/violent_raviente.webp',
 		link: '/hunter-notes/monsters/overview/violent-raviente',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterViolentRaviente,
-		fullRender: FullMonsterRenderViolentRaviente,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/violent_raviente',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/violent-raviente',
 		component: ComponentMonsterViolentRaviente,
 		unusedComponent: false,
 		type: 'Large',
@@ -4558,10 +4143,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 94,
 		name: 'Dyuragaua',
 		displayName: 'Dyuragaua',
-		icon: IconMonsterDyuragaua,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/dyuragaua',
 		rank: 'G Rank',
-		render: IconRenderMonsterDyuragaua,
-		fullRender: FullMonsterRenderDyuragaua,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/dyuragaua',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/dyuragaua',
 		component: ComponentMonsterDyuragaua,
 		link: '/hunter-notes/monsters/overview/dyuragaua',
 
@@ -4590,12 +4177,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 95,
 		name: 'Doragyurosu',
 		displayName: 'Doragyurosu',
-		icon: IconMonsterDoragyurosu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/doragyurosu',
 		rank: 'G Rank',
-		render: IconRenderMonsterDoragyurosu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/doragyurosu',
 		link: '/hunter-notes/monsters/overview/doragyurosu',
 
-		fullRender: FullMonsterRenderDoragyurosu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/doragyurosu',
 		component: ComponentMonsterDoragyurosu,
 		unusedComponent: false,
 		type: 'Large',
@@ -4617,10 +4206,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 96,
 		name: 'Gurenzeburu',
 		displayName: 'Gurenzeburu',
-		icon: IconMonsterGurenzeburu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gurenzeburu',
 		rank: 'G Rank',
-		render: IconRenderMonsterGurenzeburu,
-		fullRender: FullMonsterRenderGurenzeburu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gurenzeburu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gurenzeburu',
 		link: '/hunter-notes/monsters/overview/gurenzeburu',
 
 		component: ComponentMonsterGurenzeburu,
@@ -4642,10 +4233,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 97,
 		name: 'Burukku',
 		displayName: 'Burukku',
-		icon: IconMonsterBurukku,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/burukku',
 		rank: 'G Rank',
-		render: IconRenderMonsterBurukku,
-		fullRender: FullMonsterRenderBurukku,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/burukku',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/burukku',
 		component: ComponentMonsterBurukku,
 		link: '/hunter-notes/monsters/overview/burukku',
 
@@ -4657,10 +4250,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 98,
 		name: 'Erupe',
 		displayName: 'Erupe',
-		icon: IconMonsterErupe,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/erupe',
 		rank: 'G Rank',
-		render: IconRenderMonsterErupe,
-		fullRender: FullMonsterRenderErupe,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/erupe',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/erupe',
 		component: ComponentMonsterErupe,
 		link: '/hunter-notes/monsters/overview/erupe',
 
@@ -4682,12 +4277,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 99,
 		name: 'Rukodiora',
 		displayName: 'Rukodiora',
-		icon: IconMonsterRukodiora,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/rukodiora',
 		rank: 'G Rank',
-		render: IconRenderMonsterRukodiora,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rukodiora',
 		link: '/hunter-notes/monsters/overview/rukodiora',
 
-		fullRender: FullMonsterRenderRukodiora,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rukodiora',
 		component: ComponentMonsterRukodiora,
 		unusedComponent: false,
 		ecology:
@@ -4714,12 +4311,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 100,
 		name: 'UNKNOWN',
 		displayName: 'UNKNOWN',
-		icon: IconMonsterUNKNOWN,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/unknown',
 		rank: 'G Rank',
-		render: IconRenderMonsterUNKNOWN,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/unknown',
 		link: '/hunter-notes/monsters/overview/unknown',
 
-		fullRender: FullMonsterRenderUNKNOWN,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
 		component: ComponentMonsterUNKNOWN,
 		unusedComponent: true,
 		type: 'Large',
@@ -4747,10 +4346,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 100,
 		name: 'Unknown',
 		displayName: 'UNKNOWN',
-		icon: IconMonsterUNKNOWN,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/unknown',
 		rank: 'G Rank',
-		render: IconRenderMonsterUNKNOWN,
-		fullRender: FullMonsterRenderUNKNOWN,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/unknown',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
 		link: '/hunter-notes/monsters/overview/unknown',
 
 		component: ComponentMonsterUNKNOWN,
@@ -4780,10 +4381,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 101,
 		name: 'Gogomoa',
 		displayName: 'Gogomoa',
-		icon: IconMonsterGogomoa,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gogomoa',
 		rank: 'G Rank',
-		render: IconRenderMonsterGogomoa,
-		fullRender: FullMonsterRenderGogomoa,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gogomoa',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gogomoa',
 		component: ComponentMonsterGogomoa,
 		link: '/hunter-notes/monsters/overview/gogomoa',
 
@@ -4805,12 +4408,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 103,
 		name: 'Taikun Zamuza',
 		displayName: 'Taikun Zamuza',
-		icon: IconMonsterTaikunZamuza,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/taikun_zamuza',
 		rank: 'G Rank',
-		render: IconRenderMonsterTaikunZamuza,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/taikun_zamuza',
 		link: '/hunter-notes/monsters/overview/taikun-zamuza',
 
-		fullRender: FullMonsterRenderTaikunZamuza,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/taikun-zamuza',
 		component: ComponentMonsterTaikunZamuza,
 		unusedComponent: true,
 		ecology:
@@ -4830,10 +4435,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 104,
 		name: 'Abiorugu',
 		displayName: 'Abiorugu',
-		icon: IconMonsterAbiorugu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/abiorugu',
 		rank: 'G Rank',
-		render: IconRenderMonsterAbiorugu,
-		fullRender: FullMonsterRenderAbiorugu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/abiorugu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/abiorugu',
 		link: '/hunter-notes/monsters/overview/abiorugu',
 
 		component: ComponentMonsterAbiorugu,
@@ -4870,12 +4477,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 105,
 		name: 'Kuarusepusu',
 		displayName: 'Kuarusepusu',
-		icon: IconMonsterKuarusepusu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/kuarusepusu',
 		rank: 'G Rank',
-		render: IconRenderMonsterKuarusepusu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kuarusepusu',
 		link: '/hunter-notes/monsters/overview/kuarusepusu',
 
-		fullRender: FullMonsterRenderKuarusepusu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kuarusepusu',
 		component: ComponentMonsterKuarusepusu,
 		unusedComponent: true,
 		ecology:
@@ -4901,12 +4510,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 106,
 		name: 'Odibatorasu',
 		displayName: 'Odibatorasu',
-		icon: IconMonsterOdibatorasu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/odibatorasu',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/odibatorasu',
 
-		render: IconRenderMonsterOdibatorasu,
-		fullRender: FullMonsterRenderOdibatorasu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/odibatorasu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/odibatorasu',
 		component: ComponentMonsterOdibatorasu,
 		unusedComponent: true,
 		type: 'Large',
@@ -4926,12 +4537,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 107,
 		name: 'Disufiroa',
 		displayName: 'Disufiroa',
-		icon: IconMonsterDisufiroa,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/disufiroa',
 
 		ecology: `Mysterious, yet overwhelmingly powerful, this dragon dwells in an area dubbed the "World's End", which was previously thought to be incapable of supporting life. Ominously, no records of this beast exist and its ecology is a mystery. '`,
 		rank: 'G Rank',
-		render: IconRenderMonsterDisufiroa,
-		fullRender: FullMonsterRenderDisufiroa,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/disufiroa',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/disufiroa',
 		component: ComponentMonsterDisufiroa,
 		link: '/hunter-notes/monsters/overview/disufiroa',
 
@@ -4951,12 +4564,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 108,
 		name: 'Rebidiora',
 		displayName: 'Rebidiora',
-		icon: IconMonsterRebidiora,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/rebidiora',
 		rank: 'G Rank',
-		render: IconRenderMonsterRebidiora,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rebidiora',
 		link: '/hunter-notes/monsters/overview/rebidiora',
 
-		fullRender: FullMonsterRenderRebidiora,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rebidiora',
 		component: ComponentMonsterRebidiora,
 		unusedComponent: true,
 		ecology: `A powerful dragon clad in purple scales and shining wings. It's origin is unknown but scholars believe it may be a Sub-Species of Rukodiora. It is able to generate far more powerful magnetic fields than its relative. `,
@@ -4966,12 +4581,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Anorupatisu',
 		displayName: 'Anorupatisu',
 
-		icon: IconMonsterAnorupatisu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/anorupatisu',
 		rank: 'G Rank',
-		render: IconRenderMonsterAnorupatisu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/anorupatisu',
 		link: '/hunter-notes/monsters/overview/anorupatisu',
 
-		fullRender: FullMonsterRenderAnorupatisu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/anorupatisu',
 		component: ComponentMonsterAnorupatisu,
 		unusedComponent: false,
 		ecology:
@@ -4991,12 +4608,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 110,
 		name: 'Hyujikiki',
 		displayName: 'Hyujikiki',
-		icon: IconMonsterHyujikiki,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/hyujikiki',
 		rank: 'G Rank',
-		render: IconRenderMonsterHyujikiki,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hyujikiki',
 		link: '/hunter-notes/monsters/overview/hyujikiki',
 
-		fullRender: FullMonsterRenderHyujikiki,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hyujikiki',
 		component: ComponentMonsterHyujikiki,
 		unusedComponent: true,
 		type: 'Large',
@@ -5018,12 +4637,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ecology:
 			'Rare and violent variants of Kamu Orugaron, known to inhabit volcanic regions. Unlike their standard cousins, they are solitary hunters and have been know to even harrass Nono Orugaron during the breeding season. Their bright orange fur is highly fire-resistant.',
 		displayName: 'Midogaron',
-		icon: IconMonsterMidogaron,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/midogaron',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/midogaron',
 
-		render: IconRenderMonsterMidogaron,
-		fullRender: FullMonsterRenderMidogaron,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/midogaron',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/midogaron',
 		component: ComponentMonsterMidogaron,
 		unusedComponent: true,
 		type: 'Large',
@@ -5041,12 +4662,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 112,
 		name: 'Giaorugu',
 		displayName: 'Giaorugu',
-		icon: IconMonsterGiaorugu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/giaorugu',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/giaorugu',
 
-		render: IconRenderMonsterGiaorugu,
-		fullRender: FullMonsterRenderGiaorugu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/giaorugu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/giaorugu',
 		component: ComponentMonsterGiaorugu,
 		unusedComponent: true,
 		ecology:
@@ -5073,12 +4696,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 113,
 		name: 'Mi Ru',
 		displayName: 'Mi Ru',
-		icon: IconMonsterMiRu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/mi_ru',
 		rank: 'G Rank',
-		render: IconRenderMonsterMiRu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/mi_ru',
 		link: '/hunter-notes/monsters/overview/mi-ru',
 
-		fullRender: FullMonsterRenderMiRu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/mi-ru',
 		component: ComponentMonsterMiRu,
 		unusedComponent: false,
 		ecology:
@@ -5098,14 +4723,16 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 114,
 		name: 'Farunokku',
 		displayName: 'Farunokku',
-		icon: IconMonsterFarunokku,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/farunokku',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/farunokku',
 
 		ecology:
 			'Closely related to Hypnocatrice, these Wyverns possess extremely bright plumage, not to warn predators, but to attract potential mates. Naturally being highly visible to potential threats, these Wyverns are quite capable of defending themselves and are not to be taken lightly.',
-		render: IconRenderMonsterFarunokku,
-		fullRender: FullMonsterRenderFarunokku,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/farunokku',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/farunokku',
 		component: ComponentMonsterFarunokku,
 		unusedComponent: true,
 		type: 'Large',
@@ -5128,12 +4755,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 115,
 		name: 'Pokaradon',
 		displayName: 'Pokaradon',
-		icon: IconMonsterPokaradon,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/pokaradon',
 		rank: 'G Rank',
-		render: IconRenderMonsterPokaradon,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/pokaradon',
 		link: '/hunter-notes/monsters/overview/pokaradon',
 
-		fullRender: FullMonsterRenderPokaradon,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pokaradon',
 		component: ComponentMonsterPokaradon,
 		unusedComponent: true,
 		ecology:
@@ -5155,12 +4784,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Shantien',
 		link: '/hunter-notes/monsters/overview/shantien',
 
-		icon: IconMonsterShantien,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/shantien',
 		ecology:
 			'An elusive Elder Dragon previously known only from ancient legends. It dwells high in the atmosphere, far above most other creatures, but will rarely descend to ground level. It was classified by the Guild after its discovery by the Large Exploration Ship.',
 		rank: 'G Rank',
-		render: IconRenderMonsterShantien,
-		fullRender: FullMonsterRenderShantien,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shantien',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shantien',
 		component: ComponentMonsterShantien,
 		unusedComponent: false,
 		type: 'Large',
@@ -5178,13 +4809,15 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 117,
 		name: 'Pokara',
 		displayName: 'Pokara',
-		icon: IconMonsterPokara,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/pokara',
 		ecology:
 			'Female Leviathans found in the Polar Sea. Roughly half the size of their male counterparts, they also possess smaller fangs, more suited to catching fish than for display. If their children or mate is threatened, they will attack ferociously.',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/pokara',
-		render: IconRenderMonsterPokara,
-		fullRender: FullMonsterRenderPokara,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/pokara',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pokara',
 		component: ComponentMonsterPokara,
 		unusedComponent: true,
 		type: 'Small',
@@ -5202,12 +4835,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 119,
 		name: 'Goruganosu',
 		displayName: 'Goruganosu',
-		icon: IconMonsterGoruganosu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616491/monster/goruganosu.webp',
 		link: '/hunter-notes/monsters/overview/goruganosu',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterGoruganosu,
-		fullRender: FullMonsterRenderGoruganosu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/goruganosu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/goruganosu',
 		component: ComponentMonsterGoruganosu,
 		unusedComponent: false,
 		type: 'Large',
@@ -5239,10 +4874,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Aruganosu',
 		link: '/hunter-notes/monsters/overview/aruganosu',
 
-		icon: IconMonsterAruganosu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616411/monster/aruganosu.webp',
 		rank: 'G Rank',
-		render: IconRenderMonsterAruganosu,
-		fullRender: FullMonsterRenderAruganosu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/aruganosu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/aruganosu',
 		component: ComponentMonsterAruganosu,
 		unusedComponent: false,
 		type: 'Large',
@@ -5271,13 +4908,15 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 121,
 		name: 'Baruragaru',
 		displayName: 'Baruragaru',
-		icon: IconMonsterBaruragaru,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/baruragaru',
 
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/baruragaru',
 
-		render: IconRenderMonsterBaruragaru,
-		fullRender: FullMonsterRenderBaruragaru,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/baruragaru',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/baruragaru',
 		component: ComponentMonsterBaruragaru,
 		unusedComponent: true,
 		ecology:
@@ -5297,12 +4936,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 122,
 		name: 'Zerureusu',
 		displayName: 'Zerureusu',
-		icon: IconMonsterZerureusu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/zerureusu',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/zerureusu',
 
-		render: IconRenderMonsterZerureusu,
-		fullRender: FullMonsterRenderZerureusu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zerureusu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zerureusu',
 		component: ComponentMonsterZerureusu,
 		unusedComponent: false,
 		ecology:
@@ -5332,10 +4973,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Gougarf',
 		link: '/hunter-notes/monsters/overview/ray-gougarf',
 		displayName: 'Ray Gougarf',
-		icon: IconMonsterGougarf,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/ray_gougarf',
 		rank: 'G Rank',
-		render: IconRenderMonsterGougarf,
-		fullRender: FullMonsterRenderGougarf,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ray_gougarf',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ray-gougarf',
 
 		component: ComponentMonsterGougarf,
 		unusedComponent: true,
@@ -5362,10 +5005,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Gougarf',
 		link: '/hunter-notes/monsters/overview/lolo-gougarf',
 		displayName: 'Lolo Gougarf',
-		icon: IconMonsterGougarf,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/lolo_gougarf',
 		rank: 'G Rank',
-		render: IconRenderMonsterGougarf,
-		fullRender: FullMonsterRenderGougarf,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/lolo_gougarf',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/lolo-gougarf',
 
 		component: ComponentMonsterGougarf,
 		unusedComponent: true,
@@ -5393,10 +5038,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Uruki',
 		link: '/hunter-notes/monsters/overview/uruki',
 
-		icon: IconMonsterUruki,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/uruki',
 		rank: 'G Rank',
-		render: IconRenderMonsterUruki,
-		fullRender: FullMonsterRenderUruki,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/uruki',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/uruki',
 		component: ComponentMonsterUruki,
 		unusedComponent: true,
 		ecology: `Bipedal creatures native to the Flower Field. Though uncommon, research suggests that they are quite peaceful, unless attacked by a  large monster. In such a situation, they've been observed working together to defeat said monster. The Guild has received reports that Uruki will seemingly assist hunters as well.`,
@@ -5415,14 +5062,16 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 125,
 		name: 'Forokururu',
 		displayName: 'Forokururu',
-		icon: IconMonsterForokururu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/forokururu',
 		link: '/hunter-notes/monsters/overview/forokururu',
 
 		ecology:
 			'Majestic Bird Wyverns native to the Flower Field. They possess a highly evolved beak, which allows them to feed from the various flowers in their habitat. Attention should be paid to the color of their wings and tail feathers.',
 		rank: 'G Rank',
-		render: IconRenderMonsterForokururu,
-		fullRender: FullMonsterRenderForokururu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/forokururu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/forokururu',
 		component: ComponentMonsterForokururu,
 		unusedComponent: true,
 		type: 'Large',
@@ -5450,10 +5099,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		ecology:
 			'Previously known only from fossils and believed to be extinct until living specimens were sighted by the Guild. These black and gold Wyverns are seemingly blind and navigate their underground territories through sound.',
 		link: '/hunter-notes/monsters/overview/meraginasu',
-		icon: IconMonsterMeraginasu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/meraginasu',
 		rank: 'G Rank',
-		render: IconRenderMonsterMeraginasu,
-		fullRender: FullMonsterRenderMeraginasu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/meraginasu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/meraginasu',
 		component: ComponentMonsterMeraginasu,
 
 		unusedComponent: true,
@@ -5493,12 +5144,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Diorex',
 		link: '/hunter-notes/monsters/overview/diorex',
 
-		icon: IconMonsterDiorex,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/diorex',
 		rank: 'G Rank',
 		ecology:
 			'Despite appearences, these Wyverns are not actually blue, but rather use magnetic organs to attach ores to themselves as armour. Like their cousin the Tigrex they are brutally aggressive predators.',
-		render: IconRenderMonsterDiorex,
-		fullRender: FullMonsterRenderDiorex,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/diorex',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/diorex',
 		component: ComponentMonsterDiorex,
 		unusedComponent: true,
 		type: 'Large',
@@ -5516,12 +5169,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 128,
 		name: 'Garuba Daora',
 		displayName: 'Garuba Daora',
-		icon: IconMonsterGarubaDaora,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/garuba_daora',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/garuba-daora',
 
-		render: IconRenderMonsterGarubaDaora,
-		fullRender: FullMonsterRenderGarubaDaora,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/garuba_daora',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/garuba-daora',
 		component: ComponentMonsterGarubaDaora,
 		unusedComponent: true,
 		ecology:
@@ -5550,12 +5205,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/inagami',
 
 		displayName: 'Inagami',
-		icon: IconMonsterInagami,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/inagami',
 		ecology:
 			'A dignified and powerful dragon with an unmistakable tail. Found in Bamboo forests to the east, it is reported to possess a strange symbiotic relationship with the Bamboo, which it is seemingly able to manipulate at will. It also reportedly produces Sleep-gas.',
 		rank: 'G Rank',
-		render: IconRenderMonsterInagami,
-		fullRender: FullMonsterRenderInagami,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/inagami',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/inagami',
 		component: ComponentMonsterInagami,
 		unusedComponent: true,
 		type: 'Large',
@@ -5573,12 +5230,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 130,
 		name: 'Varusaburosu',
 		displayName: 'Varusaburosu',
-		icon: IconMonsterVarusaburosu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/varusaburosu',
 		link: '/hunter-notes/monsters/overview/varusaburosu',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterVarusaburosu,
-		fullRender: FullMonsterRenderVarusaburosu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/varusaburosu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/varusaburosu',
 		component: ComponentMonsterVarusaburosu,
 		unusedComponent: true,
 		ecology: `Only recently being discovered following an attack on Guild researchers, little is known of this Wyvern's biology. It has however been hypothesized that its flames are the result of it consuming a unique type of thermophilic cactus.`,
@@ -5610,12 +5269,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 131,
 		name: 'Poborubarumu',
 		displayName: 'Poborubarumu',
-		icon: IconMonsterPoborubarumu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/poborubarumu',
 		rank: 'G Rank',
-		render: IconRenderMonsterPoborubarumu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/poborubarumu',
 		link: '/hunter-notes/monsters/overview/poborubarumu',
 
-		fullRender: FullMonsterRenderPoborubarumu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/poborubarumu',
 		component: ComponentMonsterPoborubarumu,
 		unusedComponent: true,
 		ecology:
@@ -5635,10 +5296,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 132,
 		name: 'Duremudira',
 		displayName: 'Duremudira',
-		icon: IconMonsterDuremudira,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/duremudira',
 		rank: 'G Rank',
-		render: IconRenderMonsterDuremudira,
-		fullRender: FullMonsterRenderDuremudira,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/duremudira',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/duremudira',
 		link: '/hunter-notes/monsters/overview/duremudira',
 
 		component: ComponentMonsterDuremudira,
@@ -5660,12 +5323,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 139,
 		name: 'Gureadomosu',
 		displayName: 'Gureadomosu',
-		icon: IconMonsterGureadomosu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gureadomosu',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/gureadomosu',
 
-		render: IconRenderMonsterGureadomosu,
-		fullRender: FullMonsterRenderGureadomosu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gureadomosu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gureadomosu',
 		component: ComponentMonsterGureadomosu,
 		unusedComponent: true,
 		ecology:
@@ -5701,10 +5366,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Harudomerugu',
 		link: '/hunter-notes/monsters/overview/harudomerugu',
 
-		icon: IconMonsterHarudomerugu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/harudomerugu',
 		rank: 'G Rank',
-		render: IconRenderMonsterHarudomerugu,
-		fullRender: FullMonsterRenderHarudomerugu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/harudomerugu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/harudomerugu',
 		component: ComponentMonsterHarudomerugu,
 		ecology:
 			'Often enrobed in a strange liquid metal, which it is seemingly able to control at a whim; this dragon is a curious beast. First hand accounts claim it is highly intelligent, being able to learn and counter a hunters combat techniques with ease.',
@@ -5726,12 +5393,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Toridcless',
 		link: '/hunter-notes/monsters/overview/toridcless',
 
-		icon: IconMonsterToridcless,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/toridcless',
 		rank: 'G Rank',
-		render: IconRenderMonsterToridcless,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/toridcless',
 		ecology:
 			'Powerful Bird Wyverns found in the Highlands, they are violently territorial and will attack any intruder with impunity. Possessing unique feathers and scales they can gather sunlight and convert it into deadly electrical attacks.',
-		fullRender: FullMonsterRenderToridcless,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/toridcless',
 		component: ComponentMonsterToridcless,
 		unusedComponent: true,
 		type: 'Large',
@@ -5756,12 +5425,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Gasurabazura',
 		ecology: `Large Brute Wyverns endemic to White Lake, research shows they were previously semi aquatic, until the lake's waters receeded, forcing them to re-adapt to terrestrial life. They are able to store lagre quantities of poison gained from their prey.`,
 		displayName: 'Gasurabazura',
-		icon: IconMonsterGasurabazura,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gasurabazura',
 		link: '/hunter-notes/monsters/overview/gasurabazura',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterGasurabazura,
-		fullRender: FullMonsterRenderGasurabazura,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gasurabazura',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gasurabazura',
 		component: ComponentMonsterGasurabazura,
 		unusedComponent: true,
 		type: 'Large',
@@ -5781,10 +5452,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/kusubami',
 
 		displayName: 'Kusubami',
-		icon: IconMonsterKusubami,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/kusubami',
 		rank: 'G Rank',
-		render: IconRenderMonsterKusubami,
-		fullRender: FullMonsterRenderKusubami,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/kusubami',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/kusubami',
 		component: ComponentMonsterKusubami,
 		unusedComponent: true,
 		ecology:
@@ -5806,11 +5479,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Yama Kurai',
 		link: '/hunter-notes/monsters/overview/yama-kurai',
 
-		icon: IconMonsterYamaKurai,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/yama_kurai',
 		rank: 'G Rank',
 		ecology: `An Elder Dragon that floats through the sky and has been sighted in the Highlands. While it seems to share relation with Yama Tsukami, Guild research is still ongoing. It's body is home to a veritable ecosystem of unique and dangerous flora.`,
-		render: IconRenderMonsterYamaKurai,
-		fullRender: FullMonsterRenderYamaKurai,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/yama_kurai',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/yama-kurai',
 		component: ComponentMonsterYamaKurai,
 		unusedComponent: false,
 		type: 'Large',
@@ -5828,12 +5503,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 146,
 		name: 'Zinogre',
 		displayName: 'Zinogre',
-		icon: IconMonsterZinogre,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/zinogre',
 		rank: 'G Rank',
-		render: IconRenderMonsterZinogre,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zinogre',
 		link: '/hunter-notes/monsters/overview/zinogre',
 
-		fullRender: FullMonsterRenderZinogre,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zinogre',
 		component: ComponentMonsterZinogre,
 		unusedComponent: false,
 		ecology:
@@ -5884,12 +5561,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 147,
 		name: 'Deviljho',
 		displayName: 'Deviljho',
-		icon: IconMonsterDeviljho,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/deviljho',
 		link: '/hunter-notes/monsters/overview/deviljho',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterDeviljho,
-		fullRender: FullMonsterRenderDeviljho,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/deviljho',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/deviljho',
 		ecology:
 			'The dreaded, nomadic Deviljho have no specific territory of their own. Their muscles swell if provoked, revealing old wounds. Needing to feed constantly due to their extremely high metabolism they can easily hunt nearby animals to extinction. Hunt with extreme caution.',
 		component: ComponentMonsterDeviljho,
@@ -5958,12 +5637,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 148,
 		name: 'Brachydios',
 		displayName: 'Brachydios',
-		icon: IconMonsterBrachydios,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/brachydios',
 		link: '/hunter-notes/monsters/overview/brachydios',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterBrachydios,
-		fullRender: FullMonsterRenderBrachydios,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/brachydios',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/brachydios',
 		component: ComponentMonsterBrachydios,
 		ecology: `Brute wyverns coated with an explosive green substance. The material is thought to be a unique myxomycete--or slime mold that is primed to explode by the Brachydios's own saliva. Note that these crafty creatures can also deliver powerful foreleg strikes. Fond of volcanic areas.`,
 		unusedComponent: true,
@@ -5999,12 +5680,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 149,
 		name: 'Berserk Raviente',
 		displayName: 'Berserk Raviente',
-		icon: IconMonsterBerserkRaviente,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721686109/monster/berserk_raviente.webp',
 		rank: 'G Rank',
-		render: IconRenderMonsterBerserkRaviente,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/berserk_raviente',
 		link: '/hunter-notes/monsters/overview/berserk-raviente',
 
-		fullRender: FullMonsterRenderBerserkRaviente,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/berserk-raviente',
 		component: ComponentMonsterBerserkRaviente,
 		unusedComponent: false,
 		type: 'Large',
@@ -6024,12 +5707,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Toa Tesukatora',
 		ecology: `Recently documented by Guild researchers exploring an arctic region, this proud dragon is believed to be an ancestor of Teostra and Lunastra. While much of it's biology is still unknown, it is speculated to be the source of some intense blizzards.`,
 		displayName: 'Toa Tesukatora',
-		icon: IconMonsterToaTesukatora,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/toa_tesukatora',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/toa-tesukatora',
 
-		render: IconRenderMonsterToaTesukatora,
-		fullRender: FullMonsterRenderToaTesukatora,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/toa_tesukatora',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/toa-tesukatora',
 		component: ComponentMonsterToaTesukatora,
 		unusedComponent: true,
 		type: 'Large',
@@ -6047,12 +5732,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 151,
 		name: 'Barioth',
 		displayName: 'Barioth',
-		icon: IconMonsterBarioth,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/barioth',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/barioth',
 
-		render: IconRenderMonsterBarioth,
-		fullRender: FullMonsterRenderBarioth,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/barioth',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/barioth',
 		component: ComponentMonsterBarioth,
 		unusedComponent: true,
 		type: 'Large',
@@ -6091,10 +5778,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Uragaan',
 		link: '/hunter-notes/monsters/overview/uragaan',
 
-		icon: IconMonsterUragaan,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/uragaan',
 		rank: 'G Rank',
-		render: IconRenderMonsterUragaan,
-		fullRender: FullMonsterRenderUragaan,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/uragaan',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/uragaan',
 		component: ComponentMonsterUragaan,
 		unusedComponent: true,
 		ecology:
@@ -6116,12 +5805,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 153,
 		name: 'Stygian Zinogre',
 		displayName: 'Stygian Zinogre',
-		icon: IconMonsterStygianZinogre,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/stygian_zinogre',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/stygian-zinogre',
 
-		render: IconRenderMonsterStygianZinogre,
-		fullRender: FullMonsterRenderStygianZinogre,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/stygian_zinogre',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/stygian-zinogre',
 		component: ComponentMonsterStygianZinogre,
 		unusedComponent: false,
 		ecology:
@@ -6160,12 +5851,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 154,
 		name: 'Guanzorumu',
 		displayName: 'Guanzorumu',
-		icon: IconMonsterGuanzorumu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/guanzorumu',
 		rank: 'G Rank',
-		render: IconRenderMonsterGuanzorumu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/guanzorumu',
 		link: '/hunter-notes/monsters/overview/guanzorumu',
 
-		fullRender: FullMonsterRenderGuanzorumu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/guanzorumu',
 		component: ComponentMonsterGuanzorumu,
 		unusedComponent: false,
 		ecology: `Spoken of in ancient texts as the " Dragon of Conquest", this imposing creature has been sighted at the Cloud Viewing Fortress. Never without an entourage of Egyurasu It's claws spawn tremors and its breath immolates everything before it.`,
@@ -6184,10 +5877,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 155,
 		name: 'Starving Deviljho',
 		displayName: 'Starving Deviljho',
-		icon: IconMonsterStarvingDeviljho,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/starving_deviljho',
 		rank: 'Musou 1',
-		render: IconRenderMonsterStarvingDeviljho,
-		fullRender: FullMonsterRenderStarvingDeviljho,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/starving_deviljho',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/savage-deviljho',
 		link: '/hunter-notes/monsters/overview/starving-deviljho',
 
 		component: ComponentMonsterStarvingDeviljho,
@@ -6219,10 +5914,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 158,
 		name: 'Voljang',
 		displayName: 'Voljang',
-		icon: IconMonsterVoljang,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/voljang',
 		rank: 'G Rank',
-		render: IconRenderMonsterVoljang,
-		fullRender: FullMonsterRenderVoljang,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/voljang',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/voljang',
 		link: '/hunter-notes/monsters/overview/voljang',
 
 		component: ComponentMonsterVoljang,
@@ -6244,13 +5941,15 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 159,
 		name: 'Nargacuga',
 		displayName: 'Nargacuga',
-		icon: IconMonsterNargacuga,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/nargacuga',
 		rank: 'G Rank',
 
-		render: IconRenderMonsterNargacuga,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/nargacuga',
 		link: '/hunter-notes/monsters/overview/nargacuga',
 
-		fullRender: FullMonsterRenderNargacuga,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/nargacuga',
 		component: ComponentMonsterNargacuga,
 		unusedComponent: false,
 		ecology:
@@ -6296,12 +5995,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 160,
 		name: 'Keoaruboru',
 		displayName: 'Keoaruboru',
-		icon: IconMonsterKeoaruboru,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/keoaruboru',
 		link: '/hunter-notes/monsters/overview/keoaruboru',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterKeoaruboru,
-		fullRender: FullMonsterRenderKeoaruboru,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/keoaruboru',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/keoaruboru',
 		component: ComponentMonsterKeoaruboru,
 		unusedComponent: true,
 		type: 'Large',
@@ -6320,12 +6021,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 161,
 		name: 'Zenaserisu',
 		displayName: 'Zenaserisu',
-		icon: IconMonsterZenaserisu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/zenaserisu',
 		rank: 'G Rank',
-		render: IconRenderMonsterZenaserisu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenaserisu',
 		link: '/hunter-notes/monsters/overview/zenaserisu',
 
-		fullRender: FullMonsterRenderZenaserisu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenaserisu',
 		component: ComponentMonsterZenaserisu,
 		unusedComponent: true,
 		ecology:
@@ -6345,12 +6048,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 162,
 		name: 'Gore Magala',
 		displayName: 'Gore Magala',
-		icon: IconMonsterGoreMagala,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/gore_magala',
 		rank: 'G Rank',
-		render: IconRenderMonsterGoreMagala,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/gore_magala',
 		link: '/hunter-notes/monsters/overview/gore-magala',
 
-		fullRender: FullMonsterRenderGoreMagala,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/gore-magala',
 		component: ComponentMonsterGoreMagala,
 		unusedComponent: true,
 		ecology:
@@ -6387,11 +6092,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Blinking Nargacuga',
 		displayName: 'Blinking Nargacuga',
 
-		icon: IconMonsterBlinkingNargacuga,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/blinking_nargacuga',
 		link: '/hunter-notes/monsters/overview/blinking-nargacuga',
 		rank: 'G Rank',
-		render: IconRenderMonsterBlinkingNargacuga,
-		fullRender: FullMonsterRenderBlinkingNargacuga,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/blinking_nargacuga',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/blinking-nargacuga',
 		component: ComponentMonsterBlinkingNargacuga,
 		unusedComponent: false,
 		type: 'Large',
@@ -6410,10 +6117,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 164,
 		name: 'Shagaru Magala',
 		displayName: 'Shagaru Magala',
-		icon: IconMonsterShagaruMagala,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/shagaru_magala',
 		rank: 'G Rank',
-		render: IconRenderMonsterShagaruMagala,
-		fullRender: FullMonsterRenderShagaruMagala,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shagaru_magala',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shagaru-magala',
 		component: ComponentMonsterShagaruMagala,
 		link: '/hunter-notes/monsters/overview/shagaru-magala',
 
@@ -6436,10 +6145,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		displayName: 'Amatsu',
 		link: '/hunter-notes/monsters/overview/amatsu',
 
-		icon: IconMonsterAmatsu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721703436/monster/amatsu.webp',
 		rank: 'G Rank',
-		render: IconRenderMonsterAmatsu,
-		fullRender: FullMonsterRenderAmatsu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/amatsu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/amatsu',
 		component: ComponentMonsterAmatsu,
 		ecology: `A legendary elder dragon spotted on Sacred Pinnacle. An avatar of storms in the folklore of a certain village, Amatsu's appearance is accompanied by furious cyclones and horrific storms. Its fearsome power is said to outscale that of natural disasters.`,
 		unusedComponent: false,
@@ -6464,12 +6175,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 166,
 		name: 'Elzelion',
 		displayName: 'Elzelion',
-		icon: IconMonsterElzelion,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/elzelion',
 		rank: 'G Rank',
-		render: IconRenderMonsterElzelion,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/elzelion',
 		link: '/hunter-notes/monsters/overview/elzelion',
 
-		fullRender: FullMonsterRenderElzelion,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/elzelion',
 		component: ComponentMonsterElzelion,
 		unusedComponent: false,
 		ecology: `Discovered after assaulting a Guild expedition exploring an ancient Tower, it is also known as the "Burning Ice" dragon, due to it's unique physiology. While it possesses control over ice and fire, it segregates control over each element to one side of it's body. A fascinating creature.`,
@@ -6488,12 +6201,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 167,
 		name: 'Arrogant Duremudira',
 		displayName: 'Arrogant Duremudira',
-		icon: IconMonsterArrogantDuremudira,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/arrogant_duremudira',
 		link: '/hunter-notes/monsters/overview/arrogant-duremudira',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterArrogantDuremudira,
-		fullRender: FullMonsterRenderArrogantDuremudira,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/arrogant_duremudira',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/arrogant-duremudira2',
 		component: ComponentMonsterArrogantDuremudira,
 		unusedComponent: false,
 		ecology: `Arrogant Duremudira, much like the standard one, is incredibly aggressive, attacking anything that enters the Sky Corridor immediately on sight. Possesses even greater speed and tenacity than its normal counterpart.`,
@@ -6512,12 +6227,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 169,
 		name: 'Seregios',
 		displayName: 'Seregios',
-		icon: IconMonsterSeregios,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/seregios',
 		link: '/hunter-notes/monsters/overview/seregios',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterSeregios,
-		fullRender: FullMonsterRenderSeregios,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/seregios',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/seregios',
 		component: ComponentMonsterSeregios,
 		unusedComponent: true,
 		ecology:
@@ -6557,11 +6274,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 170,
 		name: 'Bogabadorumu',
 		displayName: 'Bogabadorumu',
-		icon: IconMonsterBogabadorumu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685613/monster/zenith_bogabadorumu.gif',
 		rank: 'Zenith★4',
 		link: '/hunter-notes/monsters/overview/bogabadorumu',
-		render: IconRenderMonsterBogabadorumu,
-		fullRender: FullMonsterRenderBogabadorumu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_bogabadorumu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-bogabadorumu',
 
 		component: ComponentMonsterBogabadorumu,
 		unusedComponent: false,
@@ -6582,12 +6301,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 172,
 		name: 'Bombardier Bogabadorumu',
 		displayName: 'Bombardier Bogabadorumu',
-		icon: IconMonsterBombardierBogabadorumu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/bombardier_bogabadorumu',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/bombardier-bogabadorumu',
 
-		render: IconRenderMonsterBombardierBogabadorumu,
-		fullRender: FullMonsterRenderBombardierBogabadorumu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/bombardier_bogabadorumu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/bombardier-bogabadorumu',
 		component: ComponentMonsterBombardierBogabadorumu,
 		unusedComponent: false,
 		type: 'Large',
@@ -6606,12 +6327,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 174,
 		name: 'Sparkling Zerureusu',
 		displayName: 'Sparkling Zerureusu',
-		icon: IconMonsterSparklingZerureusu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/sparkling_zerureusu',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/sparkling-zerureusu',
 
-		render: IconRenderMonsterSparklingZerureusu,
-		fullRender: FullMonsterRenderSparklingZerureusu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/sparkling_zerureusu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/sparkling-zerureusu',
 		component: ComponentMonsterSparklingZerureusu,
 		unusedComponent: false,
 		type: 'Large',
@@ -6639,12 +6362,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 175,
 		name: 'PSO2 Rappy',
 		displayName: 'PSO2 Rappy',
-		icon: IconMonsterPSO2Rappy,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/pso2_rappy',
 		rank: 'G Rank',
-		render: IconRenderMonsterPSO2Rappy,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/pso2_rappy',
 		link: '/hunter-notes/monsters/overview/pso2-rappy',
 
-		fullRender: FullMonsterRenderPSO2Rappy,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pso2-rappy',
 		component: ComponentMonsterPSO2Rappy,
 		unusedComponent: true,
 		ecology: `The Rappy is a large, fluffy bird-like creature present in another dimension. Appears to be the representative of that dimension as a whole.`,
@@ -6654,10 +6379,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 176,
 		name: 'King Shakalaka',
 		displayName: 'King Shakalaka',
-		icon: IconMonsterKingShakalaka,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/king_shakalaka',
 		rank: 'G Rank',
-		render: IconRenderMonsterKingShakalaka,
-		fullRender: FullMonsterRenderKingShakalaka,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/king_shakalaka',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/king-shakalaka',
 		link: '/hunter-notes/monsters/overview/king-shakalaka',
 
 		component: ComponentMonsterKingShakalaka,
@@ -6678,11 +6405,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 83,
 		name: 'Akura Vashimu',
 		displayName: 'Zenith Akura Vashimu',
-		icon: IconMonsterZenithAkuraVashimu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685435/monster/zenith_akura_vashimu.gif',
 		link: '/hunter-notes/monsters/overview/zenith-akura-vashimu',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithAkuraVashimu,
-		fullRender: FullMonsterRenderZenithAkuraVashimu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_akura_vashimu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-akura-vashimu',
 		component: ComponentMonsterZenithAkuraVashimu,
 
 		unusedComponent: true,
@@ -6702,12 +6431,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 109,
 		name: 'Anorupatisu',
 		displayName: 'Zenith Anorupatisu',
-		icon: IconMonsterZenithAnorupatisu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685571/monster/zenith_anorupatisu.gif',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithAnorupatisu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_anorupatisu',
 		link: '/hunter-notes/monsters/overview/zenith-anorupatisu',
 
-		fullRender: FullMonsterRenderZenithAnorupatisu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-anorupatisu',
 		component: ComponentMonsterZenithAnorupatisu,
 		unusedComponent: true,
 		ecology: `Zenith Anorupatisu behave relatively the same as normal individuals but overall more aggressive. Resembles a torpedo.`,
@@ -6726,12 +6457,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 121,
 		name: 'Baruragaru',
 		displayName: 'Zenith Baruragaru',
-		icon: IconMonsterZenithBaruragaru,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685601/monster/zenith_baruragaru.gif',
 		link: '/hunter-notes/monsters/overview/zenith-baruragaru',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithBaruragaru,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_baruragaru',
 
-		fullRender: FullMonsterRenderZenithBaruragaru,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-baruragaru',
 		component: ComponentMonsterZenithBaruragaru,
 		unusedComponent: true,
 		ecology: `Evolved Baruragaru that are larger and intimidating than their counterpart. Their head developed to become huge with a pair of thin plate-like appendages growing on the sides of their lower jaws. They even grew large and small teeth on their face while the fins on their head grew large. Its tongue developed to have protrusions overlap each other making them thicker.`,
@@ -6750,11 +6483,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 51,
 		name: 'Blangonga',
 		displayName: 'Zenith Blangonga',
-		icon: IconMonsterZenithBlangonga,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685607/monster/zenith_blangonga.gif',
 		link: '/hunter-notes/monsters/overview/zenith-blangonga',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithBlangonga,
-		fullRender: FullMonsterRenderZenithBlangonga,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_blangonga',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-blangonga',
 
 		component: ComponentMonsterZenithBlangonga,
 		ecology: `Zenith Blangonga are kings amongst leaders even commanding normal Blangonga as if they were Blango. They retain the hyper aggressive behavior of normal individuals only amplified, trying to take down any foe as quickly as possible to protect themselves and their troops.`,
@@ -6784,11 +6519,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 48,
 		name: 'Daimyo Hermitaur',
 		displayName: 'Zenith Daimyo Hermitaur',
-		icon: IconMonsterZenithDaimyoHermitaur,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685623/monster/zenith_daimyo_hermitaur.gif',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithDaimyoHermitaur,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_daimyo_hermitaur',
 
-		fullRender: FullMonsterRenderZenithDaimyoHermitaur,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-daimyo-hermitaur',
 		link: '/hunter-notes/monsters/overview/zenith-daimyo-hermitaur',
 		component: ComponentMonsterZenithDaimyoHermitaur,
 		unusedComponent: true,
@@ -6816,11 +6553,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 95,
 		name: 'Doragyurosu',
 		displayName: 'Zenith Doragyurosu',
-		icon: IconMonsterZenithDoragyurosu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685618/monster/zenith_doragyurosu.gif',
 		rank: 'Zenith★4',
 		link: '/hunter-notes/monsters/overview/zenith-doragyurosu',
-		render: IconRenderMonsterZenithDoragyurosu,
-		fullRender: FullMonsterRenderZenithDoragyurosu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_doragyurosu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-doragyurosu',
 
 		component: ComponentMonsterZenithDoragyurosu,
 		unusedComponent: true,
@@ -6840,12 +6579,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 80,
 		name: 'Espinas',
 		displayName: 'Zenith Espinas',
-		icon: IconMonsterZenithEspinas,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685628/monster/zenith_espinas.gif',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithEspinas,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_espinas',
 		link: '/hunter-notes/monsters/overview/zenith-espinas',
 
-		fullRender: FullMonsterRenderZenithEspinas,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-espinas',
 		component: ComponentMonsterZenithEspinas,
 		unusedComponent: true,
 		ecology: `Like normal Espinas, Zenith Espinas are fairly docile until awakened. When awakened, Zenith Espinas are known for violently flying in the air and raining globs of poison around them for defense. Once they land, Zenith Espinas will attack and try to eliminate the threat. Occasionally, Zenith Espinas have been seen wandering side by side with other Espinas.`,
@@ -6879,11 +6620,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 142,
 		name: 'Gasurabazura',
 		displayName: 'Zenith Gasurabazura',
-		icon: IconMonsterZenithGasurabazura,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685633/monster/zenith_gasurabazura.gif',
 		rank: 'Zenith★4',
 
-		render: IconRenderMonsterZenithGasurabazura,
-		fullRender: FullMonsterRenderZenithGasurabazura,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_gasurabazura',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-gasurabazura',
 		link: '/hunter-notes/monsters/overview/zenith-gasurabazura',
 		component: ComponentMonsterZenithGasurabazura,
 		unusedComponent: true,
@@ -6903,12 +6646,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 112,
 		name: 'Giaorugu',
 		displayName: 'Zenith Giaorugu',
-		icon: IconMonsterZenithGiaorugu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685669/monster/zenith_giaorugu.gif',
 
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithGiaorugu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_giaorugu',
 		link: '/hunter-notes/monsters/overview/zenith-giaorugu',
-		fullRender: FullMonsterRenderZenithGiaorugu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-giaorugu',
 		component: ComponentMonsterZenithGiaorugu,
 		unusedComponent: true,
 		ecology: `Like its normal counterpart, Zenith Giaorugu can only be found at the Polar Sea, where its ice tail attacks depend on the frozen ground. However, it can also be encountered in Road. Similar to Glavenus, Zenith Giaorugu would stay in its current spot, hold its tail up in the air sideways, and then unleash tail spin attacks on hunters. It can also make a combo attack with the tail.`,
@@ -6934,11 +6679,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 17,
 		name: 'Gravios',
 		displayName: 'Zenith Gravios',
-		icon: IconMonsterZenithGravios,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685658/monster/zenith_gravios.gif',
 
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithGravios,
-		fullRender: FullMonsterRenderZenithGravios,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_gravios',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-gravios',
 		link: '/hunter-notes/monsters/overview/zenith-gravios',
 		component: ComponentMonsterZenithGravios,
 		unusedComponent: true,
@@ -6973,11 +6720,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Harudomerugu',
 		displayName: 'Zenith Harudomerugu',
 
-		icon: IconMonsterZenithHarudomerugu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685664/monster/zenith_harudomerugu.gif',
 		link: '/hunter-notes/monsters/overview/zenith-harudomerugu',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithHarudomerugu,
-		fullRender: FullMonsterRenderZenithHarudomerugu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_harudomerugu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-harudomerugu',
 		component: ComponentMonsterZenithHarudomerugu,
 		unusedComponent: true,
 		ecology: `Beneath the silver armor Zenith Harudomerugu appear mostly identical to standard Harudomerugu individuals. The biggest exception is the head. The upper half has an overall red tint, the organ in the center has grown larger, with an extra horn extending from it straight forward, while the existing horns at the back of the head have also grown larger, with the central one having two smaller extensions growing from its sides. Zenith Harudomerugu have been sighted atop the Tower and have been reported attacking the Interception Base.`,
@@ -6997,11 +6746,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Hypnocatrice',
 		displayName: 'Zenith Hypnocatrice',
 
-		icon: IconMonsterZenithHypnoc,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685678/monster/zenith_hypnoc.gif',
 		link: '/hunter-notes/monsters/overview/zenith-hypnocatrice',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithHypnoc,
-		fullRender: FullMonsterRenderZenithHypnoc,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_hypnoc',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-hypnoc',
 		component: ComponentMonsterZenithHypnoc,
 		unusedComponent: true,
 		ecology: `The Zenith Hypnocatrice is a variant of a Hypnocatrice and is an older individual who has undergone a few changes. The Zenith Hypnocatrice still has dark brown feathers, although now the feathers are gray near the tips- most prominently the wings. Most noticeably the Zenith Hypnocatrice's beak has changed. It is now larger and thicker, as well as curved. It has a spike on its forehead, just above its beak. It is rumored that they are capable of producing a lullaby so enticing that they could put even the most strong-willed hunter to sleep.`,
@@ -7028,11 +6779,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Hyujikiki',
 		displayName: 'Zenith Hyujikiki',
 
-		icon: IconMonsterZenithHyujikiki,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685716/monster/zenith_hyujikiki.gif',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithHyujikiki,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_hyujikiki',
 		link: '/hunter-notes/monsters/overview/zenith-hyujikiki',
-		fullRender: FullMonsterRenderZenithHyujikiki,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-hyujikiki',
 		component: ComponentMonsterZenithHyujikiki,
 		ecology: `Zenith Hyujikiki share much of the same abilities as the normal ones, but the most noteworthy change is the heavier semi-metallic needles. Due to the changes to become like this the twisters no longer carry the needles, and Zenith Hyujikiki cannot use its venom anymore. To make up for this the needles Zenith Hyujikiki throws are much sharper piercing and inducing severe bleeding onto those struck by them, it also makes use of a few new attacks such as a roll which leaves clumps of needles in its wake, although some attacks normal Hyujikiki has are absent. Notably the needles will be stuck in the hunters that are struck by, or walk over the clumps of them.`,
 		unusedComponent: true,
@@ -7051,11 +6804,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 129,
 		name: 'Inagami',
 		displayName: 'Zenith Inagami',
-		icon: IconMonsterZenithInagami,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685754/monster/zenith_inagami.gif',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithInagami,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_inagami',
 		link: '/hunter-notes/monsters/overview/zenith-inagami',
-		fullRender: FullMonsterRenderZenithInagami,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-inagami',
 		component: ComponentMonsterZenithInagami,
 
 		unusedComponent: true,
@@ -7075,12 +6830,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 15,
 		name: 'Khezu',
 		displayName: 'Zenith Khezu',
-		icon: IconMonsterZenithKhezu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685761/monster/zenith_khezu.gif',
 		link: '/hunter-notes/monsters/overview/zenith-khezu',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithKhezu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_khezu',
 
-		fullRender: FullMonsterRenderZenithKhezu,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-khezu',
 		component: ComponentMonsterZenithKhezu,
 		unusedComponent: true,
 		ecology: `Evolved Khezu that are unique and more terrifying than their counterparts. Zenith Khezu's faces develop throughout the years to become an odd shape, and have crest-like structures on the top. A single ridge of knobby bumps is present along the spine.`,
@@ -7099,10 +6856,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 111,
 		name: 'Midogaron',
 		displayName: 'Zenith Midogaron',
-		icon: IconMonsterZenithMidogaron,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685771/monster/zenith_midogaron.gif',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithMidogaron,
-		fullRender: FullMonsterRenderZenithMidogaron,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_midogaron',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-midogaron',
 
 		link: '/hunter-notes/monsters/overview/zenith-midogaron',
 		component: ComponentMonsterZenithMidogaron,
@@ -7123,12 +6882,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 21,
 		name: 'Plesioth',
 		displayName: 'Zenith Plesioth',
-		icon: IconMonsterZenithPlesioth,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685799/monster/zenith_plesioth.gif',
 		rank: 'Zenith★4',
 
 		link: '/hunter-notes/monsters/overview/zenith-plesioth',
-		render: IconRenderMonsterZenithPlesioth,
-		fullRender: FullMonsterRenderZenithPlesioth,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_plesioth',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-plesioth',
 		ecology: `Evolved Plesioth that are larger and more intimidating than their counterparts. Their heads in addition to having lighter scales have also heavily developed, now sporting a large, light blue tipped head fin with several light blue hooked spikes lining each side of it. Additionally, they have developed five long and jagged tusks located on the side of their lower jaws. Lastly, they have short and spiked appendages instead of normal fins on the side of their heads.`,
 		component: ComponentMonsterZenithPlesioth,
 		unusedComponent: true,
@@ -7154,11 +6915,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 11,
 		name: 'Rathalos',
 		displayName: 'Zenith Rathalos',
-		icon: IconMonsterZenithRathalos,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685792/monster/zenith_rathalos.gif',
 		rank: 'Zenith★4',
 		link: '/hunter-notes/monsters/overview/zenith-rathalos',
-		render: IconRenderMonsterZenithRathalos,
-		fullRender: FullMonsterRenderZenithRathalos,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_rathalos',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-rathalos',
 
 		component: ComponentMonsterZenithRathalos,
 		unusedComponent: true,
@@ -7186,12 +6949,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 99,
 		name: 'Rukodiora',
 		displayName: 'Zenith Rukodiora',
-		icon: IconMonsterZenithRukodiora,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685979/monster/zenith_rukodiora.gif',
 		link: '/hunter-notes/monsters/overview/zenith-rukodiora',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithRukodiora,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_rukodiora',
 
-		fullRender: FullMonsterRenderZenithRukodiora,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-rukodiora',
 		component: ComponentMonsterZenithRukodiora,
 		unusedComponent: false,
 		ecology: `Unlike Rukodiora, Zenith Rukodiora are capable of lifting large boulders surrounding them with their advance magnetic fields while flying. When spotting hunters, Zenith Rukodiora will land on the ground to trap the hunters beside them with the boulders. After a while, They will let out a powerful roar that hurt the hunters and break the boulders trapping them. They are capable of producing a fountain of dragon element with energy so condensed it can break even the most durable of armors.`,
@@ -7216,10 +6981,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 103,
 		name: 'Taikun Zamuza',
 		displayName: 'Zenith Taikun Zamuza',
-		icon: IconMonsterZenithTaikunZamuza,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685985/monster/zenith_taikun_zamuza.gif',
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithTaikunZamuza,
-		fullRender: FullMonsterRenderZenithTaikunZamuza,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_taikun_zamuza',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-taikun-zamuza',
 		link: '/hunter-notes/monsters/overview/zenith-taikun-zamuza',
 
 		component: ComponentMonsterZenithTaikunZamuza,
@@ -7240,12 +7007,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 76,
 		name: 'Tigrex',
 		displayName: 'Zenith Tigrex',
-		icon: IconMonsterZenithTigrex,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685991/monster/zenith_tigrex.gif',
 		link: '/hunter-notes/monsters/overview/zenith-tigrex',
 
 		rank: 'Zenith★4',
-		render: IconRenderMonsterZenithTigrex,
-		fullRender: FullMonsterRenderZenithTigrex,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_tigrex',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-tigrex',
 		component: ComponentMonsterZenithTigrex,
 		ecology: `Zenith Tigrex might very well be the most brutal and vicious Flying Wyverns of all time. When attacking a hunter or prey, they focus on heavily wounding their target. If successful, the prey will start to bleed and Zenith Tigrex will, much like sharks, go into a feeding frenzy and become even more dangerous and relentless than they already are.`,
 		unusedComponent: true,
@@ -7264,11 +7033,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 141,
 		name: 'Toridcless',
 		displayName: 'Zenith Toridcless',
-		icon: IconMonsterZenithToridcless,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721685526/monster/zenith_toridcless.gif',
 		rank: 'Zenith★4',
 
-		render: IconRenderMonsterZenithToridcless,
-		fullRender: FullMonsterRenderZenithToridcless,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/zenith_toridcless',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/zenith-toridcless',
 		link: '/hunter-notes/monsters/overview/zenith-toridcless',
 		component: ComponentMonsterZenithToridcless,
 		unusedComponent: true,
@@ -7288,11 +7059,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 2,
 		name: 'Fatalis',
 		displayName: 'Conquest Fatalis',
-		icon: IconMonsterConquestFatalis,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/conquest_fatalis',
 		rank: 'G Rank',
 		link: '/hunter-notes/monsters/overview/conquest-fatalis',
-		render: IconRenderMonsterConquestFatalis,
-		fullRender: FullMonsterRenderConquestFatalis,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/conquest_fatalis',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/conquest-fatalis',
 
 		component: ComponentMonsterConquestFatalis,
 		unusedComponent: false,
@@ -7312,12 +7085,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 116,
 		name: 'Shantien',
 		displayName: 'Conquest Shantien',
-		icon: IconMonsterConquestShantien,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/conquest_shantien',
 
 		rank: 'G Rank',
-		render: IconRenderMonsterConquestShantien,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shantien',
 		link: '/hunter-notes/monsters/overview/conquest-shantien',
-		fullRender: FullMonsterRenderConquestShantien,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shantien',
 		component: ComponentMonsterConquestShantien,
 		unusedComponent: false,
 		ecology: `Shantien have been sighted flying around far above in the skies, often over oceans or around volcanic areas. Usually the only way to get anywhere near them is with a Large Exploration Ship. Shantien is enormously powerful when fully enraged and will attack with reckless abandon. This can also be its undoing, as attempting to use some of its strongest attacks while severely injured may cause them to implode inside its body, accomplishing its own demise.`,
@@ -7336,11 +7111,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 36,
 		name: 'Crimson Fatalis',
 		displayName: 'Conquest Crimson Fatalis',
-		icon: IconMonsterConquestCrimsonFatalis,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/conquest_crimson_fatalis',
 		rank: 'G Rank',
-		render: IconRenderMonsterConquestCrimsonFatalis,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/conquest_crimson_fatalis',
 
-		fullRender: FullMonsterRenderConquestCrimsonFatalis,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/conquest-crimson-fatalis',
 		link: '/hunter-notes/monsters/overview/conquest-crimson-fatalis',
 		component: ComponentMonsterConquestCrimsonFatalis,
 		unusedComponent: false,
@@ -7360,11 +7137,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 107,
 		name: 'Disufiroa',
 		displayName: 'Shiten Disufiroa',
-		icon: IconMonsterShitenDisufiroa,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/shiten_disufiroa',
 
 		rank: 'Upper Shiten',
-		render: IconRenderMonsterShitenDisufiroa,
-		fullRender: FullMonsterRenderShitenDisufiroa,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shiten_disufiroa',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/disufiroa',
 		link: '/hunter-notes/monsters/overview/shiten-disufiroa',
 		component: ComponentMonsterShitenDisufiroa,
 		unusedComponent: false,
@@ -7384,12 +7163,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 100,
 		name: 'UNKNOWN',
 		displayName: 'Shiten UNKNOWN',
-		icon: IconMonsterShitenUnknown,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721687221/monster/shiten_unknown.gif',
 		link: '/hunter-notes/monsters/overview/shiten-unknown',
 		rank: 'Upper Shiten',
-		render: IconRenderMonsterShitenUnknown,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shiten_unknown',
 
-		fullRender: FullMonsterRenderShitenUnknown,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
 		component: ComponentMonsterShitenUnknown,
 		unusedComponent: false,
 		ecology: `For those lucky enough to witness it, it is said that upon reaching unthinkable rage, it creates an area wide black cloud of gas that leaves only its eyes completely visible, during this time the Unknown will be quickly moving all around the hunters, occasionally taking to the air and flying towards them. Afterwards, it will stop moving, inhale all the gas towards its mouth, before releasing it all at once in a huge shockwave, it will then finish with a roar in the typical Rathian fashion.`,
@@ -7417,11 +7198,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 166,
 		name: 'Elzelion',
 		displayName: 'Burning Freezing Elzelion',
-		icon: IconMonsterBurningFreezingElzelion,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/burning_freezing_elzelion',
 		rank: 'Musou 1',
-		render: IconRenderMonsterBurningFreezingElzelion,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/burning_freezing_elzelion',
 		link: '/hunter-notes/monsters/overview/burning-freezing-elzelion',
-		fullRender: FullMonsterRenderBurningFreezingElzelion,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/burning-freezing-elzelion',
 		component: ComponentMonsterBurningFreezingElzelion,
 
 		unusedComponent: false,
@@ -7441,11 +7224,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 146,
 		name: 'Zinogre',
 		displayName: 'Howling Zinogre',
-		icon: IconMonsterHowlingZinogre,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/howling_zinogre',
 		rank: 'Musou 1',
 		link: '/hunter-notes/monsters/overview/howling-zinogre',
-		render: IconRenderMonsterHowlingZinogre,
-		fullRender: FullMonsterRenderHowlingZinogre,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/howling_zinogre',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/howling-zinogre2',
 		component: ComponentMonsterHowlingZinogre,
 
 		unusedComponent: false,
@@ -7465,11 +7250,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 89,
 		name: 'Pariapuria',
 		displayName: 'Supremacy Pariapuria',
-		icon: IconMonsterSupremacyPariapuria,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616853/monster/thirsty_pariapuria.webp',
 		link: '/hunter-notes/monsters/overview/supremacy-pariapuria',
 		rank: 'Musou 1',
-		render: IconRenderMonsterSupremacyPariapuria,
-		fullRender: FullMonsterRenderSupremacyPariapuria,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/abiorugu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/abiorugu',
 		component: ComponentMonsterSupremacyPariapuria,
 
 		unusedComponent: false,
@@ -7498,10 +7285,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Doragyurosu',
 		displayName: 'Supremacy Doragyurosu',
 		link: '/hunter-notes/monsters/overview/supremacy-doragyurosu',
-		icon: IconMonsterSupremacyDoragyurosu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/supremacy_doragyurosu',
 		rank: 'Musou 1',
-		render: IconRenderMonsterSupremacyDoragyurosu,
-		fullRender: FullMonsterRenderSupremacyDoragyurosu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/supremacy_doragyurosu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-doragyurosu',
 
 		component: ComponentMonsterSupremacyDoragyurosu,
 		unusedComponent: false,
@@ -7523,11 +7312,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 65,
 		name: 'Teostra',
 		displayName: 'Supremacy Teostra',
-		icon: IconMonsterSupremacyTeostra,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/supremacy_teostra',
 		rank: 'Musou 1',
 		link: '/hunter-notes/monsters/overview/supremacy-teostra',
-		render: IconRenderMonsterSupremacyTeostra,
-		fullRender: FullMonsterRenderSupremacyTeostra,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/supremacy_teostra',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-teostra',
 
 		component: ComponentMonsterSupremacyTeostra,
 		ecology: `A more fiery counterpart of the standard Teostra, the Supremacy Teostra has an aura of unrelenting heat. If not careful, Supremacy Teostra can end the battle with a few powerful fire explosions. Capable of producing a huge fire tornado when enraged.`,
@@ -7547,11 +7338,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 106,
 		name: 'Odibatorasu',
 		displayName: 'Odibatorasu',
-		icon: IconMonsterSupremacyOdibatorasu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/odibatorasu',
 		link: '/hunter-notes/monsters/overview/supremacy-odibatorasu',
 		rank: 'Musou 1',
-		render: IconRenderMonsterSupremacyOdibatorasu,
-		fullRender: FullMonsterRenderSupremacyOdibatorasu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/supremacy_odibatorasu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-odibatorasu',
 		component: ComponentMonsterSupremacyOdibatorasu,
 
 		unusedComponent: true,
@@ -7572,11 +7365,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		name: 'Starving Deviljho',
 		displayName: 'Golden Deviljho',
 
-		icon: IconMonsterGoldenDeviljho,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/golden_deviljho',
 		rank: 'Musou 2',
 		link: '/hunter-notes/monsters/overview/golden-deviljho',
-		render: IconRenderMonsterGoldenDeviljho,
-		fullRender: FullMonsterRenderGoldenDeviljho,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/golden_deviljho',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/golden-deviljho',
 		component: ComponentMonsterGoldenDeviljho,
 		unusedComponent: false,
 		type: 'Large',
@@ -7601,11 +7396,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 53,
 		name: 'Rajang',
 		displayName: 'Furious Rajang',
-		icon: IconMonsterFuriousRajang,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/furious_rajang',
 
 		rank: 'Musou 1',
-		render: IconRenderMonsterFuriousRajang,
-		fullRender: FullMonsterRenderFuriousRajang,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hc_rajang', // TODO
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/furious-rajang',
 		link: '/hunter-notes/monsters/overview/furious-rajang',
 		component: ComponentMonsterFuriousRajang,
 		unusedComponent: true,
@@ -7656,12 +7453,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 154,
 		name: 'Guanzorumu',
 		displayName: 'Ruling Guanzorumu',
-		icon: IconMonsterRulingGuanzorumu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/ruling_guanzorumu',
 
 		rank: 'Musou 1',
 		link: '/hunter-notes/monsters/overview/ruling-guanzorumu',
-		render: IconRenderMonsterRulingGuanzorumu,
-		fullRender: FullMonsterRenderRulingGuanzorumu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ruling_guanzorumu',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ruling-guanzorumu',
 		component: ComponentMonsterRulingGuanzorumu,
 		unusedComponent: false,
 		ecology: `Ruling Guanzorumu, much like his relative, is extremely aggressive and will not hesitate to use it's Golden Flame to scorch the hunter. Instead of using fire and dragon seperately, it combines them into a golden flame. The Egyurasu are also capable of breathing this Golden Flame.`,
@@ -7680,12 +7479,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 113,
 		name: 'Mi Ru',
 		displayName: 'Shifting Mi Ru',
-		icon: IconMonsterShiftingMiRu,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/v1721616679/monster/shifting_mi_ru.webp',
 		rank: 'Musou 1',
 		link: '/hunter-notes/monsters/overview/shifting-mi-ru',
 
-		render: IconRenderMonsterShiftingMiRu,
-		fullRender: FullMonsterRenderShiftingMiRu,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/shifting_mi_ru',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/shifting-mi-ru',
 		component: ComponentMonsterShiftingMiRu,
 		unusedComponent: false,
 		ecology: `Shifting Mi Ru has much more control over its various forms, and thus stays in each form much longer than its standard counterpart. Each form is also significantly stronger, and its abilities far surpass those of a regular Mi Ru.`,
@@ -7704,12 +7505,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 53,
 		name: 'Rajang',
 		displayName: 'Twinhead Rajang',
-		icon: IconMonsterTwinheadRajang,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/hc_rajang',
 		rank: 'Twinhead 1',
-		render: IconRenderMonsterTwinheadRajang,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/hc_rajang',
 
 		link: '/hunter-notes/monsters/overview/twinhead-rajang',
-		fullRender: FullMonsterRenderTwinheadRajang,
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/hc-rajang',
 		component: ComponentMonsterTwinheadRajang,
 		unusedComponent: true,
 		type: 'Large',
@@ -7738,10 +7541,12 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		id: 71,
 		name: 'White Fatalis', // TODO
 		displayName: 'Road White Fatalis',
-		icon: IconMonsterWhiteFatalis,
+		icon: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/road_white_fatalis',
 		rank: 'G Rank',
-		render: IconRenderMonsterWhiteFatalis,
-		fullRender: FullMonsterRenderWhiteFatalis,
+		render:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/road_white_fatalis',
+		fullRender:
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/white-fatalis', // TODO
 		link: '/hunter-notes/monsters/overview/road-white-fatalis',
 		component: ComponentMonsterRoadWhiteFatalis,
 		// todo?

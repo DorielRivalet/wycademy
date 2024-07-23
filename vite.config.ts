@@ -23,7 +23,7 @@ export default defineConfig({
 		sveltekit(),
 		visualizer({
 			filename: './dist/stats.html',
-			template: 'treemap', // or sunburst, network, etc.
+			template: 'sunburst', // or sunburst, network, etc.
 		}),
 	],
 	ssr: {
