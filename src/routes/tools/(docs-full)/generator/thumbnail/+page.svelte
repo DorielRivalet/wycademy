@@ -59,6 +59,7 @@
 		ColorCodes,
 	} from '$lib/client/modules/frontier/objects';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 
 	let thumbnailElementsOrderReversed = false;
 
@@ -265,8 +266,7 @@
 				};
 			case 'Monster Icon':
 				return {
-					component: monsterInfo.find((e) => e.displayName === selectionID)
-						?.icon, // TODO svg?
+					component: MonsterComponent,
 					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Monster Render':
@@ -1619,8 +1619,7 @@
 			>
 				{#if thumbnailImages.length !== undefined && thumbnailImages.length > 0}
 					{#each thumbnailImages as image, i}
-						<!--TODO: monster icon svg, remove from here -->
-						{#if image.fileType === 'Location' || image.fileType === 'Habitat' || image.fileType === 'Monster Render' || image.fileType === 'Monster Icon' || image.fileType === 'Game'}
+						{#if image.fileType === 'Location' || image.fileType === 'Habitat' || image.fileType === 'Monster Render' || image.fileType === 'Game'}
 							<img
 								src={image.fileType === 'Monster Render'
 									? image.monsterRenderSize === 'Small'
@@ -1644,6 +1643,7 @@
 								<svelte:component
 									this={image.src.component}
 									{...{
+										currentMonster: image.optionId,
 										color: image.color,
 										background: image.background,
 										size: `${image.width}px`,

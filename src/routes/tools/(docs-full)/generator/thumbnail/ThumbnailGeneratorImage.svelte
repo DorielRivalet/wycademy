@@ -29,6 +29,7 @@
 		RarityColors,
 		ColorCodes,
 	} from '$lib/client/modules/frontier/objects';
+	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 
 	export let top = 0;
 	export let left = 0;
@@ -82,8 +83,7 @@
 				};
 			case 'Monster Icon':
 				return {
-					component: monsterInfo.find((e) => e.displayName === selectionID)
-						?.icon, // TODO svg?
+					component: MonsterComponent,
 					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Monster Render':

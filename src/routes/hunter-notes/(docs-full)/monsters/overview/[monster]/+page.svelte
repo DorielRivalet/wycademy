@@ -282,7 +282,7 @@
 					{/key}
 				</BestiaryMonsterGameInfo>
 			</div>
-			<div>
+			<div class="stats-lists">
 				<div class="elements">
 					<strong>Elements: </strong>
 					{#if monster.elements !== undefined && monster.elements.length > 0}
@@ -301,14 +301,16 @@
 				<div class="ailments">
 					<strong>Ailments: </strong>
 					{#if monster.ailments !== undefined && monster.ailments.length > 0}
-						{#each monster.ailments as ailment}
-							<InlineTooltip
-								text={ailment}
-								tooltip="Ailment"
-								iconType="component"
-								icon={AilmentIcons.find((e) => e.name === ailment)?.icon}
-							/>
-						{/each}
+						<div class="ailments-list">
+							{#each monster.ailments as ailment}
+								<InlineTooltip
+									text={ailment}
+									tooltip="Ailment"
+									iconType="component"
+									icon={AilmentIcons.find((e) => e.name === ailment)?.icon}
+								/>
+							{/each}
+						</div>
 					{:else}
 						None
 					{/if}
@@ -316,23 +318,25 @@
 				<div class="weaknesses">
 					<strong>Weaknesses: </strong>
 					{#if monster.weaknesses !== undefined && monster.weaknesses.length > 0}
-						{#each monster.weaknesses as weakness}
-							{#if ElementIcons.find((e) => e.name === weakness)}
-								<InlineTooltip
-									text={weakness}
-									tooltip="Element"
-									iconType="component"
-									icon={ElementIcons.find((e) => e.name === weakness)?.icon}
-								/>
-							{:else if StatusIcons.find((e) => e.name === weakness)}
-								<InlineTooltip
-									text={weakness}
-									tooltip="Status"
-									iconType="component"
-									icon={StatusIcons.find((e) => e.name === weakness)?.icon}
-								/>
-							{/if}
-						{/each}
+						<div class="weaknesses-list">
+							{#each monster.weaknesses as weakness}
+								{#if ElementIcons.find((e) => e.name === weakness)}
+									<InlineTooltip
+										text={weakness}
+										tooltip="Element"
+										iconType="component"
+										icon={ElementIcons.find((e) => e.name === weakness)?.icon}
+									/>
+								{:else if StatusIcons.find((e) => e.name === weakness)}
+									<InlineTooltip
+										text={weakness}
+										tooltip="Status"
+										iconType="component"
+										icon={StatusIcons.find((e) => e.name === weakness)?.icon}
+									/>
+								{/if}
+							{/each}
+						</div>
 					{:else}
 						None
 					{/if}
@@ -646,8 +650,7 @@
 	.container {
 		padding-top: 1rem;
 		padding-bottom: 2rem;
-		width: 90%;
-		margin: auto;
+		padding-right: 2rem;
 	}
 
 	.hitzone-options {
@@ -707,6 +710,21 @@
 		width: 100%;
 		overflow-x: auto;
 		background-color: var(--ctp-surface0);
+	}
+
+	.overview > .stats-lists {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.ailments-list,
+	.weaknesses-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding-top: 0.5rem;
 	}
 
 	@media (min-width: 320px) {

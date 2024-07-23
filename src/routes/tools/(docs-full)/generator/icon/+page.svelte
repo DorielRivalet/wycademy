@@ -42,6 +42,7 @@
 		gameInfo,
 	} from '$lib/client/modules/frontier/objects';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 
 	function downloadIconImage() {
 		if (!browser) return;
@@ -204,8 +205,7 @@
 				};
 			case 'Monster Icon':
 				return {
-					component: monsterInfo.find((e) => e.displayName === selectionID)
-						?.icon, // TODO svg?
+					component: MonsterComponent,
 					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
 				};
 			case 'Monster Render':
@@ -401,14 +401,14 @@
 		</div>
 		<div class="icon-preview">
 			<div id={'icon-dom'} style="width: {selectedIconSize}">
-				<!--TODO: monster icon svg loading-->
-				{#if (selectedIconType === 'Weapon' && selectedIconFormat === 'Vector') || selectedIconType === 'Element' || selectedIconType === 'Ailment' || selectedIconType === 'Status' || selectedIconType === 'Item' || selectedIconType === 'Armor'}
+				{#if ((selectedIconType === 'Monster Icon' || selectedIconType === 'Weapon') && selectedIconFormat === 'Vector') || selectedIconType === 'Element' || selectedIconType === 'Ailment' || selectedIconType === 'Status' || selectedIconType === 'Item' || selectedIconType === 'Armor'}
 					<div
 						style="filter: drop-shadow(0 0 {selectedIconShadowWidth}px {selectedIconShadowColor});"
 					>
 						<svelte:component
 							this={currentIconPreview.component}
 							{...{
+								currentMonster: selectedIconIdFromList,
 								size: selectedIconType === 'Weapon' ? '100%' : selectedIconSize,
 								color: selectedIconColor,
 								background: selectedIconBackground,
