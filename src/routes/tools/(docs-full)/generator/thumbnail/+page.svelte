@@ -1094,6 +1094,7 @@
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Thumbnail Generator'} />
+		<!--TODO: remove metadata from svg components?-->
 		<InlineNotification
 			lowContrast
 			hideCloseButton
