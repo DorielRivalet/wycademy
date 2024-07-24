@@ -10,12 +10,10 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import { page } from '$app/stores';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
-	import { browser } from '$app/environment';
-	import { domToPng } from 'modern-screenshot';
-	import slugify from 'slugify';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import tshirt from '$lib/client/images/supplemental/armor-color-tshirt.webp';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
 
 	const colorsInfo = [
 		{
@@ -97,18 +95,6 @@
 			tips: '-',
 		},
 	];
-
-	function downloadDomAsPng(id: string) {
-		if (!browser) return;
-		let node = document.getElementById(id);
-		if (!node) return;
-		domToPng(node, { quality: 1 }).then((dataUrl) => {
-			const link = document.createElement('a');
-			link.download = `${slugify(`Armor-Colors-${new Date().toISOString()}.png`)}`;
-			link.href = dataUrl;
-			link.click();
-		});
-	}
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -175,7 +161,8 @@
 						<Button
 							kind="tertiary"
 							icon={Download}
-							on:click={() => downloadDomAsPng('armor-colors-dom')}
+							on:click={() =>
+								downloadDomAsPng('armor-colors-dom', 'armor-colors')}
 							>Download</Button
 						>
 					</div>

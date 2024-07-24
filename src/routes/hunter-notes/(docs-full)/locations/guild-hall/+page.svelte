@@ -41,30 +41,7 @@
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { ItemColors } from '$lib/client/modules/frontier/items';
 	import { getTag } from '$lib/client/modules/frontier/tags';
-
-	function downloadDomAsPng(id: string) {
-		if (!browser) return;
-		let node = document.getElementById(id);
-		if (!node) return;
-		domToPng(node, { quality: 1 }).then((dataUrl) => {
-			const link = document.createElement('a');
-			link.download = `${slugify(`Recipes-${new Date().toISOString()}.png`)}`;
-			link.href = dataUrl;
-			link.click();
-		});
-	}
-
-	function downloadPoogiesDomAsPng(id: string) {
-		if (!browser) return;
-		let node = document.getElementById(id);
-		if (!node) return;
-		domToPng(node, { quality: 1 }).then((dataUrl) => {
-			const link = document.createElement('a');
-			link.download = `${slugify(`Guild-Poogies-${new Date().toISOString()}.png`)}`;
-			link.href = dataUrl;
-			link.click();
-		});
-	}
+	import { downloadDomAsPng } from '$lib/client/modules/download';
 
 	let recipesTablePageSize = 7;
 	let recipesTablePage = 1;
@@ -420,7 +397,7 @@
 									<Button
 										kind="tertiary"
 										icon={Download}
-										on:click={() => downloadDomAsPng('recipes-dom')}
+										on:click={() => downloadDomAsPng('recipes-dom', 'recipes')}
 										>Download</Button
 									>
 									<ToolbarSearch
@@ -792,7 +769,7 @@
 										kind="tertiary"
 										icon={Download}
 										on:click={() =>
-											downloadPoogiesDomAsPng('guild-poogies-dom')}
+											downloadDomAsPng('guild-poogies-dom', 'guild-poogies')}
 										>Download</Button
 									>
 								</div>

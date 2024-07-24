@@ -13,29 +13,13 @@
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import { browser } from '$app/environment';
-	import slugify from 'slugify';
-	import { domToPng } from 'modern-screenshot';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { gameInfo } from '$lib/client/modules/frontier/objects';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
-
-	function downloadDom(id: string) {
-		if (!browser) return;
-		let node = document.getElementById(id);
-		if (!node) return;
-		domToPng(node, { quality: 1 }).then((dataUrl) => {
-			const link = document.createElement('a');
-			link.download = `${slugify(
-				`Active-Feature-${new Date().toISOString()}.png`,
-			)}`;
-			link.href = dataUrl;
-			link.click();
-		});
-	}
+	import { downloadDomAsPng } from '$lib/client/modules/download';
 
 	function getActiveFeatureFinalBitfieldValue(arr: string[]) {
 		const initialValue = 0;
@@ -221,7 +205,8 @@
 							<Button
 								kind="tertiary"
 								icon={Download}
-								on:click={() => downloadDom('active-feature-dom')}
+								on:click={() =>
+									downloadDomAsPng('active-feature-dom', 'active-feature')}
 								>Download</Button
 							>
 						</div>
