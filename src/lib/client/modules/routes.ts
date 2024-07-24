@@ -48,6 +48,9 @@ import thumbnailLightElements from '$lib/client/images/page-thumbnail/light/elem
 import thumbnailLightMSHiden from '$lib/client/images/page-thumbnail/light/magnet-spike-hiden.png';
 import thumbnailLightMSIFrames from '$lib/client/images/page-thumbnail/light/magnet-spike-iframes.png';
 import thumbnailLightMS from '$lib/client/images/page-thumbnail/light/magnet-spike.png';
+import thumbnailLightArmorColors from '$lib/client/images/page-thumbnail/light/armor-colors.png';
+import thumbnailLightSharpness from '$lib/client/images/page-thumbnail/light/sharpness.png';
+import thumbnailLightWeaponMultipliers from '$lib/client/images/page-thumbnail/light/weapon-multipliers.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -56,6 +59,9 @@ import thumbnailDarkElements from '$lib/client/images/page-thumbnail/dark/elemen
 import thumbnailDarkMSHiden from '$lib/client/images/page-thumbnail/dark/magnet-spike-hiden.png';
 import thumbnailDarkMSIFrames from '$lib/client/images/page-thumbnail/dark/magnet-spike-iframes.png';
 import thumbnailDarkMS from '$lib/client/images/page-thumbnail/dark/magnet-spike.png';
+import thumbnailDarkArmorColors from '$lib/client/images/page-thumbnail/dark/armor-colors.png';
+import thumbnailDarkSharpness from '$lib/client/images/page-thumbnail/dark/sharpness.png';
+import thumbnailDarkWeaponMultipliers from '$lib/client/images/page-thumbnail/dark/weapon-multipliers.png';
 
 import { getWeaponIcon } from './frontier/weapons';
 import { monsterInfo } from './frontier/monsters';
@@ -118,6 +124,21 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/weapons/magnet-spike',
 		thumbnail: thumbnailLightMSIFrames,
 	},
+	{
+		embed: null,
+		link: '/hunter-notes/armor/colors',
+		thumbnail: thumbnailLightArmorColors,
+	},
+	{
+		embed: 'sharpness',
+		link: '/hunter-notes/weapons/overview',
+		thumbnail: thumbnailLightSharpness,
+	},
+	{
+		embed: 'weapon-multipliers',
+		link: '/hunter-notes/weapons/overview',
+		thumbnail: thumbnailLightWeaponMultipliers,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -164,6 +185,21 @@ const darkThumbnailInfo: {
 		embed: 'iframes',
 		link: '/hunter-notes/weapons/magnet-spike',
 		thumbnail: thumbnailDarkMSIFrames,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/armor/colors',
+		thumbnail: thumbnailDarkArmorColors,
+	},
+	{
+		embed: 'sharpness',
+		link: '/hunter-notes/weapons/overview',
+		thumbnail: thumbnailDarkSharpness,
+	},
+	{
+		embed: 'weapon-multipliers',
+		link: '/hunter-notes/weapons/overview',
+		thumbnail: thumbnailDarkWeaponMultipliers,
 	},
 ];
 
