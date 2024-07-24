@@ -26,6 +26,87 @@
 
 		return result;
 	}
+
+	const elements = [
+		{
+			id: 'Light',
+			composition: '70% Fire, 70% Thunder',
+			origin: 'Zerureusu',
+			name: 'Light',
+		},
+		{
+			id: 'Blaze',
+			origin: 'None',
+			name: 'Blaze',
+			composition: '70% Fire, 70% Dragon',
+		},
+		{
+			id: 'Tenshou',
+			origin: 'Shantien',
+			name: 'Tenshou',
+			composition: '30% Fire, 100% Water, 70% Thunder',
+		},
+		{
+			id: 'Lightning Rod',
+			origin: 'Rebidiora',
+			name: 'Lightning Rod',
+			composition: '70% Thunder, 70% Dragon',
+		},
+		{
+			id: 'Okiko',
+			origin: 'Disufiroa',
+			name: 'Okiko',
+			composition: '80% Fire, 80% Ice, 40% Dragon',
+		},
+		{
+			id: 'Black Flame',
+			origin: 'Conquest Fatalis',
+			name: 'Black Flame',
+			composition: '50% Fire, 150% Dragon',
+		},
+		{
+			id: 'Crimson Demon',
+			origin: 'Conquest Crimson Fatalis',
+			name: 'Crimson Demon',
+			composition: '50% Dragon, 150% Fire',
+		},
+		{
+			id: 'Dark',
+			origin: 'Meraginasu',
+			name: 'Dark',
+			composition: '80% Ice, 80% Dragon',
+		},
+		{
+			id: 'Music',
+			origin: 'Diva',
+			name: 'Music',
+			composition: '100% Water, 100% Ice',
+		},
+		{
+			id: 'Sound',
+			origin: 'Diva',
+			name: 'Sound',
+			composition: '100% Water, 100% Dragon',
+		},
+		{
+			id: 'Wind',
+			origin: 'Garuba Daora',
+			name: 'Wind',
+			composition: '80% Thunder, 80% Ice',
+		},
+		{
+			id: 'Burning Zero',
+			origin: 'Elzelion',
+			name: 'Burning Zero',
+			composition: '125% Fire, 125% Ice',
+		},
+		{
+			id: "Emperor's Roar",
+			origin: 'Road White Fatalis',
+			name: "Emperor's Roar",
+			composition: '150% Thunder, 50% Dragon',
+		},
+	];
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -124,170 +205,12 @@
 					{ key: 'composition', value: 'Composition', minWidth: '8rem' },
 					{ key: 'origin', value: 'Origin', minWidth: '1rem' },
 				]}
-				rows={[
-					{
-						id: 'Light',
-						composition: '70% Fire, 70% Thunder',
-						origin: 'Zerureusu',
-						name: 'Light',
-					},
-					{
-						id: 'Blaze',
-						origin: 'None',
-						name: 'Blaze',
-						composition: '70% Fire, 70% Dragon',
-					},
-					{
-						id: 'Tenshou',
-						origin: 'Shantien',
-						name: 'Tenshou',
-						composition: '30% Fire, 100% Water, 70% Thunder',
-					},
-					{
-						id: 'Lightning Rod',
-						origin: 'Rebidiora',
-						name: 'Lightning Rod',
-						composition: '70% Thunder, 70% Dragon',
-					},
-					{
-						id: 'Okiko',
-						origin: 'Disufiroa',
-						name: 'Okiko',
-						composition: '80% Fire, 80% Ice, 40% Dragon',
-					},
-					{
-						id: 'Black Flame',
-						origin: 'Fatalis',
-						name: 'Black Flame',
-						composition: '50% Fire, 150% Dragon',
-					},
-					{
-						id: 'Crimson Demon',
-						origin: 'Crimson Fatalis',
-						name: 'Crimson Demon',
-						composition: '50% Dragon, 150% Fire',
-					},
-					{
-						id: 'Dark',
-						origin: 'Meraginasu',
-						name: 'Dark',
-						composition: '80% Ice, 80% Dragon',
-					},
-					{
-						id: 'Music',
-						origin: 'Diva',
-						name: 'Music',
-						composition: '100% Water, 100% Ice',
-					},
-					{
-						id: 'Sound',
-						origin: 'Diva',
-						name: 'Sound',
-						composition: '100% Water, 100% Dragon',
-					},
-					{
-						id: 'Wind',
-						origin: 'Garuba Daora',
-						name: 'Wind',
-						composition: '80% Thunder, 80% Ice',
-					},
-					{
-						id: 'Burning Zero',
-						origin: 'Elzelion',
-						name: 'Burning Zero',
-						composition: '125% Fire, 125% Ice',
-					},
-					{
-						id: "Emperor's Roar",
-						origin: 'White Fatalis',
-						name: "Emperor's Roar",
-						composition: '150% Thunder, 50% Dragon',
-					},
-				]}
+				rows={elements}
 				><Toolbar
 					><div class="toolbar">
 						<CopyButton
 							iconDescription={'Copy as CSV'}
-							text={getCSVFromArray([
-								{
-									id: 'Light',
-									composition: '70% Fire, 70% Thunder',
-									origin: 'Zerureusu',
-									name: 'Light',
-								},
-								{
-									id: 'Blaze',
-									origin: 'None',
-									name: 'Blaze',
-									composition: '70% Fire, 70% Dragon',
-								},
-								{
-									id: 'Tenshou',
-									origin: 'Shantien',
-									name: 'Tenshou',
-									composition: '30% Fire, 100% Water, 70% Thunder',
-								},
-								{
-									id: 'Lightning Rod',
-									origin: 'Rebidiora',
-									name: 'Lightning Rod',
-									composition: '70% Thunder, 70% Dragon',
-								},
-								{
-									id: 'Okiko',
-									origin: 'Disufiroa',
-									name: 'Okiko',
-									composition: '80% Fire, 80% Ice, 40% Dragon',
-								},
-								{
-									id: 'Black Flame',
-									origin: 'Fatalis',
-									name: 'Black Flame',
-									composition: '50% Fire, 150% Dragon',
-								},
-								{
-									id: 'Crimson Demon',
-									origin: 'Crimson Fatalis',
-									name: 'Crimson Demon',
-									composition: '50% Dragon, 150% Fire',
-								},
-								{
-									id: 'Dark',
-									origin: 'Meraginasu',
-									name: 'Dark',
-									composition: '80% Ice, 80% Dragon',
-								},
-								{
-									id: 'Music',
-									origin: 'Diva',
-									name: 'Music',
-									composition: '100% Water, 100% Ice',
-								},
-								{
-									id: 'Sound',
-									origin: 'Diva',
-									name: 'Sound',
-									composition: '100% Water, 100% Dragon',
-								},
-								{
-									id: 'Wind',
-									origin: 'Garuba Daora',
-									name: 'Wind',
-									composition: '80% Thunder, 80% Ice',
-								},
-								{
-									id: 'Burning Zero',
-									origin: 'Elzelion',
-									name: 'Burning Zero',
-									composition: '125% Fire, 125% Ice',
-								},
-								{
-									id: "Emperor's Roar",
-									origin: 'White Fatalis',
-									name: "Emperor's Roar",
-									composition: '150% Thunder, 50% Dragon',
-								},
-							])}
+							text={getCSVFromArray(elements)}
 						/>
 					</div>
 				</Toolbar>
@@ -305,7 +228,8 @@
 						/>
 					{:else if cell.key === 'origin'}
 						<InlineTooltip
-							icon={monsterInfo.find((e) => e.name === cell.value)?.icon ?? ''}
+							icon={monsterInfo.find((e) => e.displayName === cell.value)
+								?.icon ?? ''}
 							iconType="file"
 							tooltip={cell.value}
 							text={cell.value}

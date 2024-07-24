@@ -33,6 +33,8 @@
 	import MSMark from '$lib/client/images/supplemental/ms-mark.webp';
 	import MSMagnetize from '$lib/client/images/supplemental/ms-magnetize.webp';
 	import MSGauges from '$lib/client/images/supplemental/ms-gauges.webp';
+	import MSPinReady from '$lib/client/images/supplemental/ms-pin-ready.webp';
+	import MSPin from '$lib/client/images/supplemental/ms-pin.webp';
 
 	const hidenSkills: {
 		id: string;
@@ -648,6 +650,14 @@ graph LR
 						effect on its body, indicating it is ready to be pinned.
 					</p>
 
+					<CenteredFigure
+						figcaption="Pin ready effect."
+						alt="Magnet Spike pin ready"
+						type="file"
+						width="100%"
+						src={MSPinReady}
+					/>
+
 					<p class="spaced-paragraph">
 						Pinning can be done from either Magnetic Double Slash or Double
 						Swipe. This causes you to leap into the air and slam down your
@@ -664,6 +674,14 @@ graph LR
 						to fall over, and extends the time the monster is trapped due to the
 						finisher's lengthy animation.
 					</p>
+
+					<CenteredFigure
+						figcaption="Pin."
+						alt="Magnet Spike pin"
+						type="file"
+						width="100%"
+						src={MSPin}
+					/>
 
 					<p class="spaced-paragraph">
 						The finisher is notable because it targets the spot where you have
