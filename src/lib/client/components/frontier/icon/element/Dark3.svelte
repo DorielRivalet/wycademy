@@ -1,5 +1,36 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
+	/*
+	<metadata id="metadata5">
+		<!-- svelte-ignore illegal-attribute-character -->
+
+		<rdf:RDF>
+			<cc:License rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+				<cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction" />
+				<cc:permits rdf:resource="http://creativecommons.org/ns#Distribution" />
+				<cc:requires rdf:resource="http://creativecommons.org/ns#Notice" />
+				<cc:requires rdf:resource="http://creativecommons.org/ns#Attribution" />
+				<cc:prohibits
+					rdf:resource="http://creativecommons.org/ns#CommercialUse"
+				/>
+				<cc:permits
+					rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+				/>
+				<cc:requires rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+			</cc:License>
+			<cc:Work rdf:about="">
+				<cc:license
+					rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+				/>
+				<dc:creator>
+					<cc:Agent>
+						<dc:title>Doriel Rivalet</dc:title>
+					</cc:Agent>
+				</dc:creator>
+			</cc:Work>
+		</rdf:RDF>
+	</metadata>
+	*/
 	export let size = '100%';
 </script>
 
@@ -34,33 +65,4 @@
 			/>
 		</g>
 	</g>
-	<metadata id="metadata5">
-		<!-- svelte-ignore illegal-attribute-character -->
-
-		<rdf:RDF>
-			<cc:License rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-				<cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction" />
-				<cc:permits rdf:resource="http://creativecommons.org/ns#Distribution" />
-				<cc:requires rdf:resource="http://creativecommons.org/ns#Notice" />
-				<cc:requires rdf:resource="http://creativecommons.org/ns#Attribution" />
-				<cc:prohibits
-					rdf:resource="http://creativecommons.org/ns#CommercialUse"
-				/>
-				<cc:permits
-					rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
-				/>
-				<cc:requires rdf:resource="http://creativecommons.org/ns#ShareAlike" />
-			</cc:License>
-			<cc:Work rdf:about="">
-				<cc:license
-					rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-				/>
-				<dc:creator>
-					<cc:Agent>
-						<dc:title>Doriel Rivalet</dc:title>
-					</cc:Agent>
-				</dc:creator>
-			</cc:Work>
-		</rdf:RDF>
-	</metadata>
 </svg>

@@ -40,13 +40,23 @@ import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon
 import AllItems from '../components/frontier/icon/item/AllItems.svelte';
 import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
 import pageThumbnail from '$lib/client/images/logo.png';
+
 import thumbnailLightActiveFeature from '$lib/client/images/page-thumbnail/light/active-feature.png';
 import thumbnailLightGuildPoogies from '$lib/client/images/page-thumbnail/light/guild-poogies.png';
 import thumbnailLightRecipes from '$lib/client/images/page-thumbnail/light/recipes.png';
+import thumbnailLightElements from '$lib/client/images/page-thumbnail/light/elements.png';
+import thumbnailLightMSHiden from '$lib/client/images/page-thumbnail/light/magnet-spike-hiden.png';
+import thumbnailLightMSIFrames from '$lib/client/images/page-thumbnail/light/magnet-spike-iframes.png';
+import thumbnailLightMS from '$lib/client/images/page-thumbnail/light/magnet-spike.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
 import thumbnailDarkRecipes from '$lib/client/images/page-thumbnail/dark/recipes.png';
+import thumbnailDarkElements from '$lib/client/images/page-thumbnail/dark/elements.png';
+import thumbnailDarkMSHiden from '$lib/client/images/page-thumbnail/dark/magnet-spike-hiden.png';
+import thumbnailDarkMSIFrames from '$lib/client/images/page-thumbnail/dark/magnet-spike-iframes.png';
+import thumbnailDarkMS from '$lib/client/images/page-thumbnail/dark/magnet-spike.png';
+
 import { getWeaponIcon } from './frontier/weapons';
 import { monsterInfo } from './frontier/monsters';
 
@@ -62,6 +72,100 @@ export type CategoryInfo = {
 	category: NavigationItem;
 	pages: NavigationItem[];
 };
+
+const lightThumbnailInfo: {
+	link: string;
+	thumbnail: string;
+	embed: string | null;
+}[] = [
+	{
+		link: '/hunter-notes/weapons/active-feature',
+		embed: null,
+		thumbnail: thumbnailLightActiveFeature,
+	},
+	{
+		embed: 'recipes',
+		link: '/hunter-notes/locations/guild-hall',
+		thumbnail: thumbnailLightRecipes,
+	},
+	{
+		embed: 'guild-poogie-skills',
+		link: '/hunter-notes/locations/guild-hall',
+		thumbnail: thumbnailLightGuildPoogies,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/getting-started/elements',
+		thumbnail: thumbnailLightElements,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/weapons/magnet-spike',
+		thumbnail: thumbnailLightMS,
+	},
+	{
+		embed: 'active-feature',
+		link: '/hunter-notes/weapons/magnet-spike',
+		thumbnail: thumbnailLightActiveFeature,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/magnet-spike',
+		thumbnail: thumbnailLightMSHiden,
+	},
+	{
+		embed: 'iframes',
+		link: '/hunter-notes/weapons/magnet-spike',
+		thumbnail: thumbnailLightMSIFrames,
+	},
+];
+
+const darkThumbnailInfo: {
+	link: string;
+	thumbnail: string;
+	embed: string | null;
+}[] = [
+	{
+		link: '/hunter-notes/weapons/active-feature',
+		embed: null,
+		thumbnail: thumbnailDarkActiveFeature,
+	},
+	{
+		embed: 'recipes',
+		link: '/hunter-notes/locations/guild-hall',
+		thumbnail: thumbnailDarkRecipes,
+	},
+	{
+		embed: 'guild-poogie-skills',
+		link: '/hunter-notes/locations/guild-hall',
+		thumbnail: thumbnailDarkGuildPoogies,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/getting-started/elements',
+		thumbnail: thumbnailDarkElements,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/weapons/magnet-spike',
+		thumbnail: thumbnailDarkMS,
+	},
+	{
+		embed: 'active-feature',
+		link: '/hunter-notes/weapons/magnet-spike',
+		thumbnail: thumbnailDarkActiveFeature,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/magnet-spike',
+		thumbnail: thumbnailDarkMSHiden,
+	},
+	{
+		embed: 'iframes',
+		link: '/hunter-notes/weapons/magnet-spike',
+		thumbnail: thumbnailDarkMSIFrames,
+	},
+];
 
 export function getPageThumbnail(
 	link: string,
@@ -322,50 +426,6 @@ export const toolsInfo: CategoryInfo[] = [
 					'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
 			},
 		],
-	},
-];
-
-const lightThumbnailInfo: {
-	link: string;
-	thumbnail: string;
-	embed: string | null;
-}[] = [
-	{
-		link: '/hunter-notes/weapons/active-feature',
-		embed: null,
-		thumbnail: thumbnailLightActiveFeature,
-	},
-	{
-		embed: 'recipes',
-		link: '/hunter-notes/locations/guild-hall',
-		thumbnail: thumbnailLightRecipes,
-	},
-	{
-		embed: 'guild-poogie-skills',
-		link: '/hunter-notes/locations/guild-hall',
-		thumbnail: thumbnailLightGuildPoogies,
-	},
-];
-
-const darkThumbnailInfo: {
-	link: string;
-	thumbnail: string;
-	embed: string | null;
-}[] = [
-	{
-		link: '/hunter-notes/weapons/active-feature',
-		embed: null,
-		thumbnail: thumbnailDarkActiveFeature,
-	},
-	{
-		embed: 'recipes',
-		link: '/hunter-notes/locations/guild-hall',
-		thumbnail: thumbnailDarkRecipes,
-	},
-	{
-		embed: 'guild-poogie-skills',
-		link: '/hunter-notes/locations/guild-hall',
-		thumbnail: thumbnailDarkGuildPoogies,
 	},
 ];
 

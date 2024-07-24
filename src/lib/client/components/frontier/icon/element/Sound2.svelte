@@ -2,16 +2,8 @@
 
 <script lang="ts">
 	export let size = '100%';
-</script>
-
-<svg
-	width={size}
-	viewBox="0 0 40 40"
-	version="1.1"
-	id="svg5"
-	xml:space="preserve"
-	xmlns="http://www.w3.org/2000/svg"
-	><defs id="defs2" /><metadata id="metadata1">
+	/*
+	<metadata id="metadata1">
 		<!-- svelte-ignore illegal-attribute-character -->
 		<rdf:RDF
 			><cc:Work rdf:about=""
@@ -38,7 +30,18 @@
 				/></cc:License
 			></rdf:RDF
 		></metadata
-	><path
+	>
+	*/
+</script>
+
+<svg
+	width={size}
+	viewBox="0 0 40 40"
+	version="1.1"
+	id="svg5"
+	xml:space="preserve"
+	xmlns="http://www.w3.org/2000/svg"
+	><defs id="defs2" /><path
 		style="opacity:1;fill:#f0efe6;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.6;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
 		d="M 2.0889887,28.547321 C 8.5440794,29.99147 13.17679,24.670771 12.690334,18.934374 12.411136,15.642006 9.3612583,10.592144 2.6458333,11.4186 c 4.3965465,1.618478 6.6601525,5.08278 6.6180102,7.926135 -0.074445,5.022807 -2.7736789,6.976109 -7.1748548,9.202586 z"
 		id="path6"

@@ -12,6 +12,9 @@
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 
 	function getElementArray(input: string) {
 		// Step 1: Split the string into individual elements
@@ -197,6 +200,7 @@
 		<div class="elements-table">
 			<DataTable
 				sortable
+				id="elements-dom"
 				zebra
 				useStaticWidth
 				size="short"
@@ -212,6 +216,12 @@
 							iconDescription={'Copy as CSV'}
 							text={getCSVFromArray(elements)}
 						/>
+						<Button
+							kind="tertiary"
+							icon={Download}
+							on:click={() => downloadDomAsPng('elements-dom', 'elements')}
+							>Download</Button
+						>
 					</div>
 				</Toolbar>
 				<span slot="title">
@@ -222,6 +232,7 @@
 				<svelte:fragment slot="cell" let:cell>
 					{#if cell.key === 'name'}
 						<InlineTooltip
+							iconType="component"
 							icon={ElementIcons.find((e) => e.name === cell.value)?.icon}
 							tooltip={'Element'}
 							text={cell.value}
@@ -237,6 +248,7 @@
 					{:else if cell.key === 'composition'}
 						{#each getElementArray(cell.value) as element}
 							<InlineTooltip
+								iconType="component"
 								icon={ElementIcons.find((e) => e.name === element.name)?.icon ??
 									''}
 								tooltip={'Element'}
