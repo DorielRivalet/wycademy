@@ -15,6 +15,7 @@
 	import { page } from '$app/stores';
 	import type {
 		FrontierDivaPrayerGemSkillName,
+		FrontierMonsterName,
 		FrontierWeaponClass,
 		FrontierWeaponName,
 		FrontierWeaponStyle,
@@ -22,13 +23,17 @@
 	import type {
 		FrontierDivaPrayerGemLevel,
 		FrontierElement,
+		FrontierMonsterHitzoneRankBand,
+		FrontierMonsterInfo,
 		FrontierMotionValue,
 		FrontierMotionValueSection,
 		FrontierRarity,
 		FrontierStatus,
 		TagColor,
 	} from '$lib/client/modules/frontier/types';
-	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import Dropdown, {
+		type DropdownItem,
+	} from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
@@ -104,8 +109,17 @@
 		getWeaponIcon,
 	} from '$lib/client/modules/frontier/weapons';
 	import { missionRequirementAttackCeilings } from '$lib/client/modules/frontier/objects';
-	import { getMonster } from '$lib/client/modules/frontier/monsters';
+	import {
+		getMonster,
+		getUniqueMonsters,
+	} from '$lib/client/modules/frontier/monsters';
 	import { getTag } from '$lib/client/modules/frontier/tags';
+	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
+	import {
+		convertHitzoneInfo,
+		getAllHitzoneValuesForHitzones,
+		hitzoneInfo,
+	} from '$lib/client/modules/frontier/hitzones';
 
 	type DataTableKey = string;
 
@@ -3374,7 +3388,6 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 
 	let modalHeading = '';
 	let modalLabel = '';
-	const url = $page.url.toString();
 	let modalOpen = false;
 	let modalImage = '';
 	let modalNotes = '';
@@ -5395,6 +5408,159 @@ does not get multiplied by horn */
 		'outputDivaPrayerGemTrueRaw',
 		outputDivaPrayerGemTrueRaw.toString(),
 	);
+
+	let selectedMonster: FrontierMonsterName = 'Abiorugu';
+	let selectedMonsterRankBand: FrontierMonsterHitzoneRankBand = 'Default';
+	let selectedMonsterState = 'Default';
+	let selectedMonsterPart = 'Head';
+
+	let uniqueMonsters = getUniqueMonsters().sort(
+		(a, b) =>
+			(a?.displayName?.codePointAt(0) ?? 0) -
+			(b?.displayName?.codePointAt(0) ?? 0),
+	);
+
+	const currentMonsters = getCurrentMonsters();
+
+	function shouldFilterItem(item: { text: string }, value: string) {
+		if (!value) return true;
+		return item.text.toLowerCase().includes(value.toLowerCase());
+	}
+
+	function getCurrentMonsters() {
+		let list:
+			| { name: string; icon: any }[]
+			| FrontierMonsterInfo[]
+			| { name: string; image: any }[];
+
+		list = uniqueMonsters;
+
+		list = list.filter((e) => e.icon !== '');
+
+		let result: DropdownItem[] = [];
+		list.forEach((element) => {
+			if ('displayName' in element) {
+				// TypeScript now knows that element is of type FrontierMonsterInfo
+				// Ensure 'displayName' is a string before pushing to result
+				if (
+					typeof element.displayName === 'string' &&
+					!result.find((e) => e.id === element.displayName)
+				) {
+					result.push({
+						id: `${element.displayName}`,
+						text: element.displayName,
+					});
+				}
+			} else {
+				result.push({ id: element.name, text: element.name });
+			}
+		});
+
+		result.sort((a, b) => a.text.localeCompare(b.text));
+
+		return result;
+	}
+
+	function getAvailableRankBands(
+		displayName: string,
+	): { id: string; text: string }[] {
+		// Filter HitzoneInfo by displayName and extract unique rankBands
+		const rankBands = new Set<FrontierMonsterHitzoneRankBand>();
+		hitzoneInfo.forEach((info) => {
+			if (info.displayName === displayName) {
+				rankBands.add(info.rankBand);
+			}
+		});
+		return Array.from(rankBands).map((rank) => ({ id: rank, text: rank }));
+	}
+
+	function getAvailableMonsterStates(
+		displayName: FrontierMonsterName,
+	): { id: string; text: string }[] {
+		// Filter HitzoneInfo by displayName and extract unique monsterStates
+		const monsterStates = new Set<string>();
+		hitzoneInfo.forEach((info) => {
+			if (info.displayName === displayName) {
+				monsterStates.add(info.monsterState);
+			}
+		});
+		return Array.from(monsterStates).map((state) => ({
+			id: state,
+			text: state,
+		}));
+	}
+
+	$: availableRankBands = getAvailableRankBands(selectedMonster) || [
+		{ id: 'Default', text: 'Default' },
+	];
+
+	$: availableMonsterStates = getAvailableMonsterStates(selectedMonster) || [
+		{ id: 'Default', text: 'Default' },
+	];
+
+	$: hitzones =
+		convertHitzoneInfo(
+			selectedMonster,
+			selectedMonsterRankBand,
+			selectedMonsterState,
+		) || [];
+
+	$: hitzoneValues = Object.entries(
+		getAllHitzoneValuesForHitzones(
+			hitzones,
+			selectedMonsterState,
+			selectedMonsterRankBand,
+		),
+	).map(([partName, hitzoneValues]) => ({
+		id: partName,
+		part: partName,
+		...Object.fromEntries(
+			Object.entries(hitzoneValues).map(([type, value]) => [
+				type.toLowerCase(),
+				value,
+			]),
+		),
+	}));
+
+	$: inputNumberCuttingHitzone =
+		selectedMonster === undefined
+			? inputNumberCuttingHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.cutting;
+
+	$: inputNumberImpactHitzone =
+		selectedMonster === undefined
+			? inputNumberImpactHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.impact;
+
+	$: inputNumberShotHitzone =
+		selectedMonster === undefined
+			? inputNumberShotHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.shot;
+
+	$: inputNumberFireHitzone =
+		selectedMonster === undefined
+			? inputNumberFireHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.fire;
+
+	$: inputNumberWaterHitzone =
+		selectedMonster === undefined
+			? inputNumberWaterHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.water;
+
+	$: inputNumberThunderHitzone =
+		selectedMonster === undefined
+			? inputNumberThunderHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.thunder;
+
+	$: inputNumberIceHitzone =
+		selectedMonster === undefined
+			? inputNumberIceHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.ice;
+
+	$: inputNumberDragonHitzone =
+		selectedMonster === undefined
+			? inputNumberDragonHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.dragon;
 </script>
 
 <svelte:head>
@@ -8068,6 +8234,36 @@ does not get multiplied by horn */
 								<div class="input-section">
 									<div class="small-header">🐉 Monster</div>
 									<div class="inputs-group-column">
+										<div>
+											<ComboBox
+												on:select={() => {
+													selectedMonsterState =
+														availableMonsterStates[0]?.id || 'Default';
+													selectedMonsterRankBand =
+														availableRankBands[0]?.id || 'Default';
+												}}
+												titleText="Monster"
+												placeholder="Select monster"
+												bind:selectedId={selectedMonster}
+												items={currentMonsters}
+												{shouldFilterItem}
+											/>
+										</div>
+										{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
+											<Dropdown
+												titleText="Monster Rank Band"
+												bind:selectedId={selectedMonsterRankBand}
+												items={availableRankBands}
+											/>
+										{/if}
+										{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
+											<Dropdown
+												titleText="Monster State"
+												bind:selectedId={selectedMonsterState}
+												items={availableMonsterStates}
+											/>
+										{/if}
+
 										<div class="number-input-container">
 											<NumberInput
 												size="sm"
