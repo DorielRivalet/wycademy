@@ -863,7 +863,8 @@ graph LR
 	let diagram = getDiagram(mermaidTheme);
 	let diagram2 = getDiagram2(mermaidTheme);
 
-	$: diagram && diagram2 && renderDiagram($theme, mermaidTheme);
+	$: diagram && renderDiagram($theme, mermaidTheme);
+	$: diagram2 && renderDiagram2($theme, mermaidTheme);
 
 	onMount(() => {
 		mermaid.initialize({
@@ -877,11 +878,17 @@ graph LR
 	async function renderDiagram(siteTheme: string, mermaidTheme: string) {
 		if (!browser) return;
 		mermaidTheme = siteTheme === 'g10' ? 'default' : 'dark';
+
 		let { svg } = await mermaid.render('mermaid', getDiagram(mermaidTheme));
 		container.innerHTML = svg;
+	}
 
-		let svg2 = (await mermaid.render('mermaid', getDiagram2(mermaidTheme))).svg;
-		container2.innerHTML = svg2;
+	async function renderDiagram2(siteTheme: string, mermaidTheme: string) {
+		if (!browser) return;
+		mermaidTheme = siteTheme === 'g10' ? 'default' : 'dark';
+
+		let { svg } = await mermaid.render('mermaid2', getDiagram2(mermaidTheme));
+		container2.innerHTML = svg;
 	}
 </script>
 
@@ -2002,7 +2009,7 @@ graph LR
 					{#if !browser}
 						<Loading withOverlay={false} />
 					{:else}
-						<pre><code bind:this={container2} /></pre>
+						<pre><code class="mermaid2" bind:this={container2} /></pre>
 					{/if}
 				</div>
 
