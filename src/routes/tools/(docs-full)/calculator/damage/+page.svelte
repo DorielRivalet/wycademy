@@ -25,6 +25,7 @@
 		FrontierElement,
 		FrontierMonsterHitzoneRankBand,
 		FrontierMonsterInfo,
+		FrontierMonsterPart,
 		FrontierMotionValue,
 		FrontierMotionValueSection,
 		FrontierRarity,
@@ -2832,9 +2833,16 @@
 		inputNumberDivaPrayerGemGreenLevel =
 			newInputs.inputNumberDivaPrayerGemGreenLevel ||
 			inputNumberDivaPrayerGemGreenLevel;
-		inputNumberDivaPrayerGemYellowLevel =
-			newInputs.inputNumberDivaPrayerGemRedLevel ||
-			inputNumberDivaPrayerGemYellowLevel;
+		inputNumberDivaPrayerGemBlueLevel =
+			newInputs.inputNumberDivaPrayerGemBlueLevel ||
+			inputNumberDivaPrayerGemBlueLevel;
+
+		selectedMonster = newInputs.selectedMonster || selectedMonster;
+		selectedMonsterRankBand =
+			newInputs.selectedMonsterRankBand || selectedMonsterRankBand;
+		selectedMonsterState =
+			newInputs.selectedMonsterState || selectedMonsterState;
+		selectedMonsterPart = newInputs.selectedMonsterPart || selectedMonsterPart;
 	}
 
 	function prettyPrintJson(input: string | object) {
@@ -3683,6 +3691,11 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 		inputDivaPrayerGemYellowName: inputDivaPrayerGemYellowName,
 		inputDivaPrayerGemGreenName: inputDivaPrayerGemGreenName,
 		inputDivaPrayerGemBlueName: inputDivaPrayerGemBlueName,
+
+		selectedMonster: selectedMonster,
+		selectedMonsterRankBand: selectedMonsterRankBand,
+		selectedMonsterState: selectedMonsterState,
+		selectedMonsterPart: selectedMonsterPart,
 	};
 
 	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
@@ -5412,7 +5425,7 @@ does not get multiplied by horn */
 	let selectedMonster: FrontierMonsterName = 'Abiorugu';
 	let selectedMonsterRankBand: FrontierMonsterHitzoneRankBand = 'Default';
 	let selectedMonsterState = 'Default';
-	let selectedMonsterPart = 'Head';
+	let selectedMonsterPart: FrontierMonsterPart = 'Head';
 
 	let uniqueMonsters = getUniqueMonsters().sort(
 		(a, b) =>
