@@ -45,7 +45,7 @@
 		{
 			id: '4',
 			skill: 'Magspike Tech Master', // TODO update ezlion?
-			points: 'Both Hiden, 30',
+			points: 'Twin Hiden, 30',
 			description:
 				'Sharpness level +1 is added to Magspike Tech 【Magnetic Star】.',
 		},

@@ -54,7 +54,6 @@
 		getNavigationItemFromLink,
 		toolsInfo,
 	} from '$lib/client/modules/routes';
-	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
 
@@ -122,7 +121,7 @@
 	let breadcrumbItems: URLItem[] = [];
 	let headTitle = 'Tools and Utilities';
 	let description =
-		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weaponsimulator, generate icons and armor, and much more.\n\nDeveloped by Doriel Rivalet.';
+		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weapon simulator, generate weapon images, and much more.\n\nDeveloped by Doriel Rivalet.';
 
 	const url = $page.url.toString();
 

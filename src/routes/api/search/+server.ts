@@ -554,6 +554,15 @@ Only support can inflict poison to Raviente Raviente.`,
 		hex: '0x00',
 		category: 'Guide',
 	},
+	{
+		title: 'Style Rank',
+		slug: '/hunter-notes/getting-started/style-rank',
+		content: `An overview of Weapon Styles, Style Rank Skills, Style Rank Stats, My Mission, Hiden and more.`,
+		id: 0,
+		hex: '0x00',
+		category: 'Guide',
+	},
+	// TODO once im done with everything update this index.
 ];
 
 const uniqueMonsters = getUniqueMonsters();

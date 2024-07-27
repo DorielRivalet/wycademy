@@ -51,6 +51,8 @@ import thumbnailLightMS from '$lib/client/images/page-thumbnail/light/magnet-spi
 import thumbnailLightArmorColors from '$lib/client/images/page-thumbnail/light/armor-colors.png';
 import thumbnailLightSharpness from '$lib/client/images/page-thumbnail/light/sharpness.png';
 import thumbnailLightWeaponMultipliers from '$lib/client/images/page-thumbnail/light/weapon-multipliers.png';
+import thumbnailLightSRStats from '$lib/client/images/page-thumbnail/light/style-rank-stats.png';
+import thumbnailLightWeaponTech from '$lib/client/images/page-thumbnail/light/weapons-tech-skills.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -62,9 +64,12 @@ import thumbnailDarkMS from '$lib/client/images/page-thumbnail/dark/magnet-spike
 import thumbnailDarkArmorColors from '$lib/client/images/page-thumbnail/dark/armor-colors.png';
 import thumbnailDarkSharpness from '$lib/client/images/page-thumbnail/dark/sharpness.png';
 import thumbnailDarkWeaponMultipliers from '$lib/client/images/page-thumbnail/dark/weapon-multipliers.png';
+import thumbnailDarkSRStats from '$lib/client/images/page-thumbnail/dark/style-rank-stats.png';
+import thumbnailDarkWeaponTech from '$lib/client/images/page-thumbnail/dark/weapons-tech-skills.png';
 
 import { getWeaponIcon } from './frontier/weapons';
 import { monsterInfo } from './frontier/monsters';
+import { ElementIcons } from './frontier/elements';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -139,6 +144,16 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/weapons/overview',
 		thumbnail: thumbnailLightWeaponMultipliers,
 	},
+	{
+		embed: 'weapon-tech-skills',
+		link: '/hunter-notes/getting-started/style-rank',
+		thumbnail: thumbnailLightWeaponTech,
+	},
+	{
+		embed: 'style-rank-stats',
+		link: '/hunter-notes/getting-started/style-rank',
+		thumbnail: thumbnailLightSRStats,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -200,6 +215,16 @@ const darkThumbnailInfo: {
 		embed: 'weapon-multipliers',
 		link: '/hunter-notes/weapons/overview',
 		thumbnail: thumbnailDarkWeaponMultipliers,
+	},
+	{
+		embed: 'weapon-tech-skills',
+		link: '/hunter-notes/getting-started/style-rank',
+		thumbnail: thumbnailDarkWeaponTech,
+	},
+	{
+		embed: 'style-rank-stats',
+		link: '/hunter-notes/getting-started/style-rank',
+		thumbnail: thumbnailDarkSRStats,
 	},
 ];
 
@@ -484,11 +509,18 @@ export const guidesInfo: CategoryInfo[] = [
 				image: BookIconWhite,
 			},
 			{
+				name: 'Style Rank',
+				description:
+					'An overview of Weapon Styles, Style Rank Skills, Style Rank Stats, My Mission, Hiden and more.',
+				link: '/hunter-notes/getting-started/style-rank',
+				image: LocationIcons.find((e) => e.name === 'My Missions')?.icon,
+			},
+			{
 				name: 'Elements',
 				description:
 					'The elements of weapons and monsters. Includes combo elements and elemental resistances.',
 				link: '/hunter-notes/getting-started/elements',
-				image: ExtremeFireblight,
+				image: ElementIcons.find((e) => e.name === 'Tenshou')?.icon,
 			},
 			{
 				name: 'Ailments',
