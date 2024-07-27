@@ -69,6 +69,7 @@
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
+	import { ElementIcons } from '$lib/client/modules/frontier/elements';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -149,6 +150,10 @@
 				{
 					id: '/hunter-notes/getting-started/your-first-hunts',
 					text: 'Your First Hunts',
+				},
+				{
+					text: 'Style Rank',
+					id: '/hunter-notes/getting-started/style-rank',
 				},
 				{
 					id: '/hunter-notes/getting-started/elements',
@@ -484,7 +489,14 @@
 			id: '/hunter-notes/getting-started/your-first-hunts',
 			icon: BookIconWhite,
 		},
-		{ id: '/hunter-notes/getting-started/elements', icon: ExtremeDragonblight },
+		{
+			id: '/hunter-notes/getting-started/style-rank',
+			icon: LocationIcons.find((e) => e.name === 'My Missions')?.icon,
+		},
+		{
+			id: '/hunter-notes/getting-started/elements',
+			icon: ElementIcons.find((e) => e.name === 'Tenshou')?.icon,
+		},
 		{ id: '/hunter-notes/getting-started/ailments', icon: ExtremeSleep },
 		{ id: '/hunter-notes/getting-started/transcend', icon: Transcend },
 		{

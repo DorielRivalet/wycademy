@@ -7373,3 +7373,14 @@ export function getMonster(name: FrontierMonsterName, rank: string) {
 
 	return monsterInfo[0];
 }
+
+export function getMonsterIcon(displayName: string) {
+	const icon = monsterInfo[0].icon;
+
+	const found = monsterInfo.find((w) => w.displayName === displayName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.icon;
+}
