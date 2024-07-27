@@ -8602,11 +8602,10 @@ does not get multiplied by horn */
 								</div>
 								<Dropdown
 									bind:selectedId={inputDivaPrayerGemRedName}
-									titleText="Diva Prayer Gem Skill"
+									titleText="Diva Prayer Gem Red Skill"
 									invalid={hasDivaPrayerGemDuplicates}
 									invalidText="Duplicate gem found"
 									items={mappedDivaPrayerGems}
-									disabled={inputDivaPrayerGemYellowName !== 'None'}
 									on:select={(e) => {
 										if (inputDivaPrayerGemRedName === 'None') {
 											inputDivaPrayerGemYellowName = 'None';
@@ -8627,9 +8626,8 @@ does not get multiplied by horn */
 										bind:max={outputDivaPrayerGemRedMaxLevel}
 										bind:value={inputNumberDivaPrayerGemRedLevel}
 										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemRedMaxLevel}`}
-										label={'Diva Prayer Gem Level'}
-										disabled={inputDivaPrayerGemRedName === 'None' ||
-											inputDivaPrayerGemYellowName !== 'None'}
+										label={'Diva Prayer Gem Red Level'}
+										disabled={inputDivaPrayerGemRedName === 'None'}
 									/>
 								</div>
 							</div>
@@ -8662,10 +8660,9 @@ does not get multiplied by horn */
 									bind:selectedId={inputDivaPrayerGemYellowName}
 									invalid={hasDivaPrayerGemDuplicates}
 									invalidText="Duplicate gem found"
-									titleText="Diva Prayer Gem Skill"
+									titleText="Diva Prayer Gem Yellow Skill"
 									items={mappedDivaPrayerGems}
-									disabled={inputDivaPrayerGemRedName === 'None' ||
-										inputDivaPrayerGemGreenName !== 'None'}
+									disabled={inputDivaPrayerGemRedName === 'None'}
 									on:select={(e) => {
 										if (inputDivaPrayerGemYellowName === 'None') {
 											inputNumberDivaPrayerGemYellowLevel = 0;
@@ -8684,9 +8681,8 @@ does not get multiplied by horn */
 										bind:max={outputDivaPrayerGemYellowMaxLevel}
 										bind:value={inputNumberDivaPrayerGemYellowLevel}
 										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemYellowMaxLevel}`}
-										label={'Diva Prayer Gem Level'}
-										disabled={inputDivaPrayerGemYellowName === 'None' ||
-											inputDivaPrayerGemGreenName !== 'None'}
+										label={'Diva Prayer Gem Yellow Level'}
+										disabled={inputDivaPrayerGemYellowName === 'None'}
 									/>
 								</div>
 							</div>
@@ -8703,7 +8699,6 @@ does not get multiplied by horn */
 										</div>
 									{:else}
 										<!-- Container for the inactive icon -->
-
 										<div
 											class="icon-wrapper"
 											in:send={{ key: iconKey }}
@@ -8719,10 +8714,9 @@ does not get multiplied by horn */
 									bind:selectedId={inputDivaPrayerGemGreenName}
 									invalid={hasDivaPrayerGemDuplicates}
 									invalidText="Duplicate gem found"
-									titleText="Diva Prayer Gem Skill"
+									titleText="Diva Prayer Gem Green Skill"
 									items={mappedDivaPrayerGems}
-									disabled={inputDivaPrayerGemYellowName === 'None' ||
-										inputDivaPrayerGemBlueName !== 'None'}
+									disabled={inputDivaPrayerGemYellowName === 'None'}
 									on:select={(e) => {
 										if (inputDivaPrayerGemGreenName === 'None') {
 											inputNumberDivaPrayerGemGreenLevel = 0;
@@ -8739,9 +8733,8 @@ does not get multiplied by horn */
 										bind:max={outputDivaPrayerGemGreenMaxLevel}
 										bind:value={inputNumberDivaPrayerGemGreenLevel}
 										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemGreenMaxLevel}`}
-										label={'Diva Prayer Gem Level'}
-										disabled={inputDivaPrayerGemGreenName === 'None' ||
-											inputDivaPrayerGemBlueName !== 'None'}
+										label={'Diva Prayer Gem Green Level'}
+										disabled={inputDivaPrayerGemGreenName === 'None'}
 									/>
 								</div>
 							</div>
@@ -8774,7 +8767,7 @@ does not get multiplied by horn */
 									bind:selectedId={inputDivaPrayerGemBlueName}
 									invalid={hasDivaPrayerGemDuplicates}
 									invalidText="Duplicate gem found"
-									titleText="Diva Prayer Gem Skill"
+									titleText="Diva Prayer Gem Blue Skill"
 									items={mappedDivaPrayerGems}
 									disabled={inputDivaPrayerGemGreenName === 'None'}
 									on:select={(e) => {
@@ -8791,7 +8784,7 @@ does not get multiplied by horn */
 										bind:max={outputDivaPrayerGemBlueMaxLevel}
 										bind:value={inputNumberDivaPrayerGemBlueLevel}
 										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemBlueMaxLevel}`}
-										label={'Diva Prayer Gem Level'}
+										label={'Diva Prayer Gem Blue Level'}
 										disabled={inputDivaPrayerGemBlueName === 'None'}
 									/>
 								</div>
