@@ -460,8 +460,8 @@ Arc-Shot can be executed at Charge Lv2.`,
 			id: '10',
 			weapon: 'Magnet Spike',
 			multiplier: '5.4',
-			defaultMax: '1440',
-			finalMax: '14400',
+			defaultMax: '4320',
+			finalMax: '43200',
 		},
 		{
 			id: '11',
@@ -946,8 +946,9 @@ graph LR
 		/>
 		<p>
 			Style Rank grants several benefits, including special SR Skills, two new
-			movesets per weapon type, and access to Hardcore (HC) monsters. You can
-			test various weapons' SR movesets at the bed in your house.
+			movesets per weapon type (three in total at G Rank with Extreme Style),
+			and access to Hardcore (HC) monsters. You can test various weapons' SR
+			movesets at the bed in your house.
 		</p>
 		<section>
 			<SectionHeading level={2} title="Weapon Styles" />
@@ -985,6 +986,7 @@ graph LR
 						id="weapon-styles-dom"
 						sortable
 						zebra
+						title="Weapon Styles Usability Ratings"
 						size="medium"
 						headers={[
 							{ key: 'weapon', value: 'Weapon' },
@@ -1202,6 +1204,7 @@ graph LR
 				<div class="table">
 					<DataTable
 						useStaticWidth
+						title="HR2 Lavasioth Carve Tables"
 						id="lavasioth-carves-dom"
 						sortable
 						zebra
@@ -1752,6 +1755,7 @@ graph LR
 
 						<div class="table">
 							<DataTable
+								title="Recommended Attack Ceilings"
 								useStaticWidth
 								id="recommended-attack-ceiling-dom"
 								sortable
@@ -1759,7 +1763,7 @@ graph LR
 								size="medium"
 								headers={[
 									{ key: 'set', value: 'Set' },
-									{ key: 'value', value: 'Value' },
+									{ key: 'value', value: 'Value', minWidth: '8rem' },
 								]}
 								rows={recommendedAttackCeiling}
 								><Toolbar
