@@ -23,7 +23,7 @@ import LightningRod from '$lib/client/components/frontier/icon/element/Lightning
 import BlackFlame from '$lib/client/components/frontier/icon/element/BlackFlame.svelte';
 import CrimsonDemon from '$lib/client/components/frontier/icon/element/CrimsonDemon.svelte';
 import EmperorRoar from '$lib/client/components/frontier/icon/element/EmperorRoar.svelte';
-import BurningZero3 from '$lib/client/components/frontier/icon/element/BurningZero3.svelte';
+import BurningZero from '$lib/client/components/frontier/icon/element/BurningZero4.svelte';
 import Dark from '$lib/client/components/frontier/icon/element/Dark.svelte';
 import Music2 from '$lib/client/components/frontier/icon/element/Music2.svelte';
 import Sound2 from '$lib/client/components/frontier/icon/element/Sound2.svelte';
@@ -290,7 +290,7 @@ export const tagInfo: {
 	{
 		color: 'purple',
 		link: '/hunter-notes/getting-started/elements',
-		icon: BurningZero3,
+		icon: BurningZero,
 		values: ['Burning Zero', 'B. Zero'],
 	},
 	{

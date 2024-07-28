@@ -15,7 +15,7 @@ import IconElementOkiko from '$lib/client/components/frontier/icon/element/Okiko
 import IconElementBlackFlame from '$lib/client/components/frontier/icon/element/BlackFlame.svelte';
 import IconElementCrimsonDemon from '$lib/client/components/frontier/icon/element/CrimsonDemon.svelte';
 import IconElementEmperorRoar from '$lib/client/components/frontier/icon/element/EmperorRoar.svelte';
-import IconElementBurningZero from '$lib/client/components/frontier/icon/element/BurningZero3.svelte';
+import IconElementBurningZero from '$lib/client/components/frontier/icon/element/BurningZero4.svelte';
 import type { FrontierElement, FrontierElementMultiplier } from './types';
 
 export const ElementIcons: {
