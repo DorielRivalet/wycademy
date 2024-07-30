@@ -2880,11 +2880,6 @@ graph LR
 		display: inline-block; /* Removes any extra space below the image */
 	}
 
-	.modal-mobile-container hr {
-		width: 100%;
-		margin-bottom: 0;
-	}
-
 	.modal-mobile-container {
 		display: flex;
 		gap: 0.5rem;
@@ -2906,13 +2901,6 @@ graph LR
 
 	.modal-mobile-button {
 		grid-area: button;
-	}
-
-	.modal-mobile-container a {
-		font-family: var(--font-body);
-		font-size: 1rem;
-		color: var(--ctp-text);
-		text-decoration: none;
 	}
 
 	.modal-mobile-title {
@@ -2942,16 +2930,6 @@ graph LR
 		padding-top: 0;
 		padding-bottom: 0;
 		margin: 0;
-	}
-
-	.modal-mobile-tag1,
-	.modal-mobile-tag2,
-	.modal-mobile-tag3 {
-		display: -webkit-box;
-		-webkit-line-clamp: 1; /* number of lines to show */
-		line-clamp: 1;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
 	}
 
 	.modal-mobile-description {
