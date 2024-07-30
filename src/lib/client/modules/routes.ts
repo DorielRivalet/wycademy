@@ -53,6 +53,7 @@ import thumbnailLightSharpness from '$lib/client/images/page-thumbnail/light/sha
 import thumbnailLightWeaponMultipliers from '$lib/client/images/page-thumbnail/light/weapon-multipliers.png';
 import thumbnailLightSRStats from '$lib/client/images/page-thumbnail/light/style-rank-stats.png';
 import thumbnailLightWeaponTech from '$lib/client/images/page-thumbnail/light/weapons-tech-skills.png';
+import thumbnailLightTranscendElementalBursts from '$lib/client/images/page-thumbnail/light/elemental-bursts.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -66,6 +67,7 @@ import thumbnailDarkSharpness from '$lib/client/images/page-thumbnail/dark/sharp
 import thumbnailDarkWeaponMultipliers from '$lib/client/images/page-thumbnail/dark/weapon-multipliers.png';
 import thumbnailDarkSRStats from '$lib/client/images/page-thumbnail/dark/style-rank-stats.png';
 import thumbnailDarkWeaponTech from '$lib/client/images/page-thumbnail/dark/weapons-tech-skills.png';
+import thumbnailDarkTranscendElementalBursts from '$lib/client/images/page-thumbnail/dark/elemental-bursts.png';
 
 import { getWeaponIcon } from './frontier/weapons';
 import { monsterInfo } from './frontier/monsters';
@@ -154,6 +156,11 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/getting-started/style-rank',
 		thumbnail: thumbnailLightSRStats,
 	},
+	{
+		embed: null,
+		link: '/hunter-notes/getting-started/transcend',
+		thumbnail: thumbnailLightTranscendElementalBursts,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -225,6 +232,11 @@ const darkThumbnailInfo: {
 		embed: 'style-rank-stats',
 		link: '/hunter-notes/getting-started/style-rank',
 		thumbnail: thumbnailDarkSRStats,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/getting-started/transcend',
+		thumbnail: thumbnailDarkTranscendElementalBursts,
 	},
 ];
 
