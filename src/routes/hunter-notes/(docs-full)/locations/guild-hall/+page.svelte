@@ -34,9 +34,6 @@
 		ingredients,
 		recipes,
 	} from '$lib/client/modules/frontier/guild-food';
-	import { domToPng } from 'modern-screenshot';
-	import { browser } from '$app/environment';
-	import slugify from 'slugify';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { ItemColors } from '$lib/client/modules/frontier/items';

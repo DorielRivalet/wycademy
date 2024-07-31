@@ -1,1 +1,1271 @@
-Content.
+<script lang="ts">
+	import {
+		sigilsRolls,
+		sigilsInfo,
+		sigilsRecipes,
+		type FrontierSigilRecipeType,
+	} from '$lib/client/modules/frontier/sigils';
+	import ezlion, { type FrontierSigil } from 'ezlion';
+	import PageTurn from '$lib/client/components/PageTurn.svelte';
+	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
+	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import { page } from '$app/stores';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import type { DataTableCell } from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
+	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
+	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
+	import { getCSVFromArray } from '$lib/client/modules/csv';
+	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
+	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
+	import Image from 'carbon-icons-svelte/lib/Image.svelte';
+	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
+	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import CatSmith from '$lib/client/images/supplemental/cat-smith.webp';
+	import SigilActive from '$lib/client/images/supplemental/sigil-active.webp';
+	import SigilInactive from '$lib/client/images/supplemental/sigil-inactive.webp';
+	import SigilRare from '$lib/client/images/supplemental/sigil-rare.webp';
+	import SigilSlots from '$lib/client/images/supplemental/sigil-slots.webp';
+	import SigilStats from '$lib/client/images/supplemental/sigil-stats.webp';
+	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+
+	// TODO when were sigils introduced?
+
+	function getRecipeCategory(id: number): FrontierSigilRecipeType {
+		if (id >= 0 && id < 303) {
+			return 'Standard';
+		} else if (id >= 303 && id < 331) {
+			return 'Unlimited';
+		} else if (id >= 331 && id < 348) {
+			return 'Shiten';
+		} else if (id >= 348 && id < 352) {
+			return 'Twinhead';
+		} else if (id >= 352 && id < 364) {
+			return 'Rarity';
+		} else if (id >= 364 && id < 371) {
+			return 'Premium';
+		} else if (id >= 371 && id < 382) {
+			return 'Zenith';
+		} else {
+			return 'Uncategorized';
+		}
+	}
+
+	const mappedSigils = sigilsRolls.flatMap((e, i) => {
+		if (e[0].sigilSkill === 0) {
+			return [
+				{
+					id: `${i}`,
+					category: getRecipeCategory(i),
+					recipeName: sigilsRecipes[i],
+					sigilSkill: ezlion.SkillSigil[e[0].sigilSkill],
+					rollPercentage: e[0].rollPercentage,
+					rollMin: e[0].rollMin,
+					rollMax: e[0].rollMax,
+				},
+			];
+		} else {
+			return e
+				.filter((roll) => roll.sigilSkill !== 0)
+				.map((roll, rollIndex) => ({
+					id: `${i}-${rollIndex}`,
+					recipeName: sigilsRecipes[i],
+					category: getRecipeCategory(i),
+					sigilSkill: ezlion.SkillSigil[roll.sigilSkill],
+					rollPercentage: roll.rollPercentage,
+					rollMin: roll.rollMin,
+					rollMax: roll.rollMax,
+				}));
+		}
+	});
+
+	function getNegativeFromUint(uint: number) {
+		if (uint > 127) {
+			return uint - 256;
+		} else {
+			return uint;
+		}
+	}
+
+	function transformMappedSigils(
+		data: {
+			id: string;
+			category: string;
+			recipeName: string;
+			sigilSkill: FrontierSigil;
+			rollPercentage: number;
+			rollMin: number;
+			rollMax: number;
+		}[],
+	) {
+		let filteredResult = data.filter((e) => e.recipeName !== 'None');
+		let result: {
+			id: string;
+			category: string;
+			recipeName: string;
+			sigilSkill: string;
+			rollPercentage: string | number;
+			rollMin: number;
+			rollMax: number;
+		}[] = [];
+
+		filteredResult.forEach((element) => {
+			result.push({
+				id: element.id,
+				category: element.category,
+				recipeName: element.recipeName,
+				sigilSkill:
+					element.sigilSkill === 'None' ? 'Random' : element.sigilSkill,
+				rollPercentage:
+					element.rollPercentage === 0 ? '-' : element.rollPercentage,
+				rollMin: getNegativeFromUint(element.rollMin),
+				rollMax: element.rollMax,
+			});
+		});
+
+		return result;
+	}
+
+	const transformedSigils = transformMappedSigils(mappedSigils);
+
+	let modalPopoverIconType = 'file';
+	let modalPopoverIcon: any;
+	let modalHeading = '';
+	let modalLabel = '';
+	let modalOpen = false;
+	let modalImage = '';
+	let modalNotes = '';
+
+	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+
+	function changeModal(cell: DataTableCell, section: string) {
+		modalOpen = true;
+		modalHeading = cell.value;
+		modalLabel = section || '';
+
+		switch (section) {
+			default:
+				modalImage = '';
+				modalNotes = '';
+				break;
+			case 'Sigil':
+				modalImage = sigilsInfo.find((e) => e.name === cell.value)?.demo || '';
+				modalNotes =
+					sigilsInfo.find((e) => e.name === cell.value)?.effect || '';
+				break;
+		}
+	}
+
+	function getRecipesByCategory(category: string) {
+		return transformedSigils.filter((e) => e.category === category);
+	}
+
+	const categoryNames = [
+		{ id: 'Standard', text: 'Standard' },
+		{ id: 'Unlimited', text: 'Unlimited' },
+		{ id: 'Shiten', text: 'Shiten' },
+		{ id: 'Twinhead', text: 'Twinhead' },
+		{ id: 'Rarity', text: 'Rarity' },
+		{ id: 'Premium', text: 'Premium' },
+		{ id: 'Zenith', text: 'Zenith' },
+	];
+
+	let selectedCategory: FrontierSigilRecipeType = 'Standard';
+	let recipesTableFilteredRowIds: string[] = [];
+	let skillsTableFilteredRowIds: string[] = [];
+
+	$: recipesByCategory = getRecipesByCategory(selectedCategory);
+
+	// TODO idk if im confusing shiten seal with lock
+</script>
+
+<Modal
+	passiveModal
+	bind:open={modalOpen}
+	{modalHeading}
+	{modalLabel}
+	on:open
+	on:close
+	hasScrollingContent
+>
+	{#if modalImage !== '' && modalImage}
+		<div class="modal-content">
+			<img src={modalImage} alt={'motion value animation'} />
+			<div>{modalNotes}</div>
+		</div>
+	{:else}
+		<div class="modal-mobile-container">
+			<div class="modal-mobile-contents-top">
+				<div class="modal-mobile-image">
+					<div>
+						{#if modalPopoverIconType === 'component'}
+							<svelte:component this={modalPopoverIcon} />
+						{:else}
+							<img src={modalPopoverIcon} alt={modalHeading} />
+						{/if}
+					</div>
+				</div>
+				<div class="modal-mobile-title">
+					{modalHeading.substring(0, 64)}
+				</div>
+
+				{#if modalLabel !== ''}
+					<div class="modal-mobile-subtitle">{modalLabel.substring(0, 64)}</div>
+				{/if}
+			</div>
+		</div>
+	{/if}
+</Modal>
+
+<HunterNotesPage displayTOC={true}>
+	<div class={modalBlurClass}>
+		<SectionHeadingTopLevel title={'Sigils'} />
+		<div>
+			<p class="spaced-paragraph">
+				<InlineTooltip
+					text="Sigils"
+					tooltip="Sigil"
+					iconType="component"
+					icon={getItemIcon('Sigil')}
+					iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+				/> are akin to decorations but are exclusively used in G Rank weaponry, crafted
+				by the Cat Smith, who also creates random Gou weapons.
+			</p>
+
+			<CenteredFigure
+				width={'100%'}
+				type="file"
+				src={CatSmith}
+				alt="Cat Smith"
+				figcaption="Cat Smith."
+			/>
+
+			<p class="spaced-paragraph">
+				<InlineTooltip
+					text="Sigils"
+					tooltip="Sigil"
+					iconType="component"
+					icon={getItemIcon('Sigil')}
+					iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+				/> replace gems in G Rank weaponry and are crafted at the Cat Smith, who
+				also creates random Gou weapons. They can have multiple effects, ranging
+				from simple buffs to a weapon's raw values, to granting new versions of weapon
+				moves, to allowing you to wave at the Balloon an infinite number of times.
+			</p>
+
+			<p>
+				A list of sigil recipes is found <Link inline href="#recipes"
+					>down below.</Link
+				>
+			</p>
+			<section>
+				<SectionHeading level={2} title="Slots" />
+				<div>
+					<p class="spaced-paragraph">
+						Sigil slots are triangular and can either replace decoration slots
+						in standard G Rank weaponry or be part of hybrid slots that
+						accommodate both <InlineTooltip
+							text="decorations"
+							tooltip="Item"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> and <InlineTooltip
+							text="sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/>. Weapons can have up to three <InlineTooltip
+							text="sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/>. Sigils with variable values generally stack, while those that
+						enhance abilities or motions have fixed effects regardless of the
+						number slotted.
+					</p>
+
+					<CenteredFigure
+						width={'100%'}
+						type="file"
+						src={SigilSlots}
+						alt="Sigil slots"
+						figcaption="Sigil slots."
+					/>
+
+					<p>
+						<InlineTooltip
+							text="Sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> can have a range of effects, from adding basic stats like Raw, Element,
+						or Affinity to more unique effects such as granting store discounts through
+						gestures or increasing the likelihood of your Halk dropping items. A
+						full index of these skills is <Link inline href="#skills"
+							>down below.</Link
+						>
+					</p>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Crafting" />
+				<div>
+					<p class="spaced-paragraph">
+						To craft a sigil, talk to the cat in the blacksmith who handles
+						Partnyaa gear. Select the Sigils option, followed by Create Sigils,
+						which will bring up a recipe list. Around the fifth page, you will
+						find the <InlineTooltip
+							text="G Promo Sigil"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+						/>. Choose this and spam the option to create basic <InlineTooltip
+							text="sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/>. The most immediately useful skills to look for are Attack,
+						Elemental, and Affinity. Refer to the proper section for more
+						details on other skills.
+					</p>
+					<p class="spaced-paragraph">
+						Crafting a <InlineTooltip
+							text="sigil"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> requires selecting from a list of various recipes, each biased towards
+						certain skills and grouped into three types:
+					</p>
+					<UnorderedList>
+						<ListItem
+							><p>
+								<strong>Recipe A:</strong> Costs 300Gz and uses commonly available
+								monster materials.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								<strong>Recipe B:</strong> Costs 500Gz and uses rarer materials such
+								as low-percentage carves or break-only items.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								<strong>Recipe ★:</strong> Costs 700Gz and uses the 1% carve from
+								a G Rank monster.
+							</p></ListItem
+						>
+					</UnorderedList>
+					<p class="spaced-paragraph">
+						After selecting the base recipe and materials, you can add
+						additional 'filler' materials if needed. These fillers do not affect
+						the outcome of the <InlineTooltip
+							text="sigil"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> and are only used to pad the completion percentage to 100%.
+					</p>
+					<p>
+						Once you've chosen the filler materials, you can craft the <InlineTooltip
+							text="sigil"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> and will be presented with the results and a relative rarity ranking
+						in stars based on the roll.
+					</p>
+					<CenteredFigure
+						width={'100%'}
+						type="file"
+						src={SigilRare}
+						alt="Rare sigil roll"
+						figcaption="Rare sigil roll."
+					/>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Inserting" />
+				<div>
+					<p>
+						You can insert the crafted <InlineTooltip
+							text="sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> into weapons by selecting the Insert Sigils option.
+					</p>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Removing" />
+				<div>
+					<p>
+						Removing a <InlineTooltip
+							text="sigil"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> from a weapon requires a <InlineTooltip
+							text="Sigil Catalyst"
+							tooltip="Item"
+							iconType="component"
+							icon={getItemIcon('Medicine')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/>. These can be obtained by using the Guuku Cooking Facilities on
+						any G Rank materials, for 12NP in the N Point Store.
+					</p>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="What to Choose" />
+				<div>
+					<p class="spaced-paragraph">
+						Most weapons have dedicated <InlineTooltip
+							text="sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/>, but not all are optimal. Carefully consider the frequency with
+						which you will use the attack. For example, the Dual Swords sigils
+						for the Rush Slash and Frontflip Slash have low viability for
+						Extreme Style because Extreme Demon Mode does not access them, and
+						optimal play mostly involves using that mode. Similarly, the Great
+						Sword's Guard Slash is unavailable in Extreme Style, and most
+						upswings are charged, making those <InlineTooltip
+							text="sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/>
+						less useful compared to simply buffing raw damage.
+					</p>
+					<CenteredFigure
+						width={'100%'}
+						type="file"
+						src={SigilStats}
+						alt="Sigil stats"
+						figcaption="Sigil stats."
+					/>
+					<p class="spaced-paragraph">
+						There are many possible outcomes for each sigil recipe, but the
+						following recipes use easily obtainable materials and have a good
+						chance of yielding desirable skills, making them ideal for players
+						starting out.
+					</p>
+					<p><strong>Generic Recipes:</strong></p>
+					<UnorderedList>
+						<ListItem><p>Hypnoc A for Attack Power Sigils.</p></ListItem>
+						<ListItem
+							><p>
+								Forokururu A and Zerureusu A for Elemental Power Sigils.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								Gypceros A and Zerureusu A for Status Attack Sigils.
+							</p></ListItem
+						>
+						<ListItem><p>Red Khezu A for Affinity Sigils.</p></ListItem>
+					</UnorderedList>
+					<p><strong>Gunner Recipes:</strong></p>
+					<UnorderedList>
+						<ListItem
+							><p>
+								Rajang A and Dyuragaua A for Elder Dragon Attack and Heat Cannon
+								Add.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								Forokururu A and Zerureusu A for Elemental Power Sigils.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								Abiorugu A for Rapid Fire Sigils and Ultra Cluster Shot Sigils.
+							</p></ListItem
+						>
+					</UnorderedList>
+					<p>
+						For best results, aim for Attack or Elemental <InlineTooltip
+							text="sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> and one or more of your weapon's specific sigils. For Gunlance, always
+						aim for Lv9 shelling if utilizing Shelling and Wyvern Fires.
+					</p>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Usage" />
+				<div>
+					<p>
+						<InlineTooltip
+							text="Sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> can be inserted into normal G Rank weapons instead of decorations,
+						providing effects like flat additions to True Raw, True Elemental, and
+						Affinity, as well as buffs to weapon motions.
+					</p>
+					<CenteredFigure
+						width={'100%'}
+						type="file"
+						src={SigilActive}
+						alt="Sigil active"
+						figcaption="Sigil active."
+					/>
+					<CenteredFigure
+						width={'100%'}
+						type="file"
+						src={SigilInactive}
+						alt="Sigil inactive"
+						figcaption="Sigil inactive."
+					/>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Obtaining" />
+				<div>
+					<p>
+						You can obtain many <InlineTooltip
+							text="tickets"
+							tooltip="Item"
+							iconType="component"
+							icon={getItemIcon('Ticket')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> from the Hunter Guide, which can be used to make mostly random sigils.
+						These may not be the best but can be usable. To make a couple of easy
+						<InlineTooltip
+							text="sigils"
+							tooltip="Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> quickly, hunt <InlineTooltip
+							text="G Rank Hypnoc"
+							tooltip="Monster"
+							iconType="file"
+							icon={getMonsterIcon('Hypnocatrice')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> once you have a basic set. The A Sigil Recipe on <InlineTooltip
+							text="Hypnoc"
+							tooltip="Monster"
+							iconType="file"
+							icon={getMonsterIcon('Hypnocatrice')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/> can potentially roll up to +30 attack. With up to three sigils per
+						weapon, even low rolls can quickly add up. Having 40 attack across multiple
+						sigils is still close to or above a 10% increase in your weapon's power.
+					</p>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Special Weapons" />
+				<div>
+					<p class="spaced-paragraph">
+						G Supremacy, Burst, and Origin weapons do not have Sigil Slots.
+						Instead, they have standard decoration slots and grant an armor
+						skill when used. For example, Varusaburosu weapons have <InlineTooltip
+							text="Vampirism"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/>, allowing you to leech health back as you attack. Despite their
+						strength, using good sigils in good weapons is often more effective
+						in practice.
+					</p>
+					<p>
+						Exotic Weapons are unique in that they provide the <InlineTooltip
+							text="Quick Eating"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/>
+						skill while equipped and feature hybrid slots that accept both G Rank
+						Sigils and Decorations. Their stats are comparable to any G Lv50 weapon.
+					</p>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Weapon Levels" />
+				<div>
+					<p>
+						Sigil Slots replace decoration slots in G Rank weapons. Weapons
+						start with two sigil slots and gain a third at Level 30, which
+						requires a gem from Conquests.
+					</p>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Shiten Conquests" />
+				<div>
+					<p class="spaced-paragraph">
+						Heavenly Conquests (Shiten) are set to Level 9999 and reward
+						exceptionally good Sigils for use in G Rank weapons.
+					</p>
+					<p><strong>Items:</strong></p>
+					<UnorderedList>
+						<ListItem
+							><InlineTooltip
+								text="Shiten Key"
+								tooltip="Item"
+								iconType="component"
+								icon={getItemIcon('Question Mark')}
+								iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+							/>
+							<UnorderedList nested>
+								<ListItem
+									><p>
+										Creates powerful general-purpose <InlineTooltip
+											text="Sigils"
+											tooltip="Sigil"
+											iconType="component"
+											icon={getItemIcon('Sigil')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/> and Sigils for <InlineTooltip
+											text="Hammer"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Hammer')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>, <InlineTooltip
+											text="Sword and Shield"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Sword and Shield')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>, <InlineTooltip
+											text="Gunlance"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Gunlance')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>, <InlineTooltip
+											text="Bow"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Bow')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>, and <InlineTooltip
+											text="Heavy Bowgun"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Heavy Bowgun')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>.
+									</p></ListItem
+								>
+								<ListItem
+									><p>
+										Obtained by defeating <InlineTooltip
+											text="Shiten Disufiroa"
+											tooltip="Monster"
+											iconType="file"
+											icon={getMonsterIcon('Shiten Disufiroa')}
+										/>.
+									</p></ListItem
+								>
+								<ListItem
+									><p>
+										Rewards: 1x fixed for quest clear, 1x fixed for no carts, 1%
+										chance of 1x extra per reward slot.
+									</p></ListItem
+								>
+							</UnorderedList>
+						</ListItem>
+						<ListItem
+							><InlineTooltip
+								text="Shiten Seal"
+								tooltip="Item"
+								iconType="component"
+								icon={getItemIcon('Question Mark')}
+								iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+							/>
+							<UnorderedList nested>
+								<ListItem
+									><p>
+										Creates powerful general-purpose <InlineTooltip
+											text="Sigils"
+											tooltip="Sigil"
+											iconType="component"
+											icon={getItemIcon('Sigil')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/> and Sigils for <InlineTooltip
+											text="Great Sword"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Great Sword')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>,
+										<InlineTooltip
+											text="Dual Swords"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Dual Swords')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>, <InlineTooltip
+											text="Long Sword"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Long Sword')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>, <InlineTooltip
+											text="Hunting Horn"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Hunting Horn')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>, <InlineTooltip
+											text="Lance"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Lance')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>, and <InlineTooltip
+											text="Light Bowgun"
+											tooltip="Weapon"
+											iconType="component"
+											icon={getWeaponIcon('Light Bowgun')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>.
+									</p></ListItem
+								>
+								<ListItem
+									><p>
+										Obtained by defeating <InlineTooltip
+											text="Shiten UNKNOWN"
+											tooltip="Monster"
+											iconType="file"
+											icon={getMonsterIcon('Shiten UNKNOWN')}
+										/>.
+									</p></ListItem
+								>
+								<ListItem
+									><p>
+										Rewards: 1x fixed for quest clear, 1x fixed for no carts, 1%
+										chance of 1x extra per reward slot.
+									</p></ListItem
+								>
+							</UnorderedList>
+						</ListItem>
+						<ListItem
+							><InlineTooltip
+								text="Shiten Lock"
+								tooltip="Item"
+								iconType="component"
+								icon={getItemIcon('Question Mark')}
+								iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+							/>
+							<UnorderedList nested>
+								<ListItem
+									><p>
+										Creates powerful general-purpose <InlineTooltip
+											text="Sigils"
+											tooltip="Sigil"
+											iconType="component"
+											icon={getItemIcon('Sigil')}
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/> with slightly higher stat ranges than other Shiten Sigils.
+									</p></ListItem
+								>
+								<ListItem
+									><p>
+										Obtain 1 by defeating either Shiten monster in under 10
+										minutes.
+									</p></ListItem
+								>
+							</UnorderedList>
+						</ListItem>
+					</UnorderedList>
+					<p>
+						You can use <InlineTooltip
+							text="Lucky Charms"
+							tooltip="Item"
+							iconType="component"
+							icon={getItemIcon('Sac')}
+							iconColor={ItemColors.find((e) => e.name === 'Pink')?.value}
+						/> to get extra Shiten rewards.
+					</p>
+					<section>
+						<SectionHeading title="Advanced Shiten" level={3} />
+						<div>
+							<p class="spaced-paragraph">
+								Advanced Shiten or Upper Shiten quests are similar to the
+								standard ones but with significantly increased health and attack
+								values.
+							</p>
+							<p><strong>Items:</strong></p>
+							<UnorderedList>
+								<ListItem
+									><InlineTooltip
+										text="Upper Shiten Key"
+										tooltip="Item"
+										iconType="component"
+										icon={getItemIcon('Question Mark')}
+										iconColor={ItemColors.find((e) => e.name === 'White')
+											?.value}
+									/>
+									<UnorderedList nested>
+										<ListItem
+											><p>
+												Creates powerful Affinity and Attack sigils.
+											</p></ListItem
+										>
+										<ListItem
+											><p>
+												Obtained by defeating <InlineTooltip
+													text="Upper Shiten UNKNOWN"
+													tooltip="Monster"
+													iconType="file"
+													icon={getMonsterIcon('Shiten UNKNOWN')}
+												/>.
+											</p></ListItem
+										>
+										<ListItem
+											><p>
+												Rewards: 2x fixed for quest clear, 1x fixed for no
+												carts, 1% chance of 2x extra per reward slot.
+											</p></ListItem
+										>
+									</UnorderedList>
+								</ListItem>
+
+								<ListItem
+									><InlineTooltip
+										text="Upper Shiten Lock"
+										tooltip="Item"
+										iconType="component"
+										icon={getItemIcon('Question Mark')}
+										iconColor={ItemColors.find((e) => e.name === 'White')
+											?.value}
+									/>
+									<UnorderedList nested>
+										<ListItem
+											><p>
+												Creates powerful Elemental and Attack sigils.
+											</p></ListItem
+										>
+										<ListItem
+											><p>
+												Obtained by defeating <InlineTooltip
+													text="Upper Shiten Disufiroa"
+													tooltip="Monster"
+													iconType="file"
+													icon={getMonsterIcon('Shiten Disufiroa')}
+												/>.
+											</p></ListItem
+										>
+										<ListItem
+											><p>
+												Rewards: 2x fixed for quest clear, 1x fixed for no
+												carts, 1% chance of 2x extra per reward slot.
+											</p></ListItem
+										>
+									</UnorderedList>
+								</ListItem>
+							</UnorderedList>
+							<p>
+								You can use <InlineTooltip
+									text="Lucky Charms"
+									tooltip="Item"
+									iconType="component"
+									icon={getItemIcon('Sac')}
+									iconColor={ItemColors.find((e) => e.name === 'Pink')?.value}
+								/> to get extra Shiten rewards.
+							</p>
+						</div>
+					</section>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Recipes" />
+				<div>
+					<p>There are a total of {sigilsRecipes.length} sigil recipes.</p>
+					<div class="table">
+						<DataTable
+							useStaticWidth
+							id="sigil-recipes-dom"
+							sortable
+							zebra
+							size="medium"
+							headers={[
+								{ key: 'recipeName', value: 'Recipe' },
+								{ key: 'sigilSkill', value: 'Skill' },
+								{ key: 'rollPercentage', value: 'Percentage' },
+								{ key: 'rollMin', value: 'Minimum Value' },
+								{ key: 'rollMax', value: 'Maximum Value' },
+							]}
+							rows={recipesByCategory}
+							><Toolbar
+								><div class="toolbar">
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(transformedSigils)}
+									/>
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={() =>
+											downloadDomAsPng('sigil-recipes-dom', 'sigil-recipes')}
+										>Download</Button
+									>
+									<Dropdown
+										titleText="Category"
+										bind:selectedId={selectedCategory}
+										items={categoryNames}
+									/>
+									<ToolbarSearch
+										shouldFilterRows
+										value="attack"
+										bind:filteredRowIds={recipesTableFilteredRowIds}
+									/>
+								</div>
+							</Toolbar>
+
+							<svelte:fragment slot="cell" let:cell>
+								{#if cell.key === 'rollMin' && cell.value < 0}
+									<p style:color="var(--ctp-red)">{cell.value}</p>
+								{:else if cell.key === 'rollPercentage'}
+									<p>{cell.value}%</p>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							</svelte:fragment>
+						</DataTable>
+					</div>
+					<UnorderedList>
+						<ListItem
+							><p>
+								Twinhead [Top] and Twinhead [Speed] can also grant a random Tech
+								Boost skill, with a 30% and 37% chance respectively.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								The AOE Zenith Sigil stats might be inaccurate, rather it may
+								first select a roll type and then rolls a stat.
+							</p></ListItem
+						>
+					</UnorderedList>
+				</div>
+			</section>
+			<section>
+				<SectionHeading level={2} title="Skills" />
+				<div>
+					<!--TODO: include totals in other pages tables-->
+					<p>There are a total of {sigilsInfo.length} sigil skills.</p>
+					<div class="table">
+						<DataTable
+							useStaticWidth
+							id="sigil-skills-dom"
+							sortable
+							zebra
+							size="medium"
+							headers={[
+								{ key: 'tree', value: 'Tree' },
+								{ key: 'name', value: 'Skill' },
+								{ key: 'minimumPoints', value: 'Minimum Value' },
+								{ key: 'maximumPoints', value: 'Maximum Value' },
+								{ key: 'effect', value: 'Effect' },
+								{ key: 'category', value: 'Category' },
+							]}
+							rows={sigilsInfo.map((e, i) => {
+								return {
+									id: i.toString(),
+									tree: e.tree,
+									name: e.name,
+									minimumPoints: e.minimumPoints,
+									maximumPoints: e.maximumPoints,
+									effect: e.effect,
+									demo: e.demo,
+									category: e.category,
+								};
+							})}
+							><Toolbar
+								><div class="toolbar">
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(
+											sigilsInfo.map((e, i) => {
+												return {
+													id: i.toString(),
+													tree: e.tree,
+													name: e.name,
+													minimumPoints: e.minimumPoints,
+													maximumPoints: e.maximumPoints,
+													effect: e.effect,
+													demo: e.demo,
+													category: e.category,
+												};
+											}),
+										)}
+									/>
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={() =>
+											downloadDomAsPng('sigil-skills-dom', 'sigil-skills')}
+										>Download</Button
+									>
+									<ToolbarSearch
+										shouldFilterRows
+										value="attack"
+										bind:filteredRowIds={skillsTableFilteredRowIds}
+									/>
+								</div>
+							</Toolbar>
+
+							<svelte:fragment slot="cell" let:cell>
+								{#if cell.key === 'minimumPoints' && cell.value < 0}
+									<p style:color="var(--ctp-red)">{cell.value}</p>
+								{:else if cell.value === 0 && (cell.key === 'minimumPoints' || cell.key === 'maximumPoints')}
+									<p>-</p>
+								{:else if cell.key === 'name' && sigilsInfo.find((e) => e.name === cell.value)?.demo}
+									<button
+										class="table-button"
+										on:click={() => changeModal(cell, 'Sigil')}
+									>
+										<span>{cell.value}</span><Image
+											size={20}
+											fill="var(--ctp-blue)"
+										/></button
+									>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							</svelte:fragment>
+						</DataTable>
+					</div>
+					<UnorderedList>
+						<ListItem
+							><p>
+								When using UL sigils, only one "Up" roll can be active at a
+								time. For example, if you have a +14 DS Up and a +12 DS Up
+								sigil, only the +14 will be counted, not combined to +26.
+							</p></ListItem
+						>
+					</UnorderedList>
+				</div>
+			</section>
+
+			<div class="page-turn">
+				<PageTurn pageUrlPathName={$page.url.pathname} />
+			</div>
+		</div>
+	</div>
+</HunterNotesPage>
+
+<style lang="scss">
+	.page-turn {
+		margin-top: 4rem;
+	}
+
+	.toolbar {
+		padding: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+
+	.table {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.modal-content {
+		display: flex;
+		gap: var(--cds-spacing-06);
+		flex-direction: column;
+	}
+
+	.modal-content > img {
+		max-width: 60vh;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+	}
+
+	.modal-open-noblur {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+		opacity: 1;
+		-webkit-transition:
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+		transition:
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+		transition:
+			filter 500ms ease,
+			opacity 500ms ease;
+		transition:
+			filter 500ms ease,
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+	}
+
+	.modal-open-blur {
+		-webkit-filter: blur(8px);
+		filter: blur(4px);
+		opacity: 1;
+	}
+
+	.data-table-title {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.datatable-bottom {
+		margin-top: 2rem;
+	}
+
+	.modal-mobile-popover-image {
+		max-width: 100%; /* Ensures the image does not exceed the width of its container */
+		max-height: 100%; /* Ensures the image does not exceed the height of its container */
+		object-fit: cover; /* Ensures the image covers the area without distorting its aspect ratio */
+		display: inline-block; /* Removes any extra space below the image */
+	}
+
+	.modal-mobile-container {
+		display: flex;
+		gap: 0.5rem;
+		padding: var(--cds-spacing-04);
+		flex-direction: column;
+		max-width: 48ch;
+		overflow: hidden;
+	}
+
+	.modal-mobile-link:hover {
+		text-decoration: underline;
+	}
+
+	.modal-mobile-image {
+		grid-area: image;
+		display: inline-block;
+		max-width: 8ch;
+	}
+
+	.modal-mobile-button {
+		grid-area: button;
+	}
+
+	.modal-mobile-title {
+		display: -webkit-box;
+		-webkit-line-clamp: 1; /* number of lines to show */
+		line-clamp: 1;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		grid-area: title;
+		font-weight: bold;
+		height: fit-content;
+	}
+
+	.modal-mobile-subtitle {
+		display: -webkit-box;
+		-webkit-line-clamp: 2; /* number of lines to show */
+		line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		grid-area: subtitle;
+		color: var(--ctp-subtext0);
+	}
+
+	.modal-mobile-title,
+	.modal-mobile-subtitle {
+		padding-left: 0.5rem;
+		padding-top: 0;
+		padding-bottom: 0;
+		margin: 0;
+	}
+
+	.modal-mobile-description {
+		grid-area: description;
+		text-wrap: wrap;
+		margin-top: 1rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 3; /* number of lines to show */
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.modal-mobile-contents-top {
+		display: grid;
+		grid-template-areas:
+			'image title button'
+			'image subtitle subtitle'
+			'description description description';
+		gap: 0;
+		grid-template-columns: auto 1fr auto;
+		grid-template-rows: auto 1fr auto;
+	}
+
+	.modal-mobile-contents-bottom {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	button {
+		all: unset;
+	}
+
+	.table-button {
+		display: flex;
+		align-items: center;
+		font-weight: bold;
+		gap: 0.25rem;
+
+		img {
+			max-width: 4ch;
+		}
+	}
+</style>
