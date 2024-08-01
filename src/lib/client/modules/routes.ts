@@ -167,36 +167,37 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/getting-started/transcend',
 		thumbnail: thumbnailLightTranscendElementalBursts,
 	},
-	{
-		embed: null,
-		link: '/tools/calculator/damage',
-		thumbnail: thumbnailLightSwordAndShieldMotionValues,
-	},
-	{
-		embed: 'calculator',
-		link: '/tools/calculator/damage',
-		thumbnail: thumbnailLightSwordAndShieldMotionValues,
-	},
-	{
-		embed: 'weapon-motion-values',
-		link: '/tools/calculator/damage',
-		thumbnail: thumbnailLightSwordAndShieldMotionValues,
-	},
-	{
-		embed: 'shared-motion-values',
-		link: '/tools/calculator/damage',
-		thumbnail: thumbnailLightSharedMotionValues,
-	},
-	{
-		embed: null,
-		link: '/tools/simulator/tower-weapon',
-		thumbnail: thumbnailLightTowerWeapon,
-	},
-	{
-		embed: 'tower-weapon',
-		link: '/tools/simulator/tower-weapon',
-		thumbnail: thumbnailLightTowerWeapon,
-	},
+	// TODO tools layout does not support this
+	// {
+	// 	embed: null,
+	// 	link: '/tools/calculator/damage',
+	// 	thumbnail: thumbnailLightSwordAndShieldMotionValues,
+	// },
+	// {
+	// 	embed: 'calculator',
+	// 	link: '/tools/calculator/damage',
+	// 	thumbnail: thumbnailLightSwordAndShieldMotionValues,
+	// },
+	// {
+	// 	embed: 'weapon-motion-values',
+	// 	link: '/tools/calculator/damage',
+	// 	thumbnail: thumbnailLightSwordAndShieldMotionValues,
+	// },
+	// {
+	// 	embed: 'shared-motion-values',
+	// 	link: '/tools/calculator/damage',
+	// 	thumbnail: thumbnailLightSharedMotionValues,
+	// },
+	// {
+	// 	embed: null,
+	// 	link: '/tools/simulator/tower-weapon',
+	// 	thumbnail: thumbnailLightTowerWeapon,
+	// },
+	// {
+	// 	embed: 'tower-weapon',
+	// 	link: '/tools/simulator/tower-weapon',
+	// 	thumbnail: thumbnailLightTowerWeapon,
+	// },
 ];
 
 const darkThumbnailInfo: {
@@ -274,36 +275,36 @@ const darkThumbnailInfo: {
 		link: '/hunter-notes/getting-started/transcend',
 		thumbnail: thumbnailDarkTranscendElementalBursts,
 	},
-	{
-		embed: null,
-		link: '/tools/calculator/damage',
-		thumbnail: thumbnailDarkSwordAndShieldMotionValues,
-	},
-	{
-		embed: 'calculator',
-		link: '/tools/calculator/damage',
-		thumbnail: thumbnailDarkSwordAndShieldMotionValues,
-	},
-	{
-		embed: 'weapon-motion-values',
-		link: '/tools/calculator/damage',
-		thumbnail: thumbnailDarkSwordAndShieldMotionValues,
-	},
-	{
-		embed: 'shared-motion-values',
-		link: '/tools/calculator/damage',
-		thumbnail: thumbnailDarkSharedMotionValues,
-	},
-	{
-		embed: null,
-		link: '/tools/simulator/tower-weapon',
-		thumbnail: thumbnailDarkTowerWeapon,
-	},
-	{
-		embed: 'tower-weapon',
-		link: '/tools/simulator/tower-weapon',
-		thumbnail: thumbnailDarkTowerWeapon,
-	},
+	// {
+	// 	embed: null,
+	// 	link: '/tools/calculator/damage',
+	// 	thumbnail: thumbnailDarkSwordAndShieldMotionValues,
+	// },
+	// {
+	// 	embed: 'calculator',
+	// 	link: '/tools/calculator/damage',
+	// 	thumbnail: thumbnailDarkSwordAndShieldMotionValues,
+	// },
+	// {
+	// 	embed: 'weapon-motion-values',
+	// 	link: '/tools/calculator/damage',
+	// 	thumbnail: thumbnailDarkSwordAndShieldMotionValues,
+	// },
+	// {
+	// 	embed: 'shared-motion-values',
+	// 	link: '/tools/calculator/damage',
+	// 	thumbnail: thumbnailDarkSharedMotionValues,
+	// },
+	// {
+	// 	embed: null,
+	// 	link: '/tools/simulator/tower-weapon',
+	// 	thumbnail: thumbnailDarkTowerWeapon,
+	// },
+	// {
+	// 	embed: 'tower-weapon',
+	// 	link: '/tools/simulator/tower-weapon',
+	// 	thumbnail: thumbnailDarkTowerWeapon,
+	// },
 ];
 
 export function getPageThumbnail(
