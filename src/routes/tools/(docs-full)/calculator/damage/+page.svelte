@@ -5780,12 +5780,7 @@ does not get multiplied by horn */
 							If you want to import the save slots from the legacy calculator:
 						</p>
 						<OrderedList class="spaced-list">
-							<ListItem>
-								Go to the <OutboundLink
-									href="https://dorielrivalet.github.io/mhfz-damage-calculator"
-									>legacy calculator</OutboundLink
-								>.
-							</ListItem>
+							<ListItem>Go to the legacy calculator.</ListItem>
 							<ListItem
 								>Open the Console by pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd>
 								+
@@ -5847,12 +5842,6 @@ does not get multiplied by horn */
 								(showDamageCalculatorLegacyInputsJSONError = false)}
 						/>
 					{/if}
-
-					<p>
-						It is recommended to backup your save slots by doing the above steps
-						before August 2024. Afterwards, the legacy calculator will no longer
-						be available.
-					</p>
 
 					{#if showDamageCalculatorInputsJSONError}
 						<InlineNotification
