@@ -4,8 +4,12 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import { getTag } from '$lib/client/modules/frontier/tags';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 </script>
@@ -96,6 +100,29 @@
 				<strong>they do not have the Zenith Partbreaker effect</strong>. Zenith
 				Sigils affect any skills granted (including Exotics, Hybrids and from
 				Tower Decorations).
+			</p>
+
+			<p class="spaced-paragraph">
+				In addition to the tower gems like <InlineTooltip
+					icon={getItemIcon('Ball')}
+					iconColor={RarityColors[5]}
+					iconType="component"
+					text="Glittering Gem"
+					tooltip="Item"
+				/>, there are other materials required according to the upgrades,
+				including <InlineTooltip
+					icon={getItemIcon('Ticket')}
+					iconColor={getItemColor('Blue')}
+					iconType="component"
+					text="Weapon Soul Top"
+					tooltip="Item"
+				/> and <InlineTooltip
+					icon={getItemIcon('Ball')}
+					iconColor={getItemColor('Green')}
+					iconType="component"
+					text="Weapon Ribbon High"
+					tooltip="Item"
+				/>.
 			</p>
 
 			<p>

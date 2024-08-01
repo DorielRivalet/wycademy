@@ -439,3 +439,14 @@ export function getItemIcon(iconName: string) {
 
 	return found.icon;
 }
+
+export function getItemColor(color: FrontierItemColor) {
+	const fallback = ItemColors[0].value;
+
+	const found = ItemColors.find((w) => w.name === color);
+	if (!found) {
+		return fallback;
+	}
+
+	return found.value;
+}
