@@ -817,7 +817,9 @@
 			<p class="spaced-paragraph">
 				If you are looking for an explanation on tower weapons, see our <Link
 					inline
-					href="/hunter-notes/weapons/tower">Hunter's Notes page.</Link
+					href="/hunter-notes/weapons/tower"
+					>Hunter's Notes page. This page is for checking the values of a Tower
+					Weapon, as shown in the game.</Link
 				>
 			</p>
 
@@ -919,13 +921,19 @@
 								class="tower-weapon-slider-button">-</button
 							>
 							<Slider
-								labelText="Attack"
 								min={towerWeaponSelected.attack[0][0]}
 								max={towerWeaponSelected.attack.at(-1)[0]}
 								bind:value={towerWeaponAttackValue}
 								on:change={(e) =>
 									handleSliderChange(towerWeaponSelected.attack, 'attack')}
-							/>
+							>
+								<span slot="labelText">
+									<p>
+										Attack Upgrade #{towerWeaponAttackIndex} Cost: {towerWeaponSelected
+											.attack[towerWeaponAttackIndex][1]}
+									</p>
+								</span>
+							</Slider>
 							<button
 								on:click={() =>
 									handleSliderButton(
@@ -939,10 +947,6 @@
 								class="tower-weapon-slider-button">+</button
 							>
 						</div>
-						<p>
-							Upgrade #{towerWeaponAttackIndex} Cost: {towerWeaponSelected
-								.attack[towerWeaponAttackIndex][1]}
-						</p>
 					</div>
 					{#if towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
 						<div class="tower-weapon-property">
@@ -957,14 +961,20 @@
 									class="tower-weapon-slider-button">-</button
 								>
 								<Slider
-									labelText="Element"
 									min={towerWeaponSelected.element[0][0]}
 									max={towerWeaponSelected.element.at(-1)[0]}
 									bind:value={towerWeaponElementValue}
 									disabled={towerWeaponElementDisabled}
 									on:change={(e) =>
 										handleSliderChange(towerWeaponSelected.element, 'element')}
-								/>
+								>
+									<span slot="labelText">
+										<p>
+											Element Upgrade #{towerWeaponElementIndex} Cost: {towerWeaponSelected
+												.element[towerWeaponElementIndex][1]}
+										</p>
+									</span>
+								</Slider>
 								<button
 									on:click={() =>
 										handleSliderButton(
@@ -978,10 +988,6 @@
 									class="tower-weapon-slider-button">+</button
 								>
 							</div>
-							<p>
-								Upgrade #{towerWeaponElementIndex} Cost: {towerWeaponSelected
-									.element[towerWeaponElementIndex][1]}
-							</p>
 						</div>
 					{/if}
 					<div class="tower-weapon-property">
@@ -996,14 +1002,20 @@
 								class="tower-weapon-slider-button">-</button
 							>
 							<Slider
-								labelText="Affinity"
 								min={towerWeaponSelected.affinity[0][0]}
 								max={towerWeaponSelected.affinity.at(-1)[0]}
 								bind:value={towerWeaponAffinityValue}
 								disabled={towerWeaponAffinityDisabled}
 								on:change={(e) =>
 									handleSliderChange(towerWeaponSelected.affinity, 'affinity')}
-							/>
+							>
+								<span slot="labelText">
+									<p>
+										Affinity Upgrade #{towerWeaponAffinityIndex} Cost: {towerWeaponSelected
+											.affinity[towerWeaponAffinityIndex][1]}
+									</p>
+								</span>
+							</Slider>
 							<button
 								on:click={() =>
 									handleSliderButton(
@@ -1017,10 +1029,6 @@
 								class="tower-weapon-slider-button">+</button
 							>
 						</div>
-						<p>
-							Upgrade #{towerWeaponAffinityIndex} Cost: {towerWeaponSelected
-								.affinity[towerWeaponAffinityIndex][1]}
-						</p>
 					</div>
 					{#if towerWeaponSelectedWeaponType !== 'Bow'}
 						<div class="tower-weapon-property">
@@ -1036,13 +1044,19 @@
 								>
 								<Slider
 									disabled={towerWeaponPoisonDisabled}
-									labelText="Poison"
 									min={towerWeaponSelected.poison[0][0]}
 									max={towerWeaponSelected.poison.at(-1)[0]}
 									bind:value={towerWeaponPoisonValue}
 									on:change={(e) =>
 										handleSliderChange(towerWeaponSelected.poison, 'poison')}
-								/>
+								>
+									<span slot="labelText">
+										<p>
+											Poison Upgrade #{towerWeaponPoisonIndex} Cost: {towerWeaponSelected
+												.poison[towerWeaponPoisonIndex][1]}
+										</p>
+									</span>
+								</Slider>
 								<button
 									on:click={() =>
 										handleSliderButton(
@@ -1056,10 +1070,6 @@
 									class="tower-weapon-slider-button">+</button
 								>
 							</div>
-							<p>
-								Upgrade #{towerWeaponPoisonIndex} Cost: {towerWeaponSelected
-									.poison[towerWeaponPoisonIndex][1]}
-							</p>
 						</div>
 						<div class="tower-weapon-property">
 							<div class="tower-weapon-slider-container">
@@ -1074,7 +1084,6 @@
 								>
 								<Slider
 									disabled={towerWeaponParalysisDisabled}
-									labelText="Paralysis"
 									min={towerWeaponSelected.paralysis[0][0]}
 									max={towerWeaponSelected.paralysis.at(-1)[0]}
 									bind:value={towerWeaponParalysisValue}
@@ -1083,7 +1092,14 @@
 											towerWeaponSelected.paralysis,
 											'paralysis',
 										)}
-								/>
+								>
+									<span slot="labelText">
+										<p>
+											Paralysis Upgrade #{towerWeaponParalysisIndex} Cost: {towerWeaponSelected
+												.paralysis[towerWeaponParalysisIndex][1]}
+										</p>
+									</span>
+								</Slider>
 								<button
 									on:click={() =>
 										handleSliderButton(
@@ -1097,10 +1113,6 @@
 									class="tower-weapon-slider-button">+</button
 								>
 							</div>
-							<p>
-								Upgrade #{towerWeaponParalysisIndex} Cost: {towerWeaponSelected
-									.paralysis[towerWeaponParalysisIndex][1]}
-							</p>
 						</div>
 						<div class="tower-weapon-property">
 							<div class="tower-weapon-slider-container">
@@ -1115,13 +1127,19 @@
 								>
 								<Slider
 									disabled={towerWeaponSleepDisabled}
-									labelText="Sleep"
 									min={towerWeaponSelected.sleep[0][0]}
 									max={towerWeaponSelected.sleep.at(-1)[0]}
 									bind:value={towerWeaponSleepValue}
 									on:change={(e) =>
 										handleSliderChange(towerWeaponSelected.sleep, 'sleep')}
-								/>
+								>
+									<span slot="labelText">
+										<p>
+											Sleep Upgrade #{towerWeaponSleepIndex} Cost: {towerWeaponSelected
+												.sleep[towerWeaponSleepIndex][1]}
+										</p>
+									</span>
+								</Slider>
 								<button
 									on:click={() =>
 										handleSliderButton(
@@ -1135,21 +1153,22 @@
 									class="tower-weapon-slider-button">+</button
 								>
 							</div>
-
-							<p>
-								Upgrade #{towerWeaponSleepIndex} Cost: {towerWeaponSelected
-									.sleep[towerWeaponSleepIndex][1]}
-							</p>
 						</div>
 					{/if}
 
 					{#if towerWeaponSelectedWeaponType !== 'Bow' && towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
 						<div class="tower-weapon-property">
 							<RadioButtonGroup
-								legendText="Sharpness"
 								name="sharpness"
 								bind:selected={towerWeaponSharpnessLevel}
 							>
+								<span slot="legendText">
+									<p>
+										Sharpness Upgrade #{towerWeaponSharpnessIndex} Cost: {towerWeaponSelectedSeriesInfo
+											.sharpnessLevels[towerWeaponSharpnessIndex][1]}
+									</p>
+								</span>
+
 								{#each towerWeaponSharpnessLevels as value}
 									<RadioButton labelText={`LV${value}`} {value} />
 								{/each}
@@ -1160,10 +1179,6 @@
 									sharpnessValues={towerWeaponSharpnessBarValues}
 								/>
 							</div>
-							<p>
-								Upgrade #{towerWeaponSharpnessIndex} Cost: {towerWeaponSelectedSeriesInfo
-									.sharpnessLevels[towerWeaponSharpnessIndex][1]}
-							</p>
 						</div>
 					{/if}
 					{#if towerWeaponSelectedWeaponType === 'Gunlance'}
