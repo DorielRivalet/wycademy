@@ -4,7 +4,10 @@
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import { page } from '$app/stores';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
-	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+	import {
+		getWeaponIcon,
+		getWeaponImage,
+	} from '$lib/client/modules/frontier/weapons';
 	import Dropdown, {
 		type DropdownItem,
 	} from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
@@ -23,6 +26,7 @@
 		FrontierTowerWeaponSeries,
 	} from '$lib/client/modules/frontier/types';
 	import {
+		getTowerWeaponIconColor,
 		towerWeapons,
 		towerWeaponSeries,
 		towerWeaponSlotImages,
@@ -40,6 +44,8 @@
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 	import { getTag } from '$lib/client/modules/frontier/tags';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	function onSelectTowerWeaponOption() {
 		towerWeaponSelected = getTowerWeaponSelected(
@@ -652,12 +658,9 @@
 		{ id: 'Smaller', text: 'Smaller' },
 	];
 
-	$: towerWeaponSeriesColor =
-		towerWeaponSelected.series === 'Light'
-			? RarityColors[0]
-			: towerWeaponSelected.series === 'Dark'
-				? RarityColors[11]
-				: RarityColors[5];
+	$: towerWeaponSeriesColor = getTowerWeaponIconColor(
+		towerWeaponSelected.series,
+	);
 
 	$: towerWeaponReloadSpeedIndex = towerWeaponReloadSpeedOptions.findIndex(
 		(e) => e.id === towerWeaponReloadSpeedValue,
@@ -801,701 +804,664 @@
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Tower Weapon Simulator'} />
-		<InlineNotification
-			lowContrast
-			hideCloseButton
-			kind="info"
-			title="Value correction:"
-			subtitle="The sliders automatically adjust to the correct values once you release them."
-		/>
 
-		<p class="spaced-paragraph">
-			A customisable weapon made from materials found by playing through the <InlineTooltip
-				icon={LocationIcons.find((e) => e.name === 'Tower')?.icon}
-				tooltip="Location"
-				iconType={'file'}
-				text="Sky Corridor"
-			/>.
-		</p>
-
-		<p class="spaced-paragraph">
-			You can customize weapon attributes such as Sharpness, Raw, Elemental,
-			Status, Shelling Type, Shot Type, etc. They are comparable to Lv50 G Rank
-			weapons when fully upgraded. You can insert Tower Decorations, which gives
-			skills without using slots, making it a powerful weapon when built
-			correctly. You cannot reverse most of the attribute upgrades.
-		</p>
-
-		<p class="spaced-paragraph">
-			Light versions of weapons have two sigils slots and a single decoration
-			slot, while Dark versions gives you a single sigil slot and two decoration
-			slots.
-		</p>
-
-		<p class="spaced-paragraph">
-			Tower Sigils are used to grant Affinity, Status, Elemental, Zenith Skills
-			or Weapon Abilities. You can only have as many of these properties as you
-			have Sigil slots and you can't have two of the same type (for example, two
-			Elemental, Status or Affinity sigils does not stack.)
-		</p>
-
-		<p class="spaced-paragraph">
-			Tower Decorations grant your weapon a skill. For example, if you have a
-			Tower Decoration for <InlineTooltip
-				tooltip="Armor Skill"
-				text="Expert+5"
-				iconType="component"
-				icon={getTag('Armor Skill').icon}
-			/>, then it gives you that skill when you slot it into a weapon and equip
-			it. You can have a maximum of two skills on a weapon.
-		</p>
-
-		<p class="spaced-paragraph">
-			In order to remove a Tower Decoration, you need to buy a <InlineTooltip
-				tooltip={'Item'}
-				text="Twr Removal Solution"
-				icon={getItemIcon('Medicine')}
-			/>.
-		</p>
-
-		<p>
-			The rest of the Tower Weapon materials are available at the <InlineTooltip
-				icon={LocationIcons.find((e) => e.name === 'Road')?.icon}
-				tooltip="Location"
-				iconType={'file'}
-				text="Road Shop"
-			/>. Alternatively, you can replace them directly at the cost of losing the
-			previously slotted decoration. A <InlineTooltip
-				tooltip="Item"
-				icon={getItemIcon('Medicine')}
-				text="Pulsating Liquid"
-			/> lets you adjust the properties of Tower Hunting Horns, Bows, Bowguns and
-			Gunlances.
-		</p>
-
-		<p class="spaced-paragraph">
-			Tower Weapons can be crafted by talking to the Cat wearing a backpack in
-			the <InlineTooltip
-				tooltip="Location"
-				iconType={'file'}
-				icon={LocationIcons.find((e) => e.name === 'Blacksmith')?.icon}
-				text="Blacksmith"
-			/>.
-		</p>
-
-		<p class="spaced-paragraph">
-			The Blue series of the tower weapons have 3 Tower Sigil slots. They have
-			high enough stats to surpass all weapons (except Evolution, certain
-			Premium weapons and Road). They require Zenith materials to craft, but
-			<strong>they do not have the Zenith Partbreaker effect</strong>. Zenith
-			Sigils affect any skills granted (including Exotics, Hybrids and from
-			Tower Decorations).
-		</p>
-
-		<div class="flex-centered padded">
-			<Dropdown
-				titleText="Weapon Type"
-				type="inline"
-				hideLabel
-				on:select={onSelectTowerWeaponType}
-				bind:selectedId={towerWeaponSelectedWeaponType}
-				items={[
-					{ id: 'Great Sword', text: 'Great Sword' },
-					{ id: 'Long Sword', text: 'Long Sword' },
-					{ id: 'Sword and Shield', text: 'Sword and Shield' },
-					{ id: 'Dual Swords', text: 'Dual Swords' },
-					{ id: 'Hammer', text: 'Hammer' },
-					{ id: 'Hunting Horn', text: 'Hunting Horn' },
-					{ id: 'Lance', text: 'Lance' },
-					{ id: 'Gunlance', text: 'Gunlance' },
-					{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
-					{ id: 'Light Bowgun', text: 'Light Bowgun' },
-					{ id: 'Bow', text: 'Bow' },
-					{ id: 'Tonfa', text: 'Tonfa' },
-					{ id: 'Switch Axe F', text: 'Switch Axe F' },
-					{ id: 'Magnet Spike', text: 'Magnet Spike' },
-				]}
+		<div>
+			<InlineNotification
+				lowContrast
+				hideCloseButton
+				kind="info"
+				title="Value correction:"
+				subtitle="The sliders automatically adjust to the correct values once you release them."
 			/>
-			<Dropdown
-				titleText="Tower Weapon"
-				type="inline"
-				hideLabel
-				on:select={onSelectTowerWeaponOption}
-				bind:selectedId={towerWeaponSelectedWeaponOption}
-				items={towerWeaponsFromType}
-			/>
-		</div>
-		<div class="flex-centered padded flex-column">
-			<ImageDialog
-				width={195}
-				height={200}
-				src={towerWeaponImage}
-				alt="Tower Weapon"
-				type="file"
-			/>
-			<div class="tower-weapon-slots-container">
-				{#each towerWeaponSlots as weaponSlot}
-					<img src={weaponSlot.image} alt="Tower Weapon Slot" />
-				{/each}
+
+			<p class="spaced-paragraph">
+				If you are looking for an explanation on tower weapons, see our <Link
+					inline
+					href="/hunter-notes/weapons/tower">Hunter's Notes page.</Link
+				>
+			</p>
+
+			<div class="tower-weapon-simulator-container">
+				<div class="tower-weapon-simulator-weapon-container">
+					<div class="flex-centered padded">
+						<Dropdown
+							let:item
+							titleText="Weapon Type"
+							type="inline"
+							hideLabel
+							on:select={onSelectTowerWeaponType}
+							bind:selectedId={towerWeaponSelectedWeaponType}
+							items={[
+								{ id: 'Great Sword', text: 'Great Sword' },
+								{ id: 'Long Sword', text: 'Long Sword' },
+								{ id: 'Sword and Shield', text: 'Sword and Shield' },
+								{ id: 'Dual Swords', text: 'Dual Swords' },
+								{ id: 'Hammer', text: 'Hammer' },
+								{ id: 'Hunting Horn', text: 'Hunting Horn' },
+								{ id: 'Lance', text: 'Lance' },
+								{ id: 'Gunlance', text: 'Gunlance' },
+								{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
+								{ id: 'Light Bowgun', text: 'Light Bowgun' },
+								{ id: 'Bow', text: 'Bow' },
+								{ id: 'Tonfa', text: 'Tonfa' },
+								{ id: 'Switch Axe F', text: 'Switch Axe F' },
+								{ id: 'Magnet Spike', text: 'Magnet Spike' },
+							]}
+						>
+							<div>
+								<img
+									alt="Theme Icon"
+									src={getWeaponImage(item.id)}
+									width="24"
+								/>
+								<strong style="vertical-align: center;">{item.text}</strong>
+							</div>
+						</Dropdown>
+						<Dropdown
+							titleText="Tower Weapon"
+							type="inline"
+							let:item
+							hideLabel
+							on:select={onSelectTowerWeaponOption}
+							bind:selectedId={towerWeaponSelectedWeaponOption}
+							items={towerWeaponsFromType}
+						>
+							<div>
+								<svelte:component
+									this={getWeaponIcon(towerWeaponSelectedWeaponType)}
+									{...{
+										color: getTowerWeaponIconColor(
+											towerWeapons.find((e) => e.name === item.text)?.series ||
+												'Light',
+										),
+										size: '24px',
+									}}
+								/>
+								<strong style="vertical-align: center;">{item.text}</strong>
+							</div>
+						</Dropdown>
+					</div>
+					<div class="flex-centered padded flex-column">
+						<ImageDialog
+							width={195}
+							height={200}
+							src={towerWeaponImage}
+							alt="Tower Weapon"
+							type="file"
+						/>
+						<div class="tower-weapon-slots-container">
+							{#each towerWeaponSlots as weaponSlot}
+								<img src={weaponSlot.image} alt="Tower Weapon Slot" />
+							{/each}
+						</div>
+					</div>
+
+					<div
+						class="flex-centered padded"
+						style={towerWeaponExceedsMaxCost
+							? 'color: var(--ctp-red)'
+							: 'var(--ctp-text)'}
+					>
+						<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
+					</div>
+				</div>
+
+				<div class="tower-weapon-properties">
+					<div class="tower-weapon-property">
+						<div class="tower-weapon-slider-container">
+							<button
+								on:click={() =>
+									handleSliderButton(
+										towerWeaponSelected.attack,
+										'attack',
+										Math.max(towerWeaponAttackIndex - 1, 0),
+									)}
+								class="tower-weapon-slider-button">-</button
+							>
+							<Slider
+								labelText="Attack"
+								min={towerWeaponSelected.attack[0][0]}
+								max={towerWeaponSelected.attack.at(-1)[0]}
+								bind:value={towerWeaponAttackValue}
+								on:change={(e) =>
+									handleSliderChange(towerWeaponSelected.attack, 'attack')}
+							/>
+							<button
+								on:click={() =>
+									handleSliderButton(
+										towerWeaponSelected.attack,
+										'attack',
+										Math.min(
+											towerWeaponAttackIndex + 1,
+											towerWeaponSelected.attack.length - 1,
+										),
+									)}
+								class="tower-weapon-slider-button">+</button
+							>
+						</div>
+						<p>
+							Upgrade #{towerWeaponAttackIndex} Cost: {towerWeaponSelected
+								.attack[towerWeaponAttackIndex][1]}
+						</p>
+					</div>
+					{#if towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
+						<div class="tower-weapon-property">
+							<div class="tower-weapon-slider-container">
+								<button
+									on:click={() =>
+										handleSliderButton(
+											towerWeaponSelected.element,
+											'element',
+											Math.max(towerWeaponElementIndex - 1, 0),
+										)}
+									class="tower-weapon-slider-button">-</button
+								>
+								<Slider
+									labelText="Element"
+									min={towerWeaponSelected.element[0][0]}
+									max={towerWeaponSelected.element.at(-1)[0]}
+									bind:value={towerWeaponElementValue}
+									disabled={towerWeaponElementDisabled}
+									on:change={(e) =>
+										handleSliderChange(towerWeaponSelected.element, 'element')}
+								/>
+								<button
+									on:click={() =>
+										handleSliderButton(
+											towerWeaponSelected.element,
+											'element',
+											Math.min(
+												towerWeaponElementIndex + 1,
+												towerWeaponSelected.element.length - 1,
+											),
+										)}
+									class="tower-weapon-slider-button">+</button
+								>
+							</div>
+							<p>
+								Upgrade #{towerWeaponElementIndex} Cost: {towerWeaponSelected
+									.element[towerWeaponElementIndex][1]}
+							</p>
+						</div>
+					{/if}
+					<div class="tower-weapon-property">
+						<div class="tower-weapon-slider-container">
+							<button
+								on:click={() =>
+									handleSliderButton(
+										towerWeaponSelected.affinity,
+										'affinity',
+										Math.max(towerWeaponAffinityIndex - 1, 0),
+									)}
+								class="tower-weapon-slider-button">-</button
+							>
+							<Slider
+								labelText="Affinity"
+								min={towerWeaponSelected.affinity[0][0]}
+								max={towerWeaponSelected.affinity.at(-1)[0]}
+								bind:value={towerWeaponAffinityValue}
+								disabled={towerWeaponAffinityDisabled}
+								on:change={(e) =>
+									handleSliderChange(towerWeaponSelected.affinity, 'affinity')}
+							/>
+							<button
+								on:click={() =>
+									handleSliderButton(
+										towerWeaponSelected.affinity,
+										'affinity',
+										Math.min(
+											towerWeaponAffinityIndex + 1,
+											towerWeaponSelected.affinity.length - 1,
+										),
+									)}
+								class="tower-weapon-slider-button">+</button
+							>
+						</div>
+						<p>
+							Upgrade #{towerWeaponAffinityIndex} Cost: {towerWeaponSelected
+								.affinity[towerWeaponAffinityIndex][1]}
+						</p>
+					</div>
+					{#if towerWeaponSelectedWeaponType !== 'Bow'}
+						<div class="tower-weapon-property">
+							<div class="tower-weapon-slider-container">
+								<button
+									on:click={() =>
+										handleSliderButton(
+											towerWeaponSelected.poison,
+											'poison',
+											Math.max(towerWeaponPoisonIndex - 1, 0),
+										)}
+									class="tower-weapon-slider-button">-</button
+								>
+								<Slider
+									disabled={towerWeaponPoisonDisabled}
+									labelText="Poison"
+									min={towerWeaponSelected.poison[0][0]}
+									max={towerWeaponSelected.poison.at(-1)[0]}
+									bind:value={towerWeaponPoisonValue}
+									on:change={(e) =>
+										handleSliderChange(towerWeaponSelected.poison, 'poison')}
+								/>
+								<button
+									on:click={() =>
+										handleSliderButton(
+											towerWeaponSelected.poison,
+											'poison',
+											Math.min(
+												towerWeaponPoisonIndex + 1,
+												towerWeaponSelected.poison.length - 1,
+											),
+										)}
+									class="tower-weapon-slider-button">+</button
+								>
+							</div>
+							<p>
+								Upgrade #{towerWeaponPoisonIndex} Cost: {towerWeaponSelected
+									.poison[towerWeaponPoisonIndex][1]}
+							</p>
+						</div>
+						<div class="tower-weapon-property">
+							<div class="tower-weapon-slider-container">
+								<button
+									on:click={() =>
+										handleSliderButton(
+											towerWeaponSelected.paralysis,
+											'paralysis',
+											Math.max(towerWeaponParalysisIndex - 1, 0),
+										)}
+									class="tower-weapon-slider-button">-</button
+								>
+								<Slider
+									disabled={towerWeaponParalysisDisabled}
+									labelText="Paralysis"
+									min={towerWeaponSelected.paralysis[0][0]}
+									max={towerWeaponSelected.paralysis.at(-1)[0]}
+									bind:value={towerWeaponParalysisValue}
+									on:change={(e) =>
+										handleSliderChange(
+											towerWeaponSelected.paralysis,
+											'paralysis',
+										)}
+								/>
+								<button
+									on:click={() =>
+										handleSliderButton(
+											towerWeaponSelected.paralysis,
+											'paralysis',
+											Math.min(
+												towerWeaponParalysisIndex + 1,
+												towerWeaponSelected.paralysis.length - 1,
+											),
+										)}
+									class="tower-weapon-slider-button">+</button
+								>
+							</div>
+							<p>
+								Upgrade #{towerWeaponParalysisIndex} Cost: {towerWeaponSelected
+									.paralysis[towerWeaponParalysisIndex][1]}
+							</p>
+						</div>
+						<div class="tower-weapon-property">
+							<div class="tower-weapon-slider-container">
+								<button
+									on:click={() =>
+										handleSliderButton(
+											towerWeaponSelected.sleep,
+											'sleep',
+											Math.max(towerWeaponSleepIndex - 1, 0),
+										)}
+									class="tower-weapon-slider-button">-</button
+								>
+								<Slider
+									disabled={towerWeaponSleepDisabled}
+									labelText="Sleep"
+									min={towerWeaponSelected.sleep[0][0]}
+									max={towerWeaponSelected.sleep.at(-1)[0]}
+									bind:value={towerWeaponSleepValue}
+									on:change={(e) =>
+										handleSliderChange(towerWeaponSelected.sleep, 'sleep')}
+								/>
+								<button
+									on:click={() =>
+										handleSliderButton(
+											towerWeaponSelected.sleep,
+											'sleep',
+											Math.min(
+												towerWeaponSleepIndex + 1,
+												towerWeaponSelected.sleep.length - 1,
+											),
+										)}
+									class="tower-weapon-slider-button">+</button
+								>
+							</div>
+
+							<p>
+								Upgrade #{towerWeaponSleepIndex} Cost: {towerWeaponSelected
+									.sleep[towerWeaponSleepIndex][1]}
+							</p>
+						</div>
+					{/if}
+
+					{#if towerWeaponSelectedWeaponType !== 'Bow' && towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
+						<div class="tower-weapon-property">
+							<RadioButtonGroup
+								legendText="Sharpness"
+								name="sharpness"
+								bind:selected={towerWeaponSharpnessLevel}
+							>
+								{#each towerWeaponSharpnessLevels as value}
+									<RadioButton labelText={`LV${value}`} {value} />
+								{/each}
+							</RadioButtonGroup>
+							<div class="sharpness-bar-container">
+								<SharpnessBar
+									sharpnessBoost={false}
+									sharpnessValues={towerWeaponSharpnessBarValues}
+								/>
+							</div>
+							<p>
+								Upgrade #{towerWeaponSharpnessIndex} Cost: {towerWeaponSelectedSeriesInfo
+									.sharpnessLevels[towerWeaponSharpnessIndex][1]}
+							</p>
+						</div>
+					{/if}
+					{#if towerWeaponSelectedWeaponType === 'Gunlance'}
+						<div class="tower-weapon-property">
+							<Dropdown
+								type="default"
+								titleText="Shell Level"
+								on:select={onSelectTowerWeaponGunlanceShellLevel}
+								bind:selectedId={towerWeaponGunlanceShellLevel}
+								items={towerWeaponGunlanceShellOptions}
+							/>
+							<p>
+								Upgrade #{towerWeaponGunlanceShellLevel} Cost: {towerWeaponGunlanceShellLevelCost}
+							</p>
+						</div>
+					{/if}
+					{#if towerWeaponSelectedWeaponType === 'Heavy Bowgun' || towerWeaponSelectedWeaponType === 'Light Bowgun'}
+						<div class="tower-weapon-property">
+							<Dropdown
+								type="default"
+								titleText="Reload Speed"
+								on:select={onSelectTowerWeaponReloadSpeed}
+								bind:selectedId={towerWeaponReloadSpeedValue}
+								items={towerWeaponReloadSpeedOptions}
+							/>
+							<p>
+								Upgrade #{towerWeaponReloadSpeedIndex} Cost: {towerWeaponReloadSpeedCost}
+							</p>
+						</div>
+						<div class="tower-weapon-property">
+							<Dropdown
+								type="default"
+								titleText="Recoil"
+								on:select={onSelectTowerWeaponRecoil}
+								bind:selectedId={towerWeaponRecoilValue}
+								items={towerWeaponRecoilOptions}
+							/>
+							<p>
+								Upgrade #{towerWeaponRecoilIndex} Cost: {towerWeaponRecoilCost}
+							</p>
+						</div>
+					{/if}
+					{#if towerWeaponSelectedWeaponType === 'Bow'}
+						<div class="tower-weapon-property">
+							<Dropdown
+								type="default"
+								titleText="Charge 1"
+								on:select={onSelectTowerWeaponBowCharge1}
+								bind:selectedId={towerWeaponBowCharge1Level}
+								items={towerWeaponBowChargeOptions}
+							/>
+							<p>
+								Upgrade #{parseInt(towerWeaponBowCharge1Level) - 1} Cost: {towerWeaponBowCharge1Cost}
+							</p>
+						</div>
+						<div class="tower-weapon-property">
+							<Dropdown
+								type="default"
+								titleText="Charge 2"
+								on:select={onSelectTowerWeaponBowCharge2}
+								bind:selectedId={towerWeaponBowCharge2Level}
+								items={towerWeaponBowChargeOptions}
+							/>
+							<p>
+								Upgrade #{parseInt(towerWeaponBowCharge2Level) - 1} Cost: {towerWeaponBowCharge2Cost}
+							</p>
+						</div>
+						<div class="tower-weapon-property">
+							<Dropdown
+								type="default"
+								titleText="Charge 3"
+								on:select={onSelectTowerWeaponBowCharge3}
+								bind:selectedId={towerWeaponBowCharge3Level}
+								items={towerWeaponBowChargeOptions}
+							/>
+							<p>
+								Upgrade #{parseInt(towerWeaponBowCharge3Level) - 1} Cost: {towerWeaponBowCharge3Cost}
+							</p>
+						</div>
+						<div class="tower-weapon-property">
+							<Dropdown
+								type="default"
+								titleText="Charge 4"
+								on:select={onSelectTowerWeaponBowCharge4}
+								bind:selectedId={towerWeaponBowCharge4Level}
+								items={towerWeaponBowChargeOptions}
+							/>
+							<p>
+								Upgrade #{parseInt(towerWeaponBowCharge4Level) - 1} Cost: {towerWeaponBowCharge4Cost}
+							</p>
+						</div>
+					{/if}
+				</div>
+			</div>
+
+			<div class="tower-weapon-simulator-preview-container">
+				<div class="container-buttons">
+					<Button
+						kind="tertiary"
+						icon={Download}
+						on:click={downloadTowerWeaponImage}>Download</Button
+					>
+				</div>
+				<div class="tower-weapon-stats" id="tower-weapon-dom">
+					<div
+						class="flex-centered"
+						style={towerWeaponExceedsMaxCost
+							? 'color: var(--ctp-red)'
+							: 'var(--ctp-text)'}
+					>
+						<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
+					</div>
+					<div class="tower-weapon-gems">
+						<p>
+							<InlineTooltip
+								tooltip="Item"
+								text={`${towerWeaponTotalGems.courage} Courage Gems`}
+								icon={getItemIcon('Ball')}
+								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+								iconSize={'clamp(1rem, 2vw, 2rem)'}
+							/>
+						</p>
+						<p>
+							<InlineTooltip
+								tooltip="Item"
+								text={`${towerWeaponTotalGems.glittering} Glittering Gems`}
+								icon={getItemIcon('Ball')}
+								iconColor={RarityColors[5]}
+								iconSize={'clamp(1rem, 2vw, 2rem)'}
+							/>
+						</p>
+						<p>
+							<InlineTooltip
+								tooltip="Item"
+								text={`${towerWeaponTotalGems.divine} Divine Gems`}
+								icon={getItemIcon('Ball')}
+								iconColor={RarityColors[3]}
+								iconSize={'clamp(1rem, 2vw, 2rem)'}
+							/>
+						</p>
+					</div>
+					<div class="tower-weapon-summary">
+						<p>
+							<InlineTooltip
+								tooltip={'Stat'}
+								text={`${towerWeaponAttackValue} Attack (${towerWeaponAttackIndex !== towerWeaponSelected.attack.length - 1 ? towerWeaponAttackIndex : 'MAX'})`}
+								iconSize={'clamp(1rem, 2vw, 2rem)'}
+								icon={getItemIcon('Knife')}
+								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+							/>
+						</p>
+						{#if towerWeaponElementValue > 0}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`${towerWeaponElementValue * 10} Element (${towerWeaponElementIndex !== towerWeaponSelected.element.length - 1 ? towerWeaponElementIndex : 'MAX'})`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponPoisonValue > 0}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`${towerWeaponPoisonValue * 10} Status (${towerWeaponPoisonIndex !== towerWeaponSelected.poison.length - 1 ? towerWeaponPoisonIndex : 'MAX'})`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={StatusIcons.find((e) => e.name === 'Poison')?.icon}
+								/>
+							</p>
+						{:else if towerWeaponParalysisValue > 0}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`${towerWeaponParalysisValue * 10} Status (${towerWeaponParalysisIndex !== towerWeaponSelected.paralysis.length - 1 ? towerWeaponParalysisIndex : 'MAX'})`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={StatusIcons.find((e) => e.name === 'Paralysis')?.icon}
+								/>
+							</p>
+						{:else if towerWeaponSleepValue > 0}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`${towerWeaponSleepValue * 10} Status (${towerWeaponSleepIndex !== towerWeaponSelected.sleep.length - 1 ? towerWeaponSleepIndex : 'MAX'})`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={StatusIcons.find((e) => e.name === 'Sleep')?.icon}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponAffinityValue > 0}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`${towerWeaponAffinityValue}% Affinity (${towerWeaponAffinityIndex !== towerWeaponSelected.affinity.length - 1 ? towerWeaponAffinityIndex : 'MAX'})`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getItemIcon('Knife')}
+									iconColor={ItemColors.find((e) => e.name === 'Cyan')?.value}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponSharpnessLevel > 0}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`Sharpness LV${towerWeaponSharpnessIndex !== towerWeaponSelectedSeriesInfo.sharpnessLevels.length - 1 ? towerWeaponSharpnessIndex : ' MAX'}`}
+									iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getItemIcon('Whetstone')}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponGunlanceShellLevel !== '0'}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`Shell LV${parseInt(towerWeaponGunlanceShellLevel) !== 8 ? parseInt(towerWeaponGunlanceShellLevel) + 1 : ' MAX'}`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getWeaponIcon('Gunlance')}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponReloadSpeedValue !== 'Very Slow'}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`${towerWeaponReloadSpeedValue} Reload`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getItemIcon('Shot')}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponRecoilValue !== 'Max'}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`${towerWeaponRecoilValue} Recoil`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getItemIcon('Shot')}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponBowCharge1Level !== '1'}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`Charge 1 LV${towerWeaponBowCharge1Level !== '4' ? towerWeaponBowCharge1Level : ' MAX'}`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getWeaponIcon('Bow')}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponBowCharge2Level !== '1'}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`Charge 2 LV${towerWeaponBowCharge2Level !== '4' ? towerWeaponBowCharge2Level : ' MAX'}`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getWeaponIcon('Bow')}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponBowCharge3Level !== '1'}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`Charge 3 LV${towerWeaponBowCharge3Level !== '4' ? towerWeaponBowCharge3Level : ' MAX'}`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getWeaponIcon('Bow')}
+								/>
+							</p>
+						{/if}
+						{#if towerWeaponBowCharge4Level !== '1'}
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`Charge 4 LV${towerWeaponBowCharge4Level !== '4' ? towerWeaponBowCharge4Level : ' MAX'}`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getWeaponIcon('Bow')}
+								/>
+							</p>
+						{/if}
+					</div>
+					<div class="tower-weapon-name">
+						{#key towerWeaponSeriesColor}
+							<svelte:component
+								this={WeaponTypes.find(
+									(e) => e.name === towerWeaponSelectedWeaponType,
+								)?.icon}
+								{...{ color: towerWeaponSeriesColor, size: '64px' }}
+							/>
+
+							<strong>{towerWeaponSelectedWeaponOption}</strong>
+						{/key}
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<div
-			class="flex-centered padded"
-			style={towerWeaponExceedsMaxCost
-				? 'color: var(--ctp-red)'
-				: 'var(--ctp-text)'}
-		>
-			<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
-		</div>
-
-		<div class="tower-weapon-properties">
-			<div class="tower-weapon-property">
-				<div class="tower-weapon-slider-container">
-					<button
-						on:click={() =>
-							handleSliderButton(
-								towerWeaponSelected.attack,
-								'attack',
-								Math.max(towerWeaponAttackIndex - 1, 0),
-							)}
-						class="tower-weapon-slider-button">-</button
-					>
-					<Slider
-						labelText="Attack"
-						min={towerWeaponSelected.attack[0][0]}
-						max={towerWeaponSelected.attack.at(-1)[0]}
-						bind:value={towerWeaponAttackValue}
-						on:change={(e) =>
-							handleSliderChange(towerWeaponSelected.attack, 'attack')}
-					/>
-					<button
-						on:click={() =>
-							handleSliderButton(
-								towerWeaponSelected.attack,
-								'attack',
-								Math.min(
-									towerWeaponAttackIndex + 1,
-									towerWeaponSelected.attack.length - 1,
-								),
-							)}
-						class="tower-weapon-slider-button">+</button
-					>
-				</div>
-				<p>
-					Upgrade #{towerWeaponAttackIndex} Cost: {towerWeaponSelected.attack[
-						towerWeaponAttackIndex
-					][1]}
-				</p>
-			</div>
-			{#if towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
-				<div class="tower-weapon-property">
-					<div class="tower-weapon-slider-container">
-						<button
-							on:click={() =>
-								handleSliderButton(
-									towerWeaponSelected.element,
-									'element',
-									Math.max(towerWeaponElementIndex - 1, 0),
-								)}
-							class="tower-weapon-slider-button">-</button
-						>
-						<Slider
-							labelText="Element"
-							min={towerWeaponSelected.element[0][0]}
-							max={towerWeaponSelected.element.at(-1)[0]}
-							bind:value={towerWeaponElementValue}
-							disabled={towerWeaponElementDisabled}
-							on:change={(e) =>
-								handleSliderChange(towerWeaponSelected.element, 'element')}
-						/>
-						<button
-							on:click={() =>
-								handleSliderButton(
-									towerWeaponSelected.element,
-									'element',
-									Math.min(
-										towerWeaponElementIndex + 1,
-										towerWeaponSelected.element.length - 1,
-									),
-								)}
-							class="tower-weapon-slider-button">+</button
-						>
-					</div>
-					<p>
-						Upgrade #{towerWeaponElementIndex} Cost: {towerWeaponSelected
-							.element[towerWeaponElementIndex][1]}
-					</p>
-				</div>
-			{/if}
-			<div class="tower-weapon-property">
-				<div class="tower-weapon-slider-container">
-					<button
-						on:click={() =>
-							handleSliderButton(
-								towerWeaponSelected.affinity,
-								'affinity',
-								Math.max(towerWeaponAffinityIndex - 1, 0),
-							)}
-						class="tower-weapon-slider-button">-</button
-					>
-					<Slider
-						labelText="Affinity"
-						min={towerWeaponSelected.affinity[0][0]}
-						max={towerWeaponSelected.affinity.at(-1)[0]}
-						bind:value={towerWeaponAffinityValue}
-						disabled={towerWeaponAffinityDisabled}
-						on:change={(e) =>
-							handleSliderChange(towerWeaponSelected.affinity, 'affinity')}
-					/>
-					<button
-						on:click={() =>
-							handleSliderButton(
-								towerWeaponSelected.affinity,
-								'affinity',
-								Math.min(
-									towerWeaponAffinityIndex + 1,
-									towerWeaponSelected.affinity.length - 1,
-								),
-							)}
-						class="tower-weapon-slider-button">+</button
-					>
-				</div>
-				<p>
-					Upgrade #{towerWeaponAffinityIndex} Cost: {towerWeaponSelected
-						.affinity[towerWeaponAffinityIndex][1]}
-				</p>
-			</div>
-			{#if towerWeaponSelectedWeaponType !== 'Bow'}
-				<div class="tower-weapon-property">
-					<div class="tower-weapon-slider-container">
-						<button
-							on:click={() =>
-								handleSliderButton(
-									towerWeaponSelected.poison,
-									'poison',
-									Math.max(towerWeaponPoisonIndex - 1, 0),
-								)}
-							class="tower-weapon-slider-button">-</button
-						>
-						<Slider
-							disabled={towerWeaponPoisonDisabled}
-							labelText="Poison"
-							min={towerWeaponSelected.poison[0][0]}
-							max={towerWeaponSelected.poison.at(-1)[0]}
-							bind:value={towerWeaponPoisonValue}
-							on:change={(e) =>
-								handleSliderChange(towerWeaponSelected.poison, 'poison')}
-						/>
-						<button
-							on:click={() =>
-								handleSliderButton(
-									towerWeaponSelected.poison,
-									'poison',
-									Math.min(
-										towerWeaponPoisonIndex + 1,
-										towerWeaponSelected.poison.length - 1,
-									),
-								)}
-							class="tower-weapon-slider-button">+</button
-						>
-					</div>
-					<p>
-						Upgrade #{towerWeaponPoisonIndex} Cost: {towerWeaponSelected.poison[
-							towerWeaponPoisonIndex
-						][1]}
-					</p>
-				</div>
-				<div class="tower-weapon-property">
-					<div class="tower-weapon-slider-container">
-						<button
-							on:click={() =>
-								handleSliderButton(
-									towerWeaponSelected.paralysis,
-									'paralysis',
-									Math.max(towerWeaponParalysisIndex - 1, 0),
-								)}
-							class="tower-weapon-slider-button">-</button
-						>
-						<Slider
-							disabled={towerWeaponParalysisDisabled}
-							labelText="Paralysis"
-							min={towerWeaponSelected.paralysis[0][0]}
-							max={towerWeaponSelected.paralysis.at(-1)[0]}
-							bind:value={towerWeaponParalysisValue}
-							on:change={(e) =>
-								handleSliderChange(towerWeaponSelected.paralysis, 'paralysis')}
-						/>
-						<button
-							on:click={() =>
-								handleSliderButton(
-									towerWeaponSelected.paralysis,
-									'paralysis',
-									Math.min(
-										towerWeaponParalysisIndex + 1,
-										towerWeaponSelected.paralysis.length - 1,
-									),
-								)}
-							class="tower-weapon-slider-button">+</button
-						>
-					</div>
-					<p>
-						Upgrade #{towerWeaponParalysisIndex} Cost: {towerWeaponSelected
-							.paralysis[towerWeaponParalysisIndex][1]}
-					</p>
-				</div>
-				<div class="tower-weapon-property">
-					<div class="tower-weapon-slider-container">
-						<button
-							on:click={() =>
-								handleSliderButton(
-									towerWeaponSelected.sleep,
-									'sleep',
-									Math.max(towerWeaponSleepIndex - 1, 0),
-								)}
-							class="tower-weapon-slider-button">-</button
-						>
-						<Slider
-							disabled={towerWeaponSleepDisabled}
-							labelText="Sleep"
-							min={towerWeaponSelected.sleep[0][0]}
-							max={towerWeaponSelected.sleep.at(-1)[0]}
-							bind:value={towerWeaponSleepValue}
-							on:change={(e) =>
-								handleSliderChange(towerWeaponSelected.sleep, 'sleep')}
-						/>
-						<button
-							on:click={() =>
-								handleSliderButton(
-									towerWeaponSelected.sleep,
-									'sleep',
-									Math.min(
-										towerWeaponSleepIndex + 1,
-										towerWeaponSelected.sleep.length - 1,
-									),
-								)}
-							class="tower-weapon-slider-button">+</button
-						>
-					</div>
-
-					<p>
-						Upgrade #{towerWeaponSleepIndex} Cost: {towerWeaponSelected.sleep[
-							towerWeaponSleepIndex
-						][1]}
-					</p>
-				</div>
-			{/if}
-
-			{#if towerWeaponSelectedWeaponType !== 'Bow' && towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
-				<div class="tower-weapon-property">
-					<RadioButtonGroup
-						legendText="Sharpness"
-						name="sharpness"
-						bind:selected={towerWeaponSharpnessLevel}
-					>
-						{#each towerWeaponSharpnessLevels as value}
-							<RadioButton labelText={`LV${value}`} {value} />
-						{/each}
-					</RadioButtonGroup>
-					<div class="sharpness-bar-container">
-						<SharpnessBar
-							sharpnessBoost={false}
-							sharpnessValues={towerWeaponSharpnessBarValues}
-						/>
-					</div>
-					<p>
-						Upgrade #{towerWeaponSharpnessIndex} Cost: {towerWeaponSelectedSeriesInfo
-							.sharpnessLevels[towerWeaponSharpnessIndex][1]}
-					</p>
-				</div>
-			{/if}
-			{#if towerWeaponSelectedWeaponType === 'Gunlance'}
-				<div class="tower-weapon-property">
-					<Dropdown
-						type="default"
-						titleText="Shell Level"
-						on:select={onSelectTowerWeaponGunlanceShellLevel}
-						bind:selectedId={towerWeaponGunlanceShellLevel}
-						items={towerWeaponGunlanceShellOptions}
-					/>
-					<p>
-						Upgrade #{towerWeaponGunlanceShellLevel} Cost: {towerWeaponGunlanceShellLevelCost}
-					</p>
-				</div>
-			{/if}
-			{#if towerWeaponSelectedWeaponType === 'Heavy Bowgun' || towerWeaponSelectedWeaponType === 'Light Bowgun'}
-				<div class="tower-weapon-property">
-					<Dropdown
-						type="default"
-						titleText="Reload Speed"
-						on:select={onSelectTowerWeaponReloadSpeed}
-						bind:selectedId={towerWeaponReloadSpeedValue}
-						items={towerWeaponReloadSpeedOptions}
-					/>
-					<p>
-						Upgrade #{towerWeaponReloadSpeedIndex} Cost: {towerWeaponReloadSpeedCost}
-					</p>
-				</div>
-				<div class="tower-weapon-property">
-					<Dropdown
-						type="default"
-						titleText="Recoil"
-						on:select={onSelectTowerWeaponRecoil}
-						bind:selectedId={towerWeaponRecoilValue}
-						items={towerWeaponRecoilOptions}
-					/>
-					<p>
-						Upgrade #{towerWeaponRecoilIndex} Cost: {towerWeaponRecoilCost}
-					</p>
-				</div>
-			{/if}
-			{#if towerWeaponSelectedWeaponType === 'Bow'}
-				<div class="tower-weapon-property">
-					<Dropdown
-						type="default"
-						titleText="Charge 1"
-						on:select={onSelectTowerWeaponBowCharge1}
-						bind:selectedId={towerWeaponBowCharge1Level}
-						items={towerWeaponBowChargeOptions}
-					/>
-					<p>
-						Upgrade #{parseInt(towerWeaponBowCharge1Level) - 1} Cost: {towerWeaponBowCharge1Cost}
-					</p>
-				</div>
-				<div class="tower-weapon-property">
-					<Dropdown
-						type="default"
-						titleText="Charge 2"
-						on:select={onSelectTowerWeaponBowCharge2}
-						bind:selectedId={towerWeaponBowCharge2Level}
-						items={towerWeaponBowChargeOptions}
-					/>
-					<p>
-						Upgrade #{parseInt(towerWeaponBowCharge2Level) - 1} Cost: {towerWeaponBowCharge2Cost}
-					</p>
-				</div>
-				<div class="tower-weapon-property">
-					<Dropdown
-						type="default"
-						titleText="Charge 3"
-						on:select={onSelectTowerWeaponBowCharge3}
-						bind:selectedId={towerWeaponBowCharge3Level}
-						items={towerWeaponBowChargeOptions}
-					/>
-					<p>
-						Upgrade #{parseInt(towerWeaponBowCharge3Level) - 1} Cost: {towerWeaponBowCharge3Cost}
-					</p>
-				</div>
-				<div class="tower-weapon-property">
-					<Dropdown
-						type="default"
-						titleText="Charge 4"
-						on:select={onSelectTowerWeaponBowCharge4}
-						bind:selectedId={towerWeaponBowCharge4Level}
-						items={towerWeaponBowChargeOptions}
-					/>
-					<p>
-						Upgrade #{parseInt(towerWeaponBowCharge4Level) - 1} Cost: {towerWeaponBowCharge4Cost}
-					</p>
-				</div>
-			{/if}
-		</div>
-		<div class="container-buttons"></div>
-		<Button kind="tertiary" icon={Download} on:click={downloadTowerWeaponImage}
-			>Download</Button
-		>
-		<div class="tower-weapon-stats" id="tower-weapon-dom">
-			<div
-				class="flex-centered"
-				style={towerWeaponExceedsMaxCost
-					? 'color: var(--ctp-red)'
-					: 'var(--ctp-text)'}
-			>
-				<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
-			</div>
-			<div class="tower-weapon-gems">
-				<p>
-					<InlineTooltip
-						tooltip="Item"
-						text={`${towerWeaponTotalGems.courage} Courage Gems`}
-						icon={getItemIcon('Ball')}
-						iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
-						iconSize={'clamp(1rem, 2vw, 2rem)'}
-					/>
-				</p>
-				<p>
-					<InlineTooltip
-						tooltip="Item"
-						text={`${towerWeaponTotalGems.glittering} Glittering Gems`}
-						icon={getItemIcon('Ball')}
-						iconColor={RarityColors[5]}
-						iconSize={'clamp(1rem, 2vw, 2rem)'}
-					/>
-				</p>
-				<p>
-					<InlineTooltip
-						tooltip="Item"
-						text={`${towerWeaponTotalGems.divine} Divine Gems`}
-						icon={getItemIcon('Ball')}
-						iconColor={RarityColors[3]}
-						iconSize={'clamp(1rem, 2vw, 2rem)'}
-					/>
-				</p>
-			</div>
-			<div class="tower-weapon-summary">
-				<p>
-					<InlineTooltip
-						tooltip={'Stat'}
-						text={`${towerWeaponAttackValue} Attack (${towerWeaponAttackIndex !== towerWeaponSelected.attack.length - 1 ? towerWeaponAttackIndex : 'MAX'})`}
-						iconSize={'clamp(1rem, 2vw, 2rem)'}
-						icon={getItemIcon('Knife')}
-						iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
-					/>
-				</p>
-				{#if towerWeaponElementValue > 0}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`${towerWeaponElementValue * 10} Element (${towerWeaponElementIndex !== towerWeaponSelected.element.length - 1 ? towerWeaponElementIndex : 'MAX'})`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponPoisonValue > 0}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`${towerWeaponPoisonValue * 10} Status (${towerWeaponPoisonIndex !== towerWeaponSelected.poison.length - 1 ? towerWeaponPoisonIndex : 'MAX'})`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={StatusIcons.find((e) => e.name === 'Poison')?.icon}
-						/>
-					</p>
-				{:else if towerWeaponParalysisValue > 0}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`${towerWeaponParalysisValue * 10} Status (${towerWeaponParalysisIndex !== towerWeaponSelected.paralysis.length - 1 ? towerWeaponParalysisIndex : 'MAX'})`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={StatusIcons.find((e) => e.name === 'Paralysis')?.icon}
-						/>
-					</p>
-				{:else if towerWeaponSleepValue > 0}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`${towerWeaponSleepValue * 10} Status (${towerWeaponSleepIndex !== towerWeaponSelected.sleep.length - 1 ? towerWeaponSleepIndex : 'MAX'})`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={StatusIcons.find((e) => e.name === 'Sleep')?.icon}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponAffinityValue > 0}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`${towerWeaponAffinityValue}% Affinity (${towerWeaponAffinityIndex !== towerWeaponSelected.affinity.length - 1 ? towerWeaponAffinityIndex : 'MAX'})`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={getItemIcon('Knife')}
-							iconColor={ItemColors.find((e) => e.name === 'Cyan')?.value}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponSharpnessLevel > 0}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`Sharpness LV${towerWeaponSharpnessIndex !== towerWeaponSelectedSeriesInfo.sharpnessLevels.length - 1 ? towerWeaponSharpnessIndex : ' MAX'}`}
-							iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={getItemIcon('Whetstone')}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponGunlanceShellLevel !== '0'}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`Shell LV${parseInt(towerWeaponGunlanceShellLevel) !== 8 ? parseInt(towerWeaponGunlanceShellLevel) + 1 : ' MAX'}`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={getWeaponIcon('Gunlance')}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponReloadSpeedValue !== 'Very Slow'}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`${towerWeaponReloadSpeedValue} Reload`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={getItemIcon('Shot')}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponRecoilValue !== 'Max'}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`${towerWeaponRecoilValue} Recoil`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={getItemIcon('Shot')}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponBowCharge1Level !== '1'}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`Charge 1 LV${towerWeaponBowCharge1Level !== '4' ? towerWeaponBowCharge1Level : ' MAX'}`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={getWeaponIcon('Bow')}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponBowCharge2Level !== '1'}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`Charge 2 LV${towerWeaponBowCharge2Level !== '4' ? towerWeaponBowCharge2Level : ' MAX'}`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={getWeaponIcon('Bow')}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponBowCharge3Level !== '1'}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`Charge 3 LV${towerWeaponBowCharge3Level !== '4' ? towerWeaponBowCharge3Level : ' MAX'}`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={getWeaponIcon('Bow')}
-						/>
-					</p>
-				{/if}
-				{#if towerWeaponBowCharge4Level !== '1'}
-					<p>
-						<InlineTooltip
-							tooltip={'Stat'}
-							text={`Charge 4 LV${towerWeaponBowCharge4Level !== '4' ? towerWeaponBowCharge4Level : ' MAX'}`}
-							iconSize={'clamp(1rem, 2vw, 2rem)'}
-							icon={getWeaponIcon('Bow')}
-						/>
-					</p>
-				{/if}
-			</div>
-			<div class="tower-weapon-name">
-				{#key towerWeaponSeriesColor}
-					<svelte:component
-						this={WeaponTypes.find(
-							(e) => e.name === towerWeaponSelectedWeaponType,
-						)?.icon}
-						{...{ color: towerWeaponSeriesColor, size: '64px' }}
-					/>
-
-					<strong>{towerWeaponSelectedWeaponOption}</strong>
-				{/key}
-			</div>
-		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
@@ -1514,14 +1480,15 @@
 		align-items: center;
 		flex-wrap: wrap;
 		margin-bottom: 1rem;
+		margin-top: 2rem;
 	}
 
 	.tower-weapon-properties {
 		margin-top: 1rem;
 		display: flex;
-		align-items: center;
+		justify-content: center;
 		gap: 1rem;
-		flex-wrap: wrap;
+		flex-direction: column;
 	}
 
 	.tower-weapon-property {
@@ -1631,5 +1598,12 @@
 
 	.tower-weapon-slider-button:active {
 		outline: 2px inset var(--ctp-surface0);
+	}
+
+	.tower-weapon-simulator-container {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		flex-wrap: wrap;
 	}
 </style>

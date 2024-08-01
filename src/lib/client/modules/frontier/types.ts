@@ -211,6 +211,7 @@ export type FrontierWeapon = {
 	// TODO should be in motion values instead
 	damageType: FrontierDamageType;
 	// TODO
+	image: string;
 };
 export type FrontierEquipmentSkillPoints = [
 	firstSkill: number,

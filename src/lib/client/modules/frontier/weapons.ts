@@ -13,6 +13,21 @@ import TonfaIcon from '$lib/client/components/frontier/icon/weapon/Tonfa_Icon_Wh
 import SwitchAxeFIcon from '$lib/client/components/frontier/icon/weapon/Switch_Axe_Icon_White4.svelte';
 import MagnetSpikeIcon from '$lib/client/components/frontier/icon/weapon/Magnet_Spike_Icon_White.svelte';
 
+import GreatSwordImage from '$lib/client/images/weapon/gs.webp';
+import LongSwordImage from '$lib/client/images/weapon/ls.webp';
+import DualSwordsImage from '$lib/client/images/weapon/ds.webp';
+import SwordAndShieldImage from '$lib/client/images/weapon/sns.webp';
+import GunlanceImage from '$lib/client/images/weapon/gl.webp';
+import LanceImage from '$lib/client/images/weapon/lance.webp';
+import HammerImage from '$lib/client/images/weapon/hammer.webp';
+import HuntingHornImage from '$lib/client/images/weapon/hh.webp';
+import LightBowgunImage from '$lib/client/images/weapon/lbg.webp';
+import HeavyBowgunImage from '$lib/client/images/weapon/hbg.webp';
+import BowImage from '$lib/client/images/weapon/bow.webp';
+import TonfaImage from '$lib/client/images/weapon/tonfa.webp';
+import SwitchAxeFImage from '$lib/client/images/weapon/saf.webp';
+import MagnetSpikeImage from '$lib/client/images/weapon/ms.webp';
+
 import GreatSwordIconSmall from '$lib/client/images/weapon/small/small_gs.webp';
 import LongSwordIconSmall from '$lib/client/images/weapon/small/small_ls.webp';
 import DualSwordsIconSmall from '$lib/client/images/weapon/small/small_ds.webp';
@@ -81,6 +96,17 @@ export function getWeaponIcon(weaponName: FrontierWeaponName) {
 	}
 
 	return found.icon;
+}
+
+export function getWeaponImage(weaponName: FrontierWeaponName) {
+	const image = WeaponTypes[4].image;
+
+	const found = WeaponTypes.find((w) => w.name === weaponName);
+	if (!found) {
+		return image;
+	}
+
+	return found.image;
 }
 
 export const HuntingHornWeaponNotesCombinations: FrontierHuntingHornWeaponNote[][] =
@@ -215,6 +241,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultParalysis: 10,
 		elementalExploitModifier: 15,
 		damageType: 'Cutting',
+		image: GreatSwordImage,
 	},
 	{
 		id: 1,
@@ -230,6 +257,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultParalysis: 0,
 		elementalExploitModifier: 5,
 		damageType: 'Shot',
+		image: HeavyBowgunImage,
 	},
 	{
 		id: 2,
@@ -245,6 +273,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultParalysis: 10,
 		elementalExploitModifier: 15,
 		damageType: 'Impact',
+		image: HammerImage,
 	},
 	{
 		id: 3,
@@ -260,6 +289,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultParalysis: 7,
 		elementalExploitModifier: 15,
 		damageType: 'Pierce',
+		image: LanceImage,
 	},
 	{
 		id: 4,
@@ -275,6 +305,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultParalysis: 7,
 		elementalExploitModifier: 15,
 		damageType: 'Cutting',
+		image: SwordAndShieldImage,
 	},
 	{
 		id: 5,
@@ -289,6 +320,8 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 0,
 		statusAssaultParalysis: 0,
 		elementalExploitModifier: 10,
+		image: LightBowgunImage,
+
 		damageType: 'Shot',
 	},
 	{
@@ -302,6 +335,8 @@ export const WeaponTypes: FrontierWeapon[] = [
 		hiden: 'Dual Dragon',
 		bloatAttackMultiplier: 1.4,
 		statusAssaultPoison: 10,
+		image: DualSwordsImage,
+
 		statusAssaultParalysis: 3,
 		elementalExploitModifier: 10,
 		damageType: 'Cutting',
@@ -318,6 +353,8 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 4.8,
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 7,
+		image: LongSwordImage,
+
 		elementalExploitModifier: 15,
 		damageType: 'Cutting',
 	},
@@ -333,6 +370,8 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 5.2,
 		statusAssaultPoison: 13,
 		statusAssaultParalysis: 7,
+		image: HuntingHornImage,
+
 		elementalExploitModifier: 15,
 		damageType: 'Impact',
 	},
@@ -347,6 +386,8 @@ export const WeaponTypes: FrontierWeapon[] = [
 		hiden: 'Cannon Emperor',
 		bloatAttackMultiplier: 2.3,
 		statusAssaultPoison: 10,
+		image: GunlanceImage,
+
 		statusAssaultParalysis: 9,
 		elementalExploitModifier: 10,
 		damageType: 'Cutting',
@@ -359,6 +400,8 @@ export const WeaponTypes: FrontierWeapon[] = [
 		smallIcon: BowIconSmall,
 		smallIconRed: BowIconSmallRed,
 		activeFeatureValue: 1024,
+		image: BowImage,
+
 		hiden: 'Bow Demon',
 		bloatAttackMultiplier: 1.2,
 		statusAssaultPoison: 0,
@@ -380,6 +423,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultParalysis: 6,
 		elementalExploitModifier: 15,
 		damageType: 'Impact',
+		image: TonfaImage,
 	},
 	{
 		id: 12,
@@ -391,6 +435,8 @@ export const WeaponTypes: FrontierWeapon[] = [
 		activeFeatureValue: 4096,
 		hiden: 'Edge Marshal',
 		bloatAttackMultiplier: 5.4,
+		image: SwitchAxeFImage,
+
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 7,
 		elementalExploitModifier: 15,
@@ -404,6 +450,8 @@ export const WeaponTypes: FrontierWeapon[] = [
 		smallIcon: MagnetSpikeIconSmall,
 		smallIconRed: MagnetSpikeIconSmallRed,
 		activeFeatureValue: 8192,
+		image: MagnetSpikeImage,
+
 		hiden: 'Magnetic Star',
 		bloatAttackMultiplier: 5.4,
 		statusAssaultPoison: 13,
