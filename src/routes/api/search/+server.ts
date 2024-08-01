@@ -18,7 +18,7 @@ const pageInfo: SearchItem[] = [
 		category: 'Tool',
 	},
 	{
-		title: 'Tower Weapon',
+		title: 'Tower Weapon Simulator',
 		slug: '/tools/simulator/tower-weapon',
 		content: `A customisable weapon made from materials found by playing through the Sky Corridor Sky Corridor.
 
@@ -324,6 +324,15 @@ The zenith skill does not need you to have over 100% affinity for it to take eff
 		slug: '/hunter-notes/weapons/active-feature',
 		content:
 			'The Active Feature system is a daily effect to weapon types. These effects last from 12 PM to 12 PM the next day, at which time a new weapon type will be chosen. You can see up to one day in advance by looking behind the main Active Feature bar at the top of your screen while in Mezeporta Mezeporta.',
+		id: 0,
+		hex: '0x00',
+		category: 'Guide',
+	},
+	{
+		title: 'Tower Weapons Overview',
+		slug: '/hunter-notes/weapons/tower',
+		content:
+			'A customisable weapon made from materials found by playing through the Sky Corridor. You can customize weapon attributes such as Sharpness, Raw, Elemental, Status, Shelling Type, Shot Type, etc. They are comparable to Lv50 G Rank weapons when fully upgraded. You can insert Tower Decorations, which gives skills without using slots, making it a powerful weapon when built correctly. You cannot reverse most of the attribute upgrades.',
 		id: 0,
 		hex: '0x00',
 		category: 'Guide',

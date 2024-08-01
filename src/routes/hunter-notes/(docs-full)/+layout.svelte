@@ -64,6 +64,7 @@
 	import { page } from '$app/stores';
 	import {
 		getMonsterByPathName,
+		getMonsterIcon,
 		monsterInfo,
 	} from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
@@ -308,6 +309,10 @@
 				{
 					id: '/hunter-notes/weapons/active-feature',
 					text: 'Active Feature',
+				},
+				{
+					id: '/hunter-notes/weapons/tower',
+					text: 'Tower Weapons',
 				},
 			],
 		},
@@ -679,6 +684,14 @@
 		{
 			id: '/hunter-notes/weapons/active-feature',
 			icon: getWeaponIcon('Magnet Spike'),
+		},
+		{
+			id: '/hunter-notes/weapons/tower',
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Duremudira',
+				background: false,
+			},
 		},
 		{
 			id: '/hunter-notes/armor',

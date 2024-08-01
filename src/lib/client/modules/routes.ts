@@ -840,6 +840,12 @@ export const guidesInfo: CategoryInfo[] = [
 				link: '/hunter-notes/weapons/active-feature',
 				image: AllWeapons,
 			},
+			{
+				name: 'Tower Weapons',
+				description: 'An overview on tower weapons.',
+				link: '/hunter-notes/weapons/tower',
+				image: Duremudira,
+			},
 		],
 	},
 	{

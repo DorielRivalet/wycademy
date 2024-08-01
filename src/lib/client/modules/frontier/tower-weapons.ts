@@ -76,6 +76,8 @@ import decorationOn from '$lib/client/images/weapon/tower/decoration.webp';
 import decorationOff from '$lib/client/images/weapon/tower/decoration.webp';
 import sigilOn from '$lib/client/images/weapon/tower/sigil-on.webp';
 import sigilOff from '$lib/client/images/weapon/tower/sigil-off.webp';
+import { ItemColors } from './items';
+import { RarityColors } from './objects';
 
 export type FrontierTowerWeaponSeriesInfo = {
 	series: FrontierTowerWeaponSeries;
@@ -232,6 +234,20 @@ export const towerWeaponSeries: FrontierTowerWeaponSeriesInfo[] = [
 		},
 	},
 ];
+
+export function getTowerWeaponIconColor(series: FrontierTowerWeaponSeries) {
+	switch (series) {
+		default:
+			// TODO add a getItemColor method
+			return RarityColors[0];
+		case 'Light':
+			return RarityColors[0];
+		case 'Dark':
+			return RarityColors[11];
+		case 'Blue':
+			return RarityColors[5];
+	}
+}
 
 export const towerWeapons: FrontierTowerWeapon[] = [
 	{
