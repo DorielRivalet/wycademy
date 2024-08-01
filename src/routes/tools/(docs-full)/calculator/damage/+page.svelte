@@ -2821,7 +2821,7 @@
 		inputDivaPrayerGemYellowName =
 			newInputs.inputDivaPrayerGemYellowName || inputDivaPrayerGemYellowName;
 		inputDivaPrayerGemGreenName =
-			newInputs.inputDivaPrayerGemRedName || inputDivaPrayerGemGreenName;
+			newInputs.inputDivaPrayerGemGreenName || inputDivaPrayerGemGreenName;
 		inputDivaPrayerGemBlueName =
 			newInputs.inputDivaPrayerGemBlueName || inputDivaPrayerGemBlueName;
 
@@ -8643,8 +8643,13 @@ does not get multiplied by horn */
 										step={1}
 										min={0}
 										bind:max={outputDivaPrayerGemRedMaxLevel}
+										invalid={inputNumberDivaPrayerGemRedLevel +
+											inputNumberDivaPrayerGemYellowLevel +
+											inputNumberDivaPrayerGemGreenLevel +
+											inputNumberDivaPrayerGemBlueLevel >
+											7}
 										bind:value={inputNumberDivaPrayerGemRedLevel}
-										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemRedMaxLevel}`}
+										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemRedMaxLevel} and all gem levels must not surpass 7.`}
 										label={'Diva Prayer Gem Red Level'}
 										disabled={inputDivaPrayerGemRedName === 'None'}
 									/>
@@ -8698,8 +8703,13 @@ does not get multiplied by horn */
 										step={1}
 										min={0}
 										bind:max={outputDivaPrayerGemYellowMaxLevel}
+										invalid={inputNumberDivaPrayerGemRedLevel +
+											inputNumberDivaPrayerGemYellowLevel +
+											inputNumberDivaPrayerGemGreenLevel +
+											inputNumberDivaPrayerGemBlueLevel >
+											7}
 										bind:value={inputNumberDivaPrayerGemYellowLevel}
-										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemYellowMaxLevel}`}
+										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemYellowMaxLevel} and all gem levels must not surpass 7.`}
 										label={'Diva Prayer Gem Yellow Level'}
 										disabled={inputDivaPrayerGemYellowName === 'None'}
 									/>
@@ -8749,9 +8759,14 @@ does not get multiplied by horn */
 										size="sm"
 										step={1}
 										min={0}
+										invalid={inputNumberDivaPrayerGemRedLevel +
+											inputNumberDivaPrayerGemYellowLevel +
+											inputNumberDivaPrayerGemGreenLevel +
+											inputNumberDivaPrayerGemBlueLevel >
+											7}
 										bind:max={outputDivaPrayerGemGreenMaxLevel}
 										bind:value={inputNumberDivaPrayerGemGreenLevel}
-										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemGreenMaxLevel}`}
+										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemGreenMaxLevel} and all gem levels must not surpass 7.`}
 										label={'Diva Prayer Gem Green Level'}
 										disabled={inputDivaPrayerGemGreenName === 'None'}
 									/>
@@ -8801,8 +8816,13 @@ does not get multiplied by horn */
 										step={1}
 										min={0}
 										bind:max={outputDivaPrayerGemBlueMaxLevel}
+										invalid={inputNumberDivaPrayerGemRedLevel +
+											inputNumberDivaPrayerGemYellowLevel +
+											inputNumberDivaPrayerGemGreenLevel +
+											inputNumberDivaPrayerGemBlueLevel >
+											7}
 										bind:value={inputNumberDivaPrayerGemBlueLevel}
-										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemBlueMaxLevel}`}
+										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemBlueMaxLevel} and all gem levels must not surpass 7.`}
 										label={'Diva Prayer Gem Blue Level'}
 										disabled={inputDivaPrayerGemBlueName === 'None'}
 									/>
