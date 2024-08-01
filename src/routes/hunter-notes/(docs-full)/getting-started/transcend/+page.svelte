@@ -836,7 +836,7 @@
 >
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
-			<img src={modalImage} alt={'motion value animation'} />
+			<img src={modalImage} alt={'transcend'} />
 			<div>{modalNotes}</div>
 		</div>
 	{:else}
