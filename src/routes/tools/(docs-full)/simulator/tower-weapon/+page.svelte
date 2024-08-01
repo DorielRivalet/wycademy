@@ -817,10 +817,9 @@
 			<p class="spaced-paragraph">
 				If you are looking for an explanation on tower weapons, see our <Link
 					inline
-					href="/hunter-notes/weapons/tower"
-					>Hunter's Notes page. This page is for checking the values of a Tower
-					Weapon, as shown in the game.</Link
-				>
+					href="/hunter-notes/weapons/tower">Hunter's Notes page.</Link
+				> This page is for checking the values of a Tower Weapon, as shown in the
+				game.
 			</p>
 
 			<div class="tower-weapon-simulator-container">
