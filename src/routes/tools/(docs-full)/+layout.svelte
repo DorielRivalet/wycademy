@@ -52,6 +52,7 @@
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import {
 		getNavigationItemFromLink,
+		getPageThumbnail,
 		toolsInfo,
 	} from '$lib/client/modules/routes';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
@@ -343,7 +344,11 @@
 <Head
 	title={headTitle}
 	{description}
-	image={pageThumbnail}
+	image={getPageThumbnail(
+		$page.url.pathname,
+		null,
+		$theme === 'g10' ? 'light' : 'dark',
+	)}
 	{url}
 	{website}
 	{authorName}
