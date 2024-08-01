@@ -54,6 +54,9 @@ import thumbnailLightWeaponMultipliers from '$lib/client/images/page-thumbnail/l
 import thumbnailLightSRStats from '$lib/client/images/page-thumbnail/light/style-rank-stats.png';
 import thumbnailLightWeaponTech from '$lib/client/images/page-thumbnail/light/weapons-tech-skills.png';
 import thumbnailLightTranscendElementalBursts from '$lib/client/images/page-thumbnail/light/elemental-bursts.png';
+import thumbnailLightSwordAndShieldMotionValues from '$lib/client/images/page-thumbnail/light/sword-and-shield-motion-values.png';
+import thumbnailLightTowerWeapon from '$lib/client/images/page-thumbnail/light/tower-weapon.png';
+import thumbnailLightSharedMotionValues from '$lib/client/images/page-thumbnail/light/shared-motion-values.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -68,6 +71,9 @@ import thumbnailDarkWeaponMultipliers from '$lib/client/images/page-thumbnail/da
 import thumbnailDarkSRStats from '$lib/client/images/page-thumbnail/dark/style-rank-stats.png';
 import thumbnailDarkWeaponTech from '$lib/client/images/page-thumbnail/dark/weapons-tech-skills.png';
 import thumbnailDarkTranscendElementalBursts from '$lib/client/images/page-thumbnail/dark/elemental-bursts.png';
+import thumbnailDarkSwordAndShieldMotionValues from '$lib/client/images/page-thumbnail/dark/sword-and-shield-motion-values.png';
+import thumbnailDarkTowerWeapon from '$lib/client/images/page-thumbnail/dark/tower-weapon.png';
+import thumbnailDarkSharedMotionValues from '$lib/client/images/page-thumbnail/dark/shared-motion-values.png';
 
 import { getWeaponIcon } from './frontier/weapons';
 import { monsterInfo } from './frontier/monsters';
@@ -161,6 +167,36 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/getting-started/transcend',
 		thumbnail: thumbnailLightTranscendElementalBursts,
 	},
+	{
+		embed: null,
+		link: '/tools/calculator/damage',
+		thumbnail: thumbnailLightSwordAndShieldMotionValues,
+	},
+	{
+		embed: 'calculator',
+		link: '/tools/calculator/damage',
+		thumbnail: thumbnailLightSwordAndShieldMotionValues,
+	},
+	{
+		embed: 'weapon-motion-values',
+		link: '/tools/calculator/damage',
+		thumbnail: thumbnailLightSwordAndShieldMotionValues,
+	},
+	{
+		embed: 'shared-motion-values',
+		link: '/tools/calculator/damage',
+		thumbnail: thumbnailLightSharedMotionValues,
+	},
+	{
+		embed: null,
+		link: '/tools/simulator/tower-weapon',
+		thumbnail: thumbnailLightTowerWeapon,
+	},
+	{
+		embed: 'tower-weapon',
+		link: '/tools/simulator/tower-weapon',
+		thumbnail: thumbnailLightTowerWeapon,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -237,6 +273,36 @@ const darkThumbnailInfo: {
 		embed: null,
 		link: '/hunter-notes/getting-started/transcend',
 		thumbnail: thumbnailDarkTranscendElementalBursts,
+	},
+	{
+		embed: null,
+		link: '/tools/calculator/damage',
+		thumbnail: thumbnailDarkSwordAndShieldMotionValues,
+	},
+	{
+		embed: 'calculator',
+		link: '/tools/calculator/damage',
+		thumbnail: thumbnailDarkSwordAndShieldMotionValues,
+	},
+	{
+		embed: 'weapon-motion-values',
+		link: '/tools/calculator/damage',
+		thumbnail: thumbnailDarkSwordAndShieldMotionValues,
+	},
+	{
+		embed: 'shared-motion-values',
+		link: '/tools/calculator/damage',
+		thumbnail: thumbnailDarkSharedMotionValues,
+	},
+	{
+		embed: null,
+		link: '/tools/simulator/tower-weapon',
+		thumbnail: thumbnailDarkTowerWeapon,
+	},
+	{
+		embed: 'tower-weapon',
+		link: '/tools/simulator/tower-weapon',
+		thumbnail: thumbnailDarkTowerWeapon,
 	},
 ];
 

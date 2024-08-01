@@ -6,6 +6,12 @@
 	import DivaPrayerGem from '$lib/client/components/frontier/icon/DivaPrayerGem.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import Tab from 'carbon-components-svelte/src/Tabs/Tab.svelte';
+	import Tabs from 'carbon-components-svelte/src/Tabs/Tabs.svelte';
+	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
+	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
+	import TabContent from 'carbon-components-svelte/src/Tabs/TabContent.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -5071,7 +5077,7 @@ does not get multiplied by horn */
 		];
 	}
 
-	let damageCalculatorHistoryLogsOrderReversed = false;
+	let damageCalculatorHistoryLogsOrderReversed = true;
 
 	type DamageCalculatorHistoryLogsEntry = {
 		time: string;
@@ -5083,8 +5089,7 @@ does not get multiplied by horn */
 
 	const maxTotalDivaPrayerGemLevel = 7;
 
-	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName =
-		'Sharpness UP';
+	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName = 'None';
 	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName = 'None';
 	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName = 'None';
 	let inputDivaPrayerGemBlueName: FrontierDivaPrayerGemSkillName = 'None';
@@ -5092,13 +5097,13 @@ does not get multiplied by horn */
 	const iconKey = 'divaPrayerGemIcon';
 
 	const mappedDivaPrayerGems = divaPrayerGems
-		.filter((e) => !e.unused)
+		.filter((e) => !e.unused && e.affectedByDamageCalculator)
 		.map((gem) => ({
 			id: gem.name,
 			text: gem.name,
 		}));
 
-	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 1;
+	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 0;
 	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 0;
 	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 0;
 	let inputNumberDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
@@ -5700,7 +5705,7 @@ does not get multiplied by horn */
 <HunterNotesPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<div>
-			<SectionHeadingTopLevel title={'Damage Calculator Overview'} />
+			<SectionHeadingTopLevel title={'Damage Calculator'} />
 			<p>
 				Welcome to Wycademy's Damage Calculator! Here you can calculate various
 				game statistics, such as your total damage, by selecting the gear and
@@ -5756,170 +5761,33 @@ does not get multiplied by horn */
 				/>, and the formulas for your total damage.
 			</p>
 
+			<p class="spaced-paragraph">
+				This damage calculator may not reflect the damage output you do in the
+				game with total accuracy. In order to track and report damage testing,
+				you can check <OutboundLink
+					href="https://github.com/DorielRivalet/wycademy/issues/360"
+					>the pinned issue in the repository</OutboundLink
+				>.
+			</p>
+
 			<section>
-				<SectionHeading level={2} title="Damage Calculator" />
-				<p class="spaced-paragraph">
-					This damage calculator may not reflect the damage output you do in the
-					game with total accuracy. In order to track and report damage testing,
-					you can check <OutboundLink
-						href="https://github.com/DorielRivalet/wycademy/issues/360"
-						>the pinned issue in the repository</OutboundLink
-					>.
-				</p>
-				<p class="spaced-paragraph">
-					Below are instructions for saving and loading the calculator inputs
-					from various sources in case you want to reference them later.
-				</p>
-				<div class="damage-calculator">
-					<div>
-						<InlineNotification
-							title="Note:"
-							subtitle="Refreshing the page resets all values."
-							kind="info"
-							lowContrast
-						/>
-
-						<p>
-							To load your gear from the game <strong
-								>(this feature is not currently available in overlay)</strong
-							>:
-						</p>
-						<OrderedList class="spaced-list">
-							<ListItem>Load the overlay.</ListItem>
-							<ListItem>Go into a quest and open overlay settings.</ListItem>
-							<ListItem>
-								Go to Hunter's Notes tab, right-click your guild card and select
-								"Copy stats for Wycademy's Damage Calculator".
-							</ListItem>
-							<ListItem>Paste them here.</ListItem>
-						</OrderedList>
-
-						<p>
-							If you want to import the save slots from the legacy calculator:
-						</p>
-						<OrderedList class="spaced-list">
-							<ListItem>Go to the legacy calculator.</ListItem>
-							<ListItem
-								>Open the Console by pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd>
-								+
-								<kbd>I</kbd>.</ListItem
-							>
-							<ListItem>
-								To put all of your save slots into the clipboard, paste the
-								following command and run it in the console: <CodeSnippet
-									code={'copy(JSON.stringify(localStorage));'}
-									showMoreLess={false}
-									type="inline"
-								/>
-							</ListItem>
-							<ListItem>
-								With the copied clipboard text, paste it into a text editor and
-								save as JSON file.
-							</ListItem>
-							<ListItem>
-								Click the button below, specifying the slot number in the number
-								input, in order to import the file.
-							</ListItem>
-						</OrderedList>
-						<div class="flex-row">
-							<div class="number-input-container">
-								<NumberInput
-									size="sm"
-									step={1}
-									min={1}
-									max={20}
-									bind:value={legacyCalculatorSaveSlotNumber}
-									invalidText={'Value must be between 1 and 20.'}
-									label={'Legacy Calculator Save Slot Number'}
-								/>
-							</div>
-							<Button
-								kind="tertiary"
-								icon={Upload}
-								on:click={() =>
-									loadLegacyInputsFromJSONFile(legacyCalculatorSaveSlotNumber)}
-								>Import legacy save file</Button
-							>
-							<Button
-								kind="tertiary"
-								icon={Save}
-								on:click={() => migrateLegacyCalculatorSaveSlots()}
-								>Migrate all save slots</Button
-							>
-						</div>
-					</div>
-
-					{#if showDamageCalculatorLegacyInputsJSONError}
-						<InlineNotification
-							title="Error:"
-							subtitle="Invalid legacy damage calculator inputs in the imported file."
-							kind="error"
-							hideCloseButton
-							lowContrast
-							on:close={() =>
-								(showDamageCalculatorLegacyInputsJSONError = false)}
-						/>
-					{/if}
-
-					{#if showDamageCalculatorInputsJSONError}
-						<InlineNotification
-							title="Error:"
-							subtitle="Invalid damage calculator inputs in the JSON text area."
-							kind="error"
-							hideCloseButton
-							lowContrast
-							on:close={() => (showDamageCalculatorInputsJSONError = false)}
-						/>
-					{/if}
-
-					<div class="damage-calculator-container-buttons">
-						<div class="buttons-top">
-							<TextArea
-								labelText="Load Data"
-								helperText={'Press "Update" to update from these inputs values'}
-								placeholder="Enter inputs..."
-								bind:value={inputTextImportData}
-							/>
-							<Button kind="tertiary" icon={Restart} on:click={updateInputs}
-								>Update</Button
-							>
-							<Button
-								kind="tertiary"
-								icon={Upload}
-								on:click={loadInputsFromJSONFile}>Load from file</Button
-							>
-						</div>
-						<div class="buttons-bottom">
-							<div class="container-shiki">
-								{#if isShikiLoading}
-									<div class="shiki-loading">
-										<CodeSnippet type="multi" skeleton />
-									</div>
-								{:else}
-									<div class="shiki-code">
-										<CodeSnippet
-											showMoreLess={false}
-											hideCopyButton
-											type="multi">{@html inputsHTML}</CodeSnippet
-										>
-									</div>
-								{/if}
-							</div>
-							<div class="button-container">
-								<CopyButton text={inputTextInputs} />
-							</div>
-
-							<Button
-								kind="tertiary"
-								icon={DocumentDownload}
-								on:click={() => saveInputsAsJSONFile(inputTextInputs)}
-								>Save inputs to file</Button
-							>
-						</div>
-						<!-- <Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} /> -->
-					</div>
-
-					<div>
+				<SectionHeading level={2} title="Calculator" />
+				<div>
+					<InlineNotification
+						title="Note:"
+						subtitle="Refreshing the page resets all values."
+						kind="info"
+						lowContrast
+					/>
+					<p>
+						The calculator does not include Diva Prayer Gems that do not affect
+						it. The full list is found in our <Link
+							inline
+							href="/hunter-notes/events/diva-defense#diva-prayer-gems"
+							>Hunter's Notes.</Link
+						>
+					</p>
+					<div class="true-raw-converter">
 						<p>Attack Display Value to True Raw Converter:</p>
 						<div class="flex-row-centered">
 							<div class="number-input-container">
@@ -5943,3066 +5811,3274 @@ does not get multiplied by horn */
 						</div>
 					</div>
 
-					<div class="container-inputs">
-						<div class="inputs-1">
-							<div class="input-sections-container">
-								<div class="input-section">
-									<div class="small-header">✨ Affinity</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Style Rank Affinity"
-											bind:selectedId={inputStyleRankAffinity}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Affinity +20% (+20%)',
-													text: 'Affinity +20% (+20%)',
-												},
-												{
-													id: 'Affinity +24% (+24%)',
-													text: 'Affinity +24% (+24%)',
-												},
-												{
-													id: 'Affinity +26% (+26%)',
-													text: 'Affinity +26% (+26%)',
-												},
-											]}
-										/>
-										<Dropdown
-											titleText="Melee Sharpness"
-											bind:selectedId={inputMeleeSharpnessAffinity}
-											items={[
-												{
-													id: 'Below Blue or Gunners (+0%)',
-													text: 'Below Blue or Gunners (+0%)',
-												},
-												{ id: 'Blue (+5%)', text: 'Blue (+5%)' },
-												{
-													id: 'White Upwards (+10%)',
-													text: 'White Upwards (+10%)',
-												},
-											]}
-										/>
-										<Dropdown
-											titleText="Expert Skills"
-											bind:selectedId={inputExpertSkills}
-											on:select={(e) =>
-												setIssenValues(
-													inputExpertSkills === 'Determination (+100%)',
-												)}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Expert +1 (+10%)', text: 'Expert +1 (+10%)' },
-												{ id: 'Expert +2 (+20%)', text: 'Expert +2 (+20%)' },
-												{ id: 'Expert +3 (+30%)', text: 'Expert +3 (+30%)' },
-												{ id: 'Expert +4 (+40%)', text: 'Expert +4 (+40%)' },
-												{ id: 'Expert +5 (+50%)', text: 'Expert +5 (+50%)' },
-												{
-													id: 'Determination (+100%)',
-													text: 'Determination (+100%)',
-												},
-											]}
-										/>
-										<Dropdown
-											titleText="Flash Conversion"
-											bind:selectedId={inputFlashConversion}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Critical Conversion (+30%)',
-													text: 'Critical Conversion (+30%)',
-												},
-											]}
-										/>
+					<div>
+						<Accordion>
+							<AccordionItem open title="Inputs">
+								<div class="container-inputs">
+									<div class="inputs-1">
+										<div class="input-sections-container">
+											<div class="input-section">
+												<div class="small-header">✨ Affinity</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="Style Rank Affinity"
+														bind:selectedId={inputStyleRankAffinity}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Affinity +20% (+20%)',
+																text: 'Affinity +20% (+20%)',
+															},
+															{
+																id: 'Affinity +24% (+24%)',
+																text: 'Affinity +24% (+24%)',
+															},
+															{
+																id: 'Affinity +26% (+26%)',
+																text: 'Affinity +26% (+26%)',
+															},
+														]}
+													/>
+													<Dropdown
+														titleText="Melee Sharpness"
+														bind:selectedId={inputMeleeSharpnessAffinity}
+														items={[
+															{
+																id: 'Below Blue or Gunners (+0%)',
+																text: 'Below Blue or Gunners (+0%)',
+															},
+															{ id: 'Blue (+5%)', text: 'Blue (+5%)' },
+															{
+																id: 'White Upwards (+10%)',
+																text: 'White Upwards (+10%)',
+															},
+														]}
+													/>
+													<Dropdown
+														titleText="Expert Skills"
+														bind:selectedId={inputExpertSkills}
+														on:select={(e) =>
+															setIssenValues(
+																inputExpertSkills === 'Determination (+100%)',
+															)}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Expert +1 (+10%)',
+																text: 'Expert +1 (+10%)',
+															},
+															{
+																id: 'Expert +2 (+20%)',
+																text: 'Expert +2 (+20%)',
+															},
+															{
+																id: 'Expert +3 (+30%)',
+																text: 'Expert +3 (+30%)',
+															},
+															{
+																id: 'Expert +4 (+40%)',
+																text: 'Expert +4 (+40%)',
+															},
+															{
+																id: 'Expert +5 (+50%)',
+																text: 'Expert +5 (+50%)',
+															},
+															{
+																id: 'Determination (+100%)',
+																text: 'Determination (+100%)',
+															},
+														]}
+													/>
+													<Dropdown
+														titleText="Flash Conversion"
+														bind:selectedId={inputFlashConversion}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Critical Conversion (+30%)',
+																text: 'Critical Conversion (+30%)',
+															},
+														]}
+													/>
 
-										<Dropdown
-											titleText="Issen Skills"
-											bind:selectedId={inputIssenSkills}
-											disabled={inputExpertSkills === 'Determination (+100%)'}
-											items={[
-												{
-													id: 'None or Determination',
-													text: 'None or Determination',
-												},
-												{
-													id: 'Issen +1 (+5% / +0.10x)',
-													text: 'Issen +1 (+5% / +0.10x)',
-												},
-												{
-													id: 'Issen +2 (+10% / +0.15x)',
-													text: 'Issen +2 (+10% / +0.15x)',
-												},
-												{
-													id: 'Issen +3 (+20% / +0.25x)',
-													text: 'Issen +3 (+20% / +0.25x)',
-												},
-											]}
-										/>
+													<Dropdown
+														titleText="Issen Skills"
+														bind:selectedId={inputIssenSkills}
+														disabled={inputExpertSkills ===
+															'Determination (+100%)'}
+														items={[
+															{
+																id: 'None or Determination',
+																text: 'None or Determination',
+															},
+															{
+																id: 'Issen +1 (+5% / +0.10x)',
+																text: 'Issen +1 (+5% / +0.10x)',
+															},
+															{
+																id: 'Issen +2 (+10% / +0.15x)',
+																text: 'Issen +2 (+10% / +0.15x)',
+															},
+															{
+																id: 'Issen +3 (+20% / +0.25x)',
+																text: 'Issen +3 (+20% / +0.25x)',
+															},
+														]}
+													/>
 
-										<Dropdown
-											titleText="Ceaseless"
-											bind:selectedId={inputCeaseless}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Ceaseless 1st Stage (+35% / +0.10x)',
-													text: 'Ceaseless 1st Stage (+35% / +0.10x)',
-												},
-												{
-													id: 'Ceaseless 2nd Stage (+50% / +0.15x)',
-													text: 'Ceaseless 2nd Stage (+50% / +0.15x)',
-												},
-												{
-													id: 'Ceaseless Up 3rd Stage (+60% / +0.20x)',
-													text: 'Ceaseless Up 3rd Stage (+60% / +0.20x)',
-												},
-											]}
-										/>
+													<Dropdown
+														titleText="Ceaseless"
+														bind:selectedId={inputCeaseless}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Ceaseless 1st Stage (+35% / +0.10x)',
+																text: 'Ceaseless 1st Stage (+35% / +0.10x)',
+															},
+															{
+																id: 'Ceaseless 2nd Stage (+50% / +0.15x)',
+																text: 'Ceaseless 2nd Stage (+50% / +0.15x)',
+															},
+															{
+																id: 'Ceaseless Up 3rd Stage (+60% / +0.20x)',
+																text: 'Ceaseless Up 3rd Stage (+60% / +0.20x)',
+															},
+														]}
+													/>
 
-										<Dropdown
-											titleText="Starving Wolf"
-											bind:selectedId={inputStarvingWolf}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Starving Wolf+1 (+50% / +0.00x)',
-													text: 'Starving Wolf+1 (+50% / +0.00x)',
-												},
-												{
-													id: 'Starving Wolf+2 (+50% / +0.10x)',
-													text: 'Starving Wolf+2 (+50% / +0.10x)',
-												},
-											]}
-										/>
+													<Dropdown
+														titleText="Starving Wolf"
+														bind:selectedId={inputStarvingWolf}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Starving Wolf+1 (+50% / +0.00x)',
+																text: 'Starving Wolf+1 (+50% / +0.00x)',
+															},
+															{
+																id: 'Starving Wolf+2 (+50% / +0.10x)',
+																text: 'Starving Wolf+2 (+50% / +0.10x)',
+															},
+														]}
+													/>
 
-										<Dropdown
-											titleText="Affinity Items"
-											bind:selectedId={inputAffinityItems}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Caravan Whetstone (+10%)',
-													text: 'Caravan Whetstone (+10%)',
-												},
-												{ id: 'Halk Drink (+30%)', text: 'Halk Drink (+30%)' },
-												{ id: 'Both (+40%)', text: 'Both (+40%)' },
-											]}
-										/>
+													<Dropdown
+														titleText="Affinity Items"
+														bind:selectedId={inputAffinityItems}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Caravan Whetstone (+10%)',
+																text: 'Caravan Whetstone (+10%)',
+															},
+															{
+																id: 'Halk Drink (+30%)',
+																text: 'Halk Drink (+30%)',
+															},
+															{ id: 'Both (+40%)', text: 'Both (+40%)' },
+														]}
+													/>
 
-										<Dropdown
-											titleText="GS Active Feature"
-											bind:selectedId={inputGsActiveFeature}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Unsheathe and Parry Attacks (+100%)',
-													text: 'Unsheathe and Parry Attacks (+100%)',
-												},
-											]}
-										/>
-									</div>
-								</div>
-
-								<div class="input-section">
-									<div class="small-header">💪 Multiplied Base</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Attack Skills"
-											bind:selectedId={inputAttackSkills}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Strong Attack +1 (+20)',
-													text: 'Strong Attack +1 (+20)',
-												},
-												{
-													id: 'Strong Attack +2 (+35)',
-													text: 'Strong Attack +2 (+35)',
-												},
-												{
-													id: 'Strong Attack +3 (+50)',
-													text: 'Strong Attack +3 (+50)',
-												},
-												{
-													id: 'Strong Attack +4 (+80)',
-													text: 'Strong Attack +4 (+80)',
-												},
-												{
-													id: 'Determination (+100)',
-													text: 'Determination (+100)',
-												},
-												{
-													id: 'Strong Attack +5 (+150)',
-													text: 'Strong Attack +5 (+150)',
-												},
-												{
-													id: 'Strong Attack +6 (+200)',
-													text: 'Strong Attack +6 (+200)',
-												},
-											]}
-										/>
-
-										<div class="dropdown-tooltip-container">
-											<Tooltip align="start">
-												<p class="spaced-paragraph">
-													These are not a final multiplier but rather additional
-													true raw damage.
-												</p>
-												<p>
-													For example, Weapons Art Large on a 600 true raw
-													weapon would be the same as +30 Attack or Attack Up
-													Very Large (600*0.05).
-												</p>
-											</Tooltip>
-											<Dropdown
-												titleText="Caravan Skills"
-												bind:selectedId={inputCaravanSkills}
-												items={[
-													{ id: 'None', text: 'None' },
-													{
-														id: 'Shooting Rampage (x1.1) (Ranged Only)',
-														text: 'Shooting Rampage (x1.1) (Ranged Only)',
-													},
-													{
-														id: 'Weapons Art Small (x1.01)',
-														text: 'Weapons Art Small (x1.01)',
-													},
-													{
-														id: 'Weapons Art Medium (x1.025)',
-														text: 'Weapons Art Medium (x1.025)',
-													},
-													{
-														id: 'Weapons Art Large (x1.05)',
-														text: 'Weapons Art Large (x1.05)',
-													},
-												]}
-											/>
-										</div>
-
-										<Dropdown
-											titleText="Passive Items"
-											bind:selectedId={inputPassiveItems}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Power Charm (+6)', text: 'Power Charm (+6)' },
-												{ id: 'Power Talon (+9)', text: 'Power Talon (+9)' },
-												{ id: 'Both (+15)', text: 'Both (+15)' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Food / Consumables"
-											bind:selectedId={inputFoodConsumables}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Demon Drug / Halk D. Drug (+3)',
-													text: 'Demon Drug / Halk D. Drug (+3)',
-												},
-												{
-													id: 'Mega Demon Drug (+5)',
-													text: 'Mega Demon Drug (+5)',
-												},
-												{
-													id: 'Small Atk Food (+3)',
-													text: 'Small Atk Food (+3)',
-												},
-												{ id: 'Med Atk Food(+5)', text: 'Med Atk Food(+5)' },
-												{
-													id: 'SR Med Atk Food (+10)',
-													text: 'SR Med Atk Food (+10)',
-												},
-												{
-													id: 'SR Lg Atk Food (+15)',
-													text: 'SR Lg Atk Food (+15)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Seeds, Flutes, Cat"
-											bind:selectedId={inputSeedsFlutesCat}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Power Seed(+10)', text: 'Power Seed(+10)' },
-												{ id: 'Demon Horn (+10)', text: 'Demon Horn (+10)' },
-												{
-													id: 'Art of Dancing (+10)',
-													text: 'Art of Dancing (+10)',
-												},
-												{ id: 'Power Pill (+25)', text: 'Power Pill (+25)' },
-												{
-													id: 'Tonfa Body Aura (Ranged Only) (+25)',
-													text: 'Tonfa Body Aura (Ranged Only) (+25)',
-												},
-												{
-													id: 'Tonfa B. Aura A. Feature (Ranged Only) (+50)',
-													text: 'Tonfa B. Aura A. Feature (Ranged Only) (+50)',
-												},
-												{
-													id: 'Long Sword Attack Up (+10)',
-													text: 'Long Sword Attack Up (+10)',
-												},
-												{
-													id: 'Long Sword Active Feature Attack Up (+40)',
-													text: 'Long Sword Active Feature Attack Up (+40)',
-												},
-												{
-													id: '(Cat) Demon Horn (No Skill) (+10)',
-													text: '(Cat) Demon Horn (No Skill) (+10)',
-												},
-												{
-													id: '(Cat) Demon Horn +1 (+20)',
-													text: '(Cat) Demon Horn +1 (+20)',
-												},
-												{
-													id: '(Cat) Demon Horn +2 (+40)',
-													text: '(Cat) Demon Horn +2 (+40)',
-												},
-												{
-													id: '(Cat) D. Horn (No Skill) & Encourage+1 (+20)',
-													text: '(Cat) D. Horn (No Skill) & Encourage+1 (+20)',
-												},
-												{
-													id: '(Cat) D. Horn (No Skill) & Encourage+2 (+30)',
-													text: '(Cat) D. Horn (No Skill) & Encourage+2 (+30)',
-												},
-												{
-													id: '(Cat) Demon Horn+1 & Encourage+1 (+30)',
-													text: '(Cat) Demon Horn+1 & Encourage+1 (+30)',
-												},
-												{
-													id: '(Cat) Demon Horn+2 & Encourage+1 (+50)',
-													text: '(Cat) Demon Horn+2 & Encourage+1 (+50)',
-												},
-												{
-													id: '(Cat) Demon Horn+1 & Encourage+2 (+40)',
-													text: '(Cat) Demon Horn+1 & Encourage+2 (+40)',
-												},
-												{
-													id: '(Cat) Demon Horn+2 & Encourage+2 (+60)',
-													text: '(Cat) Demon Horn+2 & Encourage+2 (+60)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Lance / HBG"
-											bind:selectedId={inputLanceHbg}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'HBG Power Barrel (+20)',
-													text: 'HBG Power Barrel (+20)',
-												},
-												{
-													id: 'Lance Self Buff (+50)',
-													text: 'Lance Self Buff (+50)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Lone Wolf"
-											bind:selectedId={inputLoneWolf}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Active (+100)', text: 'Active (+100)' },
-											]}
-										/>
-
-										<div class="dropdown-tooltip-container">
-											<Tooltip align="start">
-												<p>Does not need affinity over 100% to add True Raw.</p>
-											</Tooltip>
-											<Dropdown
-												titleText="Crit Conversion Up"
-												bind:selectedId={inputCritConversionUp}
-												items={[
-													{ id: 'None', text: 'None' },
-													{
-														id: 'Crit C. Up +1 (Z1)',
-														text: 'Crit C. Up +1 (Z1)',
-													},
-													{
-														id: 'Crit C. Up +2 (Z1)',
-														text: 'Crit C. Up +2 (Z1)',
-													},
-												]}
-											/>
-										</div>
-										<Dropdown
-											titleText="Stylish Assault"
-											bind:selectedId={inputStylishAssault}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Active (+100)', text: 'Active (+100)' },
-												{
-													id: 'S. Assault Up (+120) (Z1)',
-													text: 'S. Assault Up (+120) (Z1)',
-												},
-												{
-													id: 'S. Assault Up (+140) (Z1)',
-													text: 'S. Assault Up (+140) (Z1)',
-												},
-												{
-													id: 'S. Assault Up (+160) (Z1)',
-													text: 'S. Assault Up (+160) (Z1)',
-												},
-												{
-													id: 'S. Assault Up (+180) (Z1)',
-													text: 'S. Assault Up (+180) (Z1)',
-												},
-												{
-													id: 'S. Assault Up (+200) (Z1)',
-													text: 'S. Assault Up (+200) (Z1)',
-												},
-												{
-													id: 'S. Assault Up (+220) (Z1)',
-													text: 'S. Assault Up (+220) (Z1)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Consumption Slayer"
-											bind:selectedId={inputConsumptionSlayer}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Active (+100)', text: 'Active (+100)' },
-											]}
-										/>
-
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={0}
-												max={80}
-												bind:value={inputNumberVampirism}
-												invalidText={'Value must be between 0 and 80.'}
-												on:click={(e) => e.preventDefault()}
-											>
-												<span slot="label"
-													><Tooltip align="start" triggerText="Vampirism">
-														<p class="spaced-paragraph">
-															Each successfully leeching attack with a weapon
-															adds a certain amount of additional true raw up to
-															a maximum of +80.
-														</p>
-														<p>Dual Swords, Tonfa, LBG: +3</p>
-														<p>
-															SnS, LS, Lance, Gunlance, Swaxe F, HBG, Bow: +4
-														</p>
-														<p>Hammer, Hunting Horn: +5</p>
-														<p>Great Sword: +7</p>
-													</Tooltip></span
-												>
-											</NumberInput>
-										</div>
-
-										<Dropdown
-											titleText="Obscurity"
-											bind:selectedId={inputObscurity}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: '1 Block (+40 / +30 / +20)',
-													text: '1 Block (+40 / +30 / +20)',
-												},
-												{
-													id: '2 Blocks (+80 / +60 / +40)',
-													text: '2 Blocks (+80 / +60 / +40)',
-												},
-												{
-													id: '3 Blocks (+120 / +90 / +60)',
-													text: '3 Blocks (+120 / +90 / +60)',
-												},
-												{
-													id: '4 Blocks (+160 / +120 / +80)',
-													text: '4 Blocks (+160 / +120 / +80)',
-												},
-												{
-													id: '5 Blocks (+200 / +150 / +100)',
-													text: '5 Blocks (+200 / +150 / +100)',
-												},
-												{
-													id: '6 Blocks (+220 / +165 / +110)',
-													text: '6 Blocks (+220 / +165 / +110)',
-												},
-												{
-													id: '7 Blocks (+240 / +180 / +120)',
-													text: '7 Blocks (+240 / +180 / +120)',
-												},
-												{
-													id: '8 Blocks (+260 / +195 / +130)',
-													text: '8 Blocks (+260 / +195 / +130)',
-												},
-												{
-													id: '9 Blocks (+280 / +210 / +140)',
-													text: '9 Blocks (+280 / +210 / +140)',
-												},
-												{
-													id: '10 Blocks (+300 / +225 / +150)',
-													text: '10 Blocks (+300 / +225 / +150)',
-												},
-												{
-													id: '1 Block (+70 / +50 / +30)',
-													text: 'Obscurity Up 1 Block (+70 / +50 / +30)',
-												},
-												{
-													id: '2 Blocks (+140 / +100 / +60)',
-													text: 'Obscurity Up 2 Blocks (+140 / +100 / +60)',
-												},
-												{
-													id: '3 Blocks (+210 / +150 / +90)',
-													text: 'Obscurity Up 3 Blocks (+210 / +150 / +90)',
-												},
-												{
-													id: '4 Blocks (+240 / +175 / +110)',
-													text: 'Obscurity Up 4 Blocks (+240 / +175 / +110)',
-												},
-												{
-													id: '5 Blocks (+270 / +200 / +130)',
-													text: 'Obscurity Up 5 Blocks (+270 / +200 / +130)',
-												},
-												{
-													id: '6 Blocks (+300 / +225 / +150)',
-													text: 'Obscurity Up 6 Blocks (+300 / +225 / +150)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Rush"
-											bind:selectedId={inputRush}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: '1st Stage (+50)', text: '1st Stage (+50)' },
-												{ id: '2nd Stage (+130)', text: '2nd Stage (+130)' },
-												{
-													id: '3rd Stage (+200) (Rush Up)',
-													text: '3rd Stage (+200) (Rush Up)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Furious"
-											bind:selectedId={inputFurious}
-											items={[
-												{
-													id: 'None (x1 Ele & Status)',
-													text: 'None (x1 Ele & Status)',
-												},
-												{
-													id: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)',
-													text: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)',
-												},
-												{
-													id: '2nd Stage (+100 / 1.10x Ele & Status / +25% Affinity)',
-													text: '2nd Stage (+100 / 1.10x Ele & Status / +25% Affinity)',
-												},
-												{
-													id: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
-													text: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Shiriagari"
-											bind:selectedId={inputShiriagari}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: '1 Minute (+20)', text: '1 Minute (+20)' },
-												{ id: '3 Minutes (+50)', text: '3 Minutes (+50)' },
-												{ id: '5 Minutes (+80)', text: '5 Minutes (+80)' },
-												{ id: '10 Minutes (+130)', text: '10 Minutes (+130)' },
-												{ id: '15 Minutes (+180)', text: '15 Minutes (+180)' },
-												{ id: '20 Minutes (+200)', text: '20 Minutes (+200)' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Incitement"
-											bind:selectedId={inputIncitement}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Active (+40)', text: 'Active (+40)' },
-											]}
-										/>
-
-										<div class="dropdown-tooltip-container">
-											<Tooltip align="start">
-												<p>
-													Adjusts base True Raw appropriately if you are using a
-													Length Up sigil on a G Rank weapon. This reduction
-													does not stack so 3 sigils to increase length 3 times
-													would be the same reduction as 1.
-												</p>
-											</Tooltip>
-											<Dropdown
-												titleText="Length Up"
-												bind:selectedId={inputLengthUp}
-												items={[
-													{ id: 'None', text: 'None' },
-													{ id: 'Active', text: 'Active' },
-												]}
-											/>
-										</div>
-
-										<Dropdown
-											titleText="Road Attack"
-											bind:selectedId={inputRoadAttack}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Road Attack Lv 1 (+10)',
-													text: 'Road Attack Lv 1 (+10)',
-												},
-												{
-													id: 'Road Attack Lv 2 (+20)',
-													text: 'Road Attack Lv 2 (+20)',
-												},
-												{
-													id: 'Road Attack Lv 3 (+30)',
-													text: 'Road Attack Lv 3 (+30)',
-												},
-												{
-													id: 'Road Attack Lv 4 (+50)',
-													text: 'Road Attack Lv 4 (+50)',
-												},
-												{
-													id: 'Road Attack Lv 5 (+70)',
-													text: 'Road Attack Lv 5 (+70)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Road Advancement"
-											bind:selectedId={inputRoadAdvLvFlr}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Lv 1 (+20 / +10)', text: 'Lv 1 (+20 / +10)' },
-												{ id: 'Lv 2 (+40 / +10)', text: 'Lv 2 (+40 / +10)' },
-												{ id: 'Lv 3 (+60 / +10)', text: 'Lv 3 (+60 / +10)' },
-											]}
-										/>
-
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberRoadFloor}
-												invalidText={invalidNumberValueText}
-												on:click={(e) => e.preventDefault()}
-												><span slot="label"
-													><Tooltip align="start" triggerText="Road Floor">
-														<p>Attack rises every 5 floors, stopping at 26.</p>
-													</Tooltip></span
-												>
-											</NumberInput>
-										</div>
-
-										<Dropdown
-											titleText="Road Last Stand"
-											bind:selectedId={inputRoadLastStand}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Last Stand Lv 1 (+80)',
-													text: 'Last Stand Lv 1 (+80)',
-												},
-												{
-													id: 'Last Stand Lv 2 (+120)',
-													text: 'Last Stand Lv 2 (+120)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Duremudira Attack"
-											bind:selectedId={inputDuremudiraAttack}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Dure Attack Lv 1 (+50)',
-													text: 'Dure Attack Lv 1 (+50)',
-												},
-												{
-													id: 'Dure Attack Lv 2 (+75)',
-													text: 'Dure Attack Lv 2 (+75)',
-												},
-												{
-													id: 'Dure Attack Lv 3 (+100)',
-													text: 'Dure Attack Lv 3 (+100)',
-												},
-												{
-													id: 'Dure Attack Lv 4 (+150)',
-													text: 'Dure Attack Lv 4 (+150)',
-												},
-												{
-													id: 'Dure Attack Lv 5 (+200)',
-													text: 'Dure Attack Lv 5 (+200)',
-												},
-											]}
-										/>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberConquestAttack}
-												invalidText={invalidNumberValueText}
-												on:click={(e) => e.preventDefault()}
-											>
-												<span slot="label"
-													><Tooltip align="start" triggerText="Conquest Attack">
-														<p>
-															The value of the skill as displayed on your SR
-															stats if enabled. Only takes effect on standard
-															Conquest quests.
-															<strong>Shiten quests do not count.</strong>
-														</p>
-													</Tooltip></span
-												>
-											</NumberInput>
-										</div>
-										<div class="dropdown-tooltip-container">
-											<Tooltip align="start">
-												<p>
-													Toggle whether or not you have consumed a Conquest
-													Attack Potion on a standard Conquest quest.
-													<strong>Shiten quests do not count.</strong>
-												</p>
-											</Tooltip>
-											<Dropdown
-												titleText="Attack Medicine"
-												bind:selectedId={inputAttackMedicine}
-												items={[
-													{ id: 'None', text: 'None' },
-													{ id: 'Active (+100)', text: 'Active (+100)' },
-												]}
-											/>
-										</div>
-									</div>
-								</div>
-
-								<div class="input-section">
-									<div class="small-header">⚔️ Multipliers</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="HH Attack Songs"
-											bind:selectedId={inputHhAttackSongs}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'G Rank Atk Sm (x1.10)',
-													text: 'G Rank Atk Sm (x1.10)',
-												},
-												{
-													id: 'G Rank Atk Sm Bonus (x1.15)',
-													text: 'G Rank Atk Sm Bonus (x1.15)',
-												},
-												{
-													id: 'G Rank Atk Lg (x1.15)',
-													text: 'G Rank Atk Lg (x1.15)',
-												},
-												{
-													id: 'G Rank Atk Lg Bonus (x1.2)',
-													text: 'G Rank Atk Lg Bonus (x1.2)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Adrenaline/Vigorous"
-											bind:selectedId={inputAdrenalineVigorous}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{ id: 'Vigorous (x1.15)', text: 'Vigorous (x1.15)' },
-												{ id: 'Worry (x0.70)', text: 'Worry (x0.70)' },
-												{ id: 'Bowguns (x1.3)', text: 'Bowguns (x1.3)' },
-												{
-													id: 'Melee / Bows (x1.5)',
-													text: 'Melee / Bows (x1.5)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Vigorous Up"
-											bind:selectedId={inputVigorousUp}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Active (+50 Ranged, +100 Melee)',
-													text: 'Active (+50 Ranged, +100 Melee)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Hiden Skills"
-											bind:selectedId={inputHidenSkills}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Ranged Large Hiden (x1.4)',
-													text: 'Ranged Large Hiden (x1.4)',
-												},
-												{
-													id: 'SnS or Ranged (x1.3)',
-													text: 'SnS or Ranged (x1.3)',
-												},
-												{
-													id: 'Other Weapons (x1.2)',
-													text: 'Other Weapons (x1.2)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Weapon Specific"
-											bind:selectedId={inputWeaponSpecific}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{ id: '1 Sharpen (x1.05)', text: '1 Sharpen (x1.05)' },
-												{
-													id: '2 Sharpens (x1.10)',
-													text: '2 Sharpens (x1.10)',
-												},
-												{
-													id: '3 Sharpens (x1.15)',
-													text: '3 Sharpens (x1.15)',
-												},
-												{
-													id: '4 Sharpens (x1.20)',
-													text: '4 Sharpens (x1.20)',
-												},
-												{ id: '1 Bar (x1.10)', text: '1 Bar (x1.10)' },
-												{ id: '2 Bar (x1.20)', text: '2 Bar (x1.20)' },
-												{ id: '3 Bar (x1.30)', text: '3 Bar (x1.30)' },
-												{ id: '4 Bar (x1.40)', text: '4 Bar (x1.40)' },
-												{ id: '5 Bar (x1.50)', text: '5 Bar (x1.50)' },
-												{ id: '6 Bar (x1.60)', text: '6 Bar (x1.60)' },
-												{
-													id: 'Hammer Perfect Charge (x1.30)',
-													text: 'Hammer Perfect Charge (x1.30)',
-												},
-												{
-													id: 'Long Sword Maxed Gauge (x1.2375)',
-													text: 'Long Sword Maxed Gauge (x1.2375)',
-												},
-												{
-													id: 'Swaxe Hiden Boost (x1.05)',
-													text: 'Swaxe Hiden Boost (x1.05)',
-												},
-												{
-													id: 'MS Hiden Boost (x1.03)',
-													text: 'MS Hiden Boost (x1.03)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Combat Supremacy"
-											bind:selectedId={inputCombatSupremacy}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{ id: 'Yes (x1.2)', text: 'Yes (x1.2)' },
-											]}
-										/>
-									</div>
-								</div>
-								<div class="input-section">
-									<div class="small-header">➕ Flat Additions</div>
-									<div class="inputs-group-column">
-										<div class="dropdown-tooltip-container">
-											<Tooltip align="start">
-												<p class="spaced-paragraph">
-													These buffs only take effect if you are using a weapon
-													that is on a Gou tree while on a Gou, Supremacy or G
-													Rank quest.
-												</p>
-												<p>
-													For example: normal Lv50 weapons would get no buffs on
-													any quests, but having a G Supremacy Weapon and 2
-													appropiate armor pieces would result in a +40 addition
-													to final damage.
-												</p>
-											</Tooltip>
-											<Dropdown
-												titleText="Armor 1"
-												bind:selectedId={inputArmor1}
-												items={[
-													{ id: 'None', text: 'None' },
-													{
-														id: '1 Storm / Suprem / Burst Piece (+15)',
-														text: '1 Storm / Suprem / Burst Piece (+15)',
-													},
-													{
-														id: '2 Storm / Suprem / Burst Pieces (+30)',
-														text: '2 Storm / Suprem / Burst Pieces (+30)',
-													},
-													{
-														id: '3 Storm / Suprem / Burst Pieces (+45)',
-														text: '3 Storm / Suprem / Burst Pieces (+45)',
-													},
-													{
-														id: '4 Storm / Suprem / Burst Pieces (+60)',
-														text: '4 Storm / Suprem / Burst Pieces (+60)',
-													},
-													{
-														id: '5 Storm / Suprem / Burst Pieces (+80)',
-														text: '5 Storm / Suprem / Burst Pieces (+80)',
-													},
-												]}
-											/>
-										</div>
-
-										<div class="dropdown-tooltip-container">
-											<Tooltip align="start">
-												<p class="spaced-paragraph">
-													These buffs only take effect if you are using a weapon
-													that is on a Gou tree while on a Gou, Supremacy or G
-													Rank quest.
-												</p>
-												<p>
-													For example: normal Lv50 weapons would get no buffs on
-													any quests, but having a G Supremacy Weapon and 2
-													appropiate armor pieces would result in a +40 addition
-													to final damage.
-												</p>
-											</Tooltip>
-											<Dropdown
-												titleText="Origin Armor"
-												bind:selectedId={inputOriginArmor}
-												items={[
-													{ id: 'None', text: 'None' },
-													{
-														id: '1 Origin Piece (+20)',
-														text: '1 Origin Piece (+20)',
-													},
-													{
-														id: '2 Origin Pieces (+40)',
-														text: '2 Origin Pieces (+40)',
-													},
-													{
-														id: '3 Origin Pieces (+60)',
-														text: '3 Origin Pieces (+60)',
-													},
-													{
-														id: '4 Origin Pieces (+80)',
-														text: '4 Origin Pieces (+80)',
-													},
-													{
-														id: '5 Origin Pieces (+110)',
-														text: '5 Origin Pieces (+110)',
-													},
-												]}
-											/>
-										</div>
-
-										<Dropdown
-											titleText="G Armor Pieces"
-											bind:selectedId={inputGArmorPieces}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: '3+ G Rank Pieces (+30)',
-													text: '3+ G Rank Pieces (+30)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="GSR999 Secret Tech."
-											bind:selectedId={inputGsr999SecretTech}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Secret Technique Used (+320)',
-													text: 'Secret Technique Used (+320)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Red Soul"
-											bind:selectedId={inputRedSoul}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'On Self (+15)', text: 'On Self (+15)' },
-												{
-													id: 'Hit by Other (+30)',
-													text: 'Hit by Other (+30)',
-												},
-												{
-													id: 'Red Soul Up (+100)',
-													text: 'Red Soul Up (+100)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Assistance"
-											bind:selectedId={inputAssistance}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Active (+20)', text: 'Active (+20)' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Bond (Male Hunter)"
-											bind:selectedId={inputBondMaleHunter}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Active (+5)', text: 'Active (+5)' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Partnyaa Bond"
-											bind:selectedId={inputPartnyaaBond}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Bond Level 1(+0)', text: 'Bond Level 1 (+0)' },
-												{ id: 'Bond Level 2(+10)', text: 'Bond Level 2 (+10)' },
-												{ id: 'Bond Level 3(+20)', text: 'Bond Level 3 (+20)' },
-												{ id: 'Bond Level 4(+30)', text: 'Bond Level 4 (+30)' },
-											]}
-										/>
-									</div>
-								</div>
-								<div class="input-section">
-									<div class="small-header">🐲 Elemental Skills</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Fire Multipliers"
-											bind:selectedId={inputFireMultipliers}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Small or Halk Drink (1.1x)',
-													text: 'Small or Halk Drink (1.1x)',
-												},
-												{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
-												{
-													id: 'Small and Halk Drink (1.21x)',
-													text: 'Small and Halk Drink (1.21x)',
-												},
-												{
-													id: 'Large and Halk Drink (1.331x)',
-													text: 'Large and Halk Drink (1.331x)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Water Multipliers"
-											bind:selectedId={inputWaterMultipliers}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Small or Halk Drink (1.1x)',
-													text: 'Small or Halk Drink (1.1x)',
-												},
-												{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
-												{
-													id: 'Small and Halk Drink (1.21x)',
-													text: 'Small and Halk Drink (1.21x)',
-												},
-												{
-													id: 'Large and Halk Drink (1.331x)',
-													text: 'Large and Halk Drink (1.331x)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Thunder Multipliers"
-											bind:selectedId={inputThunderMultipliers}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Small or Halk Drink (1.1x)',
-													text: 'Small or Halk Drink (1.1x)',
-												},
-												{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
-												{
-													id: 'Small and Halk Drink (1.21x)',
-													text: 'Small and Halk Drink (1.21x)',
-												},
-												{
-													id: 'Large and Halk Drink (1.331x)',
-													text: 'Large and Halk Drink (1.331x)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Ice Multipliers"
-											bind:selectedId={inputIceMultipliers}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Small or Halk Drink (1.1x)',
-													text: 'Small or Halk Drink (1.1x)',
-												},
-												{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
-												{
-													id: 'Small and Halk Drink (1.21x)',
-													text: 'Small and Halk Drink (1.21x)',
-												},
-												{
-													id: 'Large and Halk Drink (1.331x)',
-													text: 'Large and Halk Drink (1.331x)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Dragon Multipliers"
-											bind:selectedId={inputDragonMultipliers}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Small or Halk Drink (1.1x)',
-													text: 'Small or Halk Drink (1.1x)',
-												},
-												{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
-												{
-													id: 'Small and Halk Drink (1.21x)',
-													text: 'Small and Halk Drink (1.21x)',
-												},
-												{
-													id: 'Large and Halk Drink (1.331x)',
-													text: 'Large and Halk Drink (1.331x)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Elemental Attack"
-											bind:selectedId={inputElementalAttackMultiplier}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{ id: 'Active (1.1x)', text: 'Active (1.1x)' },
-												{
-													id: 'SnS Active Feature (1.2x)',
-													text: 'SnS Active Feature (1.2x)',
-												},
-												{ id: 'Both (1.32x)', text: 'Both (1.32x)' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="HH Elemental Up"
-											bind:selectedId={inputHhElementalUp}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Ele Up Song (1.1x)',
-													text: 'Ele Up Song (1.1x)',
-												},
-											]}
-										/>
-									</div>
-								</div>
-								<div class="input-section">
-									<div class="small-header">💤 Status Skills</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Abnormality"
-											bind:selectedId={inputAbnormality}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'On', text: 'On' },
-											]}
-											on:select={(e) =>
-												setAbnormalityValues(inputAbnormality === 'On')}
-										/>
-
-										<Dropdown
-											titleText="Drug Knowledge"
-											bind:selectedId={inputDrugKnowledge}
-											items={[
-												{
-													id: 'None (1x)',
-													text: 'None (1x)',
-												},
-												{
-													id: 'Standard (0.38x Status)',
-													text: 'Standard (0.38x Status)',
-												},
-												{
-													id: 'Drug Knowledge Up (0.42x Status)',
-													text: 'Drug Knowledge Up (0.42x Status)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Status Assault"
-											bind:selectedId={inputStatusAssault}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'On (For Sleep add +10 raw hitzone)', // TODO
-													text: 'On (For Sleep add +10 raw hitzone)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Status Attack Up"
-											bind:selectedId={inputStatusAttackUp}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{ id: 'On (1.125x)', text: 'On (1.125x)' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Guild Poogie"
-											bind:selectedId={inputGuildPoogie}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{ id: 'On (1.125x)', text: 'On (1.125x)' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Status Sigil"
-											bind:selectedId={inputStatusSigil}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{ id: 'Normal (1.1x)', text: 'Normal (1.1x)' },
-												{ id: 'Zenith (1.5x)', text: 'Zenith (1.5x)' },
-												{ id: 'Both (1.65x)', text: 'Both (1.65x)' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Weapon Modifiers"
-											bind:selectedId={inputWeaponStatusModifiers}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'SnS Active Feature (1.2x)',
-													text: 'SnS Active Feature (1.2x)',
-												},
-												{
-													id: 'Swaxe Status Phial Active (1.3x)',
-													text: 'Swaxe Status Phial Active (1.3x)',
-												},
-											]}
-										/>
-									</div>
-								</div>
-								<div class="input-section">
-									<div class="small-header">
-										❓ Arbitrary Custom Motion Value
-									</div>
-									<div class="inputs-group-column">
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberTotalMotionValue}
-												invalidText={invalidNumberValueText}
-												label={'Total Motion Value'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberHitCount}
-												invalidText={invalidNumberValueText}
-												label={'Hit Count'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberElementalMultiplier}
-												invalidText={invalidNumberValueText}
-												label={'Elemental Multiplier'}
-											/>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="inputs-2">
-							<div class="input-sections-container">
-								<div class="input-section">
-									<div class="small-header">⚔️ Weapon Stats</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Weapon Type"
-											bind:selectedId={inputWeaponType}
-											items={[
-												{ id: 'Sword and Shield', text: 'Sword and Shield' },
-												{ id: 'Dual Swords', text: 'Dual Swords' },
-												{ id: 'Great Sword', text: 'Great Sword' },
-												{ id: 'Long Sword', text: 'Long Sword' },
-												{ id: 'Hammer', text: 'Hammer' },
-												{ id: 'Hunting Horn', text: 'Hunting Horn' },
-												{ id: 'Lance', text: 'Lance' },
-												{ id: 'Gunlance', text: 'Gunlance' },
-												{ id: 'Tonfa', text: 'Tonfa' },
-												{ id: 'Switch Axe F', text: 'Switch Axe F' },
-												{ id: 'Magnet Spike', text: 'Magnet Spike' },
-												{ id: 'Light Bowgun', text: 'Light Bowgun' },
-												{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
-												{ id: 'Bow', text: 'Bow' },
-											]}
-										/>
-
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberTrueRaw}
-												invalidText={invalidNumberValueText}
-												label={'True Raw'}
-											/>
-										</div>
-
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberUnlimitedSigil}
-												invalidText={invalidNumberValueText}
-												label={'Unlimited Sigil'}
-											/>
-										</div>
-
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={100}
-												bind:value={inputNumberStyleRankAttack}
-												invalidText={'Invalid value. Must be between 0 and 100'}
-												on:click={(e) => e.preventDefault()}
-											>
-												<span slot="label"
-													><Tooltip align="start" triggerText="SR Attack">
-														<p>
-															The top most attack level as displayed on SR info.
-															Lv MAX is 100.
-														</p>
-													</Tooltip></span
-												>
-											</NumberInput>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberSigil1Attack}
-												invalidText={invalidNumberValueText}
-												label={'Sigil 1 Attack'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberSigil2Attack}
-												invalidText={invalidNumberValueText}
-												label={'Sigil 2 Attack'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberSigil3Attack}
-												invalidText={invalidNumberValueText}
-												label={'Sigil 3 Attack'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberZenithAttackSigil}
-												invalidText={invalidNumberValueText}
-												label={'Zenith Attack Sigil'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberAOEAttackSigil}
-												invalidText={invalidNumberValueText}
-												label={'AoE Attack Sigil'}
-											/>
-										</div>
-
-										<Dropdown
-											titleText="AoE Attack Sigil Count"
-											bind:selectedId={inputAoeAttackSigil}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: '1 Sigil', text: '1 Sigil' },
-												{ id: '2 Sigils', text: '2 Sigils' },
-												{ id: '3 Sigils', text: '3 Sigils' },
-												{ id: '4 Sigils', text: '4 Sigils' },
-											]}
-										/>
-
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												bind:value={inputNumberNaturalAffinity}
-												label={'Natural Affinity'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberSigil1Affinity}
-												invalidText={invalidNumberValueText}
-												label={'Sigil 1 Affinity'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberSigil2Affinity}
-												invalidText={invalidNumberValueText}
-												label={'Sigil 2 Affinity'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberSigil3Affinity}
-												invalidText={invalidNumberValueText}
-												label={'Sigil 3 Affinity'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberAOEAffinitySigil}
-												invalidText={invalidNumberValueText}
-												label={'AoE Affinity Sigil'}
-											/>
-										</div>
-
-										<Dropdown
-											titleText="AoE Affinity Sigil Count"
-											bind:selectedId={inputAoeAffinitySigil}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: '1 Sigil', text: '1 Sigil' },
-												{ id: '2 Sigils', text: '2 Sigils' },
-												{ id: '3 Sigils', text: '3 Sigils' },
-												{ id: '4 Sigils', text: '4 Sigils' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Crit Mode"
-											bind:selectedId={inputCritMode}
-											items={[
-												{ id: 'All Crits', text: 'All Crits' },
-												{ id: 'Averaged', text: 'Averaged' },
-												{ id: 'No Crits', text: 'No Crits' },
-											]}
-										/>
-									</div>
-								</div>
-								{#if outputWeaponClass === 'Blademaster'}
-									<div class="input-section">
-										<div class="small-header">⚔️ Blademaster</div>
-										<div class="inputs-group-column">
-											<Dropdown
-												titleText="Sharpness"
-												bind:selectedId={inputSharpness}
-												items={[
-													{ id: 'Red (0.6x)', text: 'Red (0.6x)' },
-													{ id: 'Orange (0.85x)', text: 'Orange (0.85x)' },
-													{ id: 'Yellow (1.1x)', text: 'Yellow (1.1x)' },
-													{ id: 'Green (1.325x)', text: 'Green (1.325x)' },
-													{ id: 'Blue (1.45x)', text: 'Blue (1.45x)' },
-													{ id: 'White (1.6x)', text: 'White (1.6x)' },
-													{ id: 'Purple (1.7x)', text: 'Purple (1.7x)' },
-													{ id: 'Cyan (1.8x)', text: 'Cyan (1.8x)' },
-												]}
-											/>
-
-											<Dropdown
-												titleText="Fencing"
-												bind:selectedId={inputFencing}
-												items={[
-													{ id: 'None', text: 'None' },
-													{ id: '+2', text: '+2' },
-												]}
-											/>
-
-											<!-- TODO: toggles?-->
-											<div class="number-input-container">
-												<NumberInput
-													size="sm"
-													step={10}
-													min={minimumNumberValue}
-													max={maximumNumberValue}
-													bind:value={inputNumberLanceImpactMultiplier}
-													invalidText={invalidNumberValueText}
-													label={'Lance Impact Multiplier (0.72)'}
-												/>
+													<Dropdown
+														titleText="GS Active Feature"
+														bind:selectedId={inputGsActiveFeature}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Unsheathe and Parry Attacks (+100%)',
+																text: 'Unsheathe and Parry Attacks (+100%)',
+															},
+														]}
+													/>
+												</div>
 											</div>
-											<div class="number-input-container">
-												<NumberInput
-													size="sm"
-													step={10}
-													min={minimumNumberValue}
-													max={maximumNumberValue}
-													bind:value={inputNumberTranscendRawMultiplier}
-													invalidText={invalidNumberValueText}
-													label={'Transcend Raw Multiplier (1.13)'}
-												/>
+
+											<div class="input-section">
+												<div class="small-header">💪 Multiplied Base</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="Attack Skills"
+														bind:selectedId={inputAttackSkills}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Strong Attack +1 (+20)',
+																text: 'Strong Attack +1 (+20)',
+															},
+															{
+																id: 'Strong Attack +2 (+35)',
+																text: 'Strong Attack +2 (+35)',
+															},
+															{
+																id: 'Strong Attack +3 (+50)',
+																text: 'Strong Attack +3 (+50)',
+															},
+															{
+																id: 'Strong Attack +4 (+80)',
+																text: 'Strong Attack +4 (+80)',
+															},
+															{
+																id: 'Determination (+100)',
+																text: 'Determination (+100)',
+															},
+															{
+																id: 'Strong Attack +5 (+150)',
+																text: 'Strong Attack +5 (+150)',
+															},
+															{
+																id: 'Strong Attack +6 (+200)',
+																text: 'Strong Attack +6 (+200)',
+															},
+														]}
+													/>
+
+													<div class="dropdown-tooltip-container">
+														<Tooltip align="start">
+															<p class="spaced-paragraph">
+																These are not a final multiplier but rather
+																additional true raw damage.
+															</p>
+															<p>
+																For example, Weapons Art Large on a 600 true raw
+																weapon would be the same as +30 Attack or Attack
+																Up Very Large (600*0.05).
+															</p>
+														</Tooltip>
+														<Dropdown
+															titleText="Caravan Skills"
+															bind:selectedId={inputCaravanSkills}
+															items={[
+																{ id: 'None', text: 'None' },
+																{
+																	id: 'Shooting Rampage (x1.1) (Ranged Only)',
+																	text: 'Shooting Rampage (x1.1) (Ranged Only)',
+																},
+																{
+																	id: 'Weapons Art Small (x1.01)',
+																	text: 'Weapons Art Small (x1.01)',
+																},
+																{
+																	id: 'Weapons Art Medium (x1.025)',
+																	text: 'Weapons Art Medium (x1.025)',
+																},
+																{
+																	id: 'Weapons Art Large (x1.05)',
+																	text: 'Weapons Art Large (x1.05)',
+																},
+															]}
+														/>
+													</div>
+
+													<Dropdown
+														titleText="Passive Items"
+														bind:selectedId={inputPassiveItems}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Power Charm (+6)',
+																text: 'Power Charm (+6)',
+															},
+															{
+																id: 'Power Talon (+9)',
+																text: 'Power Talon (+9)',
+															},
+															{ id: 'Both (+15)', text: 'Both (+15)' },
+														]}
+													/>
+
+													<Dropdown
+														titleText="Food / Consumables"
+														bind:selectedId={inputFoodConsumables}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Demon Drug / Halk D. Drug (+3)',
+																text: 'Demon Drug / Halk D. Drug (+3)',
+															},
+															{
+																id: 'Mega Demon Drug (+5)',
+																text: 'Mega Demon Drug (+5)',
+															},
+															{
+																id: 'Small Atk Food (+3)',
+																text: 'Small Atk Food (+3)',
+															},
+															{
+																id: 'Med Atk Food(+5)',
+																text: 'Med Atk Food(+5)',
+															},
+															{
+																id: 'SR Med Atk Food (+10)',
+																text: 'SR Med Atk Food (+10)',
+															},
+															{
+																id: 'SR Lg Atk Food (+15)',
+																text: 'SR Lg Atk Food (+15)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Seeds, Flutes, Cat"
+														bind:selectedId={inputSeedsFlutesCat}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Power Seed(+10)',
+																text: 'Power Seed(+10)',
+															},
+															{
+																id: 'Demon Horn (+10)',
+																text: 'Demon Horn (+10)',
+															},
+															{
+																id: 'Art of Dancing (+10)',
+																text: 'Art of Dancing (+10)',
+															},
+															{
+																id: 'Power Pill (+25)',
+																text: 'Power Pill (+25)',
+															},
+															{
+																id: 'Tonfa Body Aura (Ranged Only) (+25)',
+																text: 'Tonfa Body Aura (Ranged Only) (+25)',
+															},
+															{
+																id: 'Tonfa B. Aura A. Feature (Ranged Only) (+50)',
+																text: 'Tonfa B. Aura A. Feature (Ranged Only) (+50)',
+															},
+															{
+																id: 'Long Sword Attack Up (+10)',
+																text: 'Long Sword Attack Up (+10)',
+															},
+															{
+																id: 'Long Sword Active Feature Attack Up (+40)',
+																text: 'Long Sword Active Feature Attack Up (+40)',
+															},
+															{
+																id: '(Cat) Demon Horn (No Skill) (+10)',
+																text: '(Cat) Demon Horn (No Skill) (+10)',
+															},
+															{
+																id: '(Cat) Demon Horn +1 (+20)',
+																text: '(Cat) Demon Horn +1 (+20)',
+															},
+															{
+																id: '(Cat) Demon Horn +2 (+40)',
+																text: '(Cat) Demon Horn +2 (+40)',
+															},
+															{
+																id: '(Cat) D. Horn (No Skill) & Encourage+1 (+20)',
+																text: '(Cat) D. Horn (No Skill) & Encourage+1 (+20)',
+															},
+															{
+																id: '(Cat) D. Horn (No Skill) & Encourage+2 (+30)',
+																text: '(Cat) D. Horn (No Skill) & Encourage+2 (+30)',
+															},
+															{
+																id: '(Cat) Demon Horn+1 & Encourage+1 (+30)',
+																text: '(Cat) Demon Horn+1 & Encourage+1 (+30)',
+															},
+															{
+																id: '(Cat) Demon Horn+2 & Encourage+1 (+50)',
+																text: '(Cat) Demon Horn+2 & Encourage+1 (+50)',
+															},
+															{
+																id: '(Cat) Demon Horn+1 & Encourage+2 (+40)',
+																text: '(Cat) Demon Horn+1 & Encourage+2 (+40)',
+															},
+															{
+																id: '(Cat) Demon Horn+2 & Encourage+2 (+60)',
+																text: '(Cat) Demon Horn+2 & Encourage+2 (+60)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Lance / HBG"
+														bind:selectedId={inputLanceHbg}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'HBG Power Barrel (+20)',
+																text: 'HBG Power Barrel (+20)',
+															},
+															{
+																id: 'Lance Self Buff (+50)',
+																text: 'Lance Self Buff (+50)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Lone Wolf"
+														bind:selectedId={inputLoneWolf}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'Active (+100)', text: 'Active (+100)' },
+														]}
+													/>
+
+													<div class="dropdown-tooltip-container">
+														<Tooltip align="start">
+															<p>
+																Does not need affinity over 100% to add True
+																Raw.
+															</p>
+														</Tooltip>
+														<Dropdown
+															titleText="Crit Conversion Up"
+															bind:selectedId={inputCritConversionUp}
+															items={[
+																{ id: 'None', text: 'None' },
+																{
+																	id: 'Crit C. Up +1 (Z1)',
+																	text: 'Crit C. Up +1 (Z1)',
+																},
+																{
+																	id: 'Crit C. Up +2 (Z1)',
+																	text: 'Crit C. Up +2 (Z1)',
+																},
+															]}
+														/>
+													</div>
+													<Dropdown
+														titleText="Stylish Assault"
+														bind:selectedId={inputStylishAssault}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'Active (+100)', text: 'Active (+100)' },
+															{
+																id: 'S. Assault Up (+120) (Z1)',
+																text: 'S. Assault Up (+120) (Z1)',
+															},
+															{
+																id: 'S. Assault Up (+140) (Z1)',
+																text: 'S. Assault Up (+140) (Z1)',
+															},
+															{
+																id: 'S. Assault Up (+160) (Z1)',
+																text: 'S. Assault Up (+160) (Z1)',
+															},
+															{
+																id: 'S. Assault Up (+180) (Z1)',
+																text: 'S. Assault Up (+180) (Z1)',
+															},
+															{
+																id: 'S. Assault Up (+200) (Z1)',
+																text: 'S. Assault Up (+200) (Z1)',
+															},
+															{
+																id: 'S. Assault Up (+220) (Z1)',
+																text: 'S. Assault Up (+220) (Z1)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Consumption Slayer"
+														bind:selectedId={inputConsumptionSlayer}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'Active (+100)', text: 'Active (+100)' },
+														]}
+													/>
+
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={0}
+															max={80}
+															bind:value={inputNumberVampirism}
+															invalidText={'Value must be between 0 and 80.'}
+															on:click={(e) => e.preventDefault()}
+														>
+															<span slot="label"
+																><Tooltip align="start" triggerText="Vampirism">
+																	<p class="spaced-paragraph">
+																		Each successfully leeching attack with a
+																		weapon adds a certain amount of additional
+																		true raw up to a maximum of +80.
+																	</p>
+																	<p>Dual Swords, Tonfa, LBG: +3</p>
+																	<p>
+																		SnS, LS, Lance, Gunlance, Swaxe F, HBG, Bow:
+																		+4
+																	</p>
+																	<p>Hammer, Hunting Horn: +5</p>
+																	<p>Great Sword: +7</p>
+																</Tooltip></span
+															>
+														</NumberInput>
+													</div>
+
+													<Dropdown
+														titleText="Obscurity"
+														bind:selectedId={inputObscurity}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: '1 Block (+40 / +30 / +20)',
+																text: '1 Block (+40 / +30 / +20)',
+															},
+															{
+																id: '2 Blocks (+80 / +60 / +40)',
+																text: '2 Blocks (+80 / +60 / +40)',
+															},
+															{
+																id: '3 Blocks (+120 / +90 / +60)',
+																text: '3 Blocks (+120 / +90 / +60)',
+															},
+															{
+																id: '4 Blocks (+160 / +120 / +80)',
+																text: '4 Blocks (+160 / +120 / +80)',
+															},
+															{
+																id: '5 Blocks (+200 / +150 / +100)',
+																text: '5 Blocks (+200 / +150 / +100)',
+															},
+															{
+																id: '6 Blocks (+220 / +165 / +110)',
+																text: '6 Blocks (+220 / +165 / +110)',
+															},
+															{
+																id: '7 Blocks (+240 / +180 / +120)',
+																text: '7 Blocks (+240 / +180 / +120)',
+															},
+															{
+																id: '8 Blocks (+260 / +195 / +130)',
+																text: '8 Blocks (+260 / +195 / +130)',
+															},
+															{
+																id: '9 Blocks (+280 / +210 / +140)',
+																text: '9 Blocks (+280 / +210 / +140)',
+															},
+															{
+																id: '10 Blocks (+300 / +225 / +150)',
+																text: '10 Blocks (+300 / +225 / +150)',
+															},
+															{
+																id: '1 Block (+70 / +50 / +30)',
+																text: 'Obscurity Up 1 Block (+70 / +50 / +30)',
+															},
+															{
+																id: '2 Blocks (+140 / +100 / +60)',
+																text: 'Obscurity Up 2 Blocks (+140 / +100 / +60)',
+															},
+															{
+																id: '3 Blocks (+210 / +150 / +90)',
+																text: 'Obscurity Up 3 Blocks (+210 / +150 / +90)',
+															},
+															{
+																id: '4 Blocks (+240 / +175 / +110)',
+																text: 'Obscurity Up 4 Blocks (+240 / +175 / +110)',
+															},
+															{
+																id: '5 Blocks (+270 / +200 / +130)',
+																text: 'Obscurity Up 5 Blocks (+270 / +200 / +130)',
+															},
+															{
+																id: '6 Blocks (+300 / +225 / +150)',
+																text: 'Obscurity Up 6 Blocks (+300 / +225 / +150)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Rush"
+														bind:selectedId={inputRush}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: '1st Stage (+50)',
+																text: '1st Stage (+50)',
+															},
+															{
+																id: '2nd Stage (+130)',
+																text: '2nd Stage (+130)',
+															},
+															{
+																id: '3rd Stage (+200) (Rush Up)',
+																text: '3rd Stage (+200) (Rush Up)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Furious"
+														bind:selectedId={inputFurious}
+														items={[
+															{
+																id: 'None (x1 Ele & Status)',
+																text: 'None (x1 Ele & Status)',
+															},
+															{
+																id: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)',
+																text: '1st Stage (+70 / 1.05x Ele & Status / +10% Affinity)',
+															},
+															{
+																id: '2nd Stage (+100 / 1.10x Ele & Status / +25% Affinity)',
+																text: '2nd Stage (+100 / 1.10x Ele & Status / +25% Affinity)',
+															},
+															{
+																id: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
+																text: '3rd Stage (+180 / 1.20x Ele & Status / +40% Affinity)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Shiriagari"
+														bind:selectedId={inputShiriagari}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: '1 Minute (+20)', text: '1 Minute (+20)' },
+															{
+																id: '3 Minutes (+50)',
+																text: '3 Minutes (+50)',
+															},
+															{
+																id: '5 Minutes (+80)',
+																text: '5 Minutes (+80)',
+															},
+															{
+																id: '10 Minutes (+130)',
+																text: '10 Minutes (+130)',
+															},
+															{
+																id: '15 Minutes (+180)',
+																text: '15 Minutes (+180)',
+															},
+															{
+																id: '20 Minutes (+200)',
+																text: '20 Minutes (+200)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Incitement"
+														bind:selectedId={inputIncitement}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'Active (+40)', text: 'Active (+40)' },
+														]}
+													/>
+
+													<div class="dropdown-tooltip-container">
+														<Tooltip align="start">
+															<p>
+																Adjusts base True Raw appropriately if you are
+																using a Length Up sigil on a G Rank weapon. This
+																reduction does not stack so 3 sigils to increase
+																length 3 times would be the same reduction as 1.
+															</p>
+														</Tooltip>
+														<Dropdown
+															titleText="Length Up"
+															bind:selectedId={inputLengthUp}
+															items={[
+																{ id: 'None', text: 'None' },
+																{ id: 'Active', text: 'Active' },
+															]}
+														/>
+													</div>
+
+													<Dropdown
+														titleText="Road Attack"
+														bind:selectedId={inputRoadAttack}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Road Attack Lv 1 (+10)',
+																text: 'Road Attack Lv 1 (+10)',
+															},
+															{
+																id: 'Road Attack Lv 2 (+20)',
+																text: 'Road Attack Lv 2 (+20)',
+															},
+															{
+																id: 'Road Attack Lv 3 (+30)',
+																text: 'Road Attack Lv 3 (+30)',
+															},
+															{
+																id: 'Road Attack Lv 4 (+50)',
+																text: 'Road Attack Lv 4 (+50)',
+															},
+															{
+																id: 'Road Attack Lv 5 (+70)',
+																text: 'Road Attack Lv 5 (+70)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Road Advancement"
+														bind:selectedId={inputRoadAdvLvFlr}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Lv 1 (+20 / +10)',
+																text: 'Lv 1 (+20 / +10)',
+															},
+															{
+																id: 'Lv 2 (+40 / +10)',
+																text: 'Lv 2 (+40 / +10)',
+															},
+															{
+																id: 'Lv 3 (+60 / +10)',
+																text: 'Lv 3 (+60 / +10)',
+															},
+														]}
+													/>
+
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberRoadFloor}
+															invalidText={invalidNumberValueText}
+															on:click={(e) => e.preventDefault()}
+															><span slot="label"
+																><Tooltip
+																	align="start"
+																	triggerText="Road Floor"
+																>
+																	<p>
+																		Attack rises every 5 floors, stopping at 26.
+																	</p>
+																</Tooltip></span
+															>
+														</NumberInput>
+													</div>
+
+													<Dropdown
+														titleText="Road Last Stand"
+														bind:selectedId={inputRoadLastStand}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Last Stand Lv 1 (+80)',
+																text: 'Last Stand Lv 1 (+80)',
+															},
+															{
+																id: 'Last Stand Lv 2 (+120)',
+																text: 'Last Stand Lv 2 (+120)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Duremudira Attack"
+														bind:selectedId={inputDuremudiraAttack}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Dure Attack Lv 1 (+50)',
+																text: 'Dure Attack Lv 1 (+50)',
+															},
+															{
+																id: 'Dure Attack Lv 2 (+75)',
+																text: 'Dure Attack Lv 2 (+75)',
+															},
+															{
+																id: 'Dure Attack Lv 3 (+100)',
+																text: 'Dure Attack Lv 3 (+100)',
+															},
+															{
+																id: 'Dure Attack Lv 4 (+150)',
+																text: 'Dure Attack Lv 4 (+150)',
+															},
+															{
+																id: 'Dure Attack Lv 5 (+200)',
+																text: 'Dure Attack Lv 5 (+200)',
+															},
+														]}
+													/>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberConquestAttack}
+															invalidText={invalidNumberValueText}
+															on:click={(e) => e.preventDefault()}
+														>
+															<span slot="label"
+																><Tooltip
+																	align="start"
+																	triggerText="Conquest Attack"
+																>
+																	<p>
+																		The value of the skill as displayed on your
+																		SR stats if enabled. Only takes effect on
+																		standard Conquest quests.
+																		<strong>Shiten quests do not count.</strong>
+																	</p>
+																</Tooltip></span
+															>
+														</NumberInput>
+													</div>
+													<div class="dropdown-tooltip-container">
+														<Tooltip align="start">
+															<p>
+																Toggle whether or not you have consumed a
+																Conquest Attack Potion on a standard Conquest
+																quest.
+																<strong>Shiten quests do not count.</strong>
+															</p>
+														</Tooltip>
+														<Dropdown
+															titleText="Attack Medicine"
+															bind:selectedId={inputAttackMedicine}
+															items={[
+																{ id: 'None', text: 'None' },
+																{ id: 'Active (+100)', text: 'Active (+100)' },
+															]}
+														/>
+													</div>
+												</div>
 											</div>
-											<div class="number-input-container">
-												<NumberInput
-													size="sm"
-													step={10}
-													min={minimumNumberValue}
-													max={maximumNumberValue}
-													bind:value={inputNumberRavientePowerSwordCrystalsMultiplier}
-													invalidText={invalidNumberValueText}
-													label={'Raviente Power Sword Crystals (1.2)'}
-												/>
+
+											<div class="input-section">
+												<div class="small-header">⚔️ Multipliers</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="HH Attack Songs"
+														bind:selectedId={inputHhAttackSongs}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'G Rank Atk Sm (x1.10)',
+																text: 'G Rank Atk Sm (x1.10)',
+															},
+															{
+																id: 'G Rank Atk Sm Bonus (x1.15)',
+																text: 'G Rank Atk Sm Bonus (x1.15)',
+															},
+															{
+																id: 'G Rank Atk Lg (x1.15)',
+																text: 'G Rank Atk Lg (x1.15)',
+															},
+															{
+																id: 'G Rank Atk Lg Bonus (x1.2)',
+																text: 'G Rank Atk Lg Bonus (x1.2)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Adrenaline/Vigorous"
+														bind:selectedId={inputAdrenalineVigorous}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Vigorous (x1.15)',
+																text: 'Vigorous (x1.15)',
+															},
+															{ id: 'Worry (x0.70)', text: 'Worry (x0.70)' },
+															{ id: 'Bowguns (x1.3)', text: 'Bowguns (x1.3)' },
+															{
+																id: 'Melee / Bows (x1.5)',
+																text: 'Melee / Bows (x1.5)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Vigorous Up"
+														bind:selectedId={inputVigorousUp}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Active (+50 Ranged, +100 Melee)',
+																text: 'Active (+50 Ranged, +100 Melee)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Hiden Skills"
+														bind:selectedId={inputHidenSkills}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Ranged Large Hiden (x1.4)',
+																text: 'Ranged Large Hiden (x1.4)',
+															},
+															{
+																id: 'SnS or Ranged (x1.3)',
+																text: 'SnS or Ranged (x1.3)',
+															},
+															{
+																id: 'Other Weapons (x1.2)',
+																text: 'Other Weapons (x1.2)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Weapon Specific"
+														bind:selectedId={inputWeaponSpecific}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: '1 Sharpen (x1.05)',
+																text: '1 Sharpen (x1.05)',
+															},
+															{
+																id: '2 Sharpens (x1.10)',
+																text: '2 Sharpens (x1.10)',
+															},
+															{
+																id: '3 Sharpens (x1.15)',
+																text: '3 Sharpens (x1.15)',
+															},
+															{
+																id: '4 Sharpens (x1.20)',
+																text: '4 Sharpens (x1.20)',
+															},
+															{ id: '1 Bar (x1.10)', text: '1 Bar (x1.10)' },
+															{ id: '2 Bar (x1.20)', text: '2 Bar (x1.20)' },
+															{ id: '3 Bar (x1.30)', text: '3 Bar (x1.30)' },
+															{ id: '4 Bar (x1.40)', text: '4 Bar (x1.40)' },
+															{ id: '5 Bar (x1.50)', text: '5 Bar (x1.50)' },
+															{ id: '6 Bar (x1.60)', text: '6 Bar (x1.60)' },
+															{
+																id: 'Hammer Perfect Charge (x1.30)',
+																text: 'Hammer Perfect Charge (x1.30)',
+															},
+															{
+																id: 'Long Sword Maxed Gauge (x1.2375)',
+																text: 'Long Sword Maxed Gauge (x1.2375)',
+															},
+															{
+																id: 'Swaxe Hiden Boost (x1.05)',
+																text: 'Swaxe Hiden Boost (x1.05)',
+															},
+															{
+																id: 'MS Hiden Boost (x1.03)',
+																text: 'MS Hiden Boost (x1.03)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Combat Supremacy"
+														bind:selectedId={inputCombatSupremacy}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{ id: 'Yes (x1.2)', text: 'Yes (x1.2)' },
+														]}
+													/>
+												</div>
+											</div>
+											<div class="input-section">
+												<div class="small-header">➕ Flat Additions</div>
+												<div class="inputs-group-column">
+													<div class="dropdown-tooltip-container">
+														<Tooltip align="start">
+															<p class="spaced-paragraph">
+																These buffs only take effect if you are using a
+																weapon that is on a Gou tree while on a Gou,
+																Supremacy or G Rank quest.
+															</p>
+															<p>
+																For example: normal Lv50 weapons would get no
+																buffs on any quests, but having a G Supremacy
+																Weapon and 2 appropiate armor pieces would
+																result in a +40 addition to final damage.
+															</p>
+														</Tooltip>
+														<Dropdown
+															titleText="Armor 1"
+															bind:selectedId={inputArmor1}
+															items={[
+																{ id: 'None', text: 'None' },
+																{
+																	id: '1 Storm / Suprem / Burst Piece (+15)',
+																	text: '1 Storm / Suprem / Burst Piece (+15)',
+																},
+																{
+																	id: '2 Storm / Suprem / Burst Pieces (+30)',
+																	text: '2 Storm / Suprem / Burst Pieces (+30)',
+																},
+																{
+																	id: '3 Storm / Suprem / Burst Pieces (+45)',
+																	text: '3 Storm / Suprem / Burst Pieces (+45)',
+																},
+																{
+																	id: '4 Storm / Suprem / Burst Pieces (+60)',
+																	text: '4 Storm / Suprem / Burst Pieces (+60)',
+																},
+																{
+																	id: '5 Storm / Suprem / Burst Pieces (+80)',
+																	text: '5 Storm / Suprem / Burst Pieces (+80)',
+																},
+															]}
+														/>
+													</div>
+
+													<div class="dropdown-tooltip-container">
+														<Tooltip align="start">
+															<p class="spaced-paragraph">
+																These buffs only take effect if you are using a
+																weapon that is on a Gou tree while on a Gou,
+																Supremacy or G Rank quest.
+															</p>
+															<p>
+																For example: normal Lv50 weapons would get no
+																buffs on any quests, but having a G Supremacy
+																Weapon and 2 appropiate armor pieces would
+																result in a +40 addition to final damage.
+															</p>
+														</Tooltip>
+														<Dropdown
+															titleText="Origin Armor"
+															bind:selectedId={inputOriginArmor}
+															items={[
+																{ id: 'None', text: 'None' },
+																{
+																	id: '1 Origin Piece (+20)',
+																	text: '1 Origin Piece (+20)',
+																},
+																{
+																	id: '2 Origin Pieces (+40)',
+																	text: '2 Origin Pieces (+40)',
+																},
+																{
+																	id: '3 Origin Pieces (+60)',
+																	text: '3 Origin Pieces (+60)',
+																},
+																{
+																	id: '4 Origin Pieces (+80)',
+																	text: '4 Origin Pieces (+80)',
+																},
+																{
+																	id: '5 Origin Pieces (+110)',
+																	text: '5 Origin Pieces (+110)',
+																},
+															]}
+														/>
+													</div>
+
+													<Dropdown
+														titleText="G Armor Pieces"
+														bind:selectedId={inputGArmorPieces}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: '3+ G Rank Pieces (+30)',
+																text: '3+ G Rank Pieces (+30)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="GSR999 Secret Tech."
+														bind:selectedId={inputGsr999SecretTech}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Secret Technique Used (+320)',
+																text: 'Secret Technique Used (+320)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Red Soul"
+														bind:selectedId={inputRedSoul}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'On Self (+15)', text: 'On Self (+15)' },
+															{
+																id: 'Hit by Other (+30)',
+																text: 'Hit by Other (+30)',
+															},
+															{
+																id: 'Red Soul Up (+100)',
+																text: 'Red Soul Up (+100)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Assistance"
+														bind:selectedId={inputAssistance}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'Active (+20)', text: 'Active (+20)' },
+														]}
+													/>
+
+													<Dropdown
+														titleText="Bond (Male Hunter)"
+														bind:selectedId={inputBondMaleHunter}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'Active (+5)', text: 'Active (+5)' },
+														]}
+													/>
+
+													<Dropdown
+														titleText="Partnyaa Bond"
+														bind:selectedId={inputPartnyaaBond}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Bond Level 1(+0)',
+																text: 'Bond Level 1 (+0)',
+															},
+															{
+																id: 'Bond Level 2(+10)',
+																text: 'Bond Level 2 (+10)',
+															},
+															{
+																id: 'Bond Level 3(+20)',
+																text: 'Bond Level 3 (+20)',
+															},
+															{
+																id: 'Bond Level 4(+30)',
+																text: 'Bond Level 4 (+30)',
+															},
+														]}
+													/>
+												</div>
+											</div>
+											<div class="input-section">
+												<div class="small-header">🐲 Elemental Skills</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="Fire Multipliers"
+														bind:selectedId={inputFireMultipliers}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Small or Halk Drink (1.1x)',
+																text: 'Small or Halk Drink (1.1x)',
+															},
+															{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
+															{
+																id: 'Small and Halk Drink (1.21x)',
+																text: 'Small and Halk Drink (1.21x)',
+															},
+															{
+																id: 'Large and Halk Drink (1.331x)',
+																text: 'Large and Halk Drink (1.331x)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Water Multipliers"
+														bind:selectedId={inputWaterMultipliers}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Small or Halk Drink (1.1x)',
+																text: 'Small or Halk Drink (1.1x)',
+															},
+															{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
+															{
+																id: 'Small and Halk Drink (1.21x)',
+																text: 'Small and Halk Drink (1.21x)',
+															},
+															{
+																id: 'Large and Halk Drink (1.331x)',
+																text: 'Large and Halk Drink (1.331x)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Thunder Multipliers"
+														bind:selectedId={inputThunderMultipliers}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Small or Halk Drink (1.1x)',
+																text: 'Small or Halk Drink (1.1x)',
+															},
+															{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
+															{
+																id: 'Small and Halk Drink (1.21x)',
+																text: 'Small and Halk Drink (1.21x)',
+															},
+															{
+																id: 'Large and Halk Drink (1.331x)',
+																text: 'Large and Halk Drink (1.331x)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Ice Multipliers"
+														bind:selectedId={inputIceMultipliers}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Small or Halk Drink (1.1x)',
+																text: 'Small or Halk Drink (1.1x)',
+															},
+															{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
+															{
+																id: 'Small and Halk Drink (1.21x)',
+																text: 'Small and Halk Drink (1.21x)',
+															},
+															{
+																id: 'Large and Halk Drink (1.331x)',
+																text: 'Large and Halk Drink (1.331x)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Dragon Multipliers"
+														bind:selectedId={inputDragonMultipliers}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Small or Halk Drink (1.1x)',
+																text: 'Small or Halk Drink (1.1x)',
+															},
+															{ id: 'Large (1.2x)', text: 'Large (1.2x)' },
+															{
+																id: 'Small and Halk Drink (1.21x)',
+																text: 'Small and Halk Drink (1.21x)',
+															},
+															{
+																id: 'Large and Halk Drink (1.331x)',
+																text: 'Large and Halk Drink (1.331x)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Elemental Attack"
+														bind:selectedId={inputElementalAttackMultiplier}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{ id: 'Active (1.1x)', text: 'Active (1.1x)' },
+															{
+																id: 'SnS Active Feature (1.2x)',
+																text: 'SnS Active Feature (1.2x)',
+															},
+															{ id: 'Both (1.32x)', text: 'Both (1.32x)' },
+														]}
+													/>
+
+													<Dropdown
+														titleText="HH Elemental Up"
+														bind:selectedId={inputHhElementalUp}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Ele Up Song (1.1x)',
+																text: 'Ele Up Song (1.1x)',
+															},
+														]}
+													/>
+												</div>
+											</div>
+											<div class="input-section">
+												<div class="small-header">💤 Status Skills</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="Abnormality"
+														bind:selectedId={inputAbnormality}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'On', text: 'On' },
+														]}
+														on:select={(e) =>
+															setAbnormalityValues(inputAbnormality === 'On')}
+													/>
+
+													<Dropdown
+														titleText="Drug Knowledge"
+														bind:selectedId={inputDrugKnowledge}
+														items={[
+															{
+																id: 'None (1x)',
+																text: 'None (1x)',
+															},
+															{
+																id: 'Standard (0.38x Status)',
+																text: 'Standard (0.38x Status)',
+															},
+															{
+																id: 'Drug Knowledge Up (0.42x Status)',
+																text: 'Drug Knowledge Up (0.42x Status)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Status Assault"
+														bind:selectedId={inputStatusAssault}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'On (For Sleep add +10 raw hitzone)', // TODO
+																text: 'On (For Sleep add +10 raw hitzone)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Status Attack Up"
+														bind:selectedId={inputStatusAttackUp}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{ id: 'On (1.125x)', text: 'On (1.125x)' },
+														]}
+													/>
+
+													<Dropdown
+														titleText="Guild Poogie"
+														bind:selectedId={inputGuildPoogie}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{ id: 'On (1.125x)', text: 'On (1.125x)' },
+														]}
+													/>
+
+													<Dropdown
+														titleText="Status Sigil"
+														bind:selectedId={inputStatusSigil}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{ id: 'Normal (1.1x)', text: 'Normal (1.1x)' },
+															{ id: 'Zenith (1.5x)', text: 'Zenith (1.5x)' },
+															{ id: 'Both (1.65x)', text: 'Both (1.65x)' },
+														]}
+													/>
+
+													<Dropdown
+														titleText="Weapon Modifiers"
+														bind:selectedId={inputWeaponStatusModifiers}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'SnS Active Feature (1.2x)',
+																text: 'SnS Active Feature (1.2x)',
+															},
+															{
+																id: 'Swaxe Status Phial Active (1.3x)',
+																text: 'Swaxe Status Phial Active (1.3x)',
+															},
+														]}
+													/>
+												</div>
+											</div>
+											<div class="input-section">
+												<div class="small-header">
+													❓ Arbitrary Custom Motion Value
+												</div>
+												<div class="inputs-group-column">
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberTotalMotionValue}
+															invalidText={invalidNumberValueText}
+															label={'Total Motion Value'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberHitCount}
+															invalidText={invalidNumberValueText}
+															label={'Hit Count'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberElementalMultiplier}
+															invalidText={invalidNumberValueText}
+															label={'Elemental Multiplier'}
+														/>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-								{:else}
-									<div class="input-section">
-										<div class="small-header">🏹 Gunner</div>
-										<div class="inputs-group-column">
-											<div class="dropdown-tooltip-container">
-												<Tooltip align="start">
-													<p>
-														You can find the graph for this multiplier in the
-														Critical Distance section.
-													</p>
-												</Tooltip>
-												<Dropdown
-													titleText="Distance Multiplier"
-													bind:selectedId={inputCriticalDistanceMultiplier}
-													items={[
-														{
-															id: '1.8x LBG & Bow Crit Distance',
-															text: '1.8x LBG & Bow Crit Distance',
-														},
-														{
-															id: '2.3x HBG 1st Half Crit Distance',
-															text: '2.3x HBG 1st Half Crit Distance',
-														},
-														{
-															id: '2.0x HBG 2nd Half Crit Distance',
-															text: '2.0x HBG 2nd Half Crit Distance',
-														},
-														{
-															id: '1.9x LBG & Bow Crit D. & Z Piece',
-															text: '1.9x LBG & Bow Crit D. & Z Piece',
-														},
-														{
-															id: '2.45x HBG 1st Half Crit D. & Zenith',
-															text: '2.45x HBG 1st Half Crit D. & Zenith',
-														},
-														{
-															id: '2.15x HBG 2nd Half Crit D. & Zenith',
-															text: '2.15x HBG 2nd Half Crit D. & Zenith',
-														},
-														{
-															id: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
-															text: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
-														},
-														{
-															id: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
-															text: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
-														},
-														{
-															id: '2.1x 1st Half Crit D. (HBG Active Feature)',
-															text: '2.1x 1st Half Crit D. (HBG Active Feature)',
-														},
-														{
-															id: '1.8x 2nd Half Crit D. (HBG Active Feature)',
-															text: '1.8x 2nd Half Crit D. (HBG Active Feature)',
-														},
-														{
-															id: '2.0x HBG 1st Half Crit D.',
-															text: '2.0x HBG 1st Half Crit D.',
-														},
-														{
-															id: '1.7x 2nd Half Crit D.',
-															text: '1.7x 2nd Half Crit D.',
-														},
-														{
-															id: '1.5x Bow or LBG Crit D.',
-															text: '1.5x Bow or LBG Crit D.',
-														},
-														{ id: '2.2x', text: '2.2x' },
-														{ id: '1.6x', text: '1.6x' },
-														{ id: '1.4x', text: '1.4x' },
-														{ id: '1.3x', text: '1.3x' },
-														{ id: '1.2x', text: '1.2x' },
-														{ id: '1.1x', text: '1.1x' },
-														{ id: '1.0x', text: '1.0x' },
-														{
-															id: '2.3x Step Shot & Z Piece',
-															text: '2.3x Step Shot & Z Piece',
-														},
-														{
-															id: '2.0x Step Shot & Z Piece',
-															text: '2.0x Step Shot & Z Piece',
-														},
-														{
-															id: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
-															text: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
-														},
-														{
-															id: '1.6x Standard C. Distance (LBG Active Feature)',
-															text: '1.6x Standard C. Distance (LBG Active Feature) ',
-														},
-														{
-															id: '2.4x Step Shot & Z Piece (LBG Active Feature)',
-															text: '2.4x Step Shot & Z Piece (LBG Active Feature)',
-														},
-														{
-															id: '2.1x Step Shot & Z Piece (LBG Active Feature)',
-															text: '2.1x Step Shot & Z Piece (LBG Active Feature)',
-														},
-														{ id: '2.5x', text: '2.5x' },
-														{ id: '2.55x', text: '2.55x' },
-														{ id: '2.60x', text: '2.60x' },
-													]}
-												/>
+
+									<div class="inputs-2">
+										<div class="input-sections-container">
+											<div class="input-section">
+												<div class="small-header">⚔️ Weapon Stats</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="Weapon Type"
+														bind:selectedId={inputWeaponType}
+														items={[
+															{
+																id: 'Sword and Shield',
+																text: 'Sword and Shield',
+															},
+															{ id: 'Dual Swords', text: 'Dual Swords' },
+															{ id: 'Great Sword', text: 'Great Sword' },
+															{ id: 'Long Sword', text: 'Long Sword' },
+															{ id: 'Hammer', text: 'Hammer' },
+															{ id: 'Hunting Horn', text: 'Hunting Horn' },
+															{ id: 'Lance', text: 'Lance' },
+															{ id: 'Gunlance', text: 'Gunlance' },
+															{ id: 'Tonfa', text: 'Tonfa' },
+															{ id: 'Switch Axe F', text: 'Switch Axe F' },
+															{ id: 'Magnet Spike', text: 'Magnet Spike' },
+															{ id: 'Light Bowgun', text: 'Light Bowgun' },
+															{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
+															{ id: 'Bow', text: 'Bow' },
+														]}
+													/>
+
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberTrueRaw}
+															invalidText={invalidNumberValueText}
+															label={'True Raw'}
+														/>
+													</div>
+
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberUnlimitedSigil}
+															invalidText={invalidNumberValueText}
+															label={'Unlimited Sigil'}
+														/>
+													</div>
+
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={100}
+															bind:value={inputNumberStyleRankAttack}
+															invalidText={'Invalid value. Must be between 0 and 100'}
+															on:click={(e) => e.preventDefault()}
+														>
+															<span slot="label"
+																><Tooltip align="start" triggerText="SR Attack">
+																	<p>
+																		The top most attack level as displayed on SR
+																		info. Lv MAX is 100.
+																	</p>
+																</Tooltip></span
+															>
+														</NumberInput>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberSigil1Attack}
+															invalidText={invalidNumberValueText}
+															label={'Sigil 1 Attack'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberSigil2Attack}
+															invalidText={invalidNumberValueText}
+															label={'Sigil 2 Attack'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberSigil3Attack}
+															invalidText={invalidNumberValueText}
+															label={'Sigil 3 Attack'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberZenithAttackSigil}
+															invalidText={invalidNumberValueText}
+															label={'Zenith Attack Sigil'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberAOEAttackSigil}
+															invalidText={invalidNumberValueText}
+															label={'AoE Attack Sigil'}
+														/>
+													</div>
+
+													<Dropdown
+														titleText="AoE Attack Sigil Count"
+														bind:selectedId={inputAoeAttackSigil}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: '1 Sigil', text: '1 Sigil' },
+															{ id: '2 Sigils', text: '2 Sigils' },
+															{ id: '3 Sigils', text: '3 Sigils' },
+															{ id: '4 Sigils', text: '4 Sigils' },
+														]}
+													/>
+
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															bind:value={inputNumberNaturalAffinity}
+															label={'Natural Affinity'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberSigil1Affinity}
+															invalidText={invalidNumberValueText}
+															label={'Sigil 1 Affinity'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberSigil2Affinity}
+															invalidText={invalidNumberValueText}
+															label={'Sigil 2 Affinity'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberSigil3Affinity}
+															invalidText={invalidNumberValueText}
+															label={'Sigil 3 Affinity'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberAOEAffinitySigil}
+															invalidText={invalidNumberValueText}
+															label={'AoE Affinity Sigil'}
+														/>
+													</div>
+
+													<Dropdown
+														titleText="AoE Affinity Sigil Count"
+														bind:selectedId={inputAoeAffinitySigil}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: '1 Sigil', text: '1 Sigil' },
+															{ id: '2 Sigils', text: '2 Sigils' },
+															{ id: '3 Sigils', text: '3 Sigils' },
+															{ id: '4 Sigils', text: '4 Sigils' },
+														]}
+													/>
+
+													<Dropdown
+														titleText="Crit Mode"
+														bind:selectedId={inputCritMode}
+														items={[
+															{ id: 'All Crits', text: 'All Crits' },
+															{ id: 'Averaged', text: 'Averaged' },
+															{ id: 'No Crits', text: 'No Crits' },
+														]}
+													/>
+												</div>
 											</div>
+											{#if outputWeaponClass === 'Blademaster'}
+												<div class="input-section">
+													<div class="small-header">⚔️ Blademaster</div>
+													<div class="inputs-group-column">
+														<Dropdown
+															titleText="Sharpness"
+															bind:selectedId={inputSharpness}
+															items={[
+																{ id: 'Red (0.6x)', text: 'Red (0.6x)' },
+																{
+																	id: 'Orange (0.85x)',
+																	text: 'Orange (0.85x)',
+																},
+																{ id: 'Yellow (1.1x)', text: 'Yellow (1.1x)' },
+																{
+																	id: 'Green (1.325x)',
+																	text: 'Green (1.325x)',
+																},
+																{ id: 'Blue (1.45x)', text: 'Blue (1.45x)' },
+																{ id: 'White (1.6x)', text: 'White (1.6x)' },
+																{ id: 'Purple (1.7x)', text: 'Purple (1.7x)' },
+																{ id: 'Cyan (1.8x)', text: 'Cyan (1.8x)' },
+															]}
+														/>
 
-											<Dropdown
-												titleText="Bullet Modifier"
-												bind:selectedId={inputBulletStrengthModifier}
-												items={[
-													{ id: 'None (1x)', text: 'None (1x)' },
-													{
-														id: 'Steady Hand (All Below)',
-														text: 'Steady Hand (All Below)', // TODO
-													},
-													{
-														id: 'Normal / Rapid Up (1.1x)',
-														text: 'Normal / Rapid Up (1.1x)',
-													},
-													{ id: 'Pierce Up (1.1x)', text: 'Pierce Up (1.1x)' },
-													{
-														id: 'Pellet / Scatter Up (1.3x)',
-														text: 'Pellet / Scatter Up (1.3x)',
-													},
-												]}
-											/>
+														<Dropdown
+															titleText="Fencing"
+															bind:selectedId={inputFencing}
+															items={[
+																{ id: 'None', text: 'None' },
+																{ id: '+2', text: '+2' },
+															]}
+														/>
 
-											<Dropdown
-												titleText="Shot Multiplier"
-												bind:selectedId={inputShotMultiplier}
-												items={[
-													{ id: 'None (1x)', text: 'None (1x)' },
-													{ id: 'Just Shot (1.3x)', text: 'Just Shot (1.3x)' },
-													{
-														id: 'Perfect JS (1.4x)',
-														text: 'Perfect Just Shot (1.4x)',
-													},
-													{
-														id: 'Evade Shot (0.6x)',
-														text: 'Evade Shot (0.6x)',
-													},
-													{
-														id: 'Finishing Shot (2.0x)',
-														text: 'Finishing Shot (2.0x)',
-													},
-													{
-														id: 'Rapid Fire (0.5x)',
-														text: 'Rapid Fire (0.5x)',
-													},
-													{
-														id: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
-														text: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
-													},
-												]}
-											/>
+														<!-- TODO: toggles?-->
+														<div class="number-input-container">
+															<NumberInput
+																size="sm"
+																step={10}
+																min={minimumNumberValue}
+																max={maximumNumberValue}
+																bind:value={inputNumberLanceImpactMultiplier}
+																invalidText={invalidNumberValueText}
+																label={'Lance Impact Multiplier (0.72)'}
+															/>
+														</div>
+														<div class="number-input-container">
+															<NumberInput
+																size="sm"
+																step={10}
+																min={minimumNumberValue}
+																max={maximumNumberValue}
+																bind:value={inputNumberTranscendRawMultiplier}
+																invalidText={invalidNumberValueText}
+																label={'Transcend Raw Multiplier (1.13)'}
+															/>
+														</div>
+														<div class="number-input-container">
+															<NumberInput
+																size="sm"
+																step={10}
+																min={minimumNumberValue}
+																max={maximumNumberValue}
+																bind:value={inputNumberRavientePowerSwordCrystalsMultiplier}
+																invalidText={invalidNumberValueText}
+																label={'Raviente Power Sword Crystals (1.2)'}
+															/>
+														</div>
+													</div>
+												</div>
+											{:else}
+												<div class="input-section">
+													<div class="small-header">🏹 Gunner</div>
+													<div class="inputs-group-column">
+														<div class="dropdown-tooltip-container">
+															<Tooltip align="start">
+																<p>
+																	You can find the graph for this multiplier in
+																	the Critical Distance section.
+																</p>
+															</Tooltip>
+															<Dropdown
+																titleText="Distance Multiplier"
+																bind:selectedId={inputCriticalDistanceMultiplier}
+																items={[
+																	{
+																		id: '1.8x LBG & Bow Crit Distance',
+																		text: '1.8x LBG & Bow Crit Distance',
+																	},
+																	{
+																		id: '2.3x HBG 1st Half Crit Distance',
+																		text: '2.3x HBG 1st Half Crit Distance',
+																	},
+																	{
+																		id: '2.0x HBG 2nd Half Crit Distance',
+																		text: '2.0x HBG 2nd Half Crit Distance',
+																	},
+																	{
+																		id: '1.9x LBG & Bow Crit D. & Z Piece',
+																		text: '1.9x LBG & Bow Crit D. & Z Piece',
+																	},
+																	{
+																		id: '2.45x HBG 1st Half Crit D. & Zenith',
+																		text: '2.45x HBG 1st Half Crit D. & Zenith',
+																	},
+																	{
+																		id: '2.15x HBG 2nd Half Crit D. & Zenith',
+																		text: '2.15x HBG 2nd Half Crit D. & Zenith',
+																	},
+																	{
+																		id: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
+																		text: '2.4x Z 1st Half Crit D. (HBG Active Feature)',
+																	},
+																	{
+																		id: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
+																		text: '2.1x Z 2nd Half Crit D. (HBG Active Feature)',
+																	},
+																	{
+																		id: '2.1x 1st Half Crit D. (HBG Active Feature)',
+																		text: '2.1x 1st Half Crit D. (HBG Active Feature)',
+																	},
+																	{
+																		id: '1.8x 2nd Half Crit D. (HBG Active Feature)',
+																		text: '1.8x 2nd Half Crit D. (HBG Active Feature)',
+																	},
+																	{
+																		id: '2.0x HBG 1st Half Crit D.',
+																		text: '2.0x HBG 1st Half Crit D.',
+																	},
+																	{
+																		id: '1.7x 2nd Half Crit D.',
+																		text: '1.7x 2nd Half Crit D.',
+																	},
+																	{
+																		id: '1.5x Bow or LBG Crit D.',
+																		text: '1.5x Bow or LBG Crit D.',
+																	},
+																	{ id: '2.2x', text: '2.2x' },
+																	{ id: '1.6x', text: '1.6x' },
+																	{ id: '1.4x', text: '1.4x' },
+																	{ id: '1.3x', text: '1.3x' },
+																	{ id: '1.2x', text: '1.2x' },
+																	{ id: '1.1x', text: '1.1x' },
+																	{ id: '1.0x', text: '1.0x' },
+																	{
+																		id: '2.3x Step Shot & Z Piece',
+																		text: '2.3x Step Shot & Z Piece',
+																	},
+																	{
+																		id: '2.0x Step Shot & Z Piece',
+																		text: '2.0x Step Shot & Z Piece',
+																	},
+																	{
+																		id: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
+																		text: '1.9x S. C. Distance & Z Piece (LBG Active Feature)',
+																	},
+																	{
+																		id: '1.6x Standard C. Distance (LBG Active Feature)',
+																		text: '1.6x Standard C. Distance (LBG Active Feature) ',
+																	},
+																	{
+																		id: '2.4x Step Shot & Z Piece (LBG Active Feature)',
+																		text: '2.4x Step Shot & Z Piece (LBG Active Feature)',
+																	},
+																	{
+																		id: '2.1x Step Shot & Z Piece (LBG Active Feature)',
+																		text: '2.1x Step Shot & Z Piece (LBG Active Feature)',
+																	},
+																	{ id: '2.5x', text: '2.5x' },
+																	{ id: '2.55x', text: '2.55x' },
+																	{ id: '2.60x', text: '2.60x' },
+																]}
+															/>
+														</div>
 
-											<Dropdown
-												titleText="HBG Charge Shot"
-												bind:selectedId={inputHbgChargeShot}
-												items={[
-													{
-														id: 'Normal / Charge Lv 0 (1x)',
-														text: 'Normal / Charge Lv 0 (1x)',
-													},
-													{
-														id: 'Charge Lv 1 (1.15x)',
-														text: 'Charge Lv 1 (1.15x)',
-													},
-													{
-														id: 'Charge Lv 2 (1.3x)',
-														text: 'Charge Lv 2 (1.3x)',
-													},
-													{
-														id: 'Charge Lv 3 (1.5x)', // TODO 1.49 on Normal?
-														text: 'Charge Lv 3 (1.5x)',
-													},
-													{
-														id: 'Storm Style Lv 0 (0.95x)',
-														text: 'Storm Style Lv 0 (0.95x)',
-													},
-												]}
-											/>
-											<div class="number-input-container">
-												<NumberInput
-													size="sm"
-													step={10}
-													min={minimumNumberValue}
-													max={maximumNumberValue}
-													bind:value={inputNumberCompressedShot}
-													invalidText={invalidNumberValueText}
-													label={'Compressed Shot Count'}
-												/>
+														<Dropdown
+															titleText="Bullet Modifier"
+															bind:selectedId={inputBulletStrengthModifier}
+															items={[
+																{ id: 'None (1x)', text: 'None (1x)' },
+																{
+																	id: 'Steady Hand (All Below)',
+																	text: 'Steady Hand (All Below)', // TODO
+																},
+																{
+																	id: 'Normal / Rapid Up (1.1x)',
+																	text: 'Normal / Rapid Up (1.1x)',
+																},
+																{
+																	id: 'Pierce Up (1.1x)',
+																	text: 'Pierce Up (1.1x)',
+																},
+																{
+																	id: 'Pellet / Scatter Up (1.3x)',
+																	text: 'Pellet / Scatter Up (1.3x)',
+																},
+															]}
+														/>
+
+														<Dropdown
+															titleText="Shot Multiplier"
+															bind:selectedId={inputShotMultiplier}
+															items={[
+																{ id: 'None (1x)', text: 'None (1x)' },
+																{
+																	id: 'Just Shot (1.3x)',
+																	text: 'Just Shot (1.3x)',
+																},
+																{
+																	id: 'Perfect JS (1.4x)',
+																	text: 'Perfect Just Shot (1.4x)',
+																},
+																{
+																	id: 'Evade Shot (0.6x)',
+																	text: 'Evade Shot (0.6x)',
+																},
+																{
+																	id: 'Finishing Shot (2.0x)',
+																	text: 'Finishing Shot (2.0x)',
+																},
+																{
+																	id: 'Rapid Fire (0.5x)',
+																	text: 'Rapid Fire (0.5x)',
+																},
+																{
+																	id: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
+																	text: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
+																},
+															]}
+														/>
+
+														<Dropdown
+															titleText="HBG Charge Shot"
+															bind:selectedId={inputHbgChargeShot}
+															items={[
+																{
+																	id: 'Normal / Charge Lv 0 (1x)',
+																	text: 'Normal / Charge Lv 0 (1x)',
+																},
+																{
+																	id: 'Charge Lv 1 (1.15x)',
+																	text: 'Charge Lv 1 (1.15x)',
+																},
+																{
+																	id: 'Charge Lv 2 (1.3x)',
+																	text: 'Charge Lv 2 (1.3x)',
+																},
+																{
+																	id: 'Charge Lv 3 (1.5x)', // TODO 1.49 on Normal?
+																	text: 'Charge Lv 3 (1.5x)',
+																},
+																{
+																	id: 'Storm Style Lv 0 (0.95x)',
+																	text: 'Storm Style Lv 0 (0.95x)',
+																},
+															]}
+														/>
+														<div class="number-input-container">
+															<NumberInput
+																size="sm"
+																step={10}
+																min={minimumNumberValue}
+																max={maximumNumberValue}
+																bind:value={inputNumberCompressedShot}
+																invalidText={invalidNumberValueText}
+																label={'Compressed Shot Count'}
+															/>
+														</div>
+														<Dropdown
+															titleText="Compressed Shot"
+															bind:selectedId={inputCompressedShotMultiplier}
+															items={[
+																{
+																	id: 'Not Compressed (0x)',
+																	text: 'Not Compressed (0x)',
+																},
+																{
+																	id: 'Lv1 Norm S. (2.4x Bullets Loaded)',
+																	text: 'Lv1 Norm S. (2.4x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv2 Norm S. (6.0x Bullets Loaded)',
+																	text: 'Lv2 Norm S. (6.0x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
+																	text: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
+																},
+																{
+																	id: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
+																	text: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
+																	text: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
+																	text: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
+																	text: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
+																	text: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
+																	text: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
+																	text: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
+																},
+																{
+																	id: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
+																	text: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
+																},
+																{
+																	id: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
+																	text: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
+																},
+																{
+																	id: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
+																	text: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
+																},
+																{
+																	id: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
+																	text: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
+																},
+																{
+																	id: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
+																	text: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
+																},
+																{
+																	id: 'Lv1 Norm S. (3.6x Bullets Loaded)',
+																	text: 'Lv1 Norm S. (3.6x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv2 Norm S. (8.4x Bullets Loaded)',
+																	text: 'Lv2 Norm S. (8.4x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
+																	text: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
+																},
+																{
+																	id: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
+																	text: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
+																	text: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
+																	text: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
+																	text: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
+																	text: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
+																	text: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
+																},
+																{
+																	id: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
+																	text: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
+																},
+																{
+																	id: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
+																	text: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
+																},
+																{
+																	id: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
+																	text: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
+																},
+															]}
+														/>
+
+														<div class="dropdown-tooltip-container">
+															<Tooltip align="start">
+																<p>
+																	Adjusts for Consumption Slayer, a skill that
+																	causes double coating consumption for an
+																	additional +0.2x multiplier.
+																</p>
+															</Tooltip>
+															<Dropdown
+																titleText="Bow Coatings Multiplier"
+																bind:selectedId={inputBowCoatingsMultiplier}
+																items={[
+																	{ id: 'None (1x)', text: 'None (1x)' },
+																	{
+																		id: 'Power Bottle (1.6x)',
+																		text: 'Power Bottle (1.6x)',
+																	},
+																	{
+																		id: 'P. Bottle + Bow Hiden (1.8x)',
+																		text: 'P. Bottle + Bow Hiden (1.8x)',
+																	},
+																	{
+																		id: 'P. + Origin (1.7x)',
+																		text: 'P. + Origin (1.7x)',
+																	},
+																	{
+																		id: 'P. + Origin + Hiden (1.9x)',
+																		text: 'P. + Origin + Hiden (1.9x)',
+																	},
+																	{
+																		id: 'Status Bottle (1.5x)',
+																		text: 'Status Bottle (1.5x)',
+																	},
+																	{
+																		id: 'S. Bottle + Hiden (1.7x)',
+																		text: 'S. Bottle + Hiden (1.7x)',
+																	},
+																	{
+																		id: 'S. Bottle + Origin (1.6x)',
+																		text: 'S. Bottle + Origin (1.6x)',
+																	},
+																	{
+																		id: 'S. + Origin + Hiden (1.8x)',
+																		text: 'S. + Origin + Hiden (1.8x)',
+																	},
+																	{
+																		id: 'Non-G Power Bottle (1.5x)',
+																		text: 'Non-G Power Bottle (1.5x)',
+																	},
+																	{
+																		id: 'Choose a level lower for Non-G',
+																		text: 'Choose a level lower for Non-G',
+																	}, // TODO
+																]}
+															/>
+														</div>
+
+														<Dropdown
+															titleText="Bow Charge Multiplier"
+															bind:selectedId={inputBowChargeMultiplier}
+															items={[
+																{
+																	id: 'Lv1 (0.4x / 0.7x)',
+																	text: 'Lv1 (0.4x / 0.7x)',
+																},
+																{
+																	id: 'Lv2 (1.0x / 0.95x) ', // TODO using legacy values hence the inconsistency
+																	text: 'Lv2 (1.0x / 0.8x) ',
+																},
+																{
+																	id: 'Lv3 (1.5x / 1.2x)',
+																	text: 'Lv3 (1.5x / 1.2x)',
+																},
+																{
+																	id: 'Lv4 (1.85x / 1.334x)',
+																	text: 'Lv4 (1.85x / 1.334x)',
+																},
+																{
+																	id: 'Sniper Lv4 (1.0x / 1.0x)',
+																	text: 'Sniper Lv4 (1.0x / 1.0x)',
+																},
+																{
+																	id: 'Sniper Lv5 (1.125x / 1.1x)',
+																	text: 'Sniper Lv5 (1.125x / 1.1x)',
+																},
+																{
+																	id: 'Uncharged Rising Shot (0.4x / 1.0x)',
+																	text: 'Uncharged Rising Shot (0.4x / 1.0x)',
+																},
+																{
+																	id: 'Charged Rising Shot (1.0x / 1.5x)',
+																	text: 'Charged Rising Shot (1.0x / 1.5x)',
+																},
+																{
+																	id: 'Crouched Lv1 (0.48x / 0.7x)',
+																	text: 'Crouched Lv1 (0.48x / 0.7x)',
+																},
+																{
+																	id: 'Crouched Lv2 (1.3x / 0.8x)',
+																	text: 'Crouched Lv2 (1.3x / 0.8x)',
+																},
+																{
+																	id: 'Crouched Lv3 (2.1x / 1.2x)',
+																	text: 'Crouched Lv3 (2.1x / 1.2x)',
+																},
+																{
+																	id: 'Crouched Lv4 (2.59x / 1.334x)',
+																	text: 'Crouched Lv4 (2.59x / 1.334x)',
+																},
+															]}
+														/>
+
+														<Dropdown
+															titleText="Quick Shot"
+															bind:selectedId={inputQuickShot}
+															items={[
+																{
+																	id: 'Normal (All 1.0x)',
+																	text: 'Normal (All 1.0x)',
+																},
+																{
+																	id: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
+																	text: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
+																},
+																{
+																	id: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
+																	text: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
+																},
+															]}
+														/>
+													</div>
+												</div>
+											{/if}
+											<div class="input-section">
+												<div class="small-header">🐲 Element</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="Compressed Element Shot"
+														bind:selectedId={inputCompressedElementShot}
+														items={[
+															{ id: 'Not Compressed', text: 'Not Compressed' },
+															{ id: 'Fire Shot', text: 'Fire Shot' }, // TODO
+															{ id: 'Water Shot', text: 'Water Shot' },
+															{ id: 'Thunder Shot', text: 'Thunder Shot' },
+															{ id: 'Ice Shot', text: 'Ice Shot' },
+															{ id: 'Dragon Shot', text: 'Dragon Shot' },
+															{
+																id: 'Perfect Fire Shot',
+																text: 'Perfect Fire Shot',
+															},
+															{
+																id: 'Perfect Water Shot',
+																text: 'Perfect Water Shot',
+															},
+															{
+																id: 'Perfect Thunder Shot',
+																text: 'Perfect Thunder Shot',
+															},
+															{
+																id: 'Perfect Ice Shot',
+																text: 'Perfect Ice Shot',
+															},
+															{
+																id: 'Perfect Dragon Shot',
+																text: 'Perfect Dragon Shot',
+															},
+														]}
+													/>
+
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberCompressedElementShot}
+															invalidText={invalidNumberValueText}
+															label={'Compressed Element Shot Count'}
+														/>
+													</div>
+													<Dropdown
+														titleText="Element"
+														bind:selectedId={inputElement}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'Fire', text: 'Fire (火)' },
+															{ id: 'Water', text: 'Water (水)' },
+															{ id: 'Thunder', text: 'Thunder (雷)' },
+															{ id: 'Ice', text: 'Ice (冰)' },
+															{ id: 'Dragon', text: 'Dragon (龍)' },
+															{
+																id: 'Light',
+																text: 'Light (光) (70% Fire, 70% Thunder)',
+															},
+															{
+																id: 'Blaze',
+																text: 'Blaze (炎) (70% Fire, 70% Dragon)',
+															},
+															{
+																id: 'Tenshou',
+																text: 'Tenshou (天翔) (30% Fire, 100% Water, 70% Thunder)',
+															},
+															{
+																id: 'Lightning Rod',
+																text: 'Lightning Rod (雷棰) (70% Thunder, 70% Dragon)',
+															},
+															{
+																id: 'Okiko',
+																text: 'Okiko (熾凍) (80% Fire, 80% Ice, 40% Dragon)',
+															},
+															{
+																id: 'Black Flame',
+																text: 'Black Flame (黑焰) (50% Fire, 150% Dragon)',
+															},
+															{
+																id: 'Crimson Demon',
+																text: 'Crimson Demon (紅魔) (50% Dragon, 150% Fire)',
+															},
+															{
+																id: 'Dark',
+																text: 'Dark (闇) (80% Ice, 80% Dragon)',
+															},
+															{
+																id: 'Music',
+																text: 'Music (奏) (100% Water, 100% Ice)',
+															},
+															{
+																id: 'Sound',
+																text: 'Sound (響) (100% Water, 100% Dragon)',
+															},
+															{
+																id: 'Wind',
+																text: 'Wind (風) (80% Thunder, 80% Ice)',
+															},
+															{
+																id: 'Burning Zero',
+																text: 'Burning Zero (灼零) (125% Fire, 125% Ice)',
+															},
+															{
+																id: "Emperor's Roar",
+																text: "Emperor's Roar (皇鳴) (150% Thunder, 50% Dragon)",
+															},
+														]}
+													/>
+
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberElementalValueReplacement}
+															invalidText={invalidNumberValueText}
+															on:click={(e) => e.preventDefault()}
+														>
+															<span slot="label"
+																><Tooltip align="start" triggerText="Element">
+																	<p class="spaced-paragraph">
+																		For the three levels of Standard Elemental
+																		Sword Crystals you can use the values 500,
+																		700, 900 and for the GR600 Crystals you can
+																		use the values 1300, 1500 and 2100.
+																	</p>
+																	<p>
+																		This value replaces any elemental values on
+																		the weapon so set the element appropriately
+																		and use only the number above.
+																	</p>
+																</Tooltip></span
+															>
+														</NumberInput>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberSigil1Element}
+															invalidText={invalidNumberValueText}
+															label={'Sigil 1 Element'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberSigil2Element}
+															invalidText={invalidNumberValueText}
+															label={'Sigil 2 Element'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberSigil3Element}
+															invalidText={invalidNumberValueText}
+															label={'Sigil 3 Element'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberZenithElementSigil}
+															invalidText={invalidNumberValueText}
+															label={'Zenith Element Sigil'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberAOEElementSigil}
+															invalidText={invalidNumberValueText}
+															label={'AoE Element Sigil'}
+														/>
+													</div>
+
+													<Dropdown
+														titleText="AoE Element Sigil Count"
+														bind:selectedId={inputAoeElementSigil}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: '1 Sigil', text: '1 Sigil' },
+															{ id: '2 Sigils', text: '2 Sigils' },
+															{ id: '3 Sigils', text: '3 Sigils' },
+															{ id: '4 Sigils', text: '4 Sigils' },
+														]}
+													/>
+
+													<Dropdown
+														titleText="Weapon Multipliers"
+														bind:selectedId={inputWeaponElementMultipliers}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Swaxe Sword Mode Elemental Phial (1.3x)',
+																text: 'Swaxe Sword Mode Elemental Phial (1.3x)',
+															},
+															{
+																id: 'Maxed Transcend (2.0x)',
+																text: 'Maxed Transcend (2.0x)',
+															},
+															{
+																id: 'Swaxe Ele Phial & Maxed Transcend (2.6x)',
+																text: 'Swaxe Ele Phial & Maxed Transcend (2.6x)',
+															},
+														]}
+													/>
+												</div>
 											</div>
-											<Dropdown
-												titleText="Compressed Shot"
-												bind:selectedId={inputCompressedShotMultiplier}
-												items={[
-													{
-														id: 'Not Compressed (0x)',
-														text: 'Not Compressed (0x)',
-													},
-													{
-														id: 'Lv1 Norm S. (2.4x Bullets Loaded)',
-														text: 'Lv1 Norm S. (2.4x Bullets Loaded)',
-													},
-													{
-														id: 'Lv2 Norm S. (6.0x Bullets Loaded)',
-														text: 'Lv2 Norm S. (6.0x Bullets Loaded)',
-													},
-													{
-														id: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
-														text: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
-													},
-													{
-														id: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
-														text: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
-													},
-													{
-														id: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
-														text: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
-													},
-													{
-														id: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
-														text: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
-													},
-													{
-														id: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
-														text: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
-													},
-													{
-														id: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
-														text: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
-													},
-													{
-														id: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
-														text: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
-													},
-													{
-														id: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
-														text: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
-													},
-													{
-														id: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
-														text: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
-													},
-													{
-														id: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
-														text: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
-													},
-													{
-														id: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
-														text: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
-													},
-													{
-														id: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
-														text: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
-													},
-													{
-														id: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
-														text: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
-													},
-													{
-														id: 'Lv1 Norm S. (3.6x Bullets Loaded)',
-														text: 'Lv1 Norm S. (3.6x Bullets Loaded)',
-													},
-													{
-														id: 'Lv2 Norm S. (8.4x Bullets Loaded)',
-														text: 'Lv2 Norm S. (8.4x Bullets Loaded)',
-													},
-													{
-														id: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
-														text: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
-													},
-													{
-														id: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
-														text: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
-													},
-													{
-														id: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
-														text: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
-													},
-													{
-														id: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
-														text: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
-													},
-													{
-														id: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
-														text: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
-													},
-													{
-														id: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
-														text: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
-													},
-													{
-														id: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
-														text: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
-													},
-													{
-														id: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
-														text: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
-													},
-													{
-														id: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
-														text: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
-													},
-													{
-														id: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
-														text: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
-													},
-												]}
-											/>
+											<div class="input-section">
+												<div class="small-header">💤 Status</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="Status"
+														bind:selectedId={inputStatus}
+														items={[
+															{ id: 'None', text: 'None' },
+															{ id: 'Poison', text: 'Poison' },
+															{ id: 'Paralysis', text: 'Paralysis' },
+														]}
+													/>
 
-											<div class="dropdown-tooltip-container">
-												<Tooltip align="start">
-													<p>
-														Adjusts for Consumption Slayer, a skill that causes
-														double coating consumption for an additional +0.2x
-														multiplier.
-													</p>
-												</Tooltip>
-												<Dropdown
-													titleText="Bow Coatings Multiplier"
-													bind:selectedId={inputBowCoatingsMultiplier}
-													items={[
-														{ id: 'None (1x)', text: 'None (1x)' },
-														{
-															id: 'Power Bottle (1.6x)',
-															text: 'Power Bottle (1.6x)',
-														},
-														{
-															id: 'P. Bottle + Bow Hiden (1.8x)',
-															text: 'P. Bottle + Bow Hiden (1.8x)',
-														},
-														{
-															id: 'P. + Origin (1.7x)',
-															text: 'P. + Origin (1.7x)',
-														},
-														{
-															id: 'P. + Origin + Hiden (1.9x)',
-															text: 'P. + Origin + Hiden (1.9x)',
-														},
-														{
-															id: 'Status Bottle (1.5x)',
-															text: 'Status Bottle (1.5x)',
-														},
-														{
-															id: 'S. Bottle + Hiden (1.7x)',
-															text: 'S. Bottle + Hiden (1.7x)',
-														},
-														{
-															id: 'S. Bottle + Origin (1.6x)',
-															text: 'S. Bottle + Origin (1.6x)',
-														},
-														{
-															id: 'S. + Origin + Hiden (1.8x)',
-															text: 'S. + Origin + Hiden (1.8x)',
-														},
-														{
-															id: 'Non-G Power Bottle (1.5x)',
-															text: 'Non-G Power Bottle (1.5x)',
-														},
-														{
-															id: 'Choose a level lower for Non-G',
-															text: 'Choose a level lower for Non-G',
-														}, // TODO
-													]}
-												/>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberStatusValue}
+															invalidText={invalidNumberValueText}
+															label={'Status'}
+														/>
+													</div>
+												</div>
 											</div>
-
-											<Dropdown
-												titleText="Bow Charge Multiplier"
-												bind:selectedId={inputBowChargeMultiplier}
-												items={[
-													{
-														id: 'Lv1 (0.4x / 0.7x)',
-														text: 'Lv1 (0.4x / 0.7x)',
-													},
-													{
-														id: 'Lv2 (1.0x / 0.95x) ', // TODO using legacy values hence the inconsistency
-														text: 'Lv2 (1.0x / 0.8x) ',
-													},
-													{
-														id: 'Lv3 (1.5x / 1.2x)',
-														text: 'Lv3 (1.5x / 1.2x)',
-													},
-													{
-														id: 'Lv4 (1.85x / 1.334x)',
-														text: 'Lv4 (1.85x / 1.334x)',
-													},
-													{
-														id: 'Sniper Lv4 (1.0x / 1.0x)',
-														text: 'Sniper Lv4 (1.0x / 1.0x)',
-													},
-													{
-														id: 'Sniper Lv5 (1.125x / 1.1x)',
-														text: 'Sniper Lv5 (1.125x / 1.1x)',
-													},
-													{
-														id: 'Uncharged Rising Shot (0.4x / 1.0x)',
-														text: 'Uncharged Rising Shot (0.4x / 1.0x)',
-													},
-													{
-														id: 'Charged Rising Shot (1.0x / 1.5x)',
-														text: 'Charged Rising Shot (1.0x / 1.5x)',
-													},
-													{
-														id: 'Crouched Lv1 (0.48x / 0.7x)',
-														text: 'Crouched Lv1 (0.48x / 0.7x)',
-													},
-													{
-														id: 'Crouched Lv2 (1.3x / 0.8x)',
-														text: 'Crouched Lv2 (1.3x / 0.8x)',
-													},
-													{
-														id: 'Crouched Lv3 (2.1x / 1.2x)',
-														text: 'Crouched Lv3 (2.1x / 1.2x)',
-													},
-													{
-														id: 'Crouched Lv4 (2.59x / 1.334x)',
-														text: 'Crouched Lv4 (2.59x / 1.334x)',
-													},
-												]}
-											/>
-
-											<Dropdown
-												titleText="Quick Shot"
-												bind:selectedId={inputQuickShot}
-												items={[
-													{
-														id: 'Normal (All 1.0x)',
-														text: 'Normal (All 1.0x)',
-													},
-													{
-														id: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
-														text: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
-													},
-													{
-														id: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
-														text: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
-													},
-												]}
-											/>
+											<div class="input-section">
+												<div class="small-header">🎲 Other</div>
+												<div class="inputs-group-column">
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberOtherAdditional}
+															invalidText={invalidNumberValueText}
+															on:click={(e) => e.preventDefault()}
+														>
+															<span slot="label">
+																<Tooltip align="start" triggerText="Additional">
+																	<p>
+																		Enter any other additional damage to be
+																		calculated against only the defense rate
+																		such as bombs and blast status.
+																	</p></Tooltip
+																>
+															</span>
+														</NumberInput>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
+
+									<div class="inputs-3">
+										<div class="input-sections-container">
+											<div class="input-section">
+												<div class="small-header">🐉 Monster</div>
+												<div class="inputs-group-column">
+													<div>
+														<ComboBox
+															on:select={() => {
+																selectedMonsterState =
+																	availableMonsterStates[0]?.id || 'Default';
+																selectedMonsterRankBand =
+																	availableRankBands[0]?.id || 'Default';
+															}}
+															titleText="Monster"
+															placeholder="Select monster"
+															bind:selectedId={selectedMonster}
+															items={currentMonsters}
+															{shouldFilterItem}
+														/>
+													</div>
+													{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
+														<Dropdown
+															titleText="Monster Rank Band"
+															bind:selectedId={selectedMonsterRankBand}
+															items={availableRankBands}
+														/>
+
+														<Dropdown
+															titleText="Monster State"
+															bind:selectedId={selectedMonsterState}
+															items={availableMonsterStates}
+														/>
+														<Dropdown
+															titleText="Monster Part"
+															bind:selectedId={selectedMonsterPart}
+															items={availableMonsterParts}
+														/>
+													{/if}
+
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberDefenseRate}
+															invalidText={invalidNumberValueText}
+															on:click={(e) => e.preventDefault()}
+														>
+															<span slot="label"
+																><Tooltip
+																	align="start"
+																	triggerText="Defense Rate"
+																>
+																	<p>
+																		You can find the defense rate using the
+																		overlay. The value in the overlay already
+																		includes the rage and hardcore modifier
+																		multiplications.
+																	</p>
+																</Tooltip></span
+															>
+														</NumberInput>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberMonsterRage}
+															invalidText={invalidNumberValueText}
+															label={'Rage Modifier'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberHCModifiers}
+															invalidText={invalidNumberValueText}
+															label={'Hardcore Modifier'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberCuttingHitzone}
+															invalidText={invalidNumberValueText}
+															label={'Cutting Hitzone'}
+															disabled={selectedMonster !== undefined}
+															on:click={(e) => e.preventDefault()}
+														>
+															<span slot="label"
+																><Tooltip
+																	align="start"
+																	triggerText="Cutting Hitzone"
+																>
+																	<p>
+																		If the input is disabled and you want to
+																		change it, remove the monster selected in
+																		the dropdown above. This also applies to the
+																		number inputs below.
+																	</p>
+																</Tooltip></span
+															></NumberInput
+														>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberImpactHitzone}
+															invalidText={invalidNumberValueText}
+															label={'Impact Hitzone'}
+															disabled={selectedMonster !== undefined}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberShotHitzone}
+															invalidText={invalidNumberValueText}
+															label={'Shot Hitzone'}
+															disabled={selectedMonster !== undefined}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberFireHitzone}
+															disabled={selectedMonster !== undefined}
+															invalidText={invalidNumberValueText}
+															label={'Fire Hitzone'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															disabled={selectedMonster !== undefined}
+															max={maximumNumberValue}
+															bind:value={inputNumberWaterHitzone}
+															invalidText={invalidNumberValueText}
+															label={'Water Hitzone'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															disabled={selectedMonster !== undefined}
+															bind:value={inputNumberThunderHitzone}
+															invalidText={invalidNumberValueText}
+															label={'Thunder Hitzone'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberIceHitzone}
+															disabled={selectedMonster !== undefined}
+															invalidText={invalidNumberValueText}
+															label={'Ice Hitzone'}
+														/>
+													</div>
+													<div class="number-input-container">
+														<NumberInput
+															size="sm"
+															step={10}
+															min={minimumNumberValue}
+															max={maximumNumberValue}
+															bind:value={inputNumberDragonHitzone}
+															disabled={selectedMonster !== undefined}
+															invalidText={invalidNumberValueText}
+															label={'Dragon Hitzone'}
+														/>
+													</div>
+
+													<Dropdown
+														titleText="Monster Status"
+														bind:selectedId={inputMonsterStatus}
+														items={[
+															{ id: 'None (1x)', text: 'None (1x)' },
+															{
+																id: 'Paralysed (1.1x)',
+																text: 'Paralysed (1.1x)',
+															},
+															{
+																id: 'Sleeping (3.0x)',
+																text: 'Sleeping (3.0x)',
+															},
+														]}
+													/>
+												</div>
+											</div>
+											<div class="input-section">
+												<div class="small-header">
+													🛡️ Hitzone Value Modifiers
+												</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="Thunder Clad"
+														bind:selectedId={inputThunderClad}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Active (+5 on raw hitzones)',
+																text: 'Active (+5 on raw hitzones)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Exploit Weakness"
+														bind:selectedId={inputExploitWeakness}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Exploit Weakness (+5 on 35+ raw hitzones)',
+																text: 'Exploit Weakness (+5 on 35+ raw hitzones)',
+															},
+															{
+																id: 'Determination (+5 on raw hitzones)',
+																text: 'Determination (+5 on raw hitzones)',
+															},
+															{
+																id: 'ZZ Exploit Weakness (+5 on 30+ raw hitzones)',
+																text: 'ZZ Exploit Weakness (+5 on 30+ raw hitzones)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Point Breakthrough"
+														bind:selectedId={inputPointBreakthrough}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Active (+5 Raw Hitzones)',
+																text: 'Active (+5 Raw Hitzones)',
+															},
+															{
+																id: 'Raviente (+2 Raw Hitzones)',
+																text: 'Raviente (+2 Raw Hitzones)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Acid Shots"
+														bind:selectedId={inputAcidShots}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Raw Acid (+10 raw hitzones)',
+																text: 'Raw Acid (+10 raw hitzones)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Elemental Exploiter"
+														bind:selectedId={inputElementalExploiter}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Elemental Exploit (+X to 20+ ele hitzones)',
+																text: 'Elemental Exploit (+X to 20+ ele hitzones)',
+															},
+															{
+																id: 'Dissolver Up (+X to 15+ ele hitzones)',
+																text: 'Dissolver Up (+X to 15+ ele hitzones)',
+															},
+															{
+																id: 'Determination (+X to ele hitzones)',
+																text: 'Determination (+X to ele hitzones)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Hunting Horn Debuff"
+														bind:selectedId={inputHuntingHornDebuff}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'Raw Weakness (+2 on Raw Hitzones)',
+																text: 'Raw Weakness (+2 on Raw Hitzones)',
+															},
+															{
+																id: 'Elemental Weakness (+4 on all Elemental Hitzones)',
+																text: 'Elemental Weakness (+4 on all Elemental Hitzones)',
+															},
+															{
+																id: 'Both (+4 on Elemental, +2 on Raw)',
+																text: 'Both (+4 on Elemental, +2 on Raw)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Precision / Sniper / Crit S."
+														bind:selectedId={inputPrecisionSniperCritS}
+														items={[
+															{ id: 'None', text: 'None' },
+															{
+																id: 'In Crit Distance (+5 on raw hitzones)',
+																text: 'In Crit Distance (+5 on raw hitzones)',
+															},
+														]}
+													/>
+												</div>
+											</div>
+											<div class="input-section">
+												<div class="small-header">❔ Other</div>
+												<div class="inputs-group-column">
+													<Dropdown
+														titleText="Absolute Defense"
+														bind:selectedId={inputAbsoluteDefense}
+														items={[
+															{ id: 'Active (1.0x)', text: 'Active (1.0x)' },
+															{
+																id: 'Downtime (0.8x)',
+																text: 'Downtime (0.8x)',
+															},
+														]}
+													/>
+
+													<Dropdown
+														titleText="Premium Boost"
+														bind:selectedId={inputPremiumBoost}
+														items={[
+															{ id: 'Inactive (1x)', text: 'Inactive (1x)' },
+															{ id: 'Active (1.25x)', text: 'Active (1.25x)' },
+														]}
+													/>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div></AccordionItem
+							>
+							<AccordionItem open title="Diva Prayer Gems">
+								{#if inputNumberDivaPrayerGemRedLevel + inputNumberDivaPrayerGemYellowLevel + inputNumberDivaPrayerGemGreenLevel + inputNumberDivaPrayerGemBlueLevel > maxTotalDivaPrayerGemLevel}
+									<InlineNotification
+										title="Error:"
+										subtitle={`Total gem level exceeds ${maxTotalDivaPrayerGemLevel}, skipping calculations.`}
+										kind="error"
+										lowContrast
+										hideCloseButton
+									/>
 								{/if}
-								<div class="input-section">
-									<div class="small-header">🐲 Element</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Compressed Element Shot"
-											bind:selectedId={inputCompressedElementShot}
-											items={[
-												{ id: 'Not Compressed', text: 'Not Compressed' },
-												{ id: 'Fire Shot', text: 'Fire Shot' }, // TODO
-												{ id: 'Water Shot', text: 'Water Shot' },
-												{ id: 'Thunder Shot', text: 'Thunder Shot' },
-												{ id: 'Ice Shot', text: 'Ice Shot' },
-												{ id: 'Dragon Shot', text: 'Dragon Shot' },
-												{ id: 'Perfect Fire Shot', text: 'Perfect Fire Shot' },
-												{
-													id: 'Perfect Water Shot',
-													text: 'Perfect Water Shot',
-												},
-												{
-													id: 'Perfect Thunder Shot',
-													text: 'Perfect Thunder Shot',
-												},
-												{ id: 'Perfect Ice Shot', text: 'Perfect Ice Shot' },
-												{
-													id: 'Perfect Dragon Shot',
-													text: 'Perfect Dragon Shot',
-												},
-											]}
-										/>
-
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberCompressedElementShot}
-												invalidText={invalidNumberValueText}
-												label={'Compressed Element Shot Count'}
-											/>
-										</div>
-										<Dropdown
-											titleText="Element"
-											bind:selectedId={inputElement}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Fire', text: 'Fire (火)' },
-												{ id: 'Water', text: 'Water (水)' },
-												{ id: 'Thunder', text: 'Thunder (雷)' },
-												{ id: 'Ice', text: 'Ice (冰)' },
-												{ id: 'Dragon', text: 'Dragon (龍)' },
-												{
-													id: 'Light',
-													text: 'Light (光) (70% Fire, 70% Thunder)',
-												},
-												{
-													id: 'Blaze',
-													text: 'Blaze (炎) (70% Fire, 70% Dragon)',
-												},
-												{
-													id: 'Tenshou',
-													text: 'Tenshou (天翔) (30% Fire, 100% Water, 70% Thunder)',
-												},
-												{
-													id: 'Lightning Rod',
-													text: 'Lightning Rod (雷棰) (70% Thunder, 70% Dragon)',
-												},
-												{
-													id: 'Okiko',
-													text: 'Okiko (熾凍) (80% Fire, 80% Ice, 40% Dragon)',
-												},
-												{
-													id: 'Black Flame',
-													text: 'Black Flame (黑焰) (50% Fire, 150% Dragon)',
-												},
-												{
-													id: 'Crimson Demon',
-													text: 'Crimson Demon (紅魔) (50% Dragon, 150% Fire)',
-												},
-												{
-													id: 'Dark',
-													text: 'Dark (闇) (80% Ice, 80% Dragon)',
-												},
-												{
-													id: 'Music',
-													text: 'Music (奏) (100% Water, 100% Ice)',
-												},
-												{
-													id: 'Sound',
-													text: 'Sound (響) (100% Water, 100% Dragon)',
-												},
-												{
-													id: 'Wind',
-													text: 'Wind (風) (80% Thunder, 80% Ice)',
-												},
-												{
-													id: 'Burning Zero',
-													text: 'Burning Zero (灼零) (125% Fire, 125% Ice)',
-												},
-												{
-													id: "Emperor's Roar",
-													text: "Emperor's Roar (皇鳴) (150% Thunder, 50% Dragon)",
-												},
-											]}
-										/>
-
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberElementalValueReplacement}
-												invalidText={invalidNumberValueText}
-												on:click={(e) => e.preventDefault()}
-											>
-												<span slot="label"
-													><Tooltip align="start" triggerText="Element">
-														<p class="spaced-paragraph">
-															For the three levels of Standard Elemental Sword
-															Crystals you can use the values 500, 700, 900 and
-															for the GR600 Crystals you can use the values
-															1300, 1500 and 2100.
-														</p>
-														<p>
-															This value replaces any elemental values on the
-															weapon so set the element appropriately and use
-															only the number above.
-														</p>
-													</Tooltip></span
-												>
-											</NumberInput>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberSigil1Element}
-												invalidText={invalidNumberValueText}
-												label={'Sigil 1 Element'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberSigil2Element}
-												invalidText={invalidNumberValueText}
-												label={'Sigil 2 Element'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberSigil3Element}
-												invalidText={invalidNumberValueText}
-												label={'Sigil 3 Element'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberZenithElementSigil}
-												invalidText={invalidNumberValueText}
-												label={'Zenith Element Sigil'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberAOEElementSigil}
-												invalidText={invalidNumberValueText}
-												label={'AoE Element Sigil'}
-											/>
-										</div>
-
-										<Dropdown
-											titleText="AoE Element Sigil Count"
-											bind:selectedId={inputAoeElementSigil}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: '1 Sigil', text: '1 Sigil' },
-												{ id: '2 Sigils', text: '2 Sigils' },
-												{ id: '3 Sigils', text: '3 Sigils' },
-												{ id: '4 Sigils', text: '4 Sigils' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Weapon Multipliers"
-											bind:selectedId={inputWeaponElementMultipliers}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{
-													id: 'Swaxe Sword Mode Elemental Phial (1.3x)',
-													text: 'Swaxe Sword Mode Elemental Phial (1.3x)',
-												},
-												{
-													id: 'Maxed Transcend (2.0x)',
-													text: 'Maxed Transcend (2.0x)',
-												},
-												{
-													id: 'Swaxe Ele Phial & Maxed Transcend (2.6x)',
-													text: 'Swaxe Ele Phial & Maxed Transcend (2.6x)',
-												},
-											]}
-										/>
+								<div class="damage-calculator-diva-prayer-gems-container">
+									<div class="stats-header">
+										{gemEmojis} Diva Prayer Gems {gemEmojis}
 									</div>
-								</div>
-								<div class="input-section">
-									<div class="small-header">💤 Status</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Status"
-											bind:selectedId={inputStatus}
-											items={[
-												{ id: 'None', text: 'None' },
-												{ id: 'Poison', text: 'Poison' },
-												{ id: 'Paralysis', text: 'Paralysis' },
-											]}
-										/>
-
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberStatusValue}
-												invalidText={invalidNumberValueText}
-												label={'Status'}
-											/>
-										</div>
-									</div>
-								</div>
-								<div class="input-section">
-									<div class="small-header">🎲 Other</div>
-									<div class="inputs-group-column">
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberOtherAdditional}
-												invalidText={invalidNumberValueText}
-												on:click={(e) => e.preventDefault()}
-											>
-												<span slot="label">
-													<Tooltip align="start" triggerText="Additional">
-														<p>
-															Enter any other additional damage to be calculated
-															against only the defense rate such as bombs and
-															blast status.
-														</p></Tooltip
+									<div class="diva-stats-values">
+										<div class="diva-prayer-gem">
+											<div class="diva-prayer-gem-icon">
+												<!-- Container for the active icon -->
+												{#if inputDivaPrayerGemRedName !== 'None'}
+													<div
+														class="icon-wrapper"
+														in:send={{ key: iconKey }}
+														out:receive={{ key: iconKey }}
 													>
-												</span>
-											</NumberInput>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+														<DivaPrayerGem
+															color={getDivaPrayerGemColor('Red')}
+														/>
+													</div>
+												{:else}
+													<!-- Container for the inactive icon -->
 
-						<div class="inputs-3">
-							<div class="input-sections-container">
-								<div class="input-section">
-									<div class="small-header">🐉 Monster</div>
-									<div class="inputs-group-column">
-										<div>
-											<ComboBox
-												on:select={() => {
-													selectedMonsterState =
-														availableMonsterStates[0]?.id || 'Default';
-													selectedMonsterRankBand =
-														availableRankBands[0]?.id || 'Default';
+													<div
+														class="icon-wrapper"
+														in:send={{ key: iconKey }}
+														out:receive={{ key: iconKey }}
+													>
+														<DivaPrayerGem
+															color={getDivaPrayerGemColor('Inactive')}
+														/>
+													</div>
+												{/if}
+											</div>
+											<Dropdown
+												bind:selectedId={inputDivaPrayerGemRedName}
+												titleText="Diva Prayer Gem Red Skill"
+												invalid={hasDivaPrayerGemDuplicates}
+												invalidText="Duplicate gem found"
+												items={mappedDivaPrayerGems}
+												on:select={(e) => {
+													if (inputDivaPrayerGemRedName === 'None') {
+														inputDivaPrayerGemYellowName = 'None';
+														inputNumberDivaPrayerGemYellowLevel = 0;
+														inputDivaPrayerGemGreenName = 'None';
+														inputNumberDivaPrayerGemGreenLevel = 0;
+														inputDivaPrayerGemBlueName = 'None';
+														inputNumberDivaPrayerGemBlueLevel = 0;
+													}
 												}}
-												titleText="Monster"
-												placeholder="Select monster"
-												bind:selectedId={selectedMonster}
-												items={currentMonsters}
-												{shouldFilterItem}
 											/>
+											<div class="diva-prayer-gem-level">
+												<!--TODO max levels vary by skill-->
+												<NumberInput
+													size="sm"
+													step={1}
+													min={0}
+													bind:max={outputDivaPrayerGemRedMaxLevel}
+													invalid={inputNumberDivaPrayerGemRedLevel +
+														inputNumberDivaPrayerGemYellowLevel +
+														inputNumberDivaPrayerGemGreenLevel +
+														inputNumberDivaPrayerGemBlueLevel >
+														7}
+													bind:value={inputNumberDivaPrayerGemRedLevel}
+													invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemRedMaxLevel} and all gem levels must not surpass 7.`}
+													label={'Diva Prayer Gem Red Level'}
+													disabled={inputDivaPrayerGemRedName === 'None'}
+												/>
+											</div>
 										</div>
-										{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
-											<Dropdown
-												titleText="Monster Rank Band"
-												bind:selectedId={selectedMonsterRankBand}
-												items={availableRankBands}
-											/>
+										<div class="diva-prayer-gem">
+											<div class="diva-prayer-gem-icon">
+												<!-- Container for the active icon -->
+												{#if inputDivaPrayerGemYellowName !== 'None'}
+													<div
+														class="icon-wrapper"
+														in:send={{ key: iconKey }}
+														out:receive={{ key: iconKey }}
+													>
+														<DivaPrayerGem
+															color={getDivaPrayerGemColor('Yellow')}
+														/>
+													</div>
+												{:else}
+													<!-- Container for the inactive icon -->
 
+													<div
+														class="icon-wrapper"
+														in:send={{ key: iconKey }}
+														out:receive={{ key: iconKey }}
+													>
+														<DivaPrayerGem
+															color={getDivaPrayerGemColor('Inactive')}
+														/>
+													</div>
+												{/if}
+											</div>
 											<Dropdown
-												titleText="Monster State"
-												bind:selectedId={selectedMonsterState}
-												items={availableMonsterStates}
+												bind:selectedId={inputDivaPrayerGemYellowName}
+												invalid={hasDivaPrayerGemDuplicates}
+												invalidText="Duplicate gem found"
+												titleText="Diva Prayer Gem Yellow Skill"
+												items={mappedDivaPrayerGems}
+												disabled={inputDivaPrayerGemRedName === 'None'}
+												on:select={(e) => {
+													if (inputDivaPrayerGemYellowName === 'None') {
+														inputNumberDivaPrayerGemYellowLevel = 0;
+														inputDivaPrayerGemGreenName = 'None';
+														inputNumberDivaPrayerGemGreenLevel = 0;
+														inputDivaPrayerGemBlueName = 'None';
+														inputNumberDivaPrayerGemBlueLevel = 0;
+													}
+												}}
 											/>
+											<div class="diva-prayer-gem-level">
+												<NumberInput
+													size="sm"
+													step={1}
+													min={0}
+													bind:max={outputDivaPrayerGemYellowMaxLevel}
+													invalid={inputNumberDivaPrayerGemRedLevel +
+														inputNumberDivaPrayerGemYellowLevel +
+														inputNumberDivaPrayerGemGreenLevel +
+														inputNumberDivaPrayerGemBlueLevel >
+														7}
+													bind:value={inputNumberDivaPrayerGemYellowLevel}
+													invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemYellowMaxLevel} and all gem levels must not surpass 7.`}
+													label={'Diva Prayer Gem Yellow Level'}
+													disabled={inputDivaPrayerGemYellowName === 'None'}
+												/>
+											</div>
+										</div>
+										<div class="diva-prayer-gem">
+											<div class="diva-prayer-gem-icon">
+												<!-- Container for the active icon -->
+												{#if inputDivaPrayerGemGreenName !== 'None'}
+													<div
+														class="icon-wrapper"
+														in:send={{ key: iconKey }}
+														out:receive={{ key: iconKey }}
+													>
+														<DivaPrayerGem
+															color={getDivaPrayerGemColor('Green')}
+														/>
+													</div>
+												{:else}
+													<!-- Container for the inactive icon -->
+													<div
+														class="icon-wrapper"
+														in:send={{ key: iconKey }}
+														out:receive={{ key: iconKey }}
+													>
+														<DivaPrayerGem
+															color={getDivaPrayerGemColor('Inactive')}
+														/>
+													</div>
+												{/if}
+											</div>
 											<Dropdown
-												titleText="Monster Part"
-												bind:selectedId={selectedMonsterPart}
-												items={availableMonsterParts}
+												bind:selectedId={inputDivaPrayerGemGreenName}
+												invalid={hasDivaPrayerGemDuplicates}
+												invalidText="Duplicate gem found"
+												titleText="Diva Prayer Gem Green Skill"
+												items={mappedDivaPrayerGems}
+												disabled={inputDivaPrayerGemYellowName === 'None'}
+												on:select={(e) => {
+													if (inputDivaPrayerGemGreenName === 'None') {
+														inputNumberDivaPrayerGemGreenLevel = 0;
+														inputDivaPrayerGemBlueName = 'None';
+														inputNumberDivaPrayerGemBlueLevel = 0;
+													}
+												}}
 											/>
-										{/if}
+											<div class="diva-prayer-gem-level">
+												<NumberInput
+													size="sm"
+													step={1}
+													min={0}
+													invalid={inputNumberDivaPrayerGemRedLevel +
+														inputNumberDivaPrayerGemYellowLevel +
+														inputNumberDivaPrayerGemGreenLevel +
+														inputNumberDivaPrayerGemBlueLevel >
+														7}
+													bind:max={outputDivaPrayerGemGreenMaxLevel}
+													bind:value={inputNumberDivaPrayerGemGreenLevel}
+													invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemGreenMaxLevel} and all gem levels must not surpass 7.`}
+													label={'Diva Prayer Gem Green Level'}
+													disabled={inputDivaPrayerGemGreenName === 'None'}
+												/>
+											</div>
+										</div>
+										<div class="diva-prayer-gem">
+											<div class="diva-prayer-gem-icon">
+												<!-- Container for the active icon -->
+												{#if inputDivaPrayerGemBlueName !== 'None'}
+													<div
+														class="icon-wrapper"
+														in:send={{ key: iconKey }}
+														out:receive={{ key: iconKey }}
+													>
+														<DivaPrayerGem
+															color={getDivaPrayerGemColor('Blue')}
+														/>
+													</div>
+												{:else}
+													<!-- Container for the inactive icon -->
 
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberDefenseRate}
-												invalidText={invalidNumberValueText}
-												on:click={(e) => e.preventDefault()}
-											>
-												<span slot="label"
-													><Tooltip align="start" triggerText="Defense Rate">
-														<p>
-															You can find the defense rate using the overlay.
-															The value in the overlay already includes the rage
-															and hardcore modifier multiplications.
-														</p>
-													</Tooltip></span
-												>
-											</NumberInput>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberMonsterRage}
-												invalidText={invalidNumberValueText}
-												label={'Rage Modifier'}
+													<div
+														class="icon-wrapper"
+														in:send={{ key: iconKey }}
+														out:receive={{ key: iconKey }}
+													>
+														<DivaPrayerGem
+															color={getDivaPrayerGemColor('Inactive')}
+														/>
+													</div>
+												{/if}
+											</div>
+											<Dropdown
+												bind:selectedId={inputDivaPrayerGemBlueName}
+												invalid={hasDivaPrayerGemDuplicates}
+												invalidText="Duplicate gem found"
+												titleText="Diva Prayer Gem Blue Skill"
+												items={mappedDivaPrayerGems}
+												disabled={inputDivaPrayerGemGreenName === 'None'}
+												on:select={(e) => {
+													if (inputDivaPrayerGemBlueName === 'None') {
+														inputNumberDivaPrayerGemBlueLevel = 0;
+													}
+												}}
 											/>
+											<div class="diva-prayer-gem-level">
+												<NumberInput
+													size="sm"
+													step={1}
+													min={0}
+													bind:max={outputDivaPrayerGemBlueMaxLevel}
+													invalid={inputNumberDivaPrayerGemRedLevel +
+														inputNumberDivaPrayerGemYellowLevel +
+														inputNumberDivaPrayerGemGreenLevel +
+														inputNumberDivaPrayerGemBlueLevel >
+														7}
+													bind:value={inputNumberDivaPrayerGemBlueLevel}
+													invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemBlueMaxLevel} and all gem levels must not surpass 7.`}
+													label={'Diva Prayer Gem Blue Level'}
+													disabled={inputDivaPrayerGemBlueName === 'None'}
+												/>
+											</div>
 										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberHCModifiers}
-												invalidText={invalidNumberValueText}
-												label={'Hardcore Modifier'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberCuttingHitzone}
-												invalidText={invalidNumberValueText}
-												label={'Cutting Hitzone'}
-												disabled={selectedMonster !== undefined}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberImpactHitzone}
-												invalidText={invalidNumberValueText}
-												label={'Impact Hitzone'}
-												disabled={selectedMonster !== undefined}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberShotHitzone}
-												invalidText={invalidNumberValueText}
-												label={'Shot Hitzone'}
-												disabled={selectedMonster !== undefined}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberFireHitzone}
-												disabled={selectedMonster !== undefined}
-												invalidText={invalidNumberValueText}
-												label={'Fire Hitzone'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												disabled={selectedMonster !== undefined}
-												max={maximumNumberValue}
-												bind:value={inputNumberWaterHitzone}
-												invalidText={invalidNumberValueText}
-												label={'Water Hitzone'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												disabled={selectedMonster !== undefined}
-												bind:value={inputNumberThunderHitzone}
-												invalidText={invalidNumberValueText}
-												label={'Thunder Hitzone'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberIceHitzone}
-												disabled={selectedMonster !== undefined}
-												invalidText={invalidNumberValueText}
-												label={'Ice Hitzone'}
-											/>
-										</div>
-										<div class="number-input-container">
-											<NumberInput
-												size="sm"
-												step={10}
-												min={minimumNumberValue}
-												max={maximumNumberValue}
-												bind:value={inputNumberDragonHitzone}
-												disabled={selectedMonster !== undefined}
-												invalidText={invalidNumberValueText}
-												label={'Dragon Hitzone'}
-											/>
-										</div>
-
-										<Dropdown
-											titleText="Monster Status"
-											bind:selectedId={inputMonsterStatus}
-											items={[
-												{ id: 'None (1x)', text: 'None (1x)' },
-												{ id: 'Paralysed (1.1x)', text: 'Paralysed (1.1x)' },
-												{ id: 'Sleeping (3.0x)', text: 'Sleeping (3.0x)' },
-											]}
-										/>
 									</div>
 								</div>
-								<div class="input-section">
-									<div class="small-header">🛡️ Hitzone Value Modifiers</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Thunder Clad"
-											bind:selectedId={inputThunderClad}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Active (+5 on raw hitzones)',
-													text: 'Active (+5 on raw hitzones)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Exploit Weakness"
-											bind:selectedId={inputExploitWeakness}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Exploit Weakness (+5 on 35+ raw hitzones)',
-													text: 'Exploit Weakness (+5 on 35+ raw hitzones)',
-												},
-												{
-													id: 'Determination (+5 on raw hitzones)',
-													text: 'Determination (+5 on raw hitzones)',
-												},
-												{
-													id: 'ZZ Exploit Weakness (+5 on 30+ raw hitzones)',
-													text: 'ZZ Exploit Weakness (+5 on 30+ raw hitzones)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Point Breakthrough"
-											bind:selectedId={inputPointBreakthrough}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Active (+5 Raw Hitzones)',
-													text: 'Active (+5 Raw Hitzones)',
-												},
-												{
-													id: 'Raviente (+2 Raw Hitzones)',
-													text: 'Raviente (+2 Raw Hitzones)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Acid Shots"
-											bind:selectedId={inputAcidShots}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Raw Acid (+10 raw hitzones)',
-													text: 'Raw Acid (+10 raw hitzones)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Elemental Exploiter"
-											bind:selectedId={inputElementalExploiter}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Elemental Exploit (+X to 20+ ele hitzones)',
-													text: 'Elemental Exploit (+X to 20+ ele hitzones)',
-												},
-												{
-													id: 'Dissolver Up (+X to 15+ ele hitzones)',
-													text: 'Dissolver Up (+X to 15+ ele hitzones)',
-												},
-												{
-													id: 'Determination (+X to ele hitzones)',
-													text: 'Determination (+X to ele hitzones)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Hunting Horn Debuff"
-											bind:selectedId={inputHuntingHornDebuff}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'Raw Weakness (+2 on Raw Hitzones)',
-													text: 'Raw Weakness (+2 on Raw Hitzones)',
-												},
-												{
-													id: 'Elemental Weakness (+4 on all Elemental Hitzones)',
-													text: 'Elemental Weakness (+4 on all Elemental Hitzones)',
-												},
-												{
-													id: 'Both (+4 on Elemental, +2 on Raw)',
-													text: 'Both (+4 on Elemental, +2 on Raw)',
-												},
-											]}
-										/>
-
-										<Dropdown
-											titleText="Precision / Sniper / Crit S."
-											bind:selectedId={inputPrecisionSniperCritS}
-											items={[
-												{ id: 'None', text: 'None' },
-												{
-													id: 'In Crit Distance (+5 on raw hitzones)',
-													text: 'In Crit Distance (+5 on raw hitzones)',
-												},
-											]}
-										/>
+							</AccordionItem>
+							<AccordionItem
+								open
+								title="Internal Values and Final Displayed Attack"
+							>
+								<div class="calculator-results">
+									<div class="stats-header">
+										Internal Values and Final Displayed Attack
+									</div>
+									<div class="stats-values">
+										<div class="fire">
+											<InlineTooltip
+												icon={ElementIcons.find((e) => e.name === 'Fire')?.icon}
+												text={'Fire'}
+												tooltip={'Element'}
+											/>: {internalFire}
+										</div>
+										<div class="water">
+											<InlineTooltip
+												icon={ElementIcons.find((e) => e.name === 'Water')
+													?.icon}
+												text={'Water'}
+												tooltip={'Element'}
+											/>: {internalWater}
+										</div>
+										<div class="ice">
+											<InlineTooltip
+												icon={ElementIcons.find((e) => e.name === 'Ice')?.icon}
+												text={'Ice'}
+												tooltip={'Element'}
+											/>: {internalIce}
+										</div>
+										<div class="thunder">
+											<InlineTooltip
+												icon={ElementIcons.find((e) => e.name === 'Thunder')
+													?.icon}
+												text={'Thunder'}
+												tooltip={'Element'}
+											/>: {internalThunder}
+										</div>
+										<div class="dragon">
+											<InlineTooltip
+												icon={ElementIcons.find((e) => e.name === 'Dragon')
+													?.icon}
+												text={'Dragon'}
+												tooltip={'Element'}
+											/>: {internalDragon}
+										</div>
+										<div class="total-attack">
+											⚔️ True Raw: {internalTrueRawDisplay} ({internalTrueRaw})
+										</div>
+										<div class="my-missions">
+											🎫 My Missions: {internalMissionsNeeded}
+										</div>
+										<div class="status">
+											<InlineTooltip
+												icon={inputStatusIcon}
+												text={inputStatus === 'None' ? 'Status' : inputStatus}
+												tooltip={'Status'}
+											/>:
+											{internalStatus}
+										</div>
+										<div class="attack-ceiling">
+											⚓ Attack Ceiling: {internalAttackCeiling}
+										</div>
+										<div class="attack">🗡️ Attack: {internalAttack}</div>
+										<div class="affinity">✨ Affinity: {internalAffinity}%</div>
 									</div>
 								</div>
-								<div class="input-section">
-									<div class="small-header">❔ Other</div>
-									<div class="inputs-group-column">
-										<Dropdown
-											titleText="Absolute Defense"
-											bind:selectedId={inputAbsoluteDefense}
-											items={[
-												{ id: 'Active (1.0x)', text: 'Active (1.0x)' },
-												{ id: 'Downtime (0.8x)', text: 'Downtime (0.8x)' },
-											]}
-										/>
-
-										<Dropdown
-											titleText="Premium Boost"
-											bind:selectedId={inputPremiumBoost}
-											items={[
-												{ id: 'Inactive (1x)', text: 'Inactive (1x)' },
-												{ id: 'Active (1.25x)', text: 'Active (1.25x)' },
-											]}
-										/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					{#if inputNumberDivaPrayerGemRedLevel + inputNumberDivaPrayerGemYellowLevel + inputNumberDivaPrayerGemGreenLevel + inputNumberDivaPrayerGemBlueLevel > maxTotalDivaPrayerGemLevel}
-						<InlineNotification
-							title="Error:"
-							subtitle={`Total gem level exceeds ${maxTotalDivaPrayerGemLevel}, skipping calculations.`}
-							kind="error"
-							lowContrast
-							hideCloseButton
-						/>
-					{/if}
-					<div class="damage-calculator-diva-prayer-gems-container">
-						<div class="stats-header">
-							{gemEmojis} Diva Prayer Gems {gemEmojis}
-						</div>
-						<div class="diva-stats-values">
-							<div class="diva-prayer-gem">
-								<div class="diva-prayer-gem-icon">
-									<!-- Container for the active icon -->
-									{#if inputDivaPrayerGemRedName !== 'None'}
-										<div
-											class="icon-wrapper"
-											in:send={{ key: iconKey }}
-											out:receive={{ key: iconKey }}
-										>
-											<DivaPrayerGem color={getDivaPrayerGemColor('Red')} />
-										</div>
-									{:else}
-										<!-- Container for the inactive icon -->
-
-										<div
-											class="icon-wrapper"
-											in:send={{ key: iconKey }}
-											out:receive={{ key: iconKey }}
-										>
-											<DivaPrayerGem
-												color={getDivaPrayerGemColor('Inactive')}
-											/>
-										</div>
-									{/if}
-								</div>
-								<Dropdown
-									bind:selectedId={inputDivaPrayerGemRedName}
-									titleText="Diva Prayer Gem Red Skill"
-									invalid={hasDivaPrayerGemDuplicates}
-									invalidText="Duplicate gem found"
-									items={mappedDivaPrayerGems}
-									on:select={(e) => {
-										if (inputDivaPrayerGemRedName === 'None') {
-											inputDivaPrayerGemYellowName = 'None';
-											inputNumberDivaPrayerGemYellowLevel = 0;
-											inputDivaPrayerGemGreenName = 'None';
-											inputNumberDivaPrayerGemGreenLevel = 0;
-											inputDivaPrayerGemBlueName = 'None';
-											inputNumberDivaPrayerGemBlueLevel = 0;
-										}
-									}}
-								/>
-								<div class="diva-prayer-gem-level">
-									<!--TODO max levels vary by skill-->
-									<NumberInput
-										size="sm"
-										step={1}
-										min={0}
-										bind:max={outputDivaPrayerGemRedMaxLevel}
-										invalid={inputNumberDivaPrayerGemRedLevel +
-											inputNumberDivaPrayerGemYellowLevel +
-											inputNumberDivaPrayerGemGreenLevel +
-											inputNumberDivaPrayerGemBlueLevel >
-											7}
-										bind:value={inputNumberDivaPrayerGemRedLevel}
-										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemRedMaxLevel} and all gem levels must not surpass 7.`}
-										label={'Diva Prayer Gem Red Level'}
-										disabled={inputDivaPrayerGemRedName === 'None'}
-									/>
-								</div>
-							</div>
-							<div class="diva-prayer-gem">
-								<div class="diva-prayer-gem-icon">
-									<!-- Container for the active icon -->
-									{#if inputDivaPrayerGemYellowName !== 'None'}
-										<div
-											class="icon-wrapper"
-											in:send={{ key: iconKey }}
-											out:receive={{ key: iconKey }}
-										>
-											<DivaPrayerGem color={getDivaPrayerGemColor('Yellow')} />
-										</div>
-									{:else}
-										<!-- Container for the inactive icon -->
-
-										<div
-											class="icon-wrapper"
-											in:send={{ key: iconKey }}
-											out:receive={{ key: iconKey }}
-										>
-											<DivaPrayerGem
-												color={getDivaPrayerGemColor('Inactive')}
-											/>
-										</div>
-									{/if}
-								</div>
-								<Dropdown
-									bind:selectedId={inputDivaPrayerGemYellowName}
-									invalid={hasDivaPrayerGemDuplicates}
-									invalidText="Duplicate gem found"
-									titleText="Diva Prayer Gem Yellow Skill"
-									items={mappedDivaPrayerGems}
-									disabled={inputDivaPrayerGemRedName === 'None'}
-									on:select={(e) => {
-										if (inputDivaPrayerGemYellowName === 'None') {
-											inputNumberDivaPrayerGemYellowLevel = 0;
-											inputDivaPrayerGemGreenName = 'None';
-											inputNumberDivaPrayerGemGreenLevel = 0;
-											inputDivaPrayerGemBlueName = 'None';
-											inputNumberDivaPrayerGemBlueLevel = 0;
-										}
-									}}
-								/>
-								<div class="diva-prayer-gem-level">
-									<NumberInput
-										size="sm"
-										step={1}
-										min={0}
-										bind:max={outputDivaPrayerGemYellowMaxLevel}
-										invalid={inputNumberDivaPrayerGemRedLevel +
-											inputNumberDivaPrayerGemYellowLevel +
-											inputNumberDivaPrayerGemGreenLevel +
-											inputNumberDivaPrayerGemBlueLevel >
-											7}
-										bind:value={inputNumberDivaPrayerGemYellowLevel}
-										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemYellowMaxLevel} and all gem levels must not surpass 7.`}
-										label={'Diva Prayer Gem Yellow Level'}
-										disabled={inputDivaPrayerGemYellowName === 'None'}
-									/>
-								</div>
-							</div>
-							<div class="diva-prayer-gem">
-								<div class="diva-prayer-gem-icon">
-									<!-- Container for the active icon -->
-									{#if inputDivaPrayerGemGreenName !== 'None'}
-										<div
-											class="icon-wrapper"
-											in:send={{ key: iconKey }}
-											out:receive={{ key: iconKey }}
-										>
-											<DivaPrayerGem color={getDivaPrayerGemColor('Green')} />
-										</div>
-									{:else}
-										<!-- Container for the inactive icon -->
-										<div
-											class="icon-wrapper"
-											in:send={{ key: iconKey }}
-											out:receive={{ key: iconKey }}
-										>
-											<DivaPrayerGem
-												color={getDivaPrayerGemColor('Inactive')}
-											/>
-										</div>
-									{/if}
-								</div>
-								<Dropdown
-									bind:selectedId={inputDivaPrayerGemGreenName}
-									invalid={hasDivaPrayerGemDuplicates}
-									invalidText="Duplicate gem found"
-									titleText="Diva Prayer Gem Green Skill"
-									items={mappedDivaPrayerGems}
-									disabled={inputDivaPrayerGemYellowName === 'None'}
-									on:select={(e) => {
-										if (inputDivaPrayerGemGreenName === 'None') {
-											inputNumberDivaPrayerGemGreenLevel = 0;
-											inputDivaPrayerGemBlueName = 'None';
-											inputNumberDivaPrayerGemBlueLevel = 0;
-										}
-									}}
-								/>
-								<div class="diva-prayer-gem-level">
-									<NumberInput
-										size="sm"
-										step={1}
-										min={0}
-										invalid={inputNumberDivaPrayerGemRedLevel +
-											inputNumberDivaPrayerGemYellowLevel +
-											inputNumberDivaPrayerGemGreenLevel +
-											inputNumberDivaPrayerGemBlueLevel >
-											7}
-										bind:max={outputDivaPrayerGemGreenMaxLevel}
-										bind:value={inputNumberDivaPrayerGemGreenLevel}
-										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemGreenMaxLevel} and all gem levels must not surpass 7.`}
-										label={'Diva Prayer Gem Green Level'}
-										disabled={inputDivaPrayerGemGreenName === 'None'}
-									/>
-								</div>
-							</div>
-							<div class="diva-prayer-gem">
-								<div class="diva-prayer-gem-icon">
-									<!-- Container for the active icon -->
-									{#if inputDivaPrayerGemBlueName !== 'None'}
-										<div
-											class="icon-wrapper"
-											in:send={{ key: iconKey }}
-											out:receive={{ key: iconKey }}
-										>
-											<DivaPrayerGem color={getDivaPrayerGemColor('Blue')} />
-										</div>
-									{:else}
-										<!-- Container for the inactive icon -->
-
-										<div
-											class="icon-wrapper"
-											in:send={{ key: iconKey }}
-											out:receive={{ key: iconKey }}
-										>
-											<DivaPrayerGem
-												color={getDivaPrayerGemColor('Inactive')}
-											/>
-										</div>
-									{/if}
-								</div>
-								<Dropdown
-									bind:selectedId={inputDivaPrayerGemBlueName}
-									invalid={hasDivaPrayerGemDuplicates}
-									invalidText="Duplicate gem found"
-									titleText="Diva Prayer Gem Blue Skill"
-									items={mappedDivaPrayerGems}
-									disabled={inputDivaPrayerGemGreenName === 'None'}
-									on:select={(e) => {
-										if (inputDivaPrayerGemBlueName === 'None') {
-											inputNumberDivaPrayerGemBlueLevel = 0;
-										}
-									}}
-								/>
-								<div class="diva-prayer-gem-level">
-									<NumberInput
-										size="sm"
-										step={1}
-										min={0}
-										bind:max={outputDivaPrayerGemBlueMaxLevel}
-										invalid={inputNumberDivaPrayerGemRedLevel +
-											inputNumberDivaPrayerGemYellowLevel +
-											inputNumberDivaPrayerGemGreenLevel +
-											inputNumberDivaPrayerGemBlueLevel >
-											7}
-										bind:value={inputNumberDivaPrayerGemBlueLevel}
-										invalidText={`Invalid value: must be between 0 and ${outputDivaPrayerGemBlueMaxLevel} and all gem levels must not surpass 7.`}
-										label={'Diva Prayer Gem Blue Level'}
-										disabled={inputDivaPrayerGemBlueName === 'None'}
-									/>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="calculator-results">
-						<div class="stats-header">
-							Internal Values and Final Displayed Attack
-						</div>
-						<div class="stats-values">
-							<div class="fire">
-								<InlineTooltip
-									icon={ElementIcons.find((e) => e.name === 'Fire')?.icon}
-									text={'Fire'}
-									tooltip={'Element'}
-								/>: {internalFire}
-							</div>
-							<div class="water">
-								<InlineTooltip
-									icon={ElementIcons.find((e) => e.name === 'Water')?.icon}
-									text={'Water'}
-									tooltip={'Element'}
-								/>: {internalWater}
-							</div>
-							<div class="ice">
-								<InlineTooltip
-									icon={ElementIcons.find((e) => e.name === 'Ice')?.icon}
-									text={'Ice'}
-									tooltip={'Element'}
-								/>: {internalIce}
-							</div>
-							<div class="thunder">
-								<InlineTooltip
-									icon={ElementIcons.find((e) => e.name === 'Thunder')?.icon}
-									text={'Thunder'}
-									tooltip={'Element'}
-								/>: {internalThunder}
-							</div>
-							<div class="dragon">
-								<InlineTooltip
-									icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
-									text={'Dragon'}
-									tooltip={'Element'}
-								/>: {internalDragon}
-							</div>
-							<div class="total-attack">
-								⚔️ True Raw: {internalTrueRawDisplay} ({internalTrueRaw})
-							</div>
-							<div class="my-missions">
-								🎫 My Missions: {internalMissionsNeeded}
-							</div>
-							<div class="status">
-								<InlineTooltip
-									icon={inputStatusIcon}
-									text={inputStatus === 'None' ? 'Status' : inputStatus}
-									tooltip={'Status'}
-								/>:
-								{internalStatus}
-							</div>
-							<div class="attack-ceiling">
-								⚓ Attack Ceiling: {internalAttackCeiling}
-							</div>
-							<div class="attack">🗡️ Attack: {internalAttack}</div>
-							<div class="affinity">✨ Affinity: {internalAffinity}%</div>
-						</div>
+							</AccordionItem>
+						</Accordion>
 					</div>
 				</div>
 			</section>
 			<section>
 				<SectionHeading level={2} title="Weapon Motion Values" />
 
-				<p class="spaced-paragraph">
-					You can change the weapon type shown below in the damage calculator
-					above.
-				</p>
-
-				<p class="spaced-paragraph">
-					Some motion values have numbers in parentheses, those are KO values.
-					KO indicates impact portions of the motion value, which use white
-					sharpness as the maximum multiplier.
-				</p>
-
-				{#if showWeaponMotionValuesSectionWarning}
+				<div>
 					<InlineNotification
-						title="Warning:"
-						subtitle="Section with the selected style not found, displaying default section."
-						kind="warning"
+						title="Loading values:"
+						subtitle="Try clicking the refresh button in the table if the values did not load correctly."
+						kind="info"
 						lowContrast
-						on:close={() => (showWeaponMotionValuesSectionWarning = false)}
 					/>
-				{/if}
-				<div class="motion-values toc-exclude">
-					<DataTable
-						id="motion-values-dom"
-						sortable
-						zebra
-						size="short"
-						headers={[
-							{ key: 'name', value: 'Name', minWidth: '2rem' },
-							{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-							{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-							{ key: 'element', value: 'Element', minWidth: '1rem' },
-							{ key: 'total', value: 'Total', minWidth: '1rem' },
-							{ key: 'fire', value: '🔥', minWidth: '1rem' },
-							{ key: 'water', value: '💧', minWidth: '1rem' },
-							{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-							{ key: 'ice', value: '❄️', minWidth: '1rem' },
-							{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-							{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-						]}
-						rows={weaponSections}
-					>
-						<Toolbar
-							><div class="toolbar">
-								<Dropdown
-									titleText="Section"
-									bind:selectedId={inputWeaponMotionValuesSection}
-									items={weaponSectionNames}
-								/>
-								<Dropdown
-									titleText="Style"
-									bind:selectedId={inputWeaponMotionValuesSectionStyle}
-									items={[
-										{ id: 'Earth Style', text: 'Earth Style' },
-										{ id: 'Heaven Style', text: 'Heaven Style' },
-										{ id: 'Storm Style', text: 'Storm Style' },
-										{ id: 'Extreme Style', text: 'Extreme Style' },
-									]}
-								/>
-								<Button
-									icon={Restart}
-									kind="ghost"
-									iconDescription="Refresh"
-									on:click={(e) =>
-										(weaponSections = getWeaponSectionMotionValues(
-											inputWeaponType,
-											inputWeaponMotionValuesSection,
-											inputTextInputs,
-										))}
-								/>
-								<CopyButton
-									iconDescription={'Copy as CSV'}
-									text={getCSVFromArray(weaponSections)}
-								/>
-								<Button
-									kind="tertiary"
-									icon={Download}
-									on:click={downloadMotionValuesImage}>Download</Button
-								>
-							</div>
-						</Toolbar>
-						<span slot="title">
-							<div class="data-table-title">
-								<div class="weapon-icon">
-									<svelte:component this={weaponIcon} {...weaponIconProps} />
+
+					<p class="spaced-paragraph">
+						You can also change the weapon type shown below in the damage
+						calculator above.
+					</p>
+
+					<p class="spaced-paragraph">
+						Some motion values have numbers in parentheses, those are KO values.
+						KO indicates impact portions of the motion value, which use white
+						sharpness as the maximum multiplier.
+					</p>
+
+					{#if showWeaponMotionValuesSectionWarning}
+						<InlineNotification
+							title="Warning:"
+							subtitle="Section with the selected style not found, displaying default section."
+							kind="warning"
+							lowContrast
+							on:close={() => (showWeaponMotionValuesSectionWarning = false)}
+						/>
+					{/if}
+					<div class="motion-values toc-exclude">
+						<DataTable
+							id="motion-values-dom"
+							sortable
+							zebra
+							size="short"
+							headers={[
+								{ key: 'name', value: 'Name', minWidth: '2rem' },
+								{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+								{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+								{ key: 'element', value: 'Element', minWidth: '1rem' },
+								{ key: 'total', value: 'Total', minWidth: '1rem' },
+								{ key: 'fire', value: '🔥', minWidth: '1rem' },
+								{ key: 'water', value: '💧', minWidth: '1rem' },
+								{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+								{ key: 'ice', value: '❄️', minWidth: '1rem' },
+								{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+								{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+							]}
+							rows={weaponSections}
+						>
+							<Toolbar
+								><div class="toolbar">
+									<Dropdown
+										titleText="Weapon Type"
+										bind:selectedId={inputWeaponType}
+										items={[
+											{ id: 'Sword and Shield', text: 'Sword and Shield' },
+											{ id: 'Dual Swords', text: 'Dual Swords' },
+											{ id: 'Great Sword', text: 'Great Sword' },
+											{ id: 'Long Sword', text: 'Long Sword' },
+											{ id: 'Hammer', text: 'Hammer' },
+											{ id: 'Hunting Horn', text: 'Hunting Horn' },
+											{ id: 'Lance', text: 'Lance' },
+											{ id: 'Gunlance', text: 'Gunlance' },
+											{ id: 'Tonfa', text: 'Tonfa' },
+											{ id: 'Switch Axe F', text: 'Switch Axe F' },
+											{ id: 'Magnet Spike', text: 'Magnet Spike' },
+											{ id: 'Light Bowgun', text: 'Light Bowgun' },
+											{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
+											{ id: 'Bow', text: 'Bow' },
+										]}
+									/>
+									<Dropdown
+										titleText="Section"
+										bind:selectedId={inputWeaponMotionValuesSection}
+										items={weaponSectionNames}
+									/>
+									<Dropdown
+										titleText="Style"
+										bind:selectedId={inputWeaponMotionValuesSectionStyle}
+										items={[
+											{ id: 'Earth Style', text: 'Earth Style' },
+											{ id: 'Heaven Style', text: 'Heaven Style' },
+											{ id: 'Storm Style', text: 'Storm Style' },
+											{ id: 'Extreme Style', text: 'Extreme Style' },
+										]}
+									/>
+									<Button
+										icon={Restart}
+										kind="ghost"
+										iconDescription="Refresh"
+										on:click={(e) =>
+											(weaponSections = getWeaponSectionMotionValues(
+												inputWeaponType,
+												inputWeaponMotionValuesSection,
+												inputTextInputs,
+											))}
+									/>
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(weaponSections)}
+									/>
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={downloadMotionValuesImage}>Download</Button
+									>
 								</div>
-								<div>{inputWeaponType} Motion Values</div>
-							</div>
-						</span>
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'name' && hasAnimation(inputWeaponType, cell, inputWeaponMotionValuesSection)}
-								<Button
-									on:click={() =>
-										changeModal(cell, inputWeaponMotionValuesSection)}
-									size="small"
-									icon={Image}
-									kind="ghost">{cell.value}</Button
-								>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
-					</DataTable>
+							</Toolbar>
+							<span slot="title">
+								<div class="data-table-title">
+									<div class="weapon-icon">
+										<svelte:component this={weaponIcon} {...weaponIconProps} />
+									</div>
+									<div>{inputWeaponType} Motion Values</div>
+								</div>
+							</span>
+							<svelte:fragment slot="cell" let:cell>
+								{#if cell.key === 'name' && hasAnimation(inputWeaponType, cell, inputWeaponMotionValuesSection)}
+									<Button
+										on:click={() =>
+											changeModal(cell, inputWeaponMotionValuesSection)}
+										size="small"
+										icon={Image}
+										kind="ghost">{cell.value}</Button
+									>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							</svelte:fragment>
+						</DataTable>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Shared Motion Values" />
+				<InlineNotification
+					title="Loading values:"
+					subtitle="Try clicking the refresh button in the table if the values did not load correctly."
+					kind="info"
+					lowContrast
+				/>
 				<p class="spaced-paragraph">
 					<InlineTooltip
 						text="Dual Swords"
@@ -9098,6 +9174,183 @@ does not get multiplied by horn */
 			</section>
 
 			<section>
+				<SectionHeading level={2} title="Saving and Loading" />
+				<div>
+					<p class="spaced-paragraph">
+						Below are instructions for saving and loading the calculator inputs
+						from various sources in case you want to reference them later.
+					</p>
+					<div>
+						<Tabs type="container">
+							<Tab label="Calculator" />
+							<Tab label="Overlay" />
+							<Tab label="Legacy Calculator" />
+							<svelte:fragment slot="content">
+								<TabContent
+									><div class="container-tab-content">
+										{#if showDamageCalculatorInputsJSONError}
+											<InlineNotification
+												title="Error:"
+												subtitle="Invalid damage calculator inputs in the JSON text area."
+												kind="error"
+												hideCloseButton
+												lowContrast
+												on:close={() =>
+													(showDamageCalculatorInputsJSONError = false)}
+											/>
+										{/if}
+
+										<div class="damage-calculator-container-buttons">
+											<div class="buttons-top">
+												<TextArea
+													labelText="Load Data"
+													helperText={'Press "Update" to update from these inputs values'}
+													placeholder="Enter inputs..."
+													bind:value={inputTextImportData}
+												/>
+												<Button
+													kind="tertiary"
+													icon={Restart}
+													on:click={updateInputs}>Update</Button
+												>
+												<Button
+													kind="tertiary"
+													icon={Upload}
+													on:click={loadInputsFromJSONFile}
+													>Load from file</Button
+												>
+											</div>
+											<div class="buttons-bottom">
+												<div class="container-shiki">
+													{#if isShikiLoading}
+														<div class="shiki-loading">
+															<CodeSnippet type="multi" skeleton />
+														</div>
+													{:else}
+														<div class="shiki-code">
+															<CodeSnippet
+																showMoreLess={false}
+																hideCopyButton
+																type="multi">{@html inputsHTML}</CodeSnippet
+															>
+														</div>
+													{/if}
+												</div>
+												<div class="button-container">
+													<CopyButton text={inputTextInputs} />
+												</div>
+
+												<Button
+													kind="tertiary"
+													icon={DocumentDownload}
+													on:click={() => saveInputsAsJSONFile(inputTextInputs)}
+													>Save inputs to file</Button
+												>
+											</div>
+											<!-- <Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} /> -->
+										</div>
+									</div></TabContent
+								>
+								<TabContent>
+									<div class="container-tab-content">
+										<p>
+											To load your gear from the game <strong
+												>(this feature is not currently available in overlay)</strong
+											>:
+										</p>
+										<OrderedList class="spaced-list">
+											<ListItem>Load the overlay.</ListItem>
+											<ListItem
+												>Go into a quest and open overlay settings.</ListItem
+											>
+											<ListItem>
+												Go to Hunter's Notes tab, right-click your guild card
+												and select "Copy stats for Wycademy's Damage
+												Calculator".
+											</ListItem>
+											<ListItem>Paste them here.</ListItem>
+										</OrderedList>
+									</div></TabContent
+								>
+								<TabContent
+									><div class="container-tab-content">
+										<p>
+											If you want to import the save slots from the legacy
+											calculator:
+										</p>
+										<OrderedList class="spaced-list">
+											<ListItem>Go to the legacy calculator.</ListItem>
+											<ListItem
+												>Open the Console by pressing <kbd>Ctrl</kbd> +
+												<kbd>Shift</kbd>
+												+
+												<kbd>I</kbd>.</ListItem
+											>
+											<ListItem>
+												To put all of your save slots into the clipboard, paste
+												the following command and run it in the console: <CodeSnippet
+													code={'copy(JSON.stringify(localStorage));'}
+													showMoreLess={false}
+													type="inline"
+												/>
+											</ListItem>
+											<ListItem>
+												With the copied clipboard text, paste it into a text
+												editor and save as JSON file.
+											</ListItem>
+											<ListItem>
+												Click the button below, specifying the slot number in
+												the number input, in order to import the file.
+											</ListItem>
+										</OrderedList>
+										<div class="flex-row">
+											<div class="number-input-container">
+												<NumberInput
+													size="sm"
+													step={1}
+													min={1}
+													max={20}
+													bind:value={legacyCalculatorSaveSlotNumber}
+													invalidText={'Value must be between 1 and 20.'}
+													label={'Legacy Calculator Save Slot Number'}
+												/>
+											</div>
+											<Button
+												kind="tertiary"
+												icon={Upload}
+												on:click={() =>
+													loadLegacyInputsFromJSONFile(
+														legacyCalculatorSaveSlotNumber,
+													)}>Import legacy save file</Button
+											>
+											<Button
+												kind="tertiary"
+												icon={Save}
+												on:click={() => migrateLegacyCalculatorSaveSlots()}
+												>Migrate all save slots</Button
+											>
+										</div>
+
+										{#if showDamageCalculatorLegacyInputsJSONError}
+											<InlineNotification
+												title="Error:"
+												subtitle="Invalid legacy damage calculator inputs in the imported file."
+												kind="error"
+												hideCloseButton
+												lowContrast
+												on:close={() =>
+													(showDamageCalculatorLegacyInputsJSONError = false)}
+											/>
+										{/if}
+									</div></TabContent
+								>
+							</svelte:fragment>
+						</Tabs>
+					</div>
+				</div>
+			</section>
+
+			<section>
 				<SectionHeading level={2} title="Inputs Logs" />
 				<div class="inline-elements-container">
 					<span>
@@ -9151,220 +9404,275 @@ does not get multiplied by horn */
 					kind="info"
 					lowContrast
 				/>
-				<p>
+				<p class="spaced-paragraph">
 					Below are the formulas for the above damage calculator. Your current
 					inputs values are reflected below each formula.
 				</p>
-				<section>
-					<SectionHeading title={'Internal True Raw'} level={3} />
-					<div class="formula-container">
-						{@html formulaInternalTrueRaw}
-					</div>
-					<p>internalTrueRaw: {internalTrueRaw}</p>
-					<p>maxTrueRaw: {maxTrueRaw}</p>
-					<p>outputAttackCeiling: {outputAttackCeiling}</p>
-					<p>outputFlatAdditions: {outputFlatAdditions}</p>
-					<p>outputMultipliers: {outputMultipliers}</p>
-				</section>
-				<section>
-					<SectionHeading title={'Attack A'} level={3} />
-					<div class="formula-container">
-						{@html formulaOutputAttackA}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputAttackA)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Attack B'} level={3} />
-					<div class="formula-container">
-						{@html formulaOutputAttackB}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputAttackB)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Multipliers'} level={3} />
-					<div class="formula-container">
-						{@html formulaOutputMultipliers}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputMultipliers)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Flat Additions'} level={3} />
-					<div class="formula-container">
-						{@html formulaOutputFlatAdditions}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputFlatAdditions)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Internal Attack'} level={3} />
-					<div class="formula-container">
-						{@html formulaInternalAttack}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputInternalAttack)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Internal Fire'} level={3} />
-					<div class="formula-container">
-						{@html formulaInternalFire}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesInternalFire)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Internal Water'} level={3} />
-					<div class="formula-container">
-						{@html formulaInternalWater}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesInternalWater)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Internal Thunder'} level={3} />
-					<div class="formula-container">
-						{@html formulaInternalThunder}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesInternalThunder)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Internal Ice'} level={3} />
-					<div class="formula-container">
-						{@html formulaInternalIce}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesInternalIce)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Internal Dragon'} level={3} />
-					<div class="formula-container">
-						{@html formulaInternalDragon}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesInternalDragon)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Internal Status'} level={3} />
-					<div class="formula-container">
-						{@html formulaInternalStatus}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesInternalStatus)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Internal Affinity'} level={3} />
-					<div class="container-shiki">
-						{#if isShikiLoading}
-							<div class="shiki-loading">
-								<CodeSnippet type="multi" skeleton />
-							</div>
-						{:else}
-							<div class="shiki-code">
-								<CodeSnippet showMoreLess={false} hideCopyButton type="multi"
-									>{@html internalAffinityFunctionHTML}</CodeSnippet
-								>
-							</div>
-						{/if}
-					</div>
-					<div class="formula-container">
-						{@html formulaInternalAffinity}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesInternalAffinity)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Total Affinity'} level={3} />
-					<p>Used for Critical Conversion calculation.</p>
-					<div class="formula-container">
-						{@html formulaOutputTotalAffinity}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputTotalAffinity)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Drug Knowlege Total True Raw'} level={3} />
-					<div class="formula-container">
-						{@html formulaOutputDrugKnowledgeTotalTrueRaw}
-					</div>
-					<p>
-						outputDrugKnowledgeTotalTrueRaw: {outputDrugKnowledgeTotalTrueRaw}
-					</p>
-					<p>inputNumberStatusValue: {inputNumberStatusValue}</p>
-					<p>
-						outputStatusAttackUpMultiplier: {outputStatusAttackUpMultiplier}
-					</p>
-					<p>
-						outputStatusGuildPoogieMultiplier: {outputStatusGuildPoogieMultiplier}
-					</p>
-					<p>outputStatusSigilMultiplier: {outputStatusSigilMultiplier}</p>
-					<p>outputFuriousMultiplier: {outputFuriousMultiplier}</p>
-					<p>outputDrugKnowledgeMultiplier: {outputDrugKnowledgeMultiplier}</p>
-				</section>
-				<section>
-					<SectionHeading title={'Critical Multiplier'} level={3} />
-					<div class="container-shiki">
-						{#if isShikiLoading}
-							<div class="shiki-loading">
-								<CodeSnippet type="multi" skeleton />
-							</div>
-						{:else}
-							<div class="shiki-code">
-								<CodeSnippet showMoreLess={false} hideCopyButton type="multi"
-									>{@html critValueFunctionHTML}</CodeSnippet
-								>
-							</div>
-						{/if}
-					</div>
-					<div class="formula-container">
-						{@html formulaOutputCritValue}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputCritValue)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Other Multipliers'} level={3} />
-					<div class="formula-container">
-						{@html formulaOutputOtherMultipliers}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputOtherMultipliers)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Status Assault Total'} level={3} />
-					<div class="formula-container">
-						{@html formulaOutputStatusUsedSA}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputStatusUsedSA)}
-					</div>
-				</section>
-				<section>
-					<SectionHeading title={'Monster Total Defense'} level={3} />
-					<div class="formula-container">
-						{@html formulaOutputMonsterTotalDefense}
-					</div>
-					<div class="formula-container">
-						{@html display(formulaValuesOutputMonsterTotalDefense)}
-					</div>
-				</section>
+
+				<div>
+					<Tabs type="container">
+						<Tab label="Internal True Raw" />
+						<Tab label="Attack A" />
+						<Tab label="Attack B" />
+						<Tab label="Multipliers" />
+						<Tab label="Flat Additions" />
+						<Tab label="Internal Attack" />
+						<Tab label="Internal Fire" />
+						<Tab label="Internal Water" />
+						<Tab label="Internal Thunder" />
+						<Tab label="Internal Ice" />
+						<Tab label="Internal Dragon" />
+						<Tab label="Internal Status" />
+						<Tab label="Internal Affinity" />
+						<Tab label="Total Affinity" />
+						<Tab label="Drug Knowledge Total True Raw" />
+						<Tab label="Critical Multiplier" />
+						<Tab label="Other Multipliers" />
+						<Tab label="Status Assault Total" />
+						<Tab label="Monster Total Defense" />
+						<svelte:fragment slot="content">
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaInternalTrueRaw}
+									</div>
+									<p>internalTrueRaw: {internalTrueRaw}</p>
+									<p>maxTrueRaw: {maxTrueRaw}</p>
+									<p>outputAttackCeiling: {outputAttackCeiling}</p>
+									<p>outputFlatAdditions: {outputFlatAdditions}</p>
+									<p>outputMultipliers: {outputMultipliers}</p>
+								</section></TabContent
+							>
+							<TabContent>
+								<section>
+									<div class="formula-container">
+										{@html formulaOutputAttackA}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputAttackA)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent>
+								<section>
+									<div class="formula-container">
+										{@html formulaOutputAttackB}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputAttackB)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaOutputMultipliers}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputMultipliers)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaOutputFlatAdditions}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputFlatAdditions)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaInternalAttack}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputInternalAttack)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaInternalFire}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesInternalFire)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaInternalWater}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesInternalWater)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaInternalThunder}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesInternalThunder)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaInternalIce}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesInternalIce)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaInternalDragon}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesInternalDragon)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaInternalStatus}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesInternalStatus)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="container-shiki">
+										{#if isShikiLoading}
+											<div class="shiki-loading">
+												<CodeSnippet type="multi" skeleton />
+											</div>
+										{:else}
+											<div class="shiki-code">
+												<CodeSnippet
+													showMoreLess={false}
+													hideCopyButton
+													type="multi"
+													>{@html internalAffinityFunctionHTML}</CodeSnippet
+												>
+											</div>
+										{/if}
+									</div>
+									<div class="formula-container">
+										{@html formulaInternalAffinity}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesInternalAffinity)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent>
+								<section>
+									<p>Used for Critical Conversion calculation.</p>
+									<div class="formula-container">
+										{@html formulaOutputTotalAffinity}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputTotalAffinity)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaOutputDrugKnowledgeTotalTrueRaw}
+									</div>
+									<p>
+										outputDrugKnowledgeTotalTrueRaw: {outputDrugKnowledgeTotalTrueRaw}
+									</p>
+									<p>inputNumberStatusValue: {inputNumberStatusValue}</p>
+									<p>
+										outputStatusAttackUpMultiplier: {outputStatusAttackUpMultiplier}
+									</p>
+									<p>
+										outputStatusGuildPoogieMultiplier: {outputStatusGuildPoogieMultiplier}
+									</p>
+									<p>
+										outputStatusSigilMultiplier: {outputStatusSigilMultiplier}
+									</p>
+									<p>outputFuriousMultiplier: {outputFuriousMultiplier}</p>
+									<p>
+										outputDrugKnowledgeMultiplier: {outputDrugKnowledgeMultiplier}
+									</p>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="container-shiki">
+										{#if isShikiLoading}
+											<div class="shiki-loading">
+												<CodeSnippet type="multi" skeleton />
+											</div>
+										{:else}
+											<div class="shiki-code">
+												<CodeSnippet
+													showMoreLess={false}
+													hideCopyButton
+													type="multi"
+													>{@html critValueFunctionHTML}</CodeSnippet
+												>
+											</div>
+										{/if}
+									</div>
+									<div class="formula-container">
+										{@html formulaOutputCritValue}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputCritValue)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaOutputOtherMultipliers}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputOtherMultipliers)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaOutputStatusUsedSA}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputStatusUsedSA)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
+										{@html formulaOutputMonsterTotalDefense}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputMonsterTotalDefense)}
+									</div>
+								</section></TabContent
+							>
+						</svelte:fragment>
+					</Tabs>
+				</div>
 			</section>
 			<div class="page-turn">
 				<PageTurn pageUrlPathName={$page.url.pathname} />
@@ -9464,12 +9772,6 @@ does not get multiplied by horn */
 		border-radius: 10px 10px 10px 10px;
 		border: 1px solid var(--ctp-surface0);
 		background-color: var(--ctp-mantle);
-	}
-
-	.damage-calculator {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
 	}
 
 	.container-inputs {
@@ -9589,10 +9891,10 @@ does not get multiplied by horn */
 		border-radius: 10px 10px 10px 10px;
 		border: 1px solid var(--ctp-surface0);
 		padding-bottom: 1rem;
-		width: 98%;
-		margin: 0 auto;
+
 		background-color: var(--ctp-mantle);
-		margin-bottom: 2rem;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
 	}
 
 	.diva-stats-values {
@@ -9880,5 +10182,13 @@ does not get multiplied by horn */
 		align-items: center;
 		flex-wrap: wrap;
 		margin-bottom: 1rem;
+	}
+
+	.true-raw-converter {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin-bottom: 2rem;
+		margin-top: 2rem;
 	}
 </style>

@@ -22,6 +22,7 @@ export const divaPrayerGems: {
 	maxLevel: FrontierDivaPrayerGemLevel;
 	unused: boolean;
 	partyEffect: boolean;
+	affectedByDamageCalculator: boolean;
 }[] = [
 	{
 		id: 0,
@@ -30,6 +31,7 @@ export const divaPrayerGems: {
 		maxLevel: 0,
 		unused: false,
 		partyEffect: false,
+		affectedByDamageCalculator: true,
 	},
 	{
 		id: 1,
@@ -39,6 +41,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: false,
 		partyEffect: false,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 2,
@@ -47,6 +50,7 @@ export const divaPrayerGems: {
 		maxLevel: 7,
 		unused: true,
 		partyEffect: true,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 3,
@@ -55,6 +59,7 @@ export const divaPrayerGems: {
 		maxLevel: 1,
 		unused: false,
 		partyEffect: false,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 4,
@@ -63,6 +68,7 @@ export const divaPrayerGems: {
 		maxLevel: 2,
 		unused: false,
 		partyEffect: true,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 5,
@@ -72,6 +78,7 @@ export const divaPrayerGems: {
 		maxLevel: 4,
 		unused: true,
 		partyEffect: false,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 6,
@@ -81,6 +88,7 @@ export const divaPrayerGems: {
 		maxLevel: 4,
 		unused: true,
 		partyEffect: false,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 7,
@@ -89,6 +97,7 @@ export const divaPrayerGems: {
 			'Makes it easier to scare monsters by attacking with Storm Style.',
 		maxLevel: 4,
 		unused: true,
+		affectedByDamageCalculator: false,
 		partyEffect: false,
 	},
 	{
@@ -99,6 +108,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: false,
 		partyEffect: false,
+		affectedByDamageCalculator: true,
 	},
 	{
 		id: 9,
@@ -108,6 +118,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: false,
 		partyEffect: false,
+		affectedByDamageCalculator: true,
 	},
 	{
 		id: 10,
@@ -116,6 +127,7 @@ export const divaPrayerGems: {
 			'Increases the amount of raw damage dealt by a ranged weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
 		maxLevel: 3,
 		unused: false,
+		affectedByDamageCalculator: true,
 		partyEffect: false,
 	},
 	{
@@ -126,6 +138,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: false,
 		partyEffect: true,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 12,
@@ -134,6 +147,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: true,
 		partyEffect: true,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 13,
@@ -143,6 +157,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: true,
 		partyEffect: false,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 14,
@@ -152,6 +167,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: false,
 		partyEffect: false,
+		affectedByDamageCalculator: true,
 	},
 	{
 		id: 15,
@@ -160,6 +176,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: false,
 		partyEffect: true,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 16,
@@ -167,6 +184,7 @@ export const divaPrayerGems: {
 		description: 'Adds new items to the GCP store based on level.',
 		maxLevel: 1,
 		unused: false,
+		affectedByDamageCalculator: false,
 		partyEffect: false,
 	},
 	{
@@ -177,6 +195,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: false,
 		partyEffect: true,
+		affectedByDamageCalculator: true,
 	},
 	{
 		id: 18,
@@ -186,6 +205,7 @@ export const divaPrayerGems: {
 		maxLevel: 3,
 		unused: false,
 		partyEffect: false,
+		affectedByDamageCalculator: false,
 	},
 	{
 		id: 19,
@@ -194,6 +214,7 @@ export const divaPrayerGems: {
 			'Increases affinity of all weapons based on the level of the song. +25/50/100% Affinity increase.',
 		maxLevel: 3,
 		unused: false,
+		affectedByDamageCalculator: true,
 		partyEffect: false,
 	},
 	{
@@ -202,6 +223,7 @@ export const divaPrayerGems: {
 		description: 'Increases fire resistance.',
 		maxLevel: 3,
 		unused: true,
+		affectedByDamageCalculator: false,
 		partyEffect: false,
 	},
 	{
@@ -210,6 +232,7 @@ export const divaPrayerGems: {
 		description: 'Increases water resistance.',
 		maxLevel: 3,
 		unused: true,
+		affectedByDamageCalculator: false,
 		partyEffect: false,
 	},
 	{
@@ -218,6 +241,7 @@ export const divaPrayerGems: {
 		description: 'Increases thunder resistance.',
 		maxLevel: 3,
 		unused: true,
+		affectedByDamageCalculator: false,
 		partyEffect: false,
 	},
 	{
@@ -225,6 +249,7 @@ export const divaPrayerGems: {
 		name: ezlion.SkillDivaPrayerGem[23],
 		description: 'Increases dragon resistance.',
 		maxLevel: 3,
+		affectedByDamageCalculator: false,
 		unused: true,
 		partyEffect: false,
 	},
@@ -234,6 +259,7 @@ export const divaPrayerGems: {
 		description: 'Increases ice resistance.',
 		maxLevel: 3,
 		unused: true,
+		affectedByDamageCalculator: false,
 		partyEffect: false,
 	},
 	{
@@ -242,6 +268,7 @@ export const divaPrayerGems: {
 		description: 'Increases resistance to all elements.',
 		maxLevel: 2,
 		unused: true,
+		affectedByDamageCalculator: false,
 		partyEffect: false,
 	},
 ];
