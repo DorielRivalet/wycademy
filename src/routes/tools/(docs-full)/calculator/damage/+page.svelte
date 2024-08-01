@@ -1059,6 +1059,7 @@
 	function getWeaponSectionMotionValues(
 		weaponName: FrontierWeaponName,
 		section: string,
+		inputTextInputs: string,
 		isSharedMotionSection = false,
 	) {
 		let defaultResult: MotionValueResult[] = [
@@ -3542,12 +3543,6 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	let inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle =
 		'Extreme Style';
 
-	let sharedMotionValues = getWeaponSectionMotionValues(
-		inputWeaponType,
-		'Shared',
-		true,
-	);
-
 	$: inputs = {
 		inputStyleRankAffinity: inputStyleRankAffinity,
 		inputMeleeSharpnessAffinity: inputMeleeSharpnessAffinity,
@@ -3707,6 +3702,13 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 
 	$: weaponIcon = getWeaponIcon(inputWeaponType);
 	$: inputTextInputs = prettyPrintJson(inputs);
+
+	let sharedMotionValues = getWeaponSectionMotionValues(
+		inputWeaponType,
+		'Shared',
+		inputTextInputs,
+		true,
+	);
 
 	$: outputStarvingWolfAffinity =
 		affinityDropdownItems.find((item) => item.name === inputStarvingWolf)
@@ -4920,6 +4922,7 @@ does not get multiplied by horn */
 	$: weaponSections = getWeaponSectionMotionValues(
 		inputWeaponType,
 		inputWeaponMotionValuesSection,
+		inputTextInputs,
 	);
 
 	$: internalStatus = Math.floor(
@@ -8912,6 +8915,7 @@ does not get multiplied by horn */
 										(weaponSections = getWeaponSectionMotionValues(
 											inputWeaponType,
 											inputWeaponMotionValuesSection,
+											inputTextInputs,
 										))}
 								/>
 								<CopyButton
@@ -9015,6 +9019,7 @@ does not get multiplied by horn */
 										(sharedMotionValues = getWeaponSectionMotionValues(
 											inputWeaponType,
 											'Shared',
+											inputTextInputs,
 											true,
 										))}
 								/>
