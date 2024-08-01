@@ -562,6 +562,22 @@ Only support can inflict poison to Raviente Raviente.`,
 		hex: '0x00',
 		category: 'Guide',
 	},
+	{
+		title: 'Transcend',
+		slug: '/hunter-notes/getting-started/transcend',
+		content: `Learn how to upgrade transcend and see a list of burst effects.`,
+		id: 0,
+		hex: '0x00',
+		category: 'Guide',
+	},
+	{
+		title: 'Sigils',
+		slug: '/hunter-notes/weapons/sigils',
+		content: `Sigils are akin to decorations but are exclusively used in G Rank weaponry, crafted by the Cat Smith, who also creates random Gou weapons.`,
+		id: 0,
+		hex: '0x00',
+		category: 'Guide',
+	},
 	// TODO once im done with everything update this index.
 ];
 

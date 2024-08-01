@@ -903,7 +903,7 @@ graph LR
 >
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
-			<img src={modalImage} alt={'motion value animation'} />
+			<img src={modalImage} alt={'style rank'} />
 			<div>{modalNotes}</div>
 		</div>
 	{:else}
