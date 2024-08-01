@@ -155,6 +155,16 @@
 			],
 		},
 		{
+			id: '/tools/simulator',
+			text: 'Simulator',
+			children: [
+				{
+					id: '/tools/simulator/tower-weapon',
+					text: 'Tower Weapon',
+				},
+			],
+		},
+		{
 			id: '/tools/generator',
 			text: 'Generator',
 			children: [
@@ -177,16 +187,6 @@
 				{
 					id: '/tools/generator/thumbnail',
 					text: 'Thumbnail',
-				},
-			],
-		},
-		{
-			id: '/tools/simulator',
-			text: 'Simulator',
-			children: [
-				{
-					id: '/tools/simulator/tower-weapon',
-					text: 'Tower Weapon',
 				},
 			],
 		},
@@ -231,6 +231,18 @@
 			icon: getWeaponIcon('Heavy Bowgun'),
 		},
 		{
+			id: '/tools/simulator',
+			icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
+		},
+		{
+			id: '/tools/simulator/tower-weapon',
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Duremudira',
+				background: false,
+			},
+		},
+		{
 			id: '/tools/generator',
 			icon: MonsterComponent,
 			iconProps: {
@@ -261,18 +273,6 @@
 		{
 			id: '/tools/generator/thumbnail',
 			icon: VideoPlayer,
-		},
-		{
-			id: '/tools/simulator',
-			icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
-		},
-		{
-			id: '/tools/simulator/tower-weapon',
-			icon: MonsterComponent,
-			iconProps: {
-				currentMonster: 'Duremudira',
-				background: false,
-			},
 		},
 		{
 			id: '/tools/external',

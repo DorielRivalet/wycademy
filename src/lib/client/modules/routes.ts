@@ -420,6 +420,23 @@ export const toolsInfo: CategoryInfo[] = [
 	},
 	{
 		category: {
+			name: 'Simulator',
+			description:
+				'Allows you to simulate various items found in the game to your liking, reflecting what would be shown in the game.',
+			image: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
+			link: '/tools/simulator',
+		},
+		pages: [
+			{
+				name: 'Tower Weapon',
+				description: 'A tower weapon simulator.',
+				image: Duremudira,
+				link: '/tools/simulator/tower-weapon',
+			},
+		],
+	},
+	{
+		category: {
 			name: 'Generator',
 			description:
 				'Allows you to create various items found in the game to your liking.',
@@ -456,23 +473,6 @@ export const toolsInfo: CategoryInfo[] = [
 				description: 'A thumbnail generator, for example YouTube thumbnails.',
 				image: VideoPlayer,
 				link: '/tools/generator/thumbnail',
-			},
-		],
-	},
-	{
-		category: {
-			name: 'Simulator',
-			description:
-				'Allows you to simulate various items found in the game to your liking, reflecting what would be shown in the game.',
-			image: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
-			link: '/tools/simulator',
-		},
-		pages: [
-			{
-				name: 'Tower Weapon',
-				description: 'A tower weapon simulator.',
-				image: Duremudira,
-				link: '/tools/simulator/tower-weapon',
 			},
 		],
 	},
