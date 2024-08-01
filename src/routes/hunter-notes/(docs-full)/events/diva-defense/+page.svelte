@@ -12,6 +12,7 @@
 	import { page } from '$app/stores';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { divaPrayerGems } from '$lib/client/modules/frontier/diva';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -59,7 +60,13 @@
 				</p>
 				<p class="spaced-paragraph">
 					You can check your currently equipped gem names in Overlay Settings >
-					Hunter Notes > Gear Info (Text)
+					Hunter Notes > Gear Info (Text).
+				</p>
+				<p class="spaced-paragraph">
+					To see the damage of certain gems, you can use our <Link
+						inline
+						href="/tools/calculator/damage#calculator">Damage Calculator</Link
+					>
 				</p>
 				<div class="diva-prayer-gems-table">
 					<DataTable

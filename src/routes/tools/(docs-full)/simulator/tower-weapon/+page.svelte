@@ -566,7 +566,7 @@
 		domToPng(node, { quality: 1 }).then((dataUrl) => {
 			const link = document.createElement('a');
 			link.download = `${slugify(
-				`tower-${towerWeaponSelected.type}-${towerWeaponSelected.name}-${new Date().toISOString()}.png`,
+				`Tower-${towerWeaponSelected.type}-${towerWeaponSelected.name}-${new Date().toISOString()}.png`,
 			)}`;
 			link.href = dataUrl;
 			link.click();

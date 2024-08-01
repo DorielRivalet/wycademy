@@ -390,3 +390,23 @@ p {
 .bx--tree .bx--tree-node {
 	background-color: var(--ctp-mantle) !important;
 }
+
+.bx--tabs--container
+	.bx--tabs__nav-item--selected:not(.bx--tabs__nav-item--disabled),
+.bx--tabs--container
+	.bx--tabs__nav-item--selected:hover:not(.bx--tabs__nav-item--disabled) {
+	background-color: var(--ctp-mantle) !important;
+}
+
+.bx--tabs--container .bx--tabs__nav-item {
+	background-color: var(--ctp-surface0) !important;
+}
+
+.bx--tab-content {
+	background-color: var(--ctp-mantle) !important;
+}
+
+.bx--accordion__content {
+	padding-left: 0.5rem !important;
+	padding-right: 0.5rem !important;
+}
