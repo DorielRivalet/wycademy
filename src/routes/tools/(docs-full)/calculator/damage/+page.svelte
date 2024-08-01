@@ -5480,7 +5480,6 @@ does not get multiplied by horn */
 	function getAvailableRankBands(
 		displayName: string,
 	): { id: string; text: string }[] {
-		// Filter HitzoneInfo by displayName and extract unique rankBands
 		const rankBands = new Set<FrontierMonsterHitzoneRankBand>();
 		hitzoneInfo.forEach((info) => {
 			if (info.displayName === displayName) {
@@ -5493,7 +5492,6 @@ does not get multiplied by horn */
 	function getAvailableMonsterStates(
 		displayName: FrontierMonsterName,
 	): { id: string; text: string }[] {
-		// Filter HitzoneInfo by displayName and extract unique monsterStates
 		const monsterStates = new Set<string>();
 		hitzoneInfo.forEach((info) => {
 			if (info.displayName === displayName) {
@@ -5506,6 +5504,21 @@ does not get multiplied by horn */
 		}));
 	}
 
+	function getAvailableMonsterParts(
+		displayName: FrontierMonsterName,
+	): { id: string; text: string }[] {
+		const monsterParts = new Set<string>();
+		hitzoneInfo.forEach((info) => {
+			if (info.displayName === displayName) {
+				monsterParts.add(info.part);
+			}
+		});
+		return Array.from(monsterParts).map((part) => ({
+			id: part,
+			text: part,
+		}));
+	}
+
 	$: availableRankBands = getAvailableRankBands(selectedMonster) || [
 		{ id: 'Default', text: 'Default' },
 	];
@@ -5513,6 +5526,8 @@ does not get multiplied by horn */
 	$: availableMonsterStates = getAvailableMonsterStates(selectedMonster) || [
 		{ id: 'Default', text: 'Default' },
 	];
+
+	$: availableMonsterParts = getAvailableMonsterParts(selectedMonster) || [];
 
 	$: hitzones =
 		convertHitzoneInfo(
@@ -8260,12 +8275,16 @@ does not get multiplied by horn */
 												bind:selectedId={selectedMonsterRankBand}
 												items={availableRankBands}
 											/>
-										{/if}
-										{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
+
 											<Dropdown
 												titleText="Monster State"
 												bind:selectedId={selectedMonsterState}
 												items={availableMonsterStates}
+											/>
+											<Dropdown
+												titleText="Monster Part"
+												bind:selectedId={selectedMonsterPart}
+												items={availableMonsterParts}
 											/>
 										{/if}
 
@@ -8321,6 +8340,7 @@ does not get multiplied by horn */
 												bind:value={inputNumberCuttingHitzone}
 												invalidText={invalidNumberValueText}
 												label={'Cutting Hitzone'}
+												disabled={selectedMonster !== undefined}
 											/>
 										</div>
 										<div class="number-input-container">
@@ -8332,6 +8352,7 @@ does not get multiplied by horn */
 												bind:value={inputNumberImpactHitzone}
 												invalidText={invalidNumberValueText}
 												label={'Impact Hitzone'}
+												disabled={selectedMonster !== undefined}
 											/>
 										</div>
 										<div class="number-input-container">
@@ -8343,6 +8364,7 @@ does not get multiplied by horn */
 												bind:value={inputNumberShotHitzone}
 												invalidText={invalidNumberValueText}
 												label={'Shot Hitzone'}
+												disabled={selectedMonster !== undefined}
 											/>
 										</div>
 										<div class="number-input-container">
@@ -8352,6 +8374,7 @@ does not get multiplied by horn */
 												min={minimumNumberValue}
 												max={maximumNumberValue}
 												bind:value={inputNumberFireHitzone}
+												disabled={selectedMonster !== undefined}
 												invalidText={invalidNumberValueText}
 												label={'Fire Hitzone'}
 											/>
@@ -8361,6 +8384,7 @@ does not get multiplied by horn */
 												size="sm"
 												step={10}
 												min={minimumNumberValue}
+												disabled={selectedMonster !== undefined}
 												max={maximumNumberValue}
 												bind:value={inputNumberWaterHitzone}
 												invalidText={invalidNumberValueText}
@@ -8373,6 +8397,7 @@ does not get multiplied by horn */
 												step={10}
 												min={minimumNumberValue}
 												max={maximumNumberValue}
+												disabled={selectedMonster !== undefined}
 												bind:value={inputNumberThunderHitzone}
 												invalidText={invalidNumberValueText}
 												label={'Thunder Hitzone'}
@@ -8385,6 +8410,7 @@ does not get multiplied by horn */
 												min={minimumNumberValue}
 												max={maximumNumberValue}
 												bind:value={inputNumberIceHitzone}
+												disabled={selectedMonster !== undefined}
 												invalidText={invalidNumberValueText}
 												label={'Ice Hitzone'}
 											/>
@@ -8396,6 +8422,7 @@ does not get multiplied by horn */
 												min={minimumNumberValue}
 												max={maximumNumberValue}
 												bind:value={inputNumberDragonHitzone}
+												disabled={selectedMonster !== undefined}
 												invalidText={invalidNumberValueText}
 												label={'Dragon Hitzone'}
 											/>
