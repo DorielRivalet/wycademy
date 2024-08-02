@@ -8970,6 +8970,7 @@ does not get multiplied by horn */
 							id="motion-values-dom"
 							sortable
 							zebra
+							useStaticWidth
 							size="short"
 							headers={[
 								{ key: 'name', value: 'Name', minWidth: '2rem' },
@@ -9116,6 +9117,7 @@ does not get multiplied by horn */
 					<DataTable
 						id="shared-motion-values-dom"
 						sortable
+						useStaticWidth
 						zebra
 						size="short"
 						headers={[
