@@ -29,7 +29,6 @@
 	} from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import Head from '$lib/client/components/Head.svelte';
-	import pageThumbnail from '$lib/client/images/icon/blacksmith.png';
 	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
 	import TreeView, {
@@ -52,9 +51,10 @@
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import {
 		getNavigationItemFromLink,
-		getPageThumbnail,
 		toolsInfo,
 	} from '$lib/client/modules/routes';
+	import { getPageThumbnail } from '$lib/client/modules/thumbnails';
+
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
 
