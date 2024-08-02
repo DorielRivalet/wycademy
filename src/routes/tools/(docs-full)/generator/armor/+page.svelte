@@ -294,6 +294,10 @@
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Armor Generator'} />
+		<p class="spaced-paragraph">
+			This is a playground for armor, which can be useful for creating custom
+			armor and demonstrate translations.
+		</p>
 		<div class="container-armor-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadArmorImage}
 				>Download</Button

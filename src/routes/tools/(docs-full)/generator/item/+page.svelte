@@ -243,6 +243,11 @@
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Item Generator'} />
+		<p class="spaced-paragraph">
+			This is a playground for items, which can be useful for creating custom
+			items and demonstrate translations.
+		</p>
+
 		<div class="container-item-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadItemsImage}
 				>Download</Button

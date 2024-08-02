@@ -16,6 +16,8 @@ import thumbnailLightTranscendElementalBursts from '$lib/client/images/page-thum
 import thumbnailLightSwordAndShieldMotionValues from '$lib/client/images/page-thumbnail/light/sword-and-shield-motion-values.png';
 import thumbnailLightTowerWeapon from '$lib/client/images/page-thumbnail/light/tower-weapon.png';
 import thumbnailLightSharedMotionValues from '$lib/client/images/page-thumbnail/light/shared-motion-values.png';
+import thumbnailLightFlashConversion from '$lib/client/images/page-thumbnail/light/flash-conversion.png';
+import thumbnailLightIceAge from '$lib/client/images/page-thumbnail/light/ice-age.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -33,6 +35,11 @@ import thumbnailDarkTranscendElementalBursts from '$lib/client/images/page-thumb
 import thumbnailDarkSwordAndShieldMotionValues from '$lib/client/images/page-thumbnail/dark/sword-and-shield-motion-values.png';
 import thumbnailDarkTowerWeapon from '$lib/client/images/page-thumbnail/dark/tower-weapon.png';
 import thumbnailDarkSharedMotionValues from '$lib/client/images/page-thumbnail/dark/shared-motion-values.png';
+import thumbnailDarkFlashConversion from '$lib/client/images/page-thumbnail/dark/flash-conversion.png';
+import thumbnailDarkIceAge from '$lib/client/images/page-thumbnail/dark/ice-age.png';
+import thumbnailDarkItemGenerator from '$lib/client/images/page-thumbnail/dark/item-generator.png';
+import thumbnailDarkArmorGenerator from '$lib/client/images/page-thumbnail/dark/armor-generator.png';
+import thumbnailDarkWeaponGenerator from '$lib/client/images/page-thumbnail/dark/weapon-generator.png';
 
 const lightThumbnailInfo: {
 	link: string;
@@ -118,6 +125,31 @@ const lightThumbnailInfo: {
 		embed: null,
 		link: '/tools/simulator/tower-weapon',
 		thumbnail: thumbnailLightTowerWeapon,
+	},
+	{
+		embed: null,
+		link: '/tools/calculator/crit-conversion',
+		thumbnail: thumbnailLightFlashConversion,
+	},
+	{
+		embed: null,
+		link: '/tools/calculator/ice-age',
+		thumbnail: thumbnailLightIceAge,
+	},
+	{
+		embed: null,
+		link: '/tools/generator/armor',
+		thumbnail: thumbnailDarkArmorGenerator,
+	},
+	{
+		embed: null,
+		link: '/tools/generator/item',
+		thumbnail: thumbnailDarkItemGenerator,
+	},
+	{
+		embed: null,
+		link: '/tools/generator/weapon',
+		thumbnail: thumbnailDarkWeaponGenerator,
 	},
 ];
 
@@ -205,6 +237,31 @@ const darkThumbnailInfo: {
 		embed: null,
 		link: '/tools/simulator/tower-weapon',
 		thumbnail: thumbnailDarkTowerWeapon,
+	},
+	{
+		embed: null,
+		link: '/tools/calculator/crit-conversion',
+		thumbnail: thumbnailDarkFlashConversion,
+	},
+	{
+		embed: null,
+		link: '/tools/calculator/ice-age',
+		thumbnail: thumbnailDarkIceAge,
+	},
+	{
+		embed: null,
+		link: '/tools/generator/armor',
+		thumbnail: thumbnailDarkArmorGenerator,
+	},
+	{
+		embed: null,
+		link: '/tools/generator/item',
+		thumbnail: thumbnailDarkItemGenerator,
+	},
+	{
+		embed: null,
+		link: '/tools/generator/weapon',
+		thumbnail: thumbnailDarkWeaponGenerator,
 	},
 ];
 

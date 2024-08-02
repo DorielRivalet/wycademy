@@ -296,6 +296,10 @@
 	<div>
 		<SectionHeadingTopLevel title={'Icons Preview'} />
 		<p class="spaced-paragraph">
+			This is a playground for icons, which can be useful for seeing game assets
+			and downloading your results.
+		</p>
+		<p class="spaced-paragraph">
 			You can find the image for the monster backgrounds in our <OutboundLink
 				href="https://github.com/DorielRivalet/wycademy/blob/main/src/lib/client/images/monster/bg-512.webp"
 				>repository</OutboundLink
