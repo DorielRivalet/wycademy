@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
@@ -12,6 +13,9 @@
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import { getTag } from '$lib/client/modules/frontier/tags';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import TowerWeapons from '$lib/client/images/supplemental/tower-weapons.webp';
+	import TowerWeaponsUpgrades from '$lib/client/images/supplemental/tower-weapon-upgrades.webp';
+	import TowerWeaponDecorations from '$lib/client/images/supplemental/tower-weapon-decorations.webp';
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -26,6 +30,14 @@
 					text="Sky Corridor"
 				/>.
 			</p>
+
+			<CenteredFigure
+				width={'100%'}
+				type="file"
+				src={TowerWeapons}
+				alt="Tower Weapons"
+				figcaption="Tower Weapons."
+			/>
 
 			<p class="spaced-paragraph">
 				You can customize weapon attributes such as Sharpness, Raw, Elemental,
@@ -59,6 +71,14 @@
 				/>, then it gives you that skill when you slot it into a weapon and
 				equip it. You can have a maximum of two skills on a weapon.
 			</p>
+
+			<CenteredFigure
+				width={'100%'}
+				type="file"
+				src={TowerWeaponDecorations}
+				alt="Tower Weapon decorations"
+				figcaption="Tower Weapon decorations."
+			/>
 
 			<p class="spaced-paragraph">
 				In order to remove a Tower Decoration, you need to buy a <InlineTooltip
@@ -124,6 +144,14 @@
 					tooltip="Item"
 				/>.
 			</p>
+
+			<CenteredFigure
+				width={'100%'}
+				type="file"
+				src={TowerWeaponsUpgrades}
+				alt="Tower Weapon upgrades"
+				figcaption="Tower Weapon upgrades."
+			/>
 
 			<p>
 				If you are looking for a Tower Weapon Simulator, you can find it in the <Link
