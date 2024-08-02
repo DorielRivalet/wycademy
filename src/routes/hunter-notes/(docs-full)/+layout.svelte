@@ -34,7 +34,6 @@
 		type TreeNode,
 	} from 'carbon-components-svelte/src/TreeView/TreeView.svelte';
 	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
-	import ExtremeDragonblight from '$lib/client/components/frontier/icon/ailment/ExtremeDragonblight.svelte';
 	import ExtremeSleep from '$lib/client/components/frontier/icon/ailment/ExtremeSleep.svelte';
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import ShotIcon from '$lib/client/components/frontier/icon/item/Shot_Icon_White.svelte';
@@ -58,19 +57,15 @@
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import {
 		getNavigationItemFromLink,
-		getPageThumbnail,
 		guidesInfo,
 	} from '$lib/client/modules/routes';
 	import { page } from '$app/stores';
-	import {
-		getMonsterByPathName,
-		getMonsterIcon,
-		monsterInfo,
-	} from '$lib/client/modules/frontier/monsters';
+	import { getMonsterByPathName } from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
+	import { getPageThumbnail } from '$lib/client/modules/thumbnails';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
