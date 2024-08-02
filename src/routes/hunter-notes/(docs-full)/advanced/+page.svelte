@@ -9,6 +9,10 @@
 
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Advanced'} />
+	<p class="spaced-paragraph">
+		{guidesInfo.find((e) => e.category.name === 'Advanced')?.category
+			.description}
+	</p>
 	<div class="container-tiles">
 		{#if pages}
 			{#each pages as page}

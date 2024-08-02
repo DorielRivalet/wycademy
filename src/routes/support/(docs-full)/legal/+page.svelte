@@ -9,6 +9,9 @@
 
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Legal'} />
+	<p class="spaced-paragraph">
+		{supportInfo.find((e) => e.category.name === 'Legal')?.category.description}
+	</p>
 	<div class="container-tiles">
 		{#if pages}
 			{#each pages as page}

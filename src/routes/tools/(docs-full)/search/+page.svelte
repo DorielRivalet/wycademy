@@ -97,7 +97,7 @@
 </script>
 
 <div>
-	<SectionHeadingTopLevel title={'Search'} />
+	<SectionHeadingTopLevel title={'Advanced Search'} />
 	<div class="content" in:fade={{ duration: 150 }}>
 		<div class="search-container">
 			<div class="dropdown">
