@@ -30,6 +30,8 @@
 	import MotionSwordAndShieldNoneJumpSlash from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 	import { getTag } from '$lib/client/modules/frontier/tags';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 
 	let modalHeading = '';
 	let modalLabel = '';
@@ -509,7 +511,14 @@
 						/>.
 					</p>
 				</div>
-				<div class="ice-age-tables-container">
+
+				<div class="ice-age-tables-container" id="ice-age-dom">
+					<Button
+						kind="tertiary"
+						icon={Download}
+						on:click={() => downloadDomAsPng('ice-age-dom', 'ice-age')}
+						>Download Tables</Button
+					>
 					<div class="ice-age-table-hits toc-exclude">
 						<DataTable
 							sortable
@@ -1108,6 +1117,8 @@
 		gap: 1rem;
 		margin-bottom: 2rem;
 		align-items: start;
+		width: 100%;
+		background-color: var(--ctp-base);
 	}
 
 	.ice-age-table-stages {

@@ -30,6 +30,9 @@
 		HuntingHornWeaponNotesCombinations,
 		SharpnessNames,
 	} from '$lib/client/modules/frontier/weapons';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	function downloadWeaponImage() {
 		if (!browser) return;
@@ -329,27 +332,17 @@
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Weapon Generator'} />
-		<InlineNotification
-			lowContrast
-			hideCloseButton
-			kind="info"
-			title="Sharpness:"
-			subtitle="The game uses integers. The values here is how it works internally. Defaults to a black bar on invalid values."
-		/>
-		<InlineNotification
-			lowContrast
-			hideCloseButton
-			kind="info"
-			title="Length:"
-			subtitle="The game uses Medium for Magnet Spike and Tonfa."
-		/>
-		<InlineNotification
-			lowContrast
-			hideCloseButton
-			kind="info"
-			title="Points:"
-			subtitle="The game uses values between -127 and 127 for skill and sigil points."
-		/>
+		<p class="spaced-paragraph">
+			This is a playground for weapons, which can be useful for creating custom
+			weapons and demonstrate translations.
+		</p>
+
+		<p class="spaced-paragraph">
+			If you are looking for a Tower Weapon Simulator, you can find it in the <Link
+				inline
+				href="/tools/simulator/tower-weapon">Simulators</Link
+			> section.
+		</p>
 
 		<div class="container-weapon-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadWeaponImage}
@@ -1776,6 +1769,26 @@
 				</div>
 			{/if}
 		</div>
+
+		<UnorderedList>
+			<ListItem
+				><p>
+					The game uses integers for sharpness. The values here is how it works
+					internally. Defaults to a black bar on invalid values.
+				</p></ListItem
+			>
+			<ListItem
+				><p>
+					The game uses Medium length for Magnet Spike and Tonfa.
+				</p></ListItem
+			>
+			<ListItem
+				><p>
+					The game uses values between -127 and 127 for skill and sigil points.
+				</p></ListItem
+			>
+		</UnorderedList>
+
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
