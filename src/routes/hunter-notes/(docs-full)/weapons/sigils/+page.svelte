@@ -5,7 +5,7 @@
 		sigilsRecipes,
 		type FrontierSigilRecipeType,
 	} from '$lib/client/modules/frontier/sigils';
-	import ezlion, { type FrontierSigil } from 'ezlion';
+	import ezlion, { type FrontierSigil, type SkillSigil } from 'ezlion';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
@@ -37,6 +37,7 @@
 	import SigilStats from '$lib/client/images/supplemental/sigil-stats.webp';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+	import MultiSelect from 'carbon-components-svelte/src/MultiSelect/MultiSelect.svelte';
 
 	// TODO when were sigils introduced?
 
@@ -126,7 +127,11 @@
 				sigilSkill:
 					element.sigilSkill === 'None' ? 'Random' : element.sigilSkill,
 				rollPercentage:
-					element.rollPercentage === 0 ? '-' : element.rollPercentage,
+					element.rollPercentage === 0
+						? '-'
+						: element.rollPercentage === 256
+							? 'Guaranteed'
+							: element.rollPercentage,
 				rollMin: getNegativeFromUint(element.rollMin),
 				rollMax: element.rollMax,
 			});
@@ -169,6 +174,50 @@
 		return transformedSigils.filter((e) => e.category === category);
 	}
 
+	type SigilRecipe = {
+		id: string;
+		category: string;
+		recipeName: string;
+		sigilSkill: string;
+		rollPercentage: string | number;
+		rollMin: number;
+		rollMax: number;
+	};
+
+	function getFilteredRecipes(
+		recipesByCategory: SigilRecipe[],
+		selectedSkills: FrontierSigil[],
+	) {
+		// Group recipes by recipeName
+		const recipesGroupedByRecipeName: { [key: string]: SigilRecipe[] } =
+			recipesByCategory.reduce(
+				(acc, recipe) => {
+					if (!acc[recipe.recipeName]) {
+						acc[recipe.recipeName] = [];
+					}
+					acc[recipe.recipeName].push(recipe);
+					return acc;
+				},
+				{} as { [key: string]: SigilRecipe[] },
+			);
+
+		// Filter the groups based on selectedSkills
+		const filteredRecipes: SigilRecipe[] = [];
+
+		for (const recipeGroup of Object.values(recipesGroupedByRecipeName)) {
+			const recipeSkills = recipeGroup.map((recipe) => recipe.sigilSkill);
+			const allSkillsPresent = selectedSkills.every((skill) =>
+				recipeSkills.includes(skill),
+			);
+
+			if (allSkillsPresent) {
+				filteredRecipes.push(...recipeGroup);
+			}
+		}
+
+		return filteredRecipes;
+	}
+
 	const categoryNames = [
 		{ id: 'Standard', text: 'Standard' },
 		{ id: 'Unlimited', text: 'Unlimited' },
@@ -185,7 +234,21 @@
 
 	$: recipesByCategory = getRecipesByCategory(selectedCategory);
 
+	$: filteredRecipes = getFilteredRecipes(recipesByCategory, selectedSkills);
+
+	const mapSkillSigilToArray = (
+		skillSigil: SkillSigil,
+	): { id: string; text: string }[] => {
+		return Object.entries(skillSigil).map(([key, value]) => ({
+			id: value,
+			text: value,
+		}));
+	};
+
 	// TODO idk if im confusing shiten seal with lock
+	let selectedSkills: FrontierSigil[] = ['Attack Slayer', 'Elemental Slayer'];
+
+	const mappedSigilSkills = mapSkillSigilToArray(ezlion.SkillSigil);
 </script>
 
 <Modal
@@ -928,7 +991,6 @@
 					<p>There are a total of {sigilsRecipes.length} sigil recipes.</p>
 					<div class="table">
 						<DataTable
-							useStaticWidth
 							id="sigil-recipes-dom"
 							sortable
 							zebra
@@ -940,7 +1002,7 @@
 								{ key: 'rollMin', value: 'Minimum Value' },
 								{ key: 'rollMax', value: 'Maximum Value' },
 							]}
-							rows={recipesByCategory}
+							rows={filteredRecipes}
 							><Toolbar
 								><div class="toolbar">
 									<CopyButton
@@ -959,9 +1021,15 @@
 										bind:selectedId={selectedCategory}
 										items={categoryNames}
 									/>
+									<MultiSelect
+										type="inline"
+										label="Select skills..."
+										items={mappedSigilSkills}
+										bind:selectedIds={selectedSkills}
+									/>
 									<ToolbarSearch
 										shouldFilterRows
-										value="attack"
+										value=""
 										bind:filteredRowIds={recipesTableFilteredRowIds}
 									/>
 								</div>
@@ -971,7 +1039,12 @@
 								{#if cell.key === 'rollMin' && cell.value < 0}
 									<p style:color="var(--ctp-red)">{cell.value}</p>
 								{:else if cell.key === 'rollPercentage'}
-									<p>{cell.value}%</p>
+									<p>
+										{cell.value}{cell.value === '-' ||
+										cell.value === 'Guaranteed'
+											? ''
+											: '%'}
+									</p>
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
@@ -1117,6 +1190,8 @@
 	.table {
 		margin-top: 2rem;
 		margin-bottom: 2rem;
+		height: 80vh;
+		overflow-y: auto;
 	}
 
 	.modal-content {

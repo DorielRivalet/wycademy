@@ -18,6 +18,8 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import { stickyHeaderStore } from '$lib/client/stores/toggles';
+	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
+	import { bannerEnabledStore } from '$lib/client/stores/banner';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	$: bgClass =
@@ -49,25 +51,31 @@
 	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 </script>
 
+<LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
+
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <div class="app">
 	<div class={headerClass}>
 		<Header />
 	</div>
 	<div class="banner">
-		<InlineNotification
-			lowContrast
-			kind="warning"
-			title="Status:"
-			subtitle="This site is currently in {developmentStage}."
-		>
-			<svelte:fragment slot="actions">
-				<NotificationActionButton
-					on:click={() => goto('/support/website/development')}
-					>Learn more</NotificationActionButton
-				>
-			</svelte:fragment>
-		</InlineNotification>
+		<!--TODO: banner folder and components-->
+		{#if $bannerEnabledStore}
+			<InlineNotification
+				lowContrast
+				kind="warning"
+				title="Status:"
+				on:close={() => bannerEnabledStore.set(false)}
+				subtitle="This site is currently in {developmentStage}."
+			>
+				<svelte:fragment slot="actions">
+					<NotificationActionButton
+						on:click={() => goto('/support/website/development')}
+						>Learn more</NotificationActionButton
+					>
+				</svelte:fragment>
+			</InlineNotification>
+		{/if}
 	</div>
 	<div class={bgClass}>
 		<main>

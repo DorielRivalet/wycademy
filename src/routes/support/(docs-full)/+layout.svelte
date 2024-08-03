@@ -29,7 +29,7 @@
 	} from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import Head from '$lib/client/components/Head.svelte';
-	import pageThumbnail from '$lib/client/images/icon/blacksmith.png';
+	import pageThumbnail from '$lib/client/images/logo.png';
 	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
 	import TreeView, {
@@ -59,6 +59,7 @@
 		supportInfo,
 	} from '$lib/client/modules/routes';
 	import { getAnnouncementByPathName } from '$lib/client/modules/announcements';
+	import { bannerEnabledStore } from '$lib/client/stores/banner';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -238,10 +239,10 @@
 			processRoute(pageUrlPathName);
 		headTitle = announcement
 			? announcement.title
-			: navigationItem?.name ?? 'Support Center';
+			: (navigationItem?.name ?? 'Support Center');
 		description = announcement
 			? announcement.summary
-			: navigationItem?.description ?? description;
+			: (navigationItem?.description ?? description);
 		breadcrumbItems = items;
 	}
 
@@ -266,10 +267,10 @@
 			processRoute(pageUrlPathName);
 		headTitle = announcement
 			? announcement.title
-			: navigationItem?.name ?? 'Support Center';
+			: (navigationItem?.name ?? 'Support Center');
 		description = announcement
 			? announcement.summary
-			: navigationItem?.description ?? description;
+			: (navigationItem?.description ?? description);
 		breadcrumbItems = items;
 		const unsubscribe = page.subscribe(($page) => {
 			treeview?.showNode($page.url.pathname || '');
@@ -287,6 +288,7 @@
 	bind:value={$hunterNotesSidebarEnabledStore}
 	key="__hunter-notes-sidebar-enabled"
 />
+<LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
 
 <Head
 	title={headTitle}
@@ -324,19 +326,22 @@
 		<Header />
 	</div>
 	<div class="banner">
-		<InlineNotification
-			lowContrast
-			kind="warning"
-			title="Status:"
-			subtitle="This site is currently in {developmentStage}."
-		>
-			<svelte:fragment slot="actions">
-				<NotificationActionButton
-					on:click={() => goto('/support/website/development')}
-					>Learn more</NotificationActionButton
-				>
-			</svelte:fragment>
-		</InlineNotification>
+		{#if $bannerEnabledStore}
+			<InlineNotification
+				lowContrast
+				kind="warning"
+				title="Status:"
+				on:close={() => bannerEnabledStore.set(false)}
+				subtitle="This site is currently in {developmentStage}."
+			>
+				<svelte:fragment slot="actions">
+					<NotificationActionButton
+						on:click={() => goto('/support/website/development')}
+						>Learn more</NotificationActionButton
+					>
+				</svelte:fragment>
+			</InlineNotification>
+		{/if}
 	</div>
 	<main>
 		<aside class={tocClass}>
