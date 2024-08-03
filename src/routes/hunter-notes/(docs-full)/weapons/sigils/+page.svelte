@@ -5,7 +5,11 @@
 		sigilsRecipes,
 		type FrontierSigilRecipeType,
 	} from '$lib/client/modules/frontier/sigils';
-	import ezlion, { type FrontierSigil, type SkillSigil } from 'ezlion';
+	import {
+		ezlionSkillSigil,
+		type FrontierSigil,
+		type SkillSigil,
+	} from 'ezlion';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
@@ -68,7 +72,7 @@
 					id: `${i}`,
 					category: getRecipeCategory(i),
 					recipeName: sigilsRecipes[i],
-					sigilSkill: ezlion.SkillSigil[e[0].sigilSkill],
+					sigilSkill: ezlionSkillSigil[e[0].sigilSkill],
 					rollPercentage: e[0].rollPercentage,
 					rollMin: e[0].rollMin,
 					rollMax: e[0].rollMax,
@@ -81,7 +85,7 @@
 					id: `${i}-${rollIndex}`,
 					recipeName: sigilsRecipes[i],
 					category: getRecipeCategory(i),
-					sigilSkill: ezlion.SkillSigil[roll.sigilSkill],
+					sigilSkill: ezlionSkillSigil[roll.sigilSkill],
 					rollPercentage: roll.rollPercentage,
 					rollMin: roll.rollMin,
 					rollMax: roll.rollMax,
@@ -248,7 +252,7 @@
 	// TODO idk if im confusing shiten seal with lock
 	let selectedSkills: FrontierSigil[] = ['Attack Slayer', 'Elemental Slayer'];
 
-	const mappedSigilSkills = mapSkillSigilToArray(ezlion.SkillSigil);
+	const mappedSigilSkills = mapSkillSigilToArray(ezlionSkillSigil);
 </script>
 
 <Modal

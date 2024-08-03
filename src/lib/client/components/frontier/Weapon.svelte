@@ -9,7 +9,10 @@
 Does not handle decorations because sigils are optimal.
 -->
 <script lang="ts">
-	import ezlion, {
+	import {
+		ezlionSkillArmorPriority,
+		ezlionSkillSigil,
+		ezlionSkillZenith,
 		type FrontierArmorSkillName,
 		type FrontierArmorSkillTree,
 		type FrontierSigil,
@@ -88,7 +91,7 @@ Does not handle decorations because sigils are optimal.
 	/** The overlay icon in the bottom left corner.*/
 	export let rank: FrontierEquipmentRank = 'G';
 
-	export let zenithSkill: FrontierZenithSkill = ezlion.SkillZenith[1];
+	export let zenithSkill: FrontierZenithSkill = ezlionSkillZenith[1];
 
 	// page 2
 	export let description: string = 'Description.';
@@ -101,31 +104,31 @@ Does not handle decorations because sigils are optimal.
 	/**
 	 * TODO Set theme to light.
 	 */
-	export let light = false;
+	// export let light = false;
 
 	export let phial: FrontierSwitchAxeFPhial = 'Power';
 
 	export let currentPage: number = 1;
 
 	export let skillNames: FrontierArmorSkillTree[] = [
-		ezlion.SkillArmorPriority[5],
-		ezlion.SkillArmorPriority[25],
-		ezlion.SkillArmorPriority[35],
-		ezlion.SkillArmorPriority[55],
-		ezlion.SkillArmorPriority[65],
+		ezlionSkillArmorPriority[5],
+		ezlionSkillArmorPriority[25],
+		ezlionSkillArmorPriority[35],
+		ezlionSkillArmorPriority[55],
+		ezlionSkillArmorPriority[65],
 	];
 	export let skillPoints: FrontierEquipmentSkillPoints = [0, 20, -30, 40, 50];
 
 	export let sigils: FrontierSigil[] = [
-		ezlion.SkillSigil[25],
-		ezlion.SkillSigil[5],
-		ezlion.SkillSigil[15],
-		ezlion.SkillSigil[5],
-		ezlion.SkillSigil[15],
-		ezlion.SkillSigil[5],
-		ezlion.SkillSigil[15],
-		ezlion.SkillSigil[5],
-		ezlion.SkillSigil[15],
+		ezlionSkillSigil[25],
+		ezlionSkillSigil[5],
+		ezlionSkillSigil[15],
+		ezlionSkillSigil[5],
+		ezlionSkillSigil[15],
+		ezlionSkillSigil[5],
+		ezlionSkillSigil[15],
+		ezlionSkillSigil[5],
+		ezlionSkillSigil[15],
 	];
 	export let sigilPoints: FrontierSigilPoints = [
 		15, 20, -30, 40, 50, 15, 15, -15, 12,

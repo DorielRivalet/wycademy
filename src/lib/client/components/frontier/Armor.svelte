@@ -61,7 +61,7 @@
 	/**
 	 * TODO Set theme to light.
 	 */
-	export let light = false;
+	// export let light = false;
 
 	export let currentPage: number = 1;
 

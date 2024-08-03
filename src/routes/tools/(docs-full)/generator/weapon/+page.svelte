@@ -3,7 +3,6 @@
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import { page } from '$app/stores';
-	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
@@ -20,7 +19,6 @@
 	import { frontierMappers } from '$lib/client/modules/frontier/functions';
 
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
-	import ezlion from 'ezlion';
 	import Checkbox from 'carbon-components-svelte/src/Checkbox/Checkbox.svelte';
 	import { browser } from '$app/environment';
 	import slugify from 'slugify';
@@ -33,6 +31,11 @@
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import {
+		ezlionSkillZenith,
+		ezlionSkillArmor,
+		ezlionSkillSigil,
+	} from 'ezlion';
 
 	function downloadWeaponImage() {
 		if (!browser) return;
@@ -147,7 +150,7 @@
 
 	function getZenithSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.values(ezlion.SkillZenith).forEach((element) => {
+		Object.values(ezlionSkillZenith).forEach((element) => {
 			if (element !== '' && element !== 'None') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -166,7 +169,7 @@
 
 	function getArmorSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.values(ezlion.SkillArmor).forEach((element) => {
+		Object.values(ezlionSkillArmor).forEach((element) => {
 			if (element !== '' && element !== 'None') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -177,7 +180,7 @@
 
 	function getSigilSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.values(ezlion.SkillSigil).forEach((element) => {
+		Object.values(ezlionSkillSigil).forEach((element) => {
 			if (element !== '' && element !== 'None') {
 				array = [...array, { id: element, text: element }];
 			}
