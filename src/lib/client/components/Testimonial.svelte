@@ -75,8 +75,8 @@
 			transform motion.$duration-slow-02 motion.motion(standard, expressive);
 
 		p {
-			@include type.type-style('fluid-quotation-01', true);
 			font-family: var(--font-serif);
+			@include type.type-style('fluid-quotation-01', true);
 		}
 	}
 

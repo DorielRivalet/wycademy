@@ -6004,15 +6004,21 @@ does not get multiplied by horn */
 					<InlineNotification
 						title="Note:"
 						subtitle="Refreshing the page resets all values."
-						kind="info"
+						kind="warning"
 						lowContrast
 					/>
-					<p>
+					<p class="spaced-paragraph">
 						The calculator does not include Diva Prayer Gems that do not affect
 						it. The full list is found in our <Link
 							inline
 							href="/hunter-notes/events/diva-defense#diva-prayer-gems"
 							>Hunter's Notes.</Link
+						>
+					</p>
+					<p>
+						If you want to save or load your inputs, you can do so <Link
+							inline
+							href="#saving-and-loading">in a section below.</Link
 						>
 					</p>
 					<div class="true-raw-converter">
@@ -9193,6 +9199,12 @@ does not get multiplied by horn */
 					</p>
 
 					<p class="spaced-paragraph">
+						If you select an option in a dropdown exclusive to a weapon and then
+						change weapon type thus hiding that dropdown, the selected option
+						will still apply.
+					</p>
+
+					<p class="spaced-paragraph">
 						Some motion values have numbers in parentheses, those are KO values.
 						KO indicates impact portions of the motion value, which use white
 						sharpness as the maximum multiplier.
@@ -9370,7 +9382,7 @@ does not get multiplied by horn */
 						icon={getWeaponIcon('Bow')}
 					/> cannot use Reflect or Perfect Guard.
 				</p>
-				<div class="motion-values toc-exclude">
+				<div class="shared-motion-values toc-exclude">
 					<DataTable
 						id="shared-motion-values-dom"
 						sortable
@@ -9534,7 +9546,11 @@ does not get multiplied by horn */
 												and select "Copy stats for Wycademy's Damage
 												Calculator".
 											</ListItem>
-											<ListItem>Paste them here.</ListItem>
+											<ListItem
+												>Paste them into the Calculator tab here, on the Load
+												Data text input. Then press the Update button next to
+												it.</ListItem
+											>
 										</OrderedList>
 									</div></TabContent
 								>
@@ -10054,6 +10070,12 @@ does not get multiplied by horn */
 		margin: 0 auto;
 		height: 80vh;
 		overflow-y: auto;
+	}
+
+	.shared-motion-values {
+		overflow-x: auto;
+		width: 98%;
+		margin: 0 auto;
 	}
 
 	.attack {
