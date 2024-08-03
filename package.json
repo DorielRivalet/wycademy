@@ -100,7 +100,7 @@
 	},
 	"dependencies": {
 		"@carbon/grid": "^11.23.0",
-		"@carbon/layout": "^11.21.0",
+		"@carbon/layout": "^11.24.0",
 		"@carbon/motion": "^11.18.0",
 		"@carbon/type": "^11.29.0",
 		"@catppuccin/palette": "^1.2.0",
