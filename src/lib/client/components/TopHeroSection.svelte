@@ -13,7 +13,6 @@
 	export let secondaryButtonLink = '';
 	export let heroVideoBackground;
 	export let layout: 1 | 2 = 1;
-	export let downloads = 0;
 	export let starCount = 0;
 </script>
 
@@ -86,8 +85,8 @@
 	}
 
 	.title {
-		@include type.type-style('fluid-heading-06', true);
 		text-align: center;
+		@include type.type-style('fluid-heading-06', true);
 	}
 
 	.background-video {
@@ -114,11 +113,11 @@
 	}
 
 	.description {
-		@include type.type-style('fluid-paragraph-01', true);
 		text-wrap: wrap;
 		padding: 2rem;
 		text-align: center;
 		max-width: clamp(50vw, 80vw, 80ch);
+		@include type.type-style('fluid-paragraph-01', true);
 	}
 
 	.buttons {

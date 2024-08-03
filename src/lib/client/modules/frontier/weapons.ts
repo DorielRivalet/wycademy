@@ -421,7 +421,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		bloatAttackMultiplier: 1.8,
 		statusAssaultPoison: 10,
 		statusAssaultParalysis: 6,
-		elementalExploitModifier: 15,
+		elementalExploitModifier: 5,
 		damageType: 'Impact',
 		image: TonfaImage,
 	},
