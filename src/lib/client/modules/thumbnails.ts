@@ -40,6 +40,7 @@ import thumbnailDarkIceAge from '$lib/client/images/page-thumbnail/dark/ice-age.
 import thumbnailDarkItemGenerator from '$lib/client/images/page-thumbnail/dark/item-generator.png';
 import thumbnailDarkArmorGenerator from '$lib/client/images/page-thumbnail/dark/armor-generator.png';
 import thumbnailDarkWeaponGenerator from '$lib/client/images/page-thumbnail/dark/weapon-generator.png';
+import { getMonsterIcon } from './frontier/monsters';
 
 const lightThumbnailInfo: {
 	link: string;
@@ -150,6 +151,27 @@ const lightThumbnailInfo: {
 		embed: null,
 		link: '/tools/generator/weapon',
 		thumbnail: thumbnailDarkWeaponGenerator,
+	},
+	{
+		embed: null,
+		link: '/tools/generator/icon',
+		thumbnail: getMonsterIcon('Burning Freezing Elzelion'),
+	},
+	{
+		embed: null,
+		link: '/tools/generator/thumbnail',
+		thumbnail: pageThumbnail, // TODO change when fixed
+	},
+	{
+		embed: null,
+		link: '/tools/external/overlay',
+		thumbnail: pageThumbnail,
+	},
+	{
+		embed: null,
+		link: '/tools/external/ezlion',
+		thumbnail:
+			'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
 	},
 ];
 
@@ -262,6 +284,27 @@ const darkThumbnailInfo: {
 		embed: null,
 		link: '/tools/generator/weapon',
 		thumbnail: thumbnailDarkWeaponGenerator,
+	},
+	{
+		embed: null,
+		link: '/tools/generator/icon',
+		thumbnail: getMonsterIcon('Burning Freezing Elzelion'),
+	},
+	{
+		embed: null,
+		link: '/tools/generator/thumbnail',
+		thumbnail: pageThumbnail, // TODO change when fixed
+	},
+	{
+		embed: null,
+		link: '/tools/external/overlay',
+		thumbnail: pageThumbnail,
+	},
+	{
+		embed: null,
+		link: '/tools/external/ezlion',
+		thumbnail:
+			'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
 	},
 ];
 
