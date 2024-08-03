@@ -1,9 +1,7 @@
 <script lang="ts">
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
-	import DataTable, {
-		type DataTableCell,
-	} from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
+	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import { getCSVFromArray } from '../modules/csv';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
@@ -13,7 +11,6 @@
 	import slugify from 'slugify';
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import { formatDateTime } from '../modules/time';
-	import ezlion from 'ezlion';
 	import type { OverlayHuntRank } from '../modules/frontier/types';
 	import { Favorite, FavoriteFilled } from 'carbon-icons-svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
@@ -27,6 +24,7 @@
 	import { availableReactions } from '../modules/reactions';
 	import MonsterComponent from './frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
+	import { ezlionQuest } from 'ezlion';
 
 	export let theme: CarbonTheme;
 
@@ -13739,7 +13737,7 @@
 			return {
 				id: e.runID,
 				date: formatDateTime(e.date),
-				quest: ezlion.Quest[e.questID],
+				quest: ezlionQuest[e.questID],
 				time: e.time,
 				objectiveName: e.objectiveName.replace('Blitzkrieg', 'Bombardier'),
 				rankName: e.rankName,
@@ -13760,7 +13758,7 @@
 							return {
 								id: e.runID,
 								date: formatDateTime(e.date),
-								quest: ezlion.Quest[e.questID],
+								quest: ezlionQuest[e.questID],
 								time: e.time,
 								objectiveName: e.objectiveName.replace(
 									'Blitzkrieg',

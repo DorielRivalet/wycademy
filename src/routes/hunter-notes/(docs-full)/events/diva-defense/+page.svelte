@@ -8,11 +8,11 @@
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
-	import ezlion from 'ezlion';
 	import { page } from '$app/stores';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { divaPrayerGems } from '$lib/client/modules/frontier/diva';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import { ezlionSkillDivaPrayerGem } from 'ezlion';
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -97,7 +97,7 @@
 									text={getCSVFromArray([
 										{
 											id: '1',
-											gem: ezlion.SkillDivaPrayerGem[1],
+											gem: ezlionSkillDivaPrayerGem[1],
 											effects:
 												'Sharpness does not decrease with blademaster weapons. Works for 5, 10 or 20 quests depending on level during the prayer active window.',
 											maxLevel: '3',
@@ -106,7 +106,7 @@
 										},
 										{
 											id: '2',
-											gem: ezlion.SkillDivaPrayerGem[2],
+											gem: ezlionSkillDivaPrayerGem[2],
 											effects:
 												'Reduces the recoil and reload speed of Gunner weapons.',
 											maxLevel: '7',
@@ -115,7 +115,7 @@
 										},
 										{
 											id: '3',
-											gem: ezlion.SkillDivaPrayerGem[3],
+											gem: ezlionSkillDivaPrayerGem[3],
 											effects: 'Tails can be cut with any damage type.',
 											maxLevel: '1',
 											unused: '❌',
@@ -123,7 +123,7 @@
 										},
 										{
 											id: '4',
-											gem: ezlion.SkillDivaPrayerGem[4],
+											gem: ezlionSkillDivaPrayerGem[4],
 											effects: 'Adds passive HP recovery to all quests.',
 											maxLevel: '2',
 											unused: '❌',
@@ -131,7 +131,7 @@
 										},
 										{
 											id: '5',
-											gem: ezlion.SkillDivaPrayerGem[5],
+											gem: ezlionSkillDivaPrayerGem[5],
 											effects:
 												'Makes it easier to scare monsters by attacking with Earth Style.',
 											maxLevel: '4',
@@ -140,7 +140,7 @@
 										},
 										{
 											id: '6',
-											gem: ezlion.SkillDivaPrayerGem[6],
+											gem: ezlionSkillDivaPrayerGem[6],
 											effects:
 												'Makes it easier to scare monsters by attacking with Heaven Style.',
 											maxLevel: '4',
@@ -149,7 +149,7 @@
 										},
 										{
 											id: '7',
-											gem: ezlion.SkillDivaPrayerGem[7],
+											gem: ezlionSkillDivaPrayerGem[7],
 											effects:
 												'Makes it easier to scare monsters by attacking with Storm Style.',
 											maxLevel: '4',
@@ -158,7 +158,7 @@
 										},
 										{
 											id: '8',
-											gem: ezlion.SkillDivaPrayerGem[8],
+											gem: ezlionSkillDivaPrayerGem[8],
 											effects:
 												'Increases the amount of raw damage dealt by a cutting weapon by adjusting hitboxes to be weaker against the damage type.',
 											maxLevel: '3',
@@ -167,7 +167,7 @@
 										},
 										{
 											id: '9',
-											gem: ezlion.SkillDivaPrayerGem[9],
+											gem: ezlionSkillDivaPrayerGem[9],
 											effects:
 												'Increases the amount of raw damage dealt by an impact weapon by adjusting hitboxes to be weaker against the damage type.',
 											maxLevel: '3',
@@ -176,7 +176,7 @@
 										},
 										{
 											id: '10',
-											gem: ezlion.SkillDivaPrayerGem[10],
+											gem: ezlionSkillDivaPrayerGem[10],
 											effects:
 												'Increases the amount of raw damage dealt by a ranged weapon by adjusting hitboxes to be weaker against the damage type.',
 											maxLevel: '3',
@@ -185,7 +185,7 @@
 										},
 										{
 											id: '11',
-											gem: ezlion.SkillDivaPrayerGem[11],
+											gem: ezlionSkillDivaPrayerGem[11],
 											effects:
 												'Increases the duration of status effects on monsters.',
 											maxLevel: '3',
@@ -194,7 +194,7 @@
 										},
 										{
 											id: '12',
-											gem: ezlion.SkillDivaPrayerGem[12],
+											gem: ezlionSkillDivaPrayerGem[12],
 											effects:
 												'Monsters are more susceptible to status ailments.',
 											maxLevel: '3',
@@ -203,7 +203,7 @@
 										},
 										{
 											id: '13',
-											gem: ezlion.SkillDivaPrayerGem[13],
+											gem: ezlionSkillDivaPrayerGem[13],
 											effects:
 												'Increases damage when striking body parts upon which your attacks are highly effective. However, element damage does not change.',
 											maxLevel: '3',
@@ -212,7 +212,7 @@
 										},
 										{
 											id: '14',
-											gem: ezlion.SkillDivaPrayerGem[14],
+											gem: ezlionSkillDivaPrayerGem[14],
 											effects: 'Elemental damage increases based on level.',
 											maxLevel: '3',
 											unused: '❌',
@@ -220,7 +220,7 @@
 										},
 										{
 											id: '15',
-											gem: ezlion.SkillDivaPrayerGem[15],
+											gem: ezlionSkillDivaPrayerGem[15],
 											effects:
 												'Monsters cannot flee if in the same area as a hunter.',
 											maxLevel: '3',
@@ -229,7 +229,7 @@
 										},
 										{
 											id: '16',
-											gem: ezlion.SkillDivaPrayerGem[16],
+											gem: ezlionSkillDivaPrayerGem[16],
 											effects:
 												'Adds new items to the GCP store based on level.',
 											maxLevel: '1',
@@ -238,7 +238,7 @@
 										},
 										{
 											id: '17',
-											gem: ezlion.SkillDivaPrayerGem[17],
+											gem: ezlionSkillDivaPrayerGem[17],
 											effects:
 												'Attack will go up based on the number of human hunters in a quest.',
 											maxLevel: '3',
@@ -247,7 +247,7 @@
 										},
 										{
 											id: '18',
-											gem: ezlion.SkillDivaPrayerGem[18],
+											gem: ezlionSkillDivaPrayerGem[18],
 											effects:
 												"Gives Divine Protection, Goddess' Embrace or Soul Revival based on level.",
 											maxLevel: '3',
@@ -256,7 +256,7 @@
 										},
 										{
 											id: '19',
-											gem: ezlion.SkillDivaPrayerGem[19],
+											gem: ezlionSkillDivaPrayerGem[19],
 											effects:
 												'Increases affinity of all weapons based on the level of the song.',
 											maxLevel: '3',
@@ -265,7 +265,7 @@
 										},
 										{
 											id: '20',
-											gem: ezlion.SkillDivaPrayerGem[20],
+											gem: ezlionSkillDivaPrayerGem[20],
 											effects: 'Increases fire resistance.',
 											maxLevel: '3',
 											unused: '✅',
@@ -273,7 +273,7 @@
 										},
 										{
 											id: '21',
-											gem: ezlion.SkillDivaPrayerGem[21],
+											gem: ezlionSkillDivaPrayerGem[21],
 											effects: 'Increases water resistance.',
 											maxLevel: '3',
 											unused: '✅',
@@ -281,7 +281,7 @@
 										},
 										{
 											id: '22',
-											gem: ezlion.SkillDivaPrayerGem[22],
+											gem: ezlionSkillDivaPrayerGem[22],
 											effects: 'Increases thunder resistance.',
 											maxLevel: '3',
 											unused: '✅',
@@ -289,7 +289,7 @@
 										},
 										{
 											id: '23',
-											gem: ezlion.SkillDivaPrayerGem[23],
+											gem: ezlionSkillDivaPrayerGem[23],
 											effects: 'Increases dragon resistance.',
 											maxLevel: '3',
 											unused: '✅',
@@ -297,7 +297,7 @@
 										},
 										{
 											id: '24',
-											gem: ezlion.SkillDivaPrayerGem[24],
+											gem: ezlionSkillDivaPrayerGem[24],
 											effects: 'Increases ice resistance.',
 											maxLevel: '3',
 											unused: '✅',
@@ -305,7 +305,7 @@
 										},
 										{
 											id: '25',
-											gem: ezlion.SkillDivaPrayerGem[25],
+											gem: ezlionSkillDivaPrayerGem[25],
 											effects: 'Increases resistance to all elements.',
 											maxLevel: '2',
 											unused: '✅',

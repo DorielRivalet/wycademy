@@ -23,14 +23,16 @@
 	} from '$lib/client/modules/frontier/types';
 	import { browser } from '$app/environment';
 	import { frontierMappers } from '$lib/client/modules/frontier/functions';
-	import type {
-		FrontierZenithSkill,
-		FrontierArmorSkillTree,
-		FrontierArmorSkillName,
+	import {
+		type FrontierZenithSkill,
+		type FrontierArmorSkillTree,
+		type FrontierArmorSkillName,
+		ezlionSkillZenith,
+		ezlionSkillArmor,
+		ezlionSkillTree,
 	} from 'ezlion';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
-	import ezlion from 'ezlion';
 
 	type dropdownItem = { id: string; text: string };
 
@@ -141,7 +143,7 @@
 
 	function getZenithSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.values(ezlion.SkillZenith).forEach((element) => {
+		Object.values(ezlionSkillZenith).forEach((element) => {
 			if (element !== '' && element !== 'None') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -151,7 +153,7 @@
 
 	function getArmorSkills() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.values(ezlion.SkillArmor).forEach((element) => {
+		Object.values(ezlionSkillArmor).forEach((element) => {
 			if (element !== '' && element !== 'None') {
 				array = [...array, { id: element, text: element }];
 			}
@@ -162,7 +164,7 @@
 
 	function getArmorSkillTree() {
 		let array: dropdownItem[] = [{ id: '', text: 'None' }];
-		Object.values(ezlion.SkillTree).forEach((element) => {
+		Object.values(ezlionSkillTree).forEach((element) => {
 			if (element !== '') {
 				array = [...array, { id: element, text: element }];
 			}

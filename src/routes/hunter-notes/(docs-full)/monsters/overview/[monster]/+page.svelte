@@ -10,7 +10,7 @@
 		getHitzoneValuesObject,
 	} from '$lib/client/modules/frontier/hitzones';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import ezlion, { type FrontierMonsterName } from 'ezlion';
+	import { ezlionMonster, type FrontierMonsterName } from 'ezlion';
 	import type {
 		FrontierMonsterHitzoneRankBand,
 		FrontierMonsterHitzoneType,
@@ -61,7 +61,7 @@
 		if (found) {
 			return found;
 		} else {
-			let foundKey = Object.keys(ezlion.Monster).find((e) => `${e}` === params);
+			let foundKey = Object.keys(ezlionMonster).find((e) => `${e}` === params);
 			if (foundKey) {
 				return monsterInfo.find((m) => m.id === Number(foundKey));
 			} else {
