@@ -115,7 +115,7 @@
 		"@threlte/core": "^7.3.1",
 		"@threlte/extras": "^8.11.4",
 		"@threlte/theatre": "^2.1.7",
-		"@types/three": "^0.165.0",
+		"@types/three": "^0.167.1",
 		"@zip.js/zip.js": "^2.7.47",
 		"alex": "^11.0.1",
 		"carbon-components": "^11.60.1",
@@ -137,6 +137,6 @@
 		"svelte-moveable": "^0.45.0",
 		"svelte-reactions": "^2.5.4",
 		"svelte-toc": "^0.5.9",
-		"three": "^0.165.0"
+		"three": "^0.167.1"
 	}
 }
