@@ -114,7 +114,7 @@
 		"@theatre/studio": "^0.7.2",
 		"@threlte/core": "^7.3.1",
 		"@threlte/extras": "^8.11.5",
-		"@threlte/theatre": "^2.1.7",
+		"@threlte/theatre": "^2.1.8",
 		"@types/three": "^0.167.1",
 		"@zip.js/zip.js": "^2.7.48",
 		"alex": "^11.0.1",
