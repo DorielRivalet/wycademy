@@ -822,6 +822,16 @@
 				game.
 			</p>
 
+			<div class="tower-weapon-simulator-preview-container">
+				<div class="container-buttons">
+					<Button
+						kind="tertiary"
+						icon={Download}
+						on:click={downloadTowerWeaponImage}>Download</Button
+					>
+				</div>
+			</div>
+
 			<div class="tower-weapon-simulator-container">
 				<div class="tower-weapon-simulator-weapon-container">
 					<div class="flex-centered padded">
@@ -897,13 +907,198 @@
 						</div>
 					</div>
 
-					<div
-						class="flex-centered padded"
-						style={towerWeaponExceedsMaxCost
-							? 'color: var(--ctp-red)'
-							: 'var(--ctp-text)'}
-					>
-						<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
+					<div class="tower-weapon-stats" id="tower-weapon-dom">
+						<div
+							class="flex-centered"
+							style={towerWeaponExceedsMaxCost
+								? 'color: var(--ctp-red)'
+								: 'var(--ctp-text)'}
+						>
+							<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
+						</div>
+						<div class="tower-weapon-gems">
+							<p>
+								<InlineTooltip
+									tooltip="Item"
+									text={`${towerWeaponTotalGems.courage} Courage Gems`}
+									icon={getItemIcon('Ball')}
+									iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+								/>
+							</p>
+							<p>
+								<InlineTooltip
+									tooltip="Item"
+									text={`${towerWeaponTotalGems.glittering} Glittering Gems`}
+									icon={getItemIcon('Ball')}
+									iconColor={RarityColors[5]}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+								/>
+							</p>
+							<p>
+								<InlineTooltip
+									tooltip="Item"
+									text={`${towerWeaponTotalGems.divine} Divine Gems`}
+									icon={getItemIcon('Ball')}
+									iconColor={RarityColors[3]}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+								/>
+							</p>
+						</div>
+						<div class="tower-weapon-summary">
+							<p>
+								<InlineTooltip
+									tooltip={'Stat'}
+									text={`${towerWeaponAttackValue} Attack (${towerWeaponAttackIndex !== towerWeaponSelected.attack.length - 1 ? towerWeaponAttackIndex : 'MAX'})`}
+									iconSize={'clamp(1rem, 2vw, 2rem)'}
+									icon={getItemIcon('Knife')}
+									iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+								/>
+							</p>
+							{#if towerWeaponElementValue > 0}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`${towerWeaponElementValue * 10} Element (${towerWeaponElementIndex !== towerWeaponSelected.element.length - 1 ? towerWeaponElementIndex : 'MAX'})`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponPoisonValue > 0}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`${towerWeaponPoisonValue * 10} Status (${towerWeaponPoisonIndex !== towerWeaponSelected.poison.length - 1 ? towerWeaponPoisonIndex : 'MAX'})`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={StatusIcons.find((e) => e.name === 'Poison')?.icon}
+									/>
+								</p>
+							{:else if towerWeaponParalysisValue > 0}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`${towerWeaponParalysisValue * 10} Status (${towerWeaponParalysisIndex !== towerWeaponSelected.paralysis.length - 1 ? towerWeaponParalysisIndex : 'MAX'})`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={StatusIcons.find((e) => e.name === 'Paralysis')?.icon}
+									/>
+								</p>
+							{:else if towerWeaponSleepValue > 0}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`${towerWeaponSleepValue * 10} Status (${towerWeaponSleepIndex !== towerWeaponSelected.sleep.length - 1 ? towerWeaponSleepIndex : 'MAX'})`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={StatusIcons.find((e) => e.name === 'Sleep')?.icon}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponAffinityValue > 0}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`${towerWeaponAffinityValue}% Affinity (${towerWeaponAffinityIndex !== towerWeaponSelected.affinity.length - 1 ? towerWeaponAffinityIndex : 'MAX'})`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={getItemIcon('Knife')}
+										iconColor={ItemColors.find((e) => e.name === 'Cyan')?.value}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponSharpnessLevel > 0}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`Sharpness LV${towerWeaponSharpnessIndex !== towerWeaponSelectedSeriesInfo.sharpnessLevels.length - 1 ? towerWeaponSharpnessIndex : ' MAX'}`}
+										iconColor={ItemColors.find((e) => e.name === 'Yellow')
+											?.value}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={getItemIcon('Whetstone')}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponGunlanceShellLevel !== '0'}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`Shell LV${parseInt(towerWeaponGunlanceShellLevel) !== 8 ? parseInt(towerWeaponGunlanceShellLevel) + 1 : ' MAX'}`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={getWeaponIcon('Gunlance')}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponReloadSpeedValue !== 'Very Slow'}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`${towerWeaponReloadSpeedValue} Reload`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={getItemIcon('Shot')}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponRecoilValue !== 'Max'}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`${towerWeaponRecoilValue} Recoil`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={getItemIcon('Shot')}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponBowCharge1Level !== '1'}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`Charge 1 LV${towerWeaponBowCharge1Level !== '4' ? towerWeaponBowCharge1Level : ' MAX'}`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={getWeaponIcon('Bow')}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponBowCharge2Level !== '1'}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`Charge 2 LV${towerWeaponBowCharge2Level !== '4' ? towerWeaponBowCharge2Level : ' MAX'}`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={getWeaponIcon('Bow')}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponBowCharge3Level !== '1'}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`Charge 3 LV${towerWeaponBowCharge3Level !== '4' ? towerWeaponBowCharge3Level : ' MAX'}`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={getWeaponIcon('Bow')}
+									/>
+								</p>
+							{/if}
+							{#if towerWeaponBowCharge4Level !== '1'}
+								<p>
+									<InlineTooltip
+										tooltip={'Stat'}
+										text={`Charge 4 LV${towerWeaponBowCharge4Level !== '4' ? towerWeaponBowCharge4Level : ' MAX'}`}
+										iconSize={'clamp(1rem, 2vw, 2rem)'}
+										icon={getWeaponIcon('Bow')}
+									/>
+								</p>
+							{/if}
+						</div>
+						<div class="tower-weapon-name">
+							{#key towerWeaponSeriesColor}
+								<svelte:component
+									this={WeaponTypes.find(
+										(e) => e.name === towerWeaponSelectedWeaponType,
+									)?.icon}
+									{...{ color: towerWeaponSeriesColor, size: '64px' }}
+								/>
+
+								<strong>{towerWeaponSelectedWeaponOption}</strong>
+							{/key}
+						</div>
 					</div>
 				</div>
 
@@ -1270,208 +1465,6 @@
 							</p>
 						</div>
 					{/if}
-				</div>
-			</div>
-
-			<div class="tower-weapon-simulator-preview-container">
-				<div class="container-buttons">
-					<Button
-						kind="tertiary"
-						icon={Download}
-						on:click={downloadTowerWeaponImage}>Download</Button
-					>
-				</div>
-				<div class="tower-weapon-stats" id="tower-weapon-dom">
-					<div
-						class="flex-centered"
-						style={towerWeaponExceedsMaxCost
-							? 'color: var(--ctp-red)'
-							: 'var(--ctp-text)'}
-					>
-						<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
-					</div>
-					<div class="tower-weapon-gems">
-						<p>
-							<InlineTooltip
-								tooltip="Item"
-								text={`${towerWeaponTotalGems.courage} Courage Gems`}
-								icon={getItemIcon('Ball')}
-								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
-								iconSize={'clamp(1rem, 2vw, 2rem)'}
-							/>
-						</p>
-						<p>
-							<InlineTooltip
-								tooltip="Item"
-								text={`${towerWeaponTotalGems.glittering} Glittering Gems`}
-								icon={getItemIcon('Ball')}
-								iconColor={RarityColors[5]}
-								iconSize={'clamp(1rem, 2vw, 2rem)'}
-							/>
-						</p>
-						<p>
-							<InlineTooltip
-								tooltip="Item"
-								text={`${towerWeaponTotalGems.divine} Divine Gems`}
-								icon={getItemIcon('Ball')}
-								iconColor={RarityColors[3]}
-								iconSize={'clamp(1rem, 2vw, 2rem)'}
-							/>
-						</p>
-					</div>
-					<div class="tower-weapon-summary">
-						<p>
-							<InlineTooltip
-								tooltip={'Stat'}
-								text={`${towerWeaponAttackValue} Attack (${towerWeaponAttackIndex !== towerWeaponSelected.attack.length - 1 ? towerWeaponAttackIndex : 'MAX'})`}
-								iconSize={'clamp(1rem, 2vw, 2rem)'}
-								icon={getItemIcon('Knife')}
-								iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
-							/>
-						</p>
-						{#if towerWeaponElementValue > 0}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`${towerWeaponElementValue * 10} Element (${towerWeaponElementIndex !== towerWeaponSelected.element.length - 1 ? towerWeaponElementIndex : 'MAX'})`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponPoisonValue > 0}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`${towerWeaponPoisonValue * 10} Status (${towerWeaponPoisonIndex !== towerWeaponSelected.poison.length - 1 ? towerWeaponPoisonIndex : 'MAX'})`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={StatusIcons.find((e) => e.name === 'Poison')?.icon}
-								/>
-							</p>
-						{:else if towerWeaponParalysisValue > 0}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`${towerWeaponParalysisValue * 10} Status (${towerWeaponParalysisIndex !== towerWeaponSelected.paralysis.length - 1 ? towerWeaponParalysisIndex : 'MAX'})`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={StatusIcons.find((e) => e.name === 'Paralysis')?.icon}
-								/>
-							</p>
-						{:else if towerWeaponSleepValue > 0}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`${towerWeaponSleepValue * 10} Status (${towerWeaponSleepIndex !== towerWeaponSelected.sleep.length - 1 ? towerWeaponSleepIndex : 'MAX'})`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={StatusIcons.find((e) => e.name === 'Sleep')?.icon}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponAffinityValue > 0}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`${towerWeaponAffinityValue}% Affinity (${towerWeaponAffinityIndex !== towerWeaponSelected.affinity.length - 1 ? towerWeaponAffinityIndex : 'MAX'})`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={getItemIcon('Knife')}
-									iconColor={ItemColors.find((e) => e.name === 'Cyan')?.value}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponSharpnessLevel > 0}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`Sharpness LV${towerWeaponSharpnessIndex !== towerWeaponSelectedSeriesInfo.sharpnessLevels.length - 1 ? towerWeaponSharpnessIndex : ' MAX'}`}
-									iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={getItemIcon('Whetstone')}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponGunlanceShellLevel !== '0'}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`Shell LV${parseInt(towerWeaponGunlanceShellLevel) !== 8 ? parseInt(towerWeaponGunlanceShellLevel) + 1 : ' MAX'}`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={getWeaponIcon('Gunlance')}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponReloadSpeedValue !== 'Very Slow'}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`${towerWeaponReloadSpeedValue} Reload`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={getItemIcon('Shot')}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponRecoilValue !== 'Max'}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`${towerWeaponRecoilValue} Recoil`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={getItemIcon('Shot')}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponBowCharge1Level !== '1'}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`Charge 1 LV${towerWeaponBowCharge1Level !== '4' ? towerWeaponBowCharge1Level : ' MAX'}`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={getWeaponIcon('Bow')}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponBowCharge2Level !== '1'}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`Charge 2 LV${towerWeaponBowCharge2Level !== '4' ? towerWeaponBowCharge2Level : ' MAX'}`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={getWeaponIcon('Bow')}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponBowCharge3Level !== '1'}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`Charge 3 LV${towerWeaponBowCharge3Level !== '4' ? towerWeaponBowCharge3Level : ' MAX'}`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={getWeaponIcon('Bow')}
-								/>
-							</p>
-						{/if}
-						{#if towerWeaponBowCharge4Level !== '1'}
-							<p>
-								<InlineTooltip
-									tooltip={'Stat'}
-									text={`Charge 4 LV${towerWeaponBowCharge4Level !== '4' ? towerWeaponBowCharge4Level : ' MAX'}`}
-									iconSize={'clamp(1rem, 2vw, 2rem)'}
-									icon={getWeaponIcon('Bow')}
-								/>
-							</p>
-						{/if}
-					</div>
-					<div class="tower-weapon-name">
-						{#key towerWeaponSeriesColor}
-							<svelte:component
-								this={WeaponTypes.find(
-									(e) => e.name === towerWeaponSelectedWeaponType,
-								)?.icon}
-								{...{ color: towerWeaponSeriesColor, size: '64px' }}
-							/>
-
-							<strong>{towerWeaponSelectedWeaponOption}</strong>
-						{/key}
-					</div>
 				</div>
 			</div>
 		</div>

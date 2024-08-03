@@ -5597,6 +5597,234 @@ does not get multiplied by horn */
 		selectedMonster === undefined
 			? inputNumberDragonHitzone
 			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.dragon;
+
+	function getMotionValuesTableHeaders(inputElement: FrontierElement) {
+		const defaultResult = [
+			{ key: 'name', value: 'Name', minWidth: '2rem' },
+			{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+			{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+			{ key: 'element', value: 'Element', minWidth: '1rem' },
+			{ key: 'total', value: 'Total', minWidth: '1rem' },
+			{ key: 'fire', value: '🔥', minWidth: '1rem' },
+			{ key: 'water', value: '💧', minWidth: '1rem' },
+			{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+			{ key: 'ice', value: '❄️', minWidth: '1rem' },
+			{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+			{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+		];
+
+		switch (inputElement) {
+			default:
+				return defaultResult;
+			case 'Fire':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Water':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'water', value: '💧', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Thunder':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Ice':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'ice', value: '❄️', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Dragon':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'None':
+			case '':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Light':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Blaze':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Tenshou':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'water', value: '💧', minWidth: '1rem' },
+					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Lightning Rod':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Okiko':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'ice', value: '❄️', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Black Flame':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Crimson Demon':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Dark':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'ice', value: '❄️', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Music':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'water', value: '💧', minWidth: '1rem' },
+					{ key: 'ice', value: '❄️', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Sound':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'water', value: '💧', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Wind':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+					{ key: 'ice', value: '❄️', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case 'Burning Zero':
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'fire', value: '🔥', minWidth: '1rem' },
+					{ key: 'ice', value: '❄️', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+			case "Emperor's Roar":
+				return [
+					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
+					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
+					{ key: 'element', value: 'Element', minWidth: '1rem' },
+					{ key: 'total', value: 'Total', minWidth: '1rem' },
+					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+				];
+		}
+	}
+
+	$: motionValuesTableHeaders = getMotionValuesTableHeaders(inputElement);
 </script>
 
 <svelte:head>
@@ -5979,17 +6207,19 @@ does not get multiplied by horn */
 														]}
 													/>
 
-													<Dropdown
-														titleText="GS Active Feature"
-														bind:selectedId={inputGsActiveFeature}
-														items={[
-															{ id: 'None', text: 'None' },
-															{
-																id: 'Unsheathe and Parry Attacks (+100%)',
-																text: 'Unsheathe and Parry Attacks (+100%)',
-															},
-														]}
-													/>
+													{#if inputWeaponType === 'Great Sword'}
+														<Dropdown
+															titleText="GS Active Feature"
+															bind:selectedId={inputGsActiveFeature}
+															items={[
+																{ id: 'None', text: 'None' },
+																{
+																	id: 'Unsheathe and Parry Attacks (+100%)',
+																	text: 'Unsheathe and Parry Attacks (+100%)',
+																},
+															]}
+														/>
+													{/if}
 												</div>
 											</div>
 
@@ -7471,17 +7701,19 @@ does not get multiplied by horn */
 														/>
 
 														<!-- TODO: toggles?-->
-														<div class="number-input-container">
-															<NumberInput
-																size="sm"
-																step={10}
-																min={minimumNumberValue}
-																max={maximumNumberValue}
-																bind:value={inputNumberLanceImpactMultiplier}
-																invalidText={invalidNumberValueText}
-																label={'Lance Impact Multiplier (0.72)'}
-															/>
-														</div>
+														{#if inputWeaponType === 'Lance'}
+															<div class="number-input-container">
+																<NumberInput
+																	size="sm"
+																	step={10}
+																	min={minimumNumberValue}
+																	max={maximumNumberValue}
+																	bind:value={inputNumberLanceImpactMultiplier}
+																	invalidText={invalidNumberValueText}
+																	label={'Lance Impact Multiplier (0.72)'}
+																/>
+															</div>
+														{/if}
 														<div class="number-input-container">
 															<NumberInput
 																size="sm"
@@ -7635,374 +7867,384 @@ does not get multiplied by horn */
 															]}
 														/>
 
-														<Dropdown
-															titleText="Shot Multiplier"
-															bind:selectedId={inputShotMultiplier}
-															items={[
-																{ id: 'None (1x)', text: 'None (1x)' },
-																{
-																	id: 'Just Shot (1.3x)',
-																	text: 'Just Shot (1.3x)',
-																},
-																{
-																	id: 'Perfect JS (1.4x)',
-																	text: 'Perfect Just Shot (1.4x)',
-																},
-																{
-																	id: 'Evade Shot (0.6x)',
-																	text: 'Evade Shot (0.6x)',
-																},
-																{
-																	id: 'Finishing Shot (2.0x)',
-																	text: 'Finishing Shot (2.0x)',
-																},
-																{
-																	id: 'Rapid Fire (0.5x)',
-																	text: 'Rapid Fire (0.5x)',
-																},
-																{
-																	id: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
-																	text: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
-																},
-															]}
-														/>
-
-														<Dropdown
-															titleText="HBG Charge Shot"
-															bind:selectedId={inputHbgChargeShot}
-															items={[
-																{
-																	id: 'Normal / Charge Lv 0 (1x)',
-																	text: 'Normal / Charge Lv 0 (1x)',
-																},
-																{
-																	id: 'Charge Lv 1 (1.15x)',
-																	text: 'Charge Lv 1 (1.15x)',
-																},
-																{
-																	id: 'Charge Lv 2 (1.3x)',
-																	text: 'Charge Lv 2 (1.3x)',
-																},
-																{
-																	id: 'Charge Lv 3 (1.5x)', // TODO 1.49 on Normal?
-																	text: 'Charge Lv 3 (1.5x)',
-																},
-																{
-																	id: 'Storm Style Lv 0 (0.95x)',
-																	text: 'Storm Style Lv 0 (0.95x)',
-																},
-															]}
-														/>
-														<div class="number-input-container">
-															<NumberInput
-																size="sm"
-																step={10}
-																min={minimumNumberValue}
-																max={maximumNumberValue}
-																bind:value={inputNumberCompressedShot}
-																invalidText={invalidNumberValueText}
-																label={'Compressed Shot Count'}
-															/>
-														</div>
-														<Dropdown
-															titleText="Compressed Shot"
-															bind:selectedId={inputCompressedShotMultiplier}
-															items={[
-																{
-																	id: 'Not Compressed (0x)',
-																	text: 'Not Compressed (0x)',
-																},
-																{
-																	id: 'Lv1 Norm S. (2.4x Bullets Loaded)',
-																	text: 'Lv1 Norm S. (2.4x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv2 Norm S. (6.0x Bullets Loaded)',
-																	text: 'Lv2 Norm S. (6.0x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
-																	text: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
-																},
-																{
-																	id: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
-																	text: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
-																	text: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
-																	text: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
-																	text: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
-																	text: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
-																	text: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
-																	text: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
-																},
-																{
-																	id: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
-																	text: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
-																},
-																{
-																	id: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
-																	text: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
-																},
-																{
-																	id: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
-																	text: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
-																},
-																{
-																	id: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
-																	text: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
-																},
-																{
-																	id: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
-																	text: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
-																},
-																{
-																	id: 'Lv1 Norm S. (3.6x Bullets Loaded)',
-																	text: 'Lv1 Norm S. (3.6x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv2 Norm S. (8.4x Bullets Loaded)',
-																	text: 'Lv2 Norm S. (8.4x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
-																	text: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
-																},
-																{
-																	id: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
-																	text: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
-																	text: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
-																	text: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
-																	text: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
-																	text: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
-																	text: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
-																},
-																{
-																	id: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
-																	text: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
-																},
-																{
-																	id: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
-																	text: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
-																},
-																{
-																	id: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
-																	text: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
-																},
-															]}
-														/>
-
-														<div class="dropdown-tooltip-container">
-															<Tooltip align="start">
-																<p>
-																	Adjusts for Consumption Slayer, a skill that
-																	causes double coating consumption for an
-																	additional +0.2x multiplier.
-																</p>
-															</Tooltip>
+														{#if inputWeaponType === 'Light Bowgun'}
 															<Dropdown
-																titleText="Bow Coatings Multiplier"
-																bind:selectedId={inputBowCoatingsMultiplier}
+																titleText="Shot Multiplier"
+																bind:selectedId={inputShotMultiplier}
 																items={[
 																	{ id: 'None (1x)', text: 'None (1x)' },
 																	{
-																		id: 'Power Bottle (1.6x)',
-																		text: 'Power Bottle (1.6x)',
+																		id: 'Just Shot (1.3x)',
+																		text: 'Just Shot (1.3x)',
 																	},
 																	{
-																		id: 'P. Bottle + Bow Hiden (1.8x)',
-																		text: 'P. Bottle + Bow Hiden (1.8x)',
+																		id: 'Perfect JS (1.4x)',
+																		text: 'Perfect Just Shot (1.4x)',
 																	},
 																	{
-																		id: 'P. + Origin (1.7x)',
-																		text: 'P. + Origin (1.7x)',
+																		id: 'Evade Shot (0.6x)',
+																		text: 'Evade Shot (0.6x)',
 																	},
 																	{
-																		id: 'P. + Origin + Hiden (1.9x)',
-																		text: 'P. + Origin + Hiden (1.9x)',
+																		id: 'Finishing Shot (2.0x)',
+																		text: 'Finishing Shot (2.0x)',
 																	},
 																	{
-																		id: 'Status Bottle (1.5x)',
-																		text: 'Status Bottle (1.5x)',
+																		id: 'Rapid Fire (0.5x)',
+																		text: 'Rapid Fire (0.5x)',
 																	},
 																	{
-																		id: 'S. Bottle + Hiden (1.7x)',
-																		text: 'S. Bottle + Hiden (1.7x)',
+																		id: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
+																		text: 'Ultra Rapid Lv 1 Pierce S (0.73x)',
+																	},
+																]}
+															/>{/if}
+
+														{#if inputWeaponType === 'Heavy Bowgun'}
+															<Dropdown
+																titleText="HBG Charge Shot"
+																bind:selectedId={inputHbgChargeShot}
+																items={[
+																	{
+																		id: 'Normal / Charge Lv 0 (1x)',
+																		text: 'Normal / Charge Lv 0 (1x)',
 																	},
 																	{
-																		id: 'S. Bottle + Origin (1.6x)',
-																		text: 'S. Bottle + Origin (1.6x)',
+																		id: 'Charge Lv 1 (1.15x)',
+																		text: 'Charge Lv 1 (1.15x)',
 																	},
 																	{
-																		id: 'S. + Origin + Hiden (1.8x)',
-																		text: 'S. + Origin + Hiden (1.8x)',
+																		id: 'Charge Lv 2 (1.3x)',
+																		text: 'Charge Lv 2 (1.3x)',
 																	},
 																	{
-																		id: 'Non-G Power Bottle (1.5x)',
-																		text: 'Non-G Power Bottle (1.5x)',
+																		id: 'Charge Lv 3 (1.5x)', // TODO 1.49 on Normal?
+																		text: 'Charge Lv 3 (1.5x)',
 																	},
 																	{
-																		id: 'Choose a level lower for Non-G',
-																		text: 'Choose a level lower for Non-G',
-																	}, // TODO
+																		id: 'Storm Style Lv 0 (0.95x)',
+																		text: 'Storm Style Lv 0 (0.95x)',
+																	},
 																]}
 															/>
-														</div>
+															<div class="number-input-container">
+																<NumberInput
+																	size="sm"
+																	step={10}
+																	min={minimumNumberValue}
+																	max={maximumNumberValue}
+																	bind:value={inputNumberCompressedShot}
+																	invalidText={invalidNumberValueText}
+																	label={'Compressed Shot Count'}
+																/>
+															</div>
+															<Dropdown
+																titleText="Compressed Shot"
+																bind:selectedId={inputCompressedShotMultiplier}
+																items={[
+																	{
+																		id: 'Not Compressed (0x)',
+																		text: 'Not Compressed (0x)',
+																	},
+																	{
+																		id: 'Lv1 Norm S. (2.4x Bullets Loaded)',
+																		text: 'Lv1 Norm S. (2.4x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv2 Norm S. (6.0x Bullets Loaded)',
+																		text: 'Lv2 Norm S. (6.0x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
+																		text: 'Lv3 Norm S. (6.0x Bullets Loaded x n)',
+																	},
+																	{
+																		id: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
+																		text: 'Lv1 Pierce 1 Hit (5x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
+																		text: 'Lv2 Pierce 1 Hit (4.5x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
+																		text: 'Lv3 Pierce 1 Hit (3.5x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
+																		text: 'Lv1 Pierce 3 Hits (5x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
+																		text: 'Lv2 Pierce 4 Hits (4.5x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
+																		text: 'Lv3 Pierce 6 Hits (3.5x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
+																		text: 'Lv1 Pellet S. (3x Bullets Loaded x 3)',
+																	},
+																	{
+																		id: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
+																		text: 'Lv2 Pellet S. (3x Bullets Loaded x 4)',
+																	},
+																	{
+																		id: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
+																		text: 'Lv3 Pellet S. (3x Bullets Loaded x 5)',
+																	},
+																	{
+																		id: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
+																		text: 'Lv1 Impact S. (5.0x Bullets Loaded x 2)',
+																	},
+																	{
+																		id: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
+																		text: 'Lv2 Impact S. (4.5x Bullets Loaded x 3)',
+																	},
+																	{
+																		id: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
+																		text: 'Lv3 Impact S. (3.5x Bullets Loaded x 5)',
+																	},
+																	{
+																		id: 'Lv1 Norm S. (3.6x Bullets Loaded)',
+																		text: 'Lv1 Norm S. (3.6x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv2 Norm S. (8.4x Bullets Loaded)',
+																		text: 'Lv2 Norm S. (8.4x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
+																		text: 'Lv3 Norm S. (8.4x Bullets Loaded x n)',
+																	},
+																	{
+																		id: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
+																		text: 'Lv1 Pierce 1 Hit (7x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
+																		text: 'Lv2 Pierce 1 Hit (6.3x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
+																		text: 'Lv3 Pierce 1 Hit (4.9x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
+																		text: 'Lv1 Pierce 3 Hits (7x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
+																		text: 'Lv2 Pierce 4 Hits (6.3x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
+																		text: 'Lv3 Pierce 6 Hits (4.9x Bullets Loaded)',
+																	},
+																	{
+																		id: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
+																		text: 'Lv1 Impact S. (7.0x Bullets Loaded x 2)',
+																	},
+																	{
+																		id: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
+																		text: 'Lv2 Impact S. (6.3x Bullets Loaded x 3)',
+																	},
+																	{
+																		id: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
+																		text: 'Lv3 Impact S. (4.9x Bullets Loaded x 5)',
+																	},
+																]}
+															/>
+														{/if}
 
-														<Dropdown
-															titleText="Bow Charge Multiplier"
-															bind:selectedId={inputBowChargeMultiplier}
-															items={[
-																{
-																	id: 'Lv1 (0.4x / 0.7x)',
-																	text: 'Lv1 (0.4x / 0.7x)',
-																},
-																{
-																	id: 'Lv2 (1.0x / 0.95x) ', // TODO using legacy values hence the inconsistency
-																	text: 'Lv2 (1.0x / 0.8x) ',
-																},
-																{
-																	id: 'Lv3 (1.5x / 1.2x)',
-																	text: 'Lv3 (1.5x / 1.2x)',
-																},
-																{
-																	id: 'Lv4 (1.85x / 1.334x)',
-																	text: 'Lv4 (1.85x / 1.334x)',
-																},
-																{
-																	id: 'Sniper Lv4 (1.0x / 1.0x)',
-																	text: 'Sniper Lv4 (1.0x / 1.0x)',
-																},
-																{
-																	id: 'Sniper Lv5 (1.125x / 1.1x)',
-																	text: 'Sniper Lv5 (1.125x / 1.1x)',
-																},
-																{
-																	id: 'Uncharged Rising Shot (0.4x / 1.0x)',
-																	text: 'Uncharged Rising Shot (0.4x / 1.0x)',
-																},
-																{
-																	id: 'Charged Rising Shot (1.0x / 1.5x)',
-																	text: 'Charged Rising Shot (1.0x / 1.5x)',
-																},
-																{
-																	id: 'Crouched Lv1 (0.48x / 0.7x)',
-																	text: 'Crouched Lv1 (0.48x / 0.7x)',
-																},
-																{
-																	id: 'Crouched Lv2 (1.3x / 0.8x)',
-																	text: 'Crouched Lv2 (1.3x / 0.8x)',
-																},
-																{
-																	id: 'Crouched Lv3 (2.1x / 1.2x)',
-																	text: 'Crouched Lv3 (2.1x / 1.2x)',
-																},
-																{
-																	id: 'Crouched Lv4 (2.59x / 1.334x)',
-																	text: 'Crouched Lv4 (2.59x / 1.334x)',
-																},
-															]}
-														/>
+														{#if inputWeaponType === 'Bow'}
+															<div class="dropdown-tooltip-container">
+																<Tooltip align="start">
+																	<p>
+																		Adjusts for Consumption Slayer, a skill that
+																		causes double coating consumption for an
+																		additional +0.2x multiplier.
+																	</p>
+																</Tooltip>
+																<Dropdown
+																	titleText="Bow Coatings Multiplier"
+																	bind:selectedId={inputBowCoatingsMultiplier}
+																	items={[
+																		{ id: 'None (1x)', text: 'None (1x)' },
+																		{
+																			id: 'Power Bottle (1.6x)',
+																			text: 'Power Bottle (1.6x)',
+																		},
+																		{
+																			id: 'P. Bottle + Bow Hiden (1.8x)',
+																			text: 'P. Bottle + Bow Hiden (1.8x)',
+																		},
+																		{
+																			id: 'P. + Origin (1.7x)',
+																			text: 'P. + Origin (1.7x)',
+																		},
+																		{
+																			id: 'P. + Origin + Hiden (1.9x)',
+																			text: 'P. + Origin + Hiden (1.9x)',
+																		},
+																		{
+																			id: 'Status Bottle (1.5x)',
+																			text: 'Status Bottle (1.5x)',
+																		},
+																		{
+																			id: 'S. Bottle + Hiden (1.7x)',
+																			text: 'S. Bottle + Hiden (1.7x)',
+																		},
+																		{
+																			id: 'S. Bottle + Origin (1.6x)',
+																			text: 'S. Bottle + Origin (1.6x)',
+																		},
+																		{
+																			id: 'S. + Origin + Hiden (1.8x)',
+																			text: 'S. + Origin + Hiden (1.8x)',
+																		},
+																		{
+																			id: 'Non-G Power Bottle (1.5x)',
+																			text: 'Non-G Power Bottle (1.5x)',
+																		},
+																		{
+																			id: 'Choose a level lower for Non-G',
+																			text: 'Choose a level lower for Non-G',
+																		}, // TODO
+																	]}
+																/>
+															</div>
 
-														<Dropdown
-															titleText="Quick Shot"
-															bind:selectedId={inputQuickShot}
-															items={[
-																{
-																	id: 'Normal (All 1.0x)',
-																	text: 'Normal (All 1.0x)',
-																},
-																{
-																	id: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
-																	text: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
-																},
-																{
-																	id: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
-																	text: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
-																},
-															]}
-														/>
+															<Dropdown
+																titleText="Bow Charge Multiplier"
+																bind:selectedId={inputBowChargeMultiplier}
+																items={[
+																	{
+																		id: 'Lv1 (0.4x / 0.7x)',
+																		text: 'Lv1 (0.4x / 0.7x)',
+																	},
+																	{
+																		id: 'Lv2 (1.0x / 0.95x) ', // TODO using legacy values hence the inconsistency
+																		text: 'Lv2 (1.0x / 0.8x) ',
+																	},
+																	{
+																		id: 'Lv3 (1.5x / 1.2x)',
+																		text: 'Lv3 (1.5x / 1.2x)',
+																	},
+																	{
+																		id: 'Lv4 (1.85x / 1.334x)',
+																		text: 'Lv4 (1.85x / 1.334x)',
+																	},
+																	{
+																		id: 'Sniper Lv4 (1.0x / 1.0x)',
+																		text: 'Sniper Lv4 (1.0x / 1.0x)',
+																	},
+																	{
+																		id: 'Sniper Lv5 (1.125x / 1.1x)',
+																		text: 'Sniper Lv5 (1.125x / 1.1x)',
+																	},
+																	{
+																		id: 'Uncharged Rising Shot (0.4x / 1.0x)',
+																		text: 'Uncharged Rising Shot (0.4x / 1.0x)',
+																	},
+																	{
+																		id: 'Charged Rising Shot (1.0x / 1.5x)',
+																		text: 'Charged Rising Shot (1.0x / 1.5x)',
+																	},
+																	{
+																		id: 'Crouched Lv1 (0.48x / 0.7x)',
+																		text: 'Crouched Lv1 (0.48x / 0.7x)',
+																	},
+																	{
+																		id: 'Crouched Lv2 (1.3x / 0.8x)',
+																		text: 'Crouched Lv2 (1.3x / 0.8x)',
+																	},
+																	{
+																		id: 'Crouched Lv3 (2.1x / 1.2x)',
+																		text: 'Crouched Lv3 (2.1x / 1.2x)',
+																	},
+																	{
+																		id: 'Crouched Lv4 (2.59x / 1.334x)',
+																		text: 'Crouched Lv4 (2.59x / 1.334x)',
+																	},
+																]}
+															/>
+
+															<Dropdown
+																titleText="Quick Shot"
+																bind:selectedId={inputQuickShot}
+																items={[
+																	{
+																		id: 'Normal (All 1.0x)',
+																		text: 'Normal (All 1.0x)',
+																	},
+																	{
+																		id: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
+																		text: 'Quick Shot (Lv1 1.0x / Lv2 0.85x / Lv3 0.75x / Lv4 0.65x)',
+																	},
+																	{
+																		id: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
+																		text: 'Normal & Quick Combined (Lv1 2.0x / Lv2 1.85x / Lv3 1.75x / Lv4 1.65x)',
+																	},
+																]}
+															/>
+														{/if}
 													</div>
 												</div>
 											{/if}
 											<div class="input-section">
 												<div class="small-header">🐲 Element</div>
 												<div class="inputs-group-column">
-													<Dropdown
-														titleText="Compressed Element Shot"
-														bind:selectedId={inputCompressedElementShot}
-														items={[
-															{ id: 'Not Compressed', text: 'Not Compressed' },
-															{ id: 'Fire Shot', text: 'Fire Shot' }, // TODO
-															{ id: 'Water Shot', text: 'Water Shot' },
-															{ id: 'Thunder Shot', text: 'Thunder Shot' },
-															{ id: 'Ice Shot', text: 'Ice Shot' },
-															{ id: 'Dragon Shot', text: 'Dragon Shot' },
-															{
-																id: 'Perfect Fire Shot',
-																text: 'Perfect Fire Shot',
-															},
-															{
-																id: 'Perfect Water Shot',
-																text: 'Perfect Water Shot',
-															},
-															{
-																id: 'Perfect Thunder Shot',
-																text: 'Perfect Thunder Shot',
-															},
-															{
-																id: 'Perfect Ice Shot',
-																text: 'Perfect Ice Shot',
-															},
-															{
-																id: 'Perfect Dragon Shot',
-																text: 'Perfect Dragon Shot',
-															},
-														]}
-													/>
-
-													<div class="number-input-container">
-														<NumberInput
-															size="sm"
-															step={10}
-															min={minimumNumberValue}
-															max={maximumNumberValue}
-															bind:value={inputNumberCompressedElementShot}
-															invalidText={invalidNumberValueText}
-															label={'Compressed Element Shot Count'}
+													{#if inputWeaponType === 'Heavy Bowgun'}
+														<Dropdown
+															titleText="Compressed Element Shot"
+															bind:selectedId={inputCompressedElementShot}
+															items={[
+																{
+																	id: 'Not Compressed',
+																	text: 'Not Compressed',
+																},
+																{ id: 'Fire Shot', text: 'Fire Shot' }, // TODO
+																{ id: 'Water Shot', text: 'Water Shot' },
+																{ id: 'Thunder Shot', text: 'Thunder Shot' },
+																{ id: 'Ice Shot', text: 'Ice Shot' },
+																{ id: 'Dragon Shot', text: 'Dragon Shot' },
+																{
+																	id: 'Perfect Fire Shot',
+																	text: 'Perfect Fire Shot',
+																},
+																{
+																	id: 'Perfect Water Shot',
+																	text: 'Perfect Water Shot',
+																},
+																{
+																	id: 'Perfect Thunder Shot',
+																	text: 'Perfect Thunder Shot',
+																},
+																{
+																	id: 'Perfect Ice Shot',
+																	text: 'Perfect Ice Shot',
+																},
+																{
+																	id: 'Perfect Dragon Shot',
+																	text: 'Perfect Dragon Shot',
+																},
+															]}
 														/>
-													</div>
+
+														<div class="number-input-container">
+															<NumberInput
+																size="sm"
+																step={10}
+																min={minimumNumberValue}
+																max={maximumNumberValue}
+																bind:value={inputNumberCompressedElementShot}
+																invalidText={invalidNumberValueText}
+																label={'Compressed Element Shot Count'}
+															/>
+														</div>
+													{/if}
 													<Dropdown
 														titleText="Element"
 														bind:selectedId={inputElement}
@@ -8970,23 +9212,38 @@ does not get multiplied by horn */
 							id="motion-values-dom"
 							sortable
 							zebra
-							useStaticWidth
 							size="short"
-							headers={[
-								{ key: 'name', value: 'Name', minWidth: '2rem' },
-								{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-								{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-								{ key: 'element', value: 'Element', minWidth: '1rem' },
-								{ key: 'total', value: 'Total', minWidth: '1rem' },
-								{ key: 'fire', value: '🔥', minWidth: '1rem' },
-								{ key: 'water', value: '💧', minWidth: '1rem' },
-								{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-								{ key: 'ice', value: '❄️', minWidth: '1rem' },
-								{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-								{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-							]}
+							headers={motionValuesTableHeaders}
 							rows={weaponSections}
 						>
+							<svelte:fragment slot="cell-header" let:header>
+								{#if header.key === 'fire'}
+									<InlineTooltip tooltip="Fire" text={header.value} icon={''} />
+								{:else if header.key === 'water'}
+									<InlineTooltip
+										tooltip="Water"
+										text={header.value}
+										icon={''}
+									/>
+								{:else if header.key === 'thunder'}
+									<InlineTooltip
+										tooltip="Thunder"
+										text={header.value}
+										icon={''}
+									/>
+								{:else if header.key === 'ice'}
+									<InlineTooltip tooltip="Ice" text={header.value} icon={''} />
+								{:else if header.key === 'dragon'}
+									<InlineTooltip
+										tooltip="Dragon"
+										text={header.value}
+										icon={''}
+									/>
+								{:else}
+									{header.value}
+								{/if}
+							</svelte:fragment>
+
 							<Toolbar
 								><div class="toolbar">
 									<Dropdown
@@ -9117,24 +9374,31 @@ does not get multiplied by horn */
 					<DataTable
 						id="shared-motion-values-dom"
 						sortable
-						useStaticWidth
 						zebra
 						size="short"
-						headers={[
-							{ key: 'name', value: 'Name', minWidth: '2rem' },
-							{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-							{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-							{ key: 'element', value: 'Element', minWidth: '1rem' },
-							{ key: 'total', value: 'Total', minWidth: '1rem' },
-							{ key: 'fire', value: '🔥', minWidth: '1rem' },
-							{ key: 'water', value: '💧', minWidth: '1rem' },
-							{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-							{ key: 'ice', value: '❄️', minWidth: '1rem' },
-							{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-							{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-						]}
+						headers={motionValuesTableHeaders}
 						rows={sharedMotionValues}
-						><Toolbar
+					>
+						<svelte:fragment slot="cell-header" let:header>
+							{#if header.key === 'fire'}
+								<InlineTooltip tooltip="Fire" text={header.value} icon={''} />
+							{:else if header.key === 'water'}
+								<InlineTooltip tooltip="Water" text={header.value} icon={''} />
+							{:else if header.key === 'thunder'}
+								<InlineTooltip
+									tooltip="Thunder"
+									text={header.value}
+									icon={''}
+								/>
+							{:else if header.key === 'ice'}
+								<InlineTooltip tooltip="Ice" text={header.value} icon={''} />
+							{:else if header.key === 'dragon'}
+								<InlineTooltip tooltip="Dragon" text={header.value} icon={''} />
+							{:else}
+								{header.value}
+							{/if}
+						</svelte:fragment>
+						<Toolbar
 							><div class="toolbar">
 								<Button
 									icon={Restart}
@@ -9788,6 +10052,8 @@ does not get multiplied by horn */
 		overflow-x: auto;
 		width: 98%;
 		margin: 0 auto;
+		height: 80vh;
+		overflow-y: auto;
 	}
 
 	.attack {

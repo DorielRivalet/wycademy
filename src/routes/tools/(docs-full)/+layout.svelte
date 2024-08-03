@@ -57,6 +57,7 @@
 
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
+	import { bannerEnabledStore } from '$lib/client/stores/banner';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -340,6 +341,7 @@
 	bind:value={$hunterNotesSidebarEnabledStore}
 	key="__hunter-notes-sidebar-enabled"
 />
+<LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
 
 <Head
 	title={headTitle}
@@ -381,19 +383,22 @@
 		<Header />
 	</div>
 	<div class="banner">
-		<InlineNotification
-			lowContrast
-			kind="warning"
-			title="Status:"
-			subtitle="This site is currently in {developmentStage}."
-		>
-			<svelte:fragment slot="actions">
-				<NotificationActionButton
-					on:click={() => goto('/support/website/development')}
-					>Learn more</NotificationActionButton
-				>
-			</svelte:fragment>
-		</InlineNotification>
+		{#if $bannerEnabledStore}
+			<InlineNotification
+				lowContrast
+				kind="warning"
+				title="Status:"
+				on:close={() => bannerEnabledStore.set(false)}
+				subtitle="This site is currently in {developmentStage}."
+			>
+				<svelte:fragment slot="actions">
+					<NotificationActionButton
+						on:click={() => goto('/support/website/development')}
+						>Learn more</NotificationActionButton
+					>
+				</svelte:fragment>
+			</InlineNotification>
+		{/if}
 	</div>
 	<main>
 		<aside class={tocClass}>

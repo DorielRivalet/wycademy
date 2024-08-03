@@ -37,6 +37,8 @@
 	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import { stickyHeaderStore } from '$lib/client/stores/toggles';
 	import { toolsInfo } from '$lib/client/modules/routes';
+	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
+	import { bannerEnabledStore } from '$lib/client/stores/banner';
 
 	$: tokens = themeTokens[$theme] || themeTokens.default;
 	export let data: LayoutData;
@@ -82,6 +84,8 @@
 	}
 </script>
 
+<LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
+
 <Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
 <Head
 	title={customTitle}
@@ -104,19 +108,22 @@
 		<Header />
 	</div>
 	<div class="banner">
-		<InlineNotification
-			lowContrast
-			kind="warning"
-			title="Status:"
-			subtitle="This site is currently in {developmentStage}."
-		>
-			<svelte:fragment slot="actions">
-				<NotificationActionButton
-					on:click={() => goto('/support/website/development')}
-					>Learn more</NotificationActionButton
-				>
-			</svelte:fragment>
-		</InlineNotification>
+		{#if $bannerEnabledStore}
+			<InlineNotification
+				lowContrast
+				kind="warning"
+				title="Status:"
+				on:close={() => bannerEnabledStore.set(false)}
+				subtitle="This site is currently in {developmentStage}."
+			>
+				<svelte:fragment slot="actions">
+					<NotificationActionButton
+						on:click={() => goto('/support/website/development')}
+						>Learn more</NotificationActionButton
+					>
+				</svelte:fragment>
+			</InlineNotification>
+		{/if}
 	</div>
 	<main>
 		<div class="container">
