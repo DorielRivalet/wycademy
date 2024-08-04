@@ -2517,7 +2517,7 @@ graph LR
 					level up naturally. These stats are leveled up by completing assigned
 					targets from the My Mission system. To max out these stats, you need
 					to complete a total of 180 missions: 110 levels in Attack Ceiling, 20
-					in Damage Reduction, 20 in Partial HP, and 20 in Status Recovery.
+					in Damage Reduction, 25 in Partial HP, and 25 in Status Recovery.
 					These stats are upgraded per weapon, so you will need to complete 180
 					missions per weapon type to fully optimize them.
 				</p>
@@ -2567,13 +2567,13 @@ graph LR
 					>
 					<ListItem
 						><p>
-							Partial HP on Hit: 20 levels. Increases the amount of red HP left
+							Partial HP on Hit: 25 levels. Increases the amount of red HP left
 							after taking a hit, with each level providing an extra 1% health.
 						</p></ListItem
 					>
 					<ListItem
 						><p>
-							Status Recovery: 20 levels. Reduces the duration of status effects
+							Status Recovery: 25 levels. Reduces the duration of status effects
 							by up to 1 second, with each level reducing time by 1.5 frames (up
 							to 30 frames at 30fps).
 						</p></ListItem
