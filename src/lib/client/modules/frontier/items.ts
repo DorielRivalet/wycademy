@@ -429,6 +429,7 @@ export const itemInfo: { name: string; icon: any }[] = [
 	},
 ];
 
+// TODO mocha pots svg
 export function getItemIcon(iconName: string) {
 	const icon = itemInfo[5].icon;
 

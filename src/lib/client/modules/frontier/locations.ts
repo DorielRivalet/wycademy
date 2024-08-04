@@ -42,6 +42,7 @@ import LocationIconWhiteLake from '$lib/client/images/icon/white_lake.webp';
 import LocationIconWorld from '$lib/client/images/icon/world.webp';
 import LocationIconBurst from '$lib/client/images/icon/burst.webp';
 import LocationIconCaravan from '$lib/client/images/icon/pallone_caravan.webp';
+import LocationIconDesert from '$lib/client/images/icon/desert.webp';
 
 export const LocationIcons: { name: string; icon: any }[] = [
 	{ name: 'Bento', icon: LocationIconBento },
@@ -52,6 +53,7 @@ export const LocationIcons: { name: string; icon: any }[] = [
 	{ name: 'Blacksmith', icon: LocationIconBlacksmith },
 	{ name: 'Caravan', icon: LocationIconCaravan },
 	{ name: 'Cattleya', icon: LocationIconCattleya },
+	{ name: 'Desert', icon: LocationIconDesert },
 	{ name: 'Diva Fountain', icon: LocationIconDivaFountain },
 	{ name: 'Diva Note', icon: LocationIconDivaNote },
 	{ name: 'Diva Prayer Gem', icon: LocationIconDivaPrayerGem },
@@ -102,3 +104,9 @@ export const LocationIcons: { name: string; icon: any }[] = [
 	{ name: 'World', icon: LocationIconWorld },
 	{ name: 'Burst', icon: LocationIconBurst },
 ];
+
+export function getLocationIcon(name: string) {
+	return (
+		LocationIcons.find((e) => e.name === name)?.icon || LocationIcons[0].icon
+	);
+}
