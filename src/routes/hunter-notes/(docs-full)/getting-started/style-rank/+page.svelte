@@ -1400,9 +1400,8 @@ graph LR
 					GSR100 in each weapon unlocks a second SR skill slot, allowing for two
 					skills simultaneously.
 				</p>
-				<div class="table">
+				<div class="table table-with-scrollbar">
 					<DataTable
-						useStaticWidth
 						id="style-rank-skills-dom"
 						sortable
 						zebra
@@ -1450,9 +1449,8 @@ graph LR
 		<section>
 			<SectionHeading level={2} title="GSR Effects" />
 			<div>
-				<div class="table">
+				<div class="table table-with-scrollbar">
 					<DataTable
-						useStaticWidth
 						id="gsr-effects-dom"
 						sortable
 						zebra
@@ -1863,9 +1861,8 @@ graph LR
 					detailed below.
 				</p>
 
-				<div class="table">
+				<div class="table table-with-scrollbar">
 					<DataTable
-						useStaticWidth
 						id="weapons-tech-skills-dom"
 						sortable
 						zebra
@@ -2971,5 +2968,10 @@ graph LR
 		margin: 0 auto;
 		margin-bottom: 2rem;
 		margin-top: 2rem;
+	}
+
+	.table-with-scrollbar {
+		height: 80vh;
+		overflow-y: auto;
 	}
 </style>
