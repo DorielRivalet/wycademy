@@ -49,6 +49,9 @@
 	import { getCurrencyIcon } from '$lib/client/modules/frontier/currency';
 	import Pagination from 'carbon-components-svelte/src/Pagination/Pagination.svelte';
 	import type { FrontierCaravanSkillName } from 'ezlion';
+	import CaravanSkillPreparedStance from '$lib/client/images/supplemental/caravan-skill-prepared-stance.webp';
+	import CaravanSkillRecoveryItemsUpMegaPotion from '$lib/client/images/supplemental/caravan-skill-recovery-items-up-mega-potion.webp';
+	import CaravanSkillPerfectDefense from '$lib/client/images/supplemental/caravan-skill-perfect-defense.webp';
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
@@ -71,9 +74,11 @@
 				modalNotes = '';
 				break;
 			case 'Caravan':
-				// modalImage = sigilsInfo.find((e) => e.name === cell.value)?.demo || '';
-				// modalNotes =
-				// 	sigilsInfo.find((e) => e.name === cell.value)?.effect || '';
+				modalImage =
+					caravanGemSkills.find((e) => e.name === cell.value)?.demo || '';
+				modalNotes =
+					caravanGemSkills.find((e) => e.name === cell.value)?.description ||
+					'';
 				break;
 		}
 	}
@@ -91,21 +96,22 @@
 			name: 'Recovery Items Up',
 			cost: 1,
 			description:
-				'Increases the effectiveness of Herb, Potion, Mega Potion, and Lifepowder by 1.1x. Enhances the effectiveness of Bitterbug and Antidote Herb by 100%',
+				'Increases the effectiveness of Herb, Potion, Mega Potion, and Lifepowder by 1.1x. Enhances the effectiveness of Bitterbug and Antidote Herb by 100%.',
 			pointsToUnlock: '0',
+			demo: CaravanSkillRecoveryItemsUpMegaPotion,
 		},
 		{
 			id: '2',
 			name: 'Blunt Striker',
 			cost: 1,
-			description: 'Triples Bowgun melee damage',
+			description: 'Triples Bowgun melee damage.',
 			pointsToUnlock: '1',
 		},
 		{
 			id: '3',
 			name: 'Courage',
 			cost: 1,
-			description: 'Prevents flinching when spotting monsters',
+			description: 'Prevents flinching when spotting monsters.',
 			pointsToUnlock: '37',
 		},
 		{
@@ -113,56 +119,56 @@
 			name: 'Lander',
 			cost: 2,
 			description:
-				'Eliminates recovery time after falling and prevents egg loss',
+				'Eliminates recovery time after falling and prevents egg loss.',
 			pointsToUnlock: '74',
 		},
 		{
 			id: '5',
 			name: 'Vine Superhero',
 			cost: 3,
-			description: 'Climbing no longer consumes stamina',
+			description: 'Climbing no longer consumes stamina.',
 			pointsToUnlock: '111',
 		},
 		{
 			id: '6',
 			name: 'Mining Expert',
 			cost: 3,
-			description: 'Reduces the chance of pickaxe breakage',
+			description: 'Reduces the chance of pickaxe breakage.',
 			pointsToUnlock: '148',
 		},
 		{
 			id: '7',
 			name: 'Insect Expert',
 			cost: 3,
-			description: 'Reduces the chance of net breakage',
+			description: 'Reduces the chance of net breakage.',
 			pointsToUnlock: '185',
 		},
 		{
 			id: '8',
 			name: 'Vine Master',
 			cost: 3,
-			description: 'Prevents falling when hurt while climbing',
+			description: 'Prevents falling when hurt while climbing.',
 			pointsToUnlock: '222',
 		},
 		{
 			id: '9',
 			name: 'Combo Tech (Sm)',
 			cost: 1,
-			description: 'Increases combination success rate by 10%',
+			description: 'Increases combination success rate by 10%.',
 			pointsToUnlock: '555',
 		},
 		{
 			id: '9a',
 			name: 'Combo Tech (Med)',
 			cost: 2,
-			description: 'Increases combination success rate by 15%',
+			description: 'Increases combination success rate by 15%.',
 			pointsToUnlock: '1221',
 		},
 		{
 			id: '9b',
 			name: 'Combo Tech (Lg)',
 			cost: 3,
-			description: 'Increases combination success rate by 20%',
+			description: 'Increases combination success rate by 20%.',
 			pointsToUnlock: '1998',
 		},
 		{
@@ -170,7 +176,7 @@
 			name: 'Riser (Sm)',
 			cost: 1,
 			description:
-				'Increases iframes by 1.5x during the rising animation after taking a hit',
+				'Increases iframes by 1.5x during the rising animation after taking a hit.',
 			pointsToUnlock: '592',
 		},
 		{
@@ -178,7 +184,7 @@
 			name: 'Riser (Med)',
 			cost: 2,
 			description:
-				'Increases iframes by 2.0x during the rising animation after taking a hit',
+				'Increases iframes by 2.0x during the rising animation after taking a hit.',
 			pointsToUnlock: '1258',
 		},
 		{
@@ -186,7 +192,7 @@
 			name: 'Riser (Lg)',
 			cost: 3,
 			description:
-				'Increases iframes by 3.0x during the rising animation after taking a hit',
+				'Increases iframes by 3.0x during the rising animation after taking a hit.',
 			pointsToUnlock: '2035',
 		},
 		{
@@ -524,6 +530,7 @@
 			description:
 				'Blocking within 4 frames of an attack prevents stamina or sharpness loss, allows immediate evasion, and adds a powerful Reflect effect.',
 			pointsToUnlock: '6016 (GR700)',
+			demo: CaravanSkillPerfectDefense,
 		},
 		{
 			id: '29',
@@ -608,8 +615,9 @@
 			name: 'Prepared Stance',
 			cost: 3,
 			description:
-				'Performing a gesture for 30 seconds increases the attack ceiling of your equipped weapon for a fixed duration.',
+				'Performing the Combat Ready gesture for 15 seconds increases the attack ceiling of your equipped weapon for a fixed duration.',
 			pointsToUnlock: '7700',
+			demo: CaravanSkillPreparedStance,
 		},
 		{
 			id: '38',
@@ -1469,7 +1477,19 @@
 								</Toolbar>
 
 								<svelte:fragment slot="cell" let:cell>
-									<p>{cell.value}</p>
+									{#if cell.key === 'name' && caravanGemSkills.find((e) => e.name === cell.value)?.demo}
+										<button
+											class="table-button"
+											on:click={() => changeModal(cell, 'Caravan')}
+										>
+											<span>{cell.value}</span><Image
+												size={20}
+												fill="var(--ctp-blue)"
+											/></button
+										>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
 								</svelte:fragment>
 							</DataTable>
 							<Pagination
