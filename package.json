@@ -137,6 +137,7 @@
 		"svelte-moveable": "^0.45.0",
 		"svelte-reactions": "^2.5.4",
 		"svelte-toc": "^0.5.9",
-		"three": "^0.167.1"
+		"three": "^0.167.1",
+		"xml2js": "^0.6.2"
 	}
 }

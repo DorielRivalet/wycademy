@@ -226,6 +226,7 @@ export const defaultWeaponComponentValues = {
 	bowgunArmorAmmo: [1, 0, 0] as levelQuantity,
 } as const;
 
+// TODO change name
 export const WeaponTypes: FrontierWeapon[] = [
 	{
 		id: 0,
