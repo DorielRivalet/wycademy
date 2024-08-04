@@ -8,13 +8,22 @@
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import SharpnessBar from '$lib/client/components/frontier/SharpnessBar.svelte';
-	import type { FrontierWeaponSharpness } from '$lib/client/modules/frontier/types';
+	import type {
+		FrontierRarity,
+		FrontierWeaponSharpness,
+	} from '$lib/client/modules/frontier/types';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import {
+		getWeaponIcon,
+		WeaponTypes,
+	} from '$lib/client/modules/frontier/weapons';
 	import { page } from '$app/stores';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import { sharpnessTables } from '$lib/client/modules/frontier/sharpness';
+	import { type FrontierWeaponName } from 'ezlion';
+	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 
 	function getSharpnessArray(input: string): FrontierWeaponSharpness {
 		// Split the input string into an array of strings
@@ -32,6 +41,21 @@
 
 		return sharpness;
 	}
+
+	let selectedWeaponType: FrontierWeaponName = 'Sword and Shield';
+	$: selectedWeaponIcon = getWeaponIcon(selectedWeaponType);
+	let rarity: FrontierRarity = 1;
+	let selectedWeaponIconProps = {
+		rarity: rarity,
+	};
+
+	$: selectedWeaponTypeId = WeaponTypes.find(
+		(e) => e.name == selectedWeaponType,
+	)?.id;
+
+	$: filteredSharpnessTables = sharpnessTables.filter(
+		(e) => e.weaponType === selectedWeaponTypeId,
+	);
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -237,10 +261,10 @@
 				1. On attack bounce, the bounce multiplier is applied instead of the
 				main multiplier.
 			</p>
-			<div class="sharpness-table">
+			<div class="table">
 				<DataTable
+					title="Weapon Sharpness Multipliers"
 					id="sharpness-dom"
-					useStaticWidth
 					sortable
 					zebra
 					size="medium"
@@ -403,6 +427,79 @@
 					</svelte:fragment>
 				</DataTable>
 			</div>
+			<div class="table table-with-scrollbar">
+				<DataTable
+					id="sharpness-tables-dom"
+					sortable
+					zebra
+					size="medium"
+					headers={[
+						{ key: 'sharpnessTable', value: 'Sharpness Bar' },
+						{ key: 'id', value: 'ID' },
+					]}
+					rows={filteredSharpnessTables}
+				>
+					<span slot="title">
+						<div class="data-table-title">
+							<div class="weapon-icon">
+								<svelte:component
+									this={selectedWeaponIcon}
+									{...selectedWeaponIconProps}
+								/>
+							</div>
+							<div>{selectedWeaponType} Sharpness Tables</div>
+						</div>
+					</span>
+					<Toolbar
+						><div class="toolbar">
+							<Dropdown
+								titleText="Weapon Type"
+								bind:selectedId={selectedWeaponType}
+								items={[
+									{ id: 'Sword and Shield', text: 'Sword and Shield' },
+									{ id: 'Dual Swords', text: 'Dual Swords' },
+									{ id: 'Great Sword', text: 'Great Sword' },
+									{ id: 'Long Sword', text: 'Long Sword' },
+									{ id: 'Hammer', text: 'Hammer' },
+									{ id: 'Hunting Horn', text: 'Hunting Horn' },
+									{ id: 'Lance', text: 'Lance' },
+									{ id: 'Gunlance', text: 'Gunlance' },
+									{ id: 'Tonfa', text: 'Tonfa' },
+									{ id: 'Switch Axe F', text: 'Switch Axe F' },
+									{ id: 'Magnet Spike', text: 'Magnet Spike' },
+									{ id: 'Light Bowgun', text: 'Light Bowgun' },
+									{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
+									{ id: 'Bow', text: 'Bow' },
+								]}
+							/>
+							<CopyButton
+								iconDescription={'Copy as CSV'}
+								text={getCSVFromArray(sharpnessTables)}
+							/>
+							<Button
+								kind="tertiary"
+								icon={Download}
+								on:click={() =>
+									downloadDomAsPng('sharpness-tables-dom', 'sharpness-tables')}
+								>Download</Button
+							>
+						</div>
+					</Toolbar>
+
+					<svelte:fragment slot="cell" let:cell>
+						{#if cell.key === 'sharpnessTable'}
+							<div class="sharpness-bar-container">
+								<SharpnessBar
+									sharpnessBoost={false}
+									sharpnessValues={cell.value}
+								/>
+							</div>
+						{:else}
+							<p>{cell.value}</p>
+						{/if}
+					</svelte:fragment>
+				</DataTable>
+			</div>
 		</section>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
@@ -424,11 +521,10 @@
 		flex-shrink: 1;
 	}
 
-	.sharpness-table {
-		display: flex;
-		flex-wrap: wrap;
+	.table {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 		overflow-x: auto;
-		max-width: 90vw;
 	}
 
 	.sharpness-bar-container {
@@ -437,5 +533,20 @@
 		align-items: stretch;
 		width: 100%;
 		height: 100%;
+	}
+
+	.table-with-scrollbar {
+		height: 80vh;
+		overflow-y: auto;
+	}
+
+	.data-table-title {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.weapon-icon {
+		width: var(--cds-spacing-09);
 	}
 </style>
