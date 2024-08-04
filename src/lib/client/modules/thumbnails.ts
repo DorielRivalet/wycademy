@@ -19,6 +19,7 @@ import thumbnailLightSharedMotionValues from '$lib/client/images/page-thumbnail/
 import thumbnailLightFlashConversion from '$lib/client/images/page-thumbnail/light/flash-conversion.png';
 import thumbnailLightIceAge from '$lib/client/images/page-thumbnail/light/ice-age.png';
 import thumbnailLightCaravanGemUpgrade from '$lib/client/images/page-thumbnail/light/caravan-gem-upgrade.png';
+import thumbnailLightCaravanGemColorBonuses from '$lib/client/images/page-thumbnail/light/caravan-gem-color-bonus.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -42,6 +43,7 @@ import thumbnailDarkItemGenerator from '$lib/client/images/page-thumbnail/dark/i
 import thumbnailDarkArmorGenerator from '$lib/client/images/page-thumbnail/dark/armor-generator.png';
 import thumbnailDarkWeaponGenerator from '$lib/client/images/page-thumbnail/dark/weapon-generator.png';
 import thumbnailDarkCaravanGemUpgrade from '$lib/client/images/page-thumbnail/dark/caravan-gem-upgrade.png';
+import thumbnailDarkCaravanGemColorBonuses from '$lib/client/images/page-thumbnail/dark/caravan-gem-color-bonus.png';
 
 import { getMonsterIcon } from './frontier/monsters';
 
@@ -186,6 +188,11 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/locations/caravan',
 		thumbnail: thumbnailLightCaravanGemUpgrade,
 	},
+	{
+		embed: 'grinding-colors',
+		link: '/hunter-notes/locations/caravan',
+		thumbnail: thumbnailLightCaravanGemColorBonuses,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -328,6 +335,11 @@ const darkThumbnailInfo: {
 		embed: null,
 		link: '/hunter-notes/locations/caravan',
 		thumbnail: thumbnailDarkCaravanGemUpgrade,
+	},
+	{
+		embed: 'grinding-colors',
+		link: '/hunter-notes/locations/caravan',
+		thumbnail: thumbnailDarkCaravanGemColorBonuses,
 	},
 ];
 

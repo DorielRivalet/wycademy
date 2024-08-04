@@ -742,6 +742,56 @@
 		},
 	];
 
+	const caravanGemColorBonuses: {
+		id: string;
+		source: string;
+		bonus: string;
+		requirement: string;
+	}[] = [
+		{
+			id: '0',
+			source: 'Rainbow Gem',
+			bonus: 'All Colors +1',
+			requirement:
+				'Speak to the Gem Smith in the Caravan Hut. This costs 40,000 CP CP or is free with a Premium subscription.',
+		},
+		{
+			id: '1',
+			source: 'Double Color Charm',
+			bonus: 'Color +1',
+			requirement:
+				'Available from the Combiner NPC in exchange for 40 Medals. Use it with  Impatience Charms to reduce quest wait times while grinding colors.',
+		},
+		{
+			id: '2',
+			source: 'Elder Medicine Buff',
+			bonus: 'Color +1',
+			requirement:
+				'Applied automatically once a month or can be manually activated for 100,000 CP CP from the elder at the top of the Caravan Hut.',
+		},
+		{
+			id: '3',
+			source: 'Hunter Soul Sigil',
+			bonus: 'Color +1',
+			requirement:
+				'Available on the White Monoblos B and Yian Garuga ★ recipes and can randomly appear on any Sigil. The Garuga ★ grants Hunter Soul at a 10% chance.',
+		},
+		{
+			id: '4',
+			source: 'Premium Course',
+			bonus: 'All Colors x2',
+			requirement:
+				'Aids in color acquisition by applying a 2x multiplier to all color gains and making the Rainbow Gem free.',
+		},
+		{
+			id: '5',
+			source: 'Assist Course',
+			bonus: 'All Colors x2',
+			requirement:
+				'Provides an additional 2x multiplier to all color gains, stacking with the Premium Course multiplier.',
+		},
+	];
+
 	let caravanSkillsTablePageSize = 10;
 	let caravanSkillsTablePage = 1;
 	let caravanSkillsTableFilteredRowIds: string[] = [];
@@ -1015,8 +1065,13 @@
 						<UnorderedList>
 							<ListItem
 								><p>
-									Color Charm: Available from the Combination NPC in exchange
-									for <InlineTooltip
+									<InlineTooltip
+										text="Double Color Charm"
+										tooltip="Item"
+										iconType="component"
+										icon={getItemIcon('Sac')}
+										iconColor={ItemColors.find((e) => e.name === 'Pink')?.value}
+									/>: Available from the Combiner NPC in exchange for <InlineTooltip
 										text="Medals"
 										tooltip="Item"
 										iconType="component"
@@ -1035,8 +1090,8 @@
 							>
 							<ListItem
 								><p>
-									Elder Medicine Buff: Provides a 1.5x multiplier to color
-									gains. Applied automatically once a month or can be manually
+									<strong>Elder Medicine Buff:</strong> Provides +1 color gains.
+									Applied automatically once a month or can be manually
 									activated for 100,000 <InlineTooltip
 										icon={getCurrencyIcon('CP')}
 										text="CP"
@@ -1047,8 +1102,8 @@
 							>
 							<ListItem
 								><p>
-									Hunter Soul Sigil: Adds +1 to colors when used on a quest.
-									Available on the <InlineTooltip
+									<strong>Hunter Soul Sigil:</strong> Adds +1 to colors when
+									used on a quest. Available on the <InlineTooltip
 										text="White Monoblos B"
 										tooltip="Sigil"
 										iconType="component"
@@ -1062,8 +1117,26 @@
 										icon={getItemIcon('Sigil')}
 										iconColor={ItemColors.find((e) => e.name === 'White')
 											?.value}
-									/> recipes and can randomly appear on any Sigil. Though small,
-									the gains accumulate with a Rainbow Gem and other buffs.
+									/> recipes and can randomly appear on any Sigil. The <InlineTooltip
+										text="Garuga ★"
+										tooltip="Sigil"
+										iconType="component"
+										icon={getItemIcon('Sigil')}
+										iconColor={ItemColors.find((e) => e.name === 'White')
+											?.value}
+									/> grants Hunter Soul at a 10% chance. Though small, the gains
+									accumulate with a Rainbow Gem and other buffs.
+								</p></ListItem
+							><ListItem
+								><p>
+									<strong>Premium Course:</strong> Aids in color acquisition by applying
+									a 2x multiplier to all color gains and making the Rainbow Gem free.
+								</p></ListItem
+							>
+							<ListItem
+								><p>
+									<strong>Assist Course:</strong> Provides an additional 2x multiplier
+									to all color gains, stacking with the Premium Course multiplier.
 								</p></ListItem
 							>
 						</UnorderedList>
@@ -1088,11 +1161,6 @@
 							alt="Caravan Hut 2nd Floor"
 							figcaption="Caravan Hut 2nd Floor."
 						/>
-						<p class="spaced-paragraph">
-							Using the Premium Course also aids in color acquisition by
-							applying a 2x multiplier to all color gains and making the Rainbow
-							Gem free.
-						</p>
 						<p class="spaced-paragraph">
 							The best way to grind colors is by stacking as many buffs as
 							possible and completing <InlineTooltip
@@ -1128,6 +1196,49 @@
 								iconType="file"
 							/> or 5 Festi Points.
 						</p>
+
+						<p>
+							The maximum amount of colors you can obtain per quest is 16 for
+							each color.
+						</p>
+
+						<div class="table">
+							<DataTable
+								id="caravan-gem-color-bonus-dom"
+								useStaticWidth
+								title="Caravan Gem Color Bonus"
+								sortable
+								zebra
+								size="medium"
+								headers={[
+									{ key: 'source', value: 'Source' },
+									{ key: 'bonus', value: 'Bonus' },
+									{ key: 'requirement', value: 'Requirements' },
+								]}
+								rows={caravanGemColorBonuses}
+								><Toolbar
+									><div class="toolbar">
+										<CopyButton
+											iconDescription={'Copy as CSV'}
+											text={getCSVFromArray(caravanGemColorBonuses)}
+										/>
+										<Button
+											kind="tertiary"
+											icon={Download}
+											on:click={() =>
+												downloadDomAsPng(
+													'caravan-gem-color-bonus-dom',
+													'caravan-gem-color-bonus',
+												)}>Download</Button
+										>
+									</div>
+								</Toolbar>
+
+								<svelte:fragment slot="cell" let:cell>
+									<p>{cell.value}</p>
+								</svelte:fragment>
+							</DataTable>
+						</div>
 					</div>
 				</section>
 				<section>
