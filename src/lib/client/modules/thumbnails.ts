@@ -18,6 +18,7 @@ import thumbnailLightTowerWeapon from '$lib/client/images/page-thumbnail/light/t
 import thumbnailLightSharedMotionValues from '$lib/client/images/page-thumbnail/light/shared-motion-values.png';
 import thumbnailLightFlashConversion from '$lib/client/images/page-thumbnail/light/flash-conversion.png';
 import thumbnailLightIceAge from '$lib/client/images/page-thumbnail/light/ice-age.png';
+import thumbnailLightCaravanGemUpgrade from '$lib/client/images/page-thumbnail/light/caravan-gem-upgrade.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -40,6 +41,8 @@ import thumbnailDarkIceAge from '$lib/client/images/page-thumbnail/dark/ice-age.
 import thumbnailDarkItemGenerator from '$lib/client/images/page-thumbnail/dark/item-generator.png';
 import thumbnailDarkArmorGenerator from '$lib/client/images/page-thumbnail/dark/armor-generator.png';
 import thumbnailDarkWeaponGenerator from '$lib/client/images/page-thumbnail/dark/weapon-generator.png';
+import thumbnailDarkCaravanGemUpgrade from '$lib/client/images/page-thumbnail/dark/caravan-gem-upgrade.png';
+
 import { getMonsterIcon } from './frontier/monsters';
 
 const lightThumbnailInfo: {
@@ -173,6 +176,16 @@ const lightThumbnailInfo: {
 		thumbnail:
 			'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
 	},
+	{
+		embed: 'caravan-skills',
+		link: '/hunter-notes/locations/caravan',
+		thumbnail: thumbnailLightCaravanGemUpgrade,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/locations/caravan',
+		thumbnail: thumbnailLightCaravanGemUpgrade,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -305,6 +318,16 @@ const darkThumbnailInfo: {
 		link: '/tools/external/ezlion',
 		thumbnail:
 			'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
+	},
+	{
+		embed: 'caravan-skills',
+		link: '/hunter-notes/locations/caravan',
+		thumbnail: thumbnailDarkCaravanGemUpgrade,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/locations/caravan',
+		thumbnail: thumbnailDarkCaravanGemUpgrade,
 	},
 ];
 
