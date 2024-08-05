@@ -60,6 +60,7 @@
 	import { bannerEnabledStore } from '$lib/client/stores/banner';
 	import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
 	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
+	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -156,6 +157,10 @@
 					id: '/tools/calculator/heavy-bowgun-heat-beam',
 					text: 'Heavy Bowgun Heat Beam',
 				},
+				{
+					id: '/tools/calculator/sigil',
+					text: 'Sigils',
+				},
 			],
 		},
 		{
@@ -247,6 +252,10 @@
 		{
 			id: '/tools/calculator/heavy-bowgun-heat-beam',
 			icon: getWeaponIcon('Heavy Bowgun'),
+		},
+		{
+			id: '/tools/calculator/sigil',
+			icon: SigilIconWhite,
 		},
 		{
 			id: '/tools/simulator',

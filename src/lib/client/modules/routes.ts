@@ -212,6 +212,12 @@ export const toolsInfo: CategoryInfo[] = [
 				image: getWeaponIcon('Heavy Bowgun'),
 				link: '/tools/calculator/heavy-bowgun-heat-beam',
 			},
+			{
+				name: 'Sigils',
+				description: 'A sigils calculator; includes formulas and graphs.',
+				image: SigilIconWhite,
+				link: '/tools/calculator/sigil',
+			},
 		],
 	},
 	{

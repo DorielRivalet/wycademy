@@ -371,6 +371,13 @@
 						figcaption="Sigil slots."
 					/>
 
+					<p class="spaced-paragraph">
+						The slot shape determines what item goes in. For sigils, the slots
+						are triangular. For decorations, the slots are circular. For sigils
+						or decorations on the same slot, the slot is a diamond inside a
+						circle.
+					</p>
+
 					<p>
 						<InlineTooltip
 							text="Sigils"
