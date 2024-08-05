@@ -2021,7 +2021,7 @@ export const legacyCalculatorValuesMap: {
 		},
 		statusAssaultToggle: {
 			'0': 'None',
-			'1': 'On (For Sleep add +10 raw hitbox)',
+			'1': 'On (For Sleep add +10 raw hitzone)',
 		},
 		statusStatusattack: {
 			'1': 'None (1x)',
@@ -2349,38 +2349,38 @@ export const legacyCalculatorValuesMap: {
 		},
 		thunderclad: {
 			'0': 'None',
-			'5': 'Active (+5 on raw hitboxes)',
+			'5': 'Active (+5 on raw hitzones)',
 		},
 		exweak: {
 			'0': 'None',
-			'1': 'Exploit Weakness (+5 on 35+ raw hitboxes)',
-			'2': 'Determination (+5 on raw hitboxes)',
-			'3': 'ZZ Exploit Weakness (+5 on 30+ raw hitboxes)',
+			'1': 'Exploit Weakness (+5 on 35+ raw hitzones)',
+			'2': 'Determination (+5 on raw hitzones)',
+			'3': 'ZZ Exploit Weakness (+5 on 30+ raw hitzones)',
 		},
 		pbreak: {
 			'0': 'None',
-			'1': 'Active (+5 Raw Hitboxes)',
-			'2': 'Raviente (+2 Raw Hitboxes)',
+			'1': 'Active (+5 Raw Hitzones)',
+			'2': 'Raviente (+2 Raw Hitzones)',
 		},
 		acidShot: {
 			'0': 'None',
-			'1': 'Raw Acid (+10 raw hitboxes)',
+			'1': 'Raw Acid (+10 raw hitzones)',
 		},
 		eleex: {
 			'0': 'None',
-			'20': 'Elemental Exploit (+X to 20+ ele hitboxes)',
-			'15': 'Dissolver Up (+X to 15+ ele hitboxes)',
-			'-100': 'Determination (+X to ele hitboxes)',
+			'20': 'Elemental Exploit (+X to 20+ ele hitzones)',
+			'15': 'Dissolver Up (+X to 15+ ele hitzones)',
+			'-100': 'Determination (+X to ele hitzones)',
 		},
 		hhweak: {
 			'0': 'None',
-			rawhb: 'Raw Weakness (+2 on Raw Hitboxes)',
-			allelehb: 'Elemental Weakness (+4 on all Elemental Hitboxes)',
+			rawhb: 'Raw Weakness (+2 on Raw Hitzones)',
+			allelehb: 'Elemental Weakness (+4 on all Elemental Hitzones)',
 			hhstack: 'Both (+4 on Elemental, +2 on Raw)',
 		},
 		sniperraw: {
 			'0': 'None',
-			'5': 'In Crit Distance (+5 on raw hitboxes)',
+			'5': 'In Crit Distance (+5 on raw hitzones)',
 		},
 		Absdef: {
 			'1.0': 'Active (1.0x)',

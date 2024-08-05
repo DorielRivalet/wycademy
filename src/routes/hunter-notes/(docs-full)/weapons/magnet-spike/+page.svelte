@@ -686,8 +686,8 @@ graph LR
 					<p class="spaced-paragraph">
 						The finisher is notable because it targets the spot where you have
 						attached the magnetic marker. This allows you to select the best
-						hitbox or the most desirable parts to break on a monster. For tails,
-						this deals cutting damage but can only reduce a tail to 1HP,
+						hitzone or the most desirable parts to break on a monster. For
+						tails, this deals cutting damage but can only reduce a tail to 1HP,
 						allowing any single cutting damage hit to sever it immediately.
 					</p>
 

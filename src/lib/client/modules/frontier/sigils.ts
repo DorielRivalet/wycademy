@@ -708,7 +708,7 @@ export const sigilsInfo: {
 		minimumPoints: 0,
 		maximumPoints: 0,
 		effect:
-			'Adds additional raw damage based on attack strength. Formula: Attack x 0.015 x Charge Modifier x Hitbox. Lv1: 0.04x. Lv2: 1.0x. Lv3: 1.5x. Lv4: 1.85x. Snipe Lv4: 1.0x. Snipe Lv4: 1.1x. Rising: 2.0x. Is not affected by affinity, coatings, or critical distance. Does not stack, does not work with Bows with Elemental.',
+			'Adds additional raw damage based on attack strength. Formula: Attack x 0.015 x Charge Modifier x Hitzone. Lv1: 0.04x. Lv2: 1.0x. Lv3: 1.5x. Lv4: 1.85x. Snipe Lv4: 1.0x. Snipe Lv4: 1.1x. Rising: 2.0x. Is not affected by affinity, coatings, or critical distance. Does not stack, does not work with Bows with Elemental.',
 		category: 'Offensive',
 	},
 	{
@@ -717,7 +717,7 @@ export const sigilsInfo: {
 		minimumPoints: 0,
 		maximumPoints: 0,
 		effect:
-			'Adds additional raw damage based on attack strength. Formula: Attack x 0.025 x Sharp Multiplier x Hitbox. Blue: 1.0625x. White: 1.125x. Purple: 1.15x. Cyan: 1.20x. Ignores motion values, Additional 0.2x the extra damage is added by Fencing+2. Does not stack and does not work with SnS with Elemental or Status',
+			'Adds additional raw damage based on attack strength. Formula: Attack x 0.025 x Sharp Multiplier x Hitzone. Blue: 1.0625x. White: 1.125x. Purple: 1.15x. Cyan: 1.20x. Ignores motion values, Additional 0.2x the extra damage is added by Fencing+2. Does not stack and does not work with SnS with Elemental or Status',
 		category: 'Offensive',
 	},
 	{

@@ -48,3 +48,7 @@ export const ArmorTypes: FrontierArmor[] = [
 		icon: ArmorStandIcon,
 	},
 ];
+
+export function getArmorIcon(name: string) {
+	return ArmorTypes.find((e) => e.name === name)?.icon || ArmorTypes[0].icon;
+}

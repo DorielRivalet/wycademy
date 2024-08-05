@@ -17,9 +17,9 @@
 	import { cubicInOut } from 'svelte/easing';
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import ArmorStandIcon from '$lib/client/components/frontier/icon/armor/MHRise_Item_Icon-Armor_Stand_Equipment_White.svelte';
 	import MonsterComponent from './frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
+	import { getArmorIcon } from '../modules/frontier/armor';
 
 	let selectedSetName = '';
 
@@ -344,7 +344,7 @@
 						) + '80'}
 					>
 						<svelte:component
-							this={ArmorStandIcon}
+							this={getArmorIcon('Stand')}
 							{...{
 								color: getHexStringFromCatppuccinColor(
 									armorSet.setColor,

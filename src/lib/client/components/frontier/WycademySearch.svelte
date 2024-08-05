@@ -10,7 +10,7 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
-	import { ArmorTypes } from '$lib/client/modules/frontier/armor';
+	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
 	import InlineTooltip from './InlineTooltip.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
@@ -33,7 +33,7 @@
 		},
 		{
 			name: 'Armor',
-			icon: ArmorTypes.find((e) => e.name === 'Chest')?.icon,
+			icon: getArmorIcon('Chest'),
 		},
 		{
 			name: 'Skill',
@@ -69,7 +69,7 @@
 		},
 		{
 			name: 'User',
-			icon: ArmorTypes.find((e) => e.name === 'Head')?.icon,
+			icon: getArmorIcon('Head'),
 		},
 		{
 			name: 'Other',

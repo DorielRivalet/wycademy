@@ -42,6 +42,8 @@ import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonster
 import { ElementIcons } from './frontier/elements';
 import { monsterInfo } from './frontier/monsters';
 import { getWeaponIcon } from './frontier/weapons';
+import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
+import { getArmorIcon } from './frontier/armor';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -291,6 +293,29 @@ export const toolsInfo: CategoryInfo[] = [
 				link: '/tools/external/ezlion',
 				image:
 					'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
+			},
+		],
+	},
+	{
+		category: {
+			name: 'Search',
+			description: 'Searching tools.',
+			image: Binoculars,
+			link: '/tools/search',
+		},
+		pages: [
+			{
+				name: 'Armor Set Searcher',
+				description: "Wycademy's Armor Set Searcher (WASS).",
+				link: '/tools/search/armor-set-searcher',
+				image: getArmorIcon('Stand'),
+			},
+			{
+				name: 'Advanced Search',
+				description:
+					'Advanced Search: items, weapons, gear, monsters, and much more.',
+				link: '/tools/search/advanced-search',
+				image: Logo,
 			},
 		],
 	},
