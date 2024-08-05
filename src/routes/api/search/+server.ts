@@ -282,6 +282,14 @@ Paste them here.`,
 		category: 'Tool',
 	}, // TODO missing sections
 	{
+		title: 'Sigils Calculator',
+		slug: '/tools/calculator/sigil',
+		content: `A sigils calculator; includes formulas and graphs.`,
+		id: 0,
+		hex: '0x00',
+		category: 'Tool',
+	},
+	{
 		title: 'Ice Age',
 		slug: '/tools/calculator/ice-age',
 		content: `Upon hitting a monster (can be dead), the hunter becomes enveloped in an icy aura, which inflicts damage on all nearby monsters while providing extra skills. This aura progresses through three stages as you deal more hits to a monster. Additionally, it bestows  Stamina Recovery Up and  Razor Sharp to all hunters within its range, with the wielder also gaining  Winter General. Damage occurs in fixed intervals of one second rather than gradually over time.

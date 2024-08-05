@@ -127,6 +127,7 @@
 		getAllHitzoneValuesForHitzones,
 		hitzoneInfo,
 	} from '$lib/client/modules/frontier/hitzones';
+	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
 
 	type DataTableKey = string;
 
@@ -1493,7 +1494,7 @@
 							Math.floor(
 								statusAssaultMultiplier *
 									(outputStatusUsedSA + // TODO outputStatusValueMultiplier which is used to calculate this is wrong in the original code, but we leave as is for now
-										getStatusAssault(weaponName, 'Poison')),
+										getStatusAssault(weaponName, inputStatus)),
 							) * outputMonsterTotalDefense,
 						) * outputFencingMultiplier,
 					);
@@ -3710,7 +3711,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	$: weaponIcon = getWeaponIcon(inputWeaponType);
 	$: inputTextInputs = prettyPrintJson(inputs);
 
-	let sharedMotionValues = getWeaponSectionMotionValues(
+	$: sharedMotionValues = getWeaponSectionMotionValues(
 		inputWeaponType,
 		'Shared',
 		inputTextInputs,
@@ -9204,23 +9205,6 @@ does not get multiplied by horn */
 						lowContrast
 					/>
 
-					<p class="spaced-paragraph">
-						You can also change the weapon type shown below in the damage
-						calculator above.
-					</p>
-
-					<p class="spaced-paragraph">
-						If you select an option in a dropdown exclusive to a weapon and then
-						change weapon type thus hiding that dropdown, the selected option
-						will still apply.
-					</p>
-
-					<p class="spaced-paragraph">
-						Some motion values have numbers in parentheses, those are KO values.
-						KO indicates impact portions of the motion value, which use white
-						sharpness as the maximum multiplier.
-					</p>
-
 					{#if showWeaponMotionValuesSectionWarning}
 						<InlineNotification
 							title="Warning:"
@@ -9349,6 +9333,52 @@ does not get multiplied by horn */
 							</svelte:fragment>
 						</DataTable>
 					</div>
+
+					<UnorderedList>
+						<ListItem>
+							<p>
+								You can also change the table's weapon type in the damage
+								calculator section.
+							</p>
+						</ListItem>
+						<ListItem>
+							<p>
+								If you select an option in a dropdown exclusive to a weapon and
+								then change weapon type thus hiding that dropdown, the selected
+								option will still apply.
+							</p>
+						</ListItem>
+						<ListItem>
+							<p>
+								Some motion values have numbers in parentheses, those are KO
+								values. KO indicates impact portions of the motion value, which
+								use white sharpness as the maximum multiplier.
+							</p>
+						</ListItem>
+						<ListItem>
+							<p>
+								The Additional column denotes a source of damage that is
+								separate from your True Raw limit. This includes <InlineTooltip
+									text="Bombs"
+									tooltip="Item"
+									icon={getItemIcon('Bomb')}
+									iconType="component"
+									iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
+								/> and <InlineTooltip
+									text="Status Assault"
+									tooltip="Armor Skill"
+									icon={getItemIcon('Jewel')}
+									iconType="component"
+									iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+								/>.
+							</p>
+						</ListItem>
+						<ListItem>
+							<p>
+								Extra table columns may show depending on the selected element.
+							</p>
+						</ListItem>
+					</UnorderedList>
 				</div>
 			</section>
 
@@ -9360,39 +9390,7 @@ does not get multiplied by horn */
 					kind="info"
 					lowContrast
 				/>
-				<p class="spaced-paragraph">
-					<InlineTooltip
-						text="Dual Swords"
-						iconType="component"
-						tooltip="Weapon"
-						icon={getWeaponIcon('Dual Swords')}
-					/>, <InlineTooltip
-						text="Hammer"
-						iconType="component"
-						tooltip="Weapon"
-						icon={getWeaponIcon('Hammer')}
-					/>, <InlineTooltip
-						text="Hunting Horn"
-						iconType="component"
-						tooltip="Weapon"
-						icon={getWeaponIcon('Hunting Horn')}
-					/>, <InlineTooltip
-						text="Light Bowgun"
-						iconType="component"
-						tooltip="Weapon"
-						icon={getWeaponIcon('Light Bowgun')}
-					/>, <InlineTooltip
-						text="Heavy Bowgun"
-						iconType="component"
-						tooltip="Weapon"
-						icon={getWeaponIcon('Heavy Bowgun')}
-					/> and <InlineTooltip
-						text="Bow"
-						iconType="component"
-						tooltip="Weapon"
-						icon={getWeaponIcon('Bow')}
-					/> cannot use Reflect or Perfect Guard.
-				</p>
+
 				<div class="shared-motion-values toc-exclude">
 					<DataTable
 						id="shared-motion-values-dom"
@@ -9460,6 +9458,44 @@ does not get multiplied by horn */
 						</svelte:fragment>
 					</DataTable>
 				</div>
+
+				<UnorderedList>
+					<ListItem>
+						<p>
+							<InlineTooltip
+								text="Dual Swords"
+								iconType="component"
+								tooltip="Weapon"
+								icon={getWeaponIcon('Dual Swords')}
+							/>, <InlineTooltip
+								text="Hammer"
+								iconType="component"
+								tooltip="Weapon"
+								icon={getWeaponIcon('Hammer')}
+							/>, <InlineTooltip
+								text="Hunting Horn"
+								iconType="component"
+								tooltip="Weapon"
+								icon={getWeaponIcon('Hunting Horn')}
+							/>, <InlineTooltip
+								text="Light Bowgun"
+								iconType="component"
+								tooltip="Weapon"
+								icon={getWeaponIcon('Light Bowgun')}
+							/>, <InlineTooltip
+								text="Heavy Bowgun"
+								iconType="component"
+								tooltip="Weapon"
+								icon={getWeaponIcon('Heavy Bowgun')}
+							/> and <InlineTooltip
+								text="Bow"
+								iconType="component"
+								tooltip="Weapon"
+								icon={getWeaponIcon('Bow')}
+							/> cannot use Reflect or Perfect Guard.
+						</p>
+					</ListItem>
+				</UnorderedList>
 			</section>
 
 			<section>
@@ -10078,7 +10114,7 @@ does not get multiplied by horn */
 	.motion-values {
 		overflow-x: auto;
 		width: 98%;
-		margin: 0 auto;
+		margin: 2rem auto;
 		height: 80vh;
 		overflow-y: auto;
 	}
@@ -10086,7 +10122,7 @@ does not get multiplied by horn */
 	.shared-motion-values {
 		overflow-x: auto;
 		width: 98%;
-		margin: 0 auto;
+		margin: 2rem auto;
 	}
 
 	.attack {

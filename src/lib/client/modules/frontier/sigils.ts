@@ -696,8 +696,8 @@ export const sigilsInfo: {
 	{
 		tree: 'Unity',
 		name: 'Unity',
-		minimumPoints: 0,
-		maximumPoints: 0,
+		minimumPoints: 1,
+		maximumPoints: 1,
 		effect:
 			'Adjusts true raw by +5 if all hunters in the quest are nearby. Does not stack.',
 		category: 'Offensive',
@@ -705,8 +705,8 @@ export const sigilsInfo: {
 	{
 		tree: 'Raw Bow Boost',
 		name: 'Strengthen Bow Raw',
-		minimumPoints: 0,
-		maximumPoints: 0,
+		minimumPoints: 1,
+		maximumPoints: 1,
 		effect:
 			'Adds additional raw damage based on attack strength. Formula: Attack x 0.015 x Charge Modifier x Hitzone. Lv1: 0.04x. Lv2: 1.0x. Lv3: 1.5x. Lv4: 1.85x. Snipe Lv4: 1.0x. Snipe Lv4: 1.1x. Rising: 2.0x. Is not affected by affinity, coatings, or critical distance. Does not stack, does not work with Bows with Elemental.',
 		category: 'Offensive',
@@ -714,8 +714,8 @@ export const sigilsInfo: {
 	{
 		tree: 'Raw SnS Boost',
 		name: 'Strengthen SnS Raw',
-		minimumPoints: 0,
-		maximumPoints: 0,
+		minimumPoints: 1,
+		maximumPoints: 1,
 		effect:
 			'Adds additional raw damage based on attack strength. Formula: Attack x 0.025 x Sharp Multiplier x Hitzone. Blue: 1.0625x. White: 1.125x. Purple: 1.15x. Cyan: 1.20x. Ignores motion values, Additional 0.2x the extra damage is added by Fencing+2. Does not stack and does not work with SnS with Elemental or Status',
 		category: 'Offensive',
@@ -1490,8 +1490,8 @@ export const sigilsInfo: {
 	{
 		tree: 'Status Attack Slayer',
 		name: 'Status Attack',
-		minimumPoints: 0,
-		maximumPoints: 0,
+		minimumPoints: 1,
+		maximumPoints: 1,
 		effect:
 			'Increases status effect value on weapons by 1.1x. Does not stack with additional sigils, but stacks with Pugi, Status Attack Up, and Status Phials.',
 		category: 'Status',
@@ -1658,8 +1658,8 @@ export const sigilsInfo: {
 	{
 		tree: 'Rarity Change',
 		name: 'Rarity 1~12',
-		minimumPoints: 0,
-		maximumPoints: 0,
+		minimumPoints: 1,
+		maximumPoints: 12,
 		effect:
 			'Changes the rarity of a G Rank weapon to the defined value at the cost of lowering Raw, Elemental, and Status values.',
 		category: 'Other',
@@ -1667,8 +1667,8 @@ export const sigilsInfo: {
 	{
 		tree: 'Zenith Duration',
 		name: 'Duration',
-		minimumPoints: 0,
-		maximumPoints: 0,
+		minimumPoints: 1,
+		maximumPoints: 20,
 		effect:
 			'Sets the effect duration of the Zenith Sigil to 15 seconds plus the sigil value.',
 		category: 'Zenith',
@@ -1685,8 +1685,8 @@ export const sigilsInfo: {
 	{
 		tree: 'Zenith Fire Res',
 		name: '[Zenith] Fire Res',
-		minimumPoints: 4,
-		maximumPoints: 20,
+		minimumPoints: 1,
+		maximumPoints: 10,
 		effect: 'Increases fire resistance and removes active fire blights.',
 		category: 'Zenith',
 	},
@@ -1734,8 +1734,8 @@ export const sigilsInfo: {
 	{
 		tree: 'Zenith Heroics',
 		name: '[Zenith] Heroics',
-		minimumPoints: 0,
-		maximumPoints: 0,
+		minimumPoints: 1,
+		maximumPoints: 1,
 		effect:
 			'Negates damage from a single hit. Reactions to the hit still occur.',
 		category: 'Zenith',
