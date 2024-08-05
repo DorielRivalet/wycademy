@@ -1471,7 +1471,7 @@
 			// Additional including status assault
 			// Status active, poison or paralysis
 			if (
-				inputStatusAssault === 'On (For Sleep add +10 raw hitbox)' &&
+				inputStatusAssault === 'On (For Sleep add +10 raw hitzone)' &&
 				inputStatus !== 'None'
 			) {
 				// Check for enough to deal status
@@ -1513,6 +1513,7 @@
 			}
 
 			// todo: untested diva prayer gems
+			/**additionalout*/
 			let outputAdditional =
 				(Math.floor(
 					(inputNumberOtherAdditional + outputDivaPrayerGemTrueRaw) *
@@ -4942,6 +4943,11 @@ does not get multiplied by horn */
 		) * outputDrugKnowledgeMultiplier,
 	);
 
+	$: addToDamageCalculatorHistoryLogs(
+		'internalStatus',
+		internalStatus.toString(),
+	);
+
 	/**StatusUsedSA*/
 	$: outputStatusUsedSA = Math.floor(
 		Math.floor(
@@ -4956,15 +4962,20 @@ does not get multiplied by horn */
 
 	// Additional including status assault
 	// Status active, poison or paralysis
-	// TODO this is wrong. This always evaluates to 1. Leaving this as is for now.
+	// TODO probably fixed
 	/**statvalmult*/
 	$: outputStatusValueMultiplier =
-		inputStatusAssault === 'On (For Sleep add +10 raw hitbox)' &&
+		inputStatusAssault === 'On (For Sleep add +10 raw hitzone)' &&
 		inputStatus !== 'None' &&
 		inputNumberStatusValue >= 10 &&
-		outputDrugKnowledgeMultiplier === 1
+		outputDrugKnowledgeMultiplier !== 1
 			? outputDrugKnowledgeMultiplier
 			: 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusValueMultiplier',
+		outputStatusValueMultiplier.toString(),
+	);
 
 	$: outputMonsterTotalDefense =
 		inputNumberDefenseRate * inputNumberMonsterRage * inputNumberHCModifiers;

@@ -58,6 +58,8 @@
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
 	import { bannerEnabledStore } from '$lib/client/stores/banner';
+	import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
+	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
@@ -206,6 +208,20 @@
 				},
 			],
 		},
+		{
+			id: '/tools/search',
+			text: 'Search',
+			children: [
+				{
+					id: '/tools/search/armor-set-searcher',
+					text: 'Armor Set Searcher',
+				},
+				{
+					id: '/tools/search/advanced-search',
+					text: 'Advanced Search',
+				},
+			],
+		},
 	];
 
 	const iconsMap: {
@@ -287,6 +303,18 @@
 		{
 			id: '/tools/external/ezlion',
 			icon: 'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
+		},
+		{
+			id: '/tools/search',
+			icon: Binoculars,
+		},
+		{
+			id: '/tools/search/armor-set-searcher',
+			icon: getArmorIcon('Stand'),
+		},
+		{
+			id: '/tools/search/advanced-search',
+			icon: Logo,
 		},
 	];
 

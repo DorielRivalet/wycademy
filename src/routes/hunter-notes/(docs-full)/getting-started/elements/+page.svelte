@@ -125,7 +125,7 @@
 				tooltip="Element"
 				icon={ElementIcons.find((e) => e.name === 'Light')?.icon}
 				text="100 Light"
-			/> and hit a hitbox that is vulnerable to <InlineTooltip
+			/> and hit a hitzone that is vulnerable to <InlineTooltip
 				iconType={'component'}
 				tooltip="Element"
 				icon={ElementIcons.find((e) => e.name === 'Fire')?.icon}

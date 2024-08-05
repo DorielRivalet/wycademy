@@ -110,6 +110,7 @@
 					<Link href="/tools/simulator">Simulators</Link>
 					<Link href="/tools/generator">Generators</Link>
 					<Link href="/tools/external">External</Link>
+					<Link href="/tools/search">Search</Link>
 				</section>
 			</div>
 		</div>

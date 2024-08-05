@@ -160,7 +160,7 @@
 											id: '8',
 											gem: ezlionSkillDivaPrayerGem[8],
 											effects:
-												'Increases the amount of raw damage dealt by a cutting weapon by adjusting hitboxes to be weaker against the damage type.',
+												'Increases the amount of raw damage dealt by a cutting weapon by adjusting hitzones to be weaker against the damage type.',
 											maxLevel: '3',
 											unused: '❌',
 											partyEffect: '❌',
@@ -169,7 +169,7 @@
 											id: '9',
 											gem: ezlionSkillDivaPrayerGem[9],
 											effects:
-												'Increases the amount of raw damage dealt by an impact weapon by adjusting hitboxes to be weaker against the damage type.',
+												'Increases the amount of raw damage dealt by an impact weapon by adjusting hitzones to be weaker against the damage type.',
 											maxLevel: '3',
 											unused: '❌',
 											partyEffect: '❌',
@@ -178,7 +178,7 @@
 											id: '10',
 											gem: ezlionSkillDivaPrayerGem[10],
 											effects:
-												'Increases the amount of raw damage dealt by a ranged weapon by adjusting hitboxes to be weaker against the damage type.',
+												'Increases the amount of raw damage dealt by a ranged weapon by adjusting hitzones to be weaker against the damage type.',
 											maxLevel: '3',
 											unused: '❌',
 											partyEffect: '❌',

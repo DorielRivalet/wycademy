@@ -28,7 +28,6 @@
 		FrontierArmorSkillTree,
 		FrontierZenithSkill,
 	} from 'ezlion';
-	//TODO Transmog icon
 
 	/** Truncated to 18 characters.*/
 	export let name = 'Name';
@@ -41,7 +40,7 @@
 	export let iceResistance: number = 0;
 	export let dragonResistance: number = 0;
 	/**TODO Whether to show transmog icon.*/
-	export let transmog = true;
+	//export let transmog = true;
 	export let armorClass: FrontierArmorClass = 'Either';
 	export let armorID: FrontierArmorID = 0;
 

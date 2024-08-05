@@ -107,7 +107,7 @@ export const divaPrayerGems: {
 		id: 8,
 		name: ezlionSkillDivaPrayerGem[8],
 		description:
-			'Increases the amount of raw damage dealt by a cutting weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
+			'Increases the amount of raw damage dealt by a cutting weapon by adjusting hitzones to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
 		maxLevel: 3,
 		unused: false,
 		partyEffect: false,
@@ -117,7 +117,7 @@ export const divaPrayerGems: {
 		id: 9,
 		name: ezlionSkillDivaPrayerGem[9],
 		description:
-			'Increases the amount of raw damage dealt by an impact weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
+			'Increases the amount of raw damage dealt by an impact weapon by adjusting hitzones to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
 		maxLevel: 3,
 		unused: false,
 		partyEffect: false,
@@ -127,7 +127,7 @@ export const divaPrayerGems: {
 		id: 10,
 		name: ezlionSkillDivaPrayerGem[10],
 		description:
-			'Increases the amount of raw damage dealt by a ranged weapon by adjusting hitboxes to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
+			'Increases the amount of raw damage dealt by a ranged weapon by adjusting hitzones to be weaker against the damage type. +1/2/3 Raw Hitzone increase.',
 		maxLevel: 3,
 		unused: false,
 		affectedByDamageCalculator: true,
