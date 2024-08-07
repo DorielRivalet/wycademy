@@ -21,7 +21,8 @@ export type FrontierSigilRecipeType =
 	| 'Shiten'
 	| 'Twinhead'
 	| 'Premium'
-	| 'Rarity';
+	| 'Rarity'
+	| 'Zenith AOE';
 
 export type FrontierSigilSkillCategory =
 	| 'Health and Stamina'
@@ -425,6 +426,43 @@ export const sigilsRecipes = [
 	'Z Premium Sigil 2',
 	'Z Premium Sigil 3',
 ];
+
+export function getZenithSigilTrueRaw(value: number) {
+	if (value > 0) {
+		return 20 * value + 30;
+	} else {
+		return 0;
+	}
+}
+
+export function getAOESigilTrueRaw(value: number, hunters: string) {
+	if (value > 0) {
+		return (25 + value * 5) * Number.parseInt(hunters);
+	} else {
+		return 0;
+	}
+}
+
+export function getZenithSigilElementMultiplier(value: number) {
+	if (value > 0) {
+		return 1 + (1.3 + value) * 0.1;
+	} else {
+		return 1;
+	}
+}
+
+export function getAOESigilElement(value: number, hunters: number) {
+	if (hunters === 0 || value === 0) {
+		return;
+	} else {
+		return (50 + value * 50) * hunters;
+	}
+}
+
+export const zenithAOESigilBaseDuration = 20;
+export const zenithAOESigilBaseCooldown = 120;
+export const zenithSigilBaseDuration = 15;
+export const zenithSigilBaseCooldown = 120;
 
 export const sigilsInfo: {
 	tree: FrontierSigil;

@@ -17,107 +17,32 @@
 	import type { FrontierWeaponName } from 'ezlion';
 	import type {
 		FrontierMotionValue,
-		FrontierMotionValueSection,
 		TagColor,
 	} from '$lib/client/modules/frontier/types';
 	import IceAgeStage1Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage2Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import IceAgeStage3Animation from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
-	import { weaponMotionValues } from '$lib/client/modules/frontier/motion-values';
+	import {
+		sharedWeaponMotionValues,
+		weaponMotionValues,
+	} from '$lib/client/modules/frontier/motion-values';
 	import { display } from 'mathlifier';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
-	import MotionSwordAndShieldNoneJumpSlash from '$lib/client/images/weapon/motion/sword_and_shield_none_jump_slash.webp';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 	import { getTag } from '$lib/client/modules/frontier/tags';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import {
+		getAOESigilTrueRaw,
+		getZenithSigilTrueRaw,
+	} from '$lib/client/modules/frontier/sigils';
 
 	let modalHeading = '';
 	let modalLabel = '';
 	let modalOpen = false;
 	let modalImage = '';
 	let modalNotes = '';
-
-	export const sharedWeaponMotionValues: FrontierMotionValueSection = {
-		name: 'Shared',
-		style: '',
-		motionValues: [
-			{
-				name: 'Reflect+1',
-				notes: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-				animation: MotionSwordAndShieldNoneJumpSlash,
-				values: '24',
-				hitCount: 1,
-				elementMultiplier: 0,
-				motionValue: 24,
-				specialFlag: 'nocrit',
-			},
-			{
-				name: 'Reflect+2',
-				animation: '',
-				values: '36',
-				hitCount: 1,
-				elementMultiplier: 0,
-				motionValue: 36,
-				specialFlag: 'nocrit',
-			},
-			{
-				name: 'Reflect+3',
-				animation: '',
-				values: '48',
-				hitCount: 1,
-				elementMultiplier: 0,
-				motionValue: 48,
-				specialFlag: 'nocrit',
-			},
-			{
-				name: 'Reflect Up',
-				animation: '',
-				values: '68',
-				hitCount: 1,
-				elementMultiplier: 0,
-				motionValue: 68,
-				specialFlag: 'nocrit',
-			},
-			{
-				name: 'Perfect Guard',
-				animation: '',
-				values: '72',
-				hitCount: 1,
-				elementMultiplier: 0,
-				motionValue: 72,
-				specialFlag: 'nocrit',
-			},
-			{
-				name: 'Perfect Guard Up',
-				animation: '',
-				values: '92',
-				hitCount: 1,
-				elementMultiplier: 0,
-				motionValue: 92,
-				specialFlag: 'nocrit',
-			},
-			{
-				name: 'Stylish Up',
-				animation: '',
-				values: '30',
-				hitCount: 1,
-				elementMultiplier: 0,
-				motionValue: 30,
-				specialFlag: 'nocrit', // also nocmel in gunner in legacy code
-			},
-			{
-				name: 'Custom Motion',
-				animation: '',
-				values: '0',
-				hitCount: 1,
-				elementMultiplier: 1,
-				motionValue: 14,
-				specialFlag: 'custommotion',
-			},
-		],
-	};
 
 	function getIceAgeAnimation(stage: string) {
 		switch (stage) {
@@ -298,22 +223,6 @@
 	let inputNumberIceAgeCalculatorAOESigil = 0;
 	let inputIceAgeCalculatorAOESigilHunters = '1';
 	let inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw = 0;
-
-	function getZenithSigilTrueRaw(value: number) {
-		if (value > 0) {
-			return 20 * value + 30;
-		} else {
-			return 0;
-		}
-	}
-
-	function getAOESigilTrueRaw(value: number, hunters: string) {
-		if (value > 0) {
-			return (25 + value * 5) * Number.parseInt(hunters);
-		} else {
-			return 0;
-		}
-	}
 
 	$: iceAgeCalculatorTotalDamage =
 		inputNumberIceAgeCalculatorSecondsElapsed * iceAgeCalculatorDamagePerSecond;

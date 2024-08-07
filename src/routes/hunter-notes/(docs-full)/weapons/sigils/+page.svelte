@@ -42,6 +42,8 @@
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import MultiSelect from 'carbon-components-svelte/src/MultiSelect/MultiSelect.svelte';
+	import { gameInfo } from '$lib/client/modules/frontier/objects';
+	import Item from '$lib/client/components/frontier/Item.svelte';
 
 	// TODO when were sigils introduced?
 
@@ -329,9 +331,17 @@
 				moves, to allowing you to wave at the Balloon an infinite number of times.
 			</p>
 
-			<p>
+			<p class="spaced-paragraph">
 				A list of sigil recipes is found <Link inline href="#recipes"
 					>down below.</Link
+				>
+			</p>
+
+			<p>
+				If you want to calculate how much damage all of your equipped sigils
+				does and compare the damage between them, check our <Link
+					inline
+					href="/tools/calculator/sigil">Sigils Calculator.</Link
 				>
 			</p>
 			<section>
@@ -1177,6 +1187,236 @@
 				</div>
 			</section>
 
+			<section>
+				<SectionHeading level={2} title="Zenith Sigils" />
+				<div>
+					<p class="spaced-paragraph">
+						Zenith Sigils are a new type of sigil introduced in the <InlineTooltip
+							text="ZZ update"
+							tooltip="Game"
+							iconType="file"
+							icon={gameInfo.find(
+								(e) => e.name === 'Monster Hunter Frontier Z Zenith',
+							)?.icon}
+						/>. Unlike standard sigils, which provide always-on passive effects,
+						Zenith Sigils have a base duration of 15 or 20 seconds, depending on
+						the zenith sigil type. There are two functional types: Standard
+						Zenith Sigils and AoE Zenith Sigils.
+					</p>
+					<p class="spaced-paragraph">
+						Zenith Sigils can be obtained from any rank of Zenith. Although the
+						exact drop rate is unknown, it is low and likely similar to the rare
+						carve reward rate for each Zenith tier (1%, 3%, 5%, 7%).
+					</p>
+					<p>
+						Both types of Zenith Sigils work in the same way: a new item icon in
+						the shape of a sigil appears on your item bar, which can be used at
+						any time, provided you are not actively performing an action, by
+						hitting the use button.
+					</p>
+					<CenteredFigure
+						width={'100%'}
+						type="file"
+						src={sigilsInfo.find((e) => e.tree === 'Zenith Attack')?.demo}
+						alt="Sigil inactive"
+						figcaption="Using a Zenith Sigil triggers the Smoke Bomb
+						animation, activating the buffs on the sigil."
+					/>
+					<section>
+						<SectionHeading level={3} title="Standard Zenith Sigils" />
+						<div>
+							<p class="spaced-paragraph">
+								Activating a Standard Sigil applies several buffs to you. These
+								buffs have a fixed duration and recharge time based on the
+								values rolled on the sigil itself. The base duration is 15
+								seconds, with the duration value of the sigil added to this
+								(e.g., a +4 duration results in 19 seconds). The base recharge
+								time is 2 minutes (or 120 seconds), with the sigil value
+								subtracted (e.g., a +14 recharge value results in 106 seconds).
+							</p>
+							<div class="item-sigil">
+								<Item
+									itemType="Sigil"
+									itemRankType="Z"
+									colorName="Purple"
+									rarity={11}
+									iconName="Sigil"
+									sigil={{
+										slot1: {
+											name: 'Attack',
+											value: 15,
+										},
+										slot2: {
+											name: 'Duration',
+											value: 12,
+										},
+										slot3: {
+											name: 'Cooldown',
+											value: 17,
+										},
+										slot4: {
+											name: '',
+											value: 0,
+										},
+									}}
+								/>
+							</div>
+							<p>
+								The buffs provided by the sigils are much stronger than their
+								values suggest (e.g., +15 Attack actually equals +330 Attack).
+								With good management, a decent roll can be as effective as a
+								top-end roll on a standard sigil.
+							</p>
+						</div>
+					</section>
+					<section>
+						<SectionHeading level={3} title="Area of Effect Zenith Sigils" />
+						<div>
+							<p class="spaced-paragraph">
+								Activating an Area of Effect Sigil creates a dome on the ground
+								around where you activated it. This dome lasts for 20 seconds
+								and has a recharge duration of 2 minutes.
+							</p>
+							<p class="spaced-paragraph">
+								AoE Sigils can buff Attack, Elemental, Status, All Resistance,
+								Affinity, and Stun output, as well as providing passive healing.
+								A single sigil can roll multiple types of buffs, causing the
+								dome to alternate colors to indicate which buffs are active.
+							</p>
+							<div class="item-sigil">
+								<Item
+									itemType="Sigil"
+									itemRankType="Z"
+									colorName="Purple"
+									iconName="Sigil"
+									rarity={11}
+									sigil={{
+										slot1: {
+											name: 'Attack',
+											value: 15,
+										},
+										slot2: {
+											name: 'Element',
+											value: 12,
+										},
+										slot3: {
+											name: 'Attack',
+											value: 10,
+										},
+										slot4: {
+											name: '',
+											value: 0,
+										},
+									}}
+								/>
+							</div>
+							<p class="spaced-paragraph">
+								Like Standard Sigils, the values on AoE Sigils do not directly
+								correlate to the actual buff amounts. For example, a sigil with
+								+1 Elemental and +14 Resistances will increase Elemental by 100
+								and All Resistances by 28. Higher rolls result in significantly
+								better buffs.
+							</p>
+							<CenteredFigure
+								width={'100%'}
+								type="file"
+								src={sigilsInfo.find((e) => e.name === '[Ranged] Attack')?.demo}
+								alt="Sigil inactive"
+								figcaption="Using an AOE Zenith Sigil triggers the Smoke Bomb
+							animation, activating the buffs on the sigil when inside the dome."
+							/>
+						</div>
+					</section>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Unlimited Sigils" />
+				<div>
+					<p class="spaced-paragraph">
+						The main purpose of Unlimited Mode (UL) is to grant access to
+						powerful new Up Sigils for each weapon type, such as <InlineTooltip
+							text="Dual Swords Up"
+							tooltip="Sigil Skill"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+						/>. This sigil skill provides the stated value to Attack, Affinity,
+						and Elemental simultaneously. For example, a Dual Swords Up +10
+						sigil would give 10 True Raw, 10% Affinity, and 100 Elemental. These
+						sigils can roll two additional values up to +15, meaning a single
+						sigil can have up to 75 effective points, making them highly
+						desirable for players who don't use all slots in a weapon for
+						decorations.
+					</p>
+					<div class="item-sigil">
+						<Item
+							itemType="Sigil"
+							itemRankType=""
+							colorName="Purple"
+							rarity={11}
+							iconName="Sigil"
+							sigil={{
+								slot1: {
+									name: 'DS Up',
+									value: 15,
+								},
+								slot2: {
+									name: 'Attack',
+									value: 12,
+								},
+								slot3: {
+									name: 'Element',
+									value: 10,
+								},
+								slot4: {
+									name: '',
+									value: 0,
+								},
+							}}
+						/>
+					</div>
+					<p class="spaced-paragraph">
+						The materials for these sigils drop at a relatively low rate, but
+						there are three featured monsters each day that offer boosted drop
+						rates. The items are unique to each weapon, making it a long-term
+						goal to hunt many UL monsters to obtain better UL Sigils.
+					</p>
+					<p class="spaced-paragraph">
+						In addition to Sigil materials, UL Mode monsters also drop doubled
+						Transmog Lotto points, Hiden <InlineTooltip
+							icon={getItemIcon('Ticket')}
+							iconType="component"
+							text="Souls"
+							tooltip="Item"
+						/>, <InlineTooltip
+							icon={getItemIcon('Ball')}
+							iconType="component"
+							text="Ribbons"
+							tooltip="Item"
+						/>, and <InlineTooltip
+							icon={getItemIcon('Coin')}
+							iconType="component"
+							text="Merits"
+							tooltip="Item"
+						/>. This makes UL Mode an excellent source for grinding Hiden
+						Materials, allowing you to focus on challenging content instead of
+						early HR and GR level content.
+					</p>
+					<p class="spaced-paragraph">
+						The overlay can show you if a monster is either the standard
+						variant, Hardcore (HC) or Unlimited (UL) via an icon next to the
+						name in the HP Bar.
+					</p>
+					<p>
+						If you want to calculate how much damage all of your equipped sigils
+						does and compare the damage between them, check our <Link
+							inline
+							href="/tools/calculator/sigil">Sigils Calculator.</Link
+						>
+					</p>
+				</div>
+			</section>
+
 			<div class="page-turn">
 				<PageTurn pageUrlPathName={$page.url.pathname} />
 			</div>
@@ -1187,6 +1427,13 @@
 <style lang="scss">
 	.page-turn {
 		margin-top: 4rem;
+	}
+
+	.item-sigil {
+		display: flex;
+		justify-content: center;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 
 	.toolbar {
