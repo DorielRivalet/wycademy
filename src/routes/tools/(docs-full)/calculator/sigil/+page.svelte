@@ -5,51 +5,740 @@
 	import { page } from '$app/stores';
 	import type { FrontierSigilRecipeType } from '$lib/client/modules/frontier/sigils';
 	import type { FrontierSigil } from 'ezlion';
-
-	const maxValue = 15;
-	const minStandardValue = -10;
-	const minValue = 1;
-	const maxCooldown = 17;
-	const minCooldown = 9;
-	const maxDuration = 12;
-	const minDuration = 1;
+	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
+	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
+	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 
 	type SigilSlot = {
 		type: FrontierSigilRecipeType;
 		values: { skill: FrontierSigil; value: number }[];
 	};
 
-	let sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot] = [
-		{ type: 'Standard', values: [{ skill: 'Attack Slayer', value: 15 }] },
-		{ type: 'Unlimited', values: [{ skill: 'Attack Slayer', value: 15 }] },
-		{ type: 'Zenith', values: [{ skill: 'Attack Slayer', value: 15 }] },
+	function isInvalidSigilType(
+		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
+	) {
+		let zenithSigils = sigils.filter((e) => e.type === 'Zenith').length;
+		let zenithAOESigils = sigils.filter((e) => e.type === 'Zenith AOE').length;
+		let invalid =
+			zenithSigils > 1 ||
+			zenithAOESigils > 1 ||
+			(zenithSigils >= 1 && zenithAOESigils >= 1);
+		return invalid;
+	}
+
+	/*
+	$: internalDragon = Math.floor(
+		(((inputNumberElementalValueReplacement +
+			inputNumberSigil1Element * 10 +
+			inputNumberSigil2Element * 10 +
+			inputNumberSigil3Element * 10 +
+			inputNumberUnlimitedSigil * 10 +
+			outputAOETotalElement) *
+			outputDragonMultiplier *
+			outputZenithElementMultiplier *
+			outputElementalAttackMultiplier *
+			outputHHElementalSongMultiplier *
+			outputWeaponElementMultiplier *
+			outputFuriousMultiplier *
+			getElementMultiplier('Dragon', inputElement)) /
+			10) *
+			outputSharpnessMultiplier,
+	);
+
+		$: iceAgeCalculatorDamagePerSecond = Math.floor(
+		getIceAgeBaseMultiplier(inputIceAgeCalculatorStage) *
+			(inputNumberIceAgeCalculatorWeaponTrueRaw +
+				inputNumberIceAgeCalculatorSigil1TrueRaw +
+				inputNumberIceAgeCalculatorSigil2TrueRaw +
+				inputNumberIceAgeCalculatorSigil3TrueRaw +
+				inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
+				getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
+				getAOESigilTrueRaw(
+					inputNumberIceAgeCalculatorAOESigil,
+					inputIceAgeCalculatorAOESigilHunters,
+				) +
+				inputNumberIceAgeCalculatorSRTrueRaw +
+				getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)) *
+			inputNumberIceAgeCalculatorMonsterDefenseRate *
+			Number.parseInt(inputIceAgeCalculatorHunters),
+	);
+*/
+
+	function getTotalSigilAttack(sigilSlot: SigilSlot) {}
+
+	function getAllSigilsAttack(
+		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
+	) {}
+
+	function getMaxValue(sigilSkill: FrontierSigil) {
+		switch (sigilSkill) {
+			default:
+				return 0;
+			case '':
+			case 'None':
+				return 0;
+			case 'Length Up':
+				return 1;
+			case 'Attack Slayer':
+			case 'Elemental Slayer':
+			case 'Status Attack Slayer':
+			case 'Affinity Slayer':
+			case 'Defense Slayer':
+			case 'Stun Value Slayer':
+			case 'Flying Wyvern Slayer':
+			case 'Bird Wyvern Slayer':
+			case 'Carapaceon Slayer':
+			case 'Piscine Slayer':
+			case 'Fanged Beast Slayer':
+			case 'Brute Wyvern Slayer':
+			case 'Leviathan Slayer':
+			case 'Elder Dragon Slayer':
+			case 'Small Monster Slayer':
+			case 'Elemental Coating/Crystal':
+			case 'Hot':
+			case 'Cold':
+			case 'Morning':
+			case 'Night':
+			case 'Breeding Season':
+			case 'Warm Season':
+			case 'Cold Season':
+			case 'Monday':
+			case 'Tuesday':
+			case 'Wednesday':
+			case 'Thursday':
+			case 'Friday':
+			case 'Saturday':
+			case 'Sunday':
+			case 'Manager':
+			case 'Balloon':
+			case 'Dowsing':
+			case 'Hunter Soul':
+			case 'Soul Collection':
+			case "Gook's Friend":
+			case "Halk's Friend":
+			case 'Money Expert':
+			case 'Exp Expert':
+			case 'Omnivore':
+			case 'Carving Division':
+			case 'Sleeping':
+			case 'Decoy':
+			case 'Spoilt':
+			case 'Unity':
+			case 'Aid':
+			case 'Rapid Fire Add':
+			case 'Ultra Rapid Fire Add':
+			case 'Disable Rapid':
+			case 'Heat Cannon Add':
+			case 'Ballista Saver':
+			case 'Raw Bow Boost':
+			case 'Raw SnS Boost':
+			case 'Sonic Bomb Range':
+			case 'T.Boost(SnS)':
+			case 'T.Boost(DS)':
+			case 'T.Boost(GS)':
+			case 'T.Boost(LS)':
+			case 'T.Boost(Lance)':
+			case 'T.Boost(GL)':
+			case 'T.Boost(Hammer)':
+			case 'T.Boost(HH)':
+			case 'T.Change(SnS)':
+			case 'T.Change(DS)':
+			case 'T.Change(GS)':
+			case 'T.Change(LS)':
+			case 'T.Change(Lance)':
+			case 'T.Change(GL)':
+			case 'T.Change(Ham)':
+			case 'T.Change(HH)':
+			case 'T.Change(LBG)':
+			case 'T.Change(HBG)':
+			case 'T.Change(Bow)':
+			case 'Shelling Change':
+			case 'Note Change 1':
+			case 'Note Change 2':
+			case 'Note Change 3':
+			case 'Arc Shot Change':
+			case 'Rarity Change':
+			case 'Shelling Boost':
+			case 'Tech Boost Bow':
+			case 'Cat Breeder':
+			case 'Shot Change':
+			case 'Draw Strength(GS)':
+			case 'Draw Strength(Hammer)':
+			case 'Draw Strength(Lance)':
+			case 'Draw Strength(SnS)':
+			case 'Draw Strength(DS)':
+			case 'Draw Strength(LS)':
+			case 'Draw Strength(HH)':
+			case 'Draw Strength(GL)':
+			case 'Draw Strength(Tonfa)':
+			case 'Tech Boost Tonfa':
+			case 'Fanged Wyvern Slayer':
+			case 'Unsheathed Movement Speed':
+			case 'Tech Boost Swaxe':
+			case 'Tech Boost HBG':
+			case 'Great Sword Up':
+			case 'Heavy Bowgun Up':
+			case 'Hammer Up':
+			case 'Lance Up':
+			case 'Sword and Shield Up':
+			case 'Light Bowgun Up':
+			case 'Dual Swords Up':
+			case 'Long Sword Up':
+			case 'Hunting Horn Up':
+			case 'Gunlance Up':
+			case 'Bow Up':
+			case 'Tonfa Up':
+			case 'Swaxe Up':
+			case 'Magspike Up':
+			case 'Zenith Fire Res':
+			case 'Zenith Water Res':
+			case 'Zenith Ice Res':
+			case 'Zenith Thunder Res':
+			case 'Zenith Dragon Res':
+			case 'Zenith Healing':
+			case 'Zenith Heroics':
+			case 'Zenith Attack':
+			case 'Zenith Elemental':
+			case 'Zenith Movement Speed':
+			case 'All Zenith AOEs':
+			case 'Weapon Up':
+			case '[Ranged] Attack':
+			case '[Ranged] Element':
+				return maxValue;
+			case 'Zenith Cooldown':
+				return maxCooldown;
+			case 'Zenith Duration':
+				return maxDuration;
+		}
+	}
+
+	function getMinValue(sigilSkill: FrontierSigil) {
+		switch (sigilSkill) {
+			default:
+				return 0;
+			case '':
+			case 'None':
+			case 'Length Up':
+				return 0;
+			case 'Status Attack Slayer':
+			case 'Affinity Slayer':
+			case 'Defense Slayer':
+			case 'Stun Value Slayer':
+			case 'Flying Wyvern Slayer':
+			case 'Bird Wyvern Slayer':
+			case 'Carapaceon Slayer':
+			case 'Piscine Slayer':
+			case 'Fanged Beast Slayer':
+			case 'Brute Wyvern Slayer':
+			case 'Leviathan Slayer':
+			case 'Elder Dragon Slayer':
+			case 'Small Monster Slayer':
+			case 'Elemental Coating/Crystal':
+			case 'Hot':
+			case 'Cold':
+			case 'Morning':
+			case 'Night':
+			case 'Breeding Season':
+			case 'Warm Season':
+			case 'Cold Season':
+			case 'Monday':
+			case 'Tuesday':
+			case 'Wednesday':
+			case 'Thursday':
+			case 'Friday':
+			case 'Saturday':
+			case 'Sunday':
+			case 'Manager':
+			case 'Balloon':
+			case 'Dowsing':
+			case 'Hunter Soul':
+			case 'Soul Collection':
+			case "Gook's Friend":
+			case "Halk's Friend":
+			case 'Money Expert':
+			case 'Exp Expert':
+			case 'Omnivore':
+			case 'Carving Division':
+			case 'Sleeping':
+			case 'Decoy':
+			case 'Spoilt':
+			case 'Unity':
+			case 'Aid':
+			case 'Rapid Fire Add':
+			case 'Ultra Rapid Fire Add':
+			case 'Disable Rapid':
+			case 'Heat Cannon Add':
+			case 'Ballista Saver':
+			case 'Raw Bow Boost':
+			case 'Raw SnS Boost':
+			case 'Sonic Bomb Range':
+			case 'T.Boost(SnS)':
+			case 'T.Boost(DS)':
+			case 'T.Boost(GS)':
+			case 'T.Boost(LS)':
+			case 'T.Boost(Lance)':
+			case 'T.Boost(GL)':
+			case 'T.Boost(Hammer)':
+			case 'T.Boost(HH)':
+			case 'T.Change(SnS)':
+			case 'T.Change(DS)':
+			case 'T.Change(GS)':
+			case 'T.Change(LS)':
+			case 'T.Change(Lance)':
+			case 'T.Change(GL)':
+			case 'T.Change(Ham)':
+			case 'T.Change(HH)':
+			case 'T.Change(LBG)':
+			case 'T.Change(HBG)':
+			case 'T.Change(Bow)':
+			case 'Shelling Change':
+			case 'Note Change 1':
+			case 'Note Change 2':
+			case 'Note Change 3':
+			case 'Arc Shot Change':
+			case 'Rarity Change':
+			case 'Shelling Boost':
+			case 'Tech Boost Bow':
+			case 'Cat Breeder':
+			case 'Shot Change':
+			case 'Draw Strength(GS)':
+			case 'Draw Strength(Hammer)':
+			case 'Draw Strength(Lance)':
+			case 'Draw Strength(SnS)':
+			case 'Draw Strength(DS)':
+			case 'Draw Strength(LS)':
+			case 'Draw Strength(HH)':
+			case 'Draw Strength(GL)':
+			case 'Draw Strength(Tonfa)':
+			case 'Tech Boost Tonfa':
+			case 'Fanged Wyvern Slayer':
+			case 'Unsheathed Movement Speed':
+			case 'Tech Boost Swaxe':
+			case 'Tech Boost HBG':
+			case 'Great Sword Up':
+			case 'Heavy Bowgun Up':
+			case 'Hammer Up':
+			case 'Lance Up':
+			case 'Sword and Shield Up':
+			case 'Light Bowgun Up':
+			case 'Dual Swords Up':
+			case 'Long Sword Up':
+			case 'Hunting Horn Up':
+			case 'Gunlance Up':
+			case 'Bow Up':
+			case 'Tonfa Up':
+			case 'Swaxe Up':
+			case 'Magspike Up':
+			case 'Zenith Fire Res':
+			case 'Zenith Water Res':
+			case 'Zenith Ice Res':
+			case 'Zenith Thunder Res':
+			case 'Zenith Dragon Res':
+			case 'Zenith Healing':
+			case 'Zenith Heroics':
+			case 'Zenith Attack':
+			case 'Zenith Elemental':
+			case 'Zenith Movement Speed':
+			case 'All Zenith AOEs':
+			case 'Weapon Up':
+			case '[Ranged] Attack':
+			case '[Ranged] Element':
+				return minValue;
+			case 'Attack Slayer':
+			case 'Elemental Slayer':
+				return minStandardValue;
+			case 'Zenith Cooldown':
+				return minCooldown;
+			case 'Zenith Duration':
+				return minDuration;
+		}
+	}
+
+	function getInvalidText(sigilSkill: FrontierSigil) {
+		switch (sigilSkill) {
+			default:
+				return 'Invalid value.';
+			case '':
+			case 'None':
+			case 'Length Up':
+				return 'Invalid value.';
+			case 'Attack Slayer':
+			case 'Elemental Slayer':
+				return invalidNumberStandardValueText;
+			case 'Status Attack Slayer':
+			case 'Affinity Slayer':
+			case 'Defense Slayer':
+			case 'Stun Value Slayer':
+			case 'Flying Wyvern Slayer':
+			case 'Bird Wyvern Slayer':
+			case 'Carapaceon Slayer':
+			case 'Piscine Slayer':
+			case 'Fanged Beast Slayer':
+			case 'Brute Wyvern Slayer':
+			case 'Leviathan Slayer':
+			case 'Elder Dragon Slayer':
+			case 'Small Monster Slayer':
+			case 'Elemental Coating/Crystal':
+			case 'Hot':
+			case 'Cold':
+			case 'Morning':
+			case 'Night':
+			case 'Breeding Season':
+			case 'Warm Season':
+			case 'Cold Season':
+			case 'Monday':
+			case 'Tuesday':
+			case 'Wednesday':
+			case 'Thursday':
+			case 'Friday':
+			case 'Saturday':
+			case 'Sunday':
+			case 'Manager':
+			case 'Balloon':
+			case 'Dowsing':
+			case 'Hunter Soul':
+			case 'Soul Collection':
+			case "Gook's Friend":
+			case "Halk's Friend":
+			case 'Money Expert':
+			case 'Exp Expert':
+			case 'Omnivore':
+			case 'Carving Division':
+			case 'Sleeping':
+			case 'Decoy':
+			case 'Spoilt':
+			case 'Unity':
+			case 'Aid':
+			case 'Rapid Fire Add':
+			case 'Ultra Rapid Fire Add':
+			case 'Disable Rapid':
+			case 'Heat Cannon Add':
+			case 'Ballista Saver':
+			case 'Raw Bow Boost':
+			case 'Raw SnS Boost':
+			case 'Sonic Bomb Range':
+			case 'T.Boost(SnS)':
+			case 'T.Boost(DS)':
+			case 'T.Boost(GS)':
+			case 'T.Boost(LS)':
+			case 'T.Boost(Lance)':
+			case 'T.Boost(GL)':
+			case 'T.Boost(Hammer)':
+			case 'T.Boost(HH)':
+			case 'T.Change(SnS)':
+			case 'T.Change(DS)':
+			case 'T.Change(GS)':
+			case 'T.Change(LS)':
+			case 'T.Change(Lance)':
+			case 'T.Change(GL)':
+			case 'T.Change(Ham)':
+			case 'T.Change(HH)':
+			case 'T.Change(LBG)':
+			case 'T.Change(HBG)':
+			case 'T.Change(Bow)':
+			case 'Shelling Change':
+			case 'Note Change 1':
+			case 'Note Change 2':
+			case 'Note Change 3':
+			case 'Arc Shot Change':
+			case 'Rarity Change':
+			case 'Shelling Boost':
+			case 'Tech Boost Bow':
+			case 'Cat Breeder':
+			case 'Shot Change':
+			case 'Draw Strength(GS)':
+			case 'Draw Strength(Hammer)':
+			case 'Draw Strength(Lance)':
+			case 'Draw Strength(SnS)':
+			case 'Draw Strength(DS)':
+			case 'Draw Strength(LS)':
+			case 'Draw Strength(HH)':
+			case 'Draw Strength(GL)':
+			case 'Draw Strength(Tonfa)':
+			case 'Tech Boost Tonfa':
+			case 'Fanged Wyvern Slayer':
+			case 'Unsheathed Movement Speed':
+			case 'Tech Boost Swaxe':
+			case 'Tech Boost HBG':
+			case 'Great Sword Up':
+			case 'Heavy Bowgun Up':
+			case 'Hammer Up':
+			case 'Lance Up':
+			case 'Sword and Shield Up':
+			case 'Light Bowgun Up':
+			case 'Dual Swords Up':
+			case 'Long Sword Up':
+			case 'Hunting Horn Up':
+			case 'Gunlance Up':
+			case 'Bow Up':
+			case 'Tonfa Up':
+			case 'Swaxe Up':
+			case 'Magspike Up':
+			case 'Zenith Fire Res':
+			case 'Zenith Water Res':
+			case 'Zenith Ice Res':
+			case 'Zenith Thunder Res':
+			case 'Zenith Dragon Res':
+			case 'Zenith Healing':
+			case 'Zenith Heroics':
+			case 'Zenith Attack':
+			case 'Zenith Elemental':
+			case 'Zenith Movement Speed':
+			case 'All Zenith AOEs':
+			case 'Weapon Up':
+			case '[Ranged] Attack':
+			case '[Ranged] Element':
+				return invalidNumberValueText;
+			case 'Zenith Cooldown':
+				return invalidNumberCooldownText;
+			case 'Zenith Duration':
+				return invalidNumberDurationText;
+		}
+	}
+
+	const maxValue = 15;
+	const maxCooldown = 17;
+	const maxDuration = 12;
+
+	const minDuration = 1;
+	const minCooldown = 9;
+	const minStandardValue = -10;
+	const minValue = 1;
+
+	const invalidNumberStandardValueText = `Invalid number: must be between ${minStandardValue} and ${maxValue}`;
+	const invalidNumberValueText = `Invalid number: must be between ${minValue} and ${maxValue}`;
+	const invalidNumberCooldownText = `Invalid number: must be between ${minCooldown} and ${maxCooldown}`;
+	const invalidNumberDurationText = `Invalid number: must be between ${minDuration} and ${maxDuration}`;
+
+	let allowedSigils: {
+		type: FrontierSigilRecipeType;
+		sigils: FrontierSigil[];
+	}[] = [
+		{ type: 'Standard', sigils: ['None', 'Attack Slayer', 'Elemental Slayer'] },
+		{
+			type: 'Unlimited',
+			sigils: [
+				'None',
+				'Length Up', // todo
+				'Weapon Up', // TODO ezlion?
+				'Attack Slayer',
+				'Elemental Slayer',
+			],
+		},
+		{
+			type: 'Zenith',
+			sigils: [
+				'None',
+				'Zenith Attack',
+				'Zenith Elemental',
+				'Zenith Duration',
+				'Zenith Cooldown',
+			],
+		},
+		{
+			type: 'Zenith AOE',
+			sigils: [
+				'None',
+				'[Ranged] Attack', // TODO ezlion?
+				'[Ranged] Elemental',
+			],
+		},
 	];
 
-	let inputStandardSigilAttack = 15;
+	let sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot] = [
+		{
+			type: 'Standard',
+			values: [
+				{ skill: 'Attack Slayer', value: 15 },
+				{ skill: 'Elemental Slayer', value: 15 },
+				{ skill: 'Attack Slayer', value: 15 },
+			],
+		},
+		{
+			type: 'Unlimited',
+			values: [
+				{ skill: 'Weapon Up', value: 15 },
+				{ skill: 'Elemental Slayer', value: 15 },
+				{ skill: 'Attack Slayer', value: 15 },
+			],
+		},
+		{
+			type: 'Zenith',
+			values: [
+				{ skill: 'Zenith Attack', value: 15 },
+				{ skill: 'Zenith Duration', value: 12 },
+				{ skill: 'Zenith Cooldown', value: 17 },
+			],
+		},
+	];
 
-	let inputZenithSigilAttack = 15;
-	let inputZenithSigilAttackDuration = 12;
-	let inputZenithSigilAttackCooldown = 17;
+	let zenithApplyDelay = 10;
 
-	let inputZenithSigilAOEAttack = 15;
-	let inputZenithSigilAOEAttackDuration = 12;
-	let inputZenithSigilAOEAttackCooldown = 17;
-
-	let inputStandardSigilElement = 15;
-
-	let inputZenithSigilElement = 15;
-	let inputZenithSigilElementDuration = 12;
-	let inputZenithSigilElementCooldown = 17;
-
-	let inputZenithSigilAOEElement = 15;
-	let inputZenithSigilAOEElementDuration = 12;
-	let inputZenithSigilAOEElementCooldown = 17;
+	let zenithAOESigilHunters = '1';
 </script>
+
+<svelte:head>
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+		integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
+		crossorigin="anonymous"
+	/>
+</svelte:head>
 
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Sigils Calculator'} />
-		<div></div>
+		<div>
+			<p class="spaced-paragraph">
+				Here you can compare sigils damage in order to decide which one to
+				equip. You can equip multiple Unlimited (UL) Sigils, but the Weapon Up
+				effect is only applied by the highest value and does not stack.
+			</p>
+			<div class="sigils">
+				{#each sigils as sigil, i}
+					<div class="sigil">
+						<div class="sigil-icon">
+							<InlineTooltip
+								text={`Sigil ${i + 1}`}
+								tooltip="Sigil"
+								iconType="component"
+								icon={SigilIconWhite}
+							/>
+						</div>
+						<Dropdown
+							titleText={`Sigil ${i + 1} Type`}
+							bind:selectedId={sigil.type}
+							invalid={isInvalidSigilType(sigils)}
+							invalidText={'Found multiple zenith sigils, please choose only one.'}
+							items={[
+								{ id: 'Standard', text: 'Standard' },
+								{ id: 'Unlimited', text: 'Unlimited' },
+								{ id: 'Zenith', text: 'Zenith' },
+								{ id: 'Zenith AOE', text: 'Zenith AOE' },
+							]}
+							on:select={() => {
+								sigil.values[0].skill = 'None';
+								sigil.values[1].skill = 'None';
+								sigil.values[2].skill = 'None';
+								sigil.values[0].value = 0;
+								sigil.values[1].value = 0;
+								sigil.values[2].value = 0;
+							}}
+						/>
+
+						<div class="sigil-skill">
+							<Dropdown
+								titleText={`Sigil ${i + 1} Skill 1`}
+								bind:selectedId={sigil.values[0].skill}
+								items={allowedSigils
+									.find((e) => e.type === sigil.type)
+									?.sigils.map((e) => {
+										return {
+											id: e,
+											text: e,
+										};
+									})}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={getMinValue(sigil.values[0].skill)}
+								max={getMaxValue(sigil.values[0].skill)}
+								bind:value={sigil.values[0].value}
+								invalidText={getInvalidText(sigil.values[0].skill)}
+								label={`Sigil ${i + 1} Value 1`}
+							/>
+						</div>
+						<div class="sigil-skill">
+							<Dropdown
+								titleText={`Sigil ${i + 1} Skill 2`}
+								bind:selectedId={sigil.values[1].skill}
+								items={allowedSigils
+									.find((e) => e.type === sigil.type)
+									?.sigils.map((e) => {
+										return {
+											id: e,
+											text: e,
+										};
+									})}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={getMinValue(sigil.values[1].skill)}
+								max={getMaxValue(sigil.values[1].skill)}
+								bind:value={sigil.values[1].value}
+								invalidText={getInvalidText(sigil.values[1].skill)}
+								label={`Sigil ${i + 1} Value 2`}
+							/>
+						</div>
+						<div class="sigil-skill">
+							<Dropdown
+								titleText={`Sigil ${i + 1} Skill 3`}
+								bind:selectedId={sigil.values[2].skill}
+								items={allowedSigils
+									.find((e) => e.type === sigil.type)
+									?.sigils.map((e) => {
+										return {
+											id: e,
+											text: e,
+										};
+									})}
+							/>
+							<NumberInput
+								size="sm"
+								step={1}
+								min={getMinValue(sigil.values[2].skill)}
+								max={getMaxValue(sigil.values[2].skill)}
+								bind:value={sigil.values[2].value}
+								invalidText={getInvalidText(sigil.values[2].skill)}
+								label={`Sigil ${i + 1} Value 3`}
+							/>
+						</div>
+					</div>
+				{/each}
+			</div>
+			<div class="extra-inputs">
+				<NumberInput
+					step={1}
+					min={0}
+					bind:value={zenithApplyDelay}
+					invalidText={'Invalid value.'}
+					label={`Zenith Sigil Activation Delay`}
+				/>
+				<Dropdown
+					titleText="AOE Sigil Hunters"
+					bind:selectedId={zenithAOESigilHunters}
+					items={[
+						{ id: '1', text: '1 Hunter' },
+						{ id: '2', text: '2 Hunters' },
+						{ id: '3', text: '3 Hunters' },
+						{ id: '4', text: '4 Hunters' },
+					]}
+				/>
+			</div>
+
+			<div class="results">
+				<p>
+					<InlineTooltip
+						text="⚔️ Total Attack:"
+						tooltip="Stat"
+						icon={''}
+						iconType="file"
+					/> 0 (0+0+0)
+				</p>
+				<p>
+					<InlineTooltip
+						text="🐲 Total Element:"
+						tooltip="Stat"
+						icon={''}
+						iconType="file"
+					/> 0 (0+0+0)
+				</p>
+			</div>
+		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
@@ -59,5 +748,49 @@
 <style lang="scss">
 	.page-turn {
 		margin-top: 4rem;
+	}
+
+	.sigils {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+		display: flex;
+		gap: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.extra-inputs {
+		display: flex;
+		gap: 1rem;
+		max-width: max-content;
+		margin-top: 1rem;
+		flex-wrap: wrap;
+		margin-bottom: 1rem;
+	}
+
+	.sigil {
+		background-color: var(--ctp-mantle);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		border-radius: 8px;
+		border: 2px solid var(--ctp-surface1);
+		padding: 1rem;
+	}
+
+	.sigil-skill {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.results {
+		background-color: var(--ctp-mantle);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		border-radius: 8px;
+		border: 2px solid var(--ctp-surface1);
+		padding: 1rem;
+		margin-top: 2rem;
+		max-width: max-content;
 	}
 </style>

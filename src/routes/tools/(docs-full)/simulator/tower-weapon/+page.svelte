@@ -834,7 +834,7 @@
 
 			<div class="tower-weapon-simulator-container">
 				<div class="tower-weapon-simulator-weapon-container">
-					<div class="flex-centered padded">
+					<div class="flex-centered">
 						<Dropdown
 							let:item
 							titleText="Weapon Type"
@@ -892,7 +892,7 @@
 							</div>
 						</Dropdown>
 					</div>
-					<div class="flex-centered padded flex-column">
+					<div class="flex-centered flex-column">
 						<ImageDialog
 							width={195}
 							height={200}
@@ -1351,7 +1351,7 @@
 					{/if}
 
 					{#if towerWeaponSelectedWeaponType !== 'Bow' && towerWeaponSelectedWeaponType !== 'Light Bowgun' && towerWeaponSelectedWeaponType !== 'Heavy Bowgun'}
-						<div class="tower-weapon-property">
+						<div class="tower-weapon-sharpness">
 							<RadioButtonGroup
 								name="sharpness"
 								bind:selected={towerWeaponSharpnessLevel}
@@ -1507,14 +1507,14 @@
 		flex-direction: row;
 	}
 
+	.tower-weapon-sharpness {
+		text-align: start;
+	}
+
 	.flex-centered {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
-
-	.padded {
-		padding: 0.5rem;
 	}
 
 	.sharpness-bar-container {
@@ -1607,10 +1607,19 @@
 		outline: 2px inset var(--ctp-surface0);
 	}
 
-	.tower-weapon-simulator-container {
-		display: flex;
-		justify-content: center;
-		gap: 1rem;
-		flex-wrap: wrap;
+	@media (min-width: 320px) {
+		.tower-weapon-simulator-container {
+			display: flex;
+			gap: 1rem;
+			flex-wrap: wrap;
+			width: 100%;
+			margin: 0 auto;
+		}
+	}
+
+	@media (min-width: 1312px) {
+		.tower-weapon-simulator-container {
+			width: 90%;
+		}
 	}
 </style>
