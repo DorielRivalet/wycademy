@@ -194,7 +194,7 @@ export const divaPrayerGems: {
 		id: 17,
 		name: ezlionSkillDivaPrayerGem[17],
 		description:
-			'Attack will go up based on the number of players in a quest. +10/20/30 True Raw increase if you are the only player.',
+			"Attack will go up based on the number of players in a quest. +10/20/30 True Raw increase if you are the only player. This is not affected by multipliers like Adrenaline, instead it's a flat addition.",
 		maxLevel: 3,
 		unused: false,
 		partyEffect: true,
