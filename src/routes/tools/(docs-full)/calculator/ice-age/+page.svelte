@@ -203,7 +203,7 @@
 				getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
 				getAOESigilTrueRaw(
 					inputNumberIceAgeCalculatorAOESigil,
-					inputIceAgeCalculatorAOESigilHunters,
+					Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
 				) +
 				inputNumberIceAgeCalculatorSRTrueRaw +
 				getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)) *
@@ -235,7 +235,7 @@
 		getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
 		getAOESigilTrueRaw(
 			inputNumberIceAgeCalculatorAOESigil,
-			inputIceAgeCalculatorAOESigilHunters,
+			Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
 		)
 	} + ${inputNumberIceAgeCalculatorSRTrueRaw} + ${getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)}) \\times ${inputNumberIceAgeCalculatorMonsterDefenseRate} \\times ${Number.parseInt(inputIceAgeCalculatorHunters)} \\rfloor`;
 
