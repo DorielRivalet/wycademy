@@ -97,6 +97,7 @@
 		otherDropdownItems,
 		elementalSkillsDropdownItems,
 		divaPrayerGemsDropdownItems,
+		getLengthAttackValue,
 	} from '$lib/client/modules/frontier/damage-calculator';
 	import { divaPrayerGems } from '$lib/client/modules/frontier/diva';
 	import {
@@ -2948,17 +2949,6 @@
 		);
 
 		return naturalAffinityTrueRaw + excessAffinityTrueRaw;
-	}
-
-	function getLengthAttackValue(outputLengthType: string, trueRaw: number) {
-		let result = trueRaw;
-		if (outputLengthType === 'Active') {
-			result = Math.ceil(trueRaw - (trueRaw * 0.07 + 0.7));
-		}
-		// else if (outputLengthType === 2) {
-		// 	result = Math.ceil(trueRaw - (trueRaw * 0.07 + 1));
-
-		return result;
 	}
 
 	function getObscurityValue(

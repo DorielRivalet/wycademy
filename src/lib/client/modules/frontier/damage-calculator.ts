@@ -1,5 +1,19 @@
 import type { DropdownItemOption } from './types';
 
+export function getLengthAttackValue(
+	outputLengthType: string,
+	trueRaw: number,
+) {
+	let result = trueRaw;
+	if (outputLengthType === 'Active') {
+		result = Math.ceil(trueRaw - (trueRaw * 0.07 + 0.7));
+	}
+	// else if (outputLengthType === 2) {
+	// 	result = Math.ceil(trueRaw - (trueRaw * 0.07 + 1));
+
+	return result;
+}
+
 export const blademasterDropdownItems: DropdownItemOption[] = [
 	{
 		name: 'Red (0.6x)',

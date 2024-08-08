@@ -27,6 +27,7 @@
 	import { display } from 'mathlifier';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
+	import { getLengthAttackValue } from '$lib/client/modules/frontier/damage-calculator';
 
 	type SigilSlot = {
 		type: FrontierSigilRecipeType;
@@ -81,7 +82,26 @@
 			inputNumberIceAgeCalculatorMonsterDefenseRate *
 			Number.parseInt(inputIceAgeCalculatorHunters),
 	);
+
+	$: attackA =
+		outputLengthUpTrueRaw +
+		(inputNumberSigil1Attack +
+			inputNumberSigil2Attack +
+			inputNumberSigil3Attack) +
+		inputNumberUnlimitedSigil +
+		outputZenithTotalAttack +
+		outputAOETotalAttack;
 */
+
+	function isLengthUpActive(
+		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
+	) {
+		const found = sigils.find((e) =>
+			e.values.find((v) => v.skill === 'Length Up' && v.value === 1),
+		);
+
+		return found ? 'Active' : 'None';
+	}
 
 	function getTotalSigilDamage(sigilSlot: SigilSlot) {
 		let result = { attack: 0, element: 0 };
@@ -541,6 +561,15 @@
 		const step = 1;
 		let data = [];
 
+		// Find the highest Weapon Up value
+		const highestWeaponUp = Math.max(
+			...sigils
+				.filter((slot) => slot.type === 'Standard' || slot.type === 'Unlimited')
+				.flatMap((slot) => slot.values)
+				.filter((skill) => skill.skill === 'Weapon Up')
+				.map((skill) => skill.value),
+		);
+
 		// Calculate constant damage from Standard and Unlimited sigils
 		const constantAttackDamage =
 			sigils.reduce((sum, slot) => {
@@ -548,10 +577,7 @@
 					return (
 						sum +
 						slot.values.reduce((slotSum, skill) => {
-							if (
-								skill.skill === 'Attack Slayer' ||
-								skill.skill === 'Weapon Up'
-							) {
+							if (skill.skill === 'Attack Slayer') {
 								return slotSum + skill.value;
 							}
 							return slotSum;
@@ -559,7 +585,9 @@
 					);
 				}
 				return sum;
-			}, 0) + weaponTrueRaw;
+			}, 0) +
+			weaponTrueRaw +
+			highestWeaponUp;
 
 		const constantElementalDamage =
 			sigils.reduce((sum, slot) => {
@@ -569,15 +597,15 @@
 						slot.values.reduce((slotSum, skill) => {
 							if (skill.skill === 'Elemental Slayer') {
 								return slotSum + skill.value * 10;
-							} else if (skill.skill === 'Weapon Up') {
-								return slotSum + skill.value * 100;
 							}
 							return slotSum;
 						}, 0)
 					);
 				}
 				return sum;
-			}, 0) + weaponElement;
+			}, 0) +
+			weaponElement +
+			highestWeaponUp * 100;
 
 		// Find Zenith sigils
 		const standardZenithSigil = sigils.find(
@@ -792,6 +820,11 @@
 
 	let zenithAOESigilHunters = '1';
 
+	$: outputLengthUpTrueRaw = getLengthAttackValue(
+		isLengthUpActive(sigils),
+		weaponTrueRaw,
+	);
+
 	$: sigilChartOptions = {
 		title: 'Sigil Damage',
 		theme: $theme,
@@ -819,7 +852,7 @@
 	$: sigilChartData = generateSigilChartData(
 		sigils,
 		questDurationInSeconds,
-		weaponTrueRaw,
+		outputLengthUpTrueRaw,
 		weaponElement,
 		Number.parseInt(zenithAOESigilHunters),
 		zenithInitialDelay,
@@ -855,8 +888,8 @@
 			<p class="spaced-paragraph">
 				Here you can compare sigils damage in order to decide which one to
 				equip. You can equip multiple Unlimited (UL) Sigils, but the Weapon Up
-				effect is only applied by the highest value and does not stack. The
-				Zenith Sigil values are averaged.
+				effect is only applied by the highest Weapon Up value and does not
+				stack. The Zenith Sigil values are averaged.
 			</p>
 			<div class="sigils">
 				{#each sigils as sigil, i}
@@ -990,6 +1023,9 @@
 					bind:weaponType={selectedWeaponType}
 					bind:value={inputNumberAttackValue}
 				/>
+				{#if isLengthUpActive(sigils) === 'Active'}
+					<p>({outputLengthUpTrueRaw} True Raw with Length Up)</p>
+				{/if}
 			</div>
 			<div class="extra-inputs">
 				<NumberInput
