@@ -3,12 +3,30 @@
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import { page } from '$app/stores';
-	import type { FrontierSigilRecipeType } from '$lib/client/modules/frontier/sigils';
-	import type { FrontierSigil } from 'ezlion';
+	import {
+		getAOESigilElement,
+		getAOESigilTrueRaw,
+		getZenithSigilElementMultiplier,
+		getZenithSigilProperty,
+		getZenithSigilTrueRaw,
+		type FrontierSigilRecipeType,
+	} from '$lib/client/modules/frontier/sigils';
+	import type { FrontierSigil, FrontierWeaponName } from 'ezlion';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
+	import { onMount, type ComponentType } from 'svelte';
+	import '@carbon/charts-svelte/styles.css';
+	import {
+		LineChart,
+		ScaleTypes,
+		type LineChartOptions,
+	} from '@carbon/charts-svelte';
+	import { theme } from '$lib/client/stores/theme';
+	import { display } from 'mathlifier';
+	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
+	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
 
 	type SigilSlot = {
 		type: FrontierSigilRecipeType;
@@ -65,11 +83,25 @@
 	);
 */
 
-	function getTotalSigilAttack(sigilSlot: SigilSlot) {}
+	function getTotalSigilDamage(sigilSlot: SigilSlot) {
+		let result = { attack: 0, element: 0 };
+		if (sigilSlot.type === 'Standard') {
+			sigilSlot.values.forEach((e) => {
+				if (e.skill === 'Attack Slayer') {
+					result.attack += e.value;
+				}
+			});
+		}
+		return result;
+	}
 
-	function getAllSigilsAttack(
+	function getAllSigilsDamage(
 		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
-	) {}
+	) {
+		const slot1Damage = getTotalSigilDamage(sigils[0]);
+		const slot2Damage = getTotalSigilDamage(sigils[1]);
+		const slot3Damage = getTotalSigilDamage(sigils[2]);
+	}
 
 	function getMaxValue(sigilSkill: FrontierSigil) {
 		switch (sigilSkill) {
@@ -204,7 +236,7 @@
 			case 'All Zenith AOEs':
 			case 'Weapon Up':
 			case '[Ranged] Attack':
-			case '[Ranged] Element':
+			case '[Ranged] Elemental':
 				return maxValue;
 			case 'Zenith Cooldown':
 				return maxCooldown;
@@ -343,7 +375,7 @@
 			case 'All Zenith AOEs':
 			case 'Weapon Up':
 			case '[Ranged] Attack':
-			case '[Ranged] Element':
+			case '[Ranged] Elemental':
 				return minValue;
 			case 'Attack Slayer':
 			case 'Elemental Slayer':
@@ -488,13 +520,194 @@
 			case 'All Zenith AOEs':
 			case 'Weapon Up':
 			case '[Ranged] Attack':
-			case '[Ranged] Element':
+			case '[Ranged] Elemental':
 				return invalidNumberValueText;
 			case 'Zenith Cooldown':
 				return invalidNumberCooldownText;
 			case 'Zenith Duration':
 				return invalidNumberDurationText;
 		}
+	}
+
+	function generateSigilChartData(
+		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
+		questDurationInSeconds: number,
+		weaponTrueRaw: number,
+		weaponElement: number,
+		hunters: number,
+		initialZenithSigilDelay: number,
+		zenithSigilDelay: number,
+	) {
+		const step = 1;
+		let data = [];
+
+		// Calculate constant damage from Standard and Unlimited sigils
+		const constantAttackDamage =
+			sigils.reduce((sum, slot) => {
+				if (slot.type === 'Standard' || slot.type === 'Unlimited') {
+					return (
+						sum +
+						slot.values.reduce((slotSum, skill) => {
+							if (
+								skill.skill === 'Attack Slayer' ||
+								skill.skill === 'Weapon Up'
+							) {
+								return slotSum + skill.value;
+							}
+							return slotSum;
+						}, 0)
+					);
+				}
+				return sum;
+			}, 0) + weaponTrueRaw;
+
+		const constantElementalDamage =
+			sigils.reduce((sum, slot) => {
+				if (slot.type === 'Standard' || slot.type === 'Unlimited') {
+					return (
+						sum +
+						slot.values.reduce((slotSum, skill) => {
+							if (skill.skill === 'Elemental Slayer') {
+								return slotSum + skill.value * 10;
+							} else if (skill.skill === 'Weapon Up') {
+								return slotSum + skill.value * 100;
+							}
+							return slotSum;
+						}, 0)
+					);
+				}
+				return sum;
+			}, 0) + weaponElement;
+
+		// Find Zenith sigils
+		const standardZenithSigil = sigils.find(
+			(slot) =>
+				slot.type === 'Zenith' &&
+				!slot.values.some((skill) => skill.skill === '[Ranged] Attack'),
+		);
+		const aoeZenithSigil = sigils.find(
+			(slot) =>
+				slot.type === 'Zenith AOE' &&
+				slot.values.some((skill) => skill.skill === '[Ranged] Attack'),
+		);
+
+		let zenithActive = false;
+		let zenithTimer = 0;
+		let zenithDuration = 0;
+		let zenithCooldown = 0;
+		let zenithAttackValue = 0;
+		let zenithElementalValue = 0;
+		let isAOEZenith = false;
+		let subsequentDelayTimer = 0;
+
+		if (standardZenithSigil && !aoeZenithSigil) {
+			zenithActive = true;
+			zenithAttackValue =
+				standardZenithSigil.values.find(
+					(skill) => skill.skill === 'Zenith Attack',
+				)?.value || 0;
+			zenithElementalValue =
+				standardZenithSigil.values.find(
+					(skill) => skill.skill === 'Zenith Elemental',
+				)?.value || 0;
+			zenithDuration = getZenithSigilProperty(
+				'duration',
+				'standard',
+				standardZenithSigil.values.find(
+					(skill) => skill.skill === 'Zenith Duration',
+				)?.value || 0,
+			);
+			zenithCooldown = getZenithSigilProperty(
+				'cooldown',
+				'standard',
+				standardZenithSigil.values.find(
+					(skill) => skill.skill === 'Zenith Cooldown',
+				)?.value || 0,
+			);
+		} else if (aoeZenithSigil && !standardZenithSigil) {
+			zenithActive = true;
+			isAOEZenith = true;
+			// Sum up all '[Ranged] Attack' values
+			zenithAttackValue = aoeZenithSigil.values
+				.filter((skill) => skill.skill === '[Ranged] Attack')
+				.reduce((sum, skill) => sum + (skill.value || 0), 0);
+
+			// Sum up all '[Ranged] Elemental' values
+			zenithElementalValue = aoeZenithSigil.values
+				.filter((skill) => skill.skill === '[Ranged] Elemental')
+				.reduce((sum, skill) => sum + (skill.value || 0), 0);
+			zenithDuration = getZenithSigilProperty('duration', 'aoe');
+			zenithCooldown = getZenithSigilProperty('cooldown', 'aoe');
+		}
+
+		// Generate data for the initial delay period
+		for (let second = 1; second < initialZenithSigilDelay; second++) {
+			if (second % step === 0) {
+				data.push({
+					group: 'True Raw',
+					seconds: second,
+					damage: constantAttackDamage,
+				});
+				data.push({
+					group: 'Element',
+					seconds: second,
+					damage: constantElementalDamage,
+				});
+			}
+		}
+
+		// Start the main loop from the initial delay
+		zenithActive = true; // Activate the sigil after the initial delay
+		for (
+			let second = initialZenithSigilDelay;
+			second <= questDurationInSeconds;
+			second++
+		) {
+			let attackDamage = constantAttackDamage;
+			let elementalDamage = constantElementalDamage;
+
+			// Calculate Zenith sigil contribution
+			if (zenithActive) {
+				if (isAOEZenith) {
+					attackDamage += getAOESigilTrueRaw(zenithAttackValue, hunters);
+					elementalDamage +=
+						getAOESigilElement(zenithElementalValue, hunters) || 0;
+				} else {
+					attackDamage += getZenithSigilTrueRaw(zenithAttackValue);
+					elementalDamage *=
+						getZenithSigilElementMultiplier(zenithElementalValue);
+				}
+				zenithTimer++;
+				if (zenithTimer >= zenithDuration) {
+					zenithActive = false;
+					zenithTimer = 0;
+					subsequentDelayTimer = 0;
+				}
+			} else if (zenithDuration > 0) {
+				zenithTimer++;
+				if (zenithTimer >= zenithCooldown) {
+					subsequentDelayTimer++;
+					if (subsequentDelayTimer >= zenithSigilDelay) {
+						zenithActive = true;
+						zenithTimer = 0;
+					}
+				}
+			}
+
+			if (second % step === 0) {
+				data.push({
+					group: 'True Raw',
+					seconds: second,
+					damage: attackDamage,
+				});
+				data.push({
+					group: 'Element',
+					seconds: second,
+					damage: elementalDamage,
+				});
+			}
+		}
+		return data;
 	}
 
 	const maxValue = 15;
@@ -573,9 +786,57 @@
 		},
 	];
 
-	let zenithApplyDelay = 10;
+	let zenithApplyDelay = 5;
+	let zenithInitialDelay = 10;
+	let questDurationInSeconds = 300;
 
 	let zenithAOESigilHunters = '1';
+
+	$: sigilChartOptions = {
+		title: 'Sigil Damage',
+		theme: $theme,
+		height: '400px',
+		points: { enabled: false },
+		legend: { enabled: false },
+		axes: {
+			bottom: {
+				title: 'Seconds',
+				mapsTo: 'seconds',
+				scaleType: ScaleTypes.LINEAR,
+				domain: [1, questDurationInSeconds],
+			},
+			left: {
+				mapsTo: 'damage',
+				title: 'Damage',
+				scaleType: ScaleTypes.LINEAR,
+			},
+		},
+	} as LineChartOptions;
+
+	let weaponTrueRaw = 1500;
+	let weaponElement = 1500;
+
+	$: sigilChartData = generateSigilChartData(
+		sigils,
+		questDurationInSeconds,
+		weaponTrueRaw,
+		weaponElement,
+		Number.parseInt(zenithAOESigilHunters),
+		zenithInitialDelay,
+		zenithApplyDelay,
+	);
+
+	let sigilChartLoaded = false;
+	let sigilChart: ComponentType<LineChart>;
+
+	let selectedWeaponType: FrontierWeaponName = 'Sword and Shield';
+	let inputNumberAttackValue = 100;
+
+	onMount(async () => {
+		const charts = await import('@carbon/charts-svelte');
+		sigilChart = charts.LineChart;
+		sigilChartLoaded = true;
+	});
 </script>
 
 <svelte:head>
@@ -594,7 +855,8 @@
 			<p class="spaced-paragraph">
 				Here you can compare sigils damage in order to decide which one to
 				equip. You can equip multiple Unlimited (UL) Sigils, but the Weapon Up
-				effect is only applied by the highest value and does not stack.
+				effect is only applied by the highest value and does not stack. The
+				Zenith Sigil values are averaged.
 			</p>
 			<div class="sigils">
 				{#each sigils as sigil, i}
@@ -700,13 +962,74 @@
 					</div>
 				{/each}
 			</div>
+			<div class="weapon-type">
+				<Dropdown
+					titleText="Weapon Type"
+					bind:selectedId={selectedWeaponType}
+					items={[
+						{
+							id: 'Sword and Shield',
+							text: 'Sword and Shield',
+						},
+						{ id: 'Dual Swords', text: 'Dual Swords' },
+						{ id: 'Great Sword', text: 'Great Sword' },
+						{ id: 'Long Sword', text: 'Long Sword' },
+						{ id: 'Hammer', text: 'Hammer' },
+						{ id: 'Hunting Horn', text: 'Hunting Horn' },
+						{ id: 'Lance', text: 'Lance' },
+						{ id: 'Gunlance', text: 'Gunlance' },
+						{ id: 'Tonfa', text: 'Tonfa' },
+						{ id: 'Switch Axe F', text: 'Switch Axe F' },
+						{ id: 'Magnet Spike', text: 'Magnet Spike' },
+						{ id: 'Light Bowgun', text: 'Light Bowgun' },
+						{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
+						{ id: 'Bow', text: 'Bow' },
+					]}
+				/>
+				<TrueRawConverter
+					bind:weaponType={selectedWeaponType}
+					bind:value={inputNumberAttackValue}
+				/>
+			</div>
 			<div class="extra-inputs">
+				<NumberInput
+					size="sm"
+					step={100}
+					min={0}
+					max={8000}
+					bind:value={weaponTrueRaw}
+					invalidText={'Invalid value.'}
+					label={`Weapon True Raw`}
+				/>
+				<NumberInput
+					size="sm"
+					step={100}
+					min={0}
+					max={2550}
+					bind:value={weaponElement}
+					invalidText={'Invalid value.'}
+					label={`Weapon Element`}
+				/>
+				<NumberInput
+					step={1}
+					min={1}
+					bind:value={questDurationInSeconds}
+					invalidText={'Invalid value.'}
+					label={`Quest Duration in Seconds`}
+				/>
+				<NumberInput
+					step={1}
+					min={0}
+					bind:value={zenithInitialDelay}
+					invalidText={'Invalid value.'}
+					label={`Zenith Sigil First Activation Delay in Seconds`}
+				/>
 				<NumberInput
 					step={1}
 					min={0}
 					bind:value={zenithApplyDelay}
 					invalidText={'Invalid value.'}
-					label={`Zenith Sigil Activation Delay`}
+					label={`Zenith Sigil Activation Delay in Seconds`}
 				/>
 				<Dropdown
 					titleText="AOE Sigil Hunters"
@@ -737,6 +1060,17 @@
 						iconType="file"
 					/> 0 (0+0+0)
 				</p>
+			</div>
+			<div class="chart">
+				{#if sigilChartLoaded}
+					<svelte:component
+						this={sigilChart}
+						data={sigilChartData}
+						options={sigilChartOptions}
+					/>
+				{:else}
+					<Loading withOverlay={false} />
+				{/if}
 			</div>
 		</div>
 		<div class="page-turn">
@@ -792,5 +1126,21 @@
 		padding: 1rem;
 		margin-top: 2rem;
 		max-width: max-content;
+	}
+
+	.formula-container {
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+	}
+
+	.chart {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.weapon-type {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
 	}
 </style>

@@ -427,6 +427,7 @@ export const sigilsRecipes = [
 	'Z Premium Sigil 3',
 ];
 
+// NOTE: wrong on legacy calc
 export function getZenithSigilTrueRaw(value: number) {
 	if (value > 0) {
 		return 20 * value + 30;
@@ -435,9 +436,10 @@ export function getZenithSigilTrueRaw(value: number) {
 	}
 }
 
-export function getAOESigilTrueRaw(value: number, hunters: string) {
+// NOTE: wrong on legacy calc
+export function getAOESigilTrueRaw(value: number, hunters: number) {
 	if (value > 0) {
-		return (25 + value * 5) * Number.parseInt(hunters);
+		return (25 + value * 5) * hunters;
 	} else {
 		return 0;
 	}
@@ -445,24 +447,51 @@ export function getAOESigilTrueRaw(value: number, hunters: string) {
 
 export function getZenithSigilElementMultiplier(value: number) {
 	if (value > 0) {
-		return 1 + (1.3 + value) * 0.1;
+		return 1.3 + value * 0.1;
+		// NOTE: wrong on legacy calc
+		//return 1 + (1.3 + value) * 0.1;
 	} else {
 		return 1;
 	}
 }
 
+// NOTE: wrong on legacy calc
 export function getAOESigilElement(value: number, hunters: number) {
 	if (hunters === 0 || value === 0) {
-		return;
+		return 0;
 	} else {
 		return (50 + value * 50) * hunters;
 	}
 }
 
-export const zenithAOESigilBaseDuration = 20;
-export const zenithAOESigilBaseCooldown = 120;
-export const zenithSigilBaseDuration = 15;
-export const zenithSigilBaseCooldown = 120;
+export function getZenithSigilProperty(
+	propertyName: 'duration' | 'cooldown',
+	sigilType: 'standard' | 'aoe',
+	value?: number,
+) {
+	const zenithSigilBaseDuration = 15;
+	const zenithAOESigilBaseDuration = 20;
+
+	const zenithSigilBaseCooldown = 120;
+	const zenithAOESigilBaseCooldown = 120;
+
+	switch (propertyName) {
+		default:
+			return 1;
+		case 'duration':
+			if (sigilType === 'standard') {
+				return zenithSigilBaseDuration + (value || 0);
+			} else {
+				return zenithAOESigilBaseDuration;
+			}
+		case 'cooldown':
+			if (sigilType === 'standard') {
+				return zenithSigilBaseCooldown - (value || 0);
+			} else {
+				return zenithAOESigilBaseCooldown;
+			}
+	}
+}
 
 export const sigilsInfo: {
 	tree: FrontierSigil;
