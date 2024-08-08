@@ -28,6 +28,7 @@
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
 	import { getLengthAttackValue } from '$lib/client/modules/frontier/damage-calculator';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 
 	type SigilSlot = {
 		type: FrontierSigilRecipeType;
@@ -1018,6 +1019,50 @@
 	let selectedWeaponType: FrontierWeaponName = 'Sword and Shield';
 	let inputNumberAttackValue = 2100;
 
+	let inputZenithSigilAttackValue = 15;
+	let inputZenithSigilElementValue = 15;
+	let inputZenithSigilAOEAttackValue = 15;
+	let inputZenithSigilAOEElementValue = 15;
+	let inputZenithSigilAOEHunterCount = '1';
+	let inputZenithSigilWeaponElement = 2550;
+
+	const formulaZenithSigilTrueRaw = display(
+		`\\begin{equation*} \\text{Zenith Sigil True Raw} = \\begin{cases} 0 & \\text{if } x <= 0 \\\\ 20x + 30 & \\text{otherwise} \\end{cases} \\end{equation*}`,
+	);
+
+	$: outputZenithSigilTrueRaw = getZenithSigilTrueRaw(
+		inputZenithSigilAttackValue,
+	);
+
+	const formulaZenithSigilAOETrueRaw = display(
+		`\\begin{equation*} \\text{Zenith Sigil AOE True Raw} = \\begin{cases} 0 & \\text{if } x <= 0 \\\\ (5x + 25) \\times n & \\text{otherwise} \\end{cases} \\end{equation*}`,
+	);
+
+	$: outputZenithSigilAOETrueRaw = getAOESigilTrueRaw(
+		inputZenithSigilAOEAttackValue,
+		Number.parseInt(inputZenithSigilAOEHunterCount),
+	);
+
+	const formulaZenithSigilElement = display(
+		`\\begin{equation*} \\text{Zenith Sigil Element} = \\begin{cases} 0 & \\text{if } x <= 0 \\\\ ((0.1x + 1.3) \\times \\text{weaponElement}) - \\text{weaponElement} & \\text{otherwise} \\end{cases} \\end{equation*}`,
+	);
+
+	$: outputZenithSigilElement =
+		inputZenithSigilElementValue > 0
+			? (1.3 + inputZenithSigilElementValue * 0.1) *
+					inputZenithSigilWeaponElement -
+				inputZenithSigilWeaponElement
+			: 0;
+
+	const formulaZenithSigilAOEElement = display(
+		`\\begin{equation*} \\text{Zenith Sigil AOE Element} = \\begin{cases} 0 & \\text{if } x <= 0 \\\\ (50x + 50) \\times n & \\text{otherwise} \\end{cases} \\end{equation*}`,
+	);
+
+	$: outputZenithSigilAOEElement = getAOESigilElement(
+		inputZenithSigilAOEElementValue,
+		Number.parseInt(inputZenithSigilAOEHunterCount),
+	);
+
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
 		sigilChart = charts.LineChart;
@@ -1285,6 +1330,87 @@
 					{@html display(formulaValuesSigilElement)}
 				</div>
 			</div>
+
+			<section>
+				<SectionHeading level={2} title="Zenith Sigils Formulas" />
+				<div>
+					<div class="extra-inputs">
+						<NumberInput
+							size="sm"
+							step={1}
+							min={0}
+							max={15}
+							bind:value={inputZenithSigilAttackValue}
+							invalidText={'Invalid value.'}
+							label="Zenith Sigil Attack"
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={0}
+							max={15}
+							bind:value={inputZenithSigilElementValue}
+							invalidText={'Invalid value.'}
+							label="Zenith Sigil Element"
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={0}
+							max={15}
+							bind:value={inputZenithSigilAOEAttackValue}
+							invalidText={'Invalid value.'}
+							label="Zenith Sigil AOE Attack"
+						/>
+						<NumberInput
+							size="sm"
+							step={1}
+							min={0}
+							max={15}
+							bind:value={inputZenithSigilAOEElementValue}
+							invalidText={'Invalid value.'}
+							label="Zenith Sigil AOE Element"
+						/>
+						<NumberInput
+							size="sm"
+							step={100}
+							min={0}
+							max={2550}
+							bind:value={inputZenithSigilWeaponElement}
+							invalidText={'Invalid value.'}
+							label={`Weapon Element`}
+						/>
+						<Dropdown
+							titleText="AOE Sigil Hunters"
+							bind:selectedId={inputZenithSigilAOEHunterCount}
+							items={[
+								{ id: '1', text: '1 Hunter' },
+								{ id: '2', text: '2 Hunters' },
+								{ id: '3', text: '3 Hunters' },
+								{ id: '4', text: '4 Hunters' },
+							]}
+						/>
+					</div>
+					<div class="formula-container">
+						{@html formulaZenithSigilTrueRaw}
+					</div>
+					<div class="formula-container">
+						{@html formulaZenithSigilElement}
+					</div>
+					<div class="formula-container">
+						{@html formulaZenithSigilAOETrueRaw}
+					</div>
+					<div class="formula-container">
+						{@html formulaZenithSigilAOEElement}
+					</div>
+					<div>
+						<p>Zenith Sigil True Raw: {outputZenithSigilTrueRaw}</p>
+						<p>Zenith Sigil Element: {outputZenithSigilElement}</p>
+						<p>Zenith Sigil AOE True Raw: {outputZenithSigilAOETrueRaw}</p>
+						<p>Zenith Sigil AOE Element: {outputZenithSigilAOEElement}</p>
+					</div>
+				</div>
+			</section>
 		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
