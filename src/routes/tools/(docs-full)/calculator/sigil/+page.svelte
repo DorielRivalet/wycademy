@@ -57,6 +57,10 @@
 	// 		10,
 	// );
 
+	const formulaSigilElement = display(
+		`\\text{Sigil Total True Element} = \\lfloor \\frac{(\\text{weaponElement} + \\text{sigilElement} \\times 10 + \\text{UnlimitedSigilElement} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputZenithElementMultiplier}}{10} \\rfloor`,
+	);
+
 	// attackFormula =
 	// 	outputLengthUpTrueRaw +
 	// 	(sigilSkill1Attack +
@@ -66,6 +70,30 @@
 	// 	outputZenithTotalAttack +
 	// 	outputAOETotalAttack;
 
+	const formulaSigilTrueRaw = display(
+		`\\text{Sigil Total True Raw} = \\text{outputLengthUpTrueRaw} + \\text{sigilAttack} + \\text{UnlimitedSigilAttack} + \\text{outputZenithTotalAttack} + \\text{outputAOETotalAttack}`,
+	);
+
+	$: totalSigilTrueRaw =
+		sigilChartData.totalTrueRaw.lengthUpTrueRaw +
+		sigilChartData.totalTrueRaw.sigilAttack +
+		sigilChartData.totalTrueRaw.unlimitedSigilAttack +
+		sigilChartData.totalTrueRaw.zenithAttack +
+		sigilChartData.totalTrueRaw.zenithAOEAttack;
+
+	$: formulaValuesSigilTrueRaw = `${totalSigilTrueRaw} = ${sigilChartData.totalTrueRaw.lengthUpTrueRaw} + ${sigilChartData.totalTrueRaw.sigilAttack} + ${sigilChartData.totalTrueRaw.unlimitedSigilAttack} + ${sigilChartData.totalTrueRaw.zenithAttack} + ${sigilChartData.totalTrueRaw.zenithAOEAttack}`;
+
+	$: totalSigilElement = Math.floor(
+		((sigilChartData.totalElement.weaponElement +
+			sigilChartData.totalElement.sigilElement * 10 +
+			sigilChartData.totalElement.unlimitedSigilElement * 10 +
+			sigilChartData.totalElement.zenithAOEElement) *
+			sigilChartData.totalElement.zenithElementMultiplier) /
+			10,
+	);
+
+	$: formulaValuesSigilElement = `${totalSigilElement} = \\lfloor \\frac{(${sigilChartData.totalElement.weaponElement} + ${sigilChartData.totalElement.sigilElement} \\times 10 + ${sigilChartData.totalElement.unlimitedSigilElement} \\times 10 + ${sigilChartData.totalElement.zenithAOEElement}) \\times ${sigilChartData.totalElement.zenithElementMultiplier}}{${10}} \\rfloor`;
+
 	function isLengthUpActive(
 		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
 	) {
@@ -74,28 +102,6 @@
 		);
 
 		return found ? 'Active' : 'None';
-	}
-
-	function getTotalSigilDamage(sigilSlot: SigilSlot) {
-		let result = { attack: 0, element: 0 };
-		if (sigilSlot.type === 'Standard' || sigilSlot.type === 'Unlimited') {
-			sigilSlot.values.forEach((e) => {
-				if (e.skill === 'Attack Slayer') {
-					result.attack += e.value;
-				} else if (e.skill === 'Elemental Slayer') {
-					result.element += e.value * 10;
-				}
-			});
-		}
-		return result;
-	}
-
-	function getAllSigilsDamage(
-		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
-	) {
-		const slot1Damage = getTotalSigilDamage(sigils[0]);
-		const slot2Damage = getTotalSigilDamage(sigils[1]);
-		const slot3Damage = getTotalSigilDamage(sigils[2]);
 	}
 
 	function getMaxValue(sigilSkill: FrontierSigil) {
@@ -606,16 +612,36 @@
 		let sigilAttackContributions = [0, 0, 0];
 		let sigilElementContributions = [0, 0, 0];
 
+		let totalTrueRaw = {
+			lengthUpTrueRaw: outputLengthUpTrueRaw,
+			sigilAttack: 0,
+			unlimitedSigilAttack: 0,
+			zenithAttack: 0,
+			zenithAOEAttack: 0,
+		};
+
+		let totalElement = {
+			weaponElement: weaponElement,
+			sigilElement: 0,
+			unlimitedSigilElement: 0,
+			zenithElementMultiplier: 1,
+			zenithAOEElement: 0,
+		};
+
 		// Loop through each sigil to calculate its contributions
 		sigils.forEach((sigil, index) => {
 			sigil.values.forEach((skill) => {
 				if (skill.skill === 'Attack Slayer') {
 					sigilAttackContributions[index] += skill.value;
+					totalTrueRaw.sigilAttack += skill.value;
 				} else if (skill.skill === 'Weapon Up') {
 					sigilAttackContributions[index] += skill.value;
 					sigilElementContributions[index] += skill.value * 10;
+					totalTrueRaw.unlimitedSigilAttack += skill.value;
+					totalElement.unlimitedSigilElement += skill.value;
 				} else if (skill.skill === 'Elemental Slayer') {
 					sigilElementContributions[index] += skill.value * 10; // Assuming a factor of 10 for elemental damage
+					totalElement.sigilElement += skill.value;
 				}
 			});
 
@@ -655,11 +681,23 @@
 			// Calculate Zenith sigil contribution
 			if (isAOEZenith) {
 				attackDamage += getAOESigilTrueRaw(zenithAttackValue, hunters);
-				elementalDamage +=
-					getAOESigilElement(zenithElementalValue, hunters) || 0;
+				elementalDamage += getAOESigilElement(zenithElementalValue, hunters);
+
+				totalTrueRaw.zenithAOEAttack += getAOESigilTrueRaw(
+					zenithAttackValue,
+					hunters,
+				);
+				totalElement.zenithAOEElement += getAOESigilElement(
+					zenithElementalValue,
+					hunters,
+				);
 			} else {
 				attackDamage += getZenithSigilTrueRaw(zenithAttackValue);
 				elementalDamage *=
+					getZenithSigilElementMultiplier(zenithElementalValue);
+
+				totalTrueRaw.zenithAttack += getZenithSigilTrueRaw(zenithAttackValue);
+				totalElement.zenithElementMultiplier =
 					getZenithSigilElementMultiplier(zenithElementalValue);
 			}
 
@@ -822,6 +860,8 @@
 			averageElementalDamage,
 			sigilAttackContributions,
 			sigilElementContributions,
+			totalTrueRaw,
+			totalElement,
 		};
 	}
 
@@ -1202,6 +1242,20 @@
 					<Loading withOverlay={false} />
 				{/if}
 			</div>
+			<div class="sigil-attack-formula">
+				<div class="formula-container">
+					{@html formulaSigilTrueRaw}
+				</div>
+				<div class="formula-container">
+					{@html display(formulaValuesSigilTrueRaw)}
+				</div>
+				<div class="formula-container">
+					{@html formulaSigilElement}
+				</div>
+				<div class="formula-container">
+					{@html display(formulaValuesSigilElement)}
+				</div>
+			</div>
 		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
@@ -1261,6 +1315,18 @@
 	.formula-container {
 		margin-bottom: 1rem;
 		margin-top: 1rem;
+	}
+
+	@media (min-width: 320px) {
+		.formula-container {
+			max-width: 95vw;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		.formula-container {
+			max-width: 80vw;
+		}
 	}
 
 	.chart {
