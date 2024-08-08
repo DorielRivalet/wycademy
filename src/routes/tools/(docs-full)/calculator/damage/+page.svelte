@@ -128,6 +128,13 @@
 		hitzoneInfo,
 	} from '$lib/client/modules/frontier/hitzones';
 	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
+	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
+	import {
+		getAOESigilElement,
+		getAOESigilTrueRaw,
+		getZenithSigilElementMultiplier,
+		getZenithSigilTrueRaw,
+	} from '$lib/client/modules/frontier/sigils';
 
 	type DataTableKey = string;
 
@@ -3917,10 +3924,9 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 		inputNumberTrueRaw * outputCaravanMultiplier,
 	);
 
-	$: outputZenithTotalAttack =
-		inputNumberZenithAttackSigil === 0
-			? 0
-			: 30 + 20 * inputNumberZenithAttackSigil;
+	$: outputZenithTotalAttack = getZenithSigilTrueRaw(
+		inputNumberZenithAttackSigil,
+	);
 
 	$: outputAOEAttackCount =
 		sigilDropdownItems.find((item) => item.name === inputAoeAttackSigil)
@@ -3930,7 +3936,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	$: outputAOETotalAttack =
 		outputAOEAttackCount === 0 || inputNumberAOEAttackSigil === 0
 			? 0
-			: (25 + inputNumberAOEAttackSigil * 5) * outputAOEAttackCount;
+			: getAOESigilTrueRaw(inputNumberAOEAttackSigil, outputAOEAttackCount);
 
 	$: outputAOETotalElementCount =
 		sigilDropdownItems.find((item) => item.name === inputAoeElementSigil)
@@ -4789,10 +4795,10 @@ does not get multiplied by horn */
 				);
 
 	/** This should be the correct one, not 50 * count + 50 * value. aoeEle*/
-	$: outputAOETotalElement =
-		outputAOETotalElementCount === 0 || inputNumberAOEElementSigil === 0
-			? 0
-			: (50 + inputNumberAOEElementSigil * 50) * outputAOETotalElementCount;
+	$: outputAOETotalElement = getAOESigilElement(
+		inputNumberAOEElementSigil,
+		outputAOETotalElementCount,
+	);
 
 	$: fireValueMultiplier = getElementMultiplier('Fire', inputElement);
 	$: waterValueMultiplier = getElementMultiplier('Water', inputElement);
@@ -4918,10 +4924,9 @@ does not get multiplied by horn */
 			outputSharpnessMultiplier,
 	);
 
-	$: outputZenithElementMultiplier =
-		inputNumberZenithElementSigil === 0
-			? 1
-			: 1 + (1.3 + inputNumberZenithElementSigil) * 0.1;
+	$: outputZenithElementMultiplier = getZenithSigilElementMultiplier(
+		inputNumberZenithElementSigil,
+	);
 
 	$: outputAttackCeiling = Math.ceil(
 		(Math.floor(outputFlatAdditions + outputMultipliers) - 800) / 40,
@@ -6033,30 +6038,10 @@ does not get multiplied by horn */
 							href="#saving-and-loading">in a section below.</Link
 						>
 					</p>
-					<div class="true-raw-converter">
-						<p>Attack Display Value to True Raw Converter:</p>
-						<div class="flex-row-centered">
-							<div class="number-input-container">
-								<NumberInput
-									size="sm"
-									step={10}
-									min={minimumNumberValue}
-									max={maximumNumberValue}
-									bind:value={inputNumberAttackValue}
-									invalidText={invalidNumberValueText}
-									label={'Weapon Attack Display Value'}
-								/>
-							</div>
-							<p>
-								True Raw: {Math.floor(
-									inputNumberAttackValue /
-										(WeaponTypes.find((e) => e.name === inputWeaponType)
-											?.bloatAttackMultiplier ?? 1),
-								)}
-							</p>
-						</div>
-					</div>
-
+					<TrueRawConverter
+						bind:weaponType={inputWeaponType}
+						bind:value={inputNumberAttackValue}
+					/>
 					<div>
 						<Accordion>
 							<AccordionItem open title="Inputs">
@@ -9376,6 +9361,16 @@ does not get multiplied by horn */
 						<ListItem>
 							<p>
 								Extra table columns may show depending on the selected element.
+							</p>
+						</ListItem>
+						<ListItem>
+							<p>
+								The damage from Zenith Sigils assume a constant duration with no
+								cooldown, thus not the average damage. To check the average
+								damage of such, see our <Link
+									href="/tools/calculator/sigil"
+									inline>Sigils Calculator.</Link
+								>
 							</p>
 						</ListItem>
 					</UnorderedList>

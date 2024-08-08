@@ -893,13 +893,16 @@
 						</Dropdown>
 					</div>
 					<div class="flex-centered flex-column">
-						<ImageDialog
-							width={195}
-							height={200}
-							src={towerWeaponImage}
-							alt="Tower Weapon"
-							type="file"
-						/>
+						<div class="tower-weapon-image">
+							<ImageDialog
+								width={195}
+								height={200}
+								src={towerWeaponImage}
+								alt="Tower Weapon"
+								type="file"
+							/>
+						</div>
+
 						<div class="tower-weapon-slots-container">
 							{#each towerWeaponSlots as weaponSlot}
 								<img src={weaponSlot.image} alt="Tower Weapon Slot" />
@@ -1621,5 +1624,9 @@
 		.tower-weapon-simulator-container {
 			width: 90%;
 		}
+	}
+
+	.tower-weapon-image {
+		margin-top: 0.5rem;
 	}
 </style>

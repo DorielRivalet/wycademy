@@ -1325,6 +1325,10 @@
 								figcaption="Using an AOE Zenith Sigil triggers the Smoke Bomb
 							animation, activating the buffs on the sigil when inside the dome."
 							/>
+							<p>
+								All effects of the sigil are active at the same time when inside
+								the dome, and multiple values of the same effect stack.
+							</p>
 						</div>
 					</section>
 				</div>
