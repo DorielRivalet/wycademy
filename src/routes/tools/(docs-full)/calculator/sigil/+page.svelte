@@ -1021,10 +1021,10 @@
 
 	let inputZenithSigilAttackValue = 15;
 	let inputZenithSigilElementValue = 15;
-	let inputZenithSigilAOEAttackValue = 15;
-	let inputZenithSigilAOEElementValue = 15;
+	let inputZenithSigilAOEAttackValue = 45;
+	let inputZenithSigilAOEElementValue = 45;
 	let inputZenithSigilAOEHunterCount = '1';
-	let inputZenithSigilWeaponElement = 2550;
+	let inputZenithSigilWeaponElement = 1500;
 
 	const formulaZenithSigilTrueRaw = display(
 		`\\begin{equation*} \\text{Zenith Sigil True Raw} = \\begin{cases} 0 & \\text{if } x <= 0 \\\\ 20x + 30 & \\text{otherwise} \\end{cases} \\end{equation*}`,
@@ -1357,7 +1357,7 @@
 							size="sm"
 							step={1}
 							min={0}
-							max={15}
+							max={45}
 							bind:value={inputZenithSigilAOEAttackValue}
 							invalidText={'Invalid value.'}
 							label="Zenith Sigil AOE Attack"
@@ -1366,7 +1366,7 @@
 							size="sm"
 							step={1}
 							min={0}
-							max={15}
+							max={45}
 							bind:value={inputZenithSigilAOEElementValue}
 							invalidText={'Invalid value.'}
 							label="Zenith Sigil AOE Element"
