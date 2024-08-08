@@ -1074,6 +1074,7 @@
 	function getWeaponSectionMotionValues(
 		weaponName: FrontierWeaponName,
 		section: string,
+		inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle,
 		inputTextInputs: string,
 		isSharedMotionSection = false,
 	) {
@@ -3706,6 +3707,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	$: sharedMotionValues = getWeaponSectionMotionValues(
 		inputWeaponType,
 		'Shared',
+		inputWeaponMotionValuesSectionStyle,
 		inputTextInputs,
 		true,
 	);
@@ -4921,6 +4923,7 @@ does not get multiplied by horn */
 	$: weaponSections = getWeaponSectionMotionValues(
 		inputWeaponType,
 		inputWeaponMotionValuesSection,
+		inputWeaponMotionValuesSectionStyle,
 		inputTextInputs,
 	);
 
@@ -9267,6 +9270,7 @@ does not get multiplied by horn */
 											(weaponSections = getWeaponSectionMotionValues(
 												inputWeaponType,
 												inputWeaponMotionValuesSection,
+												inputWeaponMotionValuesSectionStyle,
 												inputTextInputs,
 											))}
 									/>
