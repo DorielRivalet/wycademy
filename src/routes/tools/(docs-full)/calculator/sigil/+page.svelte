@@ -46,52 +46,25 @@
 		return invalid;
 	}
 
-	/*
-	$: internalDragon = Math.floor(
-		(((inputNumberElementalValueReplacement +
-			inputNumberSigil1Element * 10 +
-			inputNumberSigil2Element * 10 +
-			inputNumberSigil3Element * 10 +
-			inputNumberUnlimitedSigil * 10 +
-			outputAOETotalElement) *
-			outputDragonMultiplier *
-			outputZenithElementMultiplier *
-			outputElementalAttackMultiplier *
-			outputHHElementalSongMultiplier *
-			outputWeaponElementMultiplier *
-			outputFuriousMultiplier *
-			getElementMultiplier('Dragon', inputElement)) /
-			10) *
-			outputSharpnessMultiplier,
-	);
+	// eleFormula = Math.floor(
+	// 	((weaponElement +
+	// 		sigilSkill1Element * 10 +
+	// 		sigilSkill2Element * 10 +
+	// 		sigilSkill3Element * 10 +
+	// 		UnlimitedSigilElement * 10 +
+	// 		outputAOETotalElement) *
+	// 		outputZenithElementMultiplier) /
+	// 		10,
+	// );
 
-		$: iceAgeCalculatorDamagePerSecond = Math.floor(
-		getIceAgeBaseMultiplier(inputIceAgeCalculatorStage) *
-			(inputNumberIceAgeCalculatorWeaponTrueRaw +
-				inputNumberIceAgeCalculatorSigil1TrueRaw +
-				inputNumberIceAgeCalculatorSigil2TrueRaw +
-				inputNumberIceAgeCalculatorSigil3TrueRaw +
-				inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
-				getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
-				getAOESigilTrueRaw(
-					inputNumberIceAgeCalculatorAOESigil,
-					inputIceAgeCalculatorAOESigilHunters,
-				) +
-				inputNumberIceAgeCalculatorSRTrueRaw +
-				getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)) *
-			inputNumberIceAgeCalculatorMonsterDefenseRate *
-			Number.parseInt(inputIceAgeCalculatorHunters),
-	);
-
-	$: attackA =
-		outputLengthUpTrueRaw +
-		(inputNumberSigil1Attack +
-			inputNumberSigil2Attack +
-			inputNumberSigil3Attack) +
-		inputNumberUnlimitedSigil +
-		outputZenithTotalAttack +
-		outputAOETotalAttack;
-*/
+	// attackFormula =
+	// 	outputLengthUpTrueRaw +
+	// 	(sigilSkill1Attack +
+	// 	sigilSkill2Attack +
+	// 	sigilSkill3Attack) +
+	// 	UnlimitedSigilAttack +
+	// 	outputZenithTotalAttack +
+	// 	outputAOETotalAttack;
 
 	function isLengthUpActive(
 		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
@@ -105,10 +78,12 @@
 
 	function getTotalSigilDamage(sigilSlot: SigilSlot) {
 		let result = { attack: 0, element: 0 };
-		if (sigilSlot.type === 'Standard') {
+		if (sigilSlot.type === 'Standard' || sigilSlot.type === 'Unlimited') {
 			sigilSlot.values.forEach((e) => {
 				if (e.skill === 'Attack Slayer') {
 					result.attack += e.value;
+				} else if (e.skill === 'Elemental Slayer') {
+					result.element += e.value * 10;
 				}
 			});
 		}
@@ -549,29 +524,24 @@
 		}
 	}
 
-	function generateSigilChartData(
+	function getHighestWeaponUp(
 		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
-		questDurationInSeconds: number,
-		weaponTrueRaw: number,
-		weaponElement: number,
-		hunters: number,
-		initialZenithSigilDelay: number,
-		zenithSigilDelay: number,
 	) {
-		const step = 1;
-		let data = [];
-
-		// Find the highest Weapon Up value
-		const highestWeaponUp = Math.max(
+		return Math.max(
 			...sigils
 				.filter((slot) => slot.type === 'Standard' || slot.type === 'Unlimited')
 				.flatMap((slot) => slot.values)
 				.filter((skill) => skill.skill === 'Weapon Up')
 				.map((skill) => skill.value),
 		);
+	}
 
-		// Calculate constant damage from Standard and Unlimited sigils
-		const constantAttackDamage =
+	function getConstantAttack(
+		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
+		weaponTrueRaw: number,
+		highestWeaponUp: number,
+	) {
+		return (
 			sigils.reduce((sum, slot) => {
 				if (slot.type === 'Standard' || slot.type === 'Unlimited') {
 					return (
@@ -587,9 +557,16 @@
 				return sum;
 			}, 0) +
 			weaponTrueRaw +
-			highestWeaponUp;
+			highestWeaponUp
+		);
+	}
 
-		const constantElementalDamage =
+	function getConstantElement(
+		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
+		weaponElement: number,
+		highestWeaponUp: number,
+	) {
+		return (
 			sigils.reduce((sum, slot) => {
 				if (slot.type === 'Standard' || slot.type === 'Unlimited') {
 					return (
@@ -605,19 +582,110 @@
 				return sum;
 			}, 0) +
 			weaponElement +
-			highestWeaponUp * 100;
+			highestWeaponUp * 10
+		);
+	}
+
+	function generateSigilChartData(
+		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
+		questDurationInSeconds: number,
+		weaponTrueRaw: number,
+		weaponElement: number,
+		hunters: number,
+		initialZenithSigilDelay: number,
+		zenithSigilDelay: number,
+	) {
+		const step = 1;
+		let data = [];
+
+		// Initialize variables to track total damage
+		let totalAttackDamage = 0;
+		let totalElementalDamage = 0;
+
+		// Arrays to store individual sigil contributions
+		let sigilAttackContributions = [0, 0, 0];
+		let sigilElementContributions = [0, 0, 0];
+
+		// Loop through each sigil to calculate its contributions
+		sigils.forEach((sigil, index) => {
+			sigil.values.forEach((skill) => {
+				if (skill.skill === 'Attack Slayer') {
+					sigilAttackContributions[index] += skill.value;
+				} else if (skill.skill === 'Weapon Up') {
+					sigilAttackContributions[index] += skill.value;
+					sigilElementContributions[index] += skill.value * 10;
+				} else if (skill.skill === 'Elemental Slayer') {
+					sigilElementContributions[index] += skill.value * 10; // Assuming a factor of 10 for elemental damage
+				}
+			});
+
+			// Special handling for Zenith sigils
+			// Find Zenith sigils
+			const standardZenithSigil = sigil.type === 'Zenith';
+			const aoeZenithSigil = sigil.type === 'Zenith AOE';
+
+			let zenithAttackValue = 0;
+			let zenithElementalValue = 0;
+			let isAOEZenith = false;
+
+			if (standardZenithSigil && !aoeZenithSigil) {
+				zenithAttackValue =
+					sigil.values.find((skill) => skill.skill === 'Zenith Attack')
+						?.value || 0;
+				zenithElementalValue =
+					sigil.values.find((skill) => skill.skill === 'Zenith Elemental')
+						?.value || 0;
+			} else if (aoeZenithSigil && !standardZenithSigil) {
+				isAOEZenith = true;
+				// Sum up all '[Ranged] Attack' values
+				zenithAttackValue = sigil.values
+					.filter((skill) => skill.skill === '[Ranged] Attack')
+					.reduce((sum, skill) => sum + (skill.value || 0), 0);
+
+				// Sum up all '[Ranged] Elemental' values
+				zenithElementalValue = sigil.values
+					.filter((skill) => skill.skill === '[Ranged] Elemental')
+					.reduce((sum, skill) => sum + (skill.value || 0), 0);
+			}
+
+			// TODO idk if correct for comparison.
+			let attackDamage = weaponTrueRaw;
+			let elementalDamage = weaponElement;
+
+			// Calculate Zenith sigil contribution
+			if (isAOEZenith) {
+				attackDamage += getAOESigilTrueRaw(zenithAttackValue, hunters);
+				elementalDamage +=
+					getAOESigilElement(zenithElementalValue, hunters) || 0;
+			} else {
+				attackDamage += getZenithSigilTrueRaw(zenithAttackValue);
+				elementalDamage *=
+					getZenithSigilElementMultiplier(zenithElementalValue);
+			}
+
+			sigilAttackContributions[index] += attackDamage;
+			sigilElementContributions[index] += elementalDamage;
+		});
+
+		// Find the highest Weapon Up value
+		const highestWeaponUp = getHighestWeaponUp(sigils);
+
+		// Calculate constant damage from Standard and Unlimited sigils
+		const constantAttackDamage = getConstantAttack(
+			sigils,
+			weaponTrueRaw,
+			highestWeaponUp,
+		);
+
+		const constantElementalDamage = getConstantElement(
+			sigils,
+			weaponElement,
+			highestWeaponUp,
+		);
 
 		// Find Zenith sigils
-		const standardZenithSigil = sigils.find(
-			(slot) =>
-				slot.type === 'Zenith' &&
-				!slot.values.some((skill) => skill.skill === '[Ranged] Attack'),
-		);
-		const aoeZenithSigil = sigils.find(
-			(slot) =>
-				slot.type === 'Zenith AOE' &&
-				slot.values.some((skill) => skill.skill === '[Ranged] Attack'),
-		);
+		const standardZenithSigil = sigils.find((slot) => slot.type === 'Zenith');
+		const aoeZenithSigil = sigils.find((slot) => slot.type === 'Zenith AOE');
 
 		let zenithActive = false;
 		let zenithTimer = 0;
@@ -671,6 +739,9 @@
 		// Generate data for the initial delay period
 		for (let second = 1; second < initialZenithSigilDelay; second++) {
 			if (second % step === 0) {
+				totalAttackDamage += constantAttackDamage;
+				totalElementalDamage += constantElementalDamage;
+
 				data.push({
 					group: 'True Raw',
 					seconds: second,
@@ -723,6 +794,9 @@
 			}
 
 			if (second % step === 0) {
+				totalAttackDamage += attackDamage;
+				totalElementalDamage += elementalDamage;
+
 				data.push({
 					group: 'True Raw',
 					seconds: second,
@@ -735,7 +809,20 @@
 				});
 			}
 		}
-		return data;
+
+		// Calculate average damage per second
+		const averageAttackDamage = totalAttackDamage / questDurationInSeconds;
+		const averageElementalDamage =
+			totalElementalDamage / questDurationInSeconds;
+
+		// Return or display average damage values along with chart data
+		return {
+			chartData: data,
+			averageAttackDamage,
+			averageElementalDamage,
+			sigilAttackContributions,
+			sigilElementContributions,
+		};
 	}
 
 	const maxValue = 15;
@@ -889,7 +976,8 @@
 				Here you can compare sigils damage in order to decide which one to
 				equip. You can equip multiple Unlimited (UL) Sigils, but the Weapon Up
 				effect is only applied by the highest Weapon Up value and does not
-				stack. The Zenith Sigil values are averaged.
+				stack. The Zenith Sigil values are averaged in the total, while the
+				values in parentheses are calculated as if they were constant.
 			</p>
 			<div class="sigils">
 				{#each sigils as sigil, i}
@@ -1086,7 +1174,10 @@
 						tooltip="Stat"
 						icon={''}
 						iconType="file"
-					/> 0 (0+0+0)
+					/>
+					{sigilChartData.averageAttackDamage.toFixed(2)} ({sigilChartData.sigilAttackContributions.join(
+						' | ',
+					)})
 				</p>
 				<p>
 					<InlineTooltip
@@ -1094,14 +1185,17 @@
 						tooltip="Stat"
 						icon={''}
 						iconType="file"
-					/> 0 (0+0+0)
+					/>
+					{sigilChartData.averageElementalDamage.toFixed(2)} ({sigilChartData.sigilElementContributions.join(
+						' | ',
+					)})
 				</p>
 			</div>
 			<div class="chart">
 				{#if sigilChartLoaded}
 					<svelte:component
 						this={sigilChart}
-						data={sigilChartData}
+						data={sigilChartData.chartData}
 						options={sigilChartOptions}
 					/>
 				{:else}
