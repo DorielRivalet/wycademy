@@ -1524,10 +1524,7 @@
 			// todo: untested diva prayer gems
 			/**additionalout*/
 			let outputAdditional =
-				(Math.floor(
-					(inputNumberOtherAdditional + outputDivaPrayerGemTrueRaw) *
-						outputMonsterTotalDefense,
-				) +
+				(Math.floor(inputNumberOtherAdditional * outputMonsterTotalDefense) +
 					additional +
 					statusAssault +
 					SwordAndShieldSigilAdded) *
@@ -2081,9 +2078,7 @@
 			if (outputWeaponClass === 'Gunner') {
 				outputAdditional =
 					Math.floor(
-						(inputNumberOtherAdditional +
-							bombValues +
-							outputDivaPrayerGemTrueRaw) *
+						(inputNumberOtherAdditional + bombValues) *
 							outputMonsterTotalDefense,
 					) + bowSigilAddedValue;
 
@@ -3126,10 +3121,10 @@
 `;
 
 	const formulaOutputFlatAdditions =
-		display(`\\text{Flat Additions} = \\text{outputPartnyaBond} +\\newline \\text{outputHunterBond} +\\newline \\text{outputAssist} +\\newline \\text{outputSoul} +\\newline \\text{outputArmor1} +\\newline \\text{outputArmor2} +\\newline \\text{outputArmorG} +\\newline \\text{outputSecretTech}
+		display(`\\text{Flat Additions} = \\text{outputPartnyaBond} +\\newline \\text{outputHunterBond} +\\newline \\text{outputAssist} +\\newline \\text{outputSoul} +\\newline \\text{outputArmor1} +\\newline \\text{outputArmor2} +\\newline \\text{outputArmorG} +\\newline \\text{outputSecretTech} +\\newline \\text{outputDivaPrayerGemTrueRaw}
 `);
 
-	$: formulaValuesOutputFlatAdditions = `{${outputFlatAdditions}} = ${outputPartnyaBond} +\\newline ${outputHunterBond} +\\newline ${outputAssist} +\\newline ${outputSoul} +\\newline ${outputArmor1} +\\newline ${outputArmor2} +\\newline ${outputArmorG} +\\newline ${outputSecretTech}
+	$: formulaValuesOutputFlatAdditions = `{${outputFlatAdditions}} = ${outputPartnyaBond} +\\newline ${outputHunterBond} +\\newline ${outputAssist} +\\newline ${outputSoul} +\\newline ${outputArmor1} +\\newline ${outputArmor2} +\\newline ${outputArmorG} +\\newline ${outputSecretTech} +\\newline ${outputDivaPrayerGemTrueRaw}
 `;
 
 	/*
@@ -4416,7 +4411,8 @@ does not get multiplied by horn */
 		outputArmor1 +
 		outputArmor2 +
 		outputArmorG +
-		outputSecretTech;
+		outputSecretTech +
+		outputDivaPrayerGemTrueRaw;
 
 	$: addToDamageCalculatorHistoryLogs(
 		'outputFlatAdditions',
