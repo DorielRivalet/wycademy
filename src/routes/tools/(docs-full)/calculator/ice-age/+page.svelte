@@ -1190,4 +1190,16 @@
 		margin-bottom: 1rem;
 		margin-top: 1rem;
 	}
+
+	@media (min-width: 320px) {
+		.formula-container {
+			max-width: 95vw;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		.formula-container {
+			max-width: 80vw;
+		}
+	}
 </style>
