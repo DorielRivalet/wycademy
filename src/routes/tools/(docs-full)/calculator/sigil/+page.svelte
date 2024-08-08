@@ -104,7 +104,10 @@
 		return found ? 'Active' : 'None';
 	}
 
-	function getMaxValue(sigilSkill: FrontierSigil) {
+	function getMaxValue(
+		sigilSkill: FrontierSigil,
+		sigilType: FrontierSigilRecipeType,
+	) {
 		switch (sigilSkill) {
 			default:
 				return 0;
@@ -114,7 +117,11 @@
 			case 'Length Up':
 				return 1;
 			case 'Attack Slayer':
+				return maxValue;
 			case 'Elemental Slayer':
+				if (sigilType === 'Unlimited') {
+					return maxUnlimitedValue;
+				} else return maxValue;
 			case 'Status Attack Slayer':
 			case 'Affinity Slayer':
 			case 'Defense Slayer':
@@ -246,7 +253,10 @@
 		}
 	}
 
-	function getMinValue(sigilSkill: FrontierSigil) {
+	function getMinValue(
+		sigilSkill: FrontierSigil,
+		sigilType: FrontierSigilRecipeType,
+	) {
 		switch (sigilSkill) {
 			default:
 				return 0;
@@ -379,8 +389,13 @@
 			case '[Ranged] Elemental':
 				return minValue;
 			case 'Attack Slayer':
-			case 'Elemental Slayer':
 				return minStandardValue;
+			case 'Elemental Slayer':
+				if (sigilType === 'Unlimited') {
+					return minUnlimitedValue;
+				} else {
+					return minStandardValue;
+				}
 			case 'Zenith Cooldown':
 				return minCooldown;
 			case 'Zenith Duration':
@@ -388,7 +403,10 @@
 		}
 	}
 
-	function getInvalidText(sigilSkill: FrontierSigil) {
+	function getInvalidText(
+		sigilSkill: FrontierSigil,
+		sigilType: FrontierSigilRecipeType,
+	) {
 		switch (sigilSkill) {
 			default:
 				return 'Invalid value.';
@@ -397,8 +415,13 @@
 			case 'Length Up':
 				return 'Invalid value.';
 			case 'Attack Slayer':
-			case 'Elemental Slayer':
 				return invalidNumberStandardValueText;
+			case 'Elemental Slayer':
+				if (sigilType === 'Unlimited') {
+					return invalidNumberUnlimitedValueText;
+				} else {
+					return invalidNumberStandardValueText;
+				}
 			case 'Status Attack Slayer':
 			case 'Affinity Slayer':
 			case 'Defense Slayer':
@@ -866,6 +889,7 @@
 	}
 
 	const maxValue = 15;
+	const maxUnlimitedValue = 12;
 	const maxCooldown = 17;
 	const maxDuration = 12;
 
@@ -873,11 +897,13 @@
 	const minCooldown = 9;
 	const minStandardValue = -10;
 	const minValue = 1;
+	const minUnlimitedValue = 3;
 
 	const invalidNumberStandardValueText = `Invalid number: must be between ${minStandardValue} and ${maxValue}`;
 	const invalidNumberValueText = `Invalid number: must be between ${minValue} and ${maxValue}`;
 	const invalidNumberCooldownText = `Invalid number: must be between ${minCooldown} and ${maxCooldown}`;
 	const invalidNumberDurationText = `Invalid number: must be between ${minDuration} and ${maxDuration}`;
+	const invalidNumberUnlimitedValueText = `Invalid number: must be between ${minUnlimitedValue} and ${maxUnlimitedValue}`;
 
 	let allowedSigils: {
 		type: FrontierSigilRecipeType;
@@ -927,7 +953,7 @@
 			type: 'Unlimited',
 			values: [
 				{ skill: 'Weapon Up', value: 15 },
-				{ skill: 'Elemental Slayer', value: 15 },
+				{ skill: 'Elemental Slayer', value: 12 },
 				{ skill: 'Attack Slayer', value: 15 },
 			],
 		},
@@ -990,7 +1016,7 @@
 	let sigilChart: ComponentType<LineChart>;
 
 	let selectedWeaponType: FrontierWeaponName = 'Sword and Shield';
-	let inputNumberAttackValue = 100;
+	let inputNumberAttackValue = 2100;
 
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
@@ -1016,8 +1042,7 @@
 				Here you can compare sigils damage in order to decide which one to
 				equip. You can equip multiple Unlimited (UL) Sigils, but the Weapon Up
 				effect is only applied by the highest Weapon Up value and does not
-				stack. The Zenith Sigil values are averaged in the total, while the
-				values in parentheses are calculated as if they were constant.
+				stack.
 			</p>
 			<div class="sigils">
 				{#each sigils as sigil, i}
@@ -1067,10 +1092,10 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={getMinValue(sigil.values[0].skill)}
-								max={getMaxValue(sigil.values[0].skill)}
+								min={getMinValue(sigil.values[0].skill, sigil.type)}
+								max={getMaxValue(sigil.values[0].skill, sigil.type)}
 								bind:value={sigil.values[0].value}
-								invalidText={getInvalidText(sigil.values[0].skill)}
+								invalidText={getInvalidText(sigil.values[0].skill, sigil.type)}
 								label={`Sigil ${i + 1} Value 1`}
 							/>
 						</div>
@@ -1090,10 +1115,10 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={getMinValue(sigil.values[1].skill)}
-								max={getMaxValue(sigil.values[1].skill)}
+								min={getMinValue(sigil.values[1].skill, sigil.type)}
+								max={getMaxValue(sigil.values[1].skill, sigil.type)}
 								bind:value={sigil.values[1].value}
-								invalidText={getInvalidText(sigil.values[1].skill)}
+								invalidText={getInvalidText(sigil.values[1].skill, sigil.type)}
 								label={`Sigil ${i + 1} Value 2`}
 							/>
 						</div>
@@ -1113,10 +1138,10 @@
 							<NumberInput
 								size="sm"
 								step={1}
-								min={getMinValue(sigil.values[2].skill)}
-								max={getMaxValue(sigil.values[2].skill)}
+								min={getMinValue(sigil.values[2].skill, sigil.type)}
+								max={getMaxValue(sigil.values[2].skill, sigil.type)}
 								bind:value={sigil.values[2].value}
-								invalidText={getInvalidText(sigil.values[2].skill)}
+								invalidText={getInvalidText(sigil.values[2].skill, sigil.type)}
 								label={`Sigil ${i + 1} Value 3`}
 							/>
 						</div>
@@ -1229,6 +1254,10 @@
 					{sigilChartData.averageElementalDamage.toFixed(2)} ({sigilChartData.sigilElementContributions.join(
 						' | ',
 					)})
+				</p>
+				<p>
+					The Zenith Sigil values are averaged in the total, while the values in
+					parentheses are calculated as if they were constant.
 				</p>
 			</div>
 			<div class="chart">

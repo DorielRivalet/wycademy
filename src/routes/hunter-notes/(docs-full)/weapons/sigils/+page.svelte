@@ -338,8 +338,8 @@
 			</p>
 
 			<p>
-				If you want to calculate how much damage all of your equipped sigils
-				does and compare the damage between them, check our <Link
+				If you want to calculate how much damage all of your equipped sigils do
+				and compare the damage between them, check our <Link
 					inline
 					href="/tools/calculator/sigil">Sigils Calculator.</Link
 				>
@@ -1413,7 +1413,7 @@
 					</p>
 					<p>
 						If you want to calculate how much damage all of your equipped sigils
-						does and compare the damage between them, check our <Link
+						do and compare the damage between them, check our <Link
 							inline
 							href="/tools/calculator/sigil">Sigils Calculator.</Link
 						>
