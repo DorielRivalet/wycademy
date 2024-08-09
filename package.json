@@ -91,7 +91,7 @@
 		"svelte-youtube-embed": "^0.3.0",
 		"tslib": "^2.6.3",
 		"typescript": "^5.5.4",
-		"vite": "^5.3.5",
+		"vite": "^5.4.0",
 		"vitest": "^2.0.5",
 		"workbox-precaching": "^7.1.0",
 		"workbox-recipes": "^7.1.0",
