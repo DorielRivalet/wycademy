@@ -22,7 +22,7 @@ export type FrontierSigilRecipeType =
 	| 'Twinhead'
 	| 'Premium'
 	| 'Rarity'
-	| 'Zenith AOE';
+	| 'Zenith AOE' | 'Unlimited [Emperor]' | 'Unlimited [Extreme]';
 
 export type FrontierSigilSkillCategory =
 	| 'Health and Stamina'
