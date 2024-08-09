@@ -10274,7 +10274,7 @@ does not get multiplied by horn */
 			'dragon status my-missions';
 		text-align: center;
 		font-weight: bold;
-		font-size: 1.25rem;
+		font-size: 1.125rem;
 		background-color: var(--ctp-mantle);
 	}
 

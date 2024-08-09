@@ -893,7 +893,7 @@
 	let inputZenithSigilWeaponElement = 1500;
 
 	const formulaZenithSigilTrueRaw = display(
-		`\\begin{equation*} \\text{Zenith Sigil True Raw} = \\begin{cases} 0 & \\text{if } x <= 0 \\\\ 20x + 30 & \\text{otherwise} \\end{cases} \\end{equation*}`,
+		`\\begin{equation*} \\text{Zenith Sigil True Raw} = \\begin{cases} 0 & \\text{if } x \\leq 0 \\\\ 20x + 30 & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
 
 	$: outputZenithSigilTrueRaw = getZenithSigilTrueRaw(
@@ -901,7 +901,7 @@
 	);
 
 	const formulaZenithSigilAOETrueRaw = display(
-		`\\begin{equation*} \\text{Zenith Sigil AOE True Raw} = \\begin{cases} 0 & \\text{if } x <= 0 \\\\ (5x + 25) \\times n & \\text{otherwise} \\end{cases} \\end{equation*}`,
+		`\\begin{equation*} \\text{Zenith Sigil AOE True Raw} = \\begin{cases} 0 & \\text{if } x \\leq 0 \\\\ (5x + 25) \\times n & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
 
 	$: outputZenithSigilAOETrueRaw = getAOESigilTrueRaw(
@@ -910,7 +910,7 @@
 	);
 
 	const formulaZenithSigilElement = display(
-		`\\begin{equation*} \\text{Zenith Sigil Element} = \\begin{cases} 0 & \\text{if } x <= 0 \\\\ ((0.1x + 1.3) \\times \\text{weaponElement}) - \\text{weaponElement} & \\text{otherwise} \\end{cases} \\end{equation*}`,
+		`\\begin{equation*} \\text{Zenith Sigil Element} = \\begin{cases} 0 & \\text{if } x \\leq 0 \\\\ ((0.1x + 1.3) \\times \\text{weaponElement}) - \\text{weaponElement} & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
 
 	$: outputZenithSigilElement =
@@ -921,7 +921,7 @@
 			: 0;
 
 	const formulaZenithSigilAOEElement = display(
-		`\\begin{equation*} \\text{Zenith Sigil AOE Element} = \\begin{cases} 0 & \\text{if } x <= 0 \\\\ (50x + 50) \\times n & \\text{otherwise} \\end{cases} \\end{equation*}`,
+		`\\begin{equation*} \\text{Zenith Sigil AOE Element} = \\begin{cases} 0 & \\text{if } x \\leq 0 \\\\ (50x + 50) \\times n & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
 
 	$: outputZenithSigilAOEElement = getAOESigilElement(
