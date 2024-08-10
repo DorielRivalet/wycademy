@@ -19,7 +19,7 @@
 	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
 
-	const customTitle = 'Home';
+	const customTitle = "Home — Frontier's Wycademy";
 	const url = $page.url.toString();
 </script>
 

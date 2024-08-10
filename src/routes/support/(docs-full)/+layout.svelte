@@ -124,7 +124,7 @@
 	}
 
 	let breadcrumbItems: URLItem[] = [];
-	let headTitle = 'Support Center';
+	let headTitle = "Support Center — Frontier's Wycademy";
 	let description =
 		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Doriel Rivalet.';
 
@@ -238,8 +238,8 @@
 		const { navigationItem, items, announcement } =
 			processRoute(pageUrlPathName);
 		headTitle = announcement
-			? announcement.title
-			: (navigationItem?.name ?? 'Support Center');
+			? announcement.title + " — Frontier's Wycademy"
+			: (navigationItem?.name ?? "Support Center — Frontier's Wycademy");
 		description = announcement
 			? announcement.summary
 			: (navigationItem?.description ?? description);
@@ -266,8 +266,8 @@
 		const { navigationItem, items, announcement } =
 			processRoute(pageUrlPathName);
 		headTitle = announcement
-			? announcement.title
-			: (navigationItem?.name ?? 'Support Center');
+			? announcement.title + " — Frontier's Wycademy"
+			: (navigationItem?.name ?? "Support Center — Frontier's Wycademy");
 		description = announcement
 			? announcement.summary
 			: (navigationItem?.description ?? description);

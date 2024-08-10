@@ -92,7 +92,7 @@
 	// import Tabs from 'carbon-components-svelte/src/Tabs/Tabs.svelte';
 	// import TabContent from 'carbon-components-svelte/src/Tabs/TabContent.svelte';
 
-	const customTitle = 'User Demo';
+	const customTitle = "User Demo — Frontier's Wycademy";
 	const url = $page.url.toString();
 
 	let open = false;

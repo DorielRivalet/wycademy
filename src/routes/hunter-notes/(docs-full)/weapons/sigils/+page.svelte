@@ -583,11 +583,7 @@
 								Add.
 							</p></ListItem
 						>
-						<ListItem
-							><p>
-								Forokururu A and Zerureusu A for Elemental Power Sigils.
-							</p></ListItem
-						>
+
 						<ListItem
 							><p>
 								Abiorugu A for Rapid Fire Sigils and Ultra Cluster Shot Sigils.

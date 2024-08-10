@@ -124,7 +124,7 @@
 	}
 
 	let breadcrumbItems: URLItem[] = [];
-	let headTitle = 'Tools and Utilities';
+	let headTitle = "Tools and Utilities — Frontier's Wycademy";
 	let description =
 		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weapon simulator, generate weapon images, and much more.\n\nDeveloped by Doriel Rivalet.';
 
@@ -338,7 +338,9 @@
 	$: {
 		const pageUrlPathName = $page.url.pathname || '/';
 		const { navigationItem, items } = processRoute(pageUrlPathName);
-		headTitle = navigationItem?.name ?? 'Tools and Utilities';
+		headTitle = navigationItem?.name
+			? navigationItem?.name + " — Frontier's Wycademy"
+			: "Tools and Utilities — Frontier's Wycademy";
 		description = navigationItem?.description ?? description;
 		breadcrumbItems = items;
 	}
@@ -361,7 +363,9 @@
 
 		const pageUrlPathName = $page.url.pathname || '/';
 		const { navigationItem, items } = processRoute(pageUrlPathName);
-		headTitle = navigationItem?.name ?? 'Tools and Utilities';
+		headTitle = navigationItem?.name
+			? navigationItem?.name + " — Frontier's Wycademy"
+			: "Tools and Utilities — Frontier's Wycademy";
 		description = navigationItem?.description ?? description;
 		breadcrumbItems = items;
 		const unsubscribe = page.subscribe(($page) => {
