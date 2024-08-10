@@ -35,7 +35,12 @@
 		},
 	];
 
-	// wyvernfire formula: as below but multiply by wyvernFireMultiAttackCorrection in the end.
+	// TODO
+	// tornado cannon formula? = shellBarrageCoefficient * (weapon total true raw + fixedBarrageDamage) * number of shells (which is 5)
+
+	// unsure if its (coefficient * weapon total true raw) + fixedDamage or coefficient * (weapon total true raw + fixedDamage)
+
+	// shell volley formula: shellVolleyMultiplierAttackCorrection * (coefficient * (weapon total true raw) + fixedDamage) * shells (remaning?)
 	// shelling formula: ((coefficient * weapon total true raw) + fixedDamage) * number of shells (n which is 1)
 	// weapon total attack = (weapon true raw + sigils + sr/gsr + g armor bonus + gou armor?)
 
@@ -46,8 +51,10 @@
 		type: FrontierGunlanceShell;
 		sharpnessConsumption: 3 | 4;
 		coefficient: number;
-		wyvernFireMultiAttackCorrection: number; // TODO unsure
-		wyvernFireSharpnessConsumptionRemainingAmmoMultiplier: 2 | 3; // TODO unsure
+		shellAttackCoefficient: number;
+		shellVolleyMultiplierAttackCorrection: number; // TODO unsure
+		shellVolleySharpnessConsumptionRemainingAmmoMultiplier: 2 | 3; // TODO unsure
+		wyvernFireCoefficient: number;
 		fixedDamage: [
 			lv1: number,
 			lv2: number,
@@ -64,25 +71,31 @@
 			type: 'Normal',
 			coefficient: 0.11,
 			sharpnessConsumption: 3,
-			wyvernFireMultiAttackCorrection: 0.9,
+			shellVolleyMultiplierAttackCorrection: 0.9,
 			fixedDamage: [16, 23, 30, 35, 40, 65, 75, 85, 99],
-			wyvernFireSharpnessConsumptionRemainingAmmoMultiplier: 2,
+			shellVolleySharpnessConsumptionRemainingAmmoMultiplier: 2,
+			shellAttackCoefficient: 0.165,
+			wyvernFireCoefficient: 0, // TODO
 		},
 		{
 			type: 'Long',
 			sharpnessConsumption: 4,
 			coefficient: 0.1,
-			wyvernFireMultiAttackCorrection: 0.7,
+			shellVolleyMultiplierAttackCorrection: 0.7,
 			fixedDamage: [24, 33, 42, 48, 53, 84, 95, 106, 122],
-			wyvernFireSharpnessConsumptionRemainingAmmoMultiplier: 3,
+			shellVolleySharpnessConsumptionRemainingAmmoMultiplier: 3,
+			shellAttackCoefficient: 0.15,
+			wyvernFireCoefficient: 0, // TODO
 		},
 		{
 			type: 'Spread', //TODO or long?
 			sharpnessConsumption: 4,
 			coefficient: 0.09,
-			wyvernFireMultiAttackCorrection: 0.8,
+			shellVolleyMultiplierAttackCorrection: 0.8,
 			fixedDamage: [31, 44, 57, 63, 68, 107, 119, 133, 153],
-			wyvernFireSharpnessConsumptionRemainingAmmoMultiplier: 3,
+			shellVolleySharpnessConsumptionRemainingAmmoMultiplier: 3,
+			shellAttackCoefficient: 0.135,
+			wyvernFireCoefficient: 0, // TODO
 		},
 	];
 </script>
