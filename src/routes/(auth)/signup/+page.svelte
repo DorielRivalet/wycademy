@@ -33,6 +33,8 @@
 			selectedMonsterPrefixFromList ?? usernames.types[0],
 			selectedMonsterNameFromList ?? usernames.monsters[0],
 		) + '-####';
+
+	// TODO some pages like this one are missing Head component
 </script>
 
 <div class="container">

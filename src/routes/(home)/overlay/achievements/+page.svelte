@@ -96,7 +96,7 @@
 		currentAchievements = filteredAchievements;
 	}
 
-	const customTitle = 'Overlay Achievements';
+	const customTitle = "Overlay Achievements — Frontier's Wycademy";
 	const url = $page.url.toString();
 </script>
 

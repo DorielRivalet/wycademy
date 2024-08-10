@@ -169,7 +169,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		},
 	];
 
-	const customTitle = 'Overlay';
+	const customTitle = "Overlay — Frontier's Wycademy";
 	const url = $page.url.toString();
 </script>
 

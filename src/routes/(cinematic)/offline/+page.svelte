@@ -2354,7 +2354,7 @@
 </script>
 
 <Head
-	title={'Solitude Island Depths'}
+	title={"Solitude Island Depths — Frontier's Wycademy"}
 	{description}
 	image={pageThumbnail}
 	{url}

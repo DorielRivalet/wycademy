@@ -22,8 +22,8 @@
 
 	const customTitle =
 		pageUrlPathName === '/overlay/release-notes'
-			? 'Release Notes'
-			: overlayVersion.replaceAll('-', '.');
+			? "Release Notes — Frontier's Wycademy"
+			: overlayVersion.replaceAll('-', '.') + " — Frontier's Wycademy";
 
 	const description =
 		pageUrlPathName === '/overlay/release-notes'

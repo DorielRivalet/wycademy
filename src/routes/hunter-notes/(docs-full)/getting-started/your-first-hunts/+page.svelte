@@ -265,7 +265,16 @@
 						/> each. Combine these Claws with the Power and Armor Charms to create
 						Talons, and then combine those Talons with another set of Charms to make
 						Claws. This final combination will give you the benefits of all four
-						items in one item slot (Attack+14 and Defense+40).
+						items in one item slot (Attack+15 and Defense+40).
+					</p>
+					<p>
+						The items shown in the diagram do not stack. If you want the maximum
+						possible buffs, you only need <InlineTooltip
+							icon={getItemIcon('Claw')}
+							tooltip="Item"
+							iconColor={getItemColor('Purple')}
+							text="Hunter's Taloncharm"
+						/>.
 					</p>
 					<div class="svelte-flow-container">
 						<SvelteFlow

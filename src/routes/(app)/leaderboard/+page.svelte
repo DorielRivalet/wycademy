@@ -20,7 +20,7 @@
 	import { page } from '$app/stores';
 	console.log('page.svelte');
 
-	const customTitle = 'Leaderboard';
+	const customTitle = "Leaderboard — Frontier's Wycademy";
 	const url = $page.url.toString();
 </script>
 

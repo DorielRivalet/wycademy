@@ -5606,7 +5606,7 @@ does not get multiplied by horn */
 
 	function getMotionValuesTableHeaders(inputElement: FrontierElement) {
 		const defaultResult = [
-			{ key: 'name', value: 'Name', minWidth: '2rem' },
+			{ key: 'name', value: 'Name', width: '12rem' },
 			{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 			{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 			{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5624,7 +5624,7 @@ does not get multiplied by horn */
 				return defaultResult;
 			case 'Fire':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5634,7 +5634,7 @@ does not get multiplied by horn */
 				];
 			case 'Water':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5644,7 +5644,7 @@ does not get multiplied by horn */
 				];
 			case 'Thunder':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5654,7 +5654,7 @@ does not get multiplied by horn */
 				];
 			case 'Ice':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5664,7 +5664,7 @@ does not get multiplied by horn */
 				];
 			case 'Dragon':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5675,7 +5675,7 @@ does not get multiplied by horn */
 			case 'None':
 			case '':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5684,7 +5684,7 @@ does not get multiplied by horn */
 				];
 			case 'Light':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5695,7 +5695,7 @@ does not get multiplied by horn */
 				];
 			case 'Blaze':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5706,7 +5706,7 @@ does not get multiplied by horn */
 				];
 			case 'Tenshou':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5718,7 +5718,7 @@ does not get multiplied by horn */
 				];
 			case 'Lightning Rod':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5729,7 +5729,7 @@ does not get multiplied by horn */
 				];
 			case 'Okiko':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5741,7 +5741,7 @@ does not get multiplied by horn */
 				];
 			case 'Black Flame':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5752,7 +5752,7 @@ does not get multiplied by horn */
 				];
 			case 'Crimson Demon':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5763,7 +5763,7 @@ does not get multiplied by horn */
 				];
 			case 'Dark':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5774,7 +5774,7 @@ does not get multiplied by horn */
 				];
 			case 'Music':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5785,7 +5785,7 @@ does not get multiplied by horn */
 				];
 			case 'Sound':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5796,7 +5796,7 @@ does not get multiplied by horn */
 				];
 			case 'Wind':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5807,7 +5807,7 @@ does not get multiplied by horn */
 				];
 			case 'Burning Zero':
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -5818,7 +5818,7 @@ does not get multiplied by horn */
 				];
 			case "Emperor's Roar":
 				return [
-					{ key: 'name', value: 'Name', minWidth: '2rem' },
+					{ key: 'name', value: 'Name', width: '12rem' },
 					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
@@ -6020,6 +6020,10 @@ does not get multiplied by horn */
 							href="/hunter-notes/events/diva-defense#diva-prayer-gems"
 							>Hunter's Notes.</Link
 						>
+					</p>
+					<p class="spaced-paragraph">
+						The final output of all your calculations is in 🗡️ Final Attack,
+						defined as Internal Attack in the calculator's code.
 					</p>
 					<p>
 						If you want to save or load your inputs, you can do so <Link
@@ -9159,7 +9163,7 @@ does not get multiplied by horn */
 										<div class="attack-ceiling">
 											⚓ Attack Ceiling: {internalAttackCeiling}
 										</div>
-										<div class="attack">🗡️ Attack: {internalAttack}</div>
+										<div class="attack">🗡️ Final Attack: {internalAttack}</div>
 										<div class="affinity">✨ Affinity: {internalAffinity}%</div>
 									</div>
 								</div>
@@ -9725,12 +9729,12 @@ does not get multiplied by horn */
 
 				<div>
 					<Tabs type="container">
+						<Tab label="Internal Attack" />
 						<Tab label="Internal True Raw" />
-						<Tab label="Attack A" />
-						<Tab label="Attack B" />
 						<Tab label="Multipliers" />
 						<Tab label="Flat Additions" />
-						<Tab label="Internal Attack" />
+						<Tab label="Attack A" />
+						<Tab label="Attack B" />
 						<Tab label="Internal Fire" />
 						<Tab label="Internal Water" />
 						<Tab label="Internal Thunder" />
@@ -9748,6 +9752,16 @@ does not get multiplied by horn */
 							<TabContent
 								><section>
 									<div class="formula-container">
+										{@html formulaInternalAttack}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputInternalAttack)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent
+								><section>
+									<div class="formula-container">
 										{@html formulaInternalTrueRaw}
 									</div>
 									<p>internalTrueRaw: {internalTrueRaw}</p>
@@ -9755,26 +9769,6 @@ does not get multiplied by horn */
 									<p>outputAttackCeiling: {outputAttackCeiling}</p>
 									<p>outputFlatAdditions: {outputFlatAdditions}</p>
 									<p>outputMultipliers: {outputMultipliers}</p>
-								</section></TabContent
-							>
-							<TabContent>
-								<section>
-									<div class="formula-container">
-										{@html formulaOutputAttackA}
-									</div>
-									<div class="formula-container">
-										{@html display(formulaValuesOutputAttackA)}
-									</div>
-								</section></TabContent
-							>
-							<TabContent>
-								<section>
-									<div class="formula-container">
-										{@html formulaOutputAttackB}
-									</div>
-									<div class="formula-container">
-										{@html display(formulaValuesOutputAttackB)}
-									</div>
 								</section></TabContent
 							>
 							<TabContent
@@ -9797,13 +9791,23 @@ does not get multiplied by horn */
 									</div>
 								</section></TabContent
 							>
-							<TabContent
-								><section>
+							<TabContent>
+								<section>
 									<div class="formula-container">
-										{@html formulaInternalAttack}
+										{@html formulaOutputAttackA}
 									</div>
 									<div class="formula-container">
-										{@html display(formulaValuesOutputInternalAttack)}
+										{@html display(formulaValuesOutputAttackA)}
+									</div>
+								</section></TabContent
+							>
+							<TabContent>
+								<section>
+									<div class="formula-container">
+										{@html formulaOutputAttackB}
+									</div>
+									<div class="formula-container">
+										{@html display(formulaValuesOutputAttackB)}
 									</div>
 								</section></TabContent
 							>
@@ -10098,16 +10102,16 @@ does not get multiplied by horn */
 
 	.motion-values {
 		overflow-x: auto;
-		width: 98%;
-		margin: 2rem auto;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 		height: 80vh;
 		overflow-y: auto;
 	}
 
 	.shared-motion-values {
 		overflow-x: auto;
-		width: 98%;
-		margin: 2rem auto;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 
 	.attack {

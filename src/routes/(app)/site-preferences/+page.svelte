@@ -219,7 +219,7 @@
 </svelte:head>
 
 <Head
-	title={'Site Preferences'}
+	title={"Site Preferences — Frontier's Wycademy"}
 	{description}
 	image={pageThumbnail}
 	{url}

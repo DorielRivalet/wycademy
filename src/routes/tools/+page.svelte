@@ -60,7 +60,7 @@
 		window.addEventListener('scroll', handleScroll);
 	});
 
-	const customTitle = 'Tools and Utilities';
+	const customTitle = "Tools and Utilities — Frontier's Wycademy";
 	const description =
 		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weapon simulator, generate weapon images, and much more.\n\nDeveloped by Doriel Rivalet.';
 	const url = $page.url.toString();

@@ -131,7 +131,7 @@
 	}
 
 	let breadcrumbItems: URLItem[] = [];
-	let headTitle = "Hunter's Notes";
+	let headTitle = "Hunter's Notes — Frontier's Wycademy";
 	let description =
 		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.';
 
@@ -856,8 +856,8 @@
 		const pageUrlPathName = $page.url.pathname || '/';
 		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
 		headTitle = monster
-			? monster.displayName
-			: (navigationItem?.name ?? "Hunter's Notes");
+			? monster.displayName + " — Frontier's Wycademy"
+			: (navigationItem?.name ?? "Hunter's Notes — Frontier's Wycademy");
 		description = monster?.ecology
 			? monster.ecology
 			: (navigationItem?.description ?? description);
@@ -883,8 +883,8 @@
 		const pageUrlPathName = $page.url.pathname || '/';
 		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
 		headTitle = monster
-			? monster.displayName
-			: (navigationItem?.name ?? "Hunter's Notes");
+			? monster.displayName + " — Frontier's Wycademy"
+			: (navigationItem?.name ?? "Hunter's Notes — Frontier's Wycademy");
 		description = monster?.ecology
 			? monster.ecology
 			: (navigationItem?.description ?? description);

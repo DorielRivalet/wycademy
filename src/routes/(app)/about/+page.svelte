@@ -20,7 +20,7 @@
 </script>
 
 <Head
-	title={'About'}
+	title={"About — Frontier's Wycademy"}
 	{description}
 	image={pageThumbnail}
 	{url}
