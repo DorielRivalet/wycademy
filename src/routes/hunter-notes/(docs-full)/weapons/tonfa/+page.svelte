@@ -5,18 +5,11 @@
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import { LocationIcons } from '$lib/client/modules/frontier/locations';
-	import {
-		getMonsterIcon,
-		monsterInfo,
-	} from '$lib/client/modules/frontier/monsters';
+	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import { gameInfo } from '$lib/client/modules/frontier/objects';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
-	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
-
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import Youtube from 'svelte-youtube-embed';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -122,20 +115,20 @@
 				quick succession. Due to its light weight and propulsion system, hunters
 				can easily evade while the weapon is drawn and even launch themselves
 				off the ground. The propulsion system also enables a finishing move
-				called the Ryuuki Finisher, where the Tonfa poles are rapidly jabbed at
-				the monster with great force. When performed on sufficiently weakened
-				parts of a monster, this move triggers explosions in those areas,
-				identified by a red, wispy aura.
+				called the Ryuuki Finisher, where the <InlineTooltip
+					tooltip="Weapon"
+					text="Tonfa"
+					iconType="component"
+					icon={getWeaponIcon('Tonfa')}
+				/> poles are rapidly jabbed at the monster with great force. When performed
+				on sufficiently weakened parts of a monster, this move triggers explosions
+				in those areas, identified by a red, wispy aura.
 			</p>
 			<p class="spaced-paragraph">
-				Similar to the <InlineTooltip
-					tooltip="Weapon"
-					text="Long Sword"
-					iconType="component"
-					icon={getWeaponIcon('Long Sword')}
-				/>, the Tonfa has a gauge that fills up when attacking monsters,
-				granting an attack boost (Earth Style). The gauge has five levels of
-				boosts and a timer (six when using the Piercing Phoenix skill). Each
+				When using Extreme Style, the Tonfa has two gauges (blue and red) that
+				fills up when attacking monsters. The red gauge grants an attack boost,
+				while the blue gauge enables EX Evades. The red gauge has 5 levels of
+				boosts and a timer (6 when using the Piercing Phoenix Hiden skill). Each
 				time the <InlineTooltip
 					tooltip="Weapon"
 					text="Tonfa"
@@ -143,7 +136,9 @@
 					icon={getWeaponIcon('Tonfa')}
 				/> strikes a monster, the timer fills for several seconds before gradually
 				depleting, while the boost bar increases. If the timer runs out, all attack
-				boosts are lost.
+				boosts are lost. Actions like flying, running and blocking slows down the
+				timer; dodging can almost fully charge the gauge instantly. Each red stack
+				gives +10% True Raw and better blue gauge recovery.
 			</p>
 			<CenteredFigure
 				figcaption="Tonfa Gauge."
@@ -226,7 +221,7 @@
 									icon={getItemIcon('Head')}
 								/>
 								The monster is enveloped in a burning, yellowish aura. During this
-								time, all attacks will inflict KO damage, regardless of the damage
+								time, all attacks will inflict +1 KO damage, regardless of the damage
 								type or where the monster is hit. Monsters that cannot be KOed (such
 								as <InlineTooltip
 									tooltip="Monster"
@@ -490,7 +485,17 @@
 									icon={getWeaponIcon('Tonfa')}
 								/> are naturally fast-hitting weapons with high mobility, making
 								it essential to manage their sharpness carefully with skills like
-								Razor Sharp. It's not recommended to use Lavish.
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Razor Sharp"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>. It's not recommended to use <InlineTooltip
+									tooltip="Armor Skill"
+									text="Lavish"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>.
 							</p></ListItem
 						>
 						<ListItem
@@ -531,6 +536,15 @@
 								Consider always using Long Mode: it has a higher stun value than
 								Short Mode, whose stun value is 80% and has less range. Short
 								mode also has more hitlag and EX recovery.
+							</p></ListItem
+						><ListItem
+							><p>
+								Using <InlineTooltip
+									tooltip="Armor Skill"
+									text="Trained+2"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> can help you stay in the air longer.
 							</p></ListItem
 						>
 					</UnorderedList>
