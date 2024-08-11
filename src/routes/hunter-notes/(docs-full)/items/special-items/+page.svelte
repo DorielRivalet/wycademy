@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
@@ -20,6 +21,14 @@
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import { Download, Image } from 'carbon-icons-svelte';
 	import type { ComponentType, SvelteComponent } from 'svelte';
+	import LargeLuckyCharm from '$lib/client/images/supplemental/large-lucky-charm.webp';
+	import StackedLuckyCharms from '$lib/client/images/supplemental/stacked-lucky-charms.webp';
+	import HalkPot from '$lib/client/images/supplemental/item-halk-pot.webp';
+	import GuukuGloves from '$lib/client/images/supplemental/item-guuku-gloves.webp';
+	import MegaGutsTicket from '$lib/client/images/supplemental/item-mega-guts-ticket.webp';
+	import ItemSwordCrystal from '$lib/client/images/supplemental/item-sword-crystal.webp';
+
+	// TODO page thumbnail
 
 	const specialItems: {
 		demo?: string;
@@ -37,6 +46,7 @@
 			description: `Significantly reduces damage taken during quests. You can use up to 5 per day.`,
 			source: 'Given daily in the Halk area.',
 			type: 'Special Consumable',
+			demo: HalkPot,
 		},
 		{
 			item: 'Legendary Rasta Ticket',
@@ -52,16 +62,19 @@
 			iconColor: getItemColor('Red'),
 			description: `These tickets prevent death when your HP reaches 0. The Great Guts Ticket not only stops death but also restores your health to full, while the Guts Ticket just prevents you from dying. These tickets are effective in situations where the Guts skill wouldn’t normally work, including when at low HP.`,
 			type: 'Special Ticket',
-			source: 'Hunter Navigation tasks.', // TODO
+			demo: MegaGutsTicket,
+			source:
+				'Hunter Navigation tasks, Mezeportal Festival Shop, NetCafe Daily Gift.', // TODO
 		},
-		{
-			item: 'Status Tickets',
-			icon: getItemIcon('Ticket'),
-			iconColor: getItemColor('Purple'),
-			description: `These tickets protect you from the standard versions of Poison, Paralysis, and Sleep status effects. However, they do not provide protection against the Zenith variants of these statuses.`,
-			source: '?',
-			type: 'Special Ticket',
-		},
+		// {
+		// 	// IDK if in game
+		// 	item: 'Status Tickets',
+		// 	icon: getItemIcon('Ticket'),
+		// 	iconColor: getItemColor('Purple'),
+		// 	description: `These tickets protect you from the standard versions of Poison, Paralysis, and Sleep status effects. However, they do not provide protection against the Zenith variants of these statuses.`,
+		// 	source: '?',
+		// 	type: 'Special Ticket',
+		// },
 		{
 			item: '4,000 GRP Ticket',
 			icon: getItemIcon('Ticket'),
@@ -105,6 +118,7 @@
 			description: `These crystals function as ammunition for Blademaster weapons, requiring specific skills to use effectively. Reaching level +3 in these skills guarantees maximum damage or status effect output.`,
 			source: 'General Store NPC.',
 			type: 'Tool',
+			demo: ItemSwordCrystal,
 		},
 		{
 			item: 'Gook Pickaxe',
@@ -141,15 +155,16 @@
 			source:
 				'Crafted from items occasionally gained from the Guuku Farm after acquiring a Guuku.',
 			type: 'Tool',
+			demo: GuukuGloves,
 		},
-		{
-			item: 'Toxin',
-			icon: getItemIcon('Flask'),
-			iconColor: getItemColor('Purple'),
-			description: `A purchasable consumable that reduces your health by 10 when used. It’s extremely useful for triggering the Adrenaline skill, as it works based on total HP rather than a percentage, allowing you to reach Adrenaline range by simply consuming a meal that reduces HP by 50. This item does not lower your maximum HP, meaning that Vampirism and armor with HC regen effects can interfere with maintaining Adrenaline health levels.`,
-			source: '?',
-			type: 'Consumable Item',
-		},
+		// {
+		// 	item: 'Toxin',
+		// 	icon: getItemIcon('Flask'),
+		// 	iconColor: getItemColor('Purple'),
+		// 	description: `A purchasable consumable that reduces your health by 10 when used. It’s extremely useful for triggering the Adrenaline skill, as it works based on total HP rather than a percentage, allowing you to reach Adrenaline range by simply consuming a meal that reduces HP by 50. This item does not lower your maximum HP, meaning that Vampirism and armor with HC regen effects can interfere with maintaining Adrenaline health levels.`,
+		// 	source: '?',
+		// 	type: 'Consumable Item',
+		// },
 		{
 			item: 'Starving Wolf Potion',
 			icon: getItemIcon('Flask'),
@@ -178,12 +193,19 @@
 			type: 'Consumable Item',
 		},
 		{
-			// TODO Gacha Lucky Charm?
 			item: 'Carving Charm',
 			icon: getItemIcon('Sac'),
 			iconColor: getItemColor('Green'),
 			description: `A charm that allows for an additional carve from any creature that can be carved, consumed at the start of a quest.`,
-			source: '?',
+			source: 'Montly rewards and Hunter Life course.',
+			type: 'Consumable Charm',
+		},
+		{
+			item: 'Gacha Lucky Charm',
+			icon: getItemIcon('Sac'),
+			iconColor: getItemColor('Yellow'),
+			description: `A charm that gives 1 more quest rewards slot.`,
+			source: 'Lottery.',
 			type: 'Consumable Charm',
 		},
 		{
@@ -191,15 +213,17 @@
 			icon: getItemIcon('Sac'),
 			iconColor: getItemColor('Pink'),
 			description: `A charm that increases the chances of earning more reward rolls and potentially doubling the rewards after completing a quest.`,
-			source: 'Hunter Navigation tasks.',
+			source: 'Hunter Navigation tasks, Combiner NPC.',
 			type: 'Consumable Charm',
+			demo: LargeLuckyCharm,
 		},
 		{
 			item: 'Super Lucky Charm',
 			icon: getItemIcon('Sac'),
 			iconColor: getItemColor('Pink'),
 			description: `An improved version of the Large Lucky Charm, offering better chances for additional and doubled reward rolls in post-quest rewards.`,
-			source: '?',
+			source:
+				'Monthly rewards, Hunter Life course. May be obtainable in Road Shop.',
 			type: 'Consumable Charm',
 		},
 		{
@@ -320,7 +344,7 @@
 					zebra
 					size="short"
 					headers={[
-						{ key: 'item', value: 'Item' },
+						{ key: 'item', value: 'Item', width: '12rem' },
 						{ key: 'description', value: 'Description' },
 						{ key: 'source', value: 'Source' },
 						{ key: 'type', value: 'Type' },
@@ -375,6 +399,7 @@
 										on:click={() => changeModal(cell, 'Special Items')}
 										size="small"
 										icon={Image}
+										iconDescription="Demo"
 										kind="ghost"
 									/>
 								{/if}
@@ -385,6 +410,35 @@
 					</svelte:fragment>
 				</DataTable>
 			</div>
+			<p class="spaced-paragraph">
+				<InlineTooltip
+					text="Large Lucky Charm"
+					tooltip="Item"
+					icon={getItemIcon('Sac')}
+					iconColor={getItemColor('Pink')}
+					iconType="component"
+				/>, <InlineTooltip
+					text="Super Lucky Charm"
+					tooltip="Item"
+					icon={getItemIcon('Sac')}
+					iconColor={getItemColor('Pink')}
+					iconType="component"
+				/> and <InlineTooltip
+					text="Gacha Lucky Charm"
+					tooltip="Item"
+					icon={getItemIcon('Sac')}
+					iconColor={getItemColor('Yellow')}
+					iconType="component"
+				/> effects stack. If you use all of them in a quest, one of each will be
+				consumed per quest.
+			</p>
+			<CenteredFigure
+				width={'100%'}
+				type="file"
+				src={StackedLuckyCharms}
+				alt="Stacked lucky charms effects example"
+				figcaption="Stacked lucky charms effects example."
+			/>
 		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
@@ -398,8 +452,9 @@
 	}
 
 	.special-item {
-		dispay: flex;
+		display: flex;
 		gap: 0.125rem;
+		flex-wrap: wrap;
 	}
 
 	.table {
