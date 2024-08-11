@@ -239,7 +239,9 @@
 			processRoute(pageUrlPathName);
 		headTitle = announcement
 			? announcement.title + " — Frontier's Wycademy"
-			: (navigationItem?.name ?? "Support Center — Frontier's Wycademy");
+			: navigationItem?.name
+				? navigationItem?.name + " — Frontier's Wycademy"
+				: "Support Center — Frontier's Wycademy";
 		description = announcement
 			? announcement.summary
 			: (navigationItem?.description ?? description);
@@ -267,7 +269,9 @@
 			processRoute(pageUrlPathName);
 		headTitle = announcement
 			? announcement.title + " — Frontier's Wycademy"
-			: (navigationItem?.name ?? "Support Center — Frontier's Wycademy");
+			: navigationItem?.name
+				? navigationItem?.name + " — Frontier's Wycademy"
+				: "Support Center — Frontier's Wycademy";
 		description = announcement
 			? announcement.summary
 			: (navigationItem?.description ?? description);
