@@ -194,6 +194,12 @@
 
 	$: maximumArmorSlots = getArmorSkillSlots(skillSlotsUpInputArmorPieces, true);
 
+	$: maximumGearSlots =
+		getArmorSkillSlots(skillSlotsUpInputArmorPieces, true) +
+		(skillSlotsUpInputZenithWeapon ? 1 : 0) +
+		(skillSlotsUpInputZenithCuff ? 1 : 0) +
+		(skillSlotsUpInputTrueHidenCuff ? 1 : 0);
+
 	// in multiplayer its more skills like encourage.
 	// TODO links to each respective skill slot source explanation (other pages).
 </script>
@@ -467,6 +473,10 @@
 					<p class="spaced-paragraph">
 						<strong>Maximum Armor Skill Slots:</strong>
 						{maximumArmorSlots}
+					</p>
+					<p class="spaced-paragraph">
+						<strong>Maximum Gear Skill Slots:</strong>
+						{maximumGearSlots}
 					</p>
 					<p class="spaced-paragraph">
 						<strong>Extra Skill Slots:</strong>
