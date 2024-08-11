@@ -21,6 +21,7 @@ import thumbnailLightIceAge from '$lib/client/images/page-thumbnail/light/ice-ag
 import thumbnailLightCaravanGemUpgrade from '$lib/client/images/page-thumbnail/light/caravan-gem-upgrade.png';
 import thumbnailLightCaravanGemColorBonuses from '$lib/client/images/page-thumbnail/light/caravan-gem-color-bonus.png';
 import thumbnailLightCharmsTalons from '$lib/client/images/page-thumbnail/light/talon-charm.png';
+import thumbnailLightArmorSkillsPriority from '$lib/client/images/page-thumbnail/light/armor-skills-priority.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -46,6 +47,7 @@ import thumbnailDarkWeaponGenerator from '$lib/client/images/page-thumbnail/dark
 import thumbnailDarkCaravanGemUpgrade from '$lib/client/images/page-thumbnail/dark/caravan-gem-upgrade.png';
 import thumbnailDarkCaravanGemColorBonuses from '$lib/client/images/page-thumbnail/dark/caravan-gem-color-bonus.png';
 import thumbnailDarkCharmsTalons from '$lib/client/images/page-thumbnail/dark/talon-charm.png';
+import thumbnailDarkArmorSkillsPriority from '$lib/client/images/page-thumbnail/dark/armor-skills-priority.png';
 
 import { getMonsterIcon } from './frontier/monsters';
 
@@ -200,6 +202,11 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/getting-started/your-first-hunts',
 		thumbnail: thumbnailLightCharmsTalons,
 	},
+	{
+		embed: 'skill-priority',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailLightArmorSkillsPriority,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -352,6 +359,11 @@ const darkThumbnailInfo: {
 		embed: 'charms-and-talons',
 		link: '/hunter-notes/getting-started/your-first-hunts',
 		thumbnail: thumbnailDarkCharmsTalons,
+	},
+	{
+		embed: 'skill-priority',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailDarkArmorSkillsPriority,
 	},
 ];
 
