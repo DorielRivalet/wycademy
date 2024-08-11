@@ -26,6 +26,12 @@
 	import DownloadImageButton from '$lib/client/components/DownloadImageButton.svelte';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
+	import { type DataTableCell } from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
+	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
+	import LoadedItemPreset from '$lib/client/images/supplemental/loaded-item-preset.webp';
+	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
+	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
+	import BulkCombine from '$lib/client/images/supplemental/bulk-combine-energy-drink.webp';
 
 	const nodeDefaults = {
 		sourcePosition: Position.Right,
@@ -234,65 +240,278 @@
 	const nodes: Writable<Node[]> = writable(nodeData);
 
 	const edges: Writable<Edge[]> = writable(edgeData);
+
+	let modalPopoverIconType = 'file';
+	let modalPopoverIcon: any;
+	let modalHeading = '';
+	let modalLabel = '';
+	let modalOpen = false;
+	let modalImage = '';
+	let modalNotes = '';
+
+	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+
+	function changeModal(cell: DataTableCell, section: string) {
+		modalOpen = true;
+		modalHeading = cell.value;
+		modalLabel = section || '';
+
+		switch (section) {
+			default:
+				modalImage = '';
+				modalNotes = '';
+				break;
+			// case 'Item Presets':
+			// 	modalImage =
+			// 		selectedItemPresetItems.find((e) => e.name === cell.value)?.demo ||
+			// 		'';
+			// 	modalNotes =
+			// 		selectedItemPresetItems.find((e) => e.name === cell.value)
+			// 			?.description || '';
+			// 	break;
+		}
+	}
 </script>
 
+<Modal
+	passiveModal
+	bind:open={modalOpen}
+	{modalHeading}
+	{modalLabel}
+	on:open
+	on:close
+	hasScrollingContent
+>
+	{#if modalImage !== '' && modalImage}
+		<div class="modal-content">
+			<img src={modalImage} alt={'caravan'} />
+			<div>{modalNotes}</div>
+		</div>
+	{:else}
+		<div class="modal-mobile-container">
+			<div class="modal-mobile-contents-top">
+				<div class="modal-mobile-image">
+					<div>
+						{#if modalPopoverIconType === 'component'}
+							<svelte:component this={modalPopoverIcon} />
+						{:else}
+							<img src={modalPopoverIcon} alt={modalHeading} />
+						{/if}
+					</div>
+				</div>
+				<div class="modal-mobile-title">
+					{modalHeading.substring(0, 64)}
+				</div>
+
+				{#if modalLabel !== ''}
+					<div class="modal-mobile-subtitle">{modalLabel.substring(0, 64)}</div>
+				{/if}
+			</div>
+		</div>
+	{/if}
+</Modal>
+
 <HunterNotesPage displayTOC={true}>
-	<div>
+	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Your First Hunts'} />
 		<div>
 			<section>
-				<SectionHeading level={2} title="Charms and Talons" />
+				<SectionHeading level={2} title="Item Preset Preparation" />
 				<div>
 					<p class="spaced-paragraph">
-						When you reach HR5, you'll receive some <InlineTooltip
-							icon={getItemIcon('Ticket')}
-							tooltip="Item"
-							text="HRP Tkt (4k)"
-						/>. You can exchange these tickets for GCP at the General Store NPC.
+						To create item presets, set up your character's active inventory as
+						you want it, then access any box, choose the "Item Presets" option,
+						followed by "Register Preset". Select a slot to save your preset and
+						optionally name it.
 					</p>
 					<p class="spaced-paragraph">
-						Your first use of GCP should be to purchase 2 <InlineTooltip
-							icon={getItemIcon('Claw')}
-							tooltip="Item"
+						Slots 1 through 4 correspond to pressing L1/L2/R1/R2 or
+						F/Ctrl/C/Shift while interacting with a box. This means after a
+						quest, you can simply run up to a box, interact, and press L1 or F
+						to instantly equip your preset from Slot 1.
+					</p>
+					<CenteredFigure
+						width={'100%'}
+						type="file"
+						src={LoadedItemPreset}
+						alt="Loaded item preset"
+						figcaption="Loaded item preset."
+					/>
+					<p class="spaced-paragraph">
+						If you have a subscription, you’ll have an additional 20 preset
+						slots. Access these by going to the "Item Presets" option and
+						selecting "Equip Preset". Slots 5 through 24 don’t have keyboard or
+						controller shortcuts and must be equipped manually.
+					</p>
+					<p class="spaced-paragraph">
+						Gunners should buy all standard shots and coatings, as well as the
+						materials needed to combine into various ammo types and coatings.
+						These items are available from both the General Store NPC and the
+						Combiner NPC next to her.
+					</p>
+					<p class="spaced-paragraph">
+						The items mentioned cover <InlineTooltip
+							text="Normal"
+							icon={getItemIcon('Shot')}
+							tooltip="Ammo"
 							iconType="component"
-							iconColor={getItemColor('Red')}
-							text="Lao Shan Claws"
-						/>, costing <InlineTooltip
+						/>, <InlineTooltip
+							text="Pierce"
+							icon={getItemIcon('Ammo Pierce')}
+							tooltip="Ammo"
+							iconType="component"
+						/>, and <InlineTooltip
+							text="Pellet"
+							icon={getItemIcon('Ammo Spread')}
+							tooltip="Ammo"
+							iconType="component"
+						/> shots up to Lv3. You can use <InlineTooltip
+							text="GCP"
 							icon={getCurrencyIcon('GCP')}
 							tooltip="Currency"
 							iconType="file"
-							text="90 GCP"
-						/> each. Combine these Claws with the Power and Armor Charms to create
-						Talons, and then combine those Talons with another set of Charms to make
-						Claws. This final combination will give you the benefits of all four
-						items in one item slot (Attack+15 and Defense+40).
+						/> to obtain materials for Elemental shots, but generally, after reaching
+						G Rank, you should stick to using <InlineTooltip
+							text="Pierce"
+							icon={getItemIcon('Ammo Pierce')}
+							tooltip="Ammo"
+							iconType="component"
+						/> shots unless you run out of both shots and combination materials.
 					</p>
-					<p>
-						The items shown in the diagram do not stack. If you want the maximum
-						possible buffs, you only need <InlineTooltip
-							icon={getItemIcon('Claw')}
+					<p class="spaced-paragraph">
+						If this seems unusual based on your experience in other games, it’s
+						because elemental damage scales on a set formula based on attack,
+						while critical hits and bullet modifiers have a much greater impact
+						on raw damage. Typically, using elemental shots will deal about 50%
+						of the damage you’d achieve with <InlineTooltip
+							text="Pierce"
+							icon={getItemIcon('Ammo Pierce')}
+							tooltip="Ammo"
+							iconType="component"
+						/> shots.
+					</p>
+					<p class="spaced-paragraph">
+						If you’re having difficulty at HR5 or higher, make use of tools like
+						<InlineTooltip
+							text="Halk Pots"
+							icon={getItemIcon('Flask')}
 							tooltip="Item"
-							iconColor={getItemColor('Purple')}
-							text="Hunter's Taloncharm"
-						/>.
+							iconColor={getItemColor('Orange')}
+							iconType="component"
+						/>, which provide a flat 70% reduction in damage taken, allowing you
+						to tank almost anything except the hardest content. You’re limited
+						to five uses per day, so use them sparingly as a crutch when truly
+						needed.
 					</p>
-					<div class="svelte-flow-container">
-						<SvelteFlow
-							colorMode={$theme === 'g10' ? 'light' : 'dark'}
-							fitView
-							{nodes}
-							{edges}
-							elementsSelectable={false}
-							attributionPosition="top-right"
-							nodesConnectable={false}
-							nodesDraggable={false}
-							{nodeTypes}
-						>
-							<Background bgColor={'var(--ctp-mantle)'} />
-							<Controls showLock={false} />
-							<DownloadImageButton fileName="talon-charm" />
-						</SvelteFlow>
-					</div>
+					<p class="spaced-paragraph">
+						<InlineTooltip
+							text="Halk Pots"
+							icon={getItemIcon('Flask')}
+							tooltip="Item"
+							iconColor={getItemColor('Orange')}
+							iconType="component"
+						/> can be obtained by claiming your Daily Quest reward from the General
+						Store NPC by selecting the last option.
+					</p>
+
+					<section>
+						<SectionHeading level={3} title="Stamina Items" />
+						<div>
+							<p>
+								Purchase <InlineTooltip
+									icon={getItemIcon('Herb')}
+									iconColor={getItemColor('Purple')}
+									text="Sunset Herb"
+									tooltip="Item"
+									iconType="component"
+								/> and <InlineTooltip
+									icon={getItemIcon('Webbing')}
+									iconColor={getItemColor('Yellow')}
+									text="Honey"
+									tooltip="Item"
+									iconType="component"
+								/> from the General Store NPC (the lady in pink in the screenshot).
+								Combine them in your item box to create an <InlineTooltip
+									icon={getItemIcon('Medicine')}
+									iconColor={getItemColor('Yellow')}
+									text="Energy Drink"
+									tooltip="Item"
+									iconType="component"
+								/>. Then, talk to the Combiner NPC to Bulk Combine more <InlineTooltip
+									icon={getItemIcon('Medicine')}
+									iconColor={getItemColor('Yellow')}
+									text="Energy Drinks"
+									tooltip="Item"
+									iconType="component"
+								/>.
+							</p>
+							<CenteredFigure
+								width={'100%'}
+								type="file"
+								src={BulkCombine}
+								alt="Bulk Combine"
+								figcaption="You must manually combine an item once for it to appear in
+								the Bulk Combine menu at the Combiner NPC."
+							/>
+						</div>
+					</section>
+
+					<section>
+						<SectionHeading level={3} title="Charms and Talons" />
+						<div>
+							<p class="spaced-paragraph">
+								When you reach HR5, you'll receive some <InlineTooltip
+									icon={getItemIcon('Ticket')}
+									tooltip="Item"
+									text="HRP Tkt (4k)"
+								/>. You can exchange these tickets for GCP at the General Store
+								NPC.
+							</p>
+							<p class="spaced-paragraph">
+								Your first use of GCP should be to purchase 2 <InlineTooltip
+									icon={getItemIcon('Claw')}
+									tooltip="Item"
+									iconType="component"
+									iconColor={getItemColor('Red')}
+									text="Lao Shan Claws"
+								/>, costing <InlineTooltip
+									icon={getCurrencyIcon('GCP')}
+									tooltip="Currency"
+									iconType="file"
+									text="90 GCP"
+								/> each. Combine these Claws with the Power and Armor Charms to create
+								Talons, and then combine those Talons with another set of Charms
+								to make Claws. This final combination will give you the benefits
+								of all four items in one item slot (Attack+15 and Defense+40).
+							</p>
+							<p>
+								The items shown in the diagram do not stack. If you want the
+								maximum possible buffs, you only need <InlineTooltip
+									icon={getItemIcon('Claw')}
+									tooltip="Item"
+									iconColor={getItemColor('Purple')}
+									text="Hunter's Taloncharm"
+								/>.
+							</p>
+							<div class="svelte-flow-container">
+								<SvelteFlow
+									colorMode={$theme === 'g10' ? 'light' : 'dark'}
+									fitView
+									{nodes}
+									{edges}
+									elementsSelectable={false}
+									attributionPosition="top-right"
+									nodesConnectable={false}
+									nodesDraggable={false}
+									{nodeTypes}
+								>
+									<Background bgColor={'var(--ctp-mantle)'} />
+									<Controls showLock={false} />
+									<DownloadImageButton fileName="talon-charm" />
+								</SvelteFlow>
+							</div>
+						</div>
+					</section>
 				</div>
 			</section>
 		</div>
@@ -303,6 +522,21 @@
 </HunterNotesPage>
 
 <style lang="scss">
+	button {
+		all: unset;
+	}
+
+	.table-button {
+		display: flex;
+		align-items: center;
+		font-weight: bold;
+		gap: 0.25rem;
+
+		img {
+			max-width: 4ch;
+		}
+	}
+
 	.page-turn {
 		margin-top: 4rem;
 	}
@@ -311,5 +545,165 @@
 		height: 80vh;
 		margin-top: 2rem;
 		margin-bottom: 2rem;
+	}
+
+	.toolbar {
+		padding: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+
+	.table {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.modal-content {
+		display: flex;
+		gap: var(--cds-spacing-06);
+		flex-direction: column;
+	}
+
+	.modal-content > img {
+		max-width: 60vh;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+	}
+
+	.modal-open-noblur {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+		opacity: 1;
+		-webkit-transition:
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+		transition:
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+		transition:
+			filter 500ms ease,
+			opacity 500ms ease;
+		transition:
+			filter 500ms ease,
+			opacity 500ms ease,
+			-webkit-filter 500ms ease;
+	}
+
+	.modal-open-blur {
+		-webkit-filter: blur(8px);
+		filter: blur(4px);
+		opacity: 1;
+	}
+
+	.data-table-title {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.datatable-bottom {
+		margin-top: 2rem;
+	}
+
+	.modal-mobile-popover-image {
+		max-width: 100%; /* Ensures the image does not exceed the width of its container */
+		max-height: 100%; /* Ensures the image does not exceed the height of its container */
+		object-fit: cover; /* Ensures the image covers the area without distorting its aspect ratio */
+		display: inline-block; /* Removes any extra space below the image */
+	}
+
+	.modal-mobile-container {
+		display: flex;
+		gap: 0.5rem;
+		padding: var(--cds-spacing-04);
+		flex-direction: column;
+		max-width: 48ch;
+		overflow: hidden;
+	}
+
+	.modal-mobile-link:hover {
+		text-decoration: underline;
+	}
+
+	.modal-mobile-image {
+		grid-area: image;
+		display: inline-block;
+		max-width: 8ch;
+	}
+
+	.modal-mobile-button {
+		grid-area: button;
+	}
+
+	.modal-mobile-title {
+		display: -webkit-box;
+		-webkit-line-clamp: 1; /* number of lines to show */
+		line-clamp: 1;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		grid-area: title;
+		font-weight: bold;
+		height: fit-content;
+	}
+
+	.modal-mobile-subtitle {
+		display: -webkit-box;
+		-webkit-line-clamp: 2; /* number of lines to show */
+		line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		grid-area: subtitle;
+		color: var(--ctp-subtext0);
+	}
+
+	.modal-mobile-title,
+	.modal-mobile-subtitle {
+		padding-left: 0.5rem;
+		padding-top: 0;
+		padding-bottom: 0;
+		margin: 0;
+	}
+
+	.modal-mobile-description {
+		grid-area: description;
+		text-wrap: wrap;
+		margin-top: 1rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 3; /* number of lines to show */
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.modal-mobile-contents-top {
+		display: grid;
+		grid-template-areas:
+			'image title button'
+			'image subtitle subtitle'
+			'description description description';
+		gap: 0;
+		grid-template-columns: auto 1fr auto;
+		grid-template-rows: auto 1fr auto;
+	}
+
+	.modal-mobile-contents-bottom {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.paragraph-with-icon {
+		display: flex;
+		align-items: center;
+		gap: 0.125rem;
+	}
+
+	.table-with-scrollbar {
+		height: 80vh;
+		overflow-y: auto;
 	}
 </style>

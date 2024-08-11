@@ -119,10 +119,10 @@
 		legs: FrontierArmorType;
 	} = {
 		head: 'Zenith',
-		chest: 'Origin',
-		arms: 'G',
+		chest: 'Zenith',
+		arms: 'Zenith',
 		waist: 'Zenith',
-		legs: 'Origin',
+		legs: 'Zenith',
 	};
 
 	let skillSlotsUpInputZenithWeapon = true;
@@ -156,8 +156,8 @@
 				<SectionHeading level={2} title="Skill Slots" />
 				<div>
 					<p class="spaced-paragraph">
-						By default, you can activate up to 10 skills. Equipping 3 pieces of
-						G Rank Armor will increase your available skill slots to 11, and
+						By default you can activate up to 10 skills. Equipping 3 pieces of G
+						Rank Armor will increase your available skill slots to 11, and
 						equipping 5 pieces will increase it to 12.
 					</p>
 					<p class="spaced-paragraph">

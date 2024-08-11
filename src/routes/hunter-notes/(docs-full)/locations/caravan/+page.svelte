@@ -1546,7 +1546,7 @@
 						<p>
 							There are a total of {caravanGemSkills.length} caravan skills.
 						</p>
-						<div class="table table-with-pagination">
+						<div class="table">
 							<DataTable
 								id="caravan-skills-dom"
 								pageSize={caravanSkillsTablePageSize}
