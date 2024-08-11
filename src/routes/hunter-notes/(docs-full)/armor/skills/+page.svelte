@@ -22,13 +22,16 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import type { FrontierArmorType } from '$lib/client/modules/frontier/types';
 
-	function getArmorSkillSlots(skillSlotsUpInputArmorPieces: {
-		head: FrontierArmorType;
-		chest: FrontierArmorType;
-		arms: FrontierArmorType;
-		waist: FrontierArmorType;
-		legs: FrontierArmorType;
-	}) {
+	function getArmorSkillSlots(
+		skillSlotsUpInputArmorPieces: {
+			head: FrontierArmorType;
+			chest: FrontierArmorType;
+			arms: FrontierArmorType;
+			waist: FrontierArmorType;
+			legs: FrontierArmorType;
+		},
+		maximumSlots?: boolean,
+	) {
 		const defaultSkillSlots = 10;
 		let result = 0;
 
@@ -49,9 +52,9 @@
 		}
 
 		// For every 'Zenith' piece, increase result by 1
-		const zenithCount = armorPieces.filter(
-			(piece) => piece === 'Zenith',
-		).length;
+		const zenithCount = maximumSlots
+			? armorPieces.filter((piece) => piece === 'Zenith').length
+			: 0;
 		result += zenithCount;
 
 		return result + defaultSkillSlots;
@@ -100,6 +103,48 @@
 		return result + skillSlotsUpArmorPieces;
 	}
 
+	function getExtraSkillSlots(
+		skillSlotsUpInputZenithWeapon: boolean,
+		skillSlotsUpInputZenithCuff: boolean,
+		skillSlotsUpInputTrueHidenCuff: boolean,
+		skillSlotsUpInputSkillFruit: boolean,
+		skillSlotsUpInputLoginBoostGreatLuck: boolean,
+		skillSlotsUpInputDivaSkill: boolean,
+		skillSlotsUpInputGuildFood: boolean,
+	) {
+		let result = 0;
+
+		if (skillSlotsUpInputZenithWeapon) {
+			result++;
+		}
+
+		if (skillSlotsUpInputZenithCuff) {
+			result++;
+		}
+
+		if (skillSlotsUpInputTrueHidenCuff) {
+			result++;
+		}
+
+		if (skillSlotsUpInputSkillFruit) {
+			result++;
+		}
+
+		if (skillSlotsUpInputLoginBoostGreatLuck) {
+			result++;
+		}
+
+		if (skillSlotsUpInputDivaSkill) {
+			result++;
+		}
+
+		if (skillSlotsUpInputGuildFood) {
+			result++;
+		}
+
+		return result;
+	}
+
 	// Mapping function
 	const mappedSkillArmorPriority = Object.keys(ezlionSkillArmorPriority).map(
 		(key) => ({
@@ -133,8 +178,9 @@
 	let skillSlotsUpInputDivaSkill = true;
 	let skillSlotsUpInputGuildFood = true;
 
-	$: totalSkillSlots = getTotalSkillSlots(
-		getArmorSkillSlots(skillSlotsUpInputArmorPieces),
+	$: totalSkillSlots = extraSkillSlots + maximumArmorSlots;
+
+	$: extraSkillSlots = getExtraSkillSlots(
 		skillSlotsUpInputZenithWeapon,
 		skillSlotsUpInputZenithCuff,
 		skillSlotsUpInputTrueHidenCuff,
@@ -143,6 +189,10 @@
 		skillSlotsUpInputDivaSkill,
 		skillSlotsUpInputGuildFood,
 	);
+
+	$: innateArmorSlots = getArmorSkillSlots(skillSlotsUpInputArmorPieces);
+
+	$: maximumArmorSlots = getArmorSkillSlots(skillSlotsUpInputArmorPieces, true);
 
 	// in multiplayer its more skills like encourage.
 	// TODO links to each respective skill slot source explanation (other pages).
@@ -169,11 +219,15 @@
 					</p>
 
 					<p class="spaced-paragraph">
-						The Zenith Skill for Skill Slots Up is always active alongside any
-						other sources of additional slots. Any Z, ZY, ZX, or ZP pieces all
-						count toward the G Rank piece requirements for slots. Like other
-						Zenith skills, this can be found on Armor Pieces, Weapons, and
-						Cuffs, allowing for a maximum of 7 additional slots.
+						The Zenith Skill for <InlineTooltip
+							tooltip="Armor Skill"
+							text="Skill Slots Up"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> is always active alongside any other sources of additional slots.
+						Any Z, ZY, ZX, or ZP pieces all count toward the G Rank piece requirements
+						for slots. Like other Zenith skills, this can be found on Armor Pieces,
+						Weapons, and Cuffs, allowing for a maximum of 7 additional slots.
 					</p>
 					<p class="spaced-paragraph">
 						Exotic Skills do not occupy a skill slot.
@@ -407,6 +461,18 @@
 						</div>
 					</div>
 					<p class="spaced-paragraph">
+						<strong>Innate Armor Skill Slots:</strong>
+						{innateArmorSlots}
+					</p>
+					<p class="spaced-paragraph">
+						<strong>Maximum Armor Skill Slots:</strong>
+						{maximumArmorSlots}
+					</p>
+					<p class="spaced-paragraph">
+						<strong>Extra Skill Slots:</strong>
+						{extraSkillSlots}
+					</p>
+					<p class="spaced-paragraph">
 						<strong>Total Skill Slots:</strong>
 						{totalSkillSlots}
 					</p>
@@ -428,8 +494,13 @@
 						not. You can verify the skills a set will have active on the table
 						below. Priority becomes crucial in the late game, as it's easy to
 						unintentionally activate unwanted skills. This is especially true
-						for sets that include Focus, as it has the lowest priority of all
-						skills and can be easily overridden.
+						for sets that include <InlineTooltip
+							tooltip="Armor Skill"
+							text="Focus"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>, as it has the lowest priority of all skills and can be easily
+						overridden.
 					</p>
 					<div class="table table-with-scrollbar">
 						<DataTable
