@@ -623,7 +623,8 @@ export const guidesInfo: CategoryInfo[] = [
 			},
 			{
 				name: 'Skills',
-				description: 'The list of armor skills, including zenith skills.',
+				description:
+					'The list of armor skills, including zenith skills and skills priority.',
 				link: '/hunter-notes/armor/skills',
 				image: JewelIconWhite,
 			},
