@@ -9418,6 +9418,7 @@ does not get multiplied by horn */
 										(sharedMotionValues = getWeaponSectionMotionValues(
 											inputWeaponType,
 											'Shared',
+											inputWeaponMotionValuesSectionStyle,
 											inputTextInputs,
 											true,
 										))}
