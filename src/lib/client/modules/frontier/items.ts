@@ -37,6 +37,8 @@ import FishIconWhite from '$lib/client/components/frontier/icon/item/Fish_Icon_W
 import FlaskIconWhite from '$lib/client/components/frontier/icon/item/Flask_Icon_White.svelte';
 import FluidIconWhite from '$lib/client/components/frontier/icon/item/Fluid_Icon_White.svelte';
 import FluteIconWhite from '$lib/client/components/frontier/icon/item/Flute_Icon_White.svelte';
+import FruitIconWhite from '$lib/client/components/frontier/icon/item/Fruit_Icon_White.svelte';
+
 import HeadIconWhite from '$lib/client/components/frontier/icon/item/Head_Icon_White.svelte';
 import HerbIconWhite from '$lib/client/components/frontier/icon/item/Herb_Icon_White.svelte';
 import HideIconWhite from '$lib/client/components/frontier/icon/item/Hide_Icon_White.svelte';
@@ -242,6 +244,10 @@ export const itemInfo: { name: string; icon: any }[] = [
 	{
 		name: 'Flute',
 		icon: FluteIconWhite,
+	},
+	{
+		name: 'Fruit',
+		icon: FruitIconWhite,
 	},
 	{
 		name: 'Head',

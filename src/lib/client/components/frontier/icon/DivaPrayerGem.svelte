@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
 	export let color = '#ffffff';
+	export let size = '100%';
 
 	$: targetColor = color;
+	// TODO add to icon generator
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-	width="100%"
-	height="100%"
+	width={size}
 	viewBox="0 0 128 128"
 	version="1.1"
 	id="svg5"
