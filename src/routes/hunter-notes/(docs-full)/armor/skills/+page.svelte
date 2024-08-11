@@ -14,6 +14,91 @@
 	import { Download } from 'carbon-icons-svelte';
 	import { ezlionSkillArmorPriority } from 'ezlion';
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+	import Checkbox from 'carbon-components-svelte/src/Checkbox/Checkbox.svelte';
+	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
+	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
+	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import type { FrontierArmorType } from '$lib/client/modules/frontier/types';
+
+	function getArmorSkillSlots(skillSlotsUpInputArmorPieces: {
+		head: FrontierArmorType;
+		chest: FrontierArmorType;
+		arms: FrontierArmorType;
+		waist: FrontierArmorType;
+		legs: FrontierArmorType;
+	}) {
+		const defaultSkillSlots = 10;
+		let result = 0;
+
+		// Convert the input object into an array of values
+		const armorPieces = Object.values(skillSlotsUpInputArmorPieces);
+
+		// Count the number of 'G' or 'Zenith' pieces
+		const gOrZenithCount = armorPieces.filter(
+			(piece) => piece === 'G' || piece === 'Zenith',
+		).length;
+
+		// Increase result by 2 if there are 5 'G' or 'Zenith' pieces
+		// Increase result by 1 if there are 3 'G' or 'Zenith' pieces
+		if (gOrZenithCount >= 5) {
+			result += 2;
+		} else if (gOrZenithCount >= 3) {
+			result += 1;
+		}
+
+		// For every 'Zenith' piece, increase result by 1
+		const zenithCount = armorPieces.filter(
+			(piece) => piece === 'Zenith',
+		).length;
+		result += zenithCount;
+
+		return result + defaultSkillSlots;
+	}
+
+	function getTotalSkillSlots(
+		skillSlotsUpArmorPieces: number,
+		skillSlotsUpInputZenithWeapon: boolean,
+		skillSlotsUpInputZenithCuff: boolean,
+		skillSlotsUpInputTrueHidenCuff: boolean,
+		skillSlotsUpInputSkillFruit: boolean,
+		skillSlotsUpInputLoginBoostGreatLuck: boolean,
+		skillSlotsUpInputDivaSkill: boolean,
+		skillSlotsUpInputGuildFood: boolean,
+	) {
+		let result = 0;
+
+		if (skillSlotsUpInputZenithWeapon) {
+			result++;
+		}
+
+		if (skillSlotsUpInputZenithCuff) {
+			result++;
+		}
+
+		if (skillSlotsUpInputTrueHidenCuff) {
+			result++;
+		}
+
+		if (skillSlotsUpInputSkillFruit) {
+			result++;
+		}
+
+		if (skillSlotsUpInputLoginBoostGreatLuck) {
+			result++;
+		}
+
+		if (skillSlotsUpInputDivaSkill) {
+			result++;
+		}
+
+		if (skillSlotsUpInputGuildFood) {
+			result++;
+		}
+
+		return result + skillSlotsUpArmorPieces;
+	}
 
 	// Mapping function
 	const mappedSkillArmorPriority = Object.keys(ezlionSkillArmorPriority).map(
@@ -26,13 +111,20 @@
 
 	let skillsPriorityFilteredRowIds: string[] = [];
 
-	let skillSlotsUpInputArmorPieces = {
+	let skillSlotsUpInputArmorPieces: {
+		head: FrontierArmorType;
+		chest: FrontierArmorType;
+		arms: FrontierArmorType;
+		waist: FrontierArmorType;
+		legs: FrontierArmorType;
+	} = {
 		head: 'Zenith',
 		chest: 'Origin',
-		arms: 'G Rank',
+		arms: 'G',
 		waist: 'Zenith',
 		legs: 'Origin',
 	};
+
 	let skillSlotsUpInputZenithWeapon = true;
 	let skillSlotsUpInputZenithCuff = true;
 	let skillSlotsUpInputTrueHidenCuff = true;
@@ -41,7 +133,19 @@
 	let skillSlotsUpInputDivaSkill = true;
 	let skillSlotsUpInputGuildFood = true;
 
+	$: totalSkillSlots = getTotalSkillSlots(
+		getArmorSkillSlots(skillSlotsUpInputArmorPieces),
+		skillSlotsUpInputZenithWeapon,
+		skillSlotsUpInputZenithCuff,
+		skillSlotsUpInputTrueHidenCuff,
+		skillSlotsUpInputSkillFruit,
+		skillSlotsUpInputLoginBoostGreatLuck,
+		skillSlotsUpInputDivaSkill,
+		skillSlotsUpInputGuildFood,
+	);
+
 	// in multiplayer its more skills like encourage.
+	// TODO links to each respective skill slot source explanation (other pages).
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -52,15 +156,260 @@
 				<SectionHeading level={2} title="Skill Slots" />
 				<div>
 					<p class="spaced-paragraph">
+						By default, you can activate up to 10 skills. Equipping 3 pieces of
+						G Rank Armor will increase your available skill slots to 11, and
+						equipping 5 pieces will increase it to 12.
+					</p>
+					<p class="spaced-paragraph">
+						Normal G, GF, GX, GS, and GP pieces all contribute to this total,
+						while Gou armors upgraded to G or GF levels do not. This means that
+						any set using a Burst piece can have a maximum of 11 skills.
+						However, it's worth noting that the Muscle skill boost from a single
+						Burst piece can offset the disadvantage of losing a skill slot.
+					</p>
+
+					<p class="spaced-paragraph">
 						The Zenith Skill for Skill Slots Up is always active alongside any
 						other sources of additional slots. Any Z, ZY, ZX, or ZP pieces all
 						count toward the G Rank piece requirements for slots. Like other
 						Zenith skills, this can be found on Armor Pieces, Weapons, and
 						Cuffs, allowing for a maximum of 7 additional slots.
 					</p>
-					<div class="inputs-container">
-						<div class="input-container"></div>
+					<p class="spaced-paragraph">
+						Exotic Skills do not occupy a skill slot.
+					</p>
+					<div class="skill-slots-up-inputs-container">
+						<div class="inputs-container">
+							<div class="input-container">
+								<div class="input-icon">
+									<svelte:component
+										this={getArmorIcon('Head')}
+										{...{ size: '4ch' }}
+									/>
+								</div>
+								<div>
+									<Dropdown
+										titleText="Head Piece"
+										type="inline"
+										bind:selectedId={skillSlotsUpInputArmorPieces.head}
+										items={[
+											{ id: 'Origin', text: 'Origin' },
+											{ id: 'G', text: 'G Rank' },
+											{ id: 'Zenith', text: 'Zenith' },
+										]}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div class="input-icon">
+									<svelte:component
+										this={getArmorIcon('Chest')}
+										{...{ size: '4ch' }}
+									/>
+								</div>
+								<div>
+									<Dropdown
+										titleText="Chest Piece"
+										type="inline"
+										bind:selectedId={skillSlotsUpInputArmorPieces.chest}
+										items={[
+											{ id: 'Origin', text: 'Origin' },
+											{ id: 'G', text: 'G Rank' },
+											{ id: 'Zenith', text: 'Zenith' },
+										]}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div class="input-icon">
+									<svelte:component
+										this={getArmorIcon('Arms')}
+										{...{ size: '4ch' }}
+									/>
+								</div>
+								<div>
+									<Dropdown
+										titleText="Arms Piece"
+										type="inline"
+										bind:selectedId={skillSlotsUpInputArmorPieces.arms}
+										items={[
+											{ id: 'Origin', text: 'Origin' },
+											{ id: 'G', text: 'G Rank' },
+											{ id: 'Zenith', text: 'Zenith' },
+										]}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div class="input-icon">
+									<svelte:component
+										this={getArmorIcon('Waist')}
+										{...{ size: '4ch' }}
+									/>
+								</div>
+								<div>
+									<Dropdown
+										titleText="Waist Piece"
+										type="inline"
+										bind:selectedId={skillSlotsUpInputArmorPieces.waist}
+										items={[
+											{ id: 'Origin', text: 'Origin' },
+											{ id: 'G', text: 'G Rank' },
+											{ id: 'Zenith', text: 'Zenith' },
+										]}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div class="input-icon">
+									<svelte:component
+										this={getArmorIcon('Legs')}
+										{...{ size: '4ch' }}
+									/>
+								</div>
+								<div>
+									<Dropdown
+										titleText="Legs Piece"
+										type="inline"
+										bind:selectedId={skillSlotsUpInputArmorPieces.legs}
+										items={[
+											{ id: 'Origin', text: 'Origin' },
+											{ id: 'G', text: 'G Rank' },
+											{ id: 'Zenith', text: 'Zenith' },
+										]}
+									/>
+								</div>
+							</div>
+						</div>
+						<div class="inputs-container">
+							<div class="input-container">
+								<div
+									class="input-icon"
+									style:opacity={skillSlotsUpInputZenithWeapon ? '1' : '0.5'}
+								>
+									<svelte:component
+										this={getWeaponIcon('Great Sword')}
+										{...{ size: '4ch' }}
+									/>
+								</div>
+								<div>
+									<Checkbox
+										labelText="Zenith Weapon"
+										bind:checked={skillSlotsUpInputZenithWeapon}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div
+									class="input-icon"
+									style:opacity={skillSlotsUpInputZenithCuff ? '1' : '0.5'}
+								>
+									<img
+										alt="Zenith Cuff"
+										style="width: 4ch;"
+										src={getLocationIcon('My Tore')}
+									/>
+								</div>
+								<div>
+									<Checkbox
+										labelText="Zenith Cuff"
+										bind:checked={skillSlotsUpInputZenithCuff}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div
+									class="input-icon"
+									style:opacity={skillSlotsUpInputTrueHidenCuff ? '1' : '0.5'}
+								>
+									<img
+										alt="True Hiden Cuff"
+										style="width: 4ch;"
+										src={getLocationIcon('My Tore')}
+									/>
+								</div>
+								<div>
+									<Checkbox
+										labelText="True Hiden Cuff"
+										bind:checked={skillSlotsUpInputTrueHidenCuff}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div
+									class="input-icon"
+									style:opacity={skillSlotsUpInputSkillFruit ? '1' : '0.5'}
+								>
+									<svelte:component
+										this={getItemIcon('Berry')}
+										{...{ size: '4ch' }}
+									/>
+								</div>
+								<div>
+									<Checkbox
+										labelText="Skill Fruit"
+										bind:checked={skillSlotsUpInputSkillFruit}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div
+									class="input-icon"
+									style:opacity={skillSlotsUpInputDivaSkill ? '1' : '0.5'}
+								>
+									<img
+										alt="Diva Skill"
+										style="width: 4ch;"
+										src={getLocationIcon('Diva Defense')}
+									/>
+								</div>
+								<div>
+									<Checkbox
+										labelText="Diva Skill"
+										bind:checked={skillSlotsUpInputDivaSkill}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div
+									class="input-icon"
+									style:opacity={skillSlotsUpInputGuildFood ? '1' : '0.5'}
+								>
+									<img
+										alt="Guild Food"
+										style="width: 4ch;"
+										src={getLocationIcon('Guild Hall')}
+									/>
+								</div>
+								<div>
+									<Checkbox
+										labelText="Guild Food"
+										bind:checked={skillSlotsUpInputGuildFood}
+									/>
+								</div>
+							</div>
+							<div class="input-container">
+								<div
+									class="input-icon"
+									style:opacity={skillSlotsUpInputLoginBoostGreatLuck
+										? '1'
+										: '0.5'}
+								>
+									<p>🍀</p>
+								</div>
+								<div>
+									<Checkbox
+										labelText="Log In Boost Great Luck"
+										bind:checked={skillSlotsUpInputLoginBoostGreatLuck}
+									/>
+								</div>
+							</div>
+						</div>
 					</div>
+					<p class="spaced-paragraph">
+						<strong>Total Skill Slots:</strong>
+						{totalSkillSlots}
+					</p>
 					<p>
 						In practice, you're unlikely to create a set with 19 skills. For
 						early Z sets, a practical maximum is around 15 skills, with Gunners
@@ -295,6 +644,12 @@
 		overflow-y: auto;
 	}
 
+	.skill-slots-up-inputs-container {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
 	.inputs-container {
 		display: flex;
 		gap: 1rem;
@@ -302,5 +657,11 @@
 		margin-top: 1rem;
 		flex-wrap: wrap;
 		margin-bottom: 1rem;
+		flex-direction: column;
+	}
+
+	.input-container {
+		display: flex;
+		gap: 0.25rem;
 	}
 </style>
