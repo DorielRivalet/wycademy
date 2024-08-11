@@ -25,12 +25,51 @@
 	);
 
 	let skillsPriorityFilteredRowIds: string[] = [];
+
+	let skillSlotsUpInputArmorPieces = {
+		head: 'Zenith',
+		chest: 'Origin',
+		arms: 'G Rank',
+		waist: 'Zenith',
+		legs: 'Origin',
+	};
+	let skillSlotsUpInputZenithWeapon = true;
+	let skillSlotsUpInputZenithCuff = true;
+	let skillSlotsUpInputTrueHidenCuff = true;
+	let skillSlotsUpInputSkillFruit = true;
+	let skillSlotsUpInputLoginBoostGreatLuck = true;
+	let skillSlotsUpInputDivaSkill = true;
+	let skillSlotsUpInputGuildFood = true;
+
+	// in multiplayer its more skills like encourage.
 </script>
 
 <HunterNotesPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Armor Skills'} />
 		<div>
+			<section>
+				<SectionHeading level={2} title="Skill Slots" />
+				<div>
+					<p class="spaced-paragraph">
+						The Zenith Skill for Skill Slots Up is always active alongside any
+						other sources of additional slots. Any Z, ZY, ZX, or ZP pieces all
+						count toward the G Rank piece requirements for slots. Like other
+						Zenith skills, this can be found on Armor Pieces, Weapons, and
+						Cuffs, allowing for a maximum of 7 additional slots.
+					</p>
+					<div class="inputs-container">
+						<div class="input-container"></div>
+					</div>
+					<p>
+						In practice, you're unlikely to create a set with 19 skills. For
+						early Z sets, a practical maximum is around 15 skills, with Gunners
+						benefiting the most since they still aim to include the single
+						Origin piece for the +0.3x Critical Distance and +0.2x Power Coating
+						multipliers.
+					</p>
+				</div>
+			</section>
 			<section>
 				<SectionHeading level={2} title="Skill Priority" />
 				<div>
@@ -254,5 +293,14 @@
 	.table-with-scrollbar {
 		height: 80vh;
 		overflow-y: auto;
+	}
+
+	.inputs-container {
+		display: flex;
+		gap: 1rem;
+		max-width: max-content;
+		margin-top: 1rem;
+		flex-wrap: wrap;
+		margin-bottom: 1rem;
 	}
 </style>
