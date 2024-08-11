@@ -169,7 +169,7 @@
 						standard Impact damage modifiers.
 					</p>
 					<CenteredFigure
-						figcaption="Switching modes."
+						figcaption="Switching modes: notice the icon in the top left corner."
 						alt="Switching modes"
 						type="file"
 						width="100%"
@@ -488,11 +488,6 @@
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Razor Sharp"
-									iconType="component"
-									icon={getItemIcon('Jewel')}
-								/>. It's not recommended to use <InlineTooltip
-									tooltip="Armor Skill"
-									text="Lavish"
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>.
