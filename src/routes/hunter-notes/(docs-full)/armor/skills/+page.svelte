@@ -489,10 +489,11 @@
 				<SectionHeading level={2} title="Skill Priority" />
 				<div>
 					<p>
-						Each skill takes precedence over another skill according to a
-						priority value, which determines whether it will be activated or
-						not. You can verify the skills a set will have active on the table
-						below. Priority becomes crucial in the late game, as it's easy to
+						Not to be confused with what skill you should prioritize; each skill
+						takes precedence over another skill according to a hidden priority
+						value, which determines whether it will be activated or not. You can
+						verify the skills a set will have active on the table below.
+						Priority becomes crucial in the late game, as it's easy to
 						unintentionally activate unwanted skills. This is especially true
 						for sets that include <InlineTooltip
 							tooltip="Armor Skill"
