@@ -857,7 +857,9 @@
 		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
 		headTitle = monster
 			? monster.displayName + " — Frontier's Wycademy"
-			: (navigationItem?.name ?? "Hunter's Notes — Frontier's Wycademy");
+			: navigationItem?.name
+				? navigationItem?.name + " — Frontier's Wycademy"
+				: "Hunter's Notes — Frontier's Wycademy";
 		description = monster?.ecology
 			? monster.ecology
 			: (navigationItem?.description ?? description);
@@ -884,7 +886,9 @@
 		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
 		headTitle = monster
 			? monster.displayName + " — Frontier's Wycademy"
-			: (navigationItem?.name ?? "Hunter's Notes — Frontier's Wycademy");
+			: navigationItem?.name
+				? navigationItem?.name + " — Frontier's Wycademy"
+				: "Hunter's Notes — Frontier's Wycademy";
 		description = monster?.ecology
 			? monster.ecology
 			: (navigationItem?.description ?? description);
