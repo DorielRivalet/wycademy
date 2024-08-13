@@ -24,7 +24,12 @@
 	import TonfaModes from '$lib/client/images/supplemental/tonfa-modes.webp';
 	import TonfaRyuukiMeter from '$lib/client/images/supplemental/tonfa-meter-ryuuki.webp';
 	import TonfaMeter from '$lib/client/images/supplemental/tonfa-meter.webp';
-	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
+	import CaravanGem from '$lib/client/components/frontier/icon/CaravanGem.svelte';
+	import { getAilmentIcon } from '$lib/client/modules/frontier/ailments';
 
 	const hidenSkills: {
 		id: string;
@@ -43,7 +48,7 @@
 			id: '3',
 			skill: 'Tonfa Tech 【Piercing Phoenix】',
 			points: '30',
-			description: `Gives Super High-Grade Earplugs, Attack x1.2 when wielding Tonfa and Fencing+1. An additional 6th Combo / EX Meter segment is added.`,
+			description: `Gives Super High-Grade Earplugs, Attack x1.2 when wielding Tonfa and Fencing+1. Adds one bar to each gauge in the Tonfa Meter.`,
 		},
 		{
 			id: '2',
@@ -154,8 +159,13 @@
 					iconType="component"
 					icon={getWeaponIcon('Tonfa')}
 				/> has two modes: long mode and short mode. Both modes share basic attack
-				moves, KO damage on head strikes, a finishing move, and pole launch, while
-				also featuring unique moves and abilities.
+				moves, <InlineTooltip
+					tooltip="Ailment"
+					text="Stun"
+					iconType="component"
+					icon={getAilmentIcon('Stun')}
+				/> damage on head strikes, a finishing move, and pole launch, while also
+				featuring unique moves and abilities.
 			</p>
 
 			<section>
@@ -221,9 +231,13 @@
 									icon={getItemIcon('Head')}
 								/>
 								The monster is enveloped in a burning, yellowish aura. During this
-								time, all attacks will inflict +1 KO damage, regardless of the damage
-								type or where the monster is hit. Monsters that cannot be KOed (such
-								as <InlineTooltip
+								time, all attacks will inflict +1 <InlineTooltip
+									tooltip="Ailment"
+									text="Stun"
+									iconType="component"
+									icon={getAilmentIcon('Stun')}
+								/> damage, regardless of the damage type or where the monster is
+								hit. Monsters that cannot be KOed (such as <InlineTooltip
 									tooltip="Monster"
 									text="Lao-Shan Lung"
 									iconType="file"
@@ -540,6 +554,109 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> can help you stay in the air longer.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								Due to the way the combo meter boosts raw damage, <InlineTooltip
+									tooltip="Weapon"
+									text="Tonfa"
+									iconType="component"
+									icon={getWeaponIcon('Tonfa')}
+								/> requires a much higher My Mission attack threshold than most other
+								weapons.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								Long mode is the default and deals more <InlineTooltip
+									tooltip="Ailment"
+									text="Stun"
+									iconType="component"
+									icon={getAilmentIcon('Stun')}
+								/> damage. Short mode has been reworked to focus on meter gain, but
+								it has significant hitlag and isn't very effective outside of using
+								the dash attack to build meter.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								Guard points exist on some attacks, but they aren't very
+								practical to use. Additionally, obtaining <InlineTooltip
+									tooltip="Armor Skill"
+									text="Iron Arm"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> on modern sets is quite difficult.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								The Ryuuki finisher replenishes the meters of all nearby <InlineTooltip
+									tooltip="Weapon"
+									text="Tonfa"
+									iconType="component"
+									icon={getWeaponIcon('Tonfa')}
+								/>
+								players and can also be triggered by Tonfa-wielding hunter NPCs.
+								While these bursts provide some additional benefits, most of them
+								are relatively minor.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								To maintain your combo meter, simply hit or evade enemies. The
+								timer generally slows down if the monster is performing a
+								lengthy attack during which you can't or shouldn't be attacking.
+							</p></ListItem
+						>
+						<ListItem><p>EX Evasion only costs meter, not stamina.</p></ListItem
+						>
+						<ListItem
+							><p>
+								EX Pursuit (charged jab + meter) benefits from <InlineTooltip
+									tooltip="Armor Skill"
+									text="Gunnery"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>
+								(available via <InlineTooltip
+									tooltip="Armor Skill"
+									text="Blazing Majesty"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>), <InlineTooltip
+									tooltip="Armor Skill"
+									text="Charge Attack Up"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>, and <InlineTooltip
+									tooltip="Armor Skill"
+									text="Focus"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>, but is quite costly compared to airdash spam.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								Similar to <InlineTooltip
+									tooltip="Weapon"
+									text="Sword and Shield"
+									iconType="component"
+									icon={getWeaponIcon('Sword and Shield')}
+								/>, two well-timed blocks with the <InlineTooltip
+									tooltip="Caravan Skill"
+									text="Perfect Defense"
+									iconType="component"
+									icon={CaravanGem}
+								/> caravan skill, along with <InlineTooltip
+									tooltip="Zenith Skill"
+									text="Obscurity Up"
+									iconType="component"
+									iconColor={getItemColor('Red')}
+									icon={getItemIcon('Jewel')}
+								/>, can boost raw damage by 300 until you get knocked back.
 							</p></ListItem
 						>
 					</UnorderedList>

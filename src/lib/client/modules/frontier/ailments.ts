@@ -81,3 +81,25 @@ export const AilmentIcons: { name: FrontierAilment; icon: any }[] = [
 	{ name: 'Blast', icon: IconStatusBlast },
 	{ name: 'Sleep', icon: IconStatusSleep },
 ];
+
+export function getAilmentIcon(iconName: string) {
+	const icon = AilmentIcons[0].icon;
+
+	const found = AilmentIcons.find((w) => w.name === iconName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.icon;
+}
+
+export function getStatusIcon(iconName: string) {
+	const icon = StatusIcons[0].icon;
+
+	const found = StatusIcons.find((w) => w.name === iconName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.icon;
+}

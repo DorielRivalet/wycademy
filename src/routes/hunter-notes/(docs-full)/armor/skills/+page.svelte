@@ -21,6 +21,8 @@
 	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import type { FrontierArmorType } from '$lib/client/modules/frontier/types';
+	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
+	import GouBoost from '$lib/client/components/frontier/icon/GouBoost.svelte';
 
 	function getArmorSkillSlots(
 		skillSlotsUpInputArmorPieces: {
@@ -220,8 +222,14 @@
 						Normal G, GF, GX, GS, and GP pieces all contribute to this total,
 						while Gou armors upgraded to G or GF levels do not. This means that
 						any set using a Burst piece can have a maximum of 11 skills.
-						However, it's worth noting that the Muscle skill boost from a single
-						Burst piece can offset the disadvantage of losing a skill slot.
+						However, it's worth noting that the <InlineTooltip
+							tooltip="Buff"
+							text="Muscle skill boost"
+							icon={GouBoost}
+							iconSize="3ch"
+							iconType="component"
+						/> from a single Burst piece can offset the disadvantage of losing a
+						skill slot.
 					</p>
 
 					<p class="spaced-paragraph">
@@ -466,26 +474,70 @@
 							</div>
 						</div>
 					</div>
-					<p class="spaced-paragraph">
-						<strong>Innate Armor Skill Slots:</strong>
-						{innateArmorSlots}
-					</p>
-					<p class="spaced-paragraph">
-						<strong>Maximum Armor Skill Slots:</strong>
-						{maximumArmorSlots}
-					</p>
-					<p class="spaced-paragraph">
-						<strong>Maximum Gear Skill Slots:</strong>
-						{maximumGearSlots}
-					</p>
-					<p class="spaced-paragraph">
-						<strong>Extra Skill Slots:</strong>
-						{extraSkillSlots}
-					</p>
-					<p class="spaced-paragraph">
-						<strong>Total Skill Slots:</strong>
-						{totalSkillSlots}
-					</p>
+					<div class="skill-slots-result">
+						<Tooltip align="start"
+							><p>
+								The Skill Slots naturally given by an armor piece. Does not
+								count Skill Slots Up.
+							</p></Tooltip
+						>
+						<p class="spaced-paragraph">
+							<strong>Innate Armor Skill Slots:</strong>
+							{innateArmorSlots}
+						</p>
+					</div>
+
+					<div class="skill-slots-result">
+						<Tooltip align="start">
+							<p>
+								The maximum skill slots from armor pieces, including Skill Slots
+								Up.
+							</p>
+						</Tooltip>
+						<p class="spaced-paragraph">
+							<strong>Maximum Armor Skill Slots:</strong>
+							{maximumArmorSlots}
+						</p>
+					</div>
+
+					<div class="skill-slots-result">
+						<Tooltip align="start">
+							<p>
+								The maximum skill slots a full set of gear can provide (armor,
+								weapon and cuffs).
+							</p>
+						</Tooltip>
+						<p class="spaced-paragraph">
+							<strong>Maximum Gear Skill Slots:</strong>
+							{maximumGearSlots}
+						</p>
+					</div>
+
+					<div class="skill-slots-result">
+						<Tooltip align="start">
+							<p>
+								Additional skill slots that can be added through buffs or other
+								means (anything that is not an armor piece).
+							</p>
+						</Tooltip>
+						<p class="spaced-paragraph">
+							<strong>Extra Skill Slots:</strong>
+							{extraSkillSlots}
+						</p>
+					</div>
+
+					<div class="skill-slots-result">
+						<Tooltip align="start">
+							<p>
+								The total number of skill slots available after all
+								enhancements.
+							</p>
+						</Tooltip>
+						<p class="spaced-paragraph">
+							<strong>Total Skill Slots:</strong>
+							{totalSkillSlots}
+						</p>
+					</div>
 					<p>
 						In practice, you're unlikely to create a set with 19 skills. For
 						early Z sets, a practical maximum is around 15 skills, with Gunners
@@ -501,18 +553,21 @@
 					<p>
 						<strong
 							>Not to be confused with what skill you should prioritize</strong
-						>; each skill takes precedence over another skill according to a
-						hidden priority value, which determines whether it will be activated
-						or not. You can verify the skills a set will have active on the
-						table below. Priority becomes crucial in the late game, as it's easy
-						to unintentionally activate unwanted skills. This is especially true
+						>; Skill Priority, or Skill Replacement Order, refers to how each
+						skill takes precedence over another skill according to a priority
+						value, which determines whether it will be activated or not. You can
+						verify the skills a set will have active on the table below.
+						Priority becomes crucial in the late game, as it's easy to
+						unintentionally activate unwanted skills. This is especially true
 						for sets that include <InlineTooltip
 							tooltip="Armor Skill"
 							text="Focus"
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/>, as it has the lowest priority of all skills and can be easily
-						overridden.
+						overridden. Skill Replacement Order becomes noticeably important
+						when you reach the maximum possible skill slots for your gear, which
+						makes the game start prioritizing certain skills.
 					</p>
 					<div class="table table-with-scrollbar">
 						<DataTable
@@ -744,6 +799,11 @@
 	}
 
 	.input-container {
+		display: flex;
+		gap: 0.25rem;
+	}
+
+	.skill-slots-result {
 		display: flex;
 		gap: 0.25rem;
 	}
