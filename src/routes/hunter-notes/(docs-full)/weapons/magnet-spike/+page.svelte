@@ -35,6 +35,7 @@
 	import MSGauges from '$lib/client/images/supplemental/ms-gauges.webp';
 	import MSPinReady from '$lib/client/images/supplemental/ms-pin-ready.webp';
 	import MSPin from '$lib/client/images/supplemental/ms-pin.webp';
+	import { getItemIcon } from '$lib/client/modules/frontier/items';
 
 	const hidenSkills: {
 		id: string;
@@ -1003,21 +1004,40 @@ graph LR
 						>
 						<ListItem
 							><p>
-								The Magnet Spike lacks an elemental multiplier for Charge Attack
-								Up. The skill only significantly boosts the impact charged
+								The <InlineTooltip
+									tooltip="Weapon"
+									text="Magnet Spike"
+									icon={getWeaponIcon('Magnet Spike')}
+									iconType="component"
+								/> lacks an elemental multiplier for <InlineTooltip
+									tooltip="Armor Skill"
+									text="Charge Attack Up"
+									icon={getItemIcon('Jewel')}
+									iconType="component"
+								/>. The skill only significantly boosts the impact charged
 								strike.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								Due to the ample amount of innate i-frames, it can be practical
-								to forgo a source of Evasion +2 entirely.
+								to forgo a source of <InlineTooltip
+									tooltip="Armor Skill"
+									text="Evasion+2"
+									icon={getItemIcon('Jewel')}
+									iconType="component"
+								/> entirely.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								There are no Magnet Spike-specific sigils outside of UL sigils.
-								The Stun sigil can be relevant for Impact Mode centric runs.
+								The <InlineTooltip
+									tooltip="Sigil Skill"
+									text="Stun"
+									icon={getItemIcon('Sigil')}
+									iconType="component"
+								/> sigil can be relevant for Impact Mode centric runs.
 							</p></ListItem
 						>
 						<ListItem

@@ -603,6 +603,15 @@ Only support can inflict poison to Raviente Raviente.`,
 		hex: '0x00',
 		category: 'Guide',
 	},
+	{
+		title: 'Armor Skills',
+		content:
+			'The list of armor skills, including zenith skills, skill slots and skills priority.',
+		slug: '/hunter-notes/armor/skills',
+		id: 0,
+		hex: '0x00',
+		category: 'Guide',
+	},
 	// TODO once im done with everything update this index.
 ];
 

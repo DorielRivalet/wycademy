@@ -316,7 +316,7 @@ Wide Shells +1 (stackable with Load Up or Gentle Shot).`,
 			description: `Gives Super High-Grade Earplugs,
 Attack x1.2 when wielding Tonfa and
 Fencing+1.
-An additional 6th Combo / EX Meter segment is added.`,
+Adds one bar to each gauge in the Tonfa Meter.`,
 		},
 		{
 			id: '9',

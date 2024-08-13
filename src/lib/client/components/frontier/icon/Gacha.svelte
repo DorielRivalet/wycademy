@@ -2,6 +2,8 @@
 	import { blendColor } from '$lib/client/modules/color-blend';
 	export let color = '#ffffff';
 
+	// TODO to icon generator
+
 	$: targetColor = color;
 	/*
 	<metadata id="metadata5"
