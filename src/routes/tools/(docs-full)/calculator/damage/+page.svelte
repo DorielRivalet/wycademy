@@ -313,155 +313,6 @@
 		});
 	}
 
-	function getDivaPrayerGemTypeValue(
-		type: 'cutting' | 'impact' | 'shot' | 'affinity' | 'trueRaw' | 'element',
-	) {
-		switch (type) {
-			default:
-				return 0;
-			case 'cutting':
-				return (
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemRedName,
-						inputNumberDivaPrayerGemRedLevel,
-						'cutting',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemYellowName,
-						inputNumberDivaPrayerGemYellowLevel,
-						'cutting',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemGreenName,
-						inputNumberDivaPrayerGemGreenLevel,
-						'cutting',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemBlueName,
-						inputNumberDivaPrayerGemBlueLevel,
-						'cutting',
-					)
-				);
-			case 'impact':
-				return (
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemRedName,
-						inputNumberDivaPrayerGemRedLevel,
-						'impact',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemYellowName,
-						inputNumberDivaPrayerGemYellowLevel,
-						'impact',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemGreenName,
-						inputNumberDivaPrayerGemGreenLevel,
-						'impact',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemBlueName,
-						inputNumberDivaPrayerGemBlueLevel,
-						'impact',
-					)
-				);
-			case 'shot':
-				return (
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemRedName,
-						inputNumberDivaPrayerGemRedLevel,
-						'shot',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemYellowName,
-						inputNumberDivaPrayerGemYellowLevel,
-						'shot',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemGreenName,
-						inputNumberDivaPrayerGemGreenLevel,
-						'shot',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemBlueName,
-						inputNumberDivaPrayerGemBlueLevel,
-						'shot',
-					)
-				);
-
-			case 'affinity':
-				return (
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemRedName,
-						inputNumberDivaPrayerGemRedLevel,
-						'affinity',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemYellowName,
-						inputNumberDivaPrayerGemYellowLevel,
-						'affinity',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemGreenName,
-						inputNumberDivaPrayerGemGreenLevel,
-						'affinity',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemBlueName,
-						inputNumberDivaPrayerGemBlueLevel,
-						'affinity',
-					)
-				);
-
-			case 'element':
-				return (
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemRedName,
-						inputNumberDivaPrayerGemRedLevel,
-						'element',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemYellowName,
-						inputNumberDivaPrayerGemYellowLevel,
-						'element',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemGreenName,
-						inputNumberDivaPrayerGemGreenLevel,
-						'element',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemBlueName,
-						inputNumberDivaPrayerGemBlueLevel,
-						'element',
-					)
-				);
-			case 'trueRaw':
-				return (
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemRedName,
-						inputNumberDivaPrayerGemRedLevel,
-						'trueRaw',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemYellowName,
-						inputNumberDivaPrayerGemYellowLevel,
-						'trueRaw',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemGreenName,
-						inputNumberDivaPrayerGemGreenLevel,
-						'trueRaw',
-					) +
-					getDivaPrayerGemValue(
-						inputDivaPrayerGemBlueName,
-						inputNumberDivaPrayerGemBlueLevel,
-						'trueRaw',
-					)
-				);
-		}
-	}
-
 	/**TODO could be optimized too. bowchargeQuick = bowQuickShotChargeLevel, quickshotmode = outputQuickShotChargeModifier*/
 	function getShotValues(
 		specialFlag: string,
@@ -568,7 +419,7 @@
 								bowRawSigilChargeMultipliers[bowChargeLevels.chargeModifier] *
 								(getExploitWeakness(
 									outputWeaponClass,
-									inputNumberShotHitzone + getDivaPrayerGemTypeValue('shot'),
+									inputNumberShotHitzone + outputDivaPrayerGemShotHitzone,
 								) /
 									100),
 						) * outputMonsterTotalDefense,
@@ -1186,12 +1037,7 @@
 		}
 	}
 
-	function getRawHitzoneMultiplier(
-		weaponType: FrontierWeaponName,
-		cutting: number,
-		impact: number,
-		shot: number,
-	) {
+	function getRawHitzoneMultiplier(weaponType: FrontierWeaponName) {
 		let damageType =
 			WeaponTypes.find((e) => e.name === weaponType)?.damageType || '';
 		switch (damageType) {
@@ -1199,34 +1045,28 @@
 				return 1;
 			case 'Cutting':
 				return getExploitWeakness(
-					outputWeaponClass, // TODO unsure to replace
-					cutting,
+					outputWeaponClass,
+					inputNumberCuttingHitzone + outputDivaPrayerGemCuttingHitzone,
 				);
 			case 'Impact':
-				// console.log(
-				// 	`getExploitWeakness: ${outputWeaponClass} ${impact} ${getExploitWeakness(
-				// 		outputWeaponClass,
-				// 		impact,
-				// 	)}`,
-				// );
 				return getExploitWeakness(
-					outputWeaponClass, // TODO unsure to replace
-					impact,
+					outputWeaponClass,
+					inputNumberImpactHitzone + outputDivaPrayerGemImpactHitzone,
 				);
 			case 'Shot': // TODO unused
 				return getExploitWeakness(
-					outputWeaponClass, // TODO unsure to replace
-					shot,
+					outputWeaponClass,
+					inputNumberShotHitzone + outputDivaPrayerGemShotHitzone,
 				);
 			case 'Pierce': // lance
 				return inputNumberImpactHitzone * 0.72 > inputNumberCuttingHitzone
 					? getExploitWeakness(
-							outputWeaponClass, // TODO unsure to replace
-							impact,
+							outputWeaponClass,
+							inputNumberImpactHitzone + outputDivaPrayerGemImpactHitzone,
 						)
 					: getExploitWeakness(
-							outputWeaponClass, // TODO unsure to replace
-							cutting,
+							outputWeaponClass,
+							inputNumberCuttingHitzone + outputDivaPrayerGemCuttingHitzone,
 						);
 		}
 	}
@@ -1288,24 +1128,26 @@
 		// hitzone preprocessing
 		let elementHitzoneFireMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberFireHitzone + getDivaPrayerGemTypeValue('element'),
+			inputNumberFireHitzone + outputDivaPrayerGemElementHitzone,
 		);
 		let elementHitzoneWaterMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberWaterHitzone + getDivaPrayerGemTypeValue('element'),
+			inputNumberWaterHitzone + outputDivaPrayerGemElementHitzone,
 		);
 		let elementHitzoneThunderMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberThunderHitzone + getDivaPrayerGemTypeValue('element'),
+			inputNumberThunderHitzone + outputDivaPrayerGemElementHitzone,
 		);
 		let elementHitzoneIceMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberIceHitzone + getDivaPrayerGemTypeValue('element'),
+			inputNumberIceHitzone + outputDivaPrayerGemElementHitzone,
 		);
 		let elementHitzoneDragonMultiplier = getElementalExploit(
 			weaponName,
-			inputNumberDragonHitzone + getDivaPrayerGemTypeValue('element'),
+			inputNumberDragonHitzone + outputDivaPrayerGemElementHitzone,
 		);
+
+		let rawHitzoneMultiplier = getRawHitzoneMultiplier(weaponName);
 
 		let usedFire = Math.floor(
 			((Math.floor(
@@ -1413,27 +1255,6 @@
 				elementHitzoneDragonMultiplier) /
 				100,
 		);
-
-		// console.log('CHECKING HITZONES');
-		// console.log(
-		// 	`getDivaPrayerGemTypeValue('cutting'): ${getDivaPrayerGemTypeValue('cutting')}`,
-		// );
-		// console.log(
-		// 	`getDivaPrayerGemTypeValue('impact'): ${getDivaPrayerGemTypeValue('impact')}`,
-		// );
-		// console.log(
-		// 	`getDivaPrayerGemTypeValue('shot'): ${getDivaPrayerGemTypeValue('shot')}`,
-		// );
-		// console.log('CHECKING HITZONES');
-
-		const outputRawHitzoneMultiplier = getRawHitzoneMultiplier(
-			inputWeaponType,
-			inputNumberCuttingHitzone + getDivaPrayerGemTypeValue('cutting'),
-			inputNumberImpactHitzone + getDivaPrayerGemTypeValue('impact'),
-			inputNumberShotHitzone + getDivaPrayerGemTypeValue('shot'),
-		);
-
-		// $: console.log(`outputRawHitzoneMultiplier: ${outputRawHitzoneMultiplier}`);
 
 		sectionEntry.motionValues.forEach((motionValueItem, index) => {
 			/**also compressionmotionvalue*/
@@ -1578,7 +1399,7 @@
 						outputFlashConversionAffinity +
 						outputStarvingWolfAffinity +
 						outputCeaselessAffinity +
-						getDivaPrayerGemTypeValue('affinity');
+						outputDivaPrayerGemAffinity;
 					if (totalAffinityUsed > 100) {
 						totalAffinityUsed = 100;
 					} else if (totalAffinityUsed < 0) {
@@ -1604,7 +1425,7 @@
 							getMaxTrueRaw(internalTrueRaw) *
 								0.025 *
 								outputOldSharpnessMultiplier *
-								(outputRawHitzoneMultiplier / 100),
+								(rawHitzoneMultiplier / 100),
 						) * outputMonsterTotalDefense,
 					);
 					critMultiplier = 1.0;
@@ -1726,7 +1547,7 @@
 										outputSwordAndShieldMultiplier *
 										outputOtherMultipliers *
 										outputMonsterStatusInflictedMultiplier *
-										outputRawHitzoneMultiplier) /
+										rawHitzoneMultiplier) /
 										100,
 								) * outputMonsterTotalDefense,
 							),
@@ -1735,36 +1556,6 @@
 						outputPremiumCourseMultiplier *
 						outputFencingMultiplier,
 				);
-				// console.log(`===================================`);
-				// console.log(motionValueItem.name);
-				// console.log(`rawOutput: ${rawOutput}`);
-				// console.log(`motionValue: ${motionValue}`);
-				// console.log(`critMultiplier: ${critMultiplier}`);
-				// console.log(
-				// 	`getMaxTrueRaw(internalTrueRaw): ${getMaxTrueRaw(internalTrueRaw)}`,
-				// );
-				// console.log(`outputSharpnessMultiplier: ${outputSharpnessMultiplier}`);
-				// console.log(`flagMultiplier: ${flagMultiplier}`);
-				// console.log(
-				// 	`outputSwordAndShieldMultiplier: ${outputSwordAndShieldMultiplier}`,
-				// );
-				// console.log(`outputOtherMultipliers: ${outputOtherMultipliers}`);
-				// console.log(
-				// 	`outputMonsterStatusInflictedMultiplier: ${outputMonsterStatusInflictedMultiplier}`,
-				// );
-				// console.log(
-				// 	`outputRawHitzoneMultiplier: ${outputRawHitzoneMultiplier}`,
-				// );
-				// // console.log(`outputRawHitzoneMultiplier: ${outputRawHitzoneMultiplier}`);
-				// console.log(`outputMonsterTotalDefense: ${outputMonsterTotalDefense}`);
-				// console.log(
-				// 	`outputAbsoluteDefenseMultiplier: ${outputAbsoluteDefenseMultiplier}`,
-				// );
-				// console.log(
-				// 	`outputPremiumCourseMultiplier: ${outputPremiumCourseMultiplier}`,
-				// );
-				// console.log(`outputFencingMultiplier: ${outputFencingMultiplier}`);
-				// console.log(`===================================`);
 			} else if (
 				weaponName === 'Light Bowgun' ||
 				weaponName === 'Heavy Bowgun'
@@ -1786,7 +1577,7 @@
 								bulletStrengthModifier *
 								outputShotMultiplier *
 								outputMonsterStatusInflictedMultiplier *
-								((inputNumberShotHitzone + getDivaPrayerGemTypeValue('shot')) /
+								((inputNumberShotHitzone + outputDivaPrayerGemShotHitzone) /
 									100) *
 								outputMonsterTotalDefense,
 						) * outputAbsoluteDefenseMultiplier,
@@ -1807,7 +1598,7 @@
 										bowChargeRawLevel *
 										bowQuickShotChargeLevel *
 										outputMonsterStatusInflictedMultiplier *
-										inputNumberShotHitzone) / // TODO missing prayer gem?
+										inputNumberShotHitzone) /
 										100,
 								) * outputMonsterTotalDefense,
 							) * outputAbsoluteDefenseMultiplier,
@@ -1827,7 +1618,7 @@
 											bulletStrengthModifier *
 											shotValues.bowChargeRawLevel *
 											outputMonsterStatusInflictedMultiplier *
-											inputNumberShotHitzone) / // TODO missing prayer gem?
+											inputNumberShotHitzone) /
 											100,
 									) * outputMonsterTotalDefense,
 								) * outputAbsoluteDefenseMultiplier,
@@ -1869,7 +1660,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							(inputNumberFireHitzone + getDivaPrayerGemTypeValue('element'))) /
+							(inputNumberFireHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -1880,8 +1671,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							(inputNumberWaterHitzone +
-								getDivaPrayerGemTypeValue('element'))) /
+							(inputNumberWaterHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -1892,8 +1682,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							(inputNumberThunderHitzone +
-								getDivaPrayerGemTypeValue('element'))) /
+							(inputNumberThunderHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -1904,7 +1693,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							(inputNumberIceHitzone + getDivaPrayerGemTypeValue('element'))) /
+							(inputNumberIceHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -1915,8 +1704,7 @@
 							outputFuriousMultiplier *
 							outputZenithElementMultiplier *
 							bowQuickShotChargeLevel *
-							(inputNumberDragonHitzone +
-								getDivaPrayerGemTypeValue('element'))) /
+							(inputNumberDragonHitzone + outputDivaPrayerGemElementHitzone)) /
 							100,
 					) * outputMonsterTotalDefense,
 				);
@@ -1945,7 +1733,7 @@
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
 									(inputNumberFireHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -1969,7 +1757,7 @@
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
 									(inputNumberWaterHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -1993,7 +1781,7 @@
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
 									(inputNumberThunderHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -2016,8 +1804,7 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									(inputNumberIceHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+									(inputNumberIceHitzone + outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -2041,7 +1828,7 @@
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
 									(inputNumberDragonHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) * hitCount;
@@ -2068,7 +1855,7 @@
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
 									(inputNumberFireHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2090,7 +1877,7 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									(inputNumberFireHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2115,7 +1902,7 @@
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
 									(inputNumberWaterHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2137,7 +1924,7 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									(inputNumberWaterHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2162,7 +1949,7 @@
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
 									(inputNumberThunderHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2184,7 +1971,7 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									(inputNumberThunderHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2208,8 +1995,7 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
-									(inputNumberIceHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+									(inputNumberIceHitzone + outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2230,8 +2016,7 @@
 								) /
 									10) *
 									shotValues.bowChargeElementLevel *
-									(inputNumberIceHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+									(inputNumberIceHitzone + outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2256,7 +2041,7 @@
 									shotValues.bowChargeElementLevel *
 									shotValues.bowQuickShotChargeLevel *
 									(inputNumberDragonHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -2278,7 +2063,7 @@
 									10) *
 									shotValues.bowChargeElementLevel *
 									(inputNumberDragonHitzone +
-										getDivaPrayerGemTypeValue('element'))) /
+										outputDivaPrayerGemElementHitzone)) /
 									100,
 							) * outputMonsterTotalDefense,
 						) *
@@ -3337,10 +3122,10 @@
 `;
 
 	const formulaOutputFlatAdditions =
-		display(`\\text{Flat Additions} = \\text{outputPartnyaBond} +\\newline \\text{outputHunterBond} +\\newline \\text{outputAssist} +\\newline \\text{outputSoul} +\\newline \\text{outputArmor1} +\\newline \\text{outputArmor2} +\\newline \\text{outputArmorG} +\\newline \\text{outputSecretTech} +\\newline \\text{getDivaPrayerGemTypeValue('trueRaw')}
+		display(`\\text{Flat Additions} = \\text{outputPartnyaBond} +\\newline \\text{outputHunterBond} +\\newline \\text{outputAssist} +\\newline \\text{outputSoul} +\\newline \\text{outputArmor1} +\\newline \\text{outputArmor2} +\\newline \\text{outputArmorG} +\\newline \\text{outputSecretTech} +\\newline \\text{outputDivaPrayerGemTrueRaw}
 `);
 
-	$: formulaValuesOutputFlatAdditions = `{${outputFlatAdditions}} = ${outputPartnyaBond} +\\newline ${outputHunterBond} +\\newline ${outputAssist} +\\newline ${outputSoul} +\\newline ${outputArmor1} +\\newline ${outputArmor2} +\\newline ${outputArmorG} +\\newline ${outputSecretTech} +\\newline ${getDivaPrayerGemTypeValue('trueRaw')}
+	$: formulaValuesOutputFlatAdditions = `{${outputFlatAdditions}} = ${outputPartnyaBond} +\\newline ${outputHunterBond} +\\newline ${outputAssist} +\\newline ${outputSoul} +\\newline ${outputArmor1} +\\newline ${outputArmor2} +\\newline ${outputArmorG} +\\newline ${outputSecretTech} +\\newline ${outputDivaPrayerGemTrueRaw}
 `;
 
 	/*
@@ -3485,7 +3270,7 @@ ${inputNumberNaturalAffinity} +\\newline
 ${outputFlashConversionAffinity} +\\newline
 ${outputStarvingWolfAffinity} +\\newline
 ${outputCeaselessAffinity} +\\newline
-${getDivaPrayerGemTypeValue('affinity')})`;
+${outputDivaPrayerGemAffinity})`;
 
 	const formulaInternalStatus =
 		display(`\\text{Internal Status} = \\lfloor \\lfloor
@@ -3535,7 +3320,7 @@ ${outputExpertAffinity} +\\newline
 ${inputNumberNaturalAffinity} +\\newline
 ${outputFlashConversionAffinity} +\\newline
 ${outputGSActiveFeatureAffinity} +\\newline
-${getDivaPrayerGemTypeValue('affinity')} +\\newline
+${outputDivaPrayerGemAffinity} +\\newline
 ${outputDrinkAffinity} +\\newline
 ${outputStarvingWolfAffinity} +\\newline
 ${outputCeaselessAffinity} +\\newline
@@ -3917,6 +3702,209 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	);
 
 	$: weaponIcon = getWeaponIcon(inputWeaponType);
+
+	// TODO the order of reactive statements affects the calculations
+
+	$: outputDivaPrayerGemRedMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemRedName,
+	);
+
+	$: outputDivaPrayerGemYellowMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemYellowName,
+	);
+
+	$: outputDivaPrayerGemGreenMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemGreenName,
+	);
+
+	$: outputDivaPrayerGemBlueMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemBlueName,
+	);
+
+	$: hasDivaPrayerGemDuplicates = hasDuplicateValues(
+		damageCalculatorSelectedDivaPrayerGems,
+		'None',
+	);
+
+	$: damageCalculatorSelectedDivaPrayerGems = {
+		Red: inputDivaPrayerGemRedName,
+		Yellow: inputDivaPrayerGemYellowName,
+		Green: inputDivaPrayerGemGreenName,
+		Blue: inputDivaPrayerGemBlueName,
+	};
+
+	// Calculate the count of gems that aren't "None"
+	$: divaPrayerGemsCount = Object.values(
+		damageCalculatorSelectedDivaPrayerGems,
+	).filter((gem) => gem !== 'None').length;
+
+	// Generate gem emojis based on the count
+	$: gemEmojis = '💎'.repeat(divaPrayerGemsCount);
+
+	$: outputDivaPrayerGemAffinity =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'affinity',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'affinity',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'affinity',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'affinity',
+		);
+
+	$: outputDivaPrayerGemCuttingHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'cutting',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'cutting',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'cutting',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'cutting',
+		);
+
+	$: outputDivaPrayerGemImpactHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'impact',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'impact',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'impact',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'impact',
+		);
+
+	$: outputDivaPrayerGemShotHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'shot',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'shot',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'shot',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'shot',
+		);
+
+	$: outputDivaPrayerGemElementHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'element',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'element',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'element',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'element',
+		);
+
+	$: outputDivaPrayerGemTrueRaw =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'trueRaw',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'trueRaw',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'trueRaw',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'trueRaw',
+		);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemAffinity',
+		outputDivaPrayerGemAffinity.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemCuttingHitzone',
+		outputDivaPrayerGemCuttingHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemImpactHitzone',
+		outputDivaPrayerGemImpactHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemShotHitzone',
+		outputDivaPrayerGemShotHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemElementHitzone',
+		outputDivaPrayerGemElementHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemTrueRaw',
+		outputDivaPrayerGemTrueRaw.toString(),
+	);
+
+	// TODO if a value or a reactive statement seems to be wrong by 1 past calculation, try puttign it above inputTextInputs.
+
 	$: inputTextInputs = prettyPrintJson(inputs);
 
 	$: sharedMotionValues = getWeaponSectionMotionValues(
@@ -4049,7 +4037,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 		inputNumberNaturalAffinity +
 		outputFlashConversionAffinity +
 		outputGSActiveFeatureAffinity +
-		getDivaPrayerGemTypeValue('affinity') +
+		outputDivaPrayerGemAffinity +
 		outputDrinkAffinity +
 		outputStarvingWolfAffinity +
 		outputCeaselessAffinity +
@@ -4629,7 +4617,7 @@ does not get multiplied by horn */
 		outputArmor2 +
 		outputArmorG +
 		outputSecretTech +
-		getDivaPrayerGemTypeValue('trueRaw');
+		outputDivaPrayerGemTrueRaw;
 
 	$: addToDamageCalculatorHistoryLogs(
 		'outputFlatAdditions',
@@ -5357,46 +5345,10 @@ does not get multiplied by horn */
 		);
 	}
 
-	$: outputDivaPrayerGemRedMaxLevel = getMaxDivaPrayerGemLevel(
-		inputDivaPrayerGemRedName,
-	);
-
-	$: outputDivaPrayerGemYellowMaxLevel = getMaxDivaPrayerGemLevel(
-		inputDivaPrayerGemYellowName,
-	);
-
-	$: outputDivaPrayerGemGreenMaxLevel = getMaxDivaPrayerGemLevel(
-		inputDivaPrayerGemGreenName,
-	);
-
-	$: outputDivaPrayerGemBlueMaxLevel = getMaxDivaPrayerGemLevel(
-		inputDivaPrayerGemBlueName,
-	);
-
-	$: hasDivaPrayerGemDuplicates = hasDuplicateValues(
-		damageCalculatorSelectedDivaPrayerGems,
-		'None',
-	);
-
-	$: damageCalculatorSelectedDivaPrayerGems = {
-		Red: inputDivaPrayerGemRedName,
-		Yellow: inputDivaPrayerGemYellowName,
-		Green: inputDivaPrayerGemGreenName,
-		Blue: inputDivaPrayerGemBlueName,
-	};
-
 	const [send, receive] = crossfade({
 		duration: 1500,
 		easing: quintOut,
 	});
-
-	// Calculate the count of gems that aren't "None"
-	$: divaPrayerGemsCount = Object.values(
-		damageCalculatorSelectedDivaPrayerGems,
-	).filter((gem) => gem !== 'None').length;
-
-	// Generate gem emojis based on the count
-	$: gemEmojis = '💎'.repeat(divaPrayerGemsCount);
 
 	function getDivaPrayerGemValue(
 		name: FrontierDivaPrayerGemSkillName,
@@ -5450,23 +5402,6 @@ does not get multiplied by horn */
 				if (name !== 'Impact UP') {
 					return 0;
 				}
-
-				// console.log(
-				// 	`inside impact getDivaPrayerGemTypeValue('impact'): ${getDivaPrayerGemTypeValue('impact')}`,
-				// );
-				// console.log(
-				// 	`inside impact inputDivaPrayerGemRedName: ${inputDivaPrayerGemRedName}`,
-				// );
-				// console.log(
-				// 	`inside impact inputNumberDivaPrayerGemRedLevel: ${inputNumberDivaPrayerGemRedLevel}`,
-				// );
-				// console.log(
-				// 	`inside impact result: ${
-				// 		divaPrayerGemsDropdownItems.find(
-				// 			(e) => e.name === `${name} Lv${level}`,
-				// 		)?.value ?? 0
-				// 	}`,
-				// );
 
 				return (
 					divaPrayerGemsDropdownItems.find(
