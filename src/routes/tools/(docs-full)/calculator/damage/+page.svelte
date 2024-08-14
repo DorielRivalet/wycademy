@@ -1051,7 +1051,7 @@
 			case 'Impact':
 				return getExploitWeakness(
 					outputWeaponClass,
-					inputNumberCuttingHitzone + outputDivaPrayerGemCuttingHitzone,
+					inputNumberImpactHitzone + outputDivaPrayerGemImpactHitzone,
 				);
 			case 'Shot': // TODO unused
 				return getExploitWeakness(
@@ -8519,7 +8519,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={0.1}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															bind:value={inputNumberDefenseRate}
@@ -8544,7 +8544,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={0.1}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															bind:value={inputNumberMonsterRage}
@@ -8555,7 +8555,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={0.1}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															bind:value={inputNumberHCModifiers}
@@ -8566,7 +8566,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={5}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															bind:value={inputNumberCuttingHitzone}
@@ -8593,7 +8593,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={5}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															bind:value={inputNumberImpactHitzone}
@@ -8605,7 +8605,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={5}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															bind:value={inputNumberShotHitzone}
@@ -8617,7 +8617,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={5}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															bind:value={inputNumberFireHitzone}
@@ -8629,7 +8629,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={5}
 															min={minimumNumberValue}
 															disabled={selectedMonster !== undefined}
 															max={maximumNumberValue}
@@ -8641,7 +8641,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={5}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															disabled={selectedMonster !== undefined}
@@ -8653,7 +8653,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={5}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															bind:value={inputNumberIceHitzone}
@@ -8665,7 +8665,7 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={5}
 															min={minimumNumberValue}
 															max={maximumNumberValue}
 															bind:value={inputNumberDragonHitzone}
