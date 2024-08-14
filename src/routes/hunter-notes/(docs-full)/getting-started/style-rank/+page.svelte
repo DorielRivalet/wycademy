@@ -238,7 +238,7 @@ and Fencing+1. +3 versions of Crystal skills will overwrite the +2 versions incl
 			weapon: 'Dual Swords',
 			skill: 'DS Tech 【Dual Dragon】',
 			description: `Gives Super High-Grade Earplugs,
-Attack x1.2 when wielding Dual Blades,
+Attack x1.2 when wielding Dual Swords,
 Fencing+1 and
 Always recover 3 units of stamina per hit while attacking in either Demon Mode.
 Faster activation of Demon Modes.`,

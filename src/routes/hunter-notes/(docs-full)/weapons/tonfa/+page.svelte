@@ -19,7 +19,7 @@
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
-	import type { FrontierArmorSkillName } from 'ezlion';
+	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import TonfaModes from '$lib/client/images/supplemental/tonfa-modes.webp';
 	import TonfaRyuukiMeter from '$lib/client/images/supplemental/tonfa-meter-ryuuki.webp';
@@ -30,6 +30,7 @@
 	} from '$lib/client/modules/frontier/items';
 	import CaravanGem from '$lib/client/components/frontier/icon/CaravanGem.svelte';
 	import { getAilmentIcon } from '$lib/client/modules/frontier/ailments';
+	import StarRating from '$lib/client/components/StarRating.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -86,6 +87,112 @@
 			id: 2,
 			motion: 'Burst Evasion',
 			iframes: 13,
+		},
+	];
+
+	const skillInteractions: {
+		id: number;
+		skill: FrontierArmorSkillTree;
+		description: string;
+	}[] = [
+		{
+			id: 0,
+			skill: 'Dissolver',
+			description:
+				'Adjusts the element hitzones by +5. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing element damage or reducing/negating negative hitzones.',
+		},
+		{
+			id: 1,
+			skill: 'Vampirism',
+			description:
+				'+4 True Raw per hit. Up to 80 True Raw can be gained through leeching.',
+		},
+		{
+			id: 2,
+			skill: 'Stylish Assault',
+			description:
+				'15 seconds uptime. The duration can be refreshed by successfully using i-frames again.',
+		},
+		{
+			id: 3,
+			skill: 'Stylish',
+			description:
+				'+5 sharpness recovery (+3/6/10 with Jump/Dash Kick/EX Evade or Emergency respectively). When using Stylish Up, get 4 free hits before sharpness is reduced.',
+		},
+		{
+			id: 4,
+			skill: 'Lavish Attack',
+			description:
+				'-3 sharpness per hit. Lavish Attack reduces the free hits granted by Stylish Up to 1.',
+		},
+		{
+			id: 5,
+			skill: 'Obscurity',
+			description:
+				'Max stack of 300 True Raw. Obscurity Up maxes out after two perfect guards, allowing subsequent guards to restore 5 or 13 sharpness depending on timing.',
+		},
+		{
+			id: 6,
+			skill: 'Ice Age',
+			description:
+				'1/17/38 hits to reach stage 1/2/3 respectively. All weapons share the same stage decay timer; Ice Age Up only affects the third stage’s decay rate.',
+		},
+		{
+			id: 7,
+			skill: 'Rush',
+			description:
+				'27/1350/? total Motion Value to reach stage 1/2/3 respectively. The third stage, exclusive to Rush Up, has a limited duration.',
+		},
+		{
+			id: 8,
+			skill: 'Ceaseless',
+			description:
+				'11 seconds decay window. 15/36/43 hits required to reach stage 1/2/3 respectively (11/27/43 with Ceaseless Up). The third stage is also exclusive to Ceaseless Up, which decays by stages rather than all at once.',
+		},
+		{
+			id: 9,
+			skill: 'Point Breakthrough',
+			description:
+				'30 seconds duration. 16/10 hits to reach stages 1/2 respectively (13/8 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+		},
+		{
+			id: 10,
+			skill: 'Furious',
+			description:
+				'2/3/7 evasions or 1/2/5 perfect guards to reach stage 1/2/3 respectively. These effects apply to both successful evasions and perfect guards (where applicable), but attacking is necessary to advance stages.',
+		},
+	];
+
+	const sigilsUsabilityRatings: {
+		id: number;
+		rating: number;
+		sigil: string;
+		type: string;
+		description: string;
+	}[] = [
+		{
+			id: 0,
+			sigil: 'EX Meter',
+			rating: 1,
+			description:
+				'Increases the rate at which the EX Gauge fills when using Tonfas. Does not stack. Applicable to all Styles with EX gauge.',
+			type: 'Tech Boost',
+		},
+		{
+			id: 1,
+			sigil: 'Combo Timer',
+			rating: 1,
+			description:
+				'Slows the rate at which a combo (red bars) is dropped while using Tonfas. Does not stack. Applicable to all Styles with Combo Gauge.',
+			type: 'Tech Boost',
+		},
+		{
+			id: 5,
+			sigil: 'Stun Value',
+			rating: 3,
+			description:
+				'Increases KO damage by 1.1x. Only one sigil applies. Stacks with Caravan Skill (1.1x) and Active Feature (1.5x) for a maximum of 1.815x.',
+			type: 'Other',
 		},
 	];
 </script>
@@ -429,6 +536,110 @@
 							{/if}
 						</svelte:fragment>
 					</DataTable>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Skill Interactions" />
+				<div>
+					<div>
+						<DataTable
+							useStaticWidth
+							id="skill-interactions-dom"
+							sortable
+							zebra
+							size="medium"
+							headers={[
+								{ key: 'skill', value: 'Skill' },
+								{ key: 'description', value: 'Description' },
+							]}
+							rows={skillInteractions}
+							><Toolbar
+								><div class="toolbar">
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(skillInteractions)}
+									/>
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={() =>
+											downloadDomAsPng(
+												'skill-interactions-dom',
+												'skill-interactions',
+											)}>Download</Button
+									>
+								</div>
+							</Toolbar>
+
+							<svelte:fragment slot="cell" let:cell>
+								{#if cell.key === 'skill'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Armor Skill"
+										iconType="component"
+										icon={getItemIcon('Jewel')}
+									/>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							</svelte:fragment>
+						</DataTable>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Sigils Usability Ratings" />
+				<div>
+					<div class="table">
+						<DataTable
+							useStaticWidth
+							id="sigils-dom"
+							sortable
+							zebra
+							size="medium"
+							headers={[
+								{ key: 'sigil', value: 'Sigil' },
+								{ key: 'rating', value: 'Rating' },
+								{ key: 'description', value: 'Description' },
+								{ key: 'type', value: 'Type' },
+							]}
+							rows={sigilsUsabilityRatings}
+							><Toolbar
+								><div class="toolbar">
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(sigilsUsabilityRatings)}
+									/>
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={() => downloadDomAsPng('sigils-dom', 'sigils')}
+										>Download</Button
+									>
+								</div>
+							</Toolbar>
+
+							<svelte:fragment slot="cell" let:cell>
+								{#if cell.key === 'sigil'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Sigil"
+										iconType="component"
+										icon={getItemIcon('Sigil')}
+									/>
+								{:else if cell.key === 'rating'}
+									<StarRating
+										rating={Number.parseFloat(cell.value)}
+										maxRating={3}
+									/>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							</svelte:fragment>
+						</DataTable>
+					</div>
 				</div>
 			</section>
 

@@ -22,7 +22,9 @@ export type FrontierSigilRecipeType =
 	| 'Twinhead'
 	| 'Premium'
 	| 'Rarity'
-	| 'Zenith AOE' | 'Unlimited [Emperor]' | 'Unlimited [Extreme]';
+	| 'Zenith AOE'
+	| 'Unlimited [Emperor]'
+	| 'Unlimited [Extreme]';
 
 export type FrontierSigilSkillCategory =
 	| 'Health and Stamina'
@@ -784,7 +786,7 @@ export const sigilsInfo: {
 		minimumPoints: 1,
 		maximumPoints: 1,
 		effect:
-			'Adds additional raw damage based on attack strength. Formula: Attack x 0.025 x Sharp Multiplier x Hitzone. Blue: 1.0625x. White: 1.125x. Purple: 1.15x. Cyan: 1.20x. Ignores motion values, Additional 0.2x the extra damage is added by Fencing+2. Does not stack and does not work with SnS with Elemental or Status',
+			'Adds additional raw damage based on attack strength. Formula: Attack x 0.025 x Sharp Multiplier x Hitzone. Blue: 1.0625x. White: 1.125x. Purple: 1.15x. Cyan: 1.20x. Ignores motion values, Additional 0.2x the extra damage is added by Fencing+2. Does not stack and does not work with SnS with Elemental or Status.',
 		category: 'Offensive',
 	},
 	{
@@ -1198,7 +1200,7 @@ export const sigilsInfo: {
 		minimumPoints: 0,
 		maximumPoints: 0,
 		effect:
-			'Increases the motion value of all unsheathe attacks with a Lance by a 1.50x multiplier.',
+			'Increases the motion value of all unsheathe attacks with a Long Sword by a 1.50x multiplier.',
 		category: 'Blademaster',
 	},
 	{
@@ -1293,7 +1295,7 @@ export const sigilsInfo: {
 		name: 'Sleeping',
 		minimumPoints: 0,
 		maximumPoints: 0,
-		effect: `Changes a Gunlance's shelling type to the one defined on the sigil: Normal,  Spread, Long.`,
+		effect: `Changes a Gunlance's shelling type to the one defined on the sigil: Normal, Spread, Long.`,
 		category: 'Blademaster',
 	},
 	{
