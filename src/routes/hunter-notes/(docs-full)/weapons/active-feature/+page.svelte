@@ -62,7 +62,7 @@
 			weapon: 'Long Sword',
 			bitfield: '128',
 			effect:
-				'Full spirit bar buff effect increased (from +10 attack to +40 attack)',
+				'Full spirit bar buff effect increased (from +10 attack to +40 attack).',
 		},
 		{
 			id: 'Hammer',
@@ -103,7 +103,7 @@
 			weapon: 'Switch Axe F',
 			bitfield: '4096',
 			effect:
-				'Increases Phial Meter Recovery by primary recovery mechanic (either by reloading or guarding)',
+				'Increases Phial Meter Recovery by primary recovery mechanic (either by reloading or guarding).',
 		},
 		{
 			id: 'Magnet Spike',

@@ -58,19 +58,19 @@ Attacks utilizing the phial consume less meter.`,
 			skill: 'Swaxe Tech Kaiden',
 			points: '20',
 			description:
-				'Increases attack by 1.1 and grants Fencing+1 when wielding Tonfa.',
+				'Increases attack by 1.1 and grants Fencing+1 when wielding Switch Axe F.',
 		},
 		{
 			id: '1',
 			skill: 'Swaxe Tech Expert',
 			points: '10',
-			description: 'Fencing+1 when wielding Tonfa.',
+			description: 'Fencing+1 when wielding Switch Axe F.',
 		},
 		{
 			id: '0',
 			skill: 'Swaxe Tech Novice',
 			points: '-10',
-			description: 'Attack x0.8 when wielding Tonfa.',
+			description: 'Attack x0.8 when wielding Switch Axe F.',
 		},
 	];
 
@@ -83,7 +83,7 @@ Attacks utilizing the phial consume less meter.`,
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzone by +15. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hit zones.',
+				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -101,7 +101,7 @@ Attacks utilizing the phial consume less meter.`,
 			id: 3,
 			skill: 'Stylish',
 			description:
-				'+5 sharpness recovery. When using Stylish Up, Switch Axe gets 3 free hits before sharpness is reduced.',
+				'+5 sharpness recovery. When using Stylish Up get 3 free hits before sharpness is reduced.',
 		},
 		{
 			id: 4,
@@ -159,7 +159,7 @@ Attacks utilizing the phial consume less meter.`,
 			sigil: 'Stunning Blast',
 			rating: 1,
 			description:
-				'Adds stun values to the Elemental Discharge and Absorption Release motion values.',
+				'Boosts the stun values on the Elemental Discharge and Absorption Release: Early Ele. Discharge 20 > 40, Ele. Discharge 50 > 80, Early Abs. Release 40 > 50, Abs. Release 150 > 220.',
 			type: 'Tech Boost',
 		},
 		{
@@ -167,7 +167,7 @@ Attacks utilizing the phial consume less meter.`,
 			sigil: 'Guard',
 			rating: 3,
 			description:
-				'Slightly increases the parry hitbox and successful parries heal 15 HP.',
+				"Widens the guarding window by a few degrees and causes you to regain 15 health while guarding. Doesn't stack and doesn't increase guarding frames.",
 			type: 'Tech Boost',
 		},
 		{
@@ -331,7 +331,16 @@ Attacks utilizing the phial consume less meter.`,
 							</Toolbar>
 
 							<svelte:fragment slot="cell" let:cell>
-								<p>{cell.value}</p>
+								{#if cell.key === 'skill'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Armor Skill"
+										iconType="component"
+										icon={getItemIcon('Jewel')}
+									/>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
 							</svelte:fragment>
 						</DataTable>
 					</div>
@@ -351,6 +360,7 @@ Attacks utilizing the phial consume less meter.`,
 							headers={[
 								{ key: 'sigil', value: 'Sigil' },
 								{ key: 'rating', value: 'Rating' },
+								{ key: 'description', value: 'Description' },
 								{ key: 'type', value: 'Type' },
 							]}
 							rows={sigilsUsabilityRatings}
