@@ -18,9 +18,14 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
+	import HuntingHornNoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -71,7 +76,7 @@
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -125,7 +130,7 @@
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'40 seconds duration. 7/4 hits to reach stages 1/2 respectively (6/4 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'40 seconds duration. 7/4 hits to reach stages 1/2 respectively (6/4 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,
@@ -384,51 +389,125 @@
 					<UnorderedList>
 						<ListItem
 							><p>
-								The Hunting Horn uses a modified version of recital mode from
-								Monster Hunter 2. The main difference is that notes are retained
-								until you perform an encore, play a debuff melody, or sheathe
-								your weapon.
+								The <InlineTooltip
+									tooltip="Weapon"
+									text="Hunting Horn"
+									iconType="component"
+									icon={getWeaponIcon('Hunting Horn')}
+								/> uses a modified version of recital mode from Monster Hunter 2.
+								The main difference is that notes are retained until you perform
+								an encore, play a debuff melody, or sheathe your weapon.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Always equip Encourage +2 for Horn Maestro and party-wide
-								Evasion +2. Encourage Up provides party-wide stamina benefits if
-								you have it.
+								Always equip <InlineTooltip
+									tooltip="Armor Skill"
+									text="Encourage+2"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> for <InlineTooltip
+									tooltip="Armor Skill"
+									text="Horn Maestro"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> and party-wide <InlineTooltip
+									tooltip="Armor Skill"
+									text="Evasion+2"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>. <InlineTooltip
+									tooltip="Zenith Skill"
+									text="Encourage Up"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+									iconColor={getItemColor('Red')}
+								/> provides party-wide stamina benefits if you have it.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Every HH in the game has Attack Up Large, thanks to Storm
-								style's pink notes.
+								Every <InlineTooltip
+									tooltip="Weapon"
+									text="Hunting Horn"
+									iconType="component"
+									icon={getWeaponIcon('Hunting Horn')}
+								/> in the game has Attack Up Large, thanks to Storm style's pink
+								notes.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								Chaining attacks into recitals plays the notes faster than
-								usual. If you start a melody with Purple, Hilt Stab > Recital is
-								the quickest way to begin your song.
+								usual. If you start a melody with <InlineTooltip
+									tooltip="Hunting Horn Note"
+									text="Purple"
+									iconType="component"
+									icon={HuntingHornNoteIcon}
+									iconColor="Purple"
+								/>, Hilt Stab > Recital is the quickest way to begin your song.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								HH has the lowest hit requirement of all weapons to prepare a
-								Transcend burst attack.
+								<InlineTooltip
+									tooltip="Weapon"
+									text="Hunting Horn"
+									iconType="component"
+									icon={getWeaponIcon('Hunting Horn')}
+								/> has the lowest hit requirement of all weapons to prepare a <InlineTooltip
+									tooltip="Buff"
+									text="Transcend"
+									iconType="file"
+									icon={getLocationIcon('Transcend')}
+								/>
+								burst attack.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								HH is a valuable but challenging tool for learning how to fight
-								Raviente as part of a combat team, especially regarding
-								animation lock.
+								<InlineTooltip
+									tooltip="Weapon"
+									text="Hunting Horn"
+									iconType="component"
+									icon={getWeaponIcon('Hunting Horn')}
+								/> is a valuable but challenging tool for learning how to fight <InlineTooltip
+									tooltip="Monster"
+									text="Raviente"
+									iconType="file"
+									icon={getMonsterIcon('Raviente')}
+								/>
+								as part of a combat team, especially regarding animation lock.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								If using Cyan + Red notes, avoid crossing streams from AuL to
-								DuL without first encoring the former, especially if there are
-								Adrenaline users in your party. Otherwise, you risk playing a
-								Health Increase melody, which will deactivate Adrenaline.
+								If using <InlineTooltip
+									tooltip="Hunting Horn Note"
+									text="Cyan"
+									iconType="component"
+									icon={HuntingHornNoteIcon}
+									iconColor="Cyan"
+								/> + <InlineTooltip
+									tooltip="Hunting Horn Note"
+									text="Red"
+									iconType="component"
+									icon={HuntingHornNoteIcon}
+									iconColor="Red"
+								/> notes, avoid crossing streams from Attack Up Large to Defense
+								Up Large without first encoring the former, especially if there are
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Adrenaline"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> users in your party. Otherwise, you risk playing a Health Increase
+								melody, which will deactivate <InlineTooltip
+									tooltip="Armor Skill"
+									text="Adrenaline"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>.
 							</p></ListItem
 						>
 						<ListItem
@@ -441,14 +520,49 @@
 						<ListItem
 							><p>
 								The sonic bomb and debuff song motions can reliably apply the
-								effects of the Red & Blue Soul skills to other hunters.
+								effects of the <InlineTooltip
+									tooltip="Armor Skill"
+									text="Red Soul"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> and <InlineTooltip
+									tooltip="Armor Skill"
+									text="Blue Soul"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> skills to other hunters.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								The benefits of Soul Up are reasonable, so it's common for HH
-								users to opt for both Red Soul (via Blazing Majesty) and Blue
-								Soul for extra buffs.
+								The benefits of <InlineTooltip
+									tooltip="Zenith Skill"
+									text="Soul Up"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+									iconColor={getItemColor('Red')}
+								/> are reasonable, so it's common for <InlineTooltip
+									tooltip="Weapon"
+									text="Hunting Horn"
+									iconType="component"
+									icon={getWeaponIcon('Hunting Horn')}
+								/>
+								users to opt for both <InlineTooltip
+									tooltip="Armor Skill"
+									text="Red Soul"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> (via <InlineTooltip
+									tooltip="Armor Skill"
+									text="Blazing Majesty"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> and <InlineTooltip
+									tooltip="Armor Skill"
+									text="Blue Soul"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> for extra buffs.
 							</p></ListItem
 						>
 					</UnorderedList>

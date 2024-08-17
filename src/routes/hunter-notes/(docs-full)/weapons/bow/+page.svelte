@@ -76,7 +76,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +5. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +5. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -124,7 +124,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'35 seconds duration. 17/10 hits to reach stages 1/2 respectively. The previously hit hitbox is more vulnerable at Stage 2.',
+				'35 seconds duration. 17/10 hits to reach stages 1/2 respectively. The previously hit hitzone is more vulnerable at Stage 2.',
 		},
 		{
 			id: 10,
@@ -365,15 +365,24 @@ Arc-Shot can be executed at Charge Lv2.`,
 					<UnorderedList>
 						<ListItem
 							><p>
-								As a Gunner weapon, the Bow can quickly meet the requirements
-								for various skills.
+								As a Gunner weapon, the <InlineTooltip
+									tooltip="Weapon"
+									text="Bow"
+									iconType="component"
+									icon={getWeaponIcon('Bow')}
+								/> can quickly meet the requirements for various skills.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								The Bow has several aiming modes in the options, but ultimately
-								uses 2nd generation-style controls. While charging, pressing
-								Square (or X) allows you to dodge.
+								The <InlineTooltip
+									tooltip="Weapon"
+									text="Bow"
+									iconType="component"
+									icon={getWeaponIcon('Bow')}
+								/> has several aiming modes in the options, but ultimately uses 2nd
+								generation-style controls. While charging, pressing Square (or X)
+								allows you to dodge.
 							</p></ListItem
 						>
 						<ListItem
@@ -391,21 +400,49 @@ Arc-Shot can be executed at Charge Lv2.`,
 						>
 						<ListItem
 							><p>
-								Rapid shot types are recommended. Spread shots are powerful but
-								awkward, while Pierce shots work well as a Level 3 charge.
+								Rapid shot types are recommended. <InlineTooltip
+									tooltip="Ammo"
+									text="Spread"
+									iconType="component"
+									icon={getItemIcon('Ammo Spread')}
+								/> shots are powerful but awkward, while <InlineTooltip
+									tooltip="Ammo"
+									text="Spread"
+									iconType="component"
+									icon={getItemIcon('Ammo Pierce')}
+								/> shots work well as a Level 3 charge.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Crouching shots can be tricky to use, but with the piercing shot
+								Crouching shots can be tricky to use, but with the <InlineTooltip
+									tooltip="Sigil"
+									text="Piercing Shot"
+									iconType="component"
+									icon={getItemIcon('Sigil')}
+								/>
 								sigil, they can effectively inflict status.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								Since Sniper’s critical distance bonus is included in both
-								Steady Hand +2 and Determination, simply using Auto-Reload is
-								sufficient.
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Steady Hand+2"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> and <InlineTooltip
+									tooltip="Armor Skill"
+									text="Solid Determination"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>, simply using <InlineTooltip
+									tooltip="Armor Skill"
+									text="Auto-Reload"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> is sufficient.
 							</p></ListItem
 						>
 					</UnorderedList>

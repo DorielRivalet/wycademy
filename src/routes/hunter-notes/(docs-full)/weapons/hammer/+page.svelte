@@ -21,6 +21,7 @@
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { getAilmentIcon } from '$lib/client/modules/frontier/ailments';
 
 	const hidenSkills: {
 		id: string;
@@ -74,7 +75,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -128,7 +129,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'50 seconds duration. 6/4 hits to reach stages 1/2 respectively (5/3 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'50 seconds duration. 6/4 hits to reach stages 1/2 respectively (5/3 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,
@@ -387,43 +388,65 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 						<ListItem
 							><p>
 								Golf swing attacks are practically obsolete; it’s better to
-								focus on charging your attacks. Focus +2 is highly recommended.
+								focus on charging your attacks. <InlineTooltip
+									tooltip="Armor Skill"
+									text="Focus+2"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> is highly recommended.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Length preference for Hammer is up to taste. Level 4-5 charge
-								attacks are mostly vertical, so the shifted hitbox isn’t usually
-								an issue and can reach specific hitzones on different monsters.
-								However, the Level 3 infinite combo is less cumbersome with
-								shorter lengths.
+								Length preference for <InlineTooltip
+									tooltip="Weapon"
+									text="Hammer"
+									iconType="component"
+									icon={getWeaponIcon('Hammer')}
+								/> is up to taste. Level 4-5 charge attacks are mostly vertical,
+								so the shifted hitzone isn’t usually an issue and can reach specific
+								hitzones on different monsters. However, the Level 3 infinite combo
+								is less cumbersome with shorter lengths.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Three Worlds Protection is highly effective for creating
-								openings. Consider using Zenith cuffs for specific resistances
-								depending on the hunt.
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Three Worlds Protection"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> is highly effective for creating openings. Consider using Zenith
+								cuffs for specific resistances depending on the hunt.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								Unlike in the mainline games, every source of additional stun/KO
 								damage (like Caravan Skill + Stun Sigil) is recommended, as they
-								stack and significantly contribute to stun damage.
+								stack and significantly contribute to <InlineTooltip
+									tooltip="Ailment"
+									text="Stun"
+									iconType="component"
+									icon={getAilmentIcon('Stun')}
+								/> damage.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Due to the increased raw damage from timed charges with Hiden,
-								you should aim for an overhead attack with the appropriate
+								Due to the increased raw damage from timed charges with <InlineTooltip
+									tooltip="Armor Skill"
+									text="Hiden"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>, you should aim for an overhead attack with the appropriate
 								attack ceiling from My Missions.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								You can technically dodge some very low-profile attacks with the
-								leap from the Level 5 charge.
+								You can dodge some very low-profile attacks with the leap from
+								the Level 5 charge.
 							</p></ListItem
 						>
 					</UnorderedList>

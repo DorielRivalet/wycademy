@@ -18,9 +18,14 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
+	import CaravanGem from '$lib/client/components/frontier/icon/CaravanGem.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -70,7 +75,7 @@
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing element damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing element damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -124,7 +129,7 @@
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'30 seconds duration. 15/9 hits to reach stages 1/2 respectively (12/8 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'30 seconds duration. 15/9 hits to reach stages 1/2 respectively (12/8 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,
@@ -389,27 +394,50 @@
 						<ListItem
 							><p>
 								The slide attack offers a few invincibility frames (~9 with
-								Evasion +2) and can end with a 180° turning slash.
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Evasion+2"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>) and can end with a 180° turning slash.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								Long length is generally a straightforward upgrade due to its
 								increased reach. Very Long is viable if you're focusing on
-								roundslash spam but may require some spacing management.
+								Roundslash spam but may require some spacing management.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								SnS has a very forgiving hit requirement to prepare the
-								Transcend burst attack.
+								<InlineTooltip
+									tooltip="Weapon"
+									text="Sword and Shield"
+									iconType="component"
+									icon={getWeaponIcon('Sword and Shield')}
+								/> has a very forgiving hit requirement to prepare the <InlineTooltip
+									tooltip="Buff"
+									text="Transcend"
+									iconType="file"
+									icon={getLocationIcon('Transcend')}
+								/>
+								burst attack.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								You can technically customize a Transcend burst to any element
-								by utilizing the sword crystal compatibility from the Hiden
-								skill.
+								You can technically customize a <InlineTooltip
+									tooltip="Buff"
+									text="Transcend"
+									iconType="file"
+									icon={getLocationIcon('Transcend')}
+								/> burst to any element by utilizing the <InlineTooltip
+									tooltip="Item"
+									text="sword crystal"
+									iconType="component"
+									icon={getItemIcon('Sword Crystal')}
+								/> compatibility from the Hiden skill.
 							</p></ListItem
 						>
 						<ListItem
@@ -426,20 +454,46 @@
 							</p></ListItem
 						>
 						<ListItem
-							><p>Using items while unsheathed resets Rush mode.</p></ListItem
-						>
-						<ListItem
 							><p>
-								Notably, some speedrunners have found success by dropping
-								Fencing +2 to reduce hitlag.
+								Using items while unsheathed resets <InlineTooltip
+									tooltip="Armor Skill"
+									text="Rush"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> mode.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								SnS’s blocking isn’t great, but with the Perfect Defense caravan
-								skill and good timing, you can technically build up 300 raw
-								attack in two blocks when combined with Obscurity Up,
-								maintaining it until you get knocked back.
+								Notably, some speedrunners have found success by dropping
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Fencing+2"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> to reduce hitlag.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								<InlineTooltip
+									tooltip="Weapon"
+									text="Sword and Shield’s"
+									iconType="component"
+									icon={getWeaponIcon('Sword and Shield')}
+								/> blocking isn’t great, but with the <InlineTooltip
+									tooltip="Caravan Skill"
+									text="Perfect Defense"
+									iconType="component"
+									icon={CaravanGem}
+								/> caravan skill and good timing, you can technically build up 300
+								raw attack in two blocks when combined with <InlineTooltip
+									tooltip="Armor Skill"
+									text="Obscurity Up"
+									iconType="component"
+									iconColor={getItemColor('Red')}
+									icon={getItemIcon('Jewel')}
+								/>, maintaining it until you get knocked back.
 							</p></ListItem
 						>
 					</UnorderedList>

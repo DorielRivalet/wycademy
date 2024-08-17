@@ -76,7 +76,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +5. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +5. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -118,7 +118,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'45 seconds duration. 8/5 hits to reach stages 1/2 respectively. The previously hit hitbox is more vulnerable at Stage 2.',
+				'45 seconds duration. 8/5 hits to reach stages 1/2 respectively. The previously hit hitzone is more vulnerable at Stage 2.',
 		},
 		{
 			id: 10,
@@ -360,8 +360,12 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 					<UnorderedList>
 						<ListItem
 							><p>
-								As a Gunner weapon, the Heavy Bowgun can quickly meet the
-								requirements for various skills.
+								As a Gunner weapon, the <InlineTooltip
+									tooltip="Weapon"
+									text="Heavy Bowgun"
+									iconType="component"
+									icon={getWeaponIcon('Heavy Bowgun')}
+								/> can quickly meet the requirements for various skills.
 							</p></ListItem
 						>
 						<ListItem
@@ -385,25 +389,44 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						>
 						<ListItem
 							><p>
-								Proper spacing increases the size of HBG Hiden’s 'perfect'
-								window for compression shots when the buff is active.
+								Proper spacing increases the size of <InlineTooltip
+									tooltip="Armor Skill"
+									text="Heavy Bowgun Hiden's"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> 'perfect' window for compression shots when the buff is active.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Bullet Saver considers every shot in a single compression shot
-								salvo, with all saved ammo retained in the clip for future use.
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Bullet Saver"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> considers every shot in a single compression shot salvo, with
+								all saved ammo retained in the clip for future use.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Raviente HBG bomb shots are generally ineffective; players use
-								them for their strong stat lines instead.
+								<InlineTooltip
+									tooltip="Weapon"
+									text="Raviente Heavy Bowgun"
+									iconType="component"
+									icon={getWeaponIcon('Heavy Bowgun')}
+								/> bomb shots are generally ineffective; players use them for their
+								strong stat lines instead.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								The shield addon does not benefit from Obscurity.
+								The shield addon does not benefit from <InlineTooltip
+									tooltip="Armor Skill"
+									text="Obscurity"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>.
 							</p></ListItem
 						>
 					</UnorderedList>

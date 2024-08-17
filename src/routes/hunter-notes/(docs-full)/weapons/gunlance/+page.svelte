@@ -18,9 +18,13 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
 
 	const hidenSkills: {
 		id: string;
@@ -70,7 +74,7 @@
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +10. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +10. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -124,7 +128,7 @@
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'40 seconds duration. 10/6 hits to reach stages 1/2 respectively (8/5 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'40 seconds duration. 10/6 hits to reach stages 1/2 respectively (8/5 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,
@@ -373,7 +377,7 @@
 					<UnorderedList>
 						<ListItem
 							><p>
-								Heat Blade offers numerous benefits, including a second hitbox
+								Heat Blade offers numerous benefits, including a second hitzone
 								on every physical attack, extended reach, and no sharpness loss
 								until it wears off, which then causes a -100 unit drop. On
 								activation, it also restores some sharpness.
@@ -388,26 +392,70 @@
 						>
 						<ListItem
 							><p>
-								Although GL can gain similar guarding benefits as Lance, it
-								cannot negate chip damage, making blocking certain attacks
-								potentially lethal, especially with Adrenaline active.
+								Although <InlineTooltip
+									tooltip="Weapon"
+									text="Gunlance"
+									iconType="component"
+									icon={getWeaponIcon('Gunlance')}
+								/> can gain similar guarding benefits as <InlineTooltip
+									tooltip="Weapon"
+									text="Lance"
+									iconType="component"
+									icon={getWeaponIcon('Lance')}
+								/>, it cannot negate chip damage, making blocking certain
+								attacks potentially lethal, especially with <InlineTooltip
+									tooltip="Armor Skill"
+									text="Adrenaline"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> active.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Hit requirements for multiple skills and Transcend are easier to
-								meet with Heat Blade activated.
+								Hit requirements for multiple skills and <InlineTooltip
+									tooltip="Buff"
+									text="Transcend"
+									iconType="file"
+									icon={getLocationIcon('Transcend')}
+								/> are easier to meet with Heat Blade activated.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Recoil/Gentle Shot allows GL to evade after shelling.
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Recoil"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> or <InlineTooltip
+									tooltip="Armor Skill"
+									text="Gentle Shot"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> allows <InlineTooltip
+									tooltip="Weapon"
+									text="Gunlance"
+									iconType="component"
+									icon={getWeaponIcon('Gunlance')}
+								/> to evade after shelling.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Consumption Slayer can be freely exploited during Heat Blade’s
-								uptime and can be offset with Obscurity Up’s sharpness recovery.
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Consumption Slayer"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> can be freely exploited during Heat Blade’s uptime and can be
+								offset with <InlineTooltip
+									tooltip="Zenith Skill"
+									text="Obscurity Up’s"
+									iconType="component"
+									iconColor={getItemColor('Red')}
+									icon={getItemIcon('Jewel')}
+								/> sharpness recovery.
 							</p></ListItem
 						>
 					</UnorderedList>

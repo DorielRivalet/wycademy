@@ -76,7 +76,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +10. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +10. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -118,7 +118,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'30 seconds duration. 20/12 hits to reach stages 1/2 respectively. The previously hit hitbox is more vulnerable at Stage 2.',
+				'30 seconds duration. 20/12 hits to reach stages 1/2 respectively. The previously hit hitzone is more vulnerable at Stage 2.',
 		},
 		{
 			id: 10,
@@ -384,14 +384,23 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					<UnorderedList>
 						<ListItem
 							><p>
-								As a Gunner weapon, the Light Bowgun can quickly meet the
-								requirements for various skills.
+								As a Gunner weapon, the <InlineTooltip
+									tooltip="Weapon"
+									text="Light Bowgun"
+									iconType="component"
+									icon={getWeaponIcon('Light Bowgun')}
+								/> can quickly meet the requirements for various skills.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								Long barrels don’t increase raw damage; instead, they boost shot
-								speed, which may disrupt timing with pierce ammo hits.
+								speed, which may disrupt timing with <InlineTooltip
+									tooltip="Ammo"
+									text="pierce ammo"
+									iconType="component"
+									icon={getItemIcon('Ammo Pierce')}
+								/> hits.
 							</p></ListItem
 						>
 						<ListItem
@@ -401,7 +410,14 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</p></ListItem
 						>
 						<ListItem
-							><p>Pierce S is the primary raw ammo type used.</p></ListItem
+							><p>
+								<InlineTooltip
+									tooltip="Ammo"
+									text="Pierce S"
+									iconType="component"
+									icon={getItemIcon('Ammo Pierce')}
+								/> is the primary raw ammo type used.
+							</p></ListItem
 						>
 						<ListItem
 							><p>
@@ -412,34 +428,80 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						>
 						<ListItem
 							><p>
-								Like Sword and Shield, using items while unsheathed with LBG
-								Hiden resets Rush.
+								Like Sword and Shield, using items while unsheathed with <InlineTooltip
+									tooltip="Armor Skill"
+									text="LBG Hiden"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> resets <InlineTooltip
+									tooltip="Armor Skill"
+									text="Rush"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Proper spacing increases the size of LBG Hiden’s Perfect Shot
-								window when the buff is active.
+								Proper spacing increases the size of <InlineTooltip
+									tooltip="Armor Skill"
+									text="LBG Hiden's"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> Perfect Shot window when the buff is active.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Consider building sets both with and without Combat Supremacy.
-								Thunder Clad offers good mobility, but some monsters may require
-								evasion.
+								Consider building sets both with and without <InlineTooltip
+									tooltip="Armor Skill"
+									text="Combat Supremacy"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>.
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Thunder Clad"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> offers good mobility, but some monsters may require evasion.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Acid S applies a hitzone debuff, making it highly effective
-								against Raviente due to its multiple hitboxes.
+								<InlineTooltip
+									tooltip="Ammo"
+									text="Acid S"
+									iconType="component"
+									icon={getItemIcon('Shot')}
+								/> applies a hitzone debuff, making it highly effective against <InlineTooltip
+									tooltip="Monster"
+									text="Raviente"
+									iconType="file"
+									icon={getMonsterIcon('Raviente')}
+								/>
+								due to its multiple hitzonees.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Combined with Caring +3, LBG is a popular choice on Raviente
-								support teams for quickly dealing with trash mobs using Pellet
-								S.
+								Combined with <InlineTooltip
+									tooltip="Armor Skill"
+									text="Caring+3"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>, <InlineTooltip
+									tooltip="Weapon"
+									text="Light Bowgun"
+									iconType="component"
+									icon={getWeaponIcon('Light Bowgun')}
+								/> is a popular choice on Raviente support teams for quickly dealing
+								with small monsters using <InlineTooltip
+									tooltip="Ammo"
+									text="Pellet S"
+									iconType="component"
+									icon={getItemIcon('Ammo Spread')}
+								/>.
 							</p></ListItem
 						>
 					</UnorderedList>

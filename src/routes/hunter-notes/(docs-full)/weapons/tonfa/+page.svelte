@@ -99,7 +99,7 @@
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +5. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing element damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +5. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing element damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -153,7 +153,7 @@
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'30 seconds duration. 16/10 hits to reach stages 1/2 respectively (13/8 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'30 seconds duration. 16/10 hits to reach stages 1/2 respectively (13/8 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,

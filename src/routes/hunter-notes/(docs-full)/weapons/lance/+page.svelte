@@ -71,7 +71,7 @@
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -125,7 +125,7 @@
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'35 seconds duration. 10/6 hits to reach stages 1/2 respectively (8/5 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'35 seconds duration. 10/6 hits to reach stages 1/2 respectively (8/5 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,
@@ -392,9 +392,18 @@
 						>
 						<ListItem
 							><p>
-								Lance retains its cutting/impact hitzone adjustment modifier; if
-								0.72x of the impact hitzone is superior to cutting, Lance uses
-								the impact value as cutting damage. (Carapaceons are a good
+								<InlineTooltip
+									tooltip="Weapon"
+									text="Lance"
+									iconType="component"
+									icon={getWeaponIcon('Lance')}
+								/> retains its cutting/impact hitzone adjustment modifier; if 0.72x
+								of the impact hitzone is superior to cutting, <InlineTooltip
+									tooltip="Weapon"
+									text="Lance"
+									iconType="component"
+									icon={getWeaponIcon('Lance')}
+								/> uses the impact value as cutting damage. (Carapaceons are a good
 								example of this.)
 							</p></ListItem
 						>
@@ -443,6 +452,51 @@
 							><p>
 								Guard lancing can be a useful way to learn parrying with other
 								weapons.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								The stamina buff varies in duration depending on how much
+								stamina you are using.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								With a strong guard, Guard+2 and Guard Up you can block many
+								monsters' ultimate attacks, for example <InlineTooltip
+									tooltip="Monster"
+									text="Stygian Zinogre"
+									iconType="file"
+									icon={getMonsterIcon('Stygian Zinogre')}
+								/>.
+							</p></ListItem
+						>
+						<ListItem><p>The attack buff lasts 3 minutes.</p></ListItem>
+						<ListItem
+							><p>
+								The area guard is capable of blocking the needle from <InlineTooltip
+									tooltip="Monster"
+									text="Zenith Hyujikiki"
+									iconType="file"
+									icon={getMonsterIcon('Zenith Hyujikiki')}
+								/> ultimate attack, <InlineTooltip
+									tooltip="Monster"
+									text="Conquest Fatalis"
+									iconType="file"
+									icon={getMonsterIcon('Conquest Fatalis')}
+								/> nukes, etc.
+							</p></ListItem
+						>
+
+						<ListItem
+							><p>
+								You cannot heal <InlineTooltip
+									tooltip="Weapon"
+									text="Dual Swords"
+									iconType="component"
+									icon={getWeaponIcon('Dual Swords')}
+								/> users that are in Extreme Demon mode, except in periods where
+								they got hit and thus lost the mode.
 							</p></ListItem
 						>
 					</UnorderedList>

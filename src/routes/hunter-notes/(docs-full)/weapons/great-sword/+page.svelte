@@ -18,7 +18,10 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 
@@ -70,7 +73,7 @@
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing element damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing element damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -124,7 +127,7 @@
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'55 seconds duration. 6/3 hits to reach stages 1/2 respectively (5/3 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'55 seconds duration. 6/3 hits to reach stages 1/2 respectively (5/3 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,
@@ -379,7 +382,12 @@
 					<UnorderedList>
 						<ListItem
 							><p>
-								You can be a liability when it comes to friendly fire.
+								You can be a liability when it comes to friendly fire. The item <InlineTooltip
+									tooltip="Item"
+									text="Elixir of Peace"
+									iconType="component"
+									icon={getItemIcon('Sac')}
+								/> can prevent this.
 							</p></ListItem
 						>
 						<ListItem
@@ -399,17 +407,51 @@
 						>
 						<ListItem
 							><p>
-								Combat Supremacy is the Frontier equivalent of Critical Draw for
-								GS, making it ideal for hit-and-run strategies with its stamina
-								drain and 1.20x raw damage increase. Starving Wolf +2 with Rush
+								<InlineTooltip
+									tooltip="Armor Skill"
+									text="Combat Supremacy"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> is the Frontier equivalent of Critical Draw for <InlineTooltip
+									tooltip="Weapon"
+									text="Great Sword"
+									iconType="component"
+									icon={getWeaponIcon('Great Sword')}
+								/>, making it ideal for hit-and-run strategies with its stamina
+								drain and 1.20x raw damage increase. <InlineTooltip
+									tooltip="Armor Skill"
+									text="Starving Wolf+2"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> with <InlineTooltip
+									tooltip="Armor Skill"
+									text="Rush"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>
 								is a good alternative for continuous unsheathed play.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								GS benefits the most from Raviente power crystals, although they
-								don’t work on the shining attack. Fortunately, they aren’t
-								consumed in the process.
+								<InlineTooltip
+									tooltip="Weapon"
+									text="Great Sword"
+									iconType="component"
+									icon={getWeaponIcon('Great Sword')}
+								/> benefits the most from <InlineTooltip
+									tooltip="Item"
+									text="Power Crystal"
+									iconType="component"
+									iconColor={getItemColor('Red')}
+									icon={getItemIcon('Sword Crystal')}
+								/> (from <InlineTooltip
+									tooltip="Monster"
+									text="Raviente"
+									iconType="file"
+									icon={getMonsterIcon('Raviente')}
+								/>), although they don’t work on the shining attack.
+								Fortunately, they aren’t consumed in the process.
 							</p></ListItem
 						>
 						<ListItem
@@ -420,8 +462,23 @@
 						>
 						<ListItem
 							><p>
-								Well-timed parries with GS Hiden and Obscurity Up effectively
-								manage sharpness when paired with Lavish Attack.
+								Well-timed parries with <InlineTooltip
+									tooltip="Item"
+									text="Great Sword Hiden"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> and <InlineTooltip
+									tooltip="Zenith Skill"
+									text="Obscurity Up"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+									iconColor={getItemColor('Red')}
+								/> effectively manage sharpness when paired with <InlineTooltip
+									tooltip="Item"
+									text="Lavish Attack"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>.
 							</p></ListItem
 						>
 						<ListItem
@@ -432,8 +489,19 @@
 						>
 						<ListItem
 							><p>
-								If you have 30 power crystals with a Raviente GS and the hunt
-								isn’t over by the time they’re all used up, something is wrong.
+								If you have 30 <InlineTooltip
+									tooltip="Item"
+									text="Power Crystals"
+									iconType="component"
+									icon={getItemIcon('Sword Crystal')}
+									iconColor={getItemColor('Red')}
+								/> with a <InlineTooltip
+									tooltip="Weapon"
+									text="Raviente Great Sword"
+									iconType="component"
+									icon={getWeaponIcon('Great Sword')}
+								/> and the hunt isn’t over by the time they’re all used up, something
+								is wrong.
 							</p></ListItem
 						>
 					</UnorderedList>
