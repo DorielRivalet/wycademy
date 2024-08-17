@@ -70,7 +70,7 @@
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing element damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing element damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -124,7 +124,7 @@
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'30 seconds duration. 10/6 hits to reach stages 1/2 respectively (8/5 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'30 seconds duration. 10/6 hits to reach stages 1/2 respectively (8/5 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,
@@ -399,8 +399,12 @@
 						<ListItem
 							><p>
 								The choice of length is largely personal preference. Keep in
-								mind that LS has various slashes that attack in different
-								directions.
+								mind that <InlineTooltip
+									tooltip="Weapon"
+									text="Long Sword"
+									iconType="component"
+									icon={getWeaponIcon('Long Sword')}
+								/> has various slashes that attack in different directions.
 							</p></ListItem
 						>
 						<ListItem
@@ -434,14 +438,28 @@
 						>
 						<ListItem
 							><p>
-								LS receives the smallest raw boost from Obscurity, but it’s
-								still significant.
+								<InlineTooltip
+									tooltip="Weapon"
+									text="Long Sword"
+									iconType="component"
+									icon={getWeaponIcon('Long Sword')}
+								/> receives the smallest raw boost from <InlineTooltip
+									tooltip="Armor Skill"
+									text="Obscurity"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>, but it’s still significant.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								If you really miss the Fade Slash, you might want to consider
-								using the Switch Axe instead.
+								using <InlineTooltip
+									tooltip="Weapon"
+									text="Switch Axe F"
+									iconType="component"
+									icon={getWeaponIcon('Switch Axe F')}
+								/> instead.
 							</p></ListItem
 						>
 					</UnorderedList>

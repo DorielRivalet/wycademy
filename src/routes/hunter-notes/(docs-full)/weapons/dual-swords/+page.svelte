@@ -21,6 +21,7 @@
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
 
 	const hidenSkills: {
 		id: string;
@@ -70,7 +71,7 @@
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +10. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing element damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +10. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing element damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -124,7 +125,7 @@
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'30 seconds duration. 20/12 hits to reach stages 1/2 respectively (17/10 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'30 seconds duration. 20/12 hits to reach stages 1/2 respectively (17/10 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,
@@ -378,29 +379,55 @@
 					<UnorderedList>
 						<ListItem
 							><p>
-								Like SnS, long length is generally an upgrade and is often found
-								on modern weapons.
+								Like <InlineTooltip
+									tooltip="Weapon"
+									text="Sword and Shield"
+									iconType="component"
+									icon={getWeaponIcon('Sword and Shield')}
+								/>, long length is generally an upgrade and is often found on
+								modern weapons.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								There’s no reason to use any demonization mode other than
 								Extreme Demon Mode nowadays. However, in this state, you cannot
-								receive any healing except from Vampirism.
+								receive any healing except from <InlineTooltip
+									tooltip="Armor Skill"
+									text="Vampirism"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>. This means that <InlineTooltip
+									tooltip="Weapon"
+									text="Lance"
+									iconType="component"
+									icon={getWeaponIcon('Lance')}
+								/> users cannot heal you either while its active.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								Each sharpen in a combo increases raw damage by 1.05x, stacking
 								up to four times for a maximum of 1.20x. The attack evades in
-								True/Extreme Demon modes maintain this combo state.
+								True/Extreme Demon modes maintain this combo state. The overlay
+								has a counter for this.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								When demonized, healing is entirely blocked, with Vampirism
+								When demonized, healing is entirely blocked, with <InlineTooltip
+									tooltip="Armor Skill"
+									text="Vampirism"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>
 								leeching being the only exception. This is especially noticeable
-								on the road.
+								on <InlineTooltip
+									tooltip="Location"
+									text="Hunter's Road"
+									iconType="file"
+									icon={getLocationIcon('Road')}
+								/>.
 							</p></ListItem
 						>
 					</UnorderedList>

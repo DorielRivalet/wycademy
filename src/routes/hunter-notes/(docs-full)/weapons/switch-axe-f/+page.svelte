@@ -83,7 +83,7 @@ Attacks utilizing the phial consume less meter.`,
 			id: 0,
 			skill: 'Dissolver',
 			description:
-				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitbox requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
+				'Adjusts the element hitzones by +15. Determination applies the effects of Dissolver without the need for hitzone requirements, effectively forcing elemental damage or reducing/negating negative hitzones.',
 		},
 		{
 			id: 1,
@@ -137,7 +137,7 @@ Attacks utilizing the phial consume less meter.`,
 			id: 9,
 			skill: 'Point Breakthrough',
 			description:
-				'40 seconds duration. 8/5 hits to reach stages 1/2 respectively (7/4 with Fencing+2). The previously hit hitbox is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
+				'40 seconds duration. 8/5 hits to reach stages 1/2 respectively (7/4 with Fencing+2). The previously hit hitzone is more vulnerable at Stage 2, and Fencing +2 slightly eases activation.',
 		},
 		{
 			id: 10,
