@@ -22,6 +22,8 @@
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -182,19 +184,89 @@
 		<SectionHeadingTopLevel title={'Dual Swords'} />
 		<div>
 			<p class="spaced-paragraph">
-				<!-- The <InlineTooltip
+				<InlineTooltip
+					text="Dual Swords"
 					tooltip="Weapon"
-					text="Switch Axe F"
 					iconType="component"
-					icon={getWeaponIcon('Switch Axe F')}
-				/>, Swaxe for short, is a weapon introduced in <InlineTooltip
-					tooltip="Game"
-					text="Monster Hunter Frontier G10"
-					iconType="file"
-					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
-						?.icon}
-				/>. It is unlocked by reaching G Rank. -->
+					icon={getWeaponIcon('Dual Swords')}
+				/> (DS) are high-speed weapons designed for relentless offense, trading the
+				<InlineTooltip
+					text="Sword and Shield’s"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Sword and Shield')}
+				/> (SnS) ability to block and use items for some of the highest DPS in the
+				game. While their motion values are relatively low, they excel when paired
+				with appropriate elemental or status-inflicting weapons.
 			</p>
+			<p class="spaced-paragraph">
+				<InlineTooltip
+					text="Dual Swords"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Dual Swords')}
+				/> offers multiple <strong>Demon Modes</strong>, with the optimal
+				playstyle revolving around using <strong>True Demon Mode</strong>, which
+				drains health but enhances attacks, combined with the sharpening buff
+				detailed below.
+			</p>
+
+			<p class="spaced-paragraph">
+				Pressing the Kick button while using <InlineTooltip
+					text="Dual Swords"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Dual Swords')}
+				/> allows you to quickly sharpen your weapon, granting a 5% attack boost.
+				Each successive sharpen, up to four times, increases this bonus to a total
+				of 20%. Mastering this mechanic is key to maximizing <InlineTooltip
+					text="Dual Swords"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Dual Swords')}
+				/> performance, as it requires constant use during combos and strategic evades.
+			</p>
+			<p class="spaced-paragraph">
+				The sharpen buff expires as soon as a combo ends. However, as long as
+				you keep attacking, evading, or sharpening, the combo continues,
+				allowing you to maintain the 1.20x buff indefinitely without <InlineTooltip
+					text="Combat Supremacy"
+					tooltip="Armor Skill"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/> active, provided you don’t make a mistake.
+			</p>
+
+			<section>
+				<SectionHeading title="Demon Modes" level={2} />
+				<div>
+					<p class="spaced-paragraph">
+						In Frontier, <InlineTooltip
+							text="Dual Swords"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Dual Swords')}
+						/> has two Demon Modes: <strong>Demon Mode</strong> and
+						<strong>True Demon Mode</strong>. <strong>Demon Mode</strong>
+						continuously drains Stamina, while <strong>True Demon Mode</strong>
+						drains Health. Both modes significantly increase motion values, but
+						<strong>True Demon Mode</strong> also introduces a fast evade that can
+						be used to extend combos and maintain the sharpening buff.
+					</p>
+					<p class="spaced-paragraph">
+						<strong>True Demon Mode</strong> won’t directly kill you; when your health
+						reaches 1, it depletes any remaining Red Health and further boosts your
+						attack power.
+					</p>
+					<p class="spaced-paragraph">
+						In terms of performance, both modes increase motion values by
+						approximately 1.25x, with <strong>True Demon Mode</strong> attacks
+						being about 1.1x faster than those in Demon Mode. However,
+						<strong>True Demon Mode</strong> also increases Red Health loss by about
+						1.375x, making it a challenging but rewarding mode for skilled players.
+					</p>
+				</div>
+			</section>
 
 			<!-- <CenteredFigure
 				figcaption="Triggering Elemental Release."
@@ -205,11 +277,96 @@
 			/> -->
 
 			<p>
-				For more information on motion values, see the <Link
-					inline
-					href="/tools/calculator/damage">Damage Calculator.</Link
-				>
+				For an explanation on element damage, see our <Link
+					icon={Information}
+					href="/hunter-notes/getting-started/elements#damage"
+					>Elements page</Link
+				>. For more information on motion values, see the <Link
+					icon={ToolKit}
+					href="/tools/calculator/damage">Damage Calculator</Link
+				>.
 			</p>
+
+			<section>
+				<SectionHeading level={2} title="Earth Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Earth Style</strong> is the base style for <InlineTooltip
+							text="Dual Swords"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Dual Swords')}
+						/> and includes all the core features, including
+						<strong>True Demon Mode</strong>. The main difference between this
+						style and the Heaven and Storm Styles is the
+						<strong>Demon Dance</strong> move, a long combo that locks you in place.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Heaven Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Heaven Style</strong> is similar to
+						<strong>Earth Style</strong>
+						but replaces <strong>Demon Dance</strong> with
+						<strong>Flurry Swipes</strong>, a quick set of three pokes that can
+						be followed by a <strong>Flurry Rotation</strong> for three
+						additional hits. In
+						<strong>True Demon Mode</strong>, these attacks have a total motion
+						value of 144, slightly higher than <strong>Demon Dance</strong> in
+						physical damage but with two fewer elemental hits. Both the
+						<strong>Demon Dance</strong> and Flurry combos deal only 70% elemental
+						damage.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Storm Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Storm Style</strong> is nearly identical to
+						<strong>Heaven Style</strong>, with the main difference being the
+						replacement of the Rush Slash (unsheath action) with a forward flip.
+						This move is useful for hitting tails but can be tricky to execute.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Extreme Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> builds on
+						<strong>Heaven Style</strong>, introducing new moves and the
+						powerful <strong>Extreme Demon Mode</strong>.
+					</p>
+					<p class="spaced-paragraph">
+						This style allows you to run with your <InlineTooltip
+							text="Dual Swords"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Dual Swords')}
+						/> unsheathed and adds the <strong>Sky Slash</strong>, an acrobatic
+						combo that hits five times for a total motion value of 30, ending
+						with a two-hit finisher dealing 20 motion each.
+					</p>
+					<p class="spaced-paragraph">
+						<strong>Extreme Demon Mode</strong> is an enhanced version of
+						<strong>True Demon Mode</strong>. It consumes Green Health first,
+						followed by Red Health, and shares the same increased attack speed
+						and motion values. However, it introduces a new evade that deals 32
+						motion across two hits when evading forward or backward, and four
+						hits when evading left or right, effectively doubling the elemental
+						damage when moving sideways. Additionally,
+						<strong>Extreme Demon Mode</strong> includes a unique
+						<strong>Rising Slash</strong>, a more practical version of the
+						forward flip found in <strong>Storm Style</strong>.
+					</p>
+				</div>
+			</section>
 
 			<section>
 				<SectionHeading level={2} title="Example Gear with Runs" />
@@ -220,10 +377,21 @@
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
 					<p>
-						Reduces the speed at which the HP bar decreases when in true demon
-						mode. Stamina gauge depletion speed is reduced to x0.5 when in demon
-						mode (equivalent to Marathon Runner). When Marathon Runner is
-						activated, it is reduced to x0.33.
+						Reduces the speed at which the HP bar decreases when in <strong
+							>True Demon Mode</strong
+						>. Stamina gauge depletion speed is reduced to x0.5 when in
+						<strong>Demon Mode</strong>
+						(equivalent to <InlineTooltip
+							text="Marathon Runner"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>). When <InlineTooltip
+							text="Marathon Runner"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> is activated, it is reduced to x0.33.
 					</p>
 				</div>
 			</section>

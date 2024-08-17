@@ -11,6 +11,7 @@
 	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const version = 'v0.39.0';
 
@@ -120,8 +121,8 @@
 				<ListItem
 					><div class="list-item">
 						Added a link to Wycademy's <Link
-							inline
-							href="/tools/calculator/damage">Damage Calculator.</Link
+							icon={ToolKit}
+							href="/tools/calculator/damage">Damage Calculator</Link
 						>
 					</div></ListItem
 				>

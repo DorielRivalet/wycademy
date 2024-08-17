@@ -553,21 +553,21 @@
 					<p>
 						<strong
 							>Not to be confused with what skill you should prioritize</strong
-						>; Skill Priority, or Skill Replacement Order, refers to how each
-						skill takes precedence over another skill according to a priority
-						value, which determines whether it will be activated or not. You can
-						verify the skills a set will have active on the table below.
-						Priority becomes crucial in the late game, as it's easy to
-						unintentionally activate unwanted skills. This is especially true
-						for sets that include <InlineTooltip
+						>; Skill Priority, or <strong>Skill Replacement Order</strong>,
+						refers to how each skill takes precedence over another skill
+						according to a priority value, which determines whether it will be
+						activated or not. You can verify the skills a set will have active
+						on the table below. Priority becomes crucial in the late game, as
+						it's easy to unintentionally activate unwanted skills. This is
+						especially true for sets that include <InlineTooltip
 							tooltip="Armor Skill"
 							text="Focus"
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/>, as it has the lowest priority of all skills and can be easily
-						overridden. Skill Replacement Order becomes noticeably important
-						when you reach the maximum possible skill slots for your gear, which
-						makes the game start prioritizing certain skills.
+						overridden. <strong>Skill Replacement Order</strong> becomes noticeably
+						important when you reach the maximum possible skill slots for your gear,
+						which makes the game start prioritizing certain skills.
 					</p>
 					<div class="table table-with-scrollbar">
 						<DataTable

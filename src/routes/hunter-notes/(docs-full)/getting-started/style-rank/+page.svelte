@@ -47,6 +47,7 @@
 	import mermaid from 'mermaid';
 	import { browser } from '$app/environment';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	let modalHeading = '';
 	let modalLabel = '';
@@ -1029,6 +1030,12 @@ graph LR
 					</DataTable>
 				</div>
 				<p class="spaced-paragraph">
+					For more specific information about all weapon styles, refer to <Link
+						inline
+						href="/hunter-notes/weapons">the weapons category page.</Link
+					>
+				</p>
+				<p class="spaced-paragraph">
 					Upon reaching G Rank, interact with the Guild Master again to unlock
 					Extreme Style. This style significantly alters weapons compared to
 					Storm or Heaven styles and is generally the best-in-slot for every
@@ -1114,10 +1121,10 @@ graph LR
 						iconType="component"
 						text="Weapon Souls"
 						tooltip="Item"
-					/> (a ticket item), used for crafting specific weapons and armor (see Hiden
-					Sets). Using a weapon within the Rarity Limit stated in your Book of Secrets
-					provides a multiplier for HRP (3x), SRP (4x), Zeny (1.5x), and GCP (1.5x),
-					making HC quests an excellent way to gain ranks. As of <InlineTooltip
+					/> (a ticket item), used for crafting specific weapons and armor. Using
+					a weapon within the Rarity Limit stated in your Book of Secrets provides
+					a multiplier for HRP (3x), SRP (4x), Zeny (1.5x), and GCP (1.5x), making
+					HC quests an excellent way to gain ranks. As of <InlineTooltip
 						icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
 							?.icon}
 						iconType="file"
@@ -1685,7 +1692,7 @@ graph LR
 						tooltip="Armor Skill"
 					/> active. Later game you will want to push much higher and should grind
 					it up to around 190 to cover most use cases with late game skill sets.
-					The <Link href="/tools/calculator/damage" inline
+					The <Link icon={ToolKit} href="/tools/calculator/damage"
 						>Damage Calculator</Link
 					> automatically calculates your required number of My Missions and Attack
 					Ceiling level based on values and skills you might want to utilise if you
@@ -1798,7 +1805,7 @@ graph LR
 						</div>
 
 						<p class="spaced-paragraph">
-							Using the <Link href="/tools/calculator/damage" inline
+							Using the <Link icon={ToolKit} href="/tools/calculator/damage"
 								>Damage Calculator</Link
 							> will provide an accurate rating based on the entered skills. The
 							previous broad estimates cover all possible scenarios to prevent losing
@@ -2560,7 +2567,7 @@ graph LR
 							Increase levels. Critical Hits and Weapon Sharpness do not count as
 							they do not modify the value on the guild card. You can verify which
 							factors contribute to the Attack Ceiling on the <Link
-								inline
+								icon={ToolKit}
 								href="/tools/calculator/damage">Damage Calculator</Link
 							>.
 						</p></ListItem
@@ -2627,7 +2634,7 @@ graph LR
 							constantly adds new skills that raise attack, making the original
 							800 True Raw limit increasingly irrelevant in G Rank play. To
 							determine your specific level requirements, use the
-							<Link href="/tools/calculator/damage" inline
+							<Link icon={ToolKit} href="/tools/calculator/damage"
 								>Damage Calculator</Link
 							>. Enter your skills and weapon values in the left column to get
 							an accurate calculation. For estimates, enter around 500-600 as

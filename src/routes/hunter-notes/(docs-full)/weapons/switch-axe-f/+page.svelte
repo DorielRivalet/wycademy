@@ -27,6 +27,8 @@
 	import SwaxeLightsword from '$lib/client/images/supplemental/swaxe-lightsword.webp';
 	import SwaxeRun from '$lib/client/images/supplemental/swaxe-run.webp';
 	import SwaxeSwitch from '$lib/client/images/supplemental/swaxe-switch.webp';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -235,11 +237,35 @@ Attacks utilizing the phial consume less meter.`,
 			/>
 
 			<p>
-				For more information on motion values, see the <Link
-					inline
-					href="/tools/calculator/damage">Damage Calculator.</Link
-				>
+				For an explanation on element damage, see our <Link
+					icon={Information}
+					href="/hunter-notes/getting-started/elements#damage"
+					>Elements page</Link
+				>. For more information on motion values, see the <Link
+					icon={ToolKit}
+					href="/tools/calculator/damage">Damage Calculator</Link
+				>.
 			</p>
+
+			<section>
+				<SectionHeading level={2} title="Earth Style" />
+				<div></div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Heaven Style" />
+				<div></div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Storm Style" />
+				<div></div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Extreme Style" />
+				<div></div>
+			</section>
 
 			<section>
 				<SectionHeading level={2} title="Example Gear with Runs" />

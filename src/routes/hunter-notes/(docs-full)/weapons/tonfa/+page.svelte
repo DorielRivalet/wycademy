@@ -31,6 +31,8 @@
 	import CaravanGem from '$lib/client/components/frontier/icon/CaravanGem.svelte';
 	import { getAilmentIcon } from '$lib/client/modules/frontier/ailments';
 	import StarRating from '$lib/client/components/StarRating.svelte';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -474,12 +476,36 @@
 					</div>
 
 					<p>
-						For more information on motion values, see the <Link
-							inline
-							href="/tools/calculator/damage">Damage Calculator.</Link
-						>
+						For an explanation on element damage, see our <Link
+							icon={Information}
+							href="/hunter-notes/getting-started/elements#damage"
+							>Elements page</Link
+						>. For more information on motion values, see the <Link
+							icon={ToolKit}
+							href="/tools/calculator/damage">Damage Calculator</Link
+						>.
 					</p>
 				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Earth Style" />
+				<div></div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Heaven Style" />
+				<div></div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Storm Style" />
+				<div></div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Extreme Style" />
+				<div></div>
 			</section>
 
 			<section>

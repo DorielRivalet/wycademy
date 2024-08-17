@@ -21,6 +21,8 @@
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -173,20 +175,50 @@ Arc-Shot can be executed at Charge Lv2.`,
 		<SectionHeadingTopLevel title={'Bow'} />
 		<div>
 			<p class="spaced-paragraph">
-				<!-- The <InlineTooltip
+				The <InlineTooltip
+					text="Bow"
 					tooltip="Weapon"
-					text="Switch Axe F"
 					iconType="component"
-					icon={getWeaponIcon('Switch Axe F')}
-				/>, Swaxe for short, is a weapon introduced in <InlineTooltip
-					tooltip="Game"
-					text="Monster Hunter Frontier G10"
-					iconType="file"
-					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
-						?.icon}
-				/>. It is unlocked by reaching G Rank. -->
+					icon={getWeaponIcon('Bow')}
+				/> in this game closely resembles its original mainline implementation, where
+				you charge shots and apply coatings to enhance your attacks.
 			</p>
-
+			<p class="spaced-paragraph">
+				<strong>Critical Distance</strong> is a mechanic shared by all ranged
+				weapons and refers to the optimal range for each type of shot. When
+				using a <InlineTooltip
+					text="Bow"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Bow')}
+				/>, a visual indicator will appear while aiming, helping you position
+				yourself at the ideal distance.
+			</p>
+			<p class="spaced-paragraph">
+				Bows typically have three levels of charge by default, but you can
+				unlock a fourth level with the <InlineTooltip
+					text="Armor Skill"
+					tooltip="Load Up"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/> armor skill. Additionally, the <InlineTooltip
+					text="Armor Skill"
+					tooltip="Auto-Reload"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/> skill can reduce the charge time for each shot.
+			</p>
+			<p class="spaced-paragraph">
+				<strong>Arc Shots</strong> from the mainline games are also available,
+				with the most notable being the <strong>Cutting Shot</strong>. Although
+				it uses the weakness value for ranged attacks to calculate damage, it
+				deals cutting damage, allowing it to sever tails.
+				<strong>Arc Shots</strong> are unaffected by critical range or charge
+				levels, so skills that enhance those attributes won't benefit these
+				attacks. If you hit a target in the air before the
+				<strong>Arc Shot</strong> transitions to its actual hit type, you won't trigger
+				the projectile rain effect, wasting the shot.
+			</p>
 			<!-- <CenteredFigure
 				figcaption="Triggering Elemental Release."
 				alt="Triggering Elemental Release"
@@ -196,11 +228,148 @@ Arc-Shot can be executed at Charge Lv2.`,
 			/> -->
 
 			<p>
-				For more information on motion values, see the <Link
-					inline
-					href="/tools/calculator/damage">Damage Calculator.</Link
-				>
+				For an explanation on element damage, see our <Link
+					icon={Information}
+					href="/hunter-notes/getting-started/elements#damage"
+					>Elements page</Link
+				>. For more information on motion values, see the <Link
+					icon={ToolKit}
+					href="/tools/calculator/damage">Damage Calculator</Link
+				>.
 			</p>
+
+			<section>
+				<SectionHeading level={2} title="Earth Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Earth Style</strong> is the fundamental <InlineTooltip
+							text="Bow"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Bow')}
+						/> style, nearly identical to the version in MHFU. It has 3-4 charge
+						levels depending on whether you have the <InlineTooltip
+							text="Armor Skill"
+							tooltip="Load Up"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> skill, and its melee attack is relatively weak.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Heaven Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Heaven Style</strong> is a variation of
+						<strong>Earth Style</strong> with the addition of a shoryuken-style
+						melee attack that deals cutting damage. This style is generally the
+						best option until you unlock <strong>Extreme Style</strong>, as the
+						benefits of <strong>Storm Style</strong> are debatable and it adds a
+						17% increase to charge time. <strong>Heaven Style</strong> is a
+						solid choice until you can access <strong>Extreme Style</strong>.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Storm Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Storm Style</strong> retains the shoryuken attack and
+						introduces the ability to crouch, which further enhances charge
+						levels and adds a <strong>Sniper Shot</strong>. The
+						<strong>Sniper Shot</strong> is a single, powerful arrow that acts
+						as a fourth or fifth charge level when using <InlineTooltip
+							text="Load Up"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>. However, this shot takes 10% longer to charge and isn't
+						particularly powerful, especially when used with <InlineTooltip
+							text="Load Up"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>. If you plan to use
+						<strong>Sniper Mode</strong>, it's better to avoid bows that rely on
+						the fourth charge level and skip the <InlineTooltip
+							text="Load Up"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> skill.
+						<strong>Storm Style</strong> also suffers from a 17% longer charge
+						time compared to Earth or Heaven Style, making
+						<strong>Heaven Style</strong> the preferred choice until you unlock
+						<strong>Extreme Style.</strong>
+					</p>
+					<p class="spaced-paragraph">
+						Ultimately, the new features in <strong>Storm Style</strong> are
+						rarely used, making its advantages over
+						<strong>Heaven Style</strong> negligible when considering the downside
+						of increased charge times.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Extreme Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> builds upon
+						<strong>Storm Style</strong>, retaining the crouch shot but without
+						the extended charge times, making it a straightforward upgrade.
+					</p>
+					<p class="spaced-paragraph">
+						This style allows you to run with your Bow unsheathed, enabling you
+						to charge shots and load coatings on the move. You can also roll
+						while charging without losing your charge level and perform a Quick
+						Shot, similar to the Power Shot mechanic from 4U. The Quick Shot
+						duplicates your previous shot with a lower final multiplier—Lv1
+						charges deal 100% of the previous shot, Lv2 deals 85%, Lv3 deals
+						75%, and Lv4 deals 65%. This second shot is treated as a separate
+						action, consuming coatings accordingly, and interacts with skills
+						like <InlineTooltip
+							tooltip="Armor Skill"
+							text="Consumption Slayer"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> and <InlineTooltip
+							tooltip="Armor Skill"
+							text="Bullet Saver"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> individually.
+					</p>
+					<p class="spaced-paragraph">
+						A new shot type, <strong>Rising Arrow</strong>, is also introduced.
+						It flies horizontally to a fixed point before switching to a
+						vertical descent. This shot ignores standard charge level properties
+						and deals fixed damage regardless of the Bow’s shot type. It is
+						about 16% weaker than a perfectly spaced Lv3 Rapid Shot at charge
+						level 4, with all arrows landing accurately.
+					</p>
+					<p class="spaced-paragraph">
+						Rising Arrow shots are always considered within <strong
+							>Critical Distance</strong
+						>
+						for the vertical portion, meaning the Critical Shot weakness value and
+						any related multipliers apply. However, because it’s not a Rapid, Spread,
+						or Scatter shot, skills like <InlineTooltip
+							tooltip="Armor Skill"
+							text="Steady Hand"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> or individual Shot Up skills won’t apply their multipliers.
+					</p>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> is the best Bow style overall, and there’s
+						little reason to switch to other styles once you have access to it.
+					</p>
+				</div>
+			</section>
 
 			<section>
 				<SectionHeading level={2} title="Example Gear with Runs" />
@@ -210,7 +379,14 @@ Arc-Shot can be executed at Charge Lv2.`,
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>x0.85 Charge time. Synergizes well with Auto-Reload.</p>
+					<p>
+						x0.85 Charge time. Synergizes well with <InlineTooltip
+							tooltip="Armor Skill"
+							text="Auto-Reload"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>.
+					</p>
 				</div>
 			</section>
 

@@ -24,6 +24,8 @@
 	} from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -184,18 +186,38 @@
 		<SectionHeadingTopLevel title={'Great Sword'} />
 		<div>
 			<p class="spaced-paragraph">
-				<!-- The <InlineTooltip
+				The <InlineTooltip
+					text="Great Sword"
 					tooltip="Weapon"
-					text="Switch Axe F"
 					iconType="component"
-					icon={getWeaponIcon('Switch Axe F')}
-				/>, Swaxe for short, is a weapon introduced in <InlineTooltip
-					tooltip="Game"
-					text="Monster Hunter Frontier G10"
+					icon={getWeaponIcon('Great Sword')}
+				/> (GS) in Frontier retains its core mechanics from the mainline series—slow
+				but powerful, with charge attacks that capitalize on openings and precise
+				timing. With this weapon, <strong>raw damage</strong> reigns supreme, while
+				elemental or status effects are secondary.
+			</p>
+			<p class="spaced-paragraph">
+				The <InlineTooltip
+					text="Great Sword"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Great Sword')}
+				/> can generate <strong>Super Armor</strong>, which completely negates
+				knockback. This can be a double-edged sword. For instance, if you
+				activate it while a <InlineTooltip
+					text="Rathalos"
+					tooltip="Monster"
 					iconType="file"
-					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
-						?.icon}
-				/>. It is unlocked by reaching G Rank. -->
+					icon={getMonsterIcon('Rathalos')}
+				/> is launching a fireball, you can absorb the hit without flinching and
+				potentially land a charged attack on its face. However, if you try to tank
+				a multi-hit attack, like a <InlineTooltip
+					text="Yian Kut-Ku's"
+					tooltip="Monster"
+					iconType="file"
+					icon={getMonsterIcon('Yian Kut-Ku')}
+				/> pecking, you'll take damage from each hit, potentially far exceeding the
+				damage of a single hit due to the loss of iframes from the knockdown.
 			</p>
 
 			<!-- <CenteredFigure
@@ -207,11 +229,141 @@
 			/> -->
 
 			<p>
-				For more information on motion values, see the <Link
-					inline
-					href="/tools/calculator/damage">Damage Calculator.</Link
-				>
+				For an explanation on element damage, see our <Link
+					icon={Information}
+					href="/hunter-notes/getting-started/elements#damage"
+					>Elements page</Link
+				>. For more information on motion values, see the <Link
+					icon={ToolKit}
+					href="/tools/calculator/damage">Damage Calculator</Link
+				>.
 			</p>
+
+			<section>
+				<SectionHeading level={2} title="Earth Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Earth Style</strong> is the classic <InlineTooltip
+							text="Great Sword"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Great Sword')}
+						/> moveset, similar to the one used since MH Dos. It includes a charge
+						on the vertical downswing, which you should use to hit monsters with
+						powerful strikes.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Heaven Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Heaven Style</strong> is a unique approach that replaces all
+						charge attacks with a counter. This counter resembles a horizontal
+						slash but raises the <InlineTooltip
+							text="Great Sword"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Great Sword')}
+						/> in front of you, allowing you to block any attack that would be blockable
+						with <InlineTooltip
+							text="Guard+2"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> without taking chip damage. While this counter is highly effective,
+						it doesn’t offer the consistent damage output of a fully charged attack.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Storm Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Storm Style</strong> modifies the charging mechanic, placing
+						it on the upswing rather than the downswing, with a fourth level of
+						charge available. This level can deal significantly higher damage,
+						but it's more challenging to land accurately. If mistimed, the
+						charge downgrades to a level 2, which reduces its effectiveness.
+						This style also includes the counter from
+						<strong>Heaven Style</strong>, making it a more skill-based option,
+						as it removes the ability to manually guard, offering stronger
+						charges and a more dynamic guarding method instead.
+					</p>
+					<p class="spaced-paragraph">
+						The charge levels in <strong>Storm Style</strong> are as follows:
+					</p>
+					<UnorderedList>
+						<ListItem>
+							<p>Lv1: 92</p>
+						</ListItem>
+						<ListItem>
+							<p>Lv2: 112 x1.1</p>
+						</ListItem>
+						<ListItem>
+							<p>Lv3: 157 x1.2</p>
+						</ListItem>
+						<ListItem>
+							<p>
+								Lv4: 200 x1.3 (downgrades to Lv2: 112 x1.1 if mistimed). <strong
+									>Proper timing for the Level 4 charge is crucial, as missing
+									it can waste up to 136 motion value.</strong
+								>
+							</p>
+						</ListItem>
+					</UnorderedList>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Extreme Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> combines elements of Storm and Earth
+						Styles, replacing the <strong>Counter Slash</strong> with a
+						<strong>Parry</strong> mechanic. This allows you to chain into
+						powerful downslashes or faster but weaker horizontal slashes.
+						Additionally, you can build up an invisible meter to unleash a
+						<strong>Shining Sword</strong> attack, a 15-hit combo dealing around
+						455-467 total motion.
+					</p>
+					<p class="spaced-paragraph">
+						As with the other Extreme Styles, you can run with your <InlineTooltip
+							text="Great Sword"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Great Sword')}
+						/>
+						unsheathed, which is a significant upgrade since the weapon was previously
+						limited by its slow movement and reliance on rolls for closing distance.
+						You can perform a horizontal slash with iframes or a charged upswing
+						from a dash, providing versatility in combat.
+					</p>
+					<p class="spaced-paragraph">
+						This style allows you to use charges from both Earth and Storm
+						Styles interchangeably and even combo them, making it particularly
+						<strong>effective for hitting tails</strong>.
+					</p>
+					<p class="spaced-paragraph">
+						The <strong>Parry</strong> mechanic absorbs any guardable attack
+						without consuming stamina or causing knockback. Some attacks may
+						still deal chip damage. From a parry, you can evade, perform a
+						downslash (200 motion), or execute a horizontal slash (125 motion),
+						all of which deliver high damage with ease. After successfully
+						<strong>parrying three times</strong>, you can unleash the
+						<strong>Shining Sword</strong>
+						attack, which has a motion value of around 456 and hits 15 times, making
+						it one of the few instances where the <InlineTooltip
+							text="Great Sword"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Great Sword')}
+						/> excels in elemental and status output.
+					</p>
+				</div>
+			</section>
 
 			<section>
 				<SectionHeading level={2} title="Example Gear with Runs" />
@@ -223,10 +375,19 @@
 				<div>
 					<p>
 						+100% Affinity for unsheathe attacks, stacking with any existing
-						affinity. Pairs well with Critical Conversion. This bonus also
-						applies to attacks from Parries and grants the raw damage increase
-						from Critical Conversion (excluding the +30%) during these actions.
-						It does not activate with Shining Sword.
+						affinity. Pairs well with <InlineTooltip
+							text="Critical Conversion"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>. This bonus also applies to attacks from <strong>Parries</strong>
+						and grants the raw damage increase from <InlineTooltip
+							text="Critical Conversion"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> (excluding the +30%) during these actions.
+						<strong>It does not activate with Shining Sword.</strong>
 					</p>
 				</div>
 			</section>
