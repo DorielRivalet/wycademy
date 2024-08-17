@@ -21,6 +21,8 @@
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -168,20 +170,87 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 		<SectionHeadingTopLevel title={'Heavy Bowgun'} />
 		<div>
 			<p class="spaced-paragraph">
-				<!-- The <InlineTooltip
+				The <InlineTooltip
+					text="Heavy Bowgun"
 					tooltip="Weapon"
-					text="Switch Axe F"
 					iconType="component"
-					icon={getWeaponIcon('Switch Axe F')}
-				/>, Swaxe for short, is a weapon introduced in <InlineTooltip
-					tooltip="Game"
-					text="Monster Hunter Frontier G10"
-					iconType="file"
-					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
-						?.icon}
-				/>. It is unlocked by reaching G Rank. -->
+					icon={getWeaponIcon('Heavy Bowgun')}
+				/> (HBG) is the most powerful of the three ranged weapons but is also the
+				slowest in terms of mobility and firing rate. Its gameplay is similar to
+				that of MHFU, with enhancements like <strong>Power Barrels</strong> and
+				<strong>Shields</strong>, and most available <InlineTooltip
+					text="Heavy Bowguns"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Heavy Bowgun')}
+				/> can be leveled up to boost attack power.
 			</p>
-
+			<p class="spaced-paragraph">
+				<strong>Critical Distance</strong> is a key mechanic for all ranged weapons,
+				defining the optimal range for different ammo types.
+			</p>
+			<p class="spaced-paragraph">Here’s a general breakdown:</p>
+			<UnorderedList>
+				<ListItem>
+					<p>Normal Shots: Close to Mid Range</p>
+				</ListItem>
+				<ListItem>
+					<p>Pierce Shots: Mid to Far Range</p>
+				</ListItem>
+				<ListItem>
+					<p>Pellet Shots: Short Range</p>
+				</ListItem>
+				<ListItem>
+					<p>Other Shots: Fixed damage regardless of distance</p>
+				</ListItem>
+			</UnorderedList>
+			<p class="spaced-paragraph">
+				The game provides a visual cue for <strong>Critical Distance</strong>:
+				when a shot discards its casing, an expanding circle appears. This
+				visual indicator helps you learn proper spacing and positioning.
+			</p>
+			<p class="spaced-paragraph">
+				Hitting within the first half of <strong>Critical Distance</strong> is
+				crucial for maximizing DPS with the <InlineTooltip
+					text="Heavy Bowgun"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Heavy Bowgun')}
+				/>. In this range, the <InlineTooltip
+					text="Heavy Bowgun"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Heavy Bowgun')}
+				/> applies a 2.3x damage modifier, while the second half applies a 2.0x modifier.
+				You’ll know you’re in the right range when the hit animation intensifies
+				significantly.
+			</p>
+			<p class="spaced-paragraph">
+				<InlineTooltip
+					text="Heavy Bowguns"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Heavy Bowgun')}
+				/> can be equipped with <strong>Shields</strong> or
+				<strong>Power Barrels</strong>. <strong>Shields</strong> allow for
+				guarding but do not benefit from the <InlineTooltip
+					text="Guard"
+					tooltip="Armor Skill"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/> skill or trigger any guard-related abilities (e.g., <InlineTooltip
+					text="Obscurity"
+					tooltip="Armor Skill"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/>, <InlineTooltip
+					text="Reflect"
+					tooltip="Armor Skill"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/>) and are generally <strong>not recommended</strong> as they can become
+				a crutch.
+			</p>
 			<!-- <CenteredFigure
 				figcaption="Triggering Elemental Release."
 				alt="Triggering Elemental Release"
@@ -191,11 +260,126 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 			/> -->
 
 			<p>
-				For more information on motion values, see the <Link
-					inline
-					href="/tools/calculator/damage">Damage Calculator.</Link
-				>
+				For an explanation on element damage, see our <Link
+					icon={Information}
+					href="/hunter-notes/getting-started/elements#damage"
+					>Elements page</Link
+				>. For more information on motion values, see the <Link
+					icon={ToolKit}
+					href="/tools/calculator/damage">Damage Calculator</Link
+				>.
 			</p>
+
+			<section>
+				<SectionHeading level={2} title="Earth Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Earth Style</strong> is the basic <InlineTooltip
+							text="Heavy Bowgun"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Heavy Bowgun')}
+						/> style, providing a straightforward experience without much variation.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Heaven Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Heaven Style</strong> is a slight upgrade from
+						<strong>Earth Style</strong>, adding the ability to side-step. While
+						it’s generally preferable to <strong>Earth Style</strong>, the
+						improvement is minimal.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Storm Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Storm Style</strong> introduces the ability to charge your
+						shots. At Level 0, charged shots do slightly less damage than
+						uncharged shots in <strong>Heaven Style</strong>, but higher charge
+						levels offer greater damage. The charge multipliers are
+						0.95x/1.15x/1.30x/1.5x from Level 0 to Level 3.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Extreme Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> builds on
+						<strong>Storm Style</strong>, retaining all its features while
+						removing the damage penalty for Level 0 shots, which now deal 1.0x
+						damage instead of 0.95x.
+					</p>
+					<p class="spaced-paragraph">
+						As with other Extreme Styles, this style allows you to run with your
+						weapon unsheathed, significantly increasing <InlineTooltip
+							text="Heavy Bowgun's"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Heavy Bowgun')}
+						/> mobility. You can also reload while running, which is a major advantage
+						since reloading typically immobilizes you for a while. Firing cancels
+						the running state, and you can use the charge shot to adjust your aim
+						if needed.
+					</p>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> introduces a
+						<strong>Heat Gauge</strong>
+						meter for all <InlineTooltip
+							text="Heavy Bowguns"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Heavy Bowgun')}
+						/> that doesn't require a sigil to use. This meter fills as you fire
+						and lets you use the <strong>Blue Heat Cannon</strong> and
+						<strong>Blast Avoidance</strong>. The meter is fully extended by
+						default and doesn’t need Oils to increase its capacity.
+					</p>
+					<p class="spaced-paragraph">
+						The <strong>Blue Heat Cannon</strong> is an enhanced version found
+						on various Gou <InlineTooltip
+							text="Heavy Bowguns"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Heavy Bowgun')}
+						/>, also obtainable through a sigil. It’s incredibly powerful and
+						can take out a large portion of a standard G Rank monster’s HP.
+						However, it locks you into a lengthy animation with a forced
+						backward movement, leaving you vulnerable, so timing is critical.
+					</p>
+					<p class="spaced-paragraph">
+						<strong>Blast Avoidance</strong> uses a small portion of the same
+						meter as the <strong>Blue Heat Cannon</strong> to launch you in a
+						manner similar to <InlineTooltip
+							text="Tonfa"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Tonfa')}
+						/>. It grants extensive iframes and lets you evade many dangerous
+						attacks, but it also leaves you vulnerable afterward, as you can
+						only run or roll immediately upon landing. You're always launched in
+						the opposite direction to where you’re facing, so if you want to
+						face the monster afterward, you'll need to perform a 180° turn
+						before using this ability.
+					</p>
+					<p class="spaced-paragraph">
+						It’s worth noting that you can have both versions of the <strong
+							>Heat Cannon</strong
+						>
+						active simultaneously if you use a Sigil or weapon with the standard
+						<strong>Heat Cannon</strong>, with both gauges appearing side by
+						side.
+					</p>
+				</div>
+			</section>
 
 			<section>
 				<SectionHeading level={2} title="Example Gear with Runs" />
@@ -205,7 +389,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>+0.1x Damage increased at critical distance.</p>
+					<p>+0.1x Damage increased at <strong>Critical Distance.</strong></p>
 				</div>
 			</section>
 

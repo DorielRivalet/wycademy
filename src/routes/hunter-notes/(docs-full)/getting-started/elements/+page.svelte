@@ -7,6 +7,7 @@
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import { page } from '$app/stores';
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
@@ -15,6 +16,9 @@
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 
 	function getElementArray(input: string) {
 		// Step 1: Split the string into individual elements
@@ -261,6 +265,56 @@
 				</svelte:fragment>
 			</DataTable>
 		</div>
+
+		<section>
+			<SectionHeading level={2} title="Damage" />
+			<div>
+				<p class="spaced-paragraph">
+					Elemental damage functions independently of motion values. The key
+					factors affecting it are the weapon's elemental value, the number of
+					hits per attack, weapon sharpness, and the monster's elemental
+					weaknesses. The size of the motion value, whether 16 or 220, does not
+					affect elemental damage; it’s calculated based on a single hit. This
+					means that a fully charged <InlineTooltip
+						tooltip="Weapon"
+						text="Great Sword"
+						iconType="component"
+						icon={getWeaponIcon('Great Sword')}
+					/> attack will deal the same elemental damage as a quick swipe from the
+					<InlineTooltip
+						tooltip="Weapon"
+						text="Sword and Shield"
+						iconType="component"
+						icon={getWeaponIcon('Sword and Shield')}
+					/> if their elemental values are identical.
+				</p>
+				<p class="spaced-paragraph">
+					If your goal is to maximize elemental damage, focus on using the
+					correct element and consistently hitting the appropriate hitbox for
+					that element. You can check our <Link
+						icon={ToolKit}
+						href="/tools/calculator/damage">Damage Calculator</Link
+					> for this.
+				</p>
+				<p>
+					Although motion values typically don't impact elemental damage, the
+					<InlineTooltip
+						tooltip="Weapon"
+						text="Sword and Shield"
+						iconType="component"
+						icon={getWeaponIcon('Sword and Shield')}
+					/> Storm Style is an exception with a 140% elemental modifier on its three
+					thrust attacks. However, this doesn't automatically make it the best choice
+					for damage output, as there are more ways to boost raw damage compared
+					to elemental damage. Refer to our <Link
+						icon={Information}
+						href="/hunter-notes/getting-started/style-rank#weapon-styles"
+					>
+						Style Rank page</Link
+					> for more information about weapon styles.
+				</p>
+			</div>
+		</section>
 
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />

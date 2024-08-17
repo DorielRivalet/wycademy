@@ -25,6 +25,10 @@
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
+	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -185,19 +189,96 @@
 		<SectionHeadingTopLevel title={'Gunlance'} />
 		<div>
 			<p class="spaced-paragraph">
-				<!-- The <InlineTooltip
+				Frontier's <InlineTooltip
+					text="Gunlance"
 					tooltip="Weapon"
-					text="Switch Axe F"
 					iconType="component"
-					icon={getWeaponIcon('Switch Axe F')}
-				/>, Swaxe for short, is a weapon introduced in <InlineTooltip
-					tooltip="Game"
-					text="Monster Hunter Frontier G10"
-					iconType="file"
-					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
-						?.icon}
-				/>. It is unlocked by reaching G Rank. -->
+					icon={getWeaponIcon('Gunlance')}
+				/> (GL) is considered one of the best versions of the weapon. It offers a
+				flexible approach to combat, with multiple evasion options, and shelling
+				and <strong>Wyvern Fire</strong> attacks that remain valuable even in
+				the endgame. The core moveset is based on MHFU but has been greatly
+				expanded. You can shell while thrusting, perform
+				<strong>Wyvern Fire</strong>
+				from upthrusts, and quickly reload single shells to buff the next shot.
+				<strong>Wyvern Fire</strong>
+				can also be enhanced by loading extra shells, transforming it into
+				<strong>Super Wyvern Fire</strong>.
 			</p>
+			<p class="spaced-paragraph">
+				Performing an upswing after a quick reload or as an unsheathed attack
+				allows you to execute a <strong>Horizontal Sweep</strong>. You can shell
+				from this position, instantly firing all shells in your <InlineTooltip
+					text="Gunlance"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Gunlance')}
+				/>. The sweep has a naturally high motion value (51), and shelling from
+				it results in a <strong>Backhop Slash</strong> with its own motion value
+				(18 + Shelling Damage).
+			</p>
+			<p class="spaced-paragraph">
+				The <InlineTooltip
+					text="Gunlance"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Gunlance')}
+				/> offers three shell types: Normal, Long, and Wide.
+				<strong>Wide</strong>
+				is best for general shelling, while <strong>Normal</strong> provides the
+				highest potential damage for all types of <strong>Wyvern Fire</strong>.
+				<strong>Long</strong> serves as a balanced option between the two.
+			</p>
+			<p class="spaced-paragraph">
+				Skills-wise, you can use <InlineTooltip
+					text="Load Up"
+					tooltip="Armor Skill"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/> to add extra shells, <InlineTooltip
+					text="Reload+1"
+					tooltip="Armor Skill"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/> to evade after normal shelling, and <InlineTooltip
+					text="Reload+2"
+					tooltip="Armor Skill"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/> to reduce the knockback from Wyvern Fire.
+			</p>
+			<p class="spaced-paragraph">
+				There are two evasion options, with the second using the <InlineTooltip
+					text="Gunlance"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Gunlance')}
+				/> to launch you into the air.
+			</p>
+
+			<section>
+				<div>
+					<p class="spaced-paragraph">
+						In Frontier, shelling can reach Level 9 and scales with your
+						weapon's raw damage.
+					</p>
+					<p class="spaced-paragraph">
+						Factors affecting Gunlance shell damage include your SR and GSR
+						(which add +50 to +100 true raw), G Rank Raw Sigils (up to +135 with
+						three perfect sigils), and Shelling Level (with G Rank Sigils
+						available to increase the limit). You can calculate <strong
+							>Shelling</strong
+						>
+						and <strong>Wyvern Fire</strong>
+						damage using the <Link
+							inline
+							href="/tools/calculator/gunlance-shells-and-wyvernfire"
+							>Gunlance calculator.</Link
+						>, though there may be a slight margin of error due to the numerous
+						factors involved.
+					</p>
+				</div>
+			</section>
 
 			<!-- <CenteredFigure
 				figcaption="Triggering Elemental Release."
@@ -208,11 +289,142 @@
 			/> -->
 
 			<p>
-				For more information on motion values, see the <Link
-					inline
-					href="/tools/calculator/damage">Damage Calculator.</Link
-				>
+				For an explanation on element damage, see our <Link
+					icon={Information}
+					href="/hunter-notes/getting-started/elements#damage"
+					>Elements page</Link
+				>. For more information on motion values, see the <Link
+					icon={ToolKit}
+					href="/tools/calculator/damage">Damage Calculator</Link
+				>.
 			</p>
+			<section>
+				<SectionHeading level={2} title="Earth Style" />
+				<div>
+					<p>
+						<strong>Earth Style</strong> is the standard <InlineTooltip
+							text="Gunlance"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Gunlance')}
+						/> moveset. It includes Wyvern Fire, which can be enhanced by loading
+						extra shells, and all the core features described above.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Heaven Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Heaven Style</strong> expands on the standard <InlineTooltip
+							text="Gunlance"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Gunlance')}
+						/>, replacing <strong>Wyvern Fire</strong> with a
+						<strong>Heat Blade</strong>. Activated with the same input, the
+						<strong>Heat Blade</strong>
+						adds extra hits to each attack (+5 motion and a small amount of fire
+						damage), sets your Affinity to 100% while active, and grants
+						<strong>unlimited sharpness</strong>. The
+						<strong>Heat Blade</strong>
+						is longer than a standard
+						<InlineTooltip
+							text="Gunlance"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Gunlance')}
+						/>, allowing it to reach higher points and even sever tails that
+						would otherwise be out of reach. When the
+						<strong>Heat Blade</strong>
+						is active, you can finish normal thrust combos with a
+						<strong>Heat Blade Slam</strong>, which delivers 62 motion value
+						damage—the strongest single hit available on a <InlineTooltip
+							text="Gunlance"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Gunlance')}
+						/>. The power of the <strong>Heat Blade</strong> varies slightly based
+						on shell type and level but not significantly.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title=" Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Storm Style</strong> incorporates all the features of
+						<strong>Heaven Style</strong>
+						but replaces shelling with <strong>Elemental Shelling</strong>.
+						These shells deal variable damage depending on your weapon's
+						elemental attributes and can apply multiple elements at once if your
+						weapon has hybrid elements. The best way to utilize
+						<strong>Elemental Shelling</strong>
+						is with the <strong>Horizontal Sweep</strong>, as normal shelling
+						has a brief preparation animation that functions like a small
+						<strong>Wyvern Fire</strong> (with a 25 motion value if the
+						animation hits the monster). A raw-focused <InlineTooltip
+							text="Gunlance"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Gunlance')}
+						/> in this style essentially gains a miniature
+						<strong>Wyvern Fire</strong> for normal shelling.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title=" Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> is a direct upgrade to all previous
+						styles, adding enhanced mobility, a higher-tier version of
+						<strong>Wyvern Fire</strong>, and Elemental Heat Blades.
+					</p>
+					<p class="spaced-paragraph">
+						As with all Extreme Styles, you can run with your weapon unsheathed,
+						greatly improving mobility. While running, you can reload your
+						<InlineTooltip
+							text="Gunlance"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Gunlance')}
+						/> or perform a <strong>Bombardment Boost</strong>, a fast forward
+						dash with iframes that allows for various follow-up actions,
+						including a <strong>Dash Cleave</strong>, which boasts the highest
+						motion value on a <InlineTooltip
+							text="Gunlance"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Gunlance')}
+						/>.
+					</p>
+					<p class="spaced-paragraph">
+						<strong>Wyvern Fire</strong> in <strong>Extreme Style</strong>
+						mirrors Earth Style's version, including
+						<strong>Super Wyvern Fire</strong>. However, you can
+						<strong>go even further beyond Super Wyvern Fire</strong>
+						to perform an
+						<strong>Extreme Wyvern Fire</strong>. This attack has a long
+						build-up but deals approximately double the damage of
+						<strong>Super Wyvern Fire</strong>. Since it requires fully loading
+						all your shells into a <strong>Super Wyvern Fire</strong>, the
+						strength of the <strong>Extreme Wyvern Fire</strong> depends directly
+						on the number of shells loaded, so maximizing shell count is crucial.
+					</p>
+					<p class="spaced-paragraph">
+						The <strong>Heat Blade</strong> in <strong>Extreme Style</strong>
+						functions similarly to <strong>Heaven Style</strong>. By pressing
+						the kick input, you enter <strong>Heat Blade</strong> mode, which adds
+						decent elemental damage if your weapon has an element and increases motion
+						value if your weapon focuses on raw damage or status effects. Hybrid
+						elements will randomly display one element per attack.
+					</p>
+				</div>
+			</section>
 
 			<section>
 				<SectionHeading level={2} title="Example Gear with Runs" />
@@ -456,6 +668,14 @@
 									iconColor={getItemColor('Red')}
 									icon={getItemIcon('Jewel')}
 								/> sharpness recovery.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								The Super Wyvern Fire <OutboundLink
+									href="https://youtu.be/z6iM8wMHMtI?t=41"
+									>has iframes</OutboundLink
+								> in the recovery portion of the animation.
 							</p></ListItem
 						>
 					</UnorderedList>

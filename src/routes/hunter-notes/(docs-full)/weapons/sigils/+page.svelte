@@ -1005,7 +1005,13 @@
 			<section>
 				<SectionHeading level={2} title="Recipes" />
 				<div>
-					<p>There are a total of {sigilsRecipes.length} sigil recipes.</p>
+					<p>
+						There are a total of {sigilsRecipes.length} sigil recipes. For more information
+						about the recommended sigils to use for a weapon type, refer to <Link
+							inline
+							href="/hunter-notes/weapons">the weapons category page.</Link
+						>
+					</p>
 					<div class="table">
 						<DataTable
 							id="sigil-recipes-dom"
@@ -1088,7 +1094,13 @@
 				<SectionHeading level={2} title="Skills" />
 				<div>
 					<!--TODO: include totals in other pages tables-->
-					<p>There are a total of {sigilsInfo.length} sigil skills.</p>
+					<p>
+						There are a total of {sigilsInfo.length} sigil skills. For more information
+						about the recommended sigils to use for a weapon type, refer to <Link
+							inline
+							href="/hunter-notes/weapons">the weapons category page.</Link
+						>
+					</p>
 					<div class="table">
 						<DataTable
 							useStaticWidth

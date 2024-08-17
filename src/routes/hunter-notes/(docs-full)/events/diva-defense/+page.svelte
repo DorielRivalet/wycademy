@@ -13,6 +13,7 @@
 	import { divaPrayerGems } from '$lib/client/modules/frontier/diva';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import { ezlionSkillDivaPrayerGem } from 'ezlion';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -64,8 +65,8 @@
 				</p>
 				<p class="spaced-paragraph">
 					To see the damage of certain gems, you can use our <Link
-						inline
-						href="/tools/calculator/damage#calculator">Damage Calculator</Link
+						icon={ToolKit}
+						href="/tools/calculator/damage">Damage Calculator</Link
 					>
 				</p>
 				<div class="diva-prayer-gems-table">

@@ -18,9 +18,16 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import { getAilmentIcon } from '$lib/client/modules/frontier/ailments';
+	import CaravanGem from '$lib/client/components/frontier/icon/CaravanGem.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -190,18 +197,46 @@
 		<SectionHeadingTopLevel title={'Lance'} />
 		<div>
 			<p class="spaced-paragraph">
-				<!-- The <InlineTooltip
+				The <InlineTooltip
+					text="Lance"
 					tooltip="Weapon"
-					text="Switch Axe F"
 					iconType="component"
-					icon={getWeaponIcon('Switch Axe F')}
-				/>, Swaxe for short, is a weapon introduced in <InlineTooltip
-					tooltip="Game"
-					text="Monster Hunter Frontier G10"
-					iconType="file"
-					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
-						?.icon}
-				/>. It is unlocked by reaching G Rank. -->
+					icon={getWeaponIcon('Lance')}
+				/> in Frontier is an enhanced version of the traditional <InlineTooltip
+					text="Lance"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Lance')}
+				/>, retaining its core forward and upward thrusts, with the final hit in
+				a combo dealing extra damage. Frontier introduces new features, such as
+				guarding a small area, performing a strong guard that grants <InlineTooltip
+					text="Guard+2"
+					tooltip="Armor Skill"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/>, and the ability to move without altering the shield's guard angle.
+				While counters are absent across all styles, skills like <InlineTooltip
+					text="Reflect"
+					tooltip="Armor Skill"
+					iconType="component"
+					icon={getItemIcon('Jewel')}
+				/> can help fill that gap.
+			</p>
+			<p class="spaced-paragraph">
+				<InlineTooltip
+					text="Lances"
+					tooltip="Weapon"
+					iconType="component"
+					icon={getWeaponIcon('Lance')}
+				/> in Frontier automatically adjust between <strong>Impact</strong> and
+				<strong>Cutting</strong>
+				hitzones to select the most effective damage type. This adjustment applies
+				a 0.72x multiplier to the <strong>Impact</strong> damage before deciding
+				which hitbox to use. For instance, if you have a 20 Cutting hitbox and a
+				35 Impact hitbox, the lance would choose the Impact hitbox, as 0.72 x 35
+				(which equals 25.2) is greater than 20, resulting in
+				<strong>Impact</strong> damage being dealt instead of
+				<strong>Cutting</strong>.
 			</p>
 
 			<!-- <CenteredFigure
@@ -213,11 +248,132 @@
 			/> -->
 
 			<p>
-				For more information on motion values, see the <Link
-					inline
-					href="/tools/calculator/damage">Damage Calculator.</Link
-				>
+				For an explanation on element damage, see our <Link
+					icon={Information}
+					href="/hunter-notes/getting-started/elements#damage"
+					>Elements page</Link
+				>. For more information on motion values, see the <Link
+					icon={ToolKit}
+					href="/tools/calculator/damage">Damage Calculator</Link
+				>.
 			</p>
+
+			<section>
+				<SectionHeading level={2} title="Earth Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Earth Style</strong> is the standard <InlineTooltip
+							text="Lance"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Lance')}
+						/> style, featuring the basic forward and upward thrusts along with all
+						the new original motions introduced in Frontier.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Heaven Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Heaven Style</strong> replaces the
+						<strong>Lance Charge</strong> with the <strong>Sky Stab</strong>,
+						allowing you to combo all thrusts up to four times instead of three.
+						<strong>Sky Stabs</strong> are vertical thrusts with a motion value of
+						38 for the first three stabs and 43 for the last, making them as powerful
+						as the final hit in a normal upthrust combo.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Storm Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Storm Style</strong> retains the changes from
+						<strong>Heaven Style</strong>
+						but replaces the guard poke with a shield charge. The shield charge uses
+						Guard Point frames, meaning you take no damage during its blocking duration
+						and gain the benefits of <InlineTooltip
+							text="Guard+2"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>. This move deals <strong>Impact</strong> damage and can inflict <InlineTooltip
+							text="Stun"
+							tooltip="Ailment"
+							iconType="component"
+							icon={getAilmentIcon('Stun')}
+						/>, though it’s not particularly effective for that purpose. The
+						shield charge can only be followed up with either evades or a
+						<strong>Charge Thrust.</strong>
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Extreme Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> is an upgraded version of
+						<strong>Storm Style</strong>. It lacks the
+						<strong>Lance Charge</strong> but retains all three basic thrust types.
+					</p>
+					<p class="spaced-paragraph">
+						While running, the <InlineTooltip
+							text="Lance"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Lance')}
+						/> behaves like any other weapon. You can perform a dash guard with short
+						guarding frames and no knockback, followed by either a normal thrust
+						(50 motion) or a <strong>Jump Thrust</strong>, which covers more
+						distance but also has a higher motion value of 50.
+					</p>
+					<p class="spaced-paragraph">
+						In addition to running actions, <strong>Extreme Style</strong>
+						introduces two significant new thrusts:
+						<strong>Finishing Thrusts</strong> and
+						<strong>Evasion Thrusts</strong>. The
+						<strong>Finishing Thrust</strong> is a powerful attack with a motion
+						value of 91 but doesn’t count as a regular thrust. The
+						<strong>Evasion Thrust</strong>
+						is similar to other weapons' offensive evades, dealing 30 motion while
+						jumping backward with iframes. You can chain up to seven hits in a combo
+						by performing a <strong>Dash Jump Thrust</strong>, followed by four
+						<strong>Standard Thrusts</strong>, a
+						<strong>Finishing Thrust</strong>, and an
+						<strong>Evasion Thrust</strong>.
+					</p>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> also features a new
+						<strong>Guard Gauge</strong> interface with three
+						<strong>Shield Phials</strong>. These phials fill up as you guard,
+						and using a special action consumes all filled phials at once. The
+						first phial is White and provides the effect of <InlineTooltip
+							text="Lifepowder"
+							tooltip="Item"
+							iconType="component"
+							icon={getItemIcon('Sac')}
+						/>, the second is Yellow and grants the effects of <InlineTooltip
+							text="Mega Dash Juice"
+							tooltip="Item"
+							iconType="component"
+							iconColor={getItemColor('Yellow')}
+							icon={getItemIcon('Medicine')}
+						/>, and the final phial is Red and boosts <strong>True Raw</strong>
+						by +50. These effects apply to the entire party, so be cautious not to
+						disrupt teammates who might be relying on
+						<InlineTooltip
+							text="Adrenaline"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>.
+					</p>
+				</div>
+			</section>
 
 			<section>
 				<SectionHeading level={2} title="Example Gear with Runs" />
@@ -228,8 +384,29 @@
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
 					<p>
-						Guard Skill goes up by 1 level. Grants Reflect+3. Does not work with
-						Reflect Up nor Guard Up.
+						<InlineTooltip
+							text="Guard"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> skill goes up by 1 level. Grants <InlineTooltip
+							text="Reflect+3"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>. Does not work with <InlineTooltip
+							text="Reflect Up"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+							iconColor={getItemColor('Red')}
+						/> nor <InlineTooltip
+							text="Guard Up"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+							iconColor={getItemColor('Red')}
+						/>.
 					</p>
 				</div>
 			</section>
@@ -385,9 +562,8 @@
 					<UnorderedList>
 						<ListItem
 							><p>
-								Long length is the most common on Zenith Lances for good reason.
-								Very Long may have its uses, but it can be unwieldy (and even
-								ridiculous).
+								Long length is the most common on Zenith Lances, although Very
+								Long length can be useful too.
 							</p></ListItem
 						>
 						<ListItem
@@ -403,49 +579,105 @@
 									text="Lance"
 									iconType="component"
 									icon={getWeaponIcon('Lance')}
-								/> uses the impact value as cutting damage. (Carapaceons are a good
-								example of this.)
+								/> uses the impact value as <strong>Cutting</strong> damage. (Carapaceons
+								are a good example of this.)
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								With Lance Hiden, Guard/Fortification +2, and Guard Up, only a
-								few attacks in the game cannot be blocked safely. This list
-								mainly includes modern nukes, DOTs, Barioth's snowman effect,
-								etc.
+								With <InlineTooltip
+									text="Lance Hiden"
+									tooltip="Armor Skill"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>, <InlineTooltip
+									text="Guard/Fortification+2"
+									tooltip="Armor Skill"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>, and <InlineTooltip
+									text="Guard Up"
+									tooltip="Zenith Skill"
+									iconType="component"
+									iconColor={getItemColor('Red')}
+									icon={getItemIcon('Jewel')}
+								/>, only a few attacks in the game cannot be blocked safely.
+								This list mainly includes modern nukes, DOTs, <InlineTooltip
+									text="Barioth's"
+									tooltip="Monster"
+									iconType="file"
+									icon={getMonsterIcon('Barioth')}
+								/>
+								<InlineTooltip
+									text="Snowman effect"
+									tooltip="Ailment"
+									iconType="component"
+									icon={getAilmentIcon('Snowman')}
+								/>, etc.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
 								Zenith-level hazards will always cause pushback unless you’re
-								using heavy guard, guard advance, or running shield bash.
+								using <strong>Heavy Guard</strong>,
+								<strong>Guard Advance</strong>, or
+								<strong>Running Shield Bash</strong>.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								The shield bash while running prevents any pushback from
-								guarding and has innate Guard +2. The only equivalent from a
-								neutral stance is Storm’s guard advance, which is much more
-								rigid.
+								The <strong>Shield Bash</strong> while running prevents any
+								pushback from guarding and has innate <InlineTooltip
+									text="Guard+2"
+									tooltip="Armor Skill"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>. The only equivalent from a neutral stance is Storm’s
+								<strong>Guard Advance</strong>, which is much more rigid.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								The ranged guard works by blocking the hit yourself to protect
-								other players.
+								The <strong>Ranged Guard</strong> works by blocking the hit yourself
+								to protect other players.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Backhop thrusts return to guarding faster, and you can perform
-								them from a neutral stance.
+								Blocking <InlineTooltip
+									text="Heavy Bowgun's"
+									tooltip="Weapon"
+									iconType="component"
+									icon={getWeaponIcon('Heavy Bowgun')}
+								/> <strong>Heat Beam</strong> can fill all of your phials almost
+								instantly.
 							</p></ListItem
 						>
 						<ListItem
 							><p>
-								Actual time attack play mostly favors an evasive playstyle,
-								although Perfect Guard reflects are used, and shield bashes
-								still build Obscurity and shield phial charges.
+								In order to deal the most damage with <InlineTooltip
+									text="Reflect"
+									tooltip="Armor Skill"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/>, try blocking monsters' laser attacks with <InlineTooltip
+									text="Reflect Up"
+									tooltip="Zenith Skill"
+									iconColor={getItemColor('Red')}
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> and <InlineTooltip
+									text="Perfect Defense"
+									tooltip="Caravan Skill"
+									iconType="component"
+									icon={CaravanGem}
+								/>.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								<strong>Backhop thrusts</strong> return to guarding faster, and you
+								can perform them from a neutral stance.
 							</p></ListItem
 						>
 						<ListItem
@@ -462,8 +694,18 @@
 						>
 						<ListItem
 							><p>
-								With a strong guard, Guard+2 and Guard Up you can block many
-								monsters' ultimate attacks, for example <InlineTooltip
+								With a <strong>Heavy Guard</strong>, <InlineTooltip
+									text="Guard+2"
+									tooltip="Armor Skill"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> and <InlineTooltip
+									text="Guard Up"
+									iconColor={getItemColor('Red')}
+									tooltip="Zenith Skill"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> you can block many monsters' ultimate attacks, for example <InlineTooltip
 									tooltip="Monster"
 									text="Stygian Zinogre"
 									iconType="file"
@@ -495,8 +737,8 @@
 									text="Dual Swords"
 									iconType="component"
 									icon={getWeaponIcon('Dual Swords')}
-								/> users that are in Extreme Demon mode, except in periods where
-								they got hit and thus lost the mode.
+								/> users that are in <strong>Extreme Demon Mode</strong>, except
+								in periods where they got hit and thus lost the mode.
 							</p></ListItem
 						>
 					</UnorderedList>

@@ -26,6 +26,8 @@
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
 	import HuntingHornNoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -192,23 +194,20 @@
 	<section>
 		<SectionHeadingTopLevel title={'Hunting Horn'} />
 		<div>
-			<section>
-				<SectionHeading level={2} title="Songs" />
-				<div></div>
-			</section>
 			<p class="spaced-paragraph">
-				<!-- The <InlineTooltip
+				Frontier's <InlineTooltip
+					text="Hunting Horn"
 					tooltip="Weapon"
-					text="Switch Axe F"
 					iconType="component"
-					icon={getWeaponIcon('Switch Axe F')}
-				/>, Swaxe for short, is a weapon introduced in <InlineTooltip
-					tooltip="Game"
-					text="Monster Hunter Frontier G10"
-					iconType="file"
-					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
-						?.icon}
-				/>. It is unlocked by reaching G Rank. -->
+					icon={getWeaponIcon('Hunting Horn')}
+				/> (HH) is based on the classic MHFU moveset. While it can be challenging
+				to use effectively as an offensive weapon, it truly shines in a support role.
+			</p>
+			<p class="spaced-paragraph">
+				However, a support role does not mean standing on a ledge playing songs.
+				You should manage your song uptime carefully, learn song durations, and
+				use the time between performances to attack. High-level players can even
+				use performances as attacks during windows of opportunity.
 			</p>
 
 			<!-- <CenteredFigure
@@ -220,11 +219,152 @@
 			/> -->
 
 			<p>
-				For more information on motion values, see the <Link
-					inline
-					href="/tools/calculator/damage">Damage Calculator.</Link
-				>
+				For an explanation on element damage, see our <Link
+					icon={Information}
+					href="/hunter-notes/getting-started/elements#damage"
+					>Elements page</Link
+				>. For more information on motion values, see the <Link
+					icon={ToolKit}
+					href="/tools/calculator/damage">Damage Calculator</Link
+				>.
 			</p>
+
+			<section>
+				<SectionHeading level={2} title="Songs" />
+				<div></div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Earth Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Earth Style</strong> is the standard <InlineTooltip
+							text="Hunting Horn"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Hunting Horn')}
+						/> base. It includes the typical three notes listed on the <InlineTooltip
+							text="Hunting Horn"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Hunting Horn')}
+						/> and allows you to perform a sonic bomb effect by pressing the Kick
+						button.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Heaven Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Heaven Style</strong> replaces the ground pound with an
+						upthrust attack. This upthrust is one of the best and most reliable
+						DPS options for the
+						<InlineTooltip
+							text="Hunting Horn"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Hunting Horn')}
+						/> and should be used whenever possible. The attack has three hits, and
+						you can repeat the input to infinitely spam the second part (the actual
+						upthrust), which is very effective when used correctly. The new attack
+						has a motion value of 60(24)･30(24)×n･38(30).
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Storm Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Storm Style</strong> retains the new upthrust attack and
+						replaces the ability to use a Sonic Bomb with a new light pink note.
+						This note adds several new songs, including ones that boost
+						elemental damage by 1.10x for all players and provide
+						<strong>Paralysis Immunity</strong>. With
+						<strong>Storm Style</strong>, it's ideal to use a <InlineTooltip
+							text="Hunting Horn"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Hunting Horn')}
+						/> with <InlineTooltip
+							tooltip="Hunting Horn Note"
+							text="Purple"
+							iconType="component"
+							icon={HuntingHornNoteIcon}
+							iconColor="Purple"
+						/>, <InlineTooltip
+							tooltip="Hunting Horn Note"
+							text="Cyan"
+							iconType="component"
+							icon={HuntingHornNoteIcon}
+							iconColor="Cyan"
+						/>, and <InlineTooltip
+							tooltip="Hunting Horn Note"
+							text="Red"
+							iconType="component"
+							icon={HuntingHornNoteIcon}
+							iconColor="Red"
+						/> notes, as this combination allows you to play
+						<strong>Attack Up Large</strong>,
+						<strong>Paralysis Immunity</strong>, and
+						<strong>Elemental Attack Up</strong>.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<SectionHeading level={2} title="Extreme Style" />
+				<div>
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> combines features from all previous styles
+						and adds extra mobility and a new debuff mechanic.
+					</p>
+					<p class="spaced-paragraph">
+						In <strong>Extreme Style</strong>, you can run with your <InlineTooltip
+							text="Hunting Horn"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Hunting Horn')}
+						/> unsheathed, which can be comboed into a double swing attack with a
+						40x2 motion value.
+					</p>
+					<p class="spaced-paragraph">
+						Additionally, <strong>Extreme Style</strong> introduces a Sonic Bomb
+						that can inflict various debuffs on monsters. To unlock this, you
+						need to attack monsters until the <InlineTooltip
+							text="Hunting Horn"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Hunting Horn')}
+						/> icon next to the stave bars turns bright red and flashes. Once activated,
+						your notes will gain a square icon around them, indicating that you can
+						perform a Sonic Bomb that will apply one of three debuffs based on the
+						notes used. If the meter is not built up, you'll perform a standard Sonic
+						Bomb with normal effects, which is still useful for applying <InlineTooltip
+							text="Red Soul"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>
+						and <InlineTooltip
+							text="Blue Soul"
+							tooltip="Armor Skill"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> to all players within a radius.
+					</p>
+					<p class="spaced-paragraph">
+						The available debuffs include increasing physical hitzones by +2,
+						increasing elemental hitzones by +4, and preventing monsters from
+						fleeing. These are significant buffs, especially for team play, so
+						it's important to maintain them as much as possible. This encourages
+						a more aggressive playstyle rather than simply staying on the
+						sidelines.
+					</p>
+				</div>
+			</section>
 
 			<section>
 				<SectionHeading level={2} title="Example Gear with Runs" />
@@ -432,8 +572,8 @@
 									text="Hunting Horn"
 									iconType="component"
 									icon={getWeaponIcon('Hunting Horn')}
-								/> in the game has Attack Up Large, thanks to Storm style's pink
-								notes.
+								/> in the game has <strong>Attack Up Large</strong>, thanks to
+								Storm style's pink notes.
 							</p></ListItem
 						>
 						<ListItem
@@ -494,8 +634,10 @@
 									iconType="component"
 									icon={HuntingHornNoteIcon}
 									iconColor="Red"
-								/> notes, avoid crossing streams from Attack Up Large to Defense
-								Up Large without first encoring the former, especially if there are
+								/> notes, avoid crossing streams from
+								<strong>Attack Up Large</strong>
+								to <strong>Defense Up Large</strong> without first encoring the
+								former, especially if there are
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Adrenaline"
