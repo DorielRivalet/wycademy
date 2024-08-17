@@ -421,3 +421,27 @@ p {
 .svelte-flow__handle {
 	background-color: var(--ctp-blue) !important;
 }
+
+.driver-popover.driverjs-theme {
+	color: var(--ctp-text);
+	background-color: var(--ctp-surface0);
+}
+
+.driver-popover.driverjs-theme .driver-popover-title,
+.driver-popover.driverjs-theme .driver-popover-description,
+.driver-popover.driverjs-theme .driver-popover-progress-text {
+	color: var(--ctp-text);
+}
+
+/* Close button displayed on the top right corner */
+.driver-popover.driverjs-theme .driver-popover-close-btn {
+	background-color: var(--ctp-red);
+}
+
+.driver-popover.driverjs-theme .driver-popover-prev-btn,
+.driver-popover.driverjs-theme .driver-popover-next-btn {
+	background-color: var(--ctp-green);
+	color: var(--ctp-crust);
+	text-shadow: unset;
+	border-color: var(--ctp-surface1);
+}
