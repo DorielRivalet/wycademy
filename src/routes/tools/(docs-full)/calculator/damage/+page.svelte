@@ -13,6 +13,9 @@
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 	import TabContent from 'carbon-components-svelte/src/Tabs/TabContent.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
+	import Help from 'carbon-icons-svelte/lib/Help.svelte';
+	import { driver, type Driver } from 'driver.js';
+	import 'driver.js/dist/driver.css';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import TextArea from 'carbon-components-svelte/src/TextArea/TextArea.svelte';
@@ -74,7 +77,8 @@
 	import { crossfade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
-	import { Save } from 'carbon-icons-svelte';
+	import Save from 'carbon-icons-svelte/lib/Save.svelte';
+	import HelpFilled from 'carbon-icons-svelte/lib/HelpFilled.svelte';
 	import * as zip from '@zip.js/zip.js';
 	import { StatusIcons } from '$lib/client/modules/frontier/ailments';
 	import { obscurityValues } from '$lib/client/modules/frontier/armor-skills';
@@ -150,6 +154,75 @@
 		key: DataTableKey;
 		value: DataTableValue;
 		display?: (item: any, row: DataTableRow) => DataTableValue;
+	}
+
+	function startWalkthrough() {
+		if (!browser) return;
+
+		const driverObj = driver({
+			showProgress: true,
+			popoverClass: 'driverjs-theme',
+			steps: [
+				{
+					element: '.driverjs-1',
+					popover: {
+						title: 'Select Your Weapon',
+						description:
+							'Depending on the selected weapon, various inputs will hide/show. Calculate everything from elements, raw, status, etc.',
+					},
+				},
+				{
+					element: '.driverjs-2',
+					popover: {
+						title: 'Compare Monster Hitzones',
+						description:
+							'You can select by monster state, rank band and body part.',
+					},
+				},
+				{
+					element: '.driverjs-3',
+					popover: {
+						title: 'View Your Results',
+						description:
+							'Final Attack denotes your final output, while True Raw are the calculations before it, with bloated values in parentheses.',
+					},
+				},
+				{
+					element: '.driverjs-4',
+					popover: {
+						title: 'See Motion Values',
+						description:
+							"Select by weapon type, motion value section, and weapon style. If you can't find a Motion Value, try changing the Section or Style option.",
+					},
+				},
+				{
+					element: '.driverjs-5',
+					popover: {
+						title: 'Save Your Results',
+						description:
+							'We provide various options for saving and loading your inputs.',
+					},
+				},
+				{
+					element: '.driverjs-6',
+					popover: {
+						title: 'Deep Dive Into Formulas',
+						description:
+							'Observe the internal calculations and compare different kinds of damage.',
+					},
+				},
+				{
+					element: '.driverjs-7',
+					popover: {
+						title: 'Happy Calculating',
+						description:
+							"If you find bugs or errors, don't hesitate to contact us on GitHub.",
+					},
+				},
+			],
+		});
+
+		driverObj.drive();
 	}
 
 	function getWeaponSectionNames(
@@ -5945,6 +6018,13 @@ does not get multiplied by horn */
 	<div class={modalBlurClass}>
 		<div>
 			<SectionHeadingTopLevel title={'Damage Calculator'} />
+			<div class="walkthrough-button driverjs-7">
+				<Button
+					on:click={(e) => startWalkthrough()}
+					kind="primary"
+					icon={HelpFilled}>Walkthrough</Button
+				>
+			</div>
 			<p>
 				Welcome to Wycademy's Damage Calculator! Here you can calculate various
 				game statistics, such as your total damage, by selecting the gear and
@@ -5986,19 +6066,12 @@ does not get multiplied by horn */
 						icon={getMonster('Rathalos', 'Zenith').icon}
 					/> defense rate.
 				</ListItem>
-				<ListItem>View element damage.</ListItem>
+				<ListItem
+					>View element damage, motion values animations and the formulas for
+					your total damage.</ListItem
+				>
 				<ListItem>And much more!</ListItem>
 			</UnorderedList>
-
-			<p class="spaced-paragraph">
-				Additionally, you can view motion values animations, graphs of armor
-				skills such as <InlineTooltip
-					tooltip="Armor Skill"
-					text="Flash Conversion"
-					iconType="component"
-					icon={getTag('Armor Skill').icon}
-				/>, and the formulas for your total damage.
-			</p>
 
 			<p class="spaced-paragraph">
 				This damage calculator may not reflect the damage output you do in the
@@ -7455,29 +7528,31 @@ does not get multiplied by horn */
 											<div class="input-section">
 												<div class="small-header">⚔️ Weapon Stats</div>
 												<div class="inputs-group-column">
-													<Dropdown
-														titleText="Weapon Type"
-														bind:selectedId={inputWeaponType}
-														items={[
-															{
-																id: 'Sword and Shield',
-																text: 'Sword and Shield',
-															},
-															{ id: 'Dual Swords', text: 'Dual Swords' },
-															{ id: 'Great Sword', text: 'Great Sword' },
-															{ id: 'Long Sword', text: 'Long Sword' },
-															{ id: 'Hammer', text: 'Hammer' },
-															{ id: 'Hunting Horn', text: 'Hunting Horn' },
-															{ id: 'Lance', text: 'Lance' },
-															{ id: 'Gunlance', text: 'Gunlance' },
-															{ id: 'Tonfa', text: 'Tonfa' },
-															{ id: 'Switch Axe F', text: 'Switch Axe F' },
-															{ id: 'Magnet Spike', text: 'Magnet Spike' },
-															{ id: 'Light Bowgun', text: 'Light Bowgun' },
-															{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
-															{ id: 'Bow', text: 'Bow' },
-														]}
-													/>
+													<div class="driverjs-1">
+														<Dropdown
+															titleText="Weapon Type"
+															bind:selectedId={inputWeaponType}
+															items={[
+																{
+																	id: 'Sword and Shield',
+																	text: 'Sword and Shield',
+																},
+																{ id: 'Dual Swords', text: 'Dual Swords' },
+																{ id: 'Great Sword', text: 'Great Sword' },
+																{ id: 'Long Sword', text: 'Long Sword' },
+																{ id: 'Hammer', text: 'Hammer' },
+																{ id: 'Hunting Horn', text: 'Hunting Horn' },
+																{ id: 'Lance', text: 'Lance' },
+																{ id: 'Gunlance', text: 'Gunlance' },
+																{ id: 'Tonfa', text: 'Tonfa' },
+																{ id: 'Switch Axe F', text: 'Switch Axe F' },
+																{ id: 'Magnet Spike', text: 'Magnet Spike' },
+																{ id: 'Light Bowgun', text: 'Light Bowgun' },
+																{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
+																{ id: 'Bow', text: 'Bow' },
+															]}
+														/>
+													</div>
 
 													<div class="number-input-container">
 														<NumberInput
@@ -8470,7 +8545,7 @@ does not get multiplied by horn */
 																<Tooltip align="start" triggerText="Additional">
 																	<p>
 																		Enter any other additional damage to be
-																		calculated against only the defense rate
+																		calculated against only the defense rate,
 																		such as bombs and blast status.
 																	</p></Tooltip
 																>
@@ -8487,7 +8562,7 @@ does not get multiplied by horn */
 											<div class="input-section">
 												<div class="small-header">🐉 Monster</div>
 												<div class="inputs-group-column">
-													<div>
+													<div class="driverjs-2">
 														<ComboBox
 															on:select={() => {
 																selectedMonsterState =
@@ -9109,7 +9184,7 @@ does not get multiplied by horn */
 								open
 								title="Internal Values and Final Displayed Attack"
 							>
-								<div class="calculator-results">
+								<div class="calculator-results driverjs-3">
 									<div class="stats-header">
 										Internal Values and Final Displayed Attack
 									</div>
@@ -9153,7 +9228,7 @@ does not get multiplied by horn */
 											/>: {internalDragon}
 										</div>
 										<div class="total-attack">
-											⚔️ True Raw: {internalTrueRawDisplay} ({internalTrueRaw})
+											⚔️ True Raw: {internalTrueRaw} ({internalTrueRawDisplay} Bloat)
 										</div>
 										<div class="my-missions">
 											🎫 My Missions: {internalMissionsNeeded}
@@ -9199,7 +9274,18 @@ does not get multiplied by horn */
 						/>
 					{/if}
 
-					<p>If you cannot find a motion value you are looking for, for example Heavy Bowgun's compressed shots, try changing the <strong>Style</strong> or <strong>Section</strong> options down below.</p>
+					<p>
+						If you cannot find a motion value you are looking for, for example
+						<InlineTooltip
+												icon={getWeaponIcon('Heavy Bowgun')}
+												text={"Heavy Bowgun's"}
+												tooltip={'Weapon'}
+												iconType="component"
+											/> compressed shots, try changing the <strong
+							>Style</strong
+						>
+						or <strong>Section</strong> options down below.
+					</p>
 
 					<div class="motion-values toc-exclude">
 						<DataTable
@@ -9239,7 +9325,7 @@ does not get multiplied by horn */
 							</svelte:fragment>
 
 							<Toolbar
-								><div class="toolbar">
+								><div class="toolbar driverjs-4">
 									<Dropdown
 										titleText="Weapon Type"
 										bind:selectedId={inputWeaponType}
@@ -9564,12 +9650,15 @@ does not get multiplied by horn */
 													<CopyButton text={inputTextInputs} />
 												</div>
 
-												<Button
-													kind="tertiary"
-													icon={DocumentDownload}
-													on:click={() => saveInputsAsJSONFile(inputTextInputs)}
-													>Save inputs to file</Button
-												>
+												<div class="driverjs-5">
+													<Button
+														kind="tertiary"
+														icon={DocumentDownload}
+														on:click={() =>
+															saveInputsAsJSONFile(inputTextInputs)}
+														>Save inputs to file</Button
+													>
+												</div>
 											</div>
 											<!-- <Toggle labelText="Extra Icons" bind:toggled={weaponExtraIcons} /> -->
 										</div>
@@ -9760,7 +9849,7 @@ does not get multiplied by horn */
 						<Tab label="Monster Total Defense" />
 						<svelte:fragment slot="content">
 							<TabContent
-								><section>
+								><section class="driverjs-6">
 									<div class="formula-container">
 										{@html formulaInternalAttack}
 									</div>
@@ -10012,6 +10101,10 @@ does not get multiplied by horn */
 <style lang="scss">
 	.page-turn {
 		margin-top: 4rem;
+	}
+
+	.walkthrough-button {
+		margin-bottom: 2rem;
 	}
 
 	.modal-content {
