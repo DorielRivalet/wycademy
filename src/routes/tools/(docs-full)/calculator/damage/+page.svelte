@@ -9198,6 +9198,9 @@ does not get multiplied by horn */
 							on:close={() => (showWeaponMotionValuesSectionWarning = false)}
 						/>
 					{/if}
+
+					<p>If you cannot find a motion value you are looking for, for example Heavy Bowgun's compressed shots, try changing the <strong>Style</strong> or <strong>Section</strong> options down below.</p>
+
 					<div class="motion-values toc-exclude">
 						<DataTable
 							id="motion-values-dom"
