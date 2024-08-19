@@ -6042,8 +6042,8 @@ does not get multiplied by horn */
 						popoverIcon={getWeaponIcon('Long Sword')}
 						popoverIconType="component"
 						link="/hunter-notes/weapons/overview"
-						on:openModal={(e) => handleOpenModal(e)}
-					></InlineToggletip>
+						on:openModal={(e) => handleOpenModal(e)}></InlineToggletip
+					>.
 				</ListItem>
 				<ListItem>
 					Compare your attack values against <InlineToggletip
@@ -9277,13 +9277,11 @@ does not get multiplied by horn */
 					<p>
 						If you cannot find a motion value you are looking for, for example
 						<InlineTooltip
-												icon={getWeaponIcon('Heavy Bowgun')}
-												text={"Heavy Bowgun's"}
-												tooltip={'Weapon'}
-												iconType="component"
-											/> compressed shots, try changing the <strong
-							>Style</strong
-						>
+							icon={getWeaponIcon('Heavy Bowgun')}
+							text={"Heavy Bowgun's"}
+							tooltip={'Weapon'}
+							iconType="component"
+						/> compressed shots, try changing the <strong>Style</strong>
 						or <strong>Section</strong> options down below.
 					</p>
 

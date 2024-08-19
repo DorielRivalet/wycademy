@@ -8,6 +8,7 @@ import type {
 	FrontierTowerWeaponUpgradeGemType,
 } from './types';
 
+// TODO cdn?
 import figWeapon1 from '$lib/client/images/weapon/tower/fig_weapon_01.webp';
 import figWeapon2 from '$lib/client/images/weapon/tower/fig_weapon_02.webp';
 import figWeapon3 from '$lib/client/images/weapon/tower/fig_weapon_03.webp';
@@ -76,7 +77,6 @@ import decorationOn from '$lib/client/images/weapon/tower/decoration.webp';
 import decorationOff from '$lib/client/images/weapon/tower/decoration.webp';
 import sigilOn from '$lib/client/images/weapon/tower/sigil-on.webp';
 import sigilOff from '$lib/client/images/weapon/tower/sigil-off.webp';
-import { ItemColors } from './items';
 import { RarityColors } from './objects';
 
 export type FrontierTowerWeaponSeriesInfo = {

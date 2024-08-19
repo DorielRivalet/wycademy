@@ -11,21 +11,7 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
-	import imageGuildFood from '$lib/client/images/supplemental/guild-food.webp';
-	import imageGuildFoodCat from '$lib/client/images/supplemental/guild-food-cat.webp';
-	import imageGuildPoogie from '$lib/client/images/supplemental/guild-poogie.webp';
 	import Pagination from 'carbon-components-svelte/src/Pagination/Pagination.svelte';
-
-	import PoogieRedAndWhite from '$lib/client/images/supplemental/red-and-white.webp';
-	import PoogieSoporificWhite from '$lib/client/images/supplemental/soporific-white.webp';
-	import PoogieGentleGreen from '$lib/client/images/supplemental/gentle-green.webp';
-	import PoogieNakedEmperor from '$lib/client/images/supplemental/naked-emperor.webp';
-	import PoogieSoothingSky from '$lib/client/images/supplemental/soothing-sky.webp';
-	import PoogieRestlessBrown from '$lib/client/images/supplemental/restless-brown.webp';
-	import PoogieNostalgicStripes from '$lib/client/images/supplemental/nostalgic-stripes.webp';
-	import PoogieSilentSuit from '$lib/client/images/supplemental/silent-suit.webp';
-	import PoogieBlackGreenClash from '$lib/client/images/supplemental/black-green-clash.webp';
-	import PoogieBewitchingPink from '$lib/client/images/supplemental/bewitching-pink.webp';
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import { page } from '$app/stores';
@@ -64,7 +50,7 @@
 					The skill effect from cooking lasts for 90 minutes. If a new skill is
 					obtained, it overwrites the previous effect.
 				</p>
-				<CenteredFigure
+				<!-- <CenteredFigure
 					width={81}
 					height={105}
 					type="file"
@@ -79,7 +65,7 @@
 					src={imageGuildFoodCat}
 					alt="Dishes"
 					figcaption="Up to 6 dishes can be stored as leftovers for 1 hour at the cat in the cooking area."
-				/>
+				/> -->
 
 				<p class="spaced-paragraph"></p>
 				<p class="spaced-paragraph">
@@ -122,13 +108,13 @@
 					level, with +20 to elemental resistances in the normal success pool.
 				</p>
 
-				<CenteredFigure
+				<!-- <CenteredFigure
 					width={'100%'}
 					type="file"
 					src={imageGuildFood}
 					alt="Cooking"
 					figcaption="The cooking minigame."
-				/>
+				/> -->
 
 				<p class="spaced-paragraph">
 					Many ingredients can be used for cooking, obtained from the Guild
@@ -460,14 +446,14 @@
 						icon={getItemIcon('Scale')}
 					/> from the Guild Shop.
 				</p>
-
+				<!--
 				<CenteredFigure
 					width={'100%'}
 					type="file"
 					src={imageGuildPoogie}
 					alt="Guild poogie"
 					figcaption="Poogie after succesful skill activation."
-				/>
+				/> -->
 
 				<p class="spaced-paragraph">
 					You can only have one buff active at a time. You only need to feed
@@ -546,7 +532,7 @@
 							]}
 							rows={[
 								{
-									image: PoogieRedAndWhite,
+									//image: PoogieRedAndWhite,
 									id: '1',
 									rank: '6',
 									costume: 'Red & White',
@@ -556,7 +542,7 @@
 									materials: '-',
 								},
 								{
-									image: PoogieNakedEmperor,
+									//image: PoogieNakedEmperor,
 
 									id: '2',
 									rank: '6',
@@ -567,7 +553,7 @@
 									materials: 'Wht Durable Fabricx45, Appropriate Partsx15',
 								},
 								{
-									image: PoogieSoporificWhite,
+									//image: PoogieSoporificWhite,
 
 									id: '3',
 									rank: '6',
@@ -579,7 +565,7 @@
 										'Wht Durable Fabricx75, Flexible Medicinex22, Appropriate Partsx30',
 								},
 								{
-									image: PoogieBlackGreenClash,
+									//image: PoogieBlackGreenClash,
 
 									id: '4',
 									rank: '6',
@@ -590,7 +576,7 @@
 									materials: 'Striped Fabricx45, Green Fabricx30',
 								},
 								{
-									image: PoogieSilentSuit,
+									//image: PoogieSilentSuit,
 
 									id: '5',
 									rank: '8',
@@ -602,7 +588,7 @@
 										'Wht Durable Fabricx30, Black Fabricx50, Appropriate Partsx20',
 								},
 								{
-									image: PoogieBewitchingPink,
+									//image: PoogieBewitchingPink,
 
 									id: '6',
 									rank: '8',
@@ -613,7 +599,7 @@
 									materials: 'Wht Durable Fabricx2, Peach Fabricx45',
 								},
 								{
-									image: PoogieNostalgicStripes,
+									//image: PoogieNostalgicStripes,
 
 									id: '7',
 									rank: '8',
@@ -623,7 +609,7 @@
 									materials: 'Striped Fabricx45, Blue Fabricx25',
 								},
 								{
-									image: PoogieSoothingSky,
+									//image: PoogieSoothingSky,
 
 									id: '8',
 									rank: '8',
@@ -636,7 +622,7 @@
 								},
 
 								{
-									image: PoogieGentleGreen,
+									//image: PoogieGentleGreen,
 
 									id: '9',
 									rank: '9',
@@ -647,7 +633,7 @@
 										'Green Fabricx35, Blue Fabricx20, Appropriate Partsx20',
 								},
 								{
-									image: PoogieRestlessBrown,
+									//image: PoogieRestlessBrown,
 
 									id: '10',
 									rank: '9',

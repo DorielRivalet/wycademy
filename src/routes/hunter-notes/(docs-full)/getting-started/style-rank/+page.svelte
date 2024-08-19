@@ -28,17 +28,6 @@
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import type { FrontierArmorSkillName, FrontierWeaponName } from 'ezlion';
 	import StarRating from '$lib/client/components/StarRating.svelte';
-	import GuildMaster from '$lib/client/images/supplemental/guild-master.webp';
-	import HCExample from '$lib/client/images/supplemental/hc-example.webp';
-	import HCOption from '$lib/client/images/supplemental/hc-option.webp';
-	import HidenCuffExample from '$lib/client/images/supplemental/hiden-cuff-example.webp';
-	import MyMissionS from '$lib/client/images/supplemental/my-mission-s.webp';
-	import SRStatus from '$lib/client/images/supplemental/sr-status.webp';
-	import HidenSkillExample from '$lib/client/images/supplemental/hiden-skill-example.webp';
-	import PassiveMaster from '$lib/client/images/supplemental/passive-master.webp';
-	import SecretTech from '$lib/client/images/supplemental/secret-tech.webp';
-	import SharpeningUp from '$lib/client/images/supplemental/sharpening-up.webp';
-	import SoulRevival from '$lib/client/images/supplemental/soul-revival.webp';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import StarFilled from 'carbon-icons-svelte/lib/StarFilled.svelte';
@@ -627,7 +616,7 @@ At HR5, it provides 17, at HR6 it’s 45, and at HR7 it’s 50. It progresses gr
 			category: 'SR to GSR Skills',
 			description:
 				'+50/MAX Sharpness from sharpening. Takes only 1 sharpen motion to complete the action.',
-			image: SharpeningUp,
+			//image: SharpeningUp,
 		},
 		// { // Not in game
 		// 	id: '8',
@@ -662,14 +651,14 @@ At HR5, it provides 17, at HR6 it’s 45, and at HR7 it’s 50. It progresses gr
 			category: 'Every GSR999',
 			description:
 				'Causes any monster attacks that would normally knock you down to leave you partially recovered, allowing you to land on your feet instead of lying down and slowly getting up.',
-			image: PassiveMaster,
+			//image: PassiveMaster,
 		},
 		{
 			id: '13',
 			skill: 'Secret Technique',
 			category: 'Every GSR999',
 			description: `A Hunter Knife attack that can be used once a day after 12:00. It deals massive damage after a long wind-up animation and is bound to the Kick action. After use, it increases your attack by 320 (flat addition) for the rest of the quest's duration (shown as a red particle effect during the animation). The initial attack does a portion of the monster's Max HP. You can increase how much Max HP is taken by increasing the GSR of weapons to 999; with all weapons at GSR999 it deals 38% of the monster's Max HP, meaning that a group of 3 hunters can oneshot most monsters this way. Quests where the initial attack deals very little damage include most musou quests, but it can be useful against Arrogant Duremudira due to being able to activate it at the entrance, where quest time hasn't started yet, thus keeping the attack increase portion of the skill without drawbacks. You can also cancel the initial attack portion of the skill by being near an area transition zone and transitioning via the Secret Tech animation; this makes you invulnerable to Damage Over Time effects (works even after carting), also keeping the attack increase bonus, although you lose on the benefits of hitting the initial attack. You gain invulnerability frames during the animation after the red particle effect. Due to this skill being very versatile, there is a separate speedrun category for it.`,
-			image: SecretTech,
+			//image: SecretTech,
 		},
 		{
 			id: '14',
@@ -677,7 +666,7 @@ At HR5, it provides 17, at HR6 it’s 45, and at HR7 it’s 50. It progresses gr
 			category: '11x GSR999',
 			description:
 				'An ability that can be triggered once per quest. It revives you after hitting 0 HP once and fully restores your health bar. This ability is disabled with Determination and is unlocked on GSR999 weapons after you have 11 GSR999 weapons in total.',
-			image: SoulRevival,
+			//image: SoulRevival,
 		},
 	];
 
@@ -938,13 +927,13 @@ graph LR
 			Upon reaching HR5, you can unlock Style Rank. This process is initiated
 			automatically when you approach the Guild Master after achieving HR5.
 		</p>
-		<CenteredFigure
+		<!-- <CenteredFigure
 			width={'100%'}
 			type="file"
 			src={GuildMaster}
 			alt="Guild Master"
 			figcaption="The Guild Master."
-		/>
+		/> -->
 		<p>
 			Style Rank grants several benefits, including special SR Skills, two new
 			movesets per weapon type (three in total at G Rank with Extreme Style),
@@ -968,13 +957,13 @@ graph LR
 					This will bring up a new menu where you should select your weapon
 					type, followed by the second option, and then your preferred style.
 				</p>
-				<CenteredFigure
+				<!-- <CenteredFigure
 					width={'100%'}
 					type="file"
 					src={SRStatus}
 					alt="SR Status"
 					figcaption="SR Status."
-				/>
+				/> -->
 				<p class="spaced-paragraph">
 					At HR5, you will have access to Heaven Style and Storm Style. For most
 					weapons at this rank, Storm Style is the best, though there may be
@@ -1059,14 +1048,14 @@ graph LR
 					is indicated by a flame icon in the quest list at the top right of its
 					name.
 				</p>
-				<CenteredFigure
+				<!-- <CenteredFigure
 					width={'100%'}
 					type="file"
 					src={HCExample}
 					alt="Hardcore monsters quests"
 					figcaption="Note that the flame icon itself does not mean the quest is in HC
 					mode; you must manually turn HC mode on."
-				/>
+				/> -->
 				<p class="spaced-paragraph">
 					You can toggle the HC option on the final screen after selecting a
 					quest, where you confirm player numbers, passwords, etc.
@@ -1108,13 +1097,13 @@ graph LR
 					Roars, Wind, or Quake, requiring Super Earplugs, Quake Res +2, and
 					Dragon Wind Breaker for protection.
 				</p>
-				<CenteredFigure
+				<!-- <CenteredFigure
 					width={'100%'}
 					type="file"
 					src={HCOption}
 					alt="Hardcore monster option"
 					figcaption="Toggling HC Mode on."
-				/>
+				/> -->
 				<p class="spaced-paragraph">
 					Completing an HC quest grants SR <InlineTooltip
 						icon={getItemIcon('Ticket')}
@@ -2674,13 +2663,13 @@ graph LR
 								</p></ListItem
 							>
 						</UnorderedList>
-						<CenteredFigure
+						<!-- <CenteredFigure
 							width={'100%'}
 							type="file"
 							src={MyMissionS}
 							alt="My Mission example"
 							figcaption="S asking for 2 Velocidromes."
-						/>
+						/> -->
 					</div>
 				</section>
 				<section>
@@ -2758,13 +2747,13 @@ graph LR
 						tooltip="Item"
 					/> come in three levels: Basic, G, and True.
 				</p>
-				<CenteredFigure
+				<!-- <CenteredFigure
 					width={'100%'}
 					type="file"
 					src={HidenSkillExample}
 					alt="Hiden skill example"
 					figcaption="Hiden skill, colored yellow because it doesn't take a skill slot."
-				/>
+				/> -->
 				<UnorderedList>
 					<ListItem
 						><p>
@@ -2786,13 +2775,13 @@ graph LR
 						</p></ListItem
 					>
 				</UnorderedList>
-				<CenteredFigure
+				<!-- <CenteredFigure
 					width={'100%'}
 					type="file"
 					src={HidenCuffExample}
 					alt="Hiden cuff example"
 					figcaption="Hiden cuff at the bottom."
-				/>
+				/> -->
 				<p>
 					The first two levels of these cuffs use standard Hiden materials, and
 					you cannot exchange HL Hiden tickets to obtain them. The True Cuff

@@ -13,6 +13,7 @@ import TonfaIcon from '$lib/client/components/frontier/icon/weapon/Tonfa_Icon_Wh
 import SwitchAxeFIcon from '$lib/client/components/frontier/icon/weapon/Switch_Axe_Icon_White4.svelte';
 import MagnetSpikeIcon from '$lib/client/components/frontier/icon/weapon/Magnet_Spike_Icon_White.svelte';
 
+// TODO cdn?
 import GreatSwordImage from '$lib/client/images/weapon/gs.webp';
 import LongSwordImage from '$lib/client/images/weapon/ls.webp';
 import DualSwordsImage from '$lib/client/images/weapon/ds.webp';

@@ -21,9 +21,6 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import TonfaModes from '$lib/client/images/supplemental/tonfa-modes.webp';
-	import TonfaRyuukiMeter from '$lib/client/images/supplemental/tonfa-meter-ryuuki.webp';
-	import TonfaMeter from '$lib/client/images/supplemental/tonfa-meter.webp';
 	import {
 		getItemColor,
 		getItemIcon,
@@ -254,13 +251,13 @@
 				timer; dodging can almost fully charge the gauge instantly. Each red stack
 				gives +10% True Raw and better blue gauge recovery.
 			</p>
-			<CenteredFigure
+			<!-- <CenteredFigure
 				figcaption="Tonfa Gauge."
 				alt="Tonfa Gauge"
 				type="file"
 				width="100%"
 				src={TonfaMeter}
-			/>
+			/> -->
 			<p class="spaced-paragraph">
 				The <InlineTooltip
 					tooltip="Weapon"
@@ -287,13 +284,13 @@
 						a spinning drop attack. All attacks in long mode deal Impact damage with
 						standard Impact damage modifiers.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						figcaption="Switching modes: notice the icon in the top left corner."
 						alt="Switching modes"
 						type="file"
 						width="100%"
 						src={TonfaModes}
-					/>
+					/> -->
 					<p class="spaced-paragraph">
 						<strong>Short Mode:</strong> In this mode, impact zone damage is reversed.
 						At the end of the main attack combo, the hunter can unleash a quick series
@@ -324,13 +321,13 @@
 						and is followed by a secondary effect, depending on which part of the
 						monster was weakened during the finisher.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						figcaption="Meter after Ryuuki Finisher."
 						alt="Meter after Ryuuki Finisher"
 						type="file"
 						width="100%"
 						src={TonfaRyuukiMeter}
-					/>
+					/> -->
 					<UnorderedList class="spaced-list">
 						<ListItem>
 							<p>

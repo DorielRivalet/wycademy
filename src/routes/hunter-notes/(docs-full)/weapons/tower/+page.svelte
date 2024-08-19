@@ -13,9 +13,7 @@
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import { getTag } from '$lib/client/modules/frontier/tags';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import TowerWeapons from '$lib/client/images/supplemental/tower-weapons.webp';
-	import TowerWeaponsUpgrades from '$lib/client/images/supplemental/tower-weapon-upgrades.webp';
-	import TowerWeaponDecorations from '$lib/client/images/supplemental/tower-weapon-decorations.webp';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -31,20 +29,21 @@
 				/>.
 			</p>
 
-			<CenteredFigure
+			<!-- <CenteredFigure
 				width={'100%'}
 				type="file"
 				src={TowerWeapons}
 				alt="Tower Weapons"
 				figcaption="Tower Weapons."
-			/>
+			/> -->
 
 			<p class="spaced-paragraph">
 				You can customize weapon attributes such as Sharpness, Raw, Elemental,
 				Status, Shelling Type, Shot Type, etc. They are comparable to Lv50 G
-				Rank weapons when fully upgraded. You can insert Tower Decorations,
-				which gives skills without using slots, making it a powerful weapon when
-				built correctly. You cannot reverse most of the attribute upgrades.
+				Rank weapons when fully upgraded. You can insert <strong
+					>Tower Decorations</strong
+				>, which gives skills without using slots, making it a powerful weapon
+				when built correctly. You cannot reverse most of the attribute upgrades.
 			</p>
 
 			<p class="spaced-paragraph">
@@ -54,16 +53,15 @@
 			</p>
 
 			<p class="spaced-paragraph">
-				Tower Sigils are used to grant Affinity, Status, Elemental, Zenith
-				Skills or Weapon Abilities. You can only have as many of these
-				properties as you have Sigil slots and you can't have two of the same
-				type (for example, two Elemental, Status or Affinity sigils does not
-				stack.)
+				<strong>Tower Sigils</strong> are used to grant Affinity, Status, Elemental,
+				Zenith Skills or Weapon Abilities. You can only have as many of these properties
+				as you have Sigil slots and you can't have two of the same type (for example,
+				two Elemental, Status or Affinity sigils does not stack.)
 			</p>
 
 			<p class="spaced-paragraph">
-				Tower Decorations grant your weapon a skill. For example, if you have a
-				Tower Decoration for <InlineTooltip
+				<strong>Tower Decorations</strong> grant your weapon a skill. For
+				example, if you have a Tower Decoration for <InlineTooltip
 					tooltip="Armor Skill"
 					text="Expert+5"
 					iconType="component"
@@ -72,16 +70,17 @@
 				equip it. You can have a maximum of two skills on a weapon.
 			</p>
 
-			<CenteredFigure
+			<!-- <CenteredFigure
 				width={'100%'}
 				type="file"
 				src={TowerWeaponDecorations}
 				alt="Tower Weapon decorations"
 				figcaption="Tower Weapon decorations."
-			/>
+			/> -->
 
 			<p class="spaced-paragraph">
-				In order to remove a Tower Decoration, you need to buy a <InlineTooltip
+				In order to remove a <strong>Tower Decoration</strong>, you need to buy
+				a <InlineTooltip
 					tooltip={'Item'}
 					text="Twr Removal Solution"
 					icon={getItemIcon('Medicine')}
@@ -89,7 +88,8 @@
 			</p>
 
 			<p>
-				The rest of the Tower Weapon materials are available at the <InlineTooltip
+				The rest of the <strong>Tower Weapon</strong> materials are available at
+				the <InlineTooltip
 					icon={LocationIcons.find((e) => e.name === 'Road')?.icon}
 					tooltip="Location"
 					iconType={'file'}
@@ -104,8 +104,8 @@
 			</p>
 
 			<p class="spaced-paragraph">
-				Tower Weapons can be crafted by talking to the Cat wearing a backpack in
-				the <InlineTooltip
+				<strong>Tower Weapons</strong> can be crafted by talking to the Cat
+				wearing a backpack in the <InlineTooltip
 					tooltip="Location"
 					iconType={'file'}
 					icon={LocationIcons.find((e) => e.name === 'Blacksmith')?.icon}
@@ -114,9 +114,10 @@
 			</p>
 
 			<p class="spaced-paragraph">
-				The Blue series of the tower weapons have 3 Tower Sigil slots. They have
-				high enough stats to surpass all weapons (except Evolution, certain
-				Premium weapons and Road). They require Zenith materials to craft, but
+				The Blue series of the tower weapons have 3 <strong>Tower Sigil</strong>
+				slots. They have high enough stats to surpass all weapons (except Evolution,
+				certain Premium weapons and Road). They require Zenith materials to craft,
+				but
 				<strong>they do not have the Zenith Partbreaker effect</strong>. Zenith
 				Sigils affect any skills granted (including Exotics, Hybrids and from
 				Tower Decorations).
@@ -145,17 +146,18 @@
 				/>.
 			</p>
 
-			<CenteredFigure
+			<!-- <CenteredFigure
 				width={'100%'}
 				type="file"
 				src={TowerWeaponsUpgrades}
 				alt="Tower Weapon upgrades"
 				figcaption="Tower Weapon upgrades."
-			/>
+			/> -->
 
 			<p>
-				If you are looking for a Tower Weapon Simulator, you can find it in the <Link
-					inline
+				If you are looking for a <strong>Tower Weapon Simulator</strong>, you
+				can find it in the <Link
+					icon={ToolKit}
 					href="/tools/simulator/tower-weapon"
 					>Tools and Utilities section.</Link
 				>

@@ -8,8 +8,6 @@
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
-	import image1 from '$lib/client/images/supplemental/active-feature.webp';
-	import image2 from '$lib/client/images/supplemental/active-feature-shine.webp';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -146,7 +144,7 @@
 		<div class="active-feature-section">
 			<div class="active-feature-description">
 				<p class="spaced-paragraph">
-					The Active Feature system, introduced in <InlineTooltip
+					The <strong>Active Feature</strong> system, introduced in <InlineTooltip
 						tooltip="Game Version"
 						iconType="file"
 						text="Forward 3"
@@ -154,15 +152,16 @@
 							?.icon}
 					/> is a daily effect to weapon types. These effects last from 12 PM to
 					12 PM the next day, at which time one or more weapon types will be chosen.
-					You can see up to one day in advance by looking behind the main Active
-					Feature bar at the top of your screen while in <InlineTooltip
+					You can see up to one day in advance by looking behind the main
+					<strong>Active Feature</strong>
+					bar at the top of your screen while in <InlineTooltip
 						text="Mezeporta"
 						tooltip="Location"
 						icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
 						iconType={'file'}
 					/>.
 				</p>
-				<CenteredFigure
+				<!-- <CenteredFigure
 					width={'100%'}
 					type="file"
 					src={image1}
@@ -176,7 +175,7 @@
 					alt="Active Feature"
 					figcaption="During a quest with active feature enabled, the weapon icon next to
 						the player name will shine."
-				/>
+				/> -->
 				<p>
 					Final Bitfield Value: {activeFeatureFinalBitfieldValue}
 				</p>
@@ -236,9 +235,10 @@
 					<ListItem
 						><p>
 							The Taiwanese version of the game used to give x1.5 extra damage
-							to the weapon, in addition to its other Active Feature effects.
-							Additionally, it gave the Active Feature effect to all weapons at
-							the same time, during the last day before shutdown.
+							to the weapon, in addition to its other Active Feature effects,
+							although the extra damage was later removed. Additionally, it gave
+							the <strong>Active Feature</strong> effect to all weapons at the same
+							time, during the last day before shutdown.
 						</p></ListItem
 					>
 				</UnorderedList>

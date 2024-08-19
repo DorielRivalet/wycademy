@@ -1,8 +1,4 @@
 import { type FrontierSigil } from 'ezlion';
-import ZenithSigilHeal from '$lib/client/images/supplemental/zenith-sigil-heal.webp';
-import SNSBeamSlash from '$lib/client/images/supplemental/sns-beam-slash.webp';
-import ZenithSigilAOE from '$lib/client/images/supplemental/zenith-sigil-aoe.webp';
-import ZenithSigilActive from '$lib/client/images/supplemental/zenith-sigil-active.webp';
 
 export type FrontierSigilRolls = {
 	sigilSkill: number;
@@ -972,7 +968,7 @@ export const sigilsInfo: {
 		name: '(SnS) Beam Slash',
 		minimumPoints: 0,
 		maximumPoints: 0,
-		demo: SNSBeamSlash,
+		//demo:SNSBeamSlash,
 		effect:
 			'Changes the property of the Horizontal Slash, adding a ranged Red Shockwave. Motion value is 31･16 with the second portion unaffected by Fencing+2. Only for Earth and Extreme Styles.',
 		category: 'Blademaster',
@@ -1798,7 +1794,7 @@ export const sigilsInfo: {
 		maximumPoints: 5,
 		effect: 'Recovers health over time while active.',
 		category: 'Zenith',
-		demo: ZenithSigilHeal,
+		//demo:ZenithSigilHeal,
 	},
 	{
 		tree: 'Zenith Heroics',
@@ -1812,7 +1808,7 @@ export const sigilsInfo: {
 	{
 		tree: 'Zenith Attack',
 		name: '[Zenith] Attack',
-		demo: ZenithSigilActive,
+		//demo:ZenithSigilActive,
 		minimumPoints: 1,
 		maximumPoints: 15,
 		effect:
@@ -1839,7 +1835,7 @@ export const sigilsInfo: {
 	// Area of Effect Sigil
 	{
 		tree: 'All Zenith AOEs',
-		demo: ZenithSigilAOE,
+		//demo:ZenithSigilAOE,
 		name: '[Ranged] Attack',
 		minimumPoints: 1,
 		maximumPoints: 15,

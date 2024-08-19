@@ -23,10 +23,6 @@
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
-	import SwaxeExplosion from '$lib/client/images/supplemental/swaxe-explosion.webp';
-	import SwaxeLightsword from '$lib/client/images/supplemental/swaxe-lightsword.webp';
-	import SwaxeRun from '$lib/client/images/supplemental/swaxe-run.webp';
-	import SwaxeSwitch from '$lib/client/images/supplemental/swaxe-switch.webp';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
@@ -204,7 +200,7 @@ Attacks utilizing the phial consume less meter.`,
 				/>. It is unlocked by reaching G Rank.
 			</p>
 
-			<CenteredFigure
+			<!-- <CenteredFigure
 				figcaption="Switching between axe and sword."
 				alt="Switching between axe and sword"
 				type="file"
@@ -234,7 +230,7 @@ Attacks utilizing the phial consume less meter.`,
 				type="file"
 				width="100%"
 				src={SwaxeExplosion}
-			/>
+			/> -->
 
 			<p>
 				For an explanation on element damage, see our <Link
