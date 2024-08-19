@@ -33,12 +33,6 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
-	import CatSmith from '$lib/client/images/supplemental/cat-smith.webp';
-	import SigilActive from '$lib/client/images/supplemental/sigil-active.webp';
-	import SigilInactive from '$lib/client/images/supplemental/sigil-inactive.webp';
-	import SigilRare from '$lib/client/images/supplemental/sigil-rare.webp';
-	import SigilSlots from '$lib/client/images/supplemental/sigil-slots.webp';
-	import SigilStats from '$lib/client/images/supplemental/sigil-stats.webp';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import MultiSelect from 'carbon-components-svelte/src/MultiSelect/MultiSelect.svelte';
@@ -310,13 +304,13 @@
 				by the Cat Smith, who also creates random Gou weapons.
 			</p>
 
-			<CenteredFigure
+			<!-- <CenteredFigure
 				width={'100%'}
 				type="file"
 				src={CatSmith}
 				alt="Cat Smith"
 				figcaption="Cat Smith."
-			/>
+			/> -->
 
 			<p class="spaced-paragraph">
 				<InlineTooltip
@@ -373,13 +367,13 @@
 						number slotted.
 					</p>
 
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={SigilSlots}
 						alt="Sigil slots"
 						figcaption="Sigil slots."
-					/>
+					/> -->
 
 					<p class="spaced-paragraph">
 						The slot shape determines what item goes in. For sigils, the slots
@@ -478,13 +472,13 @@
 						/> and will be presented with the results and a relative rarity ranking
 						in stars based on the roll.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={SigilRare}
 						alt="Rare sigil roll"
 						figcaption="Rare sigil roll."
-					/>
+					/> -->
 				</div>
 			</section>
 			<section>
@@ -547,13 +541,13 @@
 						/>
 						less useful compared to simply buffing raw damage.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={SigilStats}
 						alt="Sigil stats"
 						figcaption="Sigil stats."
-					/>
+					/> -->
 					<p class="spaced-paragraph">
 						There are many possible outcomes for each sigil recipe, but the
 						following recipes use easily obtainable materials and have a good
@@ -616,7 +610,7 @@
 						providing effects like flat additions to True Raw, True Elemental, and
 						Affinity, as well as buffs to weapon motions.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={SigilActive}
@@ -629,7 +623,7 @@
 						src={SigilInactive}
 						alt="Sigil inactive"
 						figcaption="Sigil inactive."
-					/>
+					/> -->
 				</div>
 			</section>
 			<section>
@@ -1222,14 +1216,14 @@
 						any time, provided you are not actively performing an action, by
 						hitting the use button.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={sigilsInfo.find((e) => e.tree === 'Zenith Attack')?.demo}
 						alt="Sigil inactive"
 						figcaption="Using a Zenith Sigil triggers the Smoke Bomb
 						animation, activating the buffs on the sigil."
-					/>
+					/> -->
 					<section>
 						<SectionHeading level={3} title="Standard Zenith Sigils" />
 						<div>
@@ -1325,14 +1319,14 @@
 								and All Resistances by 28. Higher rolls result in significantly
 								better buffs.
 							</p>
-							<CenteredFigure
+							<!-- <CenteredFigure
 								width={'100%'}
 								type="file"
 								src={sigilsInfo.find((e) => e.name === '[Ranged] Attack')?.demo}
 								alt="Sigil inactive"
 								figcaption="Using an AOE Zenith Sigil triggers the Smoke Bomb
 							animation, activating the buffs on the sigil when inside the dome."
-							/>
+							/> -->
 							<p>
 								All effects of the sigil are active at the same time when inside
 								the dome, and multiple values of the same effect stack.

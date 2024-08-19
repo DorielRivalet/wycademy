@@ -198,18 +198,35 @@
 		<SectionHeadingTopLevel title={'Long Sword'} />
 		<div>
 			<p class="spaced-paragraph">
-				<!-- The <InlineTooltip
-					tooltip="Weapon"
-					text="Switch Axe F"
-					iconType="component"
-					icon={getWeaponIcon('Switch Axe F')}
-				/>, Swaxe for short, is a weapon introduced in <InlineTooltip
-					tooltip="Game"
-					text="Monster Hunter Frontier G10"
-					iconType="file"
-					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
-						?.icon}
-				/>. It is unlocked by reaching G Rank. -->
+				The Frontier Long Sword (LS) closely resembles the one from MHFU,
+				featuring a balanced speed that places it between the Sword and Shield
+				(SnS) and Great Sword (GS). This version introduces charge attacks with
+				unique mechanics and step slashes similar to the fade slashes that allow
+				for directional movement, as seen since Monster Hunter Tri.
+			</p>
+			<p class="spaced-paragraph">
+				Frontier's Spirit Combo mechanics add depth to the LS gameplay. A Spirit
+				Combo consists of three "Blocks," each varying in length and composed of
+				different attacks based on your inputs. After completing these blocks,
+				you can either end the combo with a roll or execute a Spirit Release—a
+				charge attack that changes properties depending on the attacks performed
+				and the Spirit Meter.
+			</p>
+			<p class="spaced-paragraph">
+				Each Spirit Combo "Block" begins with a Spirit attack, followed by one
+				of three options: another Spirit attack, a Normal slash, or a Sidestep
+				Slash. The Normal slash ends the block, allowing only a new Spirit
+				Attack to start a new block, while the Sidestep Slash can be followed by
+				a Normal slash and then a Spirit attack.
+			</p>
+			<p class="spaced-paragraph">
+				You can perform a Spirit Release by holding down the Spirit Attack input
+				for an extended period. The damage of this attack is determined by the
+				number of Spirit Attacks executed prior and the amount of Spirit Meter
+				accumulated. By combining any three blocks and finishing with a Spirit
+				Release, you can build powerful combos, with a guaranteed minimum total
+				motion value of 130 as long as you perform at least three Spirit
+				Attacks.
 			</p>
 
 			<!-- <CenteredFigure
@@ -233,22 +250,86 @@
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
-				<div></div>
+				<div>
+					<p class="spaced-paragraph">
+						Earth Style is the standard LS setup, similar to what’s found in
+						MHFU. It allows you to use both Fade Slashes and Sidestep Slashes at
+						any time.
+					</p>
+				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
-				<div></div>
+				<div>
+					<p class="spaced-paragraph">
+						Heaven Style replaces the Fade Slashes with Evade Slashes, which
+						cancel any ongoing combo, similar to a roll but with an added
+						attack. Although you lose the ability to freely perform Sidestep
+						Slashes, they remain available as part of a Spirit Combo.
+					</p>
+				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
-				<div></div>
+				<div>
+					<p class="spaced-paragraph">
+						Storm Style builds on Heaven Style by replacing the Thrust motion
+						with a Piercing Stab. This attack's damage scales with the amount of
+						Spirit Meter you have when executing it. Although it’s a slower
+						move, it has a significant total motion value of 116 (or 154 with a
+						sigil) and hits seven times. Despite its power, the Piercing Stab
+						can disrupt the timing of attacks and reduce overall DPS, making
+						Heaven Style the preferred choice for high-level play due to its
+						Evade Slash.
+					</p>
+				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
-				<div></div>
+				<div>
+					<p class="spaced-paragraph">
+						Extreme Style introduces a range of new mechanics, incorporating
+						elements from both Heaven and Storm styles. The most notable
+						addition is the Parry, allowing you to guard against attacks and
+						counter with either a Teleport—dealing damage along the teleport
+						path and providing iframes—or a Piercing Stab, similar to the one in
+						Storm Style.
+					</p>
+					<p class="spaced-paragraph">
+						A new Blade Meter is also introduced, filling up in the same way as
+						the Spirit Meter, but it also increases through the Parry action,
+						functioning similarly to the Swaxe Storm Style Guard. This meter
+						powers the Blade Release, a powerful attack that becomes stronger as
+						the meter fills. The Blade Meter empties upon sheathing, reducing
+						compatibility with Combat Supremacy.
+					</p>
+					<p class="spaced-paragraph">
+						While running, you can initiate a charge, dragging your sword behind
+						you. Releasing this charge unleashes a single slash that deals 18
+						motion if not fully charged but increases to 70 when fully charged.
+						The charged slash consumes some Spirit, but the increase in damage
+						makes it worthwhile. Additionally, you can perform a downslash or
+						upslash from the dash without charging.
+					</p>
+					<p class="spaced-paragraph">
+						Parrying is an instant guard action that can chain into various
+						actions, most notably a teleport that covers a long distance and
+						performs either a slash or a piercing stab with the same values as
+						the Storm Style move.
+					</p>
+					<p class="spaced-paragraph">
+						The Blade Release consumes your Blade Meter to perform a series of
+						slashes ending in an explosive strike. The motion values depend on
+						the meter's build-up, with a full meter resulting in a sequence of
+						5-5-5-180. This attack involves up to three quick swipes before
+						turning away, after which the final motion triggers. However, if
+						you're interrupted during the animation, the final motion won't
+						occur, and your Blade Meter will still be depleted.
+					</p>
+				</div>
 			</section>
 
 			<section>

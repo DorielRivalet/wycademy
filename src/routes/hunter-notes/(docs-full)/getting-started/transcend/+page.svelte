@@ -14,38 +14,13 @@
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import TranscendFire from '$lib/client/images/icon/transcend-fire.webp';
-	import TranscendWater from '$lib/client/images/icon/transcend-water.webp';
-	import TranscendThunder from '$lib/client/images/icon/transcend-thunder.webp';
-	import TranscendIce from '$lib/client/images/icon/transcend-ice.webp';
-	import TranscendDragon from '$lib/client/images/icon/transcend-dragon.webp';
-	import TranscendRaw from '$lib/client/images/icon/transcend-raw.webp';
-	import TranscendCloak from '$lib/client/images/icon/transcend-cloak.webp';
-	import TranscendFocus from '$lib/client/images/icon/transcend-focus.webp';
-	import TranscendMind from '$lib/client/images/icon/transcend-mind.webp';
-	import TranscendWall from '$lib/client/images/icon/transcend-wall.webp';
-	import TranscendSpeed from '$lib/client/images/icon/transcend-speed.webp';
-	import TranscendVigor from '$lib/client/images/icon/transcend-vigor.webp';
 	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
-	import TranscendHeal from '$lib/client/images/supplemental/transcend-heal.webp';
-	import TranscendConcentration from '$lib/client/images/supplemental/transcend-concentration.webp';
-	import TranscendMenu from '$lib/client/images/supplemental/transcend-menu.webp';
-	import TranscendReady from '$lib/client/images/supplemental/transcend-ready.webp';
-	import TranscendInterface from '$lib/client/images/supplemental/transcend-interface.webp';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 	import { gameInfo } from '$lib/client/modules/frontier/objects';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import BurstReady from '$lib/client/images/supplemental/burst-ready.webp';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
-	import BurstFire from '$lib/client/images/supplemental/burst-fire.webp';
-	import BurstWater from '$lib/client/images/supplemental/burst-water.webp';
-	import BurstThunder from '$lib/client/images/supplemental/burst-thunder.webp';
-	import BurstIce from '$lib/client/images/supplemental/burst-ice.webp';
-	import BurstDragon from '$lib/client/images/supplemental/burst-dragon.webp';
-	import BurstRaw from '$lib/client/images/supplemental/burst-raw.webp';
-	import TranscendWallDemo from '$lib/client/images/supplemental/transcend-wall.webp';
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
@@ -59,7 +34,7 @@
 
 	const transcendBuffs: {
 		id: string;
-		icon: string;
+		icon?: string;
 		name: string;
 		levels: string;
 		description: string;
@@ -68,7 +43,7 @@
 	}[] = [
 		{
 			id: '0',
-			icon: TranscendFire,
+			// icon: TranscendFire,
 			name: 'Fire Pulse',
 			description: 'Increases fire damage by a set percentage.',
 			levels: '10',
@@ -76,7 +51,7 @@
 		},
 		{
 			id: '1',
-			icon: TranscendWater,
+			// icon: TranscendWater,
 			name: 'Water Pulse',
 			description: 'Increases water damage by a set percentage.',
 			levels: '10',
@@ -84,7 +59,7 @@
 		},
 		{
 			id: '2',
-			icon: TranscendThunder,
+			// icon: TranscendThunder,
 			name: 'Thunder Pulse',
 			description: 'Increases thunder damage by a set percentage.',
 			levels: '10',
@@ -92,7 +67,7 @@
 		},
 		{
 			id: '3',
-			icon: TranscendIce,
+			// icon: TranscendIce,
 			name: 'Ice Pulse',
 			description: 'Increases ice damage by a set percentage.',
 			levels: '10',
@@ -100,7 +75,7 @@
 		},
 		{
 			id: '4',
-			icon: TranscendDragon,
+			// icon: TranscendDragon,
 			name: 'Dragon Pulse',
 			description: 'Increases dragon damage by a set percentage.',
 			levels: '10',
@@ -108,7 +83,7 @@
 		},
 		{
 			id: '5',
-			icon: TranscendRaw,
+			// icon: TranscendRaw,
 			name: 'Raw Pulse',
 			description: 'Increases raw damage by a set percentage.',
 			levels: '10',
@@ -116,7 +91,7 @@
 		},
 		{
 			id: '6',
-			icon: TranscendCloak,
+			// icon: TranscendCloak,
 			name: 'Cloak',
 			description: 'Increases defense and element resistance.',
 			levels: '10',
@@ -124,17 +99,17 @@
 		},
 		{
 			id: '7',
-			icon: TranscendFocus,
+			// icon: TranscendFocus,
 			name: 'Focus',
 			description:
 				'Start the quest with Transcend being partially charged to a set percentage.',
 			levels: '10',
 			category: 'Defensive',
-			demo: TranscendConcentration,
+			// demo: TranscendConcentration,
 		},
 		{
 			id: '8',
-			icon: TranscendMind,
+			// icon: TranscendMind,
 			name: 'Mind',
 			description: 'Transcend duration increased.',
 			levels: '10',
@@ -142,16 +117,16 @@
 		},
 		{
 			id: '9',
-			icon: TranscendWall,
+			// icon: TranscendWall,
 			name: 'Wall',
 			description: 'During transcend, become immune to knockback attacks.',
 			levels: '1',
 			category: 'Defensive',
-			demo: TranscendWallDemo,
+			// demo: TranscendWallDemo,
 		},
 		{
 			id: '10',
-			icon: TranscendSpeed,
+			// icon: TranscendSpeed,
 			name: 'Speed',
 			description: 'Grants Movement Speed Up during transcend.',
 			levels: '1',
@@ -159,12 +134,12 @@
 		},
 		{
 			id: '11',
-			icon: TranscendVigor,
+			// icon: TranscendVigor,
 			name: 'Vigor',
 			description: 'Heal by a certain amount to all nearby Hunters and NPCs.',
 			levels: '5',
 			category: 'Defensive',
-			demo: TranscendHeal,
+			// demo: TranscendHeal,
 		},
 	];
 
@@ -229,16 +204,16 @@
 	const elementalBursts: {
 		id: string;
 		name: string;
-		icon: string;
+		icon?: string;
 		effects: string;
-		demo: string;
+		demo?: string;
 		duration: string;
 	}[] = [
 		{
 			id: '0',
 			name: 'Fire Pulse',
-			icon: TranscendFire,
-			demo: BurstFire,
+			// icon: TranscendFire,
+			// demo: BurstFire,
 			effects:
 				'Deals fire damage. Flame bursts can force most monsters to stagger (4 staggers maximum).',
 			duration: '25 seconds.',
@@ -246,8 +221,8 @@
 		{
 			id: '1',
 			name: 'Water Pulse',
-			icon: TranscendWater,
-			demo: BurstWater,
+			// icon: TranscendWater,
+			// demo: BurstWater,
 
 			effects: 'Deals low water damage and increases hitzones on monsters.',
 			duration: '60 seconds.',
@@ -255,8 +230,8 @@
 		{
 			id: '2',
 			name: 'Thunder Pulse',
-			demo: BurstThunder,
-			icon: TranscendThunder,
+			// demo: BurstThunder,
+			// icon: TranscendThunder,
 			effects:
 				'Deals thunder damage and paralyzes monsters. Does not work on monsters that are immune to paralysis.',
 			duration: '10 seconds (12s with recovery).',
@@ -264,27 +239,27 @@
 		{
 			id: '3',
 			name: 'Ice Pulse',
-			icon: TranscendIce,
+			// icon: TranscendIce,
 			effects:
 				'Freezes a monster, restricting their movement for a period. Tails cannot be cut during this state, and some monsters may resist freezing even if they take ice damage.',
-			demo: BurstIce,
+			// demo: BurstIce,
 			duration: '12 seconds (14s with recovery).',
 		},
 		{
 			id: '4',
 			name: 'Dragon Pulse',
-			demo: BurstDragon,
+			// demo: BurstDragon,
 
-			icon: TranscendDragon,
+			// icon: TranscendDragon,
 			effects: `Deals dragon and stun damage, capable of KO'ing monsters.`,
 			duration: '8 seconds (10s with recovery).',
 		},
 		{
 			id: '5',
 			name: 'Raw Pulse',
-			demo: BurstRaw,
+			// demo: BurstRaw,
 
-			icon: TranscendRaw,
+			// icon: TranscendRaw,
 			effects:
 				'Deals a large amount of raw damage and causes a Flash Bomb effect.',
 			duration: '6 seconds (8s with recovery).',
@@ -880,7 +855,7 @@
 				the Transcend state starts with little charge and must be powered up over
 				time during quests.
 			</p>
-			<CenteredFigure
+			<!-- <CenteredFigure
 				width={'100%'}
 				type="file"
 				src={TranscendMenu}
@@ -898,7 +873,7 @@
 				figcaption=" The settings window allows you to manage all aspects of the Transcend
 				state. You can toggle the mode on and off and upgrade the various buffs
 				the state provides."
-			/>
+			/> -->
 			<div class="table">
 				<DataTable
 					useStaticWidth
@@ -1104,13 +1079,13 @@
 						to use. This flashing icon remains visible behind all items, even if
 						you have something other than the Transcend option selected.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={TranscendReady}
 						alt="Transcend ready"
 						figcaption="Transcend ready."
-					/>
+					/> -->
 					<p class="spaced-paragraph">
 						Using the "item" activates the Transcend state, marked by a special
 						animation and your character gaining an aura. While this aura is
@@ -1129,13 +1104,13 @@
 						damaged element or randomly. If a monster is immune to the elemental
 						damage dealt, the burst will default to Raw.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={BurstReady}
 						alt="Burst ready"
 						figcaption="Burst ready."
-					/>
+					/> -->
 					<p class="spaced-paragraph">
 						It is unclear how many variables exactly influence the charging time
 						for the Transcended state. Taking damage can slightly speed up the

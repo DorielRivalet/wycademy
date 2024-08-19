@@ -192,19 +192,73 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 		<SectionHeadingTopLevel title={'Light Bowgun'} />
 		<div>
 			<p class="spaced-paragraph">
-				<!-- The <InlineTooltip
-					tooltip="Weapon"
-					text="Switch Axe F"
-					iconType="component"
-					icon={getWeaponIcon('Switch Axe F')}
-				/>, Swaxe for short, is a weapon introduced in <InlineTooltip
-					tooltip="Game"
-					text="Monster Hunter Frontier G10"
-					iconType="file"
-					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
-						?.icon}
-				/>. It is unlocked by reaching G Rank. -->
+				The Light Bowgun (LBG) is a highly versatile ranged weapon known for its
+				rapid bullet output, utilizing Just Shots, Rapid Fire, and Ultra Rapid
+				Fire to maximize damage.
 			</p>
+			<p class="spaced-paragraph">
+				The Just Shot is the primary attack method for LBG users. A meter
+				appears with a white section, and timing your shot within this section
+				allows you to fire the next shot sooner, boosting its damage by 1.3x.
+				This technique increases your DPS more effectively than either of the
+				rapid-fire methods.
+			</p>
+			<p class="spaced-paragraph">
+				If you reload within the same window, you can reload faster, including
+				swapping ammo types if you're quick enough. Unlike the Heavy Bowgun's
+				Compression Shots, missing the timing window incurs no penalty.
+			</p>
+			<p class="spaced-paragraph">
+				Rapid Fire functions similarly to the mainline games, where you fire a
+				volley of shots while consuming a single bullet. These shots have a
+				power multiplier of 0.5x. Ultra Rapid Fire is similar but allows you to
+				continue firing after the first volley, adding one shot per unit of ammo
+				consumed. For instance, if the first volley fires three shots, the
+				second volley fires four, the third fires five, and so on until you run
+				out of ammo.
+			</p>
+			<p class="spaced-paragraph">
+				Light Bowguns can be equipped with Silencers and Long Barrels. Silencers
+				don’t reduce recoil, and Long Barrels don’t increase attack power.
+				Instead, Silencers make you less noticeable to monsters, and Long
+				Barrels increase the speed of your shots.
+			</p>
+
+			<section>
+				<SectionHeading level={2} title="Critical Distance" />
+				<div>
+					<p class="spaced-paragraph">
+						Critical Distance is a shared mechanic among all ranged weapons,
+						defining the optimal range for each ammo type. Here's a breakdown:
+					</p>
+					<p class="spaced-paragraph"><strong>Earth Style</strong></p>
+					<UnorderedList>
+						<ListItem><p>Normal Shots: Close to Mid Range</p></ListItem>
+						<ListItem><p>Pierce Shots: Mid to Far Range</p></ListItem>
+						<ListItem><p>Pellet Shots: Short Range</p></ListItem>
+						<ListItem
+							><p>Other Shots: Fixed damage regardless of distance</p></ListItem
+						>
+					</UnorderedList>
+					<p class="spaced-paragraph">
+						<strong>Heaven and Storm Style</strong>
+					</p>
+					<UnorderedList>
+						<ListItem><p>Normal Shots: Close Range</p></ListItem>
+						<ListItem><p>Pierce Shots: Close to Mid Range</p></ListItem>
+						<ListItem><p>Pellet Shots: Short Range</p></ListItem>
+						<ListItem
+							><p>Other Shots: Fixed damage regardless of distance</p></ListItem
+						>
+					</UnorderedList>
+					<p class="spaced-paragraph">
+						A visual cue helps you identify when you're at the critical
+						distance: the shot discards its casing, followed by an expanding
+						circle. Using this cue, you can learn proper spacing and improve
+						your positioning.
+					</p>
+				</div>
+			</section>
 
 			<!-- <CenteredFigure
 				figcaption="Triggering Elemental Release."
@@ -227,22 +281,88 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
-				<div></div>
+				<div>
+					<p class="spaced-paragraph">
+						Earth Style is the standard LBG style, straightforward and effective
+						without any notable distinctions.
+					</p>
+				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
-				<div></div>
+				<div>
+					<p class="spaced-paragraph">
+						Heaven Style builds on Earth Style by tightening all critical
+						distances and introducing quick reloading. Quick reloading loads
+						half your ammo (rounded up) but takes only half the time. In this
+						style, critical distances are shorter and narrower, but the damage
+						multipliers are increased from 1.5x to 1.6x.
+					</p>
+				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
-				<div></div>
+				<div>
+					<p class="spaced-paragraph">
+						Storm Style retains the changes from Heaven Style and adds the
+						ability to perform a quick forward hop as an evasion with your
+						weapon unsheathed. This evade chains into a Step Shot, which
+						significantly shortens the distance of all shots but moves the
+						critical distance to the very start of the shot’s flight time,
+						increasing the critical multiplier to 2.0x. This can be very
+						powerful, allowing you to chain high-damage shots while moving
+						forward.
+					</p>
+					<p class="spaced-paragraph">
+						With Ultra Rapid Fire, all shots fired as a Step Shot use the same
+						critical distance. If you evade close to a monster without getting
+						hit, you can unleash a long barrage of Pierce Shots with much higher
+						damage.
+					</p>
+					<p class="spaced-paragraph">
+						If you are using Combat Supremacy, Earth Style is usually the best
+						choice. Storm Style can be extremely powerful if used correctly but
+						requires stamina and is less suited for Combat Supremacy.
+					</p>
+				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
-				<div></div>
+				<div>
+					<p class="spaced-paragraph">
+						Extreme Style is an advanced version of Earth Style, enhancing
+						mobility and functionality.
+					</p>
+					<p class="spaced-paragraph">
+						As with other Extreme Styles, you can run while your weapon is
+						unsheathed. For LBG, this running speed is faster than with other
+						weapons and quicker than standard running unless your Movement Speed
+						is increased. You can also reload while running and perform a slide
+						with good iframes, covering a significant distance in the direction
+						you’re moving. You can stop running instantly to shoot, though
+						adjusting your angle is challenging.
+					</p>
+					<p class="spaced-paragraph">
+						This style also introduces Evasion Shots and Finishing Shots.
+					</p>
+					<p class="spaced-paragraph">
+						Evasion Shots allow you to shoot while evading, with a damage
+						multiplier of 0.6x and iframes similar to a roll. The caveat is that
+						you must have ammo loaded and be aware enough to match the timing
+						while chaining shots.
+					</p>
+					<p class="spaced-paragraph">
+						Finishing Shots are a variant of Just Shots that deal fixed 2.0x
+						damage but cause significant recoil, ending your shot combo. After
+						firing a Finishing Shot, you can only continue into a run, making it
+						less compatible with Combat Supremacy. While Just Shots generally
+						offer more sustained damage, Finishing Shots can be powerful if you
+						need to maximize damage output with limited ammo.
+					</p>
+				</div>
 			</section>
 
 			<section>

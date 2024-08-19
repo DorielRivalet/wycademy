@@ -30,28 +30,10 @@
 	import { gameInfo } from '$lib/client/modules/frontier/objects';
 	import CaravanGem from '$lib/client/components/frontier/icon/CaravanGem.svelte';
 	import CaravanGemRainbow from '$lib/client/components/frontier/icon/CaravanGemRainbow.svelte';
-	import CaravanHut2ndFloor from '$lib/client/images/supplemental/caravan-hut-2nd-floor.webp';
-	import CaravanGemMonsterTypes from '$lib/client/images/supplemental/caravan-gem-monster-types.webp';
-	import CaravanGemPlayerList from '$lib/client/images/supplemental/caravan-gem-player-list.webp';
-	import CaravanGemUpgrade from '$lib/client/images/supplemental/caravan-gem-upgrade.webp';
-	import CaravanLimitedQuests from '$lib/client/images/supplemental/caravan-limited-quests.webp';
-	import CaravanQuests from '$lib/client/images/supplemental/caravan-quests.webp';
-	import CaravanSkills from '$lib/client/images/supplemental/caravan-skills.webp';
-	import CombinerNPCTalisman from '$lib/client/images/supplemental/combiner-npc-talisman.webp';
-	import Kashira from '$lib/client/images/supplemental/kashira.webp';
-	import MezeportaCaravanNPC from '$lib/client/images/supplemental/mezeporta-caravan-npc.webp';
-	import PioneerMap from '$lib/client/images/supplemental/pioneer-map.webp';
-	import PioneerNPC from '$lib/client/images/supplemental/pioneer-npc.webp';
-	import TalismanExchange from '$lib/client/images/supplemental/talisman-exchange.webp';
-	import CaravanGemColor from '$lib/client/images/supplemental/caravan-gem-color.webp';
-	import CaravanGemGacha from '$lib/client/images/supplemental/caravan-gem-gacha.webp';
 	import Gacha from '$lib/client/components/frontier/icon/Gacha.svelte';
 	import { getCurrencyIcon } from '$lib/client/modules/frontier/currency';
 	import Pagination from 'carbon-components-svelte/src/Pagination/Pagination.svelte';
 	import type { FrontierCaravanSkillName } from 'ezlion';
-	import CaravanSkillPreparedStance from '$lib/client/images/supplemental/caravan-skill-prepared-stance.webp';
-	import CaravanSkillRecoveryItemsUpMegaPotion from '$lib/client/images/supplemental/caravan-skill-recovery-items-up-mega-potion.webp';
-	import CaravanSkillPerfectDefense from '$lib/client/images/supplemental/caravan-skill-perfect-defense.webp';
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
@@ -98,7 +80,7 @@
 			description:
 				'Increases the effectiveness of Herb, Potion, Mega Potion, and Lifepowder by 1.1x. Enhances the effectiveness of Bitterbug and Antidote Herb by 100%.',
 			pointsToUnlock: '0',
-			demo: CaravanSkillRecoveryItemsUpMegaPotion,
+			//demo:CaravanSkillRecoveryItemsUpMegaPotion,
 		},
 		{
 			id: '2',
@@ -530,7 +512,7 @@
 			description:
 				'Blocking within 4 frames of an attack prevents stamina or sharpness loss, allows immediate evasion, and adds a powerful Reflect effect.',
 			pointsToUnlock: '6016 (GR700)',
-			demo: CaravanSkillPerfectDefense,
+			//demo:CaravanSkillPerfectDefense,
 		},
 		{
 			id: '29',
@@ -617,7 +599,7 @@
 			description:
 				'Performing the Combat Ready gesture for 15 seconds increases the attack ceiling of your equipped weapon for a fixed duration.',
 			pointsToUnlock: '7700',
-			demo: CaravanSkillPreparedStance,
+			//demo:CaravanSkillPreparedStance,
 		},
 		{
 			id: '38',
@@ -865,13 +847,13 @@
 					icon={getMonsterIcon('Raviente')}
 				/>.
 			</p>
-			<CenteredFigure
+			<!-- <CenteredFigure
 				width={'100%'}
 				type="file"
 				src={CaravanGemPlayerList}
 				alt="Caravan Gem next to player name"
 				figcaption="Caravan Gem next to player name."
-			/>
+			/> -->
 			<p class="spaced-paragraph">
 				Before engaging in Caravan activities, you should obtain a Caravan Gem.
 				This can be done by entering the <InlineTooltip
@@ -910,13 +892,13 @@
 							iconType="component"
 						/>.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={Kashira}
 						alt="Kashira"
 						figcaption="Kashira."
-					/>
+					/> -->
 					<p class="spaced-paragraph">
 						This gem adds a new option to your equipment box. Initially, it will
 						provide the skill <InlineTooltip
@@ -952,13 +934,13 @@
 							equipment. You can equip up to three skills with a total value of
 							10 points. Activated skills will turn orange.
 						</p>
-						<CenteredFigure
+						<!-- <CenteredFigure
 							width={'100%'}
 							type="file"
 							src={CaravanSkills}
 							alt="Caravan Skills"
 							figcaption="Caravan Skills."
-						/>
+						/> -->
 					</div>
 				</section>
 			</section>
@@ -993,13 +975,13 @@
 						/>
 						are unclear.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={MezeportaCaravanNPC}
 						alt="Mezeporta Caravan NPC"
 						figcaption="Mezeporta Caravan NPC."
-					/>
+					/> -->
 				</div>
 
 				<section>
@@ -1017,13 +999,13 @@
 								iconType="file"
 							/> in town.
 						</p>
-						<CenteredFigure
+						<!-- <CenteredFigure
 							width={'100%'}
 							type="file"
 							src={CaravanGemMonsterTypes}
 							alt="Caravan Gem monster types"
 							figcaption="Caravan Gem monster types."
-						/>
+						/> -->
 						<p class="spaced-paragraph">
 							If your gem's color matches the monster's assigned color for the
 							day, you earn double PP for hunting that monster. If you have a
@@ -1140,7 +1122,7 @@
 								</p></ListItem
 							>
 						</UnorderedList>
-						<CenteredFigure
+						<!-- <CenteredFigure
 							width={'100%'}
 							type="file"
 							src={CombinerNPCTalisman}
@@ -1160,7 +1142,7 @@
 							src={CaravanHut2ndFloor}
 							alt="Caravan Hut 2nd Floor"
 							figcaption="Caravan Hut 2nd Floor."
-						/>
+						/> -->
 						<p class="spaced-paragraph">
 							The best way to grind colors is by stacking as many buffs as
 							possible and completing <InlineTooltip
@@ -1309,13 +1291,13 @@
 							only the quest poster needs to have completed this. Limited routes
 							rotate on a fixed schedule, starting at 12:00 midday server time.
 						</p>
-						<CenteredFigure
+						<!-- <CenteredFigure
 							width={'100%'}
 							type="file"
 							src={CaravanQuests}
 							alt="Caravan quests"
 							figcaption="Caravan quests."
-						/>
+						/> -->
 					</div>
 				</section>
 				<section>
@@ -1350,13 +1332,13 @@
 								iconType="file"
 							/> per run, with the most profitable ones exceeding the Fatalis Trio.
 						</p>
-						<CenteredFigure
+						<!-- <CenteredFigure
 							width={'100%'}
 							type="file"
 							src={CaravanLimitedQuests}
 							alt="Caravan limited quests"
 							figcaption="Caravan limited quests."
-						/>
+						/> -->
 					</div>
 				</section>
 
@@ -1633,13 +1615,13 @@
 							skills will unlock as you level up all colors, and existing skills
 							will be retained.
 						</p>
-						<CenteredFigure
+						<!-- <CenteredFigure
 							width={'100%'}
 							type="file"
 							src={CaravanGemUpgrade}
 							alt="Gem Smith"
 							figcaption="Gem Smith."
-						/>
+						/> -->
 					</div>
 				</section>
 				<section>
@@ -1663,13 +1645,13 @@
 								</p></ListItem
 							></UnorderedList
 						>
-						<CenteredFigure
+						<!-- <CenteredFigure
 							width={'100%'}
 							type="file"
 							src={CaravanGemColor}
 							alt="Change gem color"
 							figcaption="Change gem color."
-						/>
+						/> -->
 					</div>
 				</section>
 				<section>
@@ -1687,13 +1669,13 @@
 							Premium subscription. It's best to ignore this option unless you
 							need points instantly and have a large amount of money to spare.
 						</p>
-						<CenteredFigure
+						<!-- <CenteredFigure
 							width={'100%'}
 							type="file"
 							src={CaravanGemGacha}
 							alt="Upgrade with Gacha Coins"
 							figcaption="Upgrade with Gacha Coins."
-						/>
+						/> -->
 					</div>
 				</section>
 			</section>
@@ -1744,13 +1726,13 @@
 							icon={LocationIcons.find((e) => e.name === 'Caravan')?.icon}
 						/> area.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={PioneerNPC}
 						alt="Pioneer NPC"
 						figcaption="Pioneer NPC."
-					/>
+					/> -->
 					<section>
 						<SectionHeading level={3} title="Menu Use" />
 						<div>
@@ -1764,13 +1746,13 @@
 									iconType="file"
 								/> option to instantly finish the upgrade, then repeat.
 							</p>
-							<CenteredFigure
+							<!-- <CenteredFigure
 								width={'100%'}
 								type="file"
 								src={PioneerMap}
 								alt="Pioneer Map"
 								figcaption="Pioneer Map."
-							/>
+							/> -->
 						</div>
 					</section>
 					<section>

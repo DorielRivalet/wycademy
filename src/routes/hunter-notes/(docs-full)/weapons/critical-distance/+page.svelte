@@ -613,19 +613,19 @@
 					<SectionHeading level={2} title="Bowguns" />
 					<div>
 						<p>
-							Critical Distance is indicated by the shot expanding fully and
-							creating a circle indicator.
+							<strong>Critical Distance</strong> is indicated by the shot expanding
+							fully and creating a circle indicator.
 						</p>
 						<p class="spaced-paragraph">
 							<InlineTooltip
 								text="Heavy Bowgun"
 								icon={getWeaponIcon('Heavy Bowgun')}
 								tooltip="Weapon Type"
-							/> has a much larger impact animation while in the first half of critical
-							distance on standard shots making it easier to see when you are properly
-							spaced. This adds an extra 0.3x multiplier to damage in that zone (e.g.
-							2.0 in first half of Normal Shot range, 2.3x with an Origin or Zenith
-							Piece and G Rank Weapon, etc.).
+							/> has a much larger impact animation while in the first half of
+							<strong>Critical Distance</strong> on standard shots making it easier
+							to see when you are properly spaced. This adds an extra 0.3x multiplier
+							to damage in that zone (e.g. 2.0 in first half of Normal Shot range,
+							2.3x with an Origin or Zenith Piece and G Rank Weapon, etc.).
 						</p>
 						<div class="dropdown">
 							<Dropdown
@@ -652,8 +652,9 @@
 					<div>
 						<p class="spaced-paragraph">
 							Holding down the aim button/key will show a rough indication of
-							Critical Distance and hits within critical distance will do a
-							large flash while those outside of it will do a small flash.
+							<strong>Critical Distance</strong> and hits within
+							<strong>Critical Distance</strong> will do a large flash while those
+							outside of it will do a small flash.
 						</p>
 						<div>
 							<DataTable

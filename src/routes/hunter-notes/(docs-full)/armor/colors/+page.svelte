@@ -12,7 +12,6 @@
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import tshirt from '$lib/client/images/supplemental/armor-color-tshirt.webp';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 
 	const colorsInfo = [
@@ -126,13 +125,13 @@
 				/> sells.
 			</p>
 
-			<CenteredFigure
+			<!-- <CenteredFigure
 				width={'100%'}
 				type="file"
 				src={tshirt}
 				alt="T-Shirt"
 				figcaption="T-Shirt that can be of many colors."
-			/>
+			/> -->
 
 			<p class="spaced-paragraph">
 				If your total points for Green, Red or White pass 100, the total points

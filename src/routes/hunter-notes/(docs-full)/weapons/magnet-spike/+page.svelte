@@ -29,12 +29,6 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import MSMarkers from '$lib/client/images/supplemental/ms-markers.webp';
-	import MSMark from '$lib/client/images/supplemental/ms-mark.webp';
-	import MSMagnetize from '$lib/client/images/supplemental/ms-magnetize.webp';
-	import MSGauges from '$lib/client/images/supplemental/ms-gauges.webp';
-	import MSPinReady from '$lib/client/images/supplemental/ms-pin-ready.webp';
-	import MSPin from '$lib/client/images/supplemental/ms-pin.webp';
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
@@ -675,7 +669,7 @@ graph LR
 						repel away from an already placed marker.
 					</p>
 
-					<CenteredFigure
+					<!-- <CenteredFigure
 						figcaption="The markers from left to right: Unmarked, repulsion, attraction."
 						alt="Magnet Spike markers"
 						type="file"
@@ -688,7 +682,7 @@ graph LR
 						type="file"
 						width="100%"
 						src={MSMark}
-					/>
+					/> -->
 					<p class="spaced-paragraph">
 						Whether you attract or repel depends on your distance from the
 						monster. If you are too close, you can only repel (Blue). If you are
@@ -698,13 +692,13 @@ graph LR
 						an evade or a powerful falling attack.
 					</p>
 
-					<CenteredFigure
+					<!-- <CenteredFigure
 						figcaption="The gauges from top to bottom: repulsion, attraction, not attracted."
 						alt="Magnet Spike gauges"
 						type="file"
 						width="100%"
 						src={MSGauges}
-					/>
+					/> -->
 
 					<p class="spaced-paragraph">
 						Both modes charge as you use them. When their icon turns red, you
@@ -713,13 +707,13 @@ graph LR
 						seconds.
 					</p>
 
-					<CenteredFigure
+					<!-- <CenteredFigure
 						figcaption="A magnetized Magnet Spike; notice the icon in the top left corner."
 						alt="Magnet Spike magnetized"
 						type="file"
 						width="100%"
 						src={MSMagnetize}
-					/>
+					/> -->
 					<p class="spaced-paragraph">
 						After the magnetism mode expires, you will be locked out of gaining
 						progress towards it for a short period. Both modes charge
@@ -744,13 +738,13 @@ graph LR
 						effect on its body, indicating it is ready to be pinned.
 					</p>
 
-					<CenteredFigure
+					<!-- <CenteredFigure
 						figcaption="Pin ready effect."
 						alt="Magnet Spike pin ready"
 						type="file"
 						width="100%"
 						src={MSPinReady}
-					/>
+					/> -->
 
 					<p class="spaced-paragraph">
 						Pinning can be done from either Magnetic Double Slash or Double
@@ -769,13 +763,13 @@ graph LR
 						finisher's lengthy animation.
 					</p>
 
-					<CenteredFigure
+					<!-- <CenteredFigure
 						figcaption="Pin."
 						alt="Magnet Spike pin"
 						type="file"
 						width="100%"
 						src={MSPin}
-					/>
+					/> -->
 
 					<p class="spaced-paragraph">
 						The finisher is notable because it targets the spot where you have

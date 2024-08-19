@@ -28,10 +28,8 @@
 	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
 	import { type DataTableCell } from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
-	import LoadedItemPreset from '$lib/client/images/supplemental/loaded-item-preset.webp';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
-	import BulkCombine from '$lib/client/images/supplemental/bulk-combine-energy-drink.webp';
 
 	const nodeDefaults = {
 		sourcePosition: Position.Right,
@@ -330,13 +328,13 @@
 						quest, you can simply run up to a box, interact, and press L1 or F
 						to instantly equip your preset from Slot 1.
 					</p>
-					<CenteredFigure
+					<!-- <CenteredFigure
 						width={'100%'}
 						type="file"
 						src={LoadedItemPreset}
 						alt="Loaded item preset"
 						figcaption="Loaded item preset."
-					/>
+					/> -->
 					<p class="spaced-paragraph">
 						If you have a subscription, you’ll have an additional 20 preset
 						slots. Access these by going to the "Item Presets" option and
@@ -445,14 +443,14 @@
 									iconType="component"
 								/>.
 							</p>
-							<CenteredFigure
+							<!-- <CenteredFigure
 								width={'100%'}
 								type="file"
 								src={BulkCombine}
 								alt="Bulk Combine"
 								figcaption="You must manually combine an item once for it to appear in
 								the Bulk Combine menu at the Combiner NPC."
-							/>
+							/> -->
 						</div>
 					</section>
 

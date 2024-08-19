@@ -21,12 +21,6 @@
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import { Download, Image } from 'carbon-icons-svelte';
 	import type { ComponentType, SvelteComponent } from 'svelte';
-	import LargeLuckyCharm from '$lib/client/images/supplemental/large-lucky-charm.webp';
-	import StackedLuckyCharms from '$lib/client/images/supplemental/stacked-lucky-charms.webp';
-	import HalkPot from '$lib/client/images/supplemental/item-halk-pot.webp';
-	import GuukuGloves from '$lib/client/images/supplemental/item-guuku-gloves.webp';
-	import MegaGutsTicket from '$lib/client/images/supplemental/item-mega-guts-ticket.webp';
-	import ItemSwordCrystal from '$lib/client/images/supplemental/item-sword-crystal.webp';
 
 	// TODO page thumbnail
 
@@ -46,7 +40,7 @@
 			description: `Significantly reduces damage taken during quests. You can use up to 5 per day.`,
 			source: 'Given daily in the Halk area.',
 			type: 'Special Consumable',
-			demo: HalkPot,
+			//demo:HalkPot,
 		},
 		{
 			item: 'Legendary Rasta Ticket',
@@ -62,7 +56,7 @@
 			iconColor: getItemColor('Red'),
 			description: `These tickets prevent death when your HP reaches 0. The Great Guts Ticket not only stops death but also restores your health to full, while the Guts Ticket just prevents you from dying. These tickets are effective in situations where the Guts skill wouldn’t normally work, including when at low HP.`,
 			type: 'Special Ticket',
-			demo: MegaGutsTicket,
+			//demo:MegaGutsTicket,
 			source:
 				'Hunter Navigation tasks, Mezeportal Festival Shop, NetCafe Daily Gift.', // TODO
 		},
@@ -118,7 +112,7 @@
 			description: `These crystals function as ammunition for Blademaster weapons, requiring specific skills to use effectively. Reaching level +3 in these skills guarantees maximum damage or status effect output.`,
 			source: 'General Store NPC.',
 			type: 'Tool',
-			demo: ItemSwordCrystal,
+			//demo:ItemSwordCrystal,
 		},
 		{
 			item: 'Gook Pickaxe',
@@ -155,7 +149,7 @@
 			source:
 				'Crafted from items occasionally gained from the Guuku Farm after acquiring a Guuku.',
 			type: 'Tool',
-			demo: GuukuGloves,
+			//demo:GuukuGloves,
 		},
 		// {
 		// 	item: 'Toxin',
@@ -215,7 +209,7 @@
 			description: `A charm that increases the chances of earning more reward rolls and potentially doubling the rewards after completing a quest.`,
 			source: 'Hunter Navigation tasks, Combiner NPC.',
 			type: 'Consumable Charm',
-			demo: LargeLuckyCharm,
+			//demo:LargeLuckyCharm,
 		},
 		{
 			item: 'Super Lucky Charm',
@@ -432,13 +426,13 @@
 				/> effects stack. If you use all of them in a quest, one of each will be
 				consumed per quest.
 			</p>
-			<CenteredFigure
+			<!-- <CenteredFigure
 				width={'100%'}
 				type="file"
 				src={StackedLuckyCharms}
 				alt="Stacked lucky charms effects example"
 				figcaption="Stacked lucky charms effects example."
-			/>
+			/> -->
 		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />

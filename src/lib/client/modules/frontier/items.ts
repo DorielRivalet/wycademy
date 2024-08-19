@@ -13,6 +13,7 @@ import BambooIconWhite from '$lib/client/components/frontier/icon/item/Bamboo_Wh
 import BarrelIconWhite from '$lib/client/components/frontier/icon/item/Barrel_Icon_White.svelte';
 import BbqIconWhite from '$lib/client/components/frontier/icon/item/BBQ_Icon_White.svelte';
 import BerryIconWhite from '$lib/client/components/frontier/icon/item/Berry_Icon_White.svelte';
+import BinocularsIconWhite from '$lib/client/components/frontier/icon/item/Binoculars_Icon_White.svelte';
 import BombIconWhite from '$lib/client/components/frontier/icon/item/Bomb_Icon_White.svelte';
 import BoneIconWhite from '$lib/client/components/frontier/icon/item/Bone_Icon_White.svelte';
 import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
@@ -156,6 +157,10 @@ export const itemInfo: { name: string; icon: any }[] = [
 	{
 		name: 'Berry',
 		icon: BerryIconWhite,
+	},
+	{
+		name: 'Binoculars',
+		icon: BinocularsIconWhite,
 	},
 	{
 		name: 'Bomb',
