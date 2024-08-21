@@ -444,6 +444,10 @@
 				the hitzone type, while the values in bold in the table denotes the
 				highest and second highest values for that column.
 			</p>
+			<p class="spaced-paragraph">
+				The higher the hitzone value, the more damage you can deal for that
+				damage type.
+			</p>
 			<div class="hitzone-colors-description">
 				<UnorderedList>
 					<ListItem>
