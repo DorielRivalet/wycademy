@@ -233,7 +233,7 @@
 			// demo: BurstThunder,
 			// icon: TranscendThunder,
 			effects:
-				'Deals thunder damage and paralyzes monsters. Does not work on monsters that are immune to paralysis.',
+				'Deals thunder damage and paralyzes monsters. Does not work on monsters that are immune to paralysis. The paralysis effect can be delayed.',
 			duration: '10 seconds (12s with recovery).',
 		},
 		{

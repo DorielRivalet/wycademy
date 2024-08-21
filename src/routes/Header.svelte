@@ -13,14 +13,8 @@
 	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import NotificationNew from 'carbon-icons-svelte/lib/NotificationNew.svelte';
-	import { onMount } from 'svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import {
-		notificationSeenStore,
-		notificationsStore,
-		overlayUpdatesStore,
-	} from '$lib/client/stores/notifications';
-	import { overlayVersion } from '$lib/constants';
+	import { notificationSeenStore } from '$lib/client/stores/notifications';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import HeaderNavigationMenuButton from './HeaderNavigationMenuButton.svelte';
 	import HeaderNavigationButton from './HeaderNavigationButton.svelte';
@@ -30,33 +24,10 @@
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	let newVersionAvailable = '';
-
-	async function checkForNewRelease() {
-		try {
-			const response = await fetch('/api/webhook/overlay');
-			const data = await response.json();
-
-			//TODO
-			console.log(data);
-			console.log(data?.tag_name);
-
-			if (data && data.tag_name && data.tag_name !== overlayVersion) {
-				console.log(`New version available: ${JSON.stringify(data)}`);
-				newVersionAvailable = data.tag_name;
-			} else {
-				console.log(`No new version found: ${JSON.stringify(data)}`);
-			}
-		} catch (error) {
-			console.error('Failed to fetch the latest release:', error);
-		}
-	}
-
-	onMount(checkForNewRelease);
-
 	// Shared state to track which menu is open
 	let openMenu: null | MenuId = null;
 
+	// TODO bugged
 	type MenuId = 'guides' | 'tools' | 'support';
 
 	const handleToggle = ({ detail }) => {
@@ -117,9 +88,9 @@
 						on:toggle={handleToggle}
 					/>
 				</div>
-				<div class="container-link">
+				<!-- TODO only show when an event is active or recently active <div class="container-link">
 					<HeaderNavigationButton path="/events" description="Events" />
-				</div>
+				</div> -->
 			{/if}
 		</ul>
 
@@ -133,6 +104,8 @@
 			</div>
 		{/if}
 		<div class="container-header-action">
+			<!-- TODO only show when logged in, give mini guide when logged in showing that this is
+			 for notifications, or as first notification message upon sign up.
 			<Button
 				tooltipPosition="left"
 				kind="ghost"
@@ -141,20 +114,19 @@
 				}}
 				iconDescription={!$notificationSeenStore &&
 				$notificationsStore &&
-				$overlayUpdatesStore &&
 				newVersionAvailable !== ''
 					? `New overlay version available')}`
 					: 'You have no unread notifications'}
 				href="/notifications"
 			>
 				<span slot="icon">
-					{#if !$notificationSeenStore && $notificationsStore && $overlayUpdatesStore && newVersionAvailable !== ''}
+					{#if !$notificationSeenStore && $notificationsStore && newVersionAvailable !== ''}
 						<NotificationNew size={20} color="var(--ctp-peach)" />
 					{:else}
 						<Notification size={20} color="var(--ctp-text)" />
 					{/if}</span
 				>
-			</Button>
+			</Button> -->
 		</div>
 		<!-- TODO: profile disclosure-->
 		{#if $breakpointLargerThanSmall}

@@ -71,7 +71,6 @@
 	import {
 		notificationsStore,
 		onNotificationPress,
-		overlayUpdatesStore,
 		pushNotificationsStore,
 	} from '$lib/client/stores/notifications';
 	import TooltipDefinition from 'carbon-components-svelte/src/TooltipDefinition/TooltipDefinition.svelte';
@@ -238,10 +237,6 @@
 	key="__push-notifications-enabled"
 />
 <LocalStorage bind:value={$notificationsStore} key="__notifications-enabled" />
-<LocalStorage
-	bind:value={$overlayUpdatesStore}
-	key="__overlay-updates-enabled"
-/>
 <LocalStorage bind:value={$volumeStore} key="__volume" />
 <LocalStorage bind:value={$cursorIcon} key="__cursor-icon" />
 <LocalStorage bind:value={$scrollToTopStore} key="__scroll-to-top-enabled" />
@@ -399,21 +394,7 @@
 				>Push notifications</Button
 			>
 		</div>
-		<div class="setting-container">
-			<Toggle
-				disabled={!$notificationsStore}
-				on:toggle={(e) => onStoreToggle(overlayUpdatesStore, e)}
-				bind:toggled={$overlayUpdatesStore}
-				><span slot="labelText"
-					><TooltipDefinition>
-						Overlay updates
-						<span slot="tooltip">
-							Notifies when the overlay publishes a new release.
-						</span>
-					</TooltipDefinition></span
-				>
-			</Toggle>
-		</div>
+
 		<div class="setting-container">
 			<Toggle toggled={true} disabled={!$notificationsStore}>
 				<span slot="labelText"
