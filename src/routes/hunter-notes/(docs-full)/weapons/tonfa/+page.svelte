@@ -251,13 +251,13 @@
 				timer; dodging can almost fully charge the gauge instantly. Each red stack
 				gives +10% True Raw and better blue gauge recovery.
 			</p>
-			<!-- <CenteredFigure
+			<CenteredFigure
 				figcaption="Tonfa Gauge."
 				alt="Tonfa Gauge"
 				type="file"
 				width="100%"
-				src={TonfaMeter}
-			/> -->
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/tonfa-meter.webp'}
+			/>
 			<p class="spaced-paragraph">
 				The <InlineTooltip
 					tooltip="Weapon"
@@ -321,13 +321,13 @@
 						and is followed by a secondary effect, depending on which part of the
 						monster was weakened during the finisher.
 					</p>
-					<!-- <CenteredFigure
+					<CenteredFigure
 						figcaption="Meter after Ryuuki Finisher."
 						alt="Meter after Ryuuki Finisher"
 						type="file"
 						width="100%"
-						src={TonfaRyuukiMeter}
-					/> -->
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/tonfa-meter-ryuuki.webp'}
+					/>
 					<UnorderedList class="spaced-list">
 						<ListItem>
 							<p>

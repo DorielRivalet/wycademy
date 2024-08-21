@@ -328,13 +328,13 @@
 						quest, you can simply run up to a box, interact, and press L1 or F
 						to instantly equip your preset from Slot 1.
 					</p>
-					<!-- <CenteredFigure
+					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={LoadedItemPreset}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/loaded-item-preset.webp'}
 						alt="Loaded item preset"
 						figcaption="Loaded item preset."
-					/> -->
+					/>
 					<p class="spaced-paragraph">
 						If you have a subscription, you’ll have an additional 20 preset
 						slots. Access these by going to the "Item Presets" option and
@@ -443,14 +443,14 @@
 									iconType="component"
 								/>.
 							</p>
-							<!-- <CenteredFigure
+							<CenteredFigure
 								width={'100%'}
 								type="file"
-								src={BulkCombine}
+								src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/bulk-combine-energy-drink.webp'}
 								alt="Bulk Combine"
 								figcaption="You must manually combine an item once for it to appear in
 								the Bulk Combine menu at the Combiner NPC."
-							/> -->
+							/>
 						</div>
 					</section>
 

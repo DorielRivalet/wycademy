@@ -6,7 +6,7 @@
 	import ChartRadar from 'carbon-pictograms-svelte/lib/ChartRadar.svelte';
 	import ChartLine from 'carbon-pictograms-svelte/lib/ChartLine.svelte';
 	import Notifications from 'carbon-pictograms-svelte/lib/Notifications.svelte';
-	import HeroVideoBackground from '$lib/client/videos/hero-bg.webm';
+	import HeroVideoBackground from '$lib/client/videos/hero-bg.webm'; // TODO cdn
 	import ClickableTilePictogram from '$lib/client/components/ClickableTilePictogram.svelte';
 	import LandingPageSection from '$lib/client/components/LandingPageSection.svelte';
 	import MonsterPartIconWhite from '$lib/client/components/frontier/icon/item/Monster_Part_Icon_White.svelte';

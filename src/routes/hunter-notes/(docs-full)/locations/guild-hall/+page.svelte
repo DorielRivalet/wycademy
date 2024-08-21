@@ -57,15 +57,15 @@
 					src="https://github.com/DorielRivalet/mhfz-overlay/raw/main/demo/buffs.png"
 					alt="Overlay timers"
 					figcaption="You can check the duration with the overlay."
-				/>
+				/> -->
 
 				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={imageGuildFoodCat}
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/guild-food-cat.webp'}
 					alt="Dishes"
 					figcaption="Up to 6 dishes can be stored as leftovers for 1 hour at the cat in the cooking area."
-				/> -->
+				/>
 
 				<p class="spaced-paragraph"></p>
 				<p class="spaced-paragraph">
@@ -111,7 +111,7 @@
 				<!-- <CenteredFigure
 					width={'100%'}
 					type="file"
-					src={imageGuildFood}
+					src={""}
 					alt="Cooking"
 					figcaption="The cooking minigame."
 				/> -->
@@ -446,14 +446,14 @@
 						icon={getItemIcon('Scale')}
 					/> from the Guild Shop.
 				</p>
-				<!--
+
 				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={imageGuildPoogie}
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/guild-poogie.webp'}
 					alt="Guild poogie"
 					figcaption="Poogie after succesful skill activation."
-				/> -->
+				/>
 
 				<p class="spaced-paragraph">
 					You can only have one buff active at a time. You only need to feed

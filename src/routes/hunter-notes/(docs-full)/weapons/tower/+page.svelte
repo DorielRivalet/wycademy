@@ -29,13 +29,13 @@
 				/>.
 			</p>
 
-			<!-- <CenteredFigure
+			<CenteredFigure
 				width={'100%'}
 				type="file"
-				src={TowerWeapons}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/tower-weapons.webp'}
 				alt="Tower Weapons"
 				figcaption="Tower Weapons."
-			/> -->
+			/>
 
 			<p class="spaced-paragraph">
 				You can customize weapon attributes such as Sharpness, Raw, Elemental,
@@ -70,13 +70,13 @@
 				equip it. You can have a maximum of two skills on a weapon.
 			</p>
 
-			<!-- <CenteredFigure
+			<CenteredFigure
 				width={'100%'}
 				type="file"
-				src={TowerWeaponDecorations}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/tower-weapon-decorations.webp'}
 				alt="Tower Weapon decorations"
 				figcaption="Tower Weapon decorations."
-			/> -->
+			/>
 
 			<p class="spaced-paragraph">
 				In order to remove a <strong>Tower Decoration</strong>, you need to buy
@@ -146,13 +146,13 @@
 				/>.
 			</p>
 
-			<!-- <CenteredFigure
+			<CenteredFigure
 				width={'100%'}
 				type="file"
-				src={TowerWeaponsUpgrades}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/tower-weapon-upgrades.webp'}
 				alt="Tower Weapon upgrades"
 				figcaption="Tower Weapon upgrades."
-			/> -->
+			/>
 
 			<p>
 				If you are looking for a <strong>Tower Weapon Simulator</strong>, you

@@ -426,13 +426,13 @@
 				/> effects stack. If you use all of them in a quest, one of each will be
 				consumed per quest.
 			</p>
-			<!-- <CenteredFigure
+			<CenteredFigure
 				width={'100%'}
 				type="file"
-				src={StackedLuckyCharms}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/stacked-lucky-charms.webp'}
 				alt="Stacked lucky charms effects example"
 				figcaption="Stacked lucky charms effects example."
-			/> -->
+			/>
 		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />

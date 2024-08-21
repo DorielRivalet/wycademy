@@ -125,13 +125,13 @@
 				/> sells.
 			</p>
 
-			<!-- <CenteredFigure
+			<CenteredFigure
 				width={'100%'}
 				type="file"
-				src={tshirt}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/armor-color-tshirt.webp'}
 				alt="T-Shirt"
 				figcaption="T-Shirt that can be of many colors."
-			/> -->
+			/>
 
 			<p class="spaced-paragraph">
 				If your total points for Green, Red or White pass 100, the total points
