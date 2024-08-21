@@ -855,10 +855,10 @@
 				the Transcend state starts with little charge and must be powered up over
 				time during quests.
 			</p>
-			<!-- <CenteredFigure
+			<CenteredFigure
 				width={'100%'}
 				type="file"
-				src={TranscendMenu}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/transcend-menu.webp'}
 				alt="Transcend menu"
 				figcaption="You can access Transcend settings directly from the normal start menu.
 				To open the settings menu, select Status and then Secret Ceremony
@@ -868,12 +868,12 @@
 			<CenteredFigure
 				width={'100%'}
 				type="file"
-				src={TranscendInterface}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/transcend-interface.webp'}
 				alt="Transcend interface"
 				figcaption=" The settings window allows you to manage all aspects of the Transcend
 				state. You can toggle the mode on and off and upgrade the various buffs
 				the state provides."
-			/> -->
+			/>
 			<div class="table">
 				<DataTable
 					useStaticWidth
@@ -1079,13 +1079,13 @@
 						to use. This flashing icon remains visible behind all items, even if
 						you have something other than the Transcend option selected.
 					</p>
-					<!-- <CenteredFigure
+					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={TranscendReady}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/transcend-ready.webp'}
 						alt="Transcend ready"
 						figcaption="Transcend ready."
-					/> -->
+					/>
 					<p class="spaced-paragraph">
 						Using the "item" activates the Transcend state, marked by a special
 						animation and your character gaining an aura. While this aura is
@@ -1104,13 +1104,13 @@
 						damaged element or randomly. If a monster is immune to the elemental
 						damage dealt, the burst will default to Raw.
 					</p>
-					<!-- <CenteredFigure
+					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={BurstReady}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/burst-ready.webp'}
 						alt="Burst ready"
 						figcaption="Burst ready."
-					/> -->
+					/>
 					<p class="spaced-paragraph">
 						It is unclear how many variables exactly influence the charging time
 						for the Transcended state. Taking damage can slightly speed up the

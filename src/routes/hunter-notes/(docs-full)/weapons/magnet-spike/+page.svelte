@@ -669,20 +669,20 @@ graph LR
 						repel away from an already placed marker.
 					</p>
 
-					<!-- <CenteredFigure
+					<CenteredFigure
 						figcaption="The markers from left to right: Unmarked, repulsion, attraction."
 						alt="Magnet Spike markers"
 						type="file"
 						width="100%"
-						src={MSMarkers}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/ms-markers.webp'}
 					/>
 					<CenteredFigure
 						figcaption="A marked Pokara."
 						alt="Magnet Spike mark"
 						type="file"
 						width="100%"
-						src={MSMark}
-					/> -->
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/ms-mark.webp'}
+					/>
 					<p class="spaced-paragraph">
 						Whether you attract or repel depends on your distance from the
 						monster. If you are too close, you can only repel (Blue). If you are
@@ -692,13 +692,13 @@ graph LR
 						an evade or a powerful falling attack.
 					</p>
 
-					<!-- <CenteredFigure
+					<CenteredFigure
 						figcaption="The gauges from top to bottom: repulsion, attraction, not attracted."
 						alt="Magnet Spike gauges"
 						type="file"
 						width="100%"
-						src={MSGauges}
-					/> -->
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/ms-gauges.webp'}
+					/>
 
 					<p class="spaced-paragraph">
 						Both modes charge as you use them. When their icon turns red, you
@@ -712,7 +712,7 @@ graph LR
 						alt="Magnet Spike magnetized"
 						type="file"
 						width="100%"
-						src={MSMagnetize}
+						src={''}
 					/> -->
 					<p class="spaced-paragraph">
 						After the magnetism mode expires, you will be locked out of gaining

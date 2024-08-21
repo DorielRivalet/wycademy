@@ -927,13 +927,13 @@ graph LR
 			Upon reaching HR5, you can unlock Style Rank. This process is initiated
 			automatically when you approach the Guild Master after achieving HR5.
 		</p>
-		<!-- <CenteredFigure
+		<CenteredFigure
 			width={'100%'}
 			type="file"
-			src={GuildMaster}
+			src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/guild-master.webp'}
 			alt="Guild Master"
 			figcaption="The Guild Master."
-		/> -->
+		/>
 		<p>
 			Style Rank grants several benefits, including special SR Skills, two new
 			movesets per weapon type (three in total at G Rank with Extreme Style),
@@ -957,13 +957,13 @@ graph LR
 					This will bring up a new menu where you should select your weapon
 					type, followed by the second option, and then your preferred style.
 				</p>
-				<!-- <CenteredFigure
+				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={SRStatus}
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/sr-status.webp'}
 					alt="SR Status"
 					figcaption="SR Status."
-				/> -->
+				/>
 				<p class="spaced-paragraph">
 					At HR5, you will have access to Heaven Style and Storm Style. For most
 					weapons at this rank, Storm Style is the best, though there may be
@@ -1048,14 +1048,14 @@ graph LR
 					is indicated by a flame icon in the quest list at the top right of its
 					name.
 				</p>
-				<!-- <CenteredFigure
+				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={HCExample}
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/hc-example.webp'}
 					alt="Hardcore monsters quests"
 					figcaption="Note that the flame icon itself does not mean the quest is in HC
 					mode; you must manually turn HC mode on."
-				/> -->
+				/>
 				<p class="spaced-paragraph">
 					You can toggle the HC option on the final screen after selecting a
 					quest, where you confirm player numbers, passwords, etc.
@@ -1097,13 +1097,13 @@ graph LR
 					Roars, Wind, or Quake, requiring Super Earplugs, Quake Res +2, and
 					Dragon Wind Breaker for protection.
 				</p>
-				<!-- <CenteredFigure
+				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={HCOption}
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/hc-option.webp'}
 					alt="Hardcore monster option"
 					figcaption="Toggling HC Mode on."
-				/> -->
+				/>
 				<p class="spaced-paragraph">
 					Completing an HC quest grants SR <InlineTooltip
 						icon={getItemIcon('Ticket')}
@@ -2663,13 +2663,13 @@ graph LR
 								</p></ListItem
 							>
 						</UnorderedList>
-						<!-- <CenteredFigure
+						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={MyMissionS}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/my-mission-s.webp'}
 							alt="My Mission example"
 							figcaption="S asking for 2 Velocidromes."
-						/> -->
+						/>
 					</div>
 				</section>
 				<section>
@@ -2747,13 +2747,13 @@ graph LR
 						tooltip="Item"
 					/> come in three levels: Basic, G, and True.
 				</p>
-				<!-- <CenteredFigure
+				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={HidenSkillExample}
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/hiden-skill-example.webp'}
 					alt="Hiden skill example"
 					figcaption="Hiden skill, colored yellow because it doesn't take a skill slot."
-				/> -->
+				/>
 				<UnorderedList>
 					<ListItem
 						><p>
@@ -2775,13 +2775,13 @@ graph LR
 						</p></ListItem
 					>
 				</UnorderedList>
-				<!-- <CenteredFigure
+				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={HidenCuffExample}
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/hiden-cuff-example.webp'}
 					alt="Hiden cuff example"
 					figcaption="Hiden cuff at the bottom."
-				/> -->
+				/>
 				<p>
 					The first two levels of these cuffs use standard Hiden materials, and
 					you cannot exchange HL Hiden tickets to obtain them. The True Cuff

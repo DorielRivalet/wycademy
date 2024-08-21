@@ -161,21 +161,21 @@
 						iconType={'file'}
 					/>.
 				</p>
-				<!-- <CenteredFigure
+				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={image1}
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/active-feature.webp'}
 					alt="Active Feature"
 					figcaption="The Active Feature interface."
 				/>
 				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={image2}
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/active-feature-shine.webp'}
 					alt="Active Feature"
 					figcaption="During a quest with active feature enabled, the weapon icon next to
 						the player name will shine."
-				/> -->
+				/>
 				<p>
 					Final Bitfield Value: {activeFeatureFinalBitfieldValue}
 				</p>

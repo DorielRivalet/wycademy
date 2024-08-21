@@ -847,13 +847,13 @@
 					icon={getMonsterIcon('Raviente')}
 				/>.
 			</p>
-			<!-- <CenteredFigure
+			<CenteredFigure
 				width={'100%'}
 				type="file"
-				src={CaravanGemPlayerList}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/caravan-gem-player-list.webp'}
 				alt="Caravan Gem next to player name"
 				figcaption="Caravan Gem next to player name."
-			/> -->
+			/>
 			<p class="spaced-paragraph">
 				Before engaging in Caravan activities, you should obtain a Caravan Gem.
 				This can be done by entering the <InlineTooltip
@@ -892,13 +892,13 @@
 							iconType="component"
 						/>.
 					</p>
-					<!-- <CenteredFigure
+					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={Kashira}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/kashira.webp'}
 						alt="Kashira"
 						figcaption="Kashira."
-					/> -->
+					/>
 					<p class="spaced-paragraph">
 						This gem adds a new option to your equipment box. Initially, it will
 						provide the skill <InlineTooltip
@@ -934,13 +934,13 @@
 							equipment. You can equip up to three skills with a total value of
 							10 points. Activated skills will turn orange.
 						</p>
-						<!-- <CenteredFigure
+						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={CaravanSkills}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/caravan-skills.webp'}
 							alt="Caravan Skills"
 							figcaption="Caravan Skills."
-						/> -->
+						/>
 					</div>
 				</section>
 			</section>
@@ -975,13 +975,13 @@
 						/>
 						are unclear.
 					</p>
-					<!-- <CenteredFigure
+					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={MezeportaCaravanNPC}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/mezeporta-caravan-npc.webp'}
 						alt="Mezeporta Caravan NPC"
 						figcaption="Mezeporta Caravan NPC."
-					/> -->
+					/>
 				</div>
 
 				<section>
@@ -999,13 +999,13 @@
 								iconType="file"
 							/> in town.
 						</p>
-						<!-- <CenteredFigure
+						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={CaravanGemMonsterTypes}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/caravan-gem-monster-types.webp'}
 							alt="Caravan Gem monster types"
 							figcaption="Caravan Gem monster types."
-						/> -->
+						/>
 						<p class="spaced-paragraph">
 							If your gem's color matches the monster's assigned color for the
 							day, you earn double PP for hunting that monster. If you have a
@@ -1122,27 +1122,27 @@
 								</p></ListItem
 							>
 						</UnorderedList>
-						<!-- <CenteredFigure
+						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={CombinerNPCTalisman}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/combiner-npc-talisman.webp'}
 							alt="Combiner NPC"
 							figcaption="Combiner NPC."
 						/>
 						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={TalismanExchange}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/talisman-exchange.webp'}
 							alt="Talisman Exchange"
 							figcaption="Talisman Exchange."
 						/>
 						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={CaravanHut2ndFloor}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/caravan-hut-2nd-floor.webp'}
 							alt="Caravan Hut 2nd Floor"
 							figcaption="Caravan Hut 2nd Floor."
-						/> -->
+						/>
 						<p class="spaced-paragraph">
 							The best way to grind colors is by stacking as many buffs as
 							possible and completing <InlineTooltip
@@ -1291,13 +1291,13 @@
 							only the quest poster needs to have completed this. Limited routes
 							rotate on a fixed schedule, starting at 12:00 midday server time.
 						</p>
-						<!-- <CenteredFigure
+						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={CaravanQuests}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/caravan-quests.webp'}
 							alt="Caravan quests"
 							figcaption="Caravan quests."
-						/> -->
+						/>
 					</div>
 				</section>
 				<section>
@@ -1332,13 +1332,13 @@
 								iconType="file"
 							/> per run, with the most profitable ones exceeding the Fatalis Trio.
 						</p>
-						<!-- <CenteredFigure
+						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={CaravanLimitedQuests}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/caravan-limited-quests.webp'}
 							alt="Caravan limited quests"
 							figcaption="Caravan limited quests."
-						/> -->
+						/>
 					</div>
 				</section>
 
@@ -1615,13 +1615,13 @@
 							skills will unlock as you level up all colors, and existing skills
 							will be retained.
 						</p>
-						<!-- <CenteredFigure
+						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={CaravanGemUpgrade}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/caravan-gem-upgrade.webp'}
 							alt="Gem Smith"
 							figcaption="Gem Smith."
-						/> -->
+						/>
 					</div>
 				</section>
 				<section>
@@ -1645,13 +1645,13 @@
 								</p></ListItem
 							></UnorderedList
 						>
-						<!-- <CenteredFigure
+						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={CaravanGemColor}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/caravan-gem-color.webp'}
 							alt="Change gem color"
 							figcaption="Change gem color."
-						/> -->
+						/>
 					</div>
 				</section>
 				<section>
@@ -1669,13 +1669,13 @@
 							Premium subscription. It's best to ignore this option unless you
 							need points instantly and have a large amount of money to spare.
 						</p>
-						<!-- <CenteredFigure
+						<CenteredFigure
 							width={'100%'}
 							type="file"
-							src={CaravanGemGacha}
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/caravan-gem-gacha.webp'}
 							alt="Upgrade with Gacha Coins"
 							figcaption="Upgrade with Gacha Coins."
-						/> -->
+						/>
 					</div>
 				</section>
 			</section>
@@ -1726,13 +1726,13 @@
 							icon={LocationIcons.find((e) => e.name === 'Caravan')?.icon}
 						/> area.
 					</p>
-					<!-- <CenteredFigure
+					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={PioneerNPC}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/pioneer-npc.webp'}
 						alt="Pioneer NPC"
 						figcaption="Pioneer NPC."
-					/> -->
+					/>
 					<section>
 						<SectionHeading level={3} title="Menu Use" />
 						<div>
@@ -1746,13 +1746,13 @@
 									iconType="file"
 								/> option to instantly finish the upgrade, then repeat.
 							</p>
-							<!-- <CenteredFigure
+							<CenteredFigure
 								width={'100%'}
 								type="file"
-								src={PioneerMap}
+								src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/pioneer-map.webp'}
 								alt="Pioneer Map"
 								figcaption="Pioneer Map."
-							/> -->
+							/>
 						</div>
 					</section>
 					<section>

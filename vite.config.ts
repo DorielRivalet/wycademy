@@ -7,6 +7,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { vite as vidstack } from 'vidstack/plugins';
 
 export default defineConfig({
 	css: {
@@ -20,6 +21,8 @@ export default defineConfig({
 		},
 	},
 	plugins: [
+		// This filter will only parse files placed in a `/player` directory.
+		vidstack({ include: /player\// }),
 		sveltekit(),
 		visualizer({
 			filename: './dist/stats.html',

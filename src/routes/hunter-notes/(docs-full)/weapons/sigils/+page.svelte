@@ -304,13 +304,13 @@
 				by the Cat Smith, who also creates random Gou weapons.
 			</p>
 
-			<!-- <CenteredFigure
+			<CenteredFigure
 				width={'100%'}
 				type="file"
-				src={CatSmith}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/cat-smith.webp'}
 				alt="Cat Smith"
 				figcaption="Cat Smith."
-			/> -->
+			/>
 
 			<p class="spaced-paragraph">
 				<InlineTooltip
@@ -367,13 +367,13 @@
 						number slotted.
 					</p>
 
-					<!-- <CenteredFigure
+					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={SigilSlots}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/sigil-slots.webp'}
 						alt="Sigil slots"
 						figcaption="Sigil slots."
-					/> -->
+					/>
 
 					<p class="spaced-paragraph">
 						The slot shape determines what item goes in. For sigils, the slots
@@ -541,13 +541,13 @@
 						/>
 						less useful compared to simply buffing raw damage.
 					</p>
-					<!-- <CenteredFigure
+					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={SigilStats}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/sigil-stats.webp'}
 						alt="Sigil stats"
 						figcaption="Sigil stats."
-					/> -->
+					/>
 					<p class="spaced-paragraph">
 						There are many possible outcomes for each sigil recipe, but the
 						following recipes use easily obtainable materials and have a good
@@ -610,20 +610,20 @@
 						providing effects like flat additions to True Raw, True Elemental, and
 						Affinity, as well as buffs to weapon motions.
 					</p>
-					<!-- <CenteredFigure
+					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={SigilActive}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/sigil-active.webp'}
 						alt="Sigil active"
 						figcaption="Sigil active."
 					/>
 					<CenteredFigure
 						width={'100%'}
 						type="file"
-						src={SigilInactive}
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/sigil-inactive.webp'}
 						alt="Sigil inactive"
 						figcaption="Sigil inactive."
-					/> -->
+					/>
 				</div>
 			</section>
 			<section>

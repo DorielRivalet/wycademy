@@ -224,7 +224,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 				alt="Triggering Elemental Release"
 				type="file"
 				width="100%"
-				src={SwaxeExplosion}
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/swaxe-explosion.webp'}
 			/> -->
 
 			<p>

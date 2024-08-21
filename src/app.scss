@@ -445,3 +445,26 @@ p {
 	text-shadow: unset;
 	border-color: var(--ctp-surface1);
 }
+
+.vds-video-layout {
+	/* Slider Thumb. */
+	--media-slider-thumb-bg: var(--ctp-red);
+	--media-slider-thumb-border: 1px solid var(--ctp-surface1);
+
+	/* Slider Tracks. */
+	--media-slider-track-bg: rgb(255 255 255 / 0.3);
+	--media-slider-track-fill-bg: var(--ctp-red);
+	--media-slider-track-fill-live-bg: #dc2626;
+	--media-slider-track-progress-bg: rgb(255 255 255 / 0.5);
+	--media-slider-focused-thumb-shadow: 0 0 0 4px hsla(0, 0%, 100%, 0.4);
+
+	/* Slider Steps. */
+	--media-slider-step-color: rgb(124, 124, 124);
+
+	/* Slider Chapter Title. */
+	--media-slider-chapter-title-color: #f5f5f5;
+
+	/* Slider Value. */
+	--media-slider-value-bg: black;
+	--media-slider-value-color: var(--ctp-red);
+}
