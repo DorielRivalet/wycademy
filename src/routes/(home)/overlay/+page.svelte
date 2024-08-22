@@ -6,7 +6,6 @@
 	import ChartRadar from 'carbon-pictograms-svelte/lib/ChartRadar.svelte';
 	import ChartLine from 'carbon-pictograms-svelte/lib/ChartLine.svelte';
 	import Notifications from 'carbon-pictograms-svelte/lib/Notifications.svelte';
-	import HeroVideoBackground from '$lib/client/videos/hero-bg.webm'; // TODO cdn
 	import ClickableTilePictogram from '$lib/client/components/ClickableTilePictogram.svelte';
 	import LandingPageSection from '$lib/client/components/LandingPageSection.svelte';
 	import MonsterPartIconWhite from '$lib/client/components/frontier/icon/item/Monster_Part_Icon_White.svelte';
@@ -195,7 +194,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 			description="Enhance your gameplay with a user-friendly, customizable interface. Perfect for casual players and speedrunners, offering easy access to essential tools and resources for an optimized gaming experience."
 			primaryButtonText="Get Overlay"
 			primaryButtonLink="https://github.com/DorielRivalet/mhfz-overlay?tab=readme-ov-file#installation"
-			heroVideoBackground={HeroVideoBackground}
+			heroVideoBackground={'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/overlay-hero-bg.webm'}
 		/>
 	</section>
 

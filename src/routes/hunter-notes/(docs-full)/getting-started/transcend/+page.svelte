@@ -21,6 +21,21 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import TranscendFire from '$lib/client/images/icon/transcend-fire.webp';
+	import TranscendWater from '$lib/client/images/icon/transcend-water.webp';
+	import TranscendThunder from '$lib/client/images/icon/transcend-thunder.webp';
+	import TranscendIce from '$lib/client/images/icon/transcend-ice.webp';
+	import TranscendDragon from '$lib/client/images/icon/transcend-dragon.webp';
+	import TranscendWall from '$lib/client/images/icon/transcend-wall.webp';
+	import TranscendVigor from '$lib/client/images/icon/transcend-vigor.webp';
+	import TranscendCloak from '$lib/client/images/icon/transcend-cloak.webp';
+	import TranscendFocus from '$lib/client/images/icon/transcend-focus.webp';
+	import TranscendRaw from '$lib/client/images/icon/transcend-raw.webp';
+	import TranscendSpeed from '$lib/client/images/icon/transcend-speed.webp';
+	import TranscendMind from '$lib/client/images/icon/transcend-mind.webp';
+	import TranscendConcentration from '$lib/client/images/supplemental/transcend-concentration.webp';
+	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { getElementIcon } from '$lib/client/modules/frontier/elements';
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
@@ -28,6 +43,7 @@
 	let modalLabel = '';
 	let modalOpen = false;
 	let modalImage = '';
+	let modalImageType: 'video' | 'image' = 'image';
 	let modalNotes = '';
 
 	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
@@ -40,10 +56,11 @@
 		description: string;
 		category: string;
 		demo?: string;
+		demoType?: 'video' | 'image';
 	}[] = [
 		{
 			id: '0',
-			// icon: TranscendFire,
+			icon: TranscendFire,
 			name: 'Fire Pulse',
 			description: 'Increases fire damage by a set percentage.',
 			levels: '10',
@@ -51,7 +68,7 @@
 		},
 		{
 			id: '1',
-			// icon: TranscendWater,
+			icon: TranscendWater,
 			name: 'Water Pulse',
 			description: 'Increases water damage by a set percentage.',
 			levels: '10',
@@ -59,7 +76,7 @@
 		},
 		{
 			id: '2',
-			// icon: TranscendThunder,
+			icon: TranscendThunder,
 			name: 'Thunder Pulse',
 			description: 'Increases thunder damage by a set percentage.',
 			levels: '10',
@@ -67,7 +84,7 @@
 		},
 		{
 			id: '3',
-			// icon: TranscendIce,
+			icon: TranscendIce,
 			name: 'Ice Pulse',
 			description: 'Increases ice damage by a set percentage.',
 			levels: '10',
@@ -75,7 +92,7 @@
 		},
 		{
 			id: '4',
-			// icon: TranscendDragon,
+			icon: TranscendDragon,
 			name: 'Dragon Pulse',
 			description: 'Increases dragon damage by a set percentage.',
 			levels: '10',
@@ -83,7 +100,7 @@
 		},
 		{
 			id: '5',
-			// icon: TranscendRaw,
+			icon: TranscendRaw,
 			name: 'Raw Pulse',
 			description: 'Increases raw damage by a set percentage.',
 			levels: '10',
@@ -91,7 +108,7 @@
 		},
 		{
 			id: '6',
-			// icon: TranscendCloak,
+			icon: TranscendCloak,
 			name: 'Cloak',
 			description: 'Increases defense and element resistance.',
 			levels: '10',
@@ -99,17 +116,18 @@
 		},
 		{
 			id: '7',
-			// icon: TranscendFocus,
+			icon: TranscendFocus,
 			name: 'Focus',
 			description:
 				'Start the quest with Transcend being partially charged to a set percentage.',
 			levels: '10',
 			category: 'Defensive',
-			// demo: TranscendConcentration,
+			demo: TranscendConcentration,
+			demoType: 'image',
 		},
 		{
 			id: '8',
-			// icon: TranscendMind,
+			icon: TranscendMind,
 			name: 'Mind',
 			description: 'Transcend duration increased.',
 			levels: '10',
@@ -117,16 +135,17 @@
 		},
 		{
 			id: '9',
-			// icon: TranscendWall,
+			icon: TranscendWall,
 			name: 'Wall',
 			description: 'During transcend, become immune to knockback attacks.',
 			levels: '1',
 			category: 'Defensive',
-			// demo: TranscendWallDemo,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/transcend-wall.webm',
+			demoType: 'video',
 		},
 		{
 			id: '10',
-			// icon: TranscendSpeed,
+			icon: TranscendSpeed,
 			name: 'Speed',
 			description: 'Grants Movement Speed Up during transcend.',
 			levels: '1',
@@ -134,12 +153,13 @@
 		},
 		{
 			id: '11',
-			// icon: TranscendVigor,
+			icon: TranscendVigor,
 			name: 'Vigor',
 			description: 'Heal by a certain amount to all nearby Hunters and NPCs.',
 			levels: '5',
 			category: 'Defensive',
-			// demo: TranscendHeal,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/transcend-heal.webm',
+			demoType: 'video',
 		},
 	];
 
@@ -212,8 +232,8 @@
 		{
 			id: '0',
 			name: 'Fire Pulse',
-			// icon: TranscendFire,
-			// demo: BurstFire,
+			icon: TranscendFire,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/burst-fire.webm',
 			effects:
 				'Deals fire damage. Flame bursts can force most monsters to stagger (4 staggers maximum).',
 			duration: '25 seconds.',
@@ -221,8 +241,8 @@
 		{
 			id: '1',
 			name: 'Water Pulse',
-			// icon: TranscendWater,
-			// demo: BurstWater,
+			icon: TranscendWater,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/burst-water.webm',
 
 			effects: 'Deals low water damage and increases hitzones on monsters.',
 			duration: '60 seconds.',
@@ -230,8 +250,8 @@
 		{
 			id: '2',
 			name: 'Thunder Pulse',
-			// demo: BurstThunder,
-			// icon: TranscendThunder,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/burst-thunder.webm',
+			icon: TranscendThunder,
 			effects:
 				'Deals thunder damage and paralyzes monsters. Does not work on monsters that are immune to paralysis. The paralysis effect can be delayed.',
 			duration: '10 seconds (12s with recovery).',
@@ -239,27 +259,27 @@
 		{
 			id: '3',
 			name: 'Ice Pulse',
-			// icon: TranscendIce,
+			icon: TranscendIce,
 			effects:
 				'Freezes a monster, restricting their movement for a period. Tails cannot be cut during this state, and some monsters may resist freezing even if they take ice damage.',
-			// demo: BurstIce,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/burst-ice.webm',
 			duration: '12 seconds (14s with recovery).',
 		},
 		{
 			id: '4',
 			name: 'Dragon Pulse',
-			// demo: BurstDragon,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/burst-dragon.webm',
 
-			// icon: TranscendDragon,
+			icon: TranscendDragon,
 			effects: `Deals dragon and stun damage, capable of KO'ing monsters.`,
 			duration: '8 seconds (10s with recovery).',
 		},
 		{
 			id: '5',
 			name: 'Raw Pulse',
-			// demo: BurstRaw,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/burst-raw.webm',
 
-			// icon: TranscendRaw,
+			icon: TranscendRaw,
 			effects:
 				'Deals a large amount of raw damage and causes a Flash Bomb effect.',
 			duration: '6 seconds (8s with recovery).',
@@ -297,7 +317,7 @@
 		{
 			id: '0',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '0',
 			level: '0',
 			category: 'Offensive',
@@ -307,7 +327,7 @@
 		{
 			id: '1',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '1500',
 			level: '1',
 			category: 'Offensive',
@@ -318,7 +338,7 @@
 		{
 			id: '2',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '2500',
 			category: 'Offensive',
 
@@ -331,7 +351,7 @@
 
 			category: 'Offensive',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '4000',
 			level: '3',
 			effects:
@@ -341,7 +361,7 @@
 			id: '4',
 			category: 'Offensive',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '5500',
 			level: '4',
 			effects:
@@ -352,7 +372,7 @@
 
 			category: 'Offensive',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '8000',
 			level: '5',
 			effects:
@@ -362,7 +382,7 @@
 			id: '6',
 			category: 'Offensive',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '9500',
 			level: '6',
 			effects:
@@ -373,7 +393,7 @@
 
 			category: 'Offensive',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '11000',
 			level: '7',
 			effects:
@@ -384,7 +404,7 @@
 
 			category: 'Offensive',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '12500',
 			level: '8',
 			effects:
@@ -395,7 +415,7 @@
 
 			category: 'Offensive',
 
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '14000',
 			level: '9',
 			effects:
@@ -405,7 +425,7 @@
 			id: '10',
 
 			category: 'Offensive',
-			name: 'Pulse Fire/Water/Thunder/Ice/Dragon/Raw',
+			name: 'Pulse Element',
 			points: '15500',
 			level: '10',
 			effects:
@@ -778,23 +798,25 @@
 		modalOpen = true;
 		modalHeading = cell.value;
 		modalLabel = section || '';
+		let found;
 
 		switch (section) {
 			default:
 				modalImage = '';
 				modalNotes = '';
+				modalImageType = 'image';
 				break;
 			case 'Burst':
-				modalImage =
-					elementalBursts.find((e) => e.name === cell.value)?.demo || '';
-				modalNotes =
-					elementalBursts.find((e) => e.name === cell.value)?.effects || '';
+				found = elementalBursts.find((e) => e.name === cell.value);
+				modalImage = found?.demo || '';
+				modalNotes = found?.effects || '';
+				modalImageType = 'video';
 				break;
 			case 'Transcend':
-				modalImage =
-					transcendBuffs.find((e) => e.name === cell.value)?.demo || '';
-				modalNotes =
-					transcendBuffs.find((e) => e.name === cell.value)?.description || '';
+				found = transcendBuffs.find((e) => e.name === cell.value);
+				modalImage = found?.demo || '';
+				modalNotes = found?.description || '';
+				modalImageType = found?.demoType || 'image';
 				break;
 		}
 	}
@@ -811,7 +833,18 @@
 >
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
-			<img src={modalImage} alt={'transcend'} />
+			{#if modalImageType === 'image'}
+				<img src={modalImage} alt={'transcend'} />
+			{:else}
+				<div>
+					{#await import('$lib/player/Player.svelte') then { default: Player }}
+						<svelte:component
+							this={Player}
+							{...{ title: modalHeading, src: modalImage }}
+						/>
+					{/await}
+				</div>
+			{/if}
 			<div>{modalNotes}</div>
 		</div>
 	{:else}
@@ -843,17 +876,32 @@
 		<SectionHeadingTopLevel title={'Transcend'} />
 		<div>
 			<p class="spaced-paragraph">
-				Transcend, introduced in <InlineTooltip
+				<InlineTooltip
+					tooltip="Buff"
+					text="Transcend"
+					iconType="file"
+					icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+				/>, introduced in <InlineTooltip
 					tooltip="Game"
 					text="G7"
 					iconType="file"
 					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
 						?.icon}
-				/> and which becomes available at HR3, is a customizable, time-based buff
-				that enhances your hunter's abilities. Similar to Wystones in 4U, Transcend
-				appears as a usable item among your other consumables. However, unlike Wystones,
-				the Transcend state starts with little charge and must be powered up over
-				time during quests.
+				/> and which becomes available at <strong>HR3</strong>, is a
+				customizable, time-based buff that enhances your hunter's abilities.
+				Similar to Wystones in 4U, <InlineTooltip
+					tooltip="Buff"
+					text="Transcend"
+					iconType="file"
+					icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+				/> appears as a usable item among your other consumables. However, unlike
+				Wystones, the <InlineTooltip
+					tooltip="Buff"
+					text="Transcend"
+					iconType="file"
+					icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+				/> state starts with little charge and must be powered up over time during
+				quests.
 			</p>
 			<CenteredFigure
 				width={'100%'}
@@ -992,15 +1040,15 @@
 				<SectionHeading level={2} title="Upgrading" />
 				<div>
 					<p class="spaced-paragraph">
-						You can upgrade the various buffs in two ways: by using Ancient
-						Hunting Books (Chinese Here) or by taking weapons of the appropriate
-						elemental type on quests (Fire, Water, Ice, Thunder, Dragon, Raw,
-						and Hybrid Elements).
+						You can upgrade the various buffs in two ways: by using <strong
+							>Ancient Hunting Books</strong
+						> or by taking weapons of the appropriate elemental type on quests (Fire,
+						Water, Ice, Thunder, Dragon, Raw, and Hybrid Elements).
 					</p>
 					<p class="spaced-paragraph">
-						Ancient Hunting Books are obtained by participating in various
-						cycling events (Conquests, Tower, Festival, Caravan, Road). These
-						events reward different books based on their type, and each book
+						<strong>Ancient Hunting Books</strong> are obtained by participating
+						in various cycling events (Conquests, Tower, Festival, Caravan, Road).
+						These events reward different books based on their type, and each book
 						provides varying amounts of points.
 					</p>
 
@@ -1061,9 +1109,8 @@
 					</div>
 
 					<p>
-						Books are rewarded upon reaching certain milestones during these
-						events. For example, you might receive three books for clearing 20
-						floors in the Tower.
+						<strong>Ancient Hunting Books</strong> are rewarded upon reaching certain
+						milestones during these events.
 					</p>
 				</div>
 			</section>
@@ -1072,12 +1119,19 @@
 				<SectionHeading level={2} title="Usage" />
 				<div>
 					<p class="spaced-paragraph">
-						When you enter a quest with Transcend active, you'll have a new item
-						icon resembling a hunter, which starts out light grey. Over time,
-						the light grey area will recede, and the icon will change to a
-						yellow hunter on a flashing white background, indicating it is ready
-						to use. This flashing icon remains visible behind all items, even if
-						you have something other than the Transcend option selected.
+						When you enter a quest with <InlineTooltip
+							tooltip="Buff"
+							text="Transcend"
+							iconType="file"
+							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+						/> active, you'll have a new item icon resembling a hunter, which starts
+						out light grey. Over time, the light grey area will recede, and the icon
+						will change to a yellow hunter on a flashing white background, indicating
+						it is ready to use.
+						<strong
+							>This flashing icon remains visible behind all items, even if you
+							have something other than the Transcend option selected.</strong
+						>
 					</p>
 					<CenteredFigure
 						width={'100%'}
@@ -1087,22 +1141,32 @@
 						figcaption="Transcend ready."
 					/>
 					<p class="spaced-paragraph">
-						Using the "item" activates the Transcend state, marked by a special
-						animation and your character gaining an aura. While this aura is
-						active, you'll benefit from any activated abilities, and attacking
-						with weapons will cause new hit animations depending on the element
-						used.
+						Using the "item" activates the <InlineTooltip
+							tooltip="Buff"
+							text="Transcend"
+							iconType="file"
+							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+						/> state, marked by a special animation and your character gaining an
+						aura. While this aura is active, you'll benefit from any activated abilities,
+						and attacking with weapons will cause new hit animations depending on
+						the element used.
 					</p>
 					<p>
 						After landing enough hits, the monster is surrounded by an aura, a
 						sound will play, and the icon will change to a carving knife,
-						indicating that you can perform an "Elemental Burst." Using this,
-						your character will rush forward with the carving knife and, upon
-						hitting the enemy, trigger an Elemental Burst appropriate to the
-						weapon's element and the monster hit. Weapons with a combination
-						element will either choose an effect based on the monster's most
-						damaged element or randomly. If a monster is immune to the elemental
-						damage dealt, the burst will default to Raw.
+						indicating that you can perform an <strong
+							>"Elemental Burst."</strong
+						>
+						Using this, your character will rush forward with the carving knife and,
+						upon hitting the enemy, trigger an
+						<strong>Elemental Burst</strong>
+						appropriate to the weapon's element and the monster hit. Weapons with
+						a combination element will either choose an effect based on the monster's
+						most damaged element or randomly.
+						<strong
+							>If a monster is immune to the elemental damage dealt, the burst
+							will default to Raw.</strong
+						>
 					</p>
 					<CenteredFigure
 						width={'100%'}
@@ -1113,12 +1177,21 @@
 					/>
 					<p class="spaced-paragraph">
 						It is unclear how many variables exactly influence the charging time
-						for the Transcended state. Taking damage can slightly speed up the
-						charge time.
+						for the <InlineTooltip
+							tooltip="Buff"
+							text="Transcend"
+							iconType="file"
+							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+						/> state. Taking damage can slightly speed up the charge time.
 					</p>
 					<p>
-						The times listed for the Transcended State to charge in the table
-						below are based on tests where no damage was taken.
+						The times listed for the <InlineTooltip
+							tooltip="Buff"
+							text="Transcend"
+							iconType="file"
+							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+						/> State to charge in the table below are based on tests where no damage
+						was taken.
 					</p>
 					<div class="table">
 						<DataTable
@@ -1183,25 +1256,70 @@
 				<div>
 					<p class="spaced-paragraph">
 						Elemental Bursts can be triggered on monsters after they have taken
-						enough hits with Transcend active. When ready, the item icon for the
-						Transcend state will change to a knife, allowing you to activate one
-						of the following bursts based on your weapon's element.
+						enough hits with <InlineTooltip
+							tooltip="Buff"
+							text="Transcend"
+							iconType="file"
+							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+						/> active. When ready, the item icon for the
+						<InlineTooltip
+							tooltip="Buff"
+							text="Transcend"
+							iconType="file"
+							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+						/> state will change to a knife, allowing you to activate one of the
+						following bursts based on your weapon's element.
 					</p>
 					<p class="spaced-paragraph">
 						The burst will default to raw if the monster takes no damage from
-						the element used. Hybrid elements, such as Light, have a hierarchy
-						for choosing the burst type. For example, Shantien weapons deal 30%
-						Fire, 100% Water, and 70% Thunder but will always choose Fire as the
-						burst type if fire damage has been dealt.
+						the element used. Hybrid elements, such as <InlineTooltip
+							tooltip="Element"
+							text="Light"
+							iconType="component"
+							icon={getElementIcon('Light')}
+						/>, have a hierarchy for choosing the burst type. For example,
+						Shantien weapons deal 30% <InlineTooltip
+							tooltip="Element"
+							text="Fire"
+							iconType="component"
+							icon={getElementIcon('Fire')}
+						/>, 100% <InlineTooltip
+							tooltip="Element"
+							text="Water"
+							iconType="component"
+							icon={getElementIcon('Water')}
+						/>, and 70% <InlineTooltip
+							tooltip="Element"
+							text="Thunder"
+							iconType="component"
+							icon={getElementIcon('Thunder')}
+						/> (from <InlineTooltip
+							tooltip="Element"
+							text="Tenshou"
+							iconType="component"
+							icon={getElementIcon('Tenshou')}
+						/> combo element) but will always choose <InlineTooltip
+							tooltip="Element"
+							text="Fire"
+							iconType="component"
+							icon={getElementIcon('Fire')}
+						/> as the burst type if <InlineTooltip
+							tooltip="Element"
+							text="Fire"
+							iconType="component"
+							icon={getElementIcon('Fire')}
+						/> damage has been dealt.
 					</p>
 					<p class="spaced-paragraph">
 						Status effects will only occur if the monster can normally be
 						afflicted by them and if the burst is used during frames when the
-						monster is staggerable. For example, performing an Ice element burst
-						during an uninterruptible attack animation will not freeze the
-						monster, and using a Thunder element burst on a monster that cannot
-						be paralyzed will not paralyze it. If you want to see which monsters
-						are immune to certain ailments, check our <Link
+						monster is staggerable. For example, performing an <strong
+							>Ice element burst</strong
+						>
+						during an uninterruptible attack animation will not freeze the monster,
+						and using a <strong>Thunder element burst</strong> on a monster that
+						cannot be paralyzed will not paralyze it. If you want to see which
+						monsters are immune to certain ailments, check our <Link
 							inline
 							href="/hunter-notes/getting-started/ailments#monster-status-immunities"
 							>Ailments
@@ -1261,6 +1379,23 @@
 							</svelte:fragment>
 						</DataTable>
 					</div>
+
+					<p>
+						The burst can be canceled by mistake if you barely fall off a ledge,
+						as shown below.
+					</p>
+
+					<div>
+						{#await import('$lib/player/Player.svelte') then { default: Player }}
+							<svelte:component
+								this={Player}
+								{...{
+									title: 'Burst Canceled',
+									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/burst-cancel.webm',
+								}}
+							/>
+						{/await}
+					</div>
 				</div>
 			</section>
 
@@ -1270,9 +1405,13 @@
 					<UnorderedList>
 						<ListItem>
 							<p>
-								You can lock certain Transcend buffs, like Vigor, in the
-								Transcend Menu. This prevents the buff from being active during
-								a quest.
+								You can lock certain <InlineTooltip
+									tooltip="Buff"
+									text="Transcend"
+									iconType="file"
+									icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+								/> buffs, like Vigor, in the Transcend Menu. This prevents the buff
+								from being active during a quest.
 							</p></ListItem
 						>
 						<ListItem>
@@ -1296,10 +1435,14 @@
 				<SectionHeading level={2} title="Multiplayer" />
 				<div>
 					<p>
-						In multiplayer, you can extend the duration of transcend. Example:
-						player A activates their transcend while player B doesn't, later on
-						player B activates their transcend while player A is still in
-						transcend, player A transcend duration will be extended.
+						In multiplayer, you can extend the duration of <InlineTooltip
+							tooltip="Buff"
+							text="Transcend"
+							iconType="file"
+							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
+						/>. Example: player A activates their transcend while player B
+						doesn't, later on player B activates their transcend while player A
+						is still in transcend, player A transcend duration will be extended.
 					</p>
 				</div>
 			</section>

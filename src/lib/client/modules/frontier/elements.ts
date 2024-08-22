@@ -328,3 +328,14 @@ export const elementMultipliers: FrontierElementMultiplier[] = [
 		dragonMultiplier: 0,
 	},
 ] as const;
+
+export function getElementIcon(iconName: FrontierElement) {
+	const icon = ElementIcons[0].icon;
+
+	const found = ElementIcons.find((w) => w.name === iconName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.icon;
+}

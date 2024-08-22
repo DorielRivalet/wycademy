@@ -12,8 +12,8 @@ There’s a long-standing hydration bug with Svelte 4 and Custom Elements which 
 	import 'vidstack/bundle';
 	import { theme } from '$lib/client/stores/theme';
 
-	export let title;
-	export let src;
+	export let title: string;
+	export let src: string;
 </script>
 
 <media-player class="poster" load="visible" {title} {src}>
