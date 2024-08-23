@@ -219,13 +219,6 @@ Arc-Shot can be executed at Charge Lv2.`,
 				<strong>Arc Shot</strong> transitions to its actual hit type, you won't trigger
 				the projectile rain effect, wasting the shot.
 			</p>
-			<!-- <CenteredFigure
-				figcaption="Triggering Elemental Release."
-				alt="Triggering Elemental Release"
-				type="file"
-				width="100%"
-				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/swaxe-explosion.webp'}
-			/> -->
 
 			<p>
 				For an explanation on element damage, see our <Link

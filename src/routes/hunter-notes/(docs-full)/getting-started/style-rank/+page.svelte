@@ -7,7 +7,10 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
-	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import {
+		getLocationIcon,
+		LocationIcons,
+	} from '$lib/client/modules/frontier/locations';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
 	import { gameInfo } from '$lib/client/modules/frontier/objects';
@@ -42,6 +45,7 @@
 	let modalLabel = '';
 	let modalOpen = false;
 	let modalImage = '';
+	let modalImageType: 'video' | 'image' = 'image';
 	let modalNotes = '';
 
 	const weaponUnlockGSRBonus: { id: string; unlocks: string; bonus: string }[] =
@@ -189,18 +193,21 @@
 		modalOpen = true;
 		modalHeading = cell.value;
 		modalLabel = section || '';
+		let found;
 
 		switch (section) {
 			default:
 				modalImage = '';
 				modalNotes = '';
+				modalImageType = 'image';
+
 				break;
 			case 'Style Rank Skills':
-				modalImage =
-					styleRankSkills.find((e) => e.skill === cell.value)?.image || '';
-				modalNotes =
-					styleRankSkills.find((e) => e.skill === cell.value)?.description ||
-					'';
+				found = styleRankSkills.find((e) => e.skill === cell.value);
+				modalImage = found?.image || '';
+				modalNotes = found?.description || '';
+				modalImageType = found?.imageType || 'image';
+
 				break;
 		}
 	}
@@ -560,6 +567,7 @@ At HR5, it provides 17, at HR6 it’s 45, and at HR7 it’s 50. It progresses gr
 		category: string;
 		description: string;
 		image?: string;
+		imageType?: 'video' | 'image';
 	}[] = [
 		{
 			id: '0',
@@ -616,7 +624,9 @@ At HR5, it provides 17, at HR6 it’s 45, and at HR7 it’s 50. It progresses gr
 			category: 'SR to GSR Skills',
 			description:
 				'+50/MAX Sharpness from sharpening. Takes only 1 sharpen motion to complete the action.',
-			//image: SharpeningUp,
+			image:
+				'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/max-sharpen.webm',
+			imageType: 'video',
 		},
 		// { // Not in game
 		// 	id: '8',
@@ -651,14 +661,18 @@ At HR5, it provides 17, at HR6 it’s 45, and at HR7 it’s 50. It progresses gr
 			category: 'Every GSR999',
 			description:
 				'Causes any monster attacks that would normally knock you down to leave you partially recovered, allowing you to land on your feet instead of lying down and slowly getting up.',
-			//image: PassiveMaster,
+			image:
+				'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/passive-master.webm',
+			imageType: 'video',
 		},
 		{
 			id: '13',
 			skill: 'Secret Technique',
 			category: 'Every GSR999',
 			description: `A Hunter Knife attack that can be used once a day after 12:00. It deals massive damage after a long wind-up animation and is bound to the Kick action. After use, it increases your attack by 320 (flat addition) for the rest of the quest's duration (shown as a red particle effect during the animation). The initial attack does a portion of the monster's Max HP. You can increase how much Max HP is taken by increasing the GSR of weapons to 999; with all weapons at GSR999 it deals 38% of the monster's Max HP, meaning that a group of 3 hunters can oneshot most monsters this way. Quests where the initial attack deals very little damage include most musou quests, but it can be useful against Arrogant Duremudira due to being able to activate it at the entrance, where quest time hasn't started yet, thus keeping the attack increase portion of the skill without drawbacks. You can also cancel the initial attack portion of the skill by being near an area transition zone and transitioning via the Secret Tech animation; this makes you invulnerable to Damage Over Time effects (works even after carting), also keeping the attack increase bonus, although you lose on the benefits of hitting the initial attack. You gain invulnerability frames during the animation after the red particle effect. Due to this skill being very versatile, there is a separate speedrun category for it.`,
-			//image: SecretTech,
+			image:
+				'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/secret-tech.webm',
+			imageType: 'video',
 		},
 		{
 			id: '14',
@@ -666,7 +680,9 @@ At HR5, it provides 17, at HR6 it’s 45, and at HR7 it’s 50. It progresses gr
 			category: '11x GSR999',
 			description:
 				'An ability that can be triggered once per quest. It revives you after hitting 0 HP once and fully restores your health bar. This ability is disabled with Determination and is unlocked on GSR999 weapons after you have 11 GSR999 weapons in total.',
-			//image: SoulRevival,
+			image:
+				'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/soul-revival.webm',
+			imageType: 'video',
 		},
 	];
 
@@ -893,7 +909,18 @@ graph LR
 >
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
-			<img src={modalImage} alt={'style rank'} />
+			{#if modalImageType === 'image'}
+				<img src={modalImage} alt={'style rank'} />
+			{:else}
+				<div>
+					{#await import('$lib/player/Player.svelte') then { default: Player }}
+						<svelte:component
+							this={Player}
+							{...{ title: modalHeading, src: modalImage }}
+						/>
+					{/await}
+				</div>
+			{/if}
 			<div>{modalNotes}</div>
 		</div>
 	{:else}
@@ -924,8 +951,10 @@ graph LR
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Style Rank'} />
 		<p class="spaced-paragraph">
-			Upon reaching HR5, you can unlock Style Rank. This process is initiated
-			automatically when you approach the Guild Master after achieving HR5.
+			Upon reaching <strong>HR5</strong>, you can unlock
+			<strong>Style Rank</strong>. This process is initiated automatically when
+			you approach the <strong>Guild Master</strong> after achieving
+			<strong>HR5</strong>.
 		</p>
 		<CenteredFigure
 			width={'100%'}
@@ -935,10 +964,16 @@ graph LR
 			figcaption="The Guild Master."
 		/>
 		<p>
-			Style Rank grants several benefits, including special SR Skills, two new
-			movesets per weapon type (three in total at G Rank with Extreme Style),
-			and access to Hardcore (HC) monsters. You can test various weapons' SR
-			movesets at the bed in your house.
+			<strong>Style Rank</strong> grants several benefits, including special SR
+			Skills, two new movesets per weapon type (three in total at G Rank with
+			<strong>Extreme Style</strong>), and access to
+			<strong>Hardcore (HC)</strong> monsters. You can test various weapons' SR
+			movesets at the bed in <InlineTooltip
+				icon={LocationIcons.find((e) => e.name === 'My House')?.icon}
+				iconType="file"
+				text="My House"
+				tooltip="Location"
+			/>.
 		</p>
 		<section>
 			<SectionHeading level={2} title="Weapon Styles" />
@@ -965,10 +1000,11 @@ graph LR
 					figcaption="SR Status."
 				/>
 				<p class="spaced-paragraph">
-					At HR5, you will have access to Heaven Style and Storm Style. For most
-					weapons at this rank, Storm Style is the best, though there may be
-					some variations. You can swap styles at any time and are not locked
-					into any of the three initially available options.
+					At <strong>HR5</strong>, you will have access to
+					<strong>Heaven Style</strong> and <strong>Storm Style</strong>. For
+					most weapons at this rank, <strong>Storm Style</strong> is the best, though
+					there may be some variations. You can swap styles at any time and are not
+					locked into any of the three initially available options.
 				</p>
 				<div class="table">
 					<DataTable
@@ -1025,15 +1061,19 @@ graph LR
 					>
 				</p>
 				<p class="spaced-paragraph">
-					Upon reaching G Rank, interact with the Guild Master again to unlock
-					Extreme Style. This style significantly alters weapons compared to
-					Storm or Heaven styles and is generally the best-in-slot for every
-					weapon class at high-level play. You should switch all weapons to this
-					style upon reaching G Rank and unlocking it.
+					Upon reaching <strong>G Rank</strong>, interact with the
+					<strong>Guild Master</strong>
+					again to unlock <strong>Extreme Style</strong>. This style
+					significantly alters weapons compared to Storm or Heaven styles and is
+					generally the best-in-slot for every weapon class at high-level play.
+					<strong
+						>You should switch all weapons to this style upon reaching G Rank
+						and unlocking it.</strong
+					>
 				</p>
 				<p class="spaced-paragraph">
-					To use any alternative movesets, your Book of Secrets must be
-					equipped. If it is disabled, go to the SR menu and choose the first
+					To use any alternative movesets, your <strong>Book of Secrets</strong>
+					must be equipped. If it is disabled, go to the SR menu and choose the first
 					option, followed by the first option again, to toggle it back on.
 				</p>
 			</div>
@@ -1043,10 +1083,10 @@ graph LR
 			<SectionHeading level={2} title="Hardcore Mode" />
 			<div>
 				<p class="spaced-paragraph">
-					Hardcore (HC) is a toggleable option for SR quests that transforms the
-					large monsters into HC monsters. If a quest can be made hardcore, it
-					is indicated by a flame icon in the quest list at the top right of its
-					name.
+					<strong>Hardcore (HC)</strong> is a toggleable option for SR quests that
+					transforms the large monsters into HC monsters. If a quest can be made
+					hardcore, it is indicated by a flame icon in the quest list at the top
+					right of its name.
 				</p>
 				<CenteredFigure
 					width={'100%'}
@@ -1067,16 +1107,17 @@ graph LR
 			<SectionHeading level={2} title="Hardcore Monsters" />
 			<div>
 				<p>
-					If you spend a significant amount of time at HR5, you will likely need
+					If you spend a significant amount of time at <strong>HR5</strong>, you
+					will likely need
 					<InlineTooltip
 						icon={getItemIcon('Ticket')}
 						iconType="component"
 						text="Weapon Souls"
 						tooltip="Item"
-					/> and Hardcore Carves for certain upgrades. These are obtained by fighting
-					monsters within a specific rank band with the HC option enabled. Enabling
-					HC transforms a monster into its Hardcore variant, which adds a new 5%
-					carve item to the monster and provides a <InlineTooltip
+					/> and <strong>Hardcore Carves</strong> for certain upgrades. These
+					are obtained by fighting monsters within a specific rank band with the
+					HC option enabled. Enabling HC transforms a monster into its Hardcore
+					variant, which adds a new 5% carve item to the monster and provides a <InlineTooltip
 						icon={getItemIcon('Ticket')}
 						iconType="component"
 						text="Weapon Soul"
@@ -1092,10 +1133,24 @@ graph LR
 				</UnorderedList>
 
 				<p class="spaced-paragraph">
-					Hardcore monsters are more powerful versions with new skills,
-					abilities, and appearances. Many HC monsters have enhanced levels of
-					Roars, Wind, or Quake, requiring Super Earplugs, Quake Res +2, and
-					Dragon Wind Breaker for protection.
+					<strong>Hardcore monsters</strong> are more powerful versions with new
+					skills, abilities, and appearances. Many HC monsters have enhanced
+					levels of Roars, Wind, or Quake, requiring <InlineTooltip
+						icon={getItemIcon('Jewel')}
+						iconType="component"
+						text="Super Earplugs"
+						tooltip="Armor Skill"
+					/>, <InlineTooltip
+						icon={getItemIcon('Jewel')}
+						iconType="component"
+						text="Quake Res+2"
+						tooltip="Armor Skill"
+					/>, and <InlineTooltip
+						icon={getItemIcon('Jewel')}
+						iconType="component"
+						text="Dragon Wind Breaker"
+						tooltip="Armor Skill"
+					/> for protection.
 				</p>
 				<CenteredFigure
 					width={'100%'}
@@ -1111,9 +1166,10 @@ graph LR
 						text="Weapon Souls"
 						tooltip="Item"
 					/> (a ticket item), used for crafting specific weapons and armor. Using
-					a weapon within the Rarity Limit stated in your Book of Secrets provides
-					a multiplier for HRP (3x), SRP (4x), Zeny (1.5x), and GCP (1.5x), making
-					HC quests an excellent way to gain ranks. As of <InlineTooltip
+					a weapon within the Rarity Limit stated in your
+					<strong>Book of Secrets</strong>
+					provides a multiplier for HRP (3x), SRP (4x), Zeny (1.5x), and GCP (1.5x),
+					making HC quests an excellent way to gain ranks. As of <InlineTooltip
 						icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
 							?.icon}
 						iconType="file"
@@ -1128,8 +1184,8 @@ graph LR
 					become their Hardcore variants.
 				</p>
 				<p class="spaced-paragraph">
-					G Rank quests receive the same effects as normal Hunter Rank HC
-					quests, with different multipliers applying to G Rank points and
+					<strong>G Rank</strong> quests receive the same effects as normal Hunter
+					Rank HC quests, with different multipliers applying to G Rank points and
 					currency (GRP, GSRP, Gzeny).
 				</p>
 			</div>
@@ -1138,19 +1194,19 @@ graph LR
 			<SectionHeading level={2} title="Hardcore Carves" />
 			<div>
 				<p class="spaced-paragraph">
-					Hardcore (HC) Carves are an additional type of carve available from HC
-					monsters. Generally, each type of monster has one HC carve per tier
-					(HR1-2, HR3-4, HR5-6, G Rank).
+					<strong>Hardcore (HC)</strong> Carves are an additional type of carve available
+					from HC monsters. Generally, each type of monster has one HC carve per
+					tier (HR1-2, HR3-4, HR5-6, G Rank).
 				</p>
 				<p class="spaced-paragraph">
-					The standard way to obtain HC Carves is by killing and carving a
-					monster. However, some event quests also reward them as normal
+					The standard way to obtain <strong>HC Carves</strong> is by killing and
+					carving a monster. However, some event quests also reward them as normal
 					rewards. The standard rate for an HC Carve is 5%, and for a GHC Carve,
 					it is 2%.
 				</p>
 				<p class="spaced-paragraph">
-					HC Carves are commonly used across gear, serving a similar role to
-					low-percentage carves like <InlineTooltip
+					<strong>HC Carves</strong> are commonly used across gear, serving a
+					similar role to low-percentage carves like <InlineTooltip
 						icon={getItemIcon('Ball')}
 						iconType="component"
 						text="Gems"
@@ -1163,15 +1219,16 @@ graph LR
 					/> introduced since Hardcore Monsters were added.
 				</p>
 				<p class="spaced-paragraph">
-					When you carve an HC Carve, you will hear a special jingle distinct
-					from the normal carving success sound. HC Carves can also be carved by
-					your Partner and will appear in the rewards after a quest (without the
-					jingle). While on Premium, the Legendary Pugi can also obtain them
-					similarly to your Partner.
+					When you carve an <strong>HC Carve</strong>, you will hear a special
+					jingle distinct from the normal carving success sound.
+					<strong>HC Carves</strong> can also be carved by your Partner and will
+					appear in the rewards after a quest (without the jingle). While on Premium,
+					the Legendary Pugi can also obtain them similarly to your Partner.
 				</p>
 				<p class="spaced-paragraph">
-					N Points and Festival Points can be spent on HC Carves, typically
-					costing around 100 N Points or 500 Festival Points minimum. The <InlineTooltip
+					N Points and Festival Points can be spent on <strong>HC Carves</strong
+					>, typically costing around 100 N Points or 500 Festival Points
+					minimum. The <InlineTooltip
 						icon={LocationIcons.find((e) => e.name === 'Diva Defense')?.icon}
 						iconType="file"
 						text="Diva Defense"
@@ -1193,9 +1250,9 @@ graph LR
 					/>.
 				</p>
 				<p class="spaced-paragraph">
-					HC Carves are unique because they are outside the normal carve pool.
-					When you carve a monster, you first roll for the pool from which you
-					get an item and then for the item itself.
+					<strong>HC Carves</strong> are unique because they are outside the normal
+					carve pool. When you carve a monster, you first roll for the pool from
+					which you get an item and then for the item itself.
 				</p>
 				<div class="table">
 					<DataTable
@@ -1300,8 +1357,8 @@ graph LR
 						text="Souls"
 						tooltip="Item"
 					/> are used to craft and upgrade certain weapons and armors. A lot of gear
-					during and most decent gear past HR5 will require at least one of these
-					to be upgraded or crafted.
+					during and most decent gear past <strong>HR5</strong> will require at least
+					one of these to be upgraded or crafted.
 				</p>
 			</div>
 		</section>
@@ -1334,29 +1391,34 @@ graph LR
 			<SectionHeading level={2} title="Style Rank Skills" />
 			<div>
 				<p class="spaced-paragraph">
-					After achieving Style Rank, you gain access to select a Style Rank
-					Skill. These are permanently active buffs similar to armor skills but
-					do not occupy any slots. The skills and instructions on how to equip
-					them are detailed below.
+					After achieving <strong>Style Rank</strong>, you gain access to select
+					a <strong>Style Rank Skill</strong>. These are permanently active
+					buffs similar to armor skills but do not occupy any slots. The skills
+					and instructions on how to equip them are detailed below.
 				</p>
 				<div></div>
 				<p class="spaced-paragraph">
-					You can equip your first skill by going into a weapon's Book of
-					Secrets menu, selecting one of the Special effects options, and then
-					choosing one of the skills. After reaching GSR100, you will be able to
-					equip two skills; until then, you can equip one.
+					You can equip your first skill by going into a weapon's <strong
+						>Book of Secrets</strong
+					> menu, selecting one of the Special effects options, and then choosing
+					one of the skills. After reaching GSR100, you will be able to equip two
+					skills; until then, you can equip one.
 				</p>
 				<p class="spaced-paragraph">
-					At HR5, you gain the basic Defense Skill. At HR6, you gain various
-					Elemental Resistance skills and the first version of Sharpening Up. At
-					HR7, you get access to Affinity Up and max Sharpening Up. All the
-					Resistance and Defense skills progress naturally as you rank up in G
-					Style Rank, with some requiring GSR999 in one or multiple weapons to
-					be unlocked or maxed out.
+					At <strong>HR5</strong>, you gain the basic Defense Skill. At
+					<strong>HR6</strong>, you gain various Elemental Resistance skills and
+					the first version of Sharpening Up. At
+					<strong>HR7</strong>, you get access to Affinity Up and max Sharpening
+					Up. All the Resistance and Defense skills progress naturally as you
+					rank up in
+					<strong>G Style Rank</strong>, with some requiring
+					<strong>GSR999</strong> in one or multiple weapons to be unlocked or maxed
+					out.
 				</p>
 				<p class="spaced-paragraph">
-					At G Rank, we recommend using Affinity Up, which increases the
-					affinity by +20% to +26%, similar to the <InlineTooltip
+					At <strong>G Rank</strong>, we recommend using
+					<strong>Affinity Up</strong>, which increases the affinity by +20% to
+					+26%, similar to the <InlineTooltip
 						icon={getItemIcon('Jewel')}
 						iconType="component"
 						text="Expert+2"
@@ -1382,19 +1444,21 @@ graph LR
 					/> each add +2% affinity, reaching a maximum of +26%.
 				</p>
 				<p class="spaced-paragraph">
-					Ranking up in GSR unlocks the Conquest Attack and Conquest Defense
-					skills.
+					Ranking up in GSR unlocks the <strong>Conquest Attack</strong> and
+					<strong>Conquest Defense</strong> skills.
 				</p>
 				<p class="spaced-paragraph">
-					Achieving GSR999 grants the Passive Master and Secret Technique
-					skills.
+					Achieving <strong>GSR999</strong> grants the
+					<strong>Passive Master</strong>
+					and <strong>Secret Technique</strong> skills.
 				</p>
 				<p class="spaced-paragraph">
-					Having 11 weapons at GSR999 unlocks the Soul Revival skill.
+					Having 11 weapons at <strong>GSR999</strong> unlocks the
+					<strong>Soul Revival</strong> skill.
 				</p>
 				<p class="spaced-paragraph">
-					GSR100 in each weapon unlocks a second SR skill slot, allowing for two
-					skills simultaneously.
+					<strong>GSR100</strong> in each weapon unlocks a second SR skill slot,
+					allowing for two skills simultaneously.
 				</p>
 				<div class="table table-with-scrollbar">
 					<DataTable
@@ -1523,9 +1587,12 @@ graph LR
 			<SectionHeading level={2} title="Style Rank Stats" />
 			<div>
 				<p class="spaced-paragraph">
-					The Book of Secrets status page shows everything related to Style
-					Rank. It can be accessed through the Equipment Box. The most notable
-					of these stats are the Attack Up and Attack Ceiling skills.
+					The <strong>Book of Secrets</strong> status page shows everything
+					related to <strong>Style Rank</strong>. It can be accessed through the
+					<strong>Equipment Box</strong>. The most notable of these stats are
+					the
+					<strong>Attack Up</strong>
+					and <strong>Attack Ceiling</strong> skills.
 				</p>
 				<div class="table">
 					<DataTable
@@ -1569,13 +1636,16 @@ graph LR
 			<SectionHeading level={2} title="Attack Ceiling" />
 			<div>
 				<p class="spaced-paragraph">
-					The Attack Ceiling does not directly buff your Attack but instead
-					allows you to have higher values of attack without hitting a ceiling.
+					The <strong>Attack Ceiling</strong> does not directly buff your Attack
+					but instead allows you to have higher values of attack without hitting
+					a ceiling.
 				</p>
 				<p class="spaced-paragraph">
-					It is incredibly important that you raise the Attack Ceiling while you
-					progress through G Rank, the default limit of 800 is incredibly easy
-					to reach in recent updates. <InlineTooltip
+					It is incredibly important that you raise the <strong
+						>Attack Ceiling</strong
+					>
+					while you progress through <strong>G Rank</strong>, the default limit
+					of 800 is incredibly easy to reach in recent updates. <InlineTooltip
 						icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier Z')
 							?.icon}
 						iconType="file"
@@ -1590,7 +1660,7 @@ graph LR
 					Each weapon in Monster Hunter has its own internal multiplier that is
 					applied to its True Raw value, you can divide the displayed attack on
 					a weapon to see their True Raw but every weapon has the same limits
-					based upon your Attack Ceiling level.
+					based upon your <strong>Attack Ceiling</strong> level.
 				</p>
 				<div class="table">
 					<DataTable
@@ -1639,7 +1709,8 @@ graph LR
 					</DataTable>
 				</div>
 				<p class="spaced-paragraph">
-					For example, if you had no attack ceiling levels while using a <InlineTooltip
+					For example, if you had no <strong>Attack Ceiling</strong> levels
+					while using a <InlineTooltip
 						icon={getWeaponIcon('Sword and Shield')}
 						iconType="component"
 						text="Sword and Shield"
@@ -1669,7 +1740,7 @@ graph LR
 				</p>
 				<p class="spaced-paragraph">
 					A good starting number to aim at is around 50 levels, this will cover
-					most skills before Hiden including being buffed by <InlineTooltip
+					most skills before <strong>Hiden</strong> including being buffed by <InlineTooltip
 						icon={getWeaponIcon('Hunting Horn')}
 						iconType="component"
 						text="Hunting Horns"
@@ -1688,8 +1759,9 @@ graph LR
 					want an exact number.
 				</p>
 				<p class="spaced-paragraph">
-					Increasing the value of the Attack Ceiling is done by completing My
-					Missions, these are detailed in the next section below.
+					Increasing the value of the <strong>Attack Ceiling</strong> is done by
+					completing <strong>My Missions</strong>, these are detailed in the
+					next section below.
 				</p>
 			</div>
 		</section>
@@ -1697,29 +1769,38 @@ graph LR
 			<SectionHeading level={2} title="My Mission" />
 			<div>
 				<p class="spaced-paragraph">
-					My Mission is a series of objectives that are unlocked after you hit
-					HR6 and unlock Style Rank. There are two types of these missions, the
-					first are the Medal Series that are purely vanity oriented and do not
-					have any notable effects.
+					<strong>My Mission</strong> is a series of objectives that are
+					unlocked after you hit <strong>HR6</strong> and unlock
+					<strong>Style Rank</strong>. There are two types of these missions,
+					the first are the <strong>Medal Series</strong> that are purely optional
+					and do not have any notable effects.
 				</p>
 				<p class="spaced-paragraph">
-					The second series is the Weapon Series which are used to enhance four
-					different skills on all weapon types.
+					The second series is the <strong>Weapon Series</strong> which are used
+					to enhance four different skills on all weapon types.
 				</p>
 				<section>
 					<SectionHeading level={3} title="Medal Series" />
 					<div>
 						<p class="spaced-paragraph">
-							The Medal Series are the purely vanity challenges that have an
-							associated Hunter Navigation Task that gives 30x <InlineTooltip
+							The <strong>Medal Series</strong> are the purely optional
+							challenges that have an associated
+							<strong>Hunter Navigation Task</strong>
+							that gives 30x <InlineTooltip
 								icon={getItemIcon('Ticket')}
 								iconType="component"
 								text="My Mission Tickets"
 								tooltip="Item"
 							/>
-							that allows you to skip the Weapon Series tasks. These tasks can be
-							taken in your house in the SR Display Room which has a bullseye icon
-							next to it, this unlocks at HR5.
+							that allows you to skip the <strong>Weapon Series</strong> tasks.
+							These tasks can be taken in your house in the <InlineTooltip
+								icon={getLocationIcon('My Missions')}
+								iconType="file"
+								text="SR Display Room"
+								tooltip="Location"
+							/>
+							which has a bullseye icon next to it, this unlocks at
+							<strong>HR5</strong>.
 						</p>
 					</div>
 				</section>
@@ -1727,22 +1808,24 @@ graph LR
 					<SectionHeading level={3} title="Weapon Series" />
 					<div>
 						<p class="spaced-paragraph">
-							As mentioned the Weapon Series are global across all your weapons,
-							you can view your active My Mission by looking at your Book of
-							Secrets. This will display the task number you are on, the target
-							and any progress towards the goal. This progess is saved even if
-							you log out.
+							As mentioned the <strong>Weapon Series</strong> are global across
+							all your weapons, you can view your active
+							<strong>My Mission</strong>
+							by looking at your <strong>Book of Secrets</strong>. This will
+							display the task number you are on, the target and any progress
+							towards the goal. This progess is saved even if you log out.
 						</p>
 						<p class="spaced-paragraph">
 							Both the standard Hunter Rank and G Rank quest NPCs have options
 							dedicated towards these missions, selecting it will automatically
-							search for relevant quests that meet the requirements. But you
-							will still need to toggle HC manually if it is required by the
-							mission you are on.
+							search for relevant quests that meet the requirements. <strong
+								>But you will still need to toggle HC manually if it is required
+								by the mission you are on.</strong
+							>
 						</p>
 						<p class="spaced-paragraph">
-							The number of My Missions you should realistically take varies
-							massively depending on your level of progression, the following
+							The number of <strong>My Missions</strong> you should realistically
+							take varies massively depending on your level of progression, the following
 							are some estimates to aim for that give you wiggle room and should
 							cover most skill sets used at that point and most play styles:
 						</p>
@@ -1808,8 +1891,8 @@ graph LR
 								text="My Mission Tickets"
 								tooltip="Item"
 							/>, which are fairly rare, or spend lottery coins. You can find
-							the skip option with the Guild Master from whom you get SRs and
-							GSRs.
+							the skip option with the <strong>Guild Master</strong> from whom you
+							get SRs and GSRs.
 						</p>
 						<p class="spaced-paragraph">
 							Premium days will give you 40 <InlineTooltip
@@ -1841,10 +1924,12 @@ graph LR
 					/> and an attack multiplier of at least 1.2x for Melee and 1.3x for Ranged.
 				</p>
 				<p class="spaced-paragraph">
-					Having one of these skills is commonly referred to as having 'Hiden'
-					for that weapon. Achieving Hiden means equipping at least 5
-					decorations for that specific Hiden type. These decorations are made
-					by converting maxed-out Hiden Armors into Decorations.
+					Having one of these skills is commonly referred to as having <strong
+						>'Hiden'</strong
+					>
+					for that weapon. Achieving <strong>Hiden</strong> means equipping at
+					least 5 decorations for that specific <strong>Hiden</strong> type. These
+					decorations are made by converting maxed-out Hiden Armors into Decorations.
 				</p>
 			</div>
 		</section>
@@ -1902,8 +1987,10 @@ graph LR
 					</DataTable>
 				</div>
 				<p class="spaced-paragraph">
-					Hiden Armor granting these skills becomes available at HR6 but cannot
-					be completed until GR500.
+					Hiden Armor granting these skills becomes available at <strong
+						>HR6</strong
+					>
+					but cannot be completed until <strong>GR500</strong>.
 				</p>
 			</div>
 		</section>
@@ -1911,15 +1998,16 @@ graph LR
 			<SectionHeading level={2} title="Hiden Decorations" />
 			<div>
 				<p class="spaced-paragraph">
-					Hiden Decorations are per-weapon enhancements that grant a specific
-					weapon type's associated Hiden Skill (e.g., Great Sword Tech). These
-					decorations are refined from Hiden Armor in the same manner as other
-					GX decorations.
+					<strong>Hiden Decorations</strong> are per-weapon enhancements that
+					grant a specific weapon type's associated Hiden Skill (e.g., Great
+					Sword Tech). These decorations are refined from
+					<strong>Hiden Armor</strong> in the same manner as other GX decorations.
 				</p>
 				<p class="spaced-paragraph">
-					Hiden Skills provide at least a 20% increase in flat Attack along with
-					other weapon-specific buffs. Having Hiden is practically compulsory
-					for tackling endgame content, such as <InlineTooltip
+					<strong>Hiden Skills</strong> provide at least a 20% increase in flat
+					Attack along with other weapon-specific buffs. Having
+					<strong>Hiden</strong>
+					is practically compulsory for tackling endgame content, such as <InlineTooltip
 						icon={getMonsterIcon('Berserk Raviente')}
 						iconType="file"
 						text="Berserk Raviente"
@@ -1928,15 +2016,16 @@ graph LR
 					of decorations for different scenarios.
 				</p>
 				<p class="spaced-paragraph">
-					To upgrade armor into Hiden Decorations, you can choose between White
-					(which upgrades into either White or Black) or Red (which upgrades
-					into either Red or Blue) pieces. All pieces convert into the same
-					final decorations, so a full Black set or five maxed Black Helmets
-					will result in identical decorations. The primary difference is the
-					materials needed for upgrading each piece.
+					To upgrade armor into <strong>Hiden Decorations</strong>, you can
+					choose between White (which upgrades into either White or Black) or
+					Red (which upgrades into either Red or Blue) pieces. All pieces
+					convert into the same final decorations, so a full Black set or five
+					maxed Black Helmets will result in identical decorations. The primary
+					difference is the materials needed for upgrading each piece.
 				</p>
 				<p class="spaced-paragraph">
-					There are four colors of Hiden Decorations for each weapon: <InlineTooltip
+					There are four colors of <strong>Hiden Decorations</strong> for each
+					weapon: <InlineTooltip
 						icon={getItemIcon('Jewel')}
 						iconType="component"
 						text="White"
@@ -1964,10 +2053,12 @@ graph LR
 				</p>
 
 				<p class="spaced-paragraph">
-					Creating Hiden Decorations lasts until late G Rank. You can start
-					working on Hiden Armor from HR5 but cannot finish it until GR500.
-					Hiden Armor requires multiple HC, GHC, and G1% carves, along with
-					Weapon <InlineTooltip
+					Creating <strong>Hiden Decorations</strong> lasts until late G Rank.
+					You can start working on <strong>Hiden Armor</strong> from
+					<strong>HR5</strong>
+					but cannot finish it until <strong>GR500</strong>.
+					<strong>Hiden Armor</strong>
+					requires multiple HC, GHC, and G1% carves, along with Weapon <InlineTooltip
 						icon={getItemIcon('Ticket')}
 						iconType="component"
 						text="Souls"
@@ -1994,11 +2085,12 @@ graph LR
 				</p>
 
 				<p class="spaced-paragraph">
-					True Hiden gems are upgraded versions of the original Hiden
-					Decorations, featuring G Rank Skill Points. Crafting a True Hiden gem
-					requires one of each of the four colors of standard Hiden Decorations,
-					making the process equivalent to creating four full sets of Hiden
-					decorations.
+					<strong>True Hiden gems</strong> are upgraded versions of the original
+					<strong>Hiden Decorations</strong>, featuring G Rank Skill Points.
+					Crafting a <strong>True Hiden gem</strong> requires one of each of the
+					four colors of standard <strong>Hiden Decorations</strong>, making the
+					process equivalent to creating four full sets of
+					<strong>Hiden decorations</strong>.
 				</p>
 
 				<div class="mermaid-container">
@@ -2011,10 +2103,14 @@ graph LR
 				</div>
 
 				<p class="spaced-paragraph">
-					Despite being superior to standard Hiden decorations, True Hiden gems
+					Despite being superior to standard <strong>Hiden decorations</strong>,
+					<strong>True Hiden gems</strong>
 					should not be your primary focus. They are beneficial for optimizing a
-					set, but it is recommended to have a complete Hiden set before
-					grinding for True Hiden gems.
+					set, but
+					<strong
+						>it is recommended to have a complete Hiden set before grinding for
+						True Hiden gems</strong
+					>.
 				</p>
 
 				<p class="spaced-paragraph">
@@ -2025,9 +2121,9 @@ graph LR
 						text="Z1"
 						tooltip="Game"
 					/>, it is now possible to gain extra Skill Slots. This makes having
-					relevant skills on your Hiden decorations more valuable, as a set of
-					decorations can effectively provide two fixed skills for any set. If
-					you use <InlineTooltip
+					relevant skills on your <strong>Hiden decorations</strong> more
+					valuable, as a set of decorations can effectively provide two fixed
+					skills for any set. If you use <InlineTooltip
 						icon={getItemIcon('Jewel')}
 						iconType="component"
 						text="Solid Determination"
@@ -2052,9 +2148,11 @@ graph LR
 				</p>
 
 				<p class="spaced-paragraph">
-					For most weapons, avoid Hiden Gems that grant a specific skill
-					outright. Some skills may push out more desirable skills or overlap.
-					For instance, multiple skills can grant Affinity or <InlineTooltip
+					For most weapons, avoid <strong>Hiden Gems</strong> that grant a
+					specific skill outright. Some skills may push out more desirable
+					skills or overlap. For instance, multiple skills can grant
+					<strong>Affinity</strong>
+					or <InlineTooltip
 						icon={getItemIcon('Jewel')}
 						iconType="component"
 						text="Fencing+2"
@@ -2096,7 +2194,7 @@ graph LR
 						iconType="component"
 						text="Auto-Reload"
 						tooltip="Armor Skill"
-					/>), making True Hiden decorations less crucial for them.
+					/>), making <strong>True Hiden decorations</strong> less crucial for them.
 				</p>
 
 				<p class="spaced-paragraph">
@@ -2132,14 +2230,15 @@ graph LR
 				<p class="spaced-paragraph">
 					If your weapon doesn't come with a specific skill and you're planning
 					ahead, it is sensible to obtain at least one of each of the four
-					colors. This allows you to create a True Hiden decoration when needed
-					and avoids issues with fixed skills interfering with sets.
+					colors. This allows you to create a <strong
+						>True Hiden decoration</strong
+					> when needed and avoids issues with fixed skills interfering with sets.
 					Alternatively, committing to three and two or similar combinations can
 					also help prevent unwanted skills.
 				</p>
 
 				<p class="spaced-paragraph">
-					When crafting True Hiden Decorations and considering <InlineTooltip
+					When crafting <strong>True Hiden Decorations</strong> and considering <InlineTooltip
 						icon={getItemIcon('Jewel')}
 						iconType="component"
 						text="Determination"
@@ -2422,10 +2521,11 @@ graph LR
 						iconType="component"
 						text="Merits"
 						tooltip="Item"
-					/> into cookable stones at the Combiner NPC. The conversion rate is 10:5,
-					and the resulting items need to be Guuku Cooked in your house. As this
-					is effectively a 2:1 ratio, you should only do this with materials you
-					have in great excess for a single weapon class.
+					/> into cookable stones at the <strong>Combiner NPC</strong>. The
+					conversion rate is 10:5, and the resulting items need to be Guuku
+					Cooked in your house. As this is effectively a 2:1 ratio, you should
+					only do this with materials you have in great excess for a single
+					weapon class.
 				</p>
 				<p class="spaced-paragraph">
 					<InlineTooltip
@@ -2509,13 +2609,15 @@ graph LR
 			<SectionHeading level={2} title="SR My Mission Stats" />
 			<div>
 				<p class="spaced-paragraph">
-					At the bottom of the Book of Secrets, there are four stats that do not
-					level up naturally. These stats are leveled up by completing assigned
-					targets from the My Mission system. To max out these stats, you need
-					to complete a total of 180 missions: 110 levels in Attack Ceiling, 20
-					in Damage Reduction, 25 in Partial HP, and 25 in Status Recovery.
-					These stats are upgraded per weapon, so you will need to complete 180
-					missions per weapon type to fully optimize them.
+					At the bottom of the <strong>Book of Secrets</strong>, there are four
+					stats that do not level up naturally. These stats are leveled up by
+					completing assigned targets from the <strong>My Mission</strong>
+					system. To max out these stats, you need to complete a total of 180 missions:
+					110 levels in <strong>Attack Ceiling</strong>, 20 in
+					<strong>Damage Reduction</strong>, 25 in <strong>Partial HP</strong>,
+					and 25 in <strong>Status Recovery</strong>. These stats are upgraded
+					per weapon, so you will need to complete 180 missions per weapon type
+					to fully optimize them.
 				</p>
 				<p class="spaced-paragraph">
 					As of <InlineTooltip
@@ -2537,10 +2639,10 @@ graph LR
 					<ListItem
 						><p>
 							Attack Ceiling: It's easy to hit the maximum attack at G Rank, so
-							raising this stat is crucial for all G Rank players. There are 180
-							levels, each raising the limit by 40 true raw. For example,
-							completing 50 missions increases the base from 800 to 2800 true
-							raw, allowing 3920 Attack with an <InlineTooltip
+							raising this stat is crucial for all <strong>G Rank</strong>
+							players. There are 180 levels, each raising the limit by 40 true raw.
+							For example, completing 50 missions increases the base from 800 to
+							2800 true raw, allowing 3920 Attack with an <InlineTooltip
 								icon={getWeaponIcon('Sword and Shield')}
 								iconType="component"
 								text="Sword and Shield"
@@ -2555,7 +2657,7 @@ graph LR
 							Tonfa combo meters, DS Sharpens, Demon Drugs, Food Buffs, and SR Attack
 							Increase levels. Critical Hits and Weapon Sharpness do not count as
 							they do not modify the value on the guild card. You can verify which
-							factors contribute to the Attack Ceiling on the <Link
+							factors contribute to the <strong>Attack Ceiling</strong> on the <Link
 								icon={ToolKit}
 								href="/tools/calculator/damage">Damage Calculator</Link
 							>.
@@ -2581,11 +2683,11 @@ graph LR
 			<SectionHeading level={2} title="SR My Mission Challenges" />
 			<div>
 				<p class="spaced-paragraph">
-					My Mission tasks provide passive buffs and increase the maximum attack
-					ceiling beyond the default limit of 800 True Raw. With G Rank weapons
-					capable of reaching True Raw values of over 600 without any skills or
-					additions, these missions become essential. For example, the G Rank
-					Akantor <InlineTooltip
+					<strong>My Mission</strong> tasks provide passive buffs and increase
+					the maximum attack ceiling beyond the default limit of 800 True Raw.
+					With G Rank weapons capable of reaching True Raw values of over 600
+					without any skills or additions, these missions become essential. For
+					example, the G Rank Akantor <InlineTooltip
 						icon={getWeaponIcon('Great Sword')}
 						iconType="component"
 						text="Great Sword"
@@ -2596,8 +2698,8 @@ graph LR
 						text="Adrenaline+2"
 						tooltip="Armor Skill"
 					/> pushes it over 3840 Raw. Therefore, aiming for at least 20 levels in
-					the attack ceiling is recommended after starting G Rank, and eventually
-					pushing for around 80 to 100 total levels. See <Link
+					the <strong>Attack Ceiling</strong> is recommended after starting G
+					Rank, and eventually pushing for around 80 to 100 total levels. See <Link
 						inline
 						href="#attack-ceiling">Attack Ceiling table</Link
 					> for more details.
@@ -2606,12 +2708,13 @@ graph LR
 					<SectionHeading level={3} title="Viewing Missions" />
 					<div>
 						<p>
-							You can view your active My Mission by checking your Book of
-							Secrets, which displays the task number, target, and progress
-							towards the goal. Both standard HR1-999 and G Rank quest NPCs have
-							options dedicated to these missions, automatically searching for
-							relevant quests that meet the requirements. You will need to
-							manually toggle HC if required.
+							You can view your active My Mission by checking your <strong
+								>Book of Secrets</strong
+							>, which displays the task number, target, and progress towards
+							the goal. Both standard HR1-999 and G Rank quest NPCs have options
+							dedicated to these missions, automatically searching for relevant
+							quests that meet the requirements. You will need to manually
+							toggle HC if required.
 						</p>
 					</div>
 				</section>
@@ -2635,9 +2738,10 @@ graph LR
 					<SectionHeading level={3} title="Vanity Challenges" />
 					<div>
 						<p class="spaced-paragraph">
-							Upon reaching HR5 and starting Style Rank, you gain access to the
-							SR Self Challenge Room, which displays all the weapons you have SR
-							in and the Hiden Sets you have crafted.
+							Upon reaching <strong>HR5</strong> and starting
+							<strong>Style Rank</strong>, you gain access to the SR Self
+							Challenge Room, which displays all the weapons you have SR in and
+							the Hiden Sets you have crafted.
 						</p>
 						<p class="spaced-paragraph">
 							There are two NPCs in this room, R and S:
@@ -2657,9 +2761,9 @@ graph LR
 							<ListItem
 								><p>
 									S: Gives challenges similar to R's and quests that improve the
-									stats on your Book of Secrets. These quests will appear on the
-									main Quest Giver NPCs when relevant, so you won't need to
-									visit this room just for stats.
+									stats on your <strong>Book of Secrets</strong>. These quests
+									will appear on the main Quest Giver NPCs when relevant, so you
+									won't need to visit this room just for stats.
 								</p></ListItem
 							>
 						</UnorderedList>
@@ -2696,8 +2800,8 @@ graph LR
 							<ListItem
 								><p>
 									SR Stat Mission: Missions to complete to rank up the bottom
-									four stats on your Book of Secrets. Available with S and
-									standard Quest NPCs.
+									four stats on your <strong>Book of Secrets</strong>. Available
+									with S and standard Quest NPCs.
 								</p></ListItem
 							>
 							<ListItem
@@ -2715,10 +2819,10 @@ graph LR
 							Both Missions and Challenges have a menu listing a target to kill
 							a certain number of. After taking an SR Stat mission from S, you
 							will be asked if you want to skip it using items, accessible
-							through the Guild Master in the main town square. You will be
-							prompted to use tickets or Lottery G coins, followed by confirming
-							your choice. Quests are persistent across sessions and
-							automatically marked as completed once their goal is achieved.
+							through the <strong>Guild Master</strong> in the main town square.
+							You will be prompted to use tickets or Lottery G coins, followed by
+							confirming your choice. Quests are persistent across sessions and automatically
+							marked as completed once their goal is achieved.
 						</p>
 					</div>
 				</section>
@@ -2785,9 +2889,10 @@ graph LR
 				<p>
 					The first two levels of these cuffs use standard Hiden materials, and
 					you cannot exchange HL Hiden tickets to obtain them. The True Cuff
-					requires a single True Hiden decoration. There are 8 versions of these
-					cuffs for each weapon type, and any True Hiden decoration can be used
-					to create any of the cuffs.
+					requires a single <strong>True Hiden decoration</strong>. There are 8
+					versions of these cuffs for each weapon type, and any
+					<strong>True Hiden decoration</strong> can be used to create any of the
+					cuffs.
 				</p>
 			</div>
 		</section>

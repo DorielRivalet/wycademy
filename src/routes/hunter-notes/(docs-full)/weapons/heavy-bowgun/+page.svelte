@@ -251,13 +251,6 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 				/>) and are generally <strong>not recommended</strong> as they can become
 				a crutch.
 			</p>
-			<!-- <CenteredFigure
-				figcaption="Triggering Elemental Release."
-				alt="Triggering Elemental Release"
-				type="file"
-				width="100%"
-				src={SwaxeExplosion}
-			/> -->
 
 			<p>
 				For an explanation on element damage, see our <Link

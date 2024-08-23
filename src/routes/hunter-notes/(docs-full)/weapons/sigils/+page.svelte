@@ -262,7 +262,14 @@
 >
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
-			<img src={modalImage} alt={'sigils'} />
+			<div>
+				{#await import('$lib/player/Player.svelte') then { default: Player }}
+					<svelte:component
+						this={Player}
+						{...{ title: modalHeading, src: modalImage }}
+					/>
+				{/await}
+			</div>
 			<div>{modalNotes}</div>
 		</div>
 	{:else}
@@ -472,13 +479,17 @@
 						/> and will be presented with the results and a relative rarity ranking
 						in stars based on the roll.
 					</p>
-					<!-- <CenteredFigure
-						width={'100%'}
-						type="file"
-						src={SigilRare}
-						alt="Rare sigil roll"
-						figcaption="Rare sigil roll."
-					/> -->
+					<div>
+						{#await import('$lib/player/Player.svelte') then { default: Player }}
+							<svelte:component
+								this={Player}
+								{...{
+									title: 'Rare Sigil',
+									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/rare-sigil.webm',
+								}}
+							/>
+						{/await}
+					</div>
 				</div>
 			</section>
 			<section>
@@ -1216,14 +1227,17 @@
 						any time, provided you are not actively performing an action, by
 						hitting the use button.
 					</p>
-					<!-- <CenteredFigure
-						width={'100%'}
-						type="file"
-						src={sigilsInfo.find((e) => e.tree === 'Zenith Attack')?.demo}
-						alt="Sigil inactive"
-						figcaption="Using a Zenith Sigil triggers the Smoke Bomb
-						animation, activating the buffs on the sigil."
-					/> -->
+					<div>
+						{#await import('$lib/player/Player.svelte') then { default: Player }}
+							<svelte:component
+								this={Player}
+								{...{
+									title: 'Zenith Sigil',
+									src: 'https://res.cloudinary.com/mhfz/video/upload/v1724366680/supplemental/animated/zenith-sigil.webm',
+								}}
+							/>
+						{/await}
+					</div>
 					<section>
 						<SectionHeading level={3} title="Standard Zenith Sigils" />
 						<div>
@@ -1265,9 +1279,9 @@
 							</div>
 							<p>
 								The buffs provided by the sigils are much stronger than their
-								values suggest (e.g., +15 Attack actually equals +330 Attack).
-								With good management, a decent roll can be as effective as a
-								top-end roll on a standard sigil.
+								values suggest (e.g., +15 Attack is +330 True Raw). With good
+								management, a decent roll can be as effective as a top-end roll
+								on a standard sigil.
 							</p>
 						</div>
 					</section>
@@ -1319,14 +1333,17 @@
 								and All Resistances by 28. Higher rolls result in significantly
 								better buffs.
 							</p>
-							<!-- <CenteredFigure
-								width={'100%'}
-								type="file"
-								src={sigilsInfo.find((e) => e.name === '[Ranged] Attack')?.demo}
-								alt="Sigil inactive"
-								figcaption="Using an AOE Zenith Sigil triggers the Smoke Bomb
-							animation, activating the buffs on the sigil when inside the dome."
-							/> -->
+							<div>
+								{#await import('$lib/player/Player.svelte') then { default: Player }}
+									<svelte:component
+										this={Player}
+										{...{
+											title: 'AoE Zenith Sigil',
+											src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/zenith-aoe.webm',
+										}}
+									/>
+								{/await}
+							</div>
 							<p>
 								All effects of the sigil are active at the same time when inside
 								the dome, and multiple values of the same effect stack.

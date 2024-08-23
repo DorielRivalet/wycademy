@@ -80,7 +80,7 @@
 			description:
 				'Increases the effectiveness of Herb, Potion, Mega Potion, and Lifepowder by 1.1x. Enhances the effectiveness of Bitterbug and Antidote Herb by 100%.',
 			pointsToUnlock: '0',
-			//demo:CaravanSkillRecoveryItemsUpMegaPotion,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/recovery-items-up.webm',
 		},
 		{
 			id: '2',
@@ -512,7 +512,7 @@
 			description:
 				'Blocking within 4 frames of an attack prevents stamina or sharpness loss, allows immediate evasion, and adds a powerful Reflect effect.',
 			pointsToUnlock: '6016 (GR700)',
-			//demo:CaravanSkillPerfectDefense,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/perfect-defense.webm',
 		},
 		{
 			id: '29',
@@ -599,7 +599,7 @@
 			description:
 				'Performing the Combat Ready gesture for 15 seconds increases the attack ceiling of your equipped weapon for a fixed duration.',
 			pointsToUnlock: '7700',
-			//demo:CaravanSkillPreparedStance,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/caravan-skill-prepared-stance.webm',
 		},
 		{
 			id: '38',
@@ -796,10 +796,18 @@
 >
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
-			<img src={modalImage} alt={'caravan'} />
+			<div>
+				{#await import('$lib/player/Player.svelte') then { default: Player }}
+					<svelte:component
+						this={Player}
+						{...{ title: modalHeading, src: modalImage }}
+					/>
+				{/await}
+			</div>
 			<div>{modalNotes}</div>
 		</div>
 	{:else}
+	<!-- TODO: do i need this?-->
 		<div class="modal-mobile-container">
 			<div class="modal-mobile-contents-top">
 				<div class="modal-mobile-image">
