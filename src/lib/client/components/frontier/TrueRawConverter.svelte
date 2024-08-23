@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import type { FrontierWeaponName } from 'ezlion';
 
 	export let value: number;
 	export let weaponType: FrontierWeaponName;
+	export let showWeapon = false;
 
 	const minimumNumberValue = 0;
 	const maximumNumberValue = 99999;
@@ -14,6 +16,30 @@
 <div class="true-raw-converter">
 	<p>Attack Display Value to True Raw Converter:</p>
 	<div class="flex-row-centered">
+		{#if showWeapon}
+			<Dropdown
+				titleText="Weapon Type"
+				bind:selectedId={weaponType}
+				items={[
+					{
+						id: 'Sword and Shield',
+						text: 'Sword and Shield',
+					},
+					{ id: 'Dual Swords', text: 'Dual Swords' },
+					{ id: 'Great Sword', text: 'Great Sword' },
+					{ id: 'Long Sword', text: 'Long Sword' },
+					{ id: 'Hammer', text: 'Hammer' },
+					{ id: 'Hunting Horn', text: 'Hunting Horn' },
+					{ id: 'Lance', text: 'Lance' },
+					{ id: 'Gunlance', text: 'Gunlance' },
+					{ id: 'Tonfa', text: 'Tonfa' },
+					{ id: 'Switch Axe F', text: 'Switch Axe F' },
+					{ id: 'Magnet Spike', text: 'Magnet Spike' },
+					{ id: 'Light Bowgun', text: 'Light Bowgun' },
+					{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
+					{ id: 'Bow', text: 'Bow' },
+				]}
+			/>{/if}
 		<div class="number-input-container">
 			<NumberInput
 				size="sm"

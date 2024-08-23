@@ -37,6 +37,7 @@
 		getAOESigilTrueRaw,
 		getZenithSigilTrueRaw,
 	} from '$lib/client/modules/frontier/sigils';
+	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
 
 	let modalHeading = '';
 	let modalLabel = '';
@@ -263,6 +264,9 @@
 	};
 
 	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+
+	let trueRawConverterWeaponType: FrontierWeaponName = 'Sword and Shield';
+	let trueRawConverterValue = 1500;
 </script>
 
 <svelte:head>
@@ -763,6 +767,12 @@
 					</div>
 				</div>
 
+				<TrueRawConverter
+					bind:weaponType={trueRawConverterWeaponType}
+					bind:value={trueRawConverterValue}
+					showWeapon
+				/>
+
 				<div class="ice-age-formula">
 					<p>Formula:</p>
 					<div class="formula-container">
@@ -1201,5 +1211,11 @@
 		.formula-container {
 			max-width: 80vw;
 		}
+	}
+
+	.weapon-type {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
 	}
 </style>
