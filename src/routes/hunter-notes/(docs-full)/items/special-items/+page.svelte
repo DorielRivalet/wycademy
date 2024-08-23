@@ -32,6 +32,7 @@
 		description: string;
 		source: string;
 		type: string;
+		demoType?: 'video' | 'image';
 	}[] = [
 		{
 			item: 'Halk Pot',
@@ -40,7 +41,8 @@
 			description: `Significantly reduces damage taken during quests. You can use up to 5 per day.`,
 			source: 'Given daily in the Halk area.',
 			type: 'Special Consumable',
-			//demo:HalkPot,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/halk-pot.webm',
+			demoType: 'video',
 		},
 		{
 			item: 'Legendary Rasta Ticket',
@@ -56,7 +58,9 @@
 			iconColor: getItemColor('Red'),
 			description: `These tickets prevent death when your HP reaches 0. The Great Guts Ticket not only stops death but also restores your health to full, while the Guts Ticket just prevents you from dying. These tickets are effective in situations where the Guts skill wouldn’t normally work, including when at low HP.`,
 			type: 'Special Ticket',
-			//demo:MegaGutsTicket,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/mega-guts-ticket.webm',
+			demoType: 'video',
+
 			source:
 				'Hunter Navigation tasks, Mezeportal Festival Shop, NetCafe Daily Gift.', // TODO
 		},
@@ -112,7 +116,8 @@
 			description: `These crystals function as ammunition for Blademaster weapons, requiring specific skills to use effectively. Reaching level +3 in these skills guarantees maximum damage or status effect output.`,
 			source: 'General Store NPC.',
 			type: 'Tool',
-			//demo:ItemSwordCrystal,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/sword-crystal.webm',
+			demoType: 'video',
 		},
 		{
 			item: 'Gook Pickaxe',
@@ -149,7 +154,8 @@
 			source:
 				'Crafted from items occasionally gained from the Guuku Farm after acquiring a Guuku.',
 			type: 'Tool',
-			//demo:GuukuGloves,
+			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/guuku-gloves.webm',
+			demoType: 'video',
 		},
 		// {
 		// 	item: 'Toxin',
@@ -209,7 +215,8 @@
 			description: `A charm that increases the chances of earning more reward rolls and potentially doubling the rewards after completing a quest.`,
 			source: 'Hunter Navigation tasks, Combiner NPC.',
 			type: 'Consumable Charm',
-			//demo:LargeLuckyCharm,
+			demo: 'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/large-lucky-charm.webp',
+			demoType: 'image',
 		},
 		{
 			item: 'Super Lucky Charm',
@@ -250,17 +257,19 @@
 		modalOpen = true;
 		modalHeading = cell.value;
 		modalLabel = section || '';
+		let found;
 
 		switch (section) {
 			default:
 				modalImage = '';
 				modalNotes = '';
+				modalImageType = 'image';
 				break;
 			case 'Special Items':
-				modalImage =
-					specialItems.find((e) => e.item === cell.value)?.demo || '';
-				modalNotes =
-					specialItems.find((e) => e.item === cell.value)?.description || '';
+				found = specialItems.find((e) => e.item === cell.value);
+				modalImage = found?.demo || '';
+				modalNotes = found?.description || '';
+				modalImageType = found?.demoType || 'image';
 				break;
 		}
 	}
@@ -270,6 +279,7 @@
 	let modalOpen = false;
 	let modalImage = '';
 	let modalNotes = '';
+	let modalImageType: 'video' | 'image' = 'image';
 
 	// TODO Needed?
 	let modalPopoverIconType = 'file';
@@ -289,7 +299,18 @@
 >
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
-			<img src={modalImage} alt={'style rank'} />
+			{#if modalImageType === 'image'}
+				<img src={modalImage} alt={'style rank'} />
+			{:else}
+				<div>
+					{#await import('$lib/player/Player.svelte') then { default: Player }}
+						<svelte:component
+							this={Player}
+							{...{ title: modalHeading, src: modalImage }}
+						/>
+					{/await}
+				</div>
+			{/if}
 			<div>{modalNotes}</div>
 		</div>
 	{:else}

@@ -50,14 +50,14 @@
 					The skill effect from cooking lasts for 90 minutes. If a new skill is
 					obtained, it overwrites the previous effect.
 				</p>
-				<!-- <CenteredFigure
+				<CenteredFigure
 					width={81}
 					height={105}
 					type="file"
 					src="https://github.com/DorielRivalet/mhfz-overlay/raw/main/demo/buffs.png"
 					alt="Overlay timers"
 					figcaption="You can check the duration with the overlay."
-				/> -->
+				/>
 
 				<CenteredFigure
 					width={'100%'}
@@ -108,13 +108,17 @@
 					level, with +20 to elemental resistances in the normal success pool.
 				</p>
 
-				<!-- <CenteredFigure
-					width={'100%'}
-					type="file"
-					src={""}
-					alt="Cooking"
-					figcaption="The cooking minigame."
-				/> -->
+				<div>
+					{#await import('$lib/player/Player.svelte') then { default: Player }}
+						<svelte:component
+							this={Player}
+							{...{
+								title: 'Guild Cooking',
+								src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/guild-food.webm',
+							}}
+						/>
+					{/await}
+				</div>
 
 				<p class="spaced-paragraph">
 					Many ingredients can be used for cooking, obtained from the Guild
@@ -532,7 +536,8 @@
 							]}
 							rows={[
 								{
-									//image: PoogieRedAndWhite,
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/red-and-white.webp',
 									id: '1',
 									rank: '6',
 									costume: 'Red & White',
@@ -542,8 +547,8 @@
 									materials: '-',
 								},
 								{
-									//image: PoogieNakedEmperor,
-
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/naked-emperor.webp',
 									id: '2',
 									rank: '6',
 									costume: 'Naked Emperor',
@@ -553,8 +558,8 @@
 									materials: 'Wht Durable Fabricx45, Appropriate Partsx15',
 								},
 								{
-									//image: PoogieSoporificWhite,
-
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/soporific-white.webp',
 									id: '3',
 									rank: '6',
 									costume: 'Soporific White',
@@ -565,7 +570,8 @@
 										'Wht Durable Fabricx75, Flexible Medicinex22, Appropriate Partsx30',
 								},
 								{
-									//image: PoogieBlackGreenClash,
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/black-green-clash.webp',
 
 									id: '4',
 									rank: '6',
@@ -576,7 +582,8 @@
 									materials: 'Striped Fabricx45, Green Fabricx30',
 								},
 								{
-									//image: PoogieSilentSuit,
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/silent-suit.webp',
 
 									id: '5',
 									rank: '8',
@@ -588,7 +595,8 @@
 										'Wht Durable Fabricx30, Black Fabricx50, Appropriate Partsx20',
 								},
 								{
-									//image: PoogieBewitchingPink,
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/bewitching-pink.webp',
 
 									id: '6',
 									rank: '8',
@@ -599,7 +607,8 @@
 									materials: 'Wht Durable Fabricx2, Peach Fabricx45',
 								},
 								{
-									//image: PoogieNostalgicStripes,
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/nostalgic-stripes.webp',
 
 									id: '7',
 									rank: '8',
@@ -609,7 +618,8 @@
 									materials: 'Striped Fabricx45, Blue Fabricx25',
 								},
 								{
-									//image: PoogieSoothingSky,
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/soothing-sky.webp',
 
 									id: '8',
 									rank: '8',
@@ -622,7 +632,8 @@
 								},
 
 								{
-									//image: PoogieGentleGreen,
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/gentle-green.webp',
 
 									id: '9',
 									rank: '9',
@@ -633,7 +644,8 @@
 										'Green Fabricx35, Blue Fabricx20, Appropriate Partsx20',
 								},
 								{
-									//image: PoogieRestlessBrown,
+									image:
+										'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/restless-brown.webp',
 
 									id: '10',
 									rank: '9',

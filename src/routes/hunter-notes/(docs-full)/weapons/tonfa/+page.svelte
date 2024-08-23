@@ -284,13 +284,17 @@
 						a spinning drop attack. All attacks in long mode deal Impact damage with
 						standard Impact damage modifiers.
 					</p>
-					<!-- <CenteredFigure
-						figcaption="Switching modes: notice the icon in the top left corner."
-						alt="Switching modes"
-						type="file"
-						width="100%"
-						src={TonfaModes}
-					/> -->
+					<div>
+						{#await import('$lib/player/Player.svelte') then { default: Player }}
+							<svelte:component
+								this={Player}
+								{...{
+									title: 'Switching Modes',
+									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/tonfa-modes.webm',
+								}}
+							/>
+						{/await}
+					</div>
 					<p class="spaced-paragraph">
 						<strong>Short Mode:</strong> In this mode, impact zone damage is reversed.
 						At the end of the main attack combo, the hunter can unleash a quick series

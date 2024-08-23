@@ -968,7 +968,7 @@ export const sigilsInfo: {
 		name: '(SnS) Beam Slash',
 		minimumPoints: 0,
 		maximumPoints: 0,
-		//demo:SNSBeamSlash,
+		demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/sns-vacuum-slash-sigil.webm',
 		effect:
 			'Changes the property of the Horizontal Slash, adding a ranged Red Shockwave. Motion value is 31･16 with the second portion unaffected by Fencing+2. Only for Earth and Extreme Styles.',
 		category: 'Blademaster',
@@ -1794,7 +1794,7 @@ export const sigilsInfo: {
 		maximumPoints: 5,
 		effect: 'Recovers health over time while active.',
 		category: 'Zenith',
-		//demo:ZenithSigilHeal,
+		demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/zenith-heal.webm',
 	},
 	{
 		tree: 'Zenith Heroics',
@@ -1808,7 +1808,7 @@ export const sigilsInfo: {
 	{
 		tree: 'Zenith Attack',
 		name: '[Zenith] Attack',
-		//demo:ZenithSigilActive,
+		demo: 'https://res.cloudinary.com/mhfz/video/upload/v1724366680/supplemental/animated/zenith-sigil.webm',
 		minimumPoints: 1,
 		maximumPoints: 15,
 		effect:
@@ -1835,7 +1835,7 @@ export const sigilsInfo: {
 	// Area of Effect Sigil
 	{
 		tree: 'All Zenith AOEs',
-		//demo:ZenithSigilAOE,
+		demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/zenith-aoe.webm',
 		name: '[Ranged] Attack',
 		minimumPoints: 1,
 		maximumPoints: 15,

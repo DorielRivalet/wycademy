@@ -229,14 +229,6 @@
 				Attacks.
 			</p>
 
-			<!-- <CenteredFigure
-				figcaption="Triggering Elemental Release."
-				alt="Triggering Elemental Release"
-				type="file"
-				width="100%"
-				src={SwaxeExplosion}
-			/> -->
-
 			<p>
 				For an explanation on element damage, see our <Link
 					icon={Information}

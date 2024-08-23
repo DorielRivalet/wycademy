@@ -707,13 +707,18 @@ graph LR
 						seconds.
 					</p>
 
-					<!-- <CenteredFigure
-						figcaption="A magnetized Magnet Spike; notice the icon in the top left corner."
-						alt="Magnet Spike magnetized"
-						type="file"
-						width="100%"
-						src={''}
-					/> -->
+					<div>
+						{#await import('$lib/player/Player.svelte') then { default: Player }}
+							<svelte:component
+								this={Player}
+								{...{
+									title: 'Parry & Magnetize',
+									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/ms-magnetize.webm',
+								}}
+							/>
+						{/await}
+					</div>
+
 					<p class="spaced-paragraph">
 						After the magnetism mode expires, you will be locked out of gaining
 						progress towards it for a short period. Both modes charge
@@ -738,13 +743,17 @@ graph LR
 						effect on its body, indicating it is ready to be pinned.
 					</p>
 
-					<!-- <CenteredFigure
-						figcaption="Pin ready effect."
-						alt="Magnet Spike pin ready"
-						type="file"
-						width="100%"
-						src={MSPinReady}
-					/> -->
+					<div>
+						{#await import('$lib/player/Player.svelte') then { default: Player }}
+							<svelte:component
+								this={Player}
+								{...{
+									title: 'Pin Ready',
+									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/ms-pin-ready.webm',
+								}}
+							/>
+						{/await}
+					</div>
 
 					<p class="spaced-paragraph">
 						Pinning can be done from either Magnetic Double Slash or Double
@@ -763,13 +772,17 @@ graph LR
 						finisher's lengthy animation.
 					</p>
 
-					<!-- <CenteredFigure
-						figcaption="Pin."
-						alt="Magnet Spike pin"
-						type="file"
-						width="100%"
-						src={MSPin}
-					/> -->
+					<div>
+						{#await import('$lib/player/Player.svelte') then { default: Player }}
+							<svelte:component
+								this={Player}
+								{...{
+									title: 'Pin',
+									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/ms-pin.webm',
+								}}
+							/>
+						{/await}
+					</div>
 
 					<p class="spaced-paragraph">
 						The finisher is notable because it targets the spot where you have

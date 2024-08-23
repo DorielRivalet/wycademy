@@ -239,14 +239,6 @@
 				<strong>Cutting</strong>.
 			</p>
 
-			<!-- <CenteredFigure
-				figcaption="Triggering Elemental Release."
-				alt="Triggering Elemental Release"
-				type="file"
-				width="100%"
-				src={SwaxeExplosion}
-			/> -->
-
 			<p>
 				For an explanation on element damage, see our <Link
 					icon={Information}
@@ -372,6 +364,30 @@
 							icon={getItemIcon('Jewel')}
 						/>.
 					</p>
+
+					<div>
+						{#await import('$lib/player/Player.svelte') then { default: Player }}
+							<svelte:component
+								this={Player}
+								{...{
+									title: 'Lance Phials',
+									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/lance-phials.webm',
+								}}
+							/>
+						{/await}
+					</div>
+
+					<div>
+						{#await import('$lib/player/Player.svelte') then { default: Player }}
+							<svelte:component
+								this={Player}
+								{...{
+									title: 'Area Guard',
+									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/lance-area-guard.webm',
+								}}
+							/>
+						{/await}
+					</div>
 				</div>
 			</section>
 
@@ -714,6 +730,14 @@
 							</p></ListItem
 						>
 						<ListItem><p>The attack buff lasts 3 minutes.</p></ListItem>
+						<ListItem
+							><p>
+								The area guard can block more attacks than guard shields
+								available. It will continue blocking attacks, including after
+								all guard shields are consumed and before the animation ends.
+							</p></ListItem
+						>
+
 						<ListItem
 							><p>
 								The area guard is capable of blocking the needle from <InlineTooltip

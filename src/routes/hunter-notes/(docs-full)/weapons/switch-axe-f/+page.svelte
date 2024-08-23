@@ -200,37 +200,53 @@ Attacks utilizing the phial consume less meter.`,
 				/>. It is unlocked by reaching G Rank.
 			</p>
 
-			<!-- <CenteredFigure
-				figcaption="Switching between axe and sword."
-				alt="Switching between axe and sword"
-				type="file"
-				width="100%"
-				src={SwaxeSwitch}
-			/>
+			<div>
+				{#await import('$lib/player/Player.svelte') then { default: Player }}
+					<svelte:component
+						this={Player}
+						{...{
+							title: 'Switch',
+							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-switch.webm',
+						}}
+					/>
+				{/await}
+			</div>
 
-			<CenteredFigure
-				figcaption="Running with Switch Axe F."
-				alt="Running with Switch Axe F"
-				type="file"
-				width="100%"
-				src={SwaxeRun}
-			/>
+			<div>
+				{#await import('$lib/player/Player.svelte') then { default: Player }}
+					<svelte:component
+						this={Player}
+						{...{
+							title: 'Run',
+							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-run.webm',
+						}}
+					/>
+				{/await}
+			</div>
 
-			<CenteredFigure
-				figcaption="Activating Light Sword Mode."
-				alt="Activating Light Sword Mode"
-				type="file"
-				width="100%"
-				src={SwaxeLightsword}
-			/>
+			<div>
+				{#await import('$lib/player/Player.svelte') then { default: Player }}
+					<svelte:component
+						this={Player}
+						{...{
+							title: 'Lightsword Mode',
+							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-lightsword.webm',
+						}}
+					/>
+				{/await}
+			</div>
 
-			<CenteredFigure
-				figcaption="Triggering Elemental Release."
-				alt="Triggering Elemental Release"
-				type="file"
-				width="100%"
-				src={SwaxeExplosion}
-			/> -->
+			<div>
+				{#await import('$lib/player/Player.svelte') then { default: Player }}
+					<svelte:component
+						this={Player}
+						{...{
+							title: 'Elemental Release',
+							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-explosion.webm',
+						}}
+					/>
+				{/await}
+			</div>
 
 			<p>
 				For an explanation on element damage, see our <Link
