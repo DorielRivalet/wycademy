@@ -6,17 +6,17 @@
 	import ScrollToTop from './ScrollToTop.svelte';
 
 	// Define unique symbols for the context keys
-	const soundKey = Symbol('sound');
-	const scrollToTopKey = Symbol('scrollToTop');
-	const stickyHeaderKey = Symbol('stickyHeader');
-	const volumeKey = Symbol('volume');
-	const tocEnabledKey = Symbol('tocEnabled');
-	const hunterNotesSidebarKey = Symbol('hunterNotesSidebar');
-	const bannerKey = Symbol('banner');
-	const carbonThemeKey = Symbol('carbonTheme');
-	const cursonIconKey = Symbol('cursonIcon');
-	const pushNotificationsKey = Symbol('pushNotifications');
-	const notificationsKey = Symbol('notifications');
+	const soundKey = Symbol.for('sound');
+	const scrollToTopKey = Symbol.for('scrollToTop');
+	const stickyHeaderKey = Symbol.for('stickyHeader');
+	const volumeKey = Symbol.for('volume');
+	const tocEnabledKey = Symbol.for('tocEnabled');
+	const hunterNotesSidebarKey = Symbol.for('hunterNotesSidebar');
+	const bannerKey = Symbol.for('banner');
+	const carbonThemeKey = Symbol.for('carbonTheme');
+	const cursonIconKey = Symbol.for('cursonIcon');
+	const pushNotificationsKey = Symbol.for('pushNotifications');
+	const notificationsKey = Symbol.for('notifications');
 
 	// Helper function to get stored value or default
 	const getStoredValue = (
@@ -26,7 +26,16 @@
 		if (!browser) return defaultValue;
 
 		const storedValue = window.localStorage.getItem(key);
-		return storedValue !== null ? JSON.parse(storedValue) : defaultValue;
+		if (storedValue === null) return defaultValue;
+
+		// Convert string to boolean or number if applicable
+		if (typeof defaultValue === 'boolean') {
+			return storedValue === 'true';
+		} else if (typeof defaultValue === 'number') {
+			return Number(storedValue);
+		} else {
+			return storedValue; // Assume string. If its an object/array we just do JSON.parse.
+		}
 	};
 
 	// Initialize stores with values from localStorage or defaults

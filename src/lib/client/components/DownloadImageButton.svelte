@@ -1,3 +1,6 @@
+<!--@component
+For xyflow.
+-->
 <script lang="ts">
 	import { toPng } from 'html-to-image';
 	import {
