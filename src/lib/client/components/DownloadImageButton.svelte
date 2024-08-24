@@ -6,9 +6,15 @@
 		getViewportForBounds,
 		useNodes,
 	} from '@xyflow/svelte';
-	import { theme } from '../stores/theme';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import { Download } from 'carbon-icons-svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	export let fileName: string;
 
@@ -34,7 +40,7 @@
 
 		if (viewport) {
 			toPng(viewportDomNode, {
-				backgroundColor: $theme === 'g10' ? '#e6e9ef' : '#181825',
+				backgroundColor: $carbonThemeStore === 'g10' ? '#e6e9ef' : '#181825',
 				width: imageWidth,
 				height: imageHeight,
 				style: {

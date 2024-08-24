@@ -21,7 +21,6 @@
 		getItemIcon,
 	} from '$lib/client/modules/frontier/items';
 	import { getCurrencyIcon } from '$lib/client/modules/frontier/currency';
-	import { theme } from '$lib/client/stores/theme';
 	import InlineTooltipNode from '$lib/client/components/frontier/InlineTooltipNode.svelte';
 	import DownloadImageButton from '$lib/client/components/DownloadImageButton.svelte';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
@@ -30,6 +29,12 @@
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	const nodeDefaults = {
 		sourcePosition: Position.Right,
@@ -493,7 +498,7 @@
 							</p>
 							<div class="svelte-flow-container">
 								<SvelteFlow
-									colorMode={$theme === 'g10' ? 'light' : 'dark'}
+									colorMode={$carbonThemeStore === 'g10' ? 'light' : 'dark'}
 									fitView
 									{nodes}
 									{edges}

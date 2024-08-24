@@ -1,18 +1,21 @@
 <script lang="ts">
 	import Sun from '$lib/client/images/icon/sun.webp';
 	import Moon from '$lib/client/images/icon/moon.webp';
-	import {
-		getThemeNameFromId,
-		setTheme,
-		theme,
-	} from '$lib/client/stores/theme';
+	import { getThemeNameFromId, setTheme } from '$lib/client/stores/theme';
 	import { browser } from '$app/environment';
 	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
-	$: icon = $theme === 'g10' ? Sun : Moon;
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+
+	$: icon = $carbonThemeStore === 'g10' ? Sun : Moon;
 
 	function changeTheme(themeID: string) {
-		setTheme(themeID);
+		setTheme(carbonThemeStore, themeID);
 		changeCatppuccinFlavorCSSVariables(themeID);
 	}
 

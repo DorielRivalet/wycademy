@@ -13,8 +13,7 @@
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 	import TabContent from 'carbon-components-svelte/src/Tabs/TabContent.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
-	import Help from 'carbon-icons-svelte/lib/Help.svelte';
-	import { driver, type Driver } from 'driver.js';
+	import { driver } from 'driver.js';
 	import 'driver.js/dist/driver.css';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -57,7 +56,6 @@
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import { codeToHtml } from 'shiki';
 	import { getCatppuccinFlavorFromThemeForShiki } from '$lib/client/themes/catppuccin';
-	import { theme } from '$lib/client/stores/theme';
 	import { browser } from '$app/environment';
 	import { getDivaPrayerGemColor } from '$lib/client/modules/frontier/diva';
 	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';
@@ -125,7 +123,6 @@
 		getMonster,
 		getUniqueMonsters,
 	} from '$lib/client/modules/frontier/monsters';
-	import { getTag } from '$lib/client/modules/frontier/tags';
 	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
 	import {
 		convertHitzoneInfo,
@@ -140,7 +137,13 @@
 		getZenithSigilElementMultiplier,
 		getZenithSigilTrueRaw,
 	} from '$lib/client/modules/frontier/sigils';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 	type DataTableKey = string;
 
 	type DataTableValue = any;
@@ -5268,13 +5271,13 @@ does not get multiplied by horn */
 		if (!browser) return '';
 		const result = await codeToHtml(inputs, {
 			lang: lang,
-			theme: getCatppuccinFlavorFromThemeForShiki($theme),
+			theme: getCatppuccinFlavorFromThemeForShiki($carbonThemeStore),
 		});
 		return result;
 	}
 
 	// Reactive statement to watch for changes in inputTextInputs
-	$: if (inputTextInputs && $theme) {
+	$: if (inputTextInputs && $carbonThemeStore) {
 		isShikiLoading = true;
 		// Use an immediately invoked async function expression (IIFE) to handle async operations
 		(async () => {
@@ -6042,8 +6045,8 @@ does not get multiplied by horn */
 						popoverIcon={getWeaponIcon('Long Sword')}
 						popoverIconType="component"
 						link="/hunter-notes/weapons/overview"
-						on:openModal={(e) => handleOpenModal(e)}></InlineToggletip
-					>.
+						on:openModal={(e) => handleOpenModal(e)}
+					></InlineToggletip>.
 				</ListItem>
 				<ListItem>
 					Compare your attack values against <InlineToggletip

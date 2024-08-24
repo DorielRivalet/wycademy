@@ -1,15 +1,13 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import cat from '$lib/client/images/error.webp';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { theme } from '$lib/client/stores/theme';
 	import { themeTokens } from '$lib/client/themes/tokens';
 	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount } from 'svelte';
-	import { cursorIcon } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import NotificationActionButton from 'carbon-components-svelte/src/Notification/NotificationActionButton.svelte';
@@ -17,13 +15,27 @@
 	import { goto } from '$app/navigation';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
-	import { stickyHeaderStore } from '$lib/client/stores/toggles';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
-	import { bannerEnabledStore } from '$lib/client/stores/banner';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
-	$: tokens = themeTokens[$theme] || themeTokens.default;
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
+	const stickyHeaderStore = getContext(
+		Symbol.for('stickyHeader'),
+	) as Writable<boolean>;
+	const bannerEnabledStore = getContext(
+		Symbol.for('banner'),
+	) as Writable<boolean>;
+
+	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
 	$: bgClass =
-		$theme === 'g10' ? `background-light bg-support` : `background bg-support`;
+		$carbonThemeStore === 'g10'
+			? `background-light bg-support`
+			: `background bg-support`;
 	const errorTitles = [
 		'The Gargwa took the quest and ran away with it! 🐔',
 		"We've encountered a tiny pawblem! 👀",
@@ -34,7 +46,7 @@
 	];
 
 	onMount(() => {
-		let themeValue = $theme;
+		let themeValue = $carbonThemeStore;
 		let cssVarMap =
 			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
 		Object.keys(cssVarMap).forEach((key) => {
@@ -53,7 +65,12 @@
 
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
 
-<Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
+<Theme
+	bind:theme={$carbonThemeStore}
+	persist
+	persistKey="__carbon-theme"
+	{tokens}
+/>
 <div class="app">
 	<div class={headerClass}>
 		<Header />

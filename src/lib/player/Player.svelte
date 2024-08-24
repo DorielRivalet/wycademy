@@ -10,8 +10,13 @@ There’s a long-standing hydration bug with Svelte 4 and Custom Elements which 
 -->
 <script lang="ts">
 	import 'vidstack/bundle';
-	import { theme } from '$lib/client/stores/theme';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 	export let title: string;
 	export let src: string;
 </script>
@@ -20,7 +25,7 @@ There’s a long-standing hydration bug with Svelte 4 and Custom Elements which 
 	<media-provider></media-provider>
 	<media-video-layout
 		class="vds-video-layout"
-		colorScheme={$theme === 'g10' ? 'light' : 'dark'}
+		colorScheme={$carbonThemeStore === 'g10' ? 'light' : 'dark'}
 	></media-video-layout>
 </media-player>
 

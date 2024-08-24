@@ -14,8 +14,6 @@
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import NotificationNew from 'carbon-icons-svelte/lib/NotificationNew.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import { notificationSeenStore } from '$lib/client/stores/notifications';
-	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import HeaderNavigationMenuButton from './HeaderNavigationMenuButton.svelte';
 	import HeaderNavigationButton from './HeaderNavigationButton.svelte';
 	import HeaderHamburgerMenu from './HeaderHamburgerMenu.svelte';
@@ -35,11 +33,6 @@
 		openMenu = detail.id !== null ? detail.id : null;
 	};
 </script>
-
-<LocalStorage
-	bind:value={$notificationSeenStore}
-	key="notification-seen-enabled"
-/>
 
 <header>
 	<div class="left">

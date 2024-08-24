@@ -5,7 +5,6 @@
 	import BookIconWhite from './frontier/icon/item/Book_Icon_White.svelte';
 	import MapIconWhite from './frontier/icon/item/Map_Icon_White.svelte';
 	import '@carbon/charts-svelte/styles.css';
-	import { theme } from '$lib/client/stores/theme';
 	import { onMount, type ComponentType } from 'svelte';
 	import {
 		type GaugeChart,
@@ -14,8 +13,14 @@
 		type GaugeChartOptions,
 	} from '@carbon/charts-svelte';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
-	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	export let huntCount = Math.trunc(Math.random() * 1000);
 	export let obtainedAchievements = Math.trunc(Math.random() * 1000);
@@ -126,19 +131,23 @@
 		},
 		color: {
 			scale: {
-				bronze: getHexStringFromCatppuccinColor('maroon', $theme),
-				silver: getHexStringFromCatppuccinColor('lavender', $theme),
-				gold: getHexStringFromCatppuccinColor('yellow', $theme),
-				platinum: getHexStringFromCatppuccinColor('teal', $theme),
+				bronze: getHexStringFromCatppuccinColor('maroon', $carbonThemeStore),
+				silver: getHexStringFromCatppuccinColor('lavender', $carbonThemeStore),
+				gold: getHexStringFromCatppuccinColor('yellow', $carbonThemeStore),
+				platinum: getHexStringFromCatppuccinColor('teal', $carbonThemeStore),
 			},
 		},
-		theme: $theme,
+		theme: $carbonThemeStore,
 	} as MeterChartOptions;
 
-	$: titlesGaugeColor = getGaugeColor($theme, obtainedTitles, totalTitles);
+	$: titlesGaugeColor = getGaugeColor(
+		$carbonThemeStore,
+		obtainedTitles,
+		totalTitles,
+	);
 
 	$: titlesGaugeOptions = {
-		theme: $theme,
+		theme: $carbonThemeStore,
 		resizable: true,
 		toolbar: {
 			enabled: false,

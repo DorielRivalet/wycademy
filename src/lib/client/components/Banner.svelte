@@ -1,6 +1,12 @@
 <script lang="ts">
-	import { theme } from '../stores/theme';
 	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	/**Navigate to home page on click*/
 	export let clickable = true;
@@ -18,7 +24,7 @@
 	$: targetColor = isHovered && hoverable ? musouColor : normalColor;
 	$: targetStroke = isHovered && hoverable ? musouStroke : normalStroke;
 	$: textColor =
-		$theme === 'g10'
+		$carbonThemeStore === 'g10'
 			? getHexStringFromCatppuccinColor('surface1', 'g100')
 			: getHexStringFromCatppuccinColor('text', 'g100');
 	$: link = clickable ? '/' : '#';

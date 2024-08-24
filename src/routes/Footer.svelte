@@ -15,9 +15,14 @@
 	import SvelteLogo from '$lib/client/images/svelte-logo.svg';
 	import Raviente from '$lib/client/images/icon/berserk_raviente_raid.webp';
 	import authorImage from '$lib/client/images/author.webp';
-	import { theme } from '$lib/client/stores/theme';
 	import Banner from '$lib/client/components/Banner.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 	export let gitHubData: GitHubData = {
 		lastModified: '',
 		commitLink: '',
@@ -127,7 +132,7 @@
 			<p>Site powered by</p>
 			<span class="logo-container">
 				<OutboundLink href="https://vercel.com/">
-					{#if $theme === 'g10'}
+					{#if $carbonThemeStore === 'g10'}
 						<img width="96" src={VercelLogo} alt="Vercel Logo" />
 					{:else}
 						<img width="96" src={VercelLogoLight} alt="Vercel Logo" />

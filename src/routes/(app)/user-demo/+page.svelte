@@ -22,7 +22,6 @@
 	import ProfileTrophyCase from '$lib/client/components/ProfileTrophyCase.svelte';
 	import ProfileStatsSummary from '$lib/client/components/ProfileStatsSummary.svelte';
 	import ProfilePinnedSets from '$lib/client/components/ProfilePinnedSets.svelte';
-	import { theme } from '$lib/client/stores/theme';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import ProfileRecentHunts from '$lib/client/components/ProfileRecentHunts.svelte';
 	import ProfileHuntsGraph from '$lib/client/components/ProfileActivityOverviewGraph.svelte';
@@ -47,6 +46,13 @@
 	import Tabs from 'carbon-components-svelte/src/Tabs/Tabs.svelte';
 	import Tab from 'carbon-components-svelte/src/Tabs/Tab.svelte';
 	import TabContent from 'carbon-components-svelte/src/Tabs/TabContent.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	// import Bookmark from 'carbon-icons-svelte/lib/Bookmark.svelte';
 	// import BookmarkFilled from 'carbon-icons-svelte/lib/BookmarkFilled.svelte';
@@ -352,11 +358,11 @@
 			<TabContent>
 				<section>
 					<SectionHeading level={2} title="Wardrobe" />
-					<ProfilePinnedSets bind:theme={$theme} />
+					<ProfilePinnedSets bind:theme={$carbonThemeStore} />
 				</section>
 				<section>
 					<SectionHeading level={2} title="Pinned Runs" />
-					<ProfilePinnedRuns bind:theme={$theme} />
+					<ProfilePinnedRuns bind:theme={$carbonThemeStore} />
 				</section>
 				<section>
 					<SectionHeading level={2} title="Guild Card" />
@@ -370,7 +376,7 @@
 			<TabContent>
 				<section>
 					<SectionHeading level={2} title="Quests Stats" />
-					<ProfileHuntsCalendarGraph bind:theme={$theme} />
+					<ProfileHuntsCalendarGraph bind:theme={$carbonThemeStore} />
 				</section>
 				<section>
 					<ProfileHuntsGraph />

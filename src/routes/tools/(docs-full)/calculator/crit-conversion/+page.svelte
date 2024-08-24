@@ -14,11 +14,17 @@
 		ScaleTypes,
 		type LineChartOptions,
 	} from '@carbon/charts-svelte';
-	import { theme } from '$lib/client/stores/theme';
 	import {
 		affinityDropdownItems,
 		multipliersDropdownItems,
 	} from '$lib/client/modules/frontier/damage-calculator';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	function getCritConversionTrueRaw(
 		totalAffinity: number,
@@ -154,7 +160,7 @@
 
 	$: flashConversionChartOptions = {
 		title: 'Flash Conversion Total Affinity to True Raw',
-		theme: $theme,
+		theme: $carbonThemeStore,
 		height: '400px',
 		legend: { enabled: false },
 		axes: {

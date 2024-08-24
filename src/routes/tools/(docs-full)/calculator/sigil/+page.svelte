@@ -23,13 +23,18 @@
 		ScaleTypes,
 		type LineChartOptions,
 	} from '@carbon/charts-svelte';
-	import { theme } from '$lib/client/stores/theme';
 	import { display } from 'mathlifier';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
 	import { getLengthAttackValue } from '$lib/client/modules/frontier/damage-calculator';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 	type SigilSlot = {
 		type: FrontierSigilRecipeType;
 		values: { skill: FrontierSigil; value: number }[];
@@ -847,7 +852,7 @@
 
 	$: sigilChartOptions = {
 		title: 'Sigil Damage',
-		theme: $theme,
+		theme: $carbonThemeStore,
 		height: '400px',
 		points: { enabled: false },
 		legend: { enabled: false },
