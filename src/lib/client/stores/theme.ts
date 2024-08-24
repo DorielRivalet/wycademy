@@ -4,40 +4,10 @@
  * found in the LICENSE file.
  */
 
-import { browser } from '$app/environment';
-import { writable } from 'svelte/store';
+import { type Writable } from 'svelte/store';
 import latteSquircle from '$lib/client/images/latte_squircle.webp';
 import macchiatoSquircle from '$lib/client/images/macchiato_squircle.webp';
 import type { CarbonTheme } from 'carbon-components-svelte/types/Theme/Theme.svelte';
-
-const defaultValue: CarbonTheme = 'g100';
-const initialValue: CarbonTheme = browser
-	? (window.localStorage.getItem('__carbon-theme') as CarbonTheme) ??
-		defaultValue
-	: defaultValue;
-export const theme = writable<CarbonTheme>(initialValue);
-
-// im using persist in theme component instead. so this is not needed.
-// theme.subscribe((value) => {
-//   if (browser){
-//     window.localStorage.setItem('__carbon-theme', value);
-//   }
-// });
-/*
-Use this instead for components, as an example:
-
-  export let theme = "white";
-
-  // Set to `true` to persist the theme using window.localStorage
-  export let persist = false;
-
-  // Specify the local storage key
-  export let persistKey = "theme";
-
-{#if persist}
-  <LocalStorage bind:value="{theme}" key="{persistKey}" />
-{/if}
-*/
 
 export function getThemeIcon(themeId: string) {
 	switch (themeId) {
@@ -79,6 +49,6 @@ export function getThemeNameFromId(id: string) {
 	}
 }
 
-export function setTheme(selectedId: string) {
+export function setTheme(theme: Writable<CarbonTheme>, selectedId: string) {
 	theme.set(getThemeNameFromId(selectedId));
 }

@@ -17,9 +17,15 @@
 		type LineChart,
 		type LineChartOptions,
 	} from '@carbon/charts-svelte';
-	import { theme } from '$lib/client/stores/theme';
 	import '@carbon/charts-svelte/styles.css';
 	import { page } from '$app/stores';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	let criticalDistanceChartLoaded = false;
 	let criticalDistanceChart: ComponentType<LineChart>;
@@ -561,7 +567,7 @@
 
 	$: criticalDistanceChartOptions = {
 		title: `Critical Distance (${criticalDistanceAmmoTypeForChart})`,
-		theme: $theme,
+		theme: $carbonThemeStore,
 		legend: { enabled: true, truncation: { numCharacter: 24 } },
 		axes: {
 			bottom: {
@@ -579,7 +585,7 @@
 
 	$: criticalDistanceBowChartOptions = {
 		title: 'Critical Distance (Bow)',
-		theme: $theme,
+		theme: $carbonThemeStore,
 		legend: { enabled: true, truncation: { numCharacter: 24 } },
 		axes: {
 			bottom: {

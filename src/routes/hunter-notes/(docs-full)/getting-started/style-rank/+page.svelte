@@ -35,12 +35,17 @@
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import StarFilled from 'carbon-icons-svelte/lib/StarFilled.svelte';
 	import { onMount } from 'svelte';
-	import { theme } from '$lib/client/stores/theme';
 	import mermaid from 'mermaid';
 	import { browser } from '$app/environment';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 	let modalHeading = '';
 	let modalLabel = '';
 	let modalOpen = false;
@@ -863,14 +868,14 @@ graph LR
 	let container: { innerHTML: string };
 	let container2: { innerHTML: string };
 
-	let mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
+	let mermaidTheme = $carbonThemeStore === 'g10' ? 'default' : 'dark';
 
 	// The default diagram
 	let diagram = getDiagram(mermaidTheme);
 	let diagram2 = getDiagram2(mermaidTheme);
 
-	$: diagram && renderDiagram($theme, mermaidTheme);
-	$: diagram2 && renderDiagram2($theme, mermaidTheme);
+	$: diagram && renderDiagram($carbonThemeStore, mermaidTheme);
+	$: diagram2 && renderDiagram2($carbonThemeStore, mermaidTheme);
 
 	onMount(() => {
 		mermaid.initialize({

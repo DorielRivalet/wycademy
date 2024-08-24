@@ -16,7 +16,6 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import Youtube from 'svelte-youtube-embed';
 	import { onMount } from 'svelte';
-	import { theme } from '$lib/client/stores/theme';
 	import mermaid from 'mermaid';
 	import { browser } from '$app/environment';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
@@ -33,7 +32,13 @@
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 	const hidenSkills: {
 		id: string;
 		skill: FrontierArmorSkillName;
@@ -268,12 +273,12 @@ graph LR
 
 	let container: { innerHTML: string };
 
-	let mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
+	let mermaidTheme = $carbonThemeStore === 'g10' ? 'default' : 'dark';
 
 	// The default diagram
 	let diagram = getDiagram(mermaidTheme);
 
-	$: diagram && renderDiagram($theme, mermaidTheme);
+	$: diagram && renderDiagram($carbonThemeStore, mermaidTheme);
 
 	onMount(() => {
 		mermaid.initialize({

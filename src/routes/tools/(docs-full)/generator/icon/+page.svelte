@@ -14,7 +14,6 @@
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import { browser } from '$app/environment';
-	import { theme } from '$lib/client/stores/theme';
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
@@ -43,6 +42,13 @@
 	} from '$lib/client/modules/frontier/objects';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	function downloadIconImage() {
 		if (!browser) return;
@@ -385,12 +391,21 @@
 			<ColorPicker
 				bind:hex={selectedIconShadowColor}
 				label="Shadow Color"
-				--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-				--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-				--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+				--cp-bg-color={getHexStringFromCatppuccinColor(
+					'base',
+					$carbonThemeStore,
+				)}
+				--cp-border-color={getHexStringFromCatppuccinColor(
+					'text',
+					$carbonThemeStore,
+				)}
+				--cp-input-color={getHexStringFromCatppuccinColor(
+					'surface0',
+					$carbonThemeStore,
+				)}
 				--cp-button-hover-color={getHexStringFromCatppuccinColor(
 					'blue',
-					$theme,
+					$carbonThemeStore,
 				)}
 			/>
 			<NumberInput

@@ -4,17 +4,10 @@
  * found in the LICENSE file.
  */
 
-import { browser } from '$app/environment';
-import { writable } from 'svelte/store';
+import { type Writable } from 'svelte/store';
 import cursor1 from '$lib/client/images/ui/svg/cursor-classic.svg';
 import cursor2 from '$lib/client/images/ui/svg/cursor-modern.svg';
 import cursor3 from '$lib/client/images/ui/svg/cursor-none.svg';
-
-const defaultValue = '1';
-const initialValue = browser
-	? window.localStorage.getItem('__cursor-icon') ?? defaultValue
-	: defaultValue;
-export const cursorIcon = writable(initialValue);
 
 export function getCursorIcon(id: string) {
 	switch (id) {
@@ -55,6 +48,6 @@ export function getCursorNameFromId(id: string) {
 	}
 }
 
-export function setCursor(id: string) {
+export function setCursor(cursorIcon: Writable<string>, id: string) {
 	cursorIcon.set(getCursorNameFromId(id));
 }

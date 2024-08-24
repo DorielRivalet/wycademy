@@ -10,7 +10,6 @@
 	import ColorPicker from 'svelte-awesome-color-picker';
 	import type { FrontierImageType } from '$lib/client/modules/frontier/types';
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
-	import { theme } from '$lib/client/stores/theme';
 	import { createEventDispatcher } from 'svelte';
 	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
 	import {
@@ -30,6 +29,13 @@
 		ColorCodes,
 	} from '$lib/client/modules/frontier/objects';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	export let top = 0;
 	export let left = 0;
@@ -223,10 +229,19 @@
 		<ColorPicker
 			bind:hex={dropShadowColor}
 			label="Image Shadow Color"
-			--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-			--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-			--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
-			--cp-button-hover-color={getHexStringFromCatppuccinColor('blue', $theme)}
+			--cp-bg-color={getHexStringFromCatppuccinColor('base', $carbonThemeStore)}
+			--cp-border-color={getHexStringFromCatppuccinColor(
+				'text',
+				$carbonThemeStore,
+			)}
+			--cp-input-color={getHexStringFromCatppuccinColor(
+				'surface0',
+				$carbonThemeStore,
+			)}
+			--cp-button-hover-color={getHexStringFromCatppuccinColor(
+				'blue',
+				$carbonThemeStore,
+			)}
 		/>
 		<NumberInput
 			size="sm"
@@ -240,10 +255,19 @@
 		<ColorPicker
 			bind:hex={borderColor}
 			label="Image Border Color"
-			--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-			--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-			--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
-			--cp-button-hover-color={getHexStringFromCatppuccinColor('blue', $theme)}
+			--cp-bg-color={getHexStringFromCatppuccinColor('base', $carbonThemeStore)}
+			--cp-border-color={getHexStringFromCatppuccinColor(
+				'text',
+				$carbonThemeStore,
+			)}
+			--cp-input-color={getHexStringFromCatppuccinColor(
+				'surface0',
+				$carbonThemeStore,
+			)}
+			--cp-button-hover-color={getHexStringFromCatppuccinColor(
+				'blue',
+				$carbonThemeStore,
+			)}
 		/>
 		<NumberInput
 			size="sm"

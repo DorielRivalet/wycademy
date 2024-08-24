@@ -28,7 +28,14 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	import slugify from 'slugify';
 	import LinkIcon from 'carbon-icons-svelte/lib/Link.svelte';
 	import { browser } from '$app/environment';
-	import { theme } from '../stores/theme';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+
 	/** The name of the section heading*/
 	export let title: string;
 	/** The level of the section heading*/
@@ -59,7 +66,10 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 		on:click={() =>
 			updateQueryStringParameter([
 				{ key: 'embed', value: slug },
-				{ key: 'embed-theme', value: $theme === 'g10' ? 'light' : 'dark' },
+				{
+					key: 'embed-theme',
+					value: $carbonThemeStore === 'g10' ? 'light' : 'dark',
+				},
 			])}
 	>
 		{title}

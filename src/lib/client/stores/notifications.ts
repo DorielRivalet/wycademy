@@ -5,46 +5,14 @@
  */
 
 import { browser } from '$app/environment';
-import { writable } from 'svelte/store';
 import logo from '$lib/client/images/logo.webp';
+import type { Writable } from 'svelte/store';
 
-let pushNotificationsValue = false;
-let notificationsValue = false;
-let notificationSeenValue = false;
-
-if (browser) {
-	const localStoragePushNotificationsValue = window.localStorage.getItem(
-		'__push-notifications-enabled',
-	);
-	pushNotificationsValue = localStoragePushNotificationsValue
-		? localStoragePushNotificationsValue === 'true'
-		: true;
-
-	const localStorageNotificationsValue = window.localStorage.getItem(
-		'__notifications-enabled',
-	);
-	notificationsValue = localStorageNotificationsValue
-		? localStorageNotificationsValue === 'true'
-		: true;
-
-	const localStorageNotificationSeenValue = window.localStorage.getItem(
-		'notification-seen-enabled',
-	);
-	notificationSeenValue = localStorageNotificationSeenValue
-		? localStorageNotificationSeenValue === 'true'
-		: true;
-} else {
-	pushNotificationsValue = true;
-	notificationsValue = true;
-	notificationSeenValue = true;
-}
-
-export const pushNotificationsStore = writable(pushNotificationsValue);
-export const notificationsStore = writable(notificationsValue);
-export const notificationSeenStore = writable(notificationSeenValue);
-
-export function onNotificationPress(notificationsEnabled: boolean) {
-	if (!browser || !notificationsValue) return;
+export function onNotificationPress(
+	pushNotificationsStore: Writable<boolean>,
+	notificationsEnabled: boolean,
+) {
+	if (!browser || !notificationsEnabled) return;
 	Notification.requestPermission().then((result) => {
 		if (result === 'granted') {
 			pushNotificationsStore.set(true);

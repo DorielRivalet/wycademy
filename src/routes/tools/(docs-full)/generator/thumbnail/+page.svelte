@@ -17,7 +17,6 @@
 	import Dropdown, {
 		type DropdownItem,
 	} from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
-	import { theme } from '$lib/client/stores/theme';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import Add from 'carbon-icons-svelte/lib/Add.svelte';
@@ -60,6 +59,13 @@
 	} from '$lib/client/modules/frontier/objects';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	let thumbnailElementsOrderReversed = false;
 
@@ -844,9 +850,9 @@
 	let thumbnailGeneratorImageBackground = false;
 	let thumbnailGeneratorMonsterRenderSize: 'Small' | 'Full' = 'Full';
 	let thumbnailGeneratorBackgroundGradientStartColor =
-		getHexStringFromCatppuccinColor('mantle', $theme);
+		getHexStringFromCatppuccinColor('mantle', $carbonThemeStore);
 	let thumbnailGeneratorBackgroundGradientEndColor =
-		getHexStringFromCatppuccinColor('crust', $theme);
+		getHexStringFromCatppuccinColor('crust', $carbonThemeStore);
 	let thumbnailGeneratorBackgroundGradientRotation = 45;
 	let thumbnailGeneratorBackgroundGradientLinear = false;
 	let thumbnailGeneratorImageShadowColor = '#000000';
@@ -859,7 +865,7 @@
 	let thumbnailGeneratorBorderStyle = 'outset';
 	let thumbnailGeneratorBorderColor = getHexStringFromCatppuccinColor(
 		'red',
-		$theme,
+		$carbonThemeStore,
 	);
 	let thumbnailGeneratorBorder = false;
 
@@ -1167,12 +1173,21 @@
 				<ColorPicker
 					bind:hex={thumbnailGeneratorBorderColor}
 					label="Border Color"
-					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-bg-color={getHexStringFromCatppuccinColor(
+						'base',
+						$carbonThemeStore,
+					)}
+					--cp-border-color={getHexStringFromCatppuccinColor(
+						'text',
+						$carbonThemeStore,
+					)}
+					--cp-input-color={getHexStringFromCatppuccinColor(
+						'surface0',
+						$carbonThemeStore,
+					)}
 					--cp-button-hover-color={getHexStringFromCatppuccinColor(
 						'blue',
-						$theme,
+						$carbonThemeStore,
 					)}
 				/>
 
@@ -1208,23 +1223,41 @@
 			<ColorPicker
 				bind:hex={thumbnailGeneratorBackgroundGradientStartColor}
 				label="Background Color Gradient Start"
-				--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-				--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-				--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+				--cp-bg-color={getHexStringFromCatppuccinColor(
+					'base',
+					$carbonThemeStore,
+				)}
+				--cp-border-color={getHexStringFromCatppuccinColor(
+					'text',
+					$carbonThemeStore,
+				)}
+				--cp-input-color={getHexStringFromCatppuccinColor(
+					'surface0',
+					$carbonThemeStore,
+				)}
 				--cp-button-hover-color={getHexStringFromCatppuccinColor(
 					'blue',
-					$theme,
+					$carbonThemeStore,
 				)}
 			/>
 			<ColorPicker
 				bind:hex={thumbnailGeneratorBackgroundGradientEndColor}
 				label="Background Color Gradient End"
-				--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-				--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-				--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+				--cp-bg-color={getHexStringFromCatppuccinColor(
+					'base',
+					$carbonThemeStore,
+				)}
+				--cp-border-color={getHexStringFromCatppuccinColor(
+					'text',
+					$carbonThemeStore,
+				)}
+				--cp-input-color={getHexStringFromCatppuccinColor(
+					'surface0',
+					$carbonThemeStore,
+				)}
 				--cp-button-hover-color={getHexStringFromCatppuccinColor(
 					'blue',
-					$theme,
+					$carbonThemeStore,
 				)}
 			/>
 			<NumberInput
@@ -1347,24 +1380,42 @@
 				<ColorPicker
 					bind:hex={thumbnailGeneratorTextDecorationColor}
 					label="Text Decoration Color"
-					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-bg-color={getHexStringFromCatppuccinColor(
+						'base',
+						$carbonThemeStore,
+					)}
+					--cp-border-color={getHexStringFromCatppuccinColor(
+						'text',
+						$carbonThemeStore,
+					)}
+					--cp-input-color={getHexStringFromCatppuccinColor(
+						'surface0',
+						$carbonThemeStore,
+					)}
 					--cp-button-hover-color={getHexStringFromCatppuccinColor(
 						'blue',
-						$theme,
+						$carbonThemeStore,
 					)}
 				/>
 
 				<ColorPicker
 					bind:hex={thumbnailGeneratorTextShadowColor}
 					label="Text Shadow Color"
-					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-bg-color={getHexStringFromCatppuccinColor(
+						'base',
+						$carbonThemeStore,
+					)}
+					--cp-border-color={getHexStringFromCatppuccinColor(
+						'text',
+						$carbonThemeStore,
+					)}
+					--cp-input-color={getHexStringFromCatppuccinColor(
+						'surface0',
+						$carbonThemeStore,
+					)}
 					--cp-button-hover-color={getHexStringFromCatppuccinColor(
 						'blue',
-						$theme,
+						$carbonThemeStore,
 					)}
 				/>
 				<NumberInput
@@ -1380,12 +1431,21 @@
 				<ColorPicker
 					bind:hex={thumbnailGeneratorTextColor}
 					label="Text Color"
-					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-bg-color={getHexStringFromCatppuccinColor(
+						'base',
+						$carbonThemeStore,
+					)}
+					--cp-border-color={getHexStringFromCatppuccinColor(
+						'text',
+						$carbonThemeStore,
+					)}
+					--cp-input-color={getHexStringFromCatppuccinColor(
+						'surface0',
+						$carbonThemeStore,
+					)}
 					--cp-button-hover-color={getHexStringFromCatppuccinColor(
 						'blue',
-						$theme,
+						$carbonThemeStore,
 					)}
 				/>
 				<NumberInput
@@ -1456,12 +1516,21 @@
 				<ColorPicker
 					bind:hex={thumbnailGeneratorImageShadowColor}
 					label="Image Shadow Color"
-					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-bg-color={getHexStringFromCatppuccinColor(
+						'base',
+						$carbonThemeStore,
+					)}
+					--cp-border-color={getHexStringFromCatppuccinColor(
+						'text',
+						$carbonThemeStore,
+					)}
+					--cp-input-color={getHexStringFromCatppuccinColor(
+						'surface0',
+						$carbonThemeStore,
+					)}
 					--cp-button-hover-color={getHexStringFromCatppuccinColor(
 						'blue',
-						$theme,
+						$carbonThemeStore,
 					)}
 				/>
 				<NumberInput
@@ -1476,12 +1545,21 @@
 				<ColorPicker
 					bind:hex={thumbnailGeneratorImageBorderColor}
 					label="Image Border Color"
-					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-bg-color={getHexStringFromCatppuccinColor(
+						'base',
+						$carbonThemeStore,
+					)}
+					--cp-border-color={getHexStringFromCatppuccinColor(
+						'text',
+						$carbonThemeStore,
+					)}
+					--cp-input-color={getHexStringFromCatppuccinColor(
+						'surface0',
+						$carbonThemeStore,
+					)}
 					--cp-button-hover-color={getHexStringFromCatppuccinColor(
 						'blue',
-						$theme,
+						$carbonThemeStore,
 					)}
 				/>
 				<NumberInput
@@ -1524,12 +1602,21 @@
 				<ColorPicker
 					bind:hex={thumbnailGeneratorUploadedImageShadowColor}
 					label="Uploaded Image Shadow Color"
-					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-bg-color={getHexStringFromCatppuccinColor(
+						'base',
+						$carbonThemeStore,
+					)}
+					--cp-border-color={getHexStringFromCatppuccinColor(
+						'text',
+						$carbonThemeStore,
+					)}
+					--cp-input-color={getHexStringFromCatppuccinColor(
+						'surface0',
+						$carbonThemeStore,
+					)}
 					--cp-button-hover-color={getHexStringFromCatppuccinColor(
 						'blue',
-						$theme,
+						$carbonThemeStore,
 					)}
 				/>
 				<NumberInput
@@ -1544,12 +1631,21 @@
 				<ColorPicker
 					bind:hex={thumbnailGeneratorUploadedImageBorderColor}
 					label="Uploaded Image Border Color"
-					--cp-bg-color={getHexStringFromCatppuccinColor('base', $theme)}
-					--cp-border-color={getHexStringFromCatppuccinColor('text', $theme)}
-					--cp-input-color={getHexStringFromCatppuccinColor('surface0', $theme)}
+					--cp-bg-color={getHexStringFromCatppuccinColor(
+						'base',
+						$carbonThemeStore,
+					)}
+					--cp-border-color={getHexStringFromCatppuccinColor(
+						'text',
+						$carbonThemeStore,
+					)}
+					--cp-input-color={getHexStringFromCatppuccinColor(
+						'surface0',
+						$carbonThemeStore,
+					)}
 					--cp-button-hover-color={getHexStringFromCatppuccinColor(
 						'blue',
-						$theme,
+						$carbonThemeStore,
 					)}
 				/>
 				<NumberInput

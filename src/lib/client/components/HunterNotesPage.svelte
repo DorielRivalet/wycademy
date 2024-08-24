@@ -6,11 +6,13 @@ Also for Tools pages
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
 	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
-	import { tocEnabledStore } from '$lib/client/stores/toc';
 	import Toc from 'svelte-toc';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import { fade } from 'svelte/transition';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
+	const tocEnabledStore = getContext(Symbol.for('toc')) as Writable<boolean>;
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 

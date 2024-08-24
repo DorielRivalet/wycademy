@@ -20,7 +20,6 @@
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Head from '$lib/client/components/Head.svelte';
 	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
-	import { theme } from '$lib/client/stores/theme';
 	import ToastySound from './assets/sound/toasty.mp3';
 	import GameOverSound from './assets/sound/mixkit-arcade-retro-game-over-213.wav';
 	import FireballSound from './assets/sound/flame.ogg';
@@ -44,6 +43,13 @@
 	import { onMount } from 'svelte';
 	import VolumeUp from 'carbon-icons-svelte/lib/VolumeUp.svelte';
 	import VolumeMute from 'carbon-icons-svelte/lib/VolumeMute.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 	interface HunterType {
 		name: string;
 		color: string; // Assuming COLORS is an object with string values for each color
@@ -84,17 +90,17 @@
 	}
 
 	const COLORS = {
-		red: getHexStringFromCatppuccinColor('red', $theme),
-		yellow: getHexStringFromCatppuccinColor('yellow', $theme),
+		red: getHexStringFromCatppuccinColor('red', $carbonThemeStore),
+		yellow: getHexStringFromCatppuccinColor('yellow', $carbonThemeStore),
 		black: '#6c7086',
 		white: '#cdd6f4',
-		purple: getHexStringFromCatppuccinColor('mauve', $theme),
-		blue: getHexStringFromCatppuccinColor('blue', $theme),
-		orange: getHexStringFromCatppuccinColor('peach', $theme),
-		pink: getHexStringFromCatppuccinColor('pink', $theme),
-		maroon: getHexStringFromCatppuccinColor('maroon', $theme),
+		purple: getHexStringFromCatppuccinColor('mauve', $carbonThemeStore),
+		blue: getHexStringFromCatppuccinColor('blue', $carbonThemeStore),
+		orange: getHexStringFromCatppuccinColor('peach', $carbonThemeStore),
+		pink: getHexStringFromCatppuccinColor('pink', $carbonThemeStore),
+		maroon: getHexStringFromCatppuccinColor('maroon', $carbonThemeStore),
 		border: '#313244',
-		rosewater: getHexStringFromCatppuccinColor('rosewater', $theme),
+		rosewater: getHexStringFromCatppuccinColor('rosewater', $carbonThemeStore),
 		green: '#a6e3a1',
 	};
 

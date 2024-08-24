@@ -10,10 +10,8 @@
 		getThemeId,
 		getThemeNameFromId,
 		setTheme,
-		theme,
 	} from '$lib/client/stores/theme';
 	import {
-		cursorIcon,
 		getCursorIcon,
 		getCursorNameFromId,
 		setCursor,
@@ -38,16 +36,11 @@
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import { onMount } from 'svelte';
 	import mermaid from 'mermaid';
-	import {
-		soundStore,
-		scrollToTopStore,
-		stickyHeaderStore,
-		onStoreToggle,
-	} from '$lib/client/stores/toggles';
-	import { onVolumeChange, volumeStore } from '$lib/client/stores/volume';
+	import { getContext } from 'svelte';
+	import { onStoreToggle } from '$lib/client/stores/toggles';
+	import { onVolumeChange } from '$lib/client/stores/volume';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
 	import { frontierMath } from '$lib/client/modules/frontier/functions';
-
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { browser } from '$app/environment';
 	import {
@@ -68,13 +61,33 @@
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import { page } from '$app/stores';
 	import Head from '$lib/client/components/Head.svelte';
-	import {
-		notificationsStore,
-		onNotificationPress,
-		pushNotificationsStore,
-	} from '$lib/client/stores/notifications';
+	import { onNotificationPress } from '$lib/client/stores/notifications';
 	import TooltipDefinition from 'carbon-components-svelte/src/TooltipDefinition/TooltipDefinition.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import type { Writable } from 'svelte/store';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+
+	const pushNotificationsStore = getContext(
+		Symbol.for('pushNotifications'),
+	) as Writable<boolean>;
+	const notificationsStore = getContext(
+		Symbol.for('notifications'),
+	) as Writable<boolean>;
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+	const cursorIconStore = getContext(
+		Symbol.for('cursorIcon'),
+	) as Writable<string>;
+	const soundStore = getContext(Symbol.for('sound')) as Writable<boolean>;
+	const volumeStore = getContext(Symbol.for('volume')) as Writable<number>;
+	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
+	const scrollToTopStore = getContext(
+		Symbol.for('scrollToTop'),
+	) as Writable<boolean>;
+	const stickyHeaderStore = getContext(
+		Symbol.for('stickyHeader'),
+	) as Writable<boolean>;
 
 	onMount(() => {
 		mermaid.initialize({
@@ -117,16 +130,16 @@
 	}
 
 	function changeTheme(selectedId: string) {
-		setTheme(selectedId);
+		setTheme(carbonThemeStore, selectedId);
 		changeCatppuccinFlavorCSSVariables(selectedId);
 		let oldDiagram = diagram;
 		diagram = '';
-		mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
+		mermaidTheme = $carbonThemeStore === 'g10' ? 'default' : 'dark';
 		diagram = oldDiagram;
 	}
 
 	function changeCursor(selectedId: string) {
-		setCursor(selectedId);
+		setCursor(cursorIconStore, selectedId);
 		changeCursorCSSVariable(selectedId);
 	}
 
@@ -192,7 +205,7 @@
 
 	let container: { innerHTML: string };
 
-	let mermaidTheme = $theme === 'g10' ? 'default' : 'dark';
+	let mermaidTheme = $carbonThemeStore === 'g10' ? 'default' : 'dark';
 
 	// The default diagram
 	let diagram = getDiagram(mermaidTheme);
@@ -200,7 +213,7 @@
 	let monsterHP = 30_000;
 	let defrate = 0.03;
 
-	$: diagram && renderDiagram($theme, mermaidTheme);
+	$: diagram && renderDiagram($carbonThemeStore, mermaidTheme);
 	$: EHP = `{${frontierMath.calculateEHP(
 		monsterHP,
 		defrate,
@@ -279,7 +292,7 @@
 		<Slider
 			labelText="Volume"
 			required
-			on:change={onVolumeChange}
+			on:change={(e) => onVolumeChange(volumeStore, e)}
 			value={$volumeStore}
 		/>
 	</div>
@@ -338,10 +351,10 @@
 
 	<div class="setting-container">
 		<ColorPalette size={32} />
-		{#if getThemeId($theme) !== undefined}
+		{#if getThemeId($carbonThemeStore) !== undefined}
 			<Dropdown
 				titleText="Theme"
-				selectedId={getThemeId($theme)}
+				selectedId={getThemeId($carbonThemeStore)}
 				type="inline"
 				items={[
 					{ id: '0', text: themeOptions[0].labelText },
@@ -390,7 +403,8 @@
 				disabled={!$notificationsStore}
 				kind="tertiary"
 				icon={Notification}
-				on:click={() => onNotificationPress($notificationsStore)}
+				on:click={(e) =>
+					onNotificationPress(pushNotificationsStore, $notificationsStore)}
 				>Push notifications</Button
 			>
 		</div>

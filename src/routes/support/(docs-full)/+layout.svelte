@@ -9,11 +9,9 @@
 	import Footer from '../../Footer.svelte';
 	import ViewTransition from '../../Navigation.svelte';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { theme } from '$lib/client/stores/theme';
 	import { themeTokens } from '$lib/client/themes/tokens';
 	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount } from 'svelte';
-	import { cursorIcon } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
@@ -37,11 +35,9 @@
 	} from 'carbon-components-svelte/src/TreeView/TreeView.svelte';
 	import Logo from '$lib/client/images/logo.svg';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
-	import { stickyHeaderStore } from '$lib/client/stores/toggles';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import { hunterNotesSidebarEnabledStore } from '$lib/client/stores/toc';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import {
 		Bullhorn,
@@ -59,12 +55,27 @@
 		supportInfo,
 	} from '$lib/client/modules/routes';
 	import { getAnnouncementByPathName } from '$lib/client/modules/announcements';
-	import { bannerEnabledStore } from '$lib/client/stores/banner';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
+	const stickyHeaderStore = getContext(
+		Symbol.for('stickyHeader'),
+	) as Writable<boolean>;
+	const bannerEnabledStore = getContext(
+		Symbol.for('banner'),
+	) as Writable<boolean>;
+	const hunterNotesSidebarEnabledStore = getContext(
+		Symbol.for('hunterNotesSidebar'),
+	) as Writable<boolean>;
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	$: tokens = themeTokens[$theme] || themeTokens.default;
+	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
 	export let data: LayoutData;
 
 	type URLItem = { href: string; text: string };
@@ -249,7 +260,7 @@
 	}
 
 	onMount(() => {
-		let themeValue = $theme;
+		let themeValue = $carbonThemeStore;
 		let cssVarMap =
 			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
 		Object.keys(cssVarMap).forEach((key) => {
@@ -308,7 +319,12 @@
 	siteName={projectName}
 />
 
-<Theme bind:theme={$theme} persist persistKey="__carbon-theme" {tokens} />
+<Theme
+	bind:theme={$carbonThemeStore}
+	persist
+	persistKey="__carbon-theme"
+	{tokens}
+/>
 
 {#if !tocVisible && $breakpointLargerThanMedium}
 	<div class="expand-TOC">
