@@ -39,7 +39,9 @@
 	const bannerEnabledStore = getContext(
 		Symbol.for('banner'),
 	) as Writable<boolean>;
-	const tocEnabledStore = getContext(Symbol.for('toc')) as Writable<boolean>;
+	const tocEnabledStore = getContext(
+		Symbol.for('tocEnabled'),
+	) as Writable<boolean>;
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 

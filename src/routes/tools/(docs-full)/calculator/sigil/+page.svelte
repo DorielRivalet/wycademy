@@ -31,6 +31,7 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -952,7 +953,7 @@
 
 <HunterNotesPage displayTOC={false}>
 	<div>
-		<SectionHeadingTopLevel title={'Sigils Calculator'} />
+		<SectionHeadingTopLevel title={'Sigils Damage Calculator'} />
 		<div>
 			<p class="spaced-paragraph">
 				Here you can compare sigils damage in order to decide which one to
@@ -960,6 +961,12 @@
 				effect is only applied by the highest Weapon Up value and does not
 				stack. The standard sigil type minimum and maximum values are taken from
 				standard sigils and Shiten sigils.
+			</p>
+			<p class="spaced-paragraph">
+				If you are looking to simulate sigils rolls, see our <Link
+					inline
+					href="/tools/simulator/sigil">Sigils Simulator.</Link
+				>
 			</p>
 			<div class="sigils">
 				{#each sigils as sigil, i}

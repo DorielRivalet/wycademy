@@ -38,13 +38,10 @@
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
-	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
 	import { StatusIcons } from '$lib/client/modules/frontier/ailments';
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
-	import { getTag } from '$lib/client/modules/frontier/tags';
-	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	function onSelectTowerWeaponOption() {
