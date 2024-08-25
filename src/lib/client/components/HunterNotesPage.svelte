@@ -11,8 +11,11 @@ Also for Tools pages
 	import { fade } from 'svelte/transition';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { browser } from '$app/environment';
 
-	const tocEnabledStore = getContext(Symbol.for('toc')) as Writable<boolean>;
+	const tocEnabledStore = getContext(
+		Symbol.for('tocEnabled'),
+	) as Writable<boolean>;
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
@@ -22,6 +25,7 @@ Also for Tools pages
 	export let displayTOC = true;
 
 	function onTOCToggleButtonPress(e: MouseEvent) {
+		if (!browser) return;
 		tocVisible = !tocVisible;
 		tocEnabledStore.set(tocVisible ? true : false);
 	}

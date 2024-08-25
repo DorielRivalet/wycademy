@@ -343,6 +343,9 @@
 				and compare the damage between them, check our <Link
 					inline
 					href="/tools/calculator/sigil">Sigils Calculator.</Link
+				>. If you want to simulate sigils rolls, check our <Link
+					inline
+					href="/tools/simulator/sigil">Sigils Simulator.</Link
 				>
 			</p>
 			<section>
@@ -1435,6 +1438,9 @@
 						do and compare the damage between them, check our <Link
 							inline
 							href="/tools/calculator/sigil">Sigils Calculator.</Link
+						>. If you want to simulate sigils rolls, check our <Link
+							inline
+							href="/tools/simulator/sigil">Sigils Simulator.</Link
 						>
 					</p>
 				</div>

@@ -235,6 +235,12 @@ export const toolsInfo: CategoryInfo[] = [
 				image: Duremudira,
 				link: '/tools/simulator/tower-weapon',
 			},
+			{
+				name: 'Sigils',
+				description: 'A sigils simulator.',
+				image: SigilIconWhite,
+				link: '/tools/simulator/sigil',
+			},
 		],
 	},
 	{
