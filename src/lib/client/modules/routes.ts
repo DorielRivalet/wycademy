@@ -44,6 +44,8 @@ import { monsterInfo } from './frontier/monsters';
 import { getWeaponIcon } from './frontier/weapons';
 import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
 import { getArmorIcon } from './frontier/armor';
+import License from 'carbon-icons-svelte/lib/License.svelte';
+import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -144,6 +146,12 @@ export const supportInfo: CategoryInfo[] = [
 				link: '/support/website/contact',
 				image: Email,
 			},
+			{
+				name: 'Copyright',
+				description: 'Our stance on copyright and intellectual property.',
+				link: '/support/website/copyright',
+				image: License,
+			},
 		],
 	},
 	{
@@ -165,6 +173,38 @@ export const supportInfo: CategoryInfo[] = [
 				description: 'Privacy Policy.',
 				link: '/support/legal/privacy-policy',
 				image: DocumentRequirements,
+			},
+		],
+	},
+	{
+		category: {
+			name: 'Wycademy Documentation',
+			description: "Documentation about the website's code and design.",
+			link: '/support/wycademy-documentation',
+			image: BookIconWhite,
+		},
+		pages: [
+			{
+				name: 'Architecture',
+				description: 'Architecture of the website.',
+				link: '/support/wycademy-documentation/architecture',
+				image: ReferenceArchitecture,
+			},
+		],
+	},
+	{
+		category: {
+			name: 'Overlay Documentation',
+			description: "Documentation about the overlay's code and design.",
+			link: '/support/overlay-documentation',
+			image: BookIconWhite,
+		},
+		pages: [
+			{
+				name: 'Architecture',
+				description: 'Architecture of the overlay.',
+				link: '/support/overlay-documentation/architecture',
+				image: ReferenceArchitecture,
 			},
 		],
 	},
