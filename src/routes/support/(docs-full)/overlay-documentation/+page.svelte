@@ -1,0 +1,44 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
+	import PageTurn from '$lib/client/components/PageTurn.svelte';
+	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
+	import { supportInfo } from '$lib/client/modules/routes';
+	const pages = supportInfo.find(
+		(e) => e.category.name === 'Overlay Documentation',
+	)?.pages;
+</script>
+
+<div class="top-level-section">
+	<SectionHeadingTopLevel title={'Overlay Documentation'} />
+	<p class="spaced-paragraph">
+		{supportInfo.find((e) => e.category.name === 'Overlay Documentation')
+			?.category.description}
+	</p>
+	<div class="container-tiles">
+		{#if pages}
+			{#each pages as page}
+				<ClickableTileImage
+					title={page.name}
+					description={page.description}
+					imageSource={page.image}
+					href={page.link}
+				/>
+			{/each}
+		{/if}
+	</div>
+	<PageTurn pageUrlPathName={$page.url.pathname} />
+</div>
+
+<style lang="scss">
+	.container-tiles {
+		display: grid;
+		gap: 0.5rem;
+		grid-template-columns: repeat(auto-fill, minmax(256px, 2fr));
+		margin-bottom: 4rem;
+	}
+
+	.top-level-section {
+		max-width: 1080px;
+	}
+</style>
