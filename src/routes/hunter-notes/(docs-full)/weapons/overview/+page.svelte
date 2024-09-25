@@ -24,6 +24,11 @@
 	import { sharpnessTables } from '$lib/client/modules/frontier/sharpness';
 	import { type FrontierWeaponName } from 'ezlion';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import {
+		questionBank,
+		type MultipleChoiceItem,
+	} from '$lib/client/modules/multiple-choice';
+	import MultipleChoice from '$lib/client/components/MultipleChoice.svelte';
 
 	function getSharpnessArray(input: string): FrontierWeaponSharpness {
 		// Split the input string into an array of strings
@@ -56,6 +61,9 @@
 	$: filteredSharpnessTables = sharpnessTables.filter(
 		(e) => e.weaponType === selectedWeaponTypeId,
 	);
+
+	let multipleChoiceItems: MultipleChoiceItem[] =
+		questionBank.find((e) => e.category === 'Weapons Overview')?.items || [];
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -499,6 +507,19 @@
 						{/if}
 					</svelte:fragment>
 				</DataTable>
+			</div>
+		</section>
+		<section>
+			<SectionHeading level={2} title="Quiz" />
+			<div>
+				<p>
+					You've reached the end of the page! Let's assess what you've just
+					learned.
+				</p>
+				<MultipleChoice
+					items={multipleChoiceItems}
+					category="Weapons Overview"
+				/>
 			</div>
 		</section>
 		<div class="page-turn">
