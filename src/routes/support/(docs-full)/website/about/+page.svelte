@@ -213,7 +213,9 @@
 					following officially endorsed buttons.
 				</p>
 				<p class="spaced-paragraph">
-					The HTML code for each button is under the image.
+					The HTML code for each button is under the image. Save the image and
+					edit the <CodeSnippet type="inline" code="src" hideCopyButton /> attribute
+					to your image path.
 				</p>
 				<div class="blinkies-container">
 					<div>
