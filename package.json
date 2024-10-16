@@ -99,7 +99,7 @@
 		"workbox-strategies": "^7.1.0"
 	},
 	"dependencies": {
-		"@carbon/grid": "^11.23.0",
+		"@carbon/grid": "^11.28.0",
 		"@carbon/layout": "^11.24.0",
 		"@carbon/motion": "^11.18.0",
 		"@carbon/type": "^11.29.0",
