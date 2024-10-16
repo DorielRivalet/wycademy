@@ -48,7 +48,7 @@
 		"@commitlint/cz-commitlint": "^19.5.0",
 		"@neoconfetti/svelte": "^2.2.1",
 		"@playwright/test": "^1.48.1",
-		"@release-it/conventional-changelog": "^8.0.1",
+		"@release-it/conventional-changelog": "^9.0.0",
 		"@rollup/plugin-typescript": "^12.1.1",
 		"@sveltejs/adapter-vercel": "^5.4.5",
 		"@sveltejs/kit": "^2.7.1",
