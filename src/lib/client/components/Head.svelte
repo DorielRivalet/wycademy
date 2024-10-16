@@ -124,6 +124,14 @@ SOFTWARE.
 		<meta property="og:site_name" content={siteName} />
 	{/if}
 
+	<!-- Google Workspace Meta Tags -->
+	{#if image}
+		<meta property="thumbnail" content={image} />
+		<link rel="image_src" href={image} />
+		<meta name="application-name" content="Frontier's Wycademy" />
+		<meta name="robots" content="max-snippet:-1, max-image-preview:large" />
+	{/if}
+
 	<!-- Discord-->
 	<meta content="#89b4fa" data-react-helmet="true" name="theme-color" />
 
