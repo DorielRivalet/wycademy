@@ -87,7 +87,7 @@
 		"svelte-awesome-color-picker": "^3.1.4",
 		"svelte-check": "^4.0.5",
 		"svelte-grid": "^5.1.2",
-		"svelte-preprocess": "^6.0.2",
+		"svelte-preprocess": "^6.0.3",
 		"svelte-youtube-embed": "^0.3.0",
 		"tslib": "^2.6.3",
 		"typescript": "^5.5.4",
