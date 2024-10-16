@@ -141,7 +141,7 @@
 		"svelte-reactions": "^2.5.4",
 		"svelte-toc": "^0.5.9",
 		"three": "^0.167.1",
-		"vidstack": "^1.12.9",
+		"vidstack": "^1.12.11",
 		"xml2js": "^0.6.2"
 	}
 }
