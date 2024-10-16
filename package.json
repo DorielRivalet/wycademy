@@ -115,7 +115,7 @@
 		"@threlte/core": "^7.3.1",
 		"@threlte/extras": "^8.11.5",
 		"@threlte/theatre": "^2.1.8",
-		"@types/three": "^0.167.1",
+		"@types/three": "^0.169.0",
 		"@xyflow/svelte": "^0.1.14",
 		"@zip.js/zip.js": "^2.7.52",
 		"alex": "^11.0.1",
@@ -140,7 +140,7 @@
 		"svelte-moveable": "^0.45.0",
 		"svelte-reactions": "^2.5.4",
 		"svelte-toc": "^0.5.9",
-		"three": "^0.167.1",
+		"three": "^0.169.0",
 		"vidstack": "^1.12.11",
 		"xml2js": "^0.6.2"
 	}
