@@ -27,7 +27,7 @@
 	} from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import Head from '$lib/client/components/Head.svelte';
-	import pageThumbnail from '$lib/client/images/logo.png';
+	import pageThumbnail from '$lib/client/images/wycademy.png';
 	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
 	import TreeView, {

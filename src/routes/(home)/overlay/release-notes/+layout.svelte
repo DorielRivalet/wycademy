@@ -9,7 +9,7 @@
 		authorUrl,
 		projectName,
 	} from '$lib/constants';
-	import pageThumbnail from '$lib/client/images/logo.png';
+	import pageThumbnail from '$lib/client/images/wycademy.png';
 	import { getReleaseNotesSummary } from '$lib/client/modules/overlay-release-notes';
 
 	const url = $page.url.toString();

@@ -211,7 +211,7 @@
 			<div>
 				<p>
 					If you want to link to Wycademy on your website, you can use the
-					following officially endorsed buttons.
+					following officially endorsed buttons (also called blinkies).
 				</p>
 				<p class="spaced-paragraph">
 					The HTML code for each button is under the image. Save the image and
