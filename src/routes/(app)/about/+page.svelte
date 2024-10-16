@@ -6,7 +6,7 @@
 
 <script>
 	import { page } from '$app/stores';
-	import pageThumbnail from '$lib/client/images/logo.png';
+	import pageThumbnail from '$lib/client/images/wycademy.png';
 	import {
 		authorName,
 		authorUrl,

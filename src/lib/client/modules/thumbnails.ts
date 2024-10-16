@@ -1,4 +1,4 @@
-import pageThumbnail from '$lib/client/images/logo.png';
+import pageThumbnail from '$lib/client/images/wycademy.png';
 
 import thumbnailLightActiveFeature from '$lib/client/images/page-thumbnail/light/active-feature.png';
 import thumbnailLightGuildPoogies from '$lib/client/images/page-thumbnail/light/guild-poogies.png';
