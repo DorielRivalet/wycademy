@@ -117,7 +117,7 @@
 		"@threlte/theatre": "^2.1.8",
 		"@types/three": "^0.167.1",
 		"@xyflow/svelte": "^0.1.14",
-		"@zip.js/zip.js": "^2.7.48",
+		"@zip.js/zip.js": "^2.7.52",
 		"alex": "^11.0.1",
 		"carbon-components": "^11.62.0",
 		"countries-list": "^3.1.1",
