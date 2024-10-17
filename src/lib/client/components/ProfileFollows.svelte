@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	import { UserFollow } from 'carbon-icons-svelte';
+	import UserFollow from 'carbon-icons-svelte/lib/UserFollow.svelte';
+
 	import numbro from 'numbro';
 
 	export let followers = 1000;
