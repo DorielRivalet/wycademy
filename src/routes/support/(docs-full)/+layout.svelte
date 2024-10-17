@@ -39,16 +39,15 @@
 	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
-	import {
-		Bullhorn,
-		Development,
-		DocumentRequirements,
-		Email,
-		Group,
-		InformationSquare,
-		PiggyBank,
-		QuestionAnswering,
-	} from 'carbon-icons-svelte';
+	import Bullhorn from 'carbon-icons-svelte/lib/Bullhorn.svelte';
+	import Development from 'carbon-icons-svelte/lib/Development.svelte';
+	import DocumentRequirements from 'carbon-icons-svelte/lib/DocumentRequirements.svelte';
+	import Email from 'carbon-icons-svelte/lib/Email.svelte';
+	import Group from 'carbon-icons-svelte/lib/Group.svelte';
+	import InformationSquare from 'carbon-icons-svelte/lib/InformationSquare.svelte';
+	import PiggyBank from 'carbon-icons-svelte/lib/PiggyBank.svelte';
+	import License from 'carbon-icons-svelte/lib/License.svelte';
+	import QuestionAnswering from 'carbon-icons-svelte/lib/QuestionAnswering.svelte';
 	import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 	import {
 		getNavigationItemFromLink,
@@ -176,6 +175,10 @@
 					id: '/support/website/contact',
 					text: 'Contact',
 				},
+				{
+					id: '/support/website/copyright',
+					text: 'Copyright',
+				},
 			],
 		},
 		{
@@ -223,6 +226,10 @@
 		{
 			id: '/support/website/contact',
 			icon: Email,
+		},
+		{
+			id: '/support/website/copyright',
+			icon: License,
 		},
 		{
 			id: '/support/legal',

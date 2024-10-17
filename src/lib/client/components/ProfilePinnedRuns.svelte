@@ -12,7 +12,8 @@
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import { formatDateTime } from '../modules/time';
 	import type { OverlayHuntRank } from '../modules/frontier/types';
-	import { Favorite, FavoriteFilled } from 'carbon-icons-svelte';
+	import Favorite from 'carbon-icons-svelte/lib/Favorite.svelte';
+	import FavoriteFilled from 'carbon-icons-svelte/lib/FavoriteFilled.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import '@carbon/charts-svelte/styles.css';
 	import type { LineChartOptions, ScaleTypes } from '@carbon/charts-svelte';

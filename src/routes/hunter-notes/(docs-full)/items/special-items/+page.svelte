@@ -19,7 +19,8 @@
 	} from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
-	import { Download, Image } from 'carbon-icons-svelte';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 	import type { ComponentType, SvelteComponent } from 'svelte';
 
 	// TODO page thumbnail

@@ -11,7 +11,8 @@
 		supportInfo,
 		toolsInfo,
 	} from '$lib/client/modules/routes';
-	import { ChevronLeft, ChevronRight } from 'carbon-icons-svelte';
+	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
+	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 
 	let open = false;
 	let selectedSection: number | null = null;

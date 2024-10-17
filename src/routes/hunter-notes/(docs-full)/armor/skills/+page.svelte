@@ -11,7 +11,8 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
-	import { Download } from 'carbon-icons-svelte';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+
 	import { ezlionSkillArmorPriority } from 'ezlion';
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';

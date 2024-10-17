@@ -23,7 +23,8 @@
 	import { isArray } from 'mathjs';
 	import MatchItem from './MatchItem.svelte';
 	import TooltipIcon from 'carbon-components-svelte/src/TooltipIcon/TooltipIcon.svelte';
-	import { Information } from 'carbon-icons-svelte';
+	import Information from 'carbon-icons-svelte/lib/Information.svelte';
+
 	import RankingItem from './RankingItem.svelte';
 
 	const dispatch = createEventDispatcher();
