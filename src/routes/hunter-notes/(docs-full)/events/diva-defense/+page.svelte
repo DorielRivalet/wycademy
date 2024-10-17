@@ -14,11 +14,66 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import { ezlionSkillDivaPrayerGem } from 'ezlion';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
 </script>
 
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Diva Defense'} />
+		<section>
+			<SectionHeading level={2} title="Diva Skills" />
+			<div>
+				<p class="spaced-paragraph">
+					<strong>Diva Skills</strong>, also known as
+					<strong>GCP skills</strong>, work similarly to other external skill
+					sources, such as Guild Food or Exotic Armors. They do not use any of
+					your maximum skill slots. Instead, you purchase the skill you want,
+					and it will be available for a certain number of quests based on the
+					quantity purchased.
+				</p>
+				<p class="spaced-paragraph">
+					It’s important to note that you can typically queue up only one skill
+					type at a time. For example, if you purchase 10 uses of <InlineTooltip
+						text="Lone Wolf"
+						tooltip="Diva Skill"
+						icon={getItemIcon('Jewel')}
+						iconColor={getItemColor('Blue')}
+						iconType="component"
+					/>
+					and then buy a use of <InlineTooltip
+						text="Focus+2"
+						tooltip="Diva Skill"
+						icon={getItemIcon('Jewel')}
+						iconColor={getItemColor('Blue')}
+						iconType="component"
+					/>, you will lose all your remaining <InlineTooltip
+						text="Lone Wolf"
+						tooltip="Diva Skill"
+						icon={getItemIcon('Jewel')}
+						iconColor={getItemColor('Blue')}
+						iconType="component"
+					/> uses.
+				</p>
+				<p class="spaced-paragraph">
+					Like other temporary items (e.g., Carving Talismans, Lucky Charms),
+					GCP skills are only consumed if you complete the quest. If you abandon
+					the quest, the skill use will not be deducted.
+				</p>
+				<p class="spaced-paragraph">
+					Certain skills, such as <InlineTooltip
+						text="Focus+2"
+						tooltip="Diva Skill"
+						icon={getItemIcon('Jewel')}
+						iconColor={getItemColor('Blue')}
+						iconType="component"
+					/>, are generally always available since Level 0 skills do not require
+					you to have an active Prayer or any contributions.
+				</p>
+			</div>
+		</section>
 		<section>
 			<SectionHeading level={2} title="Diva Prayer Gems" />
 			<div>
