@@ -57,6 +57,7 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -199,6 +200,26 @@
 				},
 			],
 		},
+		{
+			id: '/support/wycademy-documentation',
+			text: 'Wycademy Documentation',
+			children: [
+				{
+					id: '/support/wycademy-documentation/architecture',
+					text: 'Architecture',
+				},
+			],
+		},
+		{
+			id: '/support/overlay-documentation',
+			text: 'Overlay Documentation',
+			children: [
+				{
+					id: '/support/overlay-documentation/architecture',
+					text: 'Architecture',
+				},
+			],
+		},
 	];
 
 	const iconsMap: (
@@ -259,6 +280,22 @@
 		{
 			id: '/support/policies/acknowledgements',
 			icon: License,
+		},
+		{
+			id: '/support/wycademy-documentation',
+			icon: BookIconWhite,
+		},
+		{
+			id: '/support/wycademy-documentation/architecture',
+			icon: ReferenceArchitecture,
+		},
+		{
+			id: '/support/overlay-documentation',
+			icon: BookIconWhite,
+		},
+		{
+			id: '/support/overlay-documentation/architecture',
+			icon: ReferenceArchitecture,
 		},
 	];
 
