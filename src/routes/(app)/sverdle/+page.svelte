@@ -8,7 +8,7 @@
 	import { confetti } from '@neoconfetti/svelte';
 	import { enhance } from '$app/forms';
 	import type { PageData, ActionData } from './$types';
-	import { reduced_motion } from './reduced-motion';
+	import { reduced_motion } from '../../../lib/client/stores/reduced-motion';
 	import logo from '$lib/client/images/logo.png';
 	import { description as projectDescription } from '$lib/constants';
 	export let data: PageData;

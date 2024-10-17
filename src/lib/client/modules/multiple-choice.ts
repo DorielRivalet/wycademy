@@ -1,5 +1,5 @@
 /**If a format is not chosen, selects the appropiate format based on the other properties.
- * Available formats are: single solution, multiple solutions, true/false, multiple true/false.
+ * Available formats are: single solution, multiple solutions, true/false, ranking, multiple true/false.
  */
 export type MultipleChoiceItem = {
 	stem: string | string[];
@@ -108,23 +108,22 @@ export let questionBank: { category: string; items: MultipleChoiceItem[] }[] = [
 				solutions:
 					'The possible combinations of sharpness values for a weapon, separated by weapon type (e.g. Dual Swords).',
 			},
-
-			// {
-			// 	stem: 'Rank from highest to lowest the weapons by the damage they would deal.',
-			// 	options: [
-			// 		'1500 Attack Sword and Shield',
-			// 		'2000 Attack Dual Swords',
-			// 		'1000 Attack Long Sword',
-			// 		'1000 Attack Magnet Spike',
-			// 	],
-			// 	solutions: [
-			// 		'1000 Attack Magnet Spike',
-			// 		'1000 Attack Long Sword',
-			// 		'2000 Attack Dual Swords',
-			// 		'1500 Attack Sword and Shield',
-			// 	],
-			// 	format: 'ranking',
-			// },
+			{
+				stem: 'Rank from highest to lowest the weapons by the damage they would deal.',
+				options: [
+					'1500 Attack Sword and Shield',
+					'2000 Attack Dual Swords',
+					'1000 Attack Long Sword',
+					'1000 Attack Magnet Spike',
+				],
+				solutions: [
+					'1000 Attack Magnet Spike',
+					'1000 Attack Long Sword',
+					'2000 Attack Dual Swords',
+					'1500 Attack Sword and Shield',
+				],
+				format: 'ranking',
+			},
 		],
 	},
 ];
