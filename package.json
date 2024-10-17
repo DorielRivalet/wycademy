@@ -44,7 +44,7 @@
 		"@carbon/charts-svelte": "^1.22.0",
 		"@carbon/styles": "^1.67.0",
 		"@commitlint/cli": "^19.5.0",
-		"@commitlint/config-conventional": "^19.2.2",
+		"@commitlint/config-conventional": "^19.5.0",
 		"@commitlint/cz-commitlint": "^19.5.0",
 		"@neoconfetti/svelte": "^2.2.1",
 		"@playwright/test": "^1.48.1",
