@@ -29,6 +29,18 @@
 		type MultipleChoiceItem,
 	} from '$lib/client/modules/multiple-choice';
 	import MultipleChoice from '$lib/client/components/MultipleChoice.svelte';
+	import { confetti } from '@neoconfetti/svelte';
+	import { reduced_motion } from '$lib/client/stores/reduced-motion';
+
+	let showConfetti = false;
+
+	function handlePerfectScore() {
+		showConfetti = true;
+		// Optional: Hide confetti after a few seconds
+		setTimeout(() => {
+			showConfetti = false;
+		}, 5000);
+	}
 
 	function getSharpnessArray(input: string): FrontierWeaponSharpness {
 		// Split the input string into an array of strings
@@ -516,8 +528,10 @@
 					You've reached the end of the page! Let's assess what you've just
 					learned.
 				</p>
+
 				<MultipleChoice
 					items={multipleChoiceItems}
+					on:perfectScore={handlePerfectScore}
 					category="Weapons Overview"
 				/>
 			</div>
@@ -527,6 +541,19 @@
 		</div>
 	</div>
 </HunterNotesPage>
+
+{#if showConfetti}
+	<div
+		style="position: fixed; left: 50%; top: 30vh; transform: translateX(-50%)"
+		use:confetti={{
+			particleCount: $reduced_motion ? 0 : undefined,
+			force: 0.7,
+			stageWidth: window.innerWidth,
+			stageHeight: window.innerHeight,
+			colors: ['#f38ba8', '#a6e3a1', '#89b4fa'],
+		}}
+	/>
+{/if}
 
 <style lang="scss">
 	.page-turn {

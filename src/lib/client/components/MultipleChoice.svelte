@@ -1,3 +1,4 @@
+<!--TODO: Save to profile your results-->
 <script lang="ts">
 	import type { MultipleChoiceItem } from '../modules/multiple-choice';
 	import Book from 'carbon-icons-svelte/lib/Book.svelte';
@@ -5,7 +6,7 @@
 	import NextOutline from 'carbon-icons-svelte/lib/NextOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import '@carbon/charts-svelte/styles.css';
-	import { onMount, type ComponentType } from 'svelte';
+	import { createEventDispatcher, onMount, type ComponentType } from 'svelte';
 	import {
 		type GaugeChart,
 		type GaugeChartOptions,
@@ -23,6 +24,19 @@
 	import MatchItem from './MatchItem.svelte';
 	import TooltipIcon from 'carbon-components-svelte/src/TooltipIcon/TooltipIcon.svelte';
 	import { Information } from 'carbon-icons-svelte';
+	import RankingItem from './RankingItem.svelte';
+
+	const dispatch = createEventDispatcher();
+
+	// Utility function to shuffle an array
+	function shuffleArray<T>(array: T[]): T[] {
+		for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]];
+		}
+
+		return array;
+	}
 
 	function onClickNext(
 		answer:
@@ -43,10 +57,7 @@
 		// Comparison logic for scoring
 		const isCorrect = (() => {
 			if (Array.isArray(answer) && Array.isArray(solution)) {
-				console.log('first if');
 				if (Array.isArray(answer[0]) && Array.isArray(solution[0])) {
-					console.log('second if');
-
 					// Sort both arrays of tuples
 					const sortedAnswer = [...answer].sort((a, b) =>
 						a[0].localeCompare(b[0]),
@@ -57,7 +68,6 @@
 
 					// Handle tuple arrays (e.g., matching questions)
 					return sortedAnswer.every((tuple, i) => {
-						console.log('checking match');
 						return (
 							tuple[0] === sortedSolution[i][0] &&
 							tuple[1] === sortedSolution[i][1]
@@ -77,18 +87,25 @@
 			currentScore += 1;
 		}
 
-		console.log(isCorrect ? 'Correct' : 'Incorrect');
-		console.log(answer);
-		console.log(solution);
-
 		currentItemIndex++;
 		currentAnswer = '';
+
+		if (currentItemIndex < items.length) {
+			randomizeCurrentOptions();
+		}
+
+		// Check if quiz is complete and score is perfect
+		if (currentItemIndex === items.length && currentScore === maxScore) {
+			dispatch('perfectScore');
+		}
 	}
 
 	function onClickRestart() {
 		currentItemIndex = 0;
 		currentScore = 0;
 		currentAnswer = '';
+		items = shuffleArray([...items]); // Shuffle stems
+		randomizeCurrentOptions();
 	}
 
 	function getGaugeColor(theme: CarbonTheme, obtained: number, total: number) {
@@ -126,6 +143,28 @@
 		}).format(obtainedPercent);
 
 		return Number(truncatedResult);
+	}
+
+	function randomizeCurrentOptions() {
+		if (!items[currentItemIndex]?.options) return;
+
+		const currentOptions = items[currentItemIndex].options;
+
+		// Check if it's a matching question (two sets of options)
+		if (
+			Array.isArray(currentOptions) &&
+			Array.isArray(currentOptions[0]) &&
+			Array.isArray(currentOptions[1])
+		) {
+			const [set1, set2] = currentOptions as [string[], string[]];
+			items[currentItemIndex].options = [
+				shuffleArray([...set1]),
+				shuffleArray([...set2]),
+			];
+		} else {
+			// Shuffle regular single set of options
+			items[currentItemIndex].options = shuffleArray([...currentOptions]);
+		}
 	}
 
 	export let items: MultipleChoiceItem[];
@@ -187,6 +226,8 @@
 		const charts = await import('@carbon/charts-svelte');
 		resultsGauge = charts.GaugeChart;
 		resultsGaugeLoaded = true;
+		items = shuffleArray([...items]); // Shuffle stems on initialization
+		randomizeCurrentOptions(); // Shuffle options for the first item
 	});
 </script>
 
@@ -247,6 +288,13 @@
 				<MatchItem
 					options={currentItem.options}
 					on:change={(e) => (currentAnswer = e.detail.connections)}
+				/>
+				<!--ranking-->
+			{:else if currentItem !== undefined && currentItem.format === 'ranking'}
+				<p class="spaced-paragraph">{currentItem.stem}</p>
+				<RankingItem
+					items={currentItem.options}
+					on:change={(e) => (currentAnswer = e.detail.items)}
 				/>
 			{:else}
 				<p></p>
@@ -335,10 +383,6 @@
 			p {
 				@include type.type-style('heading-03');
 			}
-		}
-
-		.page {
-			color: var(--ctp-subtext0);
 		}
 	}
 
