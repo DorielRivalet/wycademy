@@ -4,13 +4,14 @@
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { supportInfo } from '$lib/client/modules/routes';
-	const pages = supportInfo.find((e) => e.category.name === 'Legal')?.pages;
+	const pages = supportInfo.find((e) => e.category.name === 'Policies')?.pages;
 </script>
 
 <div class="top-level-section">
-	<SectionHeadingTopLevel title={'Legal'} />
+	<SectionHeadingTopLevel title={'Policies'} />
 	<p class="spaced-paragraph">
-		{supportInfo.find((e) => e.category.name === 'Legal')?.category.description}
+		{supportInfo.find((e) => e.category.name === 'Policies')?.category
+			.description}
 	</p>
 	<div class="container-tiles">
 		{#if pages}

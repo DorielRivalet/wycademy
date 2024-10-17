@@ -175,29 +175,42 @@
 					id: '/support/website/contact',
 					text: 'Contact',
 				},
-				{
-					id: '/support/website/copyright',
-					text: 'Copyright',
-				},
 			],
 		},
 		{
-			id: '/support/legal',
-			text: 'Legal',
+			id: '/support/policies',
+			text: 'Policies',
 			children: [
 				{
-					id: '/support/legal/terms-of-service',
+					id: '/support/policies/terms-of-service',
 					text: 'Terms of Service',
 				},
 				{
-					id: '/support/legal/privacy-policy',
+					id: '/support/policies/privacy-policy',
 					text: 'Privacy Policy',
+				},
+				{
+					id: '/support/policies/copyright',
+					text: 'Copyright',
+				},
+				{
+					text: 'Acknowledgements',
+					id: '/support/policies/acknowledgements',
 				},
 			],
 		},
 	];
 
-	const iconsMap = [
+	const iconsMap: (
+		| {
+				id: string;
+				icon: string;
+		  }
+		| {
+				id: string;
+				icon: any;
+		  }
+	)[] = [
 		{ id: '/support/website', icon: Logo },
 		{
 			id: '/support/website/announcements',
@@ -228,20 +241,24 @@
 			icon: Email,
 		},
 		{
-			id: '/support/website/copyright',
-			icon: License,
-		},
-		{
-			id: '/support/legal',
+			id: '/support/policies',
 			icon: BookIconWhite,
 		},
 		{
-			id: '/support/legal/terms-of-service',
+			id: '/support/policies/terms-of-service',
 			icon: DocumentRequirements,
 		},
 		{
-			id: '/support/legal/privacy-policy',
+			id: '/support/policies/privacy-policy',
 			icon: DocumentRequirements,
+		},
+		{
+			id: '/support/policies/copyright',
+			icon: License,
+		},
+		{
+			id: '/support/policies/acknowledgements',
+			icon: License,
 		},
 	];
 
