@@ -19,7 +19,6 @@
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
-	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
@@ -807,7 +806,7 @@
 			<div>{modalNotes}</div>
 		</div>
 	{:else}
-	<!-- TODO: do i need this?-->
+		<!-- TODO: do i need this?-->
 		<div class="modal-mobile-container">
 			<div class="modal-mobile-contents-top">
 				<div class="modal-mobile-image">
