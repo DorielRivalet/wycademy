@@ -92,8 +92,9 @@
 					<Link href="/support/website/contribute">Contribute</Link>
 					<Link href="/support/website/development">Development</Link>
 					<Link href="/support/website/contact">Contact</Link>
-					<Link href="/support/legal/terms-of-service">Terms of Service</Link>
-					<Link href="/support/legal/privacy-policy">Privacy Policy</Link>
+					<Link href="/support/policies/terms-of-service">Terms of Service</Link
+					>
+					<Link href="/support/policies/privacy-policy">Privacy Policy</Link>
 				</section>
 			</div>
 
