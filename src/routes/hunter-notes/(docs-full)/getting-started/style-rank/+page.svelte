@@ -42,6 +42,23 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import MultipleChoice from '$lib/client/components/MultipleChoice.svelte';
+	import {
+		type MultipleChoiceItem,
+		questionBank,
+	} from '$lib/client/modules/multiple-choice';
+	import { confetti } from '@neoconfetti/svelte';
+	import { reduced_motion } from '$lib/client/stores/reduced-motion';
+
+	let showConfetti = false;
+
+	function handlePerfectScore() {
+		showConfetti = true;
+		// Optional: Hide confetti after a few seconds
+		setTimeout(() => {
+			showConfetti = false;
+		}, 5000);
+	}
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -851,16 +868,16 @@ graph LR
 	%%{init: {'theme':'${mermaidTheme}'}}%%
 
 graph LR
-		WhitePiece[1x Fully Completed White Tigex GX Hiden Piece] -->|Convert to| WhiteDeco[White Tiger Decoration]
+		WhitePiece[1x Fully Completed White Tigex GX Hiden Piece] -->|Refine to| WhiteDeco[White Tiger Decoration]
 		WhiteDeco -->|Recipe for| TrueHiden[1x Any Color True Hiden Decoration]
 
-		BlackPiece[1x Fully Completed Military Black GX Hiden Piece] -->|Convert to| BlackDeco[Military Black Decoration]
+		BlackPiece[1x Fully Completed Military Black GX Hiden Piece] -->|Refine to| BlackDeco[Military Black Decoration]
 		BlackDeco -->|Recipe for| TrueHiden
 
-		RedPiece[1x Fully Completed Crimson Phoenix GX Hiden Piece] -->|Convert to| RedDeco[Crimson Phoenix Decoration]
+		RedPiece[1x Fully Completed Crimson Phoenix GX Hiden Piece] -->|Refine to| RedDeco[Crimson Phoenix Decoration]
 		RedDeco -->|Recipe for| TrueHiden
 
-		BluePiece[1x Fully Completed Azure Dragon GX Hiden Piece] -->|Convert to| BlueDeco[Azure Dragon Decoration]
+		BluePiece[1x Fully Completed Azure Dragon GX Hiden Piece] -->|Refine to| BlueDeco[Azure Dragon Decoration]
 		BlueDeco -->|Recipe for| TrueHiden
 `;
 	}
@@ -901,6 +918,9 @@ graph LR
 		let { svg } = await mermaid.render('mermaid2', getDiagram2(mermaidTheme));
 		container2.innerHTML = svg;
 	}
+
+	let multipleChoiceItems: MultipleChoiceItem[] =
+		questionBank.find((e) => e.category === 'Style Rank')?.items || [];
 </script>
 
 <Modal
@@ -1105,6 +1125,18 @@ graph LR
 					You can toggle the HC option on the final screen after selecting a
 					quest, where you confirm player numbers, passwords, etc.
 				</p>
+				<p class="spaced-paragraph">
+					<strong
+						>Keep in mind that Newbie and Return worlds do not have the HC
+						feature.</strong
+					>
+					If you do not see any red flame icons, first check if you have interacted
+					with the Guild Master and then check your SR menu in your Equipment Box,
+					you may have SR disabled.
+				</p>
+				<p class="spaced-paragraph"></p>
+				<p class="spaced-paragraph"></p>
+				<p class="spaced-paragraph"></p>
 			</div>
 		</section>
 
@@ -1926,7 +1958,8 @@ graph LR
 						iconType="component"
 						text="Super High-Grade Earplugs"
 						tooltip="Armor Skill"
-					/> and an attack multiplier of at least 1.2x for Melee and 1.3x for Ranged.
+					/> and an attack multiplier of at least 1.2x for Blademaster and 1.3x for
+					Gunner.
 				</p>
 				<p class="spaced-paragraph">
 					Having one of these skills is commonly referred to as having <strong
@@ -2902,11 +2935,40 @@ graph LR
 			</div>
 		</section>
 
+		<section>
+			<SectionHeading level={2} title="Quiz" />
+			<div>
+				<p>
+					You've reached the end of the page! Let's assess what you've just
+					learned.
+				</p>
+
+				<MultipleChoice
+					items={multipleChoiceItems}
+					on:perfectScore={handlePerfectScore}
+					category="Style Rank"
+				/>
+			</div>
+		</section>
+
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
 </HunterNotesPage>
+
+{#if showConfetti}
+	<div
+		style="position: fixed; left: 50%; top: 30vh; transform: translateX(-50%)"
+		use:confetti={{
+			particleCount: $reduced_motion ? 0 : undefined,
+			force: 0.7,
+			stageWidth: window.innerWidth,
+			stageHeight: window.innerHeight,
+			colors: ['#f38ba8', '#a6e3a1', '#89b4fa'],
+		}}
+	/>
+{/if}
 
 <style lang="scss">
 	.page-turn {

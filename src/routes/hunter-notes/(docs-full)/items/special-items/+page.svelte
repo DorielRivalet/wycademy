@@ -114,7 +114,7 @@
 			item: 'Sword Crystals',
 			icon: getItemIcon('Sword Crystal'),
 			iconColor: getItemColor('Red'),
-			description: `These crystals function as ammunition for Blademaster weapons, requiring specific skills to use effectively. Reaching level +3 in these skills guarantees maximum damage or status effect output.`,
+			description: `These crystals function as ammunition for Blademaster weapons, requiring specific skills to use effectively. Reaching level +3 in these skills guarantees maximum damage or status effect output. The Blazing Majesty armor skill and Raviente weapons can also enable using this item. To use this item, press R2+R3 on controller, or Shift+Z on keyboard. SnS Hiden also allows sword crystal use, except for Power Sword Crystals.`,
 			source: 'General Store NPC.',
 			type: 'Tool',
 			demo: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/sword-crystal.webm',

@@ -24,8 +24,8 @@
 	import MatchItem from './MatchItem.svelte';
 	import TooltipIcon from 'carbon-components-svelte/src/TooltipIcon/TooltipIcon.svelte';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
-
 	import RankingItem from './RankingItem.svelte';
+	import Checkbox from 'carbon-components-svelte/src/Checkbox/Checkbox.svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -75,8 +75,12 @@
 						);
 					});
 				} else {
-					// Handle string[], boolean[], number[] etc.
-					return JSON.stringify(answer) === JSON.stringify(solution);
+					// Sort arrays before comparing for multiple choice
+					const sortedAnswer = [...answer].sort();
+					const sortedSolution = [...solution].sort();
+					return (
+						JSON.stringify(sortedAnswer) === JSON.stringify(sortedSolution)
+					);
 				}
 			} else {
 				// Handle number, string, boolean, etc.
@@ -89,7 +93,7 @@
 		}
 
 		currentItemIndex++;
-		currentAnswer = '';
+		currentAnswer = [];
 
 		if (currentItemIndex < items.length) {
 			randomizeCurrentOptions();
@@ -104,7 +108,7 @@
 	function onClickRestart() {
 		currentItemIndex = 0;
 		currentScore = 0;
-		currentAnswer = '';
+		currentAnswer = [];
 		items = shuffleArray([...items]); // Shuffle stems
 		randomizeCurrentOptions();
 	}
@@ -187,7 +191,7 @@
 		| string[]
 		| boolean
 		| boolean[]
-		| [string, string][] = '';
+		| [string, string][] = [];
 
 	$: resultsGaugeColor = getGaugeColor(
 		$carbonThemeStore,
@@ -258,6 +262,19 @@
 					<RadioButton labelText="True" value={'true'} />
 					<RadioButton labelText="False" value={'false'} />
 				</RadioButtonGroup>
+				<!--multiple-->
+			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === undefined && isArray(currentItem.options) && isArray(currentItem.solutions) && typeof currentItem.stem === 'string'}
+				<p class="spaced-paragraph">
+					{currentItem.stem} Select all that apply.
+				</p>
+
+				{#each currentItem.options as option}
+					<Checkbox
+						bind:group={currentAnswer}
+						labelText={option.toString()}
+						value={option.toString()}
+					/>
+				{/each}
 				<!--single-->
 			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === undefined && isArray(currentItem.options) && typeof currentItem.stem === 'string'}
 				<p class="spaced-paragraph">{currentItem.stem}</p>
@@ -274,6 +291,25 @@
 						/>
 					{/each}
 				</RadioButtonGroup>
+				<!--best answer-->
+			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === 'best answer' && isArray(currentItem.options) && typeof currentItem.stem === 'string'}
+				<p class="spaced-paragraph">
+					{currentItem.stem} Select the best answer.
+				</p>
+				<RadioButtonGroup
+					required={true}
+					orientation="vertical"
+					name={currentItem.stem}
+					bind:selected={currentAnswer}
+				>
+					{#each currentItem.options as option}
+						<RadioButton
+							labelText={option.toString()}
+							value={option.toString()}
+						/>
+					{/each}
+				</RadioButtonGroup>
+
 				<!--matching-->
 			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === 'matching' && isArray(currentItem.options) && typeof currentItem.stem === 'string'}
 				<div class="matching-objective">

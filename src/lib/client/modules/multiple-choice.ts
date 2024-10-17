@@ -16,6 +16,76 @@ export type MultipleChoiceItem = {
 
 export let questionBank: { category: string; items: MultipleChoiceItem[] }[] = [
 	{
+		category: 'Style Rank',
+		items: [
+			{
+				stem: 'How many weapon styles are available?',
+				options: [3, 4, 5],
+				solutions: 4,
+			},
+			{
+				stem: 'What does the process of obtaining a Hardcore Carve look like?',
+				options: [
+					'You hear a special jingle if you carved it.',
+					'Very grindy.',
+					'When you carve a monster, you first roll for the pool from which you get an item and then for the item itself.',
+				],
+				solutions:
+					'When you carve a monster, you first roll for the pool from which you get an item and then for the item itself.',
+				format: 'best answer',
+			},
+			{
+				stem: 'In which order do you obtain the following items? Put the first one available at the top.',
+				options: ['Souls', 'Ribbons', 'Merits'],
+				solutions: ['Souls', 'Ribbons', 'Merits'],
+				format: 'ranking',
+			},
+			{
+				stem: 'What is the last Style Rank skill unlocked?',
+				options: ['Soul Revival', 'Secret Technique', 'Passive Master'],
+				solutions: 'Soul Revival',
+			},
+			{
+				stem: 'Why you should complete My Mission tasks?',
+				options: [
+					'Better damage reduction',
+					'Increase attack ceiling',
+					'Increase health recovery',
+					'Reduce the duration of monster ailments',
+				],
+				solutions: 'Increase attack ceiling',
+				format: 'best answer',
+			},
+			{
+				stem: 'How to obtain a Hardcore Carve?',
+				options: [
+					'Carving a HC monster',
+					'Event quests',
+					'Partner rewards',
+					'Legendary Pugi rewards',
+					'N Points',
+					'Festival Points',
+					'GCP',
+					'Diva Defense',
+					'Lotto Coins',
+					'Master Carver',
+					'Mezfes Points',
+				],
+				solutions: [
+					'Carving a HC monster',
+					'Event quests',
+					'Partner rewards',
+					'Legendary Pugi rewards',
+					'N Points',
+					'Festival Points',
+					'GCP',
+					'Diva Defense',
+					'Master Carver',
+				],
+			},
+		],
+	},
+	{
 		category: 'Weapons Overview',
 		items: [
 			{
