@@ -1311,33 +1311,7 @@
 			/></g
 		><metadata id="metadata89105">
 			<!-- svelte-ignore illegal-attribute-character -->
-			<rdf:RDF
-				><cc:Work rdf:about=""
-					><dc:creator
-						><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent
-						></dc:creator
-					><cc:license
-						rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-					/></cc:Work
-				><cc:License
-					rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-					><cc:permits
-						rdf:resource="http://creativecommons.org/ns#Reproduction"
-					/><cc:permits
-						rdf:resource="http://creativecommons.org/ns#Distribution"
-					/><cc:requires
-						rdf:resource="http://creativecommons.org/ns#Notice"
-					/><cc:requires
-						rdf:resource="http://creativecommons.org/ns#Attribution"
-					/><cc:prohibits
-						rdf:resource="http://creativecommons.org/ns#CommercialUse"
-					/><cc:permits
-						rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
-					/><cc:requires
-						rdf:resource="http://creativecommons.org/ns#ShareAlike"
-					/></cc:License
-				></rdf:RDF
-			></metadata
+			<!-- 	data-license="https://creativecommons.org/licenses/by-nc-sa/4.0/" data-author="Doriel Rivalet"--></metadata
 		><path
 			style="fill:#993419;fill-rule:evenodd;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;paint-order:stroke fill markers;fill-opacity:1"
 			d="m 84.137499,64.293749 h -5.027083 v 2.910417 h 5.820833 l 1.322917,-1.5875 z"

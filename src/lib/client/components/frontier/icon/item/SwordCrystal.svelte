@@ -14,13 +14,9 @@
 	version="1.1"
 	id="svg5"
 	xml:space="preserve"
-	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
 	xmlns="http://www.w3.org/2000/svg"
-	xmlns:svg="http://www.w3.org/2000/svg"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:cc="http://creativecommons.org/ns#"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	data-license="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+	data-author="Doriel Rivalet"
 	><defs id="defs2" /><g id="layer1"
 		><g
 			id="g26"
@@ -184,32 +180,5 @@
 				y="74.327248"
 			/></g
 		></g
-	><metadata id="metadata26">
-		<!-- svelte-ignore illegal-attribute-character -->
-		<rdf:RDF
-			><cc:Work rdf:about=""
-				><cc:license
-					rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-				/><dc:creator
-					><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent></dc:creator
-				></cc:Work
-			><cc:License rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-				><cc:permits
-					rdf:resource="http://creativecommons.org/ns#Reproduction"
-				/><cc:permits
-					rdf:resource="http://creativecommons.org/ns#Distribution"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#Notice"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#Attribution"
-				/><cc:prohibits
-					rdf:resource="http://creativecommons.org/ns#CommercialUse"
-				/><cc:permits
-					rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#ShareAlike"
-				/></cc:License
-			></rdf:RDF
-		></metadata
 	></svg
 >

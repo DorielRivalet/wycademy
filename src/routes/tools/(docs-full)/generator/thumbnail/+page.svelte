@@ -1092,7 +1092,7 @@
 >
 	<div class="modal-content">
 		<div class="video-container">
-			<Youtube id="rLzX-y-BJfw" />
+			<Youtube id="cyD9sSFsEoQ" />
 		</div>
 	</div>
 </Modal>
@@ -1100,14 +1100,6 @@
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Thumbnail Generator'} />
-		<!--TODO: remove metadata from svg components?-->
-		<InlineNotification
-			lowContrast
-			hideCloseButton
-			kind="warning"
-			title="Status:"
-			subtitle="Due to an update to monster icons the downloading and previewing features do not work."
-		/>
 		<InlineNotification
 			lowContrast
 			hideCloseButton

@@ -1,36 +1,6 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <script lang="ts">
-	/*
-	<metadata id="metadata1">
-		<!-- svelte-ignore illegal-attribute-character -->
-		<rdf:RDF
-			><cc:Work rdf:about=""
-				><dc:creator
-					><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent></dc:creator
-				><cc:license
-					rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-				/></cc:Work
-			><cc:License rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-				><cc:permits
-					rdf:resource="http://creativecommons.org/ns#Reproduction"
-				/><cc:permits
-					rdf:resource="http://creativecommons.org/ns#Distribution"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#Notice"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#Attribution"
-				/><cc:prohibits
-					rdf:resource="http://creativecommons.org/ns#CommercialUse"
-				/><cc:permits
-					rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#ShareAlike"
-				/></cc:License
-			></rdf:RDF
-		></metadata
-	>
-	*/
 	export let size = '100%';
 </script>
 
@@ -41,6 +11,8 @@
 	id="svg5"
 	xml:space="preserve"
 	xmlns="http://www.w3.org/2000/svg"
+	data-license="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+	data-author="Doriel Rivalet"
 	><defs id="defs2" /><path
 		style="fill:#c15333;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.6;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
 		d="m 33.972578,26.555304 c 1.866803,-2.027496 4.477402,-8.982939 5.033856,-14.935505 -0.344937,0.934933 -1.101228,4.883459 -4.799135,4.798693 1.841836,-2.07288 4.098898,-8.8816133 4.293302,-10.4359258 0.0096,-0.077156 -1.572744,4.1806618 -5.502434,4.5565378 C 34.536274,6.7855558 35.529686,0.62179044 35.139864,1 35.030342,0.49731774 29.310623,8.5573517 20.947609,14.337958 Z"

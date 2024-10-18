@@ -2,36 +2,6 @@
 
 <script lang="ts">
 	export let size = '100%';
-	/*
-	<metadata id="metadata1">
-		<!-- svelte-ignore illegal-attribute-character -->
-		<rdf:RDF
-			><cc:Work rdf:about=""
-				><dc:creator
-					><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent></dc:creator
-				><cc:license
-					rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-				/></cc:Work
-			><cc:License rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-				><cc:permits
-					rdf:resource="http://creativecommons.org/ns#Reproduction"
-				/><cc:permits
-					rdf:resource="http://creativecommons.org/ns#Distribution"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#Notice"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#Attribution"
-				/><cc:prohibits
-					rdf:resource="http://creativecommons.org/ns#CommercialUse"
-				/><cc:permits
-					rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#ShareAlike"
-				/></cc:License
-			></rdf:RDF
-		></metadata
-	>
-	*/
 </script>
 
 <svg
@@ -41,6 +11,8 @@
 	id="svg5"
 	xml:space="preserve"
 	xmlns="http://www.w3.org/2000/svg"
+	data-license="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+	data-author="Doriel Rivalet"
 	><defs id="defs2" /><path
 		style="opacity:1;fill:#f0efe6;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.6;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
 		d="M 2.0889887,28.547321 C 8.5440794,29.99147 13.17679,24.670771 12.690334,18.934374 12.411136,15.642006 9.3612583,10.592144 2.6458333,11.4186 c 4.3965465,1.618478 6.6601525,5.08278 6.6180102,7.926135 -0.074445,5.022807 -2.7736789,6.976109 -7.1748548,9.202586 z"

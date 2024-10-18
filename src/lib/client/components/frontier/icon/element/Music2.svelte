@@ -1,36 +1,6 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <script lang="ts">
-	/*
-	<metadata id="metadata1">
-		<!-- svelte-ignore illegal-attribute-character -->
-		<rdf:RDF
-			><cc:Work rdf:about=""
-				><dc:creator
-					><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent></dc:creator
-				><cc:license
-					rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-				/></cc:Work
-			><cc:License rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-				><cc:permits
-					rdf:resource="http://creativecommons.org/ns#Reproduction"
-				/><cc:permits
-					rdf:resource="http://creativecommons.org/ns#Distribution"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#Notice"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#Attribution"
-				/><cc:prohibits
-					rdf:resource="http://creativecommons.org/ns#CommercialUse"
-				/><cc:permits
-					rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
-				/><cc:requires
-					rdf:resource="http://creativecommons.org/ns#ShareAlike"
-				/></cc:License
-			></rdf:RDF
-		></metadata
-	>
-	*/
 	export let size = '100%';
 </script>
 
@@ -41,6 +11,8 @@
 	id="svg5"
 	xml:space="preserve"
 	xmlns="http://www.w3.org/2000/svg"
+	data-license="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+	data-author="Doriel Rivalet"
 	><defs id="defs2" /><path
 		style="opacity:1;fill:#9fb0ba;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.6;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers;fill-opacity:1"
 		d="m 9.2604163,22.754166 3.9687497,1.058333 V 5.2916666 l 1.5875,1.3229164 2.910417,1.0583333 2.645833,1.0583333 h 3.175 l 2.910416,-0.79375 V 26.722916 l -2.381249,-0.529167 -2.645834,0.529167 -2.38125,1.058334 -0.529166,1.852083 -0.529167,2.645833 0.264583,1.852084 1.322917,2.645833 1.852083,1.5875 3.439583,0.79375 3.175001,-0.529167 2.38125,-2.645833 1.058333,-3.175 V 29.36875 L 30.1625,27.78125 30.427083,9.2604163 h 2.38125 l 1.852083,0.5291666 1.852084,-0.2645833 1.322916,-1.5875 -2.38125,0.2645834 -2.645833,-1.3229167 -3.439583,-2.645833 -1.363385,0.5583854 -3.399116,0.2353646 -7.9375,-1.3229167 -6.8791661,-2.6458333 -0.5291666,0.79375 z"
