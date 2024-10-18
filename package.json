@@ -115,7 +115,7 @@
 		"@theatre/core": "^0.7.2",
 		"@theatre/studio": "^0.7.2",
 		"@threlte/core": "^7.3.1",
-		"@threlte/extras": "^8.11.5",
+		"@threlte/extras": "^8.12.0",
 		"@threlte/theatre": "^2.1.8",
 		"@types/three": "^0.169.0",
 		"@xyflow/svelte": "^0.1.21",
