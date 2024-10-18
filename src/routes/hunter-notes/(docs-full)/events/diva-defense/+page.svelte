@@ -18,6 +18,7 @@
 		getItemColor,
 		getItemIcon,
 	} from '$lib/client/modules/frontier/items';
+	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -34,6 +35,13 @@
 					and it will be available for a certain number of quests based on the
 					quantity purchased.
 				</p>
+				<!-- TODO <CenteredFigure
+					width={'100%'}
+					type="file"
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/my-mission-s.webp'}
+					alt="My Mission example"
+					figcaption="S asking for 2 Velocidromes."
+				/> -->
 				<p class="spaced-paragraph">
 					It’s important to note that you can typically queue up only one skill
 					type at a time. For example, if you purchase 10 uses of <InlineTooltip
