@@ -2,7 +2,7 @@ import LocationIconBento from '$lib/client/images/icon/bento.webp';
 import LocationIconBerserkRavienteRaid from '$lib/client/images/icon/berserk_raviente_raid.webp';
 import LocationIconBlacksmith from '$lib/client/images/icon/blacksmith.webp';
 import LocationIconCattleya from '$lib/client/images/icon/cattleya.webp';
-import LocationIconDivaFountain from '$lib/client/images/icon/diva_fountain.webp';
+import LocationIconPrayerFountain from '$lib/client/images/icon/prayer_fountain.webp';
 import LocationIconDivaNote from '$lib/client/images/icon/diva_note.webp';
 import LocationIconDivaPrayerGem from '$lib/client/images/icon/diva_prayer_gem.webp';
 import LocationIconDiva from '$lib/client/images/icon/diva.webp';
@@ -54,7 +54,7 @@ export const LocationIcons: { name: string; icon: any }[] = [
 	{ name: 'Caravan', icon: LocationIconCaravan },
 	{ name: 'Cattleya', icon: LocationIconCattleya },
 	{ name: 'Desert', icon: LocationIconDesert },
-	{ name: 'Diva Fountain', icon: LocationIconDivaFountain },
+	{ name: 'Prayer Fountain', icon: LocationIconPrayerFountain },
 	{ name: 'Diva Note', icon: LocationIconDivaNote },
 	{ name: 'Diva Prayer Gem', icon: LocationIconDivaPrayerGem },
 	{ name: 'Diva', icon: LocationIconDiva },

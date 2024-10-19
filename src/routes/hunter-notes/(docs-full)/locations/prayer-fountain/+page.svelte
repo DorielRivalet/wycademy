@@ -23,6 +23,8 @@
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
+	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
+	import ExpandAll from 'carbon-icons-svelte/lib/ExpandAll.svelte';
 
 	const divaItems: {
 		id: number;
@@ -57,11 +59,13 @@
 			source: 'Hunter Navigation rewards, Road Store (20 Medals).',
 		},
 	];
+
+	let openAccordions = false;
 </script>
 
 <HunterNotesPage displayTOC={true}>
 	<div>
-		<SectionHeadingTopLevel title={'Diva Fountain'} />
+		<SectionHeadingTopLevel title={'Prayer Fountain'} />
 		<div>
 			<p class="spaced-paragraph">
 				<strong>The Diva</strong> can be found in a side area of the main town, on
@@ -69,10 +73,24 @@
 				various materials to craft exclusive Diva equipment, which is exceptionally
 				powerful.
 			</p>
+			<CenteredFigure
+				width={'100%'}
+				type="file"
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/prayer-fountain.webp'}
+				alt="Prayer Fountain"
+				figcaption="Prayer Fountain."
+			/>
 			<p class="spaced-paragraph">
 				After fully completing the Third Chapter of the Diva Quests, you unlock
 				the ability to give gifts to the Diva and request her to perform a song.
 			</p>
+			<CenteredFigure
+				width={'100%'}
+				type="file"
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/diva-cat.webp'}
+				alt="Prayer Fountain cat"
+				figcaption="Prayer Fountain cat."
+			/>
 			<p class="spaced-paragraph">
 				Gifting items to the Diva increases her hidden Affection value. The
 				higher this value, the stronger the buffs provided by the Diva Song. To
@@ -142,6 +160,13 @@
 				Medals. Additionally, performances (and the buffs they provide) are free
 				if you are on the VIP course.
 			</p>
+			<CenteredFigure
+				width={'100%'}
+				type="file"
+				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/diva-song.webp'}
+				alt="Diva Song"
+				figcaption="Diva Song."
+			/>
 			<p class="spaced-paragraph">
 				The overlay gives you an achievement if you obtain the maximum possible
 				Affection points.
@@ -219,13 +244,22 @@
 						you might be on an earlier step than expected.
 					</p>
 
-					<p><strong>You unlock Diva Songs at Chapter 3 completion.</strong></p>
-
+					<p class="spaced-paragraph">
+						<strong>You unlock Diva Songs at Chapter 3 completion.</strong>
+					</p>
+					<Button
+						kind="ghost"
+						size="field"
+						on:click={() => (openAccordions = !openAccordions)}
+					>
+						{openAccordions ? 'Collapse' : 'Expand'}
+						all chapter tasks
+					</Button>
 					<section>
 						<SectionHeading level={3} title="Chapter 1" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -251,7 +285,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -263,10 +297,10 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to the Guild Master</p></ListItem>
 										<ListItem
@@ -286,7 +320,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to the Guild Master</p></ListItem>
 										<ListItem
@@ -304,7 +338,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 5">
+								<AccordionItem open={openAccordions} title="Part 5">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to the Guild Master</p></ListItem>
 										<ListItem
@@ -317,7 +351,7 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
@@ -337,7 +371,7 @@
 						<SectionHeading level={3} title="Chapter 2" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -379,7 +413,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -412,7 +446,7 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 										<ListItem
 											><p>
 												Talk to the Legendary Rastas Edward and Frau (DS user)
@@ -420,10 +454,10 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to the Legendary Rasta Frau</p></ListItem>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 										<ListItem
 											><p>
 												Hunt 1 <InlineTooltip
@@ -434,9 +468,9 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 										<ListItem><p>Talk to the Legendary Rasta Frau</p></ListItem>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
@@ -454,7 +488,7 @@
 						</p>
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -466,14 +500,14 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 										<ListItem><p>Talk to the Legendary Rasta Frau</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Go to the Blacksmith</p></ListItem>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 										<ListItem
 											><p>
 												Hunt 3 <InlineTooltip
@@ -486,7 +520,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -500,7 +534,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -566,7 +600,7 @@
 						<SectionHeading level={3} title="Chapter 4" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -590,7 +624,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -625,7 +659,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -644,13 +678,13 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to NPC in Blacksmith</p></ListItem>
 										<ListItem><p>Solo Hunt 1 Gurenzeburu</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 5">
+								<AccordionItem open={openAccordions} title="Part 5">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to Guild Master</p></ListItem>
 										<ListItem><p>Hunt 1 Pokaradon</p></ListItem>
@@ -672,27 +706,27 @@
 						<SectionHeading level={3} title="Chapter 5" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Farunokku</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Hunt 2 Baruragaru (Return to the Diva Fountain between
+												Hunt 2 Baruragaru (Return to the Prayer Fountain between
 												the two hunts)
 											</p></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Rebidiora</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Zerureusu</p></ListItem>
 									</OrderedList>
@@ -709,12 +743,12 @@
 						<SectionHeading level={3} title="Chapter 6" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Akantor</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -722,15 +756,15 @@
 												in your house
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 										<ListItem
 											><p>
-												Talk to partner in house, return to Diva Fountain.
+												Talk to partner in house, return to the Prayer Fountain.
 											</p></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -744,7 +778,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -756,7 +790,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 5">
+								<AccordionItem open={openAccordions} title="Part 5">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -768,8 +802,8 @@
 										>
 										<ListItem
 											><p>
-												Talk to partner in house and return to Diva Fountain
-												before leaving on quest.
+												Talk to partner in house and return to the Prayer
+												Fountain before leaving on quest.
 											</p></ListItem
 										>
 									</OrderedList>
@@ -786,32 +820,32 @@
 						<SectionHeading level={3} title="Chapter 7" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Talk to Blacksmith and return to Diva Fountain
+												Talk to Blacksmith and return to the Prayer Fountain
 											</p></ListItem
 										>
 										<ListItem><p>Hunt 1 Rebidiora</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Hunt 2 G Rank HC Gurenzeburu (Return to Diva Fountain
-												between the two hunts)
+												Hunt 2 G Rank HC Gurenzeburu (Return to the Prayer
+												Fountain between the two hunts)
 											</p></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Taikun Zamuza</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Meraginasu</p></ListItem>
 									</OrderedList>
@@ -828,16 +862,16 @@
 						<SectionHeading level={3} title="Chapter 8" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Speak to Blacksmith and return to the Diva Fountain
+												Speak to Blacksmith and return to the Prayer Fountain
 											</p></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -865,7 +899,7 @@
 										<ListItem><p>Hunt 1 Forokururu</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -877,7 +911,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -902,7 +936,7 @@
 						<SectionHeading level={3} title="Chapter 9" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -917,17 +951,17 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 2 G Rank Velocidrome</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Meraginasu</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Speak to Gin (Hammer Rasta)</p></ListItem>
 									</OrderedList>
@@ -944,23 +978,23 @@
 						<SectionHeading level={3} title="Chapter 10" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to Guild Master</p></ListItem>
 										<ListItem><p>Hunt 1 Monoblos</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Gou Lunastra</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Speak to the Guild Master</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Anorupatisu (Preset Quest)</p></ListItem
 										>
@@ -987,29 +1021,29 @@
 						<SectionHeading level={3} title="Chapter 11" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Talk to Guild Master, Return to Diva Fountain
+												Talk to Guild Master, Return to the Prayer Fountain
 											</p></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Capture 1 Forokururu</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Speak to Leila (Tonfa Legendary)</p></ListItem>
 										<ListItem><p>Solo Hunt 1 Diorex</p></ListItem>
 										<ListItem><p>Speak to Leila</p></ListItem>
-										<ListItem><p>Return to the Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Burst Species Meraginasu</p></ListItem>
 									</OrderedList>
@@ -1026,31 +1060,31 @@
 						<SectionHeading level={3} title="Chapter 12" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
 												Hunt 1 G Rank Gold Rathian, talk to cats and return to
-												Diva Fountain
+												the Prayer Fountain
 											</p></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Speak to Leila and return to the Diva Fountain
+												Speak to Leila and return to the Prayer Fountain
 											</p></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Inagami</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -1072,27 +1106,27 @@
 						<SectionHeading level={3} title="Chapter 13" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Giaorugu</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 G Rank Gravios</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Speak to Leila and return to the Diva Fountain
+												Speak to Leila and return to the Prayer Fountain
 											</p></ListItem
 										>
 										<ListItem><p>Speak to the Blacksmith</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 G Rank Forokururu</p></ListItem>
 										<ListItem><p>Hunt 1 G Rank HC Rajang</p></ListItem>
@@ -1110,7 +1144,7 @@
 						<SectionHeading level={3} title="Chapter 14" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -1119,7 +1153,7 @@
 										>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -1130,12 +1164,12 @@
 										<ListItem><p>Hunt 1 Hyujikiki</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Hunt 1 Inagami</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
@@ -1168,24 +1202,24 @@
 						<SectionHeading level={3} title="Chapter 15" />
 						<div>
 							<Accordion class="spaced-accordion">
-								<AccordionItem title="Part 1">
+								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to Guild Master</p></ListItem>
-										<ListItem><p>Return to Diva Fountain</p></ListItem>
+										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 										<ListItem><p>Hunt 1 G Rank White Espinas</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 2">
+								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem><p>1 G Rank Baruragaru</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 3">
+								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>1 G Rank Akura Jebia</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
-								<AccordionItem title="Part 4">
+								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem><p>1 Burst (G Rank) Garuba Daora</p></ListItem>
 									</OrderedList>
@@ -1228,5 +1262,6 @@
 
 	.rewards {
 		margin-top: 2rem;
+		font-weight: bold;
 	}
 </style>

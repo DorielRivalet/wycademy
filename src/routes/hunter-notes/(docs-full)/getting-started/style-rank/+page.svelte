@@ -1927,10 +1927,15 @@ graph LR
 								iconType="component"
 								text="My Mission Tickets"
 								tooltip="Item"
-							/>, which are fairly rare, or spend lottery coins. You can find
-							the skip option with the <strong>Guild Master</strong> from whom you
-							get SRs and GSRs.
+							/>, which are fairly rare, or spend lottery coins.
 						</p>
+						<CenteredFigure
+							width={'100%'}
+							type="file"
+							src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/my-mission-tickets.webp'}
+							alt="My Mission tickets"
+							figcaption="You can find the skip option with the Guild Master from whom you get SRs and GSRs."
+						/>
 						<p class="spaced-paragraph">
 							Premium days will give you 40 <InlineTooltip
 								icon={getItemIcon('Ticket')}

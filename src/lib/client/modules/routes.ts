@@ -764,11 +764,11 @@ export const guidesInfo: CategoryInfo[] = [
 				image: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
 			},
 			{
-				name: 'Diva Fountain',
+				name: 'Prayer Fountain',
 				description:
 					'See how to complete the Diva questline in order to earn various rewards.',
-				link: '/hunter-notes/locations/diva-fountain',
-				image: LocationIcons.find((e) => e.name === 'Diva Fountain')?.icon,
+				link: '/hunter-notes/locations/prayer-fountain',
+				image: LocationIcons.find((e) => e.name === 'Prayer Fountain')?.icon,
 			},
 			{
 				name: 'My House',
