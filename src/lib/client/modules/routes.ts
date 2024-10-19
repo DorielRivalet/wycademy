@@ -46,6 +46,7 @@ import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
 import { getArmorIcon } from './frontier/armor';
 import License from 'carbon-icons-svelte/lib/License.svelte';
 import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
+import Link from 'carbon-icons-svelte/lib/Link.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -211,6 +212,22 @@ export const supportInfo: CategoryInfo[] = [
 				description: 'Architecture of the overlay.',
 				link: '/support/overlay-documentation/architecture',
 				image: ReferenceArchitecture,
+			},
+		],
+	},
+	{
+		category: {
+			name: 'External',
+			description: 'External websites.',
+			link: '/support/external',
+			image: BookIconWhite,
+		},
+		pages: [
+			{
+				name: 'Websites',
+				description: 'List of external websites.',
+				link: '/support/external/websites',
+				image: Link,
 			},
 		],
 	},
