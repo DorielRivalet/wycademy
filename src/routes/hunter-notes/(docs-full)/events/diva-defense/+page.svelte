@@ -35,13 +35,13 @@
 					and it will be available for a certain number of quests based on the
 					quantity purchased.
 				</p>
-				<!-- TODO <CenteredFigure
+				<CenteredFigure
 					width={'100%'}
 					type="file"
-					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/my-mission-s.webp'}
-					alt="My Mission example"
-					figcaption="S asking for 2 Velocidromes."
-				/> -->
+					src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/diva-skills-menu.webp'}
+					alt="Diva Skills Menu"
+					figcaption="Diva Skills menu, found in Diva Defense -> View, Claim rewards -> GCP Exchange -> Exchange (Skills)."
+				/>
 				<p class="spaced-paragraph">
 					It’s important to note that you can typically queue up only one skill
 					type at a time. For example, if you purchase 10 uses of <InlineTooltip

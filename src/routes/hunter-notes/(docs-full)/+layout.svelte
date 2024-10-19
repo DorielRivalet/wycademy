@@ -379,8 +379,8 @@
 					text: 'Blacksmith',
 				},
 				{
-					id: '/hunter-notes/locations/diva-fountain',
-					text: 'Diva Fountain',
+					id: '/hunter-notes/locations/prayer-fountain',
+					text: 'Prayer Fountain',
 				},
 				{
 					id: '/hunter-notes/locations/my-house',
@@ -754,8 +754,8 @@
 			icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
 		},
 		{
-			id: '/hunter-notes/locations/diva-fountain',
-			icon: LocationIcons.find((e) => e.name === 'Diva Fountain')?.icon,
+			id: '/hunter-notes/locations/prayer-fountain',
+			icon: LocationIcons.find((e) => e.name === 'Prayer Fountain')?.icon,
 		},
 		{
 			id: '/hunter-notes/locations/my-house',
