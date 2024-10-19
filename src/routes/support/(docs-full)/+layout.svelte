@@ -58,6 +58,7 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
+	import Link from 'carbon-icons-svelte/lib/Link.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -220,6 +221,16 @@
 				},
 			],
 		},
+		{
+			id: '/support/external',
+			text: 'External',
+			children: [
+				{
+					id: '/support/external/websites',
+					text: 'Websites',
+				},
+			],
+		},
 	];
 
 	const iconsMap: (
@@ -296,6 +307,14 @@
 		{
 			id: '/support/overlay-documentation/architecture',
 			icon: ReferenceArchitecture,
+		},
+		{
+			id: '/support/external',
+			icon: BookIconWhite,
+		},
+		{
+			id: '/support/external/websites',
+			icon: Link,
 		},
 	];
 
