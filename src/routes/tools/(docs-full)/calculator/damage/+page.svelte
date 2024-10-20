@@ -3176,33 +3176,34 @@
 	const invalidNumberValueText = `Invalid value. Must be between ${minimumNumberValue} and ${maximumNumberValue}`;
 	const invalidTrueRawText = `Invalid value. Must be between ${minimumNumberValue} and ${maxTrueRaw}`;
 
-	const formulaOutputAttackA =
-		display(`\\text{Attack A} = \\text{outputLengthUpTrueRaw} +\\newline \\text{outputPassives} +\\newline (\\text{inputNumberSigil1Attack} + \\text{inputNumberSigil2Attack} + \\text{inputNumberSigil3Attack}) +\\newline \\text{inputNumberConquestAttack} +\\newline \\text{outputAttackMedicine} +\\newline \\text{outputAttackSkill} +\\newline \\text{outputFoodAttack} +\\newline \\text{outputSeedAttack} +\\newline \\text{inputNumberStyleRankAttack} +\\newline \\text{inputNumberUnlimitedSigil} +\\newline \\text{outputDrugKnowledgeTotalTrueRaw} +\\newline \\text{outputDuremudiraAttack} +\\newline \\text{outputLoneWolfAttack} +\\newline \\text{outputCaravanAddition} +\\newline \\text{outputShiriagariAttack} +\\newline \\text{outputRoadAdvancement} +\\newline \\lfloor \\text{outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline \\text{outputConsumptionSlayerAttack} +\\newline \\text{outputRoadLastStandAttack} +\\newline \\text{outputLanceRedPhialAttack} +\\newline \\text{outputRoadTowerAttack} +\\newline \\text{outputZenithTotalAttack} +\\newline \\text{outputAOETotalAttack}
-`);
+	const formulaOutputAttackA = display(
+		`\\begin{align}\\text{Attack A} = \\text{outputLengthUpTrueRaw} +\\newline \\text{outputPassives} +\\newline (\\text{inputNumberSigil1Attack} + \\text{inputNumberSigil2Attack} + \\text{inputNumberSigil3Attack}) +\\newline \\text{inputNumberConquestAttack} +\\newline \\text{outputAttackMedicine} +\\newline \\text{outputAttackSkill} +\\newline \\text{outputFoodAttack} +\\newline \\text{outputSeedAttack} +\\newline \\text{inputNumberStyleRankAttack} +\\newline \\text{inputNumberUnlimitedSigil} +\\newline \\text{outputDrugKnowledgeTotalTrueRaw} +\\newline \\text{outputDuremudiraAttack} +\\newline \\text{outputLoneWolfAttack} +\\newline \\text{outputCaravanAddition} +\\newline \\text{outputShiriagariAttack} +\\newline \\text{outputRoadAdvancement} +\\newline \\lfloor \\text{outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline \\text{outputConsumptionSlayerAttack} +\\newline \\text{outputRoadLastStandAttack} +\\newline \\text{outputLanceRedPhialAttack} +\\newline \\text{outputRoadTowerAttack} +\\newline \\text{outputZenithTotalAttack} +\\newline \\text{outputAOETotalAttack}\\end{align}
+`,
+	);
 
-	$: formulaValuesOutputAttackA = `{${attackA}} = ${outputLengthUpTrueRaw} +\\newline ${outputPassives} +\\newline (${inputNumberSigil1Attack} + ${inputNumberSigil2Attack} + ${inputNumberSigil3Attack}) +\\newline ${inputNumberConquestAttack} +\\newline ${outputAttackMedicine} +\\newline ${outputAttackSkill} +\\newline ${outputFoodAttack} +\\newline ${outputSeedAttack} +\\newline ${inputNumberStyleRankAttack} +\\newline ${inputNumberUnlimitedSigil} +\\newline ${outputDrugKnowledgeTotalTrueRaw} +\\newline ${outputDuremudiraAttack} +\\newline ${outputLoneWolfAttack} +\\newline ${outputCaravanAddition} +\\newline ${outputShiriagariAttack} +\\newline ${outputRoadAdvancement} +\\newline \\lfloor ${outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline ${outputConsumptionSlayerAttack} +\\newline ${outputRoadLastStandAttack} +\\newline ${outputLanceRedPhialAttack} +\\newline ${outputRoadTowerAttack} +\\newline ${outputZenithTotalAttack} +\\newline ${outputAOETotalAttack}
+	$: formulaValuesOutputAttackA = `\\begin{align}{${attackA}} = ${outputLengthUpTrueRaw} +\\newline ${outputPassives} +\\newline (${inputNumberSigil1Attack} + ${inputNumberSigil2Attack} + ${inputNumberSigil3Attack}) +\\newline ${inputNumberConquestAttack} +\\newline ${outputAttackMedicine} +\\newline ${outputAttackSkill} +\\newline ${outputFoodAttack} +\\newline ${outputSeedAttack} +\\newline ${inputNumberStyleRankAttack} +\\newline ${inputNumberUnlimitedSigil} +\\newline ${outputDrugKnowledgeTotalTrueRaw} +\\newline ${outputDuremudiraAttack} +\\newline ${outputLoneWolfAttack} +\\newline ${outputCaravanAddition} +\\newline ${outputShiriagariAttack} +\\newline ${outputRoadAdvancement} +\\newline \\lfloor ${outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline ${outputConsumptionSlayerAttack} +\\newline ${outputRoadLastStandAttack} +\\newline ${outputLanceRedPhialAttack} +\\newline ${outputRoadTowerAttack} +\\newline ${outputZenithTotalAttack} +\\newline ${outputAOETotalAttack}\\end{align}
 `;
 
 	const formulaOutputAttackB =
-		display(`\\text{Attack B} = \\text{outputRush} +\\newline \\text{outputStylishAssault} +\\newline \\text{outputFuriousAttack} +\\newline \\text{outputVigorousAddition} +\\newline \\text{outputCritConversionTrueRaw} +\\newline \\text{inputNumberVampirism} +\\newline \\text{outputObscurityTotal} +\\newline \\text{outputIncitement}
+		display(`\\begin{align}\\text{Attack B} = \\text{outputRush} +\\newline \\text{outputStylishAssault} +\\newline \\text{outputFuriousAttack} +\\newline \\text{outputVigorousAddition} +\\newline \\text{outputCritConversionTrueRaw} +\\newline \\text{inputNumberVampirism} +\\newline \\text{outputObscurityTotal} +\\newline \\text{outputIncitement}\\end{align}
 `);
 
-	$: formulaValuesOutputAttackB = `{${attackB}} = ${outputRush} +\\newline ${outputStylishAssault} +\\newline ${outputFuriousAttack} +\\newline ${outputVigorousAddition} +\\newline ${outputCritConversionTrueRaw} +\\newline ${inputNumberVampirism} +\\newline ${outputObscurityTotal} +\\newline ${outputIncitement}
-`;
+	$: formulaValuesOutputAttackB = `\\begin{align}{${attackB}} = ${outputRush} +\\newline ${outputStylishAssault} +\\newline ${outputFuriousAttack} +\\newline ${outputVigorousAddition} +\\newline ${outputCritConversionTrueRaw} +\\newline ${inputNumberVampirism} +\\newline ${outputObscurityTotal} +\\newline ${outputIncitement}
+\\end{align}`;
 
 	const formulaOutputMultipliers =
-		display(`\\text{Multipliers} = \\lfloor \\lfloor \\text{attackA} \\times \\text{outputHuntingHornMultiplier} + \\text{attackB} \\rfloor\\newline \\times \\text{outputAdrenaline} \\times \\text{outputCombatSupremacyAttackMultiplier} \\times \\text{outputWeaponSpecificMultiplier} \\times \\text{outputHidenMultiplier} \\times \\text{outputHammerMultiplier} \\rfloor
+		display(`\\begin{align}\\text{Multipliers} = \\lfloor \\lfloor \\text{attackA} \\times \\text{outputHuntingHornMultiplier} + \\text{attackB} \\rfloor\\newline \\times \\text{outputAdrenaline} \\times \\text{outputCombatSupremacyAttackMultiplier} \\times \\text{outputWeaponSpecificMultiplier} \\times \\text{outputHidenMultiplier} \\times \\text{outputHammerMultiplier} \\rfloor\\end{align}
 `);
 
-	$: formulaValuesOutputMultipliers = `{${outputMultipliers}} = \\lfloor \\lfloor ${attackA} \\times ${outputHuntingHornMultiplier} + ${attackB} \\rfloor\\newline \\times ${outputAdrenaline} \\times ${outputCombatSupremacyAttackMultiplier} \\times ${outputWeaponSpecificMultiplier} \\times ${outputHidenMultiplier} \\times ${outputHammerMultiplier} \\rfloor
+	$: formulaValuesOutputMultipliers = `\\begin{align}{${outputMultipliers}} = \\lfloor \\lfloor ${attackA} \\times ${outputHuntingHornMultiplier} + ${attackB} \\rfloor\\newline \\times ${outputAdrenaline} \\times ${outputCombatSupremacyAttackMultiplier} \\times ${outputWeaponSpecificMultiplier} \\times ${outputHidenMultiplier} \\times ${outputHammerMultiplier} \\rfloor\\end{align}
 `;
 
 	const formulaOutputFlatAdditions =
-		display(`\\text{Flat Additions} = \\text{outputPartnyaBond} +\\newline \\text{outputHunterBond} +\\newline \\text{outputAssist} +\\newline \\text{outputSoul} +\\newline \\text{outputArmor1} +\\newline \\text{outputArmor2} +\\newline \\text{outputArmorG} +\\newline \\text{outputSecretTech} +\\newline \\text{outputDivaPrayerGemTrueRaw}
+		display(`\\begin{align}\\text{Flat Additions} = \\text{outputPartnyaBond} +\\newline \\text{outputHunterBond} +\\newline \\text{outputAssist} +\\newline \\text{outputSoul} +\\newline \\text{outputArmor1} +\\newline \\text{outputArmor2} +\\newline \\text{outputArmorG} +\\newline \\text{outputSecretTech} +\\newline \\text{outputDivaPrayerGemTrueRaw}\\end{align}
 `);
 
-	$: formulaValuesOutputFlatAdditions = `{${outputFlatAdditions}} = ${outputPartnyaBond} +\\newline ${outputHunterBond} +\\newline ${outputAssist} +\\newline ${outputSoul} +\\newline ${outputArmor1} +\\newline ${outputArmor2} +\\newline ${outputArmorG} +\\newline ${outputSecretTech} +\\newline ${outputDivaPrayerGemTrueRaw}
-`;
+	$: formulaValuesOutputFlatAdditions = `\\begin{align}{${outputFlatAdditions}} = ${outputPartnyaBond} +\\newline ${outputHunterBond} +\\newline ${outputAssist} +\\newline ${outputSoul} +\\newline ${outputArmor1} +\\newline ${outputArmor2} +\\newline ${outputArmorG} +\\newline ${outputSecretTech} +\\newline ${outputDivaPrayerGemTrueRaw}
+\\end{align}`;
 
 	/*
 $: internalAttack =
@@ -3223,37 +3224,37 @@ $: internalAttack =
 */
 
 	const formulaInternalAttack = display(
-		'\\text{Internal Attack} = \\lfloor \\text{internalTrueRaw} \\times\\newline \\text{outputSharpnessMultiplier}\\times\\newline \\text{outputSwordAndShieldMultiplier} \\times\\newline \\text{outputOtherMultipliers} \\times\\newline \\text{outputMonsterStatusInflictedMultiplier} \\rfloor',
+		'\\begin{align}\\text{Internal Attack} = \\lfloor \\text{internalTrueRaw} \\times \\ \\text{outputSharpnessMultiplier}\\times \\newline \\text{outputSwordAndShieldMultiplier} \\times \\newline \\text{outputOtherMultipliers} \\times \\newline \\text{outputMonsterStatusInflictedMultiplier} \\rfloor\\end{align}',
 	);
 
-	$: formulaValuesOutputInternalAttack = `{${internalAttack}} = \\lfloor ${internalTrueRaw} \\times\\newline ${outputSharpnessMultiplier} \\times\\newline ${outputSwordAndShieldMultiplier} \\times\\newline ${outputOtherMultipliers} \\times\\newline ${outputMonsterStatusInflictedMultiplier} \\rfloor
+	$: formulaValuesOutputInternalAttack = `\\begin{align}{${internalAttack}} = \\lfloor ${internalTrueRaw} \\times\\newline ${outputSharpnessMultiplier} \\times\\newline ${outputSwordAndShieldMultiplier} \\times\\newline ${outputOtherMultipliers} \\times\\newline ${outputMonsterStatusInflictedMultiplier} \\rfloor\\end{align}
 `;
 
 	const formulaInternalFire =
-		display(`\\text{Internal Fire} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputFireMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+		display(`\\begin{align}\\text{Internal Fire} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputFireMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor\\end{align}
 `);
-	$: formulaValuesInternalFire = `${internalFire} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputFireMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+	$: formulaValuesInternalFire = `\\begin{align}${internalFire} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputFireMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
 `;
 
 	const formulaInternalWater =
-		display(`\\text{Internal Water} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputWaterMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
-`);
-	$: formulaValuesInternalWater = `${internalWater} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputWaterMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+		display(`\\begin{align}\\text{Internal Water} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputWaterMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+\\end{align}`);
+	$: formulaValuesInternalWater = `\\begin{align}${internalWater} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputWaterMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
 `;
 	const formulaInternalThunder =
-		display(`\\text{Internal Thunder} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputThunderMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
-`);
-	$: formulaValuesInternalThunder = `${internalThunder} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputThunderMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
-`;
+		display(`\\begin{align}\\text{Internal Thunder} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputThunderMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+\\end{align}`);
+	$: formulaValuesInternalThunder = `\\begin{align}${internalThunder} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputThunderMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+\\end{align}`;
 	const formulaInternalIce =
-		display(`\\text{Internal Ice} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputIceMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
-`);
-	$: formulaValuesInternalIce = `${internalIce} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputIceMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+		display(`\\begin{align}\\text{Internal Ice} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputIceMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+\\end{align}`);
+	$: formulaValuesInternalIce = `\\begin{align}${internalIce} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputIceMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
 `;
 	const formulaInternalDragon =
-		display(`\\text{Internal Dragon} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputDragonMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
-`);
-	$: formulaValuesInternalDragon = `${internalDragon} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputDragonMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+		display(`\\begin{align}\\text{Internal Dragon} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputDragonMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
+\\end{align}`);
+	$: formulaValuesInternalDragon = `\\begin{align}${internalDragon} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputDragonMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
 `;
 
 	const internalAffinityFunctionString = `/**This is different from total affinity. */
@@ -3321,7 +3322,7 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 }`;
 
 	const formulaInternalAffinity =
-		display(`\\text{Internal Affinity} = \\text{getInternalAffinity}(\\text{inputCritMode},  \\text{outputIssenAffinity} +\\newline
+		display(`\\begin{align}\\text{Internal Affinity} = \\text{getInternalAffinity}(\\text{inputCritMode},  \\text{outputIssenAffinity} +\\newline
 \\text{outputSharpnessAffinity} +\\newline
 \\text{inputNumberUnlimitedSigil} +\\newline
 \\text{inputNumberSigil1Affinity} +\\newline
@@ -3333,8 +3334,8 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 \\text{outputFlashConversionAffinity} +\\newline
 \\text{outputStarvingWolfAffinity} +\\newline
 \\text{outputCeaselessAffinity} +\\newline
-\\text{outputDivaPrayerGemAffinity})`);
-	$: formulaValuesInternalAffinity = `${internalAffinity} = \\text{getInternalAffinity}(\\text{${inputCritMode}}, ${outputIssenAffinity} +\\newline
+\\text{outputDivaPrayerGemAffinity})\\end{align}`);
+	$: formulaValuesInternalAffinity = `\\begin{align}${internalAffinity} = \\text{getInternalAffinity}(\\text{${inputCritMode}}, ${outputIssenAffinity} +\\newline
 ${outputSharpnessAffinity} +\\newline
 ${inputNumberUnlimitedSigil} +\\newline
 ${inputNumberSigil1Affinity} +\\newline
@@ -3346,10 +3347,10 @@ ${inputNumberNaturalAffinity} +\\newline
 ${outputFlashConversionAffinity} +\\newline
 ${outputStarvingWolfAffinity} +\\newline
 ${outputCeaselessAffinity} +\\newline
-${outputDivaPrayerGemAffinity})`;
+${outputDivaPrayerGemAffinity})\\end{align}`;
 
 	const formulaInternalStatus =
-		display(`\\text{Internal Status} = \\lfloor \\lfloor
+		display(`\\begin{align} \\text{Internal Status} = \\lfloor \\lfloor
 	\\text{inputNumberStatusValue} \\times\\newline
 	\\text{outputStatusAttackUpMultiplier} \\times\\newline
 	\\text{outputStatusGuildPoogieMultiplier} \\times\\newline
@@ -3357,8 +3358,8 @@ ${outputDivaPrayerGemAffinity})`;
 	\\text{outputWeaponStatusModifiers} \\times\\newline
 	\\text{outputFuriousMultiplier}
 	\\rfloor \\times\\newline \\text{outputDrugKnowledgeMultiplier}
-	\\rfloor`);
-	$: formulaValuesInternalStatus = `${internalStatus} = \\lfloor \\lfloor
+	\\rfloor\\end{align}`);
+	$: formulaValuesInternalStatus = `\\begin{align}${internalStatus} = \\lfloor \\lfloor
 	${inputNumberStatusValue} \\times\\newline
 	${outputStatusAttackUpMultiplier} \\times\\newline
 	${outputStatusGuildPoogieMultiplier} \\times\\newline
@@ -3366,9 +3367,10 @@ ${outputDivaPrayerGemAffinity})`;
 	${outputWeaponStatusModifiers} \\times\\newline
 	${outputFuriousMultiplier}
 	\\rfloor \\times\\newline ${outputDrugKnowledgeMultiplier}
-	\\rfloor`;
+	\\rfloor\\end{align}`;
 
-	const formulaOutputTotalAffinity = display(`\\text{outputTotalAffinity} =
+	const formulaOutputTotalAffinity =
+		display(`\\begin{align}\\text{outputTotalAffinity} =
 \\text{outputIssenAffinity} +\\newline
 \\text{outputSharpnessAffinity} +\\newline
 \\text{inputNumberSigil1Affinity} +\\newline
@@ -3384,8 +3386,8 @@ ${outputDivaPrayerGemAffinity})`;
 \\text{outputStarvingWolfAffinity} +\\newline
 \\text{outputCeaselessAffinity} +\\newline
 \\text{outputFuriousAffinity} +\\newline
-\\text{outputAOETotalAffinity}`);
-	$: formulaValuesOutputTotalAffinity = `${outputTotalAffinity} =
+\\text{outputAOETotalAffinity}\\end{align}`);
+	$: formulaValuesOutputTotalAffinity = `\\begin{align}${outputTotalAffinity} =
 ${outputIssenAffinity} +\\newline
 ${outputSharpnessAffinity} +\\newline
 ${inputNumberSigil1Affinity} +\\newline
@@ -3401,7 +3403,7 @@ ${outputDrinkAffinity} +\\newline
 ${outputStarvingWolfAffinity} +\\newline
 ${outputCeaselessAffinity} +\\newline
 ${outputFuriousAffinity} +\\newline
-${outputAOETotalAffinity}`;
+${outputAOETotalAffinity}\\end{align}`;
 
 	const formulaInternalTrueRaw = display(
 		`\\begin{equation*} \\text{internalTrueRaw} = \\begin{cases} \\text{maxTrueRaw} & \\text{if } \\text{outputAttackCeiling} > 180 \\\\ \\lfloor \\text{outputFlatAdditions} + \\text{outputMultipliers} \\rfloor & \\text{otherwise} \\end{cases} \\end{equation*}`,
@@ -3412,55 +3414,55 @@ ${outputAOETotalAffinity}`;
 	);
 
 	const formulaOutputCritValue =
-		display(`\\text{outputCritValue} = \\text{getCritValue(
+		display(`\\begin{align}\\text{outputCritValue} = \\text{getCritValue(
 	outputStarvingWolfAffinity,
 	outputCeaselessAffinity,
 	outputExpertAffinity,
 	outputIssenAffinity
-)}`);
-	$: formulaValuesOutputCritValue = `${outputCritValue} = \\text{getCritValue}(
+)}\\end{align}`);
+	$: formulaValuesOutputCritValue = `\\begin{align}${outputCritValue} = \\text{getCritValue}(
 	${outputStarvingWolfAffinity},
 	${outputCeaselessAffinity},
 	${outputExpertAffinity},
 	${outputIssenAffinity}
-)`;
+)\\end{align}`;
 
 	const formulaOutputOtherMultipliers =
-		display(`\\text{outputOtherMultipliers} =
+		display(`\\begin{align}\\text{outputOtherMultipliers} =
 \\text{inputNumberTranscendRawMultiplier} \\times\\newline
 \\text{inputNumberLanceImpactMultiplier} \\times\\newline
-\\text{inputNumberRavientePowerSwordCrystalsMultiplier}`);
-	$: formulaValuesOutputOtherMultipliers = `${outputOtherMultipliers} =
+\\text{inputNumberRavientePowerSwordCrystalsMultiplier}\\end{align}`);
+	$: formulaValuesOutputOtherMultipliers = `\\begin{align}${outputOtherMultipliers} =
 ${inputNumberTranscendRawMultiplier} \\times\\newline
 ${inputNumberLanceImpactMultiplier} \\times\\newline
-${inputNumberRavientePowerSwordCrystalsMultiplier}`;
+${inputNumberRavientePowerSwordCrystalsMultiplier}\\end{align}`;
 
 	// TODO?
 	const formulaOutputStatusUsedSA =
-		display(`\\text{outputStatusUsedSA} = \\lfloor \\lfloor
-(\\text{inputNumberStatusValue} / 10) \\times\\newline
-\\text{outputStatusAttackUpMultiplier} \\times\\newline
-\\text{outputStatusGuildPoogieMultiplier} \\times\\newline
-\\text{outputStatusSigilMultiplier} \\times\\newline
-\\text{outputWeaponStatusModifiers} \\times\\newline
+		display(`\\begin{align}\\text{outputStatusUsedSA} = \\lfloor \\lfloor
+(\\text{inputNumberStatusValue} / 10) \\times \\newline
+\\text{outputStatusAttackUpMultiplier} \\times \\newline
+\\text{outputStatusGuildPoogieMultiplier} \\times \\newline
+\\text{outputStatusSigilMultiplier} \\times \\newline
+\\text{outputWeaponStatusModifiers} \\times \\newline
 \\text{outputFuriousMultiplier}
-\\rfloor \\times\\newline \\text{outputStatusValueMultiplier}
-\\rfloor`);
-	$: formulaValuesOutputStatusUsedSA = `${outputStatusUsedSA} = \\lfloor \\lfloor
-(${inputNumberStatusValue} / 10) \\times\\newline
-${outputStatusAttackUpMultiplier} \\times\\newline
-${outputStatusGuildPoogieMultiplier} \\times\\newline
-${outputStatusSigilMultiplier} \\times\\newline
-${outputWeaponStatusModifiers} \\times\\newline
+\\rfloor \\times \\newline \\text{outputStatusValueMultiplier}
+\\rfloor\\end{align}`);
+	$: formulaValuesOutputStatusUsedSA = `\\begin{align}${outputStatusUsedSA} = \\lfloor \\lfloor
+(${inputNumberStatusValue} / 10) \\times \\newline
+${outputStatusAttackUpMultiplier} \\times \\newline
+${outputStatusGuildPoogieMultiplier} \\times \\newline
+${outputStatusSigilMultiplier} \\times \\newline
+${outputWeaponStatusModifiers} \\times \\newline
 ${outputFuriousMultiplier}
-\\rfloor \\times\\newline ${outputStatusValueMultiplier}
-\\rfloor`;
+\\rfloor \\times \\newline ${outputStatusValueMultiplier}
+\\rfloor\\end{align}`;
 
 	const formulaOutputMonsterTotalDefense =
-		display(`\\text{outputMonsterTotalDefense} =
-\\text{inputNumberDefenseRate} \\times\\newline \\text{inputNumberMonsterRage} \\times\\newline \\text{inputNumberHCModifiers}`);
-	$: formulaValuesOutputMonsterTotalDefense = `${outputMonsterTotalDefense} =
-${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\newline ${inputNumberHCModifiers}`;
+		display(`\\begin{align} \\text{outputMonsterTotalDefense} =
+\\text{inputNumberDefenseRate} \\times\\newline \\text{inputNumberMonsterRage} \\times\\newline \\text{inputNumberHCModifiers}\\end{align}`);
+	$: formulaValuesOutputMonsterTotalDefense = `\\begin{align}${outputMonsterTotalDefense} =
+${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\newline ${inputNumberHCModifiers} \\end{align}`;
 
 	// TODO more formulas
 	// TODO gunner formulas
@@ -5913,15 +5915,6 @@ does not get multiplied by horn */
 
 	$: motionValuesTableHeaders = getMotionValuesTableHeaders(inputElement);
 </script>
-
-<svelte:head>
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-		integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
-		crossorigin="anonymous"
-	/>
-</svelte:head>
 
 <Modal
 	passiveModal
@@ -9827,7 +9820,7 @@ does not get multiplied by horn */
 					inputs values are reflected below each formula.
 				</p>
 
-				<div>
+				<div class="driverjs-6">
 					<Tabs type="container">
 						<Tab label="Internal Attack" />
 						<Tab label="Internal True Raw" />
@@ -9850,7 +9843,7 @@ does not get multiplied by horn */
 						<Tab label="Monster Total Defense" />
 						<svelte:fragment slot="content">
 							<TabContent
-								><section class="driverjs-6">
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaInternalAttack}
 									</div>
@@ -9860,7 +9853,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaInternalTrueRaw}
 									</div>
@@ -9872,7 +9865,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaOutputMultipliers}
 									</div>
@@ -9882,7 +9875,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaOutputFlatAdditions}
 									</div>
@@ -9892,7 +9885,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent>
-								<section>
+								<section class="tab-content">
 									<div class="formula-container">
 										{@html formulaOutputAttackA}
 									</div>
@@ -9902,7 +9895,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent>
-								<section>
+								<section class="tab-content">
 									<div class="formula-container">
 										{@html formulaOutputAttackB}
 									</div>
@@ -9912,7 +9905,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaInternalFire}
 									</div>
@@ -9922,7 +9915,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaInternalWater}
 									</div>
@@ -9932,7 +9925,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaInternalThunder}
 									</div>
@@ -9942,7 +9935,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaInternalIce}
 									</div>
@@ -9952,7 +9945,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaInternalDragon}
 									</div>
@@ -9962,7 +9955,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaInternalStatus}
 									</div>
@@ -9972,7 +9965,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="container-shiki">
 										{#if isShikiLoading}
 											<div class="shiki-loading">
@@ -9998,7 +9991,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent>
-								<section>
+								<section class="tab-content">
 									<p>Used for Critical Conversion calculation.</p>
 									<div class="formula-container">
 										{@html formulaOutputTotalAffinity}
@@ -10009,7 +10002,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaOutputDrugKnowledgeTotalTrueRaw}
 									</div>
@@ -10033,7 +10026,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="container-shiki">
 										{#if isShikiLoading}
 											<div class="shiki-loading">
@@ -10059,7 +10052,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaOutputOtherMultipliers}
 									</div>
@@ -10069,7 +10062,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaOutputStatusUsedSA}
 									</div>
@@ -10079,7 +10072,7 @@ does not get multiplied by horn */
 								</section></TabContent
 							>
 							<TabContent
-								><section>
+								><section class="tab-content">
 									<div class="formula-container">
 										{@html formulaOutputMonsterTotalDefense}
 									</div>
@@ -10620,5 +10613,10 @@ does not get multiplied by horn */
 		gap: 0.5rem;
 		margin-bottom: 2rem;
 		margin-top: 2rem;
+	}
+
+	*:has(> math.tml-display) {
+		overflow-x: auto;
+		width: 100%;
 	}
 </style>
