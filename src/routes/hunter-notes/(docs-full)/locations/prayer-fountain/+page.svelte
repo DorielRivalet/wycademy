@@ -24,7 +24,6 @@
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import ExpandAll from 'carbon-icons-svelte/lib/ExpandAll.svelte';
 
 	const divaItems: {
 		id: number;
@@ -195,7 +194,7 @@
 								kind="tertiary"
 								icon={Download}
 								on:click={() =>
-									downloadDomAsPng('diva-items-dom', 'diva-items-bonus')}
+									downloadDomAsPng('diva-items-dom', 'diva-items')}
 								>Download</Button
 							>
 						</div>
@@ -943,7 +942,7 @@
 												Deliver 1 <InlineTooltip
 													text="Teostra Miracle Wing"
 													tooltip="Item"
-													icon={getItemIcon('Wings')}
+													icon={getItemIcon('Wing')}
 													iconType="component"
 													iconColor={getItemColor('Red')}
 												/> (Supremacy Teo)

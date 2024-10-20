@@ -19,6 +19,9 @@
 		getItemIcon,
 	} from '$lib/client/modules/frontier/items';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -79,6 +82,77 @@
 						iconType="component"
 					/>, are generally always available since Level 0 skills do not require
 					you to have an active Prayer or any contributions.
+				</p>
+				<p>
+					If you cannot find the Diva Skills menu, check if you are in a World
+					with the Diva Defense event enabled (shown as an icon in the bottom
+					right corner).
+				</p>
+			</div>
+		</section>
+		<section>
+			<SectionHeading level={2} title="Diva Prayer Weapons" />
+			<div>
+				<p class="spaced-paragraph">
+					During the <strong>Song of War Week</strong>, being on a Premium
+					Course unlocks the following powerful buffs, making Prayer Weapons an
+					excellent choice for grinding Hiden. Unless you have top-tier Raviente
+					weapons, Prayer Weapons are the best option for Premium users.
+				</p>
+				<p class="spaced-paragraph">
+					Prayer Weapons are crafted from materials obtained as Daily or
+					Milestone rewards, making them relatively easy to acquire. They are
+					comparable to lower-end Level 50 G-Rank weapons.
+				</p>
+				<p class="spaced-paragraph">
+					Weapons that are exclusive to G Rank (like <InlineTooltip
+						text="Switch Axe F"
+						tooltip="Weapon"
+						iconType="component"
+						icon={getWeaponIcon('Switch Axe F')}
+					/> and <InlineTooltip
+						text="Tonfa"
+						tooltip="Weapon"
+						iconType="component"
+						icon={getWeaponIcon('Tonfa')}
+					/>) are available fully upgraded, while others start at Low Rank
+					(standard HR crafting) and need to be upgraded to G Rank.
+				</p>
+				<p class="spaced-paragraph">
+					The standout feature of Prayer Weapons is the significant buffs they
+					receive when a prayer is active. These enhancements can make them
+					outperform most other weapons when built around their usage.
+				</p>
+				<p class="spaced-paragraph">
+					<strong>The Prayer Buff provides the following benefits:</strong>
+				</p>
+				<UnorderedList class="spaced-list"
+					><ListItem><p>True Raw +45</p></ListItem>
+					<ListItem><p>Doubled Elemental Damage</p></ListItem>
+					<ListItem
+						><p>Increased Weapon Handling and Movement Speed (+2)</p></ListItem
+					>
+					<ListItem><p>Enables the weapon type’s Active Feature</p></ListItem>
+					<ListItem><p>Sharpness is upgraded by one tier</p></ListItem>
+					<ListItem><p>Activates a unique Twin Hiden skill</p></ListItem>
+					<ListItem><p>Boosts Interception Points to 1.2x</p></ListItem>
+				</UnorderedList>
+				<p class="spaced-paragraph">
+					The Twin Hiden ability remains active while the prayer effect is
+					ongoing, allowing you to set aside Hiden gems for specialized builds
+					or simply enjoy the Hiden bonus without extensive grinding.
+				</p>
+				<p class="spaced-paragraph">
+					Since these abilities rely on active prayers, they are time-limited.
+					However, you can typically get about 3 hours of buffs daily, and using
+					them primarily over the weekend will likely cover your entire
+					playtime.
+				</p>
+				<p class="spaced-paragraph">
+					You can find more details on the weapon's active features <Link
+						href="/hunter-notes/weapons/active-feature"
+						inline>on this page.</Link
+					>
 				</p>
 			</div>
 		</section>
