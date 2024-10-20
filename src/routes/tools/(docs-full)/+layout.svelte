@@ -182,6 +182,14 @@
 					id: '/tools/simulator/tower-weapon',
 					text: 'Tower Weapon',
 				},
+				{
+					id: '/tools/simulator/sigil',
+					text: 'Sigils',
+				},
+				{
+					id: '/tools/simulator/partner-skills',
+					text: 'Partner Skills',
+				},
 			],
 		},
 		{
@@ -279,6 +287,14 @@
 				currentMonster: 'Duremudira',
 				background: false,
 			},
+		},
+		{
+			id: '/tools/simulator/sigil',
+			icon: SigilIconWhite,
+		},
+		{
+			id: '/tools/simulator/partner-skills',
+			icon: JewelIconWhite,
 		},
 		{
 			id: '/tools/generator',
