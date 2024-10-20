@@ -1100,3 +1100,22 @@ export type OverlayHuntRank =
 	| 'Zenith★3 '
 	| 'Zenith★4 '
 	| 'Interception ';
+
+export type PartnerSkillName = {
+	en: string;
+	zh?: string;
+};
+
+export type PartnerSkillPrerequisite = {
+	skills: string[];
+};
+
+export type PartnerSkill = {
+	name: PartnerSkillName;
+	gcp: number;
+	cost: number;
+	pr: number;
+	prerequisites: PartnerSkillPrerequisite[];
+	tree: FrontierArmorSkillTree;
+	description?: string;
+};

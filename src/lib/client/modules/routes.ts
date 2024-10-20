@@ -304,6 +304,12 @@ export const toolsInfo: CategoryInfo[] = [
 				image: SigilIconWhite,
 				link: '/tools/simulator/sigil',
 			},
+			{
+				name: 'Partner Skills',
+				description: 'A partner skills simulator.',
+				image: JewelIconWhite,
+				link: '/tools/simulator/partner-skills',
+			},
 		],
 	},
 	{
