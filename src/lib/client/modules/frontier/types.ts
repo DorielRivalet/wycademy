@@ -1102,12 +1102,12 @@ export type OverlayHuntRank =
 	| 'Interception ';
 
 export type PartnerSkillName = {
-	en: string;
+	en: FrontierArmorSkillName;
 	zh?: string;
 };
 
 export type PartnerSkillPrerequisite = {
-	skills: string[];
+	skills: FrontierArmorSkillName[];
 };
 
 export type PartnerSkill = {
