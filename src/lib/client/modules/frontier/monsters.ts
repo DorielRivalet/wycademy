@@ -2659,7 +2659,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		elements: ['Fire'],
 		ailments: ['Paralysis'],
 		weaknesses: ['Dragon', 'Ice'],
-		habitats: ["Town, Tower, Tower 2, Interceptor's Base, Ancient Tower"],
+		habitats: [
+			'Town',
+			'Tower',
+			'Tower 2',
+			"Interceptor's Base",
+			'Ancient Tower',
+		],
 		sizes: ['4137cm'],
 		relatedMonsters: ['Yama Kurai'],
 		generation: 'Second Generation',
@@ -4105,7 +4111,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
 
-		unusedComponent: true,
+		unusedComponent: false,
 		type: 'Large',
 		ecology: `A Wyvern with pitch-black scales and crimson talons occasionally seen at ancient towers. The abilities of this Wyvern seems to vary between witnesses and so little is known of it's biology, that it has yet to be officially named.`,
 		titles: ['Black Flying Wyvern'],
@@ -4124,7 +4130,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Gorge',
 		],
 		sizes: ['Gold Crown Large: 2303.8'],
-		relatedMonsters: ['None'],
+		relatedMonsters: ['Shiten UNKNOWN'], // TODO
 		generation: 'Frontier',
 	},
 	{
@@ -4139,7 +4145,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/unknown',
 		link: '/hunter-notes/monsters/overview/unknown',
 
-		unusedComponent: true,
+		unusedComponent: false,
 		ecology: `A Wyvern with pitch-black scales and crimson talons occasionally seen at ancient towers. The abilities of this Wyvern seems to vary between witnesses and so little is known of it's biology, that it has yet to be officially named.`,
 		type: 'Large',
 		titles: ['Black Flying Wyvern'],
@@ -6965,7 +6971,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Gorge',
 		],
 		sizes: ['Gold Crown Large: 2303.8'],
-		relatedMonsters: ['None'],
+		relatedMonsters: ['UNKNOWN'],
 		generation: 'Frontier',
 	},
 	{
