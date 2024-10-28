@@ -1,4 +1,9 @@
+/**summary uses Discord flavored markdown */
 export const releaseNotesSummaries: { version: string; summary: string }[] = [
+	{
+		version: 'v0-41-0',
+		summary: `We're back with another exciting update! Here's what's new:\n\n**🎉 Features**\nHotkeys settings, database size reduced, updated monster images.\nParty Size Adjustments: Planning your next hunt? We’ve added a new party size dictionary field in the database. Now your stats will be more accurate. 🏹🛡️\n\n**🛠️ Bug Fixes**\nAchievement Fixes: Some achievements for Dual Sword (DS) users were being shy. We’ve coaxed them out, so now your accomplishments will be recognized properly. 🏆✔️`,
+	},
 	{
 		version: 'v0-40-0',
 		summary: `This is a hotfix patch focused on Discord Rich Presence.`,

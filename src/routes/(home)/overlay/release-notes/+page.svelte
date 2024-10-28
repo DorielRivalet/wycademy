@@ -9,7 +9,7 @@
 		return `/overlay/release-notes/${version.replaceAll('.', '-')}`;
 	}
 
-	const releaseNotesVersions = ['v0.40.0', 'v0.39.0'];
+	const releaseNotesVersions = ['v0.41.0', 'v0.40.0', 'v0.39.0'];
 
 	const breadCrumbItems = [
 		{ href: '/', text: 'Home' },
