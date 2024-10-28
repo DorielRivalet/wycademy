@@ -25,6 +25,13 @@ async function sendDiscordNotification(release: {
 	console.log(`Version: ${version}`);
 	console.log(`Description: ${description}`);
 
+	if (description === 'No release notes summary found.') {
+		console.error(
+			'Failed to send Discord notification: no release notes summary found.',
+		);
+		error(500, 'Internal Server Error');
+	}
+
 	const discordMessage = {
 		content: `https://wycademy.vercel.app/overlay/release-notes/latest`,
 		username: 'Overlay Updates',
