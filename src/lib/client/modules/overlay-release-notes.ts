@@ -16,7 +16,6 @@ export const releaseNotesSummaries: { version: string; summary: string }[] = [
 
 export function getReleaseNotesSummary(version: string) {
 	return (
-		releaseNotesSummaries.find((e) => e.version === version)?.summary ||
-		'No release notes summary found.'
+		releaseNotesSummaries.find((e) => e.version === version)?.summary || ''
 	);
 }
