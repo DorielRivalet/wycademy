@@ -346,8 +346,8 @@ Attack x1.2 when wielding a Switch Axe and
 Fencing+1.
 Successfully using certain actions increases attack by 1.05x for a short time (Morphing in Earth Style, Sword Attacks in Heaven Style, and Guarding in Storm Style).
 Stamina consumption for infinite swing combo is halved.
-Attacking in axe mode increases phial gauge.
-Attacks utilizing the phial consume less meter.`,
+Attacking in axe mode increases phial gauge by x1.2 (from 6 units to 7 units of energy regained).
+Attacks utilizing the phial consume less meter (around 20% less).`,
 		},
 		{
 			id: '10',

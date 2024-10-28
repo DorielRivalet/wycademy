@@ -17,18 +17,292 @@
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
-	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import {
 		getItemColor,
 		getItemIcon,
 	} from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
-	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
-	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import type {
+		FrontierGunlanceShell,
+		FrontierGunlanceShellLevel,
+	} from '$lib/client/modules/frontier/types';
+
+	// formulas:
+	/*
+	Attribute gun (attribute): 1 (fixed damage) + Attribute (rounded ［ Attribute gun factor * (display attribute value ÷10) ］* Attribute enhancement skill)
+
+		Attribute gun (explosion): 0.1* Display weapon magnification + Fixed value
+
+ normal: 0.1
+ spread: 0.09
+ long: 0.1
+
+	*/
+
+	// TODO
+	const heatbladeDamage: {
+		id: FrontierGunlanceShellLevel;
+		shellingLevel: FrontierGunlanceShellLevel;
+		damage: number;
+	}[] = [
+		{ id: 1, shellingLevel: 1, damage: 100 },
+		{ id: 2, shellingLevel: 2, damage: 120 },
+		{ id: 3, shellingLevel: 3, damage: 140 },
+		{ id: 4, shellingLevel: 4, damage: 160 },
+		{ id: 5, shellingLevel: 5, damage: 180 },
+		{ id: 6, shellingLevel: 6, damage: 200 },
+		{ id: 7, shellingLevel: 7, damage: 220 },
+		{ id: 8, shellingLevel: 8, damage: 240 },
+		{ id: 9, shellingLevel: 9, damage: 260 },
+	];
+
+	const shellingTypesDamage: {
+		shellingType: FrontierGunlanceShell;
+		shellingDamage: {
+			id: FrontierGunlanceShellLevel;
+			level: FrontierGunlanceShellLevel;
+			fixedValue: number;
+			elementShotMultiplier: number;
+			fixedValueSigil: number;
+			stun: number;
+		}[];
+	}[] = [
+		{
+			shellingType: 'Normal',
+			shellingDamage: [
+				{
+					id: 1,
+					level: 1,
+					fixedValue: 10,
+					elementShotMultiplier: 3,
+					fixedValueSigil: 14,
+					stun: 3,
+				},
+				{
+					id: 2,
+					level: 2,
+					fixedValue: 14,
+					elementShotMultiplier: 3.13,
+					fixedValueSigil: 21,
+					stun: 4,
+				},
+				{
+					id: 3,
+					level: 3,
+					fixedValue: 18,
+					elementShotMultiplier: 3.26,
+					fixedValueSigil: 27,
+					stun: 5,
+				},
+				{
+					id: 4,
+					level: 4,
+					fixedValue: 21,
+					elementShotMultiplier: 3.39,
+					fixedValueSigil: 32,
+					stun: 6,
+				},
+				{
+					id: 5,
+					level: 5,
+					fixedValue: 24,
+					elementShotMultiplier: 3.52,
+					fixedValueSigil: 36,
+					stun: 7,
+				},
+				{
+					id: 6,
+					level: 6,
+					fixedValue: 39,
+					elementShotMultiplier: 3.65,
+					fixedValueSigil: 59,
+					stun: 8,
+				},
+				{
+					id: 7,
+					level: 7,
+					fixedValue: 45,
+					elementShotMultiplier: 3.78,
+					fixedValueSigil: 68,
+					stun: 9,
+				},
+				{
+					id: 8,
+					level: 8,
+					fixedValue: 51,
+					elementShotMultiplier: 3.91,
+					fixedValueSigil: 77,
+					stun: 10,
+				},
+				{
+					id: 9,
+					level: 9,
+					fixedValue: 59,
+					elementShotMultiplier: 4.04,
+					fixedValueSigil: 89,
+					stun: 11,
+				},
+			],
+		},
+		{
+			shellingType: 'Spread',
+			shellingDamage: [
+				{
+					id: 1,
+					level: 1,
+					fixedValue: 19,
+					elementShotMultiplier: 5.5,
+					fixedValueSigil: 28,
+					stun: 6,
+				},
+				{
+					id: 2,
+					level: 2,
+					fixedValue: 26,
+					elementShotMultiplier: 5.63,
+					fixedValueSigil: 40,
+					stun: 7,
+				},
+				{
+					id: 3,
+					level: 3,
+					fixedValue: 34,
+					elementShotMultiplier: 5.76,
+					fixedValueSigil: 51,
+					stun: 8,
+				},
+				{
+					id: 4,
+					level: 4,
+					fixedValue: 38,
+					elementShotMultiplier: 5.89,
+					fixedValueSigil: 57,
+					stun: 9,
+				},
+				{
+					id: 5,
+					level: 5,
+					fixedValue: 41,
+					elementShotMultiplier: 6.02,
+					fixedValueSigil: 61,
+					stun: 10,
+				},
+				{
+					id: 6,
+					level: 6,
+					fixedValue: 64,
+					elementShotMultiplier: 6.15,
+					fixedValueSigil: 96,
+					stun: 11,
+				},
+				{
+					id: 7,
+					level: 7,
+					fixedValue: 71,
+					elementShotMultiplier: 6.28,
+					fixedValueSigil: 107,
+					stun: 12,
+				},
+				{
+					id: 8,
+					level: 8,
+					fixedValue: 80,
+					elementShotMultiplier: 6.41,
+					fixedValueSigil: 120,
+					stun: 13,
+				},
+				{
+					id: 9,
+					level: 9,
+					fixedValue: 92,
+					elementShotMultiplier: 6.54,
+					fixedValueSigil: 138,
+					stun: 14,
+				},
+			],
+		},
+		{
+			shellingType: 'Long',
+			shellingDamage: [
+				{
+					id: 1,
+					level: 1,
+					fixedValue: 14,
+					elementShotMultiplier: 5,
+					fixedValueSigil: 22,
+					stun: 5,
+				},
+				{
+					id: 2,
+					level: 2,
+					fixedValue: 20,
+					elementShotMultiplier: 5.13,
+					fixedValueSigil: 30,
+					stun: 6,
+				},
+				{
+					id: 3,
+					level: 3,
+					fixedValue: 25,
+					elementShotMultiplier: 5.26,
+					fixedValueSigil: 38,
+					stun: 7,
+				},
+				{
+					id: 4,
+					level: 4,
+					fixedValue: 29,
+					elementShotMultiplier: 5.39,
+					fixedValueSigil: 43,
+					stun: 8,
+				},
+				{
+					id: 5,
+					level: 5,
+					fixedValue: 32,
+					elementShotMultiplier: 5.52,
+					fixedValueSigil: 48,
+					stun: 9,
+				},
+				{
+					id: 6,
+					level: 6,
+					fixedValue: 50,
+					elementShotMultiplier: 5.65,
+					fixedValueSigil: 76,
+					stun: 10,
+				},
+				{
+					id: 7,
+					level: 7,
+					fixedValue: 58,
+					elementShotMultiplier: 5.78,
+					fixedValueSigil: 86,
+					stun: 11,
+				},
+				{
+					id: 8,
+					level: 8,
+					fixedValue: 64,
+					elementShotMultiplier: 5.91,
+					fixedValueSigil: 95,
+					stun: 12,
+				},
+				{
+					id: 9,
+					level: 9,
+					fixedValue: 73,
+					elementShotMultiplier: 6.04,
+					fixedValueSigil: 110,
+					stun: 13,
+				},
+			],
+		},
+	];
 
 	const hidenSkills: {
 		id: string;
@@ -344,7 +618,7 @@
 			</section>
 
 			<section>
-				<SectionHeading level={2} title=" Style" />
+				<SectionHeading level={2} title="Storm Style" />
 				<div>
 					<p class="spaced-paragraph">
 						<strong>Storm Style</strong> incorporates all the features of
@@ -369,7 +643,7 @@
 			</section>
 
 			<section>
-				<SectionHeading level={2} title=" Style" />
+				<SectionHeading level={2} title="Extreme Style" />
 				<div>
 					<p class="spaced-paragraph">
 						<strong>Extreme Style</strong> is a direct upgrade to all previous
@@ -454,7 +728,7 @@
 								<Button
 									kind="tertiary"
 									icon={Download}
-									on:click={() => downloadDomAsPng('hiden-dom', 'tonfa-hiden')}
+									on:click={() => downloadDomAsPng('hiden-dom', 'gl-hiden')}
 									>Download</Button
 								>
 							</div>

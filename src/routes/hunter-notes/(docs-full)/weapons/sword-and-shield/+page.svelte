@@ -340,7 +340,7 @@
 								<Button
 									kind="tertiary"
 									icon={Download}
-									on:click={() => downloadDomAsPng('hiden-dom', 'tonfa-hiden')}
+									on:click={() => downloadDomAsPng('hiden-dom', 'sns-hiden')}
 									>Download</Button
 								>
 							</div>

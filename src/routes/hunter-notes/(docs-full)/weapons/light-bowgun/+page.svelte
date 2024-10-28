@@ -395,7 +395,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 								<Button
 									kind="tertiary"
 									icon={Download}
-									on:click={() => downloadDomAsPng('hiden-dom', 'tonfa-hiden')}
+									on:click={() => downloadDomAsPng('hiden-dom', 'lbg-hiden')}
 									>Download</Button
 								>
 							</div>

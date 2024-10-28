@@ -257,7 +257,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			</section>
 
 			<section>
-				<SectionHeading level={2} title=" Style" />
+				<SectionHeading level={2} title="Storm Style" />
 				<div>
 					<p class="spaced-paragraph">
 						<strong>Storm Style</strong> introduces a Level 4 charge that
@@ -365,7 +365,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 								<Button
 									kind="tertiary"
 									icon={Download}
-									on:click={() => downloadDomAsPng('hiden-dom', 'tonfa-hiden')}
+									on:click={() => downloadDomAsPng('hiden-dom', 'hammer-hiden')}
 									>Download</Button
 								>
 							</div>

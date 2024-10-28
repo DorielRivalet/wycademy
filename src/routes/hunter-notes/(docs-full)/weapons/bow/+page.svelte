@@ -407,7 +407,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 								<Button
 									kind="tertiary"
 									icon={Download}
-									on:click={() => downloadDomAsPng('hiden-dom', 'tonfa-hiden')}
+									on:click={() => downloadDomAsPng('hiden-dom', 'bow-hiden')}
 									>Download</Button
 								>
 							</div>
