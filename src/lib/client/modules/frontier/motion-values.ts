@@ -7265,7 +7265,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Unsheathe',
 						animation: '',
-						values: '28(12)',
+						values: '28(14)',
 						hitCount: 1,
 						elementMultiplier: 1,
 						motionValue: 28,
@@ -7445,7 +7445,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Dash Stab',
 						animation: '',
-						values: '12(10)･20(15)',
+						values: '12(13)･20(16)',
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: 32,

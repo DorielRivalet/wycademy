@@ -410,7 +410,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 								<Button
 									kind="tertiary"
 									icon={Download}
-									on:click={() => downloadDomAsPng('hiden-dom', 'tonfa-hiden')}
+									on:click={() => downloadDomAsPng('hiden-dom', 'hbg-hiden')}
 									>Download</Button
 								>
 							</div>

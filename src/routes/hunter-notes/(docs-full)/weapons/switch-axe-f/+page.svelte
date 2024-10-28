@@ -19,12 +19,15 @@
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
-	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import {
+		activeFeatures,
+		getActiveFeature,
+	} from '$lib/client/modules/frontier/active-feature';
 
 	const hidenSkills: {
 		id: string;
@@ -48,8 +51,8 @@ Attack x1.2 when wielding a Switch Axe and
 Fencing+1.
 Successfully using certain actions increases attack by 1.05x for a short time (Morphing in Earth Style, Sword Attacks in Heaven Style, and Guarding in Storm Style).
 Stamina consumption for infinite swing combo is halved.
-Attacking in axe mode increases phial gauge.
-Attacks utilizing the phial consume less meter.`,
+Attacking in axe mode increases phial gauge by x1.2 (from 6 units to 7 units of energy regained).
+Attacks utilizing the phial consume less meter (around 20% less).`,
 		},
 		{
 			id: '2',
@@ -288,8 +291,7 @@ Attacks utilizing the phial consume less meter.`,
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
 					<p>
-						Increases Phial Meter Recovery by primary recovery mechanic (either
-						by reloading or guarding).
+						{getActiveFeature('Switch Axe F')}
 					</p>
 				</div>
 			</section>
@@ -318,7 +320,7 @@ Attacks utilizing the phial consume less meter.`,
 								<Button
 									kind="tertiary"
 									icon={Download}
-									on:click={() => downloadDomAsPng('hiden-dom', 'tonfa-hiden')}
+									on:click={() => downloadDomAsPng('hiden-dom', 'saf-hiden')}
 									>Download</Button
 								>
 							</div>
@@ -570,7 +572,48 @@ Attacks utilizing the phial consume less meter.`,
 									icon={getItemIcon('Jewel')}
 								/> may be easier to use.
 							</p></ListItem
-						><ListItem
+						>
+						<ListItem
+							><p>
+								Earth, Heaven and Extreme Style gauges have 100 units of energy
+								maximum. Storm and Extreme Style Light Sword gauges have 300
+								units of energy maximum.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								The recovery rate of the gauge is 5 units of energy every 5
+								seconds. Extreme Style Light Sword gauge does not have natural
+								recovery of energy.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								The <InlineTooltip
+									tooltip="Armor Skill"
+									text="Focus"
+									iconType="component"
+									icon={getItemIcon('Jewel')}
+								/> skill provides the following benefits: Increased natural recovery
+								of gauges, increase in gauge recovery from axe attacks and parries,
+								and x1.1 fill rate for gauges (x1.2 with Focus+2).
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								Successful parries with Light Sword gives 50 units of energy
+								with Storm Style and 75 with Extreme Style, doubled on Active
+								Feature.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								Attacking during Axe Mode recovers 6 units of energy.
+							</p></ListItem
+						>
+						<ListItem><p>Switch Axe running consumes phial energy.</p></ListItem
+						>
+						<ListItem
 							><p>
 								The second stage of <InlineTooltip
 									tooltip="Armor Skill"
