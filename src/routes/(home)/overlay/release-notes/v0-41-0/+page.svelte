@@ -3,17 +3,16 @@
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
-	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
-	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
-
-	const version = 'v0.40.0';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
+	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
+	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 
 	const breadCrumbItems = [
 		{ href: '/', text: 'Home' },
 		{ href: '/overlay', text: 'Overlay' },
 		{ href: '/overlay/release-notes', text: 'Release Notes' },
-		{ href: '/overlay/release-notes/v0-40-0', text: 'v0.40.0' },
+		{ href: '/overlay/release-notes/v0-41-0', text: 'v0.41.0' },
 	];
 </script>
 
@@ -32,57 +31,85 @@
 		</Breadcrumb>
 	</div>
 	<section>
-		<h1>{version}</h1>
-		<hr />
+		<div class="headline">
+			<h1>v0.41.0</h1>
+			<p class="date">October 27, 2024</p>
+			<hr />
+		</div>
+
 		<div class="summary">
 			<p class="spaced-paragraph">
-				This is a hotfix patch focused on <span class="icon-text"
-					><LogoDiscord size={16} />
-					<span> Discord Rich Presence.</span></span
-				>
+				This update brings exciting new features and improvements to the
+				overlay, plus some important bug fixes to enhance your experience.
 			</p>
 		</div>
+		<section>
+			<h2>New Features</h2>
+			<hr />
+			<UnorderedList class="spaced-list">
+				<ListItem>
+					<div class="list-item">
+						<strong>Hotkeys Window:</strong> Now you can easily access all available
+						hotkeys with a handy new window. You can access this new window by right-clicking
+						the overlay icon in your system tray. 🔥🚀
+					</div>
+				</ListItem>
+				<ListItem>
+					<div class="list-item">
+						<strong>Party Size Adjustments:</strong> Planning your next hunt? We’ve
+						added a new party size dictionary field in the database. Now your stats
+						will be more accurate. 🏹🛡️
+					</div>
+				</ListItem>
+				<ListItem>
+					<div class="list-item">
+						<strong>Database Overhaul:</strong> The database has been reduced in
+						size, making everything load faster so you can focus more on hunting
+						and less on waiting. Depending on how many hunts you had and how
+						long each lasted, your database size can be
+						<strong>reduced by 50%</strong> or more! 🏃‍♂️💨
+					</div>
+				</ListItem>
+			</UnorderedList>
+		</section>
 		<section>
 			<h2>Improvements</h2>
 			<hr />
 			<UnorderedList class="spaced-list">
-				<ListItem
-					><div class="list-item">
-						Updated <span class="icon-text"
-							><LogoDiscord size={16} />
-							<span> Discord Rich Presence </span></span
-						>
-						primary button links to <Link inline href="/overlay"
-							>the Overlay page.</Link
-						>
-					</div></ListItem
-				>
+				<ListItem>
+					<div class="list-item">
+						<strong>Updated Monster Images:</strong> Enjoy new, sharper visuals for
+						your favorite (and not-so-favorite) monsters. Get ready to see them in
+						stunning detail! 🖼️✨
+					</div>
+				</ListItem>
 			</UnorderedList>
 		</section>
 		<section>
 			<h2>Fixes</h2>
 			<hr />
 			<UnorderedList class="spaced-list">
-				<ListItem
-					><div class="list-item">
-						<p>
-							<strong>v0.39.1: </strong>Fixed an issue with
-							<span class="icon-text"
-								><LogoDiscord size={16} />
-								<span> Discord Rich Presence </span></span
-							>
-							not showing certain monster icons.
-						</p>
+				<ListItem>
+					<div class="list-item">
+						<strong>Achievement Fixes:</strong> We’ve resolved an issue with <InlineTooltip
+							text="Dual Swords"
+							icon={getWeaponIcon('Dual Swords')}
+							tooltip="Weapon"
+						/> achievements not working correctly. Your accomplishments are now properly
+						recognized! 🏆✔️
 					</div>
 				</ListItem>
 			</UnorderedList>
 		</section>
-		<!-- <section>
-			<h2>Other Changes</h2>
-			<hr />
-		</section> -->
 	</section>
 	<section class="call-to-action-section">
+		<p class="spaced-paragraph">
+			See our upcoming changes in <OutboundLink
+				href="https://github.com/DorielRivalet/mhfz-overlay/milestones"
+				>the milestones page.</OutboundLink
+			>
+		</p>
+
 		<CallToActionBanner
 			bodyText="Are you ready to upgrade your Frontier experience?"
 			buttonText="Download Now"
@@ -158,5 +185,15 @@
 		flex-direction: column;
 		align-items: center;
 		padding: 2rem;
+	}
+
+	.headline {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+	}
+
+	.date {
+		color: var(--ctp-subtext0);
 	}
 </style>
