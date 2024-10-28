@@ -67,7 +67,8 @@ export const divaPrayerGems: {
 	{
 		id: 4,
 		name: ezlionSkillDivaPrayerGem[4],
-		description: 'Adds passive HP recovery to all quests.',
+		description:
+			'Adds passive HP recovery to all quests. Also increases stamina recovery rate.',
 		maxLevel: 2,
 		unused: false,
 		partyEffect: true,
@@ -194,7 +195,7 @@ export const divaPrayerGems: {
 		id: 17,
 		name: ezlionSkillDivaPrayerGem[17],
 		description:
-			"Attack will go up based on the number of players in a quest. +10/20/30 True Raw increase if you are the only player. This is not affected by multipliers like Adrenaline, instead it's a flat addition.",
+			"Attack will go up based on the number of players in a quest. +10/20/30 True Raw increase for 1 player, +20/40/60 for 2 players, +40/70/100 for 3 players and +70/105/140 for 4 players. This is not affected by multipliers like Adrenaline, instead it's a flat addition.",
 		maxLevel: 3,
 		unused: false,
 		partyEffect: true,
