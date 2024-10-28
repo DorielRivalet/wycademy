@@ -126,6 +126,8 @@ async function handleGitHubEvent(
 			};
 
 			sendDiscordNotification(latestRelease);
+		} else {
+			console.log(`Unhandled event (release): ${gitHubEvent}`);
 		}
 	} else {
 		console.log(`Unhandled event: ${gitHubEvent}`);
