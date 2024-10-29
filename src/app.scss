@@ -422,6 +422,10 @@ p {
 	background-color: var(--ctp-blue) !important;
 }
 
+.svelte-flow__edge-path {
+	stroke: var(--ctp-blue) !important;
+}
+
 .driver-popover.driverjs-theme {
 	color: var(--ctp-text);
 	background-color: var(--ctp-surface0);
