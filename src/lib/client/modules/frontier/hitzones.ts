@@ -774,7 +774,6 @@ export const silhouetteInfo: {
 		displayName: 'Poborubarumu',
 		silhouette:
 			'$lib/client/components/frontier/icon/monster/silhouette/SilhouettePoborubarumu.svelte',
-		// todo correct?
 	},
 	{
 		displayName: 'Duremudira',
@@ -1115,7 +1114,7 @@ export const silhouetteInfo: {
 	{
 		displayName: 'Road White Fatalis',
 		silhouette:
-			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte', // todo?
+			'$lib/client/components/frontier/icon/monster/silhouette/SilhouetteBlackFatalis.svelte',
 	},
 ];
 
@@ -9298,7 +9297,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Default',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Head',
 		cutting: 30,
 		impact: 45,
@@ -9313,7 +9312,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Default',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Torso',
 		cutting: 40,
 		impact: 40,
@@ -9328,7 +9327,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Default',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Wings',
 		cutting: 40,
 		impact: 25,
@@ -9343,7 +9342,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Default',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Wingclaws',
 		cutting: 25,
 		impact: 40,
@@ -9358,7 +9357,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Default',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Legs',
 		cutting: 20,
 		impact: 20,
@@ -9373,7 +9372,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Default',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Sub Tails',
 		cutting: 45,
 		impact: 25,
@@ -9388,7 +9387,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Default',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Tail',
 		cutting: 45,
 		impact: 25,
@@ -9508,7 +9507,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'G Rank',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Head',
 		cutting: 30,
 		impact: 50,
@@ -9523,7 +9522,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'G Rank',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Torso',
 		cutting: 35,
 		impact: 40,
@@ -9538,7 +9537,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'G Rank',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Wings',
 		cutting: 35,
 		impact: 25,
@@ -9553,7 +9552,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'G Rank',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Wingclaws',
 		cutting: 30,
 		impact: 45,
@@ -9568,7 +9567,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'G Rank',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Legs',
 		cutting: 20,
 		impact: 30,
@@ -9583,7 +9582,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'G Rank',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Sub Tails',
 		cutting: 45,
 		impact: 25,
@@ -9598,7 +9597,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'G Rank',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Tail',
 		cutting: 55,
 		impact: 25,
@@ -9718,7 +9717,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Gou',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Head',
 		cutting: 30,
 		impact: 45,
@@ -9733,7 +9732,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Gou',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Torso',
 		cutting: 40,
 		impact: 40,
@@ -9748,7 +9747,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Gou',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Wings',
 		cutting: 40,
 		impact: 25,
@@ -9763,7 +9762,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Gou',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Wingclaws',
 		cutting: 25,
 		impact: 40,
@@ -9778,7 +9777,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Gou',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Legs',
 		cutting: 20,
 		impact: 20,
@@ -9793,7 +9792,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Berukyurosu',
 		rankBand: 'Gou',
-		monsterState: 'Varies',
+		monsterState: 'Part Broken',
 		part: 'Sub Tails',
 		cutting: 45,
 		impact: 25,
@@ -9813,7 +9812,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 25,
 		dragon: 5,
 		stun: 0,
-		monsterState: 'Varies', // TODO what does this mean?
+		monsterState: 'Part Broken',
 		rankBand: 'Gou',
 		displayName: 'Berukyurosu',
 		shot: 50,
@@ -41238,7 +41237,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: 0,
 		stun: 0,
 	},
-	/*{
+	{
 		displayName: 'Mi Ru', // TODO unused?
 		rankBand: 'G Rank',
 		monsterState: '?',
@@ -41342,7 +41341,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		dragon: 5,
 		ice: 5,
 		stun: 0,
-	},*/
+	},
 	{
 		displayName: 'Shifting Mi Ru',
 		rankBand: 'Musou',
@@ -65856,7 +65855,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zerureusu',
 		rankBand: 'G Rank',
-		monsterState: '?',
+		monsterState: 'Counter',
 		part: 'Head',
 		cutting: 10,
 		impact: 10,
@@ -65871,7 +65870,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zerureusu',
 		rankBand: 'G Rank',
-		monsterState: '?',
+		monsterState: 'Counter',
 		part: 'Neck',
 		cutting: 10,
 		impact: 10,
@@ -65886,7 +65885,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zerureusu',
 		rankBand: 'G Rank',
-		monsterState: '?',
+		monsterState: 'Counter',
 		part: 'Back',
 		cutting: 20,
 		impact: 25,
@@ -65901,7 +65900,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zerureusu',
 		rankBand: 'G Rank',
-		monsterState: '?',
+		monsterState: 'Counter',
 		part: 'Belly',
 		cutting: 30,
 		impact: 30,
@@ -65916,7 +65915,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zerureusu',
 		rankBand: 'G Rank',
-		monsterState: '?',
+		monsterState: 'Counter',
 		part: 'Tail',
 		cutting: 50,
 		impact: 30,
@@ -65931,7 +65930,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zerureusu',
 		rankBand: 'G Rank',
-		monsterState: '?',
+		monsterState: 'Counter',
 		part: 'Wings',
 		cutting: 25,
 		impact: 25,
@@ -65946,7 +65945,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zerureusu',
 		rankBand: 'G Rank',
-		monsterState: '?',
+		monsterState: 'Counter',
 		part: 'Legs',
 		cutting: 40,
 		impact: 30,

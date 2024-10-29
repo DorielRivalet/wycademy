@@ -116,6 +116,12 @@
 				/>.
 			</p>
 			<section>
+				<SectionHeading level={2} title="Legendary Rastas" />
+				<div>
+					<p class="spaced-paragraph"></p>
+				</div>
+			</section>
+			<section>
 				<SectionHeading level={2} title="Partner" />
 				<div>
 					<p class="spaced-paragraph">

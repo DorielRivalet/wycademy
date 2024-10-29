@@ -19,6 +19,99 @@
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import { getCurrencyIcon } from '$lib/client/modules/frontier/currency';
 	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
+	import { writable, type Writable } from 'svelte/store';
+	import { getItemColor } from '$lib/client/modules/frontier/items';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import { type Node, type Edge, SvelteFlowProvider } from '@xyflow/svelte';
+	import '@xyflow/svelte/dist/style.css';
+	import SvelteFlowElk from '$lib/client/components/SvelteFlowElk.svelte';
+	import type { FrontierWeaponName } from 'ezlion';
+	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+
+	const edgeType = 'bezier';
+	const edgeDataStyle: string = 'stroke: var(--ctp-blue);';
+
+	interface Weapon {
+		name: string;
+		upgradesTo: string[];
+		weaponType?: FrontierWeaponName;
+		rarity?: FrontierRarity;
+	}
+
+	function generateWeaponTreeData(weaponsUpgradePath: Weapon[]) {
+		const nodeData: Node[] = [];
+		const edgeData: Edge[] = [];
+		const weaponMap = new Map<string, number>();
+
+		// First pass: Create nodes and build weapon map
+		weaponsUpgradePath.forEach((weapon, index) => {
+			const nodeIndex = index + 1;
+			weaponMap.set(weapon.name, nodeIndex);
+
+			// Determine node type based on position in upgrade tree
+			const isEndNode = weapon.upgradesTo.length === 0;
+			const isStartNode = !weaponsUpgradePath.some((w) =>
+				w.upgradesTo.includes(weapon.name),
+			);
+
+			let nodeType = 'default-horizontal';
+			if (isEndNode) nodeType = 'output-horizontal';
+			if (isStartNode) nodeType = 'input-horizontal';
+
+			const node: Node = {
+				id: `node-${nodeIndex}`,
+				type: 'inline-tooltip',
+				data: {
+					tooltip: writable(weapon.upgradesTo.join(', ')),
+					text: writable(weapon.name),
+					icon: writable(
+						getWeaponIcon(weapon.weaponType || 'Sword and Shield'),
+					),
+					iconColor: writable(getItemColor('White')),
+					iconType: writable('component'),
+					nodeType: writable(nodeType),
+					tags: writable([]),
+					backgroundColor: writable('var(--surface0)'),
+				},
+				position: { x: 0, y: 0 }, // Positions will be handled externally
+			};
+
+			nodeData.push(node);
+		});
+
+		// Second pass: Create edges
+		weaponsUpgradePath.forEach((weapon) => {
+			const sourceIndex = weaponMap.get(weapon.name);
+
+			if (sourceIndex === undefined) return;
+
+			weapon.upgradesTo.forEach((targetName) => {
+				const targetIndex = weaponMap.get(targetName);
+
+				if (targetIndex === undefined) {
+					console.warn(`Target weapon not found: ${targetName}`);
+					return;
+				}
+
+				const edge: Edge = {
+					id: `edge-${sourceIndex}-${targetIndex}`,
+					source: `node-${sourceIndex}`,
+					target: `node-${targetIndex}`,
+					type: edgeType,
+					animated: true,
+					style: edgeDataStyle,
+				};
+				edgeData.push(edge);
+			});
+		});
+
+		return { nodeData, edgeData };
+	}
 
 	type RavienteWeaponTitle = 'Glory' | 'Clear' | 'Shine' | 'Flash'; // Balanced / Affinity / Element / Raw
 
@@ -92,6 +185,102 @@
 		{ id: 4, type: 'True Power Gem', gPoints: 20, GgPoints: 20 },
 		{ id: 5, type: 'Divine Power Gem', gPoints: 100, GgPoints: 100 },
 	];
+
+	/** upgradesTo is the list of available upgrades from this weapon.*/
+	const weaponsUpgradePath: Weapon[] = [
+		{
+			name: 'Ophion Sword',
+			upgradesTo: [
+				'Ophion Sword "Flash"',
+				'Ophion Sword "Shine"',
+				'Ophion Sword "Glory"',
+			],
+		},
+		{
+			name: 'Ophion Sword "Flash"',
+			upgradesTo: [
+				'Shesha Sword "Flash"',
+				'Shesha Sword "Shine"',
+				'Shesha Sword "Glory"',
+				'Shesha Sword "Clear"',
+			],
+		},
+		{
+			name: 'Ophion Sword "Shine"',
+			upgradesTo: [
+				'Shesha Sword "Flash"',
+				'Shesha Sword "Shine"',
+				'Shesha Sword "Glory"',
+				'Shesha Sword "Clear"',
+			],
+		},
+		{
+			name: 'Ophion Sword "Glory"',
+			upgradesTo: [
+				'Shesha Sword "Flash"',
+				'Shesha Sword "Shine"',
+				'Shesha Sword "Glory"',
+				'Shesha Sword "Clear"',
+			],
+		},
+		{
+			name: 'Shesha Sword "Flash"',
+			upgradesTo: [
+				'Apophis Sword "Flash"',
+				'Apophis Sword "Shine"',
+				'Apophis Sword "Glory"',
+				'Apophis Sword "Clear"',
+			],
+		},
+		{
+			name: 'Shesha Sword "Shine"',
+			upgradesTo: [
+				'Apophis Sword "Flash"',
+				'Apophis Sword "Shine"',
+				'Apophis Sword "Glory"',
+				'Apophis Sword "Clear"',
+			],
+		},
+		{
+			name: 'Shesha Sword "Glory"',
+			upgradesTo: [
+				'Apophis Sword "Flash"',
+				'Apophis Sword "Shine"',
+				'Apophis Sword "Glory"',
+				'Apophis Sword "Clear"',
+			],
+		},
+		{
+			name: 'Shesha Sword "Clear"',
+			upgradesTo: [
+				'Apophis Sword "Flash"',
+				'Apophis Sword "Shine"',
+				'Apophis Sword "Glory"',
+				'Apophis Sword "Clear"',
+			],
+		},
+		{
+			name: 'Apophis Sword "Flash"',
+			upgradesTo: [],
+		},
+		{
+			name: 'Apophis Sword "Shine"',
+			upgradesTo: [],
+		},
+		{
+			name: 'Apophis Sword "Glory"',
+			upgradesTo: [],
+		},
+		{
+			name: 'Apophis Sword "Clear"',
+			upgradesTo: [],
+		},
+	];
+
+	const weaponTreeData = generateWeaponTreeData(weaponsUpgradePath);
+
+	const nodeData: Node[] = weaponTreeData.nodeData;
+	const edgeData: Edge[] = weaponTreeData.edgeData;
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -152,6 +341,20 @@
 								process occurs three times to fully develop a G Rank Raviente
 								weapon.
 							</p>
+							<p class="spaced-paragraph">
+								Below is the upgrade tree, you can hover over a weapon name to
+								see the available weapon upgrades.
+							</p>
+							<div>
+								<SvelteFlowProvider
+									><SvelteFlowElk
+										fileName="raviente-weapons-tree"
+										initialNodes={nodeData}
+										initialEdges={edgeData}
+										colorMode={$carbonThemeStore === 'g10' ? 'light' : 'dark'}
+									/></SvelteFlowProvider
+								>
+							</div>
 							<p class="spaced-paragraph">
 								Planning ahead is essential before committing to a G Rank weapon
 								path, as switching paths will require starting a new weapon from
