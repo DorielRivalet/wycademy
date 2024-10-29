@@ -1854,6 +1854,8 @@
 		},
 	];
 
+	const edgeDataStyle: string = 'stroke: var(--ctp-blue);';
+
 	const skillTreeData = generateSkillTreeData();
 
 	const nodeData: Node[] = skillTreeData.nodeData;
@@ -1928,6 +1930,7 @@
 						target: `node-${nodeIndex}`,
 						type: edgeType,
 						animated: true,
+						style: edgeDataStyle,
 					};
 					edgeData.push(edge);
 				} else {
