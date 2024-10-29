@@ -298,10 +298,12 @@
 							iconType="file"
 							tooltip="Monster"
 						/> materials. These bases can be upgraded into one of three different
-						HR5 variants, which can then evolve into any final weapon. Prior to the
-						G Rank upgrade, your choices have limited impact; however, once you choose
-						a G Rank weapon with a Zenith Skill (the 4th tier), you're committed
-						to that specific weapon with no option to change later. Therefore,
+						HR5 variants, which can then evolve into the G Rank version with 4 available
+						options, then further upgraded with a Zenith Skill into a final weapon.
+						Prior to the G Rank upgrade with the Zenith Skill, your choices have
+						limited impact; however, once you choose a G Rank weapon with a Zenith
+						Skill (the 4th tier), you're committed to that specific weapon with no
+						option to change later. Therefore,
 						<strong>it's crucial to select your final upgrade carefully.</strong
 						>
 					</p>
@@ -338,8 +340,8 @@
 							<p class="spaced-paragraph">
 								Once a weapon reaches Lv100, you can upgrade it to the next
 								tier, which requires additional materials. This entire upgrade
-								process occurs three times to fully develop a G Rank Raviente
-								weapon.
+								process occurs 4 times to fully develop a G Rank Raviente weapon
+								with a Zenith Skill.
 							</p>
 							<p class="spaced-paragraph">
 								Below is the upgrade tree, you can hover over a weapon name to
@@ -618,7 +620,7 @@
 							>
 							<ListItem
 								><p>
-									After completing this process three times, you can upgrade the
+									After completing this process 3 times, you can upgrade the
 									weapon to the Zenith tier, which is the final tier.
 								</p></ListItem
 							>
