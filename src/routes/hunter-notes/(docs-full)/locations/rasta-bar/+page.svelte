@@ -497,7 +497,8 @@
 								/>. A complete list of Partner skills, along with their prices,
 								point costs, and prerequisites, can be found <Link
 									inline
-									href="/">on this page.</Link
+									href="/tools/simulator/partner-skills"
+									>on the Partner Skills Simulator.</Link
 								>
 							</p>
 							<p class="spaced-paragraph">

@@ -1106,16 +1106,12 @@ export type PartnerSkillName = {
 	zh?: string;
 };
 
-export type PartnerSkillPrerequisite = {
-	skills: FrontierArmorSkillName[];
-};
-
 export type PartnerSkill = {
 	name: PartnerSkillName;
 	gcp: number;
 	cost: number;
 	pr: number;
-	prerequisites: PartnerSkillPrerequisite[];
+	prerequisites: FrontierArmorSkillName[];
 	tree: FrontierArmorSkillTree;
 	description?: string;
 };

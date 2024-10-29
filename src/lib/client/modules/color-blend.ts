@@ -49,3 +49,39 @@ function hexStringToArray(hex: string) {
 	];
 	return arr;
 }
+
+export function tweenColor(
+	colorA: string,
+	colorB: string,
+	ratio: number,
+): string {
+	// Ensure ratio is between 0 and 1
+	const clampedRatio = Math.max(0, Math.min(1, ratio));
+
+	// Helper to convert hex to RGB
+	const hexToRgb = (hex: string) => {
+		const parsedHex = hex.startsWith('#') ? hex.slice(1) : hex;
+		const bigint = parseInt(parsedHex, 16);
+		return {
+			r: (bigint >> 16) & 255,
+			g: (bigint >> 8) & 255,
+			b: bigint & 255,
+		};
+	};
+
+	// Helper to convert RGB to hex
+	const rgbToHex = (r: number, g: number, b: number) =>
+		`#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+
+	// Parse the input colors
+	const rgbA = hexToRgb(colorA);
+	const rgbB = hexToRgb(colorB);
+
+	// Interpolate between colors
+	const r = Math.round(rgbA.r + (rgbB.r - rgbA.r) * clampedRatio);
+	const g = Math.round(rgbA.g + (rgbB.g - rgbA.g) * clampedRatio);
+	const b = Math.round(rgbA.b + (rgbB.b - rgbA.b) * clampedRatio);
+
+	// Return the interpolated color as a hex string
+	return rgbToHex(r, g, b);
+}

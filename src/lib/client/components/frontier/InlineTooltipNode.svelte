@@ -13,7 +13,14 @@
 		iconType: Writable<'file' | 'component'>;
 		text: Writable<string>;
 		tooltip: Writable<string>;
-		nodeType: Writable<'input' | 'default' | 'output'>;
+		nodeType: Writable<
+			| 'input-horizontal'
+			| 'default-horizontal'
+			| 'output-horizontal'
+			| 'input-vertical'
+			| 'default-vertical'
+			| 'output-vertical'
+		>;
 		tags: Writable<
 			{
 				text: string;
@@ -33,16 +40,29 @@
 					| 'outline';
 			}[]
 		>;
+		backgroundColor: Writable<string>;
 	};
 
-	const { iconColor, icon, iconType, text, tooltip, nodeType, tags } = data;
+	const {
+		iconColor,
+		icon,
+		iconType,
+		text,
+		tooltip,
+		nodeType,
+		tags,
+		backgroundColor,
+	} = data;
 
 	$$restProps;
 </script>
 
-<div class="inlinetooltip">
-	{#if $nodeType === 'output' || $nodeType === 'default'}
-		<Handle type="target" position={Position.Left} />
+<div class="inlinetooltip" style="background-color: {$backgroundColor}">
+	{#if $nodeType.includes('output') || $nodeType.includes('default')}
+		<Handle
+			type="target"
+			position={$nodeType.includes('horizontal') ? Position.Left : Position.Top}
+		/>
 	{/if}
 	<div class="content">
 		<InlineTooltip
@@ -60,15 +80,24 @@
 			</div>
 		{/if}
 	</div>
-	{#if $nodeType === 'input' || $nodeType === 'default'}
-		<Handle type="source" position={Position.Right} />
+	{#if $nodeType.includes('input') || $nodeType.includes('default')}
+		<Handle
+			type="source"
+			position={$nodeType.includes('horizontal')
+				? Position.Right
+				: Position.Bottom}
+		/>
 	{/if}
 </div>
 
 <style lang="scss">
 	.inlinetooltip {
-		padding: 0.5rem;
-		border: 1px solid var(--ctp-surface1);
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 100%;
 	}
 
 	/*TODO: border radius*/

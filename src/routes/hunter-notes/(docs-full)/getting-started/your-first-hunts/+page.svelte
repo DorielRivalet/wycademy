@@ -75,7 +75,7 @@
 				icon: writable(getItemIcon('Claw')),
 				iconColor: writable(getItemColor('Red')),
 				iconType: writable('component'),
-				nodeType: writable('input'),
+				nodeType: writable('input-horizontal'),
 				tags: writable([
 					{ text: 'ATK+9', icon: getWeaponIcon('Great Sword'), color: 'red' },
 				]),
@@ -92,7 +92,7 @@
 				icon: writable(getItemIcon('Sac')),
 				iconColor: writable(getItemColor('Orange')),
 				iconType: writable('component'),
-				nodeType: writable('input'),
+				nodeType: writable('input-horizontal'),
 				tags: writable([
 					{ text: 'DEF+16', icon: getArmorIcon('Helm'), color: 'warm-gray' },
 				]),
@@ -107,7 +107,7 @@
 				icon: writable(getItemIcon('Claw')),
 				iconColor: writable(getItemColor('Orange')),
 				iconType: writable('component'),
-				nodeType: writable('input'),
+				nodeType: writable('input-horizontal'),
 				tags: writable([
 					{ text: 'DEF+24', icon: getArmorIcon('Helm'), color: 'warm-gray' },
 				]),
@@ -125,7 +125,7 @@
 				icon: writable(getItemIcon('Claw')),
 				iconColor: writable(getItemColor('Red')),
 				iconType: writable('component'),
-				nodeType: writable('default'),
+				nodeType: writable('default-horizontal'),
 				tags: writable([
 					{ text: 'ATK+15', icon: getWeaponIcon('Great Sword'), color: 'red' },
 				]),
@@ -141,7 +141,7 @@
 				icon: writable(getItemIcon('Claw')),
 				iconColor: writable(getItemColor('Orange')),
 				iconType: writable('component'),
-				nodeType: writable('default'),
+				nodeType: writable('default-horizontal'),
 				tags: writable([
 					{
 						text: 'DEF+40',
@@ -162,7 +162,7 @@
 				icon: writable(getItemIcon('Claw')),
 				iconColor: writable(getItemColor('Purple')),
 				iconType: writable('component'),
-				nodeType: writable('output'),
+				nodeType: writable('output-horizontal'),
 				tags: writable([
 					{
 						text: 'ATK+15',
@@ -502,7 +502,6 @@
 									{nodes}
 									{edges}
 									elementsSelectable={false}
-									attributionPosition="top-right"
 									nodesConnectable={false}
 									nodesDraggable={false}
 									{nodeTypes}
