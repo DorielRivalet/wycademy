@@ -6,6 +6,7 @@
 	import type { PartnerSkill } from '$lib/client/modules/frontier/types';
 	import Tile from 'carbon-components-svelte/src/Tile/Tile.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Tag from 'carbon-components-svelte/src/Tag/Tag.svelte';
 	import Grid from 'carbon-components-svelte/src/Grid/Grid.svelte';
 	import Row from 'carbon-components-svelte/src/Grid/Row.svelte';
@@ -16,11 +17,31 @@
 	import Unlocked from 'carbon-icons-svelte/lib/Unlocked.svelte';
 	import AddAlt from 'carbon-icons-svelte/lib/AddAlt.svelte';
 	import Delete from 'carbon-icons-svelte/lib/Delete.svelte';
+	import { Download } from 'carbon-icons-svelte';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import { writable, type Writable } from 'svelte/store';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import { type Node, type Edge, SvelteFlowProvider } from '@xyflow/svelte';
+	import '@xyflow/svelte/dist/style.css';
+	import SvelteFlowElk from '$lib/client/components/SvelteFlowElk.svelte';
+	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
+	import { tweenColor } from '$lib/client/modules/color-blend';
+	import { getRatioForValue } from '$lib/client/modules/math';
 
-	let unlockedSkills = new Set<string>();
-	let equippedSkills: string[] = [];
-	let currentGCP = 0;
-	let currentCost = 0;
+	// TODO remove console statements
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+
+	const edgeType = 'smoothstep';
+
 	const MAX_COST = 260;
 	const MAX_SLOTS = 12;
 
@@ -34,7 +55,7 @@
 			tree: 'Health',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Health+40'] }],
+			prerequisites: ['Health+40'],
 		},
 		{
 			name: {
@@ -45,7 +66,7 @@
 			tree: 'Health',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Health+30'] }],
+			prerequisites: ['Health+30'],
 		},
 		{
 			name: {
@@ -56,7 +77,7 @@
 			tree: 'Health',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Health+20'] }],
+			prerequisites: ['Health+20'],
 		},
 		{
 			name: {
@@ -67,7 +88,7 @@
 			tree: 'Health',
 			cost: 5,
 			pr: 0,
-			prerequisites: [{ skills: ['Health+10'] }],
+			prerequisites: ['Health+10'],
 		},
 		{
 			name: {
@@ -89,7 +110,7 @@
 			tree: 'Health',
 			cost: 5,
 			pr: 0,
-			prerequisites: [{ skills: ['Health+10'] }],
+			prerequisites: ['Health+10'],
 		},
 		{
 			name: {
@@ -100,7 +121,7 @@
 			tree: 'Health',
 			cost: 10,
 			pr: 0,
-			prerequisites: [{ skills: ['Health-10'] }],
+			prerequisites: ['Health-10'],
 		},
 		{
 			name: {
@@ -111,7 +132,7 @@
 			tree: 'Health',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Health-20'] }],
+			prerequisites: ['Health-20'],
 		},
 		{
 			name: {
@@ -122,11 +143,7 @@
 			tree: 'Herbal Science',
 			cost: 30,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Speed Eating'] },
-				{ skills: ['Wide Area+2'] },
-				{ skills: ['Encourage+1'] },
-			],
+			prerequisites: ['Speed Eating', 'Wide Area+2', 'Encourage+1'],
 		},
 		{
 			name: {
@@ -137,7 +154,7 @@
 			tree: 'Recovery',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Health+20'] }],
+			prerequisites: ['Health+20'],
 		},
 		{
 			name: {
@@ -148,10 +165,7 @@
 			tree: 'Eating',
 			cost: 10,
 			pr: 100,
-			prerequisites: [
-				{ skills: ['Health+40'] },
-				{ skills: ['Recovery Items Improved'] },
-			],
+			prerequisites: ['Health+40', 'Recovery Items Improved'],
 		},
 		// Offensive Tree
 
@@ -164,7 +178,7 @@
 			tree: 'Strong Attack',
 			cost: 40,
 			pr: 999,
-			prerequisites: [{ skills: ['Strong Attack+4'] }],
+			prerequisites: ['Strong Attack+4'],
 		},
 		{
 			name: {
@@ -175,7 +189,7 @@
 			tree: 'Strong Attack',
 			cost: 30,
 			pr: 999,
-			prerequisites: [{ skills: ['Strong Attack+3'] }],
+			prerequisites: ['Strong Attack+3'],
 		},
 		{
 			name: {
@@ -186,10 +200,7 @@
 			tree: 'Strong Attack',
 			cost: 20,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Strong Attack+2'] },
-				{ skills: ['Attack Up Absolute'] },
-			],
+			prerequisites: ['Strong Attack+2', 'Attack Up Absolute'],
 		},
 		{
 			name: {
@@ -200,10 +211,7 @@
 			tree: 'Strong Attack',
 			cost: 15,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Strong Attack+1'] },
-				{ skills: ['Attack Up Very Large'] },
-			],
+			prerequisites: ['Strong Attack+1', 'Attack Up Very Large'],
 		},
 		{
 			name: {
@@ -214,7 +222,7 @@
 			tree: 'Strong Attack',
 			cost: 15,
 			pr: 999,
-			prerequisites: [{ skills: ['Attack Up Large'] }],
+			prerequisites: ['Attack Up Large'],
 		},
 
 		{
@@ -226,7 +234,7 @@
 			tree: 'Attack',
 			cost: 20,
 			pr: 300,
-			prerequisites: [{ skills: ['Attack Up Very Large'] }],
+			prerequisites: ['Attack Up Very Large'],
 		},
 		{
 			name: {
@@ -237,7 +245,7 @@
 			tree: 'Attack',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Attack Up Large'] }],
+			prerequisites: ['Attack Up Large'],
 		},
 		{
 			name: {
@@ -248,7 +256,7 @@
 			tree: 'Attack',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Attack Up Medium'] }],
+			prerequisites: ['Attack Up Medium'],
 		},
 		{
 			name: {
@@ -259,7 +267,7 @@
 			tree: 'Attack',
 			cost: 10,
 			pr: 0,
-			prerequisites: [{ skills: ['Attack Up Small'] }],
+			prerequisites: ['Attack Up Small'],
 		},
 		{
 			name: {
@@ -283,7 +291,7 @@
 			tree: 'Expert',
 			cost: 20,
 			pr: 300,
-			prerequisites: [{ skills: ['Critical Eye+4'] }],
+			prerequisites: ['Critical Eye+4'],
 		},
 		{
 			name: {
@@ -294,7 +302,7 @@
 			tree: 'Expert',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Critical Eye+3'] }],
+			prerequisites: ['Critical Eye+3'],
 		},
 		{
 			name: {
@@ -305,7 +313,7 @@
 			tree: 'Expert',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Critical Eye+2'] }],
+			prerequisites: ['Critical Eye+2'],
 		},
 		{
 			name: {
@@ -316,7 +324,7 @@
 			tree: 'Expert',
 			cost: 10,
 			pr: 0,
-			prerequisites: [{ skills: ['Critical Eye+1'] }],
+			prerequisites: ['Critical Eye+1'],
 		},
 		{
 			name: {
@@ -338,11 +346,7 @@
 			tree: 'Exploit Weakness',
 			cost: 40,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Sharpness+1'] },
-				{ skills: ['Strong Attack+2'] },
-				{ skills: ['Focus+2'] },
-			],
+			prerequisites: ['Sharpness+1', 'Strong Attack+2', 'Focus+2'],
 		},
 		{
 			name: {
@@ -354,9 +358,9 @@
 			cost: 40,
 			pr: 500,
 			prerequisites: [
-				{ skills: ['Attack Up Absolute'] },
-				{ skills: ['Status Immunity (Myriad)'] },
-				{ skills: ['Status Attack Up'] },
+				'Attack Up Absolute',
+				'Status Immunity (Myriad)',
+				'Status Attack Up',
 			],
 		},
 		{
@@ -368,10 +372,7 @@
 			tree: 'Status',
 			cost: 20,
 			pr: 200,
-			prerequisites: [
-				{ skills: ['Status Halved'] },
-				{ skills: ['Elemental Attack Up'] },
-			],
+			prerequisites: ['Status Halved', 'Elemental Attack Up'],
 		},
 		// Elemental Attack Skills
 
@@ -384,10 +385,7 @@
 			tree: 'Fire Attack',
 			cost: 15,
 			pr: 30,
-			prerequisites: [
-				{ skills: ['Fire Attack Small'] },
-				{ skills: ['Fire Res+20'] },
-			],
+			prerequisites: ['Fire Attack Small', 'Fire Res+20'],
 		},
 		{
 			name: {
@@ -398,7 +396,7 @@
 			tree: 'Fire Attack',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Fire Res+10'] }],
+			prerequisites: ['Fire Res+10'],
 		},
 
 		{
@@ -410,10 +408,7 @@
 			tree: 'Water Attack',
 			cost: 15,
 			pr: 30,
-			prerequisites: [
-				{ skills: ['Water Attack Small'] },
-				{ skills: ['Water Res+20'] },
-			],
+			prerequisites: ['Water Attack Small', 'Water Res+20'],
 		},
 		{
 			name: {
@@ -424,7 +419,7 @@
 			tree: 'Water Attack',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Water Res+10'] }],
+			prerequisites: ['Water Res+10'],
 		},
 
 		{
@@ -436,10 +431,7 @@
 			tree: 'Thunder Attack',
 			cost: 15,
 			pr: 30,
-			prerequisites: [
-				{ skills: ['Thunder Attack Small'] },
-				{ skills: ['Thunder Res+20'] },
-			],
+			prerequisites: ['Thunder Attack Small', 'Thunder Res+20'],
 		},
 		{
 			name: {
@@ -450,7 +442,7 @@
 			tree: 'Thunder Attack',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Thunder Res+10'] }],
+			prerequisites: ['Thunder Res+10'],
 		},
 
 		{
@@ -462,10 +454,7 @@
 			tree: 'Ice Attack',
 			cost: 15,
 			pr: 30,
-			prerequisites: [
-				{ skills: ['Ice Attack Small'] },
-				{ skills: ['Ice Res+20'] },
-			],
+			prerequisites: ['Ice Attack Small', 'Ice Res+20'],
 		},
 		{
 			name: {
@@ -476,7 +465,7 @@
 			tree: 'Ice Attack',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Ice Res+10'] }],
+			prerequisites: ['Ice Res+10'],
 		},
 
 		{
@@ -488,10 +477,7 @@
 			tree: 'Dragon Attack',
 			cost: 15,
 			pr: 30,
-			prerequisites: [
-				{ skills: ['Dragon Attack Small'] },
-				{ skills: ['Dragon Res+20'] },
-			],
+			prerequisites: ['Dragon Attack Small', 'Dragon Res+20'],
 		},
 		{
 			name: {
@@ -502,7 +488,7 @@
 			tree: 'Dragon Attack',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Dragon Res+10'] }],
+			prerequisites: ['Dragon Res+10'],
 		},
 		{
 			name: {
@@ -514,11 +500,11 @@
 			cost: 15,
 			pr: 200,
 			prerequisites: [
-				{ skills: ['Fire Attack Large'] },
-				{ skills: ['Water Attack Large'] },
-				{ skills: ['Thunder Attack Large'] },
-				{ skills: ['Ice Attack Large'] },
-				{ skills: ['Dragon Attack Large'] },
+				'Fire Attack Large',
+				'Water Attack Large',
+				'Thunder Attack Large',
+				'Ice Attack Large',
+				'Dragon Attack Large',
 			],
 		},
 		{
@@ -530,7 +516,7 @@
 			tree: 'Bomb Boost',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Artillery God'] }],
+			prerequisites: ['Artillery God'],
 		},
 		{
 			name: {
@@ -541,7 +527,7 @@
 			tree: 'Gunnery',
 			cost: 20,
 			pr: 100,
-			prerequisites: [{ skills: ['Gunnery', 'Fire Attack Large'] }],
+			prerequisites: ['Gunnery', 'Fire Attack Large'],
 		},
 		{
 			name: {
@@ -552,7 +538,7 @@
 			tree: 'Gunnery',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Gunnery'] }],
+			prerequisites: ['Gunnery'],
 		},
 		{
 			name: {
@@ -563,7 +549,7 @@
 			tree: 'Gunnery',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Attack Up Medium', 'Fire Attack Small'] }],
+			prerequisites: ['Attack Up Medium', 'Fire Attack Small'],
 		},
 		{
 			name: {
@@ -574,7 +560,7 @@
 			tree: 'Flute Expert',
 			cost: 10,
 			pr: 0,
-			prerequisites: [{ skills: ['Critical Eye+2'] }],
+			prerequisites: ['Critical Eye+2'],
 		},
 		{
 			name: {
@@ -585,9 +571,7 @@
 			tree: 'Adrenaline',
 			cost: 15,
 			pr: 300,
-			prerequisites: [
-				{ skills: ['Adrenaline+1', 'Attack Up Absolute', 'Health-30'] },
-			],
+			prerequisites: ['Adrenaline+1', 'Attack Up Absolute', 'Health-30'],
 		},
 		{
 			name: {
@@ -598,7 +582,7 @@
 			tree: 'Adrenaline',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Health-20', 'Attack Up Very Large'] }],
+			prerequisites: ['Health-20', 'Attack Up Very Large'],
 		},
 		{
 			name: {
@@ -609,7 +593,7 @@
 			tree: 'Focus',
 			cost: 15,
 			pr: 150,
-			prerequisites: [{ skills: ['Focus+1'] }],
+			prerequisites: ['Focus+1'],
 		},
 		{
 			name: {
@@ -620,7 +604,7 @@
 			tree: 'Focus',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Critical Eye+4'] }],
+			prerequisites: ['Critical Eye+4'],
 		},
 		{
 			name: {
@@ -631,7 +615,7 @@
 			tree: 'Weapon Handling',
 			cost: 10,
 			pr: 50,
-			prerequisites: [{ skills: ['Critical Eye+3'] }],
+			prerequisites: ['Critical Eye+3'],
 		},
 		{
 			name: {
@@ -642,7 +626,7 @@
 			tree: 'Shiriagari',
 			cost: 30,
 			pr: 999,
-			prerequisites: [{ skills: ['Attack Up Absolute', 'Focus+2'] }],
+			prerequisites: ['Attack Up Absolute', 'Focus+2'],
 		},
 		{
 			name: {
@@ -653,7 +637,7 @@
 			tree: 'Martial Arts',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Critical Eye+4', 'Taijutsu'] }],
+			prerequisites: ['Critical Eye+4', 'Taijutsu'],
 		},
 		{
 			name: {
@@ -664,7 +648,7 @@
 			tree: 'Martial Arts',
 			cost: 10,
 			pr: 50,
-			prerequisites: [{ skills: ['Critical Eye+3', 'Attack Up Large'] }],
+			prerequisites: ['Critical Eye+3', 'Attack Up Large'],
 		},
 		{
 			name: {
@@ -675,7 +659,7 @@
 			tree: 'Drug Knowledge',
 			cost: 20,
 			pr: 999,
-			prerequisites: [{ skills: ['Status Attack Up', 'Attack Up Absolute'] }],
+			prerequisites: ['Status Attack Up', 'Attack Up Absolute'],
 		},
 		{
 			name: {
@@ -686,9 +670,7 @@
 			tree: 'Encourage',
 			cost: 40,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Evasion+2', 'Status Immunity', 'Encourage+1'] },
-			],
+			prerequisites: ['Evasion+2', 'Status Immunity', 'Encourage+1'],
 		},
 		{
 			name: {
@@ -699,9 +681,7 @@
 			tree: 'Encourage',
 			cost: 35,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Evasion+1', 'Flute Expert', 'Status Halved'] },
-			],
+			prerequisites: ['Evasion+1', 'Flute Expert', 'Status Halved'],
 		},
 		{
 			name: {
@@ -712,7 +692,7 @@
 			tree: 'Charge Attack Up',
 			cost: 25,
 			pr: 999,
-			prerequisites: [{ skills: ['Focus+2', 'Charge Attack UP+1'] }],
+			prerequisites: ['Focus+2', 'Charge Attack UP+1'],
 		},
 		{
 			name: {
@@ -723,7 +703,7 @@
 			tree: 'Charge Attack Up',
 			cost: 20,
 			pr: 999,
-			prerequisites: [{ skills: ['Focus+1', 'Weapon Handling'] }],
+			prerequisites: ['Focus+1', 'Weapon Handling'],
 		},
 		{
 			name: {
@@ -734,7 +714,7 @@
 			tree: 'Adaptation',
 			cost: 30,
 			pr: 500,
-			prerequisites: [{ skills: ['Adaptation+1', 'Kickboxing King'] }],
+			prerequisites: ['Adaptation+1', 'Kickboxing King'],
 		},
 		{
 			name: {
@@ -745,7 +725,7 @@
 			tree: 'Adaptation',
 			cost: 20,
 			pr: 500,
-			prerequisites: [{ skills: ['Health+50', 'Sharpness+1', 'Sniper'] }],
+			prerequisites: ['Health+50', 'Sharpness+1'], // sniper?
 		},
 		{
 			name: {
@@ -756,7 +736,7 @@
 			tree: 'Issen',
 			cost: 40,
 			pr: 999,
-			prerequisites: [{ skills: ['Strong Attack+5', 'Issen+2'] }],
+			prerequisites: ['Strong Attack+5', 'Issen+2'],
 		},
 		{
 			name: {
@@ -767,7 +747,7 @@
 			tree: 'Issen',
 			cost: 30,
 			pr: 999,
-			prerequisites: [{ skills: ['Strong Attack+4', 'Issen+1'] }],
+			prerequisites: ['Strong Attack+4', 'Issen+1'],
 		},
 		{
 			name: {
@@ -778,7 +758,7 @@
 			tree: 'Issen',
 			cost: 20,
 			pr: 999,
-			prerequisites: [{ skills: ['Strong Attack+3', 'Critical Eye+5'] }],
+			prerequisites: ['Strong Attack+3', 'Critical Eye+5'],
 		},
 		{
 			name: {
@@ -789,7 +769,7 @@
 			tree: 'Flash Conversion',
 			cost: 30,
 			pr: 999,
-			prerequisites: [{ skills: ['Issen+3'] }],
+			prerequisites: ['Issen+3'],
 		},
 		{
 			name: {
@@ -800,7 +780,7 @@
 			tree: 'Defense',
 			cost: 20,
 			pr: 300,
-			prerequisites: [{ skills: ['Defense+90'] }],
+			prerequisites: ['Defense+90'],
 		},
 		{
 			name: {
@@ -811,7 +791,7 @@
 			tree: 'Defense',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Defense+60'] }],
+			prerequisites: ['Defense+60'],
 		},
 		{
 			name: {
@@ -822,7 +802,7 @@
 			tree: 'Defense',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: {
@@ -833,7 +813,7 @@
 			tree: 'Defense',
 			cost: 10,
 			pr: 0,
-			prerequisites: [{ skills: ['Defense+20'] }],
+			prerequisites: ['Defense+20'],
 		},
 		{
 			name: {
@@ -855,7 +835,7 @@
 			tree: 'Guard',
 			cost: 15,
 			pr: 200,
-			prerequisites: [{ skills: ['Defense+90', 'Guard+1'] }],
+			prerequisites: ['Defense+90', 'Guard+1'],
 		},
 		{
 			name: {
@@ -866,7 +846,7 @@
 			tree: 'Guard',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: {
@@ -877,7 +857,7 @@
 			tree: 'Reflect',
 			cost: 30,
 			pr: 999,
-			prerequisites: [{ skills: ['All Res UP+20', 'Reflect+2'] }],
+			prerequisites: ['All Res UP+20', 'Reflect+2'],
 		},
 		{
 			name: {
@@ -888,7 +868,7 @@
 			tree: 'Reflect',
 			cost: 20,
 			pr: 999,
-			prerequisites: [{ skills: ['All Res UP+10', 'Reflect+1'] }],
+			prerequisites: ['All Res UP+10', 'Reflect+1'],
 		},
 		{
 			name: {
@@ -899,7 +879,7 @@
 			tree: 'Reflect',
 			cost: 10,
 			pr: 999,
-			prerequisites: [{ skills: ['Guard+2', 'Defense+120'] }],
+			prerequisites: ['Guard+2', 'Defense+120'],
 		},
 		{
 			name: {
@@ -910,7 +890,7 @@
 			tree: 'Sharpening',
 			cost: 15,
 			pr: 200,
-			prerequisites: [{ skills: ['Speed Sharpening'] }],
+			prerequisites: ['Speed Sharpening'],
 		},
 		{
 			name: {
@@ -932,9 +912,7 @@
 			tree: 'Sharpness',
 			cost: 20,
 			pr: 500,
-			prerequisites: [
-				{ skills: ['Sharpening Artisan', 'Fencing+2', 'Adrenaline+2'] },
-			],
+			prerequisites: ['Sharpening Artisan', 'Fencing+2', 'Adrenaline+2'],
 		},
 		{
 			name: {
@@ -945,7 +923,7 @@
 			tree: 'Fencing',
 			cost: 15,
 			pr: 200,
-			prerequisites: [{ skills: ['Fencing+1', 'Weapon Handling'] }],
+			prerequisites: ['Fencing+1', 'Weapon Handling'],
 		},
 		{
 			name: {
@@ -956,7 +934,7 @@
 			tree: 'Fencing',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Speed Sharpening'] }],
+			prerequisites: ['Speed Sharpening'],
 		},
 		{
 			name: {
@@ -967,7 +945,7 @@
 			tree: 'Edgemaster',
 			cost: 35,
 			pr: 999,
-			prerequisites: [{ skills: ['Honed Blade+2'] }],
+			prerequisites: ['Honed Blade+2'],
 		},
 		{
 			name: {
@@ -978,7 +956,7 @@
 			tree: 'Edgemaster',
 			cost: 30,
 			pr: 999,
-			prerequisites: [{ skills: ['Honed Blade+1'] }],
+			prerequisites: ['Honed Blade+1'],
 		},
 		{
 			name: {
@@ -989,7 +967,7 @@
 			tree: 'Edgemaster',
 			cost: 30,
 			pr: 999,
-			prerequisites: [{ skills: ['Sharpness+1'] }],
+			prerequisites: ['Sharpness+1'],
 		},
 		{
 			name: {
@@ -1000,7 +978,7 @@
 			tree: 'Sword God',
 			cost: 30,
 			pr: 999,
-			prerequisites: [{ skills: ['Sword God+1', 'Focus+2', 'True Guts'] }],
+			prerequisites: ['Sword God+1', 'Focus+2', 'True Guts'],
 		},
 		{
 			name: {
@@ -1011,9 +989,7 @@
 			tree: 'Sword God',
 			cost: 20,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Sharpness+1', 'Weapon Handling', 'Focus+1'] },
-			],
+			prerequisites: ['Sharpness+1', 'Weapon Handling', 'Focus+1'],
 		},
 		{
 			name: {
@@ -1024,7 +1000,7 @@
 			tree: 'Normal Shot Up',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Normal S Lv1 Add'] }],
+			prerequisites: ['Normal S Lv1 Add'],
 		},
 		{
 			name: {
@@ -1035,7 +1011,7 @@
 			tree: 'Pierce Shot Up',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Pierce S Lv1 Add'] }],
+			prerequisites: ['Pierce S Lv1 Add'],
 		},
 		{
 			name: {
@@ -1046,7 +1022,7 @@
 			tree: 'Pellet Shot Up',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Attack Up Medium'] }],
+			prerequisites: ['Attack Up Medium'],
 		},
 		{
 			name: {
@@ -1057,7 +1033,7 @@
 			tree: 'Normal Shot Add',
 			cost: 5,
 			pr: 30,
-			prerequisites: [{ skills: ['Attack Up Medium'] }],
+			prerequisites: ['Attack Up Medium'],
 		},
 		{
 			name: {
@@ -1068,7 +1044,7 @@
 			tree: 'Pierce Shot Add',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Pierce S Lv1 Add'] }],
+			prerequisites: ['Pierce S Lv1 Add'],
 		},
 		{
 			name: {
@@ -1090,7 +1066,7 @@
 			tree: 'Loading',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Normal S Lv1 Add'] }],
+			prerequisites: ['Normal S Lv1 Add'],
 		},
 		{
 			name: {
@@ -1101,9 +1077,7 @@
 			tree: 'Auto-Reload',
 			cost: 15,
 			pr: 150,
-			prerequisites: [
-				{ skills: ['Load UP', 'Recoil Reduction+1', 'Normal/Rapid UP'] },
-			],
+			prerequisites: ['Load UP', 'Recoil Reduction+1', 'Normal/Rapid UP'],
 		},
 		{
 			name: {
@@ -1114,7 +1088,7 @@
 			tree: 'Recoil',
 			cost: 15,
 			pr: 150,
-			prerequisites: [{ skills: ['Recoil Reduction+1', 'Auto Reload'] }],
+			prerequisites: ['Recoil Reduction+1', 'Auto Reload'],
 		},
 		{
 			name: {
@@ -1125,7 +1099,7 @@
 			tree: 'Recoil',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Pierce/Pierce UP', 'Pellet/Spread UP'] }],
+			prerequisites: ['Pierce/Pierce UP', 'Pellet/Spread UP'],
 		},
 		{
 			name: {
@@ -1136,7 +1110,7 @@
 			tree: 'Precision',
 			cost: 20,
 			pr: 200,
-			prerequisites: [{ skills: ['Deviation DOWN', 'Recoil Reduction+2'] }],
+			prerequisites: ['Deviation DOWN', 'Recoil Reduction+2'],
 		},
 		{
 			name: {
@@ -1147,18 +1121,18 @@
 			tree: 'Precision',
 			cost: 10,
 			pr: 200,
-			prerequisites: [{ skills: ['Auto Reload'] }],
+			prerequisites: ['Auto Reload'],
 		},
 		{
 			name: {
 				en: 'Steady Hand+1',
 				zh: '剛彈',
 			},
-			gcp: 0,
+			gcp: 0, // TODO
 			tree: 'Steady Hand',
-			cost: 0,
-			pr: 0,
-			prerequisites: [{ skills: ['Strong Attack+3', 'Precision+2'] }],
+			cost: 30,
+			pr: 999,
+			prerequisites: ['Strong Attack+3', 'Precision+2'],
 		},
 		{
 			name: { en: 'All Res UP+20', zh: '各耐性+20' },
@@ -1166,7 +1140,7 @@
 			tree: 'All Res Up',
 			cost: 20,
 			pr: 100,
-			prerequisites: [{ skills: ['All Res UP+10'] }],
+			prerequisites: ['All Res UP+10'],
 		},
 		{
 			name: { en: 'All Res UP+10', zh: '各耐性+10' },
@@ -1174,10 +1148,10 @@
 			tree: 'All Res Up',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['All Res UP+5'] }],
+			prerequisites: ['All Res UP+5'],
 		},
 		{
-			name: { en: 'All Res+5', zh: '各耐性+5' },
+			name: { en: 'All Res UP+5', zh: '各耐性+5' },
 			gcp: 500,
 			tree: 'All Res Up',
 			cost: 10,
@@ -1190,7 +1164,7 @@
 			tree: 'Fire Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Fire Res+20'] }],
+			prerequisites: ['Fire Res+20'],
 		},
 		{
 			name: { en: 'Fire Res+20', zh: '火耐性+20' },
@@ -1198,7 +1172,7 @@
 			tree: 'Fire Res',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Fire Res+10'] }],
+			prerequisites: ['Fire Res+10'],
 		},
 		{
 			name: { en: 'Fire Res+10', zh: '火耐性+10' },
@@ -1206,7 +1180,7 @@
 			tree: 'Fire Res',
 			cost: 5,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Water Res+30', zh: '水耐性+30' },
@@ -1214,7 +1188,7 @@
 			tree: 'Water Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Water Res+20'] }],
+			prerequisites: ['Water Res+20'],
 		},
 		{
 			name: { en: 'Water Res+20', zh: '水耐性+20' },
@@ -1222,7 +1196,7 @@
 			tree: 'Water Res',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Water Res+10'] }],
+			prerequisites: ['Water Res+10'],
 		},
 		{
 			name: { en: 'Water Res+10', zh: '水耐性+10' },
@@ -1230,7 +1204,7 @@
 			tree: 'Water Res',
 			cost: 5,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Ice Res+30', zh: '冰耐性+30' },
@@ -1238,7 +1212,7 @@
 			tree: 'Ice Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Ice Res+20'] }],
+			prerequisites: ['Ice Res+20'],
 		},
 		{
 			name: { en: 'Ice Res+20', zh: '冰耐性+20' },
@@ -1246,7 +1220,7 @@
 			tree: 'Ice Res',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Ice Res+10'] }],
+			prerequisites: ['Ice Res+10'],
 		},
 		{
 			name: { en: 'Ice Res+10', zh: '冰耐性+10' },
@@ -1254,7 +1228,7 @@
 			tree: 'Ice Res',
 			cost: 5,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Thunder Res+30', zh: '雷耐性+30' },
@@ -1262,7 +1236,7 @@
 			tree: 'Thunder Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Thunder Res+20'] }],
+			prerequisites: ['Thunder Res+20'],
 		},
 		{
 			name: { en: 'Thunder Res+20', zh: '雷耐性+20' },
@@ -1270,7 +1244,7 @@
 			tree: 'Thunder Res',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Thunder Res+10'] }],
+			prerequisites: ['Thunder Res+10'],
 		},
 		{
 			name: { en: 'Thunder Res+10', zh: '雷耐性+10' },
@@ -1278,7 +1252,7 @@
 			tree: 'Thunder Res',
 			cost: 5,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Dragon Res+30', zh: '龍耐性+30' },
@@ -1286,7 +1260,7 @@
 			tree: 'Dragon Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Dragon Res+20'] }],
+			prerequisites: ['Dragon Res+20'],
 		},
 		{
 			name: { en: 'Dragon Res+20', zh: '龍耐性+20' },
@@ -1294,7 +1268,7 @@
 			tree: 'Dragon Res',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Dragon Res+10'] }],
+			prerequisites: ['Dragon Res+10'],
 		},
 		{
 			name: { en: 'Dragon Res+10', zh: '龍耐性+10' },
@@ -1302,7 +1276,7 @@
 			tree: 'Dragon Res',
 			cost: 5,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Negate Poison', zh: '毒無效' },
@@ -1310,7 +1284,7 @@
 			tree: 'Poison Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Poison Halved'] }],
+			prerequisites: ['Poison Halved'],
 		},
 		{
 			name: { en: 'Poison Halved', zh: '毒半減' },
@@ -1318,7 +1292,7 @@
 			tree: 'Poison Res',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+20'] }],
+			prerequisites: ['Defense+20'],
 		},
 		{
 			name: { en: 'Negate Paralysis', zh: '麻痺無效' },
@@ -1326,7 +1300,7 @@
 			tree: 'Paralysis Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Paralysis Halved'] }],
+			prerequisites: ['Paralysis Halved'],
 		},
 		{
 			name: { en: 'Paralysis Halved', zh: '麻痺半減' },
@@ -1334,7 +1308,7 @@
 			tree: 'Paralysis Res',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+20'] }],
+			prerequisites: ['Defense+20'],
 		},
 		{
 			name: { en: 'Negate Sleep', zh: '睡眠無效' },
@@ -1342,7 +1316,7 @@
 			tree: 'Sleep Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Sleep Halved'] }],
+			prerequisites: ['Sleep Halved'],
 		},
 		{
 			name: { en: 'Sleep Halved', zh: '睡眠半減' },
@@ -1350,7 +1324,7 @@
 			tree: 'Sleep Res',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+20'] }],
+			prerequisites: ['Defense+20'],
 		},
 		{
 			name: { en: 'Status Immunity (Myriad)', zh: '狀態異常無效【多種】' },
@@ -1359,15 +1333,11 @@
 			cost: 25,
 			pr: 300,
 			prerequisites: [
-				{
-					skills: [
-						'Status Immunity',
-						'Def Lock',
-						'Crystal Res',
-						'Blast Resistance',
-						'Freeze Res',
-					],
-				},
+				'Status Immunity',
+				'Def Lock',
+				'Crystal Res',
+				'Blast Resistance',
+				'Freeze Res',
 			],
 		},
 		{
@@ -1377,14 +1347,10 @@
 			cost: 20,
 			pr: 100,
 			prerequisites: [
-				{
-					skills: [
-						'Negate Poison',
-						'Negate Paralysis',
-						'Negate Sleep',
-						'Status Halved',
-					],
-				},
+				'Negate Poison',
+				'Negate Paralysis',
+				'Negate Sleep',
+				'Status Halved',
 			],
 		},
 		{
@@ -1393,9 +1359,7 @@
 			tree: 'Status Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [
-				{ skills: ['Poison Halved', 'Paralysis Halved', 'Sleep Halved'] },
-			],
+			prerequisites: ['Poison Halved', 'Paralysis Halved', 'Sleep Halved'],
 		},
 		{
 			name: { en: 'Negate Stun', zh: '暈眩無效' },
@@ -1403,7 +1367,7 @@
 			tree: 'Stun Res',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Stun Halved'] }],
+			prerequisites: ['Stun Halved'],
 		},
 		{
 			name: { en: 'Stun Halved', zh: '暈眩確率半減' },
@@ -1411,7 +1375,7 @@
 			tree: 'Stun Res',
 			cost: 10,
 			pr: 50,
-			prerequisites: [{ skills: ['Status Halved'] }],
+			prerequisites: ['Status Halved'],
 		},
 		{
 			name: { en: 'Deoderant', zh: '除臭' },
@@ -1419,7 +1383,7 @@
 			tree: 'Deoderant',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Snowball Res', zh: '耐雪' },
@@ -1427,7 +1391,7 @@
 			tree: 'Snowball Res',
 			cost: 10,
 			pr: 30,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Def Lock', zh: '厚皮' },
@@ -1435,9 +1399,7 @@
 			tree: 'Def Lock',
 			cost: 15,
 			pr: 50,
-			prerequisites: [
-				{ skills: ['Negate Poison', 'Negate Paralysis', 'Negate Sleep'] },
-			],
+			prerequisites: ['Negate Poison', 'Negate Paralysis', 'Negate Sleep'],
 		},
 		{
 			name: { en: 'Blast Resistance', zh: '爆破耐性' },
@@ -1446,14 +1408,10 @@
 			cost: 15,
 			pr: 100,
 			prerequisites: [
-				{
-					skills: [
-						'Negate Poison',
-						'Negate Paralysis',
-						'Negate Sleep',
-						'Deoderant',
-					],
-				},
+				'Negate Poison',
+				'Negate Paralysis',
+				'Negate Sleep',
+				'Deoderant',
 			],
 		},
 		{
@@ -1462,9 +1420,7 @@
 			tree: 'Crystal Res',
 			cost: 15,
 			pr: 50,
-			prerequisites: [
-				{ skills: ['Negate Poison', 'Negate Paralysis', 'Negate Sleep'] },
-			],
+			prerequisites: ['Negate Poison', 'Negate Paralysis', 'Negate Sleep'],
 		},
 		{
 			name: { en: 'Freeze Res', zh: '凍結耐性' },
@@ -1473,14 +1429,10 @@
 			cost: 15,
 			pr: 100,
 			prerequisites: [
-				{
-					skills: [
-						'Negate Poison',
-						'Negate Paralysis',
-						'Negate Sleep',
-						'Snowball Res',
-					],
-				},
+				'Negate Poison',
+				'Negate Paralysis',
+				'Negate Sleep',
+				'Snowball Res',
 			],
 		},
 		{
@@ -1490,14 +1442,10 @@
 			cost: 40,
 			pr: 999,
 			prerequisites: [
-				{
-					skills: [
-						'Super High-Grade Earplugs',
-						'Violent Wind Breaker',
-						'Quake Res+2',
-						'Unaffected+2',
-					],
-				},
+				'Super High-Grade Earplugs',
+				'Violent Wind Breaker',
+				'Quake Res+2',
+				'Unaffected+2',
 			],
 		},
 		{
@@ -1507,13 +1455,9 @@
 			cost: 30,
 			pr: 999,
 			prerequisites: [
-				{
-					skills: [
-						'High Grade Earplugs',
-						'Dragon Wind Breaker',
-						'Unaffected+1',
-					],
-				},
+				'High Grade Earplugs',
+				'Dragon Wind Breaker',
+				'Unaffected+1',
 			],
 		},
 		{
@@ -1522,9 +1466,7 @@
 			tree: 'Three Worlds Protection',
 			cost: 20,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Earplugs', 'Wind Res Large', 'Quake Res+1'] },
-			],
+			prerequisites: ['Earplugs', 'Wind Res Large', 'Quake Res+1'],
 		},
 		{
 			name: { en: 'Super High-Grade Earplugs', zh: '超高級耳栓' },
@@ -1532,7 +1474,7 @@
 			tree: 'Hearing Protection',
 			cost: 20,
 			pr: 150,
-			prerequisites: [{ skills: ['High Grade Earplugs'] }],
+			prerequisites: ['High Grade Earplugs'],
 		},
 		{
 			name: { en: 'High Grade Earplugs', zh: '高級耳栓' },
@@ -1540,7 +1482,7 @@
 			tree: 'Hearing Protection',
 			cost: 15,
 			pr: 50,
-			prerequisites: [{ skills: ['Earplugs'] }],
+			prerequisites: ['Earplugs'],
 		},
 		{
 			name: { en: 'Earplugs', zh: '耳栓' },
@@ -1548,7 +1490,7 @@
 			tree: 'Hearing Protection',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Quake Res+2', zh: '耐震+2' },
@@ -1556,7 +1498,7 @@
 			tree: 'Quake Res',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Quake Res+1'] }],
+			prerequisites: ['Quake Res+1'],
 		},
 		{
 			name: { en: 'Quake Res+1', zh: '耐震+1' },
@@ -1564,7 +1506,7 @@
 			tree: 'Quake Res',
 			cost: 10,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Violent Wind Breaker', zh: '暴風壓無效' },
@@ -1572,7 +1514,7 @@
 			tree: 'Wind Pressure',
 			cost: 20,
 			pr: 300,
-			prerequisites: [{ skills: ['Dragon Wind Breaker'] }],
+			prerequisites: ['Dragon Wind Breaker'],
 		},
 		{
 			name: { en: 'Dragon Wind Breaker', zh: '龍風壓無效' },
@@ -1580,7 +1522,7 @@
 			tree: 'Wind Pressure',
 			cost: 15,
 			pr: 150,
-			prerequisites: [{ skills: ['Wind Res Large'] }],
+			prerequisites: ['Wind Res Large'],
 		},
 		{
 			name: { en: 'Wind Res Large', zh: '風壓【大】無效' },
@@ -1588,7 +1530,7 @@
 			tree: 'Wind Pressure',
 			cost: 10,
 			pr: 50,
-			prerequisites: [{ skills: ['Wind Res Small'] }],
+			prerequisites: ['Wind Res Small'],
 		},
 		{
 			name: { en: 'Wind Res Small', zh: '風壓【小】無效' },
@@ -1596,7 +1538,7 @@
 			tree: 'Wind Pressure',
 			cost: 5,
 			pr: 10,
-			prerequisites: [{ skills: ['Defense+30'] }],
+			prerequisites: ['Defense+30'],
 		},
 		{
 			name: { en: 'Evasion+2', zh: '回避性能+2' },
@@ -1604,7 +1546,7 @@
 			tree: 'Evasion',
 			cost: 20,
 			pr: 150,
-			prerequisites: [{ skills: ['Evasion+1'] }],
+			prerequisites: ['Evasion+1'],
 		},
 		{
 			name: { en: 'Evasion+1', zh: '回避性能+1' },
@@ -1612,7 +1554,7 @@
 			tree: 'Evasion',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Critical Eye+3'] }],
+			prerequisites: ['Critical Eye+3'],
 		},
 		{
 			name: { en: 'Passive', zh: '守勢' },
@@ -1620,15 +1562,16 @@
 			tree: 'Passive',
 			cost: 5,
 			pr: 100,
-			prerequisites: [{ skills: ['Evasion+1', 'Quake Res+1'] }],
+			prerequisites: ['Evasion+1', 'Quake Res+1'],
 		},
 		{
+			// TODO change ezlion
 			name: { en: "Goddess' Embrace", zh: '女神の抱擁' },
 			gcp: 8000,
 			tree: 'Protection',
 			cost: 20,
 			pr: 500,
-			prerequisites: [{ skills: ['Divine Protection'] }],
+			prerequisites: ['Divine Protection'],
 		},
 		{
 			name: { en: 'Divine Protection', zh: '女神の赦し' },
@@ -1636,7 +1579,7 @@
 			tree: 'Protection',
 			cost: 15,
 			pr: 300,
-			prerequisites: [{ skills: ['Evasion+2', 'Guts'] }],
+			prerequisites: ['Evasion+2', 'Guts'],
 		},
 		{
 			name: { en: 'True Guts', zh: '超強毅力' },
@@ -1644,7 +1587,7 @@
 			tree: 'Guts',
 			cost: 20,
 			pr: 500,
-			prerequisites: [{ skills: ['Great Guts', 'Defense+120'] }],
+			prerequisites: ['Great Guts', 'Defense+120'],
 		},
 		{
 			name: { en: 'Great Guts', zh: '堅毅力' },
@@ -1652,7 +1595,7 @@
 			tree: 'Guts',
 			cost: 15,
 			pr: 300,
-			prerequisites: [{ skills: ['Guts', 'Health-30'] }],
+			prerequisites: ['Guts', 'Health-30'],
 		},
 		{
 			name: { en: 'Guts', zh: '毅力' },
@@ -1660,15 +1603,15 @@
 			tree: 'Guts',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Passive', 'Health+50'] }],
+			prerequisites: ['Passive', 'Health+50'],
 		},
 		{
 			name: { en: 'Evade Distance UP', zh: '迴避距離ＵＰ' },
 			gcp: 0,
 			tree: 'Evade Extender',
-			cost: 0,
+			cost: 15,
 			pr: 999,
-			prerequisites: [{ skills: ['Movement Speed UP+2', 'Goddess Embrace'] }],
+			prerequisites: ['Movement Speed UP+2', "Goddess' Embrace"],
 		},
 		{
 			name: { en: 'Item Duration UP', zh: '道具使用強化' },
@@ -1676,7 +1619,7 @@
 			tree: 'Everlasting',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Recovery Items Improved'] }],
+			prerequisites: ['Recovery Items Improved'],
 		},
 		{
 			name: { en: 'Wide Area+2', zh: '廣域化+2' },
@@ -1684,7 +1627,7 @@
 			tree: 'Wide-Area',
 			cost: 10,
 			pr: 150,
-			prerequisites: [{ skills: ['Wide Area+1'] }],
+			prerequisites: ['Wide Area+1'],
 		},
 		{
 			name: { en: 'Wide Area+1', zh: '廣域化+1' },
@@ -1692,7 +1635,7 @@
 			tree: 'Wide-Area',
 			cost: 5,
 			pr: 100,
-			prerequisites: [{ skills: ['Item Duration UP'] }],
+			prerequisites: ['Item Duration UP'],
 		},
 		{
 			name: { en: 'Throwing Distance UP', zh: '投擲技術UP' },
@@ -1700,7 +1643,7 @@
 			tree: 'Throwing',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Attack Up Large', 'Weapon Handling'] }],
+			prerequisites: ['Attack Up Large', 'Weapon Handling'],
 		},
 		{
 			name: { en: 'Strong Arm+2', zh: '強肩+2' },
@@ -1708,7 +1651,7 @@
 			tree: 'Strong Arm',
 			cost: 15,
 			pr: 150,
-			prerequisites: [{ skills: ['Strong Arm+1'] }],
+			prerequisites: ['Strong Arm+1'],
 		},
 		{
 			name: { en: 'Strong Arm+1', zh: '強肩+1' },
@@ -1716,7 +1659,7 @@
 			tree: 'Strong Arm',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Throwing Distance UP'] }],
+			prerequisites: ['Throwing Distance UP'],
 		},
 		{
 			name: { en: 'Trap Master', zh: '罠匠' },
@@ -1724,7 +1667,7 @@
 			tree: 'Capture Proficiency',
 			cost: 15,
 			pr: 150,
-			prerequisites: [{ skills: ['Trap Expert'] }],
+			prerequisites: ['Trap Expert'],
 		},
 		{
 			name: { en: 'Trap Expert', zh: '罠師' },
@@ -1732,7 +1675,7 @@
 			tree: 'Capture Proficiency',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Weapon Handling', 'Item Duration UP'] }],
+			prerequisites: ['Weapon Handling', 'Item Duration UP'],
 		},
 		{
 			name: { en: 'Iron Arm+2', zh: '鐵腕+2' },
@@ -1740,9 +1683,7 @@
 			tree: 'Iron Arm',
 			cost: 30,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Iron Arm+1', 'Strong Arm+2', 'Item Duration UP'] },
-			],
+			prerequisites: ['Iron Arm+1', 'Strong Arm+2', 'Item Duration UP'],
 		},
 		{
 			name: { en: 'Iron Arm+1', zh: '鐵腕+1' },
@@ -1750,7 +1691,7 @@
 			tree: 'Iron Arm',
 			cost: 20,
 			pr: 999,
-			prerequisites: [{ skills: ['Strong Arm+1', 'Throwing Knives+1'] }],
+			prerequisites: ['Strong Arm+1', 'Throwing Knives+1'],
 		},
 		{
 			name: { en: 'Throwing Knives+1', zh: '飛刀+1' },
@@ -1758,7 +1699,7 @@
 			tree: 'Throwing',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Throwing Distance UP'] }],
+			prerequisites: ['Throwing Distance UP'],
 		},
 		{
 			name: { en: 'Taunt', zh: '挑撥' },
@@ -1766,7 +1707,7 @@
 			tree: 'Pressure',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Sneak', 'Flute Expert'] }],
+			prerequisites: ['Sneak', 'Flute Expert'],
 		},
 		{
 			name: { en: 'Sneak', zh: '隱密' },
@@ -1774,7 +1715,7 @@
 			tree: 'Stealth',
 			cost: 15,
 			pr: 100,
-			prerequisites: [{ skills: ['Evasion+1'] }],
+			prerequisites: ['Evasion+1'],
 		},
 		{
 			name: { en: 'Incitement', zh: '煽動' },
@@ -1783,7 +1724,11 @@
 			cost: 30,
 			pr: 500,
 			prerequisites: [
-				{ skills: ['Taunt', 'Evasion+2', 'Guard+2', 'Defense+120', 'Passive'] },
+				'Taunt',
+				'Evasion+2',
+				'Guard+2',
+				'Defense+120',
+				'Passive',
 			],
 		},
 		{
@@ -1800,7 +1745,7 @@
 			tree: 'Caring',
 			cost: 10,
 			pr: 100,
-			prerequisites: [{ skills: ['Bond', 'Guts', 'Negate Stun'] }],
+			prerequisites: ['Bond', 'Guts', 'Negate Stun'],
 		},
 		{
 			name: { en: 'Movement Speed UP+2', zh: '移動速度ＵＰ+2' },
@@ -1808,9 +1753,7 @@
 			tree: 'Movement Speed',
 			cost: 20,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Movement Speed UP+1', 'Violent Wind Breaker'] },
-			],
+			prerequisites: ['Movement Speed UP+1', 'Violent Wind Breaker'],
 		},
 		{
 			name: { en: 'Movement Speed UP+1', zh: '移動速度ＵＰ+1' },
@@ -1818,7 +1761,7 @@
 			tree: 'Movement Speed',
 			cost: 15,
 			pr: 999,
-			prerequisites: [{ skills: ['Weapon Handling', 'Speed Eating'] }],
+			prerequisites: ['Weapon Handling', 'Speed Eating'],
 		},
 		{
 			name: { en: 'Compensation', zh: '代償' },
@@ -1826,9 +1769,7 @@
 			tree: 'Compensation',
 			cost: 50,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Sharpness+1', 'Critical Eye+4', 'Evasion+2'] },
-			],
+			prerequisites: ['Sharpness+1', 'Critical Eye+4', 'Evasion+2'],
 		},
 		{
 			name: { en: 'Assistance', zh: '支援' },
@@ -1837,15 +1778,11 @@
 			cost: 30,
 			pr: 500,
 			prerequisites: [
-				{
-					skills: [
-						'Caring+1',
-						'Status Immunity',
-						'Attack Up Absolute',
-						'Defense+120',
-						'Wide Area+2',
-					],
-				},
+				'Caring+1',
+				'Status Immunity',
+				'Attack Up Absolute',
+				'Defense+120',
+				'Wide Area+2',
 			],
 		},
 		{
@@ -1854,9 +1791,7 @@
 			tree: 'Inspiration',
 			cost: 15,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Great Guts', 'Attack Up Large', 'Negate Stun'] },
-			],
+			prerequisites: ['Great Guts', 'Attack Up Large', 'Negate Stun'],
 		},
 		{
 			name: { en: 'Blue Soul', zh: '青魂' },
@@ -1864,9 +1799,7 @@
 			tree: 'Inspiration',
 			cost: 15,
 			pr: 999,
-			prerequisites: [
-				{ skills: ['Great Guts', 'Defense+60', 'Status Halved'] },
-			],
+			prerequisites: ['Great Guts', 'Defense+60', 'Status Halved'],
 		},
 		{
 			name: { en: 'Blazing Majesty+2', zh: '紅焰的威光+2' },
@@ -1875,14 +1808,10 @@
 			cost: 30,
 			pr: 999,
 			prerequisites: [
-				{
-					skills: [
-						'Blazing Majesty+1',
-						'Adrenaline+2',
-						'Fire Attack Large',
-						'Artillery God',
-					],
-				},
+				'Blazing Majesty+1',
+				'Adrenaline+2',
+				'Fire Attack Large',
+				'Artillery God',
 			],
 		},
 		{
@@ -1892,52 +1821,215 @@
 			cost: 20,
 			pr: 999,
 			prerequisites: [
-				{
-					skills: [
-						'Red Soul',
-						'Adrenaline+1',
-						'Fire Attack Small',
-						'Bomber',
-						'Artillery Expert',
-					],
-				},
+				'Red Soul',
+				'Adrenaline+1',
+				'Fire Attack Small',
+				'Bomber',
+				'Artillery Expert',
 			],
 		},
 		{
 			name: { en: 'Drawing Arts+2', zh: '拔納術+2' },
-			gcp: 0,
+			gcp: 0, // TODO
 			tree: 'Drawing Arts',
-			cost: 0,
-			pr: 0,
-			prerequisites: [
-				{ skills: ['Drawing Arts+1', 'Sword God+2', 'Movement Speed UP+2'] },
-			],
+			cost: 25,
+			pr: 999,
+			prerequisites: ['Drawing Arts+1', 'Sword God+2', 'Movement Speed UP+2'],
 		},
 		{
 			name: { en: 'Drawing Arts+1', zh: '拔納術+1' },
-			gcp: 0,
+			gcp: 0, // TODO
 			tree: 'Drawing Arts',
-			cost: 0,
-			pr: 0,
-			prerequisites: [
-				{ skills: ['Weapon Handling', 'Sword God+1', 'Evasion+2'] },
-			],
+			cost: 20,
+			pr: 999,
+			prerequisites: ['Weapon Handling', 'Sword God+1', 'Evasion+2'],
 		},
 		{
 			name: { en: 'Skilled', zh: '熟練' },
-			gcp: 0,
+			gcp: 0, // TODO
 			tree: 'Skilled',
-			cost: 0,
-			pr: 0,
-			prerequisites: [
-				{ skills: ['Movement Speed UP+2', 'True Guts', 'Speed Eating'] },
-			],
+			cost: 30,
+			pr: 999,
+			prerequisites: ['Movement Speed UP+2', 'True Guts', 'Speed Eating'],
 		},
 	];
+
+	const skillTreeData = generateSkillTreeData();
+
+	const nodeData: Node[] = skillTreeData.nodeData;
+	const edgeData: Edge[] = skillTreeData.edgeData;
+
+	let unlockedSkills = new Set<string>(['Health+10']);
+	let equippedSkills: string[] = [];
+	let currentGCP = 10;
+	let currentCost = 0;
 
 	// Pagination for skill list
 	let paginationPageSize = 10;
 	let paginationPage = 1;
+
+	function generateSkillTreeData() {
+		const nodeData: Node[] = [];
+		const edgeData: Edge[] = [];
+
+		let nodeIndex = 1;
+		for (const skill of skillIndex) {
+			const isUsedAsPrerequisite = skillIndex.some((s) =>
+				s.prerequisites.includes(skill.name.en),
+			);
+
+			let nodeType = '';
+			if (skill.prerequisites.length === 0) {
+				nodeType = isUsedAsPrerequisite
+					? 'input-horizontal'
+					: 'output-horizontal';
+			} else {
+				nodeType = 'default-horizontal';
+			}
+
+			const node: Node = {
+				id: `node-${nodeIndex}`,
+				type: 'inline-tooltip',
+				data: {
+					tooltip: writable(skill.prerequisites.join(', ')),
+					text: writable(skill.name.en),
+					icon: writable(getItemIcon('Jewel')),
+					iconColor: writable(getItemColor('White')),
+					iconType: writable('component'),
+					nodeType: writable(nodeType),
+					tags: writable([
+						{ text: `PR${skill.pr}`, icon: '', color: 'green' },
+						{ text: `GCP: ${skill.gcp}`, icon: '', color: 'blue' },
+						{ text: `Cost: ${skill.cost}`, icon: '', color: 'red' },
+					]),
+					backgroundColor: writable(
+						tweenColor(
+							getHexStringFromCatppuccinColor('surface0', $carbonThemeStore),
+							getHexStringFromCatppuccinColor(
+								$carbonThemeStore === 'g10' ? 'red' : 'blue',
+								$carbonThemeStore,
+							),
+							getRatioForValue(skill.pr, 0, 999),
+						),
+					),
+				},
+				position: { x: 0, y: 0 },
+			};
+			nodeData.push(node);
+
+			for (const prerequisite of skill.prerequisites) {
+				const prerequisiteIndex = skillIndex.findIndex(
+					(s) => s.name.en === prerequisite,
+				);
+				if (prerequisiteIndex !== -1) {
+					const edge: Edge = {
+						id: `edge-${nodeIndex}-${prerequisiteIndex + 1}`,
+						source: `node-${prerequisiteIndex + 1}`,
+						target: `node-${nodeIndex}`,
+						type: edgeType,
+						animated: true,
+					};
+					edgeData.push(edge);
+				} else {
+					console.warn(
+						`Prerequisite '${prerequisite}' not found in skillIndex.`,
+					);
+				}
+			}
+
+			nodeIndex++;
+		}
+
+		return { nodeData, edgeData };
+	}
+
+	/**
+	 * Calculates total GCP required for equipped skills including prerequisites
+	 * @param equippedSkills Array of equipped skill names
+	 * @param skillIndex Array of all available skills
+	 * @returns Total GCP cost including prerequisites
+	 */
+	function calculateTotalGCP(
+		equippedSkills: string[],
+		skillIndex: PartnerSkill[],
+	): number {
+		// Set to keep track of all required skills (including prerequisites)
+		const requiredSkills = new Set<string>();
+
+		// Queue for processing skills and their prerequisites
+		const skillQueue: string[] = [...equippedSkills];
+
+		// Process all equipped skills and their prerequisites
+		while (skillQueue.length > 0) {
+			const currentSkillName = skillQueue.pop();
+			if (!currentSkillName || requiredSkills.has(currentSkillName)) continue;
+
+			// Add current skill to required skills set
+			requiredSkills.add(currentSkillName);
+
+			// Find the skill object
+			const currentSkill = skillIndex.find(
+				(skill) => skill.name.en === currentSkillName,
+			);
+
+			if (!currentSkill) continue;
+
+			// Add prerequisites to queue
+			currentSkill.prerequisites.forEach((skillName) => {
+				if (!requiredSkills.has(skillName)) {
+					skillQueue.push(skillName);
+				}
+			});
+		}
+
+		// Calculate total GCP for all required skills
+		let totalGCP = 0;
+		requiredSkills.forEach((skillName) => {
+			const skill = skillIndex.find((s) => s.name.en === skillName);
+			if (skill) {
+				totalGCP += skill.gcp;
+			}
+		});
+
+		// Debug: Log the calculation details
+		console.log('Required skills:', Array.from(requiredSkills));
+		console.log('Total GCP:', totalGCP);
+
+		return totalGCP;
+	}
+
+	/**
+	 * Helper function to get all prerequisites for a skill recursively
+	 * @param skillName Name of the skill to check
+	 * @param skillIndex Array of all available skills
+	 * @returns Set of all prerequisite skill names
+	 */
+	function getAllPrerequisites(
+		skillName: string,
+		skillIndex: PartnerSkill[],
+	): Set<string> {
+		const prerequisites = new Set<string>();
+		const skillQueue: string[] = [skillName];
+
+		while (skillQueue.length > 0) {
+			const currentSkillName = skillQueue.pop();
+			if (!currentSkillName) continue;
+
+			const currentSkill = skillIndex.find(
+				(skill) => skill.name.en === currentSkillName,
+			);
+			if (!currentSkill) continue;
+
+			currentSkill.prerequisites.forEach((prereqSkillName) => {
+				if (!prerequisites.has(prereqSkillName)) {
+					prerequisites.add(prereqSkillName);
+					skillQueue.push(prereqSkillName);
+				}
+			});
+		}
+
+		return prerequisites;
+	}
 
 	function checkPrerequisites(skill: PartnerSkill): boolean {
 		// Debug: Log prerequisites check
@@ -1947,8 +2039,8 @@
 		if (!skill.prerequisites.length) return true;
 
 		// Check if all prerequisites are met
-		const allPrerequisitesMet = skill.prerequisites.every((prereq) =>
-			prereq.skills.every((skillName) => unlockedSkills.has(skillName)),
+		const allPrerequisitesMet = skill.prerequisites.every((skillName) =>
+			unlockedSkills.has(skillName),
 		);
 
 		// Debug: Log result of prerequisite check
@@ -2040,12 +2132,63 @@
 		return skillIndex
 			.filter(
 				(skill) =>
-					skill.prerequisites.some((prereq) =>
-						prereq.skills.includes(skillName),
-					) && unlockedSkills.has(skill.name.en),
+					skill.prerequisites.some((prereq) => prereq.includes(skillName)) &&
+					unlockedSkills.has(skill.name.en),
 			)
 			.map((skill) => skill.name.en);
 	}
+
+	function unlockAllSkills() {
+		// Debug: Log start of mass unlock
+		console.log('Starting mass unlock of all skills');
+
+		// Keep track of previously unlocked skills count to check for progress
+		let previousUnlockedCount = 0;
+		let currentUnlockedCount = unlockedSkills.size;
+
+		// Continue trying to unlock skills until we can't unlock any more
+		// or until all skills are unlocked
+		while (currentUnlockedCount > previousUnlockedCount) {
+			previousUnlockedCount = currentUnlockedCount;
+
+			// Try to unlock each skill
+			skillIndex.forEach((skill) => {
+				if (!unlockedSkills.has(skill.name.en) && checkPrerequisites(skill)) {
+					unlockSkill(skill);
+				}
+			});
+
+			currentUnlockedCount = unlockedSkills.size;
+		}
+
+		// Debug: Log results
+		console.log(
+			`Unlock all completed. Total skills unlocked: ${unlockedSkills.size}`,
+		);
+	}
+
+	// Helper function to calculate total cost of equipped skills
+	const calculateEquippedCost = (equippedSkills: any[], skillIndex: any[]) => {
+		return equippedSkills.reduce((total: any, skillName: any) => {
+			const skill = skillIndex.find(
+				(s: { name: { en: any } }) => s.name.en === skillName,
+			);
+			return total + (skill?.cost || 0);
+		}, 0);
+	};
+
+	// Helper function to check if adding a skill would exceed cost limit
+	const wouldExceedCostLimit = (
+		skillToAdd: any,
+		equippedSkills: string[],
+		skillIndex: PartnerSkill[],
+	) => {
+		const currentCost = calculateEquippedCost(equippedSkills, skillIndex);
+		const skillToAddCost =
+			skillIndex.find((s: { name: { en: any } }) => s.name.en === skillToAdd)
+				?.cost || 0;
+		return currentCost + skillToAddCost > MAX_COST;
+	};
 
 	// Modify the reactive statement to include all skills
 	$: paginatedSkills = skillIndex.slice(
@@ -2053,18 +2196,45 @@
 		paginationPage * paginationPageSize,
 	);
 	$: canEquipMore = equippedSkills.length < MAX_SLOTS && currentCost < MAX_COST;
+	$: totalGCPRequired = calculateTotalGCP(equippedSkills, skillIndex);
 </script>
 
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Partner Skills'} />
+		<p>
+			An overview of Partners can be found <Link
+				inline
+				href="/hunter-notes/locations/rasta-bar#partner"
+				>on Hunter's Notes.</Link
+			>
+		</p>
+		<div class="buttons">
+			<Button
+				kind="tertiary"
+				icon={Download}
+				on:click={() =>
+					downloadDomAsPng('partner-skills-dom', 'partner-skills')}
+				>Download</Button
+			>
+			<Button
+				kind="tertiary"
+				icon={Unlocked}
+				iconDescription="Unlock All"
+				on:click={unlockAllSkills}
+			>
+				Unlock All Skills
+			</Button>
+		</div>
+
 		<Grid>
 			<Row>
 				<!-- Equipped Skills Panel -->
-				<Column lg={6}>
+				<Column lg={6} id="partner-skills-dom">
 					<Tile class="equipped-skills">
 						<header class="panel-header">
 							<h2>Equipped Skills</h2>
+							<Tag type="blue">GCP: {totalGCPRequired}</Tag>
 							<div class="cost-display">
 								<span>Cost</span>
 								<span class={currentCost > MAX_COST ? 'over-cost' : ''}>
@@ -2078,15 +2248,19 @@
 								{@const skill = skillIndex.find((s) => s.name.en === skillName)}
 								{#if skill}
 									<div class="equipped-skill">
-										<span>{skill.name.en}</span>
-										<span>{skill.cost}</span>
-										<Button
-											size="small"
-											kind="danger"
-											iconDescription="Remove"
-											icon={Delete}
-											on:click={() => equipSkill(skillName)}
-										/>
+										<p>{skill.name.en}</p>
+										<div>
+											<p>{skill.cost}</p>
+											<div>
+												<Button
+													size="small"
+													kind="danger"
+													iconDescription="Remove"
+													icon={Delete}
+													on:click={() => equipSkill(skillName)}
+												/>
+											</div>
+										</div>
 									</div>
 								{/if}
 							{/each}
@@ -2106,7 +2280,7 @@
 					<Tile class="skill-list">
 						<header class="panel-header">
 							<h2>Skill List</h2>
-							<Tag type="blue">GCP Used: {currentGCP}</Tag>
+							<Tag type="blue">GCP: {currentGCP}</Tag>
 						</header>
 
 						<!-- Use {#key} to force re-render based on changes -->
@@ -2173,7 +2347,13 @@
 																equippedSkill &&
 																equippedSkill.tree === row.skill.tree
 															);
-														})}
+														}) ||
+														(!equippedSkills.includes(row.skill.name.en) &&
+															wouldExceedCostLimit(
+																row.skill.name.en,
+																equippedSkills,
+																skillIndex,
+															))}
 													on:click={() => equipSkill(row.skill.name.en)}
 												/>
 											{/if}
@@ -2181,7 +2361,7 @@
 									{:else if (unlockedSkills.has(row.skill.name.en) && !canEquipMore && !equippedSkills.includes(row.skill.name.en)) || equippedSkills.some( (equippedSkillName) => {
 												const equippedSkill = skillIndex.find((s) => s.name.en === equippedSkillName);
 												return equippedSkill && equippedSkill.tree === row.skill.tree;
-											}, )}
+											}, ) || (!equippedSkills.includes(row.skill.name.en) && wouldExceedCostLimit(row.skill.name.en, equippedSkills, skillIndex))}
 										<p class="locked-skill">{cell.value}</p>
 									{:else}
 										<p>{cell.value}</p>
@@ -2201,6 +2381,24 @@
 				</Column>
 			</Row>
 		</Grid>
+		<section>
+			<SectionHeading level={2} title="Skill Tree" />
+			<div>
+				<p class="spaced-paragraph">
+					You can hover over a skill in order to view its prerequisites.
+				</p>
+				<div>
+					<SvelteFlowProvider
+						><SvelteFlowElk
+							fileName="partner-skill-tree"
+							initialNodes={nodeData}
+							initialEdges={edgeData}
+							colorMode={$carbonThemeStore === 'g10' ? 'light' : 'dark'}
+						/></SvelteFlowProvider
+					>
+				</div>
+			</div>
+		</section>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
@@ -2244,6 +2442,12 @@
 		padding: 0.5rem;
 		border: 1px solid var(--ctp-surface2);
 		background: var(--ctp-surface1);
+
+		div {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+		}
 	}
 
 	.empty-slot {
@@ -2255,11 +2459,25 @@
 		display: flex;
 		gap: 0.5rem;
 	}
+
 	.table {
 		display: flex;
 	}
 
 	.locked-skill {
 		color: var(--ctp-overlay0);
+	}
+
+	.buttons {
+		display: flex;
+		margin-bottom: 2rem;
+		margin-top: 2rem;
+		gap: 2rem;
+	}
+
+	.svelte-flow-container {
+		height: 90vh;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 </style>
