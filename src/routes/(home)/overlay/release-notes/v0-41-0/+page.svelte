@@ -61,15 +61,6 @@
 						will be more accurate. 🏹🛡️
 					</div>
 				</ListItem>
-				<ListItem>
-					<div class="list-item">
-						<strong>Database Overhaul:</strong> The database has been reduced in
-						size, making everything load faster so you can focus more on hunting
-						and less on waiting. Depending on how many hunts you had and how
-						long each lasted, your database size can be
-						<strong>reduced by 50%</strong> or more! 🏃‍♂️💨
-					</div>
-				</ListItem>
 			</UnorderedList>
 		</section>
 		<section>
@@ -81,6 +72,15 @@
 						<strong>Updated Monster Images:</strong> Enjoy new, sharper visuals for
 						your favorite (and not-so-favorite) monsters. Get ready to see them in
 						stunning detail! 🖼️✨
+					</div>
+				</ListItem>
+				<ListItem>
+					<div class="list-item">
+						<strong>Database Overhaul:</strong> The database has been reduced in
+						size, making everything load faster so you can focus more on hunting
+						and less on waiting. Depending on how many hunts you had and how
+						long each lasted, your database size can be
+						<strong>reduced by 50%</strong> or more! 🏃‍♂️💨
 					</div>
 				</ListItem>
 			</UnorderedList>

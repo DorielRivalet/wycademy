@@ -101,9 +101,12 @@
 		<div class="agreement">
 			<Checkbox bind:checked={userAgreed} required
 				><span slot="labelText">
-					By signing up with Wycademy, you agree to our <Link inline href="/"
-						>Terms of Service</Link
-					> and <Link href="/" inline>Privacy Policy.</Link></span
+					By signing up with Wycademy, you agree to our <Link
+						inline
+						href="/support/policies/terms-of-service">Terms of Service</Link
+					> and <Link href="/support/policies/privacy-policy" inline
+						>Privacy Policy.</Link
+					></span
 				></Checkbox
 			>
 		</div>
