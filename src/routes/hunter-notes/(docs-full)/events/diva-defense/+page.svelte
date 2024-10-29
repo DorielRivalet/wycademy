@@ -151,7 +151,7 @@
 				<p class="spaced-paragraph">
 					You can find more details on the weapon's active features <Link
 						href="/hunter-notes/weapons/active-feature"
-						inline>on this page.</Link
+						inline>on the Active Feature page.</Link
 					>
 				</p>
 			</div>
