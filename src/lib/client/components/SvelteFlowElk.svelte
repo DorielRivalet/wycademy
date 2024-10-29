@@ -114,7 +114,10 @@
 		{nodeTypes}
 		fitView
 		connectionLineType={ConnectionLineType.SmoothStep}
-		defaultEdgeOptions={{ type: 'smoothstep', animated: true }}
+		defaultEdgeOptions={{
+			type: 'smoothstep',
+			animated: true,
+		}}
 	>
 		<Background bgColor={'var(--ctp-mantle)'} />
 		<Controls showLock={false} />

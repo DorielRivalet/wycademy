@@ -10,6 +10,68 @@
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import { page } from '$app/stores';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
+
+	const exotics = [
+		{
+			id: 'Zinogre',
+			armorSkill: 'Thunder Attack (Large)',
+			name: 'Zinogre',
+		},
+		{
+			id: 'Deviljho',
+			armorSkill: 'Starving Wolf+2',
+			name: 'Deviljho',
+		},
+		{
+			id: 'Brachydios',
+			armorSkill: 'Bomber',
+			name: 'Brachydios',
+		},
+
+		{
+			id: 'Barioth',
+			armorSkill: 'Ice Attack (Large)',
+			name: 'Barioth',
+		},
+		{
+			id: 'Uragaan',
+			armorSkill: 'Guard+2 / Ammo Combiner',
+			name: 'Uragaan',
+		},
+		{
+			id: 'Nargacuga',
+			armorSkill: 'Evasion+2',
+			name: 'Nargacuga',
+		},
+		{
+			id: 'Stygian Zinogre',
+			armorSkill: 'Dragon Attack (Large)',
+			name: 'Stygian Zinogre',
+		},
+		{
+			id: 'Gore Magala',
+			armorSkill: 'Focus+2',
+			name: 'Gore Magala',
+		},
+		{
+			id: 'Shagaru Magala',
+			armorSkill: 'Status Immunity (Myriad)',
+			name: 'Shagaru Magala',
+		},
+		{
+			id: 'Amatsu',
+			armorSkill: 'Water Attack (Large)',
+			name: 'Amatsu',
+		},
+		{
+			id: 'Seregios',
+			armorSkill: 'Critical Eye+5',
+			name: 'Seregios',
+		},
+	];
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -24,6 +86,7 @@
 			<div class="exotics-table">
 				<DataTable
 					sortable
+					id="exotics-dom"
 					useStaticWidth
 					zebra
 					size="short"
@@ -31,127 +94,19 @@
 						{ key: 'name', value: 'Name', minWidth: '1rem' },
 						{ key: 'armorSkill', value: 'Automatic Skill', minWidth: '1rem' },
 					]}
-					rows={[
-						{
-							id: 'Zinogre',
-							armorSkill: 'Thunder Attack (Large)',
-							name: 'Zinogre',
-						},
-						{
-							id: 'Deviljho',
-							armorSkill: 'Starving Wolf+2',
-							name: 'Deviljho',
-						},
-						{
-							id: 'Brachydios',
-							armorSkill: 'Bomber',
-							name: 'Brachydios',
-						},
-
-						{
-							id: 'Barioth',
-							armorSkill: 'Ice Attack (Large)',
-							name: 'Barioth',
-						},
-						{
-							id: 'Uragaan',
-							armorSkill: 'Guard+2 / Ammo Combiner',
-							name: 'Uragaan',
-						},
-						{
-							id: 'Nargacuga',
-							armorSkill: 'Evasion+2',
-							name: 'Nargacuga',
-						},
-						{
-							id: 'Stygian Zinogre',
-							armorSkill: 'Dragon Attack (Large)',
-							name: 'Stygian Zinogre',
-						},
-						{
-							id: 'Gore Magala',
-							armorSkill: 'Focus+2',
-							name: 'Gore Magala',
-						},
-						{
-							id: 'Shagaru Magala',
-							armorSkill: 'Status Immunity (Myriad)',
-							name: 'Shagaru Magala',
-						},
-						{
-							id: 'Amatsu',
-							armorSkill: 'Water Attack (Large)',
-							name: 'Amatsu',
-						},
-						{
-							id: 'Seregios',
-							armorSkill: 'Critical Eye+5',
-							name: 'Seregios',
-						},
-					]}
+					rows={exotics}
 					><Toolbar
 						><div class="toolbar">
 							<CopyButton
 								iconDescription={'Copy as CSV'}
-								text={getCSVFromArray([
-									{
-										id: 'Zinogre',
-										armorSkill: 'Thunder Attack (Large)',
-										name: 'Zinogre',
-									},
-									{
-										id: 'Deviljho',
-										armorSkill: 'Starving Wolf+2',
-										name: 'Deviljho',
-									},
-									{
-										id: 'Brachydios',
-										armorSkill: 'Bomber',
-										name: 'Brachydios',
-									},
-
-									{
-										id: 'Barioth',
-										armorSkill: 'Ice Attack (Large)',
-										name: 'Barioth',
-									},
-									{
-										id: 'Uragaan',
-										armorSkill: 'Guard+2 / Ammo Combiner',
-										name: 'Uragaan',
-									},
-									{
-										id: 'Nargacuga',
-										armorSkill: 'Evasion+2',
-										name: 'Nargacuga',
-									},
-									{
-										id: 'Stygian Zinogre',
-										armorSkill: 'Dragon Attack (Large)',
-										name: 'Stygian Zinogre',
-									},
-									{
-										id: 'Gore Magala',
-										armorSkill: 'Focus+2',
-										name: 'Gore Magala',
-									},
-									{
-										id: 'Shagaru Magala',
-										armorSkill: 'Status Immunity (Myriad)',
-										name: 'Shagaru Magala',
-									},
-									{
-										id: 'Amatsu',
-										armorSkill: 'Water Attack (Large)',
-										name: 'Amatsu',
-									},
-									{
-										id: 'Seregios',
-										armorSkill: 'Critical Eye+5',
-										name: 'Seregios',
-									},
-								])}
+								text={getCSVFromArray(exotics)}
 							/>
+							<Button
+								kind="tertiary"
+								icon={Download}
+								on:click={() => downloadDomAsPng('exotics-dom', 'exotics')}
+								>Download</Button
+							>
 						</div>
 					</Toolbar>
 					<span slot="title">
