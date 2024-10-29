@@ -61,6 +61,20 @@ import thumbnailDarkDivaStory from '$lib/client/images/page-thumbnail/dark/diva-
 import thumbnailDarkDivaPrayerBuff from '$lib/client/images/page-thumbnail/dark/prayer-buffs.png';
 import thumbnailDarkPartnerGear from '$lib/client/images/page-thumbnail/dark/partner.png';
 import thumbnailDarkHitzones from '$lib/client/images/page-thumbnail/dark/monsters-overview.png';
+import thumbnailDarkSnSHiden from '$lib/client/images/page-thumbnail/dark/sns-tech.png';
+import thumbnailDarkDSHiden from '$lib/client/images/page-thumbnail/dark/ds-tech.png';
+import thumbnailDarkLSHiden from '$lib/client/images/page-thumbnail/dark/ls-tech.png';
+import thumbnailDarkGSHiden from '$lib/client/images/page-thumbnail/dark/gs-tech.png';
+import thumbnailDarkHammerHiden from '$lib/client/images/page-thumbnail/dark/hammer-tech.png';
+import thumbnailDarkHHHiden from '$lib/client/images/page-thumbnail/dark/hh-tech.png';
+import thumbnailDarkLanceHiden from '$lib/client/images/page-thumbnail/dark/lance-tech.png';
+import thumbnailDarkGunlanceHiden from '$lib/client/images/page-thumbnail/dark/gl-tech.png';
+import thumbnailDarkTonfaHiden from '$lib/client/images/page-thumbnail/dark/tonfa-tech.png';
+import thumbnailDarkSAFHiden from '$lib/client/images/page-thumbnail/dark/saf-tech.png';
+// import thumbnailDarkMSHiden from '$lib/client/images/page-thumbnail/dark/ms-tech.png';
+import thumbnailDarkHBGHiden from '$lib/client/images/page-thumbnail/dark/hbg-tech.png';
+import thumbnailDarkLBGHiden from '$lib/client/images/page-thumbnail/dark/lbg-tech.png';
+import thumbnailDarkBowHiden from '$lib/client/images/page-thumbnail/dark/bow-tech.png';
 
 import { getMonsterIcon } from './frontier/monsters';
 
@@ -247,7 +261,7 @@ const lightThumbnailInfo: {
 	},
 	{
 		embed: 'stamina-items',
-		link: '/hunter-notes/armor/skills',
+		link: '/hunter-notes/getting-started/your-first-hunts',
 		thumbnail: thumbnailDarkSteak,
 	},
 	{
@@ -267,7 +281,7 @@ const lightThumbnailInfo: {
 	},
 	{
 		embed: 'diva-questline',
-		link: '/hunter-notes/armor/skills',
+		link: '/hunter-notes/locations/prayer-fountain',
 		thumbnail: thumbnailDarkDivaStory,
 	},
 	{
@@ -284,6 +298,71 @@ const lightThumbnailInfo: {
 		embed: null,
 		link: '/hunter-notes/monsters/overview',
 		thumbnail: thumbnailDarkHitzones,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/sword-and-shield',
+		thumbnail: thumbnailDarkSnSHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/dual-swords',
+		thumbnail: thumbnailDarkDSHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/long-sword',
+		thumbnail: thumbnailDarkLSHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/great-sword',
+		thumbnail: thumbnailDarkGSHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/hammer',
+		thumbnail: thumbnailDarkHammerHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/hunting-horn',
+		thumbnail: thumbnailDarkHHHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/lance',
+		thumbnail: thumbnailDarkLanceHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/gunlance',
+		thumbnail: thumbnailDarkGunlanceHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/tonfa',
+		thumbnail: thumbnailDarkTonfaHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/switch-axe-f',
+		thumbnail: thumbnailDarkSAFHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/heavy-bowgun',
+		thumbnail: thumbnailDarkHBGHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/light-bowgun',
+		thumbnail: thumbnailDarkLBGHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/bow',
+		thumbnail: thumbnailDarkBowHiden,
 	},
 ];
 
@@ -470,7 +549,7 @@ const darkThumbnailInfo: {
 	},
 	{
 		embed: 'stamina-items',
-		link: '/hunter-notes/armor/skills',
+		link: '/hunter-notes/getting-started/your-first-hunts',
 		thumbnail: thumbnailDarkSteak,
 	},
 	{
@@ -490,7 +569,7 @@ const darkThumbnailInfo: {
 	},
 	{
 		embed: 'diva-questline',
-		link: '/hunter-notes/armor/skills',
+		link: '/hunter-notes/locations/prayer-fountain',
 		thumbnail: thumbnailDarkDivaStory,
 	},
 	{
@@ -507,6 +586,71 @@ const darkThumbnailInfo: {
 		embed: null,
 		link: '/hunter-notes/monsters/overview',
 		thumbnail: thumbnailDarkHitzones,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/sword-and-shield',
+		thumbnail: thumbnailDarkSnSHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/dual-swords',
+		thumbnail: thumbnailDarkDSHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/long-sword',
+		thumbnail: thumbnailDarkLSHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/great-sword',
+		thumbnail: thumbnailDarkGSHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/hammer',
+		thumbnail: thumbnailDarkHammerHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/hunting-horn',
+		thumbnail: thumbnailDarkHHHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/lance',
+		thumbnail: thumbnailDarkLanceHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/gunlance',
+		thumbnail: thumbnailDarkGunlanceHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/tonfa',
+		thumbnail: thumbnailDarkTonfaHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/switch-axe-f',
+		thumbnail: thumbnailDarkSAFHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/heavy-bowgun',
+		thumbnail: thumbnailDarkHBGHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/light-bowgun',
+		thumbnail: thumbnailDarkLBGHiden,
+	},
+	{
+		embed: 'hiden',
+		link: '/hunter-notes/weapons/bow',
+		thumbnail: thumbnailDarkBowHiden,
 	},
 ];
 
