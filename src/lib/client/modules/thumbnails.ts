@@ -22,6 +22,7 @@ import thumbnailLightCaravanGemUpgrade from '$lib/client/images/page-thumbnail/l
 import thumbnailLightCaravanGemColorBonuses from '$lib/client/images/page-thumbnail/light/caravan-gem-color-bonus.png';
 import thumbnailLightCharmsTalons from '$lib/client/images/page-thumbnail/light/talon-charm.png';
 import thumbnailLightArmorSkillsPriority from '$lib/client/images/page-thumbnail/light/armor-skills-priority.png';
+import thumbnailLightExotics from '$lib/client/images/page-thumbnail/light/exotics.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -48,6 +49,18 @@ import thumbnailDarkCaravanGemUpgrade from '$lib/client/images/page-thumbnail/da
 import thumbnailDarkCaravanGemColorBonuses from '$lib/client/images/page-thumbnail/dark/caravan-gem-color-bonus.png';
 import thumbnailDarkCharmsTalons from '$lib/client/images/page-thumbnail/dark/talon-charm.png';
 import thumbnailDarkArmorSkillsPriority from '$lib/client/images/page-thumbnail/dark/armor-skills-priority.png';
+import thumbnailDarkExotics from '$lib/client/images/page-thumbnail/dark/exotics.png';
+import thumbnailDarkHardcore from '$lib/client/images/page-thumbnail/dark/hc.png';
+import thumbnailDarkLuckyCharms from '$lib/client/images/page-thumbnail/dark/lucky-charms.png';
+import thumbnailDarkSkillSlots from '$lib/client/images/page-thumbnail/dark/skill-slots.png';
+import thumbnailDarkSteak from '$lib/client/images/page-thumbnail/dark/steak.png';
+import thumbnailDarkSwordCrystals from '$lib/client/images/page-thumbnail/dark/sword-crystals.png';
+import thumbnailDarkTonfa from '$lib/client/images/page-thumbnail/dark/tonfa.png';
+import thumbnailDarkDivaSkills from '$lib/client/images/page-thumbnail/dark/diva-skills.png';
+import thumbnailDarkDivaStory from '$lib/client/images/page-thumbnail/dark/diva-story-cat.png';
+import thumbnailDarkDivaPrayerBuff from '$lib/client/images/page-thumbnail/dark/prayer-buffs.png';
+import thumbnailDarkPartnerGear from '$lib/client/images/page-thumbnail/dark/partner.png';
+import thumbnailDarkHitzones from '$lib/client/images/page-thumbnail/dark/monsters-overview.png';
 
 import { getMonsterIcon } from './frontier/monsters';
 
@@ -207,6 +220,71 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/armor/skills',
 		thumbnail: thumbnailLightArmorSkillsPriority,
 	},
+	{
+		embed: null,
+		link: '/hunter-notes/monsters/exotics',
+		thumbnail: thumbnailLightExotics,
+	},
+	{
+		embed: 'hardcore-mode',
+		link: '/hunter-notes/getting-started/style-rank',
+		thumbnail: thumbnailDarkHardcore,
+	},
+	{
+		embed: 'lucky-charms',
+		link: '/hunter-notes/items/special-items',
+		thumbnail: thumbnailDarkLuckyCharms,
+	},
+	{
+		embed: 'sword-crystals',
+		link: '/hunter-notes/items/special-items',
+		thumbnail: thumbnailDarkSwordCrystals,
+	},
+	{
+		embed: 'skill-slots',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailDarkSkillSlots,
+	},
+	{
+		embed: 'stamina-items',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailDarkSteak,
+	},
+	{
+		embed: 'skill-priority',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailLightArmorSkillsPriority,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/weapons/tonfa',
+		thumbnail: thumbnailDarkTonfa,
+	},
+	{
+		embed: 'diva-skills',
+		link: '/hunter-notes/events/diva-defense',
+		thumbnail: thumbnailDarkDivaSkills,
+	},
+	{
+		embed: 'diva-questline',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailDarkDivaStory,
+	},
+	{
+		embed: 'diva-prayer-weapons',
+		link: '/hunter-notes/events/diva-defense',
+		thumbnail: thumbnailDarkDivaPrayerBuff,
+	},
+	{
+		embed: 'partner',
+		link: '/hunter-notes/locations/rasta-bar',
+		thumbnail: thumbnailDarkPartnerGear,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/monsters/overview',
+		thumbnail: thumbnailDarkHitzones,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -364,6 +442,71 @@ const darkThumbnailInfo: {
 		embed: 'skill-priority',
 		link: '/hunter-notes/armor/skills',
 		thumbnail: thumbnailDarkArmorSkillsPriority,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/monsters/exotics',
+		thumbnail: thumbnailDarkExotics,
+	},
+	{
+		embed: 'hardcore-mode',
+		link: '/hunter-notes/getting-started/style-rank',
+		thumbnail: thumbnailDarkHardcore,
+	},
+	{
+		embed: 'lucky-charms',
+		link: '/hunter-notes/items/special-items',
+		thumbnail: thumbnailDarkLuckyCharms,
+	},
+	{
+		embed: 'sword-crystals',
+		link: '/hunter-notes/items/special-items',
+		thumbnail: thumbnailDarkSwordCrystals,
+	},
+	{
+		embed: 'skill-slots',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailDarkSkillSlots,
+	},
+	{
+		embed: 'stamina-items',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailDarkSteak,
+	},
+	{
+		embed: 'skill-priority',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailDarkArmorSkillsPriority,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/weapons/tonfa',
+		thumbnail: thumbnailDarkTonfa,
+	},
+	{
+		embed: 'diva-skills',
+		link: '/hunter-notes/events/diva-defense',
+		thumbnail: thumbnailDarkDivaSkills,
+	},
+	{
+		embed: 'diva-questline',
+		link: '/hunter-notes/armor/skills',
+		thumbnail: thumbnailDarkDivaStory,
+	},
+	{
+		embed: 'diva-prayer-weapons',
+		link: '/hunter-notes/events/diva-defense',
+		thumbnail: thumbnailDarkDivaPrayerBuff,
+	},
+	{
+		embed: 'partner',
+		link: '/hunter-notes/locations/rasta-bar',
+		thumbnail: thumbnailDarkPartnerGear,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/monsters/overview',
+		thumbnail: thumbnailDarkHitzones,
 	},
 ];
 
