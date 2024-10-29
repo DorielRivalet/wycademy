@@ -2474,10 +2474,4 @@
 		margin-top: 2rem;
 		gap: 2rem;
 	}
-
-	.svelte-flow-container {
-		height: 90vh;
-		margin-top: 2rem;
-		margin-bottom: 2rem;
-	}
 </style>
