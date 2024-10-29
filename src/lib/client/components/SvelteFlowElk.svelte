@@ -19,6 +19,7 @@
 	export let initialNodes: Node[];
 	export let initialEdges: Edge[];
 	export let colorMode: 'system' | 'light' | 'dark';
+	/**horizontal: RIGHT. vertical: DOWN*/
 	export let direction: 'RIGHT' | 'DOWN' = 'RIGHT';
 	export let nodeWidth: number = 245;
 	export let nodeHeight: number = 80;
