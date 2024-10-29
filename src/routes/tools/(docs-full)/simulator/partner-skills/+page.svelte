@@ -1882,7 +1882,7 @@
 			if (skill.prerequisites.length === 0) {
 				nodeType = isUsedAsPrerequisite
 					? 'input-horizontal'
-					: 'output-horizontal';
+					: 'output-horizontal'; // TODO doesnt seem to work
 			} else {
 				nodeType = 'default-horizontal';
 			}
