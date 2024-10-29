@@ -1,6 +1,5 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
 import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
-import ExtremeParalysis from '$lib/client/components/frontier/icon/ailment/ExtremeParalysis.svelte';
 import { LocationIcons } from './frontier/locations';
 import StygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
 import YamaKurai from '$lib/client/components/frontier/icon/monster/YamaKurai.svelte';
@@ -39,7 +38,6 @@ import KnifeIconWhite from '../components/frontier/icon/item/Knife_Icon_White.sv
 import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
 import AllItems from '../components/frontier/icon/item/AllItems.svelte';
 import AllMonsters from '$lib/client/components/frontier/icon/monster/AllMonsters.svelte';
-import { ElementIcons } from './frontier/elements';
 import { monsterInfo } from './frontier/monsters';
 import { getWeaponIcon } from './frontier/weapons';
 import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
@@ -47,6 +45,8 @@ import { getArmorIcon } from './frontier/armor';
 import License from 'carbon-icons-svelte/lib/License.svelte';
 import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
 import Link from 'carbon-icons-svelte/lib/Link.svelte';
+import AllElements from '../components/frontier/icon/element/AllElements.svelte';
+import AllAilments from '../components/frontier/icon/ailment/AllAilments.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -300,13 +300,13 @@ export const toolsInfo: CategoryInfo[] = [
 			},
 			{
 				name: 'Sigils',
-				description: 'A sigils simulator.',
+				description: 'A sigils simulator.', // TODO add these + more to search index
 				image: SigilIconWhite,
 				link: '/tools/simulator/sigil',
 			},
 			{
 				name: 'Partner Skills',
-				description: 'A partner skills simulator.',
+				description: 'A partner skills simulator, including the skill tree.',
 				image: JewelIconWhite,
 				link: '/tools/simulator/partner-skills',
 			},
@@ -432,14 +432,14 @@ export const guidesInfo: CategoryInfo[] = [
 				description:
 					'The elements of weapons and monsters. Includes combo elements and elemental resistances.',
 				link: '/hunter-notes/getting-started/elements',
-				image: ElementIcons.find((e) => e.name === 'Tenshou')?.icon,
+				image: AllElements,
 			},
 			{
 				name: 'Ailments',
 				description:
 					"The status effects of both weapons and monsters. Includes monsters' status immunities.",
 				link: '/hunter-notes/getting-started/ailments',
-				image: ExtremeParalysis,
+				image: AllAilments,
 			},
 			{
 				name: 'Transcend',
