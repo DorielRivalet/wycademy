@@ -11,43 +11,17 @@ import cursor3 from '$lib/client/images/ui/svg/cursor-none.svg';
 
 export function getCursorIcon(id: string) {
 	switch (id) {
-		case '1':
+		case 'Classic':
 			return cursor1;
-		case '2':
+		case 'Modern':
 			return cursor2;
-		case '3':
+		case 'None':
 			return cursor3;
 		default:
 			return cursor1;
 	}
 }
 
-export function getCursorId(cursorName: string) {
-	switch (cursorName) {
-		case 'Classic':
-			return '1';
-		case 'Modern':
-			return '2';
-		case 'None':
-			return '3';
-		default:
-			return '1';
-	}
-}
-
-export function getCursorNameFromId(id: string) {
-	switch (id) {
-		case '1':
-			return 'Classic';
-		case '2':
-			return 'Modern';
-		case '3':
-			return 'None';
-		default:
-			return 'Classic';
-	}
-}
-
 export function setCursor(cursorIcon: Writable<string>, id: string) {
-	cursorIcon.set(getCursorNameFromId(id));
+	cursorIcon.set(id);
 }
