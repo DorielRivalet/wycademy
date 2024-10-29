@@ -125,7 +125,7 @@
 
 	.dialog.open:hover {
 		display: block;
-		cursor: var(--curson-icon-pointer) !important;
+		cursor: var(--cursor-icon-pointer) !important;
 	}
 
 	.dialog-content {

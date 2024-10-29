@@ -11,11 +11,7 @@
 		getThemeNameFromId,
 		setTheme,
 	} from '$lib/client/stores/theme';
-	import {
-		getCursorIcon,
-		getCursorNameFromId,
-		setCursor,
-	} from '$lib/client/stores/cursor';
+	import { getCursorIcon, setCursor } from '$lib/client/stores/cursor';
 	import pageThumbnail from '$lib/client/images/wycademy.png';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -56,7 +52,6 @@
 		website,
 	} from '$lib/constants';
 	import Cursor_1 from 'carbon-icons-svelte/lib/Cursor_1.svelte';
-	import { getCursorId } from '$lib/client/stores/cursor';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import { page } from '$app/stores';
@@ -70,33 +65,30 @@
 	const pushNotificationsStore = getContext(
 		Symbol.for('pushNotifications'),
 	) as Writable<boolean>;
+
 	const notificationsStore = getContext(
 		Symbol.for('notifications'),
 	) as Writable<boolean>;
+
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
+
 	const cursorIconStore = getContext(
 		Symbol.for('cursorIcon'),
 	) as Writable<string>;
+
 	const soundStore = getContext(Symbol.for('sound')) as Writable<boolean>;
+
 	const volumeStore = getContext(Symbol.for('volume')) as Writable<number>;
-	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
+
 	const scrollToTopStore = getContext(
 		Symbol.for('scrollToTop'),
 	) as Writable<boolean>;
+
 	const stickyHeaderStore = getContext(
 		Symbol.for('stickyHeader'),
 	) as Writable<boolean>;
-
-	onMount(() => {
-		mermaid.initialize({
-			startOnLoad: false,
-			flowchart: { useMaxWidth: false },
-			fontFamily: 'IBM Plex Sans',
-		});
-		mermaid.contentLoaded();
-	});
 
 	async function renderDiagram(siteTheme: string, mermaidTheme: string) {
 		if (!browser) return;
@@ -122,8 +114,7 @@
 
 	function changeCursorCSSVariable(selectedId: string) {
 		if (!browser) return;
-		let value = getCursorNameFromId(selectedId);
-		let cssVarMap = cursorVars[value] || cursorVars.default;
+		let cssVarMap = cursorVars[selectedId] || cursorVars.default;
 		Object.keys(cssVarMap).forEach((key) => {
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
@@ -151,53 +142,53 @@
 		return `\
 	%%{init: {'theme':'${mermaidTheme}'}}%%
 
-	graph TD;
-						saf1[Intro with Switch Axe F]-->|Use item| saf2[Shiriagari Fruit];
-						saf2-->|Use item| saf3[All Element Drug];
-						saf3-->|Run| saf4[Before Area Transition];
-						saf4-->saf5[Wait for bomb];
-						ls1[Intro with Long Sword]-->|Use item| ls2[Shiriagari Fruit];
-						ls2-->|Use item| ls3[All Element Drug];
-						ls3-->|Run| ls4[Before Area Transition];
-						ls4-->ls5[Wait for bomb];
-						ms1[Intro with Magnet Spike]-->|Use item| ms2[Shiriagari Fruit];
-						ms2-->|Use item| ms3[All Element Drug];
-						ms3-->|Run| ms4[Before Area Transition];
-						ms4-->ms5[Wait for bomb];
-						hh1[Intro with Hunting Horn]-->|Use item| hh2[Encourage Fruit];
-						hh2-->|Use item| hh3[All Element Drug];
-						hh3-->|Run| hh4[Before Area Transition];
-						hh4-->hh5[Wait for others];
-						hh5-->|Use item| hh6[Small Barrel Bomb];
-						hh6-->|Use item| hh7[Serious Drink];
-						hh7-->|Equip| hh8[Sword Crystals];
-						hh8-->|Hit by bomb| hh9[Change area];
-						hh9--> hh10[Song buffs];
-						hh10--> hh11[Go to wall];
+	graph TD
+						saf1[Intro with Switch Axe F]-->|Use item| saf2[Shiriagari Fruit]
+						saf2-->|Use item| saf3[All Element Drug]
+						saf3-->|Run| saf4[Before Area Transition]
+						saf4-->saf5[Wait for bomb]
+						ls1[Intro with Long Sword]-->|Use item| ls2[Shiriagari Fruit]
+						ls2-->|Use item| ls3[All Element Drug]
+						ls3-->|Run| ls4[Before Area Transition]
+						ls4-->ls5[Wait for bomb]
+						ms1[Intro with Magnet Spike]-->|Use item| ms2[Shiriagari Fruit]
+						ms2-->|Use item| ms3[All Element Drug]
+						ms3-->|Run| ms4[Before Area Transition]
+						ms4-->ms5[Wait for bomb]
+						hh1[Intro with Hunting Horn]-->|Use item| hh2[Encourage Fruit]
+						hh2-->|Use item| hh3[All Element Drug]
+						hh3-->|Run| hh4[Before Area Transition]
+						hh4-->hh5[Wait for others]
+						hh5-->|Use item| hh6[Small Barrel Bomb]
+						hh6-->|Use item| hh7[Serious Drink]
+						hh7-->|Equip| hh8[Sword Crystals]
+						hh8-->|Hit by bomb| hh9[Change area]
+						hh9--> hh10[Song buffs]
+						hh10--> hh11[Go to wall]
 
-						saf5--> hh6;
-						ls5--> hh6;
-						ms5--> hh6;
+						saf5--> hh6
+						ls5--> hh6
+						ms5--> hh6
 
 						hh6-->|Use item| saf6[Serious Drink]
 						hh6-->|Use item| ls6[Serious Drink]
 						hh6-->|Use item| ms6[Serious Drink]
 
-						saf6-->|Equip| saf7[Sword Crystals];
-						saf7-->|Hit by bomb| saf8[Change area];
-						saf8-->|Use Item| saf9[Starving Wolf Potion];
-						saf9--> saf10[Go to wall];
+						saf6-->|Equip| saf7[Sword Crystals]
+						saf7-->|Hit by bomb| saf8[Change area]
+						saf8-->|Use Item| saf9[Starving Wolf Potion]
+						saf9--> saf10[Go to wall]
 
-						ls6-->|Equip| ls7[Sword Crystals];
-						ls7-->|Hit by bomb| ls8[Change area];
-						ls8-->|Use item| ls9[Spirit Drink];
-						ls9-->|Use Item| ls10[Starving Wolf Potion];
-						ls10--> ls11[Go to wall];
+						ls6-->|Equip| ls7[Sword Crystals]
+						ls7-->|Hit by bomb| ls8[Change area]
+						ls8-->|Use item| ls9[Spirit Drink]
+						ls9-->|Use Item| ls10[Starving Wolf Potion]
+						ls10--> ls11[Go to wall]
 
-						ms6-->|Equip| ms7[Sword Crystals];
-						ms7-->|Hit by bomb| ms8[Change area];
-						ms8--> ms9[Magnet Gun];
-						ms9--> ms10[Lure monster to wall];`;
+						ms6-->|Equip| ms7[Sword Crystals]
+						ms7-->|Hit by bomb| ms8[Change area]
+						ms8--> ms9[Magnet Gun]
+						ms9--> ms10[Lure monster to wall]`;
 	}
 
 	// TODO put constants in other files
@@ -219,16 +210,16 @@
 		defrate,
 	)}} = \\frac{${monsterHP}}{${defrate}}`;
 	const url = $page.url.toString();
-</script>
 
-<svelte:head>
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-		integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
-		crossorigin="anonymous"
-	/>
-</svelte:head>
+	onMount(() => {
+		mermaid.initialize({
+			startOnLoad: false,
+			flowchart: { useMaxWidth: false },
+			fontFamily: 'IBM Plex Sans',
+		});
+		mermaid.contentLoaded();
+	});
+</script>
 
 <Head
 	title={"Site Preferences — Frontier's Wycademy"}
@@ -251,7 +242,7 @@
 />
 <LocalStorage bind:value={$notificationsStore} key="__notifications-enabled" />
 <LocalStorage bind:value={$volumeStore} key="__volume" />
-<LocalStorage bind:value={$cursorIcon} key="__cursor-icon" />
+<LocalStorage bind:value={$cursorIconStore} key="__cursor-icon" />
 <LocalStorage bind:value={$scrollToTopStore} key="__scroll-to-top-enabled" />
 <LocalStorage bind:value={$stickyHeaderStore} key="__sticky-header-enabled" />
 
@@ -294,6 +285,7 @@
 			required
 			on:change={(e) => onVolumeChange(volumeStore, e)}
 			value={$volumeStore}
+			disabled={!$soundStore}
 		/>
 	</div>
 
@@ -315,23 +307,29 @@
 
 	<div class="setting-container">
 		<Cursor_1 size={32} />
-		<Dropdown
-			titleText="Cursor Icon"
-			selectedId={getCursorId($cursorIcon)}
-			type="inline"
-			items={[
-				{ id: '1', text: 'Classic' },
-				{ id: '2', text: 'Modern' },
-				{ id: '3', text: 'None' },
-			]}
-			on:select={(event) => changeCursor(event.detail.selectedId)}
-			let:item
-		>
-			<div>
-				<img alt="Cursor Icon" src={getCursorIcon(item.id)} width="24" />
-				<strong style="vertical-align: top;">{item.text}</strong>
-			</div>
-		</Dropdown>
+		{#if $cursorIconStore !== undefined}
+			<Dropdown
+				titleText="Cursor Icon"
+				selectedId={$cursorIconStore}
+				type="inline"
+				items={[
+					{ id: 'Classic', text: 'Classic' },
+					{ id: 'Modern', text: 'Modern' },
+					{ id: 'None', text: 'None' },
+				]}
+				on:select={(event) => {
+					changeCursor(event.detail.selectedId);
+				}}
+				let:item
+			>
+				<div>
+					<img alt="Cursor Icon" src={getCursorIcon(item.id)} width="24" />
+					<strong style="vertical-align: top;">{item.text}</strong>
+				</div>
+			</Dropdown>
+		{:else}
+			<DropdownSkeleton />
+		{/if}
 	</div>
 
 	<div class="inline-notification-container">
@@ -477,13 +475,15 @@
 		</section>
 
 		<section>
-			<!-- TODO: not responsive-->
 			<SectionHeading title={'Example Run'} level={3} />
-			{#if !browser}
-				<Loading withOverlay={false} />
-			{:else}
-				<pre><code bind:this={container} /></pre>
-			{/if}
+			<div class="mermaid-container">
+				<!-- TODO: not responsive-->
+				{#if !browser}
+					<Loading withOverlay={false} />
+				{:else}
+					<pre><code bind:this={container} /></pre>
+				{/if}
+			</div>
 		</section>
 	</section>
 </div>
@@ -519,5 +519,13 @@
 		grid-template-columns: repeat(5, 1fr);
 		margin: 1rem;
 		gap: 1rem;
+	}
+
+	.mermaid-container {
+		max-width: 80vw;
+		overflow-x: auto;
+		margin: 0 auto;
+		margin-bottom: 2rem;
+		margin-top: 2rem;
 	}
 </style>

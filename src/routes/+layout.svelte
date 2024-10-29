@@ -14,7 +14,7 @@
 	const hunterNotesSidebarKey = Symbol.for('hunterNotesSidebar');
 	const bannerKey = Symbol.for('banner');
 	const carbonThemeKey = Symbol.for('carbonTheme');
-	const cursonIconKey = Symbol.for('cursonIcon');
+	const cursorIconKey = Symbol.for('cursorIcon');
 	const pushNotificationsKey = Symbol.for('pushNotifications');
 	const notificationsKey = Symbol.for('notifications');
 
@@ -53,7 +53,7 @@
 	);
 	const bannerEnabledStore = writable(getStoredValue('__banner-enabled', true));
 	const carbonThemeStore = writable(getStoredValue('__carbon-theme', 'g100'));
-	const cursonIconStore = writable(getStoredValue('__curson-icon', '1'));
+	const cursorIconStore = writable(getStoredValue('__cursor-icon', 'Classic'));
 	const pushNotificationsStore = writable(
 		getStoredValue('__push-notifications-enabled', true),
 	);
@@ -70,7 +70,7 @@
 	setContext(hunterNotesSidebarKey, hunterNotesSidebarEnabledStore);
 	setContext(bannerKey, bannerEnabledStore);
 	setContext(carbonThemeKey, carbonThemeStore);
-	setContext(cursonIconKey, cursonIconStore);
+	setContext(cursorIconKey, cursorIconStore);
 	setContext(pushNotificationsKey, pushNotificationsStore);
 	setContext(notificationsKey, notificationsStore);
 </script>
