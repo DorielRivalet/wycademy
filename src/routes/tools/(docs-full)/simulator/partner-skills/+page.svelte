@@ -40,7 +40,7 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	const edgeType = 'smoothstep';
+	const edgeType = 'bezier';
 
 	const MAX_COST = 260;
 	const MAX_SLOTS = 12;
