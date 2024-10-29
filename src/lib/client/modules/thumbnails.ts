@@ -58,6 +58,7 @@ import thumbnailDarkSwordCrystals from '$lib/client/images/page-thumbnail/dark/s
 import thumbnailDarkTonfa from '$lib/client/images/page-thumbnail/dark/tonfa.png';
 import thumbnailDarkDivaSkills from '$lib/client/images/page-thumbnail/dark/diva-skills.png';
 import thumbnailDarkDivaStory from '$lib/client/images/page-thumbnail/dark/diva-story-cat.png';
+import thumbnailDarkDivaStoryRewards from '$lib/client/images/page-thumbnail/dark/diva-story.png';
 import thumbnailDarkDivaPrayerBuff from '$lib/client/images/page-thumbnail/dark/prayer-buffs.png';
 import thumbnailDarkPartnerGear from '$lib/client/images/page-thumbnail/dark/partner.png';
 import thumbnailDarkHitzones from '$lib/client/images/page-thumbnail/dark/monsters-overview.png';
@@ -280,9 +281,14 @@ const lightThumbnailInfo: {
 		thumbnail: thumbnailDarkDivaSkills,
 	},
 	{
-		embed: 'diva-questline',
+		embed: null,
 		link: '/hunter-notes/locations/prayer-fountain',
 		thumbnail: thumbnailDarkDivaStory,
+	},
+	{
+		embed: 'diva-questline',
+		link: '/hunter-notes/locations/prayer-fountain',
+		thumbnail: thumbnailDarkDivaStoryRewards,
 	},
 	{
 		embed: 'diva-prayer-weapons',
@@ -568,9 +574,14 @@ const darkThumbnailInfo: {
 		thumbnail: thumbnailDarkDivaSkills,
 	},
 	{
-		embed: 'diva-questline',
+		embed: null,
 		link: '/hunter-notes/locations/prayer-fountain',
 		thumbnail: thumbnailDarkDivaStory,
+	},
+	{
+		embed: 'diva-questline',
+		link: '/hunter-notes/locations/prayer-fountain',
+		thumbnail: thumbnailDarkDivaStoryRewards,
 	},
 	{
 		embed: 'diva-prayer-weapons',
