@@ -76,6 +76,7 @@ import thumbnailDarkSAFHiden from '$lib/client/images/page-thumbnail/dark/saf-te
 import thumbnailDarkHBGHiden from '$lib/client/images/page-thumbnail/dark/hbg-tech.png';
 import thumbnailDarkLBGHiden from '$lib/client/images/page-thumbnail/dark/lbg-tech.png';
 import thumbnailDarkBowHiden from '$lib/client/images/page-thumbnail/dark/bow-tech.png';
+import thumbnailDarkRavienteWeapons from '$lib/client/images/page-thumbnail/dark/raviente-weapons.png';
 
 import { getMonsterIcon } from './frontier/monsters';
 
@@ -370,6 +371,11 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/weapons/bow',
 		thumbnail: thumbnailDarkBowHiden,
 	},
+	{
+		embed: 'upgrading-weapons',
+		link: '/hunter-notes/monsters/raviente',
+		thumbnail: thumbnailDarkRavienteWeapons,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -662,6 +668,11 @@ const darkThumbnailInfo: {
 		embed: 'hiden',
 		link: '/hunter-notes/weapons/bow',
 		thumbnail: thumbnailDarkBowHiden,
+	},
+	{
+		embed: 'upgrading-weapons',
+		link: '/hunter-notes/monsters/raviente',
+		thumbnail: thumbnailDarkRavienteWeapons,
 	},
 ];
 
