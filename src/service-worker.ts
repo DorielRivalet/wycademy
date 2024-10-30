@@ -25,7 +25,7 @@ const precache_list = [
 
 setDefaultHandler(new NetworkOnly());
 precacheAndRoute(precache_list); // this has to run early.
-offlineFallback();
+offlineFallback({ pageFallback: '/offline' });
 
 sw.addEventListener('notificationclick', (event) => {
 	event.notification.close();
