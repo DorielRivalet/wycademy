@@ -103,7 +103,7 @@
 		"@ag-grid-community/theming": "^32.2.2",
 		"@carbon/grid": "^11.28.0",
 		"@carbon/layout": "^11.28.0",
-		"@carbon/motion": "^11.18.0",
+		"@carbon/motion": "^11.24.0",
 		"@carbon/type": "^11.33.0",
 		"@catppuccin/palette": "^1.2.0",
 		"@ibm/plex": "^6.4.1",
