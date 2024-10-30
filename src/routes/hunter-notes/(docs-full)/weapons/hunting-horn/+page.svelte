@@ -5,7 +5,11 @@
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+	import {
+		getWeaponIcon,
+		huntingHornSongs,
+		huntingHornWeaponNotesCombinations,
+	} from '$lib/client/modules/frontier/weapons';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
@@ -29,6 +33,7 @@
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 	import ColorfulButtonToggle from '$lib/client/components/ColorfulButtonToggle.svelte';
+	import type { FrontierHuntingHornNote } from '$lib/client/modules/frontier/types';
 
 	const hidenSkills: {
 		id: string;
@@ -190,15 +195,23 @@
 		},
 	];
 
+	const huntingHornValidNotesCombinations =
+		huntingHornWeaponNotesCombinations.map((e, i) => {
+			return {
+				id: i,
+				notes: `${e[0]} ${e[1]} ${e[2]}`,
+			};
+		});
+
 	let huntingHornSelectedNotes = {
-		white: false,
-		blue: false,
-		cyan: false,
-		green: false,
-		red: false,
-		yellow: false,
-		purple: false,
-		pink: false,
+		white: true,
+		blue: true,
+		cyan: true,
+		green: true,
+		red: true,
+		yellow: true,
+		purple: true,
+		pink: true,
 	};
 </script>
 
@@ -235,6 +248,10 @@
 
 			<section>
 				<SectionHeading level={2} title="Songs" />
+				<p class="spaced-paragraph">
+					There are a total of {huntingHornSongs.length} songs available.
+				</p>
+				<!--TODO: easter eggs-->
 				<div class="hunting-horn-note-buttons">
 					<ColorfulButtonToggle
 						on:toggle={(e) => console.log(e.detail.enabled)}
@@ -285,7 +302,140 @@
 						<HuntingHornNoteIcon color={'Pink'} size={'100%'} />
 					</ColorfulButtonToggle>
 				</div>
-				<div class="table"></div>
+				<div class="table table-with-scrollbar">
+					<DataTable
+						title="Hunting Horn Songs"
+						sortable
+						id="hunting-horn-songs-dom"
+						zebra
+						size="medium"
+						headers={[
+							{ key: 'notes', value: 'Notes' },
+							{ key: 'song', value: 'Song' },
+							{ key: 'repeatSong', value: 'Repeat Song' },
+							{ key: 'songDuration', value: 'Song Duration' },
+							{ key: 'repeatSongDuration', value: 'Repeat Song Duration' },
+							{ key: 'maxDuration', value: 'Max Duration' },
+							{ key: 'category', value: 'Category' },
+						]}
+						rows={huntingHornSongs.map((e, i) => {
+							return {
+								id: i,
+								notes: e.notes.toString(),
+								song: e.song,
+								repeatSong: e.repeatSong,
+								songDuration: e.songDuration,
+								repeatSongDuration: e.repeatSongDuration,
+								maxDuration: e.maxDuration,
+								category: e.category,
+							};
+						})}
+						><Toolbar
+							><div class="toolbar">
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray(
+										huntingHornSongs.map((e, i) => {
+											return {
+												id: i,
+												notes: e.notes.toString(),
+												song: e.song,
+												repeatSong: e.repeatSong,
+												songDuration: e.songDuration,
+												repeatSongDuration: e.repeatSongDuration,
+												maxDuration: e.maxDuration,
+												category: e.category,
+											};
+										}),
+									)}
+								/>
+								<Button
+									kind="tertiary"
+									icon={Download}
+									on:click={() =>
+										downloadDomAsPng(
+											'hunting-horn-songs-dom',
+											'hunting-horn-songs',
+										)}>Download</Button
+								>
+							</div>
+						</Toolbar>
+						<svelte:fragment slot="cell" let:cell>
+							{#if cell.key === 'notes'}
+								<span class="hh-notes">
+									{#each cell.value.split(',') as note}
+										<HuntingHornNoteIcon size={20} color={note} />
+									{/each}
+									<p>{cell.value.replaceAll(',', ', ')}</p>
+								</span>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						</svelte:fragment>
+					</DataTable>
+				</div>
+				<p>The durations are in seconds.</p>
+
+				<div class="table table-with-scrollbar">
+					<DataTable
+						title="Hunting Horn Weapons Valid Notes Combinations"
+						sortable
+						id="hunting-horn-valid-notes-combinations-dom"
+						zebra
+						size="medium"
+						headers={[{ key: 'notes', value: 'Notes' }]}
+						rows={huntingHornValidNotesCombinations}
+						><Toolbar
+							><div class="toolbar">
+								<CopyButton
+									iconDescription={'Copy as CSV'}
+									text={getCSVFromArray(huntingHornValidNotesCombinations)}
+								/>
+								<Button
+									kind="tertiary"
+									icon={Download}
+									on:click={() =>
+										downloadDomAsPng(
+											'hunting-horn-valid-notes-combinations-dom',
+											'hunting-horn-valid-notes-combinations',
+										)}>Download</Button
+								>
+							</div>
+						</Toolbar>
+						<svelte:fragment slot="cell" let:cell>
+							{#if cell.key === 'notes'}
+								<span class="hh-notes">
+									<HuntingHornNoteIcon
+										size={20}
+										color={[
+											cell.value.split(' ')[0],
+											cell.value.split(' ')[1],
+											cell.value.split(' ')[2],
+										][0]}
+									/>
+									<HuntingHornNoteIcon
+										size={20}
+										color={[
+											cell.value.split(' ')[0],
+											cell.value.split(' ')[1],
+											cell.value.split(' ')[2],
+										][1]}
+									/>
+									<HuntingHornNoteIcon
+										size={20}
+										color={[
+											cell.value.split(' ')[0],
+											cell.value.split(' ')[1],
+											cell.value.split(' ')[2],
+										][2]}
+									/>
+									<p>{cell.value}</p>
+								</span>
+							{:else}
+								<p>{cell.value}</p>{/if}
+						</svelte:fragment>
+					</DataTable>
+				</div>
 			</section>
 
 			<section>
@@ -810,6 +960,18 @@
 	.table {
 		margin-top: 2rem;
 		margin-bottom: 2rem;
+	}
+
+	.table-with-scrollbar {
+		height: 80vh;
+		overflow-y: auto;
+	}
+
+	.hh-notes {
+		display: inline-flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.75rem;
 	}
 
 	.hunting-horn-note-buttons {

@@ -53,8 +53,8 @@ Does not handle decorations because sigils are optimal.
 	import GRankWeaponIcon from './icon/GRankEquipmentIcon.svelte';
 	import ZenithWeaponIcon from './icon/ZenithEquipmentIcon2.svelte';
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
-	import NoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
-	import { HuntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/weapons';
+	import HuntingHornNoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
+	import { huntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/weapons';
 	import { stringReplacements } from '$lib/client/modules/frontier/strings';
 
 	/** Truncated to 18 characters.*/
@@ -140,7 +140,7 @@ Does not handle decorations because sigils are optimal.
 	export let gunlanceShellLevel: FrontierGunlanceShellLevel = 9;
 
 	export let huntingHornNotes: FrontierHuntingHornWeaponNote[] =
-		HuntingHornWeaponNotesCombinations[0];
+		huntingHornWeaponNotesCombinations[0];
 
 	export let automaticSkill: FrontierArmorSkillName = '';
 	export let bowArc: FrontierBowArcShot = 'Narrow';
@@ -380,9 +380,9 @@ Does not handle decorations because sigils are optimal.
 						{#if frontierMappers.getWeaponNameById(weaponID) === 'Hunting Horn'}
 							<span class="hh-notes"
 								>【Notes
-								<NoteIcon size={16} color={huntingHornNotes[0]} />
-								<NoteIcon size={16} color={huntingHornNotes[1]} />
-								<NoteIcon size={16} color={huntingHornNotes[2]} />
+								<HuntingHornNoteIcon size={16} color={huntingHornNotes[0]} />
+								<HuntingHornNoteIcon size={16} color={huntingHornNotes[1]} />
+								<HuntingHornNoteIcon size={16} color={huntingHornNotes[2]} />
 								】</span
 							>
 						{:else if frontierMappers.getWeaponNameById(weaponID) === 'Gunlance'}

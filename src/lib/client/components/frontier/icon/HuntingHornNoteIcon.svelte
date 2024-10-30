@@ -1,5 +1,6 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
+	// TODO add tooltip option?
 	export let color: string = 'Red';
 	export let size: number | string = 16;
 
