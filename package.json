@@ -133,7 +133,7 @@
 		"html-to-image": "^1.11.11",
 		"mathjs": "^13.2.0",
 		"mathlifier": "^2.0.2",
-		"mermaid": "^11.3.0",
+		"mermaid": "^11.4.0",
 		"modern-screenshot": "^4.4.39",
 		"numbro": "^2.5.0",
 		"postgres": "^3.4.5",
