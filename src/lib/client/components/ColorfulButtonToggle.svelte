@@ -10,7 +10,7 @@
 		dispatch('toggle', { enabled });
 	}
 
-	let enabled = false;
+	export let enabled = false;
 </script>
 
 <button
