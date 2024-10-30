@@ -1,7 +1,7 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	export let color: string = 'Red';
-	export let size: number = 16;
+	export let size: number | string = 16;
 
 	function getCSSVariableFromColorName(color: string) {
 		switch (color) {
