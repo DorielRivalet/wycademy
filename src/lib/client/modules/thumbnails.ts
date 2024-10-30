@@ -23,6 +23,7 @@ import thumbnailLightCaravanGemColorBonuses from '$lib/client/images/page-thumbn
 import thumbnailLightCharmsTalons from '$lib/client/images/page-thumbnail/light/talon-charm.png';
 import thumbnailLightArmorSkillsPriority from '$lib/client/images/page-thumbnail/light/armor-skills-priority.png';
 import thumbnailLightExotics from '$lib/client/images/page-thumbnail/light/exotics.png';
+import thumbnailLightHuntingHornSongs from '$lib/client/images/page-thumbnail/light/hunting-horn-songs.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -77,6 +78,7 @@ import thumbnailDarkHBGHiden from '$lib/client/images/page-thumbnail/dark/hbg-te
 import thumbnailDarkLBGHiden from '$lib/client/images/page-thumbnail/dark/lbg-tech.png';
 import thumbnailDarkBowHiden from '$lib/client/images/page-thumbnail/dark/bow-tech.png';
 import thumbnailDarkRavienteWeapons from '$lib/client/images/page-thumbnail/dark/raviente-weapons.png';
+import thumbnailDarkHuntingHornSongs from '$lib/client/images/page-thumbnail/dark/hunting-horn-songs.png';
 
 import { getMonsterIcon } from './frontier/monsters';
 
@@ -376,6 +378,16 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/monsters/raviente',
 		thumbnail: thumbnailDarkRavienteWeapons,
 	},
+	{
+		embed: 'songs',
+		link: '/hunter-notes/weapons/hunting-horn',
+		thumbnail: thumbnailLightHuntingHornSongs,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/weapons/hunting-horn',
+		thumbnail: thumbnailLightHuntingHornSongs,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -673,6 +685,16 @@ const darkThumbnailInfo: {
 		embed: 'upgrading-weapons',
 		link: '/hunter-notes/monsters/raviente',
 		thumbnail: thumbnailDarkRavienteWeapons,
+	},
+	{
+		embed: 'songs',
+		link: '/hunter-notes/weapons/hunting-horn',
+		thumbnail: thumbnailDarkHuntingHornSongs,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/weapons/hunting-horn',
+		thumbnail: thumbnailDarkHuntingHornSongs,
 	},
 ];
 
