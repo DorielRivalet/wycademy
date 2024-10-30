@@ -216,6 +216,8 @@
 		<div class="formula-container">
 			{@html formulaFlashConversion}
 			{@html display(formulaValuesFlashConversion)}
+		</div>
+		<div class="formula-container">
 			{@html formulaFlashConversionUp}
 			{@html display(formulaValuesFlashConversionUp)}
 		</div>

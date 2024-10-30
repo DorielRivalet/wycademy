@@ -3322,7 +3322,7 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 }`;
 
 	const formulaInternalAffinity =
-		display(`\\begin{align}\\text{Internal Affinity} = \\text{getInternalAffinity}(\\text{inputCritMode},  \\text{outputIssenAffinity} +\\newline
+		display(`\\begin{align}\\text{Internal Affinity} = \\text{getInternalAffinity}(\\text{inputCritMode},  \\text{outputIssenAffinity}) +\\newline
 \\text{outputSharpnessAffinity} +\\newline
 \\text{inputNumberUnlimitedSigil} +\\newline
 \\text{inputNumberSigil1Affinity} +\\newline

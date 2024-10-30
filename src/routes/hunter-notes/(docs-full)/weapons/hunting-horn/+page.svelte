@@ -28,6 +28,7 @@
 	import HuntingHornNoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import ColorfulButtonToggle from '$lib/client/components/ColorfulButtonToggle.svelte';
 
 	const hidenSkills: {
 		id: string;
@@ -188,6 +189,17 @@
 			type: 'Other',
 		},
 	];
+
+	let huntingHornSelectedNotes = {
+		white: false,
+		blue: false,
+		cyan: false,
+		green: false,
+		red: false,
+		yellow: false,
+		purple: false,
+		pink: false,
+	};
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -223,7 +235,57 @@
 
 			<section>
 				<SectionHeading level={2} title="Songs" />
-				<div></div>
+				<div class="hunting-horn-note-buttons">
+					<ColorfulButtonToggle
+						on:toggle={(e) => console.log(e.detail.enabled)}
+						backgroundColor={'var(--ctp-surface0)'}
+					>
+						<HuntingHornNoteIcon color={'White'} size={'100%'} />
+					</ColorfulButtonToggle>
+					<ColorfulButtonToggle
+						on:toggle={(e) => console.log(e.detail.enabled)}
+						backgroundColor={'var(--ctp-surface0)'}
+					>
+						<HuntingHornNoteIcon color={'Blue'} size={'100%'} />
+					</ColorfulButtonToggle>
+					<ColorfulButtonToggle
+						on:toggle={(e) => console.log(e.detail.enabled)}
+						backgroundColor={'var(--ctp-surface0)'}
+					>
+						<HuntingHornNoteIcon color={'Cyan'} size={'100%'} />
+					</ColorfulButtonToggle>
+					<ColorfulButtonToggle
+						on:toggle={(e) => console.log(e.detail.enabled)}
+						backgroundColor={'var(--ctp-surface0)'}
+					>
+						<HuntingHornNoteIcon color={'Green'} size={'100%'} />
+					</ColorfulButtonToggle>
+					<ColorfulButtonToggle
+						on:toggle={(e) => console.log(e.detail.enabled)}
+						backgroundColor={'var(--ctp-surface0)'}
+					>
+						<HuntingHornNoteIcon color={'Red'} size={'100%'} />
+					</ColorfulButtonToggle>
+					<ColorfulButtonToggle
+						on:toggle={(e) => console.log(e.detail.enabled)}
+						backgroundColor={'var(--ctp-surface0)'}
+					>
+						<HuntingHornNoteIcon color={'Yellow'} size={'100%'} />
+					</ColorfulButtonToggle>
+					<ColorfulButtonToggle
+						on:toggle={(e) => console.log(e.detail.enabled)}
+						backgroundColor={'var(--ctp-surface0)'}
+					>
+						<HuntingHornNoteIcon color={'Purple'} size={'100%'} />
+					</ColorfulButtonToggle>
+					<ColorfulButtonToggle
+						on:toggle={(e) => console.log(e.detail.enabled)}
+						backgroundColor={'var(--ctp-surface0)'}
+					>
+						<HuntingHornNoteIcon color={'Pink'} size={'100%'} />
+					</ColorfulButtonToggle>
+				</div>
+				<div class="table"></div>
 			</section>
 
 			<section>
@@ -747,6 +809,13 @@
 
 	.table {
 		margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.hunting-horn-note-buttons {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
 		margin-bottom: 2rem;
 	}
 </style>
