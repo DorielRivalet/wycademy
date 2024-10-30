@@ -25,7 +25,7 @@
 	import { domToPng } from 'modern-screenshot';
 	import { defaultWeaponComponentValues } from '$lib/client/modules/frontier/weapons';
 	import {
-		HuntingHornWeaponNotesCombinations,
+		huntingHornWeaponNotesCombinations,
 		SharpnessNames,
 	} from '$lib/client/modules/frontier/weapons';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
@@ -160,7 +160,7 @@
 
 	function getHHNotes() {
 		let array: dropdownItem[] = [];
-		HuntingHornWeaponNotesCombinations.forEach((element) => {
+		huntingHornWeaponNotesCombinations.forEach((element) => {
 			let result = `${element[0]} ${element[1]} ${element[2]}`;
 			array = [...array, { id: result, text: result }];
 		});
