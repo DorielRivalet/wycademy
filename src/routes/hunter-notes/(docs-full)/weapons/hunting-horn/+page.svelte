@@ -34,6 +34,34 @@
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 	import ColorfulButtonToggle from '$lib/client/components/ColorfulButtonToggle.svelte';
 	import type { FrontierHuntingHornNote } from '$lib/client/modules/frontier/types';
+	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+
+	function handleToggle(index: number, enabled: boolean) {
+		huntingHornSelectedNotes[index].enabled = enabled;
+		huntingHornSelectedNotes = [...huntingHornSelectedNotes]; // Trigger reactivity
+	}
+
+	function getHuntingHornAvailableSongs(
+		selectedNotes: {
+			color: FrontierHuntingHornNote;
+			enabled: boolean;
+		}[],
+		strategy: string,
+	) {
+		const enabledNotes = selectedNotes
+			.filter((note) => note.enabled)
+			.map((note) => note.color);
+
+		return huntingHornSongs.filter((song) => {
+			if (strategy === 'atLeastOne') {
+				// Strategy 1: At least one selected note
+				return song.notes.some((note) => enabledNotes.includes(note));
+			} else {
+				// Strategy 2: Only using selected notes
+				return song.notes.every((note) => enabledNotes.includes(note));
+			}
+		});
+	}
 
 	const hidenSkills: {
 		id: string;
@@ -203,16 +231,27 @@
 			};
 		});
 
-	let huntingHornSelectedNotes = {
-		white: true,
-		blue: true,
-		cyan: true,
-		green: true,
-		red: true,
-		yellow: true,
-		purple: true,
-		pink: true,
-	};
+	// Initial notes state
+	let huntingHornSelectedNotes: {
+		color: FrontierHuntingHornNote;
+		enabled: boolean;
+	}[] = [
+		{ color: 'White', enabled: true },
+		{ color: 'Blue', enabled: true },
+		{ color: 'Cyan', enabled: true },
+		{ color: 'Green', enabled: false },
+		{ color: 'Red', enabled: false },
+		{ color: 'Yellow', enabled: false },
+		{ color: 'Purple', enabled: false },
+		{ color: 'Pink', enabled: true },
+	];
+
+	let filteringStrategy: 'atLeastOne' | 'onlySelected' = 'onlySelected';
+
+	$: huntingHornAvailableSongs = getHuntingHornAvailableSongs(
+		huntingHornSelectedNotes,
+		filteringStrategy,
+	);
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -251,60 +290,30 @@
 				<p class="spaced-paragraph">
 					There are a total of {huntingHornSongs.length} songs available.
 				</p>
+				<div class="dropdown">
+					<Dropdown
+						titleText="Filtering Strategy"
+						bind:selectedId={filteringStrategy}
+						items={[
+							{ id: 'atLeastOne', text: 'At least one' },
+							{ id: 'onlySelected', text: 'Only selected' },
+						]}
+					/>
+				</div>
 				<!--TODO: easter eggs-->
 				<div class="hunting-horn-note-buttons">
-					<ColorfulButtonToggle
-						on:toggle={(e) => console.log(e.detail.enabled)}
-						backgroundColor={'var(--ctp-surface0)'}
-					>
-						<HuntingHornNoteIcon color={'White'} size={'100%'} />
-					</ColorfulButtonToggle>
-					<ColorfulButtonToggle
-						on:toggle={(e) => console.log(e.detail.enabled)}
-						backgroundColor={'var(--ctp-surface0)'}
-					>
-						<HuntingHornNoteIcon color={'Blue'} size={'100%'} />
-					</ColorfulButtonToggle>
-					<ColorfulButtonToggle
-						on:toggle={(e) => console.log(e.detail.enabled)}
-						backgroundColor={'var(--ctp-surface0)'}
-					>
-						<HuntingHornNoteIcon color={'Cyan'} size={'100%'} />
-					</ColorfulButtonToggle>
-					<ColorfulButtonToggle
-						on:toggle={(e) => console.log(e.detail.enabled)}
-						backgroundColor={'var(--ctp-surface0)'}
-					>
-						<HuntingHornNoteIcon color={'Green'} size={'100%'} />
-					</ColorfulButtonToggle>
-					<ColorfulButtonToggle
-						on:toggle={(e) => console.log(e.detail.enabled)}
-						backgroundColor={'var(--ctp-surface0)'}
-					>
-						<HuntingHornNoteIcon color={'Red'} size={'100%'} />
-					</ColorfulButtonToggle>
-					<ColorfulButtonToggle
-						on:toggle={(e) => console.log(e.detail.enabled)}
-						backgroundColor={'var(--ctp-surface0)'}
-					>
-						<HuntingHornNoteIcon color={'Yellow'} size={'100%'} />
-					</ColorfulButtonToggle>
-					<ColorfulButtonToggle
-						on:toggle={(e) => console.log(e.detail.enabled)}
-						backgroundColor={'var(--ctp-surface0)'}
-					>
-						<HuntingHornNoteIcon color={'Purple'} size={'100%'} />
-					</ColorfulButtonToggle>
-					<ColorfulButtonToggle
-						on:toggle={(e) => console.log(e.detail.enabled)}
-						backgroundColor={'var(--ctp-surface0)'}
-					>
-						<HuntingHornNoteIcon color={'Pink'} size={'100%'} />
-					</ColorfulButtonToggle>
+					{#each huntingHornSelectedNotes as note, i}
+						<ColorfulButtonToggle
+							enabled={note.enabled}
+							on:toggle={(e) => handleToggle(i, e.detail.enabled)}
+							backgroundColor={'var(--ctp-surface0)'}
+						>
+							<HuntingHornNoteIcon color={note.color} size={'100%'} />
+						</ColorfulButtonToggle>
+					{/each}
 				</div>
 				<div class="table table-with-scrollbar">
 					<DataTable
-						title="Hunting Horn Songs"
 						sortable
 						id="hunting-horn-songs-dom"
 						zebra
@@ -318,7 +327,7 @@
 							{ key: 'maxDuration', value: 'Max Duration' },
 							{ key: 'category', value: 'Category' },
 						]}
-						rows={huntingHornSongs.map((e, i) => {
+						rows={huntingHornAvailableSongs.map((e, i) => {
 							return {
 								id: i,
 								notes: e.notes.toString(),
@@ -335,7 +344,7 @@
 								<CopyButton
 									iconDescription={'Copy as CSV'}
 									text={getCSVFromArray(
-										huntingHornSongs.map((e, i) => {
+										huntingHornAvailableSongs.map((e, i) => {
 											return {
 												id: i,
 												notes: e.notes.toString(),
@@ -979,5 +988,11 @@
 		gap: 1rem;
 		flex-wrap: wrap;
 		margin-bottom: 2rem;
+	}
+
+	.dropdown {
+		display: flex;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
 	}
 </style>
