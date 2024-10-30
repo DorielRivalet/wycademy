@@ -82,7 +82,7 @@
 		"pug": "^3.0.3",
 		"release-it": "^17.10.0",
 		"rollup-plugin-visualizer": "^5.12.0",
-		"sass": "^1.77.8",
+		"sass": "^1.80.5",
 		"shiki": "^1.22.0",
 		"svelte": "^4.2.19",
 		"svelte-awesome-color-picker": "^3.1.4",
