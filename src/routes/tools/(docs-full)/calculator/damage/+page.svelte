@@ -78,7 +78,10 @@
 	import Save from 'carbon-icons-svelte/lib/Save.svelte';
 	import HelpFilled from 'carbon-icons-svelte/lib/HelpFilled.svelte';
 	import * as zip from '@zip.js/zip.js';
-	import { StatusIcons } from '$lib/client/modules/frontier/ailments';
+	import {
+		getAilmentIcon,
+		StatusIcons,
+	} from '$lib/client/modules/frontier/ailments';
 	import { obscurityValues } from '$lib/client/modules/frontier/armor-skills';
 	import {
 		legacyCalculatorNumberInputs,
@@ -9790,8 +9793,12 @@ does not get multiplied by horn */
 								</ListItem>
 								<ListItem>
 									<p>
-										Some motion values have numbers in parentheses, those are KO
-										values. KO indicates impact portions of the motion value,
+										Some motion values have numbers in parentheses, those are <InlineTooltip
+											text="Stun"
+											tooltip="Ailment"
+											icon={getAilmentIcon('Stun')}
+										/>
+										values. Stun/KO indicates impact portions of the motion value,
 										which use white sharpness as the maximum multiplier.
 									</p>
 								</ListItem>
@@ -9837,11 +9844,14 @@ does not get multiplied by horn */
 								</ListItem>
 								<ListItem>
 									<p>
-										The damage from Zenith Sigils assume a constant duration
-										with no cooldown, thus not the average damage. To check the
-										average damage of such, see our <Link
-											href="/tools/calculator/sigil"
-											inline>Sigils Calculator.</Link
+										The damage from <InlineTooltip
+											text="Zenith Sigils"
+											tooltip="Sigil"
+											icon={getItemIcon('Sigil')}
+										/> assume a constant duration with no cooldown, thus not the
+										average damage. To check the average damage of such, see our
+										<Link href="/tools/calculator/sigil" inline
+											>Sigils Calculator.</Link
 										>
 									</p>
 								</ListItem>
