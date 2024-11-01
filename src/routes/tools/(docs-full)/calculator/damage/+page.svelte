@@ -9772,75 +9772,82 @@ does not get multiplied by horn */
 						</DataTable>
 					</div>
 
-					<UnorderedList>
-						<ListItem>
-							<p>
-								You can also change the table's weapon type in the damage
-								calculator section.
-							</p>
-						</ListItem>
-						<ListItem>
-							<p>
-								If you select an option in a dropdown exclusive to a weapon and
-								then change weapon type thus hiding that dropdown, the selected
-								option will still apply.
-							</p>
-						</ListItem>
-						<ListItem>
-							<p>
-								Some motion values have numbers in parentheses, those are KO
-								values. KO indicates impact portions of the motion value, which
-								use white sharpness as the maximum multiplier.
-							</p>
-						</ListItem>
-						<ListItem>
-							<p>
-								The Additional column denotes a source of damage that is
-								separate from your True Raw limit. This includes <InlineTooltip
-									text="Bombs"
-									tooltip="Item"
-									icon={getItemIcon('Bomb')}
-									iconType="component"
-									iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
-								/> and <InlineTooltip
-									text="Status Assault"
-									tooltip="Armor Skill"
-									icon={getItemIcon('Jewel')}
-									iconType="component"
-									iconColor={ItemColors.find((e) => e.name === 'White')?.value}
-								/>.
-							</p>
-						</ListItem>
-						<ListItem>
-							<p>
-								Motion Values comprised of multiple hits have their raw damage
-								calculated separately by each hit value and then added together.
-								To demonstrate an example of multiple small hits and one big hit
-								having the same total MV but different results, see Shining
-								Sword from <InlineTooltip
-									text="Great Sword"
-									tooltip="Weapon"
-									icon={getWeaponIcon('Great Sword')}
-									iconType="component"
-								/> and then input as Custom Motion Value the value 459.
-							</p>
-						</ListItem>
-						<ListItem>
-							<p>
-								Extra table columns may show depending on the selected element.
-							</p>
-						</ListItem>
-						<ListItem>
-							<p>
-								The damage from Zenith Sigils assume a constant duration with no
-								cooldown, thus not the average damage. To check the average
-								damage of such, see our <Link
-									href="/tools/calculator/sigil"
-									inline>Sigils Calculator.</Link
-								>
-							</p>
-						</ListItem>
-					</UnorderedList>
+					<Accordion class="spaced-accordion">
+						<AccordionItem open={true} title="Tips">
+							<UnorderedList>
+								<ListItem>
+									<p>
+										You can also change the table's weapon type in the damage
+										calculator section.
+									</p>
+								</ListItem>
+								<ListItem>
+									<p>
+										If you select an option in a dropdown exclusive to a weapon
+										and then change weapon type thus hiding that dropdown, the
+										selected option will still apply.
+									</p>
+								</ListItem>
+								<ListItem>
+									<p>
+										Some motion values have numbers in parentheses, those are KO
+										values. KO indicates impact portions of the motion value,
+										which use white sharpness as the maximum multiplier.
+									</p>
+								</ListItem>
+								<ListItem>
+									<p>
+										The Additional column denotes a source of damage that is
+										separate from your True Raw limit. This includes <InlineTooltip
+											text="Bombs"
+											tooltip="Item"
+											icon={getItemIcon('Bomb')}
+											iconType="component"
+											iconColor={ItemColors.find((e) => e.name === 'Red')
+												?.value}
+										/> and <InlineTooltip
+											text="Status Assault"
+											tooltip="Armor Skill"
+											icon={getItemIcon('Jewel')}
+											iconType="component"
+											iconColor={ItemColors.find((e) => e.name === 'White')
+												?.value}
+										/>.
+									</p>
+								</ListItem>
+								<ListItem>
+									<p>
+										Motion Values comprised of multiple hits have their raw
+										damage calculated separately by each hit value and then
+										added together. To demonstrate an example of multiple small
+										hits and one big hit having the same total MV but different
+										results, see Shining Sword from <InlineTooltip
+											text="Great Sword"
+											tooltip="Weapon"
+											icon={getWeaponIcon('Great Sword')}
+											iconType="component"
+										/> and then input as Custom Motion Value the value 459.
+									</p>
+								</ListItem>
+								<ListItem>
+									<p>
+										Extra table columns may show depending on the selected
+										element.
+									</p>
+								</ListItem>
+								<ListItem>
+									<p>
+										The damage from Zenith Sigils assume a constant duration
+										with no cooldown, thus not the average damage. To check the
+										average damage of such, see our <Link
+											href="/tools/calculator/sigil"
+											inline>Sigils Calculator.</Link
+										>
+									</p>
+								</ListItem>
+							</UnorderedList>
+						</AccordionItem>
+					</Accordion>
 				</div>
 			</section>
 
