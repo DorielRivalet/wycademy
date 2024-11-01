@@ -12,6 +12,7 @@
 	import { themeTokens } from '$lib/client/themes/tokens';
 	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount, SvelteComponent, type ComponentType } from 'svelte';
+	import pageThumbnail from '$lib/client/images/wycademy.png';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -146,6 +147,7 @@
 	let headTitle = "Hunter's Notes — Frontier's Wycademy";
 	let description =
 		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.';
+	let image = pageThumbnail;
 
 	const url = $page.url.toString();
 
@@ -904,6 +906,13 @@
 		description = monster?.ecology
 			? monster.ecology
 			: (navigationItem?.description ?? description);
+		image = monster?.fullRender
+			? monster.fullRender
+			: getPageThumbnail(
+					$page.url.pathname,
+					$page.url.searchParams.get('embed'),
+					$page.url.searchParams.get('embed-theme'),
+				);
 		breadcrumbItems = items;
 		const unsubscribe = page.subscribe(($page) => {
 			treeview?.showNode($page.url.pathname || '');
@@ -923,11 +932,7 @@
 <Head
 	title={headTitle}
 	{description}
-	image={getPageThumbnail(
-		$page.url.pathname,
-		$page.url.searchParams.get('embed'),
-		$page.url.searchParams.get('embed-theme'),
-	)}
+	{image}
 	{url}
 	{website}
 	{authorName}
