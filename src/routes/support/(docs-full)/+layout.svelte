@@ -59,6 +59,7 @@
 	import type { Writable } from 'svelte/store';
 	import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
 	import Link from 'carbon-icons-svelte/lib/Link.svelte';
+	import Security from 'carbon-icons-svelte/lib/Security.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -199,6 +200,10 @@
 					text: 'Acknowledgements',
 					id: '/support/policies/acknowledgements',
 				},
+				{
+					text: 'Security',
+					id: '/support/policies/security',
+				},
 			],
 		},
 		{
@@ -291,6 +296,10 @@
 		{
 			id: '/support/policies/acknowledgements',
 			icon: License,
+		},
+		{
+			id: '/support/policies/security',
+			icon: Security,
 		},
 		{
 			id: '/support/wycademy-documentation',
