@@ -7969,7 +7969,7 @@ does not get multiplied by horn */
 															size="sm"
 															step={10}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={45}
 															bind:value={inputNumberSigil1Attack}
 															invalidText={invalidNumberValueText}
 															label={'Sigil 1 Attack'}
@@ -7980,7 +7980,7 @@ does not get multiplied by horn */
 															size="sm"
 															step={10}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={45}
 															bind:value={inputNumberSigil2Attack}
 															invalidText={invalidNumberValueText}
 															label={'Sigil 2 Attack'}
@@ -7991,7 +7991,7 @@ does not get multiplied by horn */
 															size="sm"
 															step={10}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={45}
 															bind:value={inputNumberSigil3Attack}
 															invalidText={invalidNumberValueText}
 															label={'Sigil 3 Attack'}
@@ -8000,9 +8000,9 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={1}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={15}
 															bind:value={inputNumberZenithAttackSigil}
 															invalidText={invalidNumberValueText}
 															label={'Zenith Attack Sigil'}
@@ -8011,9 +8011,9 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={1}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={15}
 															bind:value={inputNumberAOEAttackSigil}
 															invalidText={invalidNumberValueText}
 															label={'AoE Attack Sigil'}
@@ -8045,7 +8045,7 @@ does not get multiplied by horn */
 															size="sm"
 															step={10}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={45}
 															bind:value={inputNumberSigil1Affinity}
 															invalidText={invalidNumberValueText}
 															label={'Sigil 1 Affinity'}
@@ -8056,7 +8056,7 @@ does not get multiplied by horn */
 															size="sm"
 															step={10}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={45}
 															bind:value={inputNumberSigil2Affinity}
 															invalidText={invalidNumberValueText}
 															label={'Sigil 2 Affinity'}
@@ -8067,7 +8067,7 @@ does not get multiplied by horn */
 															size="sm"
 															step={10}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={45}
 															bind:value={inputNumberSigil3Affinity}
 															invalidText={invalidNumberValueText}
 															label={'Sigil 3 Affinity'}
@@ -8076,9 +8076,9 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={1}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={15}
 															bind:value={inputNumberAOEAffinitySigil}
 															invalidText={invalidNumberValueText}
 															label={'AoE Affinity Sigil'}
@@ -8786,7 +8786,7 @@ does not get multiplied by horn */
 															size="sm"
 															step={10}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={45}
 															bind:value={inputNumberSigil1Element}
 															invalidText={invalidNumberValueText}
 															label={'Sigil 1 Element'}
@@ -8797,7 +8797,7 @@ does not get multiplied by horn */
 															size="sm"
 															step={10}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={45}
 															bind:value={inputNumberSigil2Element}
 															invalidText={invalidNumberValueText}
 															label={'Sigil 2 Element'}
@@ -8808,7 +8808,7 @@ does not get multiplied by horn */
 															size="sm"
 															step={10}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={45}
 															bind:value={inputNumberSigil3Element}
 															invalidText={invalidNumberValueText}
 															label={'Sigil 3 Element'}
@@ -8817,9 +8817,9 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={1}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={15}
 															bind:value={inputNumberZenithElementSigil}
 															invalidText={invalidNumberValueText}
 															label={'Zenith Element Sigil'}
@@ -8828,9 +8828,9 @@ does not get multiplied by horn */
 													<div class="number-input-container">
 														<NumberInput
 															size="sm"
-															step={10}
+															step={1}
 															min={minimumNumberValue}
-															max={maximumNumberValue}
+															max={15}
 															bind:value={inputNumberAOEElementSigil}
 															invalidText={invalidNumberValueText}
 															label={'AoE Element Sigil'}
