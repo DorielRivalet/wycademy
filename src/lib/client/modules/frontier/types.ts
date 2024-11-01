@@ -617,10 +617,10 @@ export type FrontierShotAttackMultiplier = 0.5 | 0.6 | 0.73 | 1 | 1.3 | 1.4 | 2;
 export type FrontierMotionValue = {
 	name: string;
 	animation?: string;
-	values: string; // TODO: to number array?
+	values: string;
 	hitCount: number;
 	elementMultiplier: number;
-	motionValue: number;
+	motionValue: number[] | number;
 	specialFlag: string;
 	notes?: string;
 };

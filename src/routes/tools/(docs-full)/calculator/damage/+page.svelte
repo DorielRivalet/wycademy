@@ -1147,60 +1147,128 @@
 		}
 	}
 
-	function getWeaponSectionMotionValues(
+	// TODO
+	function calculateMotionValueAdditionalDamage(
+		motionValueItem: FrontierMotionValue,
 		weaponName: FrontierWeaponName,
-		section: string,
-		inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle,
-		inputTextInputs: string,
-		isSharedMotionSection = false,
 	) {
-		let defaultResult: MotionValueResult[] = [
-			{
-				id: '',
-				name: '',
-				motion: '', // TODO they are wrong motions
-				raw: '0',
-				element: '0',
-				total: '0',
-				fire: '0',
-				water: '0',
-				thunder: '0',
-				ice: '0',
-				dragon: '0',
-				additional: '0',
-			},
-		];
+		/**also compressionmotionvalue*/
+		let motionValue =
+			typeof motionValueItem.motionValue === 'number'
+				? motionValueItem.motionValue
+				: motionValueItem.motionValue.reduce((a, v) => a + v, 0);
+		let hitCount = motionValueItem.hitCount;
+		let critMultiplier = 1;
+		let SwordAndShieldSigilAdded = 0;
+		let additional = 0;
+		/**statusassault*/
+		let statusAssault = 0;
 
-		let sectionEntry: FrontierMotionValueSection | undefined =
-			sharedWeaponMotionValues;
-		showWeaponMotionValuesSectionWarning = false;
+		/**shotadjustedmotion*/
+		let shotAdjustedMotionValue = motionValue;
+		/**bowchargeQuick*/
+		let bowQuickShotChargeLevel = 1;
 
-		if (!isSharedMotionSection) {
-			// Find the weapon by name
-			const weaponEntry = weaponMotionValues.find((w) => w.name === weaponName);
-			if (!weaponEntry) {
-				// Return an empty object or an error message if the weapon is not found
-				// TODO warn user?
-				console.error('Weapon not found');
-				return defaultResult; // or throw new Error('Weapon not found');
+		// handle motions with additional properties
+		// Custom Motion
+		if (
+			motionValueItem.name === 'Custom Motion' ||
+			motionValueItem.specialFlag === 'custommotion'
+		) {
+			motionValue = inputNumberTotalMotionValue;
+			hitCount = inputNumberHitCount;
+			motionValueItem.values = motionValue.toString();
+		} else if (motionValueItem.specialFlag === 'compressionmotion') {
+			motionValue = outputCompressedShotPower;
+			motionValueItem.values = motionValue.toString();
+		}
+
+		if (weaponName == 'Heavy Bowgun') {
+			shotAdjustedMotionValue = motionValue * outputHBGChargeShot;
+		}
+
+		if (
+			outputQuickShotChargeModifier === 1 ||
+			outputQuickShotChargeModifier === 2
+		) {
+			// lv2 0.85x
+			if (
+				outputBowChargeMultiplierLevels?.chargeModifier === 'Lv2 (1.0x / 0.95x)'
+			) {
+				bowQuickShotChargeLevel = 0.85;
 			}
-
-			// Find the section by name within the found weapon
-			sectionEntry = weaponEntry.sections.find(
-				(s) =>
-					s.name === section && s.style === inputWeaponMotionValuesSectionStyle,
-			);
-			if (!sectionEntry) {
-				sectionEntry = weaponEntry.sections[0];
-				inputWeaponMotionValuesSection = sectionEntry.name;
-				showWeaponMotionValuesSectionWarning = true;
+			// lv3 0.75x
+			else if (
+				outputBowChargeMultiplierLevels?.chargeModifier === 'Lv3 (1.5x / 1.2x)'
+			) {
+				bowQuickShotChargeLevel = 0.75;
+			}
+			// lv4 0.65x
+			else if (
+				outputBowChargeMultiplierLevels?.chargeModifier ===
+				'Lv4 (1.85x / 1.334x)'
+			) {
+				bowQuickShotChargeLevel = 0.65;
 			}
 		}
 
-		let result: MotionValueResult[] = [];
+		// TODO lazy handling of individual shot multipliers and properties
+		let shotValues = getShotValues(
+			motionValueItem.specialFlag,
+			bowQuickShotChargeLevel,
+			outputBowChargeMultiplierLevels,
+			outputQuickShotChargeModifier,
+			inputElement,
+			critMultiplier,
+			motionValue,
+			outputCriticalDistanceMultiplier,
+			inputBulletStrengthModifier,
+			motionValueItem.name,
+			shotAdjustedMotionValue,
+		);
 
-		let outputTotal = 0;
+		let bombValues = shotValues.bombValues;
+		/**TODO it seems bow does not use this but rather outputCriticalDistanceMultiplier*/
+		let bowSigilAddedValue = shotValues.bowSigilAddedValue;
 
+		bowQuickShotChargeLevel = shotValues.bowQuickShotChargeLevel;
+
+		// TODO testing
+		if (motionValueItem.specialFlag === 'elecomp') {
+			shotAdjustedMotionValue = shotValues.shotAdjustedMotionValue;
+		}
+
+		// TODO gunner and blademaster may conflict
+		if (outputWeaponClass === 'Gunner') {
+			critMultiplier = shotValues.criticalMultiplier; // TODO unused
+			motionValue = shotValues.motionValue;
+		}
+
+		let outputAdditional =
+			(Math.floor(inputNumberOtherAdditional * outputMonsterTotalDefense) +
+				additional +
+				statusAssault +
+				SwordAndShieldSigilAdded) *
+			hitCount;
+
+		// Sum above
+		// Additional
+		if (outputWeaponClass === 'Gunner') {
+			outputAdditional =
+				Math.floor(
+					(inputNumberOtherAdditional + bombValues) * outputMonsterTotalDefense,
+				) + bowSigilAddedValue;
+		}
+
+		return outputAdditional;
+	}
+
+	// TODO
+	function calculateMotionValueStunDamage(
+		motionValueItem: FrontierMotionValue,
+	) {}
+
+	function getUsedElements(weaponName: FrontierWeaponName) {
 		// hitzone preprocessing
 		let elementHitzoneFireMultiplier = getElementalExploit(
 			weaponName,
@@ -1222,8 +1290,6 @@
 			weaponName,
 			inputNumberDragonHitzone + outputDivaPrayerGemElementHitzone,
 		);
-
-		let rawHitzoneMultiplier = getRawHitzoneMultiplier(weaponName);
 
 		let usedFire = Math.floor(
 			((Math.floor(
@@ -1332,9 +1398,368 @@
 				100,
 		);
 
+		return { usedFire, usedWater, usedThunder, usedIce, usedDragon };
+	}
+
+	function calculateMotionValueRawOutput(
+		motionValueItem: FrontierMotionValue,
+		weaponName: FrontierWeaponName,
+		rawHitzoneMultiplier: number,
+	) {
+		// TODO
+		// Handle array vs single number motionValue
+		let motionValue: number;
+		if (Array.isArray(motionValueItem.motionValue)) {
+			// For array, calculate each value and sum the results
+			motionValue = motionValueItem.motionValue.reduce((sum, currentValue) => {
+				// Calculate for each value using the same parameters
+				const tempItem: FrontierMotionValue = {
+					...motionValueItem,
+					motionValue: currentValue,
+				};
+				console.log(tempItem);
+				return (
+					sum +
+					calculateMotionValueRawOutput(
+						tempItem,
+						weaponName,
+						rawHitzoneMultiplier,
+					)
+				);
+			}, 0);
+			return motionValue;
+		}
+
+		// For single number, proceed with original calculation
+		motionValue = motionValueItem.motionValue as number;
+
+		let critMultiplier = 1;
+		let totalAffinityUsed = 0;
+		let flagMultiplier = 1;
+
+		/**shotadjustedmotion*/
+		let shotAdjustedMotionValue = motionValue;
+		/**bowchargeQuick*/
+		let bowQuickShotChargeLevel = 1;
+
+		// handle motions with additional properties
+		// Custom Motion
+		if (
+			motionValueItem.name === 'Custom Motion' ||
+			motionValueItem.specialFlag === 'custommotion'
+		) {
+			motionValue = inputNumberTotalMotionValue;
+			motionValueItem.values = motionValue.toString();
+		} else if (motionValueItem.specialFlag === 'compressionmotion') {
+			motionValue = outputCompressedShotPower;
+			motionValueItem.values = motionValue.toString();
+		}
+
+		if (weaponName == 'Heavy Bowgun') {
+			shotAdjustedMotionValue = motionValue * outputHBGChargeShot;
+		}
+
+		if (
+			outputQuickShotChargeModifier === 1 ||
+			outputQuickShotChargeModifier === 2
+		) {
+			// lv2 0.85x
+			if (
+				outputBowChargeMultiplierLevels?.chargeModifier === 'Lv2 (1.0x / 0.95x)'
+			) {
+				bowQuickShotChargeLevel = 0.85;
+			}
+			// lv3 0.75x
+			else if (
+				outputBowChargeMultiplierLevels?.chargeModifier === 'Lv3 (1.5x / 1.2x)'
+			) {
+				bowQuickShotChargeLevel = 0.75;
+			}
+			// lv4 0.65x
+			else if (
+				outputBowChargeMultiplierLevels?.chargeModifier ===
+				'Lv4 (1.85x / 1.334x)'
+			) {
+				bowQuickShotChargeLevel = 0.65;
+			}
+		}
+
+		// TODO lazy handling of individual shot multipliers and properties
+		let shotValues = getShotValues(
+			motionValueItem.specialFlag,
+			bowQuickShotChargeLevel,
+			outputBowChargeMultiplierLevels,
+			outputQuickShotChargeModifier,
+			inputElement,
+			critMultiplier,
+			motionValue,
+			outputCriticalDistanceMultiplier,
+			inputBulletStrengthModifier,
+			motionValueItem.name,
+			shotAdjustedMotionValue,
+		);
+
+		let bulletStrengthModifier = shotValues.bulletStrengthModifier;
+		/**TODO it seems bow does not use this but rather outputCriticalDistanceMultiplier*/
+		let bowgunsCriticalDistanceMultiplier =
+			shotValues.criticalDistanceMultiplier;
+		let quickShotMode = shotValues.quickShotChargeModifier;
+
+		bowQuickShotChargeLevel = shotValues.bowQuickShotChargeLevel;
+		// TODO does these hold the values in here or does it change due to reactivity instantly?
+		// outputQuickShotChargeModifier = shotValues.quickShotChargeModifier;
+		// outputCriticalDistanceMultiplier = shotValues.criticalDistanceMultiplier;
+		let bowChargeRawLevel = shotValues.bowChargeRawLevel;
+
+		// TODO testing
+		if (motionValueItem.specialFlag === 'elecomp') {
+			shotAdjustedMotionValue = shotValues.shotAdjustedMotionValue;
+		}
+
+		// TODO gunner and blademaster may conflict
+		if (outputWeaponClass === 'Gunner') {
+			critMultiplier = shotValues.criticalMultiplier;
+			motionValue = shotValues.motionValue;
+		}
+
+		// Reflect
+		// TODO specialFlag types
+		// critical handling
+		if (
+			inputCritMode === 'No Crits' ||
+			motionValueItem.specialFlag === 'nocrit'
+		) {
+			critMultiplier = 1.0;
+		} else {
+			if (inputCritMode === 'All Crits') {
+				critMultiplier = outputCritMultiplier;
+				totalAffinityUsed = 100;
+			} else if (inputCritMode === 'Averaged') {
+				// todo totalAffinity is different than the other ones, missing terms?
+				totalAffinityUsed =
+					outputIssenAffinity +
+					outputSharpnessAffinity +
+					inputNumberUnlimitedSigil +
+					inputNumberSigil1Affinity +
+					inputNumberSigil2Affinity +
+					inputNumberSigil3Affinity +
+					outputStyleRankAffinity +
+					outputExpertAffinity +
+					inputNumberNaturalAffinity +
+					outputFlashConversionAffinity +
+					outputStarvingWolfAffinity +
+					outputCeaselessAffinity +
+					outputDivaPrayerGemAffinity;
+				if (totalAffinityUsed > 100) {
+					totalAffinityUsed = 100;
+				} else if (totalAffinityUsed < 0) {
+					totalAffinityUsed = 0;
+				}
+				critMultiplier =
+					(totalAffinityUsed / 100) * outputCritMultiplier +
+					(1 - totalAffinityUsed / 100) * 1;
+			} else {
+				critMultiplier = 1.0;
+				totalAffinityUsed = 0;
+			}
+		}
+
+		// SnS Sigil
+		if (
+			motionValueItem.name === 'Sigil Additional' &&
+			motionValueItem.specialFlag === 'snssigil'
+		) {
+			if (inputElement === 'None') {
+				critMultiplier = 1.0;
+				motionValue = 0;
+			} else {
+				motionValue = 0;
+			}
+		}
+
+		// GS Charges
+		flagMultiplier =
+			greatSwordCharges.find((e) => e.name === 'element.name')?.multiplier || 1;
+
+		let rawOutput = 0;
+
+		if (outputWeaponClass === 'Blademaster') {
+			// Raw Output
+			rawOutput = Math.floor(
+				Math.floor(
+					Math.floor(
+						Math.floor(
+							Math.floor(
+								((Math.floor(motionValue * critMultiplier) / 100) *
+									getMaxTrueRaw(internalTrueRaw) *
+									outputSharpnessMultiplier *
+									flagMultiplier *
+									outputSwordAndShieldMultiplier *
+									outputOtherMultipliers *
+									outputMonsterStatusInflictedMultiplier *
+									rawHitzoneMultiplier) /
+									100,
+							) * outputMonsterTotalDefense,
+						),
+					) * outputAbsoluteDefenseMultiplier,
+				) *
+					outputPremiumCourseMultiplier *
+					outputFencingMultiplier,
+			);
+		} else if (weaponName === 'Light Bowgun' || weaponName === 'Heavy Bowgun') {
+			// TODO testing
+			if (motionValueItem.specialFlag === 'elecomp') {
+				motionValue = Math.floor(shotAdjustedMotionValue);
+				motionValueItem.values = motionValue.toString();
+			}
+
+			// actual raw output
+			rawOutput = Math.floor(
+				Math.floor(
+					Math.floor(
+						(shotAdjustedMotionValue / 100) *
+							critMultiplier *
+							internalTrueRaw *
+							bowgunsCriticalDistanceMultiplier *
+							bulletStrengthModifier *
+							outputShotMultiplier *
+							outputMonsterStatusInflictedMultiplier *
+							((inputNumberShotHitzone + outputDivaPrayerGemShotHitzone) /
+								100) *
+							outputMonsterTotalDefense,
+					) * outputAbsoluteDefenseMultiplier,
+				) * outputPremiumCourseMultiplier,
+			);
+		} else if (weaponName === 'Bow') {
+			if (quickShotMode !== 2) {
+				rawOutput = Math.floor(
+					Math.floor(
+						Math.floor(
+							Math.floor(
+								(Math.floor(
+									(motionValue / 100) * critMultiplier * internalTrueRaw,
+								) *
+									outputCriticalDistanceMultiplier *
+									outputBowCoatingModifier *
+									bulletStrengthModifier *
+									bowChargeRawLevel *
+									bowQuickShotChargeLevel *
+									outputMonsterStatusInflictedMultiplier *
+									inputNumberShotHitzone) /
+									100,
+							) * outputMonsterTotalDefense,
+						) * outputAbsoluteDefenseMultiplier,
+					) * outputPremiumCourseMultiplier,
+				);
+			} else if (quickShotMode === 2) {
+				rawOutput =
+					Math.floor(
+						Math.floor(
+							Math.floor(
+								Math.floor(
+									(Math.floor(
+										(motionValue / 100) * critMultiplier * internalTrueRaw,
+									) *
+										outputCriticalDistanceMultiplier *
+										outputBowCoatingModifier *
+										bulletStrengthModifier *
+										shotValues.bowChargeRawLevel *
+										outputMonsterStatusInflictedMultiplier *
+										inputNumberShotHitzone) /
+										100,
+								) * outputMonsterTotalDefense,
+							) * outputAbsoluteDefenseMultiplier,
+						) * outputPremiumCourseMultiplier,
+					) +
+					Math.floor(
+						Math.floor(
+							Math.floor(
+								Math.floor(
+									(Math.floor(
+										(motionValue / 100) * critMultiplier * internalTrueRaw,
+									) *
+										outputCriticalDistanceMultiplier *
+										outputBowCoatingModifier *
+										bulletStrengthModifier *
+										shotValues.bowChargeRawLevel *
+										bowQuickShotChargeLevel *
+										outputMonsterStatusInflictedMultiplier *
+										inputNumberShotHitzone) /
+										100,
+								) * outputMonsterTotalDefense,
+							) * outputAbsoluteDefenseMultiplier,
+						) * outputPremiumCourseMultiplier,
+					);
+			}
+		}
+
+		rawOutput = rawOutput.toString() === 'NaN' ? 0 : rawOutput;
+
+		return rawOutput;
+	}
+
+	function getWeaponSectionMotionValues(
+		weaponName: FrontierWeaponName,
+		section: string,
+		inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle,
+		inputTextInputs: string,
+		isSharedMotionSection = false,
+	): MotionValueResult[] {
+		let defaultResult: MotionValueResult[] = [
+			{
+				id: '',
+				name: '',
+				motion: '', // TODO they are wrong motions
+				raw: '0',
+				element: '0',
+				total: '0',
+				fire: '0',
+				water: '0',
+				thunder: '0',
+				ice: '0',
+				dragon: '0',
+				additional: '0',
+			},
+		];
+
+		let sectionEntry: FrontierMotionValueSection | undefined =
+			sharedWeaponMotionValues;
+		showWeaponMotionValuesSectionWarning = false;
+
+		if (!isSharedMotionSection) {
+			// Find the weapon by name
+			const weaponEntry = weaponMotionValues.find((w) => w.name === weaponName);
+			if (!weaponEntry) {
+				// Return an empty object or an error message if the weapon is not found
+				// TODO warn user?
+				console.error('Weapon not found');
+				return defaultResult; // or throw new Error('Weapon not found');
+			}
+
+			// Find the section by name within the found weapon
+			sectionEntry = weaponEntry.sections.find(
+				(s) =>
+					s.name === section && s.style === inputWeaponMotionValuesSectionStyle,
+			);
+			if (!sectionEntry) {
+				sectionEntry = weaponEntry.sections[0];
+				inputWeaponMotionValuesSection = sectionEntry.name;
+				showWeaponMotionValuesSectionWarning = true;
+			}
+		}
+
+		let result: MotionValueResult[] = [];
+		let rawHitzoneMultiplier = getRawHitzoneMultiplier(weaponName);
+		let { usedFire, usedWater, usedThunder, usedIce, usedDragon } =
+			getUsedElements(weaponName);
+
 		sectionEntry.motionValues.forEach((motionValueItem, index) => {
+			// TODO motion value arrays
 			/**also compressionmotionvalue*/
-			let motionValue = motionValueItem.motionValue;
+			let motionValue =
+				typeof motionValueItem.motionValue === 'number'
+					? motionValueItem.motionValue
+					: motionValueItem.motionValue.reduce((a, v) => a + v, 0);
 			let hitCount = motionValueItem.hitCount;
 			let elementMultiplier = motionValueItem.elementMultiplier;
 			let critMultiplier = 1;
@@ -1607,123 +2032,14 @@
 					SwordAndShieldSigilAdded) *
 				hitCount;
 
-			let rawOutput = 0;
-
-			if (outputWeaponClass === 'Blademaster') {
-				// Raw Output
-				rawOutput = Math.floor(
-					Math.floor(
-						Math.floor(
-							Math.floor(
-								Math.floor(
-									((Math.floor(motionValue * critMultiplier) / 100) *
-										getMaxTrueRaw(internalTrueRaw) *
-										outputSharpnessMultiplier *
-										flagMultiplier *
-										outputSwordAndShieldMultiplier *
-										outputOtherMultipliers *
-										outputMonsterStatusInflictedMultiplier *
-										rawHitzoneMultiplier) /
-										100,
-								) * outputMonsterTotalDefense,
-							),
-						) * outputAbsoluteDefenseMultiplier,
-					) *
-						outputPremiumCourseMultiplier *
-						outputFencingMultiplier,
-				);
-			} else if (
-				weaponName === 'Light Bowgun' ||
-				weaponName === 'Heavy Bowgun'
-			) {
-				// TODO testing
-				if (motionValueItem.specialFlag === 'elecomp') {
-					motionValue = Math.floor(shotAdjustedMotionValue);
-					motionValueItem.values = motionValue.toString();
-				}
-
-				// actual raw output
-				rawOutput = Math.floor(
-					Math.floor(
-						Math.floor(
-							(shotAdjustedMotionValue / 100) *
-								critMultiplier *
-								internalTrueRaw *
-								bowgunsCriticalDistanceMultiplier *
-								bulletStrengthModifier *
-								outputShotMultiplier *
-								outputMonsterStatusInflictedMultiplier *
-								((inputNumberShotHitzone + outputDivaPrayerGemShotHitzone) /
-									100) *
-								outputMonsterTotalDefense,
-						) * outputAbsoluteDefenseMultiplier,
-					) * outputPremiumCourseMultiplier,
-				);
-			} else if (weaponName === 'Bow') {
-				if (quickShotMode !== 2) {
-					rawOutput = Math.floor(
-						Math.floor(
-							Math.floor(
-								Math.floor(
-									(Math.floor(
-										(motionValue / 100) * critMultiplier * internalTrueRaw,
-									) *
-										outputCriticalDistanceMultiplier *
-										outputBowCoatingModifier *
-										bulletStrengthModifier *
-										bowChargeRawLevel *
-										bowQuickShotChargeLevel *
-										outputMonsterStatusInflictedMultiplier *
-										inputNumberShotHitzone) /
-										100,
-								) * outputMonsterTotalDefense,
-							) * outputAbsoluteDefenseMultiplier,
-						) * outputPremiumCourseMultiplier,
-					);
-				} else if (quickShotMode === 2) {
-					rawOutput =
-						Math.floor(
-							Math.floor(
-								Math.floor(
-									Math.floor(
-										(Math.floor(
-											(motionValue / 100) * critMultiplier * internalTrueRaw,
-										) *
-											outputCriticalDistanceMultiplier *
-											outputBowCoatingModifier *
-											bulletStrengthModifier *
-											shotValues.bowChargeRawLevel *
-											outputMonsterStatusInflictedMultiplier *
-											inputNumberShotHitzone) /
-											100,
-									) * outputMonsterTotalDefense,
-								) * outputAbsoluteDefenseMultiplier,
-							) * outputPremiumCourseMultiplier,
-						) +
-						Math.floor(
-							Math.floor(
-								Math.floor(
-									Math.floor(
-										(Math.floor(
-											(motionValue / 100) * critMultiplier * internalTrueRaw,
-										) *
-											outputCriticalDistanceMultiplier *
-											outputBowCoatingModifier *
-											bulletStrengthModifier *
-											shotValues.bowChargeRawLevel *
-											bowQuickShotChargeLevel *
-											outputMonsterStatusInflictedMultiplier *
-											inputNumberShotHitzone) /
-											100,
-									) * outputMonsterTotalDefense,
-								) * outputAbsoluteDefenseMultiplier,
-							) * outputPremiumCourseMultiplier,
-						);
-				}
-			}
+			let rawOutput = calculateMotionValueRawOutput(
+				motionValueItem,
+				weaponName,
+				rawHitzoneMultiplier,
+			);
 
 			// Final Ouput
-			outputTotal = totalElementalOutput + rawOutput + outputAdditional;
+			let outputTotal = totalElementalOutput + rawOutput + outputAdditional;
 
 			// Gunner override TODO refactor needed
 			// Elemental
