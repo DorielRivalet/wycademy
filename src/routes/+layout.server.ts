@@ -1,5 +1,4 @@
 // TODO can i prerender this?
-console.log('layout.server.ts');
 import { apiCacheTimeouts } from '$lib/constants';
 import type { GitHubData } from '$lib/types';
 import type { LayoutServerLoad } from './$types';
