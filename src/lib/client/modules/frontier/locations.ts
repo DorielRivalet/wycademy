@@ -43,8 +43,115 @@ import LocationIconWorld from '$lib/client/images/icon/world.webp';
 import LocationIconBurst from '$lib/client/images/icon/burst.webp';
 import LocationIconCaravan from '$lib/client/images/icon/pallone_caravan.webp';
 import LocationIconDesert from '$lib/client/images/icon/desert.webp';
+import LocationIconPolarSea from '$lib/client/images/icon/polar_sea.webp';
+import LocationIconSwamp from '$lib/client/images/icon/swamp.webp';
 
-export const LocationIcons: { name: string; icon: any }[] = [
+// TODO to ezlion
+export type FrontierLocation =
+	| ''
+	| 'Jungle'
+	| 'Snowy Mountains'
+	| 'Desert'
+	| 'Volcano'
+	| 'Swamp'
+	| 'Siege Fortres'
+	| 'Arena with Moat'
+	| 'Castle Shrade'
+	| 'Forest and Hills'
+	| 'Arena with Pillar'
+	| 'Tower 3'
+	| 'Kokoto Village'
+	| 'Crimson Battleground'
+	| 'Arena with Ledge'
+	| 'Dundorma'
+	| 'Tower 2'
+	| 'Tower 1'
+	| 'My House'
+	| 'Akantor Battleground'
+	| 'Mezeporta'
+	| 'Hairdresser'
+	| 'Guild Hall'
+	| 'My Tore'
+	| 'Old Town'
+	| 'Private Bar'
+	| 'Rasta Bar'
+	| 'Great Forest'
+	| 'Code Claiming Room'
+	| 'Top of Great Forest'
+	| 'Highlands'
+	| 'Caravan Changing Area'
+	| 'Blacksmith'
+	| 'Caravan Blimp'
+	| 'Caravan Guest House'
+	| 'My Gallery'
+	| 'My Garden'
+	| 'Interception Base'
+	| 'Cities'
+	| 'My Support'
+	| 'PvP Room'
+	| 'Gorge'
+	| 'Solitude Island'
+	| 'Campaign Tent'
+	| 'Raviente Baloon'
+	| 'Tidas Island'
+	| 'My Missions'
+	| 'Large Airship'
+	| 'Polar Sea'
+	| "World's End"
+	| 'Flower Field'
+	| 'Top of Tower'
+	| 'Bamboo Forest'
+	| 'Deep Crater'
+	| 'Prayer Fountain'
+	| 'Tower 01'
+	| 'Tower Airship'
+	| 'Tower 02'
+	| 'Urgent Tower'
+	| 'Tower'
+	| 'Varusa Battlefield'
+	| 'Duremudira Arena'
+	| 'Duremudira Doorway'
+	| 'White Lake'
+	| '4th District Tower'
+	| 'Solitude Island Depths'
+	| 'Painted Falls'
+	| 'Cloud Viewing Fortress'
+	| 'Guild Hall (Diva)'
+	| 'Sacred Pinnacle'
+	| 'Sanctuary'
+	| 'Fortress'
+	| "Hunter's Road"
+	| 'Historical Site'
+	| 'Mezeporta Festival'
+	| 'Bento'
+	| 'Berserk Raviente Raid'
+	| 'Caravan'
+	| 'Cattleya'
+	| 'Diva Note'
+	| 'Diva Prayer Gem'
+	| 'Diva'
+	| 'Diva Defense'
+	| 'Duremudira'
+	| 'Entrance'
+	| 'Festi'
+	| 'Hunter Festival'
+	| 'Hunter Contest'
+	| 'Interception Monster'
+	| 'Interception'
+	| 'Mezfes'
+	| 'PvP'
+	| 'Road'
+	| 'Raviente Raid'
+	| 'Tent'
+	| 'Transcend'
+	| 'Tidal Island'
+	| 'Violent Raviente Raid'
+	| 'World'
+	| 'Burst';
+
+// TODO probably put some entries in another array
+// merge with habitat array?
+export const LocationIcons: { name: FrontierLocation; icon: any }[] = [
 	{ name: 'Bento', icon: LocationIconBento },
 	{
 		name: 'Berserk Raviente Raid',
@@ -63,13 +170,13 @@ export const LocationIcons: { name: string; icon: any }[] = [
 	{ name: 'Entrance', icon: LocationIconEntrance },
 	{ name: 'Festi', icon: LocationIconFesti },
 	{ name: 'Hunter Festival', icon: LocationIconFesti },
-	{ name: 'Flower Fields', icon: LocationIconFlowerFields },
-	{ name: 'Forest And Hills', icon: LocationIconForestAndHills },
+	{ name: 'Flower Field', icon: LocationIconFlowerFields },
+	{ name: 'Forest and Hills', icon: LocationIconForestAndHills },
 	{ name: 'Gorge', icon: LocationIconGorge },
 	{ name: 'Great Forest', icon: LocationIconGreatForest },
 	{ name: 'Guild Hall', icon: LocationIconGuildHall },
 	{ name: 'Highlands', icon: LocationIconHighlands },
-	{ name: 'House', icon: LocationIconHouse },
+	{ name: 'My House', icon: LocationIconHouse },
 	{ name: 'Hunter Contest', icon: LocationIconHunterContest },
 	{
 		name: 'Interception Monster',
@@ -86,11 +193,13 @@ export const LocationIcons: { name: string; icon: any }[] = [
 	{ name: 'My Missions', icon: LocationIconMyMissions },
 	{ name: 'My Support', icon: LocationIconMySupport },
 	{ name: 'My Tore', icon: LocationIconMyTore },
+	{ name: 'Polar Sea', icon: LocationIconPolarSea },
 	{ name: 'PvP', icon: LocationIconPvP },
 	{ name: 'Rasta Bar', icon: LocationIconRastaBar },
 	{ name: 'Raviente Raid', icon: LocationIconRavienteRaid },
 	{ name: 'Road', icon: LocationIconRoad },
 	{ name: 'Snowy Mountains', icon: LocationIconSnowyMountains },
+	{ name: 'Swamp', icon: LocationIconSwamp },
 	{ name: 'Tent', icon: LocationIconTent },
 	{ name: 'Tidal Island', icon: LocationIconTidalIsland },
 	{ name: 'Tower', icon: LocationIconTower },

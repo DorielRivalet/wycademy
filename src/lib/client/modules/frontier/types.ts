@@ -18,6 +18,7 @@ import type {
 } from 'ezlion';
 import type { wikiaMonsters } from './monsters';
 import type { ComponentType, SvelteComponent } from 'svelte';
+import type { FrontierHabitat } from './habitat';
 
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
 
@@ -824,7 +825,7 @@ export type FrontierMonsterInfo = {
 	elements?: FrontierElement[];
 	ailments?: FrontierAilment[];
 	weaknesses?: FrontierElementStatus[];
-	habitats?: string[]; // TODO location type
+	habitats?: FrontierHabitat[]; // TODO location type
 	type?: 'Large' | 'Small';
 	sizes?: string[];
 	relatedMonsters?: FrontierMonsterNameExpanded[];
