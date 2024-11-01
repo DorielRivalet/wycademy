@@ -6,13 +6,17 @@ Shows text next to an icon inline. You can use either a component or a image imp
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
 	export let text: string;
 	export let tooltip: string;
+	/**default: component*/
 	export let iconType: 'component' | 'file' = 'component';
+	/**default: QuestionMarkIconWhite*/
 	export let icon: any = QuestionMarkIconWhite;
+	/**default: #ffffff*/
 	export let iconColor = '#ffffff';
-	/**For component*/
+	/**For component. default: 100%*/
 	export let iconSize = '100%';
-	/**For component*/
+	/**For component. default: auto*/
 	export let gap = 'auto';
+	/**default: true*/
 	export let background = true;
 
 	let iconProps = {
