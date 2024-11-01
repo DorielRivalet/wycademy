@@ -47,6 +47,7 @@ import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture
 import Link from 'carbon-icons-svelte/lib/Link.svelte';
 import AllElements from '../components/frontier/icon/element/AllElements.svelte';
 import AllAilments from '../components/frontier/icon/ailment/AllAilments.svelte';
+import Security from 'carbon-icons-svelte/lib/Security.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -180,6 +181,12 @@ export const supportInfo: CategoryInfo[] = [
 				description: 'Acknowledgements and licenses.',
 				link: '/support/policies/acknowledgements',
 				image: License,
+			},
+			{
+				name: 'Security',
+				description: 'Information about the security of the website.',
+				link: '/support/policies/security',
+				image: Security,
 			},
 		],
 	},
