@@ -51,6 +51,10 @@
 	} from '$lib/client/modules/frontier/monsters';
 	import { isFieldEmpty } from '$lib/client/modules/frontier/functions';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
+	import {
+		getHabitatIcon,
+		Habitats,
+	} from '$lib/client/modules/frontier/habitat';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
@@ -385,7 +389,22 @@
 					{#if monster.habitats && monster.habitats.length > 0}
 						<UnorderedList class="spaced-list">
 							{#each monster.habitats as habitat}
-								<ListItem>{habitat}</ListItem>
+								<ListItem>
+									{#if Habitats.filter((e) => e.icon !== '').find((e) => e.name === habitat)}
+										<Link href={`/hunter-notes/locations/`}>
+											<InlineTooltip
+												iconType="file"
+												tooltip={'Location'}
+												text={habitat}
+												gap={'.5rem'}
+												iconSize={'32px'}
+												icon={getHabitatIcon(habitat)}
+											/>
+										</Link>
+									{:else}
+										{habitat}
+									{/if}
+								</ListItem>
 							{/each}
 						</UnorderedList>
 					{:else}
