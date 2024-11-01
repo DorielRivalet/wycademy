@@ -8,10 +8,11 @@ function stringToCustomDateFormat(date: string): string {
 	return new Date(date).toISOString().substring(0, 16).replace('T', ' ');
 }
 
-const whitelist = ['/', '/site-preferences'];
-
 export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
-	console.log('async layout server load');
+	// console.log('async layout server load');
+	/**Only use with prerendered pages */
+	const whitelist = ['/', '/site-preferences'];
+
 	let lastModified: string = '';
 	let commitLink: string = '#';
 	let timesChanged: number = 0;

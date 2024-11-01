@@ -1406,7 +1406,6 @@
 		weaponName: FrontierWeaponName,
 		rawHitzoneMultiplier: number,
 	) {
-		// TODO
 		// Handle array vs single number motionValue
 		let motionValue: number;
 		if (Array.isArray(motionValueItem.motionValue)) {
@@ -1417,7 +1416,6 @@
 					...motionValueItem,
 					motionValue: currentValue,
 				};
-				console.log(tempItem);
 				return (
 					sum +
 					calculateMotionValueRawOutput(
