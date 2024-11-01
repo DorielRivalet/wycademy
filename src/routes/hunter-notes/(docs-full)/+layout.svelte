@@ -877,6 +877,13 @@
 		description = monster?.ecology
 			? monster.ecology
 			: (navigationItem?.description ?? description);
+		image = monster?.fullRender
+			? monster.fullRender
+			: getPageThumbnail(
+					$page.url.pathname,
+					$page.url.searchParams.get('embed'),
+					$page.url.searchParams.get('embed-theme'),
+				);
 		breadcrumbItems = items;
 	}
 
