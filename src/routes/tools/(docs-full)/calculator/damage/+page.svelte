@@ -2785,8 +2785,19 @@
 			newInputs.inputCompressedShotMultiplier || inputCompressedShotMultiplier;
 		inputCompressedElementShot =
 			newInputs.inputCompressedElementShot || inputCompressedElementShot;
+
 		inputBowCoatingsMultiplier =
 			newInputs.inputBowCoatingsMultiplier || inputBowCoatingsMultiplier;
+		inputBowCoatingsArmorMultiplier =
+			newInputs.inputBowCoatingsArmorMultiplier ||
+			inputBowCoatingsArmorMultiplier;
+		inputBowCoatingsWeaponMultiplier =
+			newInputs.inputBowCoatingsWeaponMultiplier ||
+			inputBowCoatingsWeaponMultiplier;
+		inputBowCoatingsHidenMultiplier =
+			newInputs.inputBowCoatingsHidenMultiplier ||
+			inputBowCoatingsHidenMultiplier;
+
 		inputBowChargeMultiplier =
 			newInputs.inputBowChargeMultiplier || inputBowChargeMultiplier;
 		inputQuickShot = newInputs.inputQuickShot || inputQuickShot;
@@ -3553,6 +3564,9 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	let inputCompressedShotMultiplier = 'Not Compressed (0x)';
 	/**bowbottles*/
 	let inputBowCoatingsMultiplier = 'None (1x)';
+	let inputBowCoatingsWeaponMultiplier = 'Non-G Rank';
+	let inputBowCoatingsArmorMultiplier = 'None';
+	let inputBowCoatingsHidenMultiplier = 'None';
 	let inputBowChargeMultiplier = 'Lv4 (1.85x / 1.334x)';
 	let inputQuickShot = 'Normal (All 1.0x)';
 	/**eleshottype*/
@@ -3694,6 +3708,9 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 		inputCompressedShotMultiplier: inputCompressedShotMultiplier,
 		inputCompressedElementShot: inputCompressedElementShot,
 		inputBowCoatingsMultiplier: inputBowCoatingsMultiplier,
+		inputBowCoatingsArmorMultiplier: inputBowCoatingsArmorMultiplier,
+		inputBowCoatingsWeaponMultiplier: inputBowCoatingsWeaponMultiplier,
+		inputBowCoatingsHidenMultiplier: inputBowCoatingsHidenMultiplier,
 		inputBowChargeMultiplier: inputBowChargeMultiplier,
 		inputQuickShot: inputQuickShot,
 		inputElement: inputElement,
@@ -4486,8 +4503,15 @@ does not get multiplied by horn */
 	/** coatingmod*/
 	$: outputBowCoatingModifier =
 		inputConsumptionSlayer === 'Active (+100)'
-			? outputBowCoatingsMultiplier + 0.2
-			: outputBowCoatingsMultiplier;
+			? outputBowCoatingsMultiplier +
+				0.2 +
+				outputBowCoatingsWeaponMultiplier +
+				outputBowCoatingsArmorMultiplier +
+				outputBowCoatingsHidenMultiplier
+			: outputBowCoatingsMultiplier +
+				outputBowCoatingsWeaponMultiplier +
+				outputBowCoatingsArmorMultiplier +
+				outputBowCoatingsHidenMultiplier;
 
 	$: addToDamageCalculatorHistoryLogs(
 		'outputBowCoatingModifier',
@@ -4503,6 +4527,36 @@ does not get multiplied by horn */
 	$: addToDamageCalculatorHistoryLogs(
 		'outputBowCoatingsMultiplier',
 		outputBowCoatingsMultiplier.toString(),
+	);
+
+	$: outputBowCoatingsArmorMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsArmorMultiplier,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsArmorMultiplier',
+		outputBowCoatingsArmorMultiplier.toString(),
+	);
+
+	$: outputBowCoatingsWeaponMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsWeaponMultiplier,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsWeaponMultiplier',
+		outputBowCoatingsWeaponMultiplier.toString(),
+	);
+
+	$: outputBowCoatingsHidenMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsHidenMultiplier,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsHidenMultiplier',
+		outputBowCoatingsHidenMultiplier.toString(),
 	);
 
 	$: outputRoadLastStandAttack =
@@ -8139,54 +8193,56 @@ does not get multiplied by horn */
 																		additional +0.2x multiplier.
 																	</p>
 																</Tooltip>
+
 																<Dropdown
 																	titleText="Bow Coatings Multiplier"
 																	bind:selectedId={inputBowCoatingsMultiplier}
 																	items={[
 																		{ id: 'None (1x)', text: 'None (1x)' },
 																		{
-																			id: 'Power Bottle (1.6x)',
-																			text: 'Power Bottle (1.6x)',
+																			id: 'Power Bottle (1.5x)',
+																			text: 'Power Bottle (1.5x)',
 																		},
 																		{
-																			id: 'P. Bottle + Bow Hiden (1.8x)',
-																			text: 'P. Bottle + Bow Hiden (1.8x)',
+																			id: 'Status Bottle (1.4x)',
+																			text: 'Status Bottle (1.4x)',
 																		},
-																		{
-																			id: 'P. + Origin (1.7x)',
-																			text: 'P. + Origin (1.7x)',
-																		},
-																		{
-																			id: 'P. + Origin + Hiden (1.9x)',
-																			text: 'P. + Origin + Hiden (1.9x)',
-																		},
-																		{
-																			id: 'Status Bottle (1.5x)',
-																			text: 'Status Bottle (1.5x)',
-																		},
-																		{
-																			id: 'S. Bottle + Hiden (1.7x)',
-																			text: 'S. Bottle + Hiden (1.7x)',
-																		},
-																		{
-																			id: 'S. Bottle + Origin (1.6x)',
-																			text: 'S. Bottle + Origin (1.6x)',
-																		},
-																		{
-																			id: 'S. + Origin + Hiden (1.8x)',
-																			text: 'S. + Origin + Hiden (1.8x)',
-																		},
-																		{
-																			id: 'Non-G Power Bottle (1.5x)',
-																			text: 'Non-G Power Bottle (1.5x)',
-																		},
-																		{
-																			id: 'Choose a level lower for Non-G',
-																			text: 'Choose a level lower for Non-G',
-																		}, // TODO
 																	]}
 																/>
 															</div>
+															<Dropdown
+																titleText="Bow Coatings Weapon Multiplier"
+																bind:selectedId={inputBowCoatingsWeaponMultiplier}
+																items={[
+																	{ id: 'Non-G Rank', text: 'Non-G Rank' },
+																	{
+																		id: 'G Rank (+0.1)',
+																		text: 'G Rank (+0.1)',
+																	},
+																]}
+															/>
+															<Dropdown
+																titleText="Bow Coatings Armor Multiplier"
+																bind:selectedId={inputBowCoatingsArmorMultiplier}
+																items={[
+																	{ id: 'None', text: 'None' },
+																	{
+																		id: 'Origin/Zenith (+0.1)',
+																		text: 'Origin/Zenith (+0.1)',
+																	},
+																]}
+															/>
+															<Dropdown
+																titleText="Bow Coatings Hiden Multiplier"
+																bind:selectedId={inputBowCoatingsHidenMultiplier}
+																items={[
+																	{ id: 'None', text: 'None' },
+																	{
+																		id: 'Hiden (+0.1)',
+																		text: 'Hiden (+0.1)',
+																	},
+																]}
+															/>
 
 															<Dropdown
 																titleText="Bow Charge Multiplier"

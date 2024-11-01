@@ -379,42 +379,30 @@ export const elementDropdownItems: DropdownItemOption[] = [
 		value: 0,
 	},
 	{
-		name: 'Power Bottle (1.6x)',
-		value: 1.6,
-	},
-	{
-		name: 'P. Bottle + Bow Hiden (1.8x)',
-		value: 1.8,
-	},
-	{
-		name: 'P. + Origin (1.7x)',
-		value: 1.7,
-	},
-	{
-		name: 'P. + Origin + Hiden (1.9x)',
-		value: 1.9,
-	},
-	{
-		name: 'Status Bottle (1.5x)',
+		name: 'Power Bottle (1.5x)',
 		value: 1.5,
 	},
 	{
-		name: 'S. Bottle + Hiden (1.7x)',
-		value: 1.7,
+		name: 'Status Bottle (1.4x)',
+		value: 1.4,
 	},
 	{
-		name: 'S. Bottle + Origin (1.6x)',
-		value: 1.6,
+		name: 'Non-G Rank',
+		value: 0,
 	},
 	{
-		name: 'S. + Origin + Hiden (1.8x)',
-		value: 1.8,
+		name: 'Hiden (+0.1)',
+		value: 0.1,
 	},
 	{
-		name: 'Non-G Power Bottle (1.5x)',
-		value: 1.5,
+		name: 'G Rank (+0.1)',
+		value: 0.1,
 	},
-	{ name: 'Choose a level lower for Non-G', value: 1.5 },
+	{
+		name: 'Origin/Zenith (+0.1)',
+		value: 0.1,
+	},
+
 	// removed bowchargemodifier
 	{
 		name: 'Normal (All 1.0x)',
@@ -2196,11 +2184,11 @@ export const legacyCalculatorValuesMap: {
 		},
 		bowbottles: {
 			'1.0': 'None (1x)',
-			'1.6': 'Power Bottle (1.6x)',
-			'1.8': 'P. Bottle + Bow Hiden (1.8x)',
-			'1.7': 'P. + Origin (1.7x)',
-			'1.9': 'P. + Origin + Hiden (1.9x)',
-			'1.5': 'Status Bottle (1.5x)',
+			'1.6': 'Power Bottle (1.5x)',
+			// '1.8': 'P. Bottle + Bow Hiden (1.8x)',
+			// '1.7': 'P. + Origin (1.7x)',
+			// '1.9': 'P. + Origin + Hiden (1.9x)',
+			'1.5': 'Status Bottle (1.4x)',
 			//todo '1.7': '',
 			//'1.6': '',
 			//'1.8': '',
