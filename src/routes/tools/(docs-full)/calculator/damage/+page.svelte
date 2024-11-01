@@ -9815,6 +9815,20 @@ does not get multiplied by horn */
 						</ListItem>
 						<ListItem>
 							<p>
+								Motion Values comprised of multiple hits have their raw damage
+								calculated separately by each hit value and then added together.
+								To demonstrate an example of multiple small hits and one big hit
+								having the same total MV but different results, see Shining
+								Sword from <InlineTooltip
+									text="Great Sword"
+									tooltip="Weapon"
+									icon={getWeaponIcon('Great Sword')}
+									iconType="component"
+								/> and then input as Custom Motion Value the value 459.
+							</p>
+						</ListItem>
+						<ListItem>
+							<p>
 								Extra table columns may show depending on the selected element.
 							</p>
 						</ListItem>
