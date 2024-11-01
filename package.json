@@ -119,7 +119,7 @@
 		"@threlte/theatre": "^2.1.8",
 		"@types/three": "^0.169.0",
 		"@vercel/analytics": "^1.3.2",
-		"@xyflow/svelte": "^0.1.22",
+		"@xyflow/svelte": "^0.1.23",
 		"@zip.js/zip.js": "^2.7.53",
 		"alex": "^11.0.1",
 		"carbon-components": "^11.62.0",
