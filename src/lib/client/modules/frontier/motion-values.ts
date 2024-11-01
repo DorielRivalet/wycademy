@@ -97,7 +97,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13(5)･21',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [13, 21],
 						specialFlag: '',
 						notes: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
 					},
@@ -134,7 +134,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10(5)･16',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [10, 16],
 						specialFlag: '',
 					},
 					{
@@ -161,7 +161,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '31･16',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 47,
+						motionValue: [31, 16],
 						specialFlag: '',
 					},
 					{
@@ -170,7 +170,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '26･24',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 50,
+						motionValue: [26, 24],
 						specialFlag: '',
 					},
 					{
@@ -278,7 +278,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･34',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 52,
+						motionValue: [18, 34],
 						specialFlag: '',
 					},
 					{
@@ -287,7 +287,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13(5)･21',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [13, 21],
 						specialFlag: '',
 					},
 					{
@@ -320,7 +320,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13(5)･21',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [13, 21],
 						specialFlag: '',
 						notes: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
 					},
@@ -366,7 +366,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10(5)･16',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [10, 16],
 						specialFlag: '',
 					},
 					{
@@ -393,7 +393,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '31･16',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 47,
+						motionValue: [31, 16],
 						specialFlag: '',
 					},
 					{
@@ -507,7 +507,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13(5)･21',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [13, 21],
 						specialFlag: '',
 						notes: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
 					},
@@ -553,7 +553,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10(5)･16',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [10, 16],
 						specialFlag: '',
 					},
 					{
@@ -571,7 +571,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '26･24',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 50,
+						motionValue: [26, 24],
 						specialFlag: '',
 					},
 					{
@@ -676,7 +676,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13(5)･21',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [13, 21],
 						specialFlag: '',
 						notes: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
 					},
@@ -758,7 +758,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '26･24',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 50,
+						motionValue: [26, 24],
 						specialFlag: '',
 					},
 					{
@@ -868,7 +868,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [13, 17],
 						specialFlag: '',
 					},
 					{
@@ -877,7 +877,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [13, 10],
 						specialFlag: '',
 					},
 					{
@@ -886,7 +886,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12･9･18･32',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 71,
+						motionValue: [12, 9, 18, 32],
 						specialFlag: '',
 					},
 					{
@@ -904,7 +904,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x3',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 39,
+						motionValue: [13, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -913,7 +913,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･33･51',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 105,
+						motionValue: [21, 33, 51],
 						specialFlag: '',
 					},
 					{
@@ -922,7 +922,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 84,
+						motionValue: [14, 14, 14, 14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -931,7 +931,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '36･54',
 						hitCount: 2,
 						elementMultiplier: 0.7,
-						motionValue: 90,
+						motionValue: [36, 54],
 						specialFlag: '',
 					},
 					{
@@ -940,7 +940,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･13･12･12',
 						hitCount: 4,
 						elementMultiplier: 0.7,
-						motionValue: 50,
+						motionValue: [13, 13, 12, 12],
 						specialFlag: '',
 					},
 					{
@@ -949,7 +949,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16･16',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [16, 16],
 						specialFlag: '',
 					},
 					{
@@ -958,7 +958,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '8･8･8･8',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [8, 8, 8, 8],
 						specialFlag: '',
 					},
 					{
@@ -976,7 +976,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '8x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [8, 8, 8, 8, 8],
 						specialFlag: '',
 					},
 					{
@@ -985,7 +985,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '27･27',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [27, 27],
 						specialFlag: '',
 					},
 					{
@@ -994,7 +994,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [16, 16],
 						specialFlag: '',
 					},
 				],
@@ -1009,7 +1009,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･18',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [14, 18],
 						specialFlag: '',
 					},
 					{
@@ -1018,7 +1018,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･11',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [14, 11],
 						specialFlag: '',
 					},
 					{
@@ -1027,7 +1027,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10･20･34',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 77,
+						motionValue: [13, 10, 20, 34],
 						specialFlag: '',
 					},
 					{
@@ -1045,7 +1045,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14x3',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 42,
+						motionValue: [14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -1054,7 +1054,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '23･36･55',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 114,
+						motionValue: [23, 36, 55],
 						specialFlag: '',
 					},
 					{
@@ -1063,7 +1063,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [15, 15, 15, 15, 15, 15],
 						specialFlag: '',
 					},
 					{
@@ -1072,7 +1072,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '39･58',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 97,
+						motionValue: [39, 58],
 						specialFlag: '',
 					},
 					{
@@ -1081,7 +1081,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･14･13･13',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [14, 14, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -1090,7 +1090,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '17･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [17, 17],
 						specialFlag: '',
 					},
 					{
@@ -1099,7 +1099,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9･8･9･8',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [9, 8, 9, 8],
 						specialFlag: '',
 					},
 					{
@@ -1117,7 +1117,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '8x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [8, 8, 8, 8, 8],
 						specialFlag: '',
 					},
 					{
@@ -1126,7 +1126,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '29･29',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 58,
+						motionValue: [29, 29],
 						specialFlag: '',
 					},
 					{
@@ -1135,7 +1135,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '17x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [17, 17],
 						specialFlag: '',
 					},
 				],
@@ -1150,7 +1150,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11･5',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 16,
+						motionValue: [11, 5],
 						specialFlag: '',
 					},
 					{
@@ -1159,7 +1159,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16･7',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [16, 7],
 						specialFlag: '',
 					},
 					{
@@ -1168,7 +1168,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10･13',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [10, 13],
 						specialFlag: '',
 					},
 					{
@@ -1177,7 +1177,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10･8',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [10, 8],
 						specialFlag: '',
 					},
 					{
@@ -1186,7 +1186,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9･7･14･24',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [9, 7, 14, 24],
 						specialFlag: '',
 					},
 					{
@@ -1195,7 +1195,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･9･5',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [14, 9, 5],
 						specialFlag: '',
 					},
 					{
@@ -1222,7 +1222,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '6x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [6, 6, 6, 6, 6],
 						specialFlag: '',
 					},
 					{
@@ -1231,7 +1231,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '20･20',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [20, 20],
 						specialFlag: '',
 					},
 				],
@@ -1246,7 +1246,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11･5',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 16,
+						motionValue: [11, 5],
 						specialFlag: '',
 					},
 					{
@@ -1255,7 +1255,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16･7',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [16, 7],
 						specialFlag: '',
 					},
 					{
@@ -1264,7 +1264,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10･13',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [10, 13],
 						specialFlag: '',
 					},
 					{
@@ -1273,7 +1273,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10･8',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [10, 8],
 						specialFlag: '',
 					},
 					{
@@ -1282,7 +1282,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9･7･14･24',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [9, 7, 14, 24],
 						specialFlag: '',
 					},
 					{
@@ -1291,7 +1291,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･9･5',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [14, 9, 5],
 						specialFlag: '',
 					},
 				],
@@ -1306,7 +1306,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11･5',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 16,
+						motionValue: [11, 5],
 						specialFlag: '',
 					},
 					{
@@ -1315,7 +1315,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16･7',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [16, 7],
 						specialFlag: '',
 					},
 					{
@@ -1324,7 +1324,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10･13',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [10, 13],
 						specialFlag: '',
 					},
 					{
@@ -1333,7 +1333,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10･8',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [10, 8],
 						specialFlag: '',
 					},
 					{
@@ -1342,7 +1342,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9･7･14･24',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [9, 7, 14, 24],
 						specialFlag: '',
 					},
 					{
@@ -1351,7 +1351,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･9･5',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [14, 9, 5],
 						specialFlag: '',
 					},
 					{
@@ -1378,7 +1378,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '6x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [6, 6, 6, 6, 6],
 						specialFlag: '',
 					},
 					{
@@ -1387,7 +1387,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '20･20',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [20, 20],
 						specialFlag: '',
 					},
 				],
@@ -1402,7 +1402,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10･13',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [10, 13],
 						specialFlag: '',
 					},
 					{
@@ -1411,7 +1411,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10･8',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [10, 8],
 						specialFlag: '',
 					},
 					{
@@ -1420,7 +1420,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9･7･14･24',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [9, 7, 14, 24],
 						specialFlag: '',
 					},
 					{
@@ -1429,7 +1429,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･9･5',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [14, 9, 5],
 						specialFlag: '',
 					},
 					{
@@ -1447,7 +1447,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11･5',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 16,
+						motionValue: [11, 5],
 						specialFlag: '',
 					},
 					{
@@ -1456,7 +1456,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16･22',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 38,
+						motionValue: [16, 22],
 						specialFlag: '',
 					},
 				],
@@ -1471,7 +1471,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: '',
 					},
 					{
@@ -1480,7 +1480,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･9',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [21, 9],
 						specialFlag: '',
 					},
 					{
@@ -1489,7 +1489,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [13, 17],
 						specialFlag: '',
 					},
 					{
@@ -1498,7 +1498,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [13, 10],
 						specialFlag: '',
 					},
 					{
@@ -1507,7 +1507,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12･9･18･32',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 71,
+						motionValue: [12, 9, 18, 32],
 						specialFlag: '',
 					},
 					{
@@ -1516,7 +1516,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･12･6･29･17･12',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 94,
+						motionValue: [18, 12, 6, 29, 17, 12],
 						specialFlag: '',
 					},
 					{
@@ -1534,7 +1534,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x3',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 39,
+						motionValue: [13, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -1561,7 +1561,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '8x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [8, 8, 8, 8, 8],
 						specialFlag: '',
 					},
 					{
@@ -1570,7 +1570,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '27･27',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [27, 27],
 						specialFlag: '',
 					},
 				],
@@ -1585,7 +1585,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: '',
 					},
 					{
@@ -1594,7 +1594,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･9',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [21, 9],
 						specialFlag: '',
 					},
 					{
@@ -1603,7 +1603,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [13, 17],
 						specialFlag: '',
 					},
 					{
@@ -1612,7 +1612,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [13, 10],
 						specialFlag: '',
 					},
 					{
@@ -1621,7 +1621,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12･9･18･32',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 71,
+						motionValue: [12, 9, 18, 32],
 						specialFlag: '',
 					},
 					{
@@ -1630,7 +1630,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･12･6･29･17･12',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 94,
+						motionValue: [18, 12, 6, 29, 17, 12],
 						specialFlag: '',
 					},
 					{
@@ -1648,7 +1648,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '31･6x8･37',
 						hitCount: 10,
 						elementMultiplier: 1,
-						motionValue: 116,
+						motionValue: [13, 6, 6, 6, 6, 6, 6, 6, 6, 37],
 						specialFlag: '',
 					},
 				],
@@ -1663,7 +1663,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: '',
 					},
 					{
@@ -1672,7 +1672,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･9',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [21, 9],
 						specialFlag: '',
 					},
 					{
@@ -1681,7 +1681,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [13, 17],
 						specialFlag: '',
 					},
 					{
@@ -1690,7 +1690,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [13, 10],
 						specialFlag: '',
 					},
 					{
@@ -1699,7 +1699,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12･9･18･32',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 71,
+						motionValue: [12, 9, 18, 32],
 						specialFlag: '',
 					},
 					{
@@ -1708,7 +1708,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･12･6･29･17･12',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 94,
+						motionValue: [18, 12, 6, 29, 17, 12],
 						specialFlag: '',
 					},
 					{
@@ -1726,7 +1726,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x3',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 39,
+						motionValue: [13, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -1735,7 +1735,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･33･51',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 105,
+						motionValue: [21, 33, 51],
 						specialFlag: '',
 					},
 				],
@@ -1750,7 +1750,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [13, 17],
 						specialFlag: '',
 					},
 					{
@@ -1759,7 +1759,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [13, 10],
 						specialFlag: '',
 					},
 					{
@@ -1768,7 +1768,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12･9･18･32',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 71,
+						motionValue: [12, 9, 18, 32],
 						specialFlag: '',
 					},
 					{
@@ -1777,7 +1777,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･12･6･29･17･12',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 94,
+						motionValue: [18, 12, 6, 29, 17, 12],
 						specialFlag: '',
 					},
 					{
@@ -1795,7 +1795,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x3',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 39,
+						motionValue: [13, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -1804,7 +1804,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･33･51',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 105,
+						motionValue: [21, 33, 51],
 						specialFlag: '',
 					},
 					{
@@ -1813,7 +1813,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･20',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [14, 20],
 						specialFlag: '',
 					},
 					{
@@ -1822,7 +1822,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･29',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 50,
+						motionValue: [21, 29],
 						specialFlag: '',
 					},
 				],
@@ -1837,7 +1837,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: '',
 					},
 					{
@@ -1846,7 +1846,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･9',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [21, 9],
 						specialFlag: '',
 					},
 					{
@@ -1855,7 +1855,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [13, 17],
 						specialFlag: '',
 					},
 					{
@@ -1864,7 +1864,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [13, 10],
 						specialFlag: '',
 					},
 					{
@@ -1873,7 +1873,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12･9･18･32',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 71,
+						motionValue: [12, 9, 18, 32],
 						specialFlag: '',
 					},
 					{
@@ -1882,7 +1882,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･12･6･29･17･12',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 94,
+						motionValue: [18, 12, 6, 29, 17, 12],
 						specialFlag: '',
 					},
 					{
@@ -1900,7 +1900,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x3',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 39,
+						motionValue: [13, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -1909,7 +1909,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･33･51',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 105,
+						motionValue: [21, 33, 51],
 						specialFlag: '',
 					},
 					{
@@ -1918,7 +1918,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 84,
+						motionValue: [14, 14, 14, 14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -1927,7 +1927,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '36･54',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [36, 54],
 						specialFlag: '',
 					},
 					{
@@ -1936,7 +1936,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 24,
+						motionValue: [12, 12],
 						specialFlag: '',
 					},
 					{
@@ -1954,7 +1954,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '8x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [8, 8, 8, 8, 8],
 						specialFlag: '',
 					},
 					{
@@ -1963,7 +1963,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '27･27',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [27, 27],
 						specialFlag: '',
 					},
 					{
@@ -1972,7 +1972,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 24,
+						motionValue: [12, 12],
 						specialFlag: '',
 					},
 				],
@@ -1987,7 +1987,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: '',
 					},
 					{
@@ -1996,7 +1996,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･9',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [21, 9],
 						specialFlag: '',
 					},
 					{
@@ -2005,7 +2005,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [13, 17],
 						specialFlag: '',
 					},
 					{
@@ -2014,7 +2014,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [13, 10],
 						specialFlag: '',
 					},
 					{
@@ -2023,7 +2023,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12･9･18･32',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 71,
+						motionValue: [12, 9, 18, 32],
 						specialFlag: '',
 					},
 					{
@@ -2032,7 +2032,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '31･6x10･37',
 						hitCount: 12,
 						elementMultiplier: 1,
-						motionValue: 128,
+						motionValue: [31, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 37],
 						specialFlag: '',
 					},
 					{
@@ -2041,7 +2041,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･12･6･29･17･12',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 94,
+						motionValue: [18, 12, 6, 29, 17, 12],
 						specialFlag: '',
 					},
 					{
@@ -2059,7 +2059,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 84,
+						motionValue: [14, 14, 14, 14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -2068,7 +2068,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '36･54',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [36, 54],
 						specialFlag: '',
 					},
 					{
@@ -2077,7 +2077,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 24,
+						motionValue: [12, 12],
 						specialFlag: '',
 					},
 				],
@@ -2092,7 +2092,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: '',
 					},
 					{
@@ -2101,7 +2101,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･9',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [21, 9],
 						specialFlag: '',
 					},
 					{
@@ -2110,7 +2110,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [13, 17],
 						specialFlag: '',
 					},
 					{
@@ -2119,7 +2119,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [13, 10],
 						specialFlag: '',
 					},
 					{
@@ -2128,7 +2128,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12･9･18･32',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 71,
+						motionValue: [12, 9, 18, 32],
 						specialFlag: '',
 					},
 					{
@@ -2137,7 +2137,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･12･6･29･17･12',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 94,
+						motionValue: [18, 12, 6, 29, 17, 12],
 						specialFlag: '',
 					},
 					{
@@ -2155,7 +2155,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x3',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 39,
+						motionValue: [13, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -2164,7 +2164,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･33･51',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 105,
+						motionValue: [21, 33, 51],
 						specialFlag: '',
 					},
 					{
@@ -2173,7 +2173,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 84,
+						motionValue: [14, 14, 14, 14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -2182,7 +2182,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '36･54',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [36, 54],
 						specialFlag: '',
 					},
 					{
@@ -2191,7 +2191,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 24,
+						motionValue: [12, 12],
 						specialFlag: '',
 					},
 				],
@@ -2206,7 +2206,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･20',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 34,
+						motionValue: [14, 20],
 						specialFlag: '',
 					},
 					{
@@ -2215,7 +2215,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･29',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 50,
+						motionValue: [21, 29],
 						specialFlag: '',
 					},
 					{
@@ -2224,7 +2224,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･17',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [13, 17],
 						specialFlag: '',
 					},
 					{
@@ -2233,7 +2233,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [13, 10],
 						specialFlag: '',
 					},
 					{
@@ -2242,7 +2242,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12･9･18･32',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 71,
+						motionValue: [12, 9, 18, 32],
 						specialFlag: '',
 					},
 					{
@@ -2251,7 +2251,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･12･6･29･17･12',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 94,
+						motionValue: [18, 12, 6, 29, 17, 12],
 						specialFlag: '',
 					},
 					{
@@ -2269,7 +2269,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x3',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 39,
+						motionValue: [13, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -2278,7 +2278,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･33･51',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 105,
+						motionValue: [21, 33, 51],
 						specialFlag: '',
 					},
 					{
@@ -2287,7 +2287,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 84,
+						motionValue: [14, 14, 14, 14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -2296,7 +2296,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '36･54',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [36, 54],
 						specialFlag: '',
 					},
 					{
@@ -2305,7 +2305,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 24,
+						motionValue: [12, 12],
 						specialFlag: '',
 					},
 				],
@@ -2320,7 +2320,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15･7',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 22,
+						motionValue: [15, 7],
 						specialFlag: '',
 					},
 					{
@@ -2329,7 +2329,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '23･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 33,
+						motionValue: [23, 10],
 						specialFlag: '',
 					},
 					{
@@ -2338,7 +2338,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･18',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [14, 18],
 						specialFlag: '',
 					},
 					{
@@ -2347,7 +2347,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･11',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [14, 11],
 						specialFlag: '',
 					},
 					{
@@ -2356,7 +2356,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･9･20･35',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 77,
+						motionValue: [13, 9, 20, 35],
 						specialFlag: '',
 					},
 					{
@@ -2365,7 +2365,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '20･13･7･31･18･13',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 102,
+						motionValue: [20, 13, 7, 31, 18, 13],
 						specialFlag: '',
 					},
 					{
@@ -2383,7 +2383,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14x3',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 42,
+						motionValue: [14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -2392,7 +2392,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '23･36･55',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 114,
+						motionValue: [23, 36, 55],
 						specialFlag: '',
 					},
 					{
@@ -2401,7 +2401,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [15, 15, 15, 15, 15, 15],
 						specialFlag: '',
 					},
 					{
@@ -2410,7 +2410,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '39･58',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 97,
+						motionValue: [39, 58],
 						specialFlag: '',
 					},
 					{
@@ -2419,7 +2419,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [13, 13],
 						specialFlag: '',
 					},
 					{
@@ -2437,7 +2437,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '8x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [8, 8, 8, 8, 8],
 						specialFlag: '',
 					},
 					{
@@ -2446,7 +2446,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '29･29',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 58,
+						motionValue: [29, 29],
 						specialFlag: '',
 					},
 					{
@@ -2455,7 +2455,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [13, 13],
 						specialFlag: '',
 					},
 				],
@@ -2470,7 +2470,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15･7',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 22,
+						motionValue: [15, 7],
 						specialFlag: '',
 					},
 					{
@@ -2479,7 +2479,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '23･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 33,
+						motionValue: [23, 10],
 						specialFlag: '',
 					},
 					{
@@ -2488,7 +2488,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･18',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [14, 18],
 						specialFlag: '',
 					},
 					{
@@ -2497,7 +2497,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･11',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [14, 11],
 						specialFlag: '',
 					},
 					{
@@ -2506,7 +2506,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･9･20･35',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 77,
+						motionValue: [13, 9, 20, 35],
 						specialFlag: '',
 					},
 					{
@@ -2515,7 +2515,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '20･13･7･31･18･13',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 102,
+						motionValue: [20, 13, 7, 31, 18, 13],
 						specialFlag: '',
 					},
 					{
@@ -2533,7 +2533,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33･7x10･40',
 						hitCount: 12,
 						elementMultiplier: 1,
-						motionValue: 143,
+						motionValue: [33, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 40],
 						specialFlag: '',
 					},
 					{
@@ -2542,7 +2542,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [15, 15, 15, 15, 15, 15],
 						specialFlag: '',
 					},
 					{
@@ -2551,7 +2551,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '39･58',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 97,
+						motionValue: [39, 58],
 						specialFlag: '',
 					},
 					{
@@ -2560,7 +2560,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [13, 13],
 						specialFlag: '',
 					},
 				],
@@ -2575,7 +2575,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15･7',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 22,
+						motionValue: [15, 7],
 						specialFlag: '',
 					},
 					{
@@ -2584,7 +2584,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '23･10',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 33,
+						motionValue: [23, 10],
 						specialFlag: '',
 					},
 					{
@@ -2593,7 +2593,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･18',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [14, 18],
 						specialFlag: '',
 					},
 					{
@@ -2602,7 +2602,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･11',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [14, 11],
 						specialFlag: '',
 					},
 					{
@@ -2611,7 +2611,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･9･20･35',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 77,
+						motionValue: [13, 9, 20, 35],
 						specialFlag: '',
 					},
 					{
@@ -2620,7 +2620,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '20･13･7･31･18･13',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 102,
+						motionValue: [20, 13, 7, 31, 18, 13],
 						specialFlag: '',
 					},
 					{
@@ -2638,7 +2638,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14x3',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 42,
+						motionValue: [14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -2647,7 +2647,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '23･36･56',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 115,
+						motionValue: [23, 36, 56],
 						specialFlag: '',
 					},
 					{
@@ -2656,7 +2656,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [15, 15, 15, 15, 15, 15],
 						specialFlag: '',
 					},
 					{
@@ -2665,7 +2665,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '39･58',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 97,
+						motionValue: [39, 58],
 						specialFlag: '',
 					},
 					{
@@ -2674,7 +2674,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [13, 13],
 						specialFlag: '',
 					},
 				],
@@ -2689,7 +2689,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15･21',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 36,
+						motionValue: [15, 21],
 						specialFlag: '',
 					},
 					{
@@ -2698,7 +2698,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '23･31',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [23, 31],
 						specialFlag: '',
 					},
 					{
@@ -2707,7 +2707,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･18',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [14, 18],
 						specialFlag: '',
 					},
 					{
@@ -2716,7 +2716,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･11',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [14, 11],
 						specialFlag: '',
 					},
 					{
@@ -2725,7 +2725,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･9･20･35',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 77,
+						motionValue: [13, 9, 20, 35],
 						specialFlag: '',
 					},
 					{
@@ -2734,7 +2734,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '20･13･7･31･18･13',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 102,
+						motionValue: [20, 13, 7, 31, 18, 13],
 						specialFlag: '',
 					},
 					{
@@ -2752,7 +2752,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14x3',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 42,
+						motionValue: [14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -2761,7 +2761,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '23･36･56',
 						hitCount: 3,
 						elementMultiplier: 0.7,
-						motionValue: 115,
+						motionValue: [23, 36, 56],
 						specialFlag: '',
 					},
 					{
@@ -2770,7 +2770,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [15, 15, 15, 15, 15, 15],
 						specialFlag: '',
 					},
 					{
@@ -2779,7 +2779,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '39･58',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 97,
+						motionValue: [39, 58],
 						specialFlag: '',
 					},
 					{
@@ -2788,7 +2788,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13x2',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [13, 13],
 						specialFlag: '',
 					},
 				],
@@ -2816,9 +2816,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '45･76',
 						notes: 'Has high hitlag',
-						hitCount: 2, // Assuming it hits twice as it has two values
+						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 121, // Sum of both values
+						motionValue: [45, 76],
 						specialFlag: '',
 					},
 					{
@@ -2960,9 +2960,12 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Shining Sword (Fencing Disabled)',
 						animation: '',
 						values: '27x17 (459)',
-						hitCount: 17, // Assuming it hits 17 times as indicated
-						elementMultiplier: 0.5, // Assuming half multiplier due to fencing disabled
-						motionValue: 459, // The sum of the values
+						hitCount: 17,
+						elementMultiplier: 0.5, // TODO Assuming half multiplier due to fencing disabled?
+						motionValue: [
+							27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+							27,
+						],
 						specialFlag: '',
 					},
 				],
@@ -3040,7 +3043,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '40x17 (680)',
 						hitCount: 17,
 						elementMultiplier: 0.6,
-						motionValue: 680,
+						motionValue: [
+							40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+							40,
+						],
 						specialFlag: '',
 					},
 				],
@@ -3118,7 +3124,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '47x17 (799)',
 						hitCount: 17,
 						elementMultiplier: 0.65,
-						motionValue: 799,
+						motionValue: [
+							47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47,
+							47,
+						],
 						specialFlag: '',
 					},
 				],
@@ -3141,9 +3150,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '45･76',
 						notes: 'Has high hitlag',
-						hitCount: 2, // Assuming it hits twice as it has two values
+						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 121, // Sum of both values
+						motionValue: [45, 76],
 						specialFlag: '',
 					},
 					{
@@ -3238,9 +3247,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '45･76',
 						notes: 'Has high hitlag',
-						hitCount: 2, // Assuming it hits twice as it has two values
+						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 121, // Sum of both values
+						motionValue: [45, 76],
 						specialFlag: '',
 					},
 					{
@@ -3389,9 +3398,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '45･76',
 						notes: 'Has high hitlag',
-						hitCount: 2, // Assuming it hits twice as it has two values
+						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 121, // Sum of both values
+						motionValue: [45, 76],
 						specialFlag: '',
 					},
 					{
@@ -3618,7 +3627,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･21･46',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 88,
+						motionValue: [21, 21, 46],
 						specialFlag: '',
 					},
 					{
@@ -3636,7 +3645,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '26･13･13',
 						hitCount: 3,
 						elementMultiplier: 0.67,
-						motionValue: 52,
+						motionValue: [26, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -3645,7 +3654,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '35･17･17',
 						hitCount: 3,
 						elementMultiplier: 0.67,
-						motionValue: 69,
+						motionValue: [35, 17, 17],
 						specialFlag: '',
 					},
 					{
@@ -3654,7 +3663,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '25･12x5･31',
 						hitCount: 7,
 						elementMultiplier: 0.67,
-						motionValue: 116,
+						motionValue: [25, 12, 12, 12, 12, 12, 31],
 						specialFlag: '',
 					},
 					{
@@ -3663,7 +3672,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33･16x5･41',
 						hitCount: 7,
 						elementMultiplier: 0.67,
-						motionValue: 154,
+						motionValue: [33, 16, 16, 16, 16, 16, 41],
 						specialFlag: '',
 					},
 					{
@@ -3681,7 +3690,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '5･5',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 10,
+						motionValue: [5, 5],
 						specialFlag: '',
 					},
 					{
@@ -3690,7 +3699,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '5･5･5',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 15,
+						motionValue: [5, 5, 5],
 						specialFlag: '',
 					},
 					{
@@ -3744,7 +3753,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '30･15',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 45,
+						motionValue: [30, 15],
 						specialFlag: '',
 					},
 					{
@@ -3753,7 +3762,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '25･12x5･31',
 						hitCount: 7,
 						elementMultiplier: 0.67,
-						motionValue: 116,
+						motionValue: [25, 12, 12, 12, 12, 12, 31],
 						specialFlag: '',
 					},
 					{
@@ -3930,7 +3939,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･21･46',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 88,
+						motionValue: [21, 21, 46],
 						specialFlag: '',
 					},
 					{
@@ -4126,7 +4135,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･21･46',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 88,
+						motionValue: [21, 21, 46],
 						specialFlag: '',
 					},
 					{
@@ -4322,7 +4331,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '21･21･46',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 88,
+						motionValue: [21, 21, 46],
 						specialFlag: '',
 					},
 					{
@@ -4340,7 +4349,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '26･13･13',
 						hitCount: 3,
 						elementMultiplier: 0.67,
-						motionValue: 52,
+						motionValue: [26, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -4349,7 +4358,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '35･17･17',
 						hitCount: 3,
 						elementMultiplier: 0.67,
-						motionValue: 69,
+						motionValue: [35, 17, 17],
 						specialFlag: '',
 					},
 					{
@@ -4358,7 +4367,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '25･12x5･31',
 						hitCount: 7,
 						elementMultiplier: 0.67,
-						motionValue: 116,
+						motionValue: [25, 12, 12, 12, 12, 12, 31],
 						specialFlag: '',
 					},
 					{
@@ -4367,7 +4376,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33･16x5･41',
 						hitCount: 7,
 						elementMultiplier: 0.67,
-						motionValue: 154,
+						motionValue: [33, 16, 16, 16, 16, 16, 41],
 						specialFlag: '',
 					},
 
@@ -4473,7 +4482,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '29･15x2',
 						hitCount: 3,
 						elementMultiplier: 0.7035,
-						motionValue: 59,
+						motionValue: [29, 15, 15],
 						specialFlag: '',
 					},
 					{
@@ -4482,7 +4491,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '38･19x2',
 						hitCount: 3,
 						elementMultiplier: 0.7035,
-						motionValue: 76,
+						motionValue: [38, 19, 19],
 						specialFlag: '',
 					},
 					{
@@ -4491,7 +4500,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '28･13x5･35',
 						hitCount: 7,
 						elementMultiplier: 0.7035,
-						motionValue: 128,
+						motionValue: [28, 13, 13, 13, 13, 13, 35],
 						specialFlag: '',
 					},
 					{
@@ -4500,7 +4509,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '36･17x5･45',
 						hitCount: 7,
 						elementMultiplier: 0.7035,
-						motionValue: 166,
+						motionValue: [36, 17, 17, 17, 17, 17, 45],
 						specialFlag: '',
 					},
 					{
@@ -4605,7 +4614,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '30･16x2',
 						hitCount: 3,
 						elementMultiplier: 0.737,
-						motionValue: 62,
+						motionValue: [30, 16, 16],
 						specialFlag: '',
 					},
 					{
@@ -4614,7 +4623,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '39･20x2',
 						hitCount: 3,
 						elementMultiplier: 0.737,
-						motionValue: 79,
+						motionValue: [39, 20, 20],
 						specialFlag: '',
 					},
 					{
@@ -4623,7 +4632,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33･16x5･41',
 						hitCount: 7,
 						elementMultiplier: 0.737,
-						motionValue: 154,
+						motionValue: [33, 16, 16, 16, 16, 16, 41],
 						specialFlag: '',
 					},
 					{
@@ -4632,7 +4641,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '38･18x5･47',
 						hitCount: 7,
 						elementMultiplier: 0.737,
-						motionValue: 175,
+						motionValue: [38, 18, 18, 18, 18, 18, 47],
 						specialFlag: '',
 					},
 					{
@@ -4832,7 +4841,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '52(20)･35(20)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 87,
+						motionValue: [52, 35],
 						specialFlag: '',
 					},
 					{
@@ -4841,7 +4850,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '40(20)･100(60)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 140,
+						motionValue: [40, 100],
 						specialFlag: '',
 					},
 					{
@@ -4850,7 +4859,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '40(30)･30(30)･120(80)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 190,
+						motionValue: [40, 30, 120],
 						specialFlag: '',
 					},
 					{
@@ -4859,7 +4868,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '60(60)･45(40)･145(115)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 250,
+						motionValue: [60, 45, 145],
 						specialFlag: '',
 					},
 					{
@@ -4868,7 +4877,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '60(15)',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 60,
+						motionValue: [60],
 						specialFlag: '',
 					},
 					{
@@ -4877,7 +4886,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '45(15)xn',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 45,
+						motionValue: [45],
 						specialFlag: '',
 					},
 					{
@@ -4895,7 +4904,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '30(20)･40(30)･10(10)', // TODO unsure if the first motion counts here
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 80,
+						motionValue: [30, 40, 10],
 						specialFlag: '',
 					},
 					{
@@ -4904,7 +4913,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '30(20)･40(30)･70(50)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 140,
+						motionValue: [30, 40, 70],
 						specialFlag: '',
 					},
 					{
@@ -4913,7 +4922,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '30(20)･40(30)･160(130)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 230,
+						motionValue: [30, 40, 160],
 						specialFlag: '',
 					},
 				],
@@ -5027,7 +5036,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '52(20)･35(20)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 87,
+						motionValue: [52, 35],
 						specialFlag: '',
 					},
 					{
@@ -5168,7 +5177,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '52(20)･35(20)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 87,
+						motionValue: [52, 35],
 						specialFlag: '',
 					},
 					{
@@ -5177,7 +5186,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '40(20)･100(60)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 140,
+						motionValue: [40, 100],
 						specialFlag: '',
 					},
 					{
@@ -5309,7 +5318,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '52(20)･35(20)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 87,
+						motionValue: [52, 35],
 						specialFlag: '',
 					},
 					{
@@ -5318,7 +5327,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '40(20)･100(60)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 140,
+						motionValue: [40, 100],
 						specialFlag: '',
 					},
 					{
@@ -5327,7 +5336,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '40(30)･30(30)･120(80)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 190,
+						motionValue: [40, 30, 120],
 						specialFlag: '',
 					},
 					{
@@ -5378,7 +5387,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '56(20)･36(20)',
 						hitCount: 2,
 						elementMultiplier: 1.05,
-						motionValue: 92,
+						motionValue: [56, 36],
 						specialFlag: '',
 					},
 					{
@@ -5387,7 +5396,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '44(20)･109(60)',
 						hitCount: 2,
 						elementMultiplier: 1.05,
-						motionValue: 153,
+						motionValue: [44, 109],
 						specialFlag: '',
 					},
 					{
@@ -5396,7 +5405,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '41(30)･35(30)･128(80)',
 						hitCount: 3,
 						elementMultiplier: 1.05,
-						motionValue: 204,
+						motionValue: [41, 35, 128],
 						specialFlag: '',
 					},
 					{
@@ -5405,7 +5414,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '63(60)･47(40)･153(115)',
 						hitCount: 3,
 						elementMultiplier: 1.05,
-						motionValue: 263,
+						motionValue: [63, 47, 153],
 						specialFlag: '',
 					},
 					{
@@ -5432,7 +5441,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '32(20)･43(30)･13(10)',
 						hitCount: 3,
 						elementMultiplier: 1.05,
-						motionValue: 88,
+						motionValue: [32, 43, 13],
 						specialFlag: '',
 					},
 					{
@@ -5441,7 +5450,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '32(20)･43(30)･75(50)',
 						hitCount: 3,
 						elementMultiplier: 1.05,
-						motionValue: 150,
+						motionValue: [32, 43, 75],
 						specialFlag: '',
 					},
 					{
@@ -5450,7 +5459,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '32(20)･43(30)･167(130)',
 						hitCount: 3,
 						elementMultiplier: 1.05,
-						motionValue: 242,
+						motionValue: [32, 43, 167],
 						specialFlag: '',
 					},
 				],
@@ -5483,7 +5492,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '58(20)･37(20)',
 						hitCount: 2,
 						elementMultiplier: 1.1,
-						motionValue: 95,
+						motionValue: [58, 37],
 						specialFlag: '',
 					},
 					{
@@ -5492,7 +5501,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '46(20)･114(60)',
 						hitCount: 2,
 						elementMultiplier: 1.1,
-						motionValue: 160,
+						motionValue: [46, 114],
 						specialFlag: '',
 					},
 					{
@@ -5501,7 +5510,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '41(30)･35(30)･128(80)',
 						hitCount: 3,
 						elementMultiplier: 1.1,
-						motionValue: 204,
+						motionValue: [41, 35, 128],
 						specialFlag: '',
 					},
 					{
@@ -5510,7 +5519,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '64(60)･48(40)･157(115)',
 						hitCount: 3,
 						elementMultiplier: 1.1,
-						motionValue: 269,
+						motionValue: [64, 48, 157],
 						specialFlag: '',
 					},
 					{
@@ -5537,7 +5546,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33(20)･44(30)･15(10)',
 						hitCount: 3,
 						elementMultiplier: 1.1,
-						motionValue: 92,
+						motionValue: [33, 44, 15],
 						specialFlag: '',
 					},
 					{
@@ -5546,7 +5555,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33(20)･44(30)･77(50)',
 						hitCount: 3,
 						elementMultiplier: 1.1,
-						motionValue: 154,
+						motionValue: [33, 44, 77],
 						specialFlag: '',
 					},
 					{
@@ -5555,7 +5564,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33(20)･44(30)･170(130)',
 						hitCount: 3,
 						elementMultiplier: 1.1,
-						motionValue: 247,
+						motionValue: [33, 44, 170],
 						specialFlag: '',
 					},
 				],
@@ -5575,7 +5584,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18(8)･57(30)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 75,
+						motionValue: [18, 57],
 						specialFlag: '',
 					},
 					{
@@ -5728,7 +5737,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '40(20)･40(20)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 80,
+						motionValue: [40, 40],
 						specialFlag: '',
 					},
 					{
@@ -5752,7 +5761,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18(8)･57(30)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 75,
+						motionValue: [18, 57],
 						specialFlag: '',
 					},
 					{
@@ -6279,7 +6288,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '3(5)･25(10) ※ Impact',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [3, 25],
 						specialFlag: '',
 					},
 					{
@@ -6288,7 +6297,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4(5)･37(10) ※ Impact',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 41,
+						motionValue: [4, 37],
 						specialFlag: '',
 					},
 					{
@@ -6351,7 +6360,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '25(13) ※ Impact',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 35, // TODO unsure if works like this
+						motionValue: 35, // TODO unsure if works like this?
 						specialFlag: '',
 					},
 				],
@@ -7340,7 +7349,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11(8)･8(7)',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 19,
+						motionValue: [11, 8],
 						specialFlag: '',
 					},
 					{
@@ -7349,7 +7358,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '38(8)･23(20)',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 61,
+						motionValue: [38, 23],
 						specialFlag: '',
 					},
 					{
@@ -7358,7 +7367,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '58(8)･33(30)',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 91,
+						motionValue: [58, 33],
 						specialFlag: '',
 					},
 					{
@@ -7376,7 +7385,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9x2(7)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [9, 9],
 						specialFlag: '',
 					},
 					{
@@ -7421,7 +7430,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '20(12)･20(12)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [20, 20],
 						specialFlag: '',
 					},
 					{
@@ -7439,7 +7448,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16(8)･16(8)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [16, 16],
 						specialFlag: '',
 					},
 					{
@@ -7448,7 +7457,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12(13)･20(16)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [12, 20],
 						specialFlag: '',
 					},
 					{
@@ -7457,7 +7466,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 22,
+						motionValue: [11, 11],
 						specialFlag: '',
 					},
 					{
@@ -7475,7 +7484,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9(6)･12(8)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 21,
+						motionValue: [9, 12],
 						specialFlag: '',
 					},
 					{
@@ -7493,7 +7502,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16(15)･11x4(13)･24(20)',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 84,
+						motionValue: [16, 11, 11, 11, 11, 24],
 						specialFlag: '',
 					},
 					{
@@ -7502,7 +7511,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '19x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 38,
+						motionValue: [19, 19],
 						specialFlag: '',
 					},
 					{
@@ -7511,7 +7520,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '5x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 10,
+						motionValue: [5, 5],
 						specialFlag: '',
 					},
 					{
@@ -7529,7 +7538,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x2(13)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [10, 10],
 						specialFlag: '',
 					},
 					{
@@ -7538,7 +7547,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15(11)[K]･16(11)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 31,
+						motionValue: [15, 16],
 						specialFlag: '',
 					},
 					{
@@ -7547,7 +7556,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '66 (5 hits)',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 66,
+						motionValue: 66, // TODO?
 						specialFlag: '',
 					},
 					{
@@ -7556,7 +7565,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2(12)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 24,
+						motionValue: [12, 12],
 						specialFlag: '',
 					},
 					{
@@ -7565,7 +7574,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '1x2･40(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 42,
+						motionValue: [1, 1, 40],
 						specialFlag: '',
 					},
 					{
@@ -7574,7 +7583,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '1x2･30(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [1, 1, 30],
 						specialFlag: '',
 					},
 					{
@@ -7670,7 +7679,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13(8)･11(7)',
 						hitCount: 1,
 						elementMultiplier: 1.1,
-						motionValue: 24,
+						motionValue: [13, 11],
 						specialFlag: '',
 					},
 					{
@@ -7679,7 +7688,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '42(22)･32(20)',
 						hitCount: 1,
 						elementMultiplier: 1.1,
-						motionValue: 74,
+						motionValue: [42, 32],
 						specialFlag: '',
 					},
 					{
@@ -7688,7 +7697,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '65(32)･48(30)',
 						hitCount: 1,
 						elementMultiplier: 1.1,
-						motionValue: 113,
+						motionValue: [65, 48],
 						specialFlag: '',
 					},
 				],
@@ -7904,16 +7913,16 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '8x2･40(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 56,
+						motionValue: [8, 8, 40],
 						specialFlag: '',
 					},
 					{
 						name: 'Ryuuki (G. Expert)',
 						animation: '',
-						values: '10x2･40(2)',
+						values: '10x2･40(2)', // todo?
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 50,
+						motionValue: [10, 10, 40],
 						specialFlag: '',
 					},
 					{
@@ -7922,7 +7931,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15x2･40(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 70,
+						motionValue: [15, 15, 40],
 						specialFlag: '',
 					},
 					{
@@ -7931,7 +7940,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x2･30(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 44,
+						motionValue: [7, 7, 30],
 						specialFlag: '',
 					},
 					{
@@ -7940,7 +7949,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9x2･30(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 48,
+						motionValue: [9, 9, 30],
 						specialFlag: '',
 					},
 					{
@@ -7949,7 +7958,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2･30(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [12, 12, 30],
 						specialFlag: '',
 					},
 				],
@@ -7964,7 +7973,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11x2(3)[K]･15(4)･25(4)',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 62,
+						motionValue: [11, 11, 15, 25],
 						specialFlag: '',
 					},
 					{
@@ -7973,7 +7982,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '6x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 12,
+						motionValue: [6, 6],
 						specialFlag: '',
 					},
 					{
@@ -7982,7 +7991,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [16, 16],
 						specialFlag: '',
 					},
 					{
@@ -7991,7 +8000,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '28x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 56,
+						motionValue: [28, 28],
 						specialFlag: '',
 					},
 					{
@@ -8015,7 +8024,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15x2(3)[K]･15(4)･25(4)',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 70,
+						motionValue: [15, 15, 15, 25],
 						specialFlag: '',
 					},
 					{
@@ -8024,7 +8033,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 14,
+						motionValue: [7, 7],
 						specialFlag: '',
 					},
 					{
@@ -8033,7 +8042,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 36,
+						motionValue: [18, 18],
 						specialFlag: '',
 					},
 					{
@@ -8042,16 +8051,16 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 66,
+						motionValue: [33, 33],
 						specialFlag: '',
 					},
 					{
 						name: 'Aerial 3',
 						animation: '',
-						values: '23(11)[K]･25(11) (Orig: 31･33)',
+						values: '23(11)[K]･25(11) (Orig: 31･33)', // todo?
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 64,
+						motionValue: [23, 25],
 						specialFlag: '',
 					},
 					{
@@ -8060,7 +8069,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '83 (5 hits) (Orig: 116)',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 116,
+						motionValue: 83, // TODO?
 						specialFlag: '',
 					},
 				],
@@ -8147,7 +8156,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11(8)･8(7)',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 19,
+						motionValue: [11, 8],
 						specialFlag: '',
 					},
 					{
@@ -8156,7 +8165,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '38(8)･23(20)',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 61,
+						motionValue: [38, 23],
 						specialFlag: '',
 					},
 					{
@@ -8165,7 +8174,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '58(8)･33(30)',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 91,
+						motionValue: [58, 33],
 						specialFlag: '',
 					},
 					{
@@ -8183,7 +8192,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9x2(7)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [9, 9],
 						specialFlag: '',
 					},
 					{
@@ -8192,7 +8201,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11(3)･12(3)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 23,
+						motionValue: [11, 12],
 						specialFlag: '',
 					},
 					{
@@ -8201,7 +8210,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x4(3)',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [10, 10, 10, 10],
 						specialFlag: '',
 					},
 					{
@@ -8228,7 +8237,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '20(10)･20(10)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [20, 20],
 						specialFlag: '',
 					},
 					{
@@ -8246,7 +8255,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16(8)･16(8)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [16, 16],
 						specialFlag: '',
 					},
 					{
@@ -8255,7 +8264,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '3x4(2)･10x2(4)',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [3, 3, 3, 3, 10, 10],
 						specialFlag: '',
 					},
 					{
@@ -8264,7 +8273,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x2(3)[K]･12(4)･20(4)',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 46,
+						motionValue: [7, 7, 12, 20],
 						specialFlag: '',
 					},
 					{
@@ -8273,7 +8282,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 22,
+						motionValue: [11, 11],
 						specialFlag: '',
 					},
 					{
@@ -8291,7 +8300,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9(6)･12(8)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 21,
+						motionValue: [9, 12],
 						specialFlag: '',
 					},
 					{
@@ -8309,7 +8318,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16(15)･11x4(13)･24(20)',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 84,
+						motionValue: [16, 11, 11, 11, 11, 24],
 						specialFlag: '',
 					},
 					{
@@ -8318,7 +8327,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '19x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 38,
+						motionValue: [19, 19],
 						specialFlag: '',
 					},
 					{
@@ -8327,7 +8336,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '5x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 10,
+						motionValue: [5, 5],
 						specialFlag: '',
 					},
 					{
@@ -8345,7 +8354,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x2(13)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 30,
+						motionValue: [10, 10], // TODO?
 						specialFlag: '',
 					},
 					{
@@ -8354,7 +8363,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15(11)[K]･16(11)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 48,
+						motionValue: [15, 16], // todo?
 						specialFlag: '',
 					},
 					{
@@ -8363,7 +8372,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '66 (5 hits)',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 100,
+						motionValue: 66, // todo?
 						specialFlag: '',
 					},
 					{
@@ -8381,7 +8390,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '1x2･40(2)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 42,
+						motionValue: [1, 1, 40],
 						specialFlag: '',
 					},
 					{
@@ -8390,7 +8399,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '1x2･30(2)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [1, 1, 30],
 						specialFlag: '',
 					},
 					{
@@ -8543,7 +8552,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13(8)･11(7)',
 						hitCount: 1,
 						elementMultiplier: 1.1,
-						motionValue: 24,
+						motionValue: [13, 11],
 						specialFlag: '',
 					},
 					{
@@ -8552,7 +8561,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '42(22)･32(20)',
 						hitCount: 1,
 						elementMultiplier: 1.1,
-						motionValue: 74,
+						motionValue: [42, 32],
 						specialFlag: '',
 					},
 					{
@@ -8561,7 +8570,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '65(32)･48(30)',
 						hitCount: 1,
 						elementMultiplier: 1.1,
-						motionValue: 113,
+						motionValue: [65, 48],
 						specialFlag: '',
 					},
 				],
@@ -8657,16 +8666,16 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '8x2･40(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 56,
+						motionValue: [8, 8, 40],
 						specialFlag: '',
 					},
 					{
 						name: 'Ryuuki (G. Expert)',
 						animation: '',
-						values: '10x2･40(2)',
+						values: '10x2･40(2)', // TODO?
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 50,
+						motionValue: [10, 10, 40],
 						specialFlag: '',
 					},
 					{
@@ -8675,7 +8684,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15x2･40(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 70,
+						motionValue: [15, 15, 40],
 						specialFlag: '',
 					},
 					{
@@ -8684,7 +8693,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x2･30(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 44,
+						motionValue: [7, 7, 30],
 						specialFlag: '',
 					},
 					{
@@ -8693,7 +8702,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9x2･30(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 48,
+						motionValue: [9, 9, 30],
 						specialFlag: '',
 					},
 					{
@@ -8702,7 +8711,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2･30(2)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [12, 12, 30],
 						specialFlag: '',
 					},
 				],
@@ -8717,7 +8726,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11x2(3)[K]･15(4)･25(4)',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 62,
+						motionValue: [11, 11, 15, 25],
 						specialFlag: '',
 					},
 					{
@@ -8726,7 +8735,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '6x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 12,
+						motionValue: [6, 6],
 						specialFlag: '',
 					},
 					{
@@ -8735,7 +8744,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 32,
+						motionValue: [16, 16],
 						specialFlag: '',
 					},
 					{
@@ -8744,13 +8753,13 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '28x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 56,
+						motionValue: [28, 28],
 						specialFlag: '',
 					},
 					{
 						name: 'Aerial 1 - 3',
 						animation: '',
-						values: '74 (5 hits) (Orig: 116)',
+						values: '74 (5 hits) (Orig: 116)', // todo?
 						hitCount: 5,
 						elementMultiplier: 1,
 						motionValue: 74,
@@ -8768,7 +8777,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15x2(3)[K]･15(4)･25(4)',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 70,
+						motionValue: [15, 15, 15, 25],
 						specialFlag: '',
 					},
 					{
@@ -8777,7 +8786,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 14,
+						motionValue: [7, 7],
 						specialFlag: '',
 					},
 					{
@@ -8786,7 +8795,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 36,
+						motionValue: [18, 18],
 						specialFlag: '',
 					},
 					{
@@ -8795,25 +8804,25 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33x2(2)[K]',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 66,
+						motionValue: [33, 33],
 						specialFlag: '',
 					},
 					{
 						name: 'Aerial 3',
 						animation: '',
-						values: '23(11)[K]･25(11) (Orig: 31･33)',
+						values: '23(11)[K]･25(11) (Orig: 31･33)', // todo?
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 64,
+						motionValue: [23, 25],
 						specialFlag: '',
 					},
 					{
 						name: 'Aerial 1-3 Combo',
 						animation: '',
-						values: '83 (5 hits) (Orig: 116)',
+						values: '83 (5 hits) (Orig: 116)', // todo?
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 116,
+						motionValue: 83,
 						specialFlag: '',
 					},
 				],
@@ -9052,10 +9061,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Running Rotation Slash',
 						animation: '',
-						values: '32･41 (15･0)',
+						values: '32･41 (15･0)', // todo?
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 76,
+						motionValue: [32, 41],
 						specialFlag: '',
 					},
 					{
@@ -9190,10 +9199,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Running Rotation Slash',
 						animation: '',
-						values: '32･41 (15･0)',
+						values: '32･41 (15･0)', //todo?
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 76,
+						motionValue: [32, 41],
 						specialFlag: '',
 					},
 					{
@@ -9364,7 +9373,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '33･45 (21･21)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 78,
+						motionValue: [33, 45],
 						specialFlag: '',
 					},
 					{
@@ -9436,7 +9445,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '53･53 (19･19)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 106,
+						motionValue: [53, 53],
 						specialFlag: '',
 					},
 					{
@@ -9445,7 +9454,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '42･73 (26･35)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 115,
+						motionValue: [42, 73],
 						specialFlag: '',
 					},
 					{
@@ -9490,7 +9499,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･13･13 (4･4･4)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 39,
+						motionValue: [13, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -9499,7 +9508,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9･9 (5･5)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [9, 9],
 						specialFlag: '',
 					},
 					{
@@ -9517,7 +9526,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･18 (5･5)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 36,
+						motionValue: [18, 18],
 						specialFlag: '',
 					},
 					{
@@ -9535,7 +9544,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '27･27 (5･5)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [27, 27],
 						specialFlag: '',
 					},
 					{
@@ -9604,7 +9613,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '53･53 (19･19)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 106,
+						motionValue: [53, 53],
 						specialFlag: '',
 					},
 					{
@@ -9613,7 +9622,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '43･72 (26･35)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 115,
+						motionValue: [43, 72],
 						specialFlag: '',
 					},
 					{
@@ -9631,7 +9640,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '13･13･13 (4･4･4)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 39,
+						motionValue: [13, 13, 13],
 						specialFlag: '',
 					},
 					{
@@ -9640,7 +9649,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9･9 (5･5)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [9, 9],
 						specialFlag: '',
 					},
 					{
@@ -9658,7 +9667,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18･18 (5･5)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 36,
+						motionValue: [18, 18],
 						specialFlag: '',
 					},
 					{
@@ -9676,7 +9685,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '27･27 (5･5)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 54,
+						motionValue: [27, 27],
 						specialFlag: '',
 					},
 					{
@@ -9766,7 +9775,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '35･41 (15･0)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 76,
+						motionValue: [35, 41],
 						specialFlag: '',
 					},
 					{
@@ -9835,13 +9844,13 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '35･41 (15･0)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 76,
+						motionValue: [35, 41],
 						specialFlag: '',
 					},
 					{
 						name: 'Running Upslash',
 						animation: '',
-						values: '31.5',
+						values: '31.5', // todo?
 						hitCount: 1,
 						elementMultiplier: 1,
 						motionValue: 31.5,
@@ -10075,7 +10084,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '36･49',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 85,
+						motionValue: [36, 49],
 						specialFlag: '',
 					},
 					{
@@ -10147,7 +10156,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '58･58',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 116,
+						motionValue: [58, 58],
 						specialFlag: '',
 					},
 					{
@@ -10156,7 +10165,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '46･80',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 126,
+						motionValue: [46, 80],
 						specialFlag: '',
 					},
 					{
@@ -10201,7 +10210,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･14･14',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 42,
+						motionValue: [14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -10210,7 +10219,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9･9',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [9, 9],
 						specialFlag: '',
 					},
 					{
@@ -10228,7 +10237,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '19･19',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 38,
+						motionValue: [19, 19],
 						specialFlag: '',
 					},
 					{
@@ -10246,7 +10255,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '29･29',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 58,
+						motionValue: [29, 29],
 						specialFlag: '',
 					},
 					{
@@ -10315,7 +10324,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '58･58',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 116,
+						motionValue: [58, 58],
 						specialFlag: '',
 					},
 					{
@@ -10324,7 +10333,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '46･80',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 126,
+						motionValue: [46, 80],
 						specialFlag: '',
 					},
 					{
@@ -10342,7 +10351,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･14･14',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 42,
+						motionValue: [14, 14, 14],
 						specialFlag: '',
 					},
 					{
@@ -10351,7 +10360,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9･9',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 18,
+						motionValue: [9, 9],
 						specialFlag: '',
 					},
 					{
@@ -10369,7 +10378,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '19･19',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 38,
+						motionValue: [19, 19],
 						specialFlag: '',
 					},
 					{
@@ -10387,7 +10396,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '29･29',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 58,
+						motionValue: [29, 29],
 						specialFlag: '',
 					},
 					{
@@ -10408,28 +10417,28 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'S Evasion Charged Upslash',
 						animation: '',
-						values: '85',
+						values: '88.25',
 						hitCount: 1,
 						elementMultiplier: 1.05,
-						motionValue: 88.25,
+						motionValue: 88.25, // todo?
 						specialFlag: '',
 					},
 					{
 						name: 'Charged Upslash',
 						animation: '',
-						values: '85',
+						values: '44.625',
 						hitCount: 1,
 						elementMultiplier: 0.525,
-						motionValue: 44.625,
+						motionValue: 44.625, // todo?
 						specialFlag: '',
 					},
 					{
 						name: 'Charge Infinite Slash',
 						animation: '',
-						values: '37',
+						values: '38.65',
 						hitCount: 1,
 						elementMultiplier: 1.05,
-						motionValue: 38.65,
+						motionValue: 38.65, // todo?
 						specialFlag: '',
 					},
 				],
@@ -10441,7 +10450,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'S Evasion Charged Upslash',
 						animation: '',
-						values: '87',
+						values: '95.7',
 						hitCount: 1,
 						elementMultiplier: 1.1,
 						motionValue: 95.7,
@@ -10450,7 +10459,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Charged Upslash',
 						animation: '',
-						values: '87',
+						values: '47.35',
 						hitCount: 1,
 						elementMultiplier: 0.55,
 						motionValue: 47.35,
@@ -10459,7 +10468,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Charge Infinite Slash',
 						animation: '',
-						values: '39',
+						values: '42.9',
 						hitCount: 1,
 						elementMultiplier: 1.1,
 						motionValue: 42.9,
@@ -10554,7 +10563,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '120‧10x3',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 150,
+						motionValue: [120, 10, 10, 10],
 						specialFlag: '',
 					},
 					{
@@ -10572,7 +10581,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '30‧80',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 110,
+						motionValue: [30, 80],
 						specialFlag: '',
 					},
 					{
@@ -10581,7 +10590,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '30‧95',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 125,
+						motionValue: [30, 95],
 						specialFlag: '',
 					},
 					{
@@ -10590,7 +10599,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '30‧120',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 150,
+						motionValue: [30, 120],
 						specialFlag: '',
 					},
 					{
@@ -10599,7 +10608,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '44‧54',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 98,
+						motionValue: [44, 54],
 						specialFlag: '',
 					},
 					{
@@ -10617,7 +10626,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '20‧20',
 						hitCount: 1,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [20, 20],
 						specialFlag: '',
 					},
 					{
@@ -10767,7 +10776,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '96 ‧ 121 (50 ‧ 65)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 217,
+						motionValue: [96, 121],
 						specialFlag: '',
 					},
 					{
@@ -10776,7 +10785,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '73 ‧ 90 (35 ‧ 45)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 163,
+						motionValue: [73, 90],
 						specialFlag: '',
 					},
 					{
@@ -10785,7 +10794,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '42 ‧ 52 (30 ‧ 35)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 94,
+						motionValue: [42, 52],
 						specialFlag: '',
 					},
 					{
@@ -10803,7 +10812,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '125 ‧ 5x3 (60 ‧ 5x3)',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 140,
+						motionValue: [125, 5, 5, 5],
 						specialFlag: '',
 					},
 					{
@@ -10812,7 +10821,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '40 ‧ 50 (35 ‧ 35)',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 90,
+						motionValue: [40, 50],
 						specialFlag: '',
 					},
 					{
@@ -10821,7 +10830,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '25 ‧ 80 ‧ 120 (20 ‧ 35 ‧ 75)',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 225,
+						motionValue: [25, 80, 120],
 						specialFlag: '',
 					},
 					{
@@ -10922,7 +10931,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x3',
 						hitCount: 3,
 						elementMultiplier: 0,
-						motionValue: 30,
+						motionValue: [10, 10, 10],
 						specialFlag: 'pierce',
 					},
 					{
@@ -10931,7 +10940,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '9x4',
 						hitCount: 4,
 						elementMultiplier: 0,
-						motionValue: 36,
+						motionValue: [9, 9, 9, 9],
 						specialFlag: 'pierce',
 					},
 					{
@@ -10940,7 +10949,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x6',
 						hitCount: 6,
 						elementMultiplier: 0,
-						motionValue: 42,
+						motionValue: [7, 7, 7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -10949,7 +10958,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '5x3, Water 50',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 15,
+						motionValue: [5, 5, 5],
 						specialFlag: 'scatter',
 					},
 					{
@@ -10958,7 +10967,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '5x4, Water 40',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [5, 5, 5, 5],
 						specialFlag: 'scatter',
 					},
 					{
@@ -10967,7 +10976,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '5x5, Water 40',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [5, 5, 5, 5, 5],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11234,7 +11243,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '5･5･10',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [5, 5, 10],
 						specialFlag: 'melee',
 					},
 				],
@@ -11253,7 +11262,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'LV1 Norm S.',
 						animation: '',
 						values: '6x1',
-						hitCount: 0,
+						hitCount: 0, // todo?
 						elementMultiplier: 0,
 						motionValue: 6,
 						specialFlag: 'rapid',
@@ -11309,25 +11318,25 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x3',
 						hitCount: 3,
 						elementMultiplier: 0,
-						motionValue: 36,
+						motionValue: [12, 12, 12],
 						specialFlag: 'pierce',
 					},
 					{
 						name: 'LV2 Pierce S. (4 Hit)',
 						animation: '',
 						values: '11x4',
-						hitCount: 3,
+						hitCount: 4, // todo?
 						elementMultiplier: 0,
-						motionValue: 44,
+						motionValue: [11, 11, 11, 11],
 						specialFlag: 'pierce',
 					},
 					{
 						name: 'LV3 Pierce S. (6 Hit)',
 						animation: '',
 						values: '9x6',
-						hitCount: 3,
+						hitCount: 6, // todo?
 						elementMultiplier: 0,
-						motionValue: 54,
+						motionValue: [9, 9, 9, 9, 9, 9],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11641,7 +11650,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: 'rapid',
 					},
 					{
@@ -11650,7 +11659,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6･5',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [14, 6, 5],
 						specialFlag: 'rapid',
 					},
 					{
@@ -11659,7 +11668,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6･5･3',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [14, 6, 5, 3],
 						specialFlag: 'rapid',
 					},
 					{
@@ -11668,7 +11677,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･4',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 14,
+						motionValue: [4, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11677,7 +11686,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '6･7･6',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 19,
+						motionValue: [6, 7, 6],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11686,7 +11695,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･6･6･4',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [4, 6, 6, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11695,7 +11704,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･7･6･4',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 27,
+						motionValue: [4, 6, 7, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11704,7 +11713,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x3',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 21,
+						motionValue: [7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11713,7 +11722,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x4',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11722,7 +11731,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 35,
+						motionValue: [7, 7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11731,7 +11740,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 42,
+						motionValue: [7, 7, 7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11764,7 +11773,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: 'rapid',
 					},
 					{
@@ -11773,7 +11782,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6･5',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [14, 6, 5],
 						specialFlag: 'rapid',
 					},
 					{
@@ -11782,7 +11791,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6･5･3',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [14, 6, 5, 3],
 						specialFlag: 'rapid',
 					},
 					{
@@ -11791,7 +11800,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･4',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 14,
+						motionValue: [4, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11800,7 +11809,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '6･7･6',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 19,
+						motionValue: [6, 7, 6],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11809,7 +11818,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･6･6･4',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [4, 6, 6, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11818,7 +11827,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･7･6･4',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 27,
+						motionValue: [4, 6, 7, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11827,7 +11836,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x3',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 21,
+						motionValue: [7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11836,7 +11845,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x4',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11845,7 +11854,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 35,
+						motionValue: [7, 7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11854,7 +11863,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 42,
+						motionValue: [7, 7, 7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 
@@ -11888,7 +11897,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: 'rapid',
 					},
 					{
@@ -11897,7 +11906,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6･5',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [14, 6, 5],
 						specialFlag: 'rapid',
 					},
 					{
@@ -11906,7 +11915,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6･5･3',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [14, 6, 5, 3],
 						specialFlag: 'rapid',
 					},
 					{
@@ -11915,7 +11924,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･4',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 14,
+						motionValue: [4, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11924,7 +11933,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '6･7･6',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 19,
+						motionValue: [6, 7, 6],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11933,7 +11942,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･6･6･4',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [4, 6, 6, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11942,7 +11951,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･7･6･4',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 27,
+						motionValue: [4, 6, 7, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -11951,7 +11960,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x3',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 21,
+						motionValue: [7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11960,7 +11969,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x4',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11969,7 +11978,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 35,
+						motionValue: [7, 7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -11978,7 +11987,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 42,
+						motionValue: [7, 7, 7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 
@@ -12012,7 +12021,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6',
 						hitCount: 2,
 						elementMultiplier: 1,
-						motionValue: 20,
+						motionValue: [14, 6],
 						specialFlag: 'rapid',
 					},
 					{
@@ -12021,7 +12030,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6･5',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 25,
+						motionValue: [14, 6, 5],
 						specialFlag: 'rapid',
 					},
 					{
@@ -12030,7 +12039,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '14･6･5･3',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [14, 6, 5, 3],
 						specialFlag: 'rapid',
 					},
 					{
@@ -12039,7 +12048,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･4',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 14,
+						motionValue: [4, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -12048,7 +12057,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '6･7･6',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 19,
+						motionValue: [6, 7, 6],
 						specialFlag: 'scatter',
 					},
 					{
@@ -12057,7 +12066,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･6･6･4',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 26,
+						motionValue: [4, 6, 6, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -12066,7 +12075,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '4･6･7･6･4',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 27,
+						motionValue: [4, 6, 7, 6, 4],
 						specialFlag: 'scatter',
 					},
 					{
@@ -12075,7 +12084,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x3',
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 21,
+						motionValue: [7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -12084,7 +12093,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x4',
 						hitCount: 4,
 						elementMultiplier: 1,
-						motionValue: 28,
+						motionValue: [7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -12093,7 +12102,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 35,
+						motionValue: [7, 7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -12102,7 +12111,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '7x6',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 42,
+						motionValue: [7, 7, 7, 7, 7, 7],
 						specialFlag: 'pierce',
 					},
 					{
@@ -12162,7 +12171,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18(3)x7',
 						hitCount: 7,
 						elementMultiplier: 0.7,
-						motionValue: 126,
+						motionValue: [18, 18, 18, 18, 18, 18, 18],
 						specialFlag: 'arcshot1',
 					},
 					{
@@ -12171,7 +12180,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '16(2)x6',
 						hitCount: 6,
 						elementMultiplier: 0.7,
-						motionValue: 96,
+						motionValue: [16, 16, 16, 16, 16, 16],
 						specialFlag: 'arcshot1',
 					},
 					{
@@ -12180,7 +12189,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15(40) (19 Bomb)',
 						hitCount: 2,
 						elementMultiplier: 0.2,
-						motionValue: 15,
+						motionValue: 15, // TODO?
 						specialFlag: 'arcshot2',
 					},
 					{
@@ -12189,7 +12198,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x7',
 						hitCount: 7,
 						elementMultiplier: 0.7,
-						motionValue: 84,
+						motionValue: [12, 12, 12, 12, 12, 12, 12],
 						specialFlag: 'arcshot1',
 					},
 				],
@@ -12204,7 +12213,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 60,
+						motionValue: [12, 12, 12, 12, 12],
 						specialFlag: 'sniper1',
 					},
 					{
@@ -12213,7 +12222,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x5･25･10･5･4･2',
 						hitCount: 10,
 						elementMultiplier: 1,
-						motionValue: 96,
+						motionValue: [10, 10, 10, 10, 10, 25, 10, 5, 4, 2],
 						specialFlag: 'sniper1',
 					},
 					{
@@ -12222,7 +12231,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 60,
+						motionValue: [12, 12, 12, 12, 12],
 						specialFlag: 'sniper2',
 					},
 					{
@@ -12231,7 +12240,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x5･25･10･5･4･2',
 						hitCount: 10,
 						elementMultiplier: 1,
-						motionValue: 96,
+						motionValue: [10, 10, 10, 10, 10, 25, 10, 5, 4, 2],
 						specialFlag: 'sniper2',
 					},
 				],
@@ -12246,7 +12255,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 60,
+						motionValue: [12, 12, 12, 12, 12],
 						specialFlag: 'sniper1',
 					},
 					{
@@ -12255,7 +12264,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x5･25･10･5･4･2',
 						hitCount: 10,
 						elementMultiplier: 1,
-						motionValue: 96,
+						motionValue: [10, 10, 10, 10, 10, 25, 10, 5, 4, 2],
 						specialFlag: 'sniper1',
 					},
 					{
@@ -12264,7 +12273,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x5',
 						hitCount: 5,
 						elementMultiplier: 1,
-						motionValue: 60,
+						motionValue: [12, 12, 12, 12, 12],
 						specialFlag: 'sniper2',
 					},
 					{
@@ -12273,7 +12282,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x5･25･10･5･4･2',
 						hitCount: 10,
 						elementMultiplier: 1,
-						motionValue: 96,
+						motionValue: [10, 10, 10, 10, 10, 25, 10, 5, 4, 2],
 						specialFlag: 'sniper2',
 					},
 				],
@@ -12285,10 +12294,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Melee Attacks',
 						animation: '',
-						values: '10･10･18',
+						values: '10･10･18', // TODO?
 						hitCount: 3,
 						elementMultiplier: 1,
-						motionValue: 40,
+						motionValue: [10, 10, 18],
 						specialFlag: 'melee',
 					},
 				],
@@ -12303,7 +12312,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2･10x2･31･10',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 85,
+						motionValue: [12, 12, 10, 10, 31, 10],
 						specialFlag: 'melee',
 					},
 					{
@@ -12312,7 +12321,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '17x2･15x2･41･15',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 120,
+						motionValue: [17, 17, 15, 15, 41, 15],
 						specialFlag: 'melee',
 					},
 				],
@@ -12327,7 +12336,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2･10x2･31･10',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 85,
+						motionValue: [12, 12, 10, 10, 31, 10],
 						specialFlag: 'melee',
 					},
 					{
@@ -12336,7 +12345,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '17x2･15x2･41･15',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 120,
+						motionValue: [17, 17, 15, 15, 41, 15],
 						specialFlag: 'melee',
 					},
 				],
@@ -12351,7 +12360,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2･10x2･31･10',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 85,
+						motionValue: [12,12,10,10,31,10],
 						specialFlag: 'melee',
 					},
 					{
@@ -12360,7 +12369,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '17x2･15x2･41･15',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: 120,
+						motionValue: [17,17,15,15,41,15],
 						specialFlag: 'melee',
 					},
 				],
