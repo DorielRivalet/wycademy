@@ -132,7 +132,11 @@
 		getAllHitzoneValuesForHitzones,
 		hitzoneInfo,
 	} from '$lib/client/modules/frontier/hitzones';
-	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+		ItemColors,
+	} from '$lib/client/modules/frontier/items';
 	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
 	import {
 		getAOESigilElement,
@@ -9822,6 +9826,20 @@ does not get multiplied by horn */
 										/>.
 									</p>
 								</ListItem>
+								<ListItem
+									><p>
+										Due to how often the calculations round down values,
+										enabling more skills or barely increasing your damage may
+										not have any effect. For example, some motion values may not
+										benefit from <InlineTooltip
+											text="Ceaseless Up"
+											tooltip="Zenith Skill"
+											icon={getItemIcon('Jewel')}
+											iconColor={getItemColor('Red')}
+											iconType="component"
+										/>.
+									</p></ListItem
+								>
 								<ListItem>
 									<p>
 										Motion Values comprised of multiple hits have their raw
