@@ -4500,6 +4500,47 @@ does not get multiplied by horn */
 		outputCriticalDistanceMultiplier.toString(),
 	);
 
+	/**bowbottles*/
+	$: outputBowCoatingsMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsMultiplier,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsMultiplier',
+		outputBowCoatingsMultiplier.toString(),
+	);
+
+	$: outputBowCoatingsArmorMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsArmorMultiplier,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsArmorMultiplier',
+		outputBowCoatingsArmorMultiplier.toString(),
+	);
+
+	$: outputBowCoatingsWeaponMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsWeaponMultiplier,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsWeaponMultiplier',
+		outputBowCoatingsWeaponMultiplier.toString(),
+	);
+
+	$: outputBowCoatingsHidenMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsHidenMultiplier,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsHidenMultiplier',
+		outputBowCoatingsHidenMultiplier.toString(),
+	);
+
 	/** coatingmod*/
 	$: outputBowCoatingModifier =
 		inputConsumptionSlayer === 'Active (+100)'
@@ -4516,47 +4557,6 @@ does not get multiplied by horn */
 	$: addToDamageCalculatorHistoryLogs(
 		'outputBowCoatingModifier',
 		outputBowCoatingModifier.toString(),
-	);
-
-	/**bowbottles*/
-	$: outputBowCoatingsMultiplier =
-		elementDropdownItems.find(
-			(item) => item.name === inputBowCoatingsMultiplier,
-		)?.value || 1;
-
-	$: addToDamageCalculatorHistoryLogs(
-		'outputBowCoatingsMultiplier',
-		outputBowCoatingsMultiplier.toString(),
-	);
-
-	$: outputBowCoatingsArmorMultiplier =
-		elementDropdownItems.find(
-			(item) => item.name === inputBowCoatingsArmorMultiplier,
-		)?.value || 1;
-
-	$: addToDamageCalculatorHistoryLogs(
-		'outputBowCoatingsArmorMultiplier',
-		outputBowCoatingsArmorMultiplier.toString(),
-	);
-
-	$: outputBowCoatingsWeaponMultiplier =
-		elementDropdownItems.find(
-			(item) => item.name === inputBowCoatingsWeaponMultiplier,
-		)?.value || 1;
-
-	$: addToDamageCalculatorHistoryLogs(
-		'outputBowCoatingsWeaponMultiplier',
-		outputBowCoatingsWeaponMultiplier.toString(),
-	);
-
-	$: outputBowCoatingsHidenMultiplier =
-		elementDropdownItems.find(
-			(item) => item.name === inputBowCoatingsHidenMultiplier,
-		)?.value || 1;
-
-	$: addToDamageCalculatorHistoryLogs(
-		'outputBowCoatingsHidenMultiplier',
-		outputBowCoatingsHidenMultiplier.toString(),
 	);
 
 	$: outputRoadLastStandAttack =
