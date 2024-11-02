@@ -1,10 +1,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
+	import type { FrontierHuntingHornNote } from '$lib/client/modules/frontier/types';
+
 	// TODO add tooltip option?
-	export let color: string = 'Red';
+	export let color: FrontierHuntingHornNote = 'Red';
 	export let size: number | string = 16;
 
-	function getCSSVariableFromColorName(color: string) {
+	function getCSSVariableFromColorName(color: FrontierHuntingHornNote) {
 		switch (color) {
 			case 'Red':
 				return 'var(--fz-hh-note-red)';

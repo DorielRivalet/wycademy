@@ -35,6 +35,8 @@
 	import ColorfulButtonToggle from '$lib/client/components/ColorfulButtonToggle.svelte';
 	import type { FrontierHuntingHornNote } from '$lib/client/modules/frontier/types';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
+	import HuntingHornRainbowNoteIcon from '$lib/client/components/frontier/icon/HuntingHornRainbowNoteIcon.svelte';
+	import SimonGame from '$lib/client/components/SimonGame.svelte';
 
 	function handleToggle(index: number, enabled: boolean) {
 		huntingHornSelectedNotes[index].enabled = enabled;
@@ -248,9 +250,62 @@
 
 	let filteringStrategy: 'atLeastOne' | 'onlySelected' = 'onlySelected';
 
+	/**For simon game start/restart*/
+	let rainbowNoteState: boolean = false;
+	/**Player notes*/
+	let currentSequence: FrontierHuntingHornNote[] = [];
+	/**Requires notes to advance, grows if succeded in each sequence required.*/
+	let targetSequence: FrontierHuntingHornNote[] = [];
+	/**For making the start button show*/
+	let didReleaseAllNotes = false;
+	/**Fpr making the start button show*/
+	let didPressAllNotes = false;
+	/**Game score*/
+	let simonScore = 0;
+
+	/**List of available notes to play*/
+	let simonNotes: FrontierHuntingHornNote[] = [
+		'White',
+		'Blue',
+		'Cyan',
+		'Green',
+		'Red',
+		'Yellow',
+		'Purple',
+		'Pink',
+	];
+
+	function checkIfReleasedAllNotes(
+		notes: {
+			color: FrontierHuntingHornNote;
+			enabled: boolean;
+		}[],
+	) {
+		if (didReleaseAllNotes) return true;
+		return notes.every((e) => e.enabled === false);
+	}
+
+	function checkIfPressedAllNotes(
+		allNotesReleased: boolean,
+		notes: {
+			color: FrontierHuntingHornNote;
+			enabled: boolean;
+		}[],
+	) {
+		if (didPressAllNotes) return true;
+		if (!allNotesReleased) return false;
+		return notes.every((e) => e.enabled === true);
+	}
+
 	$: huntingHornAvailableSongs = getHuntingHornAvailableSongs(
 		huntingHornSelectedNotes,
 		filteringStrategy,
+	);
+
+	$: didReleaseAllNotes = checkIfReleasedAllNotes(huntingHornSelectedNotes);
+	$: didPressAllNotes = checkIfPressedAllNotes(
+		didReleaseAllNotes,
+		huntingHornSelectedNotes,
 	);
 </script>
 
@@ -301,16 +356,35 @@
 					/>
 				</div>
 				<!--TODO: easter eggs-->
+
 				<div class="hunting-horn-note-buttons">
-					{#each huntingHornSelectedNotes as note, i}
+					{#if didPressAllNotes && didReleaseAllNotes && rainbowNoteState}
+						<SimonGame
+							{simonNotes}
+							bind:currentSequence
+							bind:targetSequence
+							bind:simonScore
+						/>
+					{:else}
+						{#each huntingHornSelectedNotes as note, i}
+							<ColorfulButtonToggle
+								enabled={note.enabled}
+								on:toggle={(e) => handleToggle(i, e.detail.enabled)}
+								backgroundColor={'var(--ctp-surface0)'}
+							>
+								<HuntingHornNoteIcon color={note.color} size={'100%'} />
+							</ColorfulButtonToggle>
+						{/each}
+					{/if}
+					{#if didPressAllNotes && didReleaseAllNotes}
 						<ColorfulButtonToggle
-							enabled={note.enabled}
-							on:toggle={(e) => handleToggle(i, e.detail.enabled)}
+							enabled={rainbowNoteState}
 							backgroundColor={'var(--ctp-surface0)'}
+							on:toggle={(e) => (rainbowNoteState = !rainbowNoteState)}
 						>
-							<HuntingHornNoteIcon color={note.color} size={'100%'} />
+							<HuntingHornRainbowNoteIcon size={'100%'} />
 						</ColorfulButtonToggle>
-					{/each}
+					{/if}
 				</div>
 				<div class="table table-with-scrollbar">
 					<DataTable
