@@ -5,8 +5,6 @@
 -->
 
 <script>
-	import Counter from '$lib/client/components/Counter.svelte';
-	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import pageThumbnail from '$lib/client/images/wycademy.png';
 	import {
 		authorName,
@@ -18,6 +16,13 @@
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
+	import HomeHeroSection from './HomeHeroSection.svelte';
+	import HomeSolutionSection from './HomeSolutionSection.svelte';
+	import HomeHowItWorksSection from './HomeHowItWorksSection.svelte';
+	import HomeTestimonialSection from './HomeTestimonialSection.svelte';
+	import HomeProblemSection from './HomeProblemSection.svelte';
+	import FrequentlyAskedQuestions from '$lib/client/components/FrequentlyAskedQuestions.svelte';
+	import HomeCallToActionSection from './HomeCallToActionSection.svelte';
 
 	const customTitle = "Home — Frontier's Wycademy";
 	const url = $page.url.toString();
@@ -37,21 +42,15 @@
 	siteName={projectName}
 />
 
-<section>
-	<SectionHeadingTopLevel title="Welcome" />
-
-	<p>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</p>
-
-	<Counter />
-</section>
+<div>
+	<HomeHeroSection />
+	<HomeProblemSection />
+	<HomeSolutionSection />
+	<HomeHowItWorksSection />
+	<HomeTestimonialSection />
+	<FrequentlyAskedQuestions faq={[]} />
+	<HomeCallToActionSection />
+</div>
 
 <style lang="scss">
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
 </style>
