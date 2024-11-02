@@ -7,7 +7,7 @@
 
 <div class="container">
 	<div class="icon"><slot /></div>
-	<p class="value" style:color>{value}</p>
+	<p class="value" style:color>{value}+</p>
 	<p class="text">{text}</p>
 </div>
 

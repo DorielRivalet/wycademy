@@ -6,15 +6,28 @@
 	import Tools from 'carbon-icons-svelte/lib/Tools.svelte';
 	import Book from 'carbon-icons-svelte/lib/Book.svelte';
 	import AnimatedCounter from '$lib/client/components/AnimatedCounter.svelte';
+	import { guidesInfo, toolsInfo } from '$lib/client/modules/routes';
+	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
+	import testImage from '$lib/client/images/wycademy.png';
 
-	export let title: string = 'Title';
-	export let description: string = 'Description';
+	const breakpointSize = breakpointObserver();
+	const breakpointLargerThanLarge = breakpointSize.largerThan('md');
+
+	export let title: string = 'Your Complete Guide to Monster Hunter Frontier';
+	export let description: string =
+		'With in-depth resources, leaderboards, and tools for all hunters, our open-source platform empowers the community across all servers and patches.';
 	export let primaryButtonText: string = 'Explore';
 	export let primaryButtonLink: string = '/';
 	export let counterSpeedruns: number = 0;
 	export let counterUsers: number = 0;
-	export let counterGuides: number = 0;
-	export let counterTools: number = 0;
+	export let counterGuides: number = guidesInfo.reduce(
+		(count, category) => count + category.pages.length,
+		0,
+	);
+	export let counterTools: number = toolsInfo.reduce(
+		(count, category) => count + category.pages.length,
+		0,
+	);
 </script>
 
 <div class="hero-container">
@@ -32,24 +45,32 @@
 		</div>
 	</div>
 	<div class="hero-graphics">
-		<!-- <img src="/" alt="Website Preview" /> -->
-	</div>
-	<div class="hero-counters">
-		<AnimatedCounter value={counterUsers} text="Users" color="var(--ctp-text)"
-			><Group size={32} color="var(--ctp-text)" /></AnimatedCounter
-		>
-		<AnimatedCounter
-			value={counterSpeedruns}
-			text="Speedruns"
-			color="var(--ctp-text)"
-			><Running size={32} color="var(--ctp-text)" /></AnimatedCounter
-		>
-		<AnimatedCounter value={counterGuides} text="Guides" color="var(--ctp-text)"
-			><Book size={32} color="var(--ctp-text)" /></AnimatedCounter
-		>
-		<AnimatedCounter value={counterTools} text="Tools" color="var(--ctp-text)"
-			><Tools size={32} color="var(--ctp-text)" /></AnimatedCounter
-		>
+		{#if $breakpointLargerThanLarge}
+			<img src={testImage} alt="Website Preview" />
+		{/if}
+		<div class="hero-counters">
+			<AnimatedCounter
+				value={counterUsers}
+				text="Hunters"
+				color="var(--ctp-text)"
+				><Group size={32} color="var(--ctp-text)" /></AnimatedCounter
+			>
+			<AnimatedCounter
+				value={counterSpeedruns}
+				text="Hunts"
+				color="var(--ctp-text)"
+				><Running size={32} color="var(--ctp-text)" /></AnimatedCounter
+			>
+			<AnimatedCounter
+				value={counterGuides}
+				text="Guides"
+				color="var(--ctp-text)"
+				><Book size={32} color="var(--ctp-text)" /></AnimatedCounter
+			>
+			<AnimatedCounter value={counterTools} text="Tools" color="var(--ctp-text)"
+				><Tools size={32} color="var(--ctp-text)" /></AnimatedCounter
+			>
+		</div>
 	</div>
 </div>
 
@@ -66,36 +87,58 @@
 			margin: auto;
 			gap: 1rem;
 			grid-template-areas:
-				'text graphics'
-				'counters counters';
+				'text'
+				'graphics';
 			grid-template-rows: 3fr 1fr;
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: 1fr;
 		}
 
-		.hero-counters {
-			grid-area: counters;
+		.hero-graphics {
+			grid-area: graphics;
+			padding-top: 0px;
 			display: flex;
-			flex-wrap: wrap;
+			flex-direction: column;
 			gap: 2rem;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
+
+			img {
+				border: 8px solid var(--ctp-surface1);
+				border-radius: 8px;
+				width: 100%;
+			}
 		}
 	}
 
 	@media (min-width: 1056px) {
 		.hero-container {
 			display: grid;
-			grid-template-areas: 'text graphics counters';
+			grid-template-areas: 'text graphics';
 			grid-template-rows: 1fr;
-			grid-template-columns: 1fr 2fr 1fr;
+			grid-template-columns: 2fr 4fr;
 		}
 
-		.hero-counters {
+		.hero-graphics {
+			grid-area: graphics;
+			padding-top: var(--cds-spacing-08);
+			display: flex;
 			flex-direction: column;
-			align-items: center;
-			justify-content: center;
+			gap: 2rem;
+
+			img {
+				border: 8px solid var(--ctp-surface1);
+				border-radius: 8px;
+				width: 100%;
+			}
 		}
+	}
+
+	.hero-counters {
+		grid-area: counters;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.hero-text {
@@ -104,15 +147,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
-	}
-
-	.hero-graphics {
-		grid-area: graphics;
-
-		img {
-			border: 2px solid var(--ctp-surface1);
-			border-radius: 8px;
-		}
 	}
 
 	.hero-title {
