@@ -7,6 +7,7 @@
 
 	export let colors = [...new Set(RarityColors)];
 	export let delay = 2000;
+	export let size: string = '100%';
 
 	const items = itemInfo.map((e) => {
 		return e.icon;
@@ -34,7 +35,7 @@
 
 <div>
 	{#if browser}
-		<svelte:component this={randomItem} color={randomColor} />
+		<svelte:component this={randomItem} color={randomColor} {size} />
 	{:else}
 		<SkeletonPlaceholder style="width: 64px; height: 64px;" />
 	{/if}

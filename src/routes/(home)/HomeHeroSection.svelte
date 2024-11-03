@@ -8,7 +8,7 @@
 	import AnimatedCounter from '$lib/client/components/AnimatedCounter.svelte';
 	import { guidesInfo, toolsInfo } from '$lib/client/modules/routes';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
-	import testImage from '$lib/client/images/wycademy.png';
+	import HomeHeroSectionAllPageCards from './HomeHeroSectionAllPageCards.svelte';
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanLarge = breakpointSize.largerThan('md');
@@ -46,7 +46,9 @@
 	</div>
 	<div class="hero-graphics">
 		{#if $breakpointLargerThanLarge}
-			<img src={testImage} alt="Website Preview" />
+			<div class="marquee-container">
+				<HomeHeroSectionAllPageCards />
+			</div>
 		{/if}
 		<div class="hero-counters">
 			<AnimatedCounter
@@ -85,7 +87,8 @@
 			min-height: 90vh;
 			width: 90vw;
 			margin: auto;
-			gap: 1rem;
+			gap: 2rem;
+			column-gap: 2rem;
 			grid-template-areas:
 				'text'
 				'graphics';
@@ -100,10 +103,9 @@
 			flex-direction: column;
 			gap: 2rem;
 
-			img {
-				border: 8px solid var(--ctp-surface1);
-				border-radius: 8px;
-				width: 100%;
+			.marquee-container {
+				width: 60vw;
+				display: flex;
 			}
 		}
 	}
@@ -122,12 +124,6 @@
 			display: flex;
 			flex-direction: column;
 			gap: 2rem;
-
-			img {
-				border: 8px solid var(--ctp-surface1);
-				border-radius: 8px;
-				width: 100%;
-			}
 		}
 	}
 

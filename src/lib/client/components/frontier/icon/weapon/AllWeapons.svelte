@@ -25,6 +25,7 @@
 	let randomColor = '#ffffff';
 
 	export let delay = 2000;
+	export let size: string = '100%';
 
 	// Function to select a random item from an array
 	function getRandomItem(arr: any[]) {
@@ -49,7 +50,7 @@
 
 <div>
 	<!-- Pass the random color as a prop to the randomly selected weapon component -->
-	<svelte:component this={randomWeapon} color={randomColor} />
+	<svelte:component this={randomWeapon} color={randomColor} {size} />
 </div>
 
 <style lang="scss"></style>

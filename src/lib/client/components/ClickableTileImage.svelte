@@ -54,6 +54,7 @@
 
 	.title {
 		font-size: 1.5em;
+		overflow-wrap: anywhere;
 	}
 
 	.description {
