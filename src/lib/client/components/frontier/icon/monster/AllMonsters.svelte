@@ -4,6 +4,7 @@
 
 	export let monsters = [...new Set(monsterInfo)];
 	export let delay = 2000;
+	export let size: string = '100%';
 
 	let randomMonster = monsterInfo[0];
 
@@ -22,7 +23,7 @@
 	});
 </script>
 
-<div>
+<div style:width={size}>
 	<img src={randomMonster.icon} alt="Monster" width="100%" height="100%" />
 </div>
 

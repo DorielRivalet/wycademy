@@ -9,6 +9,7 @@
 
 	export let colors = [...new Set(RarityColors)];
 	export let delay = 2000;
+	export let size: string = '100%';
 
 	const armors = [
 		ArmIconWhite,
@@ -39,7 +40,7 @@
 </script>
 
 <div>
-	<svelte:component this={randomArmor} color={randomColor} />
+	<svelte:component this={randomArmor} color={randomColor} {size} />
 </div>
 
 <style lang="scss"></style>
