@@ -352,8 +352,8 @@
 				<SectionHeading level={2} title="Slots" />
 				<div>
 					<p class="spaced-paragraph">
-						Sigil slots are triangular and can either replace decoration slots
-						in standard G Rank weaponry or be part of hybrid slots that
+						Sigil slots are of a diamond shape and can either replace decoration
+						slots in standard G Rank weaponry or be part of hybrid slots that
 						accommodate both <InlineTooltip
 							text="decorations"
 							tooltip="Item"
@@ -387,10 +387,25 @@
 
 					<p class="spaced-paragraph">
 						The slot shape determines what item goes in. For sigils, the slots
-						are triangular. For decorations, the slots are circular. For sigils
-						or decorations on the same slot, the slot is a diamond inside a
-						circle.
+						have a diamond shape. For decorations, the slots are circular. For
+						sigils or decorations on the same slot, the slot is a diamond inside
+						a circle. If the slot shape is of a diamond and colored red, you can
+						use a <InlineTooltip
+							text="Zenith Sigil"
+							tooltip="Zenith Sigil"
+							iconType="component"
+							icon={getItemIcon('Sigil')}
+							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
+						/>.
 					</p>
+
+					<CenteredFigure
+						width={'100%'}
+						type="file"
+						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/sigil-slots-types.webp'}
+						alt="Sigil slots shapes"
+						figcaption="Sigil slots shapes."
+					/>
 
 					<p>
 						<InlineTooltip
