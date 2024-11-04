@@ -32,7 +32,7 @@
 		projectName,
 		website,
 	} from '$lib/constants';
-	import pageThumbnail from '$lib/client/images/wycademy.png';
+	import pageThumbnail from '$lib/client/images/page-thumbnail/dark/overlay.png';
 	import Quotes from 'carbon-icons-svelte/lib/Quotes.svelte';
 	import ListChecked from 'carbon-icons-svelte/lib/ListChecked.svelte';
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
