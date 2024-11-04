@@ -13,7 +13,8 @@
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanLarge = breakpointSize.largerThan('md');
 
-	export let title: string = 'Your Complete Guide to Monster Hunter Frontier';
+	export let title: string =
+		'Your Ultimate Knowledge Base for Monster Hunter Frontier Z';
 	export let description: string =
 		'With in-depth resources, leaderboards, and tools for all hunters, our open-source platform empowers the community across all servers and patches.';
 	export let primaryButtonText: string = 'Explore';
@@ -79,12 +80,11 @@
 <style lang="scss">
 	@use '@carbon/motion' as motion;
 	@use '@carbon/type' as type;
-	// @use '$lib/client/styles/_border-all.scss';
+	//@use '$lib/client/styles/_border-all.scss';
 
 	@media (min-width: 320px) {
 		.hero-container {
 			display: grid;
-			min-height: 90vh;
 			width: 90vw;
 			margin: auto;
 			gap: 2rem;
@@ -138,11 +138,11 @@
 	}
 
 	.hero-text {
-		padding-top: var(--cds-spacing-10);
+		padding-top: var(--cds-spacing-08);
 		grid-area: text;
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 1rem;
 	}
 
 	.hero-title {

@@ -24,6 +24,7 @@ import thumbnailLightCharmsTalons from '$lib/client/images/page-thumbnail/light/
 import thumbnailLightArmorSkillsPriority from '$lib/client/images/page-thumbnail/light/armor-skills-priority.png';
 import thumbnailLightExotics from '$lib/client/images/page-thumbnail/light/exotics.png';
 import thumbnailLightHuntingHornSongs from '$lib/client/images/page-thumbnail/light/hunting-horn-songs.png';
+import thumbnailLightCaravanSkills from '$lib/client/images/page-thumbnail/light/caravan-skills.png';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -79,6 +80,12 @@ import thumbnailDarkLBGHiden from '$lib/client/images/page-thumbnail/dark/lbg-te
 import thumbnailDarkBowHiden from '$lib/client/images/page-thumbnail/dark/bow-tech.png';
 import thumbnailDarkRavienteWeapons from '$lib/client/images/page-thumbnail/dark/raviente-weapons.png';
 import thumbnailDarkHuntingHornSongs from '$lib/client/images/page-thumbnail/dark/hunting-horn-songs.png';
+import thumbnailDarkCaravanSkills from '$lib/client/images/page-thumbnail/dark/caravan-skills.png';
+import thumbnailDarkSigilRecipes from '$lib/client/images/page-thumbnail/dark/sigil-recipes.png';
+import thumbnailDarkSigilSkills from '$lib/client/images/page-thumbnail/dark/sigil-skills.png';
+import thumbnailDarkWeapons from '$lib/client/images/page-thumbnail/dark/weapons.png';
+import thumbnailDarkCalculators from '$lib/client/images/page-thumbnail/dark/calculators.png';
+import thumbnailDarkSigilSlots from '$lib/client/images/page-thumbnail/dark/sigil-slots.png';
 
 import { getMonsterIcon } from './frontier/monsters';
 
@@ -216,7 +223,7 @@ const lightThumbnailInfo: {
 	{
 		embed: 'caravan-skills',
 		link: '/hunter-notes/locations/caravan',
-		thumbnail: thumbnailLightCaravanGemUpgrade,
+		thumbnail: thumbnailLightCaravanSkills,
 	},
 	{
 		embed: null,
@@ -388,6 +395,31 @@ const lightThumbnailInfo: {
 		link: '/hunter-notes/weapons/hunting-horn',
 		thumbnail: thumbnailLightHuntingHornSongs,
 	},
+	{
+		embed: 'recipes',
+		link: '/hunter-notes/weapons/sigils',
+		thumbnail: thumbnailDarkSigilRecipes,
+	},
+	{
+		embed: 'skills',
+		link: '/hunter-notes/weapons/sigils',
+		thumbnail: thumbnailDarkSigilSkills,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/weapons',
+		thumbnail: thumbnailDarkWeapons,
+	},
+	{
+		embed: null,
+		link: '/tools/calculator',
+		thumbnail: thumbnailDarkCalculators,
+	},
+	{
+		embed: 'slots',
+		link: '/hunter-notes/weapons/sigils',
+		thumbnail: thumbnailDarkSigilSlots,
+	},
 ];
 
 const darkThumbnailInfo: {
@@ -524,12 +556,12 @@ const darkThumbnailInfo: {
 	{
 		embed: 'caravan-skills',
 		link: '/hunter-notes/locations/caravan',
-		thumbnail: thumbnailDarkCaravanGemUpgrade,
+		thumbnail: thumbnailDarkCaravanSkills,
 	},
 	{
 		embed: null,
 		link: '/hunter-notes/locations/caravan',
-		thumbnail: thumbnailDarkCaravanGemUpgrade,
+		thumbnail: thumbnailDarkCaravanGemUpgrade, // gem ranks
 	},
 	{
 		embed: 'grinding-colors',
@@ -695,6 +727,31 @@ const darkThumbnailInfo: {
 		embed: null,
 		link: '/hunter-notes/weapons/hunting-horn',
 		thumbnail: thumbnailDarkHuntingHornSongs,
+	},
+	{
+		embed: 'recipes',
+		link: '/hunter-notes/weapons/sigils',
+		thumbnail: thumbnailDarkSigilRecipes,
+	},
+	{
+		embed: 'skills',
+		link: '/hunter-notes/weapons/sigils',
+		thumbnail: thumbnailDarkSigilSkills,
+	},
+	{
+		embed: null,
+		link: '/hunter-notes/weapons',
+		thumbnail: thumbnailDarkWeapons,
+	},
+	{
+		embed: null,
+		link: '/tools/calculator',
+		thumbnail: thumbnailDarkCalculators,
+	},
+	{
+		embed: 'slots',
+		link: '/hunter-notes/weapons/sigils',
+		thumbnail: thumbnailDarkSigilSlots,
 	},
 ];
 
