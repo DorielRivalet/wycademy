@@ -6,7 +6,10 @@
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import {
+		getLocationIcon,
+		LocationIcons,
+	} from '$lib/client/modules/frontier/locations';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 	import { gameInfo } from '$lib/client/modules/frontier/objects';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
@@ -139,7 +142,7 @@
 		},
 		{
 			id: '8',
-			motion: 'Magnetic Attraction',
+			motion: 'Magnetic Repulsion',
 			iframes: '24',
 			mode: 'Impact',
 		},
@@ -1661,6 +1664,15 @@ graph LR
 								The Magnetic Pin Finisher attack presents the highest motion
 								value in the game, at 600 without Active Feature and 750 with
 								Active Feature.
+							</p></ListItem
+						><ListItem
+							><p>
+								This weapon type is generally seen in <InlineTooltip
+									tooltip="Location"
+									text="Hunter's Road"
+									icon={getLocationIcon('Road')}
+									iconType="file"
+								/> teams. It is common for teams to use multiple Magnet Spikes.
 							</p></ListItem
 						>
 					</UnorderedList>

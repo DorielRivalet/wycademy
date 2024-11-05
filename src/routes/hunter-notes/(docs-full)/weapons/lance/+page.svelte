@@ -28,6 +28,7 @@
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 	import { getAilmentIcon } from '$lib/client/modules/frontier/ailments';
 	import CaravanGem from '$lib/client/components/frontier/icon/CaravanGem.svelte';
+	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
 
 	const hidenSkills: {
 		id: string;
@@ -763,6 +764,21 @@
 									icon={getWeaponIcon('Dual Swords')}
 								/> users that are in <strong>Extreme Demon Mode</strong>, except
 								in periods where they got hit and thus lost the mode.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								This weapon type is very useful in <InlineTooltip
+									tooltip="Location"
+									text="Hunter's Road"
+									icon={getLocationIcon('Road')}
+									iconType="file"
+								/> teams, although with the introduction of <InlineTooltip
+									tooltip="Weapon"
+									text="Magnet Spike"
+									iconType="component"
+									icon={getWeaponIcon('Magnet Spike')}
+								/> it is not as common.
 							</p></ListItem
 						>
 					</UnorderedList>

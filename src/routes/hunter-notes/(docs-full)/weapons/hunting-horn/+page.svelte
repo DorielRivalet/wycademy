@@ -994,6 +994,16 @@
 								/> for extra buffs.
 							</p></ListItem
 						>
+						<ListItem
+							><p>
+								This weapon type is very useful in <InlineTooltip
+									tooltip="Location"
+									text="Hunter's Road"
+									icon={getLocationIcon('Road')}
+									iconType="file"
+								/> teams due to the songs effects.
+							</p></ListItem
+						>
 					</UnorderedList>
 				</div>
 			</section>

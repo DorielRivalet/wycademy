@@ -28,6 +28,7 @@
 	import CaravanGem from '$lib/client/components/frontier/icon/CaravanGem.svelte';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import { getStatusIcon } from '$lib/client/modules/frontier/ailments';
 
 	const hidenSkills: {
 		id: string;
@@ -535,6 +536,21 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> mode.
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								This weapon type is very useful in <InlineTooltip
+									tooltip="Location"
+									text="Hunter's Road"
+									icon={getLocationIcon('Road')}
+									iconType="file"
+								/> teams, specifically due to the ease of applying <InlineTooltip
+									tooltip="Status"
+									text="Paralysis"
+									iconType="component"
+									icon={getStatusIcon('Paralysis')}
+								/>.
 							</p></ListItem
 						>
 						<ListItem
