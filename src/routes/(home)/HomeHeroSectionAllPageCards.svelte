@@ -202,7 +202,7 @@
 		justify-content: center;
 		overflow: hidden;
 		border-radius: 0.5rem;
-		background-color: var(--ctp-base);
+		background-color: transparent;
 		padding: 1rem 0;
 
 		@media (min-width: 768px) {

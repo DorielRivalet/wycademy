@@ -9,9 +9,11 @@
 	import { guidesInfo, toolsInfo } from '$lib/client/modules/routes';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import HomeHeroSectionAllPageCards from './HomeHeroSectionAllPageCards.svelte';
-
-	const breakpointSize = breakpointObserver();
-	const breakpointLargerThanLarge = breakpointSize.largerThan('md');
+	import BackgroundParticles from '$lib/client/components/BackgroundParticles.svelte';
+	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
+	import type { Writable } from 'svelte/store';
+	import { getContext } from 'svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 
 	export let title: string =
 		'Your Ultimate Knowledge Base for Monster Hunter Frontier Z';
@@ -29,52 +31,76 @@
 		(count, category) => count + category.pages.length,
 		0,
 	);
+
+	const breakpointSize = breakpointObserver();
+	const breakpointLargerThanLarge = breakpointSize.largerThan('md');
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+
+	$: particleColor = getHexStringFromCatppuccinColor('blue', $carbonThemeStore);
 </script>
 
-<div class="hero-container">
-	<div class="hero-text">
-		<h1 class="hero-title">{title}</h1>
-		<p class="hero-description">{description}</p>
-		<div class="hero-button">
-			<Button
-				size="lg"
-				expressive
-				icon={ArrowRight}
-				href={primaryButtonLink}
-				kind="primary">{primaryButtonText}</Button
-			>
-		</div>
-	</div>
-	<div class="hero-graphics">
-		{#if $breakpointLargerThanLarge}
-			<div class="marquee-container">
-				<HomeHeroSectionAllPageCards />
+<div class="container">
+	<div class="hero-container">
+		<div class="hero-text">
+			<h1 class="hero-title">{title}</h1>
+			<p class="hero-description">{description}</p>
+			<div class="hero-button">
+				<Button
+					size="lg"
+					expressive
+					icon={ArrowRight}
+					href={primaryButtonLink}
+					kind="primary">{primaryButtonText}</Button
+				>
 			</div>
-		{/if}
-		<div class="hero-counters">
-			<AnimatedCounter
-				value={counterUsers}
-				text="Hunters"
-				color="var(--ctp-text)"
-				><Group size={32} color="var(--ctp-text)" /></AnimatedCounter
-			>
-			<AnimatedCounter
-				value={counterSpeedruns}
-				text="Hunts"
-				color="var(--ctp-text)"
-				><Running size={32} color="var(--ctp-text)" /></AnimatedCounter
-			>
-			<AnimatedCounter
-				value={counterGuides}
-				text="Guides"
-				color="var(--ctp-text)"
-				><Book size={32} color="var(--ctp-text)" /></AnimatedCounter
-			>
-			<AnimatedCounter value={counterTools} text="Tools" color="var(--ctp-text)"
-				><Tools size={32} color="var(--ctp-text)" /></AnimatedCounter
-			>
+		</div>
+		<div class="hero-graphics">
+			{#if $breakpointLargerThanLarge}
+				<div class="marquee-container">
+					<HomeHeroSectionAllPageCards />
+				</div>
+			{/if}
+			<div class="hero-counters">
+				<AnimatedCounter
+					value={counterUsers}
+					text="Hunters"
+					color="var(--ctp-text)"
+					href="/signup"
+					><Group size={32} color="var(--ctp-blue)" /></AnimatedCounter
+				>
+				<AnimatedCounter
+					value={counterSpeedruns}
+					text="Hunts"
+					href="/leaderboard"
+					color="var(--ctp-text)"
+					><Running size={32} color="var(--ctp-sapphire)" /></AnimatedCounter
+				>
+				<AnimatedCounter
+					value={counterGuides}
+					text="Guides"
+					href="/hunter-notes"
+					color="var(--ctp-text)"
+					><Book size={32} color="var(--ctp-sky)" /></AnimatedCounter
+				>
+				<AnimatedCounter
+					value={counterTools}
+					text="Tools"
+					href="/tools"
+					color="var(--ctp-text)"
+					><Tools size={32} color="var(--ctp-teal)" /></AnimatedCounter
+				>
+			</div>
 		</div>
 	</div>
+	<BackgroundParticles
+		quantity={500}
+		staticity={25}
+		size={0.3}
+		color={particleColor}
+	/>
 </div>
 
 <style lang="scss">
@@ -82,11 +108,17 @@
 	@use '@carbon/type' as type;
 	//@use '$lib/client/styles/_border-all.scss';
 
+	.container {
+		position: relative;
+		overflow: hidden;
+	}
+
 	@media (min-width: 320px) {
 		.hero-container {
+			position: absolute;
 			display: grid;
-			width: 90vw;
-			margin: auto;
+			padding-left: 2rem;
+			padding-right: 2rem;
 			gap: 2rem;
 			column-gap: 2rem;
 			grid-template-areas:
