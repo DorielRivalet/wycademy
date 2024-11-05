@@ -18,7 +18,6 @@
 	import { onMount } from 'svelte';
 	import mermaid from 'mermaid';
 	import { browser } from '$app/environment';
-	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
@@ -28,17 +27,27 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
+	import { writable, type Writable } from 'svelte/store';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import type { FrontierWeaponMove } from '$lib/client/modules/frontier/types';
+	import { SvelteFlowProvider, type Edge, type Node } from '@xyflow/svelte';
+	import SvelteFlowElk from '$lib/client/components/SvelteFlowElk.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
+
+	const edgeType = 'bezier';
+	const edgeDataStyle: string = 'stroke: var(--ctp-blue);';
+
 	const hidenSkills: {
 		id: string;
 		skill: FrontierArmorSkillName;
@@ -175,6 +184,265 @@
 			motion: 'Magnetic Double Slash',
 			iframes: '17',
 			mode: 'Impact',
+		},
+	];
+
+	const moveset: FrontierWeaponMove[] = [
+		{
+			name: 'Magnetic Marker',
+			controls: ['L2', 'Circle'],
+			state: 'Magnetic Field',
+			connectsTo: ['Magnetic Attraction'],
+		},
+		{
+			name: 'Magnetic Attraction',
+			controls: ['L2', 'Triangle'],
+			state: 'Magnetic Field',
+			frames: 17,
+			connectsTo: ['Falling Slash/Swipe', 'Approach Cancel'],
+		},
+		{
+			name: 'Magnetic Repulsion',
+			controls: ['L2', 'Cross'],
+			state: 'Magnetic Field',
+			frames: 24,
+			connectsTo: ['Magnetic Attraction'],
+		},
+		{
+			name: 'Falling Slash/Swipe',
+			controls: ['Triangle'],
+			state: 'Magnetic Field',
+			connectsTo: [],
+		},
+		{
+			name: 'Approach Cancel',
+			controls: ['Cross'],
+			state: 'Magnetic Field',
+			connectsTo: [],
+		},
+
+		// Cutting Mode - Basic Moves
+		{
+			name: 'Vertical 1',
+			controls: ['Triangle'],
+			state: 'Cutting',
+			connectsTo: ['Upslash', 'Horizontal 1C'],
+		},
+		{
+			name: 'Upslash',
+			controls: ['Triangle'],
+			state: 'Cutting',
+			connectsTo: ['Vertical 2', 'Horizontal 1C'],
+		},
+		{
+			name: 'Vertical 2',
+			controls: ['Triangle'],
+			state: 'Cutting',
+			connectsTo: ['Horizontal 2C', 'Horizontal 3C'],
+		},
+		{
+			name: 'Horizontal 1C',
+			controls: ['Circle'],
+			state: 'Cutting',
+			connectsTo: ['Horizontal 2C', 'Vertical 1'],
+		},
+		{
+			name: 'Horizontal 2C',
+			controls: ['Circle'],
+			state: 'Cutting',
+			connectsTo: ['Horizontal 3C', 'Vertical 2'],
+		},
+		{
+			name: 'Horizontal 3C',
+			controls: ['Circle'],
+			state: 'Cutting',
+			connectsTo: ['Finishing Slash', 'Horizontal 1C', 'Vertical 2'],
+		},
+
+		// Cutting Mode - Special Moves
+		{
+			name: 'Guard Counter',
+			controls: ['R1'],
+			state: 'Cutting',
+			connectsTo: ['Finishing Slash'],
+		},
+		{
+			name: 'Finishing Slash',
+			controls: ['Circle', 'Triangle'],
+			state: 'Cutting',
+			connectsTo: [],
+		},
+		{
+			name: 'Magnetic Evade',
+			controls: ['R1', 'Square'],
+			state: 'Cutting',
+			frames: 17,
+			connectsTo: [],
+		},
+		{
+			name: 'Retreat Slash',
+			controls: ['R1', 'Cross'],
+			state: 'Cutting',
+			frames: 17,
+			connectsTo: [],
+		},
+		{
+			name: 'Magnetic Assault (Cutting)',
+			controls: ['R1', 'Circle', 'Triangle'],
+			state: 'Cutting',
+			frames: 17,
+			connectsTo: [],
+		},
+		{
+			name: 'Magnetic Double Slash',
+			controls: ['R1', 'Triangle'],
+			state: 'Cutting',
+			frames: 17,
+			connectsTo: ['Magnetic Pin'],
+		},
+
+		// Impact Mode - Basic Moves
+		{
+			name: 'Horizontal 1I',
+			controls: ['LS', 'Circle'],
+			state: 'Impact',
+			connectsTo: ['Horizontal 2I', 'Downswipe'],
+		},
+		{
+			name: 'Horizontal 2I',
+			controls: ['Circle'],
+			state: 'Impact',
+			connectsTo: ['Overhead Horizontal', 'Downswipe', 'Triple Slash 1'],
+		},
+		{
+			name: 'Overhead Horizontal',
+			controls: ['LS', 'Circle', 'Triangle'],
+			state: 'Impact',
+			connectsTo: ['Suplex', 'Horizontal 1I', 'Downswipe'],
+		},
+		{
+			name: 'Downswipe',
+			controls: ['Triangle'],
+			state: 'Impact',
+			connectsTo: ['Triple Slash 1', 'Overhead Horizontal'],
+		},
+		{
+			name: 'Charged Slash',
+			controls: ['Circle'],
+			state: 'Impact',
+			connectsTo: ['Suplex'],
+		},
+		{
+			name: 'Triple Slash 1',
+			controls: ['Circle'],
+			state: 'Impact',
+			connectsTo: ['Triple Slash 2'],
+		},
+		{
+			name: 'Triple Slash 2',
+			controls: ['Circle'],
+			state: 'Impact',
+			connectsTo: ['Triple Slash 3', 'Charged Slash'],
+		},
+		{
+			name: 'Triple Slash 3',
+			controls: ['Circle'],
+			state: 'Impact',
+			connectsTo: ['Suplex'],
+		},
+
+		// Impact Mode - Special Moves
+		{
+			name: 'Just Guard',
+			controls: ['R2'],
+			state: 'Impact',
+			frames: 19,
+			connectsTo: ['Guard Assault'],
+		},
+		{
+			name: 'Guard Assault',
+			controls: ['Triangle'],
+			state: 'Impact',
+			frames: 17,
+			connectsTo: [],
+		},
+		{
+			name: 'Magnetic Double S.',
+			controls: ['L2', 'Triangle'],
+			state: 'Impact',
+			frames: 17,
+			connectsTo: ['Magnetic Pin', 'Suplex'],
+		},
+		{
+			name: 'Magnetic Force',
+			controls: ['Circle', 'Triangle'],
+			state: 'Impact',
+			frames: 17,
+			connectsTo: ['Suplex'],
+		},
+		{
+			name: 'Magnetic Assault',
+			controls: ['R1', 'Circle', 'Triangle'],
+			state: 'Impact',
+			frames: 17,
+			connectsTo: ['Suplex'],
+		},
+		{
+			name: 'Magnetic Evasion',
+			controls: ['R1', 'Square'], // R1 + (Circle | Triangle | Square)
+			state: 'Impact',
+			frames: 17,
+			connectsTo: ['Magnetic Force'],
+		},
+		{
+			name: 'Suplex',
+			controls: ['Circle', 'Triangle'],
+			state: 'Impact',
+			connectsTo: [],
+		},
+
+		// Shared Moves
+		{
+			name: 'Transform Attack',
+			controls: ['Select'],
+			connectsTo: [
+				'Horizontal 1C',
+				'Horizontal 2C',
+				'Horizontal 3C',
+				'Horizontal 1I',
+				'Horizontal 2I',
+				'Overhead Horizontal',
+			],
+		},
+		{
+			name: 'Switch',
+			controls: ['Select'],
+			connectsTo: [],
+		},
+		{
+			name: 'Magnetise',
+			controls: ['R1', 'Select'],
+			connectsTo: [],
+		},
+		{
+			name: 'Magnetic Pin',
+			controls: ['R1', 'Circle', 'Triangle'],
+			connectsTo: ['Pin Finisher'],
+		},
+		{
+			name: 'Pin Finisher',
+			controls: ['R2'],
+			connectsTo: [],
+		},
+		{
+			name: 'Recovery',
+			controls: ['Cross'],
+			connectsTo: [],
+		},
+		{
+			name: 'Unsheathed Running',
+			controls: ['LS'],
+			connectsTo: [],
 		},
 	];
 
@@ -385,6 +653,138 @@ graph LR
 			type: 'Other',
 		},
 	];
+
+	function getControlGlyph(control: string) {
+		switch (control) {
+			default:
+				return control;
+			case 'Triangle':
+				return '△';
+			case 'Circle':
+				return '◯';
+			case 'Cross':
+				return 'X';
+			case 'Square':
+				return '◻';
+		}
+	}
+
+	function getWeaponMoveTags(move: FrontierWeaponMove) {
+		let result: { text: string; icon: any; color: string }[] = [];
+
+		if (move.state) {
+			result.push({ text: move.state, icon: '', color: 'blue' });
+		}
+
+		if (move.controls[0] !== '') {
+			result.push({
+				text: move.controls.map((e) => getControlGlyph(e)).join('+'),
+				icon: '',
+				color: 'outline',
+			});
+		}
+
+		if (move.frames) {
+			result.push({
+				text: move.frames.toString() + 'f',
+				icon: '',
+				color: 'green',
+			});
+		}
+
+		return result;
+	}
+
+	function generateWeaponMovesetData(moveset: FrontierWeaponMove[]) {
+		const nodeData: Node[] = [];
+		const edgeData: Edge[] = [];
+		const weaponMap = new Map<string, number>();
+
+		// // Get unique states from moveset
+		// const states = Array.from(
+		// 	new Set(
+		// 		moveset
+		// 			.map((move) => move.state)
+		// 			.filter((state): state is string => state !== undefined),
+		// 	),
+		// );
+		// // Create parent nodes for each state
+		// const parentNodes: Node[] = states.map((state) => ({
+		// 	id: state,
+		// 	type: 'group',
+		// 	data: {},
+		// 	position: { x: 0, y: 0 },
+		// }));
+
+		// Add parent nodes to the beginning of nodeData
+		// nodeData.push(...parentNodes);
+
+		moveset.forEach((weapon, index) => {
+			const nodeIndex = index + 1;
+			weaponMap.set(weapon.name, nodeIndex);
+
+			const isEndNode = weapon.connectsTo.length === 0;
+			const isStartNode = !moveset.some((w) =>
+				w.connectsTo.includes(weapon.name),
+			);
+
+			let nodeType = 'default-horizontal';
+			if (isEndNode) nodeType = 'output-horizontal';
+			if (isStartNode) nodeType = 'input-horizontal';
+
+			const node: Node = {
+				id: `node-${nodeIndex}`,
+				type: 'inline-tooltip',
+				data: {
+					tooltip: writable(weapon.connectsTo.join(', ')),
+					text: writable(weapon.name),
+					icon: writable(getWeaponIcon('Magnet Spike')),
+					iconColor: writable(getItemColor('White')),
+					iconType: writable('component'),
+					nodeType: writable(nodeType),
+					tags: writable(getWeaponMoveTags(weapon)),
+					backgroundColor: writable('var(--surface0)'),
+				},
+				// parentId: weapon.state || undefined,
+				// extent: weapon.state ? 'parent' : undefined,
+				position: { x: 0, y: 0 }, // Positions will be handled externally
+			};
+
+			nodeData.push(node);
+		});
+
+		moveset.forEach((weapon) => {
+			const sourceIndex = weaponMap.get(weapon.name);
+
+			if (sourceIndex === undefined) return;
+
+			weapon.connectsTo.forEach((targetName) => {
+				const targetIndex = weaponMap.get(targetName);
+
+				if (targetIndex === undefined) {
+					console.warn(`Target weapon not found: ${targetName}`);
+					return;
+				}
+
+				const edge: Edge = {
+					id: `edge-${sourceIndex}-${targetIndex}`,
+					source: `node-${sourceIndex}`,
+					target: `node-${targetIndex}`,
+					type: edgeType,
+					animated: true,
+					style: edgeDataStyle,
+				};
+				edgeData.push(edge);
+			});
+		});
+
+		return { nodeData, edgeData };
+	}
+
+	const weaponMovesetData = generateWeaponMovesetData(moveset);
+
+	const nodeData: Node[] = weaponMovesetData.nodeData;
+	const edgeData: Edge[] = weaponMovesetData.edgeData;
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -918,15 +1318,18 @@ graph LR
 				<SectionHeading level={2} title="Moveset" />
 				<div>
 					<p class="spaced-paragraph">
-						The flowchart below is based on the official manual.
+						The flowchart below is based on the official manual. When hovering
+						over a move, you can see the available moves from it.
 					</p>
-					<div class="mermaid-container">
-						<!-- TODO: not responsive-->
-						{#if !browser}
-							<Loading withOverlay={false} />
-						{:else}
-							<pre><code bind:this={container} /></pre>
-						{/if}
+					<div>
+						<SvelteFlowProvider
+							><SvelteFlowElk
+								fileName="magnet-spike-moveset"
+								initialNodes={nodeData}
+								initialEdges={edgeData}
+								colorMode={$carbonThemeStore === 'g10' ? 'light' : 'dark'}
+							/></SvelteFlowProvider
+						>
 					</div>
 					<p>
 						For more information on motion values, see the <Link

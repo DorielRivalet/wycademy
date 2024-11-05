@@ -1116,3 +1116,28 @@ export type PartnerSkill = {
 	tree: FrontierArmorSkillTree;
 	description?: string;
 };
+
+export type FrontierControls =
+	| 'Square'
+	| 'Circle'
+	| 'Triangle'
+	| 'Cross'
+	| 'R1'
+	| 'R2'
+	| 'L1'
+	| 'L2'
+	| 'Select'
+	| 'Start'
+	| 'LS'
+	| 'RS'
+	| 'R3'
+	| 'L3'
+	| '';
+
+export type FrontierWeaponMove = {
+	name: string;
+	controls: FrontierControls[];
+	state?: string;
+	frames?: number;
+	connectsTo: string[];
+};

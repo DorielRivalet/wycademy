@@ -45,5 +45,4 @@
 </figure>
 
 <style lang="scss">
-	// Your styles here
 </style>
