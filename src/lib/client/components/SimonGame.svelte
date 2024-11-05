@@ -162,7 +162,9 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
+	@use '@carbon/motion' as motion;
+
 	.simon-game {
 		display: flex;
 		flex-direction: column;
@@ -184,7 +186,7 @@
 		border: none;
 		border-radius: 8px;
 		cursor: pointer;
-		transition: transform 0.1s;
+		transition: transform motion.$duration-fast-02;
 	}
 
 	.start-button:hover {
