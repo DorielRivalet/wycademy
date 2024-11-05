@@ -190,15 +190,36 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 				defining the optimal range for different ammo types.
 			</p>
 			<p class="spaced-paragraph">Here’s a general breakdown:</p>
-			<UnorderedList>
+			<UnorderedList class="spaced-list">
 				<ListItem>
-					<p>Normal Shots: Close to Mid Range</p>
+					<p>
+						<InlineTooltip
+							tooltip="Ammo"
+							text="Normal Shots"
+							icon={getItemIcon('Shot')}
+							iconType="component"
+						/>: Close to Mid Range
+					</p>
 				</ListItem>
 				<ListItem>
-					<p>Pierce Shots: Mid to Far Range</p>
+					<p>
+						<InlineTooltip
+							tooltip="Ammo"
+							text="Pierce Shots"
+							icon={getItemIcon('Ammo Pierce')}
+							iconType="component"
+						/>: Mid to Far Range
+					</p>
 				</ListItem>
 				<ListItem>
-					<p>Pellet Shots: Short Range</p>
+					<p>
+						<InlineTooltip
+							tooltip="Ammo"
+							text="Pellet Shots"
+							icon={getItemIcon('Ammo Spread')}
+							iconType="component"
+						/>: Short Range
+					</p>
 				</ListItem>
 				<ListItem>
 					<p>Other Shots: Fixed damage regardless of distance</p>

@@ -539,9 +539,13 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 						>
 						<ListItem
 							><p>
-								Swaxe's healing from the guard sigil is beneficial for
-								mitigating chip damage from parrying, especially when at low HP
-								levels due to <InlineTooltip
+								<InlineTooltip
+									tooltip="Weapon Type"
+									text="Switch Axe F's"
+									iconType="component"
+									icon={getWeaponIcon('Switch Axe F')}
+								/> healing from the guard sigil is beneficial for mitigating chip
+								damage from parrying, especially when at low HP levels due to <InlineTooltip
 									tooltip="Armor Skill"
 									text="Adrenaline"
 									iconType="component"
@@ -559,8 +563,14 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 						>
 						<ListItem
 							><p>
-								Since Swaxe's unsheathed running uses the phial instead of
-								stamina, skills like <InlineTooltip
+								Since <InlineTooltip
+									tooltip="Weapon Type"
+									text="Switch Axe F's"
+									iconType="component"
+									icon={getWeaponIcon('Switch Axe F')}
+								/> unsheathed running and other various actions uses the phial instead
+								of stamina, skills like
+								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Starving Wolf"
 									iconType="component"
@@ -570,7 +580,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 									text="Combat Supremacy"
 									iconType="component"
 									icon={getItemIcon('Jewel')}
-								/> may be easier to use.
+								/> can be easier to use.
 							</p></ListItem
 						>
 						<ListItem
