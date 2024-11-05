@@ -1,13 +1,17 @@
 <script lang="ts">
+	import NumberTicker from './NumberTicker.svelte';
+
 	export let value: number;
 	export let text: string;
 	export let color: string;
-	export let hoverColor: string = '#ff0000';
+	// export let hoverColor: string = '#ff0000';
 </script>
 
 <div class="container">
 	<div class="icon"><slot /></div>
-	<p class="value" style:color>{value}+</p>
+	<p class="value" style:color>
+		<NumberTicker {value} />
+	</p>
 	<p class="text">{text}</p>
 </div>
 
