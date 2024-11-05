@@ -998,7 +998,8 @@
 	<main>
 		<aside class={tocClass}>
 			<TreeView
-				style="background-color: var(--ctp-surface0);  position: sticky; top: 10vh;"
+				style="background-color: var(--ctp-mantle); position: sticky; top: 10vh;
+				height: 85vh;"
 				{children}
 				let:node
 				bind:this={treeview}
