@@ -198,19 +198,37 @@
 		<SectionHeadingTopLevel title={'Long Sword'} />
 		<div>
 			<p class="spaced-paragraph">
-				The Frontier Long Sword (LS) closely resembles the one from MHFU,
-				featuring a balanced speed that places it between the Sword and Shield
-				(SnS) and Great Sword (GS). This version introduces charge attacks with
-				unique mechanics and step slashes similar to the fade slashes that allow
-				for directional movement, as seen since Monster Hunter Tri.
+				The Frontier <InlineTooltip
+					tooltip="Weapon"
+					text="Long Sword"
+					icon={getWeaponIcon('Long Sword')}
+					iconType="component"
+				/> (LS) closely resembles the one from MHFU, featuring a balanced speed that
+				places it between the <InlineTooltip
+					tooltip="Weapon"
+					text="Sword and Shield"
+					icon={getWeaponIcon('Sword and Shield')}
+					iconType="component"
+				/> (SnS) and <InlineTooltip
+					tooltip="Weapon"
+					text="Great Sword"
+					icon={getWeaponIcon('Great Sword')}
+					iconType="component"
+				/> (GS). This version introduces charge attacks with unique mechanics and
+				step slashes similar to the fade slashes that allow for directional movement,
+				as seen since Monster Hunter Tri.
 			</p>
 			<p class="spaced-paragraph">
-				Frontier's Spirit Combo mechanics add depth to the LS gameplay. A Spirit
-				Combo consists of three "Blocks," each varying in length and composed of
-				different attacks based on your inputs. After completing these blocks,
-				you can either end the combo with a roll or execute a Spirit Release—a
-				charge attack that changes properties depending on the attacks performed
-				and the Spirit Meter.
+				Frontier's Spirit Combo mechanics add depth to the <InlineTooltip
+					tooltip="Weapon"
+					text="Long Sword"
+					icon={getWeaponIcon('Long Sword')}
+					iconType="component"
+				/> gameplay. A Spirit Combo consists of three "Blocks," each varying in length
+				and composed of different attacks based on your inputs. After completing
+				these blocks, you can either end the combo with a roll or execute a Spirit
+				Release—a charge attack that changes properties depending on the attacks
+				performed and the Spirit Meter.
 			</p>
 			<p class="spaced-paragraph">
 				Each Spirit Combo "Block" begins with a Spirit attack, followed by one
@@ -244,9 +262,13 @@
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
 					<p class="spaced-paragraph">
-						Earth Style is the standard LS setup, similar to what’s found in
-						MHFU. It allows you to use both Fade Slashes and Sidestep Slashes at
-						any time.
+						Earth Style is the standard <InlineTooltip
+							tooltip="Weapon"
+							text="Long Sword"
+							icon={getWeaponIcon('Long Sword')}
+							iconType="component"
+						/> setup, similar to what’s found in MHFU. It allows you to use both
+						Fade Slashes and Sidestep Slashes at any time.
 					</p>
 				</div>
 			</section>
@@ -271,10 +293,15 @@
 						with a Piercing Stab. This attack's damage scales with the amount of
 						Spirit Meter you have when executing it. Although it’s a slower
 						move, it has a significant total motion value of 116 (or 154 with a
-						sigil) and hits seven times. Despite its power, the Piercing Stab
-						can disrupt the timing of attacks and reduce overall DPS, making
-						Heaven Style the preferred choice for high-level play due to its
-						Evade Slash.
+						<InlineTooltip
+							tooltip="Sigil"
+							text="sigil"
+							icon={getItemIcon('Sigil')}
+							iconType="component"
+						/>) and hits seven times. Despite its power, the Piercing Stab can
+						disrupt the timing of attacks and reduce overall DPS, making Heaven
+						Style the preferred choice for high-level play due to its Evade
+						Slash.
 					</p>
 				</div>
 			</section>
@@ -293,10 +320,19 @@
 					<p class="spaced-paragraph">
 						A new Blade Meter is also introduced, filling up in the same way as
 						the Spirit Meter, but it also increases through the Parry action,
-						functioning similarly to the Swaxe Storm Style Guard. This meter
-						powers the Blade Release, a powerful attack that becomes stronger as
-						the meter fills. The Blade Meter empties upon sheathing, reducing
-						compatibility with Combat Supremacy.
+						functioning similarly to the <InlineTooltip
+							tooltip="Weapon"
+							text="Switch Axe F"
+							icon={getWeaponIcon('Switch Axe F')}
+							iconType="component"
+						/> Storm Style Guard. This meter powers the Blade Release, a powerful
+						attack that becomes stronger as the meter fills. The Blade Meter empties
+						upon sheathing, reducing compatibility with <InlineTooltip
+							tooltip="Armor Skill"
+							text="Combat Supremacy"
+							icon={getItemIcon('Jewel')}
+							iconType="component"
+						/>.
 					</p>
 					<p class="spaced-paragraph">
 						While running, you can initiate a charge, dragging your sword behind

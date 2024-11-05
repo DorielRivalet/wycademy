@@ -192,20 +192,33 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 		<SectionHeadingTopLevel title={'Light Bowgun'} />
 		<div>
 			<p class="spaced-paragraph">
-				The Light Bowgun (LBG) is a highly versatile ranged weapon known for its
-				rapid bullet output, utilizing Just Shots, Rapid Fire, and Ultra Rapid
-				Fire to maximize damage.
+				The <InlineTooltip
+					tooltip="Weapon"
+					text="Light Bowgun"
+					icon={getWeaponIcon('Light Bowgun')}
+					iconType="component"
+				/> (LBG) is a highly versatile ranged weapon known for its rapid bullet output,
+				utilizing Just Shots, Rapid Fire, and Ultra Rapid Fire to maximize damage.
 			</p>
 			<p class="spaced-paragraph">
-				The Just Shot is the primary attack method for LBG users. A meter
-				appears with a white section, and timing your shot within this section
-				allows you to fire the next shot sooner, boosting its damage by 1.3x.
-				This technique increases your DPS more effectively than either of the
-				rapid-fire methods.
+				The Just Shot is the primary attack method for <InlineTooltip
+					tooltip="Weapon"
+					text="Light Bowgun"
+					icon={getWeaponIcon('Light Bowgun')}
+					iconType="component"
+				/> users. A meter appears with a white section, and timing your shot within
+				this section allows you to fire the next shot sooner, boosting its damage
+				by 1.3x. This technique increases your DPS more effectively than either of
+				the rapid-fire methods.
 			</p>
 			<p class="spaced-paragraph">
 				If you reload within the same window, you can reload faster, including
-				swapping ammo types if you're quick enough. Unlike the Heavy Bowgun's
+				swapping ammo types if you're quick enough. Unlike the <InlineTooltip
+					tooltip="Weapon"
+					text="Heavy Bowgun's"
+					icon={getWeaponIcon('Heavy Bowgun')}
+					iconType="component"
+				/>
 				Compression Shots, missing the timing window incurs no penalty.
 			</p>
 			<p class="spaced-paragraph">
@@ -218,10 +231,15 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 				out of ammo.
 			</p>
 			<p class="spaced-paragraph">
-				Light Bowguns can be equipped with Silencers and Long Barrels. Silencers
-				don’t reduce recoil, and Long Barrels don’t increase attack power.
-				Instead, Silencers make you less noticeable to monsters, and Long
-				Barrels increase the speed of your shots.
+				<InlineTooltip
+					tooltip="Weapon"
+					text="Light Bowguns"
+					icon={getWeaponIcon('Light Bowgun')}
+					iconType="component"
+				/> can be equipped with Silencers and Long Barrels. Silencers don’t reduce
+				recoil, and Long Barrels don’t increase attack power. Instead, Silencers
+				make you less noticeable to monsters, and Long Barrels increase the speed
+				of your shots.
 			</p>
 
 			<section>
@@ -232,10 +250,37 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						defining the optimal range for each ammo type. Here's a breakdown:
 					</p>
 					<p class="spaced-paragraph"><strong>Earth Style</strong></p>
-					<UnorderedList>
-						<ListItem><p>Normal Shots: Close to Mid Range</p></ListItem>
-						<ListItem><p>Pierce Shots: Mid to Far Range</p></ListItem>
-						<ListItem><p>Pellet Shots: Short Range</p></ListItem>
+					<UnorderedList class="spaced-list">
+						<ListItem
+							><p>
+								<InlineTooltip
+									tooltip="Ammo"
+									text="Normal Shots"
+									icon={getItemIcon('Shot')}
+									iconType="component"
+								/>: Close to Mid Range
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								<InlineTooltip
+									tooltip="Ammo"
+									text="Pierce Shots"
+									icon={getItemIcon('Ammo Pierce')}
+									iconType="component"
+								/>: Mid to Far Range
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								<InlineTooltip
+									tooltip="Ammo"
+									text="Pellet Shots"
+									icon={getItemIcon('Ammo Spread')}
+									iconType="component"
+								/>: Short Range
+							</p></ListItem
+						>
 						<ListItem
 							><p>Other Shots: Fixed damage regardless of distance</p></ListItem
 						>
@@ -243,10 +288,37 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					<p class="spaced-paragraph">
 						<strong>Heaven and Storm Style</strong>
 					</p>
-					<UnorderedList>
-						<ListItem><p>Normal Shots: Close Range</p></ListItem>
-						<ListItem><p>Pierce Shots: Close to Mid Range</p></ListItem>
-						<ListItem><p>Pellet Shots: Short Range</p></ListItem>
+					<UnorderedList class="spaced-list">
+						<ListItem
+							><p>
+								<InlineTooltip
+									tooltip="Ammo"
+									text="Normal Shots"
+									icon={getItemIcon('Shot')}
+									iconType="component"
+								/>: Close Range
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								<InlineTooltip
+									tooltip="Ammo"
+									text="Pierce Shots"
+									icon={getItemIcon('Ammo Pierce')}
+									iconType="component"
+								/>: Close to Mid Range
+							</p></ListItem
+						>
+						<ListItem
+							><p>
+								<InlineTooltip
+									tooltip="Ammo"
+									text="Pellet Shots"
+									icon={getItemIcon('Ammo Spread')}
+									iconType="component"
+								/>: Short Range
+							</p></ListItem
+						>
 						<ListItem
 							><p>Other Shots: Fixed damage regardless of distance</p></ListItem
 						>
@@ -275,8 +347,12 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
 					<p class="spaced-paragraph">
-						Earth Style is the standard LBG style, straightforward and effective
-						without any notable distinctions.
+						Earth Style is the standard <InlineTooltip
+							tooltip="Weapon"
+							text="Light Bowgun"
+							icon={getWeaponIcon('Light Bowgun')}
+							iconType="component"
+						/> style, straightforward and effective without any notable distinctions.
 					</p>
 				</div>
 			</section>
@@ -310,13 +386,27 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					<p class="spaced-paragraph">
 						With Ultra Rapid Fire, all shots fired as a Step Shot use the same
 						critical distance. If you evade close to a monster without getting
-						hit, you can unleash a long barrage of Pierce Shots with much higher
-						damage.
+						hit, you can unleash a long barrage of <InlineTooltip
+							tooltip="Ammo"
+							text="Pierce Shots"
+							icon={getItemIcon('Ammo Pierce')}
+							iconType="component"
+						/> with much higher damage.
 					</p>
 					<p class="spaced-paragraph">
-						If you are using Combat Supremacy, Earth Style is usually the best
-						choice. Storm Style can be extremely powerful if used correctly but
-						requires stamina and is less suited for Combat Supremacy.
+						If you are using <InlineTooltip
+							tooltip="Armor Skill"
+							text="Combat Supremacy"
+							icon={getItemIcon('Jewel')}
+							iconType="component"
+						/>, Earth Style is usually the best choice. Storm Style can be
+						extremely powerful if used correctly but requires stamina and is
+						less suited for <InlineTooltip
+							tooltip="Armor Skill"
+							text="Combat Supremacy"
+							icon={getItemIcon('Jewel')}
+							iconType="component"
+						/>.
 					</p>
 				</div>
 			</section>
@@ -330,12 +420,17 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					</p>
 					<p class="spaced-paragraph">
 						As with other Extreme Styles, you can run while your weapon is
-						unsheathed. For LBG, this running speed is faster than with other
-						weapons and quicker than standard running unless your Movement Speed
-						is increased. You can also reload while running and perform a slide
-						with good iframes, covering a significant distance in the direction
-						you’re moving. You can stop running instantly to shoot, though
-						adjusting your angle is challenging.
+						unsheathed. For <InlineTooltip
+							tooltip="Weapon"
+							text="Light Bowgun"
+							icon={getWeaponIcon('Light Bowgun')}
+							iconType="component"
+						/>, this running speed is faster than with other weapons and quicker
+						than standard running unless your Movement Speed is increased. You
+						can also reload while running and perform a slide with good iframes,
+						covering a significant distance in the direction you’re moving. You
+						can stop running instantly to shoot, though adjusting your angle is
+						challenging.
 					</p>
 					<p class="spaced-paragraph">
 						This style also introduces Evasion Shots and Finishing Shots.
@@ -350,9 +445,14 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						Finishing Shots are a variant of Just Shots that deal fixed 2.0x
 						damage but cause significant recoil, ending your shot combo. After
 						firing a Finishing Shot, you can only continue into a run, making it
-						less compatible with Combat Supremacy. While Just Shots generally
-						offer more sustained damage, Finishing Shots can be powerful if you
-						need to maximize damage output with limited ammo.
+						less compatible with <InlineTooltip
+							tooltip="Armor Skill"
+							text="Combat Supremacy"
+							icon={getItemIcon('Jewel')}
+							iconType="component"
+						/>. While Just Shots generally offer more sustained damage,
+						Finishing Shots can be powerful if you need to maximize damage
+						output with limited ammo.
 					</p>
 				</div>
 			</section>

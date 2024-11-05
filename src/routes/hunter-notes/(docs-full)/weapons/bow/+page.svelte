@@ -316,15 +316,18 @@ Arc-Shot can be executed at Charge Lv2.`,
 						the extended charge times, making it a straightforward upgrade.
 					</p>
 					<p class="spaced-paragraph">
-						This style allows you to run with your Bow unsheathed, enabling you
-						to charge shots and load coatings on the move. You can also roll
-						while charging without losing your charge level and perform a Quick
-						Shot, similar to the Power Shot mechanic from 4U. The Quick Shot
-						duplicates your previous shot with a lower final multiplier—Lv1
-						charges deal 100% of the previous shot, Lv2 deals 85%, Lv3 deals
-						75%, and Lv4 deals 65%. This second shot is treated as a separate
-						action, consuming coatings accordingly, and interacts with skills
-						like <InlineTooltip
+						This style allows you to run with your <InlineTooltip
+							text="Bow"
+							tooltip="Weapon"
+							iconType="component"
+							icon={getWeaponIcon('Bow')}
+						/> unsheathed, enabling you to charge shots and load coatings on the
+						move. You can also roll while charging without losing your charge level
+						and perform a Quick Shot, similar to the Power Shot mechanic from 4U.
+						The Quick Shot duplicates your previous shot with a lower final multiplier—Lv1
+						charges deal 100% of the previous shot, Lv2 deals 85%, Lv3 deals 75%,
+						and Lv4 deals 65%. This second shot is treated as a separate action,
+						consuming coatings accordingly, and interacts with skills like <InlineTooltip
 							tooltip="Armor Skill"
 							text="Consumption Slayer"
 							iconType="component"

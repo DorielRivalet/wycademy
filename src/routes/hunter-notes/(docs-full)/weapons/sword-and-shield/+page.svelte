@@ -28,7 +28,10 @@
 	import CaravanGem from '$lib/client/components/frontier/icon/CaravanGem.svelte';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
-	import { getStatusIcon } from '$lib/client/modules/frontier/ailments';
+	import {
+		getAilmentIcon,
+		getStatusIcon,
+	} from '$lib/client/modules/frontier/ailments';
 
 	const hidenSkills: {
 		id: string;
@@ -204,23 +207,40 @@
 		<SectionHeadingTopLevel title={'Sword and Shield'} />
 		<div>
 			<p class="spaced-paragraph">
-				The Sword and Shield is a versatile weapon known for its quick strikes,
-				the ability to block, use items with the weapon unsheathed, and overall
-				high mobility.
+				The <InlineTooltip
+					tooltip="Weapon"
+					text="Sword and Shield"
+					icon={getWeaponIcon('Sword and Shield')}
+					iconType="component"
+				/> is a versatile weapon known for its quick strikes, the ability to block,
+				use items with the weapon unsheathed, and overall high mobility.
 			</p>
 
 			<p class="spaced-paragraph">
 				While its raw damage output is lower due to modest motion values, the
 				rapid attack speed makes it highly effective when paired with elemental
-				or status-based weapons. To use the Sword and Shield effectively, a
-				solid understanding of hitzones is essential, as precision is key to
-				maximizing its potential.
+				or status-based weapons. To use the <InlineTooltip
+					tooltip="Weapon"
+					text="Sword and Shield"
+					icon={getWeaponIcon('Sword and Shield')}
+					iconType="component"
+				/> effectively, a solid understanding of hitzones is essential, as precision
+				is key to maximizing its potential.
 			</p>
 
 			<p class="spaced-paragraph">
-				Several attacks with the Sword and Shield deal both Stun and Impact
-				damage, allowing you to break parts that require impact damage. However,
-				this is often impractical in most situations.
+				Several attacks with the <InlineTooltip
+					tooltip="Weapon"
+					text="Sword and Shield"
+					icon={getWeaponIcon('Sword and Shield')}
+					iconType="component"
+				/> deal both <InlineTooltip
+					tooltip="Ailment"
+					text="Stun"
+					icon={getAilmentIcon('Stun')}
+					iconType="component"
+				/> and Impact damage, allowing you to break parts that require impact damage.
+				However, this is often impractical in most situations.
 			</p>
 
 			<p>
@@ -238,10 +258,14 @@
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
 					<p>
-						Earth Style is the core style for Sword and Shield users, featuring
-						a powerful horizontal slash. At G Rank, this slash can be enhanced
-						with a weapon sigil (boosting from 31 to 31･16), causing the slash
-						to emit a beam that strikes twice, effectively doubling the
+						<strong>Earth Style</strong> is the core style for <InlineTooltip
+							tooltip="Weapon"
+							text="Sword and Shield"
+							icon={getWeaponIcon('Sword and Shield')}
+							iconType="component"
+						/> users, featuring a powerful horizontal slash. At G Rank, this slash
+						can be enhanced with a weapon sigil (boosting from 31 to 31･16), causing
+						the slash to emit a beam that strikes twice, effectively doubling the
 						elemental damage.
 					</p>
 				</div>
@@ -251,11 +275,15 @@
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
 					<p>
-						Heaven Style swaps the horizontal slash for a Jump Slash with a
-						motion value of 23･20. This move is especially effective for hitting
-						tails, particularly with longer Sword and Shield weapons.
-						Additionally, Heaven Style allows you to perform quick side hops
-						after attacks instead of rolls, letting you swiftly continue combos
+						<strong>Heaven Style</strong> swaps the horizontal slash for a Jump
+						Slash with a motion value of 23･20. This move is especially
+						effective for hitting tails, particularly with longer <InlineTooltip
+							tooltip="Weapon"
+							text="Sword and Shield"
+							icon={getWeaponIcon('Sword and Shield')}
+							iconType="component"
+						/> weapons. Additionally, Heaven Style allows you to perform quick side
+						hops after attacks instead of rolls, letting you swiftly continue combos
 						while evading.
 					</p>
 				</div>
@@ -265,12 +293,12 @@
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
 					<p>
-						Storm Style retains the quick side hops and Jump Slash from Heaven
-						Style but replaces the standard combo with a series of Thrust
-						Attacks. These thrusts are unique in that they carry a 140%
-						elemental modifier, enabling significant elemental damage. You can
-						cancel out of the thrusts with a hop, resetting back to the first
-						thrust and allowing for rapid elemental damage output.
+						<strong>Storm Style</strong> retains the quick side hops and Jump Slash
+						from Heaven Style but replaces the standard combo with a series of Thrust
+						Attacks. These thrusts are unique in that they carry a 140% elemental
+						modifier, enabling significant elemental damage. You can cancel out of
+						the thrusts with a hop, resetting back to the first thrust and allowing
+						for rapid elemental damage output.
 					</p>
 				</div>
 			</section>
@@ -278,22 +306,35 @@
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p>
-						Extreme Style builds on the Heaven Style foundation, keeping the
-						side hops and Jump Slash while adding the Earth Style horizontal
-						attack and introducing new moves that offer greater flexibility in
-						combos and evasion. Like all Extreme styles, Sword and Shield users
-						can run with the weapon unsheathed in this style.
+					<p class="spaced-paragraph">
+						<strong>Extreme Style</strong> builds on the Heaven Style
+						foundation, keeping the side hops and Jump Slash while adding the
+						Earth Style horizontal attack and introducing new moves that offer
+						greater flexibility in combos and evasion. Like all Extreme styles, <InlineTooltip
+							tooltip="Weapon"
+							text="Sword and Shield"
+							icon={getWeaponIcon('Sword and Shield')}
+							iconType="component"
+						/> users can run with the weapon unsheathed in this style.
 					</p>
-					<p>
-						In Extreme Style, Sword and Shield gains two new aerial attacks that
-						can be initiated from various actions, including running. The first
-						is a frontflip attack that hits twice with a motion value of 18･34
-						and is high enough to easily strike tails. The second is a leap into
-						a shield bash with a motion value of 34, dealing Impact and KO
-						damage. Additionally, there's a new Shield Bash attack that can be
-						chained up to three times, each hit having a motion value of 20 and
-						dealing both Impact and KO damage.
+					<p class="spaced-paragraph">
+						In Extreme Style, <InlineTooltip
+							tooltip="Weapon"
+							text="Sword and Shield"
+							icon={getWeaponIcon('Sword and Shield')}
+							iconType="component"
+						/> gains two new aerial attacks that can be initiated from various actions,
+						including running. The first is a frontflip attack that hits twice with
+						a motion value of 18･34 and is high enough to easily strike tails. The
+						second is a leap into a shield bash with a motion value of 34, dealing
+						Impact and KO damage. Additionally, there's a new Shield Bash attack
+						that can be chained up to three times, each hit having a motion value
+						of 20 and dealing both Impact and <InlineTooltip
+							tooltip="Ailment"
+							text="Stun"
+							icon={getAilmentIcon('Stun')}
+							iconType="component"
+						/> damage.
 					</p>
 					<p>
 						Finally, Extreme Style introduces an Evade Slash, allowing you to
