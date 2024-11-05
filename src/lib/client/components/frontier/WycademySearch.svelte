@@ -19,6 +19,7 @@
 	import { browser } from '$app/environment';
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import Logo from '$lib/client/images/logo.webp';
+	import { Close } from 'carbon-icons-svelte';
 
 	let search: 'idle' | 'load' | 'ready' = 'idle';
 	let searchTerm = '';
@@ -260,6 +261,13 @@
 					spellcheck={false}
 					on:clear={closeDialog}
 					placeholder="Search... (Esc/Clear button to Exit)"
+				/>
+				<Button
+					icon={Close}
+					iconDescription="Close"
+					size="field"
+					kind="ghost"
+					on:click={(e) => closeDialog()}
 				/>
 			</div>
 			<div class="results">

@@ -618,7 +618,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 									iconType="file"
 									icon={getMonsterIcon('Raviente')}
 								/>
-								due to its multiple hitzonees.
+								due to its multiple hitzones.
 							</p></ListItem
 						>
 						<ListItem
