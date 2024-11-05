@@ -10771,7 +10771,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						specialFlag: '',
 					},
 					{
-						name: 'Supplex',
+						name: 'Suplex',
 						animation: '',
 						values: '96 ‧ 121 (50 ‧ 65)',
 						hitCount: 2,
@@ -12360,7 +12360,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '12x2･10x2･31･10',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: [12,12,10,10,31,10],
+						motionValue: [12, 12, 10, 10, 31, 10],
 						specialFlag: 'melee',
 					},
 					{
@@ -12369,7 +12369,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '17x2･15x2･41･15',
 						hitCount: 6,
 						elementMultiplier: 1,
-						motionValue: [17,17,15,15,41,15],
+						motionValue: [17, 17, 15, 15, 41, 15],
 						specialFlag: 'melee',
 					},
 				],
