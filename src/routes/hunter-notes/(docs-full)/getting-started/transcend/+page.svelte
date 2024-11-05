@@ -984,9 +984,8 @@
 				</DataTable>
 			</div>
 
-			<div class="table">
+			<div class="table table-with-scrollbar">
 				<DataTable
-					useStaticWidth
 					id="transcend-buffs-effects-dom"
 					sortable
 					zebra
@@ -1471,6 +1470,11 @@
 	.table {
 		margin-top: 2rem;
 		margin-bottom: 2rem;
+	}
+
+	.table-with-scrollbar {
+		height: 80vh;
+		overflow-y: auto;
 	}
 
 	.modal-content {
