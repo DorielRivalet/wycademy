@@ -345,6 +345,17 @@ export const missionRequirementAttackCeilings = [
 	233, 235, 236, 237, 238, 239, 240, 241, 243, 244, 245, 246, 247, 248, 249,
 ];
 
+export function getGameIcon(iconName: string) {
+	const icon = gameInfo[0].icon;
+
+	const found = gameInfo.find((w) => w.name === iconName);
+	if (!found) {
+		return icon;
+	}
+
+	return found.icon;
+}
+
 /*
 // It requires an extra line to pull out the values
 type Direction = typeof ODirection[keyof typeof ODirection];

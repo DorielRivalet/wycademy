@@ -19,8 +19,8 @@
 		'Your Ultimate Knowledge Base for Monster Hunter Frontier Z';
 	export let description: string =
 		'With in-depth resources, leaderboards, and tools for all hunters, our open-source platform empowers the community across all servers and patches.';
-	export let primaryButtonText: string = 'Explore';
-	export let primaryButtonLink: string = '/';
+	export let primaryButtonText: string = 'Learn more';
+	export let primaryButtonLink: string = '#problem';
 	export let counterSpeedruns: number = 0;
 	export let counterUsers: number = 0;
 	export let counterGuides: number = guidesInfo.reduce(
@@ -42,7 +42,7 @@
 	$: particleColor = getHexStringFromCatppuccinColor('blue', $carbonThemeStore);
 </script>
 
-<div class="container">
+<section class="container">
 	<div class="hero-container">
 		<div class="hero-text">
 			<h1 class="hero-title">{title}</h1>
@@ -101,7 +101,7 @@
 		size={0.3}
 		color={particleColor}
 	/>
-</div>
+</section>
 
 <style lang="scss">
 	@use '@carbon/motion' as motion;
@@ -111,6 +111,7 @@
 	.container {
 		position: relative;
 		overflow: hidden;
+		max-height: 85vh;
 	}
 
 	@media (min-width: 320px) {
