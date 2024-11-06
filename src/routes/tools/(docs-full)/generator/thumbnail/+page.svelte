@@ -1044,7 +1044,9 @@
 				break;
 		}
 
-		list = list.filter((e) => e.icon !== '');
+		if (type !== 'Habitat') {
+			list = list.filter((e) => e.icon !== '');
+		}
 
 		let result: DropdownItem[] = [];
 		list.forEach((element) => {
