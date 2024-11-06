@@ -42,15 +42,22 @@
 	siteName={projectName}
 />
 
-<div>
-	<HomeHeroSection />
-	<HomeProblemSection />
-	<HomeSolutionSection />
-	<HomeHowItWorksSection />
-	<HomeTestimonialSection />
-	<FrequentlyAskedQuestions faq={[]} />
-	<HomeCallToActionSection />
+<div class="container">
+	<div>
+		<HomeHeroSection />
+	</div>
+	<div><HomeProblemSection /></div>
+	<div class="alternate-background"><HomeSolutionSection /></div>
+	<div><HomeHowItWorksSection /></div>
+	<div><HomeTestimonialSection /></div>
+	<div><FrequentlyAskedQuestions faq={[]} /></div>
+	<div><HomeCallToActionSection /></div>
 </div>
 
 <style lang="scss">
+	.container {
+		.alternate-background {
+			background-color: var(--ctp-mantle);
+		}
+	}
 </style>
