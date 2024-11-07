@@ -26,7 +26,6 @@
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
-	import { Tools, ToolsAlt } from 'carbon-icons-svelte';
 
 	function getCoatingColor(coating: string) {
 		switch (coating) {

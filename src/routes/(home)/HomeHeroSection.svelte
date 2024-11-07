@@ -33,7 +33,7 @@
 	);
 
 	const breakpointSize = breakpointObserver();
-	const breakpointLargerThanLarge = breakpointSize.largerThan('md');
+	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		<div class="hero-graphics">
-			{#if $breakpointLargerThanLarge}
+			{#if $breakpointLargerThanMedium}
 				<div class="marquee-container">
 					<HomeHeroSectionAllPageCards />
 				</div>

@@ -21,8 +21,10 @@
 	import HomeHowItWorksSection from './HomeHowItWorksSection.svelte';
 	import HomeTestimonialSection from './HomeTestimonialSection.svelte';
 	import HomeProblemSection from './HomeProblemSection.svelte';
-	import FrequentlyAskedQuestions from '$lib/client/components/FrequentlyAskedQuestions.svelte';
 	import HomeCallToActionSection from './HomeCallToActionSection.svelte';
+	import HomeFeaturesSection from './HomeFeaturesSection.svelte';
+	import HomeBlogSection from './HomeBlogSection.svelte';
+	import HomeFrequentlyAskedQuestions from './HomeFrequentlyAskedQuestions.svelte';
 
 	const customTitle = "Home — Frontier's Wycademy";
 	const url = $page.url.toString();
@@ -48,9 +50,14 @@
 	</div>
 	<div><HomeProblemSection /></div>
 	<div class="alternate-background"><HomeSolutionSection /></div>
+	<!--TODO: explain leaderboards-->
 	<div><HomeHowItWorksSection /></div>
 	<div><HomeTestimonialSection /></div>
-	<div><FrequentlyAskedQuestions faq={[]} /></div>
+	<div><HomeFeaturesSection /></div>
+	<div class="alternate-background">
+		<HomeFrequentlyAskedQuestions faq={[]} />
+	</div>
+	<div><HomeBlogSection /></div>
 	<div><HomeCallToActionSection /></div>
 </div>
 
