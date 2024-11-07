@@ -116,13 +116,13 @@
 		{#if currentFeatureIndex === 0}
 			<div
 				class="devices"
-				out:fade={{
-					duration: 150,
-					easing: cubicInOut,
-				}}
 				in:scale={{
-					duration: 300,
 					easing: cubicInOut,
+					duration: 300,
+				}}
+				out:fade={{
+					easing: cubicInOut,
+					duration: 150,
 				}}
 			>
 				<div>
@@ -139,13 +139,13 @@
 		{:else if currentFeatureIndex === 1}
 			<div
 				class="feature-image-container"
-				out:fade={{
-					duration: 150,
-					easing: cubicInOut,
-				}}
 				in:scale={{
-					duration: 300,
 					easing: cubicInOut,
+					duration: 300,
+				}}
+				out:fade={{
+					easing: cubicInOut,
+					duration: 150,
 				}}
 			>
 				<img class="feature-image" src={feature2Img} alt="Feature 2" />
@@ -153,13 +153,13 @@
 		{:else if currentFeatureIndex === 2}
 			<div
 				class="feature-image-container"
-				out:fade={{
-					duration: 150,
-					easing: cubicInOut,
-				}}
 				in:scale={{
-					duration: 300,
 					easing: cubicInOut,
+					duration: 300,
+				}}
+				out:fade={{
+					easing: cubicInOut,
+					duration: 150,
 				}}
 			>
 				<img
@@ -171,13 +171,13 @@
 		{:else if currentFeatureIndex === 3}
 			<div
 				class="feature-image-container"
-				out:fade={{
-					duration: 150,
-					easing: cubicInOut,
-				}}
 				in:scale={{
-					duration: 300,
 					easing: cubicInOut,
+					duration: 300,
+				}}
+				out:fade={{
+					easing: cubicInOut,
+					duration: 150,
 				}}
 			>
 				<img
@@ -193,6 +193,8 @@
 </section>
 
 <style lang="scss">
+	//@use '$lib/client/styles/_border-all.scss';
+
 	.container {
 		padding-top: var(--cds-spacing-10);
 		padding-bottom: var(--cds-spacing-10);
@@ -220,51 +222,68 @@
 		}
 	}
 
+	.graphics-container {
+		height: 70vh;
+		min-height: 400px;
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.devices {
 		width: 100%;
-		max-width: 100%;
-		gap: 2rem;
+		height: 100%;
 		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		align-items: center;
 
-		@media (min-width: 1024px) {
-			grid-template-columns: 1fr auto; // Change to auto for the iPhone column
-			align-items: center; // Center align the items vertically
-
-			:global(.iphone-container) {
-				height: 753px; // Match Safari height
-				width: auto;
-			}
-
-			:global(svg) {
-				height: 100%;
-				width: auto;
-			}
-
-			:global(.safari-window) {
-				width: 100%;
-			}
+		> div {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 
-		@media (max-width: 1023px) {
-			grid-template-columns: 1fr;
+		:global(.safari-window) {
+			width: 100%;
+			height: 100%;
+		}
 
-			:global(svg) {
-				width: 100%;
-				height: auto;
-			}
+		:global(.safari-window svg) {
+			width: 100%;
+			height: 100%;
+			max-height: 70vh;
+		}
+
+		:global(.iphone-container) {
+			height: 100%;
+		}
+
+		:global(.iphone-container svg) {
+			height: 100%;
+			max-height: 70vh;
+			width: auto;
 		}
 	}
 
 	.feature-image-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 		display: flex;
-		margin: auto;
-		width: 90vw;
-		max-height: 60vh;
+		align-items: start;
+		justify-content: center;
 	}
 
 	.feature-image {
-		width: 100%;
-		height: auto;
+		max-width: 100%;
+		max-height: 100%;
 		object-fit: contain;
 	}
 </style>
