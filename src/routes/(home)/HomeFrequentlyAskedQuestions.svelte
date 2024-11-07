@@ -18,7 +18,7 @@
 		<FrequentlyAskedQuestions {faq} minHeight={10} />
 		<p>
 			Still have questions? See our <Link inline href="/support"
-				>Support page.</Link
+				>Support Center.</Link
 			>
 		</p>
 	</div>
