@@ -133,7 +133,12 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		align-items: start;
 		gap: 0.5rem;
+
+		img {
+			object-fit: contain;
+		}
 	}
 
 	@media (min-width: 320px) {

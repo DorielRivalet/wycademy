@@ -18,11 +18,45 @@
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import type { FrontierArmorSkillName, FrontierArmorSkillTree } from 'ezlion';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
-	import { getItemIcon } from '$lib/client/modules/frontier/items';
+	import {
+		getItemColor,
+		getItemIcon,
+	} from '$lib/client/modules/frontier/items';
 	import StarRating from '$lib/client/components/StarRating.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
+	import { Tools, ToolsAlt } from 'carbon-icons-svelte';
+
+	function getCoatingColor(coating: string) {
+		switch (coating) {
+			default:
+				return 'White';
+			case 'Power Coating':
+			case 'Impact Coating':
+			case 'Bomb Coating':
+				return 'Red';
+			case 'Sleep Coating':
+				return 'Blue';
+			case 'Paralysis Coating':
+				return 'Yellow';
+			case 'Poison Coating':
+				return 'Purple';
+		}
+	}
+
+	const bowCoatings: {
+		id: number;
+		coating: string;
+		multiplier: number;
+	}[] = [
+		{ id: 0, coating: 'Power Coating', multiplier: 1.5 },
+		{ id: 1, coating: 'Sleep Coating', multiplier: 1.4 },
+		{ id: 2, coating: 'Paralysis Coating', multiplier: 1.4 },
+		{ id: 3, coating: 'Poison Coating', multiplier: 1.4 },
+		{ id: 4, coating: 'Impact Coating', multiplier: 1.4 },
+		{ id: 5, coating: 'Bomb Coating', multiplier: 1.4 },
+	];
 
 	const hidenSkills: {
 		id: string;
@@ -181,7 +215,12 @@ Arc-Shot can be executed at Charge Lv2.`,
 					iconType="component"
 					icon={getWeaponIcon('Bow')}
 				/> in this game closely resembles its original mainline implementation, where
-				you charge shots and apply coatings to enhance your attacks.
+				you charge shots and apply <InlineTooltip
+					text="coatings"
+					tooltip="Item"
+					iconType="component"
+					icon={getItemIcon('Coating')}
+				/> to enhance your attacks.
 			</p>
 			<p class="spaced-paragraph">
 				<strong>Critical Distance</strong> is a mechanic shared by all ranged
@@ -327,7 +366,12 @@ Arc-Shot can be executed at Charge Lv2.`,
 						The Quick Shot duplicates your previous shot with a lower final multiplier—Lv1
 						charges deal 100% of the previous shot, Lv2 deals 85%, Lv3 deals 75%,
 						and Lv4 deals 65%. This second shot is treated as a separate action,
-						consuming coatings accordingly, and interacts with skills like <InlineTooltip
+						consuming <InlineTooltip
+							text="coatings"
+							tooltip="Item"
+							iconType="component"
+							icon={getItemIcon('Coating')}
+						/> accordingly, and interacts with skills like <InlineTooltip
 							tooltip="Armor Skill"
 							text="Consumption Slayer"
 							iconType="component"
@@ -363,6 +407,73 @@ Arc-Shot can be executed at Charge Lv2.`,
 					<p class="spaced-paragraph">
 						<strong>Extreme Style</strong> is the best Bow style overall, and there’s
 						little reason to switch to other styles once you have access to it.
+					</p>
+					<div class="table">
+						<DataTable
+							useStaticWidth
+							id="bow-coatings-dom"
+							title="Bow Coatings"
+							sortable
+							zebra
+							size="medium"
+							headers={[
+								{ key: 'coating', value: 'Coating' },
+								{ key: 'multiplier', value: 'Multiplier' },
+							]}
+							rows={bowCoatings}
+							><Toolbar
+								><div class="toolbar">
+									<CopyButton
+										iconDescription={'Copy as CSV'}
+										text={getCSVFromArray(bowCoatings)}
+									/>
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={() =>
+											downloadDomAsPng('bow-coatings-dom', 'bow-coatings')}
+										>Download</Button
+									>
+								</div>
+							</Toolbar>
+
+							<svelte:fragment slot="cell" let:cell>
+								{#if cell.key === 'coating'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Item"
+										iconType="component"
+										icon={getItemIcon('Coating')}
+										iconColor={getItemColor(getCoatingColor(cell.value))}
+									/>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							</svelte:fragment>
+						</DataTable>
+					</div>
+					<p>
+						To increase the Bow coating multipliers, you can use <InlineTooltip
+							tooltip="Armor Skill"
+							text="Hiden"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/> (+0.2), at least one Zenith or Origin armor piece (+0.1), and <InlineTooltip
+							tooltip="Armor Skill"
+							text="Consumption Slayer"
+							iconType="component"
+							icon={getItemIcon('Jewel')}
+						/>
+						(+0.2), for a maximum multiplier of 2 with <InlineTooltip
+							tooltip="Item"
+							text="Power Coating"
+							iconType="component"
+							iconColor={getItemColor('Red')}
+							icon={getItemIcon('Coating')}
+						/> (1.5). To see more information on how Bow coatings work, see the <Link
+							href="/tools/calculator/damage"
+							icon={ToolKit}>Damage Calculator.</Link
+						>
 					</p>
 				</div>
 			</section>
@@ -567,7 +678,12 @@ Arc-Shot can be executed at Charge Lv2.`,
 							><p>
 								Holding down L1 while releasing a shot performs a coatingless
 								shot, which doesn’t consume or grant the benefits of the loaded
-								coating. This technique is based on a glitch from MH2.
+								<InlineTooltip
+									text="coating"
+									tooltip="Item"
+									iconType="component"
+									icon={getItemIcon('Coating')}
+								/>. This technique is based on a glitch from MH2.
 							</p></ListItem
 						>
 						<ListItem
