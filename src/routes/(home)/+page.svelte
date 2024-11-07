@@ -91,7 +91,7 @@
 		<HomeFrequentlyAskedQuestions {faq} />
 	</div>
 	<div><HomeBlogSection /></div>
-	<div><HomeCallToActionSection /></div>
+	<div class="alternate-background"><HomeCallToActionSection /></div>
 </div>
 
 <style lang="scss">

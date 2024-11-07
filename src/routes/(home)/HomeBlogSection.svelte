@@ -8,6 +8,7 @@
 	import { announcementsTitles } from '$lib/client/modules/announcements';
 
 	const summaryLength = 128;
+	const articlesToShow = 6;
 
 	const articles: {
 		title: string;
@@ -15,18 +16,20 @@
 		date: string;
 		imageSource: string;
 		href: string;
-	}[] = announcementsTitles.map((e) => {
-		return {
-			title: e.title,
-			summary:
-				e.summary.length > summaryLength
-					? `${e.summary.slice(0, summaryLength - 1)}…`
-					: e.summary,
-			date: e.date,
-			imageSource: wycademyImg,
-			href: e.link,
-		};
-	});
+	}[] = announcementsTitles
+		.map((e) => {
+			return {
+				title: e.title,
+				summary:
+					e.summary.length > summaryLength
+						? `${e.summary.slice(0, summaryLength - 1)}…`
+						: e.summary,
+				date: e.date,
+				imageSource: wycademyImg,
+				href: e.link,
+			};
+		})
+		.slice(0, articlesToShow);
 </script>
 
 <section class="container">
