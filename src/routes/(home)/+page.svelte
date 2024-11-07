@@ -28,6 +28,39 @@
 
 	const customTitle = "Home — Frontier's Wycademy";
 	const url = $page.url.toString();
+
+	let faq = [
+		{
+			question: 'What is Wycademy?',
+			answer:
+				'Wycademy is a comprehensive resource for MHF-Z players, offering guides, tools, leaderboards, and a community space. We’re committed to making this information freely accessible to everyone.',
+		},
+		{
+			question: 'How can I get started with Wycademy leaderboards?',
+			answer:
+				'You can get started with Wycademy leaderboards by signing up for an account on our website, submitting a new run, and following our quick-start guide. We also offer tutorials and documentation to help you along the way.',
+		},
+		{
+			question: 'Do I need an account?',
+			answer:
+				'Most resources are available without an account. However, creating an account lets you access additional features like customizing profiles, favoriting runs, and participating in events.',
+		},
+		{
+			question: 'What game versions does Wycademy support?',
+			answer:
+				'Wycademy primarily supports information about Monster Hunter Frontier Z, including but not limited to monsters, gear, and mechanics. We continuously update our platform to support the latest accurate information.',
+		},
+		{
+			question: 'Is Wycademy suitable for beginners in the game?',
+			answer:
+				'Yes, Wycademy is designed to be user-friendly for both beginners and experienced hunters. We offer intuitive interfaces, in-depth tools, and extensive learning resources to help hunters of all skill levels.',
+		},
+		{
+			question: 'What kind of support does Wycademy provide?',
+			answer:
+				'Wycademy provides comprehensive support including documentation, video tutorials, an issue tracker, and dedicated maintenance. The issue tracker is provided by GitHub.',
+		},
+	];
 </script>
 
 <Head
@@ -55,7 +88,7 @@
 	<div><HomeTestimonialSection /></div>
 	<div><HomeFeaturesSection /></div>
 	<div class="alternate-background">
-		<HomeFrequentlyAskedQuestions faq={[]} />
+		<HomeFrequentlyAskedQuestions {faq} />
 	</div>
 	<div><HomeBlogSection /></div>
 	<div><HomeCallToActionSection /></div>

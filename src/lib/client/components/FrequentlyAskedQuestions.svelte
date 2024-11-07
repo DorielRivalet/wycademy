@@ -3,9 +3,10 @@
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 
 	export let faq: { question: string; answer: string }[];
+	export let minHeight: number = 90;
 </script>
 
-<div class="faq">
+<div class="faq" style="min-height: {minHeight}vh;">
 	<Accordion>
 		{#each faq as faqEntry, i}
 			<AccordionItem open={i === 0}>
@@ -23,7 +24,6 @@
 		padding: 2rem;
 		width: 80vw;
 		margin: auto;
-		min-height: 90vh;
 	}
 
 	.question {
