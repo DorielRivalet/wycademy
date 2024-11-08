@@ -7,7 +7,6 @@
 	import Book from 'carbon-icons-svelte/lib/Book.svelte';
 	import AnimatedCounter from '$lib/client/components/AnimatedCounter.svelte';
 	import { guidesInfo, toolsInfo } from '$lib/client/modules/routes';
-	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import HomeHeroSectionAllPageCards from './HomeHeroSectionAllPageCards.svelte';
 	import type { Writable } from 'svelte/store';
 	import { getContext } from 'svelte';
@@ -29,9 +28,6 @@
 		(count, category) => count + category.pages.length,
 		0,
 	);
-
-	const breakpointSize = breakpointObserver();
-	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -55,11 +51,10 @@
 		</div>
 	</div>
 	<div class="hero-graphics">
-		{#if $breakpointLargerThanMedium}
-			<div class="marquee-container">
-				<HomeHeroSectionAllPageCards />
-			</div>
-		{/if}
+		<div class="marquee-container">
+			<HomeHeroSectionAllPageCards />
+		</div>
+
 		<div class="hero-counters">
 			<AnimatedCounter
 				value={counterUsers}
@@ -103,22 +98,28 @@
 			padding-left: 2rem;
 			padding-right: 2rem;
 			gap: 2rem;
-			display: flex;
-			flex-direction: column;
+			display: grid;
 			width: 100%;
+			grid-template-areas:
+				'text'
+				'graphics';
+			grid-template-rows: 1fr auto;
 			background-image: url('$lib/client/images/background/bg-bestiary.webp');
 		}
 
 		.hero-graphics {
 			grid-area: graphics;
 			padding-top: 0px;
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-template-areas:
+				'hero-counters'
+				'marquee-container';
+			grid-template-rows: 1fr auto;
 			gap: 2rem;
 
 			.marquee-container {
-				width: 60vw;
-				display: flex;
+				min-width: 90vw;
+				grid-area: marquee-container;
 			}
 		}
 	}
@@ -128,19 +129,25 @@
 			display: grid;
 			grid-template-areas: 'text graphics';
 			grid-template-columns: 2fr 4fr;
+			max-height: 90vh;
 		}
 
 		.hero-graphics {
 			grid-area: graphics;
 			padding-top: var(--cds-spacing-08);
-			display: flex;
-			flex-direction: column;
+			grid-template-areas:
+				'marquee-container'
+				'hero-counters';
 			gap: 2rem;
+
+			.marquee-container {
+				min-width: 50vw;
+			}
 		}
 	}
 
 	.hero-counters {
-		grid-area: counters;
+		grid-area: hero-counters;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 2rem;
