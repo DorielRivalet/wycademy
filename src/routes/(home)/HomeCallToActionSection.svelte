@@ -105,9 +105,8 @@
 	}
 
 	.background-image {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
+		width: 80vw;
+		object-fit: cover;
 		transition: opacity 1s ease-in-out;
 		padding-bottom: var(--cds-spacing-10);
 		padding-top: var(--cds-spacing-10);
