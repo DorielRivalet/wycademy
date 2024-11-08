@@ -74,7 +74,7 @@
 		/>
 		<div class="button-container">
 			<Button {href} icon={ArrowRight} type="primary" size="lg" expressive>
-				Sign Up
+				Sign up for free
 			</Button>
 		</div>
 	</div>

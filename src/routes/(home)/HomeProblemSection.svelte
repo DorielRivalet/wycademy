@@ -17,7 +17,7 @@
 			icon: Book,
 			title: 'Outdated Knowledge',
 			description:
-				'Many resources haven’t been updated in years, leaving players with outdated tips and strategies that don’t match the current game meta.',
+				'Many resources haven’t been updated in years, leaving players with outdated tips and strategies that don’t match the current state of the game.',
 		},
 		{
 			icon: Debug,

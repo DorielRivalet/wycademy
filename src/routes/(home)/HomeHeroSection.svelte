@@ -110,13 +110,18 @@
 
 	.container {
 		position: relative;
+		width: 100%;
+		height: 85vh; /* Fixed height instead of max-height */
 		overflow: hidden;
-		max-height: 85vh;
 	}
 
 	@media (min-width: 320px) {
 		.hero-container {
 			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 100%; /* Ensure it fills container */
 			display: grid;
 			padding-left: 2rem;
 			padding-right: 2rem;
