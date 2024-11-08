@@ -108,30 +108,21 @@
 	@use '@carbon/type' as type;
 	//@use '$lib/client/styles/_border-all.scss';
 
-	.container {
-		position: relative;
-		width: 100%;
-		height: 85vh; /* Fixed height instead of max-height */
-		overflow: hidden;
-	}
-
 	@media (min-width: 320px) {
+		.container {
+			position: relative;
+			width: 100%;
+			max-height: 110vh;
+			overflow: hidden;
+		}
+
 		.hero-container {
 			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			height: 100%; /* Ensure it fills container */
-			display: grid;
 			padding-left: 2rem;
 			padding-right: 2rem;
 			gap: 2rem;
-			column-gap: 2rem;
-			grid-template-areas:
-				'text'
-				'graphics';
-			grid-template-rows: 3fr 1fr;
-			grid-template-columns: 1fr;
+			display: flex;
+			flex-direction: column;
 		}
 
 		.hero-graphics {
@@ -149,6 +140,10 @@
 	}
 
 	@media (min-width: 1056px) {
+		.container {
+			max-height: 85vh;
+		}
+
 		.hero-container {
 			display: grid;
 			grid-template-areas: 'text graphics';
