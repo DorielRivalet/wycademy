@@ -10,17 +10,27 @@
 	import a4 from '$lib/client/sounds/a4.opus';
 	import b4 from '$lib/client/sounds/b4.opus';
 	import c5 from '$lib/client/sounds/c5.opus';
+	import { fade, fly } from 'svelte/transition';
+	import DocumentDownload from 'carbon-icons-svelte/lib/DocumentDownload.svelte';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 
 	export let simonNotes: string[];
 	export let currentSequence: string[] = [];
 	export let targetSequence: string[] = [];
 	export let simonScore: number = 0;
 
+	const initialPressedDuration = 1000;
+	const finalPressedDuration = 500;
+	const durationDecrease = 20;
+
+	let currentDuration = initialPressedDuration;
 	let isPlaying = false;
 	let isShowingSequence = false;
 	let pressedButton: string | null = null;
 	let currentIndex = 0;
 	let sounds: Record<string, HTMLAudioElement> = {};
+	let playedTargetSequence: string[] = [];
+	let lastTargetSequence: string[] = [];
 
 	const noteColors = {
 		White: 'var(--fz-hh-note-white)',
@@ -73,12 +83,18 @@
 
 	async function showSequence() {
 		isShowingSequence = true;
+		playedTargetSequence = [];
 
 		for (let i = 0; i < targetSequence.length; i++) {
 			const note = targetSequence[i];
 			pressedButton = note;
 			playSound(note);
-			await new Promise((resolve) => setTimeout(resolve, 1000));
+			currentDuration = Math.max(
+				currentDuration - durationDecrease,
+				finalPressedDuration,
+			);
+			playedTargetSequence = [...playedTargetSequence, note];
+			await new Promise((resolve) => setTimeout(resolve, currentDuration));
 			pressedButton = null;
 			await new Promise((resolve) => setTimeout(resolve, 200));
 		}
@@ -92,6 +108,7 @@
 
 		pressedButton = note;
 		playSound(note);
+		currentSequence = [...currentSequence, note];
 
 		if (note === targetSequence[currentIndex]) {
 			currentIndex++;
@@ -100,6 +117,7 @@
 				// Sequence completed successfully
 				simonScore++;
 				currentIndex = 0;
+				currentSequence = [];
 				setTimeout(() => {
 					addNewNote();
 					showSequence();
@@ -107,8 +125,29 @@
 			}
 		} else {
 			// Wrong note
+			lastTargetSequence = targetSequence;
 			gameOver();
 		}
+	}
+
+	function padTo2Digits(num: number) {
+		return num.toString().padStart(2, '0');
+	}
+
+	function formatDate(date: Date) {
+		return (
+			[
+				date.getFullYear(),
+				padTo2Digits(date.getMonth() + 1), // +1 because getMonth() is zero-based
+				padTo2Digits(date.getDate()),
+			].join('-') +
+			'-' +
+			[
+				padTo2Digits(date.getHours()),
+				padTo2Digits(date.getMinutes()),
+				padTo2Digits(date.getSeconds()),
+			].join('-')
+		);
 	}
 
 	function handleRelease() {
@@ -125,14 +164,31 @@
 		isPlaying = true;
 		simonScore = 0;
 		targetSequence = [];
+		currentSequence = [];
+		playedTargetSequence = [];
 		currentIndex = 0;
+		currentDuration = initialPressedDuration;
 		addNewNote();
 		showSequence();
+	}
+
+	function downloadLogs() {
+		let text = lastTargetSequence.join('\n'); // create a string from the historyLogs array, with each log on a new line
+		let blob = new Blob([text], { type: 'text/plain' }); // create a new Blob object representing the data in the specified formats
+		const url = URL.createObjectURL(blob); // create a URL representing the Blob object
+
+		let a = document.createElement('a'); // create a new <a> element
+		a.href = url; // set the href of the <a> element to the URL
+		a.download = `wycademy-hh-history-logs-${formatDate(new Date())}.txt`; // set the download attribute, so clicking the link will download the text file
+		a.click(); // programmatically click the <a> element to trigger the download
 	}
 
 	function gameOver() {
 		isPlaying = false;
 		targetSequence = [];
+		currentSequence = [];
+		playedTargetSequence = [];
+		currentDuration = initialPressedDuration;
 		// TODO
 		setTimeout(() => {
 			alert(`Game Over! Score: ${simonScore}`);
@@ -155,10 +211,36 @@
 		{/each}
 	</div>
 
+	<div class="notes-container">
+		{#if isShowingSequence}
+			<div class="notes-grid">
+				{#each playedTargetSequence as note}
+					<div in:fly={{ y: -50, duration: 150 }} out:fade={{ duration: 200 }}>
+						<HuntingHornNoteIcon color={note} size="64px" />
+					</div>
+				{/each}
+			</div>
+		{:else}
+			<div class="notes-grid">
+				{#each currentSequence as note}
+					<div in:fly={{ y: -50, duration: 150 }} out:fade={{ duration: 200 }}>
+						<HuntingHornNoteIcon color={note} size="64px" />
+					</div>
+				{/each}
+			</div>
+		{/if}
+	</div>
+
 	<p>Score: {simonScore}</p>
 
 	{#if !isPlaying}
+		<p style:color="var(--ctp-subtext0)">Doriel's score: 12 (2024-11-08)</p>
 		<button class="start-button" on:click={startGame}> Start Game </button>
+		<Button
+			icon={DocumentDownload}
+			kind="tertiary"
+			on:click={() => downloadLogs()}>Download History Logs</Button
+		>
 	{/if}
 </div>
 
@@ -172,14 +254,33 @@
 		align-items: center;
 	}
 
-	.button-grid {
-		display: flex;
-		gap: 1rem;
-		flex-wrap: wrap;
-		margin-bottom: 2rem;
+	@media (min-width: 320px) {
+		.button-grid {
+			display: grid;
+			gap: 1rem;
+			margin-bottom: 2rem;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr 1fr 1fr 1fr;
+		}
+	}
+
+	@media (min-width: 672px) {
+		.button-grid {
+			display: grid;
+			gap: 1rem;
+			margin-bottom: 2rem;
+			grid-template-rows: 1fr 1fr;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+		}
+	}
+
+	.notes-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
 
 	.start-button {
+		all: unset;
 		padding: 1rem 2rem;
 		font-size: 1.2rem;
 		background-color: var(--ctp-surface0);
