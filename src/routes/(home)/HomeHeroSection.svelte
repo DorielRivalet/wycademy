@@ -175,7 +175,7 @@
 		background-position: top;
 		background-repeat: repeat;
 		padding-bottom: var(--cds-spacing-08);
-		background-size: 10%;
+		background-size: 50vw;
 	}
 
 	.background-light {
@@ -184,7 +184,7 @@
 		background-position: top;
 		background-repeat: repeat;
 		padding-bottom: var(--cds-spacing-08);
-		background-size: 10%;
+		background-size: 50vw;
 	}
 
 	.background-light:before {
@@ -198,7 +198,7 @@
 		opacity: 0.9;
 		background-color: #fff;
 		background-image: url('$lib/client/images/background/noise-light.webp');
-		background-size: 5%;
+		background-size: 64px;
 	}
 
 	.background:before {
@@ -212,6 +212,6 @@
 		opacity: 0.9;
 		background-color: #000;
 		background-image: url('$lib/client/images/background/noise.webp');
-		background-size: 5%;
+		background-size: 64px;
 	}
 </style>

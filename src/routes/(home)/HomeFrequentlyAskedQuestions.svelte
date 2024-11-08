@@ -29,7 +29,7 @@
 		padding-top: var(--cds-spacing-10);
 		padding-bottom: var(--cds-spacing-10);
 		margin: auto;
-		width: 100%;
+		width: 90vw;
 		display: flex;
 		gap: 2rem;
 		flex-direction: column;
