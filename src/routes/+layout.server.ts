@@ -8,59 +8,65 @@ function stringToCustomDateFormat(date: string): string {
 }
 
 export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
-	// console.log('async layout server load');
 	/**Only use with prerendered pages */
-	const whitelist = ['/', '/site-preferences'];
+	// Map URL paths to their actual route group paths
+	const routeGroupMapping: Record<string, string> = {
+		'/': '/(home)',
+		'/site-preferences': '/(app)/site-preferences',
+	};
 
-	let lastModified: string = '';
-	let commitLink: string = '#';
-	let timesChanged: number = 0;
-	const path = url.pathname;
-	if (!whitelist.includes(path)) {
-		return {
-			github: {
-				commitLink,
-				lastModified,
-				timesChanged,
-			} as GitHubData,
-		};
+	const defaultGitHubData: GitHubData = {
+		lastModified: '',
+		commitLink: '#',
+		timesChanged: 0,
+	};
+
+	// Get the actual file system path from the URL pathname
+	const urlPath = url.pathname;
+	const fsPath = routeGroupMapping[urlPath];
+
+	if (!fsPath) {
+		console.log('Path not in route mapping:', urlPath);
+		return { github: defaultGitHubData };
 	}
 
 	try {
+		const githubPath = `src/routes${fsPath}/%2Bpage.svelte`;
+		console.log('Fetching GitHub data for path:', githubPath);
+
 		const res = await fetch(
-			`https://api.github.com/repos/DorielRivalet/wycademy/commits?path=src/routes${path}/%2Bpage.svelte`,
+			`https://api.github.com/repos/DorielRivalet/wycademy/commits?path=${githubPath}`,
 		);
 
-		// public, max-age=60, s-maxage=60
-		const cacheControl = res.headers.get('cache-control');
-
-		if (cacheControl) {
-			setHeaders({
-				'cache-control': `max-age=0, s-maxage=${apiCacheTimeouts.github}`,
-			});
-		}
+		// Set cache headers
+		setHeaders({
+			'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
+			etag: res.headers.get('etag') || '',
+			'last-modified': res.headers.get('last-modified') || '',
+		});
 
 		if (!res.ok) {
-			console.error('Error fetching data from GitHub');
-			return {
-				github: { commitLink, lastModified, timesChanged } as GitHubData,
-			};
+			console.error('Error fetching data from GitHub:', res.status);
+			return { github: defaultGitHubData };
 		}
 
 		const commits = await res.json();
-		const lastCommit = commits[0];
-		lastModified = stringToCustomDateFormat(lastCommit.commit.author.date);
-		commitLink = lastCommit.html_url;
-		timesChanged = commits.length;
-	} catch (e) {
-		console.error('Error fetching data from GitHub: ', e);
-	}
 
-	return {
-		github: {
-			commitLink,
-			lastModified,
-			timesChanged,
-		} as GitHubData,
-	};
+		if (!commits || commits.length === 0) {
+			console.log('No commits found for path:', githubPath);
+			return { github: defaultGitHubData };
+		}
+
+		const lastCommit = commits[0];
+		return {
+			github: {
+				lastModified: stringToCustomDateFormat(lastCommit.commit.author.date),
+				commitLink: lastCommit.html_url,
+				timesChanged: commits.length,
+			},
+		};
+	} catch (e) {
+		console.error('Error fetching data from GitHub:', e);
+		return { github: defaultGitHubData };
+	}
 };
