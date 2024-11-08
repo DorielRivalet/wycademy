@@ -11,6 +11,7 @@
 	import type { Writable } from 'svelte/store';
 	import { getContext } from 'svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { onMount } from 'svelte';
 
 	export let title: string =
 		'Your Ultimate Knowledge Base for Monster Hunter Frontier Z';
@@ -33,7 +34,26 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
+	let container: HTMLDivElement;
+	let isVisible = false;
+
 	$: bgClass = $carbonThemeStore === 'g10' ? `background-light` : `background`;
+
+	onMount(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const [entry] = entries;
+				isVisible = entry.isIntersecting;
+			},
+			{ threshold: 0.1 }, // Adjust threshold as needed
+		);
+
+		if (container) {
+			observer.observe(container);
+		}
+
+		return () => observer.disconnect();
+	});
 </script>
 
 <section class={'hero-container ' + bgClass}>
@@ -51,8 +71,10 @@
 		</div>
 	</div>
 	<div class="hero-graphics">
-		<div class="marquee-container">
-			<HomeHeroSectionAllPageCards />
+		<div class="marquee-container" bind:this={container}>
+			{#if isVisible}
+				<HomeHeroSectionAllPageCards />
+			{/if}
 		</div>
 
 		<div class="hero-counters">
