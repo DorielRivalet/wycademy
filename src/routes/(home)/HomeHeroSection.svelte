@@ -9,8 +9,6 @@
 	import { guidesInfo, toolsInfo } from '$lib/client/modules/routes';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import HomeHeroSectionAllPageCards from './HomeHeroSectionAllPageCards.svelte';
-	import BackgroundParticles from '$lib/client/components/BackgroundParticles.svelte';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import type { Writable } from 'svelte/store';
 	import { getContext } from 'svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
@@ -39,68 +37,60 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	$: particleColor = getHexStringFromCatppuccinColor('blue', $carbonThemeStore);
+	$: bgClass = $carbonThemeStore === 'g10' ? `background-light` : `background`;
 </script>
 
-<section class="container">
-	<div class="hero-container">
-		<div class="hero-text">
-			<h1 class="hero-title">{title}</h1>
-			<p class="hero-description">{description}</p>
-			<div class="hero-button">
-				<Button
-					size="lg"
-					expressive
-					icon={ArrowRight}
-					href={primaryButtonLink}
-					kind="primary">{primaryButtonText}</Button
-				>
-			</div>
-		</div>
-		<div class="hero-graphics">
-			{#if $breakpointLargerThanMedium}
-				<div class="marquee-container">
-					<HomeHeroSectionAllPageCards />
-				</div>
-			{/if}
-			<div class="hero-counters">
-				<AnimatedCounter
-					value={counterUsers}
-					text="Hunters"
-					color="var(--ctp-text)"
-					href="/signup"
-					><Group size={32} color="var(--ctp-blue)" /></AnimatedCounter
-				>
-				<AnimatedCounter
-					value={counterSpeedruns}
-					text="Hunts"
-					href="/leaderboard"
-					color="var(--ctp-text)"
-					><Running size={32} color="var(--ctp-sapphire)" /></AnimatedCounter
-				>
-				<AnimatedCounter
-					value={counterGuides}
-					text="Guides"
-					href="/hunter-notes"
-					color="var(--ctp-text)"
-					><Book size={32} color="var(--ctp-sky)" /></AnimatedCounter
-				>
-				<AnimatedCounter
-					value={counterTools}
-					text="Tools"
-					href="/tools"
-					color="var(--ctp-text)"
-					><Tools size={32} color="var(--ctp-teal)" /></AnimatedCounter
-				>
-			</div>
+<section class={'hero-container ' + bgClass}>
+	<div class="hero-text">
+		<h1 class="hero-title">{title}</h1>
+		<p class="hero-description">{description}</p>
+		<div class="hero-button">
+			<Button
+				size="lg"
+				expressive
+				icon={ArrowRight}
+				href={primaryButtonLink}
+				kind="primary">{primaryButtonText}</Button
+			>
 		</div>
 	</div>
-	<BackgroundParticles
-		quantity={500}
-		staticity={25}
-		size={0.3}
-		color={particleColor}
-	/>
+	<div class="hero-graphics">
+		{#if $breakpointLargerThanMedium}
+			<div class="marquee-container">
+				<HomeHeroSectionAllPageCards />
+			</div>
+		{/if}
+		<div class="hero-counters">
+			<AnimatedCounter
+				value={counterUsers}
+				text="Hunters"
+				color="var(--ctp-text)"
+				href="/signup"
+				><Group size={32} color="var(--ctp-blue)" /></AnimatedCounter
+			>
+			<AnimatedCounter
+				value={counterSpeedruns}
+				text="Hunts"
+				href="/leaderboard"
+				color="var(--ctp-text)"
+				><Running size={32} color="var(--ctp-sapphire)" /></AnimatedCounter
+			>
+			<AnimatedCounter
+				value={counterGuides}
+				text="Guides"
+				href="/hunter-notes"
+				color="var(--ctp-text)"
+				><Book size={32} color="var(--ctp-sky)" /></AnimatedCounter
+			>
+			<AnimatedCounter
+				value={counterTools}
+				text="Tools"
+				href="/tools"
+				color="var(--ctp-text)"
+				><Tools size={32} color="var(--ctp-teal)" /></AnimatedCounter
+			>
+		</div>
+	</div>
 </section>
 
 <style lang="scss">
@@ -109,20 +99,14 @@
 	//@use '$lib/client/styles/_border-all.scss';
 
 	@media (min-width: 320px) {
-		.container {
-			position: relative;
-			width: 100%;
-			max-height: 110vh;
-			overflow: hidden;
-		}
-
 		.hero-container {
-			position: absolute;
 			padding-left: 2rem;
 			padding-right: 2rem;
 			gap: 2rem;
 			display: flex;
 			flex-direction: column;
+			width: 100%;
+			background-image: url('$lib/client/images/background/bg-bestiary.webp');
 		}
 
 		.hero-graphics {
@@ -140,14 +124,9 @@
 	}
 
 	@media (min-width: 1056px) {
-		.container {
-			max-height: 85vh;
-		}
-
 		.hero-container {
 			display: grid;
 			grid-template-areas: 'text graphics';
-			grid-template-rows: 1fr;
 			grid-template-columns: 2fr 4fr;
 		}
 
@@ -168,6 +147,7 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
+		z-index: 999;
 	}
 
 	.hero-text {
@@ -176,6 +156,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		z-index: 999;
 	}
 
 	.hero-title {
@@ -186,5 +167,51 @@
 		text-wrap: wrap;
 		max-width: clamp(50vw, 80vw, 80ch);
 		@include type.type-style('fluid-paragraph-01', true);
+	}
+
+	.background {
+		position: relative;
+		background-attachment: fixed;
+		background-position: top;
+		background-repeat: repeat;
+		padding-bottom: var(--cds-spacing-08);
+		background-size: 10%;
+	}
+
+	.background-light {
+		position: relative;
+		background-attachment: fixed;
+		background-position: top;
+		background-repeat: repeat;
+		padding-bottom: var(--cds-spacing-08);
+		background-size: 10%;
+	}
+
+	.background-light:before {
+		content: ' ';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0.9;
+		background-color: #fff;
+		background-image: url('$lib/client/images/background/noise-light.webp');
+		background-size: 5%;
+	}
+
+	.background:before {
+		content: ' ';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0.9;
+		background-color: #000;
+		background-image: url('$lib/client/images/background/noise.webp');
+		background-size: 5%;
 	}
 </style>
