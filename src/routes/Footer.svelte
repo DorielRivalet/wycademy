@@ -56,15 +56,15 @@
 				>
 					<LogoGitHub size={32} color="var(--ctp-text)" />
 				</OutboundLink>
-				<div class="subtle">v{constant.appVersion}</div>
+				<p class="subtle">v{constant.appVersion}</p>
 			</div>
 			<div class="subtle github-info-container">
 				{#if lastModified !== ''}
-					<em>Page last modified:</em>
-					<Link href={commitLink}>{lastModified}</Link>
-					<div>
+					<p><em>Page last modified:</em></p>
+					<OutboundLink href={commitLink}>{lastModified}</OutboundLink>
+					<p>
 						Times changed: <span>{timesChanged}</span>
-					</div>
+					</p>
 				{:else}
 					<div>Want to play as Raviente?</div>
 					<div class="icon-info-container">
