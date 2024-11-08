@@ -18,7 +18,6 @@
 	import TrashCan from 'carbon-icons-svelte/lib/TrashCan.svelte';
 	import { browser } from '$app/environment';
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
-	import Logo from '$lib/client/images/logo.webp';
 	import { Close } from 'carbon-icons-svelte';
 
 	let search: 'idle' | 'load' | 'ready' = 'idle';
@@ -58,11 +57,11 @@
 		},
 		{
 			name: 'Event',
-			icon: Logo,
+			icon: getItemIcon('Mantle'),
 		},
 		{
 			name: 'Support',
-			icon: Logo,
+			icon: getItemIcon('Map'),
 		},
 		{
 			name: 'Weapon',
