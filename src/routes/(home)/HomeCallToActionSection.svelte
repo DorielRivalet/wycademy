@@ -128,6 +128,13 @@
 		gap: 2rem;
 		padding-left: 1rem;
 		padding-right: 1rem;
+		pointer-events: none;
+
+		// allow clicking buttons/links
+		:global(button),
+		:global(a) {
+			pointer-events: auto;
+		}
 	}
 
 	.button-container {
@@ -193,5 +200,9 @@
 		100% {
 			transform: translateX(-33.33%);
 		}
+	}
+
+	img:hover {
+		filter: brightness(120%) drop-shadow(0px 0px 8px var(--ctp-blue));
 	}
 </style>
