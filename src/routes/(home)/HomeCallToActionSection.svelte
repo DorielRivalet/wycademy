@@ -4,6 +4,7 @@
 	import ArrowRight from 'carbon-icons-svelte/lib/ArrowRight.svelte';
 	import DirectionStraightRightFilled from 'carbon-icons-svelte/lib/DirectionStraightRightFilled.svelte';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import { onMount } from 'svelte';
 
 	export let href: string = '/signup';
 	export let rowGap: number = 32; // Gap between rows in pixels
@@ -25,33 +26,55 @@
 		{ icons: generateRow(), speed: 0.35, direction: 1 }, // Left to right
 		{ icons: generateRow(), speed: 0.15, direction: -1 }, // Right to left
 	];
+
+	let container: Element;
+	let isVisible = false;
+
+	onMount(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const [entry] = entries;
+				isVisible = entry.isIntersecting;
+			},
+			{ threshold: 0.1 }, // Adjust threshold as needed
+		);
+
+		if (container) {
+			observer.observe(container);
+		}
+
+		return () => observer.disconnect();
+	});
 </script>
 
 <section
 	class="container"
+	bind:this={container}
 	style="--top-padding: {topPadding}px; --bottom-padding: {bottomPadding}px;"
 >
 	<div class="icon-background">
-		{#each rows as row, rowIndex}
-			<div
-				class="icon-row"
-				style="
+		{#if isVisible}
+			{#each rows as row, rowIndex}
+				<div
+					class="icon-row"
+					style="
 									--row-speed: {monsters.length / row.speed}s;
 									--row-direction: {row.direction};
 									--row-position: calc({rowIndex} * (64px + {rowGap}px) + var(--top-padding));
 							"
-				class:reverse={row.direction === -1}
-			>
-				<!-- Create two sets of icons for seamless looping -->
-				<div class="icons-set">
-					{#each row.icons as icon}
-						<div class="icon-container">
-							<img src={icon} alt="Monster icon" class="monster-icon" />
-						</div>
-					{/each}
+					class:reverse={row.direction === -1}
+				>
+					<!-- Create two sets of icons for seamless looping -->
+					<div class="icons-set">
+						{#each row.icons as icon}
+							<div class="icon-container">
+								<img src={icon} alt="Monster icon" class="monster-icon" />
+							</div>
+						{/each}
+					</div>
 				</div>
-			</div>
-		{/each}
+			{/each}
+		{/if}
 	</div>
 
 	<div class="foreground">
