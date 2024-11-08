@@ -1801,7 +1801,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/ashen_lao-shan_lung',
 		fullRender:
-			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ashen-lao-shan_lung',
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/ashen-lao-shan-lung',
 
 		unusedComponent: true,
 		link: '/hunter-notes/monsters/overview/ashen-lao-shan-lung',
