@@ -80,6 +80,26 @@
 			}
 		};
 	});
+
+	let isVisible = false;
+
+	function intersectionObserver(element: Element) {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const [entry] = entries;
+				isVisible = entry.isIntersecting;
+			},
+			{ threshold: 0.1 },
+		);
+
+		observer.observe(element);
+
+		return {
+			destroy() {
+				observer.disconnect();
+			},
+		};
+	}
 </script>
 
 <section class="container">
@@ -112,82 +132,88 @@
 			</HomeFeaturesSectionFeature>
 		{/if}
 	</div>
-	<div class="graphics-container">
-		{#if currentFeatureIndex === 0}
-			<div
-				class="devices"
-				in:scale={{
-					easing: cubicInOut,
-					duration: 300,
-				}}
-				out:fade={{
-					easing: cubicInOut,
-					duration: 150,
-				}}
-			>
-				<div>
-					<Safari
-						src={$carbonThemeStore === 'g10' ? desktopLight : desktopDark}
+	<div class="graphics-container" use:intersectionObserver>
+		{#if isVisible}
+			{#if currentFeatureIndex === 0}
+				<div
+					class="devices"
+					in:scale={{
+						easing: cubicInOut,
+						duration: 300,
+					}}
+					out:fade={{
+						easing: cubicInOut,
+						duration: 150,
+					}}
+				>
+					<div>
+						<Safari
+							src={$carbonThemeStore === 'g10' ? desktopLight : desktopDark}
+						/>
+					</div>
+					<div>
+						<IPhone15Pro
+							src={$carbonThemeStore === 'g10' ? mobileLight : mobileDark}
+						/>
+					</div>
+				</div>
+			{:else if currentFeatureIndex === 1}
+				<div
+					class="feature-image-container"
+					in:scale={{
+						easing: cubicInOut,
+						duration: 300,
+					}}
+					out:fade={{
+						easing: cubicInOut,
+						duration: 150,
+					}}
+				>
+					<img class="feature-image" src={feature2Img} alt="Feature 2" />
+				</div>
+			{:else if currentFeatureIndex === 2}
+				<div
+					class="feature-image-container"
+					in:scale={{
+						easing: cubicInOut,
+						duration: 300,
+					}}
+					out:fade={{
+						easing: cubicInOut,
+						duration: 150,
+					}}
+				>
+					<img
+						class="feature-image border-container"
+						src={$carbonThemeStore === 'g10'
+							? feature3ImgLight
+							: feature3ImgDark}
+						alt="Feature 3"
 					/>
 				</div>
-				<div>
-					<IPhone15Pro
-						src={$carbonThemeStore === 'g10' ? mobileLight : mobileDark}
+			{:else if currentFeatureIndex === 3}
+				<div
+					class="feature-image-container"
+					in:scale={{
+						easing: cubicInOut,
+						duration: 300,
+					}}
+					out:fade={{
+						easing: cubicInOut,
+						duration: 150,
+					}}
+				>
+					<img
+						class="feature-image border-container"
+						src={$carbonThemeStore === 'g10'
+							? feature4ImgLight
+							: feature4ImgDark}
+						alt="Feature 4"
 					/>
 				</div>
-			</div>
-		{:else if currentFeatureIndex === 1}
-			<div
-				class="feature-image-container"
-				in:scale={{
-					easing: cubicInOut,
-					duration: 300,
-				}}
-				out:fade={{
-					easing: cubicInOut,
-					duration: 150,
-				}}
-			>
-				<img class="feature-image" src={feature2Img} alt="Feature 2" />
-			</div>
-		{:else if currentFeatureIndex === 2}
-			<div
-				class="feature-image-container"
-				in:scale={{
-					easing: cubicInOut,
-					duration: 300,
-				}}
-				out:fade={{
-					easing: cubicInOut,
-					duration: 150,
-				}}
-			>
-				<img
-					class="feature-image border-container"
-					src={$carbonThemeStore === 'g10' ? feature3ImgLight : feature3ImgDark}
-					alt="Feature 3"
-				/>
-			</div>
-		{:else if currentFeatureIndex === 3}
-			<div
-				class="feature-image-container"
-				in:scale={{
-					easing: cubicInOut,
-					duration: 300,
-				}}
-				out:fade={{
-					easing: cubicInOut,
-					duration: 150,
-				}}
-			>
-				<img
-					class="feature-image border-container"
-					src={$carbonThemeStore === 'g10' ? feature4ImgLight : feature4ImgDark}
-					alt="Feature 4"
-				/>
-			</div>
-		{:else}
-			<div class="placeholder"></div>
+			{:else}
+				<div class="placeholder"></div>
+			{/if}
 		{/if}
 	</div>
 </section>
