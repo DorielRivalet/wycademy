@@ -1122,8 +1122,6 @@
 	) as Writable<CarbonTheme>;
 
 	// license-report
-	const lastUpdated = '2024-10-17';
-
 	function getAgGridTheme(theme: CarbonTheme) {
 		console.log('getAgGridTheme');
 		return themeQuartz.withParams({
@@ -1188,7 +1186,6 @@
 <HunterNotesPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Acknowledgements'} />
-		<p class="spaced-paragraph">Last updated: {lastUpdated}</p>
 		{#key $carbonThemeStore}
 			<AgGrid {gridOptions} />
 		{/key}
