@@ -6,6 +6,7 @@
 	export let description: string;
 	export let progressPosition: 'top' | 'bottom' = 'bottom';
 	export let progressBarValue: number;
+	export let titleColor: string;
 
 	let progressBarInterval: ReturnType<typeof setInterval> | null = null;
 
@@ -38,7 +39,9 @@
 		</div>
 	{/if}
 	<div class="icon"><slot /></div>
-	<p class="title">{title}</p>
+	<p class="title" style="color: {titleColor};">
+		{title}
+	</p>
 	<p class="description">{description}</p>
 	{#if progressPosition === 'bottom'}
 		<div>

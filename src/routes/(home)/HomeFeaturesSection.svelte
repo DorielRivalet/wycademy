@@ -23,6 +23,7 @@
 	import feature4ImgLight from '$lib/client/images/supplemental/feature-4-light.webp';
 	import feature4ImgDark from '$lib/client/images/supplemental/feature-4-dark.webp';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
+	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -114,15 +115,25 @@
 			{#each features as feature, index}
 				<HomeFeaturesSectionFeature
 					title={feature.title}
+					titleColor={progressBarValues[index] > 2
+						? 'var(--ctp-sky)'
+						: 'var(--ctp-text)'}
 					description={feature.description}
 					progressPosition="bottom"
 					progressBarValue={progressBarValues[index]}
 				>
-					<svelte:component this={feature.icon} size={32} />
+					<svelte:component
+						this={feature.icon}
+						size={32}
+						color={progressBarValues[index] > 2
+							? 'var(--ctp-sky)'
+							: 'var(--ctp-text)'}
+					/>
 				</HomeFeaturesSectionFeature>
 			{/each}
 		{:else}
 			<HomeFeaturesSectionFeature
+				titleColor="var(--ctp-text)"
 				title={features[currentFeatureIndex].title}
 				description={features[currentFeatureIndex].description}
 				progressPosition="bottom"
@@ -214,6 +225,8 @@
 			{:else}
 				<div class="placeholder"></div>
 			{/if}
+		{:else}
+			<SkeletonPlaceholder style="width: 100%; height: 100%;" />
 		{/if}
 	</div>
 </section>
