@@ -13,6 +13,55 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 	const routeGroupMapping: Record<string, string> = {
 		'/': '/(home)',
 		'/site-preferences': '/(app)/site-preferences',
+		'/overlay': '/(home)/overlay',
+		'/support': '/support',
+		'/support/external/websites': '/support/(docs-full)/external/websites',
+		'/support/overlay-documentation/architecture':
+			'/support/(docs-full)/overlay-documentation/architecture',
+		'/support/wycademy-documentation/architecture':
+			'/support/(docs-full)/wycademy-documentation/architecture',
+		'/support/policies/acknowledgements':
+			'/support/(docs-full)/policies/acknowledgements',
+		'/support/policies/copyright': '/support/(docs-full)/policies/copyright',
+		'/support/policies/privacy-policy':
+			'/support/(docs-full)/policies/privacy-policy',
+		'/support/policies/security': '/support/(docs-full)/policies/security',
+		'/support/policies/terms-of-service':
+			'/support/(docs-full)/policies/terms-of-service',
+		'/support/website/about': '/support/(docs-full)/website/about',
+		'/support/website/announcements':
+			'/support/(docs-full)/website/announcements',
+		'/support/website/contact': '/support/(docs-full)/website/contact',
+		'/support/website/contribute': '/support/(docs-full)/website/contribute',
+		'/support/website/development': '/support/(docs-full)/website/development',
+		'/support/website/donate': '/support/(docs-full)/website/donate',
+		'/support/website/faq': '/support/(docs-full)/website/faq',
+		'/tools': '/tools',
+		'/tools/calculator/crit-conversion':
+			'/tools/(docs-full)/calculator/crit-conversion',
+		'/tools/calculator/damage': '/tools/(docs-full)/calculator/damage',
+		'/tools/calculator/gunlance-shells-and-wyvernfire':
+			'/tools/(docs-full)/calculator/gunlance-shells-and-wyvernfire',
+		'/tools/calculator/heavy-bowgun-heat-beam':
+			'/tools/(docs-full)/calculator/heavy-bowgun-heat-beam',
+		'/tools/calculator/ice-age': '/tools/(docs-full)/calculator/ice-age',
+		'/tools/calculator/sigil': '/tools/(docs-full)/calculator/sigil',
+		'/tools/external/ezlion': '/tools/(docs-full)/external/ezlion',
+		'/tools/external/overlay': '/tools/(docs-full)/external/overlay',
+		'/tools/generator/armor': '/tools/(docs-full)/generator/armor',
+		'/tools/generator/icon': '/tools/(docs-full)/generator/icon',
+		'/tools/generator/item': '/tools/(docs-full)/generator/item',
+		'/tools/generator/thumbnail': '/tools/(docs-full)/generator/thumbnail',
+		'/tools/generator/weapon': '/tools/(docs-full)/generator/weapon',
+		'/tools/search/advanced-search':
+			'/tools/(docs-full)/search/advanced-search',
+		'/tools/generator/armor-set-searcher':
+			'/tools/(docs-full)/search/armor-set-searcher',
+		'/tools/simulator/partner-skills':
+			'/tools/(docs-full)/simulator/partner-skills',
+		'/tools/simulator/sigil': '/tools/(docs-full)/simulator/sigil',
+		'/tools/simulator/tower-weapon':
+			'/tools/(docs-full)/simulator/tower-weapon',
 	};
 
 	const defaultGitHubData: GitHubData = {
