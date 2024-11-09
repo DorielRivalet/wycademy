@@ -12,6 +12,7 @@
 	import { getContext } from 'svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { onMount } from 'svelte';
+	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 
 	export let title: string =
 		'Your Ultimate Knowledge Base for Monster Hunter Frontier Z';
@@ -74,6 +75,8 @@
 		<div class="marquee-container" bind:this={container}>
 			{#if isVisible}
 				<HomeHeroSectionAllPageCards />
+			{:else}
+				<SkeletonPlaceholder style="width: 100%; height: 100%;" />
 			{/if}
 		</div>
 
