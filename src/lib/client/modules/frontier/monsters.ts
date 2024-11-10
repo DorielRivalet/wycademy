@@ -3285,7 +3285,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Thunder', 'Dragon'],
 		habitats: ['Highlands', 'Forest and Hills'],
 		sizes: ['Gold Crown Large: 2322.5', 'Gold Crown Small: 1486.4'],
-		relatedMonsters: ['None'],
+		relatedMonsters: [],
 		generation: 'Frontier',
 	},
 	{
@@ -3434,7 +3434,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Gorge',
 		],
 		sizes: ['Gold Crown Large: 2303.8'],
-		relatedMonsters: ['None'],
+		relatedMonsters: ['Rathian'],
 		generation: 'Frontier',
 	},
 	{
@@ -3863,7 +3863,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Ice', 'Dragon'],
 		habitats: ['Large Exploration Ship'],
 		sizes: ['Gold Crown Large: 3625.5', 'Gold Crown Small: 2358.1'],
-		relatedMonsters: ['None'],
+		relatedMonsters: [],
 		generation: 'Frontier',
 	},
 	{
@@ -4114,7 +4114,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: [],
 		habitats: ['Flower Field'],
 		sizes: ['Small'],
-		relatedMonsters: ['None'],
+		relatedMonsters: [],
 		generation: 'Frontier',
 	},
 	{
@@ -4148,7 +4148,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Thunder', 'Ice'],
 		habitats: ['Flower Field'],
 		sizes: ['Gold Crown Large: 1913.3', 'Gold Crown Small: 1234.4'],
-		relatedMonsters: ['None'],
+		relatedMonsters: [],
 		generation: 'Frontier',
 	},
 	{
@@ -4946,7 +4946,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Dragon', 'Ice'],
 		habitats: ['Interception Base'],
 		sizes: ['Giant'],
-		relatedMonsters: ['None'],
+		relatedMonsters: [],
 		generation: 'Frontier',
 	},
 	{
@@ -5084,7 +5084,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Dragon', 'Fire'],
 		habitats: ['Sacred Pinnacle'],
 		sizes: ['3133.8cm'],
-		relatedMonsters: ['None'],
+		relatedMonsters: [],
 		generation: 'Third Generation',
 	},
 	{
@@ -6029,7 +6029,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Ice', 'Dragon'],
 		habitats: ['Large Exploration Ship'],
 		sizes: ['Gold Crown Large: 3625.5', 'Gold Crown Small: 2358.1'],
-		relatedMonsters: ['None'],
+		relatedMonsters: ['Shantien'],
 		generation: 'Frontier',
 	},
 	{
