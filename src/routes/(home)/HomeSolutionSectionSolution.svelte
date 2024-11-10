@@ -1,10 +1,13 @@
 <script lang="ts">
+	import Lens from '$lib/client/components/Lens.svelte';
 	import ClickableTile from 'carbon-components-svelte/src/Tile/ClickableTile.svelte';
 
 	export let imageSource: string;
 	export let title: string;
 	export let description: string;
 	export let href: string;
+
+	let hovering = false;
 </script>
 
 <div class="container">
@@ -12,7 +15,9 @@
 		<div class="contents">
 			<p class="title">{title}</p>
 			<p class="description">{description}</p>
-			<img class="image" src={imageSource} alt="Solution Preview" />
+			<Lens {hovering}>
+				<img class="image" src={imageSource} alt="Solution Preview" /></Lens
+			>
 		</div>
 	</ClickableTile>
 </div>
