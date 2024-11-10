@@ -811,6 +811,13 @@ export type FrontierMonsterPartInfo = {
 	}[];
 };
 
+export type FrontierGeneration =
+	| 'First Generation'
+	| 'Second Generation'
+	| 'Third Generation'
+	| 'Fourth Generation'
+	| 'Frontier';
+
 export type FrontierMonsterInfo = {
 	id: number;
 	name: FrontierMonsterName | 'Violent Raviente' | 'Giaprey'; // TODO update ezlion
@@ -821,15 +828,15 @@ export type FrontierMonsterInfo = {
 	unusedComponent: boolean;
 	displayName: string;
 	titles?: string[];
-	class?: FrontierMonsterClass;
+	class: FrontierMonsterClass;
 	elements?: FrontierElement[];
 	ailments?: FrontierAilment[];
 	weaknesses?: FrontierElementStatus[];
 	habitats?: FrontierHabitat[]; // TODO location type
-	type?: 'Large' | 'Small';
+	type: 'Large' | 'Small';
 	sizes?: string[];
 	relatedMonsters?: FrontierMonsterNameExpanded[];
-	generation?: string;
+	generation: FrontierGeneration;
 	ecology?: string;
 	link?: string;
 };
