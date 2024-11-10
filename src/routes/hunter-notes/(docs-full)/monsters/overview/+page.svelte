@@ -30,7 +30,10 @@
 	import List from 'carbon-icons-svelte/lib/List.svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	import { getUniqueMonsters } from '$lib/client/modules/frontier/monsters';
+	import {
+		getMonsterIcon,
+		getUniqueMonsters,
+	} from '$lib/client/modules/frontier/monsters';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import {
@@ -46,6 +49,13 @@
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { getElementIcon } from '$lib/client/modules/frontier/elements';
 	import { getAilmentIcon } from '$lib/client/modules/frontier/ailments';
+	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
+	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
+	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
+	import { getCSVFromArray } from '$lib/client/modules/csv';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 
 	const customTitle = 'Monsters Overview';
 	const url = $page.url.toString();
@@ -318,41 +328,41 @@
 				</Switch>
 			</ContentSwitcher>
 		</div>
-		{#if contextSwitcherIndex === 0}
-			<div class="options">
-				<div>
-					<Search
-						bind:value={searchTerm}
-						placeholder="Search monster name..."
-						autocomplete={'on'}
-					/>
-				</div>
-				<div class="dropdowns">
-					<MultiSelect
-						type="inline"
-						label="Select size..."
-						items={[
-							{ id: 'Large', text: 'Large' },
-							{ id: 'Small', text: 'Small' },
-						]}
-						bind:selectedIds={selectedSizes}
-					/>
-					<MultiSelect
-						spellcheck="false"
-						placeholder="Select classes..."
-						filterable
-						titleText="Class"
-						type="inline"
-						label="Select class..."
-						items={allClasses.map((e) => {
-							return {
-								id: e,
-								text: e,
-							};
-						})}
-						bind:selectedIds={selectedClasses}
-					/>
-					<!-- <Dropdown
+
+		<div class="options">
+			<div>
+				<Search
+					bind:value={searchTerm}
+					placeholder="Search monster name..."
+					autocomplete={'on'}
+				/>
+			</div>
+			<div class="dropdowns">
+				<MultiSelect
+					type="inline"
+					label="Select size..."
+					items={[
+						{ id: 'Large', text: 'Large' },
+						{ id: 'Small', text: 'Small' },
+					]}
+					bind:selectedIds={selectedSizes}
+				/>
+				<MultiSelect
+					spellcheck="false"
+					placeholder="Select classes..."
+					filterable
+					titleText="Class"
+					type="inline"
+					label="Select class..."
+					items={allClasses.map((e) => {
+						return {
+							id: e,
+							text: e,
+						};
+					})}
+					bind:selectedIds={selectedClasses}
+				/>
+				<!-- <Dropdown
 						titleText="Type"
 						selectedId="0"
 						type="inline"
@@ -363,91 +373,92 @@
 							{ id: '3', text: 'Musou' },
 						]}
 					/> -->
-					<MultiSelect
-						spellcheck="false"
-						placeholder="Select elements..."
-						filterable
-						titleText="Element"
-						type="inline"
-						items={allElements.map((e) => {
-							return {
-								id: e,
-								text: e,
-							};
-						})}
-						bind:selectedIds={selectedElements}
-						let:item
-					>
-						<InlineTooltip
-							tooltip="Element"
-							text={item.id}
-							icon={getElementIcon(item.id)}
-						/>
-					</MultiSelect>
-					<MultiSelect
-						spellcheck="false"
-						placeholder="Select ailments..."
-						filterable
-						titleText="Ailment"
-						type="inline"
-						items={allAilments.map((e) => {
-							return {
-								id: e,
-								text: e,
-							};
-						})}
-						bind:selectedIds={selectedAilments}
-						let:item
-					>
-						<InlineTooltip
-							tooltip="Ailment"
-							text={item.id}
-							icon={getAilmentIcon(item.id)}
-						/>
-					</MultiSelect>
-					<MultiSelect
-						spellcheck="false"
-						placeholder="Select habitats..."
-						filterable
-						titleText="Habitat"
-						type="inline"
-						items={allHabitats.map((e) => {
-							return {
-								id: e,
-								text: e,
-							};
-						})}
-						bind:selectedIds={selectedHabitats}
-						let:item
-					>
-						<InlineTooltip
-							tooltip="Habitat"
-							text={item.id}
-							icon={getHabitatIcon(item.id)}
-							iconType="file"
-						/>
-					</MultiSelect>
-					<MultiSelect
-						type="inline"
-						label="Select generations..."
-						items={allGenerations.map((e) => {
-							return {
-								id: e,
-								text: e,
-							};
-						})}
-						bind:selectedIds={selectedGenerations}
+				<MultiSelect
+					spellcheck="false"
+					placeholder="Select elements..."
+					filterable
+					titleText="Element"
+					type="inline"
+					items={allElements.map((e) => {
+						return {
+							id: e,
+							text: e,
+						};
+					})}
+					bind:selectedIds={selectedElements}
+					let:item
+				>
+					<InlineTooltip
+						tooltip="Element"
+						text={item.id}
+						icon={getElementIcon(item.id)}
 					/>
-				</div>
-				<Toggle
-					labelA="Descending"
-					labelB="Ascending"
-					hideLabel
-					labelText="Order"
-					bind:toggled={orderAscending}
+				</MultiSelect>
+				<MultiSelect
+					spellcheck="false"
+					placeholder="Select ailments..."
+					filterable
+					titleText="Ailment"
+					type="inline"
+					items={allAilments.map((e) => {
+						return {
+							id: e,
+							text: e,
+						};
+					})}
+					bind:selectedIds={selectedAilments}
+					let:item
+				>
+					<InlineTooltip
+						tooltip="Ailment"
+						text={item.id}
+						icon={getAilmentIcon(item.id)}
+					/>
+				</MultiSelect>
+				<MultiSelect
+					spellcheck="false"
+					placeholder="Select habitats..."
+					filterable
+					titleText="Habitat"
+					type="inline"
+					items={allHabitats.map((e) => {
+						return {
+							id: e,
+							text: e,
+						};
+					})}
+					bind:selectedIds={selectedHabitats}
+					let:item
+				>
+					<InlineTooltip
+						tooltip="Habitat"
+						text={item.id}
+						icon={getHabitatIcon(item.id)}
+						iconType="file"
+					/>
+				</MultiSelect>
+				<MultiSelect
+					type="inline"
+					label="Select generations..."
+					items={allGenerations.map((e) => {
+						return {
+							id: e,
+							text: e,
+						};
+					})}
+					bind:selectedIds={selectedGenerations}
 				/>
-				<p>Results: {currentMonsters.length}</p>
 			</div>
+			<Toggle
+				labelA="Descending"
+				labelB="Ascending"
+				hideLabel
+				labelText="Order"
+				bind:toggled={orderAscending}
+			/>
+			<p>Results: {currentMonsters.length}</p>
+		</div>
+		{#if contextSwitcherIndex === 0}
 			{#if currentMonsters.length > 0}
 				<div class="monster-list">
 					{#each currentMonsters as monster}
@@ -504,6 +515,151 @@
 					looking for.
 				</p>
 			{/if}
+		{:else if currentMonsters.length > 0}
+			<div class="table table-with-scrollbar">
+				<DataTable
+					id="monsters-dom"
+					sortable
+					zebra
+					size="short"
+					headers={[
+						{ key: 'icon', value: 'Icon' },
+						{ key: 'name', value: 'Name' },
+						{ key: 'titles', value: 'Titles' },
+						{ key: 'type', value: 'Type' },
+						{ key: 'class', value: 'Class' },
+						{ key: 'elements', value: 'Elements' },
+						{ key: 'ailments', value: 'Ailments' },
+						{ key: 'weaknesses', value: 'Weaknesses' },
+						{ key: 'habitats', value: 'Habitats' },
+						//{ key: 'ecology', value: 'Ecology' },
+						{ key: 'generation', value: 'Generation' },
+						{ key: 'sizes', value: 'Sizes' },
+						{ key: 'related', value: 'Related Monsters' },
+					]}
+					rows={currentMonsters.map((e, i) => {
+						return {
+							id: i,
+							name: e.displayName,
+							icon: e.icon,
+							ailments: e.ailments?.toString() || '',
+							elements: e.elements?.toString() || '',
+							weaknesses: e.weaknesses?.toString() || '',
+							generation: e.generation,
+							related: e.relatedMonsters?.toString() || '',
+							class: e.class,
+							habitats: e.habitats?.toString() || '',
+							//ecology: e.ecology,
+							sizes: e.sizes?.toString() || '',
+							titles: e.titles?.toString() || '',
+							type: e.type,
+						};
+					})}
+				>
+					<Toolbar
+						><div class="toolbar">
+							<CopyButton
+								iconDescription={'Copy as CSV'}
+								text={getCSVFromArray(
+									currentMonsters.map((e, i) => {
+										return {
+											id: i,
+											name: e.displayName,
+											icon: e.icon,
+											ailments: e.ailments?.toString() || '',
+											elements: e.elements?.toString() || '',
+											weaknesses: e.weaknesses?.toString() || '',
+											generation: e.generation,
+											related: e.relatedMonsters?.toString() || '',
+											class: e.class,
+											habitats: e.habitats?.toString() || '',
+											//ecology: e.ecology,
+											sizes: e.sizes?.toString() || '',
+											titles: e.titles?.toString() || '',
+											type: e.type,
+										};
+									}),
+								)}
+							/>
+							<Button
+								kind="tertiary"
+								icon={Download}
+								on:click={(e) => downloadDomAsPng('monsters-dom', 'monsters')}
+								>Download</Button
+							>
+						</div>
+					</Toolbar>
+					<svelte:fragment slot="cell" let:cell>
+						{#if cell.key === 'icon'}
+							<img width="64" src={cell.value} alt="Monster Icon" />
+						{:else if cell.key === 'titles'}
+							<p>{cell.value.replaceAll(',', ', ')}</p>
+						{:else if cell.key === 'ailments'}
+							{#each [...cell.value.split(',')] as ailment}
+								<div class="table-inline-tooltip">
+									<InlineTooltip
+										tooltip="Ailment"
+										text={ailment}
+										icon={getAilmentIcon(ailment)}
+									/>
+								</div>
+							{/each}
+						{:else if cell.key === 'elements'}
+							{#each [...cell.value.split(',')] as element}
+								<div class="table-inline-tooltip">
+									<InlineTooltip
+										tooltip="Element"
+										text={element}
+										icon={getElementIcon(element)}
+									/>
+								</div>
+							{/each}
+						{:else if cell.key === 'weaknesses'}
+							{#each [...cell.value.split(',')] as weakness}
+								<div class="table-inline-tooltip">
+									<InlineTooltip
+										tooltip="Weakness"
+										text={weakness}
+										icon={getElementIcon(weakness) === ''
+											? getAilmentIcon(weakness)
+											: getElementIcon(weakness)}
+									/>
+								</div>
+							{/each}
+						{:else if cell.key === 'habitats'}
+							{#each [...cell.value.split(',')] as habitat}
+								<div class="table-inline-tooltip">
+									<InlineTooltip
+										tooltip="Habitat"
+										iconType="file"
+										text={habitat}
+										icon={getHabitatIcon(habitat)}
+									/>
+								</div>
+							{/each}
+						{:else if cell.key === 'related' && cell.value !== '' && cell.value !== 'None' && cell.value !== null && cell.value !== undefined && cell.value !== ' '}
+							{#each [...cell.value.split(',')] as monster}
+								<div class="table-inline-tooltip">
+									<InlineTooltip
+										tooltip="Monster"
+										text={monster}
+										icon={getMonsterIcon(monster)}
+										iconType="file"
+									/>
+								</div>
+							{/each}
+						{:else}
+							<p>{cell.value}</p>
+						{/if}
+					</svelte:fragment>
+				</DataTable>
+			</div>
+		{:else}
+			<p><strong>No monsters found</strong></p>
+			<p>
+				Try adjusting your search or filter options to find what you're looking
+				for.
+			</p>
 		{/if}
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
@@ -521,6 +677,26 @@
 	// :global(.bx--checkbox-label-text) {
 	// 	display: block;
 	// }
+
+	.toolbar {
+		padding: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+
+	.table {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+		background-color: var(--ctp-surface0);
+	}
+
+	.table-with-scrollbar {
+		height: 80vh;
+		overflow-y: auto;
+	}
 
 	.monster-list {
 		display: flex;
@@ -584,5 +760,9 @@
 
 	.bestiary {
 		padding-bottom: 2rem;
+	}
+
+	.table-inline-tooltip {
+		margin-bottom: 0.5rem;
 	}
 </style>
