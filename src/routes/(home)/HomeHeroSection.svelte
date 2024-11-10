@@ -147,6 +147,29 @@
 				grid-area: marquee-container;
 			}
 		}
+
+		.hero-counters {
+			grid-area: hero-counters;
+			display: grid;
+			gap: 2rem;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			justify-content: center;
+			z-index: 999;
+		}
+	}
+
+	@media (min-width: 672px) {
+		.hero-counters {
+			grid-area: hero-counters;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 2rem;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			z-index: 999;
+		}
 	}
 
 	@media (min-width: 1056px) {
@@ -169,17 +192,6 @@
 				min-width: 50vw;
 			}
 		}
-	}
-
-	.hero-counters {
-		grid-area: hero-counters;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 2rem;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		z-index: 999;
 	}
 
 	.hero-text {

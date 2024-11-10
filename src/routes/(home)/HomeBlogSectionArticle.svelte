@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ClickableTile from 'carbon-components-svelte/src/Tile/ClickableTile.svelte';
+	import Card3D from '$lib/client/components/Card3D.svelte';
 
 	export let imageSource: string;
 	export let date: string;
@@ -44,25 +45,27 @@
 	}
 </script>
 
-<ClickableTile {href} style="border-radius: 8px;">
-	<article>
-		<figure>
-			<img class="image" src={imageSource} alt="Article Preview" />
-			<figcaption class="date">
-				{formatDateWithRelativeTime(
-					new Date(
-						Number(date.split('-')[0]),
-						Number(date.split('-')[1]) - 1,
-						Number(date.split('-')[2]),
-					),
-					new Date(),
-				)}
-			</figcaption>
-		</figure>
-		<h4 class="title">{title}</h4>
-		<p class="summary">{summary}</p>
-	</article>
-</ClickableTile>
+<Card3D>
+	<ClickableTile {href} style="border-radius: 8px;">
+		<article>
+			<figure>
+				<img class="image" src={imageSource} alt="Article Preview" />
+				<figcaption class="date">
+					{formatDateWithRelativeTime(
+						new Date(
+							Number(date.split('-')[0]),
+							Number(date.split('-')[1]) - 1,
+							Number(date.split('-')[2]),
+						),
+						new Date(),
+					)}
+				</figcaption>
+			</figure>
+			<h4 class="title">{title}</h4>
+			<p class="summary">{summary}</p>
+		</article>
+	</ClickableTile>
+</Card3D>
 
 <style lang="scss">
 	article {
