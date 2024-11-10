@@ -191,7 +191,6 @@
 </div>
 
 <style lang="scss">
-	// MarqueeExample styles
 	.marquee-container {
 		position: relative;
 		display: flex;
@@ -205,7 +204,7 @@
 		background-color: transparent;
 		padding: 1rem 0;
 
-		@media (min-width: 768px) {
+		@media (min-width: 672px) {
 			box-shadow:
 				0 20px 25px -5px rgb(0 0 0 / 0.1),
 				0 8px 10px -6px rgb(0 0 0 / 0.1);

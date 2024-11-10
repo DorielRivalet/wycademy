@@ -4,6 +4,7 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import type { FrontierMonsterInfo } from '$lib/client/modules/frontier/types';
 	import { getTag } from '$lib/client/modules/frontier/tags';
+	import Card3D from '$lib/client/components/Card3D.svelte';
 
 	export let monster: FrontierMonsterInfo;
 	export let tags = ['Brute Wyvern', 'Hardcore', 'Unlimited', 'Fire'];
@@ -12,34 +13,36 @@
 	const maxTagLength = 20;
 </script>
 
-<div class="card" style="width: {width};">
-	<div class="top">
-		<div class="image">
-			<slot></slot>
+<Card3D>
+	<div class="card" style="width: {width};">
+		<div class="top">
+			<div class="image">
+				<slot></slot>
+			</div>
+		</div>
+		<div class="bottom">
+			<a class="title" style="width: {'100%'}" href={monster.link}>
+				{monster.displayName}
+			</a>
+			{#if monster.titles && monster.titles.length > 0 && !isFieldEmpty(monster.titles[0])}
+				<p class="subtitle" style="width: {'100%'}">
+					{monster.titles[0]}
+				</p>
+			{/if}
+			<div class="tags" style="width: {'100%'}">
+				{#each tags as tag}
+					<div class="tag">
+						<Link href={getTag(tag).link === '' ? '/' : getTag(tag).link}>
+							<Tag icon={getTag(tag).icon} type={getTag(tag).color} interactive
+								>{tag.substring(0, maxTagLength)}</Tag
+							></Link
+						>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</div>
-	<div class="bottom">
-		<a class="title" style="width: {'100%'}" href={monster.link}>
-			{monster.displayName}
-		</a>
-		{#if monster.titles && monster.titles.length > 0 && !isFieldEmpty(monster.titles[0])}
-			<p class="subtitle" style="width: {'100%'}">
-				{monster.titles[0]}
-			</p>
-		{/if}
-		<div class="tags" style="width: {'100%'}">
-			{#each tags as tag}
-				<div class="tag">
-					<Link href={getTag(tag).link === '' ? '/' : getTag(tag).link}>
-						<Tag icon={getTag(tag).icon} type={getTag(tag).color} interactive
-							>{tag.substring(0, maxTagLength)}</Tag
-						></Link
-					>
-				</div>
-			{/each}
-		</div>
-	</div>
-</div>
+</Card3D>
 
 <style lang="scss">
 	@use '@carbon/motion' as motion;

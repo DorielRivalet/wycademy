@@ -94,10 +94,24 @@
 			</Button>
 		</div>
 	</div>
+
+	<div class="gradient-overlay gradient-overlay--bottom"></div>
 </section>
 
 <style lang="scss">
 	@use '@carbon/type' as type;
+
+	.gradient-overlay {
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+
+		&--bottom {
+			background: linear-gradient(to top, var(--ctp-mantle), transparent);
+		}
+	}
 
 	.container {
 		position: relative;
