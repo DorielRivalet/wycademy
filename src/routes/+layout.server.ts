@@ -62,6 +62,7 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 		'/tools/simulator/sigil': '/tools/(docs-full)/simulator/sigil',
 		'/tools/simulator/tower-weapon':
 			'/tools/(docs-full)/simulator/tower-weapon',
+		'/offline': '/(cinematic)/offline',
 	};
 
 	const defaultGitHubData: GitHubData = {

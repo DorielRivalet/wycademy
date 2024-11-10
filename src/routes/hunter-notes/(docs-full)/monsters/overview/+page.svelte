@@ -33,6 +33,19 @@
 	import { getUniqueMonsters } from '$lib/client/modules/frontier/monsters';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
+	import {
+		getHabitatIcon,
+		type FrontierHabitat,
+	} from '$lib/client/modules/frontier/habitat';
+	import type {
+		FrontierAilment,
+		FrontierElement,
+		FrontierGeneration,
+		FrontierMonsterClass,
+	} from '$lib/client/modules/frontier/types';
+	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
+	import { getElementIcon } from '$lib/client/modules/frontier/elements';
+	import { getAilmentIcon } from '$lib/client/modules/frontier/ailments';
 
 	const customTitle = 'Monsters Overview';
 	const url = $page.url.toString();
@@ -54,24 +67,199 @@
 
 	let orderAscending = true;
 	let searchTerm = '';
+	let selectedSizes = ['Large', 'Small']; // Default value for "Size" dropdown
+	let selectedClasses: FrontierMonsterClass[] = [];
+	// TODO
+	//let selectedType = 'All';
+	let selectedElements: FrontierElement[] = [];
+	let selectedAilments: FrontierAilment[] = [];
+	let selectedGenerations: FrontierGeneration[] = [];
+	let selectedHabitats: FrontierHabitat[] = [];
 
-	let selectedSize = ['Large', 'Small']; // Default value for "Size" dropdown
-	let selectedClass = 'All'; // Default value for "Class" dropdown
-	let selectedType = 'All'; // Default value for "Type" dropdown
-	let selectedElement = 'All'; // Default value for "Element" dropdown
-	let selectedAilment = 'All'; // Default value for "Ailment" dropdown
+	const allClasses: FrontierMonsterClass[] = [
+		'Lynian',
+		'Herbivore',
+		//'Fish',
+		'Neopteron',
+		'Carapaceon',
+		'Fanged Beast',
+		'Leviathan',
+		'Bird Wyvern',
+		'Piscine Wyvern',
+		'Flying Wyvern',
+		//'Snake Wyvern',
+		'Brute Wyvern',
+		'Fanged Wyvern',
+		'Elder Dragon',
+		'Unclassified Monster',
+		//'Unknown',
+		'???',
+	];
+	const allElements: FrontierElement[] = [
+		'Fire',
+		'Water',
+		'Thunder',
+		'Ice',
+		'Dragon',
+		'Blaze',
+		'Lightning Rod',
+		'Light',
+		'Dark',
+		'Tenshou',
+		'Okiko',
+		'Music',
+		'Sound',
+		'Black Flame',
+		'Crimson Demon',
+		"Emperor's Roar",
+		'Burning Zero',
+	];
+	const allHabitats: FrontierHabitat[] = [
+		'Arena',
+		'Battleground',
+		'Bamboo Forest',
+		'Castle Schrade',
+		'Cloud Viewing Fortress',
+		'Competition Arena',
+		'Deep Crater',
+		'Desert',
+		'Duremudira Entrance',
+		'Flower Field',
+		'Fortress',
+		'Gorge',
+		'Great Arena',
+		'Great Forest',
+		'Forest and Hills',
+		'Highlands',
+		'Historical Site',
+		'Historical Site - Night',
+		'Interception Base',
+		'Jungle',
+		'Large Exploration Ship',
+		'Mezeporta Square',
+		'Painted Falls',
+		'Polar Sea',
+		"Hunter's Road",
+		'Sacred Pinnacle',
+		'Sanctuary',
+		'Sky Corridor',
+		'Snowy Mountains',
+		'Solitude Island Depths',
+		'Solitude Island',
+		'Swamp',
+		'Tidal Island',
+		'Top of Great Forest',
+		'Tower Nest Hole',
+		'Tower',
+		'Town',
+		'Tower 2',
+		'Volcano',
+		'White Lake',
+		"World's End",
+		'Tower 3',
+		'Cosmopolitan',
+	];
+	const allAilments: FrontierAilment[] = [
+		'Bleed',
+		'Blind',
+		'Corrupted Poison',
+		'Crystal',
+		'Dracophage Erosion',
+		'Extreme Fireblight',
+		'Extreme Waterblight',
+		'Extreme Thunderblight',
+		'Extreme Iceblight',
+		'Extreme Dragonblight',
+		'Extreme Poison',
+		'Extreme Sleep',
+		'Extreme Paralysis',
+		'Fatigue',
+		'Frostbite',
+		'Magnetism',
+		'Snowman',
+		'Stench',
+		'Stun',
+		'Vocal Cord Paralysis',
+		'Poison',
+		'Paralysis',
+		'Sleep',
+		'Blast',
+		'Defense Down',
+		'Farcaster',
+		'Confusion',
+		'Frenzy Virus',
+	];
+	const allGenerations: FrontierGeneration[] = [
+		'First Generation',
+		'Second Generation',
+		'Third Generation',
+		'Fourth Generation',
+		'Frontier',
+	];
 
-	// Reactive statement to filter and sort monsters based on searchTerm, orderAscending, and dropdown selections
-	$: {
-		let filteredMonsters = uniqueMonsters.filter(
-			(monster) =>
-				monster.displayName.toLowerCase().includes(searchTerm.toLowerCase()) &&
-				selectedSize.find((e) => e === monster.type) &&
-				(selectedClass === 'All' || monster.class === selectedClass) &&
-				(selectedType === 'All' || monster.type === selectedType),
-			// (selectedElement === 'All' || monster.element === selectedElement) &&
-			// (selectedAilment === 'All' || monster.ailment === selectedAilment),
-		);
+	function filterSearchResults(
+		searchTerm: string,
+		selectedSizes: string[],
+		selectedClasses: FrontierMonsterClass[],
+		selectedHabitats: FrontierHabitat[],
+		selectedGenerations: FrontierGeneration[],
+		selectedAilments: FrontierAilment[],
+		selectedElements: FrontierElement[],
+	) {
+		let filteredMonsters = uniqueMonsters.filter((monster) => {
+			// Only apply name filter if there's a search term
+			const nameMatch =
+				!searchTerm ||
+				monster.displayName.toLowerCase().includes(searchTerm.toLowerCase());
+
+			// Only apply size filter if there are selected sizes
+			const sizeMatch =
+				selectedSizes.length === 0 || selectedSizes.includes(monster.type);
+
+			// Only apply class filter if there are selected classes
+			const classMatch =
+				selectedClasses.length === 0 || selectedClasses.includes(monster.class);
+
+			// Only apply habitat filter if there are selected habitats
+			const habitatMatch =
+				selectedHabitats.length === 0 ||
+				(monster.habitats?.some((habitat) =>
+					selectedHabitats.includes(habitat),
+				) ??
+					false);
+
+			// Only apply generation filter if there are selected generations
+			const generationMatch =
+				selectedGenerations.length === 0 ||
+				selectedGenerations.includes(monster.generation);
+
+			// Only apply ailment filter if there are selected ailments
+			const ailmentMatch =
+				selectedAilments.length === 0 ||
+				(monster.ailments?.some((ailment) =>
+					selectedAilments.includes(ailment),
+				) ??
+					false);
+
+			// Only apply element filter if there are selected elements
+			const elementMatch =
+				selectedElements.length === 0 ||
+				(monster.elements?.some((element) =>
+					selectedElements.includes(element),
+				) ??
+					false);
+
+			// Return true only if ALL conditions match
+			return (
+				nameMatch &&
+				sizeMatch &&
+				classMatch &&
+				habitatMatch &&
+				generationMatch &&
+				ailmentMatch &&
+				elementMatch
+			);
+		});
 
 		// Sort the filtered monsters alphabetically
 		filteredMonsters.sort((a, b) => a.displayName.localeCompare(b.displayName));
@@ -83,6 +271,17 @@
 
 		currentMonsters = filteredMonsters;
 	}
+
+	// Reactive statement to filter and sort monsters based on searchTerm, orderAscending, and dropdown selections
+	$: filterSearchResults(
+		searchTerm,
+		selectedSizes,
+		selectedClasses,
+		selectedHabitats,
+		selectedGenerations,
+		selectedAilments,
+		selectedElements,
+	);
 
 	let contextSwitcherIndex = 0;
 </script>
@@ -134,19 +333,24 @@
 							{ id: 'Large', text: 'Large' },
 							{ id: 'Small', text: 'Small' },
 						]}
-						bind:selectedIds={selectedSize}
+						bind:selectedIds={selectedSizes}
 					/>
-					<Dropdown
+					<MultiSelect
+						spellcheck="false"
+						placeholder="Select classes..."
+						filterable
 						titleText="Class"
-						selectedId="0"
 						type="inline"
-						items={[
-							{ id: '0', text: 'All' },
-							{ id: '1', text: 'Flying Wyvern' },
-							{ id: '2', text: 'Brute Wyvern' },
-						]}
-					></Dropdown>
-					<Dropdown
+						label="Select class..."
+						items={allClasses.map((e) => {
+							return {
+								id: e,
+								text: e,
+							};
+						})}
+						bind:selectedIds={selectedClasses}
+					/>
+					<!-- <Dropdown
 						titleText="Type"
 						selectedId="0"
 						type="inline"
@@ -156,35 +360,90 @@
 							{ id: '2', text: 'Unlimited' },
 							{ id: '3', text: 'Musou' },
 						]}
-					/>
-					<Dropdown
+					/> -->
+					<MultiSelect
+						spellcheck="false"
+						placeholder="Select elements..."
+						filterable
 						titleText="Element"
-						selectedId="0"
 						type="inline"
-						items={[
-							{ id: '0', text: 'All' },
-							{ id: '1', text: 'Fire' },
-							{ id: '2', text: 'Water' },
-						]}
-					/>
-					<Dropdown
+						items={allElements.map((e) => {
+							return {
+								id: e,
+								text: e,
+							};
+						})}
+						bind:selectedIds={selectedElements}
+						let:item
+					>
+						<InlineTooltip
+							tooltip="Element"
+							text={item.id}
+							icon={getElementIcon(item.id)}
+						/>
+					</MultiSelect>
+					<MultiSelect
+						spellcheck="false"
+						placeholder="Select ailments..."
+						filterable
 						titleText="Ailment"
-						selectedId="0"
 						type="inline"
-						items={[
-							{ id: '0', text: 'All' },
-							{ id: '1', text: 'Poison' },
-							{ id: '2', text: 'Sleep' },
-						]}
-					/>
-					<Toggle
-						labelA="Descending"
-						labelB="Ascending"
-						hideLabel
-						labelText="Order"
-						bind:toggled={orderAscending}
+						items={allAilments.map((e) => {
+							return {
+								id: e,
+								text: e,
+							};
+						})}
+						bind:selectedIds={selectedAilments}
+						let:item
+					>
+						<InlineTooltip
+							tooltip="Ailment"
+							text={item.id}
+							icon={getAilmentIcon(item.id)}
+						/>
+					</MultiSelect>
+					<MultiSelect
+						spellcheck="false"
+						placeholder="Select habitats..."
+						filterable
+						titleText="Habitat"
+						type="inline"
+						items={allHabitats.map((e) => {
+							return {
+								id: e,
+								text: e,
+							};
+						})}
+						bind:selectedIds={selectedHabitats}
+						let:item
+					>
+						<InlineTooltip
+							tooltip="Habitat"
+							text={item.id}
+							icon={getHabitatIcon(item.id)}
+							iconType="file"
+						/>
+					</MultiSelect>
+					<MultiSelect
+						type="inline"
+						label="Select generations..."
+						items={allGenerations.map((e) => {
+							return {
+								id: e,
+								text: e,
+							};
+						})}
+						bind:selectedIds={selectedGenerations}
 					/>
 				</div>
+				<Toggle
+					labelA="Descending"
+					labelB="Ascending"
+					hideLabel
+					labelText="Order"
+					bind:toggled={orderAscending}
+				/>
 				<p>Results: {currentMonsters.length}</p>
 			</div>
 			{#if currentMonsters.length > 0}
@@ -252,6 +511,14 @@
 
 <style lang="scss">
 	@use '@carbon/motion' as motion;
+
+	// :global(.bx--list-box__menu-item, .bx--list-box__menu-item__option) {
+	// 	height: auto;
+	// }
+
+	// :global(.bx--checkbox-label-text) {
+	// 	display: block;
+	// }
 
 	.monster-list {
 		display: flex;

@@ -212,9 +212,11 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/random',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/random',
-
+		type: 'Small',
 		unusedComponent: false,
 		displayName: 'Random',
+		class: 'Unknown',
+		generation: 'First Generation',
 	},
 	{
 		id: 1,
@@ -225,7 +227,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rathian',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rathian',
-
 		unusedComponent: false,
 		displayName: 'Rathian',
 		type: 'Large',
@@ -239,7 +240,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Dragon', 'Thunder', 'Water'],
 		habitats: [
 			'Forest and Hills',
-
 			'Jungle',
 			'Desert',
 			'Swamp',
@@ -282,14 +282,20 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/fatalis',
 		ecology:
 			'A legendary black dragon said to have prowled these lands from the days of old. Many skilled hunters have sought to challenge it, but none ever return. A monster shrouded in mystery...',
-		titles: ['Black Dragon', 'The Dark Demise', 'Black Flame'],
+		titles: ['Black Dragon', 'The Dark Demise'],
 		class: 'Elder Dragon',
-		elements: ['Dragon', 'Fire', 'Black Flame'],
+		elements: ['Dragon', 'Fire'],
 		ailments: [],
 		weaknesses: ['Dragon', 'Fire'],
 		habitats: ['Castle Schrade'],
 		sizes: ['4110.6 cm [1st - 4th Gen]', '4137.17 cm [MHW:I]'],
-		relatedMonsters: ['Crimson Fatalis', 'White Fatalis'],
+		relatedMonsters: [
+			'Crimson Fatalis',
+			'White Fatalis',
+			'Conquest Crimson Fatalis',
+			'Road White Fatalis',
+			'Conquest Fatalis',
+		],
 		generation: 'First Generation',
 	},
 	{
@@ -390,13 +396,11 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Fire', 'Thunder'],
 		habitats: [
 			'Forest and Hills',
-
 			'Snowy Mountains',
 			'Jungle',
 			'Swamp',
 			'Volcano',
 			'Great Forest',
-
 			'Tower Nest Hole',
 			'Flower Field',
 		],
@@ -1053,7 +1057,9 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/monoblos',
 
 		link: '/hunter-notes/monsters/overview/monoblos',
-
+		type: 'Large',
+		class: 'Flying Wyvern',
+		generation: 'First Generation',
 		unusedComponent: true,
 		ecology:
 			'A large, desert-dwelling Wyvern with a single massive horn. Although they lack any form of breath attack, they can shierk loud enough to shatter eardrums. Despite their appearence they are actually herbivorous.',
@@ -1329,12 +1335,18 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'A legendary black dragon said to have prowled these lands from the days of old. Many skilled hunters have sought to challenge it, but none ever return. A monster shrouded in mystery...',
 		titles: ['Crimson Dragon'],
 		class: 'Elder Dragon',
-		elements: ['Dragon', 'Fire', 'Crimson Demon'],
+		elements: ['Dragon', 'Fire'],
 		ailments: [],
 		weaknesses: ['Dragon', 'Ice'],
 		habitats: ['Battleground', 'Deep Crater'],
 		sizes: ['4110.6cm'],
-		relatedMonsters: ['Fatalis', 'White Fatalis'],
+		relatedMonsters: [
+			'Fatalis',
+			'White Fatalis',
+			'Conquest Crimson Fatalis',
+			'Road White Fatalis',
+			'Conquest Fatalis',
+		],
 		generation: 'First Generation',
 	},
 	{
@@ -2526,9 +2538,15 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		elements: ['Thunder', 'Dragon'],
 		ailments: [],
 		weaknesses: ['Dragon', 'Fire'],
-		habitats: ['Tower', 'Castle Schrade', "Hunter's Road"],
+		habitats: ['Tower', 'Castle Schrade'],
 		sizes: ['4119.2 cm'],
-		relatedMonsters: ['Fatalis', 'Crimson Fatalis'],
+		relatedMonsters: [
+			'Fatalis',
+			'Crimson Fatalis',
+			'Conquest Crimson Fatalis',
+			'Road White Fatalis',
+			'Conquest Fatalis',
+		],
 		generation: 'Second Generation',
 	},
 	{
@@ -2814,7 +2832,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Black Gravios',
 			'Zenith Gravios',
 			'Basarios',
-
 			'Gureadomosu',
 			'Diablos',
 			'Black Diablos',
@@ -2822,7 +2839,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Monoblos',
 			'White Monoblos',
 		],
-		generation: 'Fifth Generation',
+		generation: 'Frontier',
 	},
 	{
 		id: 81,
@@ -2834,9 +2851,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/orange_espinas',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/orange-espinas',
-
 		link: '/hunter-notes/monsters/overview/orange-espinas',
-
 		unusedComponent: true,
 		type: 'Large',
 		ecology: `Orange-coloured Espinas variants which prefer to live in more arid areas compared to their green kin. While just as passive as normal Espinas, they possess acidic saliva that can rapidly corrode armour.`,
@@ -2848,7 +2863,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		habitats: [
 			'Tower',
 			'Tower 3',
-
 			'Top of Great Forest',
 			'Gorge',
 			'Interception Base',
@@ -2864,7 +2878,6 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Black Gravios',
 			'Zenith Gravios',
 			'Basarios',
-
 			'Gureadomosu',
 			'Diablos',
 			'Black Diablos',
@@ -2872,7 +2885,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Monoblos',
 			'White Monoblos',
 		],
-		generation: 'Fifth Generation',
+		generation: 'Frontier',
 	},
 	{
 		id: 82,
@@ -3001,7 +3014,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/cactus',
 
 		link: '/hunter-notes/monsters/overview/cactus',
-
+		class: 'Unknown',
+		generation: 'Frontier',
 		unusedComponent: true,
 		type: 'Small',
 		ecology:
@@ -3030,7 +3044,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Fire', 'Thunder'],
 		habitats: ['Gorge', 'Highlands', 'Tidal Island', 'Sky Corridor'],
 		sizes: ['Gold Crown Large: 2672.5', 'Gold Crown Small: 1406.6'],
-		relatedMonsters: ['Thirsty Pariapuria'],
+		relatedMonsters: ['Supremacy Pariapuria'],
 		generation: 'Frontier',
 	},
 	{
@@ -3286,7 +3300,9 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/burukku',
 
 		link: '/hunter-notes/monsters/overview/burukku',
-
+		type: 'Small',
+		class: 'Herbivore',
+		generation: 'Frontier',
 		unusedComponent: true,
 		ecology:
 			'Peaceful Herbivores with shaggy coats of fur. They are found in herds roaming the Highlands. Normally docile they will attack as a group if threatened. It is reported that they are often shepherded by a Gurenzeburu.',
@@ -3610,10 +3626,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		render:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/rebidiora',
 		link: '/hunter-notes/monsters/overview/rebidiora',
-
+		type: 'Large',
+		class: 'Elder Dragon',
+		generation: 'Frontier',
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/rebidiora',
-
+		elements: ['Thunder', 'Dragon', 'Lightning Rod'],
+		ailments: ['Magnetism'],
+		weaknesses: ['Water', 'Dragon', 'Ice'],
 		unusedComponent: true,
 		ecology: `A powerful dragon clad in purple scales and shining wings. It's origin is unknown but scholars believe it may be a Sub-Species of Rukodiora. It is able to generate far more powerful magnetic fields than its relative. `,
 	},
@@ -5085,9 +5105,9 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		type: 'Large',
 		titles: ['Burning Zero Dragon'],
 		class: 'Elder Dragon',
-		elements: ['Fire', 'Ice'],
+		elements: ['Fire', 'Ice', 'Burning Zero'],
 		ailments: [],
-		weaknesses: ['Fire', 'Ice'],
+		weaknesses: ['Fire', 'Ice', 'Burning Zero'],
 		habitats: ['Tower'],
 		sizes: ['Large'],
 		relatedMonsters: ['Burning Freezing Elzelion'],
@@ -5977,7 +5997,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Dragon', 'Fire'],
 		habitats: ['Castle Schrade'],
 		sizes: ['4110.6cm'],
-		relatedMonsters: ['Crimson Fatalis', 'White Fatalis'],
+		relatedMonsters: [
+			'Crimson Fatalis',
+			'White Fatalis',
+			'Conquest Crimson Fatalis',
+			'Road White Fatalis',
+			'Fatalis',
+		],
 		generation: 'Frontier',
 	},
 	{
@@ -6029,7 +6055,13 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Dragon', 'Ice'],
 		habitats: ['Deep Crater'],
 		sizes: ['4110.6cm'],
-		relatedMonsters: ['Fatalis', 'White Fatalis'],
+		relatedMonsters: [
+			'Fatalis',
+			'White Fatalis',
+			'Crimson Fatalis',
+			'Road White Fatalis',
+			'Conquest Fatalis',
+		],
 		generation: 'Frontier',
 	},
 	{
@@ -6110,9 +6142,9 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		type: 'Large',
 		titles: ['Burning Zero Dragon'],
 		class: 'Elder Dragon',
-		elements: ['Fire', 'Ice'],
+		elements: ['Fire', 'Ice', 'Burning Zero'],
 		ailments: ['Extreme Fireblight', 'Extreme Iceblight'],
-		weaknesses: ['Fire', 'Ice'],
+		weaknesses: ['Fire', 'Ice', 'Burning Zero'],
 		habitats: ['Historical Site', 'Tower'],
 		sizes: ['Large'],
 		relatedMonsters: ['Elzelion'],
@@ -6151,9 +6183,9 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		link: '/hunter-notes/monsters/overview/supremacy-pariapuria',
 		rank: 'Musou 1',
 		render:
-			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/abiorugu',
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/thirsty_pariapuria',
 		fullRender:
-			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/abiorugu',
+			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/supremacy-pariapuria',
 
 		unusedComponent: false,
 		ecology: `Supremacy Pariapuria's appearance has changed considerably compared to its standard counterpart; it has a glowing red eye trail similar to an enraged Nargacuga's, a mouth slathered in what could very well be blood, and scars all over its body. Bloodstains cover its body, most notably on its front claws. It also has tinges of purple on various places of its body.`,
@@ -6165,7 +6197,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Fire', 'Thunder'],
 		habitats: ['Gorge', 'Highlands', 'Tidal Island', 'Sky Corridor'],
 		sizes: ['Gold Crown Large: 2672.5', 'Gold Crown Small: 1406.6'],
-		relatedMonsters: ['Thirsty Pariapuria', 'Pariapuria'],
+		relatedMonsters: ['Pariapuria'],
 		generation: 'Frontier',
 	},
 	{
@@ -6314,7 +6346,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Gougarf',
 			'Twinhead Rajang',
 		],
-		generation: 'Second',
+		generation: 'Second Generation',
 	},
 	{
 		id: 154,
@@ -6430,8 +6462,14 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 		weaknesses: ['Dragon', 'Fire'],
 		habitats: ["Hunter's Road"],
 		sizes: ['4119.2 cm'],
-		relatedMonsters: ['Fatalis', 'Crimson Fatalis'],
-		generation: 'Second Generation',
+		relatedMonsters: [
+			'Fatalis',
+			'Crimson Fatalis',
+			'Conquest Crimson Fatalis',
+			'White Fatalis',
+			'Conquest Fatalis',
+		],
+		generation: 'Frontier',
 	},
 ];
 

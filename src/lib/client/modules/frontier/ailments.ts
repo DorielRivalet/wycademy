@@ -27,6 +27,7 @@ import IconAilmentDefenseDown from '$lib/client/components/frontier/icon/ailment
 import IconAilmentConfusion from '$lib/client/components/frontier/icon/ailment/Confusion.svelte';
 import IconAilmentFrenzyVirus from '$lib/client/components/frontier/icon/ailment/FrenzyVirus.svelte';
 import type { FrontierAilment, FrontierStatus } from './types';
+import SmokeIconWhite from '$lib/client/components/frontier/icon/item/Smoke_Icon_White.svelte';
 
 export const StatusIcons: { name: FrontierStatus; icon: any }[] = [
 	{ name: '', icon: '' },
@@ -67,6 +68,7 @@ export const AilmentIcons: { name: FrontierAilment; icon: any }[] = [
 	{ name: 'Extreme Sleep', icon: IconAilmentExtremeSleep },
 	{ name: 'Extreme Paralysis', icon: IconAilmentExtremeParalysis },
 	{ name: 'Fatigue', icon: IconAilmentFatigue },
+	{ name: 'Farcaster', icon: SmokeIconWhite },
 	{ name: 'Frostbite', icon: IconAilmentFrostbite },
 	{ name: 'Magnetism', icon: IconAilmentMagnetism },
 	{ name: 'Snowman', icon: IconAilmentSnowman },
