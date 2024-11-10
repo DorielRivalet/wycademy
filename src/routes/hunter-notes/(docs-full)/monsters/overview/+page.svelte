@@ -205,6 +205,7 @@
 		selectedGenerations: FrontierGeneration[],
 		selectedAilments: FrontierAilment[],
 		selectedElements: FrontierElement[],
+		orderAscending: boolean,
 	) {
 		let filteredMonsters = uniqueMonsters.filter((monster) => {
 			// Only apply name filter if there's a search term
@@ -281,6 +282,7 @@
 		selectedGenerations,
 		selectedAilments,
 		selectedElements,
+		orderAscending,
 	);
 
 	let contextSwitcherIndex = 0;
