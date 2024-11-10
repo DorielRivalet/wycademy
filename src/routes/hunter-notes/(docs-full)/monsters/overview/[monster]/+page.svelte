@@ -55,6 +55,7 @@
 		getHabitatIcon,
 		Habitats,
 	} from '$lib/client/modules/frontier/habitat';
+	import Lens from '$lib/client/components/Lens.svelte';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
@@ -239,6 +240,8 @@
 	$: currentSilhouette = silhouetteInfo.find(
 		(e) => e.displayName === selectedMonsterIdFromList,
 	)?.silhouette;
+
+	let hovering = false;
 </script>
 
 {#if monster}
@@ -257,32 +260,37 @@
 						: 'None'}
 				>
 					{#key monster.displayName}
-						<div
-							class="monster-icon"
-							style:--monster-icon="monster-icon-{slugify(monster.displayName, {
-								lower: true,
-							})}"
+						<Lens {hovering}>
+							<div
+								class="monster-icon"
+								style:--monster-icon="monster-icon-{slugify(
+									monster.displayName,
+									{
+										lower: true,
+									},
+								)}"
+							>
+								{#if monster.unusedComponent === true}
+									<ImageDialog
+										src={monster.icon}
+										alt={monster.displayName}
+										width={256}
+										height={256}
+										type="file"
+									/>
+								{:else}
+									<!--TODO use slots instead?-->
+									<ImageDialog
+										src={MonsterComponent}
+										alt={monster.displayName}
+										componentSize={'256px'}
+										background={true}
+										currentMonster={monster.displayName}
+										type="component"
+									/>
+								{/if}
+							</div></Lens
 						>
-							{#if monster.unusedComponent === true}
-								<ImageDialog
-									src={monster.icon}
-									alt={monster.displayName}
-									width={256}
-									height={256}
-									type="file"
-								/>
-							{:else}
-								<!--TODO use slots instead?-->
-								<ImageDialog
-									src={MonsterComponent}
-									alt={monster.displayName}
-									componentSize={'256px'}
-									background={true}
-									currentMonster={monster.displayName}
-									type="component"
-								/>
-							{/if}
-						</div>
 					{/key}
 				</BestiaryMonsterGameInfo>
 			</div>
