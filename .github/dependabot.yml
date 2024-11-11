@@ -22,7 +22,7 @@ updates:
     # Raise pull requests for version updates
     # to npm against the `main` branch
     target-branch: 'main'
-		open-pull-requests-limit: 50
+    open-pull-requests-limit: 50
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: 'github-actions'
     directory: '/'
