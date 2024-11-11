@@ -25,6 +25,7 @@
 	import HomeFeaturesSection from './HomeFeaturesSection.svelte';
 	import HomeBlogSection from './HomeBlogSection.svelte';
 	import HomeFrequentlyAskedQuestions from './HomeFrequentlyAskedQuestions.svelte';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 
 	const customTitle = "Home — Frontier's Wycademy";
 	const url = $page.url.toString();
@@ -92,6 +93,13 @@
 	</div>
 	<div><HomeBlogSection /></div>
 	<div class="alternate-background"><HomeCallToActionSection /></div>
+	<section class="feedback">
+		<p class="spaced-paragraph">
+			We have a <OutboundLink href="https://forms.gle/hfFG7QWNcrCHnDV67"
+				>Google Forms</OutboundLink
+			> where you can submit your feedback on the website.
+		</p>
+	</section>
 </div>
 
 <style lang="scss">
@@ -99,5 +107,12 @@
 		.alternate-background {
 			background-color: var(--ctp-mantle);
 		}
+	}
+
+	.feedback {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: var(--cds-spacing-10) 0px;
 	}
 </style>

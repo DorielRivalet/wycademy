@@ -60,6 +60,7 @@
 	import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
 	import Link from 'carbon-icons-svelte/lib/Link.svelte';
 	import Security from 'carbon-icons-svelte/lib/Security.svelte';
+	import UserFeedback from 'carbon-icons-svelte/lib/UserFeedback.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -167,6 +168,10 @@
 					text: 'FAQ',
 				},
 				{
+					text: 'Feedback',
+					id: '/support/website/feedback',
+				},
+				{
 					id: '/support/website/contribute',
 					text: 'Contribute',
 				},
@@ -264,6 +269,10 @@
 		{
 			id: '/support/website/faq',
 			icon: QuestionAnswering,
+		},
+		{
+			id: '/support/website/feedback',
+			icon: UserFeedback,
 		},
 		{
 			id: '/support/website/contribute',

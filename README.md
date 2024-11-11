@@ -4,6 +4,10 @@
 
 A compendium of resources for Monster Hunter Frontier Z (MHF-Z).
 
+## Feedback
+
+We have a [Google Forms](https://forms.gle/hfFG7QWNcrCHnDV67) where you can submit your feedback on the website.
+
 ## License
 
 [MIT](https://github.com/DorielRivalet/wycademy/blob/main/LICENSE.md).

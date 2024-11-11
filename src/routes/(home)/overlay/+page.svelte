@@ -378,6 +378,11 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 					>FAQ file at the GitHub repository.</OutboundLink
 				>
 			</p>
+			<p class="spaced-paragraph">
+				We have a <OutboundLink href="https://forms.gle/hrAVWMcYS5HEo1v7A"
+					>Google Forms</OutboundLink
+				> where you can submit your feedback on the overlay.
+			</p>
 			<p>
 				If you are looking for a roadmap, the main developer uses a <OutboundLink
 					href="https://github.com/users/DorielRivalet/projects/1"

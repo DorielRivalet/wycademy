@@ -48,6 +48,7 @@ import Link from 'carbon-icons-svelte/lib/Link.svelte';
 import AllElements from '../components/frontier/icon/element/AllElements.svelte';
 import AllAilments from '../components/frontier/icon/ailment/AllAilments.svelte';
 import Security from 'carbon-icons-svelte/lib/Security.svelte';
+import UserFeedback from 'carbon-icons-svelte/lib/UserFeedback.svelte';
 
 // TODO more fields? for search index
 export type NavigationItem = {
@@ -129,6 +130,12 @@ export const supportInfo: CategoryInfo[] = [
 				description: 'Frequently Asked Questions.',
 				link: '/support/website/faq',
 				image: QuestionAnswering,
+			},
+			{
+				name: 'Feedback',
+				description: 'Feedback and surveys.',
+				link: '/support/website/feedback',
+				image: UserFeedback,
 			},
 			{
 				name: 'Contribute',

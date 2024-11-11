@@ -204,6 +204,11 @@
 					>, we want to know how we can best support you. Let us know what
 					resources you'd like to see, and we'll do our best to provide them.
 				</p>
+				<p class="spaced-paragraph">
+					We have a <OutboundLink href="https://forms.gle/hfFG7QWNcrCHnDV67"
+						>Google Forms</OutboundLink
+					> where you can submit your feedback on the website.
+				</p>
 			</div>
 		</section>
 		<section>

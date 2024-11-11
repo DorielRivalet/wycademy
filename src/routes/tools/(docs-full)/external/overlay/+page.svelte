@@ -6,6 +6,7 @@
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import Youtube from 'svelte-youtube-embed';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -20,6 +21,11 @@
 		/>
 		<p class="spaced-paragraph">
 			This tool is used to track and view your stats in the game in real-time.
+		</p>
+		<p class="spaced-paragraph">
+			We have a <OutboundLink href="https://forms.gle/hrAVWMcYS5HEo1v7A"
+				>Google Forms</OutboundLink
+			> where you can submit your feedback on the overlay.
 		</p>
 		<p class="spaced-paragraph">
 			For more information, see the <Link inline href="/overlay"

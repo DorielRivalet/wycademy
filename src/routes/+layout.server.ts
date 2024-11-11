@@ -32,6 +32,7 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 		'/support/website/announcements':
 			'/support/(docs-full)/website/announcements',
 		'/support/website/contact': '/support/(docs-full)/website/contact',
+		'/support/website/feedback': '/support/(docs-full)/website/feedback',
 		'/support/website/contribute': '/support/(docs-full)/website/contribute',
 		'/support/website/development': '/support/(docs-full)/website/development',
 		'/support/website/donate': '/support/(docs-full)/website/donate',
