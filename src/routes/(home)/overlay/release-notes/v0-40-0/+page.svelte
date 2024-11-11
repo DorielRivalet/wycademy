@@ -6,6 +6,7 @@
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
+	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 
 	const version = 'v0.40.0';
 
@@ -89,6 +90,13 @@
 			buttonLink="https://github.com/DorielRivalet/mhfz-overlay?tab=readme-ov-file#installation"
 		/>
 	</section>
+	<section class="feedback-section">
+		<p class="spaced-paragraph">
+			We have a <OutboundLink href="https://forms.gle/hrAVWMcYS5HEo1v7A"
+				>Google Forms</OutboundLink
+			> where you can submit your feedback on the overlay.
+		</p>
+	</section>
 </div>
 
 <style lang="scss">
@@ -158,5 +166,10 @@
 		flex-direction: column;
 		align-items: center;
 		padding: 2rem;
+	}
+
+	.feedback-section {
+		display: flex;
+		justify-content: center;
 	}
 </style>

@@ -90,6 +90,7 @@
 					<Link href="/support/website/about">About Us</Link>
 					<Link href="/support/website/donate">Donate</Link>
 					<Link href="/support/website/faq">FAQ</Link>
+					<Link href="/support/website/feedback">Feedback</Link>
 					<Link href="/support/website/contribute">Contribute</Link>
 					<Link href="/support/website/development">Development</Link>
 					<Link href="/support/website/contact">Contact</Link>
