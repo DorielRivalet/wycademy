@@ -5,7 +5,6 @@
 -->
 
 <script>
-	import Counter from '$lib/client/components/Counter.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import pageThumbnail from '$lib/client/images/icon/pvp.png';
 	import {
@@ -18,7 +17,6 @@
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
-	console.log('page.svelte');
 
 	const customTitle = "Leaderboard — Frontier's Wycademy";
 	const url = $page.url.toString();
@@ -39,13 +37,8 @@
 />
 
 <section>
-	<SectionHeadingTopLevel title="Welcome" />
-
-	<p>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</p>
-
-	<Counter />
+	<SectionHeadingTopLevel title="Leaderboards" />
+	<div></div>
 </section>
 
 <style lang="scss">
