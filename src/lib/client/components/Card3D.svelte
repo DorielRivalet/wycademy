@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
+	import { browser } from '$app/environment';
 
 	// Optional props to customize the effect
 	export let perspective = 1500;
@@ -11,6 +12,7 @@
 	let bounds: DOMRect;
 	let transform = '';
 	let glowBackground = '';
+	let mounted = false;
 
 	function rotateToMouse(e: MouseEvent) {
 		if (!bounds) return;
@@ -47,18 +49,26 @@
 	}
 
 	function handleMouseEnter() {
+		if (!browser || !mounted) return;
 		bounds = wrapper.getBoundingClientRect();
 		window.addEventListener('mousemove', rotateToMouse);
 	}
 
 	function handleMouseLeave() {
+		if (!browser || !mounted) return;
 		window.removeEventListener('mousemove', rotateToMouse);
 		transform = '';
 		glowBackground = '';
 	}
 
+	onMount(() => {
+		mounted = true;
+	});
+
 	onDestroy(() => {
-		window.removeEventListener('mousemove', rotateToMouse);
+		if (browser && mounted) {
+			window.removeEventListener('mousemove', rotateToMouse);
+		}
 	});
 </script>
 

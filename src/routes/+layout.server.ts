@@ -78,6 +78,10 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 
 	if (!fsPath) {
 		console.log('Path not in route mapping:', urlPath);
+		// Set cache headers even for not-found cases
+		setHeaders({
+			'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
+		});
 		return { github: defaultGitHubData };
 	}
 
@@ -89,12 +93,20 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 			`https://api.github.com/repos/DorielRivalet/wycademy/commits?path=${githubPath}`,
 		);
 
-		// Set cache headers
-		setHeaders({
+		// Prepare headers object
+		const headers: Record<string, string> = {
 			'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
-			etag: res.headers.get('etag') || '',
-			'last-modified': res.headers.get('last-modified') || '',
-		});
+		};
+
+		// Only add ETag and Last-Modified if they exist
+		const etag = res.headers.get('etag');
+		const lastModified = res.headers.get('last-modified');
+
+		if (etag) headers.etag = etag;
+		if (lastModified) headers['last-modified'] = lastModified;
+
+		// Set all headers at once
+		setHeaders(headers);
 
 		if (!res.ok) {
 			console.error('Error fetching data from GitHub:', res.status);
@@ -118,6 +130,10 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 		};
 	} catch (e) {
 		console.error('Error fetching data from GitHub:', e);
+		// Set cache headers even for error cases
+		setHeaders({
+			'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
+		});
 		return { github: defaultGitHubData };
 	}
 };

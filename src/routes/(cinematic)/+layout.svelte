@@ -34,7 +34,6 @@
 
 	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
 	export let data: LayoutData;
-	console.log('layout.svelte');
 
 	onMount(() => {
 		let themeValue = $carbonThemeStore;
