@@ -93,7 +93,7 @@
 	</div>
 	<div><HomeBlogSection /></div>
 	<div class="alternate-background"><HomeCallToActionSection /></div>
-	<section class="feedback">
+	<section class="feedback alternate-background">
 		<p class="spaced-paragraph">
 			We have a <OutboundLink href="https://forms.gle/hfFG7QWNcrCHnDV67"
 				>Google Forms</OutboundLink
