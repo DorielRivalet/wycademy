@@ -79,9 +79,9 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 	if (!fsPath) {
 		console.log('Path not in route mapping:', urlPath);
 		// Set cache headers even for not-found cases
-		setHeaders({
-			'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
-		});
+		// setHeaders({
+		// 	'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
+		// });
 		return { github: defaultGitHubData };
 	}
 
@@ -131,9 +131,9 @@ export const load: LayoutServerLoad = async ({ fetch, url, setHeaders }) => {
 	} catch (e) {
 		console.error('Error fetching data from GitHub:', e);
 		// Set cache headers even for error cases
-		setHeaders({
-			'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
-		});
+		// setHeaders({
+		// 	'cache-control': `public, max-age=0, s-maxage=${apiCacheTimeouts.github}`,
+		// });
 		return { github: defaultGitHubData };
 	}
 };
