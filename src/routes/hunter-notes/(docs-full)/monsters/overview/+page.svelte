@@ -283,6 +283,12 @@
 		currentMonsters = filteredMonsters;
 	}
 
+	function findMonsterInfo(name: string) {
+		return uniqueMonsters.find(
+			(e) => e.displayName.toLowerCase() === name.toLowerCase(),
+		);
+	}
+
 	// Reactive statement to filter and sort monsters based on searchTerm, orderAscending, and dropdown selections
 	$: filterSearchResults(
 		searchTerm,
@@ -523,7 +529,6 @@
 					zebra
 					size="short"
 					headers={[
-						{ key: 'icon', value: 'Icon' },
 						{ key: 'name', value: 'Name' },
 						{ key: 'titles', value: 'Titles' },
 						{ key: 'type', value: 'Type' },
@@ -541,7 +546,6 @@
 						return {
 							id: i,
 							name: e.displayName,
-							icon: e.icon,
 							ailments: e.ailments?.toString() || '',
 							elements: e.elements?.toString() || '',
 							weaknesses: e.weaknesses?.toString() || '',
@@ -565,7 +569,6 @@
 										return {
 											id: i,
 											name: e.displayName,
-											icon: e.icon,
 											ailments: e.ailments?.toString() || '',
 											elements: e.elements?.toString() || '',
 											weaknesses: e.weaknesses?.toString() || '',
@@ -590,28 +593,41 @@
 						</div>
 					</Toolbar>
 					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'icon'}
-							<img width="64" src={cell.value} alt="Monster Icon" />
+						{#if cell.key === 'name'}
+							<Link
+								href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(cell.value)?.displayName ?? '', { lower: true })}`}
+							>
+								<InlineTooltip
+									tooltip="Monster"
+									text={cell.value}
+									icon={getMonsterIcon(cell.value)}
+									iconType="file"
+								/></Link
+							>
 						{:else if cell.key === 'titles'}
 							<p>{cell.value.replaceAll(',', ', ')}</p>
 						{:else if cell.key === 'ailments'}
 							{#each [...cell.value.split(',')] as ailment}
 								<div class="table-inline-tooltip">
-									<InlineTooltip
-										tooltip="Ailment"
-										text={ailment}
-										icon={getAilmentIcon(ailment)}
-									/>
+									<Link href={`/hunter-notes/getting-started/ailments`}>
+										<InlineTooltip
+											tooltip="Ailment"
+											text={ailment}
+											icon={getAilmentIcon(ailment)}
+										/></Link
+									>
 								</div>
 							{/each}
 						{:else if cell.key === 'elements'}
 							{#each [...cell.value.split(',')] as element}
 								<div class="table-inline-tooltip">
-									<InlineTooltip
-										tooltip="Element"
-										text={element}
-										icon={getElementIcon(element)}
-									/>
+									<Link href={`/hunter-notes/getting-started/elements`}>
+										<InlineTooltip
+											tooltip="Element"
+											text={element}
+											icon={getElementIcon(element)}
+										/></Link
+									>
 								</div>
 							{/each}
 						{:else if cell.key === 'weaknesses'}
@@ -629,23 +645,29 @@
 						{:else if cell.key === 'habitats'}
 							{#each [...cell.value.split(',')] as habitat}
 								<div class="table-inline-tooltip">
-									<InlineTooltip
-										tooltip="Habitat"
-										iconType="file"
-										text={habitat}
-										icon={getHabitatIcon(habitat)}
-									/>
+									<Link href={`/hunter-notes/locations`}>
+										<InlineTooltip
+											tooltip="Habitat"
+											iconType="file"
+											text={habitat}
+											icon={getHabitatIcon(habitat)}
+										/></Link
+									>
 								</div>
 							{/each}
 						{:else if cell.key === 'related' && cell.value !== '' && cell.value !== 'None' && cell.value !== null && cell.value !== undefined && cell.value !== ' '}
 							{#each [...cell.value.split(',')] as monster}
 								<div class="table-inline-tooltip">
-									<InlineTooltip
-										tooltip="Monster"
-										text={monster}
-										icon={getMonsterIcon(monster)}
-										iconType="file"
-									/>
+									<Link
+										href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(monster)?.displayName ?? '', { lower: true })}`}
+									>
+										<InlineTooltip
+											tooltip="Monster"
+											text={monster}
+											icon={getMonsterIcon(monster)}
+											iconType="file"
+										/></Link
+									>
 								</div>
 							{/each}
 						{:else}
