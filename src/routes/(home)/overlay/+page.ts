@@ -1,5 +1,4 @@
 import { apiCacheTimeouts } from '$lib/constants';
-import { error } from '@sveltejs/kit';
 
 export const prerender = true;
 
@@ -14,6 +13,7 @@ export async function load({ fetch, setHeaders }) {
 
 		return response.json();
 	} catch (err) {
-		return error(500, 'Internal Server Error');
+		console.error('Error fetching data from GitHub for overlay:', err);
+		return {};
 	}
 }

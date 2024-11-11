@@ -189,7 +189,7 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 <div class="overlay-page">
 	<section class="top-hero-section">
 		<TopHeroSection
-			starCount={data.stargazers_count}
+			starCount={data?.stargazers_count ?? 0}
 			title={heroTitles[Math.floor(Math.random() * heroTitles.length)]}
 			description="Enhance your gameplay with a user-friendly, customizable interface. Perfect for casual players and speedrunners, offering easy access to essential tools and resources for an optimized gaming experience."
 			primaryButtonText="Get Overlay"
