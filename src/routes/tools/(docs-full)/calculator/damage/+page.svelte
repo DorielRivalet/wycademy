@@ -180,6 +180,8 @@
 
 		openIntroduction = true;
 		openSavingLoadingSection = true;
+		openInputsSection = true;
+		openResultsSection = true;
 
 		const driverObj = driver({
 			showProgress: true,
@@ -6310,6 +6312,8 @@ does not get multiplied by horn */
 
 	let openIntroduction = false;
 	let openSavingLoadingSection = false;
+	let openInputsSection = true;
+	let openResultsSection = true;
 
 	$: motionValuesTableHeaders = getMotionValuesTableHeaders(inputElement);
 </script>
@@ -6420,7 +6424,7 @@ does not get multiplied by horn */
 				>
 			</div>
 			<Accordion class="spaced-accordion driverjs-0">
-				<AccordionItem open={openIntroduction}>
+				<AccordionItem bind:open={openIntroduction}>
 					<svelte:fragment slot="title">
 						<h5 class="accordion-title">
 							<span><Information /></span><span>Introduction</span>
@@ -6499,7 +6503,7 @@ does not get multiplied by horn */
 				/>
 				<div>
 					<Accordion>
-						<AccordionItem open>
+						<AccordionItem bind:open={openInputsSection}>
 							<svelte:fragment slot="title">
 								<h5 class="accordion-title">
 									<span><Calculator /></span><span>Inputs</span>
@@ -9365,7 +9369,7 @@ does not get multiplied by horn */
 										><img
 											src={getLocationIcon('Interception')}
 											alt="Diva"
-											width={32}
+											width={16}
 										/></span
 									><span>Diva Prayer Gems</span>
 								</h5>
@@ -9625,7 +9629,7 @@ does not get multiplied by horn */
 								</div>
 							</div>
 						</AccordionItem>
-						<AccordionItem open>
+						<AccordionItem bind:open={openResultsSection}>
 							<svelte:fragment slot="title">
 								<h5 class="accordion-title">
 									<span><CalculatorCheck /></span><span>Results</span>
@@ -9691,7 +9695,7 @@ does not get multiplied by horn */
 								</div>
 							</div>
 						</AccordionItem>
-						<AccordionItem open={openSavingLoadingSection}>
+						<AccordionItem bind:open={openSavingLoadingSection}>
 							<svelte:fragment slot="title">
 								<h5 class="accordion-title">
 									<span><Save /></span><span>Save and Load</span>
@@ -10640,6 +10644,27 @@ does not get multiplied by horn */
 						</svelte:fragment>
 					</Tabs>
 				</div>
+
+				<Accordion class="spaced-accordion">
+					<AccordionItem>
+						<svelte:fragment slot="title">
+							<h5 class="accordion-title">
+								<span><Help /></span><span>Help</span>
+							</h5>
+						</svelte:fragment>
+						<UnorderedList>
+							<ListItem>
+								<p>
+									The final value whose formula depends on certain conditions
+									are called <OutboundLink
+										href="https://en.wikipedia.org/wiki/Piecewise_function"
+										>piecewise functions.</OutboundLink
+									>
+								</p>
+							</ListItem>
+						</UnorderedList></AccordionItem
+					></Accordion
+				>
 			</section>
 			<div class="page-turn">
 				<PageTurn pageUrlPathName={$page.url.pathname} />

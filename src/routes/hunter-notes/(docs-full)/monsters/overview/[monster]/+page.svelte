@@ -60,6 +60,7 @@
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 	import Help from 'carbon-icons-svelte/lib/Help.svelte';
+	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
@@ -487,7 +488,7 @@
 						damage type.
 					</p>
 					<div class="hitzone-colors-description">
-						<UnorderedList>
+						<UnorderedList class="spaced-list">
 							<ListItem>
 								<button
 									type="button"
@@ -529,8 +530,14 @@
 								/>Blue: Values lower or equal to 0 for this hitzone type.</ListItem
 							>
 						</UnorderedList>
-					</div></AccordionItem
-				></Accordion
+					</div>
+					<p>
+						To see how much damage you can deal to each hitzone, you can consult
+						our <Link href="/tools/calculator/damage" icon={ToolKit}
+							>Damage Calculator.</Link
+						>
+					</p>
+				</AccordionItem></Accordion
 			>
 
 			<div class="hitzone-options">
