@@ -2502,7 +2502,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Head',
 		cutting: 50,
 		impact: 60,
@@ -2517,7 +2517,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Neck',
 		cutting: 35,
 		impact: 50,
@@ -2532,7 +2532,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Belly',
 		cutting: 50,
 		impact: 60,
@@ -2547,7 +2547,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Back',
 		cutting: 60,
 		impact: 30,
@@ -2562,7 +2562,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Tail',
 		cutting: 30,
 		impact: 30,
@@ -2577,7 +2577,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Forelegs',
 		cutting: 30,
 		impact: 35,
@@ -2592,7 +2592,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Hindlegs',
 		cutting: 20,
 		impact: 15,
@@ -2712,7 +2712,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Head',
 		cutting: 40,
 		impact: 50,
@@ -2727,7 +2727,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Neck',
 		cutting: 25,
 		impact: 40,
@@ -2742,7 +2742,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Belly',
 		cutting: 35,
 		impact: 50,
@@ -2757,7 +2757,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Back',
 		cutting: 30,
 		impact: 20,
@@ -2772,7 +2772,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Tail',
 		cutting: 20,
 		impact: 20,
@@ -2787,7 +2787,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Forelegs',
 		cutting: 20,
 		impact: 25,
@@ -2802,7 +2802,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Hindlegs',
 		cutting: 10,
 		impact: 10,
@@ -2932,7 +2932,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		thunder: 5,
 		displayName: 'Akantor',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 	},
 	{
 		part: 'Neck',
@@ -2947,12 +2947,12 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		thunder: 0,
 		displayName: 'Akantor',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 	},
 	{
 		displayName: 'Akantor',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Belly',
 		cutting: 50,
 		impact: 50,
@@ -2967,7 +2967,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Akantor',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		part: 'Back',
 		cutting: 40,
 		impact: 30,
@@ -2992,7 +2992,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		thunder: 5,
 		displayName: 'Akantor',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 	},
 	{
 		part: 'Forelegs',
@@ -3002,7 +3002,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		ice: -5,
 		impact: 15,
 		stun: 0,
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 		rankBand: 'Gou',
 		displayName: 'Akantor',
 		shot: 10,
@@ -3022,7 +3022,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 		thunder: 5,
 		displayName: 'Akantor',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Suction Start',
 	},
 	{
 		displayName: 'Amatsu',
@@ -6927,7 +6927,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Head',
 		cutting: 65,
 		impact: 75,
@@ -6942,7 +6942,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Forelegs',
 		cutting: 65,
 		impact: 15,
@@ -6957,7 +6957,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Hindlegs',
 		cutting: 65,
 		impact: 15,
@@ -6972,7 +6972,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Torso',
 		cutting: 5,
 		impact: 5,
@@ -6987,7 +6987,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Default',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Tail',
 		cutting: 35,
 		impact: 30,
@@ -7077,7 +7077,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Head',
 		cutting: 45,
 		impact: 55,
@@ -7092,7 +7092,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Forelegs',
 		cutting: 45,
 		impact: 15,
@@ -7107,7 +7107,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Hindlegs',
 		cutting: 45,
 		impact: 15,
@@ -7122,7 +7122,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Torso',
 		cutting: 5,
 		impact: 5,
@@ -7137,7 +7137,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'G Rank',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Tail',
 		cutting: 20,
 		impact: 20,
@@ -7227,7 +7227,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Head',
 		cutting: 85,
 		impact: 85,
@@ -7242,7 +7242,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Forelegs',
 		cutting: 85,
 		impact: 20,
@@ -7257,7 +7257,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Hindlegs',
 		cutting: 85,
 		impact: 20,
@@ -7272,7 +7272,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Torso',
 		cutting: 5,
 		impact: 5,
@@ -7287,7 +7287,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Congalala',
 		rankBand: 'Gou',
-		monsterState: 'Weak Belly',
+		monsterState: 'Chest Puffed Out',
 		part: 'Tail',
 		cutting: 50,
 		impact: 35,
@@ -7407,7 +7407,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Head',
 		cutting: 45,
 		impact: 50,
@@ -7422,7 +7422,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Tongue',
 		cutting: 60,
 		impact: 60,
@@ -7437,7 +7437,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Neck',
 		cutting: 50,
 		impact: 40,
@@ -7452,7 +7452,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Torso',
 		cutting: 30,
 		impact: 35,
@@ -7467,7 +7467,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Forelegs',
 		cutting: 35,
 		impact: 30,
@@ -7482,7 +7482,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Hindlegs',
 		cutting: 30,
 		impact: 35,
@@ -7497,7 +7497,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Tail',
 		cutting: 40,
 		impact: 30,
@@ -7512,7 +7512,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Head',
 		cutting: 35,
 		impact: 40,
@@ -7527,7 +7527,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Tongue',
 		cutting: 50,
 		impact: 50,
@@ -7542,7 +7542,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Neck',
 		cutting: 40,
 		impact: 30,
@@ -7557,7 +7557,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Torso',
 		cutting: 20,
 		impact: 25,
@@ -7572,7 +7572,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Forelegs',
 		cutting: 25,
 		impact: 20,
@@ -7587,7 +7587,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Hindlegs',
 		cutting: 20,
 		impact: 25,
@@ -7602,7 +7602,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'G Rank',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Tail',
 		cutting: 30,
 		impact: 20,
@@ -7827,7 +7827,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Head',
 		cutting: 45,
 		impact: 50,
@@ -7842,7 +7842,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Tongue',
 		cutting: 60,
 		impact: 60,
@@ -7857,7 +7857,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Neck',
 		cutting: 50,
 		impact: 40,
@@ -7872,7 +7872,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Torso',
 		cutting: 30,
 		impact: 35,
@@ -7887,7 +7887,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Forelegs',
 		cutting: 35,
 		impact: 30,
@@ -7902,7 +7902,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Hindlegs',
 		cutting: 30,
 		impact: 35,
@@ -7917,7 +7917,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Tail',
 		cutting: 40,
 		impact: 30,
@@ -7932,7 +7932,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Head',
 		cutting: 35,
 		impact: 40,
@@ -7947,7 +7947,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Tongue',
 		cutting: 50,
 		impact: 50,
@@ -7962,7 +7962,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Neck',
 		cutting: 40,
 		impact: 30,
@@ -7977,7 +7977,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Torso',
 		cutting: 20,
 		impact: 25,
@@ -7992,7 +7992,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Forelegs',
 		cutting: 25,
 		impact: 20,
@@ -8007,7 +8007,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Hindlegs',
 		cutting: 20,
 		impact: 25,
@@ -8022,7 +8022,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Baruragaru',
 		rankBand: 'Gou',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Tail',
 		cutting: 30,
 		impact: 20,
@@ -8247,7 +8247,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Head',
 		cutting: 35,
 		impact: 40,
@@ -8262,7 +8262,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Tongue',
 		cutting: 40,
 		impact: 45,
@@ -8277,7 +8277,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Neck',
 		cutting: 20,
 		impact: 20,
@@ -8292,7 +8292,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Torso',
 		cutting: 35,
 		impact: 30,
@@ -8307,7 +8307,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Forelegs',
 		cutting: 30,
 		impact: 35,
@@ -8322,7 +8322,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Hindlegs',
 		cutting: 30,
 		impact: 35,
@@ -8337,7 +8337,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Bleed',
+		monsterState: 'Bleeding Tongue',
 		part: 'Tail',
 		cutting: 40,
 		impact: 25,
@@ -8352,7 +8352,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Head',
 		cutting: 20,
 		impact: 25,
@@ -8367,7 +8367,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Tongue',
 		cutting: 30,
 		impact: 30,
@@ -8382,7 +8382,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Neck',
 		cutting: 20,
 		impact: 15,
@@ -8397,7 +8397,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Torso',
 		cutting: 15,
 		impact: 25,
@@ -8412,7 +8412,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Forelegs',
 		cutting: 20,
 		impact: 25,
@@ -8427,7 +8427,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Hindlegs',
 		cutting: 10,
 		impact: 10,
@@ -8442,7 +8442,7 @@ export const hitzoneInfo: HitzoneInfo[] = [
 	{
 		displayName: 'Zenith Baruragaru',
 		rankBand: 'Zenith',
-		monsterState: 'Poison Paralysis',
+		monsterState: 'Fluid Stored',
 		part: 'Tail',
 		cutting: 25,
 		impact: 15,
