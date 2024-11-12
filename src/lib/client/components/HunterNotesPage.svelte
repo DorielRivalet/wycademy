@@ -5,13 +5,13 @@ Also for Tools pages
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
-	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 	import Toc from 'svelte-toc';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import { fade } from 'svelte/transition';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import { browser } from '$app/environment';
+	import RightPanelClose from 'carbon-icons-svelte/lib/RightPanelClose.svelte';
 
 	const tocEnabledStore = getContext(
 		Symbol.for('tocEnabled'),
@@ -61,10 +61,10 @@ Also for Tools pages
 							<span
 								>On this page <span>
 									<Button
-										iconDescription={'Hide'}
+										iconDescription={'Close Sidebar'}
 										kind="ghost"
 										size={'small'}
-										icon={ViewOff}
+										icon={RightPanelClose}
 										on:click={onTOCToggleButtonPress}
 									/>
 								</span></span

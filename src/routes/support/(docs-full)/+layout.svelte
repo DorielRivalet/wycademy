@@ -36,7 +36,6 @@
 	import Logo from '$lib/client/images/logo.svg';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
-	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import Bullhorn from 'carbon-icons-svelte/lib/Bullhorn.svelte';
@@ -61,6 +60,7 @@
 	import Link from 'carbon-icons-svelte/lib/Link.svelte';
 	import Security from 'carbon-icons-svelte/lib/Security.svelte';
 	import UserFeedback from 'carbon-icons-svelte/lib/UserFeedback.svelte';
+	import SidePanelClose from 'carbon-icons-svelte/lib/SidePanelClose.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -470,11 +470,11 @@
 				bind:this={treeview}
 				><span slot="labelText">
 					<Button
-						iconDescription={'Hide Sidebar'}
+						iconDescription={'Close Sidebar'}
 						tooltipPosition="right"
 						kind="ghost"
 						size={'small'}
-						icon={ViewOff}
+						icon={SidePanelClose}
 						on:click={onTOCToggleButtonPress}
 					/></span
 				>

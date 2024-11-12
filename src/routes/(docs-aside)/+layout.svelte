@@ -22,12 +22,12 @@
 	import Toc from 'svelte-toc';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
-	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import RightPanelClose from 'carbon-icons-svelte/lib/RightPanelClose.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -145,10 +145,10 @@
 							<span
 								>On this page <span>
 									<Button
-										iconDescription={'Hide'}
+										iconDescription={'Close Sidebar'}
 										kind="ghost"
 										size={'small'}
-										icon={ViewOff}
+										icon={RightPanelClose}
 										on:click={onTOCToggleButtonPress}
 									/>
 								</span></span
