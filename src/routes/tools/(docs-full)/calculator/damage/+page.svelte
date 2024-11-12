@@ -80,6 +80,7 @@
 	import * as zip from '@zip.js/zip.js';
 	import {
 		getAilmentIcon,
+		getStatusIcon,
 		StatusIcons,
 	} from '$lib/client/modules/frontier/ailments';
 	import { obscurityValues } from '$lib/client/modules/frontier/armor-skills';
@@ -108,6 +109,7 @@
 	import {
 		elementMultipliers,
 		ElementIcons,
+		getElementIcon,
 	} from '$lib/client/modules/frontier/elements';
 	import {
 		weaponMotionValues,
@@ -124,6 +126,7 @@
 	import { missionRequirementAttackCeilings } from '$lib/client/modules/frontier/objects';
 	import {
 		getMonster,
+		getMonsterIcon,
 		getUniqueMonsters,
 	} from '$lib/client/modules/frontier/monsters';
 	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
@@ -7932,7 +7935,19 @@ does not get multiplied by horn */
 															{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
 															{ id: 'Bow', text: 'Bow' },
 														]}
-													/>
+														let:item
+													>
+														<div class="option-item">
+															<div>
+																<svelte:component
+																	this={getWeaponIcon(item.id)}
+																	{...{ size: '32px' }}
+																/>
+															</div>
+
+															<p>{item.id}</p>
+														</div>
+													</Dropdown>
 												</div>
 
 												<div class="number-input-container">
@@ -8709,65 +8724,77 @@ does not get multiplied by horn */
 													bind:selectedId={inputElement}
 													items={[
 														{ id: 'None', text: 'None' },
-														{ id: 'Fire', text: 'Fire (火)' },
-														{ id: 'Water', text: 'Water (水)' },
-														{ id: 'Thunder', text: 'Thunder (雷)' },
-														{ id: 'Ice', text: 'Ice (冰)' },
-														{ id: 'Dragon', text: 'Dragon (龍)' },
+														{ id: 'Fire', text: 'Fire' },
+														{ id: 'Water', text: 'Water' },
+														{ id: 'Thunder', text: 'Thunder' },
+														{ id: 'Ice', text: 'Ice' },
+														{ id: 'Dragon', text: 'Dragon' },
 														{
 															id: 'Light',
-															text: 'Light (光) (70% Fire, 70% Thunder)',
+															text: 'Light (70% Fire, 70% Thunder)',
 														},
 														{
 															id: 'Blaze',
-															text: 'Blaze (炎) (70% Fire, 70% Dragon)',
+															text: 'Blaze (70% Fire, 70% Dragon)',
 														},
 														{
 															id: 'Tenshou',
-															text: 'Tenshou (天翔) (30% Fire, 100% Water, 70% Thunder)',
+															text: 'Tenshou (30% Fire, 100% Water, 70% Thunder)',
 														},
 														{
 															id: 'Lightning Rod',
-															text: 'Lightning Rod (雷棰) (70% Thunder, 70% Dragon)',
+															text: 'Lightning Rod (70% Thunder, 70% Dragon)',
 														},
 														{
 															id: 'Okiko',
-															text: 'Okiko (熾凍) (80% Fire, 80% Ice, 40% Dragon)',
+															text: 'Okiko (80% Fire, 80% Ice, 40% Dragon)',
 														},
 														{
 															id: 'Black Flame',
-															text: 'Black Flame (黑焰) (50% Fire, 150% Dragon)',
+															text: 'Black Flame (50% Fire, 150% Dragon)',
 														},
 														{
 															id: 'Crimson Demon',
-															text: 'Crimson Demon (紅魔) (50% Dragon, 150% Fire)',
+															text: 'Crimson Demon (50% Dragon, 150% Fire)',
 														},
 														{
 															id: 'Dark',
-															text: 'Dark (闇) (80% Ice, 80% Dragon)',
+															text: 'Dark (80% Ice, 80% Dragon)',
 														},
 														{
 															id: 'Music',
-															text: 'Music (奏) (100% Water, 100% Ice)',
+															text: 'Music (100% Water, 100% Ice)',
 														},
 														{
 															id: 'Sound',
-															text: 'Sound (響) (100% Water, 100% Dragon)',
+															text: 'Sound (100% Water, 100% Dragon)',
 														},
 														{
 															id: 'Wind',
-															text: 'Wind (風) (80% Thunder, 80% Ice)',
+															text: 'Wind (80% Thunder, 80% Ice)',
 														},
 														{
 															id: 'Burning Zero',
-															text: 'Burning Zero (灼零) (125% Fire, 125% Ice)',
+															text: 'Burning Zero (125% Fire, 125% Ice)',
 														},
 														{
 															id: "Emperor's Roar",
-															text: "Emperor's Roar (皇鳴) (150% Thunder, 50% Dragon)",
+															text: "Emperor's Roar (150% Thunder, 50% Dragon)",
 														},
 													]}
-												/>
+													let:item
+												>
+													<div class="option-item">
+														<div>
+															<svelte:component
+																this={getElementIcon(item.id)}
+																{...{ size: '32px' }}
+															/>
+														</div>
+
+														<p>{item.text}</p>
+													</div>
+												</Dropdown>
 
 												<div class="number-input-container">
 													<NumberInput
@@ -8896,7 +8923,19 @@ does not get multiplied by horn */
 														{ id: 'Poison', text: 'Poison' },
 														{ id: 'Paralysis', text: 'Paralysis' },
 													]}
-												/>
+													let:item
+												>
+													<div class="option-item">
+														<div>
+															<svelte:component
+																this={getStatusIcon(item.id)}
+																{...{ size: '32px' }}
+															/>
+														</div>
+
+														<p>{item.text}</p>
+													</div>
+												</Dropdown>
 
 												<div class="number-input-container">
 													<NumberInput
@@ -8945,6 +8984,15 @@ does not get multiplied by horn */
 										<div class="input-section">
 											<div class="small-header">🐉 Monster</div>
 											<div class="inputs-group-column">
+												{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
+													<p>
+														See the <Link
+															inline
+															href={`/hunter-notes/monsters/overview/${slugify(selectedMonster, { lower: true })}#hitzone-values`}
+															>hitzones monster page</Link
+														> for a table of HZV.
+													</p>
+												{/if}
 												<div class="driverjs-2">
 													<ComboBox
 														on:select={() => {
@@ -8958,7 +9006,17 @@ does not get multiplied by horn */
 														bind:selectedId={selectedMonster}
 														items={currentMonsters}
 														{shouldFilterItem}
-													/>
+														let:item
+													>
+														<div class="option-item">
+															<img
+																width={32}
+																src={getMonsterIcon(item.id)}
+																alt="Monster Icon"
+															/>
+															<p>{item.id}</p>
+														</div>
+													</ComboBox>
 												</div>
 												{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
 													<Dropdown
@@ -10286,6 +10344,20 @@ does not get multiplied by horn */
 									/> cannot use Reflect or Perfect Guard.
 								</p>
 							</ListItem>
+							<ListItem>
+								<p>
+									Motion Values comprised of multiple hits have their raw damage
+									calculated separately by each hit value and then added
+									together. To demonstrate an example of multiple small hits and
+									one big hit having the same total MV but different results,
+									see Shining Sword from <InlineTooltip
+										text="Great Sword"
+										tooltip="Weapon"
+										icon={getWeaponIcon('Great Sword')}
+										iconType="component"
+									/> and then input as Custom Motion Value the value 459.
+								</p>
+							</ListItem>
 						</UnorderedList></AccordionItem
 					></Accordion
 				>
@@ -11110,5 +11182,15 @@ does not get multiplied by horn */
 		gap: 0.25rem;
 		align-items: start;
 		vertical-align: middle;
+	}
+
+	:global(.bx--list-box__menu-item, .bx--list-box__menu-item__option) {
+		height: auto;
+	}
+
+	.option-item {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
 	}
 </style>
