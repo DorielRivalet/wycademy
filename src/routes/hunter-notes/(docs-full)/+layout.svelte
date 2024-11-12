@@ -49,7 +49,6 @@
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
-	import ViewOff from 'carbon-icons-svelte/lib/ViewOff.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import {
@@ -66,6 +65,7 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import SidePanelClose from 'carbon-icons-svelte/lib/SidePanelClose.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -1005,11 +1005,11 @@
 				bind:this={treeview}
 				><span slot="labelText">
 					<Button
-						iconDescription={'Hide Sidebar'}
+						iconDescription={'Close Sidebar'}
 						tooltipPosition="right"
 						kind="ghost"
 						size={'small'}
-						icon={ViewOff}
+						icon={SidePanelClose}
 						on:click={onTOCToggleButtonPress}
 					/></span
 				>
