@@ -46,6 +46,7 @@
 	} from '$lib/client/modules/frontier/ailments';
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
 	import {
+		getMonsterIcon,
 		getUniqueMonsters,
 		monsterInfo,
 	} from '$lib/client/modules/frontier/monsters';
@@ -531,7 +532,13 @@
 					bind:selectedId={selectedMonsterIdFromList}
 					items={currentMonsters}
 					{shouldFilterItem}
-				/>
+					let:item
+				>
+					<div class="option-item">
+						<img width={32} src={getMonsterIcon(item.id)} alt="Monster Icon" />
+						<p>{item.id}</p>
+					</div>
+				</ComboBox>
 				{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
 					<Dropdown
 						titleText="Rank Band"
@@ -798,5 +805,15 @@
 		border-color: var(--ctp-surface1);
 		border-radius: 50%;
 		border-style: solid;
+	}
+
+	.option-item {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	:global(.bx--list-box__menu-item, .bx--list-box__menu-item__option) {
+		height: auto;
 	}
 </style>
