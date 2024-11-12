@@ -57,6 +57,9 @@
 		Habitats,
 	} from '$lib/client/modules/frontier/habitat';
 	import Lens from '$lib/client/components/Lens.svelte';
+	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
+	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
+	import Help from 'carbon-icons-svelte/lib/Help.svelte';
 
 	function findMonster(params: string) {
 		let found: FrontierMonsterInfo | undefined = monsterInfo.find(
@@ -467,59 +470,68 @@
 		</div>
 		<section>
 			<SectionHeading title="Hitzone Values" level={2} />
-			<p class="spaced-paragraph">
-				The colors in the silhouette denotes the highest and lowest values for
-				the hitzone type, while the values in bold in the table denotes the
-				highest and second highest values for that column.
-			</p>
-			<p class="spaced-paragraph">
-				The higher the hitzone value, the more damage you can deal for that
-				damage type.
-			</p>
-			<div class="hitzone-colors-description">
-				<UnorderedList>
-					<ListItem>
-						<button
-							type="button"
-							class="dot"
-							aria-label={'Color'}
-							style="background-color: var(--ctp-red)"
-						/>Red: Highest values for this hitzone type.</ListItem
-					>
-					<ListItem
-						><button
-							type="button"
-							class="dot"
-							aria-label={'Color'}
-							style="background-color: var(--ctp-peach)"
-						/>Orange: Second highest values for this hitzone type.</ListItem
-					>
-					<ListItem
-						><button
-							type="button"
-							class="dot"
-							aria-label={'Color'}
-							style="background-color: var(--ctp-yellow)"
-						/>Yellow: Third highest values for this hitzone type.</ListItem
-					>
-					<ListItem
-						><button
-							type="button"
-							class="dot"
-							aria-label={'Color'}
-							style="background-color: var(--ctp-green)"
-						/>Green: Values higher than 0 for this hitzone type.</ListItem
-					>
-					<ListItem
-						><button
-							type="button"
-							class="dot"
-							aria-label={'Color'}
-							style="background-color: var(--ctp-blue)"
-						/>Blue: Values lower or equal to 0 for this hitzone type.</ListItem
-					>
-				</UnorderedList>
-			</div>
+			<Accordion class="spaced-accordion">
+				<AccordionItem>
+					<svelte:fragment slot="title">
+						<h5 class="accordion-title">
+							<span><Help /></span><span>Help</span>
+						</h5>
+					</svelte:fragment>
+					<p class="spaced-paragraph">
+						The colors in the silhouette denotes the highest and lowest values
+						for the hitzone type, while the values in bold in the table denotes
+						the highest and second highest values for that column.
+					</p>
+					<p class="spaced-paragraph">
+						The higher the hitzone value, the more damage you can deal for that
+						damage type.
+					</p>
+					<div class="hitzone-colors-description">
+						<UnorderedList>
+							<ListItem>
+								<button
+									type="button"
+									class="dot"
+									aria-label={'Color'}
+									style="background-color: var(--ctp-red)"
+								/>Red: Highest values for this hitzone type.</ListItem
+							>
+							<ListItem
+								><button
+									type="button"
+									class="dot"
+									aria-label={'Color'}
+									style="background-color: var(--ctp-peach)"
+								/>Orange: Second highest values for this hitzone type.</ListItem
+							>
+							<ListItem
+								><button
+									type="button"
+									class="dot"
+									aria-label={'Color'}
+									style="background-color: var(--ctp-yellow)"
+								/>Yellow: Third highest values for this hitzone type.</ListItem
+							>
+							<ListItem
+								><button
+									type="button"
+									class="dot"
+									aria-label={'Color'}
+									style="background-color: var(--ctp-green)"
+								/>Green: Values higher than 0 for this hitzone type.</ListItem
+							>
+							<ListItem
+								><button
+									type="button"
+									class="dot"
+									aria-label={'Color'}
+									style="background-color: var(--ctp-blue)"
+								/>Blue: Values lower or equal to 0 for this hitzone type.</ListItem
+							>
+						</UnorderedList>
+					</div></AccordionItem
+				></Accordion
+			>
 
 			<div class="hitzone-options">
 				<ComboBox
@@ -815,5 +827,12 @@
 
 	:global(.bx--list-box__menu-item, .bx--list-box__menu-item__option) {
 		height: auto;
+	}
+
+	.accordion-title {
+		display: flex;
+		gap: 0.25rem;
+		align-items: start;
+		vertical-align: middle;
 	}
 </style>
