@@ -83,6 +83,13 @@
 	siteName={projectName}
 />
 
+<svelte:head>
+	<meta
+		name="ahrefs-site-verification"
+		content="e12158aef8c9ea3e543c4592363d8cca00cf8d9837f22167b9ea4c10cc88da4c"
+	/>
+</svelte:head>
+
 <div class="container">
 	<div>
 		<HomeHeroSection />
