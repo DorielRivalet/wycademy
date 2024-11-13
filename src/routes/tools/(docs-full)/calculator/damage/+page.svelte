@@ -388,6 +388,7 @@
 		ice: string;
 		dragon: string;
 		additional: string;
+		stun: string;
 	};
 
 	function downloadMotionValuesImage() {
@@ -1746,6 +1747,7 @@
 				ice: '0',
 				dragon: '0',
 				additional: '0',
+				stun: '0',
 			},
 		];
 
@@ -2609,6 +2611,9 @@
 					outputAdditional.toString() === 'NaN'
 						? '0'
 						: outputAdditional.toString(),
+				stun: Array.isArray(motionValueItem.stun)
+					? motionValueItem.stun.join('･')
+					: motionValueItem.stun.toString(),
 			});
 		});
 
@@ -3820,6 +3825,41 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 
 	// TODO more formulas
 	// TODO gunner formulas
+
+	function getMotionValuesCount() {
+		return weaponMotionValues.reduce(
+			(acc, weapon) => {
+				const weaponCount = weapon.sections.reduce(
+					(sum, section) => sum + section.motionValues.length,
+					0,
+				);
+				acc.total += weaponCount;
+				acc.byWeapon[weapon.name] = weaponCount;
+				return acc;
+			},
+			{
+				total: 0,
+				byWeapon: {
+					'Great Sword': 0,
+					'Dual Swords': 0,
+					'Long Sword': 0,
+					Hammer: 0,
+					'Hunting Horn': 0,
+					Lance: 0,
+					Gunlance: 0,
+					'Switch Axe F': 0,
+					'Magnet Spike': 0,
+					Tonfa: 0,
+					Bow: 0,
+					'Heavy Bowgun': 0,
+					'Light Bowgun': 0,
+					'Sword and Shield': 0,
+				},
+			},
+		);
+	}
+
+	const motionValuesCount = getMotionValuesCount();
 
 	let rarity: FrontierRarity = 1;
 	let weaponIconProps = {
@@ -6097,6 +6137,7 @@ does not get multiplied by horn */
 			{ key: 'ice', value: '❄️', minWidth: '1rem' },
 			{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 			{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+			{ key: 'stun', value: '💫', minWidth: '1rem' },
 		];
 
 		switch (inputElement) {
@@ -6111,6 +6152,7 @@ does not get multiplied by horn */
 					{ key: 'total', value: 'Total', minWidth: '1rem' },
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Water':
 				return [
@@ -6121,6 +6163,7 @@ does not get multiplied by horn */
 					{ key: 'total', value: 'Total', minWidth: '1rem' },
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Thunder':
 				return [
@@ -6131,6 +6174,7 @@ does not get multiplied by horn */
 					{ key: 'total', value: 'Total', minWidth: '1rem' },
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Ice':
 				return [
@@ -6141,6 +6185,7 @@ does not get multiplied by horn */
 					{ key: 'total', value: 'Total', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Dragon':
 				return [
@@ -6151,6 +6196,7 @@ does not get multiplied by horn */
 					{ key: 'total', value: 'Total', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'None':
 			case '':
@@ -6161,6 +6207,7 @@ does not get multiplied by horn */
 					{ key: 'element', value: 'Element', minWidth: '1rem' },
 					{ key: 'total', value: 'Total', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Light':
 				return [
@@ -6172,6 +6219,7 @@ does not get multiplied by horn */
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Blaze':
 				return [
@@ -6183,6 +6231,7 @@ does not get multiplied by horn */
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Tenshou':
 				return [
@@ -6195,6 +6244,7 @@ does not get multiplied by horn */
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Lightning Rod':
 				return [
@@ -6206,6 +6256,7 @@ does not get multiplied by horn */
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Okiko':
 				return [
@@ -6218,6 +6269,7 @@ does not get multiplied by horn */
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Black Flame':
 				return [
@@ -6229,6 +6281,7 @@ does not get multiplied by horn */
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Crimson Demon':
 				return [
@@ -6240,6 +6293,7 @@ does not get multiplied by horn */
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Dark':
 				return [
@@ -6251,6 +6305,7 @@ does not get multiplied by horn */
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Music':
 				return [
@@ -6262,6 +6317,7 @@ does not get multiplied by horn */
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Sound':
 				return [
@@ -6273,6 +6329,7 @@ does not get multiplied by horn */
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Wind':
 				return [
@@ -6284,6 +6341,7 @@ does not get multiplied by horn */
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case 'Burning Zero':
 				return [
@@ -6295,6 +6353,7 @@ does not get multiplied by horn */
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 			case "Emperor's Roar":
 				return [
@@ -6306,6 +6365,7 @@ does not get multiplied by horn */
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
 					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+					{ key: 'stun', value: '💫', minWidth: '1rem' },
 				];
 		}
 	}
@@ -10052,6 +10112,8 @@ does not get multiplied by horn */
 										text={header.value}
 										icon={''}
 									/>
+								{:else if header.key === 'stun'}
+									<InlineTooltip tooltip="Stun" text={header.value} icon={''} />
 								{:else}
 									{header.value}
 								{/if}
@@ -10078,7 +10140,19 @@ does not get multiplied by horn */
 											{ id: 'Heavy Bowgun', text: 'Heavy Bowgun' },
 											{ id: 'Bow', text: 'Bow' },
 										]}
-									/>
+										let:item
+									>
+										<div class="option-item">
+											<div>
+												<svelte:component
+													this={getWeaponIcon(item.id)}
+													{...{ size: '32px' }}
+												/>
+											</div>
+
+											<p>{item.id}</p>
+										</div>
+									</Dropdown>
 									<Dropdown
 										titleText="Section"
 										bind:selectedId={inputWeaponMotionValuesSection}
@@ -10122,7 +10196,10 @@ does not get multiplied by horn */
 									<div class="weapon-icon">
 										<svelte:component this={weaponIcon} {...weaponIconProps} />
 									</div>
-									<div>{inputWeaponType} Motion Values</div>
+									<div>
+										{inputWeaponType} Motion Values ({motionValuesCount
+											.byWeapon[inputWeaponType] ?? 0})
+									</div>
 								</div>
 							</span>
 							<svelte:fragment slot="cell" let:cell>
@@ -10158,7 +10235,7 @@ does not get multiplied by horn */
 
 								<ListItem>
 									<p>
-										Some motion values have numbers in parentheses, those are <InlineTooltip
+										Some motion values have <InlineTooltip
 											text="Stun"
 											tooltip="Ailment"
 											icon={getAilmentIcon('Stun')}
@@ -10221,6 +10298,12 @@ does not get multiplied by horn */
 										element.
 									</p>
 								</ListItem>
+								<ListItem>
+									<p>
+										There are a total of {motionValuesCount.total} motion values,
+										including for each style and section.
+									</p>
+								</ListItem>
 							</UnorderedList>
 						</AccordionItem>
 					</Accordion>
@@ -10260,6 +10343,8 @@ does not get multiplied by horn */
 								<InlineTooltip tooltip="Ice" text={header.value} icon={''} />
 							{:else if header.key === 'dragon'}
 								<InlineTooltip tooltip="Dragon" text={header.value} icon={''} />
+							{:else if header.key === 'stun'}
+								<InlineTooltip tooltip="Stun" text={header.value} icon={''} />
 							{:else}
 								{header.value}
 							{/if}
@@ -10655,7 +10740,7 @@ does not get multiplied by horn */
 						<UnorderedList>
 							<ListItem>
 								<p>
-									The final value whose formula depends on certain conditions
+									The final values whose formula depends on certain conditions
 									are called <OutboundLink
 										href="https://en.wikipedia.org/wiki/Piecewise_function"
 										>piecewise functions.</OutboundLink
