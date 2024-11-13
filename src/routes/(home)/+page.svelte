@@ -34,7 +34,7 @@
 		{
 			question: 'What is Wycademy?',
 			answer:
-				'Wycademy is a comprehensive resource for MHF-Z players, offering guides, tools, leaderboards, and a community space. We’re committed to making this information freely accessible to everyone.',
+				'Wycademy is a comprehensive resource of information for Monster Hunter Frontier Z (MHF-Z) players, offering guides, tools, leaderboards, and a community space. We’re committed to making this information freely accessible to everyone. Furthermore, this platform provides simulators, generators, and comprehensive guides to assist players in understanding game mechanics and optimizing their hunting strategies. ',
 		},
 		{
 			question: 'How can I get started with Wycademy leaderboards?',
@@ -49,7 +49,7 @@
 		{
 			question: 'What game versions does Wycademy support?',
 			answer:
-				'Wycademy primarily supports information about Monster Hunter Frontier Z, including but not limited to monsters, gear, and mechanics. We continuously update our platform to support the latest accurate information.',
+				'Wycademy primarily supports information about Monster Hunter Frontier Z (MHF-Z), including but not limited to monsters, gear, and mechanics. We continuously update our platform to support the latest accurate information.',
 		},
 		{
 			question: 'Is Wycademy suitable for beginners in the game?',
@@ -60,6 +60,11 @@
 			question: 'What kind of support does Wycademy provide?',
 			answer:
 				'Wycademy provides comprehensive support including documentation, video tutorials, an issue tracker, and dedicated maintenance. The issue tracker is provided by GitHub.',
+		},
+		{
+			question: 'What are the goals of Wycademy?',
+			answer:
+				"Wycademy strives to be a community-driven platform that offers detailed articles on various aspects of Monster Hunter Frontier Z (MHF-Z), including monsters, weapons, and gameplay mechanics. We want to offer an overview of Monster Hunter Frontier Z (MHF-Z), covering its features, species, and other relevant details. We aim to provide a comprehensive guide designed to assist new players in navigating the game's content, offering step-by-step instructions and valuable insights. Furthermore, we wish to give an extensive list of all skills available in the game, useful for players aiming to optimize their character builds. Finally, we focus on visual content, such as monster lists and gameplay footage.",
 		},
 	];
 </script>
