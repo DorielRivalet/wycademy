@@ -54,7 +54,7 @@
 				kind="warning"
 				title="Beta Testing:"
 				hideCloseButton
-				subtitle="Please read about our development process before creating an account."
+				subtitle="Please read about our development process before creating an account. It is currently not possible to make an account"
 			>
 				<svelte:fragment slot="actions">
 					<NotificationActionButton
