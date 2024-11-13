@@ -622,6 +622,7 @@ export type FrontierMotionValue = {
 	hitCount: number;
 	elementMultiplier: number;
 	motionValue: number[] | number;
+	stun: number[] | number;
 	specialFlag: string;
 	notes?: string;
 };
