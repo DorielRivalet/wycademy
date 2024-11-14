@@ -142,6 +142,7 @@
 		"svelte-add": "^2.7.3",
 		"svelte-moveable": "^0.45.0",
 		"svelte-reactions": "^2.5.4",
+		"svelte-splitpanes": "^8.0.9",
 		"svelte-toc": "^0.5.9",
 		"temml": "^0.10.29",
 		"three": "^0.170.0",
