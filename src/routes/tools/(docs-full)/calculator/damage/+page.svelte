@@ -156,6 +156,7 @@
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import Help from 'carbon-icons-svelte/lib/Help.svelte';
 	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
+	import ApplicationWeb from 'carbon-icons-svelte/lib/ApplicationWeb.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -3583,7 +3584,7 @@ $: internalAttack =
 */
 
 	const formulaInternalAttack = display(
-		'\\begin{align}\\text{Internal Attack} = \\lfloor \\text{internalTrueRaw} \\times \\ \\text{outputSharpnessMultiplier}\\times \\newline \\text{outputSwordAndShieldMultiplier} \\times \\newline \\text{outputOtherMultipliers} \\times \\newline \\text{outputMonsterStatusInflictedMultiplier} \\rfloor\\end{align}',
+		'\\begin{align}\\text{Internal Attack} = \\lfloor \\text{internalTrueRaw} \\times\\newline \\text{outputSharpnessMultiplier}\\times \\newline \\text{outputSwordAndShieldMultiplier} \\times \\newline \\text{outputOtherMultipliers} \\times \\newline \\text{outputMonsterStatusInflictedMultiplier} \\rfloor\\end{align}',
 	);
 
 	$: formulaValuesOutputInternalAttack = `\\begin{align}{${internalAttack}} = \\lfloor ${internalTrueRaw} \\times\\newline ${outputSharpnessMultiplier} \\times\\newline ${outputSwordAndShieldMultiplier} \\times\\newline ${outputOtherMultipliers} \\times\\newline ${outputMonsterStatusInflictedMultiplier} \\rfloor\\end{align}
@@ -6476,11 +6477,16 @@ does not get multiplied by horn */
 	<div class={modalBlurClass}>
 		<div>
 			<SectionHeadingTopLevel title={'Damage Calculator'} />
-			<div class="walkthrough-button driverjs-7">
+			<div class="initial-buttons driverjs-7">
 				<Button
 					on:click={(e) => startWalkthrough()}
-					kind="primary"
+					kind="tertiary"
 					icon={HelpFilled}>Walkthrough</Button
+				><Button
+					disabled
+					href="/tools/calculator/damage/app"
+					kind="tertiary"
+					icon={ApplicationWeb}>On Desktop? Try our app-like navigation!</Button
 				>
 			</div>
 			<Accordion class="spaced-accordion driverjs-0">
@@ -10763,8 +10769,11 @@ does not get multiplied by horn */
 		margin-top: 4rem;
 	}
 
-	.walkthrough-button {
+	.initial-buttons {
+		display: flex;
+		gap: 1rem;
 		margin-bottom: 2rem;
+		flex-wrap: wrap;
 	}
 
 	.modal-content {
