@@ -6,19 +6,8 @@
 
 <script lang="ts">
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import pageThumbnail from '$lib/client/images/icon/monster.png';
-	import {
-		authorName,
-		authorUrl,
-		datePublished,
-		description,
-		projectName,
-		website,
-	} from '$lib/constants';
-	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
-	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import MultiSelect from 'carbon-components-svelte/src/MultiSelect/MultiSelect.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
@@ -56,9 +45,6 @@
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
-
-	const customTitle = 'Monsters Overview';
-	const url = $page.url.toString();
 
 	const monsterIconSize = '256px';
 
@@ -304,7 +290,7 @@
 	let contextSwitcherIndex = 0;
 </script>
 
-<Head
+<!-- <Head
 	title={customTitle}
 	{description}
 	image={pageThumbnail}
@@ -316,7 +302,7 @@
 	contentType="SoftwareApplication"
 	name={projectName}
 	siteName={projectName}
-/>
+/> -->
 
 <section class="bestiary">
 	<div class="top-level-section">

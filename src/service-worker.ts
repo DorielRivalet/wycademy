@@ -49,7 +49,7 @@ sw.addEventListener('notificationclick', (event) => {
 								})
 								.then((windowClients) => {
 									const matchingClient = windowClients.find(
-										(wc) => wc.url === 'https://wycademy.vercel.app/',
+										(wc) => wc.url === 'https://wycademy.vercel.app',
 									);
 
 									if (matchingClient) {

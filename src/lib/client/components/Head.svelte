@@ -95,7 +95,8 @@ SOFTWARE.
 <!-- </svelte:head> -->
 
 <svelte:head>
-	<link rel="canonical" href={url} />
+	<!--TODO use sitemap instead-->
+	<!-- <link rel="canonical" href={url} /> -->
 
 	<!-- HTML Meta Tags -->
 	<title>{title}</title>

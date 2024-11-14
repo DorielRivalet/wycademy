@@ -13,6 +13,19 @@
 		generateUsername,
 		usernames,
 	} from '$lib/client/modules/username-generator';
+	import Head from '$lib/client/components/Head.svelte';
+	import pageThumbnail from '$lib/client/images/icon/pvp.png';
+	import {
+		authorName,
+		authorUrl,
+		datePublished,
+		projectName,
+		website,
+	} from '$lib/constants';
+	import { page } from '$app/stores';
+
+	const customTitle = "Leaderboard — Frontier's Wycademy";
+	const url = $page.url.toString();
 
 	function shouldFilterItem(item: { text: string }, value: string) {
 		if (!value) return true;
@@ -35,7 +48,23 @@
 		) + '-####';
 
 	// TODO some pages like this one are missing Head component
+	let description =
+		'Sign up to Wycademy: submit hunts, participate in events, follow others and customize profiles.';
 </script>
+
+<Head
+	title={customTitle}
+	{description}
+	image={pageThumbnail}
+	{url}
+	{website}
+	{authorName}
+	{datePublished}
+	{authorUrl}
+	contentType="SoftwareApplication"
+	name={projectName}
+	siteName={projectName}
+/>
 
 <div class="container">
 	<div class="headings-container">
@@ -65,7 +94,7 @@
 			</InlineNotification>
 		</div>
 		<div class="login">
-			<h1>Create your account</h1>
+			<h2>Create your account</h2>
 			<p>
 				Already have a Wycademy account? <Link inline href="/">Log in</Link>
 			</p>
@@ -182,7 +211,7 @@
 				flex-direction: column;
 			}
 
-			h1 {
+			h2 {
 				all: unset;
 				@include type.type-style('heading-02');
 			}
