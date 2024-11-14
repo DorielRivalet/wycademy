@@ -89,16 +89,16 @@ SOFTWARE.
 				price: '0',
 				priceCurrency: 'USD',
 			},
-			aggregateRating: {
-				'@type': 'AggregateRating',
-				itemReviewed: {
-					'@type': 'SoftwateApplication',
-					image: mainEntity.image,
-					name: mainEntity.name,
-				},
-				ratingValue: '3',
-				ratingCount: '1',
-			},
+			// aggregateRating: {
+			// 	'@type': 'AggregateRating',
+			// 	itemReviewed: {
+			// 		'@type': 'Thing',
+			// 		image: mainEntity.image,
+			// 		name: mainEntity.name,
+			// 	},
+			// 	ratingValue: '3',
+			// 	ratingCount: '1',
+			// },
 			operatingSystem: ['Windows', 'Linux', 'macOS'],
 		};
 	} else {

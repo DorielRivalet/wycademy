@@ -404,7 +404,7 @@
 							{#each monster.habitats as habitat}
 								<ListItem>
 									{#if Habitats.filter((e) => e.icon !== '').find((e) => e.name === habitat)}
-										<Link href={`/hunter-notes/locations/`}>
+										<Link href={`/hunter-notes/locations`}>
 											<InlineTooltip
 												iconType="file"
 												tooltip={'Location'}

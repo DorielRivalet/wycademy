@@ -1,7 +1,7 @@
 import type { FrontierMonsterName } from 'ezlion';
 import type { FrontierMonsterInfo } from './types';
 
-export const unlistedMonsterNames = ['Random', 'Cactus', 'PSO2 Rappy'];
+export const unlistedMonsterNames = ['Random', 'Cactus']; // TODO Rock???
 
 export const wikiaMonsters = [
 	'Anteka',
@@ -5265,7 +5265,8 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 
 		fullRender:
 			'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/monster/render/full/pso2-rappy',
-
+		class: 'Lynian',
+		generation: 'Frontier',
 		unusedComponent: true,
 		ecology: `The Rappy is a large, fluffy bird-like creature present in another dimension. Appears to be the representative of that dimension as a whole.`,
 		type: 'Small',
