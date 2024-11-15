@@ -6483,7 +6483,6 @@ does not get multiplied by horn */
 					kind="tertiary"
 					icon={HelpFilled}>Walkthrough</Button
 				><Button
-					disabled
 					href="/tools/calculator/damage/app"
 					kind="tertiary"
 					icon={ApplicationWeb}>On Desktop? Try our app-like navigation!</Button
