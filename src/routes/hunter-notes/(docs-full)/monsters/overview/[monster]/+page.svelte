@@ -39,7 +39,7 @@
 		silhouetteInfo,
 		type HitzoneInfo,
 	} from '$lib/client/modules/frontier/hitzones';
-	import MonsterSilhouette from '../MonsterSilhouette.svelte';
+	import MonsterSilhouette from '$lib/client/components/frontier/MonsterSilhouette.svelte';
 	import {
 		AilmentIcons,
 		StatusIcons,
@@ -246,6 +246,7 @@
 		(e) => e.displayName === selectedMonsterIdFromList,
 	)?.silhouette;
 
+	/**For lens*/
 	let hovering = false;
 </script>
 

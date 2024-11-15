@@ -12,6 +12,7 @@
 	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount } from 'svelte';
 	import { cursorVars } from '$lib/client/themes/cursor';
+	import MonsterSilhouette from '$lib/client/components/frontier/MonsterSilhouette.svelte';
 	import { page } from '$app/stores';
 	import {
 		authorName,
@@ -95,6 +96,8 @@
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
 	import { crossfade } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
+	import { cubicInOut } from 'svelte/easing';
 	import { quintOut } from 'svelte/easing';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import Save from 'carbon-icons-svelte/lib/Save.svelte';
@@ -156,6 +159,9 @@
 		convertHitzoneInfo,
 		getAllHitzoneValuesForHitzones,
 		hitzoneInfo,
+		silhouetteInfo,
+		getHitzoneValuesObject,
+		type HitzoneInfo,
 	} from '$lib/client/modules/frontier/hitzones';
 	import {
 		getItemColor,
@@ -177,6 +183,7 @@
 	import CharacterWholeNumber from 'carbon-icons-svelte/lib/CharacterWholeNumber.svelte';
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import Help from 'carbon-icons-svelte/lib/Help.svelte';
+	import Reset from 'carbon-icons-svelte/lib/Reset.svelte';
 	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
 
 	const carbonThemeStore = getContext(
@@ -5781,6 +5788,7 @@ does not get multiplied by horn */
 	let selectedMonsterRankBand: FrontierMonsterHitzoneRankBand = 'Default';
 	let selectedMonsterState = 'Default';
 	let selectedMonsterPart: FrontierMonsterPart = 'Head';
+	let selectedHitzoneType: FrontierMonsterHitzoneType = 'Cutting';
 
 	let uniqueMonsters = getUniqueMonsters().sort(
 		(a, b) =>
@@ -5904,6 +5912,12 @@ does not get multiplied by horn */
 			]),
 		),
 	}));
+
+	$: hitzoneHighestValues = getHitzoneValuesObject(
+		hitzones,
+		selectedMonsterState,
+		selectedMonsterRankBand,
+	);
 
 	$: inputNumberCuttingHitzone =
 		selectedMonster === undefined
@@ -6191,12 +6205,159 @@ does not get multiplied by horn */
 		}
 	}
 
-	let openIntroduction = false;
-	let openSavingLoadingSection = false;
-	let openInputsSection = true;
-	let openResultsSection = true;
-
 	$: motionValuesTableHeaders = getMotionValuesTableHeaders(inputElement);
+
+	/**TODO: use this for hovering, info, warnings and errors.*/
+	let statusBarText = 'Note: refreshing the page resets all values.';
+	const panel1SizeDefault = 75;
+	const panel2SizeDefault = 25;
+	const panel3SizeDefault = 75;
+	const panel4SizeDefault = 25;
+	const topPanelsSizeDefault = 50;
+	const bottomPanelsSizeDefault = 50;
+	let panel1Size = panel1SizeDefault;
+	let panel2Size = panel2SizeDefault;
+	let panel3Size = panel3SizeDefault;
+	let panel4Size = panel4SizeDefault;
+	let topPanelsSize = topPanelsSizeDefault;
+	let bottomPanelsSize = bottomPanelsSizeDefault;
+
+	let panel1TabSelected = 0;
+	let panel2TabSelected = 0;
+	let panel3TabSelected = 0;
+	let panel4TabSelected = 0;
+
+	$: currentSilhouette = silhouetteInfo.find(
+		(e) => e.displayName === selectedMonster,
+	)?.silhouette;
+
+	function resetPanelSizes() {
+		panel1Size = panel1SizeDefault;
+		panel2Size = panel2SizeDefault;
+		panel3Size = panel3SizeDefault;
+		panel4Size = panel4SizeDefault;
+		topPanelsSize = topPanelsSizeDefault;
+		bottomPanelsSize = bottomPanelsSizeDefault;
+	}
+
+	function startWalkthrough() {
+		if (!browser) return;
+
+		const driverObj = driver({
+			showProgress: true,
+			popoverClass: 'driverjs-theme',
+			onDestroyed: () => {
+				panel1TabSelected = 0;
+				panel2TabSelected = 0;
+				panel3TabSelected = 0;
+				panel4TabSelected = 0;
+			},
+			steps: [
+				{
+					element: '.driverjs-0',
+					popover: {
+						title: 'Overview',
+						description:
+							"This is an introduction to Wycademy's Damage Calculator.",
+						// By passing onNextClick, you can override the default behavior of the next button.
+						// This will prevent the driver from moving to the next step automatically.
+						// You can then manually call driverObj.moveNext() to move to the next step.
+						// onNextClick: () => {
+						// 	// .. load element dynamically
+						// 	// .. and then call
+						// 	panel1TabSelected = 0;
+						// 	driverObj.moveNext();
+						// },
+					},
+					// onDeselected: () => {
+					// 	// .. remove element
+					// 	// document.querySelector(".dynamic-el")?.remove();
+					// 	panel1TabSelected = 0;
+					// },
+					onHighlightStarted: () => {
+						panel1TabSelected = 3;
+					},
+				},
+				{
+					element: '.driverjs-1',
+					popover: {
+						title: 'Select Your Weapon',
+						description:
+							'Depending on the selected weapon, various inputs will hide/show. Calculate everything from elements, raw, status, etc.',
+					},
+					onHighlightStarted: () => {
+						panel1TabSelected = 0;
+					},
+				},
+				{
+					element: '.driverjs-2',
+					popover: {
+						title: 'Compare Monster Hitzones',
+						description:
+							'You can select by monster state, rank band and body part.',
+					},
+					onHighlightStarted: () => {
+						panel1TabSelected = 0;
+					},
+				},
+				{
+					element: '.driverjs-3',
+					popover: {
+						title: 'View Your Results',
+						description:
+							'Final Attack denotes your final output, while True Raw are the calculations before it, with bloated values in parentheses.',
+					},
+					onHighlightStarted: () => {
+						panel2TabSelected = 0;
+					},
+				},
+				{
+					element: '.driverjs-4',
+					popover: {
+						title: 'See Motion Values',
+						description:
+							"Select by weapon type, motion value section, and weapon style. If you can't find a Motion Value, try changing the Section or Style option.",
+					},
+					onHighlightStarted: () => {
+						panel2TabSelected = 1;
+						panel3TabSelected = 0;
+					},
+				},
+				{
+					element: '.driverjs-5',
+					popover: {
+						title: 'Save Your Results',
+						description:
+							'We provide various options for saving and loading your inputs.',
+					},
+					onHighlightStarted: () => {
+						panel3TabSelected = 2;
+					},
+				},
+				{
+					element: '.driverjs-6',
+					popover: {
+						title: 'Deep Dive Into Formulas',
+						description:
+							'Observe the internal calculations and compare different kinds of damage.',
+					},
+					onHighlightStarted: () => {
+						panel3TabSelected = 2;
+					},
+				},
+				{
+					element: '.driverjs-7',
+					popover: {
+						title: 'Happy Calculating',
+						description:
+							"If you find bugs or errors, don't hesitate to contact us on GitHub.",
+					},
+				},
+			],
+		});
+
+		driverObj.drive();
+	}
 </script>
 
 <Modal
@@ -6332,24 +6493,33 @@ does not get multiplied by horn */
 						kind="ghost"
 						icon={PreviousOutline}
 						tooltipPosition="right"
-						iconDescription="Go to Page version"
+						iconDescription="Go to page version"
 					/>
 					<Button
+						class="driverjs-7"
 						kind="ghost"
 						icon={Help}
 						tooltipPosition="right"
+						on:click={(e) => startWalkthrough()}
 						iconDescription="Walkthrough"
+					/>
+					<Button
+						kind="ghost"
+						icon={Reset}
+						tooltipPosition="right"
+						on:click={(e) => resetPanelSizes()}
+						iconDescription="Reset panel sizes"
 					/>
 				</div>
 			</Pane>
 
 			<Pane>
 				<Splitpanes horizontal theme="modern-theme">
-					<Pane size={50}>
+					<Pane bind:size={topPanelsSize}>
 						<Splitpanes theme="modern-theme">
-							<Pane size={75}>
+							<Pane bind:size={panel1Size}>
 								<div>
-									<Tabs type="container">
+									<Tabs type="container" bind:selected={panel1TabSelected}>
 										<Tab label="Inputs" />
 										<Tab label="Diva Prayer Gems" />
 										<Tab label="True Raw Converter" />
@@ -9054,15 +9224,6 @@ does not get multiplied by horn */
 																<div class="input-section">
 																	<div class="small-header">🐉 Monster</div>
 																	<div class="inputs-group-column">
-																		{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
-																			<p>
-																				See the <Link
-																					inline
-																					href={`/hunter-notes/monsters/overview/${slugify(selectedMonster, { lower: true })}#hitzone-values`}
-																					>hitzones monster page</Link
-																				> for a table of HZV.
-																			</p>
-																		{/if}
 																		<div class="driverjs-2">
 																			<ComboBox
 																				on:select={() => {
@@ -9734,15 +9895,438 @@ does not get multiplied by horn */
 												</div>
 											</TabContent>
 											<TabContent>
-												<div class="container-tab-content"></div>
+												<div class="container-tab-content">
+													<Tabs>
+														<Tab label="Calculator" />
+														<Tab label="Inputs" />
+														<Tab label="Diva Prayer Gems" />
+														<Tab label="True Raw Converter" />
+														<Tab label="Results" />
+														<Tab label="Save/Load" />
+														<Tab label="Logs" />
+														<Tab label="Weapon Motion Values" />
+														<Tab label="Shared Motion Values" />
+														<Tab label="Formulas" />
+														<Tab label="Monster Hitzones" />
+
+														<svelte:fragment slot="content">
+															<TabContent>
+																<div class="container-tab-content driverjs-0">
+																	<p>
+																		Welcome to Wycademy's Damage Calculator!
+																		Here you can calculate various game
+																		statistics, such as your total damage, by
+																		selecting the gear and weapon values. You
+																		can, for example:
+																	</p>
+																	<UnorderedList class="spaced-list">
+																		<ListItem>
+																			Select a weapon type such as <InlineToggletip
+																				title="Long Sword"
+																				subtitle="A sword from a far away land"
+																				description="Gauge your spirit with this weapon!"
+																				iconType="component"
+																				icon={getWeaponIcon('Long Sword')}
+																				tag1="Blademaster"
+																				popoverIcon={getWeaponIcon(
+																					'Long Sword',
+																				)}
+																				popoverIconType="component"
+																				link="/hunter-notes/weapons/overview"
+																				on:openModal={(e) => handleOpenModal(e)}
+																			></InlineToggletip>.
+																		</ListItem>
+																		<ListItem>
+																			Compare your attack values against <InlineToggletip
+																				title="Blinking Nargacuga"
+																				subtitle="Musou"
+																				description="Good luck hunting this monster!"
+																				iconType="file"
+																				icon={getMonster(
+																					'Blinking Nargacuga',
+																					'',
+																				).icon}
+																				tag1="Musou"
+																				tag2="Monster"
+																				tag3="G Rank"
+																				popoverIcon={getMonster(
+																					'Blinking Nargacuga',
+																					'',
+																				).render}
+																				popoverIconType="file"
+																				link="/tools/calculator/gunlance-shells-and-wyvernfire"
+																				on:openModal={(e) => handleOpenModal(e)}
+																			/> or <InlineTooltip
+																				tooltip="Monster"
+																				text="Zenith Rathalos"
+																				iconType="file"
+																				icon={getMonster('Rathalos', 'Zenith')
+																					.icon}
+																			/> defense rate.
+																		</ListItem>
+																		<ListItem
+																			>View element damage, motion values
+																			animations and the formulas for your total
+																			damage.</ListItem
+																		>
+																		<ListItem>And much more!</ListItem>
+																	</UnorderedList>
+
+																	<p class="spaced-paragraph">
+																		You can adjust the panel sizes to your
+																		liking. Double click the splitters found on
+																		each side of a panel to expand it
+																		automatically. If you want to reset to the
+																		default sizes, click the Reset button on the
+																		toolbar, found at the top.
+																	</p>
+
+																	<p class="spaced-paragraph">
+																		This damage calculator may not reflect the
+																		damage output you do in the game with total
+																		accuracy. In order to track and report
+																		damage testing, you can check <OutboundLink
+																			href="https://github.com/DorielRivalet/wycademy/issues/360"
+																			>the pinned issue in the repository</OutboundLink
+																		>.
+																	</p>
+																</div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content">
+																	<UnorderedList class="spaced-list">
+																		<ListItem>
+																			<p>
+																				If you select an option in a dropdown
+																				exclusive to a weapon and then change
+																				weapon type thus hiding that dropdown,
+																				the selected option will still apply.
+																			</p>
+																		</ListItem>
+																	</UnorderedList>
+																</div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content">
+																	<UnorderedList class="spaced-list">
+																		<ListItem>
+																			<p>
+																				The calculator does not include Diva
+																				Prayer Gems that do not affect it. The
+																				full list is found in our <Link
+																					inline
+																					href="/hunter-notes/events/diva-defense#diva-prayer-gems"
+																					>Hunter's Notes.</Link
+																				>
+																			</p>
+																		</ListItem>
+																	</UnorderedList>
+																</div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content">
+																	<UnorderedList class="spaced-list">
+																		<ListItem>
+																			<p>
+																				The True Raw Converter can be used to
+																				calculate from your displayed weapon
+																				attack its True Raw value, which depends
+																				on the weapon type selected in the
+																				Inputs or Weapon Motion Values sections.
+																			</p></ListItem
+																		></UnorderedList
+																	>
+																</div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content">
+																	<UnorderedList class="spaced-list">
+																		<ListItem>
+																			<p>
+																				The final output of all your
+																				calculations is in 🗡️ Final Attack,
+																				defined as Internal Attack in the
+																				calculator's code.
+																			</p>
+																		</ListItem>
+
+																		<ListItem>
+																			<p>
+																				The damage from <InlineTooltip
+																					text="Zenith Sigils"
+																					tooltip="Sigil"
+																					icon={getItemIcon('Sigil')}
+																				/> assume a constant duration with no cooldown,
+																				thus not the average damage. To check the
+																				average damage of such, see our
+																				<Link
+																					href="/tools/calculator/sigil"
+																					inline>Sigils Calculator.</Link
+																				>
+																			</p>
+																		</ListItem>
+																	</UnorderedList>
+																</div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content"></div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content"></div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content">
+																	<UnorderedList class="spaced-list">
+																		<ListItem
+																			><p>
+																				For loading values, try clicking the
+																				refresh button in the table if the
+																				values did not load correctly.
+																			</p></ListItem
+																		>
+																		<ListItem
+																			><p>
+																				If you cannot find a motion value you
+																				are looking for, for example
+																				<InlineTooltip
+																					icon={getWeaponIcon('Heavy Bowgun')}
+																					text={"Heavy Bowgun's"}
+																					tooltip={'Weapon'}
+																					iconType="component"
+																				/> compressed shots, try changing the
+																				<strong>Style</strong>
+																				or <strong>Section</strong> options down
+																				below.
+																			</p></ListItem
+																		><ListItem>
+																			<p>
+																				You can also change the table's weapon
+																				type in the Inputs section.
+																			</p>
+																		</ListItem>
+
+																		<ListItem>
+																			<p>
+																				Some motion values have <InlineTooltip
+																					text="Stun"
+																					tooltip="Ailment"
+																					icon={getAilmentIcon('Stun')}
+																				/>
+																				values. Stun/KO indicates impact portions
+																				of the motion value, which use white sharpness
+																				as the maximum multiplier.
+																			</p>
+																		</ListItem>
+																		<ListItem>
+																			<p>
+																				The Additional column denotes a source
+																				of damage that is separate from your
+																				True Raw limit. This includes <InlineTooltip
+																					text="Bombs"
+																					tooltip="Item"
+																					icon={getItemIcon('Bomb')}
+																					iconType="component"
+																					iconColor={ItemColors.find(
+																						(e) => e.name === 'Red',
+																					)?.value}
+																				/> and <InlineTooltip
+																					text="Status Assault"
+																					tooltip="Armor Skill"
+																					icon={getItemIcon('Jewel')}
+																					iconType="component"
+																					iconColor={ItemColors.find(
+																						(e) => e.name === 'White',
+																					)?.value}
+																				/>.
+																			</p>
+																		</ListItem>
+																		<ListItem
+																			><p>
+																				Due to how often the calculations round
+																				down values, enabling more skills or
+																				barely increasing your damage may not
+																				have any effect. For example, some
+																				motion values may not benefit from <InlineTooltip
+																					text="Ceaseless Up"
+																					tooltip="Zenith Skill"
+																					icon={getItemIcon('Jewel')}
+																					iconColor={getItemColor('Red')}
+																					iconType="component"
+																				/>.
+																			</p></ListItem
+																		>
+																		<ListItem>
+																			<p>
+																				Motion Values comprised of multiple hits
+																				have their raw damage calculated
+																				separately by each hit value and then
+																				added together. To demonstrate an
+																				example of multiple small hits and one
+																				big hit having the same total MV but
+																				different results, see Shining Sword
+																				from <InlineTooltip
+																					text="Great Sword"
+																					tooltip="Weapon"
+																					icon={getWeaponIcon('Great Sword')}
+																					iconType="component"
+																				/> and then input as Custom Motion Value
+																				the value 459.
+																			</p>
+																		</ListItem>
+																		<ListItem>
+																			<p>
+																				Extra table columns may show depending
+																				on the selected element.
+																			</p>
+																		</ListItem>
+																		<ListItem>
+																			<p>
+																				There are a total of {motionValuesCount.total}
+																				motion values, including for each style and
+																				section.
+																			</p>
+																		</ListItem></UnorderedList
+																	>
+																</div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content">
+																	<UnorderedList class="spaced-list">
+																		<ListItem
+																			><p>
+																				For loading values, try clicking the
+																				refresh button in the table if the
+																				values did not load correctly.
+																			</p></ListItem
+																		>
+
+																		<ListItem>
+																			<p>
+																				Motion Values comprised of multiple hits
+																				have their raw damage calculated
+																				separately by each hit value and then
+																				added together. To demonstrate an
+																				example of multiple small hits and one
+																				big hit having the same total MV but
+																				different results, see Shining Sword
+																				from <InlineTooltip
+																					text="Great Sword"
+																					tooltip="Weapon"
+																					icon={getWeaponIcon('Great Sword')}
+																					iconType="component"
+																				/> and then input as Custom Motion Value
+																				the value 459.
+																			</p>
+																		</ListItem>
+																	</UnorderedList>
+																</div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content">
+																	<UnorderedList class="spaced-list">
+																		<ListItem
+																			><p>
+																				In regards to bug reports: if you notice
+																				an error with the damage calculator, you
+																				can send an issue on the GitHub
+																				repository with the inputs JSON file to
+																				facilitate debugging.
+																			</p></ListItem
+																		>
+																		<ListItem
+																			><p>
+																				Your current inputs values from the
+																				Inputs section are reflected below each
+																				formula definition.
+																			</p></ListItem
+																		>
+																		<ListItem
+																			><p>
+																				The final values whose formula depends
+																				on certain conditions are called <OutboundLink
+																					href="https://en.wikipedia.org/wiki/Piecewise_function"
+																					>piecewise functions.</OutboundLink
+																				>
+																			</p></ListItem
+																		>
+																	</UnorderedList>
+																</div>
+															</TabContent>
+															<TabContent>
+																<div class="container-tab-content">
+																	<p class="spaced-paragraph">
+																		The colors in the silhouette denotes the
+																		highest and lowest values for the hitzone
+																		type, while the values in bold in the table
+																		denotes the highest and second highest
+																		values for that column.
+																	</p>
+																	<p class="spaced-paragraph">
+																		The higher the hitzone value, the more
+																		damage you can deal for that damage type.
+																	</p>
+																	<div class="hitzone-colors-description">
+																		<UnorderedList class="spaced-list">
+																			<ListItem>
+																				<button
+																					type="button"
+																					class="dot"
+																					aria-label={'Color'}
+																					style="background-color: var(--ctp-red)"
+																				/>Red: Highest values for this hitzone
+																				type.</ListItem
+																			>
+																			<ListItem
+																				><button
+																					type="button"
+																					class="dot"
+																					aria-label={'Color'}
+																					style="background-color: var(--ctp-peach)"
+																				/>Orange: Second highest values for this
+																				hitzone type.</ListItem
+																			>
+																			<ListItem
+																				><button
+																					type="button"
+																					class="dot"
+																					aria-label={'Color'}
+																					style="background-color: var(--ctp-yellow)"
+																				/>Yellow: Third highest values for this
+																				hitzone type.</ListItem
+																			>
+																			<ListItem
+																				><button
+																					type="button"
+																					class="dot"
+																					aria-label={'Color'}
+																					style="background-color: var(--ctp-green)"
+																				/>Green: Values higher than 0 for this
+																				hitzone type.</ListItem
+																			>
+																			<ListItem
+																				><button
+																					type="button"
+																					class="dot"
+																					aria-label={'Color'}
+																					style="background-color: var(--ctp-blue)"
+																				/>Blue: Values lower or equal to 0 for
+																				this hitzone type.</ListItem
+																			>
+																		</UnorderedList>
+																	</div>
+																</div>
+															</TabContent>
+														</svelte:fragment>
+													</Tabs>
+												</div>
 											</TabContent>
 										</svelte:fragment>
 									</Tabs>
 								</div>
 							</Pane>
-							<Pane size={25}>
+							<Pane bind:size={panel2Size}>
 								<div>
-									<Tabs type="container">
+									<Tabs type="container" bind:selected={panel2TabSelected}>
 										<Tab label="Results" />
 										<Tab label="Save/Load" />
 										<Tab label="Logs" />
@@ -10080,11 +10664,15 @@ does not get multiplied by horn */
 							</Pane>
 						</Splitpanes>
 					</Pane>
-					<Pane size={50}>
+					<Pane bind:size={bottomPanelsSize}>
 						<Splitpanes theme="modern-theme">
-							<Pane size={75}>
+							<Pane bind:size={panel3Size}>
 								<div>
-									<Tabs autoWidth type="container">
+									<Tabs
+										autoWidth
+										type="container"
+										bind:selected={panel3TabSelected}
+									>
 										<Tab label="Weapon Motion Values" />
 										<Tab label="Shared Motion Values" />
 										<Tab label="Formulas" />
@@ -10706,15 +11294,118 @@ does not get multiplied by horn */
 									</Tabs>
 								</div>
 							</Pane>
-							<Pane size={25}>
-								<div></div>
-							</Pane>
+							<Pane bind:size={panel4Size} bind:selected={panel4TabSelected}>
+								<div>
+									<Tabs>
+										<Tab label="Monster Image" />
+										<Tab label="Monster Table" />
+										<svelte:fragment slot="content">
+											<TabContent>
+												<div class="container-tab-content">
+													<div class="silhouette">
+														{#if selectedMonster && currentSilhouette}
+															<div
+																transition:fade={{
+																	duration: 150,
+																	easing: cubicInOut,
+																}}
+															>
+																<MonsterSilhouette
+																	{currentSilhouette}
+																	{selectedHitzoneType}
+																	{selectedMonsterState}
+																	selectedRankBand={selectedMonsterRankBand}
+																	{hitzones}
+																/>
+															</div>
+														{/if}
+													</div>
+													{#if silhouetteInfo.find((e) => e.displayName === selectedMonster)?.silhouette}
+														<Dropdown
+															titleText="Hitzone Type"
+															bind:selectedId={selectedHitzoneType}
+															items={[
+																{ id: 'Cutting', text: '⚔️ Cutting' },
+																{ id: 'Impact', text: '🔨 Impact' },
+																{ id: 'Shot', text: '🏹 Shot' },
+																{ id: 'Fire', text: '🔥 Fire' },
+																{ id: 'Water', text: '💧 Water' },
+																{ id: 'Thunder', text: '⚡ Thunder' },
+																{ id: 'Dragon', text: '🐲 Dragon' },
+																{ id: 'Ice', text: '❄️ Ice' },
+																{ id: 'Stun', text: '💫 Stun' },
+															]}
+														/>
+													{/if}
+												</div>
+											</TabContent>
+											<TabContent>
+												<div class="container-tab-content">
+													{#if selectedMonster}
+														<div
+															class="hitzone-table"
+															transition:fade={{
+																duration: 150,
+																easing: cubicInOut,
+															}}
+														>
+															<DataTable
+																sortable
+																zebra
+																title={selectedMonster +
+																	' | ' +
+																	selectedMonsterRankBand +
+																	' | ' +
+																	selectedMonsterState}
+																size="medium"
+																headers={[
+																	{ key: 'part', value: 'Part' },
+																	{ key: 'cutting', value: '⚔️' },
+																	{ key: 'impact', value: '🔨' },
+																	{ key: 'shot', value: '🏹' },
+																	{ key: 'fire', value: '🔥' },
+																	{ key: 'water', value: '💧' },
+																	{ key: 'thunder', value: '⚡' },
+																	{ key: 'ice', value: '❄️' },
+																	{ key: 'dragon', value: '🐲' },
+																	{ key: 'stun', value: '💫' },
+																]}
+																rows={hitzoneValues}
+																><Toolbar
+																	><div class="toolbar">
+																		<CopyButton
+																			iconDescription={'Copy as CSV'}
+																			text={getCSVFromArray(hitzoneValues)}
+																		/>
+																	</div>
+																</Toolbar>
+
+																<svelte:fragment slot="cell" let:cell>
+																	{#if hitzoneHighestValues[cell.key
+																			.charAt(0)
+																			.toUpperCase() + cell.key.slice(1)]?.find((e) => e === cell.value)}
+																		<p><strong>{cell.value}</strong></p>
+																	{:else}
+																		<p>{cell.value}</p>
+																	{/if}
+																</svelte:fragment>
+															</DataTable>
+														</div>
+													{/if}
+												</div>
+											</TabContent>
+										</svelte:fragment>
+									</Tabs>
+								</div></Pane
+							>
 						</Splitpanes>
 					</Pane>
 				</Splitpanes>
 			</Pane>
 			<Pane size={6} minSize={6} maxSize={6}>
-				<p>statusbar</p>
+				<div class="status-bar">
+					<p>{statusBarText}</p>
+				</div>
 			</Pane>
 		</Splitpanes>
 
@@ -10794,9 +11485,18 @@ does not get multiplied by horn */
 		height: 100vh;
 	}
 
+	.status-bar {
+		padding: 0.5rem;
+		background-color: var(--ctp-crust);
+		p {
+			color: var(--ctp-subtext0);
+		}
+	}
+
 	.top-toolbar {
 		display: flex;
 		gap: 0rem;
+		background-color: var(--ctp-mantle);
 	}
 
 	.page-turn {
@@ -11335,5 +12035,24 @@ does not get multiplied by horn */
 		display: flex;
 		gap: 0.5rem;
 		align-items: center;
+	}
+
+	.silhouette {
+		width: 100%;
+	}
+
+	.hitzone-table {
+		width: 100%;
+		overflow-x: auto;
+		background-color: var(--ctp-surface0);
+	}
+
+	.dot {
+		width: 1rem;
+		height: 1rem;
+		margin-right: 0.25rem;
+		border-color: var(--ctp-surface1);
+		border-radius: 50%;
+		border-style: solid;
 	}
 </style>
