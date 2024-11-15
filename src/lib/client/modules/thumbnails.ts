@@ -25,6 +25,7 @@ import thumbnailLightArmorSkillsPriority from '$lib/client/images/page-thumbnail
 import thumbnailLightExotics from '$lib/client/images/page-thumbnail/light/exotics.png';
 import thumbnailLightHuntingHornSongs from '$lib/client/images/page-thumbnail/light/hunting-horn-songs.png';
 import thumbnailLightCaravanSkills from '$lib/client/images/page-thumbnail/light/caravan-skills.png';
+import thumbnailLightDamageCalculator from '$lib/client/images/page-thumbnail/light/damage-calculator.webp';
 
 import thumbnailDarkActiveFeature from '$lib/client/images/page-thumbnail/dark/active-feature.png';
 import thumbnailDarkGuildPoogies from '$lib/client/images/page-thumbnail/dark/guild-poogies.png';
@@ -86,6 +87,7 @@ import thumbnailDarkSigilSkills from '$lib/client/images/page-thumbnail/dark/sig
 import thumbnailDarkWeapons from '$lib/client/images/page-thumbnail/dark/weapons.png';
 import thumbnailDarkCalculators from '$lib/client/images/page-thumbnail/dark/calculators.png';
 import thumbnailDarkSigilSlots from '$lib/client/images/page-thumbnail/dark/sigil-slots.png';
+import thumbnailDarkDamageCalculator from '$lib/client/images/page-thumbnail/dark/damage-calculator.webp';
 
 import { getMonsterIcon } from './frontier/monsters';
 
@@ -167,7 +169,12 @@ const lightThumbnailInfo: {
 	{
 		embed: null,
 		link: '/tools/calculator/damage',
-		thumbnail: thumbnailLightSharedMotionValues,
+		thumbnail: thumbnailLightDamageCalculator,
+	},
+	{
+		embed: null,
+		link: '/tools/calculator/damage/app',
+		thumbnail: thumbnailLightDamageCalculator,
 	},
 	{
 		embed: null,
@@ -500,7 +507,12 @@ const darkThumbnailInfo: {
 	{
 		embed: null,
 		link: '/tools/calculator/damage',
-		thumbnail: thumbnailDarkSharedMotionValues,
+		thumbnail: thumbnailDarkDamageCalculator,
+	},
+	{
+		embed: null,
+		link: '/tools/calculator/damage/app',
+		thumbnail: thumbnailDarkDamageCalculator,
 	},
 	{
 		embed: null,
