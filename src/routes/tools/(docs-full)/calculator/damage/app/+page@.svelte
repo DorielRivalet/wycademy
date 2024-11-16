@@ -185,6 +185,9 @@
 	import Help from 'carbon-icons-svelte/lib/Help.svelte';
 	import Reset from 'carbon-icons-svelte/lib/Reset.svelte';
 	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
+	import DataTableIcon from 'carbon-icons-svelte/lib/DataTable.svelte';
+	import Result from 'carbon-icons-svelte/lib/Result.svelte';
+	import Time from 'carbon-icons-svelte/lib/Time.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -6491,25 +6494,32 @@ does not get multiplied by horn */
 					<Button
 						href="/tools/calculator/damage"
 						kind="ghost"
-						icon={PreviousOutline}
 						tooltipPosition="right"
 						iconDescription="Go to page version"
-					/>
+					>
+						<span slot="icon">
+							<PreviousOutline size={24} />
+						</span>
+					</Button>
 					<Button
 						class="driverjs-7"
 						kind="ghost"
-						icon={Help}
 						tooltipPosition="right"
 						on:click={(e) => startWalkthrough()}
 						iconDescription="Walkthrough"
-					/>
+						><span slot="icon">
+							<Help size={24} color="var(--ctp-green)" />
+						</span></Button
+					>
 					<Button
 						kind="ghost"
-						icon={Reset}
 						tooltipPosition="right"
 						on:click={(e) => resetPanelSizes()}
 						iconDescription="Reset panel sizes"
-					/>
+						><span slot="icon">
+							<Reset size={24} color="var(--ctp-yellow)" />
+						</span></Button
+					>
 				</div>
 			</Pane>
 
@@ -10326,10 +10336,14 @@ does not get multiplied by horn */
 							</Pane>
 							<Pane bind:size={panel2Size}>
 								<div>
-									<Tabs type="container" bind:selected={panel2TabSelected}>
-										<Tab label="Results" />
-										<Tab label="Save/Load" />
-										<Tab label="Logs" />
+									<Tabs
+										type="container"
+										bind:selected={panel2TabSelected}
+										autoWidth
+									>
+										<Tab label="Results"><Result size={32} /></Tab>
+										<Tab label="Save/Load"><Save size={32} /></Tab>
+										<Tab label="Logs"><Time size={32} /></Tab>
 
 										<svelte:fragment slot="content">
 											<TabContent>
@@ -11296,9 +11310,9 @@ does not get multiplied by horn */
 							</Pane>
 							<Pane bind:size={panel4Size} bind:selected={panel4TabSelected}>
 								<div>
-									<Tabs type="container">
-										<Tab label="Monster Image" />
-										<Tab label="Monster Table" />
+									<Tabs type="container" autoWidth>
+										<Tab label="Monster Image"><Image size={32} /></Tab>
+										<Tab label="Monster Table"><DataTableIcon size={32} /></Tab>
 										<svelte:fragment slot="content">
 											<TabContent>
 												<div class="container-tab-content">
