@@ -11408,6 +11408,15 @@ does not get multiplied by horn */
 															</DataTable>
 														</div>
 													{/if}
+													{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
+														<p>
+															See also the <Link
+																inline
+																href={`/hunter-notes/monsters/overview/${slugify(selectedMonster, { lower: true })}#hitzone-values`}
+																>hitzones monster page</Link
+															> for a table of HZV.
+														</p>
+													{/if}
 												</div>
 											</TabContent>
 										</svelte:fragment>
@@ -12061,6 +12070,7 @@ does not get multiplied by horn */
 		width: 100%;
 		overflow-x: auto;
 		background-color: var(--ctp-surface0);
+		margin-bottom: 1rem;
 	}
 
 	.dot {
