@@ -6485,7 +6485,7 @@ does not get multiplied by horn */
 				><Button
 					href="/tools/calculator/damage/app"
 					kind="tertiary"
-					icon={ApplicationWeb}>On Desktop? Try our app-like navigation!</Button
+					icon={ApplicationWeb}>On desktop? Try our app-like navigation!</Button
 				>
 			</div>
 			<Accordion class="spaced-accordion driverjs-0">
