@@ -2,11 +2,23 @@
 	import ProgressBar from 'carbon-components-svelte/src/ProgressBar/ProgressBar.svelte';
 	import { onMount, onDestroy } from 'svelte';
 
-	export let title: string;
-	export let description: string;
-	export let progressPosition: 'top' | 'bottom' = 'bottom';
-	export let progressBarValue: number;
-	export let titleColor: string;
+	interface Props {
+		title: string;
+		description: string;
+		progressPosition?: 'top' | 'bottom';
+		progressBarValue: number;
+		titleColor: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		title,
+		description,
+		progressPosition = 'bottom',
+		progressBarValue = $bindable(),
+		titleColor,
+		children
+	}: Props = $props();
 
 	let progressBarInterval: ReturnType<typeof setInterval> | null = null;
 
@@ -38,7 +50,7 @@
 			/>
 		</div>
 	{/if}
-	<div class="icon"><slot /></div>
+	<div class="icon">{@render children?.()}</div>
 	<p class="title" style="color: {titleColor};">
 		{title}
 	</p>

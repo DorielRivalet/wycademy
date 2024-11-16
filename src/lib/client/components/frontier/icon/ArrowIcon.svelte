@@ -5,8 +5,12 @@
 -->
 
 <script lang="ts">
-	export let fill: string = '#fff';
-	export let style: string = '';
+	interface Props {
+		fill?: string;
+		style?: string;
+	}
+
+	let { fill = '#fff', style = '' }: Props = $props();
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
@@ -32,7 +36,7 @@
 		type="xygrid"
 		originx="-11.740886"
 		originy="-1.90169"
-	/>
+	></sodipodi:namedview>
 	<g transform="translate(-11.740886,-281.96834)"
 		><path
 			style="fill:{fill};fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1;"

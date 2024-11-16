@@ -7,7 +7,8 @@
 
 	type $$Props = NodeProps;
 
-	export let data: {
+	interface Props {
+		data: {
 		iconColor: Writable<string>;
 		icon: Writable<SvelteComponent | string>;
 		iconType: Writable<'file' | 'component'>;
@@ -42,6 +43,10 @@
 		>;
 		backgroundColor: Writable<string>;
 	};
+		[key: string]: any
+	}
+
+	let { data, ...rest }: Props = $props();
 
 	const {
 		iconColor,
@@ -54,7 +59,7 @@
 		backgroundColor,
 	} = data;
 
-	$$restProps;
+	rest;
 </script>
 
 <div class="inlinetooltip" style="background-color: {$backgroundColor}">

@@ -27,9 +27,9 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	let criticalDistanceChartLoaded = false;
-	let criticalDistanceChart: ComponentType<LineChart>;
-	let criticalDistanceBowChart: ComponentType<LineChart>;
+	let criticalDistanceChartLoaded = $state(false);
+	let criticalDistanceChart: ComponentType<LineChart> = $state();
+	let criticalDistanceBowChart: ComponentType<LineChart> = $state();
 
 	const criticalDistanceChartAmmoTypesData = [
 		{
@@ -543,7 +543,7 @@
 		);
 	}
 
-	let criticalDistanceAmmoTypeForChart = 'Normal / Rapid Shot';
+	let criticalDistanceAmmoTypeForChart = $state('Normal / Rapid Shot');
 	let criticalDistanceChartDropdownOptions = [
 		{
 			id: 'Normal / Rapid Shot',
@@ -559,13 +559,13 @@
 		},
 	];
 
-	let criticalDistanceBowChartLoaded = false;
+	let criticalDistanceBowChartLoaded = $state(false);
 
-	$: criticalDistanceChartData = getCriticalDistanceChartData(
+	let criticalDistanceChartData = $derived(getCriticalDistanceChartData(
 		criticalDistanceAmmoTypeForChart,
-	);
+	));
 
-	$: criticalDistanceChartOptions = {
+	let criticalDistanceChartOptions = $derived({
 		title: `Critical Distance (${criticalDistanceAmmoTypeForChart})`,
 		theme: $carbonThemeStore,
 		legend: { enabled: true, truncation: { numCharacter: 24 } },
@@ -581,9 +581,9 @@
 				scaleType: ScaleTypes.LINEAR,
 			},
 		},
-	} as LineChartOptions;
+	} as LineChartOptions);
 
-	$: criticalDistanceBowChartOptions = {
+	let criticalDistanceBowChartOptions = $derived({
 		title: 'Critical Distance (Bow)',
 		theme: $carbonThemeStore,
 		legend: { enabled: true, truncation: { numCharacter: 24 } },
@@ -599,7 +599,7 @@
 				scaleType: ScaleTypes.LINEAR,
 			},
 		},
-	} as LineChartOptions;
+	} as LineChartOptions);
 
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
@@ -642,8 +642,8 @@
 						</div>
 						<div class="chart">
 							{#if criticalDistanceChartLoaded}
-								<svelte:component
-									this={criticalDistanceChart}
+								{@const SvelteComponent = criticalDistanceChart}
+								<SvelteComponent
 									data={criticalDistanceChartData}
 									options={criticalDistanceChartOptions}
 								/>
@@ -732,16 +732,18 @@
 										/>
 									</div>
 								</Toolbar>
-								<svelte:fragment slot="cell" let:cell>
-									<p>{cell.value}</p>
-								</svelte:fragment>
+								{#snippet cell({ cell })}
+															
+										<p>{cell.value}</p>
+									
+															{/snippet}
 							</DataTable>
 						</div>
 						<div class="chart">
 							<div>
 								{#if criticalDistanceBowChartLoaded}
-									<svelte:component
-										this={criticalDistanceBowChart}
+									{@const SvelteComponent_1 = criticalDistanceBowChart}
+									<SvelteComponent_1
 										data={[
 											{ group: 'Rapid', multiplier: 1, distance: 'Close' },
 											{ group: 'Rapid', multiplier: 1.5, distance: 'Mid 1' },

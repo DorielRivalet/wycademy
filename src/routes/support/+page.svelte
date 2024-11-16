@@ -4,6 +4,8 @@
   ~ found in the LICENSE file.
 -->
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
@@ -47,8 +49,12 @@
 	const bannerEnabledStore = getContext(
 		Symbol.for('banner'),
 	) as Writable<boolean>;
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	export let data: LayoutData;
+	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
+	interface Props {
+		data: LayoutData;
+	}
+
+	let { data }: Props = $props();
 
 	onMount(() => {
 		let themeValue = $carbonThemeStore;
@@ -72,7 +78,10 @@
 	const description =
 		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Doriel Rivalet.';
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	let headerClass;
+	run(() => {
+		headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	});
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
 
@@ -128,12 +137,14 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
-					<NotificationActionButton
-						on:click={() => goto('/support/website/development')}
-						>Learn more</NotificationActionButton
-					>
-				</svelte:fragment>
+				{#snippet actions()}
+							
+						<NotificationActionButton
+							on:click={() => goto('/support/website/development')}
+							>Learn more</NotificationActionButton
+						>
+					
+							{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>

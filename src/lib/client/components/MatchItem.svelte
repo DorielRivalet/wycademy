@@ -3,13 +3,17 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let options: [string[], string[]];
+	interface Props {
+		options: [string[], string[]];
+	}
 
-	$: column1Options = options[0];
-	$: column2Options = options[1];
+	let { options }: Props = $props();
 
-	let selectedOption1: string | null = null;
-	let connections: [string, string][] = [];
+	let column1Options = $derived(options[0]);
+	let column2Options = $derived(options[1]);
+
+	let selectedOption1: string | null = $state(null);
+	let connections: [string, string][] = $state([]);
 
 	function handleClickColumn1(option: string) {
 		if (selectedOption1 === option) {
@@ -39,13 +43,13 @@
 		dispatch('change', { connections });
 	}
 
-	$: isConnected1 = (option: string) =>
-		connections.some(([item1]) => item1 === option);
+	let isConnected1 = $derived((option: string) =>
+		connections.some(([item1]) => item1 === option));
 
-	$: isConnected2 = (option: string) =>
-		connections.some(([, item2]) => item2 === option);
+	let isConnected2 = $derived((option: string) =>
+		connections.some(([, item2]) => item2 === option));
 
-	$: isSelected = (option: string) => selectedOption1 === option;
+	let isSelected = $derived((option: string) => selectedOption1 === option);
 </script>
 
 <div class="connections">
@@ -63,7 +67,7 @@
 				)
 					? 'connected'
 					: ''}"
-				on:click={() => handleClickColumn1(option)}
+				onclick={() => handleClickColumn1(option)}
 			>
 				{option}
 			</button>
@@ -73,7 +77,7 @@
 		{#each column2Options as option}
 			<button
 				class="option {isConnected2(option) ? 'connected' : ''}"
-				on:click={() => handleClickColumn2(option)}
+				onclick={() => handleClickColumn2(option)}
 			>
 				{option}
 			</button>

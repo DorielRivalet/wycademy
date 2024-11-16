@@ -4,15 +4,26 @@
 	import ImageDialog from './ImageDialog.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 
-	export let figcaption: string;
-	export let alt: string;
-	export let width: string | number = 128;
-	export let height: string | number = 128;
-	export let src: string | ComponentType<SvelteComponent>;
-	export let type: 'file' | 'component';
+	interface Props {
+		figcaption: string;
+		alt: string;
+		width?: string | number;
+		height?: string | number;
+		src: string | ComponentType<SvelteComponent>;
+		type: 'file' | 'component';
+	}
 
-	let container: HTMLElement;
-	let isVisible = false;
+	let {
+		figcaption,
+		alt,
+		width = 128,
+		height = 128,
+		src,
+		type
+	}: Props = $props();
+
+	let container: HTMLElement = $state();
+	let isVisible = $state(false);
 
 	onMount(() => {
 		const observer = new IntersectionObserver(

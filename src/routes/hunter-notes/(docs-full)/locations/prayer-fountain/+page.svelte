@@ -60,7 +60,7 @@
 		},
 	];
 
-	let openAccordions = false;
+	let openAccordions = $state(false);
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -201,25 +201,27 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'item'}
-							<InlineTooltip
-								text={cell.value}
-								tooltip="Guild Ticket"
-								iconType="component"
-								icon={getItemIcon(
-									divaItems.find((e) => cell.value === e.item)?.icon ||
-										'Question Mark',
-								)}
-								iconColor={getItemColor(
-									divaItems.find((e) => cell.value === e.item)?.color ||
-										'White',
-								)}
-							/>
-						{:else}
-							<p>{cell.value}</p>
-						{/if}
-					</svelte:fragment>
+					{#snippet cell({ cell })}
+									
+							{#if cell.key === 'item'}
+								<InlineTooltip
+									text={cell.value}
+									tooltip="Guild Ticket"
+									iconType="component"
+									icon={getItemIcon(
+										divaItems.find((e) => cell.value === e.item)?.icon ||
+											'Question Mark',
+									)}
+									iconColor={getItemColor(
+										divaItems.find((e) => cell.value === e.item)?.color ||
+											'White',
+									)}
+								/>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						
+									{/snippet}
 				</DataTable>
 			</div>
 

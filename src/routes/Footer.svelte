@@ -23,11 +23,15 @@
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-	export let gitHubData: GitHubData = {
+	interface Props {
+		gitHubData?: GitHubData;
+	}
+
+	let { gitHubData = {
 		lastModified: '',
 		commitLink: '',
 		timesChanged: 0,
-	};
+	} }: Props = $props();
 	let { lastModified, commitLink, timesChanged } = gitHubData;
 </script>
 

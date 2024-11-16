@@ -5,6 +5,8 @@
 -->
 
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Header from '../../Header.svelte';
 	import Footer from '../../Footer.svelte';
 	import ViewTransition from '../../Navigation.svelte';
@@ -84,8 +86,13 @@
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	export let data: LayoutData;
+	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
 
 	type URLItem = { href: string; text: string };
 
@@ -143,11 +150,11 @@
 		}
 	}
 
-	let breadcrumbItems: URLItem[] = [];
-	let headTitle = "Hunter's Notes — Frontier's Wycademy";
+	let breadcrumbItems: URLItem[] = $state([]);
+	let headTitle = $state("Hunter's Notes — Frontier's Wycademy");
 	let description =
-		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.';
-	let image = pageThumbnail;
+		$state('Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.');
+	let image = $state(pageThumbnail);
 
 	const url = $page.url.toString();
 
@@ -857,16 +864,19 @@
 		},
 	];
 
-	let tocVisible = $hunterNotesSidebarEnabledStore;
+	let tocVisible = $state($hunterNotesSidebarEnabledStore);
 
-	let centerColumnClass = tocVisible ? '' : 'expanded';
-	let tocClass = tocVisible ? 'aside' : 'aside collapsed';
+	let centerColumnClass = $state(tocVisible ? '' : 'expanded');
+	let tocClass = $state(tocVisible ? 'aside' : 'aside collapsed');
 
-	let treeview: TreeView | null = null;
+	let treeview: TreeView | null = $state(null);
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	let headerClass;
+	run(() => {
+		headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	});
 
-	$: {
+	run(() => {
 		const pageUrlPathName = $page.url.pathname || '/';
 		const { navigationItem, items, monster } = processRoute(pageUrlPathName);
 		headTitle = monster
@@ -885,7 +895,7 @@
 					$page.url.searchParams.get('embed-theme'),
 				);
 		breadcrumbItems = items;
-	}
+	});
 
 	onMount(() => {
 		let themeValue = $carbonThemeStore;
@@ -986,12 +996,14 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
-					<NotificationActionButton
-						on:click={() => goto('/support/website/development')}
-						>Learn more</NotificationActionButton
-					>
-				</svelte:fragment>
+				{#snippet actions()}
+							
+						<NotificationActionButton
+							on:click={() => goto('/support/website/development')}
+							>Learn more</NotificationActionButton
+						>
+					
+							{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
@@ -1001,48 +1013,52 @@
 				style="background-color: var(--ctp-mantle); position: sticky; top: 10vh;
 				height: 85vh;"
 				{children}
-				let:node
+				
 				bind:this={treeview}
-				><span slot="labelText">
-					<Button
-						iconDescription={'Close Sidebar'}
-						tooltipPosition="right"
-						kind="ghost"
-						size={'small'}
-						icon={SidePanelClose}
-						on:click={onTOCToggleButtonPress}
-					/></span
-				>
-				<a
-					class="tree-view-item"
-					href={node.id}
-					style:color={node.selected ? 'var(--cds-interactive-04)' : 'inherit'}
-				>
-					<div>
-						{#if typeof iconsMap.find((e) => e.id === node.id)?.icon === 'string'}
-							<img
-								width="24"
-								src={iconsMap.find((e) => e.id === node.id)?.icon}
-								alt="Tree Item Icon"
-							/>
-						{:else}
-							<svelte:component
-								this={iconsMap.find((e) => e.id === node.id)?.icon}
-								{...{
-									background: iconsMap.find((e) => e.id === node.id)?.iconProps
-										?.background,
-									size: '24px',
-									currentMonster: iconsMap.find((e) => e.id === node.id)
-										?.iconProps?.currentMonster,
-								}}
-							/>
-						{/if}
-					</div>
-					<p>
-						{node.text}
-					</p>
-				</a>
-			</TreeView>
+				>{#snippet labelText()}
+								<span >
+						<Button
+							iconDescription={'Close Sidebar'}
+							tooltipPosition="right"
+							kind="ghost"
+							size={'small'}
+							icon={SidePanelClose}
+							on:click={onTOCToggleButtonPress}
+						/></span
+					>
+							{/snippet}
+				{#snippet children({ node })}
+								<a
+						class="tree-view-item"
+						href={node.id}
+						style:color={node.selected ? 'var(--cds-interactive-04)' : 'inherit'}
+					>
+						<div>
+							{#if typeof iconsMap.find((e) => e.id === node.id)?.icon === 'string'}
+								<img
+									width="24"
+									src={iconsMap.find((e) => e.id === node.id)?.icon}
+									alt="Tree Item Icon"
+								/>
+							{:else}
+								{@const SvelteComponent_1 = iconsMap.find((e) => e.id === node.id)?.icon}
+							<SvelteComponent_1
+									{...{
+										background: iconsMap.find((e) => e.id === node.id)?.iconProps
+											?.background,
+										size: '24px',
+										currentMonster: iconsMap.find((e) => e.id === node.id)
+											?.iconProps?.currentMonster,
+									}}
+								/>
+							{/if}
+						</div>
+						<p>
+							{node.text}
+						</p>
+					</a>
+											{/snippet}
+						</TreeView>
 		</aside>
 		<div class="body {centerColumnClass}">
 			<div class="breadcrumb">
@@ -1059,7 +1075,7 @@
 				</Breadcrumb>
 			</div>
 			<div class="slot">
-				<slot />
+				{@render children?.()}
 			</div>
 		</div>
 	</main>

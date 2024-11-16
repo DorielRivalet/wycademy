@@ -172,18 +172,22 @@
 		}
 	}
 
-	export let items: MultipleChoiceItem[];
-	export let category: string;
+	interface Props {
+		items: MultipleChoiceItem[];
+		category: string;
+	}
+
+	let { items = $bindable(), category }: Props = $props();
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	let currentItemIndex = 0;
-	let currentScore = 0;
+	let currentItemIndex = $state(0);
+	let currentScore = $state(0);
 
-	let resultsGauge: ComponentType<GaugeChart>;
-	let resultsGaugeLoaded = false;
+	let resultsGauge: ComponentType<GaugeChart> = $state();
+	let resultsGaugeLoaded = $state(false);
 
 	let currentAnswer:
 		| number
@@ -191,15 +195,26 @@
 		| string[]
 		| boolean
 		| boolean[]
-		| [string, string][] = [];
+		| [string, string][] = $state([]);
 
-	$: resultsGaugeColor = getGaugeColor(
+
+
+
+
+	onMount(async () => {
+		const charts = await import('@carbon/charts-svelte');
+		resultsGauge = charts.GaugeChart;
+		resultsGaugeLoaded = true;
+		items = shuffleArray([...items]); // Shuffle stems on initialization
+		randomizeCurrentOptions(); // Shuffle options for the first item
+	});
+	let maxScore = $derived(items.length);
+	let resultsGaugeColor = $derived(getGaugeColor(
 		$carbonThemeStore,
 		currentScore,
 		maxScore,
-	);
-
-	$: resultsGaugeOptions = {
+	));
+	let resultsGaugeOptions = $derived({
 		theme: $carbonThemeStore,
 		resizable: true,
 		toolbar: {
@@ -214,26 +229,15 @@
 				value: resultsGaugeColor,
 			},
 		},
-	} as GaugeChartOptions;
-
-	$: resultsGaugeData = [
+	} as GaugeChartOptions);
+	let resultsGaugeData = $derived([
 		{
 			group: 'value',
 			value: getGaugeValue(currentScore, maxScore),
 		},
-	];
-
-	$: currentItem = items[currentItemIndex] ?? undefined;
-	$: currentSolution = currentItem?.solutions ?? undefined;
-	$: maxScore = items.length;
-
-	onMount(async () => {
-		const charts = await import('@carbon/charts-svelte');
-		resultsGauge = charts.GaugeChart;
-		resultsGaugeLoaded = true;
-		items = shuffleArray([...items]); // Shuffle stems on initialization
-		randomizeCurrentOptions(); // Shuffle options for the first item
-	});
+	]);
+	let currentItem = $derived(items[currentItemIndex] ?? undefined);
+	let currentSolution = $derived(currentItem?.solutions ?? undefined);
 </script>
 
 <div class="container">
@@ -344,8 +348,8 @@
 		<div class="gauge-container">
 			<div class="gauge">
 				{#if resultsGaugeLoaded}
-					<svelte:component
-						this={resultsGauge}
+					{@const SvelteComponent = resultsGauge}
+					<SvelteComponent
 						data={resultsGaugeData}
 						options={resultsGaugeOptions}
 					/>

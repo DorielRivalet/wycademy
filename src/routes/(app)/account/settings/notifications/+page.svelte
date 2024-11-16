@@ -30,24 +30,31 @@
 		</p>
 		<div class="container-toggles">
 			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						Profile rewards
-						<span slot="tooltip">
-							Notifies when you receive a reward from leaderboards or events.
-						</span>
-					</TooltipDefinition></span
-				>
+				{#snippet labelText()}
+					<span
+						><TooltipDefinition>
+							Profile rewards
+							{#snippet tooltip()}
+								<span>
+									Notifies when you receive a reward from leaderboards or
+									events.
+								</span>
+							{/snippet}
+						</TooltipDefinition></span
+					>
+				{/snippet}
 			</Toggle>
 			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						Wycademy's Events updates
-						<span slot="tooltip">
-							Notifies when an event has updated information.
-						</span>
-					</TooltipDefinition></span
-				>
+				{#snippet labelText()}
+					<span
+						><TooltipDefinition>
+							Wycademy's Events updates
+							{#snippet tooltip()}
+								<span> Notifies when an event has updated information. </span>
+							{/snippet}
+						</TooltipDefinition></span
+					>
+				{/snippet}
 			</Toggle>
 			<Toggle labelText="I receive new followers" />
 			<Toggle
@@ -55,28 +62,36 @@
 				labelText="My followed users obtained a world record"
 			/>
 			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						My followed users get a new personal best
-						<span slot="tooltip">
-							If the personal best was also a world record, skips this
-							nofication if "My followed users obtained a world record" is
-							enabled.
-						</span>
-					</TooltipDefinition></span
-				>
+				{#snippet labelText()}
+					<span
+						><TooltipDefinition>
+							My followed users get a new personal best
+							{#snippet tooltip()}
+								<span>
+									If the personal best was also a world record, skips this
+									nofication if "My followed users obtained a world record" is
+									enabled.
+								</span>
+							{/snippet}
+						</TooltipDefinition></span
+					>
+				{/snippet}
 			</Toggle>
-			<Toggle toggled={true} labelText="">
-				<span slot="labelText"
-					><TooltipDefinition>
+			<Toggle toggled={true}>
+				<!-- @migration-task: migrate this slot by hand, `labelText` would shadow a prop on the parent component -->
+				{#snippet labelText()}
+					<TooltipDefinition>
 						My followed users submitted a run
-						<span slot="tooltip">
-							If the submitted run was also a world record or a personal best,
-							skips this nofication if "My followed users obtained a world
-							record" or "My followed users get a new personal best" is enabled.
-						</span>
-					</TooltipDefinition></span
-				>
+						{#snippet tooltip()}
+							<span>
+								If the submitted run was also a world record or a personal best,
+								skips this nofication if "My followed users obtained a world
+								record" or "My followed users get a new personal best" is
+								enabled.
+							</span>
+						{/snippet}
+					</TooltipDefinition>
+				{/snippet}
 			</Toggle>
 			<Toggle labelText="Someone followed a followed user" />
 		</div>
@@ -86,46 +101,61 @@
 		<SectionHeading level={2} title={'Bell notifications'} />
 		<div class="container-toggles">
 			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						Profile rewards
-						<span slot="tooltip">
-							Notifies when you receive a reward from leaderboards or events.
-						</span>
-					</TooltipDefinition></span
-				>
+				{#snippet labelText()}
+					<span
+						><TooltipDefinition>
+							Profile rewards
+							{#snippet tooltip()}
+								<span>
+									Notifies when you receive a reward from leaderboards or
+									events.
+								</span>
+							{/snippet}
+						</TooltipDefinition></span
+					>
+				{/snippet}
 			</Toggle>
 			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						Overlay updates
-						<span slot="tooltip">
-							Notifies when the overlay publishes a new release.
-						</span>
-					</TooltipDefinition></span
-				>
+				{#snippet labelText()}
+					<span
+						><TooltipDefinition>
+							Overlay updates
+							{#snippet tooltip()}
+								<span>
+									Notifies when the overlay publishes a new release.
+								</span>
+							{/snippet}
+						</TooltipDefinition></span
+					>
+				{/snippet}
 			</Toggle>
 			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						Wycademy's Events updates
-						<span slot="tooltip">
-							Notifies when an event has updated information.
-						</span>
-					</TooltipDefinition></span
-				>
+				{#snippet labelText()}
+					<span
+						><TooltipDefinition>
+							Wycademy's Events updates
+							{#snippet tooltip()}
+								<span> Notifies when an event has updated information. </span>
+							{/snippet}
+						</TooltipDefinition></span
+					>
+				{/snippet}
 			</Toggle>
 			<Toggle toggled={true} labelText="Someone obtained a world record" />
 			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						Someone claimed a global achievement
-						<span slot="tooltip">
-							Notifies when an achievement (found in /overlay/achievements) was
-							obtained for the first time ever.
-						</span>
-					</TooltipDefinition></span
-				>
+				{#snippet labelText()}
+					<span
+						><TooltipDefinition>
+							Someone claimed a global achievement
+							{#snippet tooltip()}
+								<span>
+									Notifies when an achievement (found in /overlay/achievements)
+									was obtained for the first time ever.
+								</span>
+							{/snippet}
+						</TooltipDefinition></span
+					>
+				{/snippet}
 			</Toggle>
 			<Toggle labelText="I receive new followers" />
 			<Toggle
@@ -133,28 +163,36 @@
 				labelText="My followed users obtained a world record"
 			/>
 			<Toggle toggled={true}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						My followed users get a new personal best
-						<span slot="tooltip">
-							If the personal best was also a world record, skips this
-							nofication if "My followed users obtained a world record" is
-							enabled.
-						</span>
-					</TooltipDefinition></span
-				>
+				{#snippet labelText()}
+					<span
+						><TooltipDefinition>
+							My followed users get a new personal best
+							{#snippet tooltip()}
+								<span>
+									If the personal best was also a world record, skips this
+									nofication if "My followed users obtained a world record" is
+									enabled.
+								</span>
+							{/snippet}
+						</TooltipDefinition></span
+					>
+				{/snippet}
 			</Toggle>
-			<Toggle toggled={true} labelText="">
-				<span slot="labelText"
-					><TooltipDefinition>
+			<Toggle toggled={true}>
+				<!-- @migration-task: migrate this slot by hand, `labelText` would shadow a prop on the parent component -->
+				{#snippet labelText()}
+					<TooltipDefinition>
 						My followed users submitted a run
-						<span slot="tooltip">
-							If the submitted run was also a world record or a personal best,
-							skips this nofication if "My followed users obtained a world
-							record" or "My followed users get a new personal best" is enabled.
-						</span>
-					</TooltipDefinition></span
-				>
+						{#snippet tooltip()}
+							<span>
+								If the submitted run was also a world record or a personal best,
+								skips this nofication if "My followed users obtained a world
+								record" or "My followed users get a new personal best" is
+								enabled.
+							</span>
+						{/snippet}
+					</TooltipDefinition>
+				{/snippet}
 			</Toggle>
 			<Toggle labelText="Someone followed a followed user" />
 		</div>

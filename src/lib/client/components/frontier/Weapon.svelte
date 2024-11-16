@@ -57,69 +57,135 @@ Does not handle decorations because sigils are optimal.
 	import { huntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/weapons';
 	import { stringReplacements } from '$lib/client/modules/frontier/strings';
 
-	/** Truncated to 18 characters.*/
-	export let name: string = 'Name';
+	
 
-	/** From 1 to 100.*/
-	export let level: number = 100;
-	export let weaponID: FrontierWeaponID = 0;
-	export let attack: number = 100;
-	export let elementValue: number = 0;
-	export let statusValue: number = 0;
-	export let element: FrontierElement = 'Fire';
-	export let status: FrontierStatus = 'Poison';
-	export let length: FrontierWeaponLength = 'Very Long';
-	export let sharpnessValues: FrontierWeaponSharpness = [
-		170, 170, 170, 170, 170, 200, 250, 400,
-	];
+	
 
-	/** Whether to show the boosted color.*/
-	export let sharpnessBoost: boolean = true;
+	
 
-	/** Whether to show the boosted color.*/
-	export let elementBoost: boolean = true;
+	
 
-	/** Whether to show the boosted color.*/
-	export let statusBoost: boolean = true;
+	
 
-	/** Whether to show the boosted color.*/
-	export let attackBoost: boolean = true;
+	
 
-	/** Whether to show the boosted color.*/
-	export let affinityBoost: boolean = true;
+	
 
-	/** The overlay icon in the bottom left corner.*/
-	export let rank: FrontierEquipmentRank = 'G';
+	
 
-	export let zenithSkill: FrontierZenithSkill = ezlionSkillZenith[1];
 
 	// page 2
-	export let description: string = 'Description.';
-	export let rarity: FrontierRarity = 12;
-	export let affinity: number = 0;
 
-	/** Show extra icons.*/
-	export let extraIcons = false;
+	
 
 	/**
 	 * TODO Set theme to light.
 	 */
 	// export let light = false;
 
-	export let phial: FrontierSwitchAxeFPhial = 'Power';
 
-	export let currentPage: number = 1;
 
-	export let skillNames: FrontierArmorSkillTree[] = [
+
+
+
+
+
+
+	
+
+	
+
+	interface Props {
+		/** Truncated to 18 characters.*/
+		name?: string;
+		/** From 1 to 100.*/
+		level?: number;
+		weaponID?: FrontierWeaponID;
+		attack?: number;
+		elementValue?: number;
+		statusValue?: number;
+		element?: FrontierElement;
+		status?: FrontierStatus;
+		length?: FrontierWeaponLength;
+		sharpnessValues?: FrontierWeaponSharpness;
+		/** Whether to show the boosted color.*/
+		sharpnessBoost?: boolean;
+		/** Whether to show the boosted color.*/
+		elementBoost?: boolean;
+		/** Whether to show the boosted color.*/
+		statusBoost?: boolean;
+		/** Whether to show the boosted color.*/
+		attackBoost?: boolean;
+		/** Whether to show the boosted color.*/
+		affinityBoost?: boolean;
+		/** The overlay icon in the bottom left corner.*/
+		rank?: FrontierEquipmentRank;
+		zenithSkill?: FrontierZenithSkill;
+		description?: string;
+		rarity?: FrontierRarity;
+		affinity?: number;
+		/** Show extra icons.*/
+		extraIcons?: boolean;
+		phial?: FrontierSwitchAxeFPhial;
+		currentPage?: number;
+		skillNames?: FrontierArmorSkillTree[];
+		skillPoints?: FrontierEquipmentSkillPoints;
+		sigils?: FrontierSigil[];
+		sigilPoints?: FrontierSigilPoints;
+		weaponType?: FrontierWeaponType;
+		gunlanceShell?: FrontierGunlanceShell;
+		gunlanceShellLevel?: FrontierGunlanceShellLevel;
+		huntingHornNotes?: FrontierHuntingHornWeaponNote[];
+		automaticSkill?: FrontierArmorSkillName;
+		bowArc?: FrontierBowArcShot;
+		bowgunAttackLevel?: FrontierBowgunAttackLevel;
+		heavyBowgunUpgrade?: FrontierHeavyBowgunUpgrade;
+		lightBowgunUpgrade?: FrontierLightBowgunUpgrade;
+		bowgunScope?: FrontierBowgunScope;
+		bowgunReload?: FrontierBowgunReloadSpeed;
+		bowgunRecoil?: FrontierBowgunRecoil;
+		/** Some ammo levels are not shown in game.*/
+		bowgunAmmo?: FrontierBowgunAmmoQuantity[];
+		/**Available coatings*/
+		bowCoatings?: FrontierBowAvailableCoatings;
+		bowCharges?: FrontierBowChargeLevels[];
+	}
+
+	let {
+		name = 'Name',
+		level = 100,
+		weaponID = 0,
+		attack = 100,
+		elementValue = 0,
+		statusValue = 0,
+		element = 'Fire',
+		status = 'Poison',
+		length = 'Very Long',
+		sharpnessValues = [
+		170, 170, 170, 170, 170, 200, 250, 400,
+	],
+		sharpnessBoost = true,
+		elementBoost = true,
+		statusBoost = true,
+		attackBoost = true,
+		affinityBoost = true,
+		rank = 'G',
+		zenithSkill = ezlionSkillZenith[1],
+		description = 'Description.',
+		rarity = 12,
+		affinity = 0,
+		extraIcons = false,
+		phial = 'Power',
+		currentPage = $bindable(1),
+		skillNames = [
 		ezlionSkillArmorPriority[5],
 		ezlionSkillArmorPriority[25],
 		ezlionSkillArmorPriority[35],
 		ezlionSkillArmorPriority[55],
 		ezlionSkillArmorPriority[65],
-	];
-	export let skillPoints: FrontierEquipmentSkillPoints = [0, 20, -30, 40, 50];
-
-	export let sigils: FrontierSigil[] = [
+	],
+		skillPoints = [0, 20, -30, 40, 50],
+		sigils = [
 		ezlionSkillSigil[25],
 		ezlionSkillSigil[5],
 		ezlionSkillSigil[15],
@@ -129,30 +195,23 @@ Does not handle decorations because sigils are optimal.
 		ezlionSkillSigil[15],
 		ezlionSkillSigil[5],
 		ezlionSkillSigil[15],
-	];
-	export let sigilPoints: FrontierSigilPoints = [
+	],
+		sigilPoints = [
 		15, 20, -30, 40, 50, 15, 15, -15, 12,
-	];
-
-	export let weaponType: FrontierWeaponType = 'Evolution';
-
-	export let gunlanceShell: FrontierGunlanceShell = 'Normal';
-	export let gunlanceShellLevel: FrontierGunlanceShellLevel = 9;
-
-	export let huntingHornNotes: FrontierHuntingHornWeaponNote[] =
-		huntingHornWeaponNotesCombinations[0];
-
-	export let automaticSkill: FrontierArmorSkillName = '';
-	export let bowArc: FrontierBowArcShot = 'Narrow';
-	export let bowgunAttackLevel: FrontierBowgunAttackLevel = 5;
-	export let heavyBowgunUpgrade: FrontierHeavyBowgunUpgrade = 'Shield';
-	export let lightBowgunUpgrade: FrontierLightBowgunUpgrade = 'Silencer';
-	export let bowgunScope: FrontierBowgunScope = 'Zoom';
-	export let bowgunReload: FrontierBowgunReloadSpeed = 'Very Fast';
-	export let bowgunRecoil: FrontierBowgunRecoil = 'Smaller';
-
-	/** Some ammo levels are not shown in game.*/
-	export let bowgunAmmo: FrontierBowgunAmmoQuantity[] = [
+	],
+		weaponType = 'Evolution',
+		gunlanceShell = 'Normal',
+		gunlanceShellLevel = 9,
+		huntingHornNotes = huntingHornWeaponNotesCombinations[0],
+		automaticSkill = '',
+		bowArc = 'Narrow',
+		bowgunAttackLevel = 5,
+		heavyBowgunUpgrade = 'Shield',
+		lightBowgunUpgrade = 'Silencer',
+		bowgunScope = 'Zoom',
+		bowgunReload = 'Very Fast',
+		bowgunRecoil = 'Smaller',
+		bowgunAmmo = [
 		{ type: 'Norm S.', levelQuantity: [1, 2, 3] },
 		{ type: 'Pierce S.', levelQuantity: [1, 2, 3] },
 		{ type: 'Pellet S.', levelQuantity: [1, 2, 3] },
@@ -171,22 +230,20 @@ Does not handle decorations because sigils are optimal.
 		{ type: 'Paint S', levelQuantity: [1, 0, 0] },
 		{ type: 'Demon S.', levelQuantity: [0, 0, 0] },
 		{ type: 'Armor S.', levelQuantity: [0, 0, 0] },
-	];
-
-	/**Available coatings*/
-	export let bowCoatings: FrontierBowAvailableCoatings = {
+	],
+		bowCoatings = {
 		power: true,
 		poison: true,
 		para: true,
 		sleep: true,
 		impact: true,
-	};
-
-	export let bowCharges: FrontierBowChargeLevels[] = [
+	},
+		bowCharges = [
 		{ type: 'Pierce', level: 3 },
 		{ type: 'Spread', level: 3 },
 		{ type: 'Pierce', level: 4 },
-	];
+	]
+	}: Props = $props();
 
 	function nextPage() {
 		if (currentPage >= maxPages) {
@@ -212,133 +269,133 @@ Does not handle decorations because sigils are optimal.
 		rarity: rarity,
 	};
 	// TODO slots icons
-	$: rarityColor = stringReplacements.colorFromRarity(rarity);
-	$: affinityColor = affinityBoost
+	let rarityColor = $derived(stringReplacements.colorFromRarity(rarity));
+	let affinityColor = $derived(affinityBoost
 		? frontierColorNames[2].values[1].var
-		: '--ctp-mocha-text';
-	$: weaponClass = WeaponTypes[weaponID].class;
-	$: weaponTypeName = WeaponTypes[weaponID].name;
-	$: maxPages = weaponClass === 'Blademaster' ? 6 : 8;
-	$: normalAmmoStyle =
-		bowgunAmmo[0].levelQuantity[0] === 0 &&
+		: '--ctp-mocha-text');
+	let weaponClass = $derived(WeaponTypes[weaponID].class);
+	let weaponTypeName = $derived(WeaponTypes[weaponID].name);
+	let maxPages = $derived(weaponClass === 'Blademaster' ? 6 : 8);
+	let normalAmmoStyle =
+		$derived(bowgunAmmo[0].levelQuantity[0] === 0 &&
 		bowgunAmmo[0].levelQuantity[1] === 0 &&
 		bowgunAmmo[0].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: pierceAmmoStyle =
-		bowgunAmmo[1].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let pierceAmmoStyle =
+		$derived(bowgunAmmo[1].levelQuantity[0] === 0 &&
 		bowgunAmmo[1].levelQuantity[1] === 0 &&
 		bowgunAmmo[1].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: pelletAmmoStyle =
-		bowgunAmmo[2].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let pelletAmmoStyle =
+		$derived(bowgunAmmo[2].levelQuantity[0] === 0 &&
 		bowgunAmmo[2].levelQuantity[1] === 0 &&
 		bowgunAmmo[2].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: cragAmmoStyle =
-		bowgunAmmo[3].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let cragAmmoStyle =
+		$derived(bowgunAmmo[3].levelQuantity[0] === 0 &&
 		bowgunAmmo[3].levelQuantity[1] === 0 &&
 		bowgunAmmo[3].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: clusterAmmoStyle =
-		bowgunAmmo[4].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let clusterAmmoStyle =
+		$derived(bowgunAmmo[4].levelQuantity[0] === 0 &&
 		bowgunAmmo[4].levelQuantity[1] === 0 &&
 		bowgunAmmo[4].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: recoveryAmmoStyle =
-		bowgunAmmo[5].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let recoveryAmmoStyle =
+		$derived(bowgunAmmo[5].levelQuantity[0] === 0 &&
 		bowgunAmmo[5].levelQuantity[1] === 0 &&
 		bowgunAmmo[5].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: poisonAmmoStyle =
-		bowgunAmmo[6].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let poisonAmmoStyle =
+		$derived(bowgunAmmo[6].levelQuantity[0] === 0 &&
 		bowgunAmmo[6].levelQuantity[1] === 0 &&
 		bowgunAmmo[6].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: paralysisAmmoStyle =
-		bowgunAmmo[7].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let paralysisAmmoStyle =
+		$derived(bowgunAmmo[7].levelQuantity[0] === 0 &&
 		bowgunAmmo[7].levelQuantity[1] === 0 &&
 		bowgunAmmo[7].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: sleepAmmoStyle =
-		bowgunAmmo[8].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let sleepAmmoStyle =
+		$derived(bowgunAmmo[8].levelQuantity[0] === 0 &&
 		bowgunAmmo[8].levelQuantity[1] === 0 &&
 		bowgunAmmo[8].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: flamingAmmoStyle =
-		bowgunAmmo[9].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let flamingAmmoStyle =
+		$derived(bowgunAmmo[9].levelQuantity[0] === 0 &&
 		bowgunAmmo[9].levelQuantity[1] === 0 &&
 		bowgunAmmo[9].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: waterAmmoStyle =
-		bowgunAmmo[10].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let waterAmmoStyle =
+		$derived(bowgunAmmo[10].levelQuantity[0] === 0 &&
 		bowgunAmmo[10].levelQuantity[1] === 0 &&
 		bowgunAmmo[10].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: thunderAmmoStyle =
-		bowgunAmmo[11].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let thunderAmmoStyle =
+		$derived(bowgunAmmo[11].levelQuantity[0] === 0 &&
 		bowgunAmmo[11].levelQuantity[1] === 0 &&
 		bowgunAmmo[11].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: freezeAmmoStyle =
-		bowgunAmmo[12].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let freezeAmmoStyle =
+		$derived(bowgunAmmo[12].levelQuantity[0] === 0 &&
 		bowgunAmmo[12].levelQuantity[1] === 0 &&
 		bowgunAmmo[12].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: dragonAmmoStyle =
-		bowgunAmmo[13].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let dragonAmmoStyle =
+		$derived(bowgunAmmo[13].levelQuantity[0] === 0 &&
 		bowgunAmmo[13].levelQuantity[1] === 0 &&
 		bowgunAmmo[13].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: tranqAmmoStyle =
-		bowgunAmmo[14].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let tranqAmmoStyle =
+		$derived(bowgunAmmo[14].levelQuantity[0] === 0 &&
 		bowgunAmmo[14].levelQuantity[1] === 0 &&
 		bowgunAmmo[14].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: paintAmmoStyle =
-		bowgunAmmo[15].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let paintAmmoStyle =
+		$derived(bowgunAmmo[15].levelQuantity[0] === 0 &&
 		bowgunAmmo[15].levelQuantity[1] === 0 &&
 		bowgunAmmo[15].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: demonAmmoStyle =
-		bowgunAmmo[16].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let demonAmmoStyle =
+		$derived(bowgunAmmo[16].levelQuantity[0] === 0 &&
 		bowgunAmmo[16].levelQuantity[1] === 0 &&
 		bowgunAmmo[16].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
-	$: armorAmmoStyle =
-		bowgunAmmo[17].levelQuantity[0] === 0 &&
+			: 'enabled-ammo');
+	let armorAmmoStyle =
+		$derived(bowgunAmmo[17].levelQuantity[0] === 0 &&
 		bowgunAmmo[17].levelQuantity[1] === 0 &&
 		bowgunAmmo[17].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo';
+			: 'enabled-ammo');
 </script>
 
 <DecoratedBorder>
 	<div class="container">
 		{#if currentPage === 1}
 			{#if weaponClass === 'Blademaster'}
+				{@const SvelteComponent = WeaponTypes[weaponID].icon}
 				<div class="page-1-blademaster">
 					<div class="header">
 						<div class="weapon-icon-container">
 							<div class="weapon-icon">
-								<svelte:component
-									this={WeaponTypes[weaponID].icon}
+								<SvelteComponent
 									{...weaponIconProps}
 								/>
 							</div>
@@ -464,7 +521,7 @@ Does not handle decorations because sigils are optimal.
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -476,7 +533,7 @@ Does not handle decorations because sigils are optimal.
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -484,12 +541,12 @@ Does not handle decorations because sigils are optimal.
 					</div>
 				</div>
 			{:else}
+				{@const SvelteComponent_1 = WeaponTypes[weaponID].icon}
 				<div class="page-1-gunner">
 					<div class="header">
 						<div class="weapon-icon-container">
 							<div class="weapon-icon">
-								<svelte:component
-									this={WeaponTypes[weaponID].icon}
+								<SvelteComponent_1
 									{...weaponIconProps}
 								/>
 							</div>
@@ -612,7 +669,7 @@ Does not handle decorations because sigils are optimal.
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -624,7 +681,7 @@ Does not handle decorations because sigils are optimal.
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -633,12 +690,12 @@ Does not handle decorations because sigils are optimal.
 				</div>
 			{/if}
 		{:else if currentPage === 2}
+			{@const SvelteComponent_2 = WeaponTypes[weaponID].icon}
 			<div class="page-2-blademaster">
 				<div class="icon">
 					<div class="weapon-icon-container">
 						<div class="weapon-icon">
-							<svelte:component
-								this={WeaponTypes[weaponID].icon}
+							<SvelteComponent_2
 								{...weaponIconProps}
 							/>
 						</div>
@@ -701,7 +758,7 @@ Does not handle decorations because sigils are optimal.
 				<div class="pages">
 					<button
 						class="arrow-icon-button"
-						on:click={previousPage}
+						onclick={previousPage}
 						aria-label="Navigate to previous page"
 					>
 						<ArrowIcon
@@ -713,7 +770,7 @@ Does not handle decorations because sigils are optimal.
 					{currentPage}/{maxPages}
 					<button
 						class="arrow-icon-button"
-						on:click={nextPage}
+						onclick={nextPage}
 						aria-label="Navigate to next page"
 					>
 						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -741,7 +798,7 @@ Does not handle decorations because sigils are optimal.
 						<div class="pages">
 							<button
 								class="arrow-icon-button"
-								on:click={previousPage}
+								onclick={previousPage}
 								aria-label="Navigate to previous page"
 							>
 								<ArrowIcon
@@ -753,7 +810,7 @@ Does not handle decorations because sigils are optimal.
 							{currentPage}/{maxPages}
 							<button
 								class="arrow-icon-button"
-								on:click={nextPage}
+								onclick={nextPage}
 								aria-label="Navigate to next page"
 							>
 								<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -808,7 +865,7 @@ Does not handle decorations because sigils are optimal.
 						<div class="pages">
 							<button
 								class="arrow-icon-button"
-								on:click={previousPage}
+								onclick={previousPage}
 								aria-label="Navigate to previous page"
 							>
 								<ArrowIcon
@@ -820,7 +877,7 @@ Does not handle decorations because sigils are optimal.
 							{currentPage}/{maxPages}
 							<button
 								class="arrow-icon-button"
-								on:click={nextPage}
+								onclick={nextPage}
 								aria-label="Navigate to next page"
 							>
 								<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -892,7 +949,7 @@ Does not handle decorations because sigils are optimal.
 							<div class="pages">
 								<button
 									class="arrow-icon-button"
-									on:click={previousPage}
+									onclick={previousPage}
 									aria-label="Navigate to previous page"
 								>
 									<ArrowIcon
@@ -904,7 +961,7 @@ Does not handle decorations because sigils are optimal.
 								{currentPage}/{maxPages}
 								<button
 									class="arrow-icon-button"
-									on:click={nextPage}
+									onclick={nextPage}
 									aria-label="Navigate to next page"
 								>
 									<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -948,7 +1005,7 @@ Does not handle decorations because sigils are optimal.
 						<div class="pages">
 							<button
 								class="arrow-icon-button"
-								on:click={previousPage}
+								onclick={previousPage}
 								aria-label="Navigate to previous page"
 							>
 								<ArrowIcon
@@ -960,7 +1017,7 @@ Does not handle decorations because sigils are optimal.
 							{currentPage}/{maxPages}
 							<button
 								class="arrow-icon-button"
-								on:click={nextPage}
+								onclick={nextPage}
 								aria-label="Navigate to next page"
 							>
 								<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1000,7 +1057,7 @@ Does not handle decorations because sigils are optimal.
 						<div class="pages">
 							<button
 								class="arrow-icon-button"
-								on:click={previousPage}
+								onclick={previousPage}
 								aria-label="Navigate to previous page"
 							>
 								<ArrowIcon
@@ -1012,7 +1069,7 @@ Does not handle decorations because sigils are optimal.
 							{currentPage}/{maxPages}
 							<button
 								class="arrow-icon-button"
-								on:click={nextPage}
+								onclick={nextPage}
 								aria-label="Navigate to next page"
 							>
 								<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1047,7 +1104,7 @@ Does not handle decorations because sigils are optimal.
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1059,7 +1116,7 @@ Does not handle decorations because sigils are optimal.
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1132,7 +1189,7 @@ Does not handle decorations because sigils are optimal.
 							<div class="pages">
 								<button
 									class="arrow-icon-button"
-									on:click={previousPage}
+									onclick={previousPage}
 									aria-label="Navigate to previous page"
 								>
 									<ArrowIcon
@@ -1144,7 +1201,7 @@ Does not handle decorations because sigils are optimal.
 								{currentPage}/{maxPages}
 								<button
 									class="arrow-icon-button"
-									on:click={nextPage}
+									onclick={nextPage}
 									aria-label="Navigate to next page"
 								>
 									<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1180,7 +1237,7 @@ Does not handle decorations because sigils are optimal.
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1192,7 +1249,7 @@ Does not handle decorations because sigils are optimal.
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1228,7 +1285,7 @@ Does not handle decorations because sigils are optimal.
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1240,7 +1297,7 @@ Does not handle decorations because sigils are optimal.
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1274,7 +1331,7 @@ Does not handle decorations because sigils are optimal.
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1286,7 +1343,7 @@ Does not handle decorations because sigils are optimal.
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1321,7 +1378,7 @@ Does not handle decorations because sigils are optimal.
 				<div class="pages">
 					<button
 						class="arrow-icon-button"
-						on:click={previousPage}
+						onclick={previousPage}
 						aria-label="Navigate to previous page"
 					>
 						<ArrowIcon
@@ -1333,7 +1390,7 @@ Does not handle decorations because sigils are optimal.
 					{currentPage}/{maxPages}
 					<button
 						class="arrow-icon-button"
-						on:click={nextPage}
+						onclick={nextPage}
 						aria-label="Navigate to next page"
 					>
 						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1367,7 +1424,7 @@ Does not handle decorations because sigils are optimal.
 				<div class="pages">
 					<button
 						class="arrow-icon-button"
-						on:click={previousPage}
+						onclick={previousPage}
 						aria-label="Navigate to previous page"
 					>
 						<ArrowIcon
@@ -1379,7 +1436,7 @@ Does not handle decorations because sigils are optimal.
 					{currentPage}/{maxPages}
 					<button
 						class="arrow-icon-button"
-						on:click={nextPage}
+						onclick={nextPage}
 						aria-label="Navigate to next page"
 					>
 						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />

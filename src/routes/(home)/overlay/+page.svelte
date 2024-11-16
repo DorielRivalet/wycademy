@@ -38,7 +38,11 @@
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import QuestionAnswering from 'carbon-icons-svelte/lib/QuestionAnswering.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const heroTitles = [
 		'Explore the Frontier Like Never Before',

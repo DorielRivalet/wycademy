@@ -76,12 +76,16 @@
 		},
 	];
 
-	export let recentActivities: {
+	interface Props {
+		recentActivities?: {
 		action: Action;
 		description: string;
 		date: string;
 		link: string;
-	}[] = [
+	}[];
+	}
+
+	let { recentActivities = [
 		{
 			action: 'Submitted',
 			description: '3',
@@ -154,7 +158,7 @@
 			date: '2024-12-01',
 			link: '/',
 		},
-	];
+	] }: Props = $props();
 </script>
 
 <div class="container">
@@ -165,9 +169,9 @@
 					<p class="date">{activity.date}</p>
 					<p class="description">
 						{#if activity.action === 'Submitted'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent
 							/>
 							Submitted
 							<span
@@ -176,25 +180,25 @@
 								></span
 							>
 						{:else if activity.action === 'Followed'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_1 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_1
 							/>
 							Gained a new follower: <Link inline href={activity.link}
 								>{activity.description}.</Link
 							>
 						{:else if activity.action === 'Following'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_2 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_2
 							/>
 							Now following: <Link inline href={activity.link}
 								>{activity.description}.</Link
 							>
 						{:else if activity.action === 'World Record'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_3 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_3
 							/>
 							Obtained
 							<span
@@ -203,57 +207,57 @@
 								></span
 							>
 						{:else if activity.action === 'Personal Best'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_4 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_4
 							/>
 							Obtained <Link inline href={activity.link}>
 								a new Personal Best for {activity.description}!</Link
 							>
 						{:else if activity.action === 'Trophy'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_5 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_5
 							/>
 							Obtained the trophy "<Link inline href={activity.link}
 								>{activity.description}"!</Link
 							>
 						{:else if activity.action === 'Achievement'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_6 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_6
 							/>
 							Obtained the achievement "<Link inline href={activity.link}
 								>{activity.description}"!</Link
 							>
 						{:else if activity.action === 'Guild Card Background'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_7 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_7
 							/>
 							Obtained the <Link inline href={activity.link}
 								>{activity.description} guild card background!</Link
 							>
 						{:else if activity.action === 'Reacted'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_8 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_8
 							/>
 							Reacted to a run by <Link inline href={activity.link}
 								>{activity.description}.</Link
 							>
 						{:else if activity.action === 'Favorited Set'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_9 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_9
 							/>
 							Favorited an armor set by <Link inline href={activity.link}
 								>{activity.description}.</Link
 							>
 						{:else if activity.action === 'Favorited Run'}
-							<svelte:component
-								this={activitiesInfo.find((e) => e.action === activity.action)
+							{@const SvelteComponent_10 = activitiesInfo.find((e) => e.action === activity.action)
 									?.icon}
+							<SvelteComponent_10
 							/>
 							Favorited a run by <Link inline href={activity.link}
 								>{activity.description}.</Link

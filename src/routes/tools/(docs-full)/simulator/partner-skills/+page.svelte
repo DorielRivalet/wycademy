@@ -1861,14 +1861,14 @@
 	const nodeData: Node[] = skillTreeData.nodeData;
 	const edgeData: Edge[] = skillTreeData.edgeData;
 
-	let unlockedSkills = new Set<string>(['Health+10']);
-	let equippedSkills: string[] = [];
-	let currentGCP = 10;
-	let currentCost = 0;
+	let unlockedSkills = $state(new Set<string>(['Health+10']));
+	let equippedSkills: string[] = $state([]);
+	let currentGCP = $state(10);
+	let currentCost = $state(0);
 
 	// Pagination for skill list
 	let paginationPageSize = 10;
-	let paginationPage = 1;
+	let paginationPage = $state(1);
 
 	function generateSkillTreeData() {
 		const nodeData: Node[] = [];
@@ -2194,12 +2194,12 @@
 	};
 
 	// Modify the reactive statement to include all skills
-	$: paginatedSkills = skillIndex.slice(
+	let paginatedSkills = $derived(skillIndex.slice(
 		(paginationPage - 1) * paginationPageSize,
 		paginationPage * paginationPageSize,
-	);
-	$: canEquipMore = equippedSkills.length < MAX_SLOTS && currentCost < MAX_COST;
-	$: totalGCPRequired = calculateTotalGCP(equippedSkills, skillIndex);
+	));
+	let canEquipMore = $derived(equippedSkills.length < MAX_SLOTS && currentCost < MAX_COST);
+	let totalGCPRequired = $derived(calculateTotalGCP(equippedSkills, skillIndex));
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -2304,72 +2304,74 @@
 									skill: skill,
 								}))}
 							>
-								<svelte:fragment slot="cell" let:row let:cell>
-									{#if cell.key === 'actions'}
-										<div class="skill-actions">
-											{#if !unlockedSkills.has(row.skill.name.en)}
-												<Button
-													size="small"
-													kind="secondary"
-													disabled={!checkPrerequisites(row.skill)}
-													on:click={() => unlockSkill(row.skill)}
-													icon={Locked}
-													iconDescription="Unlock"
-												/>
-											{:else}
-												<Button
-													size="small"
-													kind="danger-tertiary"
-													icon={Unlocked}
-													iconDescription="Lock"
-													on:click={() => lockSkill(row.skill)}
-													disabled={checkDependentSkills(row.skill.name.en)
-														.length > 0}
-												/>
-												<Button
-													size="small"
-													kind={equippedSkills.includes(row.skill.name.en)
-														? 'danger'
-														: 'primary'}
-													icon={equippedSkills.includes(row.skill.name.en)
-														? Delete
-														: AddAlt}
-													iconDescription={equippedSkills.includes(
-														row.skill.name.en,
-													)
-														? 'Remove'
-														: 'Equip'}
-													disabled={(!canEquipMore &&
-														!equippedSkills.includes(row.skill.name.en)) ||
-														!unlockedSkills.has(row.skill.name.en) ||
-														equippedSkills.some((equippedSkillName) => {
-															const equippedSkill = skillIndex.find(
-																(s) => s.name.en === equippedSkillName,
-															);
-															return (
-																equippedSkill &&
-																equippedSkill.tree === row.skill.tree
-															);
-														}) ||
-														(!equippedSkills.includes(row.skill.name.en) &&
-															wouldExceedCostLimit(
-																row.skill.name.en,
-																equippedSkills,
-																skillIndex,
-															))}
-													on:click={() => equipSkill(row.skill.name.en)}
-												/>
-											{/if}
-										</div>
-									{:else if (unlockedSkills.has(row.skill.name.en) && !canEquipMore && !equippedSkills.includes(row.skill.name.en)) || equippedSkills.some( (equippedSkillName) => {
-												const equippedSkill = skillIndex.find((s) => s.name.en === equippedSkillName);
-												return equippedSkill && equippedSkill.tree === row.skill.tree;
-											}, ) || (!equippedSkills.includes(row.skill.name.en) && wouldExceedCostLimit(row.skill.name.en, equippedSkills, skillIndex))}
-										<p class="locked-skill">{cell.value}</p>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								</svelte:fragment>
+								{#snippet cell({ row, cell })}
+															
+										{#if cell.key === 'actions'}
+											<div class="skill-actions">
+												{#if !unlockedSkills.has(row.skill.name.en)}
+													<Button
+														size="small"
+														kind="secondary"
+														disabled={!checkPrerequisites(row.skill)}
+														on:click={() => unlockSkill(row.skill)}
+														icon={Locked}
+														iconDescription="Unlock"
+													/>
+												{:else}
+													<Button
+														size="small"
+														kind="danger-tertiary"
+														icon={Unlocked}
+														iconDescription="Lock"
+														on:click={() => lockSkill(row.skill)}
+														disabled={checkDependentSkills(row.skill.name.en)
+															.length > 0}
+													/>
+													<Button
+														size="small"
+														kind={equippedSkills.includes(row.skill.name.en)
+															? 'danger'
+															: 'primary'}
+														icon={equippedSkills.includes(row.skill.name.en)
+															? Delete
+															: AddAlt}
+														iconDescription={equippedSkills.includes(
+															row.skill.name.en,
+														)
+															? 'Remove'
+															: 'Equip'}
+														disabled={(!canEquipMore &&
+															!equippedSkills.includes(row.skill.name.en)) ||
+															!unlockedSkills.has(row.skill.name.en) ||
+															equippedSkills.some((equippedSkillName) => {
+																const equippedSkill = skillIndex.find(
+																	(s) => s.name.en === equippedSkillName,
+																);
+																return (
+																	equippedSkill &&
+																	equippedSkill.tree === row.skill.tree
+																);
+															}) ||
+															(!equippedSkills.includes(row.skill.name.en) &&
+																wouldExceedCostLimit(
+																	row.skill.name.en,
+																	equippedSkills,
+																	skillIndex,
+																))}
+														on:click={() => equipSkill(row.skill.name.en)}
+													/>
+												{/if}
+											</div>
+										{:else if (unlockedSkills.has(row.skill.name.en) && !canEquipMore && !equippedSkills.includes(row.skill.name.en)) || equippedSkills.some( (equippedSkillName) => {
+													const equippedSkill = skillIndex.find((s) => s.name.en === equippedSkillName);
+													return equippedSkill && equippedSkill.tree === row.skill.tree;
+												}, ) || (!equippedSkills.includes(row.skill.name.en) && wouldExceedCostLimit(row.skill.name.en, equippedSkills, skillIndex))}
+											<p class="locked-skill">{cell.value}</p>
+										{:else}
+											<p>{cell.value}</p>
+										{/if}
+									
+															{/snippet}
 							</DataTable>
 						{/key}
 

@@ -185,7 +185,7 @@
 	const minimumArmorSkillPoints = -127;
 	const maximumArmorSkillPoints = 127;
 
-	let currentArmorPage = 1;
+	let currentArmorPage = $state(1);
 
 	const invalidArmorSkillPointsText = `Value must be between ${minimumArmorSkillPoints} and ${maximumArmorSkillPoints}.`;
 	const invalidArmorDefenseText = `Value must be between ${minimumArmorDefense} and ${maximumArmorDefense}.`;
@@ -194,45 +194,45 @@
 	const invalidArmorGRLevelText = `Value must be between ${minimumArmorGRLevel} and ${maximumArmorGRLevel}.`;
 	const invalidWeaponRarityText = `Value must be between ${minimumRarity} and ${maximumRarity}.`;
 
-	let armorName = defaultArmorComponentValues.armorName;
-	let armorLevel: FrontierArmorLevel = defaultArmorComponentValues.armorLevel;
+	let armorName = $state(defaultArmorComponentValues.armorName);
+	let armorLevel: FrontierArmorLevel = $state(defaultArmorComponentValues.armorLevel);
 	let armorGRLevel: FrontierArmorGRLevel =
-		defaultArmorComponentValues.armorGRLevel;
-	let armorDefense: number = defaultArmorComponentValues.armorDefense;
+		$state(defaultArmorComponentValues.armorGRLevel);
+	let armorDefense: number = $state(defaultArmorComponentValues.armorDefense);
 	let armorFireResistance: number =
-		defaultArmorComponentValues.armorFireResistance;
+		$state(defaultArmorComponentValues.armorFireResistance);
 	let armorWaterResistance: number =
-		defaultArmorComponentValues.armorWaterResistance;
+		$state(defaultArmorComponentValues.armorWaterResistance);
 	let armorThunderResistance: number =
-		defaultArmorComponentValues.armorThunderResistance;
+		$state(defaultArmorComponentValues.armorThunderResistance);
 	let armorIceResistance: number =
-		defaultArmorComponentValues.armorIceResistance;
+		$state(defaultArmorComponentValues.armorIceResistance);
 	let armorDragonResistance: number =
-		defaultArmorComponentValues.armorDragonResistance;
-	let armorTransmog = defaultArmorComponentValues.armorTransmog;
-	let armorClass: FrontierArmorClass = defaultArmorComponentValues.armorClass;
-	let armorID = defaultArmorComponentValues.armorID;
-	let armorRank: FrontierEquipmentRank = defaultArmorComponentValues.armorRank;
+		$state(defaultArmorComponentValues.armorDragonResistance);
+	let armorTransmog = $state(defaultArmorComponentValues.armorTransmog);
+	let armorClass: FrontierArmorClass = $state(defaultArmorComponentValues.armorClass);
+	let armorID = $state(defaultArmorComponentValues.armorID);
+	let armorRank: FrontierEquipmentRank = $state(defaultArmorComponentValues.armorRank);
 	let armorZenithSkill: FrontierZenithSkill =
-		defaultArmorComponentValues.armorZenithSkill;
-	let armorDescription: string = defaultArmorComponentValues.armorDescription;
-	let armorRarity: FrontierRarity = defaultArmorComponentValues.armorRarity;
+		$state(defaultArmorComponentValues.armorZenithSkill);
+	let armorDescription: string = $state(defaultArmorComponentValues.armorDescription);
+	let armorRarity: FrontierRarity = $state(defaultArmorComponentValues.armorRarity);
 
 	/** TODO Show extra icons.*/
-	let armorExtraIcons = defaultArmorComponentValues.armorExtraIcons;
+	let armorExtraIcons = $state(defaultArmorComponentValues.armorExtraIcons);
 
-	let armorSkillTreeNames: FrontierArmorSkillTree[] = [
+	let armorSkillTreeNames: FrontierArmorSkillTree[] = $state([
 		'Blazing Grace',
 		'Strong Attack',
 		'Determination',
 		'Absolute Defense',
 		'Three Worlds Protection',
-	];
-	let armorSkillPoints: FrontierEquipmentSkillPoints = [10, 20, -30, 40, 50];
-	let armorType: FrontierArmorType = defaultArmorComponentValues.armorType;
+	]);
+	let armorSkillPoints: FrontierEquipmentSkillPoints = $state([10, 20, -30, 40, 50]);
+	let armorType: FrontierArmorType = $state(defaultArmorComponentValues.armorType);
 	let armorAutomaticSkill: FrontierArmorSkillName =
-		defaultArmorComponentValues.armorAutomaticSkill;
-	let armorDecorations: FrontierEquipmentDecorations = {
+		$state(defaultArmorComponentValues.armorAutomaticSkill);
+	let armorDecorations: FrontierEquipmentDecorations = $state({
 		slot1: {
 			name: 'Zindol BM GX1',
 			skill1: {
@@ -290,7 +290,7 @@
 				points: 5,
 			},
 		},
-	};
+	});
 </script>
 
 <HunterNotesPage displayTOC={false}>

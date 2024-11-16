@@ -23,7 +23,7 @@
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	// Shared state to track which menu is open
-	let openMenu: null | MenuId = null;
+	let openMenu: null | MenuId = $state(null);
 
 	// TODO bugged
 	type MenuId = 'guides' | 'tools' | 'support';
@@ -42,7 +42,7 @@
 		<div class="banner">
 			<Banner />
 		</div>
-		<div class="banner-border" />
+		<div class="banner-border"></div>
 	</div>
 
 	<nav class="right">
@@ -130,8 +130,10 @@
 					tooltipPosition="left"
 					iconDescription="Site Preferences"
 				>
-					<span slot="icon"><Settings size={20} color="var(--ctp-text)" /></span
-					>
+					{#snippet icon()}
+										<span ><Settings size={20} color="var(--ctp-text)" /></span
+						>
+									{/snippet}
 				</Button>
 			</div>
 		{/if}
@@ -141,9 +143,11 @@
 				href="/signup"
 				tooltipPosition="left"
 				iconDescription="Account"
-				><span slot="icon">
-					<UserAvatar size={20} color="var(--ctp-text" /></span
-				>
+				>{#snippet icon()}
+								<span >
+						<UserAvatar size={20} color="var(--ctp-text" /></span
+					>
+							{/snippet}
 			</Button>
 		</div>
 	</nav>

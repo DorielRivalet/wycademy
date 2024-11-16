@@ -1,7 +1,7 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	$: targetColor = '#9c65ff';
+	let targetColor = $derived('#9c65ff');
 </script>
 
 <svg

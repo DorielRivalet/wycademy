@@ -2,10 +2,19 @@
 	import Lens from '$lib/client/components/Lens.svelte';
 	import ClickableTile from 'carbon-components-svelte/src/Tile/ClickableTile.svelte';
 
-	export let imageSource: string;
-	export let title: string;
-	export let description: string;
-	export let href: string;
+	interface Props {
+		imageSource: string;
+		title: string;
+		description: string;
+		href: string;
+	}
+
+	let {
+		imageSource,
+		title,
+		description,
+		href
+	}: Props = $props();
 
 	let hovering = false;
 </script>

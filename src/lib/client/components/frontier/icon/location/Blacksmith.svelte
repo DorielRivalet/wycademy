@@ -1,9 +1,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	export let color = '#ffffff';
+	interface Props {
+		color?: string;
+	}
 
-	$: targetColor = color;
+	let { color = '#ffffff' }: Props = $props();
+
+	let targetColor = $derived(color);
 </script>
 <svg
 	width="100%"
@@ -19,7 +23,7 @@
 		bordercolor="#000000"
 		borderopacity="0.25"
 		showgrid="false"
-	/>
+	></sodipodi:namedview>
 	<defs id="defs1577679" />
 	<g id="layer1">
 		<g

@@ -1,9 +1,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	export let color = '#ffffff';
+	interface Props {
+		color?: string;
+	}
 
-	$: targetColor = color;
+	let { color = '#ffffff' }: Props = $props();
+
+	let targetColor = $derived(color);
 </script>
 <svg
 	width="100%"

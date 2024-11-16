@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { fade } from 'svelte/transition';
 	import SearchWorker from '$lib/client/workers/search?worker';
 	import { onNavigate } from '$app/navigation';
@@ -20,11 +22,11 @@
 	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import { Close } from 'carbon-icons-svelte';
 
-	let search: 'idle' | 'load' | 'ready' = 'idle';
-	let searchTerm = '';
-	let results: SearchResult[] = [];
-	let searchWorker: Worker;
-	let searchDuration = 0;
+	let search: 'idle' | 'load' | 'ready' = $state('idle');
+	let searchTerm = $state('');
+	let results: SearchResult[] = $state([]);
+	let searchWorker: Worker = $state();
+	let searchDuration = $state(0);
 
 	const categoryIcons: { name: SearchItemCategory; icon: any }[] = [
 		{
@@ -175,11 +177,11 @@
 		closeDialog();
 	});
 
-	let recentSearches = !browser
+	let recentSearches = $state(!browser
 		? []
-		: JSON.parse(window.localStorage.getItem('__recent-searches') ?? '[]');
+		: JSON.parse(window.localStorage.getItem('__recent-searches') ?? '[]'));
 
-	$: recentSearchesJSON = recentSearches;
+	let recentSearchesJSON = $derived(recentSearches);
 
 	function saveSearchTerm(title: string, slug: string) {
 		if (!browser) return;
@@ -194,26 +196,30 @@
 		recentSearches = updatedSearches;
 	}
 
-	let dialogElement: HTMLDialogElement;
-	let showModal = false;
-	let scopeFilterId: SearchItemCategory = 'All';
+	let dialogElement: HTMLDialogElement = $state();
+	let showModal = $state(false);
+	let scopeFilterId: SearchItemCategory = $state('All');
 
-	$: if (search === 'ready') {
-		// update results
-		searchWorker.postMessage({
-			type: 'search',
-			payload: { searchTerm, scopeFilterId },
-		});
-	}
+	run(() => {
+		if (search === 'ready') {
+			// update results
+			searchWorker.postMessage({
+				type: 'search',
+				payload: { searchTerm, scopeFilterId },
+			});
+		}
+	});
 
-	$: if (searchTerm && !showModal) {
-		searchTerm = '';
-	}
+	run(() => {
+		if (searchTerm && !showModal) {
+			searchTerm = '';
+		}
+	});
 
-	$: dialogClass = showModal ? 'dialog open' : 'dialog';
+	let dialogClass = $derived(showModal ? 'dialog open' : 'dialog');
 
 	// Call the function to get grouped results
-	$: groupedResults = groupByCategory(results);
+	let groupedResults = $derived(groupByCategory(results));
 </script>
 
 {#if showModal}
@@ -222,13 +228,15 @@
 
 <div class="button-container">
 	<Button iconDescription="Search" kind="ghost" on:click={initialize}>
-		<span slot="icon">
-			<SearchIcon size={20} color="var(--ctp-text)" />
-		</span>
+		{#snippet icon()}
+				<span >
+				<SearchIcon size={20} color="var(--ctp-text)" />
+			</span>
+			{/snippet}
 	</Button>
 </div>
 
-<dialog bind:this={dialogElement} class={dialogClass} on:close={closeDialog}>
+<dialog bind:this={dialogElement} class={dialogClass} onclose={closeDialog}>
 	{#if showModal}
 		<div class="content" in:fade={{ duration: 150 }}>
 			<div class="search-container">
@@ -279,20 +287,22 @@
 					<Accordion>
 						{#each Object.entries(groupedResults) as [category, results], i}
 							<AccordionItem open={i === 0}>
-								<svelte:fragment slot="title">
-									<InlineTooltip
-										tooltip={category}
-										iconType="component"
-										text={`${category} (${results.length})`}
-										icon={getCategoryIcon(category)}
-									/>
-								</svelte:fragment>
+								{#snippet title()}
+																	
+										<InlineTooltip
+											tooltip={category}
+											iconType="component"
+											text={`${category} (${results.length})`}
+											icon={getCategoryIcon(category)}
+										/>
+									
+																	{/snippet}
 								<hr class="category-separator" />
 								<ol>
 									{#each results as result}
 										<li>
 											<a
-												on:click={(e) => {
+												onclick={(e) => {
 													saveSearchTerm(result.originalTitle, result.slug);
 													closeDialog();
 												}}

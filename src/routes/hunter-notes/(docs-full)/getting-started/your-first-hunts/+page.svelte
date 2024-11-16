@@ -245,13 +245,13 @@
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalNotes = '';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalNotes = $state('');
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
 
 	function changeModal(cell: DataTableCell, section: string) {
 		modalOpen = true;
@@ -295,7 +295,8 @@
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent = modalPopoverIcon}
+							<SvelteComponent />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}

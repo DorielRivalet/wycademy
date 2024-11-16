@@ -5,10 +5,14 @@
 -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	export let color = '#ffffff';
-	export let size = '100%';
+	interface Props {
+		color?: string;
+		size?: string;
+	}
 
-	$: targetColor = color;
+	let { color = '#ffffff', size = '100%' }: Props = $props();
+
+	let targetColor = $derived(color);
 </script>
 
 <svg version="1.1" id="svg2" width={size} viewBox="0 0 64 64">

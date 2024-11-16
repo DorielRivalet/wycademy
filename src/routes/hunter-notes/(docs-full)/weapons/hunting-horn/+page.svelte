@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
@@ -237,7 +239,7 @@
 	let huntingHornSelectedNotes: {
 		color: FrontierHuntingHornNote;
 		enabled: boolean;
-	}[] = [
+	}[] = $state([
 		{ color: 'White', enabled: true },
 		{ color: 'Blue', enabled: true },
 		{ color: 'Cyan', enabled: true },
@@ -246,22 +248,22 @@
 		{ color: 'Yellow', enabled: false },
 		{ color: 'Purple', enabled: false },
 		{ color: 'Pink', enabled: true },
-	];
+	]);
 
-	let filteringStrategy: 'atLeastOne' | 'onlySelected' = 'onlySelected';
+	let filteringStrategy: 'atLeastOne' | 'onlySelected' = $state('onlySelected');
 
 	/**For simon game start/restart*/
-	let rainbowNoteState: boolean = false;
+	let rainbowNoteState: boolean = $state(false);
 	/**Player notes*/
-	let currentSequence: FrontierHuntingHornNote[] = [];
+	let currentSequence: FrontierHuntingHornNote[] = $state([]);
 	/**Requires notes to advance, grows if succeded in each sequence required.*/
-	let targetSequence: FrontierHuntingHornNote[] = [];
+	let targetSequence: FrontierHuntingHornNote[] = $state([]);
 	/**For making the start button show*/
-	let didReleaseAllNotes = false;
+	let didReleaseAllNotes = $state(false);
 	/**Fpr making the start button show*/
-	let didPressAllNotes = false;
+	let didPressAllNotes = $state(false);
 	/**Game score*/
-	let simonScore = 0;
+	let simonScore = $state(0);
 
 	/**List of available notes to play*/
 	let simonNotes: FrontierHuntingHornNote[] = [
@@ -297,16 +299,20 @@
 		return notes.every((e) => e.enabled === true);
 	}
 
-	$: huntingHornAvailableSongs = getHuntingHornAvailableSongs(
+	let huntingHornAvailableSongs = $derived(getHuntingHornAvailableSongs(
 		huntingHornSelectedNotes,
 		filteringStrategy,
-	);
+	));
 
-	$: didReleaseAllNotes = checkIfReleasedAllNotes(huntingHornSelectedNotes);
-	$: didPressAllNotes = checkIfPressedAllNotes(
-		didReleaseAllNotes,
-		huntingHornSelectedNotes,
-	);
+	run(() => {
+		didReleaseAllNotes = checkIfReleasedAllNotes(huntingHornSelectedNotes);
+	});
+	run(() => {
+		didPressAllNotes = checkIfPressedAllNotes(
+			didReleaseAllNotes,
+			huntingHornSelectedNotes,
+		);
+	});
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -443,18 +449,20 @@
 								>
 							</div>
 						</Toolbar>
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'notes'}
-								<span class="hh-notes">
-									{#each cell.value.split(',') as note}
-										<HuntingHornNoteIcon size={20} color={note} />
-									{/each}
-									<p>{cell.value.replaceAll(',', ', ')}</p>
-								</span>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'notes'}
+									<span class="hh-notes">
+										{#each cell.value.split(',') as note}
+											<HuntingHornNoteIcon size={20} color={note} />
+										{/each}
+										<p>{cell.value.replaceAll(',', ', ')}</p>
+									</span>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 				<p>The durations are in seconds.</p>
@@ -485,38 +493,40 @@
 								>
 							</div>
 						</Toolbar>
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'notes'}
-								<span class="hh-notes">
-									<HuntingHornNoteIcon
-										size={20}
-										color={[
-											cell.value.split(' ')[0],
-											cell.value.split(' ')[1],
-											cell.value.split(' ')[2],
-										][0]}
-									/>
-									<HuntingHornNoteIcon
-										size={20}
-										color={[
-											cell.value.split(' ')[0],
-											cell.value.split(' ')[1],
-											cell.value.split(' ')[2],
-										][1]}
-									/>
-									<HuntingHornNoteIcon
-										size={20}
-										color={[
-											cell.value.split(' ')[0],
-											cell.value.split(' ')[1],
-											cell.value.split(' ')[2],
-										][2]}
-									/>
-									<p>{cell.value}</p>
-								</span>
-							{:else}
-								<p>{cell.value}</p>{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'notes'}
+									<span class="hh-notes">
+										<HuntingHornNoteIcon
+											size={20}
+											color={[
+												cell.value.split(' ')[0],
+												cell.value.split(' ')[1],
+												cell.value.split(' ')[2],
+											][0]}
+										/>
+										<HuntingHornNoteIcon
+											size={20}
+											color={[
+												cell.value.split(' ')[0],
+												cell.value.split(' ')[1],
+												cell.value.split(' ')[2],
+											][1]}
+										/>
+										<HuntingHornNoteIcon
+											size={20}
+											color={[
+												cell.value.split(' ')[0],
+												cell.value.split(' ')[1],
+												cell.value.split(' ')[2],
+											][2]}
+										/>
+										<p>{cell.value}</p>
+									</span>
+								{:else}
+									<p>{cell.value}</p>{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -695,13 +705,15 @@
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.value[0] == '-'}
-								<p style:color="var(--ctp-red)">{cell.value}</p>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.value[0] == '-'}
+									<p style:color="var(--ctp-red)">{cell.value}</p>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -739,18 +751,20 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'skill'}
-									<InlineTooltip
-										text={cell.value}
-										tooltip="Armor Skill"
-										iconType="component"
-										icon={getItemIcon('Jewel')}
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'skill'}
+										<InlineTooltip
+											text={cell.value}
+											tooltip="Armor Skill"
+											iconType="component"
+											icon={getItemIcon('Jewel')}
+										/>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -788,23 +802,25 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'sigil'}
-									<InlineTooltip
-										text={cell.value}
-										tooltip="Sigil"
-										iconType="component"
-										icon={getItemIcon('Sigil')}
-									/>
-								{:else if cell.key === 'rating'}
-									<StarRating
-										rating={Number.parseFloat(cell.value)}
-										maxRating={3}
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'sigil'}
+										<InlineTooltip
+											text={cell.value}
+											tooltip="Sigil"
+											iconType="component"
+											icon={getItemIcon('Sigil')}
+										/>
+									{:else if cell.key === 'rating'}
+										<StarRating
+											rating={Number.parseFloat(cell.value)}
+											maxRating={3}
+										/>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>

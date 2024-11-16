@@ -7,12 +7,16 @@
 	import { blendColor } from '$lib/client/modules/color-blend';
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
-	export let rarity: FrontierRarity = 1;
-	export let size = '100%';
-	export let color = '';
+	interface Props {
+		rarity?: FrontierRarity;
+		size?: string;
+		color?: string;
+	}
 
-	$: targetColor =
-		color === '' ? RarityColors[rarity - 1] ?? RarityColors[0] : color;
+	let { rarity = 1, size = '100%', color = '' }: Props = $props();
+
+	let targetColor =
+		$derived(color === '' ? RarityColors[rarity - 1] ?? RarityColors[0] : color);
 </script>
 
 <svg width={size} viewBox="0 0 16.933333 16.933334" version="1.1" id="svg4846">

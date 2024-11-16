@@ -7,11 +7,16 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
-	/**TODO: unused?*/
-	export let startsWith = false;
+	
 
-	export let path = '/';
-	export let description = 'Description';
+	interface Props {
+		/**TODO: unused?*/
+		startsWith?: boolean;
+		path?: string;
+		description?: string;
+	}
+
+	let { startsWith = false, path = '/', description = 'Description' }: Props = $props();
 </script>
 
 {#if startsWith}

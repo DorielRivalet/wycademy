@@ -7,10 +7,14 @@
 <script lang="ts">
 	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 
-	export let color: string;
-	export let name: string;
+	interface Props {
+		color: string;
+		name: string;
+	}
 
-	let showPopover = false;
+	let { color, name }: Props = $props();
+
+	let showPopover = $state(false);
 
 	function copyColorToClipboard() {
 		const styles = getComputedStyle(document.documentElement);
@@ -29,12 +33,12 @@
 	<p class="title">{name}</p>
 	<div>
 		<button
-			on:click={copyColorToClipboard}
+			onclick={copyColorToClipboard}
 			type="button"
 			class="dot"
 			aria-label={name}
 			style="background-color: var({color})"
-		/>
+		></button>
 		<Popover caret relative open={showPopover}>
 			<div style="padding: var(--cds-spacing-03)">Copied to clipboard!</div>
 		</Popover>

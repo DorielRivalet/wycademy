@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Sun from '$lib/client/images/icon/sun.webp';
 	import Moon from '$lib/client/images/icon/moon.webp';
 	import { getThemeNameFromId, setTheme } from '$lib/client/stores/theme';
@@ -12,7 +14,10 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	$: icon = $carbonThemeStore === 'g10' ? Sun : Moon;
+	let icon;
+	run(() => {
+		icon = $carbonThemeStore === 'g10' ? Sun : Moon;
+	});
 
 	function changeTheme(themeID: string) {
 		setTheme(carbonThemeStore, themeID);
@@ -36,7 +41,7 @@
 	}
 </script>
 
-<button on:click={(e) => clicked(e)}>
+<button onclick={(e) => clicked(e)}>
 	<img src={icon} alt="theme icon" />
 </button>
 

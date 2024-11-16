@@ -2,11 +2,15 @@
 	import { onMount } from 'svelte';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 
-	export let monsters = [...new Set(monsterInfo)];
-	export let delay = 2000;
-	export let size: string = '100%';
+	interface Props {
+		monsters?: any;
+		delay?: number;
+		size?: string;
+	}
 
-	let randomMonster = monsterInfo[0];
+	let { monsters = [...new Set(monsterInfo)], delay = 2000, size = '100%' }: Props = $props();
+
+	let randomMonster = $state(monsterInfo[0]);
 
 	function getRandomItem(arr: any[]) {
 		return arr[Math.floor(Math.random() * arr.length)];

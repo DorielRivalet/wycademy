@@ -22,19 +22,34 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	export let huntCount = Math.trunc(Math.random() * 1000);
-	export let obtainedAchievements = Math.trunc(Math.random() * 1000);
-	export let totalAchievements =
-		obtainedAchievements + Math.trunc(Math.random() * 1000);
-	export let obtainedTitles = Math.trunc(Math.random() * 1000);
-	export let totalTitles = obtainedTitles + Math.trunc(Math.random() * 1000);
 
-	export let huntCountRank = Math.trunc(Math.random() * 1000);
-	export let huntCountRankPercent = Math.trunc(Math.random() * 100);
-	export let obtainedAchievementsRank = Math.trunc(Math.random() * 1000);
-	export let obtainedAchievementsRankPercent = Math.trunc(Math.random() * 100);
-	export let titlesRank = Math.trunc(Math.random() * 1000);
-	export let titlesRankPercent = Math.trunc(Math.random() * 100);
+	interface Props {
+		huntCount?: any;
+		obtainedAchievements?: any;
+		totalAchievements?: any;
+		obtainedTitles?: any;
+		totalTitles?: any;
+		huntCountRank?: any;
+		huntCountRankPercent?: any;
+		obtainedAchievementsRank?: any;
+		obtainedAchievementsRankPercent?: any;
+		titlesRank?: any;
+		titlesRankPercent?: any;
+	}
+
+	let {
+		huntCount = Math.trunc(Math.random() * 1000),
+		obtainedAchievements = Math.trunc(Math.random() * 1000),
+		totalAchievements = obtainedAchievements + Math.trunc(Math.random() * 1000),
+		obtainedTitles = Math.trunc(Math.random() * 1000),
+		totalTitles = obtainedTitles + Math.trunc(Math.random() * 1000),
+		huntCountRank = Math.trunc(Math.random() * 1000),
+		huntCountRankPercent = Math.trunc(Math.random() * 100),
+		obtainedAchievementsRank = Math.trunc(Math.random() * 1000),
+		obtainedAchievementsRankPercent = Math.trunc(Math.random() * 100),
+		titlesRank = Math.trunc(Math.random() * 1000),
+		titlesRankPercent = Math.trunc(Math.random() * 100)
+	}: Props = $props();
 
 	function randomChoice(arr: any[]) {
 		return arr[Math.floor(arr.length * Math.random())];
@@ -111,12 +126,12 @@
 		},
 	];
 
-	let achievementsMeter: ComponentType<MeterChart>;
-	let achievementsMeterLoaded = false;
-	let titlesGauge: ComponentType<GaugeChart>;
-	let titlesGaugeLoaded = false;
+	let achievementsMeter: ComponentType<MeterChart> = $state();
+	let achievementsMeterLoaded = $state(false);
+	let titlesGauge: ComponentType<GaugeChart> = $state();
+	let titlesGaugeLoaded = $state(false);
 
-	$: achievementsMeterOptions = {
+	let achievementsMeterOptions = $derived({
 		toolbar: {
 			enabled: false,
 		},
@@ -138,15 +153,15 @@
 			},
 		},
 		theme: $carbonThemeStore,
-	} as MeterChartOptions;
+	} as MeterChartOptions);
 
-	$: titlesGaugeColor = getGaugeColor(
+	let titlesGaugeColor = $derived(getGaugeColor(
 		$carbonThemeStore,
 		obtainedTitles,
 		totalTitles,
-	);
+	));
 
-	$: titlesGaugeOptions = {
+	let titlesGaugeOptions = $derived({
 		theme: $carbonThemeStore,
 		resizable: true,
 		toolbar: {
@@ -161,7 +176,7 @@
 				value: titlesGaugeColor,
 			},
 		},
-	} as GaugeChartOptions;
+	} as GaugeChartOptions);
 
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
@@ -188,8 +203,8 @@
 		</p>
 		<div class="meter">
 			{#if achievementsMeterLoaded}
-				<svelte:component
-					this={achievementsMeter}
+				{@const SvelteComponent = achievementsMeter}
+				<SvelteComponent
 					data={achievementsMeterData}
 					options={achievementsMeterOptions}
 				/>
@@ -212,8 +227,8 @@
 		</p>
 		<div class="gauge">
 			{#if titlesGaugeLoaded}
-				<svelte:component
-					this={titlesGauge}
+				{@const SvelteComponent_1 = titlesGauge}
+				<SvelteComponent_1
 					data={titlesGaugeData}
 					options={titlesGaugeOptions}
 				/>

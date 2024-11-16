@@ -39,14 +39,14 @@
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalImageType: 'video' | 'image' = 'image';
-	let modalNotes = '';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalImageType: 'video' | 'image' = $state('image');
+	let modalNotes = $state('');
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
 
 	const transcendBuffs: {
 		id: string;
@@ -838,8 +838,7 @@
 			{:else}
 				<div>
 					{#await import('$lib/player/Player.svelte') then { default: Player }}
-						<svelte:component
-							this={Player}
+						<Player
 							{...{ title: modalHeading, src: modalImage }}
 						/>
 					{/await}
@@ -853,7 +852,8 @@
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent = modalPopoverIcon}
+							<SvelteComponent />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -953,34 +953,36 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'name' && transcendBuffs.find((e) => e.name === cell.value)?.demo}
-							<button
-								class="table-button"
-								on:click={() => changeModal(cell, 'Transcend')}
-							>
-								<img
-									src={transcendBuffs.find((e) => e.name === cell.value)?.icon}
-									alt="Icon"
-								/>
-								<span>{cell.value}</span><Image
-									size={20}
-									fill="var(--ctp-blue)"
-								/></button
-							>
-						{:else if cell.key === 'name'}
-							<div>
-								<InlineTooltip
-									tooltip="Buff"
-									text={cell.value}
-									iconType="file"
-									icon={transcendBuffs.find((e) => e.name === cell.value)?.icon}
-								/>
-							</div>
-						{:else}
-							<p>{cell.value}</p>
-						{/if}
-					</svelte:fragment>
+					{#snippet cell({ cell })}
+									
+							{#if cell.key === 'name' && transcendBuffs.find((e) => e.name === cell.value)?.demo}
+								<button
+									class="table-button"
+									onclick={() => changeModal(cell, 'Transcend')}
+								>
+									<img
+										src={transcendBuffs.find((e) => e.name === cell.value)?.icon}
+										alt="Icon"
+									/>
+									<span>{cell.value}</span><Image
+										size={20}
+										fill="var(--ctp-blue)"
+									/></button
+								>
+							{:else if cell.key === 'name'}
+								<div>
+									<InlineTooltip
+										tooltip="Buff"
+										text={cell.value}
+										iconType="file"
+										icon={transcendBuffs.find((e) => e.name === cell.value)?.icon}
+									/>
+								</div>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						
+									{/snippet}
 				</DataTable>
 			</div>
 
@@ -1017,21 +1019,23 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'name'}
-							<div>
-								<InlineTooltip
-									tooltip="Buff"
-									text={cell.value}
-									iconType="file"
-									icon={transcendBuffs.find((e) => e.name === cell.value)
-										?.icon || ''}
-								/>
-							</div>
-						{:else}
-							<p>{cell.value}</p>
-						{/if}
-					</svelte:fragment>
+					{#snippet cell({ cell })}
+									
+							{#if cell.key === 'name'}
+								<div>
+									<InlineTooltip
+										tooltip="Buff"
+										text={cell.value}
+										iconType="file"
+										icon={transcendBuffs.find((e) => e.name === cell.value)
+											?.icon || ''}
+									/>
+								</div>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						
+									{/snippet}
 				</DataTable>
 			</div>
 
@@ -1083,27 +1087,29 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'name'}
-									<div>
-										<InlineTooltip
-											tooltip="Item"
-											text={cell.value}
-											iconColor={transcendUpgradeMaterials.find(
-												(e) => e.name === cell.value,
-											)?.iconColor}
-											iconType="component"
-											icon={getItemIcon(
-												transcendUpgradeMaterials.find(
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'name'}
+										<div>
+											<InlineTooltip
+												tooltip="Item"
+												text={cell.value}
+												iconColor={transcendUpgradeMaterials.find(
 													(e) => e.name === cell.value,
-												)?.icon || '',
-											)}
-										/>
-									</div>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+												)?.iconColor}
+												iconType="component"
+												icon={getItemIcon(
+													transcendUpgradeMaterials.find(
+														(e) => e.name === cell.value,
+													)?.icon || '',
+												)}
+											/>
+										</div>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 
@@ -1230,21 +1236,23 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'name'}
-									<div>
-										<InlineTooltip
-											tooltip="Buff"
-											text={cell.value}
-											iconType="file"
-											icon={transcendBuffs.find((e) => e.name === cell.value)
-												?.icon || ''}
-										/>
-									</div>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'name'}
+										<div>
+											<InlineTooltip
+												tooltip="Buff"
+												text={cell.value}
+												iconType="file"
+												icon={transcendBuffs.find((e) => e.name === cell.value)
+													?.icon || ''}
+											/>
+										</div>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -1356,26 +1364,28 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'name' && elementalBursts.find((e) => e.name === cell.value)?.demo}
-									<button
-										class="table-button"
-										on:click={() => changeModal(cell, 'Burst')}
-									>
-										<img
-											src={elementalBursts.find((e) => e.name === cell.value)
-												?.icon}
-											alt="Icon"
-										/>
-										<span>{cell.value}</span><Image
-											size={20}
-											fill="var(--ctp-blue)"
-										/></button
-									>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'name' && elementalBursts.find((e) => e.name === cell.value)?.demo}
+										<button
+											class="table-button"
+											onclick={() => changeModal(cell, 'Burst')}
+										>
+											<img
+												src={elementalBursts.find((e) => e.name === cell.value)
+													?.icon}
+												alt="Icon"
+											/>
+											<span>{cell.value}</span><Image
+												size={20}
+												fill="var(--ctp-blue)"
+											/></button
+										>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 
@@ -1386,8 +1396,7 @@
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Burst Canceled',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/burst-cancel.webm',

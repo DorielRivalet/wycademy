@@ -21,7 +21,7 @@
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import { getArmorIcon } from '../modules/frontier/armor';
 
-	let selectedSetName = '';
+	let selectedSetName = $state('');
 
 	function onPieceClick(armorSet: ProfilePinnedSet) {
 		if (selectedSetName === armorSet.setName) {
@@ -31,8 +31,12 @@
 		}
 	}
 
-	export let theme: CarbonTheme;
-	export let armorSets: ProfilePinnedSet[] = [
+	interface Props {
+		theme: CarbonTheme;
+		armorSets?: ProfilePinnedSet[];
+	}
+
+	let { theme, armorSets = [
 		{
 			setIcon: LocationIcons.find((e) => e.name === 'Road')?.icon,
 			setTags: ['Road', 'Multiplayer', 'Premium'],
@@ -262,9 +266,9 @@
 			legsSlot2: 'Slot 2',
 			legsSlot3: 'Slot 3',
 		},
-	];
+	] }: Props = $props();
 
-	$: selectedArmorSet = armorSets.find((e) => e.setName === selectedSetName);
+	let selectedArmorSet = $derived(armorSets.find((e) => e.setName === selectedSetName));
 </script>
 
 <div class="container">
@@ -276,33 +280,38 @@
 	{#if selectedSetName === ''}
 		<div class="armor-sets">
 			{#each armorSets as armorSet}
+				{@const SvelteComponent = getWeaponIcon(armorSet.weaponType)}
+				{@const SvelteComponent_1 = getArmorIcon('Stand')}
 				<div class="armor-set">
 					<div class="set-header">
 						<div class="set-header-image-container">
 							{#if typeof armorSet.setIcon === 'string'}
 								<Tooltip hideIcon>
-									<span slot="triggerText">
-										<img
-											class="set-header-image"
-											src={armorSet.setIcon}
-											alt="Armot Set Piece"
-										/></span
-									>
+									{#snippet triggerText()}
+																		<span >
+											<img
+												class="set-header-image"
+												src={armorSet.setIcon}
+												alt="Armot Set Piece"
+											/></span
+										>
+																	{/snippet}
 									<p>{armorSet.setName}</p></Tooltip
 								>
 							{:else}
 								<div class="set-header-image">
 									<Tooltip hideIcon>
-										<span slot="triggerText">
-											<svelte:component
-												this={armorSet.setIcon}
-												{...{
-													size: '64px',
-													currentMonster: armorSet.setIconProps?.currentMonster,
-													background: armorSet.setIconProps?.background,
-												}}
-											/></span
-										>
+										{#snippet triggerText()}
+																				<span >
+												<armorSet.setIcon
+													{...{
+														size: '64px',
+														currentMonster: armorSet.setIconProps?.currentMonster,
+														background: armorSet.setIconProps?.background,
+													}}
+												/></span
+											>
+																			{/snippet}
 										<p>{armorSet.setName}</p></Tooltip
 									>
 								</div>
@@ -319,14 +328,13 @@
 					</div>
 					<button
 						class="set-slot"
-						on:click={(e) => onPieceClick(armorSet)}
+						onclick={(e) => onPieceClick(armorSet)}
 						style:background-color={getHexStringFromCatppuccinColor(
 							armorSet.setColor,
 							theme,
 						) + '80'}
 					>
-						<svelte:component
-							this={getWeaponIcon(armorSet.weaponType)}
+						<SvelteComponent
 							{...{
 								color: getHexStringFromCatppuccinColor(
 									armorSet.setColor,
@@ -337,14 +345,13 @@
 					</button>
 					<button
 						class="set-slot"
-						on:click={(e) => onPieceClick(armorSet)}
+						onclick={(e) => onPieceClick(armorSet)}
 						style:background-color={getHexStringFromCatppuccinColor(
 							armorSet.setColor,
 							theme,
 						) + '80'}
 					>
-						<svelte:component
-							this={getArmorIcon('Stand')}
+						<SvelteComponent_1
 							{...{
 								color: getHexStringFromCatppuccinColor(
 									armorSet.setColor,
@@ -357,6 +364,7 @@
 			{/each}
 		</div>
 	{:else if selectedArmorSet}
+		{@const SvelteComponent_3 = getWeaponIcon(selectedArmorSet?.weaponType)}
 		<div class="selected-armor-set">
 			<div class="armor-set">
 				<div class="set-header">
@@ -368,9 +376,9 @@
 								alt="Armot Set Piece"
 							/>
 						{:else}
+							{@const SvelteComponent_2 = selectedArmorSet?.setIcon}
 							<div class="set-header-image">
-								<svelte:component
-									this={selectedArmorSet?.setIcon}
+								<SvelteComponent_2
 									{...{
 										size: '64px',
 										currentMonster:
@@ -384,14 +392,13 @@
 				</div>
 				<button
 					class="set-slot"
-					on:click={(e) => onPieceClick(selectedArmorSet)}
+					onclick={(e) => onPieceClick(selectedArmorSet)}
 					style:background-color={getHexStringFromCatppuccinColor(
 						selectedArmorSet?.setColor,
 						theme,
 					) + '80'}
 				>
-					<svelte:component
-						this={getWeaponIcon(selectedArmorSet?.weaponType)}
+					<SvelteComponent_3
 						{...{
 							color: getHexStringFromCatppuccinColor(
 								selectedArmorSet?.setColor,
@@ -402,7 +409,7 @@
 				</button>
 				<button
 					class="set-slot"
-					on:click={(e) => onPieceClick(selectedArmorSet)}
+					onclick={(e) => onPieceClick(selectedArmorSet)}
 					style:background-color={getHexStringFromCatppuccinColor(
 						selectedArmorSet?.setColor,
 						theme,
@@ -416,7 +423,7 @@
 				>
 				<button
 					class="set-slot"
-					on:click={(e) => onPieceClick(selectedArmorSet)}
+					onclick={(e) => onPieceClick(selectedArmorSet)}
 					style:background-color={getHexStringFromCatppuccinColor(
 						selectedArmorSet?.setColor,
 						theme,
@@ -430,7 +437,7 @@
 				>
 				<button
 					class="set-slot"
-					on:click={(e) => onPieceClick(selectedArmorSet)}
+					onclick={(e) => onPieceClick(selectedArmorSet)}
 					style:background-color={getHexStringFromCatppuccinColor(
 						selectedArmorSet?.setColor,
 						theme,
@@ -444,7 +451,7 @@
 				>
 				<button
 					class="set-slot"
-					on:click={(e) => onPieceClick(selectedArmorSet)}
+					onclick={(e) => onPieceClick(selectedArmorSet)}
 					style:background-color={getHexStringFromCatppuccinColor(
 						selectedArmorSet?.setColor,
 						theme,
@@ -458,7 +465,7 @@
 				>
 				<button
 					class="set-slot"
-					on:click={(e) => onPieceClick(selectedArmorSet)}
+					onclick={(e) => onPieceClick(selectedArmorSet)}
 					style:background-color={getHexStringFromCatppuccinColor(
 						selectedArmorSet?.setColor,
 						theme,
@@ -472,7 +479,7 @@
 				>
 				<button
 					class="set-slot"
-					on:click={(e) => onPieceClick(selectedArmorSet)}
+					onclick={(e) => onPieceClick(selectedArmorSet)}
 					style:background-color={getHexStringFromCatppuccinColor(
 						selectedArmorSet?.setColor,
 						theme,
@@ -490,7 +497,9 @@
 					iconDescription={'Back'}
 					kind="ghost"
 					on:click={(e) => onPieceClick(selectedArmorSet)}
-					><span slot="icon"><PreviousOutline size={24} /></span>
+					>{#snippet icon()}
+												<span ><PreviousOutline size={24} /></span>
+											{/snippet}
 				</Button>
 				<h3>{selectedArmorSet.setName}</h3>
 				<div class="tags">

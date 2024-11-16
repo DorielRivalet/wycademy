@@ -15,30 +15,54 @@ Shows text next to an icon inline. You can use either a component or a image imp
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 
-	/** File: images such as webp or gif. Component: svelte files.*/
-	export let iconType: 'component' | 'file' = 'component';
-	/** If the icon is not loading, change the iconType.*/
-	export let icon: any = QuestionMarkIconWhite;
+	
+	
 
-	/** The route to navigate to when clicking the title or icon in the popover.*/
-	export let link: string;
-	/** The main category of the entity.*/
-	export let tag1: string;
-	export let tag2 = '';
-	export let tag3 = '';
-	/** Used as popover title and the text next to the icon.*/
-	export let title: string;
-	export let subtitle: string;
-	/** The description in the popover.*/
-	export let description: string;
-	/** The alignment of the popover.*/
-	export let align: PopoverPosition = 'right';
+	
+	
+	
+	
+	
 
-	export let popoverIconType: 'component' | 'file' = 'component';
-	export let popoverIcon: any = QuestionMarkIconWhite;
+	interface Props {
+		/** File: images such as webp or gif. Component: svelte files.*/
+		iconType?: 'component' | 'file';
+		/** If the icon is not loading, change the iconType.*/
+		icon?: any;
+		/** The route to navigate to when clicking the title or icon in the popover.*/
+		link: string;
+		/** The main category of the entity.*/
+		tag1: string;
+		tag2?: string;
+		tag3?: string;
+		/** Used as popover title and the text next to the icon.*/
+		title: string;
+		subtitle: string;
+		/** The description in the popover.*/
+		description: string;
+		/** The alignment of the popover.*/
+		align?: PopoverPosition;
+		popoverIconType?: 'component' | 'file';
+		popoverIcon?: any;
+	}
 
-	let open = false;
-	let ref: HTMLSpanElement | null = null;
+	let {
+		iconType = 'component',
+		icon = QuestionMarkIconWhite,
+		link = $bindable(),
+		tag1 = $bindable(),
+		tag2 = $bindable(''),
+		tag3 = $bindable(''),
+		title = $bindable(),
+		subtitle = $bindable(),
+		description = $bindable(),
+		align = $bindable('right'),
+		popoverIconType = 'component',
+		popoverIcon = QuestionMarkIconWhite
+	}: Props = $props();
+
+	let open = $state(false);
+	let ref: HTMLSpanElement | null = $state(null);
 
 	function handleFocus() {
 		if (!browser) return;
@@ -81,23 +105,26 @@ Shows text next to an icon inline. You can use either a component or a image imp
 			bind:subtitle
 			bind:description
 			bind:align
-			><div slot="image">
-				{#if popoverIconType === 'component'}
-					<svelte:component this={popoverIcon} />
-				{:else}
-					<img class="popover-image" src={popoverIcon} alt={title} />
-				{/if}
-			</div></InlineToggletipPopover
+			>{#snippet image()}
+						<div >
+					{#if popoverIconType === 'component'}
+						{@const SvelteComponent = popoverIcon}
+					<SvelteComponent />
+					{:else}
+						<img class="popover-image" src={popoverIcon} alt={title} />
+					{/if}
+				</div>
+					{/snippet}</InlineToggletipPopover
 		>
 
 		<!--TODO better logic-->
 		{#if iconType === 'file'}
 			<span
 				class="image hoverable"
-				on:click={(e) => handleFocus()}
+				onclick={(e) => handleFocus()}
 				role="button"
 				tabindex="0"
-				on:keypress={(e) => handleFocus()}
+				onkeypress={(e) => handleFocus()}
 			>
 				<img
 					style="display: inline;"
@@ -108,21 +135,22 @@ Shows text next to an icon inline. You can use either a component or a image imp
 				/>
 			</span>
 		{:else}
+			{@const SvelteComponent_1 = icon}
 			<span
 				class="icon hoverable"
-				on:click={(e) => handleFocus()}
+				onclick={(e) => handleFocus()}
 				role="button"
 				tabindex="0"
-				on:keypress={(e) => handleFocus()}
+				onkeypress={(e) => handleFocus()}
 			>
-				<svelte:component this={icon} />
+				<SvelteComponent_1 />
 			</span>
 		{/if}
 		<span
-			on:click={(e) => handleFocus()}
+			onclick={(e) => handleFocus()}
 			role="button"
 			tabindex="0"
-			on:keypress={(e) => handleFocus()}
+			onkeypress={(e) => handleFocus()}
 			class="description underline"
 		>
 			{title}

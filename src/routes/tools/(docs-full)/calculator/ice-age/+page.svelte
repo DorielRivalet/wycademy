@@ -39,11 +39,11 @@
 	} from '$lib/client/modules/frontier/sigils';
 	import TrueRawConverter from '$lib/client/components/frontier/TrueRawConverter.svelte';
 
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalNotes = '';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalNotes = $state('');
 
 	function getIceAgeAnimation(stage: string) {
 		switch (stage) {
@@ -164,13 +164,13 @@
 	}
 
 	let inputWeaponType: FrontierWeaponName = 'Sword and Shield';
-	let inputNumberIceAgeCalculatorSRTrueRaw = 0;
-	let inputIceAgeCalculatorGRankArmorTrueRaw = 'None';
-	let inputNumberIceAgeCalculatorSecondsElapsed = 0;
-	let inputIceAgeCalculatorStage = 'Stage 1';
-	let inputIceAgeCalculatorHunters = '1';
-	let inputNumberIceAgeCalculatorMonsterDefenseRate = 1;
-	let inputNumberIceAgeCalculatorMonsterTrueHP = 30_000;
+	let inputNumberIceAgeCalculatorSRTrueRaw = $state(0);
+	let inputIceAgeCalculatorGRankArmorTrueRaw = $state('None');
+	let inputNumberIceAgeCalculatorSecondsElapsed = $state(0);
+	let inputIceAgeCalculatorStage = $state('Stage 1');
+	let inputIceAgeCalculatorHunters = $state('1');
+	let inputNumberIceAgeCalculatorMonsterDefenseRate = $state(1);
+	let inputNumberIceAgeCalculatorMonsterTrueHP = $state(30_000);
 
 	const maxTrueRaw = 8_000;
 
@@ -179,66 +179,23 @@
 	const invalidNumberValueText = `Invalid value. Must be between ${minimumNumberValue} and ${maximumNumberValue}`;
 	const invalidTrueRawText = `Invalid value. Must be between ${minimumNumberValue} and ${maxTrueRaw}`;
 
-	$: iceAgeCalculatorSecondsNeeded =
-		iceAgeCalculatorDamagePerSecond > 0
-			? Math.floor(
-					inputNumberIceAgeCalculatorMonsterTrueHP /
-						iceAgeCalculatorDamagePerSecond,
-				)
-			: 'Infinity';
 
-	$: iceAgeCalculatorMaxHPPercentDealt =
-		Math.floor(
-			((iceAgeCalculatorTotalDamage * 100) /
-				inputNumberIceAgeCalculatorMonsterTrueHP) *
-				100,
-		) / 100;
 
-	$: iceAgeCalculatorDamagePerSecond = Math.floor(
-		getIceAgeBaseMultiplier(inputIceAgeCalculatorStage) *
-			(inputNumberIceAgeCalculatorWeaponTrueRaw +
-				inputNumberIceAgeCalculatorSigil1TrueRaw +
-				inputNumberIceAgeCalculatorSigil2TrueRaw +
-				inputNumberIceAgeCalculatorSigil3TrueRaw +
-				inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
-				getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
-				getAOESigilTrueRaw(
-					inputNumberIceAgeCalculatorAOESigil,
-					Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
-				) +
-				inputNumberIceAgeCalculatorSRTrueRaw +
-				getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)) *
-			inputNumberIceAgeCalculatorMonsterDefenseRate *
-			Number.parseInt(inputIceAgeCalculatorHunters),
-	);
 
 	const formulaIceAgeDamagePerSecond = display(
 		`\\text{Ice Age DPS} = \\lfloor \\text{Stage Multiplier} \\times (\\text{Weapon True Raw} + \\text{Sigils True Raw} + \\text{SR True Raw} + \\text{GRank Armor Bonus}) \\times \\text{Monster Defense Rate} \\times \\text{Ice Age Hunters}\\rfloor`,
 	);
 
-	let inputNumberIceAgeCalculatorWeaponTrueRaw = 0;
-	let inputNumberIceAgeCalculatorSigil1TrueRaw = 0;
-	let inputNumberIceAgeCalculatorSigil2TrueRaw = 0;
-	let inputNumberIceAgeCalculatorSigil3TrueRaw = 0;
-	let inputNumberIceAgeCalculatorZenithSigil = 0;
-	let inputNumberIceAgeCalculatorAOESigil = 0;
-	let inputIceAgeCalculatorAOESigilHunters = '1';
-	let inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw = 0;
+	let inputNumberIceAgeCalculatorWeaponTrueRaw = $state(0);
+	let inputNumberIceAgeCalculatorSigil1TrueRaw = $state(0);
+	let inputNumberIceAgeCalculatorSigil2TrueRaw = $state(0);
+	let inputNumberIceAgeCalculatorSigil3TrueRaw = $state(0);
+	let inputNumberIceAgeCalculatorZenithSigil = $state(0);
+	let inputNumberIceAgeCalculatorAOESigil = $state(0);
+	let inputIceAgeCalculatorAOESigilHunters = $state('1');
+	let inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw = $state(0);
 
-	$: iceAgeCalculatorTotalDamage =
-		inputNumberIceAgeCalculatorSecondsElapsed * iceAgeCalculatorDamagePerSecond;
 
-	$: formulaValuesIceAgeDamagePerSecond = `${iceAgeCalculatorDamagePerSecond} = \\lfloor ${getIceAgeBaseMultiplier(inputIceAgeCalculatorStage)} \\times (${inputNumberIceAgeCalculatorWeaponTrueRaw} + ${
-		inputNumberIceAgeCalculatorSigil1TrueRaw +
-		inputNumberIceAgeCalculatorSigil2TrueRaw +
-		inputNumberIceAgeCalculatorSigil3TrueRaw +
-		inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
-		getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
-		getAOESigilTrueRaw(
-			inputNumberIceAgeCalculatorAOESigil,
-			Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
-		)
-	} + ${inputNumberIceAgeCalculatorSRTrueRaw} + ${getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)}) \\times ${inputNumberIceAgeCalculatorMonsterDefenseRate} \\times ${Number.parseInt(inputIceAgeCalculatorHunters)} \\rfloor`;
 
 	let modalLink = '';
 	let modalPopoverIconType = 'component';
@@ -263,10 +220,53 @@
 		color: 'outline',
 	};
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
 
-	let trueRawConverterWeaponType: FrontierWeaponName = 'Sword and Shield';
-	let trueRawConverterValue = 1500;
+	let trueRawConverterWeaponType: FrontierWeaponName = $state('Sword and Shield');
+	let trueRawConverterValue = $state(1500);
+	let iceAgeCalculatorDamagePerSecond = $derived(Math.floor(
+		getIceAgeBaseMultiplier(inputIceAgeCalculatorStage) *
+			(inputNumberIceAgeCalculatorWeaponTrueRaw +
+				inputNumberIceAgeCalculatorSigil1TrueRaw +
+				inputNumberIceAgeCalculatorSigil2TrueRaw +
+				inputNumberIceAgeCalculatorSigil3TrueRaw +
+				inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
+				getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
+				getAOESigilTrueRaw(
+					inputNumberIceAgeCalculatorAOESigil,
+					Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
+				) +
+				inputNumberIceAgeCalculatorSRTrueRaw +
+				getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)) *
+			inputNumberIceAgeCalculatorMonsterDefenseRate *
+			Number.parseInt(inputIceAgeCalculatorHunters),
+	));
+	let iceAgeCalculatorSecondsNeeded =
+		$derived(iceAgeCalculatorDamagePerSecond > 0
+			? Math.floor(
+					inputNumberIceAgeCalculatorMonsterTrueHP /
+						iceAgeCalculatorDamagePerSecond,
+				)
+			: 'Infinity');
+	let iceAgeCalculatorTotalDamage =
+		$derived(inputNumberIceAgeCalculatorSecondsElapsed * iceAgeCalculatorDamagePerSecond);
+	let iceAgeCalculatorMaxHPPercentDealt =
+		$derived(Math.floor(
+			((iceAgeCalculatorTotalDamage * 100) /
+				inputNumberIceAgeCalculatorMonsterTrueHP) *
+				100,
+		) / 100);
+	let formulaValuesIceAgeDamagePerSecond = $derived(`${iceAgeCalculatorDamagePerSecond} = \\lfloor ${getIceAgeBaseMultiplier(inputIceAgeCalculatorStage)} \\times (${inputNumberIceAgeCalculatorWeaponTrueRaw} + ${
+		inputNumberIceAgeCalculatorSigil1TrueRaw +
+		inputNumberIceAgeCalculatorSigil2TrueRaw +
+		inputNumberIceAgeCalculatorSigil3TrueRaw +
+		inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
+		getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
+		getAOESigilTrueRaw(
+			inputNumberIceAgeCalculatorAOESigil,
+			Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
+		)
+	} + ${inputNumberIceAgeCalculatorSRTrueRaw} + ${getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)}) \\times ${inputNumberIceAgeCalculatorMonsterDefenseRate} \\times ${Number.parseInt(inputIceAgeCalculatorHunters)} \\rfloor`);
+	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
 </script>
 
 <svelte:head>
@@ -300,7 +300,8 @@
 						<a href={modalLink}>
 							<div>
 								{#if modalPopoverIconType === 'component'}
-									<svelte:component this={modalPopoverIcon} />
+									{@const SvelteComponent = modalPopoverIcon}
+									<SvelteComponent />
 								{:else}
 									<img src={modalPopoverIcon} alt={modalHeading} />
 								{/if}
@@ -316,7 +317,8 @@
 					<div class="modal-mobile-image">
 						<div>
 							{#if modalPopoverIconType === 'component'}
-								<svelte:component this={modalPopoverIcon} />
+								{@const SvelteComponent_1 = modalPopoverIcon}
+								<SvelteComponent_1 />
 							{:else}
 								<img src={modalPopoverIcon} alt={modalHeading} />
 							{/if}
@@ -660,22 +662,26 @@
 									/>
 								</div>
 							</Toolbar>
-							<span slot="title">
-								<div class="data-table-title">
-									<div>Ice Age Required Hits</div>
-								</div>
-							</span>
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'weapon'}
-									<InlineTooltip
-										icon={getWeaponIcon(cell.value)}
-										text={cell.value}
-										tooltip="Weapon"
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet title()}
+														<span >
+									<div class="data-table-title">
+										<div>Ice Age Required Hits</div>
+									</div>
+								</span>
+													{/snippet}
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'weapon'}
+										<InlineTooltip
+											icon={getWeaponIcon(cell.value)}
+											text={cell.value}
+											tooltip="Weapon"
+										/>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 					<div class="ice-age-table-stages toc-exclude">
@@ -746,23 +752,27 @@
 									/>
 								</div>
 							</Toolbar>
-							<span slot="title">
-								<div class="data-table-title">
-									<div>Ice Age Stages</div>
-								</div>
-							</span>
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'stage'}
-									<Button
-										on:click={() => changeModal(cell, 'Ice Age Stages')}
-										size="small"
-										icon={Image}
-										kind="ghost">{cell.value}</Button
-									>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet title()}
+														<span >
+									<div class="data-table-title">
+										<div>Ice Age Stages</div>
+									</div>
+								</span>
+													{/snippet}
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'stage'}
+										<Button
+											on:click={() => changeModal(cell, 'Ice Age Stages')}
+											size="small"
+											icon={Image}
+											kind="ghost">{cell.value}</Button
+										>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>

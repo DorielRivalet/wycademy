@@ -5,8 +5,12 @@
 -->
 
 <script lang="ts">
-	export let title: string;
-	export let withSeparator = true;
+	interface Props {
+		title: string;
+		withSeparator?: boolean;
+	}
+
+	let { title, withSeparator = true }: Props = $props();
 </script>
 
 <div class="container">

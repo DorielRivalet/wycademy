@@ -2,7 +2,7 @@
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
 
-	$: targetColor = '#f39506';
+	let targetColor = $derived('#f39506');
 </script>
 
 <svg

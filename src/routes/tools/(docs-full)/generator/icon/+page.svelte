@@ -271,10 +271,10 @@
 		return item.text.toLowerCase().includes(value.toLowerCase());
 	}
 
-	let selectedIconFormat: 'Vector' | 'Raster' = 'Vector';
-	let selectedIconMonsterRenderSize: 'Small' | 'Full' = 'Full';
-	let selectedIconSize: IconSize = '256px';
-	let selectedIconType: FrontierImageType = 'Monster Icon';
+	let selectedIconFormat: 'Vector' | 'Raster' = $state('Vector');
+	let selectedIconMonsterRenderSize: 'Small' | 'Full' = $state('Full');
+	let selectedIconSize: IconSize = $state('256px');
+	let selectedIconType: FrontierImageType = $state('Monster Icon');
 	const allFrontierColors = getAllFrontierColors();
 
 	let uniqueMonsters = getUniqueMonsters().sort(
@@ -282,22 +282,22 @@
 			(a?.displayName?.codePointAt(0) ?? 0) -
 			(b?.displayName?.codePointAt(0) ?? 0),
 	);
-	let selectedIconIdFromList = 'Abiorugu';
-	let selectedIconColor = allFrontierColors[0].id;
-	let selectedIconBackground = false;
+	let selectedIconIdFromList = $state('Abiorugu');
+	let selectedIconColor = $state(allFrontierColors[0].id);
+	let selectedIconBackground = $state(false);
 
-	let selectedIconShadowColor = '#ffffff';
-	let selectedIconShadowWidth = 0;
+	let selectedIconShadowColor = $state('#ffffff');
+	let selectedIconShadowWidth = $state(0);
 
-	$: currentIconsFromType = getCurrentIconsFromType(selectedIconType);
+	let currentIconsFromType = $derived(getCurrentIconsFromType(selectedIconType));
 
-	$: currentIconPreview = getIconBlobFromIconMetaData(
+	let currentIconPreview = $derived(getIconBlobFromIconMetaData(
 		selectedIconType,
 		selectedIconIdFromList,
 		selectedIconSize,
 		selectedIconFormat,
 		selectedIconColor,
-	);
+	));
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -426,8 +426,7 @@
 					<div
 						style="filter: drop-shadow(0 0 {selectedIconShadowWidth}px {selectedIconShadowColor});"
 					>
-						<svelte:component
-							this={currentIconPreview.component}
+						<currentIconPreview.component
 							{...{
 								currentMonster: selectedIconIdFromList,
 								size: selectedIconType === 'Weapon' ? '100%' : selectedIconSize,

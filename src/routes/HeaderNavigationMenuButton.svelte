@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import ClickableTile from 'carbon-components-svelte/src/Tile/ClickableTile.svelte';
 	import ArrowRight from 'carbon-icons-svelte/lib/ArrowRight.svelte';
@@ -10,17 +12,29 @@
 	import { cubicInOut } from 'svelte/easing';
 	import { createEventDispatcher } from 'svelte';
 
-	export let description;
-	export let path;
-	export let id; // Unique identifier for each menu button
-	export let openMenu: null | 'guides' | 'tools' | 'support'; // Receive the global openMenu state as a prop
+	interface Props {
+		description: any;
+		path: any;
+		id: any;
+		openMenu: null | 'guides' | 'tools' | 'support';
+	}
+
+	let {
+		description,
+		path,
+		id,
+		openMenu = $bindable()
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
-	let selectedCategory = 0;
+	let selectedCategory = $state(0);
 
 	// Determine if this menu should be open based on global state
-	$: isOpen = openMenu === id;
+	let isOpen;
+	run(() => {
+		isOpen = openMenu === id;
+	});
 
 	// Updated toggleOpen function
 	const toggleOpen = () => {
@@ -37,19 +51,21 @@
 </script>
 
 <li class="container">
-	<Button as let:props kind="ghost" iconDescription={description}>
-		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-		<p {...props} on:click={() => toggleOpen()}>
-			<button class="button">
-				<span>{description}</span>
-				{#if isOpen}
-					<ChevronUp />
-				{:else}
-					<ChevronDown />
-				{/if}
-			</button>
-		</p>
-	</Button>
+	<Button as  kind="ghost" iconDescription={description}>
+		{#snippet children({ props })}
+				<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+			<p {...props} onclick={() => toggleOpen()}>
+				<button class="button">
+					<span>{description}</span>
+					{#if isOpen}
+						<ChevronUp />
+					{:else}
+						<ChevronDown />
+					{/if}
+				</button>
+			</p>
+					{/snippet}
+		</Button>
 	{#if isOpen}
 		<div
 			out:slide={{ duration: 250, easing: cubicInOut }}
@@ -80,7 +96,7 @@
 					<div class="selected-category-content">
 						<div class="selected-category-header">
 							<a
-								on:click={() => (openMenu = null)}
+								onclick={() => (openMenu = null)}
 								class="selected-category-link"
 								href={section[selectedCategory].category.link}
 							>
@@ -92,8 +108,8 @@
 											width="64"
 										/>
 									{:else}
-										<svelte:component
-											this={section[selectedCategory].category.image}
+										{@const SvelteComponent = section[selectedCategory].category.image}
+										<SvelteComponent
 										/>
 									{/if}
 								</div>
@@ -108,7 +124,7 @@
 						<div class="grid-container">
 							{#each section[selectedCategory].pages as page}
 								<button
-									on:click={() => (openMenu = null)}
+									onclick={() => (openMenu = null)}
 									class="page-tile-container"
 								>
 									<ClickableTileImage
@@ -126,7 +142,7 @@
 			{/if}
 		</div>
 
-		<button on:click={() => (isOpen = false)} class="dark-background"></button>
+		<button onclick={() => (isOpen = false)} class="dark-background"></button>
 	{/if}
 </li>
 

@@ -1,19 +1,25 @@
 <script lang="ts">
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
-	export let path: string;
-	export let description: string;
+	interface Props {
+		path: string;
+		description: string;
+	}
+
+	let { path, description }: Props = $props();
 </script>
 
 <li>
-	<Button as let:props kind="ghost" iconDescription="Leaderboards">
-		<a href={path}
-			><p {...props}>
-				<button class="button">
-					<span>{description}</span>
-				</button>
-			</p></a
-		>
-	</Button>
+	<Button as  kind="ghost" iconDescription="Leaderboards">
+		{#snippet children({ props })}
+				<a href={path}
+				><p {...props}>
+					<button class="button">
+						<span>{description}</span>
+					</button>
+				</p></a
+			>
+					{/snippet}
+		</Button>
 </li>
 
 <style lang="scss">

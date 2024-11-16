@@ -14,9 +14,9 @@
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
 
-	let originsTablePageSize = 5;
-	let originsTablePage = 1;
-	let originsTableFilteredRowIds: string[] = [];
+	let originsTablePageSize = $state(5);
+	let originsTablePage = $state(1);
+	let originsTableFilteredRowIds: string[] = $state([]);
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -313,31 +313,35 @@
 							>
 						</div>
 					</Toolbar>
-					<span slot="title">
-						<div class="data-table-title">
-							<div>Recommended Origin Weapons</div>
-						</div>
-					</span>
-					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'monster'}
-							<InlineTooltip
-								icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
-									''}
-								iconType="file"
-								tooltip={cell.value}
-								text={cell.value}
-							/>
-						{:else if cell.key === 'weapon'}
-							<InlineTooltip
-								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon ??
-									''}
-								tooltip={cell.value}
-								text={cell.value}
-							/>
-						{:else}
-							<p>{cell.value}</p>
-						{/if}
-					</svelte:fragment>
+					{#snippet title()}
+										<span >
+							<div class="data-table-title">
+								<div>Recommended Origin Weapons</div>
+							</div>
+						</span>
+									{/snippet}
+					{#snippet cell({ cell })}
+									
+							{#if cell.key === 'monster'}
+								<InlineTooltip
+									icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
+										''}
+									iconType="file"
+									tooltip={cell.value}
+									text={cell.value}
+								/>
+							{:else if cell.key === 'weapon'}
+								<InlineTooltip
+									icon={WeaponTypes.find((e) => e.name === cell.value)?.icon ??
+										''}
+									tooltip={cell.value}
+									text={cell.value}
+								/>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						
+									{/snippet}
 				</DataTable>
 				<Pagination
 					pageSizes={[5, 10, 20]}

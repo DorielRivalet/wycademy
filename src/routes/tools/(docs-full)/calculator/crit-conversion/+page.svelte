@@ -78,70 +78,65 @@
 		`\\text{Flash Conversion Up True Raw} = \\lfloor \\sqrt{\\text{Natural Affinity}} \\times \\text{critConversionUpMultiplier} \\rfloor`,
 	);
 
-	let critConversionCalculatorIssenAffinity = '0';
-	let critConversionCalculatorSharpnessAffinity = '10';
-	let critConversionCalculatorSigil1Affinity = 15;
-	let critConversionCalculatorSigil2Affinity = 0;
-	let critConversionCalculatorSigil3Affinity = 0;
-	let critConversionCalculatorStyleRankAffinity = '26';
-	let critConversionCalculatorExpertAffinity = '100';
-	let critConversionCalculatorGSActiveFeatureAffinity = '0';
-	let critConversionCalculatorDrinkAffinity = '30';
-	let critConversionCalculatorStarvingWolfAffinity = '50';
-	let critConversionCalculatorCeaselessAffinity = '60';
-	let critConversionCalculatorFuriousAffinity = '40';
-	let critConversionCalculatorDivaPrayerGemAffinity = '100';
-	let critConversionCalculatorAOEAffinityCount = '1';
-	let critConversionCalculatorAOEAffinitySigil = 0;
-	let critConversionCalculatorCritConversionUp = 'None';
-	let critConversionCalculatorNaturalAffinity = 100;
-	let critConversionCalculatorFlashConversion = 'Critical Conversion (+30%)';
+	let critConversionCalculatorIssenAffinity = $state('0');
+	let critConversionCalculatorSharpnessAffinity = $state('10');
+	let critConversionCalculatorSigil1Affinity = $state(15);
+	let critConversionCalculatorSigil2Affinity = $state(0);
+	let critConversionCalculatorSigil3Affinity = $state(0);
+	let critConversionCalculatorStyleRankAffinity = $state('26');
+	let critConversionCalculatorExpertAffinity = $state('100');
+	let critConversionCalculatorGSActiveFeatureAffinity = $state('0');
+	let critConversionCalculatorDrinkAffinity = $state('30');
+	let critConversionCalculatorStarvingWolfAffinity = $state('50');
+	let critConversionCalculatorCeaselessAffinity = $state('60');
+	let critConversionCalculatorFuriousAffinity = $state('40');
+	let critConversionCalculatorDivaPrayerGemAffinity = $state('100');
+	let critConversionCalculatorAOEAffinityCount = $state('1');
+	let critConversionCalculatorAOEAffinitySigil = $state(0);
+	let critConversionCalculatorCritConversionUp = $state('None');
+	let critConversionCalculatorNaturalAffinity = $state(100);
+	let critConversionCalculatorFlashConversion = $state('Critical Conversion (+30%)');
 
-	let flashConversionChartLoaded = false;
-	let flashConversionChart: ComponentType<LineChart>;
+	let flashConversionChartLoaded = $state(false);
+	let flashConversionChart: ComponentType<LineChart> = $state();
 
-	$: critConversionCalculatorAOETotalAffinity =
-		Number(critConversionCalculatorAOEAffinityCount) === 0 ||
+
+
+
+
+
+
+
+
+	onMount(async () => {
+		const charts = await import('@carbon/charts-svelte');
+		flashConversionChart = charts.LineChart;
+		flashConversionChartLoaded = true;
+	});
+	let critConversionCalculatorAOETotalAffinity =
+		$derived(Number(critConversionCalculatorAOEAffinityCount) === 0 ||
 		critConversionCalculatorAOEAffinitySigil === 0
 			? 0
 			: (20 + critConversionCalculatorAOEAffinitySigil * 2) *
-				Number(critConversionCalculatorAOEAffinityCount);
-
-	$: formulaValuesFlashConversionUp = `${Math.floor(
+				Number(critConversionCalculatorAOEAffinityCount));
+	let critConversionCalculatorCritConversionUpMultiplier =
+		$derived(multipliersDropdownItems.find(
+			(item) => item.name === critConversionCalculatorCritConversionUp,
+		)?.value || 0);
+	let formulaValuesFlashConversionUp = $derived(`${Math.floor(
 		Math.sqrt(Math.max(0, critConversionCalculatorNaturalAffinity)) *
 			critConversionCalculatorCritConversionUpMultiplier,
-	)} = \\lfloor \\sqrt{${Math.max(0, critConversionCalculatorNaturalAffinity)}} \\times ${critConversionCalculatorCritConversionUpMultiplier} \\rfloor`;
-
-	$: flashConversionChartData = generateFlashConversionChartData(
+	)} = \\lfloor \\sqrt{${Math.max(0, critConversionCalculatorNaturalAffinity)}} \\times ${critConversionCalculatorCritConversionUpMultiplier} \\rfloor`);
+	let flashConversionChartData = $derived(generateFlashConversionChartData(
 		critConversionCalculatorNaturalAffinity,
 		critConversionCalculatorCritConversionUpMultiplier,
-	);
-
-	$: formulaValuesFlashConversion = `${Math.floor(Math.sqrt(critConversionCalculatorExcessAffinity >= 0 ? critConversionCalculatorExcessAffinity : 0) * 7)} = \\lfloor \\sqrt{${critConversionCalculatorExcessAffinity}} \\times 7 \\rfloor
-	`;
-
-	$: critConversionCalculatorCritConversionUpMultiplier =
-		multipliersDropdownItems.find(
-			(item) => item.name === critConversionCalculatorCritConversionUp,
-		)?.value || 0;
-	$: critConversionCalculatorFlashConversionAffinity =
-		affinityDropdownItems.find(
+	));
+	let critConversionCalculatorFlashConversionAffinity =
+		$derived(affinityDropdownItems.find(
 			(item) => item.name === critConversionCalculatorFlashConversion,
-		)?.value || 0;
-	$: critConversionCalculatorTrueRaw = getCritConversionTrueRaw(
-		critConversionCalculatorTotalAffinity,
-		critConversionCalculatorCritConversionUpMultiplier,
-		critConversionCalculatorNaturalAffinity,
-		critConversionCalculatorFlashConversionAffinity,
-	);
-
-	$: critConversionCalculatorExcessAffinity = Math.max(
-		0,
-		critConversionCalculatorTotalAffinity - 100,
-	);
-
-	$: critConversionCalculatorTotalAffinity =
-		Number(critConversionCalculatorIssenAffinity) +
+		)?.value || 0);
+	let critConversionCalculatorTotalAffinity =
+		$derived(Number(critConversionCalculatorIssenAffinity) +
 		Number(critConversionCalculatorSharpnessAffinity) +
 		critConversionCalculatorSigil1Affinity +
 		critConversionCalculatorSigil2Affinity +
@@ -156,9 +151,20 @@
 		Number(critConversionCalculatorCeaselessAffinity) +
 		Number(critConversionCalculatorFuriousAffinity) +
 		critConversionCalculatorAOETotalAffinity +
-		Number(critConversionCalculatorDivaPrayerGemAffinity);
-
-	$: flashConversionChartOptions = {
+		Number(critConversionCalculatorDivaPrayerGemAffinity));
+	let critConversionCalculatorExcessAffinity = $derived(Math.max(
+		0,
+		critConversionCalculatorTotalAffinity - 100,
+	));
+	let formulaValuesFlashConversion = $derived(`${Math.floor(Math.sqrt(critConversionCalculatorExcessAffinity >= 0 ? critConversionCalculatorExcessAffinity : 0) * 7)} = \\lfloor \\sqrt{${critConversionCalculatorExcessAffinity}} \\times 7 \\rfloor
+	`);
+	let critConversionCalculatorTrueRaw = $derived(getCritConversionTrueRaw(
+		critConversionCalculatorTotalAffinity,
+		critConversionCalculatorCritConversionUpMultiplier,
+		critConversionCalculatorNaturalAffinity,
+		critConversionCalculatorFlashConversionAffinity,
+	));
+	let flashConversionChartOptions = $derived({
 		title: 'Flash Conversion Total Affinity to True Raw',
 		theme: $carbonThemeStore,
 		height: '400px',
@@ -176,13 +182,7 @@
 				scaleType: ScaleTypes.LINEAR,
 			},
 		},
-	} as LineChartOptions;
-
-	onMount(async () => {
-		const charts = await import('@carbon/charts-svelte');
-		flashConversionChart = charts.LineChart;
-		flashConversionChartLoaded = true;
-	});
+	} as LineChartOptions);
 </script>
 
 <svelte:head>
@@ -470,8 +470,8 @@
 		<p>Total True Raw: {critConversionCalculatorTrueRaw}</p>
 		<div>
 			{#if flashConversionChartLoaded}
-				<svelte:component
-					this={flashConversionChart}
+				{@const SvelteComponent = flashConversionChart}
+				<SvelteComponent
 					data={flashConversionChartData}
 					options={flashConversionChartOptions}
 				/>

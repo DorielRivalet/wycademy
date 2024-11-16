@@ -5,16 +5,20 @@
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 	import { itemInfo } from '$lib/client/modules/frontier/items';
 
-	export let colors = [...new Set(RarityColors)];
-	export let delay = 2000;
-	export let size: string = '100%';
+	interface Props {
+		colors?: any;
+		delay?: number;
+		size?: string;
+	}
+
+	let { colors = [...new Set(RarityColors)], delay = 2000, size = '100%' }: Props = $props();
 
 	const items = itemInfo.map((e) => {
 		return e.icon;
 	});
 
-	let randomItem = itemInfo[0].icon;
-	let randomColor = '#ffffff';
+	let randomItem = $state(itemInfo[0].icon);
+	let randomColor = $state('#ffffff');
 
 	function getRandomItem(arr: any[]) {
 		return arr[Math.floor(Math.random() * arr.length)];
@@ -35,7 +39,8 @@
 
 <div>
 	{#if browser}
-		<svelte:component this={randomItem} color={randomColor} {size} />
+		{@const SvelteComponent = randomItem}
+		<SvelteComponent color={randomColor} {size} />
 	{:else}
 		<SkeletonPlaceholder style="width: 64px; height: 64px;" />
 	{/if}

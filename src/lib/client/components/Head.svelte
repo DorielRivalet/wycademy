@@ -29,23 +29,43 @@ SOFTWARE.
 	import SchemaOrg from '$lib/client/components/Schema-org.svelte';
 
 	// Required props
-	export let url: string; // Full URL of the current page
-	export let title: string; // Page title
-	export let description: string; // Page description
-	export let name: string; // Name of the contentType object
 
 	// Optional props
-	export let website: string = ''; // Website URL
-	export let authorName: string = ''; // Author name
-	export let image: string = ''; // Open Graph image URL
-	export let paymentPointer: string = ''; // Web Monetization payment pointer
-	export let datePublished: string = ''; // ISO 8601 format
-	export let dateModified: string = ''; // ISO 8601 format
-	export let contentType: MainEntityType = 'WebPage';
-	export let language: string = 'en';
-	export let authorType: AuthorType = 'Person';
-	export let authorUrl: string = '';
-	export let siteName = '';
+	interface Props {
+		url: string;
+		title: string;
+		description: string;
+		name: string;
+		website?: string;
+		authorName?: string;
+		image?: string;
+		paymentPointer?: string;
+		datePublished?: string;
+		dateModified?: string;
+		contentType?: MainEntityType;
+		language?: string;
+		authorType?: AuthorType;
+		authorUrl?: string;
+		siteName?: string;
+	}
+
+	let {
+		url,
+		title,
+		description,
+		name,
+		website = '',
+		authorName = '',
+		image = '',
+		paymentPointer = '',
+		datePublished = '',
+		dateModified = '',
+		contentType = 'WebPage',
+		language = 'en',
+		authorType = 'Person',
+		authorUrl = '',
+		siteName = ''
+	}: Props = $props();
 
 	const mainEntity: MainEntity = {
 		type: contentType,

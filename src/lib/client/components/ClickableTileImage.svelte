@@ -3,11 +3,21 @@
 	import ArrowRight from 'carbon-icons-svelte/lib/ArrowRight.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	export let imageSource;
-	export let title;
-	export let description;
-	export let href;
-	export let rounded = true;
+	interface Props {
+		imageSource: any;
+		title: any;
+		description: any;
+		href: any;
+		rounded?: boolean;
+	}
+
+	let {
+		imageSource,
+		title,
+		description,
+		href,
+		rounded = true
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -32,8 +42,9 @@
 				{#if typeof imageSource === 'string'}
 					<img class="image" width="64" src={imageSource} alt="Thumbnail" />
 				{:else}
+					{@const SvelteComponent = imageSource}
 					<div class="image">
-						<svelte:component this={imageSource} {...{ size: '64px' }} />
+						<SvelteComponent {...{ size: '64px' }} />
 					</div>
 				{/if}
 				<div class="arrow">

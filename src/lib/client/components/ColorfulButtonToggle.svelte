@@ -1,7 +1,4 @@
 <script lang="ts">
-	export let backgroundColor: string = 'var(--ctp-surface0)';
-	export let backgroundColorEnabled: string = 'var(--ctp-surface2)';
-	export let size: string = 'var(--cds-spacing-07)';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 
@@ -10,15 +7,29 @@
 		dispatch('toggle', { enabled });
 	}
 
-	export let enabled = false;
+	interface Props {
+		backgroundColor?: string;
+		backgroundColorEnabled?: string;
+		size?: string;
+		enabled?: boolean;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		backgroundColor = 'var(--ctp-surface0)',
+		backgroundColorEnabled = 'var(--ctp-surface2)',
+		size = 'var(--cds-spacing-07)',
+		enabled = $bindable(false),
+		children
+	}: Props = $props();
 </script>
 
 <button
 	class={!enabled ? 'button' : 'button-pressed'}
 	style:background-color={!enabled ? backgroundColor : backgroundColorEnabled}
 	style:width={size}
-	on:click={onClick}
-	style:height={size}><slot /></button
+	onclick={onClick}
+	style:height={size}>{@render children?.()}</button
 >
 
 <style lang="scss">

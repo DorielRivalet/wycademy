@@ -6,11 +6,21 @@
 		type ComponentType,
 	} from 'svelte';
 
-	export let name: string;
-	export let description: string;
-	export let image: string | ComponentType<SvelteComponent> | undefined;
-	export let link: string;
-	export let rounded = true;
+	interface Props {
+		name: string;
+		description: string;
+		image: string | ComponentType<SvelteComponent> | undefined;
+		link: string;
+		rounded?: boolean;
+	}
+
+	let {
+		name,
+		description,
+		image,
+		link,
+		rounded = true
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -30,8 +40,9 @@
 				{#if typeof image === 'string'}
 					<img class="image" width="64" src={image} alt="Thumbnail" />
 				{:else}
+					{@const SvelteComponent_1 = image}
 					<div class="image">
-						<svelte:component this={image} {...{ size: '64px' }} />
+						<SvelteComponent_1 {...{ size: '64px' }} />
 					</div>
 				{/if}
 				<p class="title">{name}</p>

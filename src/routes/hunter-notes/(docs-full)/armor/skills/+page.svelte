@@ -157,7 +157,7 @@
 		}),
 	);
 
-	let skillsPriorityFilteredRowIds: string[] = [];
+	let skillsPriorityFilteredRowIds: string[] = $state([]);
 
 	let skillSlotsUpInputArmorPieces: {
 		head: FrontierArmorType;
@@ -165,25 +165,27 @@
 		arms: FrontierArmorType;
 		waist: FrontierArmorType;
 		legs: FrontierArmorType;
-	} = {
+	} = $state({
 		head: 'Zenith',
 		chest: 'Zenith',
 		arms: 'Zenith',
 		waist: 'Zenith',
 		legs: 'Zenith',
-	};
+	});
 
-	let skillSlotsUpInputZenithWeapon = true;
-	let skillSlotsUpInputZenithCuff = true;
-	let skillSlotsUpInputTrueHidenCuff = true;
-	let skillSlotsUpInputSkillFruit = true;
-	let skillSlotsUpInputLoginBoostGreatLuck = true;
-	let skillSlotsUpInputDivaSkill = true;
-	let skillSlotsUpInputGuildFood = true;
+	let skillSlotsUpInputZenithWeapon = $state(true);
+	let skillSlotsUpInputZenithCuff = $state(true);
+	let skillSlotsUpInputTrueHidenCuff = $state(true);
+	let skillSlotsUpInputSkillFruit = $state(true);
+	let skillSlotsUpInputLoginBoostGreatLuck = $state(true);
+	let skillSlotsUpInputDivaSkill = $state(true);
+	let skillSlotsUpInputGuildFood = $state(true);
 
-	$: totalSkillSlots = extraSkillSlots + maximumArmorSlots;
 
-	$: extraSkillSlots = getExtraSkillSlots(
+
+
+
+	let extraSkillSlots = $derived(getExtraSkillSlots(
 		skillSlotsUpInputZenithWeapon,
 		skillSlotsUpInputZenithCuff,
 		skillSlotsUpInputTrueHidenCuff,
@@ -191,23 +193,28 @@
 		skillSlotsUpInputLoginBoostGreatLuck,
 		skillSlotsUpInputDivaSkill,
 		skillSlotsUpInputGuildFood,
-	);
-
-	$: innateArmorSlots = getArmorSkillSlots(skillSlotsUpInputArmorPieces);
-
-	$: maximumArmorSlots = getArmorSkillSlots(skillSlotsUpInputArmorPieces, true);
-
-	$: maximumGearSlots =
-		getArmorSkillSlots(skillSlotsUpInputArmorPieces, true) +
+	));
+	let maximumArmorSlots = $derived(getArmorSkillSlots(skillSlotsUpInputArmorPieces, true));
+	let totalSkillSlots = $derived(extraSkillSlots + maximumArmorSlots);
+	let innateArmorSlots = $derived(getArmorSkillSlots(skillSlotsUpInputArmorPieces));
+	let maximumGearSlots =
+		$derived(getArmorSkillSlots(skillSlotsUpInputArmorPieces, true) +
 		(skillSlotsUpInputZenithWeapon ? 1 : 0) +
 		(skillSlotsUpInputZenithCuff ? 1 : 0) +
-		(skillSlotsUpInputTrueHidenCuff ? 1 : 0);
+		(skillSlotsUpInputTrueHidenCuff ? 1 : 0));
 
 	// in multiplayer its more skills like encourage.
 	// TODO links to each respective skill slot source explanation (other pages).
 </script>
 
 <HunterNotesPage displayTOC={true}>
+	{@const SvelteComponent = getArmorIcon('Head')}
+	{@const SvelteComponent_1 = getArmorIcon('Chest')}
+	{@const SvelteComponent_2 = getArmorIcon('Arms')}
+	{@const SvelteComponent_3 = getArmorIcon('Waist')}
+	{@const SvelteComponent_4 = getArmorIcon('Legs')}
+	{@const SvelteComponent_5 = getWeaponIcon('Great Sword')}
+	{@const SvelteComponent_6 = getItemIcon('Berry')}
 	<div>
 		<SectionHeadingTopLevel title={'Armor Skills'} />
 		<div>
@@ -251,8 +258,7 @@
 						<div class="inputs-container">
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Head')}
+									<SvelteComponent
 										{...{ size: '4ch' }}
 									/>
 								</div>
@@ -271,8 +277,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Chest')}
+									<SvelteComponent_1
 										{...{ size: '4ch' }}
 									/>
 								</div>
@@ -291,8 +296,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Arms')}
+									<SvelteComponent_2
 										{...{ size: '4ch' }}
 									/>
 								</div>
@@ -311,8 +315,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Waist')}
+									<SvelteComponent_3
 										{...{ size: '4ch' }}
 									/>
 								</div>
@@ -331,8 +334,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Legs')}
+									<SvelteComponent_4
 										{...{ size: '4ch' }}
 									/>
 								</div>
@@ -356,8 +358,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputZenithWeapon ? '1' : '0.5'}
 								>
-									<svelte:component
-										this={getWeaponIcon('Great Sword')}
+									<SvelteComponent_5
 										{...{ size: '4ch' }}
 									/>
 								</div>
@@ -409,8 +410,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputSkillFruit ? '1' : '0.5'}
 								>
-									<svelte:component
-										this={getItemIcon('Berry')}
+									<SvelteComponent_6
 										{...{ size: '4ch' }}
 									/>
 								</div>
@@ -604,9 +604,11 @@
 									/>
 								</div>
 							</Toolbar>
-							<svelte:fragment slot="cell" let:cell>
-								<p>{cell.value}</p>
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									<p>{cell.value}</p>
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>

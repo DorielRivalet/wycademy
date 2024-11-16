@@ -4,6 +4,11 @@
 	import { setContext } from 'svelte';
 	import '../app.scss';
 	import ScrollToTop from './ScrollToTop.svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	// Define unique symbols for the context keys
 	const soundKey = Symbol.for('sound');
@@ -75,7 +80,7 @@
 	setContext(notificationsKey, notificationsStore);
 </script>
 
-<slot />
+{@render children?.()}
 
 {#if $scrollToTopStore}
 	<ScrollToTop />

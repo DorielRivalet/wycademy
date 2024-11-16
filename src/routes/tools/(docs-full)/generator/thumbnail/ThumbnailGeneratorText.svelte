@@ -15,22 +15,43 @@
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-	export let text = 'Text';
-	export let top = 0;
-	export let left = 0;
-	export let zindex = 1;
-	export let opacity = 1;
-	export let fontSize = 48;
-	export let fontFamily = 'Arial';
-	export let fontWeight = 'bold';
-	export let fontStyle = 'italic';
-	export let textDecoration = 'underline';
-	export let textDecorationColor = '#ff0000';
-	export let textShadowWidth = 0;
-	export let textShadowColor = '#000000';
-	export let textColor: '#000000';
-	export let textRotation = 0;
-	export let index = 0;
+	interface Props {
+		text?: string;
+		top?: number;
+		left?: number;
+		zindex?: number;
+		opacity?: number;
+		fontSize?: number;
+		fontFamily?: string;
+		fontWeight?: string;
+		fontStyle?: string;
+		textDecoration?: string;
+		textDecorationColor?: string;
+		textShadowWidth?: number;
+		textShadowColor?: string;
+		textColor: '#000000';
+		textRotation?: number;
+		index?: number;
+	}
+
+	let {
+		text = $bindable('Text'),
+		top = $bindable(0),
+		left = $bindable(0),
+		zindex = $bindable(1),
+		opacity = $bindable(1),
+		fontSize = $bindable(48),
+		fontFamily = $bindable('Arial'),
+		fontWeight = $bindable('bold'),
+		fontStyle = $bindable('italic'),
+		textDecoration = $bindable('underline'),
+		textDecorationColor = $bindable('#ff0000'),
+		textShadowWidth = $bindable(0),
+		textShadowColor = $bindable('#000000'),
+		textColor = $bindable(),
+		textRotation = $bindable(0),
+		index = 0
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -109,10 +130,12 @@
 				{ id: 'Lucida Console', text: 'Lucida Console' },
 				{ id: 'MS Gothic', text: 'MS Gothic' },
 			]}
-			let:item
+			
 		>
-			<p style="font-family: {item.id}">{item.id}</p>
-		</Dropdown>
+			{#snippet children({ item })}
+						<p style="font-family: {item.id}">{item.id}</p>
+								{/snippet}
+				</Dropdown>
 
 		<Dropdown
 			titleText="Font Style"

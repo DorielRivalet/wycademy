@@ -45,8 +45,13 @@
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	export let data: LayoutData;
+	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
 
 	onMount(() => {
 		let themeValue = $carbonThemeStore;
@@ -63,7 +68,7 @@
 		});
 	});
 
-	let tocVisible = $tocEnabledStore;
+	let tocVisible = $state($tocEnabledStore);
 	let isTocMoving = false;
 
 	function onTOCToggleButtonPress(e: MouseEvent) {
@@ -82,10 +87,10 @@
 		isTocMoving = false;
 	}
 
-	let tocClass = tocVisible ? 'left-column' : 'left-column collapsed';
-	let centerColumnClass = tocVisible ? '' : 'expanded';
+	let tocClass = $state(tocVisible ? 'left-column' : 'left-column collapsed');
+	let centerColumnClass = $state(tocVisible ? '' : 'expanded');
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	let headerClass = $derived($stickyHeaderStore ? 'header sticky' : 'header');
 </script>
 
 <LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
@@ -126,12 +131,14 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
-					<NotificationActionButton
-						on:click={() => goto('/support/website/development')}
-						>Learn more</NotificationActionButton
-					>
-				</svelte:fragment>
+				{#snippet actions()}
+							
+						<NotificationActionButton
+							on:click={() => goto('/support/website/development')}
+							>Learn more</NotificationActionButton
+						>
+					
+							{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
@@ -139,30 +146,32 @@
 	<div class="container">
 		<div class={tocClass}>
 			<Toc blurParams={{ duration: 0 }} --toc-desktop-sticky-top={'10vh'}>
-				<span slot="title">
-					{#if $breakpointLargerThanMedium}
-						<h2 class="toc-title toc-exclude">
-							<span
-								>On this page <span>
-									<Button
-										iconDescription={'Close Sidebar'}
-										kind="ghost"
-										size={'small'}
-										icon={RightPanelClose}
-										on:click={onTOCToggleButtonPress}
-									/>
-								</span></span
-							>
-						</h2>
-					{:else}
-						<h2 class="toc-title toc-exclude">On this page</h2>
-					{/if}
-				</span>
+				{#snippet title()}
+								<span >
+						{#if $breakpointLargerThanMedium}
+							<h2 class="toc-title toc-exclude">
+								<span
+									>On this page <span>
+										<Button
+											iconDescription={'Close Sidebar'}
+											kind="ghost"
+											size={'small'}
+											icon={RightPanelClose}
+											on:click={onTOCToggleButtonPress}
+										/>
+									</span></span
+								>
+							</h2>
+						{:else}
+							<h2 class="toc-title toc-exclude">On this page</h2>
+						{/if}
+					</span>
+							{/snippet}
 			</Toc>
 		</div>
 
 		<main class="center-column {centerColumnClass}">
-			<slot />
+			{@render children?.()}
 		</main>
 	</div>
 

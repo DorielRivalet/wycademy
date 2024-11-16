@@ -144,13 +144,12 @@
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalNotes = '';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalNotes = $state('');
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
 
 	function changeModal(cell: DataTableCell, section: string) {
 		modalOpen = true;
@@ -228,13 +227,11 @@
 		{ id: 'Zenith', text: 'Zenith' },
 	];
 
-	let selectedCategory: FrontierSigilRecipeType = 'Standard';
-	let recipesTableFilteredRowIds: string[] = [];
-	let skillsTableFilteredRowIds: string[] = [];
+	let selectedCategory: FrontierSigilRecipeType = $state('Standard');
+	let recipesTableFilteredRowIds: string[] = $state([]);
+	let skillsTableFilteredRowIds: string[] = $state([]);
 
-	$: recipesByCategory = getRecipesByCategory(selectedCategory);
 
-	$: filteredRecipes = getFilteredRecipes(recipesByCategory, selectedSkills);
 
 	const mapSkillSigilToArray = (
 		skillSigil: SkillSigil,
@@ -246,9 +243,12 @@
 	};
 
 	// TODO idk if im confusing shiten seal with lock
-	let selectedSkills: FrontierSigil[] = ['Attack Slayer', 'Elemental Slayer'];
+	let selectedSkills: FrontierSigil[] = $state(['Attack Slayer', 'Elemental Slayer']);
 
 	const mappedSigilSkills = mapSkillSigilToArray(ezlionSkillSigil);
+	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
+	let recipesByCategory = $derived(getRecipesByCategory(selectedCategory));
+	let filteredRecipes = $derived(getFilteredRecipes(recipesByCategory, selectedSkills));
 </script>
 
 <Modal
@@ -264,8 +264,7 @@
 		<div class="modal-content">
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{ title: modalHeading, src: modalImage }}
 					/>
 				{/await}
@@ -278,7 +277,8 @@
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent = modalPopoverIcon}
+							<SvelteComponent />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -499,8 +499,7 @@
 					</p>
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Rare Sigil',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/rare-sigil.webm',
@@ -1081,20 +1080,22 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'rollMin' && cell.value < 0}
-									<p style:color="var(--ctp-red)">{cell.value}</p>
-								{:else if cell.key === 'rollPercentage'}
-									<p>
-										{cell.value}{cell.value === '-' ||
-										cell.value === 'Guaranteed'
-											? ''
-											: '%'}
-									</p>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'rollMin' && cell.value < 0}
+										<p style:color="var(--ctp-red)">{cell.value}</p>
+									{:else if cell.key === 'rollPercentage'}
+										<p>
+											{cell.value}{cell.value === '-' ||
+											cell.value === 'Guaranteed'
+												? ''
+												: '%'}
+										</p>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 					<UnorderedList>
@@ -1185,25 +1186,27 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'minimumPoints' && cell.value < 0}
-									<p style:color="var(--ctp-red)">{cell.value}</p>
-								{:else if cell.value === 0 && (cell.key === 'minimumPoints' || cell.key === 'maximumPoints')}
-									<p>-</p>
-								{:else if cell.key === 'name' && sigilsInfo.find((e) => e.name === cell.value)?.demo}
-									<button
-										class="table-button"
-										on:click={() => changeModal(cell, 'Sigil')}
-									>
-										<span>{cell.value}</span><Image
-											size={20}
-											fill="var(--ctp-blue)"
-										/></button
-									>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'minimumPoints' && cell.value < 0}
+										<p style:color="var(--ctp-red)">{cell.value}</p>
+									{:else if cell.value === 0 && (cell.key === 'minimumPoints' || cell.key === 'maximumPoints')}
+										<p>-</p>
+									{:else if cell.key === 'name' && sigilsInfo.find((e) => e.name === cell.value)?.demo}
+										<button
+											class="table-button"
+											onclick={() => changeModal(cell, 'Sigil')}
+										>
+											<span>{cell.value}</span><Image
+												size={20}
+												fill="var(--ctp-blue)"
+											/></button
+										>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 					<UnorderedList>
@@ -1247,8 +1250,7 @@
 					</p>
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Zenith Sigil',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/v1724366680/supplemental/animated/zenith-sigil.webm',
@@ -1353,8 +1355,7 @@
 							</p>
 							<div>
 								{#await import('$lib/player/Player.svelte') then { default: Player }}
-									<svelte:component
-										this={Player}
+									<Player
 										{...{
 											title: 'AoE Zenith Sigil',
 											src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/zenith-aoe.webm',
