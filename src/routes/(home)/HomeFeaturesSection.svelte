@@ -46,7 +46,6 @@
 	}
 
 	function startProgressBar() {
-		console.log('Starting progress bar...');
 		if (progressBarInterval) {
 			clearInterval(progressBarInterval);
 		}
