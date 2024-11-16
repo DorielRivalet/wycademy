@@ -24,6 +24,7 @@
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
 	import { getMonsterIcon } from '$lib/client/modules/frontier/monsters';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
+	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
 
 	const divaItems: {
 		id: number;
@@ -296,7 +297,16 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
@@ -350,7 +360,16 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
@@ -445,7 +464,16 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 										<ListItem
 											><p>
 												Talk to the Legendary Rastas Edward and Frau (DS user)
@@ -456,7 +484,16 @@
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to the Legendary Rasta Frau</p></ListItem>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 										<ListItem
 											><p>
 												Hunt 1 <InlineTooltip
@@ -467,9 +504,27 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 										<ListItem><p>Talk to the Legendary Rasta Frau</p></ListItem>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
@@ -499,14 +554,41 @@
 												/>
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 										<ListItem><p>Talk to the Legendary Rasta Frau</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Go to the Blacksmith</p></ListItem>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Go to the <InlineTooltip
+													text="Blacksmith"
+													tooltip="Location"
+													icon={getLocationIcon('Blacksmith')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 										<ListItem
 											><p>
 												Hunt 3 <InlineTooltip
@@ -714,8 +796,12 @@
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Hunt 2 Baruragaru (Return to the Prayer Fountain between
-												the two hunts)
+												Hunt 2 Baruragaru (Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/> between the two hunts)
 											</p></ListItem
 										>
 									</OrderedList>
@@ -755,10 +841,24 @@
 												in your house
 											</p></ListItem
 										>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
 										<ListItem
 											><p>
-												Talk to partner in house, return to the Prayer Fountain.
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
+										<ListItem
+											><p>
+												Talk to partner in house, return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>.
 											</p></ListItem
 										>
 									</OrderedList>
@@ -823,7 +923,12 @@
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Talk to Blacksmith and return to the Prayer Fountain
+												Talk to Blacksmith and return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
 											</p></ListItem
 										>
 										<ListItem><p>Hunt 1 Rebidiora</p></ListItem>
@@ -865,7 +970,12 @@
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Speak to Blacksmith and return to the Prayer Fountain
+												Speak to Blacksmith and return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
 											</p></ListItem
 										>
 									</OrderedList>
@@ -1024,7 +1134,12 @@
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Talk to Guild Master, Return to the Prayer Fountain
+												Talk to Guild Master, Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
 											</p></ListItem
 										>
 									</OrderedList>
@@ -1039,7 +1154,16 @@
 										<ListItem><p>Speak to Leila (Tonfa Legendary)</p></ListItem>
 										<ListItem><p>Solo Hunt 1 Diorex</p></ListItem>
 										<ListItem><p>Speak to Leila</p></ListItem>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
@@ -1064,7 +1188,12 @@
 										<ListItem
 											><p>
 												Hunt 1 G Rank Gold Rathian, talk to cats and return to
-												the Prayer Fountain
+												the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
 											</p></ListItem
 										>
 									</OrderedList>
@@ -1073,7 +1202,12 @@
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Speak to Leila and return to the Prayer Fountain
+												Speak to Leila and return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
 											</p></ListItem
 										>
 									</OrderedList>
@@ -1119,10 +1253,24 @@
 									<OrderedList class="spaced-list">
 										<ListItem
 											><p>
-												Speak to Leila and return to the Prayer Fountain
+												Speak to Leila and return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
 											</p></ListItem
 										>
-										<ListItem><p>Speak to the Blacksmith</p></ListItem>
+										<ListItem
+											><p>
+												Speak to the <InlineTooltip
+													text="Blacksmith"
+													tooltip="Location"
+													icon={getLocationIcon('Blacksmith')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
@@ -1204,7 +1352,16 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem><p>Talk to Guild Master</p></ListItem>
-										<ListItem><p>Return to the Prayer Fountain</p></ListItem>
+										<ListItem
+											><p>
+												Return to the <InlineTooltip
+													text="Prayer Fountain"
+													tooltip="Location"
+													icon={getLocationIcon('Prayer Fountain')}
+													iconType="file"
+												/>
+											</p></ListItem
+										>
 										<ListItem><p>Hunt 1 G Rank White Espinas</p></ListItem>
 									</OrderedList>
 								</AccordionItem>
