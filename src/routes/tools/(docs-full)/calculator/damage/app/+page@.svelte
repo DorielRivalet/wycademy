@@ -11296,7 +11296,7 @@ does not get multiplied by horn */
 							</Pane>
 							<Pane bind:size={panel4Size} bind:selected={panel4TabSelected}>
 								<div>
-									<Tabs>
+									<Tabs type="container">
 										<Tab label="Monster Image" />
 										<Tab label="Monster Table" />
 										<svelte:fragment slot="content">
