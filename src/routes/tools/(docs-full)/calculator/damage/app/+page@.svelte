@@ -6246,6 +6246,8 @@ does not get multiplied by horn */
 	function startWalkthrough() {
 		if (!browser) return;
 
+		panel1TabSelected = 3;
+
 		const driverObj = driver({
 			showProgress: true,
 			popoverClass: 'driverjs-theme',
@@ -6527,7 +6529,7 @@ does not get multiplied by horn */
 				<Splitpanes horizontal theme="modern-theme">
 					<Pane bind:size={topPanelsSize}>
 						<Splitpanes theme="modern-theme">
-							<Pane bind:size={panel1Size}>
+							<Pane bind:size={panel1Size} class="driverjs-0">
 								<div>
 									<Tabs type="container" bind:selected={panel1TabSelected}>
 										<Tab label="Inputs" />
@@ -9921,7 +9923,7 @@ does not get multiplied by horn */
 
 														<svelte:fragment slot="content">
 															<TabContent>
-																<div class="container-tab-content driverjs-0">
+																<div class="container-tab-content">
 																	<p>
 																		Welcome to Wycademy's Damage Calculator!
 																		Here you can calculate various game
