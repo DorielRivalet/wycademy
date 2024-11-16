@@ -24,6 +24,80 @@
 	import feature4ImgDark from '$lib/client/images/supplemental/feature-4-dark.webp';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
+	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
+	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
+
+	function intersectionObserver(element: Element) {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const [entry] = entries;
+				isVisible = entry.isIntersecting;
+			},
+			{ threshold: 0.1 },
+		);
+
+		observer.observe(element);
+
+		return {
+			destroy() {
+				observer.disconnect();
+			},
+		};
+	}
+
+	function startProgressBar() {
+		console.log('Starting progress bar...');
+		if (progressBarInterval) {
+			clearInterval(progressBarInterval);
+		}
+
+		progressBarInterval = setInterval(() => {
+			if (!isInteracting) {
+				progressBarValues[currentFeatureIndex] +=
+					100 / (progressBarDuration / 50);
+				if (progressBarValues[currentFeatureIndex] >= 100) {
+					progressBarValues = progressBarValues.map(() => 0);
+					currentFeatureIndex = (currentFeatureIndex + 1) % features.length;
+				}
+				progressBarValues = [...progressBarValues];
+			}
+		}, 50);
+	}
+
+	function handleFeatureClick(index: number) {
+		if ($breakpointLargerThanMedium && currentFeatureIndex !== index) {
+			isInteracting = true;
+			currentFeatureIndex = index;
+			progressBarValues = features.map((_, i) => (i === index ? 100 : 0));
+		} else {
+			if (!showMobileControls) {
+				isInteracting = true;
+				showMobileControls = true;
+			} else {
+				isInteracting = false;
+				showMobileControls = false;
+				startProgressBar();
+			}
+		}
+	}
+
+	function handleMobileNavigation(direction: 'prev' | 'next') {
+		if (direction === 'prev') {
+			currentFeatureIndex =
+				(currentFeatureIndex - 1 + features.length) % features.length;
+		} else {
+			currentFeatureIndex = (currentFeatureIndex + 1) % features.length;
+		}
+		progressBarValues = features.map((_, i) =>
+			i === currentFeatureIndex ? 100 : 0,
+		);
+	}
+
+	function handleKeydown(event: KeyboardEvent, index: number) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			handleFeatureClick(index);
+		}
+	}
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -64,16 +138,13 @@
 	let currentFeatureIndex = 0;
 	let progressBarValues = features.map(() => 0);
 	let progressBarInterval: ReturnType<typeof setInterval> | null = null;
+	let isVisible = false;
+	/**TODO: if true, disable automatic progress bar updating and let user select the feature to view via clicking the icons. If on mobile, since only 1 icon is shown, add left and right arrow buttons when the user presses the icon which makes the progress bar stop updating automatically. If they press the icon again, the progress bar updates automatically again.*/
+	let isInteracting = false;
+	let showMobileControls = false;
 
 	onMount(() => {
-		progressBarInterval = setInterval(() => {
-			progressBarValues[currentFeatureIndex] +=
-				100 / (progressBarDuration / 50);
-			if (progressBarValues[currentFeatureIndex] >= 100) {
-				progressBarValues[currentFeatureIndex] = 0;
-				currentFeatureIndex = (currentFeatureIndex + 1) % features.length;
-			}
-		}, 50);
+		startProgressBar();
 
 		return () => {
 			if (progressBarInterval) {
@@ -81,26 +152,6 @@
 			}
 		};
 	});
-
-	let isVisible = false;
-
-	function intersectionObserver(element: Element) {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const [entry] = entries;
-				isVisible = entry.isIntersecting;
-			},
-			{ threshold: 0.1 },
-		);
-
-		observer.observe(element);
-
-		return {
-			destroy() {
-				observer.disconnect();
-			},
-		};
-	}
 </script>
 
 <section class="container">
@@ -113,34 +164,75 @@
 	<div class="features">
 		{#if $breakpointLargerThanMedium}
 			{#each features as feature, index}
-				<HomeFeaturesSectionFeature
-					title={feature.title}
-					titleColor={progressBarValues[index] > 2
-						? 'var(--ctp-sky)'
-						: 'var(--ctp-text)'}
-					description={feature.description}
-					progressPosition="bottom"
-					progressBarValue={progressBarValues[index]}
+				<div
+					class="feature-wrapper"
+					on:click={() => handleFeatureClick(index)}
+					on:keydown={(e) => handleKeydown(e, index)}
+					role="button"
+					tabindex="0"
 				>
-					<svelte:component
-						this={feature.icon}
-						size={32}
-						color={progressBarValues[index] > 2
+					<HomeFeaturesSectionFeature
+						title={feature.title}
+						titleColor={progressBarValues[index] > 2
 							? 'var(--ctp-sky)'
 							: 'var(--ctp-text)'}
-					/>
-				</HomeFeaturesSectionFeature>
+						description={feature.description}
+						progressPosition="bottom"
+						progressBarValue={progressBarValues[index]}
+					>
+						<svelte:component
+							this={feature.icon}
+							size={32}
+							on:click={() => handleFeatureClick(index)}
+							color={progressBarValues[index] > 2
+								? 'var(--ctp-sky)'
+								: 'var(--ctp-text)'}
+						/>
+					</HomeFeaturesSectionFeature>
+				</div>
 			{/each}
 		{:else}
-			<HomeFeaturesSectionFeature
-				titleColor="var(--ctp-text)"
-				title={features[currentFeatureIndex].title}
-				description={features[currentFeatureIndex].description}
-				progressPosition="bottom"
-				progressBarValue={progressBarValues[currentFeatureIndex]}
-			>
-				<svelte:component this={features[currentFeatureIndex].icon} size={32} />
-			</HomeFeaturesSectionFeature>
+			<div class="mobile-feature-container">
+				<div
+					class="feature-wrapper"
+					on:click={() => handleFeatureClick(currentFeatureIndex)}
+					on:keydown={(e) => handleKeydown(e, currentFeatureIndex)}
+					role="button"
+					tabindex="0"
+				>
+					<HomeFeaturesSectionFeature
+						titleColor="var(--ctp-text)"
+						title={features[currentFeatureIndex].title}
+						description={features[currentFeatureIndex].description}
+						progressPosition="bottom"
+						progressBarValue={progressBarValues[currentFeatureIndex]}
+					>
+						<svelte:component
+							this={features[currentFeatureIndex].icon}
+							size={32}
+						/>
+					</HomeFeaturesSectionFeature>
+				</div>
+				{#if showMobileControls}
+					<div class="mobile-controls" transition:fade={{ duration: 200 }}>
+						<button
+							class="nav-button"
+							on:click={() => handleMobileNavigation('prev')}
+							aria-label="Previous feature"
+						>
+							<ChevronLeft size={24} color="var(--ctp-text)" />
+						</button>
+
+						<button
+							class="nav-button"
+							on:click={() => handleMobileNavigation('next')}
+							aria-label="Next feature"
+						>
+							<ChevronRight size={24} color="var(--ctp-text)" />
+						</button>
+					</div>
+				{/if}
+			</div>
 		{/if}
 	</div>
 	<div class="graphics-container" use:intersectionObserver>
@@ -258,6 +350,53 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 			gap: 2rem;
+		}
+	}
+
+	.feature-wrapper {
+		cursor: pointer;
+		transition: transform 0.2s ease;
+
+		&:hover {
+			transform: translateY(-4px);
+		}
+	}
+
+	.mobile-feature-container {
+		position: relative;
+		width: 100%;
+	}
+
+	.mobile-controls {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		display: flex;
+		justify-content: center;
+		gap: 8rem;
+		padding: 1rem 0;
+	}
+
+	.nav-button {
+		background: var(--ctp-surface0);
+		border: 1px solid var(--ctp-surface1);
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background: var(--ctp-overlay0);
+		}
+
+		&:focus {
+			outline: 2px solid var(--ctp-overlay1);
+			outline-offset: 2px;
 		}
 	}
 
