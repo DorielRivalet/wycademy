@@ -1147,7 +1147,7 @@
 	}
 
 	// Grid Options: Contains all of the Data Grid configurations
-	$: gridOptions = {
+	let gridOptions = $derived({
 		columnDefs: [
 			{ field: 'name' },
 			{ field: 'licensePeriod' },
@@ -1180,7 +1180,7 @@
 				author: e.author,
 			};
 		}),
-	};
+	});
 </script>
 
 <HunterNotesPage displayTOC={false}>

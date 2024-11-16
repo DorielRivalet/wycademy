@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import TrophyWhite from '$lib/client/components/frontier/icon/TrophyWhite.svelte';
 	import TrophyBronze from '$lib/client/images/achievement/bronze_trophy.webp';
@@ -75,16 +77,16 @@
 		achievementSelected = achievement;
 	}
 
-	let searchTerm = '';
-	let achievementSelected = achievementsInfo[0]['0'];
+	let searchTerm = $state('');
+	let achievementSelected = $state(achievementsInfo[0]['0']);
 	// TODO let firstUsersObtained = [];
 	// TODO let totalUsersObtained = [];
 
-	let currentAchievements = totalObtainableAchievements;
+	let currentAchievements = $state(totalObtainableAchievements);
 
 	// TODO clicking the word secret adds an achievement.
 
-	$: {
+	run(() => {
 		let filteredAchievements = totalObtainableAchievements.filter(
 			(achievement) =>
 				achievement.Title.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -94,7 +96,7 @@
 		// filteredAchievements.sort((a, b) => a.Title.localeCompare(b.Title));
 
 		currentAchievements = filteredAchievements;
-	}
+	});
 
 	const customTitle = "Overlay Achievements — Frontier's Wycademy";
 	const url = $page.url.toString();
@@ -157,7 +159,7 @@
 				{#if !achievement.Unused}
 					<button
 						class="achievement"
-						on:click={(e) => onAchievementClick(achievement)}
+						onclick={(e) => onAchievementClick(achievement)}
 					>
 						<Achievement
 							hunterName={achievement.HunterName}

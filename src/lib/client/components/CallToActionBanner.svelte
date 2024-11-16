@@ -1,9 +1,13 @@
 <script lang="ts">
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 
-	export let buttonText: string;
-	export let bodyText: string;
-	export let buttonLink: string;
+	interface Props {
+		buttonText: string;
+		bodyText: string;
+		buttonLink: string;
+	}
+
+	let { buttonText, bodyText, buttonLink }: Props = $props();
 </script>
 
 <div class="container">

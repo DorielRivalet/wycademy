@@ -1,16 +1,27 @@
 <script lang="ts">
 	import NumberTicker from './NumberTicker.svelte';
 
-	export let value: number;
-	export let text: string;
-	export let color: string;
-	export let href: string;
+	interface Props {
+		value: number;
+		text: string;
+		color: string;
+		href: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		value,
+		text,
+		color,
+		href,
+		children
+	}: Props = $props();
 </script>
 
 <div class="container">
 	<a {href}>
 		<button class="icon">
-			<slot />
+			{@render children?.()}
 		</button></a
 	>
 	<p class="value" style:color>

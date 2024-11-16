@@ -33,11 +33,11 @@
 		return sumWithInitial;
 	}
 
-	let activeFeatureSelectedRowIds: string[] = [];
+	let activeFeatureSelectedRowIds: string[] = $state([]);
 
-	$: activeFeatureFinalBitfieldValue = getActiveFeatureFinalBitfieldValue(
+	let activeFeatureFinalBitfieldValue = $derived(getActiveFeatureFinalBitfieldValue(
 		activeFeatureSelectedRowIds,
-	);
+	));
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -114,19 +114,21 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'weapon'}
-							<InlineTooltip
-								text={cell.value}
-								tooltip={'Weapon'}
-								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
-								iconSize={'2rem'}
-								gap={'0.5rem'}
-							/>
-						{:else}
-							<p>{cell.value}</p>
-						{/if}
-					</svelte:fragment>
+					{#snippet cell({ cell })}
+									
+							{#if cell.key === 'weapon'}
+								<InlineTooltip
+									text={cell.value}
+									tooltip={'Weapon'}
+									icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+									iconSize={'2rem'}
+									gap={'0.5rem'}
+								/>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						
+									{/snippet}
 				</DataTable>
 			</div>
 		</div>

@@ -65,7 +65,7 @@
 		return result;
 	}
 
-	let bentoSection = 'Vigorous';
+	let bentoSection = $state('Vigorous');
 	const bentoSectionNames = [
 		{ id: 'Vigorous', text: 'Vigorous' },
 		{ id: 'Starving Wolf', text: 'Starving Wolf' },
@@ -73,7 +73,7 @@
 		{ id: 'Combo', text: 'Combo' },
 	];
 
-	$: bentoSectionValue = getBentoSectionValues(bentoSection);
+	let bentoSectionValue = $derived(getBentoSectionValues(bentoSection));
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -143,17 +143,19 @@
 								/>
 							</div>
 						</Toolbar>
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'health' || cell.key === 'stamina' || cell.key === 'attack' || cell.key === 'defense'}
-								<span
-									style={cell.value.includes('-')
-										? 'color: var(--ctp-red)'
-										: ''}>{cell.value}</span
-								>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'health' || cell.key === 'stamina' || cell.key === 'attack' || cell.key === 'defense'}
+									<span
+										style={cell.value.includes('-')
+											? 'color: var(--ctp-red)'
+											: ''}>{cell.value}</span
+									>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</section>

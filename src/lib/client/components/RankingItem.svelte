@@ -3,8 +3,12 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	export let items: string[] = [];
-	export let selectedIndex: number | null = null;
+	interface Props {
+		items?: string[];
+		selectedIndex?: number | null;
+	}
+
+	let { items = $bindable([]), selectedIndex = $bindable(null) }: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -31,7 +35,7 @@
 		<button
 			class="ranking-item"
 			class:selected={selectedIndex === index}
-			on:click={() => handleItemClick(index)}
+			onclick={() => handleItemClick(index)}
 			transition:fade
 		>
 			<div class="item-content">

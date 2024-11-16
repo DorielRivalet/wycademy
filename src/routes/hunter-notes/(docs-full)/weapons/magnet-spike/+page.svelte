@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
@@ -549,7 +551,6 @@ graph LR
 	// The default diagram
 	let diagram = getDiagram(mermaidTheme);
 
-	$: diagram && renderDiagram($carbonThemeStore, mermaidTheme);
 
 	onMount(() => {
 		mermaid.initialize({
@@ -788,6 +789,9 @@ graph LR
 
 	const nodeData: Node[] = weaponMovesetData.nodeData;
 	const edgeData: Edge[] = weaponMovesetData.edgeData;
+	run(() => {
+		diagram && renderDiagram($carbonThemeStore, mermaidTheme);
+	});
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -1117,8 +1121,7 @@ graph LR
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Parry & Magnetize',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/ms-magnetize.webm',
@@ -1153,8 +1156,7 @@ graph LR
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Pin Ready',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/ms-pin-ready.webm',
@@ -1182,8 +1184,7 @@ graph LR
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Pin',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/ms-pin.webm',
@@ -1382,9 +1383,11 @@ graph LR
 										</div>
 									</Toolbar>
 
-									<svelte:fragment slot="cell" let:cell>
-										<p>{cell.value}</p>
-									</svelte:fragment>
+									{#snippet cell({ cell })}
+																	
+											<p>{cell.value}</p>
+										
+																	{/snippet}
 								</DataTable>
 							</div>
 
@@ -1450,13 +1453,15 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.value[0] == '-'}
-								<p style:color="var(--ctp-red)">{cell.value}</p>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.value[0] == '-'}
+									<p style:color="var(--ctp-red)">{cell.value}</p>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -1494,18 +1499,20 @@ graph LR
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'skill'}
-									<InlineTooltip
-										text={cell.value}
-										tooltip="Armor Skill"
-										iconType="component"
-										icon={getItemIcon('Jewel')}
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'skill'}
+										<InlineTooltip
+											text={cell.value}
+											tooltip="Armor Skill"
+											iconType="component"
+											icon={getItemIcon('Jewel')}
+										/>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -1543,23 +1550,25 @@ graph LR
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'sigil'}
-									<InlineTooltip
-										text={cell.value}
-										tooltip="Sigil"
-										iconType="component"
-										icon={getItemIcon('Sigil')}
-									/>
-								{:else if cell.key === 'rating'}
-									<StarRating
-										rating={Number.parseFloat(cell.value)}
-										maxRating={3}
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'sigil'}
+										<InlineTooltip
+											text={cell.value}
+											tooltip="Sigil"
+											iconType="component"
+											icon={getItemIcon('Sigil')}
+										/>
+									{:else if cell.key === 'rating'}
+										<StarRating
+											rating={Number.parseFloat(cell.value)}
+											maxRating={3}
+										/>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>

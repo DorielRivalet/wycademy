@@ -33,40 +33,67 @@
 		FrontierZenithSkill,
 	} from 'ezlion';
 
-	/** Truncated to 18 characters.*/
-	export let name = 'Name';
+	
 
-	/** The overlay icon in the bottom left corner.*/
-	export let itemRankType: FrontierItemRankType = 'G';
-	export let iconName: string = 'Armor Sphere';
-	export let itemType: FrontierItemType = 'Other';
+	
 
-	/**
-	 * tower or cuff
-	 */
-	export let zenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
-	export let cuffSkill1: FrontierArmorSkillTree = 'Vampirism';
-	export let cuffSkill1Points = 10;
-	export let cuffSkill2: FrontierArmorSkillTree = 'Determination';
-	export let cuffSkill2Points = 12;
-	export let towerSkill: FrontierArmorSkillName = 'Kickboxing King';
+	
 
-	export let description: string = 'Description.';
-	export let rarity: FrontierRarity = 12;
-	export let armorClass: FrontierArmorClass = 'Either';
-	export let weaponClass: FrontierWeaponClass = 'Both';
-	export let slotsRequired: FrontierSlot = 1;
 
 	/**
 	 * TODO Set theme to light.
 	 */
 	// export let light = false;
 
-	export let currentPage: number = 1;
 
-	export let colorName: FrontierItemColor = 'White';
 
-	export let sigil: FrontierItemSigil = {
+
+	interface Props {
+		/** Truncated to 18 characters.*/
+		name?: string;
+		/** The overlay icon in the bottom left corner.*/
+		itemRankType?: FrontierItemRankType;
+		iconName?: string;
+		itemType?: FrontierItemType;
+		/**
+	 * tower or cuff
+	 */
+		zenithSkill?: FrontierZenithSkill;
+		cuffSkill1?: FrontierArmorSkillTree;
+		cuffSkill1Points?: number;
+		cuffSkill2?: FrontierArmorSkillTree;
+		cuffSkill2Points?: number;
+		towerSkill?: FrontierArmorSkillName;
+		description?: string;
+		rarity?: FrontierRarity;
+		armorClass?: FrontierArmorClass;
+		weaponClass?: FrontierWeaponClass;
+		slotsRequired?: FrontierSlot;
+		currentPage?: number;
+		colorName?: FrontierItemColor;
+		sigil?: FrontierItemSigil;
+		decoration?: FrontierItemDecoration;
+	}
+
+	let {
+		name = 'Name',
+		itemRankType = 'G',
+		iconName = 'Armor Sphere',
+		itemType = 'Other',
+		zenithSkill = 'Skill Slots Up+1',
+		cuffSkill1 = 'Vampirism',
+		cuffSkill1Points = 10,
+		cuffSkill2 = 'Determination',
+		cuffSkill2Points = 12,
+		towerSkill = 'Kickboxing King',
+		description = 'Description.',
+		rarity = 12,
+		armorClass = 'Either',
+		weaponClass = 'Both',
+		slotsRequired = 1,
+		currentPage = $bindable(1),
+		colorName = 'White',
+		sigil = {
 		slot1: {
 			name: '',
 			value: 0,
@@ -83,9 +110,8 @@
 			name: '',
 			value: 0,
 		},
-	};
-
-	export let decoration: FrontierItemDecoration = {
+	},
+		decoration = {
 		slot1: {
 			name: '',
 			value: 0,
@@ -102,7 +128,8 @@
 			name: '',
 			value: 0,
 		},
-	};
+	}
+	}: Props = $props();
 
 	function nextPage() {
 		if (currentPage >= maxPages) {
@@ -127,28 +154,29 @@
 		popoverContent = `${name}`;
 	}
 
-	let open = false;
-	let ref: HTMLDivElement | null = null;
-	let popoverContent = '';
+	let open = $state(false);
+	let ref: HTMLDivElement | null = $state(null);
+	let popoverContent = $state('');
 
 	const maxNameLength = 24;
 	const requirementText = '(Tower Weapon)';
 
-	$: rarityColor = stringReplacements.colorFromRarity(rarity);
-	$: maxPages = itemType === 'Other' || itemType === 'Sigil' ? 1 : 3;
-	$: icon =
-		itemInfo.find((item) => item.name === iconName)?.icon ??
-		QuestionMarkIconWhite;
+	let rarityColor = $derived(stringReplacements.colorFromRarity(rarity));
+	let maxPages = $derived(itemType === 'Other' || itemType === 'Sigil' ? 1 : 3);
+	let icon =
+		$derived(itemInfo.find((item) => item.name === iconName)?.icon ??
+		QuestionMarkIconWhite);
 
-	$: iconProps = {
+	let iconProps = $derived({
 		color: stringReplacements.colorFromName(colorName),
-	};
+	});
 </script>
 
 <DecoratedBorder>
 	<div class="container">
 		{#if itemType === 'Other'}
 			{#if currentPage === 1}
+				{@const SvelteComponent = icon}
 				<div class="page-1-other">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -156,12 +184,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -199,6 +227,7 @@
 					<div class="description">{description}</div>
 				</div>
 			{:else}
+				{@const SvelteComponent_1 = icon}
 				<div class="page-extra-nonequippable">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -206,12 +235,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_1 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -270,7 +299,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -282,7 +311,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -292,6 +321,7 @@
 			{/if}
 		{:else if itemType === 'Sigil'}
 			{#if currentPage === 1}
+				{@const SvelteComponent_2 = icon}
 				<div class="page-1-sigil">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -299,12 +329,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_2 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -365,6 +395,7 @@
 					</div>
 				</div>
 			{:else}
+				{@const SvelteComponent_3 = icon}
 				<div class="page-extra-nonequippable">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -372,12 +403,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_3 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -415,7 +446,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -427,7 +458,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -437,6 +468,7 @@
 			{/if}
 		{:else if itemType === 'Decoration'}
 			{#if currentPage === 1}
+				{@const SvelteComponent_4 = icon}
 				<div class="page-1-decoration">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -444,12 +476,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_4 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -491,7 +523,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -503,7 +535,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -511,6 +543,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 2}
+				{@const SvelteComponent_5 = icon}
 				<div class="page-2-decoration">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -518,12 +551,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_5 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -579,7 +612,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -591,7 +624,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -599,6 +632,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 3}
+				{@const SvelteComponent_6 = icon}
 				<div class="page-3-decoration">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -606,12 +640,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_6 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -674,7 +708,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -686,7 +720,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -696,6 +730,7 @@
 			{/if}
 		{:else if itemType === 'Cuff'}
 			{#if currentPage === 1}
+				{@const SvelteComponent_7 = icon}
 				<div class="page-1-cuff">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -703,12 +738,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_7 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -750,7 +785,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -762,7 +797,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -770,6 +805,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 2}
+				{@const SvelteComponent_8 = icon}
 				<div class="page-2-cuff">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -777,12 +813,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_8 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -828,7 +864,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -840,7 +876,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -848,6 +884,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 3}
+				{@const SvelteComponent_9 = icon}
 				<div class="page-3-cuff">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -855,12 +892,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_9 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -911,7 +948,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -923,7 +960,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -933,6 +970,7 @@
 			{/if}
 		{:else if itemType === 'Zenith Cuff'}
 			{#if currentPage === 1}
+				{@const SvelteComponent_10 = icon}
 				<div class="page-1-cuff">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -940,12 +978,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_10 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -987,7 +1025,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -999,7 +1037,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1007,6 +1045,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 2}
+				{@const SvelteComponent_11 = icon}
 				<div class="page-2-cuff">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1014,12 +1053,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_11 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1066,7 +1105,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1078,7 +1117,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1086,6 +1125,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 3}
+				{@const SvelteComponent_12 = icon}
 				<div class="page-3-zenith-cuff">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1093,12 +1133,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_12 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1150,7 +1190,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1162,7 +1202,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1172,6 +1212,7 @@
 			{/if}
 		{:else if itemType === 'Hiden Cuff'}
 			{#if currentPage === 1}
+				{@const SvelteComponent_13 = icon}
 				<div class="page-1-cuff">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1179,12 +1220,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_13 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1226,7 +1267,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1238,7 +1279,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1246,6 +1287,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 2}
+				{@const SvelteComponent_14 = icon}
 				<div class="page-2-cuff">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1253,12 +1295,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_14 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1305,7 +1347,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1317,7 +1359,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1325,6 +1367,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 3}
+				{@const SvelteComponent_15 = icon}
 				<div class="page-3-hiden-cuff">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1332,12 +1375,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_15 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1390,7 +1433,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1402,7 +1445,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1412,6 +1455,7 @@
 			{/if}
 		{:else if itemType === 'Tower Sigil'}
 			{#if currentPage === 1}
+				{@const SvelteComponent_16 = icon}
 				<div class="page-1-tower">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1419,12 +1463,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_16 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1470,7 +1514,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1482,7 +1526,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1490,6 +1534,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 2}
+				{@const SvelteComponent_17 = icon}
 				<div class="page-2-tower">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1497,12 +1542,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_17 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1546,7 +1591,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1558,7 +1603,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1566,6 +1611,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 3}
+				{@const SvelteComponent_18 = icon}
 				<div class="page-3-tower-sigil">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1573,12 +1619,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_18 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1624,7 +1670,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1636,7 +1682,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1646,6 +1692,7 @@
 			{/if}
 		{:else if itemType === 'Tower Decoration'}
 			{#if currentPage === 1}
+				{@const SvelteComponent_19 = icon}
 				<div class="page-1-tower">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1653,12 +1700,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_19 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1704,7 +1751,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1716,7 +1763,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1724,6 +1771,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 2}
+				{@const SvelteComponent_20 = icon}
 				<div class="page-2-tower">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1731,12 +1779,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_20 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1780,7 +1828,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1792,7 +1840,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -1800,6 +1848,7 @@
 					</div>
 				</div>
 			{:else if currentPage === 3}
+				{@const SvelteComponent_21 = icon}
 				<div class="page-3-tower-decoration">
 					<div class="icon">
 						<div class="item-icon-container">
@@ -1807,12 +1856,12 @@
 								class="item-icon"
 								bind:this={ref}
 								style:position="relative"
-								on:click={(e) => handleFocus()}
+								onclick={(e) => handleFocus()}
 								role="button"
 								tabindex="0"
-								on:keypress={(e) => handleFocus()}
+								onkeypress={(e) => handleFocus()}
 							>
-								<svelte:component this={icon} {...iconProps} />
+								<SvelteComponent_21 {...iconProps} />
 								<Popover
 									bind:open
 									align="bottom-left"
@@ -1856,7 +1905,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -1868,7 +1917,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />

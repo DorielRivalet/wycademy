@@ -205,8 +205,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{
 							title: 'Switch',
 							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-switch.webm',
@@ -217,8 +216,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{
 							title: 'Run',
 							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-run.webm',
@@ -229,8 +227,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{
 							title: 'Lightsword Mode',
 							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-lightsword.webm',
@@ -241,8 +238,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{
 							title: 'Elemental Release',
 							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-explosion.webm',
@@ -326,13 +322,15 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.value[0] == '-'}
-								<p style:color="var(--ctp-red)">{cell.value}</p>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.value[0] == '-'}
+									<p style:color="var(--ctp-red)">{cell.value}</p>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -370,18 +368,20 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'skill'}
-									<InlineTooltip
-										text={cell.value}
-										tooltip="Armor Skill"
-										iconType="component"
-										icon={getItemIcon('Jewel')}
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'skill'}
+										<InlineTooltip
+											text={cell.value}
+											tooltip="Armor Skill"
+											iconType="component"
+											icon={getItemIcon('Jewel')}
+										/>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -419,23 +419,25 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'sigil'}
-									<InlineTooltip
-										text={cell.value}
-										tooltip="Sigil"
-										iconType="component"
-										icon={getItemIcon('Sigil')}
-									/>
-								{:else if cell.key === 'rating'}
-									<StarRating
-										rating={Number.parseFloat(cell.value)}
-										maxRating={3}
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'sigil'}
+										<InlineTooltip
+											text={cell.value}
+											tooltip="Sigil"
+											iconType="component"
+											icon={getItemIcon('Sigil')}
+										/>
+									{:else if cell.key === 'rating'}
+										<StarRating
+											rating={Number.parseFloat(cell.value)}
+											maxRating={3}
+										/>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>

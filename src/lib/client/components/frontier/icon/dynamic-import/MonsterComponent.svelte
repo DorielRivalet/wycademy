@@ -745,9 +745,13 @@
 		}
 	}
 
-	export let currentMonster: string;
-	export let size: string = '100%';
-	export let background: boolean = true;
+	interface Props {
+		currentMonster: string;
+		size?: string;
+		background?: boolean;
+	}
+
+	let { currentMonster, size = '100%', background = true }: Props = $props();
 </script>
 
 {#await getMonsterIconComponent(currentMonster)}

@@ -5,7 +5,11 @@
 	import { monsterInfo } from '../modules/frontier/monsters';
 	import MonsterComponent from './frontier/icon/dynamic-import/MonsterComponent.svelte';
 
-	export let favoriteRuns = [
+	interface Props {
+		favoriteRuns?: any;
+	}
+
+	let { favoriteRuns = [
 		{
 			displayName: 'Burning Freezing Elzelion',
 			title: "User 2's Run #130",
@@ -54,7 +58,7 @@
 			link: '/',
 			totalFavorites: 0,
 		},
-	];
+	] }: Props = $props();
 
 	const maxFavoritesToDisplay = 5;
 

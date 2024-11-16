@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 	import Rotate from 'carbon-icons-svelte/lib/Rotate.svelte';
@@ -13,16 +15,33 @@
 		align = positions[positionIndex];
 	}
 
-	export let align: PopoverPosition = positions[1];
-	export let open = false;
-	export let ref: HTMLSpanElement;
-	export let tag1 = '';
-	export let tag2 = '';
-	export let tag3 = '';
-	export let title = '';
-	export let subtitle = '';
-	export let description = '';
-	export let link = '';
+	interface Props {
+		align?: PopoverPosition;
+		open?: boolean;
+		ref: HTMLSpanElement;
+		tag1?: string;
+		tag2?: string;
+		tag3?: string;
+		title?: string;
+		subtitle?: string;
+		description?: string;
+		link?: string;
+		image?: import('svelte').Snippet;
+	}
+
+	let {
+		align = $bindable(positions[1]),
+		open = $bindable(false),
+		ref,
+		tag1 = '',
+		tag2 = '',
+		tag3 = '',
+		title = '',
+		subtitle = '',
+		description = '',
+		link = '',
+		image
+	}: Props = $props();
 
 	const maxTitleLength = 35;
 	const maxSubtitleLength = 64;
@@ -47,11 +66,14 @@
 		}, millisecondsToDuration('150ms')); // Adjust this to match your transition duration
 	}
 
-	$: popoverClass = open ? 'popover visible' : 'popover invisible';
+	let popoverClass;
+	run(() => {
+		popoverClass = open ? 'popover visible' : 'popover invisible';
+	});
 
-	$: tag1Info = getTag(tag1);
-	$: tag2Info = getTag(tag2);
-	$: tag3Info = getTag(tag3);
+	let tag1Info = $derived(getTag(tag1));
+	let tag2Info = $derived(getTag(tag2));
+	let tag3Info = $derived(getTag(tag3));
 </script>
 
 <span class={popoverClass}>
@@ -67,7 +89,7 @@
 				{#if link !== ''}
 					<div class="image">
 						<a href={link}>
-							<slot name="image" />
+							{@render image?.()}
 						</a>
 					</div>
 					<div class="title link">
@@ -77,7 +99,7 @@
 					</div>
 				{:else}
 					<div class="image">
-						<slot name="image" />
+						{@render image?.()}
 					</div>
 					<div class="title">
 						{title.substring(0, maxTitleLength)}

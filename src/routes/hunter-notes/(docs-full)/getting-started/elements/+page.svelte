@@ -228,41 +228,45 @@
 						>
 					</div>
 				</Toolbar>
-				<span slot="title">
-					<div class="data-table-title">
-						<div>Combo Elements</div>
-					</div>
-				</span>
-				<svelte:fragment slot="cell" let:cell>
-					{#if cell.key === 'name'}
-						<InlineTooltip
-							iconType="component"
-							icon={ElementIcons.find((e) => e.name === cell.value)?.icon}
-							tooltip={'Element'}
-							text={cell.value}
-						/>
-					{:else if cell.key === 'origin'}
-						<InlineTooltip
-							icon={monsterInfo.find((e) => e.displayName === cell.value)
-								?.icon ?? ''}
-							iconType="file"
-							tooltip={cell.value}
-							text={cell.value}
-						/>
-					{:else if cell.key === 'composition'}
-						{#each getElementArray(cell.value) as element}
+				{#snippet title()}
+								<span >
+						<div class="data-table-title">
+							<div>Combo Elements</div>
+						</div>
+					</span>
+							{/snippet}
+				{#snippet cell({ cell })}
+							
+						{#if cell.key === 'name'}
 							<InlineTooltip
 								iconType="component"
-								icon={ElementIcons.find((e) => e.name === element.name)?.icon ??
-									''}
+								icon={ElementIcons.find((e) => e.name === cell.value)?.icon}
 								tooltip={'Element'}
-								text={`${element.value} ${element.name}`}
+								text={cell.value}
 							/>
-						{/each}
-					{:else}
-						<p>{cell.value}</p>
-					{/if}
-				</svelte:fragment>
+						{:else if cell.key === 'origin'}
+							<InlineTooltip
+								icon={monsterInfo.find((e) => e.displayName === cell.value)
+									?.icon ?? ''}
+								iconType="file"
+								tooltip={cell.value}
+								text={cell.value}
+							/>
+						{:else if cell.key === 'composition'}
+							{#each getElementArray(cell.value) as element}
+								<InlineTooltip
+									iconType="component"
+									icon={ElementIcons.find((e) => e.name === element.name)?.icon ??
+										''}
+									tooltip={'Element'}
+									text={`${element.value} ${element.name}`}
+								/>
+							{/each}
+						{:else}
+							<p>{cell.value}</p>
+						{/if}
+					
+							{/snippet}
 			</DataTable>
 		</div>
 

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
@@ -50,7 +52,7 @@
 	import { confetti } from '@neoconfetti/svelte';
 	import { reduced_motion } from '$lib/client/stores/reduced-motion';
 
-	let showConfetti = false;
+	let showConfetti = $state(false);
 
 	function handlePerfectScore() {
 		showConfetti = true;
@@ -63,12 +65,12 @@
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalImageType: 'video' | 'image' = 'image';
-	let modalNotes = '';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalImageType: 'video' | 'image' = $state('image');
+	let modalNotes = $state('');
 
 	const weaponUnlockGSRBonus: { id: string; unlocks: string; bonus: string }[] =
 		[
@@ -836,7 +838,6 @@ At HR5, it provides 17, at HR6 it’s 45, and at HR7 it’s 50. It progresses gr
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
 
 	function getDiagram(mermaidTheme: string) {
 		return `\
@@ -882,8 +883,8 @@ graph LR
 `;
 	}
 
-	let container: { innerHTML: string };
-	let container2: { innerHTML: string };
+	let container: { innerHTML: string } = $state();
+	let container2: { innerHTML: string } = $state();
 
 	let mermaidTheme = $carbonThemeStore === 'g10' ? 'default' : 'dark';
 
@@ -891,8 +892,6 @@ graph LR
 	let diagram = getDiagram(mermaidTheme);
 	let diagram2 = getDiagram2(mermaidTheme);
 
-	$: diagram && renderDiagram($carbonThemeStore, mermaidTheme);
-	$: diagram2 && renderDiagram2($carbonThemeStore, mermaidTheme);
 
 	onMount(() => {
 		mermaid.initialize({
@@ -921,6 +920,13 @@ graph LR
 
 	let multipleChoiceItems: MultipleChoiceItem[] =
 		questionBank.find((e) => e.category === 'Style Rank')?.items || [];
+	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
+	run(() => {
+		diagram && renderDiagram($carbonThemeStore, mermaidTheme);
+	});
+	run(() => {
+		diagram2 && renderDiagram2($carbonThemeStore, mermaidTheme);
+	});
 </script>
 
 <Modal
@@ -939,8 +945,7 @@ graph LR
 			{:else}
 				<div>
 					{#await import('$lib/player/Player.svelte') then { default: Player }}
-						<svelte:component
-							this={Player}
+						<Player
 							{...{ title: modalHeading, src: modalImage }}
 						/>
 					{/await}
@@ -954,7 +959,8 @@ graph LR
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent = modalPopoverIcon}
+							<SvelteComponent />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -1062,21 +1068,23 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'weapon'}
-								<InlineTooltip
-									text={cell.value}
-									tooltip="Weapon"
-									iconType="component"
-									icon={getWeaponIcon(cell.value)}
-								/>
-							{:else}
-								<StarRating
-									rating={Number.parseFloat(cell.value)}
-									maxRating={3}
-								/>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'weapon'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Weapon"
+										iconType="component"
+										icon={getWeaponIcon(cell.value)}
+									/>
+								{:else}
+									<StarRating
+										rating={Number.parseFloat(cell.value)}
+										maxRating={3}
+									/>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 				<p class="spaced-paragraph">
@@ -1323,9 +1331,11 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							<p>{cell.value}</p>
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								<p>{cell.value}</p>
+							
+											{/snippet}
 					</DataTable>
 				</div>
 				<p>
@@ -1527,18 +1537,20 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'skill' && styleRankSkills.find((e) => e.skill === cell.value)?.image !== undefined}
-								<Button
-									on:click={() => changeModal(cell, 'Style Rank Skills')}
-									size="small"
-									icon={Image}
-									kind="ghost">{cell.value}</Button
-								>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'skill' && styleRankSkills.find((e) => e.skill === cell.value)?.image !== undefined}
+									<Button
+										on:click={() => changeModal(cell, 'Style Rank Skills')}
+										size="small"
+										icon={Image}
+										kind="ghost">{cell.value}</Button
+									>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -1573,9 +1585,11 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							<p>{cell.value}</p>
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								<p>{cell.value}</p>
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -1613,9 +1627,11 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							<p>{cell.value}</p>
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								<p>{cell.value}</p>
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -1662,9 +1678,11 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							<p>{cell.value}</p>
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								<p>{cell.value}</p>
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -1731,18 +1749,20 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'weapon'}
-								<InlineTooltip
-									text={cell.value}
-									tooltip="Weapon"
-									iconType="component"
-									icon={getWeaponIcon(cell.value)}
-								/>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'weapon'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Weapon"
+										iconType="component"
+										icon={getWeaponIcon(cell.value)}
+									/>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 				<p class="spaced-paragraph">
@@ -1898,18 +1918,20 @@ graph LR
 									</div>
 								</Toolbar>
 
-								<svelte:fragment slot="cell" let:cell>
-									{#if cell.key === 'weapon'}
-										<InlineTooltip
-											text={cell.value}
-											tooltip="Weapon"
-											iconType="component"
-											icon={getWeaponIcon(cell.value)}
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								</svelte:fragment>
+								{#snippet cell({ cell })}
+															
+										{#if cell.key === 'weapon'}
+											<InlineTooltip
+												text={cell.value}
+												tooltip="Weapon"
+												iconType="component"
+												icon={getWeaponIcon(cell.value)}
+											/>
+										{:else}
+											<p>{cell.value}</p>
+										{/if}
+									
+															{/snippet}
 							</DataTable>
 						</div>
 
@@ -2015,18 +2037,20 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'weapon'}
-								<InlineTooltip
-									text={cell.value}
-									tooltip="Weapon"
-									iconType="component"
-									icon={getWeaponIcon(cell.value)}
-								/>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'weapon'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Weapon"
+										iconType="component"
+										icon={getWeaponIcon(cell.value)}
+									/>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 				<p class="spaced-paragraph">
@@ -2141,7 +2165,7 @@ graph LR
 					{#if !browser}
 						<Loading withOverlay={false} />
 					{:else}
-						<pre><code class="mermaid2" bind:this={container2} /></pre>
+						<pre><code class="mermaid2" bind:this={container2}></code></pre>
 					{/if}
 				</div>
 
@@ -2428,7 +2452,7 @@ graph LR
 					{#if !browser}
 						<Loading withOverlay={false} />
 					{:else}
-						<pre><code bind:this={container} /></pre>
+						<pre><code bind:this={container}></code></pre>
 					{/if}
 				</div>
 
@@ -2972,7 +2996,7 @@ graph LR
 			stageHeight: window.innerHeight,
 			colors: ['#f38ba8', '#a6e3a1', '#89b4fa'],
 		}}
-	/>
+	></div>
 {/if}
 
 <style lang="scss">

@@ -36,13 +36,13 @@
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalNotes = '';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalNotes = $state('');
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
 
 	function changeModal(cell: DataTableCell, section: string) {
 		modalOpen = true;
@@ -773,15 +773,15 @@
 		},
 	];
 
-	let caravanSkillsTablePageSize = 10;
-	let caravanSkillsTablePage = 1;
-	let caravanSkillsTableFilteredRowIds: string[] = [];
-	let caravanSkillsSortKey = 'cost';
+	let caravanSkillsTablePageSize = $state(10);
+	let caravanSkillsTablePage = $state(1);
+	let caravanSkillsTableFilteredRowIds: string[] = $state([]);
+	let caravanSkillsSortKey = $state('cost');
 	let caravanSkillsSortDirection:
 		| 'none'
 		| 'ascending'
 		| 'descending'
-		| undefined = 'ascending';
+		| undefined = $state('ascending');
 </script>
 
 <Modal
@@ -797,8 +797,7 @@
 		<div class="modal-content">
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{ title: modalHeading, src: modalImage }}
 					/>
 				{/await}
@@ -812,7 +811,8 @@
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent = modalPopoverIcon}
+							<SvelteComponent />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -1223,9 +1223,11 @@
 									</div>
 								</Toolbar>
 
-								<svelte:fragment slot="cell" let:cell>
-									<p>{cell.value}</p>
-								</svelte:fragment>
+								{#snippet cell({ cell })}
+															
+										<p>{cell.value}</p>
+									
+															{/snippet}
 							</DataTable>
 						</div>
 					</div>
@@ -1278,9 +1280,11 @@
 									</div>
 								</Toolbar>
 
-								<svelte:fragment slot="cell" let:cell>
-									<p>{cell.value}</p>
-								</svelte:fragment>
+								{#snippet cell({ cell })}
+															
+										<p>{cell.value}</p>
+									
+															{/snippet}
 							</DataTable>
 						</div>
 					</div>
@@ -1576,21 +1580,23 @@
 									</div>
 								</Toolbar>
 
-								<svelte:fragment slot="cell" let:cell>
-									{#if cell.key === 'name' && caravanGemSkills.find((e) => e.name === cell.value)?.demo}
-										<button
-											class="table-button"
-											on:click={() => changeModal(cell, 'Caravan')}
-										>
-											<span>{cell.value}</span><Image
-												size={20}
-												fill="var(--ctp-blue)"
-											/></button
-										>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								</svelte:fragment>
+								{#snippet cell({ cell })}
+															
+										{#if cell.key === 'name' && caravanGemSkills.find((e) => e.name === cell.value)?.demo}
+											<button
+												class="table-button"
+												onclick={() => changeModal(cell, 'Caravan')}
+											>
+												<span>{cell.value}</span><Image
+													size={20}
+													fill="var(--ctp-blue)"
+												/></button
+											>
+										{:else}
+											<p>{cell.value}</p>
+										{/if}
+									
+															{/snippet}
 							</DataTable>
 							<Pagination
 								pageSizes={[10, 72]}

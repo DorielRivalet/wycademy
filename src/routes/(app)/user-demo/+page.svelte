@@ -101,10 +101,10 @@
 	const customTitle = "User Demo — Frontier's Wycademy";
 	const url = $page.url.toString();
 
-	let open = false;
-	let modalPage: 1 | 2 | 3 = 1;
-	let selectedReportOption: string | number | undefined = undefined;
-	let reportDetails = '';
+	let open = $state(false);
+	let modalPage: 1 | 2 | 3 = $state(1);
+	let selectedReportOption: string | number | undefined = $state(undefined);
+	let reportDetails = $state('');
 
 	function getPrimaryButtonText(page: 1 | 2 | 3) {
 		switch (page) {
@@ -354,53 +354,55 @@
 		<Tab label="Favorites" />
 		<Tab label="Events" />
 
-		<svelte:fragment slot="content">
-			<TabContent>
-				<section>
-					<SectionHeading level={2} title="Wardrobe" />
-					<ProfilePinnedSets bind:theme={$carbonThemeStore} />
-				</section>
-				<section>
-					<SectionHeading level={2} title="Pinned Runs" />
-					<ProfilePinnedRuns bind:theme={$carbonThemeStore} />
-				</section>
-				<section>
-					<SectionHeading level={2} title="Guild Card" />
-					<ProfileGuildCard />
-				</section>
-				<section>
-					<SectionHeading level={2} title="Recent Activity" />
-					<ProfileRecentActivity />
-				</section>
-			</TabContent>
-			<TabContent>
-				<section>
-					<SectionHeading level={2} title="Quests Stats" />
-					<ProfileHuntsCalendarGraph bind:theme={$carbonThemeStore} />
-				</section>
-				<section>
-					<ProfileHuntsGraph />
-				</section>
-				<section>
-					<ProfileRecentHunts />
-				</section>
-			</TabContent>
-			<TabContent>Achievements</TabContent>
-			<TabContent>
-				<section>
-					<SectionHeading level={2} title="Favorites" />
+		{#snippet content()}
+			
+				<TabContent>
 					<section>
-						<SectionHeading level={3} title="Runs" />
-						<ProfileFavoriteRuns />
+						<SectionHeading level={2} title="Wardrobe" />
+						<ProfilePinnedSets bind:theme={$carbonThemeStore} />
 					</section>
 					<section>
-						<SectionHeading level={3} title="Armor Sets" />
-						<ProfileFavoriteSets />
+						<SectionHeading level={2} title="Pinned Runs" />
+						<ProfilePinnedRuns bind:theme={$carbonThemeStore} />
 					</section>
-				</section>
-			</TabContent>
-			<TabContent>Events</TabContent>
-		</svelte:fragment>
+					<section>
+						<SectionHeading level={2} title="Guild Card" />
+						<ProfileGuildCard />
+					</section>
+					<section>
+						<SectionHeading level={2} title="Recent Activity" />
+						<ProfileRecentActivity />
+					</section>
+				</TabContent>
+				<TabContent>
+					<section>
+						<SectionHeading level={2} title="Quests Stats" />
+						<ProfileHuntsCalendarGraph bind:theme={$carbonThemeStore} />
+					</section>
+					<section>
+						<ProfileHuntsGraph />
+					</section>
+					<section>
+						<ProfileRecentHunts />
+					</section>
+				</TabContent>
+				<TabContent>Achievements</TabContent>
+				<TabContent>
+					<section>
+						<SectionHeading level={2} title="Favorites" />
+						<section>
+							<SectionHeading level={3} title="Runs" />
+							<ProfileFavoriteRuns />
+						</section>
+						<section>
+							<SectionHeading level={3} title="Armor Sets" />
+							<ProfileFavoriteSets />
+						</section>
+					</section>
+				</TabContent>
+				<TabContent>Events</TabContent>
+			
+			{/snippet}
 	</Tabs>
 
 	<section>

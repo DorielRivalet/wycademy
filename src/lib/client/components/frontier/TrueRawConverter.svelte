@@ -4,9 +4,13 @@
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import type { FrontierWeaponName } from 'ezlion';
 
-	export let value: number;
-	export let weaponType: FrontierWeaponName;
-	export let showWeapon = false;
+	interface Props {
+		value: number;
+		weaponType: FrontierWeaponName;
+		showWeapon?: boolean;
+	}
+
+	let { value = $bindable(), weaponType = $bindable(), showWeapon = false }: Props = $props();
 
 	const minimumNumberValue = 0;
 	const maximumNumberValue = 99999;

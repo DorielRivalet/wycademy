@@ -36,16 +36,16 @@
 		return;
 	}
 
-	let userAgreed = false;
+	let userAgreed = $state(false);
 
-	let selectedMonsterNameFromList = usernames.monsters[0];
-	let selectedMonsterPrefixFromList = usernames.types[0];
+	let selectedMonsterNameFromList = $state(usernames.monsters[0]);
+	let selectedMonsterPrefixFromList = $state(usernames.types[0]);
 
-	$: username =
-		generateUsername(
+	let username =
+		$derived(generateUsername(
 			selectedMonsterPrefixFromList ?? usernames.types[0],
 			selectedMonsterNameFromList ?? usernames.monsters[0],
-		) + '-####';
+		) + '-####');
 
 	// TODO some pages like this one are missing Head component
 	let description =
@@ -85,12 +85,14 @@
 				hideCloseButton
 				subtitle="Please read about our development process before creating an account. It is currently not possible to make an account"
 			>
-				<svelte:fragment slot="actions">
-					<NotificationActionButton
-						on:click={() => goto('/support/website/development')}
-						>Learn more</NotificationActionButton
-					>
-				</svelte:fragment>
+				{#snippet actions()}
+							
+						<NotificationActionButton
+							on:click={() => goto('/support/website/development')}
+							>Learn more</NotificationActionButton
+						>
+					
+							{/snippet}
 			</InlineNotification>
 		</div>
 		<div class="login">
@@ -129,14 +131,16 @@
 		</div>
 		<div class="agreement">
 			<Checkbox bind:checked={userAgreed} required
-				><span slot="labelText">
-					By signing up with Wycademy, you agree to our <Link
-						inline
-						href="/support/policies/terms-of-service">Terms of Service</Link
-					> and <Link href="/support/policies/privacy-policy" inline
-						>Privacy Policy.</Link
-					></span
-				></Checkbox
+				>{#snippet labelText()}
+								<span >
+						By signing up with Wycademy, you agree to our <Link
+							inline
+							href="/support/policies/terms-of-service">Terms of Service</Link
+						> and <Link href="/support/policies/privacy-policy" inline
+							>Privacy Policy.</Link
+						></span
+					>
+							{/snippet}</Checkbox
 			>
 		</div>
 	</div>

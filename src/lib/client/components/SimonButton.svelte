@@ -1,9 +1,19 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-	export let color: string;
-	export let isPressed: boolean = false;
-	export let disabled: boolean = false;
+	interface Props {
+		color: string;
+		isPressed?: boolean;
+		disabled?: boolean;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		color,
+		isPressed = false,
+		disabled = false,
+		children
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -28,11 +38,11 @@
 	class="simon-button"
 	class:pressed={isPressed}
 	class:disabled
-	on:mousedown={handleMouseDown}
-	on:mouseup={handleMouseUp}
-	on:mouseleave={handleMouseLeave}
+	onmousedown={handleMouseDown}
+	onmouseup={handleMouseUp}
+	onmouseleave={handleMouseLeave}
 >
-	<slot />
+	{@render children?.()}
 </button>
 
 <style>

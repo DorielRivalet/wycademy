@@ -7,10 +7,14 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	export let color = '#ffffff';
-	export let size = '100%';
+	interface Props {
+		color?: string;
+		size?: string;
+	}
 
-	$: targetColor = color;
+	let { color = '#ffffff', size = '100%' }: Props = $props();
+
+	let targetColor = $derived(color);
 </script>
 
 <svg
@@ -29,7 +33,7 @@
 		showgrid="false"
 		units="px"
 		showguides="true"
-	/>
+	></sodipodi:namedview>
 	<g id="layer1" transform="translate(0,-280.06665)">
 		<path
 			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(

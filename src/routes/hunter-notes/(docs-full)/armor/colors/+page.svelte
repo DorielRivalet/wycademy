@@ -167,106 +167,108 @@
 					</div>
 				</Toolbar>
 
-				<svelte:fragment slot="cell" let:cell>
-					{#if cell.key === 'color'}
-						<div class="color">
-							{#if cell.value === 'Red'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-red)"
-								/>
-							{:else if cell.value === 'Green'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-green)"
-								/>
-							{:else if cell.value === 'White'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-latte-base)"
-								/>
-							{:else if cell.value === 'Green'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-green)"
-								/>
-							{:else if cell.value === 'Blue'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-sapphire)"
-								/>
-							{:else if cell.value === 'Dark Blue'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-blue)"
-								/>
-							{:else if cell.value === 'Light Green'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-sky)"
-								/>
-							{:else if cell.value === 'Purple'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-mauve)"
-								/>
-							{:else if cell.value === 'Orange'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-peach)"
-								/>
-							{:else if cell.value === 'Yellow'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-yellow)"
-								/>
-							{:else if cell.value === 'Gray'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-surface0)"
-								/>
-							{:else if cell.value === 'Pink'}
-								<button
-									type="button"
-									class="dot"
-									aria-label={'Color'}
-									style="background-color: var(--ctp-pink)"
-								/>
-							{:else if cell.value === 'Rainbow'}
-								<button
-									type="button"
-									class="dot rainbow-loop"
-									aria-label={'Color'}
-								/>
-							{/if}
+				{#snippet cell({ cell })}
+							
+						{#if cell.key === 'color'}
+							<div class="color">
+								{#if cell.value === 'Red'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-red)"
+									></button>
+								{:else if cell.value === 'Green'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-green)"
+									></button>
+								{:else if cell.value === 'White'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-latte-base)"
+									></button>
+								{:else if cell.value === 'Green'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-green)"
+									></button>
+								{:else if cell.value === 'Blue'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-sapphire)"
+									></button>
+								{:else if cell.value === 'Dark Blue'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-blue)"
+									></button>
+								{:else if cell.value === 'Light Green'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-sky)"
+									></button>
+								{:else if cell.value === 'Purple'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-mauve)"
+									></button>
+								{:else if cell.value === 'Orange'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-peach)"
+									></button>
+								{:else if cell.value === 'Yellow'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-yellow)"
+									></button>
+								{:else if cell.value === 'Gray'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-surface0)"
+									></button>
+								{:else if cell.value === 'Pink'}
+									<button
+										type="button"
+										class="dot"
+										aria-label={'Color'}
+										style="background-color: var(--ctp-pink)"
+									></button>
+								{:else if cell.value === 'Rainbow'}
+									<button
+										type="button"
+										class="dot rainbow-loop"
+										aria-label={'Color'}
+									></button>
+								{/if}
+								<p>{cell.value}</p>
+							</div>
+						{:else}
 							<p>{cell.value}</p>
-						</div>
-					{:else}
-						<p>{cell.value}</p>
-					{/if}
-				</svelte:fragment>
+						{/if}
+					
+							{/snippet}
 			</DataTable>
 		</div>
 

@@ -134,13 +134,13 @@
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	let currentFeatureIndex = 0;
-	let progressBarValues = features.map(() => 0);
+	let currentFeatureIndex = $state(0);
+	let progressBarValues = $state(features.map(() => 0));
 	let progressBarInterval: ReturnType<typeof setInterval> | null = null;
-	let isVisible = false;
+	let isVisible = $state(false);
 	/**TODO: if true, disable automatic progress bar updating and let user select the feature to view via clicking the icons. If on mobile, since only 1 icon is shown, add left and right arrow buttons when the user presses the icon which makes the progress bar stop updating automatically. If they press the icon again, the progress bar updates automatically again.*/
 	let isInteracting = false;
-	let showMobileControls = false;
+	let showMobileControls = $state(false);
 
 	onMount(() => {
 		startProgressBar();
@@ -165,8 +165,8 @@
 			{#each features as feature, index}
 				<div
 					class="feature-wrapper"
-					on:click={() => handleFeatureClick(index)}
-					on:keydown={(e) => handleKeydown(e, index)}
+					onclick={() => handleFeatureClick(index)}
+					onkeydown={(e) => handleKeydown(e, index)}
 					role="button"
 					tabindex="0"
 				>
@@ -179,8 +179,7 @@
 						progressPosition="bottom"
 						progressBarValue={progressBarValues[index]}
 					>
-						<svelte:component
-							this={feature.icon}
+						<feature.icon
 							size={32}
 							on:click={() => handleFeatureClick(index)}
 							color={progressBarValues[index] > 2
@@ -194,8 +193,8 @@
 			<div class="mobile-feature-container">
 				<div
 					class="feature-wrapper"
-					on:click={() => handleFeatureClick(currentFeatureIndex)}
-					on:keydown={(e) => handleKeydown(e, currentFeatureIndex)}
+					onclick={() => handleFeatureClick(currentFeatureIndex)}
+					onkeydown={(e) => handleKeydown(e, currentFeatureIndex)}
 					role="button"
 					tabindex="0"
 				>
@@ -206,8 +205,8 @@
 						progressPosition="bottom"
 						progressBarValue={progressBarValues[currentFeatureIndex]}
 					>
-						<svelte:component
-							this={features[currentFeatureIndex].icon}
+						{@const SvelteComponent = features[currentFeatureIndex].icon}
+						<SvelteComponent
 							size={32}
 						/>
 					</HomeFeaturesSectionFeature>
@@ -216,7 +215,7 @@
 					<div class="mobile-controls" transition:fade={{ duration: 200 }}>
 						<button
 							class="nav-button"
-							on:click={() => handleMobileNavigation('prev')}
+							onclick={() => handleMobileNavigation('prev')}
 							aria-label="Previous feature"
 						>
 							<ChevronLeft size={24} color="var(--ctp-text)" />
@@ -224,7 +223,7 @@
 
 						<button
 							class="nav-button"
-							on:click={() => handleMobileNavigation('next')}
+							onclick={() => handleMobileNavigation('next')}
 							aria-label="Next feature"
 						>
 							<ChevronRight size={24} color="var(--ctp-text)" />

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import MagicWand from 'carbon-icons-svelte/lib/MagicWand.svelte';
 	import TrashCan from 'carbon-icons-svelte/lib/TrashCan.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -37,26 +39,49 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	export let top = 0;
-	export let left = 0;
-	export let width = 256;
-	export let height = 256;
-	export let zindex = 1;
-	export let opacity = 1;
-	export let dropShadowSize = 8;
-	export let dropShadowColor = '#000000';
-	export let borderWidth = 0;
-	export let borderColor = '#000000';
-	export let borderRadius = 8;
-	export let background = true;
-	export let color: '#ffffff';
-	export let monsterRenderSize: 'Small' | 'Full';
-	export let fileType: FrontierImageType;
-	export let index = 0;
-	export let optionsList: DropdownItem[] = [];
-	export let optionId: string;
-	export let src;
-	$: src = getIconBlobFromIconMetaData(fileType, optionId);
+	interface Props {
+		top?: number;
+		left?: number;
+		width?: number;
+		height?: number;
+		zindex?: number;
+		opacity?: number;
+		dropShadowSize?: number;
+		dropShadowColor?: string;
+		borderWidth?: number;
+		borderColor?: string;
+		borderRadius?: number;
+		background?: boolean;
+		color: '#ffffff';
+		monsterRenderSize: 'Small' | 'Full';
+		fileType: FrontierImageType;
+		index?: number;
+		optionsList?: DropdownItem[];
+		optionId: string;
+		src: any;
+	}
+
+	let {
+		top = $bindable(0),
+		left = $bindable(0),
+		width = $bindable(256),
+		height = $bindable(256),
+		zindex = $bindable(1),
+		opacity = $bindable(1),
+		dropShadowSize = $bindable(8),
+		dropShadowColor = $bindable('#000000'),
+		borderWidth = $bindable(0),
+		borderColor = $bindable('#000000'),
+		borderRadius = $bindable(8),
+		background = $bindable(true),
+		color = $bindable(),
+		monsterRenderSize = $bindable(),
+		fileType,
+		index = 0,
+		optionsList = [],
+		optionId = $bindable(),
+		src = $bindable()
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -167,6 +192,9 @@
 	}
 
 	const allFrontierColors = getAllFrontierColors();
+	run(() => {
+		src = getIconBlobFromIconMetaData(fileType, optionId);
+	});
 </script>
 
 <div class="container flex-column">

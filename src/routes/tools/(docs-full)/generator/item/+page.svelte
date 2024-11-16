@@ -121,31 +121,31 @@
 	const invalidWeaponRarityText = `Value must be between ${minimumRarity} and ${maximumRarity}.`;
 	const invalidArmorSkillPointsText = `Value must be between ${minimumArmorSkillPoints} and ${maximumArmorSkillPoints}.`;
 
-	let itemName = defaultItemComponentValues.itemName;
-	let itemDescription = defaultItemComponentValues.itemDescription;
-	let itemRarity: FrontierRarity = defaultItemComponentValues.itemRarity;
-	let itemRank: FrontierItemRankType = defaultItemComponentValues.itemRank;
-	let itemIconName = defaultItemComponentValues.itemIconName;
+	let itemName = $state(defaultItemComponentValues.itemName);
+	let itemDescription = $state(defaultItemComponentValues.itemDescription);
+	let itemRarity: FrontierRarity = $state(defaultItemComponentValues.itemRarity);
+	let itemRank: FrontierItemRankType = $state(defaultItemComponentValues.itemRank);
+	let itemIconName = $state(defaultItemComponentValues.itemIconName);
 	let itemColorName: FrontierItemColor =
-		defaultItemComponentValues.itemColorName;
-	let itemType: FrontierItemType = defaultItemComponentValues.itemType;
+		$state(defaultItemComponentValues.itemColorName);
+	let itemType: FrontierItemType = $state(defaultItemComponentValues.itemType);
 	let itemZenithSkill: FrontierZenithSkill =
-		defaultItemComponentValues.itemZenithSkill;
+		$state(defaultItemComponentValues.itemZenithSkill);
 	let itemCuffSkill1: FrontierArmorSkillTree =
-		defaultItemComponentValues.itemCuffSkill1;
-	let itemCuffSkill1Points = defaultItemComponentValues.itemCuffSkill1Points;
+		$state(defaultItemComponentValues.itemCuffSkill1);
+	let itemCuffSkill1Points = $state(defaultItemComponentValues.itemCuffSkill1Points);
 	let itemCuffSkill2: FrontierArmorSkillTree =
-		defaultItemComponentValues.itemCuffSkill2;
-	let itemCuffSkill2Points = defaultItemComponentValues.itemCuffSkill2Points;
+		$state(defaultItemComponentValues.itemCuffSkill2);
+	let itemCuffSkill2Points = $state(defaultItemComponentValues.itemCuffSkill2Points);
 	let itemTowerSkill: FrontierArmorSkillName =
-		defaultItemComponentValues.itemTowerSkill;
+		$state(defaultItemComponentValues.itemTowerSkill);
 	let itemArmorClass: FrontierArmorClass =
-		defaultItemComponentValues.itemArmorClass;
+		$state(defaultItemComponentValues.itemArmorClass);
 	let itemWeaponClass: FrontierWeaponClass =
-		defaultItemComponentValues.itemWeaponClass;
+		$state(defaultItemComponentValues.itemWeaponClass);
 	let itemSlotsRequired: FrontierSlot =
-		defaultItemComponentValues.itemSlotsRequired;
-	let itemSigil: FrontierItemSigil = {
+		$state(defaultItemComponentValues.itemSlotsRequired);
+	let itemSigil: FrontierItemSigil = $state({
 		slot1: {
 			name: 'Attack Slayer',
 			value: 8,
@@ -162,9 +162,9 @@
 			name: 'Affinity Slayer',
 			value: -43,
 		},
-	};
+	});
 
-	let itemDecoration: FrontierItemDecoration = {
+	let itemDecoration: FrontierItemDecoration = $state({
 		slot1: {
 			name: 'Determination',
 			value: 7,
@@ -181,7 +181,7 @@
 			name: 'Sharpness',
 			value: 2,
 		},
-	};
+	});
 
 	function resetItemsValues() {
 		itemName = defaultItemComponentValues.itemName;
@@ -240,7 +240,7 @@
 		};
 	}
 
-	let currentItemPage = 1;
+	let currentItemPage = $state(1);
 </script>
 
 <HunterNotesPage displayTOC={false}>

@@ -1,9 +1,13 @@
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	export let color = '#ffffff';
-	export let size = '100%';
+	interface Props {
+		color?: string;
+		size?: string;
+	}
 
-	$: targetColor = color;
+	let { color = '#ffffff', size = '100%' }: Props = $props();
+
+	let targetColor = $derived(color);
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->

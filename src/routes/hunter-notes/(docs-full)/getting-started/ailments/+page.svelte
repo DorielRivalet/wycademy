@@ -239,27 +239,29 @@
 								/>
 							</div>
 						</Toolbar>
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'name'}
-								<InlineTooltip
-									icon={monsterInfo.find((e) => e.name === cell.value)?.icon}
-									tooltip={'Monster'}
-									iconType={'file'}
-									text={cell.value}
-								/>
-							{:else if cell.key === 'immunities'}
-								{#each getStatusArray(cell.value) as status}
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'name'}
 									<InlineTooltip
-										icon={StatusIcons.find((e) => e.name === status)?.icon ??
-											''}
-										tooltip={'Status'}
-										text={`${status}`}
+										icon={monsterInfo.find((e) => e.name === cell.value)?.icon}
+										tooltip={'Monster'}
+										iconType={'file'}
+										text={cell.value}
 									/>
-								{/each}
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+								{:else if cell.key === 'immunities'}
+									{#each getStatusArray(cell.value) as status}
+										<InlineTooltip
+											icon={StatusIcons.find((e) => e.name === status)?.icon ??
+												''}
+											tooltip={'Status'}
+											text={`${status}`}
+										/>
+									{/each}
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 				<p>

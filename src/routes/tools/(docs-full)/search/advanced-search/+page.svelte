@@ -91,12 +91,12 @@
 
 	// TODO url query
 
-	let scopeFilterId: SearchItemCategory = 'All';
+	let scopeFilterId: SearchItemCategory = $state('All');
 	let results = [];
-	let searchTerm = '';
+	let searchTerm = $state('');
 	let searchDuration = 0;
 
-	$: groupedResults = groupByCategory(results);
+	let groupedResults = $derived(groupByCategory(results));
 </script>
 
 <HunterNotesPage displayTOC={false}>
@@ -141,14 +141,16 @@
 					<Accordion>
 						{#each Object.entries(groupedResults) as [category, results], i}
 							<AccordionItem open={i === 0}>
-								<svelte:fragment slot="title">
-									<InlineTooltip
-										tooltip={category}
-										iconType="component"
-										text={`${category} (${results.length})`}
-										icon={getCategoryIcon(category)}
-									/>
-								</svelte:fragment>
+								{#snippet title()}
+															
+										<InlineTooltip
+											tooltip={category}
+											iconType="component"
+											text={`${category} (${results.length})`}
+											icon={getCategoryIcon(category)}
+										/>
+									
+															{/snippet}
 								<hr class="category-separator" />
 								<ol>
 									{#each results as result}

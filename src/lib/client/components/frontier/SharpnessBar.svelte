@@ -14,13 +14,18 @@
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 
-	export let sharpnessValues: FrontierWeaponSharpness = [
-		170, 170, 170, 170, 170, 200, 250, 400,
-	];
-	/** Shows the boost border effect.*/
-	export let sharpnessBoost = true;
+	
 
-	export let popoverOverrideText = '';
+	interface Props {
+		sharpnessValues?: FrontierWeaponSharpness;
+		/** Shows the boost border effect.*/
+		sharpnessBoost?: boolean;
+		popoverOverrideText?: string;
+	}
+
+	let { sharpnessValues = [
+		170, 170, 170, 170, 170, 200, 250, 400,
+	], sharpnessBoost = true, popoverOverrideText = '' }: Props = $props();
 
 	function setSharpnessWidths(values: FrontierWeaponSharpness) {
 		const isValid = frontierChecks.isValidSharpness(values);
@@ -47,39 +52,39 @@
 		popoverContent = `Red: ${sharpnessValues[0]} | Orange: ${sharpnessValues[1]} | Yellow: ${sharpnessValues[2]} | Green: ${sharpnessValues[3]} | Blue: ${sharpnessValues[4]} | White: ${sharpnessValues[5]} | Purple: ${sharpnessValues[6]} | Cyan: ${sharpnessValues[7]}`;
 	}
 
-	let open = false;
-	let ref: HTMLDivElement | null = null;
-	let popoverContent = '';
+	let open = $state(false);
+	let ref: HTMLDivElement | null = $state(null);
+	let popoverContent = $state('');
 
-	$: barClassStyle = sharpnessBoost ? 'boosted-bar' : 'bar';
-	$: borderClassStyleLeft = sharpnessBoost
+	let barClassStyle = $derived(sharpnessBoost ? 'boosted-bar' : 'bar');
+	let borderClassStyleLeft = $derived(sharpnessBoost
 		? 'boosted-border-left'
-		: 'border-left';
-	$: borderClassStyleRight = sharpnessBoost
+		: 'border-left');
+	let borderClassStyleRight = $derived(sharpnessBoost
 		? 'boosted-border-right'
-		: 'border-right';
-	$: sharpnessWidths = setSharpnessWidths(sharpnessValues);
-	$: boostNumberClass = sharpnessBoost ? 'boosted-number' : 'invisible';
+		: 'border-right');
+	let sharpnessWidths = $derived(setSharpnessWidths(sharpnessValues));
+	let boostNumberClass = $derived(sharpnessBoost ? 'boosted-number' : 'invisible');
 </script>
 
 <div class="container">
-	<div class={borderClassStyleLeft} />
+	<div class={borderClassStyleLeft}></div>
 
 	<div
 		class={barClassStyle}
 		bind:this={ref}
 		style:position="relative"
-		on:click={(e) => handleFocus()}
+		onclick={(e) => handleFocus()}
 		role="button"
 		tabindex="0"
-		on:keypress={(e) => handleFocus()}
+		onkeypress={(e) => handleFocus()}
 	>
 		{#each sharpnessWidths as width, i}
 			<div
 				style="background-color: {i <= 7
 					? `var(${frontierColorNames[0].values[i].var})`
 					: '#000'}; width: {(width * 100) / 400}%; height: 100%;"
-			/>
+			></div>
 		{/each}
 		<Popover
 			bind:open
@@ -98,7 +103,7 @@
 			</div>
 		</Popover>
 	</div>
-	<div class={borderClassStyleRight} />
+	<div class={borderClassStyleRight}></div>
 	<div class={boostNumberClass}>+1</div>
 </div>
 

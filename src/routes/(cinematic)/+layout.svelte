@@ -32,8 +32,13 @@
 		Symbol.for('banner'),
 	) as Writable<boolean>;
 
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	export let data: LayoutData;
+	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
 
 	onMount(() => {
 		let themeValue = $carbonThemeStore;
@@ -62,7 +67,7 @@
 <div class="app">
 	<ViewTransition />
 	<main>
-		<slot />
+		{@render children?.()}
 	</main>
 	<div class="banner">
 		{#if $bannerEnabledStore}
@@ -73,12 +78,14 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
-					<NotificationActionButton
-						on:click={() => goto('/support/website/development')}
-						>Learn more</NotificationActionButton
-					>
-				</svelte:fragment>
+				{#snippet actions()}
+							
+						<NotificationActionButton
+							on:click={() => goto('/support/website/development')}
+							>Learn more</NotificationActionButton
+						>
+					
+							{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>

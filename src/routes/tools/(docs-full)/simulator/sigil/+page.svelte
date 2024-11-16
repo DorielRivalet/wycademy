@@ -238,20 +238,18 @@
 	const minRolls = 1;
 	const maxRolls = 10_000;
 
-	let sigil = 'Advanced Shiten [Disufiroa]';
-	let selectedRolls = maxRolls;
-	let currentRolls = 0;
-	let state: 'start' | 'running' | 'end' = 'start';
+	let sigil = $state('Advanced Shiten [Disufiroa]');
+	let selectedRolls = $state(maxRolls);
+	let currentRolls = $state(0);
+	let state: 'start' | 'running' | 'end' = $state('start');
 	// example: 15 Attack, 15 Element, 15 Attack.
-	let bestSigilStats = '';
-	let bestSigilRollNumber = 0;
-	let bestSigilScore = 0;
-	let probability = 0;
-	let priority: 'Attack' | 'Element' | 'None' = 'Attack';
-	let targetScore = 45;
+	let bestSigilStats = $state('');
+	let bestSigilRollNumber = $state(0);
+	let bestSigilScore = $state(0);
+	let probability = $state(0);
+	let priority: 'Attack' | 'Element' | 'None' = $state('Attack');
+	let targetScore = $state(45);
 
-	$: sigilMaxScore =
-		sigilsRollsStats.find((e) => e.name === sigil)?.maxScore || 0;
 
 	/**
 	 * weapon emperor always has 3 skills and only one skill is weapon up.
@@ -409,9 +407,11 @@
 	const confidenceLevel = 99;
 	const marginOfError = 0.05;
 
-	$: materialNeeded = getMaterialFromSigil(sigil);
-	$: materialNeededIcon = getIconFromMaterial(materialNeeded);
-	$: materialNeededIconColor = getIconColorFromMaterial(materialNeeded);
+	let sigilMaxScore =
+		$derived(sigilsRollsStats.find((e) => e.name === sigil)?.maxScore || 0);
+	let materialNeeded = $derived(getMaterialFromSigil(sigil));
+	let materialNeededIcon = $derived(getIconFromMaterial(materialNeeded));
+	let materialNeededIconColor = $derived(getIconColorFromMaterial(materialNeeded));
 </script>
 
 <HunterNotesPage displayTOC={false}>

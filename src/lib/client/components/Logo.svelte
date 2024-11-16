@@ -1,12 +1,19 @@
 <script lang="ts">
-	/**Navigate to home page on click*/
-	export let clickable = true;
+	
 
-	/**Show musou on hover*/
-	export let hoverable = true;
+	
 
-	/**em*/
-	export let size = 5;
+	
+	interface Props {
+		/**Navigate to home page on click*/
+		clickable?: boolean;
+		/**Show musou on hover*/
+		hoverable?: boolean;
+		/**em*/
+		size?: number;
+	}
+
+	let { clickable = true, hoverable = true, size = 5 }: Props = $props();
 
 	const musouColor = '#73625a';
 	const normalColor = '#f7f4fd';
@@ -14,11 +21,11 @@
 	const normalStroke = '#706873';
 	const musouStroke = '#000000';
 
-	let isHovered = false;
+	let isHovered = $state(false);
 
-	$: targetColor = isHovered && hoverable ? musouColor : normalColor;
-	$: targetStroke = isHovered && hoverable ? musouStroke : normalStroke;
-	$: link = clickable ? '/' : '#';
+	let targetColor = $derived(isHovered && hoverable ? musouColor : normalColor);
+	let targetStroke = $derived(isHovered && hoverable ? musouStroke : normalStroke);
+	let link = $derived(clickable ? '/' : '#');
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
@@ -26,8 +33,8 @@
 <a href={link} aria-label="Logo, back to homepage if clickable">
 	<svg
 		role="banner"
-		on:mouseenter={() => (isHovered = true)}
-		on:mouseleave={() => (isHovered = false)}
+		onmouseenter={() => (isHovered = true)}
+		onmouseleave={() => (isHovered = false)}
 		width="{size}em"
 		height="{size}em"
 		viewBox="0 0 128 128"

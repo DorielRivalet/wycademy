@@ -4,6 +4,8 @@
   ~ found in the LICENSE file.
 -->
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
@@ -52,8 +54,12 @@
 	//TODO svg: mezfes, caravan, festi, transcend, etc
 	//TODO animated webp: items, locations, events, etc.
 
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	export let data: LayoutData;
+	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
+	interface Props {
+		data: LayoutData;
+	}
+
+	let { data }: Props = $props();
 
 	onMount(() => {
 		let themeValue = $carbonThemeStore;
@@ -77,7 +83,10 @@
 	const description =
 		'Explore our guides and tutorials of Monster Hunter Frontier Z.\n\nDeveloped by Doriel Rivalet.';
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	let headerClass;
+	run(() => {
+		headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	});
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
 
@@ -133,12 +142,14 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
-					<NotificationActionButton
-						on:click={() => goto('/support/website/development')}
-						>Learn more</NotificationActionButton
-					>
-				</svelte:fragment>
+				{#snippet actions()}
+							
+						<NotificationActionButton
+							on:click={() => goto('/support/website/development')}
+							>Learn more</NotificationActionButton
+						>
+					
+							{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>

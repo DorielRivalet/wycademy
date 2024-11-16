@@ -7,9 +7,13 @@
 	import LegIconWhite from './Leg_Icon_White.svelte';
 	import WaistIconWhite from './Waist_Icon_White.svelte';
 
-	export let colors = [...new Set(RarityColors)];
-	export let delay = 2000;
-	export let size: string = '100%';
+	interface Props {
+		colors?: any;
+		delay?: number;
+		size?: string;
+	}
+
+	let { colors = [...new Set(RarityColors)], delay = 2000, size = '100%' }: Props = $props();
 
 	const armors = [
 		ArmIconWhite,
@@ -19,8 +23,8 @@
 		WaistIconWhite,
 	];
 
-	let randomArmor = HelmetIconWhite;
-	let randomColor = '#ffffff';
+	let randomArmor = $state(HelmetIconWhite);
+	let randomColor = $state('#ffffff');
 
 	function getRandomItem(arr: any[]) {
 		return arr[Math.floor(Math.random() * arr.length)];
@@ -37,10 +41,12 @@
 
 		return () => clearInterval(intervalId);
 	});
+
+	const SvelteComponent = $derived(randomArmor);
 </script>
 
 <div>
-	<svelte:component this={randomArmor} color={randomColor} {size} />
+	<SvelteComponent color={randomColor} {size} />
 </div>
 
 <style lang="scss"></style>

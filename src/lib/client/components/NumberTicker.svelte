@@ -3,9 +3,13 @@
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 
-	export let value;
-	export let initial = 0;
-	export let duration = 6000;
+	interface Props {
+		value: any;
+		initial?: number;
+		duration?: number;
+	}
+
+	let { value, initial = 0, duration = 6000 }: Props = $props();
 	let num = tweened(initial, {
 		duration: duration,
 		easing: cubicOut,

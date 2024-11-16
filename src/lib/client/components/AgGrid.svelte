@@ -3,13 +3,17 @@
 	import { onMount } from 'svelte';
 
 	// Define your column definitions and row data
-	export let gridOptions: {
+	interface Props {
+		gridOptions?: {
 		columnDefs: { field: string }[];
 		rowData: {}[];
 		theme: Theme;
 		loadThemeGoogleFonts: boolean;
 		defaultColDef: { flex: number; minWidth: number; editable: boolean };
-	} = {
+	};
+	}
+
+	let { gridOptions = {
 		columnDefs: [
 			{ field: 'make' },
 			{ field: 'model' },
@@ -28,9 +32,9 @@
 		},
 		theme: themeQuartz,
 		loadThemeGoogleFonts: true,
-	};
+	} }: Props = $props();
 
-	let gridDiv: HTMLDivElement;
+	let gridDiv: HTMLDivElement = $state();
 
 	// Function to load AG Grid script dynamically
 	async function loadAgGridScript() {

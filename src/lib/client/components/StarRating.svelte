@@ -3,17 +3,21 @@
 	import StarHalf from 'carbon-icons-svelte/lib/StarHalf.svelte';
 	import StarFilled from 'carbon-icons-svelte/lib/StarFilled.svelte';
 
-	export let rating: number;
-	export let maxRating: number;
+	interface Props {
+		rating: number;
+		maxRating: number;
+	}
 
-	$: stars = Array(maxRating)
+	let { rating, maxRating }: Props = $props();
+
+	let stars = $derived(Array(maxRating)
 		.fill(0)
 		.map((_, index) => {
 			const value = index + 1;
 			if (value <= rating) return 'full';
 			if (value - 0.5 <= rating) return 'half';
 			return 'empty';
-		});
+		}));
 </script>
 
 <div class="star-rating">

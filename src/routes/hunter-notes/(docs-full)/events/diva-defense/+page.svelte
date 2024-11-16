@@ -245,9 +245,11 @@
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							<p>{cell.value}</p>
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								<p>{cell.value}</p>
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</div>

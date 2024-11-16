@@ -3,7 +3,9 @@
  * Use of this source code is governed by a MIT license that can be
  * found in the LICENSE file.
  */
+import svelteConfig from './svelte.config.js';
 
+// TODO not sure if correct
 module.exports = {
 	root: true,
 	extends: [
@@ -18,19 +20,23 @@ module.exports = {
 		sourceType: 'module',
 		ecmaVersion: 2020,
 		extraFileExtensions: ['.svelte'],
+		project: './tsconfig.json',
 	},
 	env: {
 		browser: true,
 		es2017: true,
 		node: true,
 	},
-	overrides: [
-		{
-			files: ['*.svelte'],
-			parser: 'svelte-eslint-parser',
-			parserOptions: {
-				parser: '@typescript-eslint/parser',
-			},
-		},
+	files: [
+		'**/*.svelte',
+		'*.svelte',
+		// Add more files if you need.
+		// '**/*.svelte.ts', '*.svelte.ts', '**/*.svelte.js', '*.svelte.js',
 	],
+	languageOptions: {
+		parserOptions: {
+			// Specify the `svelte.config.js`.
+			svelteConfig,
+		},
+	},
 };

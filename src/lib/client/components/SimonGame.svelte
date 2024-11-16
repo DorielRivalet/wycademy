@@ -14,22 +14,31 @@
 	import DocumentDownload from 'carbon-icons-svelte/lib/DocumentDownload.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 
-	export let simonNotes: string[];
-	export let currentSequence: string[] = [];
-	export let targetSequence: string[] = [];
-	export let simonScore: number = 0;
+	interface Props {
+		simonNotes: string[];
+		currentSequence?: string[];
+		targetSequence?: string[];
+		simonScore?: number;
+	}
+
+	let {
+		simonNotes,
+		currentSequence = $bindable([]),
+		targetSequence = $bindable([]),
+		simonScore = $bindable(0)
+	}: Props = $props();
 
 	const initialPressedDuration = 1000;
 	const finalPressedDuration = 500;
 	const durationDecrease = 20;
 
 	let currentDuration = initialPressedDuration;
-	let isPlaying = false;
-	let isShowingSequence = false;
-	let pressedButton: string | null = null;
+	let isPlaying = $state(false);
+	let isShowingSequence = $state(false);
+	let pressedButton: string | null = $state(null);
 	let currentIndex = 0;
 	let sounds: Record<string, HTMLAudioElement> = {};
-	let playedTargetSequence: string[] = [];
+	let playedTargetSequence: string[] = $state([]);
 	let lastTargetSequence: string[] = [];
 
 	const noteColors = {
@@ -235,7 +244,7 @@
 
 	{#if !isPlaying}
 		<p style:color="var(--ctp-subtext0)">Doriel's score: 12 (2024-11-08)</p>
-		<button class="start-button" on:click={startGame}> Start Game </button>
+		<button class="start-button" onclick={startGame}> Start Game </button>
 		<Button
 			icon={DocumentDownload}
 			kind="tertiary"

@@ -5,6 +5,8 @@
 -->
 
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import pageThumbnail from '$lib/client/images/icon/berserk_raviente_raid.png';
@@ -316,10 +318,10 @@
 	/**If hitting 10 black hunters in a row with fireball, refill meter. */
 	let toastyCount = 0;
 	let canSpawnHunters = true;
-	let drewRingOfFire = false;
+	let drewRingOfFire = $state(false);
 	let drewParalysis = false;
 
-	let speedColor = COLORS.white;
+	let speedColor = $state(COLORS.white);
 
 	function createImage(url: string) {
 		let img = browser ? new Image() : { src: '' };
@@ -766,7 +768,7 @@
 		},
 	};
 
-	let soundEnabled = true;
+	let soundEnabled = $state(true);
 	let gameState: GameState = 'start';
 
 	let canvas;
@@ -796,7 +798,7 @@
 	const grid = 32;
 
 	let loopCount = 0;
-	let score = 0;
+	let score = $state(0);
 	let borderColor = COLORS.border;
 
 	const SNAKE_ACTIONS = {
@@ -823,7 +825,7 @@
 	};
 
 	// TODO class
-	let snake = {
+	let snake = $state({
 		x: 160,
 		y: 160,
 
@@ -849,7 +851,7 @@
 		canUseUltimate: false,
 		energy: 10,
 		maxEnergy: 10,
-	};
+	});
 
 	let hunters: Hunter[] = [
 		{
@@ -902,7 +904,7 @@
 
 	// Variables to keep track of the timer
 	let startTime = 0;
-	let elapsedTime = 0;
+	let elapsedTime = $state(0);
 	let timerInterval: string | number | NodeJS.Timeout | undefined;
 
 	const gridSize = 25;
@@ -2338,25 +2340,28 @@
 	}
 
 	const url = $page.url.toString();
-	let modalOpen = false;
-	let gameStateText = 'Play';
+	let modalOpen = $state(false);
+	let gameStateText = $state('Play');
 
 	function changeModal(cell) {
 		modalOpen = true;
 	}
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
-	$: formattedElapsedTime = formatTime(elapsedTime);
-	$: scoreText = `Score: ${score}`;
-	$: eatenText = `${snake.eaten}🍖`;
-	$: roastedText = !drewRingOfFire
+	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
+	let formattedElapsedTime = $derived(formatTime(elapsedTime));
+	let scoreText = $derived(`Score: ${score}`);
+	let eatenText = $derived(`${snake.eaten}🍖`);
+	let roastedText = $derived(!drewRingOfFire
 		? `${snake.roasted}🔥`
-		: `${snake.roasted}🔥🔥🔥`;
-	$: zappedText = `${snake.zapped}⚡`;
-	$: toastyText = `${snake.toasty}🍞`;
-	$: speedText = `Speed: ${snake.speed}m/s`;
-	$: snakeLengthText = `${snake.cells.length}/${maxSnakeLength}🐍`;
-	$: speedColorClass = speedColor === COLORS.red ? 'red' : 'text';
+		: `${snake.roasted}🔥🔥🔥`);
+	let zappedText = $derived(`${snake.zapped}⚡`);
+	let toastyText = $derived(`${snake.toasty}🍞`);
+	let speedText = $derived(`Speed: ${snake.speed}m/s`);
+	let snakeLengthText;
+	run(() => {
+		snakeLengthText = `${snake.cells.length}/${maxSnakeLength}🐍`;
+	});
+	let speedColorClass = $derived(speedColor === COLORS.red ? 'red' : 'text');
 </script>
 
 <Head
@@ -2402,7 +2407,7 @@
 		<i>Tip: Make a toast out of those hunters!</i>
 	</div>
 </Modal>
-<svelte:window on:keydown={on_key_down} on:keyup={on_key_up} />
+<svelte:window onkeydown={on_key_down} onkeyup={on_key_up} />
 <div class={modalBlurClass}>
 	<SectionHeadingTopLevel title="Solitude Island Depths" />
 	<div class="top">

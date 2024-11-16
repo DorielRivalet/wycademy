@@ -437,13 +437,15 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.value[0] == '-'}
-								<p style:color="var(--ctp-red)">{cell.value}</p>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.value[0] == '-'}
+									<p style:color="var(--ctp-red)">{cell.value}</p>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -481,18 +483,20 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'skill'}
-									<InlineTooltip
-										text={cell.value}
-										tooltip="Armor Skill"
-										iconType="component"
-										icon={getItemIcon('Jewel')}
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'skill'}
+										<InlineTooltip
+											text={cell.value}
+											tooltip="Armor Skill"
+											iconType="component"
+											icon={getItemIcon('Jewel')}
+										/>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -530,23 +534,25 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'sigil'}
-									<InlineTooltip
-										text={cell.value}
-										tooltip="Sigil"
-										iconType="component"
-										icon={getItemIcon('Sigil')}
-									/>
-								{:else if cell.key === 'rating'}
-									<StarRating
-										rating={Number.parseFloat(cell.value)}
-										maxRating={3}
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'sigil'}
+										<InlineTooltip
+											text={cell.value}
+											tooltip="Sigil"
+											iconType="component"
+											icon={getItemIcon('Sigil')}
+										/>
+									{:else if cell.key === 'rating'}
+										<StarRating
+											rating={Number.parseFloat(cell.value)}
+											maxRating={3}
+										/>
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>

@@ -26,9 +26,9 @@
 	import { getTag } from '$lib/client/modules/frontier/tags';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 
-	let recipesTablePageSize = 7;
-	let recipesTablePage = 1;
-	let recipesTableFilteredRowIds: string[] = [];
+	let recipesTablePageSize = $state(7);
+	let recipesTablePage = $state(1);
+	let recipesTableFilteredRowIds: string[] = $state([]);
 </script>
 
 <HunterNotesPage displayTOC={true}>
@@ -110,8 +110,7 @@
 
 				<div>
 					{#await import('$lib/player/Player.svelte') then { default: Player }}
-						<svelte:component
-							this={Player}
+						<Player
 							{...{
 								title: 'Guild Cooking',
 								src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/guild-food.webm',
@@ -290,18 +289,20 @@
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'tickets'}
-								<InlineTooltip
-									text={cell.value}
-									tooltip="Guild Ticket"
-									icon={getItemIcon('Ticket')}
-									iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
-								/>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'tickets'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Guild Ticket"
+										icon={getItemIcon('Ticket')}
+										iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
+									/>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -395,30 +396,32 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'base' || cell.key === 'auxiliary1' || cell.key === 'auxiliary2' || cell.key === 'auxiliary3'}
-									{#if cell.value === '[]'}
-										<p>-</p>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'base' || cell.key === 'auxiliary1' || cell.key === 'auxiliary2' || cell.key === 'auxiliary3'}
+										{#if cell.value === '[]'}
+											<p>-</p>
+										{:else}
+											<div class="ingredients">
+												{#each JSON.parse(cell.value) as ingredient}
+													<InlineTooltip
+														text={ingredient}
+														tooltip="Ingredient"
+														icon={ingredients.find((e) => e.name === ingredient)
+															?.icon}
+														iconType="component"
+														iconColor={ingredients.find(
+															(e) => e.name === ingredient,
+														)?.color}
+													/>
+												{/each}
+											</div>
+										{/if}
 									{:else}
-										<div class="ingredients">
-											{#each JSON.parse(cell.value) as ingredient}
-												<InlineTooltip
-													text={ingredient}
-													tooltip="Ingredient"
-													icon={ingredients.find((e) => e.name === ingredient)
-														?.icon}
-													iconType="component"
-													iconColor={ingredients.find(
-														(e) => e.name === ingredient,
-													)?.color}
-												/>
-											{/each}
-										</div>
+										<p>{cell.value}</p>
 									{/if}
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+								
+													{/snippet}
 						</DataTable>
 						<Pagination
 							pageSizes={[7, 32]}
@@ -770,13 +773,15 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								{#if cell.key === 'image'}
-									<img src={cell.value} alt="Guild poogie" />
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									{#if cell.key === 'image'}
+										<img src={cell.value} alt="Guild poogie" />
+									{:else}
+										<p>{cell.value}</p>
+									{/if}
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -919,9 +924,11 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
-								<p>{cell.value}</p>
-							</svelte:fragment>
+							{#snippet cell({ cell })}
+													
+									<p>{cell.value}</p>
+								
+													{/snippet}
 						</DataTable>
 					</div>
 				</div>

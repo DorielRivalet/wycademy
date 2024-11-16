@@ -27,45 +27,9 @@
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import { ezlionQuest } from 'ezlion';
 
-	export let theme: CarbonTheme;
 
 	const maxPinnedRuns = 10;
 
-	$: chartOptions = {
-		points: { enabled: false },
-		axes: {
-			bottom: {
-				visible: false,
-				title: 'Time (frames)',
-				mapsTo: 'time',
-				includeZero: false,
-				scaleType: 'linear' as ScaleTypes,
-			},
-			left: {
-				visible: false,
-
-				mapsTo: 'value',
-				title: 'DPS',
-				scaleType: 'linear' as ScaleTypes,
-			},
-		},
-		tooltip: {
-			enabled: false,
-		},
-		width: '192px',
-		height: '64px',
-		resizable: false,
-		legend: {
-			enabled: false,
-		},
-		toolbar: {
-			enabled: false,
-		},
-		data: {
-			loading: false,
-		},
-		theme: theme,
-	} as LineChartOptions;
 
 	async function generateSparkline(data: { [key: string]: number }) {
 		if (!browser) return;
@@ -125,7 +89,16 @@
 		}, [] as ReactionType[]);
 	}
 
-	export let runs: RunSummary[] = [
+
+	const displayedRuns = Object.values(runs).slice(0, maxPinnedRuns);
+
+	interface Props {
+		theme: CarbonTheme;
+		runs?: RunSummary[];
+		username?: string;
+	}
+
+	let { theme, runs = [
 		{
 			runID: 1,
 			date: '2015-06-07T00:00:01Z',
@@ -13660,11 +13633,7 @@
 				'88106': 157.30200633579724,
 			},
 		},
-	];
-
-	const displayedRuns = Object.values(runs).slice(0, maxPinnedRuns);
-
-	export let username = 'UserDemo';
+	], username = 'UserDemo' }: Props = $props();
 
 	function getAllReactionsCount(reactions: ReactionType[]) {
 		return reactions.reduce((total, { quantity }) => total + quantity, 0);
@@ -13686,7 +13655,7 @@
 		);
 	}
 
-	let changeFavorite = false;
+	let changeFavorite = $state(false);
 
 	function onFavorite(id: string) {
 		let found = displayedRuns.find((e) => e.runID === Number(id));
@@ -13714,6 +13683,41 @@
 			link.click();
 		});
 	}
+	let chartOptions = $derived({
+		points: { enabled: false },
+		axes: {
+			bottom: {
+				visible: false,
+				title: 'Time (frames)',
+				mapsTo: 'time',
+				includeZero: false,
+				scaleType: 'linear' as ScaleTypes,
+			},
+			left: {
+				visible: false,
+
+				mapsTo: 'value',
+				title: 'DPS',
+				scaleType: 'linear' as ScaleTypes,
+			},
+		},
+		tooltip: {
+			enabled: false,
+		},
+		width: '192px',
+		height: '64px',
+		resizable: false,
+		legend: {
+			enabled: false,
+		},
+		toolbar: {
+			enabled: false,
+		},
+		data: {
+			loading: false,
+		},
+		theme: theme,
+	} as LineChartOptions);
 </script>
 
 <div class="container">
@@ -13778,61 +13782,64 @@
 				>
 			</div>
 		</Toolbar>
-		<svelte:fragment slot="cell" let:cell let:row>
-			{#if cell.key === 'videoLink'}
-				<OutboundLink href={cell.value}>
-					<VideoPlayer size={24} color="var(--ctp-blue)" />
-				</OutboundLink>
-			{:else if cell.key === 'objectiveName'}
-				<Tooltip hideIcon>
-					<span slot="triggerText">
-						<MonsterComponent
-							currentMonster={cell.value}
-							size={'64px'}
-							background={false}
-						/></span
+		{#snippet cell({ cell, row })}
+			
+				{#if cell.key === 'videoLink'}
+					<OutboundLink href={cell.value}>
+						<VideoPlayer size={24} color="var(--ctp-blue)" />
+					</OutboundLink>
+				{:else if cell.key === 'objectiveName'}
+					<Tooltip hideIcon>
+						{#snippet triggerText()}
+												<span >
+								<MonsterComponent
+									currentMonster={cell.value}
+									size={'64px'}
+									background={false}
+								/></span
+							>
+											{/snippet}
+						<p>{cell.value}</p></Tooltip
 					>
-					<p>{cell.value}</p></Tooltip
-				>
-			{:else if cell.key === 'favorites'}
-				<div class="favorites">
-					{#key changeFavorite}
-						<Button
-							iconDescription="Favorite"
-							size="field"
-							kind="ghost"
-							on:click={(e) => onFavorite(row.id)}
-						>
-							{#if displayedRuns.find((e) => e.runID === Number(row.id))?.isFavorited}
-								<FavoriteFilled color="var(--ctp-red)" />
-							{:else}
-								<Favorite color="var(--ctp-red)" />
-							{/if}
-							<p style:margin-left=".5rem">
-								{displayedRuns.find((e) => e.runID === Number(row.id))
-									?.favorites}
-							</p>
-						</Button>
-					{/key}
-				</div>
-			{:else if cell.key === 'reactions'}
-				<Trigger showLabels reactions={cell.value} />
-			{:else if cell.key === 'details'}
-				<Link href={cell.value}>View Run Details</Link>
-			{:else if cell.key === 'dps'}
-				{#await generateSparkline(cell.value)}
-					<SkeletonPlaceholder style="height: 64px; width: 192px;" />
-				{:then result}
-					<svelte:component
-						this={result.component}
-						options={chartOptions}
-						data={result.data}
-					/>
-				{/await}
-			{:else}
-				<p>{cell.value}</p>
-			{/if}
-		</svelte:fragment>
+				{:else if cell.key === 'favorites'}
+					<div class="favorites">
+						{#key changeFavorite}
+							<Button
+								iconDescription="Favorite"
+								size="field"
+								kind="ghost"
+								on:click={(e) => onFavorite(row.id)}
+							>
+								{#if displayedRuns.find((e) => e.runID === Number(row.id))?.isFavorited}
+									<FavoriteFilled color="var(--ctp-red)" />
+								{:else}
+									<Favorite color="var(--ctp-red)" />
+								{/if}
+								<p style:margin-left=".5rem">
+									{displayedRuns.find((e) => e.runID === Number(row.id))
+										?.favorites}
+								</p>
+							</Button>
+						{/key}
+					</div>
+				{:else if cell.key === 'reactions'}
+					<Trigger showLabels reactions={cell.value} />
+				{:else if cell.key === 'details'}
+					<Link href={cell.value}>View Run Details</Link>
+				{:else if cell.key === 'dps'}
+					{#await generateSparkline(cell.value)}
+						<SkeletonPlaceholder style="height: 64px; width: 192px;" />
+					{:then result}
+						<result.component
+							options={chartOptions}
+							data={result.data}
+						/>
+					{/await}
+				{:else}
+					<p>{cell.value}</p>
+				{/if}
+			
+			{/snippet}
 	</DataTable>
 </div>
 

@@ -3,7 +3,6 @@
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 
-	export let colors = [...new Set(RarityColors)];
 	const weapons = [
 		getWeaponIcon('Great Sword'),
 		getWeaponIcon('Long Sword'),
@@ -21,11 +20,16 @@
 		getWeaponIcon('Bow'),
 	];
 
-	let randomWeapon = getWeaponIcon('Great Sword');
-	let randomColor = '#ffffff';
+	let randomWeapon = $state(getWeaponIcon('Great Sword'));
+	let randomColor = $state('#ffffff');
 
-	export let delay = 2000;
-	export let size: string = '100%';
+	interface Props {
+		colors?: any;
+		delay?: number;
+		size?: string;
+	}
+
+	let { colors = [...new Set(RarityColors)], delay = 2000, size = '100%' }: Props = $props();
 
 	// Function to select a random item from an array
 	function getRandomItem(arr: any[]) {
@@ -46,11 +50,13 @@
 		// Cleanup function to clear the interval when the component is destroyed
 		return () => clearInterval(intervalId);
 	});
+
+	const SvelteComponent = $derived(randomWeapon);
 </script>
 
 <div>
 	<!-- Pass the random color as a prop to the randomly selected weapon component -->
-	<svelte:component this={randomWeapon} color={randomColor} {size} />
+	<SvelteComponent color={randomColor} {size} />
 </div>
 
 <style lang="scss"></style>

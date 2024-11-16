@@ -24,11 +24,49 @@
 	import slugify from 'slugify';
 	import { guildCardBackgrounds } from '../modules/frontier/guild-card';
 
-	export let name = 'Hunter';
-	export let date = '2024-05-02T00:00:01Z';
 	const formattedDate = formatDateTime(date);
 
-	export let armorSkills: FrontierArmorSkillName[] = [
+
+	const totalGuildCards = guildCardBackgrounds.filter((e) => !e.unused).length;
+
+	let selectedPage = $state('page1');
+
+	interface Props {
+		name?: string;
+		date?: string;
+		armorSkills?: FrontierArmorSkillName[];
+		automaticSkills?: FrontierArmorSkillName[];
+		zenithSkills?: FrontierZenithSkill[];
+		caravanSkills?: FrontierCaravanSkillName[];
+		guildFood?: FrontierArmorSkillName;
+		divaSkill?: string;
+		styleRankSkills?: any;
+		weaponStyle?: FrontierWeaponStyle;
+		weaponType?: FrontierWeaponName;
+		weaponName?: string;
+		weaponSlots?: any;
+		head?: string;
+		chest?: string;
+		arms?: string;
+		waist?: string;
+		legs?: string;
+		cuffs?: any;
+		headSlots?: any;
+		chestSlots?: any;
+		armsSlots?: any;
+		waistSlots?: any;
+		legsSlots?: any;
+		guildCardsUnlocked?: any;
+		guildCardsUnlockedRank?: any;
+		guildCardsUnlockedRankPercent?: any;
+		selectedGuildCardBackground?: string;
+		username?: string;
+	}
+
+	let {
+		name = 'Hunter',
+		date = '2024-05-02T00:00:01Z',
+		armorSkills = [
 		'Strong Attack+6',
 		'Lance Tech 【Heavenly Spear】',
 		'Sword God+2',
@@ -46,65 +84,58 @@
 		'Consumption Slayer',
 		'Ice Age',
 		'Solid Determination',
-	];
-	export let automaticSkills: FrontierArmorSkillName[] = ['None'];
-	export let zenithSkills: FrontierZenithSkill[] = [
+	],
+		automaticSkills = ['None'],
+		zenithSkills = [
 		'Skill Slots Up+4',
 		'Reflect Up+1',
 		'Ceaseless Up',
 		'Guard Up+1',
-	];
-	export let caravanSkills: FrontierCaravanSkillName[] = [
+	],
+		caravanSkills = [
 		'Weapon Art (Lg)',
 		'Perfect Defense (Lg)',
-	];
-	export let guildFood: FrontierArmorSkillName = 'Marathon Runner';
-	export let divaSkill = 'Encourage+2';
-	export let styleRankSkills = ['Def+180', 'Affinity+26'];
-	export let weaponStyle: FrontierWeaponStyle = 'Extreme Style';
-	export let weaponType: FrontierWeaponName = 'Lance';
-	export let weaponName = 'Depth Glory Flamepike Lv. 100 (41BD)';
-	export let weaponSlots = [
+	],
+		guildFood = 'Marathon Runner',
+		divaSkill = 'Encourage+2',
+		styleRankSkills = ['Def+180', 'Affinity+26'],
+		weaponStyle = 'Extreme Style',
+		weaponType = 'Lance',
+		weaponName = 'Depth Glory Flamepike Lv. 100 (41BD)',
+		weaponSlots = [
 		'Zenith Cooldown: +17, Zenith Duration: +20, Zenith Attack: +15',
 		'Attack Slayer: +15, Attack Slayes: +15, Attack Slayer: +15',
 		'Lance Up: +15, Attack Slayer: +15, Attack Slayer: +15',
-	];
-	export let head = 'Alisys ZP Head (3733)';
-	export let chest = 'Gems ZP Suit (341C)';
-	export let arms = 'Chiarim ZP Arms (3733)';
-	export let waist = 'Fanru ZX Coil (3471)';
-	export let legs = 'Furante ZX Greaves (2E82)';
-	export let cuffs = ['Lance S. Attack (3F5E)', 'Guard Up PZ4 (3D8E)'];
-	export let headSlots = [
+	],
+		head = 'Alisys ZP Head (3733)',
+		chest = 'Gems ZP Suit (341C)',
+		arms = 'Chiarim ZP Arms (3733)',
+		waist = 'Fanru ZX Coil (3471)',
+		legs = 'Furante ZX Greaves (2E82)',
+		cuffs = ['Lance S. Attack (3F5E)', 'Guard Up PZ4 (3D8E)'],
+		headSlots = [
 		'Lance True Blue',
 		'Lance True Black',
 		'Lance True Black',
-	];
-	export let chestSlots = [
+	],
+		chestSlots = [
 		'Cariva BM GX4',
 		'Kinioru BM GX5',
 		'Extreme Ravi BM GX5',
-	];
-	export let armsSlots = [
+	],
+		armsSlots = [
 		'Extreme Ravi BM GX5',
 		'Extreme Ravi BM GX5',
 		'Extreme Ravi BM GX5',
-	];
-	export let waistSlots = ['Extreme Ravi GN GX2', 'Bita GN GX2', 'Bita GN GX2'];
-	export let legsSlots = ['Elysium GN GX1', 'Elysium GN GX1', 'Zindol GN GX2'];
-
-	export let guildCardsUnlocked = Math.trunc(Math.random() * 100);
-	const totalGuildCards = guildCardBackgrounds.filter((e) => !e.unused).length;
-	export let guildCardsUnlockedRank = Math.trunc(Math.random() * 100);
-	export let guildCardsUnlockedRankPercent = Math.trunc(Math.random() * 100);
-
-	let selectedPage = 'page1';
-	export let selectedGuildCardBackground = 'Abiorugu';
-	$: background =
-		guildCardBackgrounds.find((e) => e.name === selectedGuildCardBackground)
-			?.image || guildCardBackgrounds[0].image;
-
-	export let username = 'UserDemo';
+	],
+		waistSlots = ['Extreme Ravi GN GX2', 'Bita GN GX2', 'Bita GN GX2'],
+		legsSlots = ['Elysium GN GX1', 'Elysium GN GX1', 'Zindol GN GX2'],
+		guildCardsUnlocked = Math.trunc(Math.random() * 100),
+		guildCardsUnlockedRank = Math.trunc(Math.random() * 100),
+		guildCardsUnlockedRankPercent = Math.trunc(Math.random() * 100),
+		selectedGuildCardBackground = $bindable('Abiorugu'),
+		username = 'UserDemo'
+	}: Props = $props();
 
 	function downloadImage() {
 		if (!browser) return;
@@ -119,6 +150,9 @@
 			link.click();
 		});
 	}
+	let background =
+		$derived(guildCardBackgrounds.find((e) => e.name === selectedGuildCardBackground)
+			?.image || guildCardBackgrounds[0].image);
 </script>
 
 <p class="spaced-paragraph">Information from the last quest completed.</p>
@@ -217,6 +251,7 @@
 				</div>
 			</div>
 		{:else if selectedPage === 'page2'}
+			{@const SvelteComponent = getWeaponIcon(weaponType)}
 			<div class="page-2">
 				<div class="image-container">
 					<img src={background} alt="Guild Card Background" />
@@ -230,8 +265,7 @@
 						Wycademy | 2/2
 					</div>
 					<div class="icon" style="left: 40px; top: 22%;">
-						<svelte:component
-							this={getWeaponIcon(weaponType)}
+						<SvelteComponent
 							{...{ color: RarityColors[7] }}
 						/>
 					</div>

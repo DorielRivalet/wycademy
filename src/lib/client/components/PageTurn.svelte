@@ -6,7 +6,11 @@
 		getRoutesSection,
 	} from '../modules/routes';
 
-	export let pageUrlPathName: string | null;
+	interface Props {
+		pageUrlPathName: string | null;
+	}
+
+	let { pageUrlPathName }: Props = $props();
 
 	function getCurrentCategoryInfo(
 		section: CategoryInfo[] | null,

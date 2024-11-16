@@ -7,7 +7,11 @@
 <script lang="ts">
 	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
 
-	export let rarity: FrontierRarity = 1;
+	interface Props {
+		rarity?: FrontierRarity;
+	}
+
+	let { rarity = 1 }: Props = $props();
 </script>
 
 <svg width="100%" viewBox="0 0 16.933333 16.933334" version="1.1" id="svg4846">

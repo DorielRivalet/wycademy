@@ -32,7 +32,7 @@
 	import { confetti } from '@neoconfetti/svelte';
 	import { reduced_motion } from '$lib/client/stores/reduced-motion';
 
-	let showConfetti = false;
+	let showConfetti = $state(false);
 
 	function handlePerfectScore() {
 		showConfetti = true;
@@ -59,20 +59,20 @@
 		return sharpness;
 	}
 
-	let selectedWeaponType: FrontierWeaponName = 'Sword and Shield';
-	$: selectedWeaponIcon = getWeaponIcon(selectedWeaponType);
+	let selectedWeaponType: FrontierWeaponName = $state('Sword and Shield');
+	let selectedWeaponIcon = $derived(getWeaponIcon(selectedWeaponType));
 	let rarity: FrontierRarity = 1;
 	let selectedWeaponIconProps = {
 		rarity: rarity,
 	};
 
-	$: selectedWeaponTypeId = WeaponTypes.find(
+	let selectedWeaponTypeId = $derived(WeaponTypes.find(
 		(e) => e.name == selectedWeaponType,
-	)?.id;
+	)?.id);
 
-	$: filteredSharpnessTables = sharpnessTables.filter(
+	let filteredSharpnessTables = $derived(sharpnessTables.filter(
 		(e) => e.weaponType === selectedWeaponTypeId,
-	);
+	));
 
 	let multipleChoiceItems: MultipleChoiceItem[] =
 		questionBank.find((e) => e.category === 'Weapons Overview')?.items || [];
@@ -259,17 +259,19 @@
 								>
 							</div>
 						</Toolbar>
-						<svelte:fragment slot="cell" let:cell>
-							{#if cell.key === 'weapon'}
-								<InlineTooltip
-									text={cell.value}
-									tooltip={'Weapon'}
-									icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
-								/>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						</svelte:fragment>
+						{#snippet cell({ cell })}
+											
+								{#if cell.key === 'weapon'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip={'Weapon'}
+										icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+									/>
+								{:else}
+									<p>{cell.value}</p>
+								{/if}
+							
+											{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -433,18 +435,20 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'bar'}
-							<div class="sharpness-bar-container">
-								<SharpnessBar
-									sharpnessBoost={false}
-									sharpnessValues={getSharpnessArray(cell.value)}
-								/>
-							</div>
-						{:else}
-							<p>{cell.value}</p>
-						{/if}
-					</svelte:fragment>
+					{#snippet cell({ cell })}
+									
+							{#if cell.key === 'bar'}
+								<div class="sharpness-bar-container">
+									<SharpnessBar
+										sharpnessBoost={false}
+										sharpnessValues={getSharpnessArray(cell.value)}
+									/>
+								</div>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						
+									{/snippet}
 				</DataTable>
 			</div>
 			<div class="table table-with-scrollbar">
@@ -459,17 +463,19 @@
 					]}
 					rows={filteredSharpnessTables}
 				>
-					<span slot="title">
-						<div class="data-table-title">
-							<div class="weapon-icon">
-								<svelte:component
-									this={selectedWeaponIcon}
-									{...selectedWeaponIconProps}
-								/>
+					{#snippet title()}
+										{@const SvelteComponent = selectedWeaponIcon}
+					<span >
+							<div class="data-table-title">
+								<div class="weapon-icon">
+									<SvelteComponent
+										{...selectedWeaponIconProps}
+									/>
+								</div>
+								<div>{selectedWeaponType} Sharpness Tables</div>
 							</div>
-							<div>{selectedWeaponType} Sharpness Tables</div>
-						</div>
-					</span>
+						</span>
+									{/snippet}
 					<Toolbar
 						><div class="toolbar">
 							<Dropdown
@@ -506,18 +512,20 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'sharpnessTable'}
-							<div class="sharpness-bar-container">
-								<SharpnessBar
-									sharpnessBoost={false}
-									sharpnessValues={cell.value}
-								/>
-							</div>
-						{:else}
-							<p>{cell.value}</p>
-						{/if}
-					</svelte:fragment>
+					{#snippet cell({ cell })}
+									
+							{#if cell.key === 'sharpnessTable'}
+								<div class="sharpness-bar-container">
+									<SharpnessBar
+										sharpnessBoost={false}
+										sharpnessValues={cell.value}
+									/>
+								</div>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						
+									{/snippet}
 				</DataTable>
 			</div>
 		</section>
@@ -552,7 +560,7 @@
 			stageHeight: window.innerHeight,
 			colors: ['#f38ba8', '#a6e3a1', '#89b4fa'],
 		}}
-	/>
+	></div>
 {/if}
 
 <style lang="scss">

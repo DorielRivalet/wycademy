@@ -8,33 +8,39 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	/**Navigate to home page on click*/
-	export let clickable = true;
+	interface Props {
+		/**Navigate to home page on click*/
+		clickable?: boolean;
+		/**Show musou on hover*/
+		hoverable?: boolean;
+	}
 
-	/**Show musou on hover*/
-	export let hoverable = true;
+	let { clickable = true, hoverable = true }: Props = $props();
 
 	const musouColor = '#73625a';
 	const normalColor = '#f7f4fd';
 	const normalStroke = '#706873';
 	const musouStroke = '#000000';
 
-	let isHovered = false;
+	let isHovered = $state(false);
 
-	$: targetColor = isHovered && hoverable ? musouColor : normalColor;
-	$: targetStroke = isHovered && hoverable ? musouStroke : normalStroke;
-	$: textColor =
+	let targetColor = $derived(isHovered && hoverable ? musouColor : normalColor);
+	let targetStroke = $derived(
+		isHovered && hoverable ? musouStroke : normalStroke,
+	);
+	let textColor = $derived(
 		$carbonThemeStore === 'g10'
 			? getHexStringFromCatppuccinColor('surface1', 'g100')
-			: getHexStringFromCatppuccinColor('text', 'g100');
-	$: link = clickable ? '/' : '#';
+			: getHexStringFromCatppuccinColor('text', 'g100'),
+	);
+	let link = $derived(clickable ? '/' : '#');
 </script>
 
 <a href={link} aria-label="Logo, back to homepage if clickable">
 	<svg
 		role="banner"
-		on:mouseenter={() => (isHovered = true)}
-		on:mouseleave={() => (isHovered = false)}
+		onmouseenter={() => (isHovered = true)}
+		onmouseleave={() => (isHovered = false)}
 		width="100%"
 		height="100%"
 		viewBox="0 0 429.69658 165.23765"

@@ -29,56 +29,85 @@
 		FrontierZenithSkill,
 	} from 'ezlion';
 
-	/** Truncated to 18 characters.*/
-	export let name = 'Name';
-	export let level: FrontierArmorLevel = 7;
-	export let GRLevel: FrontierArmorGRLevel = 7;
-	export let defense: number = 100;
-	export let fireResistance: number = 0;
-	export let waterResistance: number = 0;
-	export let thunderResistance: number = 0;
-	export let iceResistance: number = 0;
-	export let dragonResistance: number = 0;
+	
 	/**TODO Whether to show transmog icon.*/
 	//export let transmog = true;
-	export let armorClass: FrontierArmorClass = 'Either';
-	export let armorID: FrontierArmorID = 0;
 
-	/** The overlay icon in the bottom left corner.*/
-	export let rank: FrontierEquipmentRank = 'G';
+	
 
 	// TODO ids
-	export let zenithSkill: FrontierZenithSkill = 'Skill Slots Up+1';
 
 	// page 2
-	export let description: string = 'Description.';
-	export let rarity: FrontierRarity = 12;
 
-	/** TODO Show extra icons.*/
-	export let extraIcons = false;
+	
 
 	/**
 	 * TODO Set theme to light.
 	 */
 	// export let light = false;
 
-	export let currentPage: number = 1;
 
 	// TODO
-	export let skillNames: FrontierArmorSkillTree[] = [
+
+
+
+	interface Props {
+		/** Truncated to 18 characters.*/
+		name?: string;
+		level?: FrontierArmorLevel;
+		GRLevel?: FrontierArmorGRLevel;
+		defense?: number;
+		fireResistance?: number;
+		waterResistance?: number;
+		thunderResistance?: number;
+		iceResistance?: number;
+		dragonResistance?: number;
+		armorClass?: FrontierArmorClass;
+		armorID?: FrontierArmorID;
+		/** The overlay icon in the bottom left corner.*/
+		rank?: FrontierEquipmentRank;
+		zenithSkill?: FrontierZenithSkill;
+		description?: string;
+		rarity?: FrontierRarity;
+		/** TODO Show extra icons.*/
+		extraIcons?: boolean;
+		currentPage?: number;
+		skillNames?: FrontierArmorSkillTree[];
+		skillPoints?: FrontierEquipmentSkillPoints;
+		armorType?: FrontierArmorType;
+		automaticSkill?: FrontierArmorSkillName;
+		decorations?: FrontierEquipmentDecorations;
+	}
+
+	let {
+		name = 'Name',
+		level = 7,
+		GRLevel = 7,
+		defense = 100,
+		fireResistance = 0,
+		waterResistance = 0,
+		thunderResistance = 0,
+		iceResistance = 0,
+		dragonResistance = 0,
+		armorClass = 'Either',
+		armorID = 0,
+		rank = 'G',
+		zenithSkill = 'Skill Slots Up+1',
+		description = 'Description.',
+		rarity = 12,
+		extraIcons = false,
+		currentPage = $bindable(1),
+		skillNames = [
 		'Blazing Grace',
 		'Strong Attack',
 		'Determination',
 		'Absolute Defense',
 		'Three Worlds Protection',
-	];
-	export let skillPoints: FrontierEquipmentSkillPoints = [10, 20, -30, 40, 50];
-
-	export let armorType: FrontierArmorType = 'Zenith';
-
-	export let automaticSkill: FrontierArmorSkillName = '';
-
-	export let decorations: FrontierEquipmentDecorations = {
+	],
+		skillPoints = [10, 20, -30, 40, 50],
+		armorType = 'Zenith',
+		automaticSkill = '',
+		decorations = {
 		slot1: {
 			name: 'Zindol BM GX1',
 			skill1: {
@@ -136,7 +165,8 @@
 				points: 5,
 			},
 		},
-	};
+	}
+	}: Props = $props();
 
 	function nextPage() {
 		if (currentPage >= maxPages) {
@@ -163,9 +193,9 @@
 		rarity: rarity,
 	};
 
-	$: rarityColor = stringReplacements.colorFromRarity(rarity);
+	let rarityColor = $derived(stringReplacements.colorFromRarity(rarity));
 	// TODO the colors are different?
-	$: GRLevelColor = stringReplacements.colorFromRarity(GRLevel);
+	let GRLevelColor = $derived(stringReplacements.colorFromRarity(GRLevel));
 
 	// TODO slots icons
 </script>
@@ -173,12 +203,12 @@
 <DecoratedBorder>
 	<div class="container">
 		{#if currentPage === 1}
+			{@const SvelteComponent = ArmorTypes[armorID].icon}
 			<div class="page-1">
 				<div class="header">
 					<div class="armor-icon-container">
 						<div class="armor-icon">
-							<svelte:component
-								this={ArmorTypes[armorID].icon}
+							<SvelteComponent
 								{...iconProps}
 							/>
 						</div>
@@ -299,7 +329,7 @@
 				<div class="pages">
 					<button
 						class="arrow-icon-button"
-						on:click={previousPage}
+						onclick={previousPage}
 						aria-label="Navigate to previous page"
 					>
 						<ArrowIcon
@@ -311,7 +341,7 @@
 					{currentPage}/{maxPages}
 					<button
 						class="arrow-icon-button"
-						on:click={nextPage}
+						onclick={nextPage}
 						aria-label="Navigate to next page"
 					>
 						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -319,12 +349,12 @@
 				</div>
 			</div>
 		{:else if currentPage === 2}
+			{@const SvelteComponent_1 = ArmorTypes[armorID].icon}
 			<div class="page-2">
 				<div class="icon">
 					<div class="armor-icon-container">
 						<div class="armor-icon">
-							<svelte:component
-								this={ArmorTypes[armorID].icon}
+							<SvelteComponent_1
 								{...iconProps}
 							/>
 						</div>
@@ -389,7 +419,7 @@
 				<div class="pages">
 					<button
 						class="arrow-icon-button"
-						on:click={previousPage}
+						onclick={previousPage}
 						aria-label="Navigate to previous page"
 					>
 						<ArrowIcon
@@ -401,7 +431,7 @@
 					{currentPage}/{maxPages}
 					<button
 						class="arrow-icon-button"
-						on:click={nextPage}
+						onclick={nextPage}
 						aria-label="Navigate to next page"
 					>
 						<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -484,7 +514,7 @@
 						<div class="pages">
 							<button
 								class="arrow-icon-button"
-								on:click={previousPage}
+								onclick={previousPage}
 								aria-label="Navigate to previous page"
 							>
 								<ArrowIcon
@@ -496,7 +526,7 @@
 							{currentPage}/{maxPages}
 							<button
 								class="arrow-icon-button"
-								on:click={nextPage}
+								onclick={nextPage}
 								aria-label="Navigate to next page"
 							>
 								<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -566,7 +596,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -578,7 +608,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -647,7 +677,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -659,7 +689,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />
@@ -728,7 +758,7 @@
 					<div class="pages">
 						<button
 							class="arrow-icon-button"
-							on:click={previousPage}
+							onclick={previousPage}
 							aria-label="Navigate to previous page"
 						>
 							<ArrowIcon
@@ -740,7 +770,7 @@
 						{currentPage}/{maxPages}
 						<button
 							class="arrow-icon-button"
-							on:click={nextPage}
+							onclick={nextPage}
 							aria-label="Navigate to next page"
 						>
 							<ArrowIcon fill="var(--fz-text-green)" on:click={nextPage} />

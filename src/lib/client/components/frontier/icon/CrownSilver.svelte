@@ -20,7 +20,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.-->
 <script lang="ts">
-	export let size = '100%';
+	interface Props {
+		size?: string;
+	}
+
+	let { size = '100%' }: Props = $props();
 </script>
 
 <svg

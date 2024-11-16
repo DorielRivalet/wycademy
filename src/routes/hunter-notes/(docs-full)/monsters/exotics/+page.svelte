@@ -109,26 +109,30 @@
 							>
 						</div>
 					</Toolbar>
-					<span slot="title">
-						<div class="data-table-title">
-							<div>Exotic Skills</div>
-						</div>
-					</span>
-					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'name'}
-							<InlineTooltip
-								icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
-									''}
-								iconType="file"
-								tooltip={cell.value}
-								text={cell.value}
-							/>
-						{:else}
-							<p>
-								{cell.value}
-							</p>
-						{/if}
-					</svelte:fragment>
+					{#snippet title()}
+										<span >
+							<div class="data-table-title">
+								<div>Exotic Skills</div>
+							</div>
+						</span>
+									{/snippet}
+					{#snippet cell({ cell })}
+									
+							{#if cell.key === 'name'}
+								<InlineTooltip
+									icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
+										''}
+									iconType="file"
+									tooltip={cell.value}
+									text={cell.value}
+								/>
+							{:else}
+								<p>
+									{cell.value}
+								</p>
+							{/if}
+						
+									{/snippet}
 				</DataTable>
 			</div>
 

@@ -6,15 +6,19 @@
 
 	// TODO sometimes it doesnt load
 
-	export let frontImage: string;
-	export let backImage: string;
+	interface Props {
+		frontImage: string;
+		backImage: string;
+	}
+
+	let { frontImage, backImage }: Props = $props();
 
 	const rotationSpeed = 0.5;
 
 	interactivity();
 	const scale = spring(1);
-	let rotation = 0;
-	let hovered = false;
+	let rotation = $state(0);
+	let hovered = $state(false);
 	useTask((delta) => {
 		if (!hovered) {
 			rotation += delta * rotationSpeed;

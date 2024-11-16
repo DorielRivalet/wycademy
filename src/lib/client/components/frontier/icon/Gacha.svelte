@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	export let color = '#ffffff';
+	interface Props {
+		color?: string;
+	}
+
+	let { color = '#ffffff' }: Props = $props();
 
 	// TODO to icon generator
 
-	$: targetColor = color;
+	let targetColor = $derived(color);
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->

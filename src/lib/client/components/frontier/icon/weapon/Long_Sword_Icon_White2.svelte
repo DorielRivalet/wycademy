@@ -3,9 +3,13 @@
 	import { blendColor } from '$lib/client/modules/color-blend';
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
-	export let rarity: FrontierRarity = 1;
+	interface Props {
+		rarity?: FrontierRarity;
+	}
 
-	$: targetColor = RarityColors[rarity - 1] ?? RarityColors[0];
+	let { rarity = 1 }: Props = $props();
+
+	let targetColor = $derived(RarityColors[rarity - 1] ?? RarityColors[0]);
 </script>
 
 <svg width="100%" viewBox="0 0 19.04051 18.710487" version="1.1" id="svg4846"

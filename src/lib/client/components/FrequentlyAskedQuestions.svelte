@@ -2,17 +2,23 @@
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 
-	export let faq: { question: string; answer: string }[];
-	export let minHeight: number = 90;
+	interface Props {
+		faq: { question: string; answer: string }[];
+		minHeight?: number;
+	}
+
+	let { faq, minHeight = 90 }: Props = $props();
 </script>
 
 <div class="faq" style="min-height: {minHeight}vh;">
 	<Accordion>
 		{#each faq as faqEntry, i}
 			<AccordionItem open={i === 0}>
-				<svelte:fragment slot="title">
-					<p class="question">{faqEntry.question}</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">{faqEntry.question}</p>
+					
+							{/snippet}
 				<p class="answer">{faqEntry.answer}</p>
 			</AccordionItem>
 		{/each}

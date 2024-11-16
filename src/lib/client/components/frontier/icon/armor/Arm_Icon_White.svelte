@@ -8,12 +8,16 @@
 	import { blendColor } from '$lib/client/modules/color-blend';
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
-	export let rarity: FrontierRarity = 1;
-	export let size = '100%';
-	export let color = '';
+	interface Props {
+		rarity?: FrontierRarity;
+		size?: string;
+		color?: string;
+	}
 
-	$: targetColor =
-		color === '' ? RarityColors[rarity - 1] ?? RarityColors[0] : color;
+	let { rarity = 1, size = '100%', color = '' }: Props = $props();
+
+	let targetColor =
+		$derived(color === '' ? RarityColors[rarity - 1] ?? RarityColors[0] : color);
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
@@ -28,7 +32,7 @@
 		showgrid="false"
 		units="px"
 		showguides="true"
-	/>
+	></sodipodi:namedview>
 	<g transform="translate(0,-280.06665)">
 		<path
 			style="display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"

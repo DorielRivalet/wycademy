@@ -275,18 +275,18 @@
 		}
 	}
 
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalNotes = '';
-	let modalImageType: 'video' | 'image' = 'image';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalNotes = $state('');
+	let modalImageType: 'video' | 'image' = $state('image');
 
 	// TODO Needed?
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
 </script>
 
 <Modal
@@ -305,8 +305,7 @@
 			{:else}
 				<div>
 					{#await import('$lib/player/Player.svelte') then { default: Player }}
-						<svelte:component
-							this={Player}
+						<Player
 							{...{ title: modalHeading, src: modalImage }}
 						/>
 					{/await}
@@ -320,7 +319,8 @@
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent_1 = modalPopoverIcon}
+							<SvelteComponent_1 />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -399,31 +399,33 @@
 							>
 						</div>
 					</Toolbar>
-					<svelte:fragment slot="cell" let:cell>
-						{#if cell.key === 'item'}
-							<div class="special-item">
-								<InlineTooltip
-									text={cell.value}
-									tooltip="Item"
-									icon={specialItems.find((e) => e.item === cell.value)?.icon}
-									iconColor={specialItems.find((e) => e.item === cell.value)
-										?.iconColor}
-									iconType="component"
-								/>
-								{#if specialItems.find((e) => e.item === cell.value)?.demo !== undefined}
-									<Button
-										on:click={() => changeModal(cell, 'Special Items')}
-										size="small"
-										icon={Image}
-										iconDescription="Demo"
-										kind="ghost"
+					{#snippet cell({ cell })}
+									
+							{#if cell.key === 'item'}
+								<div class="special-item">
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Item"
+										icon={specialItems.find((e) => e.item === cell.value)?.icon}
+										iconColor={specialItems.find((e) => e.item === cell.value)
+											?.iconColor}
+										iconType="component"
 									/>
-								{/if}
-							</div>
-						{:else}
-							<p>{cell.value}</p>
-						{/if}
-					</svelte:fragment>
+									{#if specialItems.find((e) => e.item === cell.value)?.demo !== undefined}
+										<Button
+											on:click={() => changeModal(cell, 'Special Items')}
+											size="small"
+											icon={Image}
+											iconDescription="Demo"
+											kind="ghost"
+										/>
+									{/if}
+								</div>
+							{:else}
+								<p>{cell.value}</p>
+							{/if}
+						
+									{/snippet}
 				</DataTable>
 			</div>
 			<p class="spaced-paragraph">

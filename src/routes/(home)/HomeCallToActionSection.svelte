@@ -6,10 +6,19 @@
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 	import { onMount } from 'svelte';
 
-	export let href: string = '/signup';
-	export let rowGap: number = 32; // Gap between rows in pixels
-	export let topPadding: number = 64; // Padding above first row
-	export let bottomPadding: number = 64; // Padding below last row
+	interface Props {
+		href?: string;
+		rowGap?: number;
+		topPadding?: number;
+		bottomPadding?: number;
+	}
+
+	let {
+		href = '/signup',
+		rowGap = 32,
+		topPadding = 64,
+		bottomPadding = 64
+	}: Props = $props();
 
 	const monsters = monsterInfo.filter((e) => e.icon && e.icon !== '');
 
@@ -27,8 +36,8 @@
 		{ icons: generateRow(), speed: 0.15, direction: -1 }, // Right to left
 	];
 
-	let container: Element;
-	let isVisible = false;
+	let container: Element = $state();
+	let isVisible = $state(false);
 
 	onMount(() => {
 		const observer = new IntersectionObserver(

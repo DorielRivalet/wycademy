@@ -5,6 +5,8 @@
 -->
 
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
@@ -35,8 +37,12 @@
 		Symbol.for('banner'),
 	) as Writable<boolean>;
 
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
 
 	onMount(() => {
 		let themeValue = $carbonThemeStore;
@@ -56,12 +62,6 @@
 		window.addEventListener('scroll', handleScroll);
 	});
 
-	$: bgClass =
-		getBackgroundImageClass($page.url.pathname) === 'none'
-			? 'none'
-			: $carbonThemeStore === 'g10'
-				? `background-light ${getBackgroundImageClass($page.url.pathname)}`
-				: `background ${getBackgroundImageClass($page.url.pathname)}`;
 
 	function getBackgroundImageClass(path: string) {
 		switch (path) {
@@ -88,7 +88,6 @@
 		}
 	}
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
 
@@ -105,6 +104,17 @@
 		}
 		lastScrollTop = currentScrollPos;
 	}
+	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
+	let bgClass =
+		$derived(getBackgroundImageClass($page.url.pathname) === 'none'
+			? 'none'
+			: $carbonThemeStore === 'g10'
+				? `background-light ${getBackgroundImageClass($page.url.pathname)}`
+				: `background ${getBackgroundImageClass($page.url.pathname)}`);
+	let headerClass;
+	run(() => {
+		headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	});
 </script>
 
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
@@ -129,18 +139,20 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
-					<NotificationActionButton
-						on:click={() => goto('/support/website/development')}
-						>Learn more</NotificationActionButton
-					>
-				</svelte:fragment>
+				{#snippet actions()}
+							
+						<NotificationActionButton
+							on:click={() => goto('/support/website/development')}
+							>Learn more</NotificationActionButton
+						>
+					
+							{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
 	<div class={bgClass}>
 		<main>
-			<slot />
+			{@render children?.()}
 		</main>
 	</div>
 	{#key $page.url.pathname}

@@ -5,7 +5,11 @@
 	import { LocationIcons } from '../modules/frontier/locations';
 	import { monsterInfo } from '../modules/frontier/monsters';
 
-	export let favoriteSets = [
+	interface Props {
+		favoriteSets?: any;
+	}
+
+	let { favoriteSets = [
 		{
 			icon: LocationIcons.find((e) => e.name === 'Road')?.icon, // TODO?
 			title: "User 2's Set #3",
@@ -43,7 +47,7 @@
 			link: '/',
 			totalFavorites: 0,
 		},
-	];
+	] }: Props = $props();
 
 	const maxFavoritesToDisplay = 5;
 
@@ -60,7 +64,7 @@
 				{#if typeof favoriteRun.icon === 'string'}
 					<img src={favoriteRun.icon} width="64" alt="Favorite Icon" />
 				{:else}
-					<svelte:component this={favoriteRun.icon} {...{ size: '64px' }} />
+					<favoriteRun.icon {...{ size: '64px' }} />
 				{/if}
 			</div>
 			<div class="text">

@@ -4,7 +4,11 @@
 	import TrophyWhite from './frontier/icon/TrophyWhite.svelte';
 	import ClickableTileImage from './ClickableTileImage.svelte';
 
-	export let trophies: WycademyTrophy[] = [
+	interface Props {
+		trophies?: WycademyTrophy[];
+	}
+
+	let { trophies = [
 		{
 			title: 'Golden Nargacuga Statue',
 			date: '2024/12/21',
@@ -54,7 +58,7 @@
 			icon: TrophyWhite,
 			link: '/',
 		},
-	];
+	] }: Props = $props();
 
 	const maxTrophiesToDisplay = 5;
 
@@ -90,7 +94,7 @@
 				{#if typeof trophy.icon === 'string'}
 					<img src={trophy.icon} alt="Trophy Icon" />
 				{:else}
-					<svelte:component this={trophy.icon} />
+					<trophy.icon />
 				{/if}
 			</div>
 			<div class="text">

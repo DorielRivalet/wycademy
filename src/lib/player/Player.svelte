@@ -17,8 +17,12 @@ There’s a long-standing hydration bug with Svelte 4 and Custom Elements which 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-	export let title: string;
-	export let src: string;
+	interface Props {
+		title: string;
+		src: string;
+	}
+
+	let { title, src }: Props = $props();
 </script>
 
 <media-player class="poster" load="visible" {title} {src}>

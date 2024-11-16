@@ -14,21 +14,42 @@
 		return arr[Math.floor(arr.length * Math.random())];
 	}
 
-	export let name =
-		generateRandomUsername() + `#${Math.trunc(Math.random() * 1000)}`;
-	export let medal = '🥇';
-	export let title = randomChoice(WeaponTypes).hiden;
-	export let discordName = 'discordname123';
-	export let twitterName = 'randomTwitterName123';
-	export let imageSource = Transcend;
-	export let countryCode: TCountryCode = randomChoice(Object.keys(countries));
 	const countryName = countries[countryCode].name;
-	export let badge1Icon = randomChoice(WeaponTypes).icon;
-	export let badge2Icon = randomChoice(WeaponTypes).icon;
-	export let badge3Icon = randomChoice(WeaponTypes).icon;
-	export let badge1Rank = Math.trunc(Math.random() * 99);
-	export let badge2Rank = Math.trunc(Math.random() * 99);
-	export let badge3Rank = Math.trunc(Math.random() * 99);
+	interface Props {
+		name?: any;
+		medal?: string;
+		title?: any;
+		discordName?: string;
+		twitterName?: string;
+		imageSource?: any;
+		countryCode?: TCountryCode;
+		badge1Icon?: any;
+		badge2Icon?: any;
+		badge3Icon?: any;
+		badge1Rank?: any;
+		badge2Rank?: any;
+		badge3Rank?: any;
+	}
+
+	let {
+		name = generateRandomUsername() + `#${Math.trunc(Math.random() * 1000)}`,
+		medal = '🥇',
+		title = randomChoice(WeaponTypes).hiden,
+		discordName = 'discordname123',
+		twitterName = 'randomTwitterName123',
+		imageSource = Transcend,
+		countryCode = randomChoice(Object.keys(countries)),
+		badge1Icon = randomChoice(WeaponTypes).icon,
+		badge2Icon = randomChoice(WeaponTypes).icon,
+		badge3Icon = randomChoice(WeaponTypes).icon,
+		badge1Rank = Math.trunc(Math.random() * 99),
+		badge2Rank = Math.trunc(Math.random() * 99),
+		badge3Rank = Math.trunc(Math.random() * 99)
+	}: Props = $props();
+
+	const SvelteComponent = $derived(badge1Icon);
+	const SvelteComponent_1 = $derived(badge2Icon);
+	const SvelteComponent_2 = $derived(badge3Icon);
 </script>
 
 <div class="container">
@@ -39,19 +60,19 @@
 		<div class="badges">
 			<div class="badge-container">
 				<div class="badge">
-					<svelte:component this={badge1Icon} />
+					<SvelteComponent />
 				</div>
 				<a href="/">#{badge1Rank}</a>
 			</div>
 			<div class="badge-container">
 				<div class="badge">
-					<svelte:component this={badge2Icon} />
+					<SvelteComponent_1 />
 				</div>
 				<a href="/">#{badge2Rank}</a>
 			</div>
 			<div class="badge-container">
 				<div class="badge">
-					<svelte:component this={badge3Icon} />
+					<SvelteComponent_2 />
 				</div>
 				<a href="/">#{badge3Rank}</a>
 			</div>

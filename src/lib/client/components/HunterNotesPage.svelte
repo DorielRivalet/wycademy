@@ -19,10 +19,16 @@ Also for Tools pages
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	let tocVisible = $tocEnabledStore;
+	let tocVisible = $state($tocEnabledStore);
 
-	/**Whether to render the TOC on this page*/
-	export let displayTOC = true;
+	
+	interface Props {
+		/**Whether to render the TOC on this page*/
+		displayTOC?: boolean;
+		children?: import('svelte').Snippet;
+	}
+
+	let { displayTOC = true, children }: Props = $props();
 
 	function onTOCToggleButtonPress(e: MouseEvent) {
 		if (!browser) return;
@@ -51,29 +57,31 @@ Also for Tools pages
 		? 'top-level-container'
 		: 'top-level-container-full'}
 >
-	<div><slot /></div>
+	<div>{@render children?.()}</div>
 	{#if tocVisible && displayTOC}
 		<div in:fade={{ duration: 150 }}>
 			<Toc blurParams={{ duration: 0 }} --toc-desktop-sticky-top={'10vh'}>
-				<span slot="title">
-					{#if $breakpointLargerThanMedium}
-						<h2 class="toc-title toc-exclude">
-							<span
-								>On this page <span>
-									<Button
-										iconDescription={'Close Sidebar'}
-										kind="ghost"
-										size={'small'}
-										icon={RightPanelClose}
-										on:click={onTOCToggleButtonPress}
-									/>
-								</span></span
-							>
-						</h2>
-					{:else}
-						<h2 class="toc-title toc-exclude">On this page</h2>
-					{/if}
-				</span>
+				{#snippet title()}
+								<span >
+						{#if $breakpointLargerThanMedium}
+							<h2 class="toc-title toc-exclude">
+								<span
+									>On this page <span>
+										<Button
+											iconDescription={'Close Sidebar'}
+											kind="ghost"
+											size={'small'}
+											icon={RightPanelClose}
+											on:click={onTOCToggleButtonPress}
+										/>
+									</span></span
+								>
+							</h2>
+						{:else}
+							<h2 class="toc-title toc-exclude">On this page</h2>
+						{/if}
+					</span>
+							{/snippet}
 			</Toc>
 		</div>
 	{/if}

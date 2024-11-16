@@ -4,10 +4,14 @@
 
 	import numbro from 'numbro';
 
-	export let followers = 1000;
-	export let following = 2500;
 
-	export let isFollowing = false;
+	interface Props {
+		followers?: number;
+		following?: number;
+		isFollowing?: boolean;
+	}
+
+	let { followers = 1000, following = 2500, isFollowing = $bindable(false) }: Props = $props();
 
 	// Format numbers
 	let formattedFollowers = numbro(followers)

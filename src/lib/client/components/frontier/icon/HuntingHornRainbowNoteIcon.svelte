@@ -4,8 +4,12 @@
 	import HuntingHornNoteIcon from './HuntingHornNoteIcon.svelte';
 	import type { FrontierHuntingHornNote } from '$lib/client/modules/frontier/types';
 
-	export let size: number | string = 16;
-	export let delay = 2000;
+	interface Props {
+		size?: number | string;
+		delay?: number;
+	}
+
+	let { size = 16, delay = 2000 }: Props = $props();
 
 	// Function to select a random item from an array
 	function getRandomItem(arr: any[]): FrontierHuntingHornNote {
@@ -25,7 +29,7 @@
 		]),
 	];
 
-	let randomColor: FrontierHuntingHornNote = 'Red';
+	let randomColor: FrontierHuntingHornNote = $state('Red');
 
 	randomColor = getRandomItem(colors);
 
@@ -42,5 +46,5 @@
 
 <div>
 	<!-- Pass the random color as a prop to the randomly selected weapon component -->
-	<svelte:component this={HuntingHornNoteIcon} color={randomColor} {size} />
+	<HuntingHornNoteIcon color={randomColor} {size} />
 </div>

@@ -9,10 +9,14 @@
 		return getAilmentIcon(e.name);
 	});
 
-	let randomSelection = getAilmentIcon('Stun');
+	let randomSelection = $state(getAilmentIcon('Stun'));
 
-	export let delay = 2000;
-	export let size: string = '100%';
+	interface Props {
+		delay?: number;
+		size?: string;
+	}
+
+	let { delay = 2000, size = '100%' }: Props = $props();
 
 	// Function to select a random item from an array
 	function getRandomItem(arr: any[]) {
@@ -31,11 +35,13 @@
 		// Cleanup function to clear the interval when the component is destroyed
 		return () => clearInterval(intervalId);
 	});
+
+	const SvelteComponent = $derived(randomSelection);
 </script>
 
 <div>
 	<!-- Pass the random color as a prop to the randomly selected weapon component -->
-	<svelte:component this={randomSelection} {size} />
+	<SvelteComponent {size} />
 </div>
 
 <style lang="scss"></style>

@@ -233,19 +233,23 @@
 		<SectionHeading level={2} title="Frequently Asked Questions" />
 		<Accordion>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						Am I allowed to submit my runs to YouTube/Twitch?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							Am I allowed to submit my runs to YouTube/Twitch?
+						</p>
+					
+							{/snippet}
 				<p class="answer">Yes, but you do so at your own risk.</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						What types of videos are most likely to get copyright strikes?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							What types of videos are most likely to get copyright strikes?
+						</p>
+					
+							{/snippet}
 				<p class="answer">
 					Videos that mention external tools or mods, livestreams or videos
 					featuring custom quests, and videos with non-game music are more
@@ -253,11 +257,13 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						What should I do if I receive a copyright strike?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							What should I do if I receive a copyright strike?
+						</p>
+					
+							{/snippet}
 				<p class="answer">
 					If you receive a copyright strike, review YouTube's copyright policies
 					and guidelines. You may want to appeal the strike if you believe it
@@ -266,11 +272,13 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						Can I use the overlay in private or unlisted YouTube videos?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							Can I use the overlay in private or unlisted YouTube videos?
+						</p>
+					
+							{/snippet}
 				<p class="answer">
 					We recommend making YouTube videos unlisted rather than public to
 					reduce the risk of copyright strikes. Private videos, which require
@@ -278,11 +286,13 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						How do I edit video links via the run ID in the overlay?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							How do I edit video links via the run ID in the overlay?
+						</p>
+					
+							{/snippet}
 				<p class="answer">
 					The overlay has a section where you can edit video links by entering
 					the run ID. Refer to the overlay's documentation and FAQ for detailed
@@ -290,11 +300,13 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						What should I do if my video gets removed from YouTube?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							What should I do if my video gets removed from YouTube?
+						</p>
+					
+							{/snippet}
 				<p class="answer">
 					If your video is removed, consider re-uploading it to an alternative
 					platform like archive.org or Bilibili. Ensure your video complies with
@@ -302,12 +314,14 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						Are there any specific settings I should use in the overlay for
-						speedrunning?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							Are there any specific settings I should use in the overlay for
+							speedrunning?
+						</p>
+					
+							{/snippet}
 				<p class="answer">
 					Yes, use the speedrun preset in the overlay settings. Ensure the
 					overlay watermark does not show numbers in parentheses, as these runs
@@ -319,12 +333,14 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						Why do I need to show my guild card, gear, and weapon pages at the
-						end of a hunt?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							Why do I need to show my guild card, gear, and weapon pages at the
+							end of a hunt?
+						</p>
+					
+							{/snippet}
 				<p class="answer">
 					This ensures the authenticity of your run and verifies that no
 					unauthorized modifications were used. It helps maintain the integrity
@@ -332,20 +348,24 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">Can I upload runs on behalf of another player?</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">Can I upload runs on behalf of another player?</p>
+					
+							{/snippet}
 				<p class="answer">
 					No, each player must upload their own runs. Video links must come
 					directly from the player submitting the run.
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						What are the criteria for leaderboard submissions?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							What are the criteria for leaderboard submissions?
+						</p>
+					
+							{/snippet}
 				<UnorderedList>
 					<ListItem
 						><div class="list-item">
@@ -407,11 +427,13 @@
 				</UnorderedList>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
-					<p class="question">
-						What platforms do you recommend for archiving speedruns?
-					</p>
-				</svelte:fragment>
+				{#snippet title()}
+							
+						<p class="question">
+							What platforms do you recommend for archiving speedruns?
+						</p>
+					
+							{/snippet}
 				<p class="answer">
 					We recommend using platforms such as archive.org and Bilibili for
 					video submissions. Avoid using Twitch or YouTube due to the risk of

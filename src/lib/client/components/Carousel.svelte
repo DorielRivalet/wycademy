@@ -4,11 +4,15 @@
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
 
-	export let images: Array<string>;
+	interface Props {
+		images: Array<string>;
+	}
 
-	let index = 0;
+	let { images }: Props = $props();
 
-	$: src = images[index];
+	let index = $state(0);
+
+	let src = $derived(images[index]);
 
 	function nextImage() {
 		index = (index + 1) % images.length;
@@ -20,22 +24,26 @@
 </script>
 
 <div class="image-container">
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div class="arrow left" on:click={prevImage}>
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class="arrow left" onclick={prevImage}>
 		<ChevronLeft />
 	</div>
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div class="arrow right" on:click={nextImage}>
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class="arrow right" onclick={nextImage}>
 		<ChevronRight />
 	</div>
 	<div class="image">
 		<ImageLoader style="border-radius: 8px 8px 8px 8px;" fadeIn {src} alt={src}>
-			<svelte:fragment slot="loading">
-				<InlineLoading />
-			</svelte:fragment>
-			<svelte:fragment slot="error">An error occurred.</svelte:fragment>
+			{#snippet loading()}
+					
+					<InlineLoading />
+				
+					{/snippet}
+			{#snippet error()}
+						An error occurred.
+					{/snippet}
 		</ImageLoader>
 	</div>
 </div>
