@@ -25,7 +25,7 @@
 		simonNotes,
 		currentSequence = $bindable([]),
 		targetSequence = $bindable([]),
-		simonScore = $bindable(0)
+		simonScore = $bindable(0),
 	}: Props = $props();
 
 	const initialPressedDuration = 1000;
@@ -243,7 +243,7 @@
 	<p>Score: {simonScore}</p>
 
 	{#if !isPlaying}
-		<p style:color="var(--ctp-subtext0)">Doriel's score: 12 (2024-11-08)</p>
+		<p style:color="var(--ctp-subtext0)">Doriel's score: 18 (2024-11-17)</p>
 		<button class="start-button" onclick={startGame}> Start Game </button>
 		<Button
 			icon={DocumentDownload}
