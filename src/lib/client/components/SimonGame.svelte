@@ -240,7 +240,7 @@
 		{/if}
 	</div>
 
-	<p>Score: {simonScore}</p>
+	<div>Score: {simonScore}</div>
 
 	{#if !isPlaying}
 		<p style:color="var(--ctp-subtext0)">Doriel's score: 18 (2024-11-17)</p>

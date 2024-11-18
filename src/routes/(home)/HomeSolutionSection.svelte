@@ -14,10 +14,12 @@
 	import CheckmarkOutline from 'carbon-icons-svelte/lib/CheckmarkOutline.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
+	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 	import HomeSolutionSectionSolution from './HomeSolutionSectionSolution.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { browser } from '$app/environment';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -79,7 +81,7 @@
 	/>
 	<div class="summary">
 		<img src={EmoteFriend} alt="Friend Emote" />
-		<p class="description">
+		<div class="description paragraph-long-02">
 			Our platform is more than a website—it's a community-driven, <OutboundLink
 				href="https://github.com/DorielRivalet/wycademy"
 				>open-source project</OutboundLink
@@ -96,19 +98,23 @@
 				href="/tools">tools</Link
 			>, we’re here to enrich your experience, both
 			<strong>online and offline</strong>.
-		</p>
+		</div>
 	</div>
 	<div class="solutions">
 		{#each solutions as solution}
 			<div class={solution.area}>
-				<HomeSolutionSectionSolution
-					title={solution.title}
-					description={solution.description}
-					imageSource={$carbonThemeStore === 'g10'
-						? solution.imageSourceLight
-						: solution.imageSourceDark}
-					href={solution.href}
-				/>
+				{#if browser}
+					<HomeSolutionSectionSolution
+						title={solution.title}
+						description={solution.description}
+						imageSource={$carbonThemeStore === 'g10'
+							? solution.imageSourceLight
+							: solution.imageSourceDark}
+						href={solution.href}
+					/>
+				{:else}
+					<SkeletonPlaceholder style="width: 100%; height: 12rem;" />
+				{/if}
 			</div>
 		{/each}
 	</div>

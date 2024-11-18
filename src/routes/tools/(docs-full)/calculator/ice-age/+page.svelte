@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
@@ -179,9 +179,6 @@
 	const invalidNumberValueText = `Invalid value. Must be between ${minimumNumberValue} and ${maximumNumberValue}`;
 	const invalidTrueRawText = `Invalid value. Must be between ${minimumNumberValue} and ${maxTrueRaw}`;
 
-
-
-
 	const formulaIceAgeDamagePerSecond = display(
 		`\\text{Ice Age DPS} = \\lfloor \\text{Stage Multiplier} \\times (\\text{Weapon True Raw} + \\text{Sigils True Raw} + \\text{SR True Raw} + \\text{GRank Armor Bonus}) \\times \\text{Monster Defense Rate} \\times \\text{Ice Age Hunters}\\rfloor`,
 	);
@@ -195,10 +192,8 @@
 	let inputIceAgeCalculatorAOESigilHunters = $state('1');
 	let inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw = $state(0);
 
-
-
 	let modalLink = '';
-	let modalPopoverIconType = 'component';
+	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
 	let modalDescription = '';
 	let modalTag1 = '';
@@ -220,53 +215,62 @@
 		color: 'outline',
 	};
 
-
-	let trueRawConverterWeaponType: FrontierWeaponName = $state('Sword and Shield');
+	let trueRawConverterWeaponType: FrontierWeaponName =
+		$state('Sword and Shield');
 	let trueRawConverterValue = $state(1500);
-	let iceAgeCalculatorDamagePerSecond = $derived(Math.floor(
-		getIceAgeBaseMultiplier(inputIceAgeCalculatorStage) *
-			(inputNumberIceAgeCalculatorWeaponTrueRaw +
-				inputNumberIceAgeCalculatorSigil1TrueRaw +
-				inputNumberIceAgeCalculatorSigil2TrueRaw +
-				inputNumberIceAgeCalculatorSigil3TrueRaw +
-				inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
-				getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
-				getAOESigilTrueRaw(
-					inputNumberIceAgeCalculatorAOESigil,
-					Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
-				) +
-				inputNumberIceAgeCalculatorSRTrueRaw +
-				getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)) *
-			inputNumberIceAgeCalculatorMonsterDefenseRate *
-			Number.parseInt(inputIceAgeCalculatorHunters),
-	));
-	let iceAgeCalculatorSecondsNeeded =
-		$derived(iceAgeCalculatorDamagePerSecond > 0
+	let iceAgeCalculatorDamagePerSecond = $derived(
+		Math.floor(
+			getIceAgeBaseMultiplier(inputIceAgeCalculatorStage) *
+				(inputNumberIceAgeCalculatorWeaponTrueRaw +
+					inputNumberIceAgeCalculatorSigil1TrueRaw +
+					inputNumberIceAgeCalculatorSigil2TrueRaw +
+					inputNumberIceAgeCalculatorSigil3TrueRaw +
+					inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
+					getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
+					getAOESigilTrueRaw(
+						inputNumberIceAgeCalculatorAOESigil,
+						Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
+					) +
+					inputNumberIceAgeCalculatorSRTrueRaw +
+					getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)) *
+				inputNumberIceAgeCalculatorMonsterDefenseRate *
+				Number.parseInt(inputIceAgeCalculatorHunters),
+		),
+	);
+	let iceAgeCalculatorSecondsNeeded = $derived(
+		iceAgeCalculatorDamagePerSecond > 0
 			? Math.floor(
 					inputNumberIceAgeCalculatorMonsterTrueHP /
 						iceAgeCalculatorDamagePerSecond,
 				)
-			: 'Infinity');
-	let iceAgeCalculatorTotalDamage =
-		$derived(inputNumberIceAgeCalculatorSecondsElapsed * iceAgeCalculatorDamagePerSecond);
-	let iceAgeCalculatorMaxHPPercentDealt =
-		$derived(Math.floor(
+			: 'Infinity',
+	);
+	let iceAgeCalculatorTotalDamage = $derived(
+		inputNumberIceAgeCalculatorSecondsElapsed * iceAgeCalculatorDamagePerSecond,
+	);
+	let iceAgeCalculatorMaxHPPercentDealt = $derived(
+		Math.floor(
 			((iceAgeCalculatorTotalDamage * 100) /
 				inputNumberIceAgeCalculatorMonsterTrueHP) *
 				100,
-		) / 100);
-	let formulaValuesIceAgeDamagePerSecond = $derived(`${iceAgeCalculatorDamagePerSecond} = \\lfloor ${getIceAgeBaseMultiplier(inputIceAgeCalculatorStage)} \\times (${inputNumberIceAgeCalculatorWeaponTrueRaw} + ${
-		inputNumberIceAgeCalculatorSigil1TrueRaw +
-		inputNumberIceAgeCalculatorSigil2TrueRaw +
-		inputNumberIceAgeCalculatorSigil3TrueRaw +
-		inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
-		getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
-		getAOESigilTrueRaw(
-			inputNumberIceAgeCalculatorAOESigil,
-			Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
-		)
-	} + ${inputNumberIceAgeCalculatorSRTrueRaw} + ${getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)}) \\times ${inputNumberIceAgeCalculatorMonsterDefenseRate} \\times ${Number.parseInt(inputIceAgeCalculatorHunters)} \\rfloor`);
-	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
+		) / 100,
+	);
+	let formulaValuesIceAgeDamagePerSecond = $derived(
+		`${iceAgeCalculatorDamagePerSecond} = \\lfloor ${getIceAgeBaseMultiplier(inputIceAgeCalculatorStage)} \\times (${inputNumberIceAgeCalculatorWeaponTrueRaw} + ${
+			inputNumberIceAgeCalculatorSigil1TrueRaw +
+			inputNumberIceAgeCalculatorSigil2TrueRaw +
+			inputNumberIceAgeCalculatorSigil3TrueRaw +
+			inputNumberIceAgeCalculatorUnlimitedSigilTrueRaw +
+			getZenithSigilTrueRaw(inputNumberIceAgeCalculatorZenithSigil) +
+			getAOESigilTrueRaw(
+				inputNumberIceAgeCalculatorAOESigil,
+				Number.parseInt(inputIceAgeCalculatorAOESigilHunters),
+			)
+		} + ${inputNumberIceAgeCalculatorSRTrueRaw} + ${getGRankArmorTrueRaw(inputIceAgeCalculatorGRankArmorTrueRaw)}) \\times ${inputNumberIceAgeCalculatorMonsterDefenseRate} \\times ${Number.parseInt(inputIceAgeCalculatorHunters)} \\rfloor`,
+	);
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
 </script>
 
 <svelte:head>
@@ -374,7 +378,7 @@
 	{/if}
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<div>
 			<SectionHeadingTopLevel title={'Ice Age'} />
@@ -400,7 +404,7 @@
 						gradually over time.
 					</p>
 					<div class="ice-age-description-2">
-						<p>
+						<div>
 							Typically, damage output ranges between 800 to 1600 per minute,
 							contingent on the level, surpassing the poison output for most G
 							Rank monsters. Within a group of four hunters equipped with <InlineTooltip
@@ -411,20 +415,20 @@
 							3200-6400 (4p).
 						</p>
 					</div>
-					<p>
+					<div>
 						Ice Age's attack power only comes from SR, sigils, weapon base
 						attack and G Rank armor bonus. The following buffs are ignored:
 						items (e.g Seeds, Hunter Powertalon, etc.), meals (e.g. bento, guild
 						food), skills (e.g. Adrenaline, Solid Determination). Buffs that
 						affect weapon base attack like Drug Knowledge does count.
 					</p>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Ice Age's required hits can be reached faster with <InlineTooltip
 							text="Fencing+2"
 							tooltip="Armor Skill"
 							icon={getTag('Armor Skill').icon}
 						/>.
-					</p>
+					</div>
 				</div>
 
 				<div class="ice-age-tables-container" id="ice-age-dom">
@@ -663,25 +667,23 @@
 								</div>
 							</Toolbar>
 							{#snippet title()}
-														<span >
+								<span>
 									<div class="data-table-title">
 										<div>Ice Age Required Hits</div>
 									</div>
 								</span>
-													{/snippet}
+							{/snippet}
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'weapon'}
-										<InlineTooltip
-											icon={getWeaponIcon(cell.value)}
-											text={cell.value}
-											tooltip="Weapon"
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'weapon'}
+									<InlineTooltip
+										icon={getWeaponIcon(cell.value)}
+										text={cell.value}
+										tooltip="Weapon"
+									/>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 					<div class="ice-age-table-stages toc-exclude">
@@ -753,26 +755,24 @@
 								</div>
 							</Toolbar>
 							{#snippet title()}
-														<span >
+								<span>
 									<div class="data-table-title">
 										<div>Ice Age Stages</div>
 									</div>
 								</span>
-													{/snippet}
+							{/snippet}
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'stage'}
-										<Button
-											on:click={() => changeModal(cell, 'Ice Age Stages')}
-											size="small"
-											icon={Image}
-											kind="ghost">{cell.value}</Button
-										>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'stage'}
+									<Button
+										on:click={() => changeModal(cell, 'Ice Age Stages')}
+										size="small"
+										icon={Image}
+										kind="ghost">{cell.value}</Button
+									>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -784,7 +784,7 @@
 				/>
 
 				<div class="ice-age-formula">
-					<p>Formula:</p>
+					<div>Formula:</div>
 					<div class="formula-container">
 						{@html formulaIceAgeDamagePerSecond}
 					</div>
@@ -962,13 +962,13 @@
 							]}
 						/>
 					</div>
-					<p>
+					<div>
 						Seconds needed: {iceAgeCalculatorSecondsNeeded}
-					</p>
-					<p>
+					</div>
+					<div>
 						Max HP% Dealt: {iceAgeCalculatorMaxHPPercentDealt}
-					</p>
-					<p>
+					</div>
+					<div>
 						Total Damage: {iceAgeCalculatorTotalDamage} ({iceAgeCalculatorDamagePerSecond}
 						DPS)
 					</p>
@@ -979,7 +979,7 @@
 			</div>
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

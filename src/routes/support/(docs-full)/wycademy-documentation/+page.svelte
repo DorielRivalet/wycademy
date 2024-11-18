@@ -11,10 +11,10 @@
 
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Wycademy Documentation'} />
-	<p class="spaced-paragraph">
+	<div class="spaced-paragraph">
 		{supportInfo.find((e) => e.category.name === 'Wycademy Documentation')
 			?.category.description}
-	</p>
+	</div>
 	<div class="container-tiles">
 		{#if pages}
 			{#each pages as page}

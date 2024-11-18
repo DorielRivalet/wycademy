@@ -4,39 +4,20 @@ Shows text next to an icon inline. You can use either a component or a image imp
 <script lang="ts">
 	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 	import QuestionMarkIconWhite from './icon/item/Question_Mark_Icon_White.svelte';
-	
-	
-	
-	
-	
-	
-	interface Props {
-		text: string;
-		tooltip: string;
-		/**default: component*/
-		iconType?: 'component' | 'file';
-		/**default: QuestionMarkIconWhite*/
-		icon?: any;
-		/**default: #ffffff*/
-		iconColor?: string;
-		/**For component. default: 100%*/
-		iconSize?: string;
-		/**For component. default: auto*/
-		gap?: string;
-		/**default: true*/
-		background?: boolean;
-	}
-
-	let {
-		text,
-		tooltip,
-		iconType = 'component',
-		icon = QuestionMarkIconWhite,
-		iconColor = '#ffffff',
-		iconSize = '100%',
-		gap = 'auto',
-		background = true
-	}: Props = $props();
+	export let text: string;
+	export let tooltip: string;
+	/**default: component*/
+	export let iconType: 'component' | 'file' = 'component';
+	/**default: QuestionMarkIconWhite*/
+	export let icon: any = QuestionMarkIconWhite;
+	/**default: #ffffff*/
+	export let iconColor = '#ffffff';
+	/**For component. default: 100%*/
+	export let iconSize = '100%';
+	/**For component. default: auto*/
+	export let gap = 'auto';
+	/**default: true*/
+	export let background = true;
 
 	let iconProps = {
 		color: iconColor,
@@ -44,17 +25,16 @@ Shows text next to an icon inline. You can use either a component or a image imp
 		background: background,
 	};
 
-	let open = $state(false);
+	let open = false;
 </script>
 
 <span class="container" style="line-height: {iconSize}">
 	<span
 		style:position="relative"
-		onmouseenter={(e) => (open = true)}
-		onmouseleave={(e) => (open = false)}
+		on:mouseenter={(e) => (open = true)}
+		on:mouseleave={(e) => (open = false)}
 		role="tooltip"
-	>
-		<Popover bind:open caret align={'top'}>
+		><Popover bind:open caret align={'top'}>
 			<div class="popover-content">
 				{tooltip}
 			</div></Popover
@@ -64,11 +44,11 @@ Shows text next to an icon inline. You can use either a component or a image imp
 		{:else if iconType === 'file'}
 			<span
 				class="image"
-				onmouseenter={(e) => (open = true)}
-				onmouseleave={(e) => (open = false)}
+				on:mouseenter={(e) => (open = true)}
+				on:mouseleave={(e) => (open = false)}
 				role="button"
 				tabindex="0"
-				onkeypress={(e) => open != open}
+				on:keypress={(e) => open != open}
 			>
 				<img
 					style="display: inline;"
@@ -79,27 +59,26 @@ Shows text next to an icon inline. You can use either a component or a image imp
 				/>
 			</span>
 		{:else}
-			{@const SvelteComponent = icon}
 			<span
 				class="icon"
 				style="margin-right: {gap}"
-				onmouseenter={(e) => (open = true)}
-				onmouseleave={(e) => (open = false)}
+				on:mouseenter={(e) => (open = true)}
+				on:mouseleave={(e) => (open = false)}
 				role="button"
 				tabindex="0"
-				onkeypress={(e) => open != open}
+				on:keypress={(e) => open != open}
 			>
-				<SvelteComponent {...iconProps} />
+				<svelte:component this={icon} {...iconProps} />
 			</span>
 		{/if}
 
 		<span
 			class="description"
-			onmouseenter={(e) => (open = true)}
-			onmouseleave={(e) => (open = false)}
+			on:mouseenter={(e) => (open = true)}
+			on:mouseleave={(e) => (open = false)}
 			role="button"
 			tabindex="0"
-			onkeypress={(e) => open != open}
+			on:keypress={(e) => open != open}
 		>
 			{text}
 		</span>

@@ -41,11 +41,12 @@
 	let selectedMonsterNameFromList = $state(usernames.monsters[0]);
 	let selectedMonsterPrefixFromList = $state(usernames.types[0]);
 
-	let username =
-		$derived(generateUsername(
+	let username = $derived(
+		generateUsername(
 			selectedMonsterPrefixFromList ?? usernames.types[0],
 			selectedMonsterNameFromList ?? usernames.monsters[0],
-		) + '-####');
+		) + '-####',
+	);
 
 	// TODO some pages like this one are missing Head component
 	let description =
@@ -86,13 +87,11 @@
 				subtitle="Please read about our development process before creating an account. It is currently not possible to make an account"
 			>
 				{#snippet actions()}
-							
-						<NotificationActionButton
-							on:click={() => goto('/support/website/development')}
-							>Learn more</NotificationActionButton
-						>
-					
-							{/snippet}
+					<NotificationActionButton
+						on:click={() => goto('/support/website/development')}
+						>Learn more</NotificationActionButton
+					>
+				{/snippet}
 			</InlineNotification>
 		</div>
 		<div class="login">
@@ -132,7 +131,7 @@
 		<div class="agreement">
 			<Checkbox bind:checked={userAgreed} required
 				>{#snippet labelText()}
-								<span >
+					<span>
 						By signing up with Wycademy, you agree to our <Link
 							inline
 							href="/support/policies/terms-of-service">Terms of Service</Link
@@ -140,7 +139,7 @@
 							>Privacy Policy.</Link
 						></span
 					>
-							{/snippet}</Checkbox
+				{/snippet}</Checkbox
 			>
 		</div>
 	</div>

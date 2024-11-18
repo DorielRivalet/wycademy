@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -190,11 +190,11 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Hammer'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Frontier's <InlineTooltip
 					text="Hammer"
 					tooltip="Weapon"
@@ -211,7 +211,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 				its charged attacks.
 			</p>
 
-			<p>
+			<div>
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -225,7 +225,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Earth Style</strong> is the traditional <InlineTooltip
 							text="Hammer"
 							tooltip="Weapon"
@@ -241,7 +241,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Heaven Style</strong> is a more niche option, replacing the
 						Level 3 moving charge (the spin) with an infinite swipe attack. This
 						locks you in place, making it effective for targeting specific
@@ -259,7 +259,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Storm Style</strong> introduces a Level 4 charge that
 						functions similarly to a Shoryuken. This attack hits three times and
 						delivers a total of 140 <InlineTooltip
@@ -281,7 +281,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> builds on
 						<strong>Storm Style</strong>
 						by adding the ability to run with the <InlineTooltip
@@ -294,7 +294,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 						will cause you to lose your charge, meaning you cannot use a normal
 						<strong>Super Pound.</strong>
 					</p>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						This style also adds a Level 5 charge, a front flip that deals
 						60･45･145 or 250 motion value and at least 200 <InlineTooltip
 							text="Stun"
@@ -308,17 +308,17 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							icon={getAilmentIcon('Stun')}
 						/> option available.
 					</p>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Additionally, there is a new Swinging attack similar to the infinite
 						swipes combo. This attack does not consume stamina and leads to an
 						alternative Level 4 charge that deals variable damage based on the
 						number of swings, with a maximum motion value of 230.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Normal attacks are also enhanced, allowing you to continue a combo
 						after the <strong>Baseball Swing</strong>, significantly increasing
 						its utility compared to other styles.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -330,7 +330,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div>
 						x1.5 <InlineTooltip
 							text="Stun"
 							tooltip="Ailment"
@@ -372,14 +372,12 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-											
-								{#if cell.value[0] == '-'}
-									<p style:color="var(--ctp-red)">{cell.value}</p>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							
-											{/snippet}
+							{#if cell.value[0] == '-'}
+								<p style:color="var(--ctp-red)">{cell.value}</p>
+							{:else}
+								<div>{cell.value}</div>
+							{/if}
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -418,19 +416,17 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'skill'}
-										<InlineTooltip
-											text={cell.value}
-											tooltip="Armor Skill"
-											iconType="component"
-											icon={getItemIcon('Jewel')}
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'skill'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Armor Skill"
+										iconType="component"
+										icon={getItemIcon('Jewel')}
+									/>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -469,24 +465,22 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'sigil'}
-										<InlineTooltip
-											text={cell.value}
-											tooltip="Sigil"
-											iconType="component"
-											icon={getItemIcon('Sigil')}
-										/>
-									{:else if cell.key === 'rating'}
-										<StarRating
-											rating={Number.parseFloat(cell.value)}
-											maxRating={3}
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'sigil'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Sigil"
+										iconType="component"
+										icon={getItemIcon('Sigil')}
+									/>
+								{:else if cell.key === 'rating'}
+									<StarRating
+										rating={Number.parseFloat(cell.value)}
+										maxRating={3}
+									/>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -497,7 +491,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 				<div>
 					<UnorderedList>
 						<ListItem
-							><p>
+							><div>
 								Golf swing attacks are practically obsolete; it’s better to
 								focus on charging your attacks. <InlineTooltip
 									tooltip="Armor Skill"
@@ -505,10 +499,10 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> is highly recommended.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Length preference for <InlineTooltip
 									tooltip="Weapon"
 									text="Hammer"
@@ -518,10 +512,10 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 								so the shifted hitzone isn’t usually an issue and can reach specific
 								hitzones on different monsters. However, the Level 3 infinite combo
 								is less cumbersome with shorter lengths.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Three Worlds Protection"
@@ -529,10 +523,10 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 									icon={getItemIcon('Jewel')}
 								/> is highly effective for creating openings. Consider using Zenith
 								cuffs for specific resistances depending on the hunt.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Unlike in the mainline games, every source of additional stun/KO
 								damage (like Caravan Skill + Stun Sigil) is recommended, as they
 								stack and significantly contribute to <InlineTooltip
@@ -541,10 +535,10 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 									iconType="component"
 									icon={getAilmentIcon('Stun')}
 								/> damage.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Due to the increased raw damage from timed charges with <InlineTooltip
 									tooltip="Armor Skill"
 									text="Hiden"
@@ -552,13 +546,13 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 									icon={getItemIcon('Jewel')}
 								/>, you should aim for an overhead attack with the appropriate
 								attack ceiling from My Missions.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								You can dodge some very low-profile attacks with the leap from
 								the Level 5 charge.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -569,7 +563,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

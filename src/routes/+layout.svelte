@@ -4,6 +4,19 @@
 	import { setContext } from 'svelte';
 	import '../app.scss';
 	import ScrollToTop from './ScrollToTop.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+	import { themeTokens } from '$lib/client/themes/tokens';
+	import { cursorVars } from '$lib/client/themes/cursor';
+	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import type FlavorName from '@catppuccin/palette';
+	import {
+		getFlavorColors,
+		getCatppuccinFlavorFromTheme,
+	} from '$lib/client/themes/catppuccin';
+	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
+	import { onMount } from 'svelte';
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
@@ -78,10 +91,41 @@
 	setContext(cursorIconKey, cursorIconStore);
 	setContext(pushNotificationsKey, pushNotificationsStore);
 	setContext(notificationsKey, notificationsStore);
+
+	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
+
+	onMount(() => {
+		let themeValue = $carbonThemeStore;
+		let cssVarMap =
+			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+
+		let cursorValue = $cursorIconStore;
+		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+
+		// window.addEventListener('scroll', handleScroll);
+	});
+
+	//$inspect(tokens);
 </script>
+
+<Theme
+	bind:theme={$carbonThemeStore}
+	persist
+	persistKey="__carbon-theme"
+	{tokens}
+/>
 
 {@render children?.()}
 
 {#if $scrollToTopStore}
 	<ScrollToTop />
 {/if}
+
+<style lang="scss">
+</style>

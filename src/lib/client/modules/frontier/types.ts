@@ -17,7 +17,7 @@ import type {
 	FrontierWeaponStyle,
 } from 'ezlion';
 import type { wikiaMonsters } from './monsters';
-import type { ComponentType, SvelteComponent } from 'svelte';
+import type { Component } from 'svelte';
 import type { FrontierHabitat } from './habitat';
 
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
@@ -182,7 +182,7 @@ export type FrontierSlot = 0 | 1 | 2 | 3;
 export type FrontierArmor = {
 	id: FrontierArmorID;
 	name: FrontierArmorName | 'Set';
-	icon: ComponentType<SvelteComponent>;
+	icon: Component;
 };
 /**0 does not show. Shows in 2nd page. */
 export type FrontierArmorGRLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -200,7 +200,7 @@ export type FrontierWeapon = {
 	id: FrontierWeaponID;
 	name: FrontierWeaponName;
 	class: FrontierWeaponClass;
-	icon: ComponentType<SvelteComponent>;
+	icon: Component;
 	hiden: FrontierMaxHiden;
 	bloatAttackMultiplier: FrontierWeaponMultiplier;
 	statusAssaultPoison: number;
@@ -1050,7 +1050,7 @@ export type WycademyTrophy = {
 export type ProfilePinnedSet = {
 	setName: string;
 	setColor: string;
-	setIcon: string | undefined | ComponentType<SvelteComponent>;
+	setIcon: string | undefined | Component;
 	setIconProps?: {
 		currentMonster?: FrontierMonsterNameExpanded;
 		size?: string;

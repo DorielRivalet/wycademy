@@ -5,16 +5,10 @@
 -->
 
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
-	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount } from 'svelte';
-	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -29,7 +23,6 @@
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
 	const stickyHeaderStore = getContext(
 		Symbol.for('stickyHeader'),
 	) as Writable<boolean>;
@@ -37,31 +30,19 @@
 		Symbol.for('banner'),
 	) as Writable<boolean>;
 
-	interface Props {
-		data: LayoutData;
-		children?: import('svelte').Snippet;
-	}
-
-	let { data, children }: Props = $props();
+	export let data: LayoutData;
 
 	onMount(() => {
-		let themeValue = $carbonThemeStore;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
-		let cursorValue = $cursorIcon;
-		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
 		// Add event listener for scroll events
 		window.addEventListener('scroll', handleScroll);
 	});
 
+	$: bgClass =
+		getBackgroundImageClass($page.url.pathname) === 'none'
+			? 'none'
+			: $carbonThemeStore === 'g10'
+				? `background-light ${getBackgroundImageClass($page.url.pathname)}`
+				: `background ${getBackgroundImageClass($page.url.pathname)}`;
 
 	function getBackgroundImageClass(path: string) {
 		switch (path) {
@@ -88,6 +69,7 @@
 		}
 	}
 
+	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
 
@@ -104,27 +86,10 @@
 		}
 		lastScrollTop = currentScrollPos;
 	}
-	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
-	let bgClass =
-		$derived(getBackgroundImageClass($page.url.pathname) === 'none'
-			? 'none'
-			: $carbonThemeStore === 'g10'
-				? `background-light ${getBackgroundImageClass($page.url.pathname)}`
-				: `background ${getBackgroundImageClass($page.url.pathname)}`);
-	let headerClass;
-	run(() => {
-		headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
-	});
 </script>
 
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
 
-<Theme
-	bind:theme={$carbonThemeStore}
-	persist
-	persistKey="__carbon-theme"
-	{tokens}
-/>
 <div class="app">
 	<ViewTransition />
 	<div class={headerClass}>
@@ -139,20 +104,18 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				{#snippet actions()}
-							
-						<NotificationActionButton
-							on:click={() => goto('/support/website/development')}
-							>Learn more</NotificationActionButton
-						>
-					
-							{/snippet}
+				<svelte:fragment slot="actions">
+					<NotificationActionButton
+						on:click={() => goto('/support/website/development')}
+						>Learn more</NotificationActionButton
+					>
+				</svelte:fragment>
 			</InlineNotification>
 		{/if}
 	</div>
 	<div class={bgClass}>
 		<main>
-			{@render children?.()}
+			<slot />
 		</main>
 	</div>
 	{#key $page.url.pathname}

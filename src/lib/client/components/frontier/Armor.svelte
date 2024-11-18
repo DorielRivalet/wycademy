@@ -29,27 +29,19 @@
 		FrontierZenithSkill,
 	} from 'ezlion';
 
-	
 	/**TODO Whether to show transmog icon.*/
 	//export let transmog = true;
-
-	
 
 	// TODO ids
 
 	// page 2
-
-	
 
 	/**
 	 * TODO Set theme to light.
 	 */
 	// export let light = false;
 
-
 	// TODO
-
-
 
 	interface Props {
 		/** Truncated to 18 characters.*/
@@ -98,74 +90,74 @@
 		extraIcons = false,
 		currentPage = $bindable(1),
 		skillNames = [
-		'Blazing Grace',
-		'Strong Attack',
-		'Determination',
-		'Absolute Defense',
-		'Three Worlds Protection',
-	],
+			'Blazing Grace',
+			'Strong Attack',
+			'Determination',
+			'Absolute Defense',
+			'Three Worlds Protection',
+		],
 		skillPoints = [10, 20, -30, 40, 50],
 		armorType = 'Zenith',
 		automaticSkill = '',
 		decorations = {
-		slot1: {
-			name: 'Zindol BM GX1',
-			skill1: {
-				name: 'Blazing Grace',
-				points: 5,
+			slot1: {
+				name: 'Zindol BM GX1',
+				skill1: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill2: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill3: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill4: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
 			},
-			skill2: {
-				name: 'Blazing Grace',
-				points: 5,
+			slot2: {
+				name: 'Zindol BM GX1',
+				skill1: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill2: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill3: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill4: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
 			},
-			skill3: {
-				name: 'Blazing Grace',
-				points: 5,
-			},
-			skill4: {
-				name: 'Blazing Grace',
-				points: 5,
+			slot3: {
+				name: 'Zindol BM GX1',
+				skill1: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill2: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill3: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
+				skill4: {
+					name: 'Blazing Grace',
+					points: 5,
+				},
 			},
 		},
-		slot2: {
-			name: 'Zindol BM GX1',
-			skill1: {
-				name: 'Blazing Grace',
-				points: 5,
-			},
-			skill2: {
-				name: 'Blazing Grace',
-				points: 5,
-			},
-			skill3: {
-				name: 'Blazing Grace',
-				points: 5,
-			},
-			skill4: {
-				name: 'Blazing Grace',
-				points: 5,
-			},
-		},
-		slot3: {
-			name: 'Zindol BM GX1',
-			skill1: {
-				name: 'Blazing Grace',
-				points: 5,
-			},
-			skill2: {
-				name: 'Blazing Grace',
-				points: 5,
-			},
-			skill3: {
-				name: 'Blazing Grace',
-				points: 5,
-			},
-			skill4: {
-				name: 'Blazing Grace',
-				points: 5,
-			},
-		},
-	}
 	}: Props = $props();
 
 	function nextPage() {
@@ -208,9 +200,7 @@
 				<div class="header">
 					<div class="armor-icon-container">
 						<div class="armor-icon">
-							<SvelteComponent
-								{...iconProps}
-							/>
+							<SvelteComponent {...iconProps} />
 						</div>
 						<div class="armor-rank">
 							{#if rank === 'G'}
@@ -354,9 +344,7 @@
 				<div class="icon">
 					<div class="armor-icon-container">
 						<div class="armor-icon">
-							<SvelteComponent_1
-								{...iconProps}
-							/>
+							<SvelteComponent_1 {...iconProps} />
 						</div>
 						<div class="armor-rank">
 							{#if rank === 'G'}

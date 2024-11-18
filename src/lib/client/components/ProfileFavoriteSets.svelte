@@ -9,45 +9,49 @@
 		favoriteSets?: any;
 	}
 
-	let { favoriteSets = [
-		{
-			icon: LocationIcons.find((e) => e.name === 'Road')?.icon, // TODO?
-			title: "User 2's Set #3",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Bogabadorumu')?.icon,
-			title: "User 2's Set #3",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Howling Zinogre')?.icon,
-			title: "User 3's Set #2",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Duremudira')?.icon,
-			title: "User 4's Set #3",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Sparkling Zerureusu')
-				?.icon,
-			title: "User 5's Set #4",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Golden Deviljho')?.icon,
-			title: "User 6's Set #5",
-			link: '/',
-			totalFavorites: 0,
-		},
-	] }: Props = $props();
+	let {
+		favoriteSets = [
+			{
+				icon: LocationIcons.find((e) => e.name === 'Road')?.icon, // TODO?
+				title: "User 2's Set #3",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Bogabadorumu')?.icon,
+				title: "User 2's Set #3",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Howling Zinogre')
+					?.icon,
+				title: "User 3's Set #2",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Duremudira')?.icon,
+				title: "User 4's Set #3",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Sparkling Zerureusu')
+					?.icon,
+				title: "User 5's Set #4",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Golden Deviljho')
+					?.icon,
+				title: "User 6's Set #5",
+				link: '/',
+				totalFavorites: 0,
+			},
+		],
+	}: Props = $props();
 
 	const maxFavoritesToDisplay = 5;
 
@@ -78,9 +82,9 @@
 							color="var(--ctp-red)"
 						/>
 					</div>
-					<p>
+					<div>
 						{favoriteRun.totalFavorites}
-					</p>
+					</div>
 				</div>
 			</div>
 		</a>

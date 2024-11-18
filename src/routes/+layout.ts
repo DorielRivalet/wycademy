@@ -17,6 +17,7 @@ export const load: LayoutLoad = async ({ fetch, url, setHeaders }) => {
 		'/site-preferences': '/(app)/site-preferences',
 		'/overlay': '/(home)/overlay',
 		'/support': '/support',
+		'/support/external': '/support/(docs-full)/external',
 		'/support/external/websites': '/support/(docs-full)/external/websites',
 		'/support/overlay-documentation/architecture':
 			'/support/(docs-full)/overlay-documentation/architecture',

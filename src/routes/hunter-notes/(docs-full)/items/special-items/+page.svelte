@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
@@ -21,14 +21,14 @@
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
-	import type { ComponentType, SvelteComponent } from 'svelte';
+	import type { Component } from 'svelte';
 
 	// TODO page thumbnail
 
 	const specialItems: {
 		demo?: string;
 		item: string;
-		icon: ComponentType<SvelteComponent>;
+		icon: Component;
 		iconColor: string;
 		description: string;
 		source: string;
@@ -286,7 +286,9 @@
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
 
-	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
 </script>
 
 <Modal
@@ -305,9 +307,7 @@
 			{:else}
 				<div>
 					{#await import('$lib/player/Player.svelte') then { default: Player }}
-						<Player
-							{...{ title: modalHeading, src: modalImage }}
-						/>
+						<Player {...{ title: modalHeading, src: modalImage }} />
 					{/await}
 				</div>
 			{/if}
@@ -338,11 +338,11 @@
 	{/if}
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Special Items'} />
 		<div>
-			<p>
+			<div>
 				The following are items that either alter quest rewards when used or are
 				exclusive to <InlineTooltip
 					tooltip="Game"
@@ -352,7 +352,7 @@
 					text="Monster Hunter Frontier"
 					iconType="file"
 				/>, not found in the mainline games.
-			</p>
+			</div>
 			<div class="table table-with-scrollbar">
 				<DataTable
 					id="special-items-dom"
@@ -400,35 +400,33 @@
 						</div>
 					</Toolbar>
 					{#snippet cell({ cell })}
-									
-							{#if cell.key === 'item'}
-								<div class="special-item">
-									<InlineTooltip
-										text={cell.value}
-										tooltip="Item"
-										icon={specialItems.find((e) => e.item === cell.value)?.icon}
-										iconColor={specialItems.find((e) => e.item === cell.value)
-											?.iconColor}
-										iconType="component"
+						{#if cell.key === 'item'}
+							<div class="special-item">
+								<InlineTooltip
+									text={cell.value}
+									tooltip="Item"
+									icon={specialItems.find((e) => e.item === cell.value)?.icon}
+									iconColor={specialItems.find((e) => e.item === cell.value)
+										?.iconColor}
+									iconType="component"
+								/>
+								{#if specialItems.find((e) => e.item === cell.value)?.demo !== undefined}
+									<Button
+										on:click={() => changeModal(cell, 'Special Items')}
+										size="small"
+										icon={Image}
+										iconDescription="Demo"
+										kind="ghost"
 									/>
-									{#if specialItems.find((e) => e.item === cell.value)?.demo !== undefined}
-										<Button
-											on:click={() => changeModal(cell, 'Special Items')}
-											size="small"
-											icon={Image}
-											iconDescription="Demo"
-											kind="ghost"
-										/>
-									{/if}
-								</div>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						
-									{/snippet}
+								{/if}
+							</div>
+						{:else}
+							<div>{cell.value}</div>
+						{/if}
+					{/snippet}
 				</DataTable>
 			</div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Large Lucky Charm"
 					tooltip="Item"
@@ -449,7 +447,7 @@
 					iconType="component"
 				/> effects stack. If you use all of them in a quest, one of each will be
 				consumed per quest.
-			</p>
+			</div>
 			<CenteredFigure
 				width={'100%'}
 				type="file"
@@ -462,7 +460,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

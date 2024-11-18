@@ -8029,6 +8029,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 		],
 	},
 	{
+		// TODO other styles
 		name: 'Tonfa',
 		sections: [
 			{

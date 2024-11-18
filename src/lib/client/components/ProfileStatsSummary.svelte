@@ -5,7 +5,7 @@
 	import BookIconWhite from './frontier/icon/item/Book_Icon_White.svelte';
 	import MapIconWhite from './frontier/icon/item/Map_Icon_White.svelte';
 	import '@carbon/charts-svelte/styles.css';
-	import { onMount, type ComponentType } from 'svelte';
+	import { onMount, type Component } from 'svelte';
 	import {
 		type GaugeChart,
 		type MeterChart,
@@ -21,7 +21,6 @@
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-
 
 	interface Props {
 		huntCount?: any;
@@ -48,7 +47,7 @@
 		obtainedAchievementsRank = Math.trunc(Math.random() * 1000),
 		obtainedAchievementsRankPercent = Math.trunc(Math.random() * 100),
 		titlesRank = Math.trunc(Math.random() * 1000),
-		titlesRankPercent = Math.trunc(Math.random() * 100)
+		titlesRankPercent = Math.trunc(Math.random() * 100),
 	}: Props = $props();
 
 	function randomChoice(arr: any[]) {
@@ -126,9 +125,9 @@
 		},
 	];
 
-	let achievementsMeter: ComponentType<MeterChart> = $state();
+	let achievementsMeter: Component<MeterChart> = $state();
 	let achievementsMeterLoaded = $state(false);
-	let titlesGauge: ComponentType<GaugeChart> = $state();
+	let titlesGauge: Component<GaugeChart> = $state();
 	let titlesGaugeLoaded = $state(false);
 
 	let achievementsMeterOptions = $derived({
@@ -155,11 +154,9 @@
 		theme: $carbonThemeStore,
 	} as MeterChartOptions);
 
-	let titlesGaugeColor = $derived(getGaugeColor(
-		$carbonThemeStore,
-		obtainedTitles,
-		totalTitles,
-	));
+	let titlesGaugeColor = $derived(
+		getGaugeColor($carbonThemeStore, obtainedTitles, totalTitles),
+	);
 
 	let titlesGaugeOptions = $derived({
 		theme: $carbonThemeStore,
@@ -189,7 +186,7 @@
 
 <div class="stats-summary">
 	<div class="chart-container achievements">
-		<p>
+		<div>
 			<InlineTooltip
 				text="Achievements: "
 				icon={TrophyWhite}
@@ -200,7 +197,7 @@
 				>{obtainedAchievements}/{totalAchievements} (Rank #{obtainedAchievementsRank},
 				Top {obtainedAchievementsRankPercent}%)</a
 			>
-		</p>
+		</div>
 		<div class="meter">
 			{#if achievementsMeterLoaded}
 				{@const SvelteComponent = achievementsMeter}
@@ -214,7 +211,7 @@
 		</div>
 	</div>
 	<div class="chart-container titles">
-		<p>
+		<div>
 			<InlineTooltip
 				text="Titles: "
 				icon={BookIconWhite}
@@ -224,7 +221,7 @@
 			<a href="/"
 				>{obtainedTitles}/{totalTitles} (Rank #{titlesRank}, Top {titlesRankPercent}%)</a
 			>
-		</p>
+		</div>
 		<div class="gauge">
 			{#if titlesGaugeLoaded}
 				{@const SvelteComponent_1 = titlesGauge}
@@ -238,7 +235,7 @@
 		</div>
 	</div>
 	<div class="total-hunts">
-		<p>
+		<div>
 			<InlineTooltip
 				icon={getItemIcon('Ticket')}
 				tooltip="Quests"
@@ -246,14 +243,14 @@
 			/><a href="/"
 				>{huntCount} (Rank #{huntCountRank}, Top {huntCountRankPercent}%)</a
 			>
-		</p>
+		</div>
 	</div>
 	<div class="server">
-		<p>
+		<div>
 			<InlineTooltip icon={MapIconWhite} tooltip="Server" text={'Server: '} /><a
 				href="/">{randomChoice(playerServers)}</a
 			>
-		</p>
+		</div>
 	</div>
 </div>
 

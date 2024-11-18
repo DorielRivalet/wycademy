@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
@@ -66,19 +66,19 @@
 		rarity: rarity,
 	};
 
-	let selectedWeaponTypeId = $derived(WeaponTypes.find(
-		(e) => e.name == selectedWeaponType,
-	)?.id);
+	let selectedWeaponTypeId = $derived(
+		WeaponTypes.find((e) => e.name == selectedWeaponType)?.id,
+	);
 
-	let filteredSharpnessTables = $derived(sharpnessTables.filter(
-		(e) => e.weaponType === selectedWeaponTypeId,
-	));
+	let filteredSharpnessTables = $derived(
+		sharpnessTables.filter((e) => e.weaponType === selectedWeaponTypeId),
+	);
 
 	let multipleChoiceItems: MultipleChoiceItem[] =
 		questionBank.find((e) => e.category === 'Weapons Overview')?.items || [];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Overview'} />
 		<section>
@@ -260,29 +260,27 @@
 							</div>
 						</Toolbar>
 						{#snippet cell({ cell })}
-											
-								{#if cell.key === 'weapon'}
-									<InlineTooltip
-										text={cell.value}
-										tooltip={'Weapon'}
-										icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
-									/>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							
-											{/snippet}
+							{#if cell.key === 'weapon'}
+								<InlineTooltip
+									text={cell.value}
+									tooltip={'Weapon'}
+									icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+								/>
+							{:else}
+								<div>{cell.value}</div>
+							{/if}
+						{/snippet}
 					</DataTable>
 				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Sharpness" />
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The multiplier applies to both raw and element. The status multiplier is
 				1. On attack bounce, the bounce multiplier is applied instead of the
 				main multiplier.
-			</p>
+			</div>
 			<div class="table">
 				<DataTable
 					title="Weapon Sharpness Multipliers"
@@ -436,19 +434,17 @@
 					</Toolbar>
 
 					{#snippet cell({ cell })}
-									
-							{#if cell.key === 'bar'}
-								<div class="sharpness-bar-container">
-									<SharpnessBar
-										sharpnessBoost={false}
-										sharpnessValues={getSharpnessArray(cell.value)}
-									/>
-								</div>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						
-									{/snippet}
+						{#if cell.key === 'bar'}
+							<div class="sharpness-bar-container">
+								<SharpnessBar
+									sharpnessBoost={false}
+									sharpnessValues={getSharpnessArray(cell.value)}
+								/>
+							</div>
+						{:else}
+							<div>{cell.value}</div>
+						{/if}
+					{/snippet}
 				</DataTable>
 			</div>
 			<div class="table table-with-scrollbar">
@@ -464,18 +460,16 @@
 					rows={filteredSharpnessTables}
 				>
 					{#snippet title()}
-										{@const SvelteComponent = selectedWeaponIcon}
-					<span >
+						{@const SvelteComponent = selectedWeaponIcon}
+						<span>
 							<div class="data-table-title">
 								<div class="weapon-icon">
-									<SvelteComponent
-										{...selectedWeaponIconProps}
-									/>
+									<SvelteComponent {...selectedWeaponIconProps} />
 								</div>
 								<div>{selectedWeaponType} Sharpness Tables</div>
 							</div>
 						</span>
-									{/snippet}
+					{/snippet}
 					<Toolbar
 						><div class="toolbar">
 							<Dropdown
@@ -513,26 +507,24 @@
 					</Toolbar>
 
 					{#snippet cell({ cell })}
-									
-							{#if cell.key === 'sharpnessTable'}
-								<div class="sharpness-bar-container">
-									<SharpnessBar
-										sharpnessBoost={false}
-										sharpnessValues={cell.value}
-									/>
-								</div>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						
-									{/snippet}
+						{#if cell.key === 'sharpnessTable'}
+							<div class="sharpness-bar-container">
+								<SharpnessBar
+									sharpnessBoost={false}
+									sharpnessValues={cell.value}
+								/>
+							</div>
+						{:else}
+							<div>{cell.value}</div>
+						{/if}
+					{/snippet}
 				</DataTable>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Quiz" />
 			<div>
-				<p>
+				<div>
 					You've reached the end of the page! Let's assess what you've just
 					learned.
 				</p>
@@ -548,7 +540,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 {#if showConfetti}
 	<div

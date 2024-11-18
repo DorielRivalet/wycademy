@@ -6,18 +6,19 @@
 		profileViews?: number;
 	}
 
-	let { date = '2024-01-25 01:03:37.2746702Z', profileViews = 1000 }: Props = $props();
+	let { date = '2024-01-25 01:03:37.2746702Z', profileViews = 1000 }: Props =
+		$props();
 	const dateJoined = format(new Date(date), 'dd/MM/yyyy');
 </script>
 
 <div class="container">
 	<div>
-		<p><strong>Join Date:</strong></p>
-		<p>{dateJoined}</p>
+		<div><strong>Join Date:</strong></div>
+		<div>{dateJoined}</div>
 	</div>
 	<div>
-		<p><strong>Profile Views:</strong></p>
-		<p>{profileViews}</p>
+		<div><strong>Profile Views:</strong></div>
+		<div>{profileViews}</div>
 	</div>
 </div>
 

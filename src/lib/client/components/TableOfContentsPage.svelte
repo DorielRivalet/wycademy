@@ -21,7 +21,6 @@ Also for Tools pages
 
 	let tocVisible = $state($tocEnabledStore);
 
-	
 	interface Props {
 		/**Whether to render the TOC on this page*/
 		displayTOC?: boolean;
@@ -62,7 +61,7 @@ Also for Tools pages
 		<div in:fade={{ duration: 150 }}>
 			<Toc blurParams={{ duration: 0 }} --toc-desktop-sticky-top={'10vh'}>
 				{#snippet title()}
-								<span >
+					<span>
 						{#if $breakpointLargerThanMedium}
 							<h2 class="toc-title toc-exclude">
 								<span
@@ -81,7 +80,7 @@ Also for Tools pages
 							<h2 class="toc-title toc-exclude">On this page</h2>
 						{/if}
 					</span>
-							{/snippet}
+				{/snippet}
 			</Toc>
 		</div>
 	{/if}

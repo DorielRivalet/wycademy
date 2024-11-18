@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, type ComponentType } from 'svelte';
+	import { onMount, type Component } from 'svelte';
 	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
@@ -15,7 +15,7 @@
 	} from '@carbon/charts-svelte';
 	import type { OverlayHuntRank } from '../modules/frontier/types';
 
-	let chart: ComponentType<RadarChart> = $state();
+	let chart: Component<RadarChart> = $state();
 
 	// Type definition
 	type Hunt = {
@@ -23,8 +23,6 @@
 		rankName: OverlayHuntRank;
 		objectiveName: string;
 	};
-
-
 
 	// Original data
 	const hunts: Hunt[] = [
@@ -516,7 +514,11 @@
 		totalHuntsRankPercent?: any;
 	}
 
-	let { theme, totalHuntsRank = Math.trunc(Math.random() * 1000), totalHuntsRankPercent = Math.trunc(Math.random() * 100) }: Props = $props();
+	let {
+		theme,
+		totalHuntsRank = Math.trunc(Math.random() * 1000),
+		totalHuntsRankPercent = Math.trunc(Math.random() * 100),
+	}: Props = $props();
 	let chartOptions = $derived({
 		title: 'Quests overview',
 		radar: {
@@ -550,14 +552,14 @@
 	{:else}
 		{@const SvelteComponent = chart}
 		<div class="calendar-container">
-			<p>
+			<div>
 				<strong>Total quests completed: </strong>
 				<a href="/">
 					{hunts.length} (Rank #{totalHuntsRank}, Top {totalHuntsRankPercent}%)</a
 				>
 			</p>
 			<span class="year-dropdown-container">
-				<p>
+				<div>
 					{huntCount}
 					{huntCount === 1 ? 'quest' : 'quests'} completed in
 				</p>
@@ -660,13 +662,10 @@
 				</div>
 				<div class="overview-graph-container">
 					<div class="overview-graph">
-						<SvelteComponent
-							data={chartData}
-							options={chartOptions}
-						/>
+						<SvelteComponent data={chartData} options={chartOptions} />
 					</div>
 					<div class="comparison">
-						<p>Compare with user:</p>
+						<div>Compare with user:</div>
 						<Dropdown
 							type="inline"
 							light={true}

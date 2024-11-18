@@ -6,7 +6,7 @@
 	import NextOutline from 'carbon-icons-svelte/lib/NextOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import '@carbon/charts-svelte/styles.css';
-	import { createEventDispatcher, onMount, type ComponentType } from 'svelte';
+	import { createEventDispatcher, onMount, type Component } from 'svelte';
 	import {
 		type GaugeChart,
 		type GaugeChartOptions,
@@ -186,7 +186,7 @@
 	let currentItemIndex = $state(0);
 	let currentScore = $state(0);
 
-	let resultsGauge: ComponentType<GaugeChart> = $state();
+	let resultsGauge: Component<GaugeChart> = $state();
 	let resultsGaugeLoaded = $state(false);
 
 	let currentAnswer:
@@ -197,10 +197,6 @@
 		| boolean[]
 		| [string, string][] = $state([]);
 
-
-
-
-
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
 		resultsGauge = charts.GaugeChart;
@@ -209,11 +205,9 @@
 		randomizeCurrentOptions(); // Shuffle options for the first item
 	});
 	let maxScore = $derived(items.length);
-	let resultsGaugeColor = $derived(getGaugeColor(
-		$carbonThemeStore,
-		currentScore,
-		maxScore,
-	));
+	let resultsGaugeColor = $derived(
+		getGaugeColor($carbonThemeStore, currentScore, maxScore),
+	);
 	let resultsGaugeOptions = $derived({
 		theme: $carbonThemeStore,
 		resizable: true,
@@ -244,7 +238,7 @@
 	<div class="category">
 		<div class="name">
 			<Book size={32} />
-			<p>{category}</p>
+			<div>{category}</div>
 		</div>
 	</div>
 	<ProgressIndicator preventChangeOnClick currentIndex={currentItemIndex}>
@@ -256,7 +250,7 @@
 		<div class="items">
 			<!--true/false-->
 			{#if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === undefined && currentItem.options === null && typeof currentItem.solutions === 'boolean' && typeof currentItem.stem === 'string'}
-				<p class="spaced-paragraph">{currentItem.stem}</p>
+				<div class="spaced-paragraph">{currentItem.stem}</div>
 				<RadioButtonGroup
 					required={true}
 					orientation="vertical"
@@ -268,9 +262,9 @@
 				</RadioButtonGroup>
 				<!--multiple-->
 			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === undefined && isArray(currentItem.options) && isArray(currentItem.solutions) && typeof currentItem.stem === 'string'}
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					{currentItem.stem} Select all that apply.
-				</p>
+				</div>
 
 				{#each currentItem.options as option}
 					<Checkbox
@@ -281,7 +275,7 @@
 				{/each}
 				<!--single-->
 			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === undefined && isArray(currentItem.options) && typeof currentItem.stem === 'string'}
-				<p class="spaced-paragraph">{currentItem.stem}</p>
+				<div class="spaced-paragraph">{currentItem.stem}</div>
 				<RadioButtonGroup
 					required={true}
 					orientation="vertical"
@@ -297,9 +291,9 @@
 				</RadioButtonGroup>
 				<!--best answer-->
 			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === 'best answer' && isArray(currentItem.options) && typeof currentItem.stem === 'string'}
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					{currentItem.stem} Select the best answer.
-				</p>
+				</div>
 				<RadioButtonGroup
 					required={true}
 					orientation="vertical"
@@ -322,9 +316,9 @@
 						icon={Information}
 						align="start"
 					/>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						{currentItem.stem}
-					</p>
+					</div>
 				</div>
 				<MatchItem
 					options={currentItem.options}
@@ -332,19 +326,19 @@
 				/>
 				<!--ranking-->
 			{:else if currentItem !== undefined && currentItem.format === 'ranking'}
-				<p class="spaced-paragraph">{currentItem.stem}</p>
+				<div class="spaced-paragraph">{currentItem.stem}</div>
 				<RankingItem
 					items={currentItem.options}
 					on:change={(e) => (currentAnswer = e.detail.items)}
 				/>
 			{:else}
-				<p></p>
+				<div></div>
 			{/if}
 		</div>
 	{:else}
-		<p>
+		<div>
 			You completed the quiz! Your final score is: {currentScore}/{maxScore}
-		</p>
+		</div>
 		<div class="gauge-container">
 			<div class="gauge">
 				{#if resultsGaugeLoaded}
@@ -359,9 +353,9 @@
 			</div>
 		</div>
 		{#if currentScore === maxScore}
-			<p>Congratulations! You've obtained the perfect score.</p>
+			<div>Congratulations! You've obtained the perfect score.</div>
 		{/if}
-		<p>Would you like to retry?</p>
+		<div>Would you like to retry?</div>
 	{/if}
 	<div>
 		{#if currentItemIndex + 1 < items.length}

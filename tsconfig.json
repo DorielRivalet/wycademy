@@ -15,6 +15,8 @@
 		"noImplicitReturns": true,
 		"noUnusedLocals": true,
 		"moduleResolution": "Bundler"
+		// "include": ["src/**/*"],
+		// "exclude": ["node_modules/*"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

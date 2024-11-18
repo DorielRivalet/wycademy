@@ -20,9 +20,9 @@
 	});
 </script>
 
-<div class="number-ticker">
+<p class="number-ticker">
 	{$num.toFixed(0)}+
-</div>
+</p>
 
 <style lang="scss">
 	.number-ticker {

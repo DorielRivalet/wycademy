@@ -382,7 +382,7 @@
 						};
 					})}
 					bind:selectedIds={selectedElements}
-					
+
 				>
 					{#snippet children({ item })}
 										<InlineTooltip
@@ -405,7 +405,7 @@
 						};
 					})}
 					bind:selectedIds={selectedAilments}
-					
+
 				>
 					{#snippet children({ item })}
 										<InlineTooltip
@@ -428,7 +428,7 @@
 						};
 					})}
 					bind:selectedIds={selectedHabitats}
-					
+
 				>
 					{#snippet children({ item })}
 										<InlineTooltip
@@ -458,7 +458,7 @@
 				labelText="Order"
 				bind:toggled={orderAscending}
 			/>
-			<p>Results: {currentMonsters.length}</p>
+			<div>Results: {currentMonsters.length}</div>
 		</div>
 		{#if contextSwitcherIndex === 0}
 			{#if currentMonsters.length > 0}
@@ -511,8 +511,8 @@
 					{/each}
 				</div>
 			{:else}
-				<p><strong>No monsters found</strong></p>
-				<p>
+				<div><strong>No monsters found</strong></div>
+				<div>
 					Try adjusting your search or filter options to find what you're
 					looking for.
 				</p>
@@ -589,7 +589,7 @@
 						</div>
 					</Toolbar>
 					{#snippet cell({ cell })}
-											
+
 							{#if cell.key === 'name'}
 								<Link
 									href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(cell.value)?.displayName ?? '', { lower: true })}`}
@@ -602,7 +602,7 @@
 									/></Link
 								>
 							{:else if cell.key === 'titles'}
-								<p>{cell.value.replaceAll(',', ', ')}</p>
+								<div>{cell.value.replaceAll(',', ', ')}</div>
 							{:else if cell.key === 'ailments'}
 								{#each [...cell.value.split(',')] as ailment}
 									<div class="table-inline-tooltip">
@@ -668,15 +668,15 @@
 									</div>
 								{/each}
 							{:else}
-								<p>{cell.value}</p>
+								<div>{cell.value}</div>
 							{/if}
-						
+
 											{/snippet}
 				</DataTable>
 			</div>
 		{:else}
-			<p><strong>No monsters found</strong></p>
-			<p>
+			<div><strong>No monsters found</strong></div>
+			<div>
 				Try adjusting your search or filter options to find what you're looking
 				for.
 			</p>

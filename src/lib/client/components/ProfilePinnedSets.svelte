@@ -296,7 +296,7 @@
 											/></span
 										>
 																	{/snippet}
-									<p>{armorSet.setName}</p></Tooltip
+									<div>{armorSet.setName}</div></Tooltip
 								>
 							{:else}
 								<div class="set-header-image">
@@ -312,7 +312,7 @@
 												/></span
 											>
 																			{/snippet}
-										<p>{armorSet.setName}</p></Tooltip
+										<div>{armorSet.setName}</div></Tooltip
 									>
 								</div>
 							{/if}
@@ -511,37 +511,37 @@
 						</div>
 					{/each}
 				</div>
-				<p>
+				<div>
 					<strong
 						>{selectedArmorSet.weaponName} | {selectedArmorSet.style}</strong
 					>
 				</p>
-				<p>
+				<div>
 					{selectedArmorSet.weaponSlot1} | {selectedArmorSet.weaponSlot2} | {selectedArmorSet.weaponSlot3}
-				</p>
-				<p><strong>{selectedArmorSet.head}</strong></p>
-				<p>
+				</div>
+				<div><strong>{selectedArmorSet.head}</strong></div>
+				<div>
 					{selectedArmorSet.headSlot1} | {selectedArmorSet.headSlot2} | {selectedArmorSet.headSlot3}
-				</p>
-				<p><strong>{selectedArmorSet.chest}</strong></p>
-				<p>
+				</div>
+				<div><strong>{selectedArmorSet.chest}</strong></div>
+				<div>
 					{selectedArmorSet.chestSlot1} | {selectedArmorSet.chestSlot2} | {selectedArmorSet.chestSlot3}
-				</p>
-				<p><strong>{selectedArmorSet.arms}</strong></p>
-				<p>
+				</div>
+				<div><strong>{selectedArmorSet.arms}</strong></div>
+				<div>
 					{selectedArmorSet.armsSlot1} | {selectedArmorSet.armsSlot2} | {selectedArmorSet.armsSlot3}
-				</p>
-				<p><strong>{selectedArmorSet.waist}</strong></p>
-				<p>
+				</div>
+				<div><strong>{selectedArmorSet.waist}</strong></div>
+				<div>
 					{selectedArmorSet.waistSlot1} | {selectedArmorSet.waistSlot2} | {selectedArmorSet.waistSlot3}
-				</p>
-				<p><strong>{selectedArmorSet.legs}</strong></p>
-				<p>
+				</div>
+				<div><strong>{selectedArmorSet.legs}</strong></div>
+				<div>
 					{selectedArmorSet.legsSlot1} | {selectedArmorSet.legsSlot2} | {selectedArmorSet.legsSlot3}
-				</p>
-				<p>
+				</div>
+				<div>
 					<strong>{selectedArmorSet.cuff1} | {selectedArmorSet.cuff2}</strong>
-				</p>
+				</div>
 				<!---TODO: Armor skills etc-->
 			</div>
 		</div>

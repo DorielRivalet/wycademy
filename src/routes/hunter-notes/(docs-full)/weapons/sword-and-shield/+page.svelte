@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -202,11 +202,11 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Sword and Shield'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					tooltip="Weapon"
 					text="Sword and Shield"
@@ -216,7 +216,7 @@
 				use items with the weapon unsheathed, and overall high mobility.
 			</p>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				While its raw damage output is lower due to modest motion values, the
 				rapid attack speed makes it highly effective when paired with elemental
 				or status-based weapons. To use the <InlineTooltip
@@ -228,7 +228,7 @@
 				is key to maximizing its potential.
 			</p>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Several attacks with the <InlineTooltip
 					tooltip="Weapon"
 					text="Sword and Shield"
@@ -243,7 +243,7 @@
 				However, this is often impractical in most situations.
 			</p>
 
-			<p>
+			<div>
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -257,7 +257,7 @@
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p>
+					<div>
 						<strong>Earth Style</strong> is the core style for <InlineTooltip
 							tooltip="Weapon"
 							text="Sword and Shield"
@@ -274,7 +274,7 @@
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p>
+					<div>
 						<strong>Heaven Style</strong> swaps the horizontal slash for a Jump
 						Slash with a motion value of 23･20. This move is especially
 						effective for hitting tails, particularly with longer <InlineTooltip
@@ -292,7 +292,7 @@
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p>
+					<div>
 						<strong>Storm Style</strong> retains the quick side hops and Jump Slash
 						from Heaven Style but replaces the standard combo with a series of Thrust
 						Attacks. These thrusts are unique in that they carry a 140% elemental
@@ -306,7 +306,7 @@
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> builds on the Heaven Style
 						foundation, keeping the side hops and Jump Slash while adding the
 						Earth Style horizontal attack and introducing new moves that offer
@@ -317,7 +317,7 @@
 							iconType="component"
 						/> users can run with the weapon unsheathed in this style.
 					</p>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						In Extreme Style, <InlineTooltip
 							tooltip="Weapon"
 							text="Sword and Shield"
@@ -336,7 +336,7 @@
 							iconType="component"
 						/> damage.
 					</p>
-					<p>
+					<div>
 						Finally, Extreme Style introduces an Evade Slash, allowing you to
 						evade while attacking. This can be integrated into combo strings or
 						followed by a hop to continue evading. The Evade Slash has a motion
@@ -354,7 +354,7 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>x1.2 Status and Element (internal).</p>
+					<div>x1.2 Status and Element (internal).</div>
 				</div>
 			</section>
 
@@ -389,14 +389,12 @@
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-											
-								{#if cell.value[0] == '-'}
-									<p style:color="var(--ctp-red)">{cell.value}</p>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							
-											{/snippet}
+							{#if cell.value[0] == '-'}
+								<p style:color="var(--ctp-red)">{cell.value}</p>
+							{:else}
+								<div>{cell.value}</div>
+							{/if}
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -435,19 +433,17 @@
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'skill'}
-										<InlineTooltip
-											text={cell.value}
-											tooltip="Armor Skill"
-											iconType="component"
-											icon={getItemIcon('Jewel')}
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'skill'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Armor Skill"
+										iconType="component"
+										icon={getItemIcon('Jewel')}
+									/>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -486,24 +482,22 @@
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'sigil'}
-										<InlineTooltip
-											text={cell.value}
-											tooltip="Sigil"
-											iconType="component"
-											icon={getItemIcon('Sigil')}
-										/>
-									{:else if cell.key === 'rating'}
-										<StarRating
-											rating={Number.parseFloat(cell.value)}
-											maxRating={3}
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'sigil'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Sigil"
+										iconType="component"
+										icon={getItemIcon('Sigil')}
+									/>
+								{:else if cell.key === 'rating'}
+									<StarRating
+										rating={Number.parseFloat(cell.value)}
+										maxRating={3}
+									/>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -514,7 +508,7 @@
 				<div>
 					<UnorderedList>
 						<ListItem
-							><p>
+							><div>
 								The slide attack offers a few invincibility frames (~9 with
 								<InlineTooltip
 									tooltip="Armor Skill"
@@ -522,17 +516,17 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>) and can end with a 180° turning slash.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Long length is generally a straightforward upgrade due to its
 								increased reach. Very Long is viable if you're focusing on
 								Roundslash spam but may require some spacing management.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Sword and Shield"
@@ -545,10 +539,10 @@
 									icon={getLocationIcon('Transcend')}
 								/>
 								burst attack.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								You can technically customize a <InlineTooltip
 									tooltip="Buff"
 									text="Transcend"
@@ -560,33 +554,33 @@
 									iconType="component"
 									icon={getItemIcon('Sword Crystal')}
 								/> compatibility from the Hiden skill.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Shield attacks deal impact damage and can stun, but they use
 								white sharpness at best.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								The vacuum slash adds an extra hit to the roundslash without
 								hitlag or sharpness cost. It's not as significant today, but
 								still useful.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Using items while unsheathed resets <InlineTooltip
 									tooltip="Armor Skill"
 									text="Rush"
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> mode.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								This weapon type is very useful in <InlineTooltip
 									tooltip="Location"
 									text="Hunter's Road"
@@ -598,10 +592,10 @@
 									iconType="component"
 									icon={getStatusIcon('Paralysis')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Notably, some speedrunners have found success by dropping
 								<InlineTooltip
 									tooltip="Armor Skill"
@@ -609,10 +603,10 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> to reduce hitlag.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Sword and Shield’s"
@@ -631,7 +625,7 @@
 									iconColor={getItemColor('Red')}
 									icon={getItemIcon('Jewel')}
 								/>, maintaining it until you get knocked back.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -642,7 +636,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

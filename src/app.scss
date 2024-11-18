@@ -4,6 +4,8 @@
  * found in the LICENSE file.
  */
 @use '@carbon/motion' as motion;
+@use '@carbon/type' as type;
+
 @import '$lib/client/styles/catppuccin.css';
 
 /* TODO: sass for optimization. but only when i know every component im going to use.*/
@@ -298,6 +300,11 @@ body.wait * {
 
 .spaced-paragraph {
 	margin-bottom: 1rem;
+	@include type.type-style('body-02');
+}
+
+.paragraph-long-02 {
+	@include type.type-style('body-02');
 }
 
 .spaced-list {
@@ -358,7 +365,9 @@ body.wait * {
 	overflow: auto;
 }
 
-p {
+p,
+.spaced-paragraph,
+.paragraph-long-02 {
 	max-width: 96ch;
 }
 

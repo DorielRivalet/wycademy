@@ -18,7 +18,7 @@
 	} from '$lib/client/modules/frontier/achievement';
 	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
-	import { Canvas } from '@threlte/core';
+	// import { Canvas } from '@threlte/core';
 	import RotatingCard from '$lib/client/components/scenes/RotatingCard.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Head from '$lib/client/components/Head.svelte';
@@ -133,7 +133,7 @@
 	<h1>Achievements</h1>
 	<hr />
 	<div class="summary">
-		<p>
+		<div class="paragraph-long-02">
 			There are currently {totalObtainableAchievementsCount} obtainable overlay achievements,
 			of which {obtainableSecretTrophies.length} are <InlineTooltip
 				icon={TrophySecret}
@@ -141,7 +141,7 @@
 				text="secret"
 				tooltip="Trophy"
 			/>.
-		</p>
+		</div>
 		<p>
 			Below is a list of all achievements from the overlay. The trophy numbers
 			denote the total amount of hunters that obtained that achievement, over
@@ -179,8 +179,8 @@
 				autocomplete={'on'}
 			/>
 			<div class="progress-text">
-				<p>Progress</p>
-				<p>00.00%</p>
+				<div>Progress</div>
+				<div>00.00%</div>
 			</div>
 			<div class="progress-bar">
 				<ProgressBar
@@ -192,14 +192,14 @@
 			</div>
 		</div>
 		<div class="preview">
-			<Canvas>
+			<!-- <Canvas>
 				{#key achievementSelected}
 					<RotatingCard
 						frontImage={achievementSelected.Image}
 						backImage={getAchievementImage(achievementSelected.Rank)}
 					/>
 				{/key}
-			</Canvas>
+			</Canvas> -->
 		</div>
 		<div class="info">
 			<img

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
@@ -11,41 +11,41 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Copyright'} />
 		<section>
 			<SectionHeading level={2} title="Overview" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					This document, or page, aims to clarify the state of copyright and the
 					legal basis for the content hosted on this website. Its purposes are:
-				</p>
+				</div>
 				<OrderedList class="spaced-list">
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							<strong>Transparency</strong>: To demonstrate our commitment to
 							respecting intellectual property rights and adhering to
 							open-source principles, particularly under the MIT license.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							<strong>Clarification</strong>: To clearly state the legal basis
 							for the content on this site, emphasizing that our works are
 							original, and to address and refute any meritless claims made by
 							other parties, with explanations as to how and why this is the
 							case.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							<strong>Defensive Measure</strong>: In instances where
 							misinformation is spread about our works, this document serves as
 							a clear, well-documented statement that can counteract such
 							misinformation and provide a reference point for those who might
 							be misled.
-						</p></ListItem
+						</div></ListItem
 					>
 				</OrderedList>
 			</div>
@@ -81,7 +81,7 @@
 								The above copyright notice and this permission notice shall be
 								included in all copies or substantial portions of the Software.
 							</p>
-							<p class="spaced-paragraph">
+							<p>
 								THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 								EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 								OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -189,7 +189,7 @@
 						title="Examples of Undesired Behavior or Actions"
 					/>
 					<div>
-						<UnorderedList>
+						<UnorderedList class="spaced-list">
 							<ListItem>
 								<p>
 									<strong>Watermarking Capcom Icons</strong>: Placing a
@@ -256,7 +256,7 @@
 								href="/tools/generator/icon">Icon Generator.</Link
 							>
 						</p>
-						<UnorderedList>
+						<UnorderedList class="spaced-list">
 							<ListItem
 								><p>
 									<strong>False Claims About Our Work</strong>: Accusations that
@@ -346,13 +346,13 @@
 				<section>
 					<SectionHeading level={3} title="Disclaimer" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							If you have any claims or issues related to copyright infringement
 							or other intellectual property concerns regarding content on this
 							website, please direct them to us for resolution. We are committed
 							to addressing any valid concerns and ensuring that our work
 							remains compliant with all applicable laws and regulations.
-						</p>
+						</div>
 						<p class="spaced-paragraph">
 							However, please be aware that in most cases, a copyright claim
 							should be submitted by the copyright owner or an authorized agent
@@ -374,13 +374,13 @@
 		<section>
 			<SectionHeading level={2} title="Closing Notes" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					We hope this document clarifies our stance on copyright and
 					intellectual property. If you want to learn more about our philosophy
 					and goals, please visit <Link inline href="/support/website/about"
 						>our About page.</Link
 					>
-				</p>
+				</div>
 			</div>
 		</section>
 
@@ -388,7 +388,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	@use '@carbon/type';

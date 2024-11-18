@@ -18,7 +18,7 @@
 </script>
 
 <div class="true-raw-converter">
-	<p>Attack Display Value to True Raw Converter:</p>
+	<div>Attack Display Value to True Raw Converter:</div>
 	<div class="flex-row-centered">
 		{#if showWeapon}
 			<Dropdown
@@ -55,7 +55,7 @@
 				label={'Weapon Attack Display Value'}
 			/>
 		</div>
-		<p>
+		<div>
 			True Raw: {Math.floor(
 				value /
 					(WeaponTypes.find((e) => e.name === weaponType)

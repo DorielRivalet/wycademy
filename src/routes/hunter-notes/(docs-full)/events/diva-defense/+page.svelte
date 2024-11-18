@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
@@ -24,20 +24,20 @@
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Diva Defense'} />
 		<section>
 			<SectionHeading level={2} title="Diva Skills" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					<strong>Diva Skills</strong>, also known as
 					<strong>GCP skills</strong>, work similarly to other external skill
 					sources, such as Guild Food or Exotic Armors. They do not use any of
 					your maximum skill slots. Instead, you purchase the skill you want,
 					and it will be available for a certain number of quests based on the
 					quantity purchased.
-				</p>
+				</div>
 				<CenteredFigure
 					width={'100%'}
 					type="file"
@@ -45,7 +45,7 @@
 					alt="Diva Skills Menu"
 					figcaption="Diva Skills menu, found in Diva Defense -> View, Claim rewards -> GCP Exchange -> Exchange (Skills)."
 				/>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					It’s important to note that you can typically queue up only one skill
 					type at a time. For example, if you purchase 10 uses of <InlineTooltip
 						text="Lone Wolf"
@@ -67,13 +67,13 @@
 						iconColor={getItemColor('Blue')}
 						iconType="component"
 					/> uses.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Like other temporary items (e.g., Carving Talismans, Lucky Charms),
 					GCP skills are only consumed if you complete the quest. If you abandon
 					the quest, the skill use will not be deducted.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Certain skills, such as <InlineTooltip
 						text="Focus+2"
 						tooltip="Diva Skill"
@@ -82,8 +82,8 @@
 						iconType="component"
 					/>, are generally always available since Level 0 skills do not require
 					you to have an active Prayer or any contributions.
-				</p>
-				<p>
+				</div>
+				<div>
 					If you cannot find the Diva Skills menu, check if you are in a World
 					with the Diva Defense event enabled (shown as an icon in the bottom
 					right corner).
@@ -93,18 +93,18 @@
 		<section>
 			<SectionHeading level={2} title="Diva Prayer Weapons" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					During the <strong>Song of War Week</strong>, being on a Premium
 					Course unlocks the following powerful buffs, making Prayer Weapons an
 					excellent choice for grinding Hiden. Unless you have top-tier Raviente
 					weapons, Prayer Weapons are the best option for Premium users.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Prayer Weapons are crafted from materials obtained as Daily or
 					Milestone rewards, making them relatively easy to acquire. They are
 					comparable to lower-end Level 50 G-Rank weapons.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Weapons that are exclusive to G Rank (like <InlineTooltip
 						text="Switch Axe F"
 						tooltip="Weapon"
@@ -117,49 +117,49 @@
 						icon={getWeaponIcon('Tonfa')}
 					/>) are available fully upgraded, while others start at Low Rank
 					(standard HR crafting) and need to be upgraded to G Rank.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					The standout feature of Prayer Weapons is the significant buffs they
 					receive when a prayer is active. These enhancements can make them
 					outperform most other weapons when built around their usage.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					<strong>The Prayer Buff provides the following benefits:</strong>
-				</p>
+				</div>
 				<UnorderedList class="spaced-list"
-					><ListItem><p>True Raw +45</p></ListItem>
-					<ListItem><p>Doubled Elemental Damage</p></ListItem>
+					><ListItem><div>True Raw +45</div></ListItem>
+					<ListItem><div>Doubled Elemental Damage</div></ListItem>
 					<ListItem
-						><p>Increased Weapon Handling and Movement Speed (+2)</p></ListItem
+						><div>Increased Weapon Handling and Movement Speed (+2)</div></ListItem
 					>
-					<ListItem><p>Enables the weapon type’s Active Feature</p></ListItem>
-					<ListItem><p>Sharpness is upgraded by one tier</p></ListItem>
-					<ListItem><p>Activates a unique Twin Hiden skill</p></ListItem>
-					<ListItem><p>Boosts Interception Points to 1.2x</p></ListItem>
+					<ListItem><div>Enables the weapon type’s Active Feature</div></ListItem>
+					<ListItem><div>Sharpness is upgraded by one tier</div></ListItem>
+					<ListItem><div>Activates a unique Twin Hiden skill</div></ListItem>
+					<ListItem><div>Boosts Interception Points to 1.2x</div></ListItem>
 				</UnorderedList>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					The Twin Hiden ability remains active while the prayer effect is
 					ongoing, allowing you to set aside Hiden gems for specialized builds
 					or simply enjoy the Hiden bonus without extensive grinding.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Since these abilities rely on active prayers, they are time-limited.
 					However, you can typically get about 3 hours of buffs daily, and using
 					them primarily over the weekend will likely cover your entire
 					playtime.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					You can find more details on the weapon's active features <Link
 						href="/hunter-notes/weapons/active-feature"
 						inline>on the Active Feature page.</Link
 					>
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Diva Prayer Gems" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					During the <InlineTooltip
 						text="Diva Defense"
 						tooltip="Event"
@@ -168,26 +168,26 @@
 					/> event, there are up to four different colors of Prayer gems, each of
 					these will have a different effect based on the skills currently assigned
 					to the individual colors.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					The buffs are only available in the second week of the event. The
 					total number of times they can be used is based on the global server's
 					Song Spheres. When Prayers are maxed out you will be forced to choose
 					another color, locking you from contributing to it.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					You select your color each day by talking to the Blue Guild Girl who
 					handles things such as Arena quests. You can change this color once a
 					day after 12 PM. Selecting your first color does not count as changing
 					it, allowing you to contribute to two different colors on the first
 					day.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					There are a number of different possible effects for each of these
 					gems, and which is assigned to which color will change on each cycle,
 					which should be verified in game.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Each day at some point after 12 PM the most popular prayer is ranked
 					up. This is based on server wide contributions and thus cannot be
 					manipulated to be something based on what you would personally prefer.
@@ -195,17 +195,17 @@
 					up each with three levels levels it's very likely that the two most
 					popular ones will get max levels, the third most popular will get a
 					single level and then the least popular will get no levels.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					You can check your currently equipped gem names in Overlay Settings >
 					Hunter Notes > Gear Info (Text).
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					To see the damage of certain gems, you can use our <Link
 						icon={ToolKit}
 						href="/tools/calculator/damage">Damage Calculator</Link
 					>
-				</p>
+				</div>
 				<div class="diva-prayer-gems-table">
 					<DataTable
 						useStaticWidth
@@ -246,10 +246,8 @@
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-											
-								<p>{cell.value}</p>
-							
-											{/snippet}
+							<div>{cell.value}</div>
+						{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -258,7 +256,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import BlinkiesSmall from '$lib/client/images/blinkies-wycademy-small.gif';
@@ -11,19 +11,18 @@
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
-	//
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'About Us'} />
 		<section>
 			<SectionHeading level={2} title="Overview" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Wycademy, or Frontier's Wycademy, is a comprehensive resource for
 					hunters of all skill levels playing Monster Hunter Frontier Z.
-				</p>
+				</div>
 				<p class="spaced-paragraph">
 					First released as Monster Hunter Frontier in 2007, MHF-Z has
 					cultivated a dedicated community, and our website is designed to
@@ -40,11 +39,11 @@
 		<section>
 			<SectionHeading level={2} title="Our Mission" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					We are committed to enriching the experience of every hunter. Whether
 					you're just starting your journey or are a seasoned speedrunner,
 					Wycademy is here to help you become the best hunter you can be.
-				</p>
+				</div>
 				<p class="spaced-paragraph">
 					Our project is Free Libre Open Source Software (FLOSS), hosted on
 					<OutboundLink href="https://github.com/DorielRivalet/wycademy"
@@ -74,12 +73,12 @@
 		<section>
 			<SectionHeading level={2} title="What We Offer" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					At Wycademy, we are dedicated to providing high-quality, accurate
 					information about MHF-Z. But our commitment goes beyond information;
 					we aim to enhance the entire ecosystem around the game. Here’s what
 					sets us apart:
-				</p>
+				</div>
 				<UnorderedList>
 					<ListItem
 						><p>
@@ -139,12 +138,12 @@
 		<section>
 			<SectionHeading level={2} title="Our Values" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					We align with the philosophy outlined in the <OutboundLink
 						href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/docs/philosophy.md"
 						>mhfz-overlay's philosophy document.</OutboundLink
 					> Our core values include:
-				</p>
+				</div>
 				<UnorderedList>
 					<ListItem
 						><p>
@@ -182,13 +181,13 @@
 		<section>
 			<SectionHeading level={2} title="Contact Us" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					If you have any issues or concerns, feel free to reach out to us
 					through <OutboundLink
 						href="https://github.com/DorielRivalet/wycademy/issues"
 						>GitHub's issue tracker.</OutboundLink
 					>
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
@@ -204,11 +203,11 @@
 					>, we want to know how we can best support you. Let us know what
 					resources you'd like to see, and we'll do our best to provide them.
 				</p>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					We have a <OutboundLink href="https://forms.gle/hfFG7QWNcrCHnDV67"
 						>Google Forms</OutboundLink
 					> where you can submit your feedback on the website.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
@@ -218,11 +217,11 @@
 					If you want to link to Wycademy on your website, you can use the
 					following officially endorsed buttons (also called blinkies).
 				</p>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					The HTML code for each button is under the image. Save the image and
 					edit the <CodeSnippet type="inline" code="src" hideCopyButton /> attribute
 					to your image path.
-				</p>
+				</div>
 				<div class="blinkies-container">
 					<div>
 						<h3>Small button</h3>
@@ -246,19 +245,19 @@
 		<section>
 			<SectionHeading level={2} title="Our Future" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					We use <OutboundLink
 						href="https://github.com/DorielRivalet/wycademy/projects?query=is%3Aopen"
 						>GitHub Projects</OutboundLink
 					> to keep track of our issues and feature requests.
-				</p>
+				</div>
 			</div>
 		</section>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

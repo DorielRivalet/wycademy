@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
 
@@ -74,11 +74,11 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Exotics'} />
 		<div>
-			<p>
+			<div>
 				Only 1 armor piece is needed to activate the armor skill. All weapons
 				give Speed Eating. Each Exotic monster has a set of associated G Finesse
 				weapon.
@@ -117,7 +117,7 @@
 						</span>
 									{/snippet}
 					{#snippet cell({ cell })}
-									
+
 							{#if cell.key === 'name'}
 								<InlineTooltip
 									icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
@@ -127,11 +127,11 @@
 									text={cell.value}
 								/>
 							{:else}
-								<p>
+								<div>
 									{cell.value}
-								</p>
+								</div>
 							{/if}
-						
+
 									{/snippet}
 				</DataTable>
 			</div>
@@ -140,7 +140,7 @@
 				<PageTurn pageUrlPathName={$page.url.pathname} />
 			</div>
 		</div>
-	</div></HunterNotesPage
+	</div></TableOfContentsPage
 >
 
 <style lang="scss">

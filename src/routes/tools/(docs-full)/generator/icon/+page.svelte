@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -271,10 +271,10 @@
 		return item.text.toLowerCase().includes(value.toLowerCase());
 	}
 
-	let selectedIconFormat: 'Vector' | 'Raster' = $state('Vector');
-	let selectedIconMonsterRenderSize: 'Small' | 'Full' = $state('Full');
-	let selectedIconSize: IconSize = $state('256px');
-	let selectedIconType: FrontierImageType = $state('Monster Icon');
+	let selectedIconFormat: 'Vector' | 'Raster' = 'Vector';
+	let selectedIconMonsterRenderSize: 'Small' | 'Full' = 'Full';
+	let selectedIconSize: IconSize = '256px';
+	let selectedIconType: FrontierImageType = 'Monster Icon';
 	const allFrontierColors = getAllFrontierColors();
 
 	let uniqueMonsters = getUniqueMonsters().sort(
@@ -282,37 +282,37 @@
 			(a?.displayName?.codePointAt(0) ?? 0) -
 			(b?.displayName?.codePointAt(0) ?? 0),
 	);
-	let selectedIconIdFromList = $state('Abiorugu');
-	let selectedIconColor = $state(allFrontierColors[0].id);
-	let selectedIconBackground = $state(false);
+	let selectedIconIdFromList = 'Abiorugu';
+	let selectedIconColor = allFrontierColors[0].id;
+	let selectedIconBackground = false;
 
-	let selectedIconShadowColor = $state('#ffffff');
-	let selectedIconShadowWidth = $state(0);
+	let selectedIconShadowColor = '#ffffff';
+	let selectedIconShadowWidth = 0;
 
-	let currentIconsFromType = $derived(getCurrentIconsFromType(selectedIconType));
+	$: currentIconsFromType = getCurrentIconsFromType(selectedIconType);
 
-	let currentIconPreview = $derived(getIconBlobFromIconMetaData(
+	$: currentIconPreview = getIconBlobFromIconMetaData(
 		selectedIconType,
 		selectedIconIdFromList,
 		selectedIconSize,
 		selectedIconFormat,
 		selectedIconColor,
-	));
+	);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Icons Preview'} />
 		<p class="spaced-paragraph">
 			This is a playground for icons, which can be useful for seeing game assets
 			and downloading your results.
 		</p>
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			You can find the image for the monster backgrounds in our <OutboundLink
 				href="https://github.com/DorielRivalet/wycademy/blob/main/src/lib/client/images/monster/bg-512.webp"
 				>repository</OutboundLink
 			>.
-		</p>
+		</div>
 		<div class="container-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadIconImage}
 				>Download</Button
@@ -426,7 +426,8 @@
 					<div
 						style="filter: drop-shadow(0 0 {selectedIconShadowWidth}px {selectedIconShadowColor});"
 					>
-						<currentIconPreview.component
+						<svelte:component
+							this={currentIconPreview.component}
 							{...{
 								currentMonster: selectedIconIdFromList,
 								size: selectedIconType === 'Weapon' ? '100%' : selectedIconSize,
@@ -453,7 +454,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

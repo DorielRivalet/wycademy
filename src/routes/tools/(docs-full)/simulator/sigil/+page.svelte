@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -250,7 +250,6 @@
 	let priority: 'Attack' | 'Element' | 'None' = $state('Attack');
 	let targetScore = $state(45);
 
-
 	/**
 	 * weapon emperor always has 3 skills and only one skill is weapon up.
 	 *
@@ -407,14 +406,17 @@
 	const confidenceLevel = 99;
 	const marginOfError = 0.05;
 
-	let sigilMaxScore =
-		$derived(sigilsRollsStats.find((e) => e.name === sigil)?.maxScore || 0);
+	let sigilMaxScore = $derived(
+		sigilsRollsStats.find((e) => e.name === sigil)?.maxScore || 0,
+	);
 	let materialNeeded = $derived(getMaterialFromSigil(sigil));
 	let materialNeededIcon = $derived(getIconFromMaterial(materialNeeded));
-	let materialNeededIconColor = $derived(getIconColorFromMaterial(materialNeeded));
+	let materialNeededIconColor = $derived(
+		getIconColorFromMaterial(materialNeeded),
+	);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Sigils Rolls Simulator'} />
 		<InlineNotification
@@ -424,7 +426,7 @@
 			subtitle="Simulations may take a while to start and finish."
 		/>
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				If you are looking for an explanation on sigils, see our <Link
 					inline
 					href="/hunter-notes/weapons/sigils">Hunter's Notes page.</Link
@@ -433,13 +435,13 @@
 				perfect sigil combination (1 UL, 1 Zenith, 1 Shiten), it has an average chance
 				of {0.05 * 0.01 * 0.15 * 100}% (1:13,333 odds) with 30,000 sigil rolls
 				in total.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				If you are looking to calculate the <strong>damage</strong> of your
 				sigils, see our <Link inline href="/tools/calculator/sigil"
 					>Sigils Calculator.</Link
 				>
-			</p>
+			</div>
 
 			<div class="container-buttons">
 				<Dropdown
@@ -509,7 +511,7 @@
 						tooltip="Sigil"
 					/>
 				</div>
-				<p>
+				<div>
 					Materials needed: {#key sigil}<InlineTooltip
 							icon={materialNeededIcon}
 							iconType="component"
@@ -518,13 +520,13 @@
 							iconColor={materialNeededIconColor}
 						/>{/key}
 				</p>
-				<p>
+				<div>
 					Best sigil found: {bestSigilStats} (roll #{bestSigilRollNumber}, score {bestSigilScore},
 					max score {sigilMaxScore})
 				</p>
 				<p class="tooltip-paragraph">
 					<Tooltip align="start">
-						<p>
+						<div>
 							Probability of getting a {sigil} sigil with {selectedRolls} available
 							rolls (Priority {priority}) with score {targetScore} or higher with
 							{confidenceLevel}% confidence and {marginOfError}% margin of
@@ -540,7 +542,7 @@
 				<PageTurn pageUrlPathName={$page.url.pathname} />
 			</div>
 		</div>
-	</div></HunterNotesPage
+	</div></TableOfContentsPage
 >
 
 <style lang="scss">

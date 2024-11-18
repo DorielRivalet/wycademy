@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -181,33 +181,36 @@
 	let skillSlotsUpInputDivaSkill = $state(true);
 	let skillSlotsUpInputGuildFood = $state(true);
 
-
-
-
-
-	let extraSkillSlots = $derived(getExtraSkillSlots(
-		skillSlotsUpInputZenithWeapon,
-		skillSlotsUpInputZenithCuff,
-		skillSlotsUpInputTrueHidenCuff,
-		skillSlotsUpInputSkillFruit,
-		skillSlotsUpInputLoginBoostGreatLuck,
-		skillSlotsUpInputDivaSkill,
-		skillSlotsUpInputGuildFood,
-	));
-	let maximumArmorSlots = $derived(getArmorSkillSlots(skillSlotsUpInputArmorPieces, true));
+	let extraSkillSlots = $derived(
+		getExtraSkillSlots(
+			skillSlotsUpInputZenithWeapon,
+			skillSlotsUpInputZenithCuff,
+			skillSlotsUpInputTrueHidenCuff,
+			skillSlotsUpInputSkillFruit,
+			skillSlotsUpInputLoginBoostGreatLuck,
+			skillSlotsUpInputDivaSkill,
+			skillSlotsUpInputGuildFood,
+		),
+	);
+	let maximumArmorSlots = $derived(
+		getArmorSkillSlots(skillSlotsUpInputArmorPieces, true),
+	);
 	let totalSkillSlots = $derived(extraSkillSlots + maximumArmorSlots);
-	let innateArmorSlots = $derived(getArmorSkillSlots(skillSlotsUpInputArmorPieces));
-	let maximumGearSlots =
-		$derived(getArmorSkillSlots(skillSlotsUpInputArmorPieces, true) +
-		(skillSlotsUpInputZenithWeapon ? 1 : 0) +
-		(skillSlotsUpInputZenithCuff ? 1 : 0) +
-		(skillSlotsUpInputTrueHidenCuff ? 1 : 0));
+	let innateArmorSlots = $derived(
+		getArmorSkillSlots(skillSlotsUpInputArmorPieces),
+	);
+	let maximumGearSlots = $derived(
+		getArmorSkillSlots(skillSlotsUpInputArmorPieces, true) +
+			(skillSlotsUpInputZenithWeapon ? 1 : 0) +
+			(skillSlotsUpInputZenithCuff ? 1 : 0) +
+			(skillSlotsUpInputTrueHidenCuff ? 1 : 0),
+	);
 
 	// in multiplayer its more skills like encourage.
 	// TODO links to each respective skill slot source explanation (other pages).
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	{@const SvelteComponent = getArmorIcon('Head')}
 	{@const SvelteComponent_1 = getArmorIcon('Chest')}
 	{@const SvelteComponent_2 = getArmorIcon('Arms')}
@@ -221,12 +224,12 @@
 			<section>
 				<SectionHeading level={2} title="Skill Slots" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						By default you can activate up to 10 skills. Equipping 3 pieces of G
 						Rank Armor will increase your available skill slots to 11, and
 						equipping 5 pieces will increase it to 12.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Normal G, GF, GX, GS, and GP pieces all contribute to this total,
 						while Gou armors upgraded to G or GF levels do not. This means that
 						any set using a Burst piece can have a maximum of 11 skills.
@@ -238,9 +241,9 @@
 							iconType="component"
 						/> from a single Burst piece can offset the disadvantage of losing a
 						skill slot.
-					</p>
+					</div>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The Zenith Skill for <InlineTooltip
 							tooltip="Armor Skill"
 							text="Skill Slots Up"
@@ -250,17 +253,15 @@
 						Any Z, ZY, ZX, or ZP pieces all count toward the G Rank piece requirements
 						for slots. Like other Zenith skills, this can be found on Armor Pieces,
 						Weapons, and Cuffs, allowing for a maximum of 7 additional slots.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Exotic Skills do not occupy a skill slot.
-					</p>
+					</div>
 					<div class="skill-slots-up-inputs-container">
 						<div class="inputs-container">
 							<div class="input-container">
 								<div class="input-icon">
-									<SvelteComponent
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -277,9 +278,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<SvelteComponent_1
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_1 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -296,9 +295,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<SvelteComponent_2
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_2 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -315,9 +312,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<SvelteComponent_3
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_3 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -334,9 +329,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<SvelteComponent_4
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_4 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -358,9 +351,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputZenithWeapon ? '1' : '0.5'}
 								>
-									<SvelteComponent_5
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_5 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Checkbox
@@ -410,9 +401,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputSkillFruit ? '1' : '0.5'}
 								>
-									<SvelteComponent_6
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_6 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Checkbox
@@ -464,7 +453,7 @@
 										? '1'
 										: '0.5'}
 								>
-									<p>🍀</p>
+									<div>🍀</div>
 								</div>
 								<div>
 									<Checkbox
@@ -477,69 +466,69 @@
 					</div>
 					<div class="skill-slots-result">
 						<Tooltip align="start"
-							><p>
+							><div>
 								The Skill Slots naturally given by an armor piece. Does not
 								count Skill Slots Up.
 							</p></Tooltip
 						>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Innate Armor Skill Slots:</strong>
 							{innateArmorSlots}
-						</p>
+						</div>
 					</div>
 
 					<div class="skill-slots-result">
 						<Tooltip align="start">
-							<p>
+							<div>
 								The maximum skill slots from armor pieces, including Skill Slots
 								Up.
 							</p>
 						</Tooltip>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Maximum Armor Skill Slots:</strong>
 							{maximumArmorSlots}
-						</p>
+						</div>
 					</div>
 
 					<div class="skill-slots-result">
 						<Tooltip align="start">
-							<p>
+							<div>
 								The maximum skill slots a full set of gear can provide (armor,
 								weapon and cuffs).
 							</p>
 						</Tooltip>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Maximum Gear Skill Slots:</strong>
 							{maximumGearSlots}
-						</p>
+						</div>
 					</div>
 
 					<div class="skill-slots-result">
 						<Tooltip align="start">
-							<p>
+							<div>
 								Additional skill slots that can be added through buffs or other
 								means (anything that is not an armor piece).
 							</p>
 						</Tooltip>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Extra Skill Slots:</strong>
 							{extraSkillSlots}
-						</p>
+						</div>
 					</div>
 
 					<div class="skill-slots-result">
 						<Tooltip align="start">
-							<p>
+							<div>
 								The total number of skill slots available after all
 								enhancements.
 							</p>
 						</Tooltip>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Total Skill Slots:</strong>
 							{totalSkillSlots}
-						</p>
+						</div>
 					</div>
-					<p>
+					<div>
 						In practice, you're unlikely to create a set with 19 skills. For
 						early Z sets, a practical maximum is around 15 skills, with Gunners
 						benefiting the most since they still aim to include the single
@@ -551,7 +540,7 @@
 			<section>
 				<SectionHeading level={2} title="Skill Priority" />
 				<div>
-					<p>
+					<div>
 						<strong
 							>Not to be confused with what skill you should prioritize</strong
 						>; Skill Priority, or <strong>Skill Replacement Order</strong>,
@@ -569,7 +558,7 @@
 						overridden. <strong>Skill Replacement Order</strong> becomes noticeably
 						important when you reach the maximum possible skill slots for your gear,
 						which makes the game start prioritizing certain skills.
-					</p>
+					</div>
 					<div class="table table-with-scrollbar">
 						<DataTable
 							id="armor-skills-priority-dom"
@@ -605,10 +594,8 @@
 								</div>
 							</Toolbar>
 							{#snippet cell({ cell })}
-													
-									<p>{cell.value}</p>
-								
-													{/snippet}
+								<div>{cell.value}</div>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -618,7 +605,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

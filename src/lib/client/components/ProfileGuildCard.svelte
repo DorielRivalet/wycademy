@@ -26,10 +26,9 @@
 
 	const formattedDate = formatDateTime(date);
 
-
 	const totalGuildCards = guildCardBackgrounds.filter((e) => !e.unused).length;
 
-	let selectedPage = $state('page1');
+	let selectedPage = $state('page1');
 
 	interface Props {
 		name?: string;
@@ -67,35 +66,32 @@
 		name = 'Hunter',
 		date = '2024-05-02T00:00:01Z',
 		armorSkills = [
-		'Strong Attack+6',
-		'Lance Tech 【Heavenly Spear】',
-		'Sword God+2',
-		'Vampirism+2',
-		'Reflect+3',
-		'Fortification+2',
-		'Abnormality',
-		'Obscurity',
-		'Flash Conversion',
-		'Point Breakthrough',
-		'Rush',
-		'Thunder Clad',
-		'Furious',
-		'Ceaseless',
-		'Consumption Slayer',
-		'Ice Age',
-		'Solid Determination',
-	],
+			'Strong Attack+6',
+			'Lance Tech 【Heavenly Spear】',
+			'Sword God+2',
+			'Vampirism+2',
+			'Reflect+3',
+			'Fortification+2',
+			'Abnormality',
+			'Obscurity',
+			'Flash Conversion',
+			'Point Breakthrough',
+			'Rush',
+			'Thunder Clad',
+			'Furious',
+			'Ceaseless',
+			'Consumption Slayer',
+			'Ice Age',
+			'Solid Determination',
+		],
 		automaticSkills = ['None'],
 		zenithSkills = [
-		'Skill Slots Up+4',
-		'Reflect Up+1',
-		'Ceaseless Up',
-		'Guard Up+1',
-	],
-		caravanSkills = [
-		'Weapon Art (Lg)',
-		'Perfect Defense (Lg)',
-	],
+			'Skill Slots Up+4',
+			'Reflect Up+1',
+			'Ceaseless Up',
+			'Guard Up+1',
+		],
+		caravanSkills = ['Weapon Art (Lg)', 'Perfect Defense (Lg)'],
 		guildFood = 'Marathon Runner',
 		divaSkill = 'Encourage+2',
 		styleRankSkills = ['Def+180', 'Affinity+26'],
@@ -103,38 +99,30 @@
 		weaponType = 'Lance',
 		weaponName = 'Depth Glory Flamepike Lv. 100 (41BD)',
 		weaponSlots = [
-		'Zenith Cooldown: +17, Zenith Duration: +20, Zenith Attack: +15',
-		'Attack Slayer: +15, Attack Slayes: +15, Attack Slayer: +15',
-		'Lance Up: +15, Attack Slayer: +15, Attack Slayer: +15',
-	],
+			'Zenith Cooldown: +17, Zenith Duration: +20, Zenith Attack: +15',
+			'Attack Slayer: +15, Attack Slayes: +15, Attack Slayer: +15',
+			'Lance Up: +15, Attack Slayer: +15, Attack Slayer: +15',
+		],
 		head = 'Alisys ZP Head (3733)',
 		chest = 'Gems ZP Suit (341C)',
 		arms = 'Chiarim ZP Arms (3733)',
 		waist = 'Fanru ZX Coil (3471)',
 		legs = 'Furante ZX Greaves (2E82)',
 		cuffs = ['Lance S. Attack (3F5E)', 'Guard Up PZ4 (3D8E)'],
-		headSlots = [
-		'Lance True Blue',
-		'Lance True Black',
-		'Lance True Black',
-	],
-		chestSlots = [
-		'Cariva BM GX4',
-		'Kinioru BM GX5',
-		'Extreme Ravi BM GX5',
-	],
+		headSlots = ['Lance True Blue', 'Lance True Black', 'Lance True Black'],
+		chestSlots = ['Cariva BM GX4', 'Kinioru BM GX5', 'Extreme Ravi BM GX5'],
 		armsSlots = [
-		'Extreme Ravi BM GX5',
-		'Extreme Ravi BM GX5',
-		'Extreme Ravi BM GX5',
-	],
+			'Extreme Ravi BM GX5',
+			'Extreme Ravi BM GX5',
+			'Extreme Ravi BM GX5',
+		],
 		waistSlots = ['Extreme Ravi GN GX2', 'Bita GN GX2', 'Bita GN GX2'],
 		legsSlots = ['Elysium GN GX1', 'Elysium GN GX1', 'Zindol GN GX2'],
 		guildCardsUnlocked = Math.trunc(Math.random() * 100),
 		guildCardsUnlockedRank = Math.trunc(Math.random() * 100),
 		guildCardsUnlockedRankPercent = Math.trunc(Math.random() * 100),
 		selectedGuildCardBackground = $bindable('Abiorugu'),
-		username = 'UserDemo'
+		username = 'UserDemo',
 	}: Props = $props();
 
 	function downloadImage() {
@@ -150,17 +138,18 @@
 			link.click();
 		});
 	}
-	let background =
-		$derived(guildCardBackgrounds.find((e) => e.name === selectedGuildCardBackground)
-			?.image || guildCardBackgrounds[0].image);
+	let background = $derived(
+		guildCardBackgrounds.find((e) => e.name === selectedGuildCardBackground)
+			?.image || guildCardBackgrounds[0].image,
+	);
 </script>
 
-<p class="spaced-paragraph">Information from the last quest completed.</p>
-<p class="spaced-paragraph">
+<div class="spaced-paragraph">Information from the last quest completed.</div>
+<div class="spaced-paragraph">
 	<strong>Backgrounds Unlocked: </strong><a href="/">
 		{guildCardsUnlocked}/{totalGuildCards} (Rank #{guildCardsUnlockedRank}, Top {guildCardsUnlockedRankPercent}%)</a
 	>
-</p>
+</div>
 <div class="container">
 	<div id="guild-card-dom" class="page-container">
 		{#if selectedPage === 'page1'}
@@ -265,9 +254,7 @@
 						Wycademy | 2/2
 					</div>
 					<div class="icon" style="left: 40px; top: 22%;">
-						<SvelteComponent
-							{...{ color: RarityColors[7] }}
-						/>
+						<SvelteComponent {...{ color: RarityColors[7] }} />
 					</div>
 					<div
 						class="text-overlay text-yellow"

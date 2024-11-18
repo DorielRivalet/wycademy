@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import {
@@ -16,11 +16,11 @@
 	import ToolKit from 'carbon-icons-svelte/lib/ToolKit.svelte';
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Tower Weapons'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				A customisable weapon made from materials found by playing through the <InlineTooltip
 					icon={LocationIcons.find((e) => e.name === 'Tower')?.icon}
 					tooltip="Location"
@@ -37,7 +37,7 @@
 				figcaption="Tower Weapons."
 			/>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				You can customize weapon attributes such as Sharpness, Raw, Elemental,
 				Status, Shelling Type, Shot Type, etc. They are comparable to Lv50 G
 				Rank weapons when fully upgraded. You can insert <strong
@@ -46,20 +46,20 @@
 				when built correctly. You cannot reverse most of the attribute upgrades.
 			</p>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Light versions of weapons have two sigils slots and a single decoration
 				slot, while Dark versions gives you a single sigil slot and two
 				decoration slots.
-			</p>
+			</div>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<strong>Tower Sigils</strong> are used to grant Affinity, Status, Elemental,
 				Zenith Skills or Weapon Abilities. You can only have as many of these properties
 				as you have Sigil slots and you can't have two of the same type (for example,
 				two Elemental, Status or Affinity sigils does not stack.)
-			</p>
+			</div>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<strong>Tower Decorations</strong> grant your weapon a skill. For
 				example, if you have a Tower Decoration for <InlineTooltip
 					tooltip="Armor Skill"
@@ -78,7 +78,7 @@
 				figcaption="Tower Weapon decorations."
 			/>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				In order to remove a <strong>Tower Decoration</strong>, you need to buy
 				a <InlineTooltip
 					tooltip={'Item'}
@@ -87,7 +87,7 @@
 				/>.
 			</p>
 
-			<p>
+			<div>
 				The rest of the <strong>Tower Weapon</strong> materials are available at
 				the <InlineTooltip
 					icon={LocationIcons.find((e) => e.name === 'Road')?.icon}
@@ -103,7 +103,7 @@
 				Gunlances.
 			</p>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<strong>Tower Weapons</strong> can be crafted by talking to the Cat
 				wearing a backpack in the <InlineTooltip
 					tooltip="Location"
@@ -113,7 +113,7 @@
 				/>.
 			</p>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The Blue series of the tower weapons have 3 <strong>Tower Sigil</strong>
 				slots. They have high enough stats to surpass all weapons (except Evolution,
 				certain Premium weapons and Road). They require Zenith materials to craft,
@@ -123,7 +123,7 @@
 				Tower Decorations).
 			</p>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				In addition to the tower gems like <InlineTooltip
 					icon={getItemIcon('Ball')}
 					iconColor={RarityColors[5]}
@@ -167,7 +167,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

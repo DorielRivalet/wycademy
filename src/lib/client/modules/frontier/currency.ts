@@ -5,7 +5,7 @@ import CurrencyGzenny from '$lib/client/images/currency/g-zenny.webp';
 import CurrencyZenny from '$lib/client/images/currency/zenny.webp';
 import CurrencyMesfezPoints from '$lib/client/images/currency/mezfes-points.webp';
 import CurrencyRoadPoints from '$lib/client/images/currency/road-points.webp';
-import type { ComponentType, SvelteComponent } from 'svelte';
+import type { Component } from 'svelte';
 import Gacha from '$lib/client/components/frontier/icon/Gacha.svelte';
 
 export type FrontierCurrencyAcronym =
@@ -40,7 +40,7 @@ export type FrontierCurrency =
 export const currencyInfo: {
 	acronym: FrontierCurrencyAcronym;
 	name: FrontierCurrency;
-	icon: string | ComponentType<SvelteComponent>;
+	icon: string | Component;
 }[] = [
 	{
 		acronym: 'P',

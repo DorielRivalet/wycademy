@@ -10,11 +10,7 @@
 	import Header from '../../Header.svelte';
 	import Footer from '../../Footer.svelte';
 	import ViewTransition from '../../Navigation.svelte';
-	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount } from 'svelte';
-	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -32,9 +28,7 @@
 	import pageThumbnail from '$lib/client/images/wycademy.png';
 	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
-	import TreeView, {
-		type TreeNode,
-	} from 'carbon-components-svelte/src/TreeView/TreeView.svelte';
+	import TreeView from '$lib/client/components/TreeView.svelte';
 	import Logo from '$lib/client/images/logo.svg';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
@@ -55,7 +49,6 @@
 		supportInfo,
 	} from '$lib/client/modules/routes';
 	import { getAnnouncementByPathName } from '$lib/client/modules/announcements';
-	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import ReferenceArchitecture from 'carbon-icons-svelte/lib/ReferenceArchitecture.svelte';
@@ -64,10 +57,6 @@
 	import UserFeedback from 'carbon-icons-svelte/lib/UserFeedback.svelte';
 	import SidePanelClose from 'carbon-icons-svelte/lib/SidePanelClose.svelte';
 
-	const carbonThemeStore = getContext(
-		Symbol.for('carbonTheme'),
-	) as Writable<CarbonTheme>;
-	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
 	const stickyHeaderStore = getContext(
 		Symbol.for('stickyHeader'),
 	) as Writable<boolean>;
@@ -80,7 +69,6 @@
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
 	interface Props {
 		data: LayoutData;
 		children?: import('svelte').Snippet;
@@ -146,212 +134,22 @@
 
 	let breadcrumbItems: URLItem[] = $state([]);
 	let headTitle = $state("Support Center — Frontier's Wycademy");
-	let description =
-		$state('This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Doriel Rivalet.');
+	let description = $state(
+		'This is a dedicated section where users can find help and resources to resolve issues, learn how to use the site, and get answers to common questions.\n\nDeveloped by Doriel Rivalet.',
+	);
 
 	const url = $page.url.toString();
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
 
-	const children: TreeNode[] = [
-		{
-			id: '/support/website',
-			text: 'Website',
-			children: [
-				{
-					id: '/support/website/announcements',
-					text: 'Announcements',
-				},
-				{
-					id: '/support/website/about',
-					text: 'About',
-				},
-				{
-					id: '/support/website/donate',
-					text: 'Donate',
-				},
-				{
-					id: '/support/website/faq',
-					text: 'FAQ',
-				},
-				{
-					text: 'Feedback',
-					id: '/support/website/feedback',
-				},
-				{
-					id: '/support/website/contribute',
-					text: 'Contribute',
-				},
-				{
-					id: '/support/website/development',
-					text: 'Development',
-				},
-				{
-					id: '/support/website/contact',
-					text: 'Contact',
-				},
-			],
-		},
-		{
-			id: '/support/policies',
-			text: 'Policies',
-			children: [
-				{
-					id: '/support/policies/terms-of-service',
-					text: 'Terms of Service',
-				},
-				{
-					id: '/support/policies/privacy-policy',
-					text: 'Privacy Policy',
-				},
-				{
-					id: '/support/policies/copyright',
-					text: 'Copyright',
-				},
-				{
-					text: 'Acknowledgements',
-					id: '/support/policies/acknowledgements',
-				},
-				{
-					text: 'Security',
-					id: '/support/policies/security',
-				},
-			],
-		},
-		{
-			id: '/support/wycademy-documentation',
-			text: 'Wycademy Documentation',
-			children: [
-				{
-					id: '/support/wycademy-documentation/architecture',
-					text: 'Architecture',
-				},
-			],
-		},
-		{
-			id: '/support/overlay-documentation',
-			text: 'Overlay Documentation',
-			children: [
-				{
-					id: '/support/overlay-documentation/architecture',
-					text: 'Architecture',
-				},
-			],
-		},
-		{
-			id: '/support/external',
-			text: 'External',
-			children: [
-				{
-					id: '/support/external/websites',
-					text: 'Websites',
-				},
-			],
-		},
-	];
-
-	const iconsMap: (
-		| {
-				id: string;
-				icon: string;
-		  }
-		| {
-				id: string;
-				icon: any;
-		  }
-	)[] = [
-		{ id: '/support/website', icon: Logo },
-		{
-			id: '/support/website/announcements',
-			icon: Bullhorn,
-		},
-		{
-			id: '/support/website/about',
-			icon: InformationSquare,
-		},
-		{
-			id: '/support/website/donate',
-			icon: PiggyBank,
-		},
-		{
-			id: '/support/website/faq',
-			icon: QuestionAnswering,
-		},
-		{
-			id: '/support/website/feedback',
-			icon: UserFeedback,
-		},
-		{
-			id: '/support/website/contribute',
-			icon: Group,
-		},
-		{
-			id: '/support/website/development',
-			icon: Development,
-		},
-		{
-			id: '/support/website/contact',
-			icon: Email,
-		},
-		{
-			id: '/support/policies',
-			icon: BookIconWhite,
-		},
-		{
-			id: '/support/policies/terms-of-service',
-			icon: DocumentRequirements,
-		},
-		{
-			id: '/support/policies/privacy-policy',
-			icon: DocumentRequirements,
-		},
-		{
-			id: '/support/policies/copyright',
-			icon: License,
-		},
-		{
-			id: '/support/policies/acknowledgements',
-			icon: License,
-		},
-		{
-			id: '/support/policies/security',
-			icon: Security,
-		},
-		{
-			id: '/support/wycademy-documentation',
-			icon: BookIconWhite,
-		},
-		{
-			id: '/support/wycademy-documentation/architecture',
-			icon: ReferenceArchitecture,
-		},
-		{
-			id: '/support/overlay-documentation',
-			icon: BookIconWhite,
-		},
-		{
-			id: '/support/overlay-documentation/architecture',
-			icon: ReferenceArchitecture,
-		},
-		{
-			id: '/support/external',
-			icon: BookIconWhite,
-		},
-		{
-			id: '/support/external/websites',
-			icon: Link,
-		},
-	];
-
 	let tocVisible = $state($hunterNotesSidebarEnabledStore);
 
-	let centerColumnClass = $state(tocVisible ? '' : 'expanded');
-	let tocClass = $state(tocVisible ? 'aside' : 'aside collapsed');
+	let centerColumnClass = $derived(tocVisible ? '' : 'expanded');
+	let tocClass = $derived(tocVisible ? 'aside' : 'aside collapsed');
 
-	let headerClass;
-	run(() => {
-		headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
-	});
+	let headerClass = $state($stickyHeaderStore ? 'header sticky' : 'header');
+
+	// TODO unsure
 	run(() => {
 		const pageUrlPathName = $page.url.pathname || '/';
 		const { navigationItem, items, announcement } =
@@ -368,19 +166,6 @@
 	});
 
 	onMount(() => {
-		let themeValue = $carbonThemeStore;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
-		let cursorValue = $cursorIcon;
-		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
 		window.addEventListener('scroll', handleScroll);
 
 		const pageUrlPathName = $page.url.pathname || '/';
@@ -395,16 +180,158 @@
 			? announcement.summary
 			: (navigationItem?.description ?? description);
 		breadcrumbItems = items;
-		const unsubscribe = page.subscribe(($page) => {
-			treeview?.showNode($page.url.pathname || '');
-		});
-
-		return () => {
-			unsubscribe(); // Clean up the subscription on unmount
-		};
 	});
 
-	let treeview: TreeView | null = $state(null);
+	const treeData = [
+		{
+			id: '/support/website',
+			text: 'Website',
+			icon: Logo,
+			nodes: [
+				{
+					id: '/support/website/announcements',
+					text: 'Announcements',
+					icon: Bullhorn,
+					href: '/support/website/announcements',
+				},
+				{
+					id: '/support/website/about',
+					text: 'About',
+					href: '/support/website/about',
+					icon: InformationSquare,
+				},
+				{
+					id: '/support/website/donate',
+					text: 'Donate',
+					href: '/support/website/donate',
+					icon: PiggyBank,
+				},
+				{
+					id: '/support/website/faq',
+					text: 'FAQ',
+					icon: QuestionAnswering,
+
+					href: '/support/website/faq',
+				},
+				{
+					text: 'Feedback',
+					id: '/support/website/feedback',
+					icon: UserFeedback,
+
+					href: '/support/website/feedback',
+				},
+				{
+					id: '/support/website/contribute',
+					text: 'Contribute',
+					icon: Group,
+
+					href: '/support/website/contribute',
+				},
+				{
+					id: '/support/website/development',
+					text: 'Development',
+					icon: Development,
+
+					href: '/support/website/development',
+				},
+				{
+					id: '/support/website/contact',
+					text: 'Contact',
+					icon: Email,
+
+					href: '/support/website/contact',
+				},
+			],
+		},
+		{
+			id: '/support/policies',
+			text: 'Policies',
+			icon: BookIconWhite,
+
+			nodes: [
+				{
+					id: '/support/policies/terms-of-service',
+					text: 'Terms of Service',
+					icon: DocumentRequirements,
+
+					href: '/support/policies/terms-of-service',
+				},
+				{
+					id: '/support/policies/privacy-policy',
+					text: 'Privacy Policy',
+					icon: DocumentRequirements,
+
+					href: '/support/policies/privacy-policy',
+				},
+				{
+					id: '/support/policies/copyright',
+					text: 'Copyright',
+					icon: License,
+
+					href: '/support/policies/copyright',
+				},
+				{
+					text: 'Acknowledgements',
+					id: '/support/policies/acknowledgements',
+					icon: License,
+
+					href: '/support/policies/acknowledgements',
+				},
+				{
+					text: 'Security',
+					id: '/support/policies/security',
+					icon: Security,
+
+					href: '/support/policies/security',
+				},
+			],
+		},
+		{
+			id: '/support/wycademy-documentation',
+			text: 'Wycademy Documentation',
+			icon: BookIconWhite,
+
+			nodes: [
+				{
+					id: '/support/wycademy-documentation/architecture',
+					text: 'Architecture',
+					icon: ReferenceArchitecture,
+
+					href: '/support/wycademy-documentation/architecture',
+				},
+			],
+		},
+		{
+			id: '/support/overlay-documentation',
+			text: 'Overlay Documentation',
+			icon: BookIconWhite,
+
+			nodes: [
+				{
+					id: '/support/overlay-documentation/architecture',
+					text: 'Architecture',
+					icon: ReferenceArchitecture,
+
+					href: '/support/overlay-documentation/architecture',
+				},
+			],
+		},
+		{
+			id: '/support/external',
+			text: 'External',
+			icon: BookIconWhite,
+
+			nodes: [
+				{
+					id: '/support/external/websites',
+					text: 'Websites',
+					icon: Link,
+
+					href: '/support/external/websites',
+				},
+			],
+		},
+	];
 </script>
 
 <LocalStorage
@@ -425,13 +352,6 @@
 	contentType="SoftwareApplication"
 	name={projectName}
 	siteName={projectName}
-/>
-
-<Theme
-	bind:theme={$carbonThemeStore}
-	persist
-	persistKey="__carbon-theme"
-	{tokens}
 />
 
 {#if !tocVisible && $breakpointLargerThanMedium}
@@ -463,61 +383,27 @@
 				subtitle="This site is currently in {developmentStage}."
 			>
 				{#snippet actions()}
-							
-						<NotificationActionButton
-							on:click={() => goto('/support/website/development')}
-							>Learn more</NotificationActionButton
-						>
-					
-							{/snippet}
+					<NotificationActionButton
+						on:click={() => goto('/support/website/development')}
+						>Learn more</NotificationActionButton
+					>
+				{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
 	<main>
-		<aside class={tocClass}>
-			<TreeView
-				style="background-color: var(--ctp-surface0);  position: sticky; top: 10vh;"
-				{children}
-				
-				bind:this={treeview}
-				>{#snippet labelText()}
-								<span >
-						<Button
-							iconDescription={'Close Sidebar'}
-							tooltipPosition="right"
-							kind="ghost"
-							size={'small'}
-							icon={SidePanelClose}
-							on:click={onTOCToggleButtonPress}
-						/></span
-					>
-							{/snippet}
-				{#snippet children({ node })}
-								<a
-						class="tree-view-item"
-						href={node.id}
-						style:color={node.selected ? 'var(--cds-interactive-04)' : 'inherit'}
-					>
-						<div>
-							{#if typeof iconsMap.find((e) => e.id === node.id)?.icon === 'string'}
-								<img
-									width="24"
-									src={iconsMap.find((e) => e.id === node.id)?.icon}
-									alt="Tree Item Icon"
-								/>
-							{:else}
-								{@const SvelteComponent = iconsMap.find((e) => e.id === node.id)?.icon}
-							<SvelteComponent
-									{...{ size: '24px' }}
-								/>
-							{/if}
-						</div>
-						<p>
-							{node.text}
-						</p>
-					</a>
-											{/snippet}
-						</TreeView>
+		<aside class={tocClass} style="background-color:var(--ctp-surface0)">
+			<div class="aside-contents">
+				<Button
+					iconDescription={'Close Sidebar'}
+					tooltipPosition="right"
+					kind="ghost"
+					size={'small'}
+					icon={SidePanelClose}
+					on:click={onTOCToggleButtonPress}
+				/>
+				<TreeView items={treeData} />
+			</div>
 		</aside>
 		<div class="body {centerColumnClass}">
 			<div class="breadcrumb">
@@ -545,6 +431,15 @@
 
 <style lang="scss">
 	@use '@carbon/motion' as motion;
+
+	.aside-contents {
+		position: sticky;
+		top: 5vh;
+		padding-bottom: 2rem;
+		padding-top: 0.5rem;
+		overflow-y: auto;
+		height: 90vh;
+	}
 
 	.app {
 		display: flex;

@@ -1,26 +1,16 @@
 <script lang="ts">
 	import ClickableTile from 'carbon-components-svelte/src/Tile/ClickableTile.svelte';
-	import {
-		createEventDispatcher,
-		SvelteComponent,
-		type ComponentType,
-	} from 'svelte';
+	import { createEventDispatcher, type Component } from 'svelte';
 
 	interface Props {
 		name: string;
 		description: string;
-		image: string | ComponentType<SvelteComponent> | undefined;
+		image: string | Component | undefined;
 		link: string;
 		rounded?: boolean;
 	}
 
-	let {
-		name,
-		description,
-		image,
-		link,
-		rounded = true
-	}: Props = $props();
+	let { name, description, image, link, rounded = true }: Props = $props();
 
 	const dispatch = createEventDispatcher();
 

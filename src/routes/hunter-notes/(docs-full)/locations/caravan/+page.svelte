@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { page } from '$app/stores';
@@ -42,7 +42,9 @@
 	let modalImage = $state('');
 	let modalNotes = $state('');
 
-	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
 
 	function changeModal(cell: DataTableCell, section: string) {
 		modalOpen = true;
@@ -797,9 +799,7 @@
 		<div class="modal-content">
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<Player
-						{...{ title: modalHeading, src: modalImage }}
-					/>
+					<Player {...{ title: modalHeading, src: modalImage }} />
 				{/await}
 			</div>
 			<div>{modalNotes}</div>
@@ -830,11 +830,11 @@
 	{/if}
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Pallone Caravan'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					text="Caravan"
 					tooltip="Location"
@@ -861,7 +861,7 @@
 				alt="Caravan Gem next to player name"
 				figcaption="Caravan Gem next to player name."
 			/>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Before engaging in Caravan activities, you should obtain a Caravan Gem.
 				This can be done by entering the <InlineTooltip
 					text="Caravan"
@@ -874,7 +874,7 @@
 			<section>
 				<SectionHeading level={2} title="Getting Started" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The <InlineTooltip
 							text="Caravan"
 							tooltip="Location"
@@ -884,7 +884,7 @@
 						After reaching Hunter Rank (HR) 2, you should promptly enter this area
 						to obtain your Caravan Gem.
 					</p>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						To acquire the gem, enter the <InlineTooltip
 							text="Caravan"
 							tooltip="Location"
@@ -906,7 +906,7 @@
 						alt="Kashira"
 						figcaption="Kashira."
 					/>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						This gem adds a new option to your equipment box. Initially, it will
 						provide the skill <InlineTooltip
 							text="Recovery Items Up"
@@ -936,11 +936,11 @@
 				<section>
 					<SectionHeading level={3} title="Equipping Caravan Skills" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							To equip your Caravan skills, use a box that allows you to change
 							equipment. You can equip up to three skills with a total value of
 							10 points. Activated skills will turn orange.
-						</p>
+						</div>
 						<CenteredFigure
 							width={'100%'}
 							type="file"
@@ -955,14 +955,14 @@
 			<section>
 				<SectionHeading level={2} title="Caravan Gem" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Your gem can be one of eight colors: Peach, Brown, Yellow, Green,
 						White, Purple/Blue, Cyan, and Rainbow. Monsters can be assigned any
 						of these colors except Rainbow. Each day at 12:00 server time, the
 						game randomly assigns colors to your gem and to monsters. Only your
 						own gem can be Rainbow.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						When you embark on quests, you earn extra points (PP) in these
 						colors based on the colors of the monster, your gem, and the gems of
 						your party members. Each color adds to its respective pool, while
@@ -994,7 +994,7 @@
 				<section>
 					<SectionHeading level={3} title="Obtaining Colors" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							You gain colors simply by possessing a Hunter Gem and hunting
 							monsters. The colors you earn are determined by the monster
 							species you hunt. For any gathering quest, you earn a point in the
@@ -1013,19 +1013,19 @@
 							alt="Caravan Gem monster types"
 							figcaption="Caravan Gem monster types."
 						/>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							If your gem's color matches the monster's assigned color for the
 							day, you earn double PP for hunting that monster. If you have a
 							Rainbow Gem, you gain PP in all colors. Strive to have Rainbow
 							active if you're grinding for colors.
-						</p>
+						</div>
 					</div>
 				</section>
 
 				<section>
 					<SectionHeading level={3} title="Grinding Colors" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							The key to efficiently grinding colors is to have a <InlineTooltip
 								text="Rainbow Gem"
 								tooltip="Caravan Gem"
@@ -1036,7 +1036,7 @@
 							specific colors, you would still need to complete 3.5 times more
 							quests compared to using a Rainbow Gem.
 						</p>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							To get a Rainbow Gem, speak to the Gem Smith in the Caravan Hut.
 							This costs 40,000 <InlineTooltip
 								icon={getCurrencyIcon('CP')}
@@ -1047,13 +1047,13 @@
 							particularly effective when combined with Hiden grinding, as a Premium
 							subscription is beneficial for both.
 						</p>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Beyond the Rainbow Gem, several methods can further multiply PP
 							gains per quest:
-						</p>
+						</div>
 						<UnorderedList>
 							<ListItem
-								><p>
+								><div>
 									<InlineTooltip
 										text="Double Color Charm"
 										tooltip="Item"
@@ -1075,10 +1075,10 @@
 										icon={getItemIcon('Sac')}
 										iconColor={ItemColors.find((e) => e.name === 'Gray')?.value}
 									/> to reduce quest wait times while grinding colors.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div>
 									<strong>Elder Medicine Buff:</strong> Provides +1 color gains.
 									Applied automatically once a month or can be manually
 									activated for 100,000 <InlineTooltip
@@ -1087,10 +1087,10 @@
 										tooltip="Currency"
 										iconType="file"
 									/> from the elder at the top of the Caravan Hut.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div>
 									<strong>Hunter Soul Sigil:</strong> Adds +1 to colors when
 									used on a quest. Available on the <InlineTooltip
 										text="White Monoblos B"
@@ -1115,18 +1115,18 @@
 											?.value}
 									/> grants Hunter Soul at a 10% chance. Though small, the gains
 									accumulate with a Rainbow Gem and other buffs.
-								</p></ListItem
+								</div></ListItem
 							><ListItem
-								><p>
+								><div>
 									<strong>Premium Course:</strong> Aids in color acquisition by applying
 									a 2x multiplier to all color gains and making the Rainbow Gem free.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div>
 									<strong>Assist Course:</strong> Provides an additional 2x multiplier
 									to all color gains, stacking with the Premium Course multiplier.
-								</p></ListItem
+								</div></ListItem
 							>
 						</UnorderedList>
 						<CenteredFigure
@@ -1150,7 +1150,7 @@
 							alt="Caravan Hut 2nd Floor"
 							figcaption="Caravan Hut 2nd Floor."
 						/>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							The best way to grind colors is by stacking as many buffs as
 							possible and completing <InlineTooltip
 								text="Map"
@@ -1184,9 +1184,9 @@
 								tooltip="Currency"
 								iconType="file"
 							/> or 5 Festi Points.
-						</p>
+						</div>
 
-						<p>
+						<div>
 							The maximum amount of colors you can obtain per quest is 16 for
 							each color.
 						</p>
@@ -1224,10 +1224,8 @@
 								</Toolbar>
 
 								{#snippet cell({ cell })}
-															
-										<p>{cell.value}</p>
-									
-															{/snippet}
+									<div>{cell.value}</div>
+								{/snippet}
 							</DataTable>
 						</div>
 					</div>
@@ -1235,13 +1233,13 @@
 				<section>
 					<SectionHeading level={3} title="Gem Rank" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							You can rank up your gem by filling all colors to capacity, with
 							total capacity based on your gem's level. The initial level is 1,
 							and you can increase it by reaching the cap on total color PP.
 							Once all seven colors are at their cap (e.g., 259 in each color
 							for level 1), visit the Caravan Gem Smith to rank up your gem.
-						</p>
+						</div>
 						<div class="table">
 							<DataTable
 								id="caravan-gem-upgrade-dom"
@@ -1281,10 +1279,8 @@
 								</Toolbar>
 
 								{#snippet cell({ cell })}
-															
-										<p>{cell.value}</p>
-									
-															{/snippet}
+									<div>{cell.value}</div>
+								{/snippet}
 							</DataTable>
 						</div>
 					</div>
@@ -1292,7 +1288,7 @@
 				<section>
 					<SectionHeading level={3} title="Caravan Points" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Completing Normal Caravan Routes is a solid way to earn <InlineTooltip
 								icon={getCurrencyIcon('CP')}
 								text="CP"
@@ -1314,7 +1310,7 @@
 				<section>
 					<SectionHeading level={3} title="Limited Routes" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							One of the best options for <InlineTooltip
 								icon={getCurrencyIcon('CP')}
 								text="CP"
@@ -1334,7 +1330,7 @@
 				<section>
 					<SectionHeading level={3} title="G Rank Caravan Routes" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Added in Z2.3, these routes are a solid alternative to normal
 							quests, averaging 50,000 to 90,000 <InlineTooltip
 								icon={getCurrencyIcon('CP')}
@@ -1356,7 +1352,7 @@
 				<section>
 					<SectionHeading level={3} title="Fatalis Trio" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							This Limited Route features all three HR Fatalis, taking around 10
 							minutes and yielding 100,000 to 150,000 <InlineTooltip
 								icon={getCurrencyIcon('CP')}
@@ -1379,7 +1375,7 @@
 				<section>
 					<SectionHeading level={3} title="Raviente Runs" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Another option for CP gain is participating in <InlineTooltip
 								text="Raviente"
 								tooltip="Monster"
@@ -1405,12 +1401,12 @@
 				<section>
 					<SectionHeading level={3} title="Caravan Skills" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Caravan skills are additional abilities gained as you rank up your
 							Caravan Gem, similar to the food skills in the mainline series.
 							There are two types of Caravan Skills: passive and active.
-						</p>
-						<p class="spaced-paragraph">
+						</div>
+						<div class="spaced-paragraph">
 							<strong>Passive Skills</strong> are always active. An example is <InlineTooltip
 								text="Negotiation"
 								tooltip="Caravan Skill"
@@ -1428,8 +1424,8 @@
 								tooltip="Currency"
 								iconType="file"
 							/>, including crafting, upgrading equipment, and buying items.
-						</p>
-						<p class="spaced-paragraph">
+						</div>
+						<div class="spaced-paragraph">
 							<strong>Active Skills</strong> are user-selected and have an
 							associated cost. You can activate up to 10 points' worth of
 							skills. Examples include
@@ -1449,14 +1445,14 @@
 								icon={CaravanGem}
 								iconType="component"
 							/>.
-						</p>
-						<p class="spaced-paragraph">
+						</div>
+						<div class="spaced-paragraph">
 							Notable skills, marked in red, are highly recommended based on
 							your weapon and play style. For example:
-						</p>
+						</div>
 						<UnorderedList class="spaced-list">
 							<ListItem
-								><p>
+								><div>
 									<InlineTooltip
 										text="Bonus Art"
 										tooltip="Caravan Skill"
@@ -1474,10 +1470,10 @@
 										iconType="file"
 										icon={getMonsterIcon('Duremudira')}
 									/>.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div>
 									<InlineTooltip
 										text="KO Technique"
 										tooltip="Caravan Skill"
@@ -1492,10 +1488,10 @@
 											iconType="component"
 										/></strong
 									> are great for Hammers and Tonfa.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div>
 									<InlineTooltip
 										text="Shooting Rampage"
 										tooltip="Caravan Skill"
@@ -1513,10 +1509,10 @@
 										icon={getItemIcon('Jewel')}
 										iconType="component"
 									/>.
-								</p></ListItem
+								</div></ListItem
 							></UnorderedList
 						>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Matching your skills to your weapon and the quests you'll be doing
 							is generally recommended. Active Skills are powerful and don't
 							occupy normal skill slots, so it's beneficial to always have them
@@ -1528,7 +1524,7 @@
 							/> can provide significant boosts, such as 5-10% extra true raw on
 							your weapons and retention of food buffs.
 						</p>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							If your <InlineTooltip
 								text="Caravan Gem"
 								tooltip="Caravan Gem"
@@ -1536,9 +1532,9 @@
 								iconType="component"
 							/> is below level 8, you will have fewer skill pages.
 						</p>
-						<p>
+						<div>
 							There are a total of {caravanGemSkills.length} caravan skills.
-						</p>
+						</div>
 						<div class="table">
 							<DataTable
 								id="caravan-skills-dom"
@@ -1581,22 +1577,20 @@
 								</Toolbar>
 
 								{#snippet cell({ cell })}
-															
-										{#if cell.key === 'name' && caravanGemSkills.find((e) => e.name === cell.value)?.demo}
-											<button
-												class="table-button"
-												onclick={() => changeModal(cell, 'Caravan')}
-											>
-												<span>{cell.value}</span><Image
-													size={20}
-													fill="var(--ctp-blue)"
-												/></button
-											>
-										{:else}
-											<p>{cell.value}</p>
-										{/if}
-									
-															{/snippet}
+									{#if cell.key === 'name' && caravanGemSkills.find((e) => e.name === cell.value)?.demo}
+										<button
+											class="table-button"
+											onclick={() => changeModal(cell, 'Caravan')}
+										>
+											<span>{cell.value}</span><Image
+												size={20}
+												fill="var(--ctp-blue)"
+											/></button
+										>
+									{:else}
+										<div>{cell.value}</div>
+									{/if}
+								{/snippet}
 							</DataTable>
 							<Pagination
 								pageSizes={[10, 72]}
@@ -1610,24 +1604,24 @@
 				<section>
 					<SectionHeading level={3} title="Maintaining Your Gem" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							To keep your gem's skills active, you must maintain it every 30
 							days. This can be done for free by selecting the Maintain Gem
 							option at the Gem Smith. Regular maintenance prevents skill decay
 							and deactivation.
-						</p>
+						</div>
 					</div>
 				</section>
 				<section>
 					<SectionHeading level={3} title="Upgrading Your Gem" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							You can upgrade your gem after reaching the color cap for your
 							current level. Select the Upgrade Gem option at the Gem Smith to
 							advance to the next level, allowing you to gain more Color PP. New
 							skills will unlock as you level up all colors, and existing skills
 							will be retained.
-						</p>
+						</div>
 						<CenteredFigure
 							width={'100%'}
 							type="file"
@@ -1640,22 +1634,22 @@
 				<section>
 					<SectionHeading level={3} title="Changing Gem Color" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							To change your Hunter Gem's color, choose the Change Gem Color
 							option. You have two choices:
-						</p>
+						</div>
 						<UnorderedList>
 							<ListItem
-								><p>
+								><div>
 									<strong>Randomised Gem Color:</strong> Changes the active color
 									of your gem randomly.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div>
 									<strong>Rainbow Gem Color:</strong> Changes your gem to a Rainbow
 									gem, granting points in all colors.
-								</p></ListItem
+								</div></ListItem
 							></UnorderedList
 						>
 						<CenteredFigure
@@ -1670,7 +1664,7 @@
 				<section>
 					<SectionHeading level={3} title="Premium Options" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							By spending <InlineTooltip
 								icon={Gacha}
 								text="Lottery Coins"
@@ -1696,14 +1690,14 @@
 			<section>
 				<SectionHeading level={2} title="Pioneering System" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The Pioneering System allows you to customize a standard map by
 						setting up specific facilities to gather extra and exclusive
 						materials. While mostly obsolete, it has two significant uses:
-					</p>
+					</div>
 					<OrderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div>
 								Providing easier quests for grinding <InlineTooltip
 									icon={getItemIcon('Ball')}
 									iconType="component"
@@ -1715,10 +1709,10 @@
 									text="Merits"
 									tooltip="Item"
 								/> at G Rank.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Increasing Contribution Points in <InlineTooltip
 									text="Raviente"
 									tooltip="Monster"
@@ -1727,10 +1721,10 @@
 								/> hunts. A Level 5 Pioneer Map grants an additional 50,000 points
 								per Raviente run, equivalent to an extra phase or multiple broken
 								parts, depending on the Raviente type.
-							</p></ListItem
+							</div></ListItem
 						>
 					</OrderedList>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Access this system by speaking to the Cat behind Kashira in the
 						<InlineTooltip
 							text="Caravan Pallone"
@@ -1749,7 +1743,7 @@
 					<section>
 						<SectionHeading level={3} title="Menu Use" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Select a map spot, choose a balloon type, and select the level
 								to work on. After queuing an upgrade, go into Migration and use
 								the 150,000 <InlineTooltip
@@ -1771,7 +1765,7 @@
 					<section>
 						<SectionHeading level={3} title="Quick Maxing Out" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								A Level 5 flag is granted based on the total number of levels
 								you have, with each level having a different weighting. Using
 								the <InlineTooltip
@@ -1782,10 +1776,10 @@
 								/> as your final location allows you to meet the requirements for
 								a Level 5 flag earlier.
 							</p>
-							<p>
+							<div>
 								<strong>Level 5 Requirements: </strong>
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								For normal maps, 51 points are required; for <InlineTooltip
 									icon={getLocationIcon('Snowy Mountains')}
 									text="Snowy Mountains"
@@ -1794,19 +1788,19 @@
 								/>, 41 points are needed.
 							</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Level 3 facilities: 10 points</p></ListItem>
-								<ListItem><p>Level 2 facilities: 5 points</p></ListItem>
-								<ListItem><p>Level 1 facilities: 1 point</p></ListItem>
+								<ListItem><div>Level 3 facilities: 10 points</div></ListItem>
+								<ListItem><div>Level 2 facilities: 5 points</div></ListItem>
+								<ListItem><div>Level 1 facilities: 1 point</div></ListItem>
 							</UnorderedList>
-							<p>
+							<div>
 								<strong>Level 5 Requirements: </strong>
-							</p>
+							</div>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Level 3 facilities: 10 points</p></ListItem>
-								<ListItem><p>Level 2 facilities: 5 points</p></ListItem>
-								<ListItem><p>Level 1 facilities: 1 point</p></ListItem>
+								<ListItem><div>Level 3 facilities: 10 points</div></ListItem>
+								<ListItem><div>Level 2 facilities: 5 points</div></ListItem>
+								<ListItem><div>Level 1 facilities: 1 point</div></ListItem>
 							</UnorderedList>
-							<p>
+							<div>
 								<strong
 									><InlineTooltip
 										icon={getLocationIcon('Snowy Mountains')}
@@ -1817,15 +1811,15 @@
 								</strong>
 							</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>10x Level 3 Facilities</p></ListItem>
-								<ListItem><p>5x Level 2 Facilities</p></ListItem>
-								<ListItem><p>1x Level 1 Facility</p></ListItem>
+								<ListItem><div>10x Level 3 Facilities</div></ListItem>
+								<ListItem><div>5x Level 2 Facilities</div></ListItem>
+								<ListItem><div>1x Level 1 Facility</div></ListItem>
 							</UnorderedList>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Moving to another location requires at least 10 extra points to
 								count as Level 5.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								<strong>Materials:</strong> 6.5 ~ 9 million <InlineTooltip
 									icon={getCurrencyIcon('CP')}
 									text="CP"
@@ -1833,13 +1827,13 @@
 									iconType="file"
 								/>
 							</p>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								<strong>Facility Materials by Level: </strong>
-							</p>
+							</div>
 
 							<div class="facility-materials-levels">
 								<div>
-									<p>
+									<div>
 										<em
 											><InlineTooltip
 												icon={getLocationIcon('Snowy Mountains')}
@@ -1851,7 +1845,7 @@
 									</p>
 									<UnorderedList>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Gray')
@@ -1860,10 +1854,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×10 (Buyable) (80x)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Seed')}
 													iconColor={ItemColors.find((e) => e.name === 'Pink')
@@ -1872,10 +1866,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×10 (Buyable) (80x)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Husk')}
 													iconColor={ItemColors.find((e) => e.name === 'Gray')
@@ -1884,12 +1878,12 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×10 (Buyable) (80x)
-											</p></ListItem
+											</div></ListItem
 										>
 									</UnorderedList>
 								</div>
 								<div>
-									<p>
+									<div>
 										<em
 											><InlineTooltip
 												icon={getLocationIcon('Jungle')}
@@ -1901,7 +1895,7 @@
 									</p>
 									<UnorderedList>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Mushroom')}
 													iconColor={ItemColors.find((e) => e.name === 'Blue')
@@ -1910,10 +1904,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×10 (80x)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Yellow')
@@ -1922,10 +1916,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×10 (80x)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Purple')
@@ -1934,12 +1928,12 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×10 (80x)
-											</p></ListItem
+											</div></ListItem
 										>
 									</UnorderedList>
 								</div>
 								<div>
-									<p>
+									<div>
 										<em
 											><InlineTooltip
 												icon={getLocationIcon('Snowy Mountains')}
@@ -1951,7 +1945,7 @@
 									</p>
 									<UnorderedList>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Seed')}
 													iconColor={ItemColors.find((e) => e.name === 'Orange')
@@ -1960,10 +1954,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Snowy Lv1 Gathering) (40x)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Blue')
@@ -1972,10 +1966,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Buyable) (40x)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Seed')}
 													iconColor={ItemColors.find((e) => e.name === 'Orange')
@@ -1984,13 +1978,13 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Buyable) (40x)
-											</p></ListItem
+											</div></ListItem
 										>
 									</UnorderedList>
 								</div>
 
 								<div>
-									<p>
+									<div>
 										<em
 											><InlineTooltip
 												icon={getLocationIcon('Desert')}
@@ -2002,7 +1996,7 @@
 									</p>
 									<UnorderedList>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Green')
@@ -2016,10 +2010,10 @@
 													tooltip="Location"
 													iconType="file"
 												/> Lv1 Gathering) (30x)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Mushroom')}
 													iconColor={ItemColors.find((e) => e.name === 'Purple')
@@ -2028,10 +2022,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Buyable) (30x)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Yellow')
@@ -2040,12 +2034,12 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Buyable) (30x)
-											</p></ListItem
+											</div></ListItem
 										>
 									</UnorderedList>
 								</div>
 								<div>
-									<p>
+									<div>
 										<em
 											><InlineTooltip
 												icon={getLocationIcon('Snowy Mountains')}
@@ -2058,12 +2052,12 @@
 									<UnorderedList>
 										<!--TODO: overturned not found-->
 										<ListItem
-											><p>
+											><div>
 												Overturned Grass ×5 (Snowy Lv2 Gathering)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Question Mark')}
 													iconColor={ItemColors.find((e) => e.name === 'Gray')
@@ -2072,10 +2066,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×10 (Pickled Purse Grass)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Pink')
@@ -2084,12 +2078,12 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (GCP)
-											</p></ListItem
+											</div></ListItem
 										>
 									</UnorderedList>
 								</div>
 								<div>
-									<p>
+									<div>
 										<em
 											><InlineTooltip
 												icon={getLocationIcon('Jungle')}
@@ -2098,20 +2092,20 @@
 												iconType="file"
 											/> Level 3:
 										</em>
-									</p>
+									</div>
 									<UnorderedList>
 										<ListItem
-											><p>
+											><div>
 												Yellow Flower ×5 (<InlineTooltip
 													icon={getLocationIcon('Desert')}
 													text="Desert"
 													tooltip="Location"
 													iconType="file"
 												/> Lv2 Gathering)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Green')
@@ -2120,10 +2114,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Snowy Lv2/Jungle Lv2 Gathering)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Mushroom')}
 													iconColor={ItemColors.find((e) => e.name === 'Purple')
@@ -2132,12 +2126,12 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Normal gathering)
-											</p></ListItem
+											</div></ListItem
 										>
 									</UnorderedList>
 								</div>
 								<div>
-									<p>
+									<div>
 										<em
 											><InlineTooltip
 												icon={getLocationIcon('Desert')}
@@ -2149,17 +2143,17 @@
 									</p>
 									<UnorderedList>
 										<ListItem
-											><p>
+											><div>
 												Yellow Flower ×5 (<InlineTooltip
 													icon={getLocationIcon('Desert')}
 													text="Desert"
 													tooltip="Location"
 													iconType="file"
 												/> Lv2 Gathering)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Green')
@@ -2168,10 +2162,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Snowy Lv2/Jungle Lv2 Gathering)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Mushroom')}
 													iconColor={ItemColors.find((e) => e.name === 'Purple')
@@ -2180,10 +2174,10 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Normal gathering)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Mushroom')}
 													iconColor={ItemColors.find((e) => e.name === 'Gray')
@@ -2192,20 +2186,20 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (Jungle Gathering)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Demon Cactus Flower (<InlineTooltip
 													icon={getLocationIcon('Desert')}
 													text="Desert"
 													tooltip="Location"
 													iconType="file"
 												/> Lv2 Gathering)
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												<InlineTooltip
 													icon={getItemIcon('Herb')}
 													iconColor={ItemColors.find((e) => e.name === 'Pink')
@@ -2214,25 +2208,25 @@
 													tooltip="Item"
 													iconType="component"
 												/> ×5 (GCP)
-											</p></ListItem
+											</div></ListItem
 										>
 									</UnorderedList>
 								</div>
 							</div>
-							<p><strong>Process: </strong></p>
+							<div><strong>Process: </strong></div>
 							<OrderedList class="spaced-list">
 								<ListItem
-									><p>
+									><div>
 										Select <InlineTooltip
 											icon={getLocationIcon('Snowy Mountains')}
 											text="Snowy Mountains"
 											tooltip="Location"
 											iconType="file"
 										/> as your main base location and create a gathering facility.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div>
 										Select <InlineTooltip
 											icon={getLocationIcon('Jungle')}
 											text="Jungle"
@@ -2245,10 +2239,10 @@
 											iconType="file"
 										/> option to skip the waiting period and complete the Level 1
 										upgrade.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div>
 										Start a facility in the <InlineTooltip
 											icon={getLocationIcon('Jungle')}
 											text="Jungle"
@@ -2261,10 +2255,10 @@
 											tooltip="Location"
 											iconType="file"
 										/>. Avoid Areas 9 and 10.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div>
 										Repeat steps 2 and 3 until you have Level 1 collection bases
 										in all zones in the <InlineTooltip
 											icon={getLocationIcon('Snowy Mountains')}
@@ -2272,10 +2266,10 @@
 											tooltip="Location"
 											iconType="file"
 										/>.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div>
 										Use a Pioneering Quest to gather <InlineTooltip
 											icon={getItemIcon('Seed')}
 											iconColor={ItemColors.find((e) => e.name === 'Orange')
@@ -2284,10 +2278,10 @@
 											tooltip="Item"
 											iconType="component"
 										/> and queue the first Level 2 upgrade.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div>
 										Migrate from <InlineTooltip
 											icon={getLocationIcon('Jungle')}
 											text="Jungle"
@@ -2312,10 +2306,10 @@
 											tooltip="Item"
 											iconType="component"
 										/> as needed and repeat until all facilities are at Level 2.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div>
 										Use Mocha pots to mass-produce <InlineTooltip
 											icon={getItemIcon('Question Mark')}
 											iconColor={ItemColors.find((e) => e.name === 'Gray')
@@ -2325,11 +2319,11 @@
 											iconType="component"
 										/> and gather Overturned Grass. Queue an upgrade, migrate, and
 										repeat.
-									</p></ListItem
+									</div></ListItem
 								>
 							</OrderedList>
 
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Alternatively, swap between <InlineTooltip
 									icon={getLocationIcon('Snowy Mountains')}
 									text="Snowy Mountains"
@@ -2348,7 +2342,7 @@
 								/>, gathering the necessary materials to upgrade each facility
 								until you obtain a Level 5 flag.
 							</p>
-							<p>
+							<div>
 								You can use Guuku Mocha Pots to convert <InlineTooltip
 									icon={getItemIcon('Seed')}
 									iconColor={ItemColors.find((e) => e.name === 'Orange')?.value}
@@ -2373,7 +2367,7 @@
 			</div>
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

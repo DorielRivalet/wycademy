@@ -1,3 +1,5 @@
+import { browser } from '$app/environment';
+
 export function formatDateTime(date: string) {
 	// Create a Date object from the ISO string
 	const dateTime = new Date(date);
@@ -61,6 +63,7 @@ export function stringToCustomDateFormat(date: string): string {
 }
 
 export function formatDateWithRelativeTime(date1: Date, date2: Date): string {
+	if (!browser || !date1 || !date2) return '';
 	const diffInMs = date2.getTime() - date1.getTime();
 	const diffInSeconds = Math.floor(diffInMs / 1000);
 	let relativeTime: string;

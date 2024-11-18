@@ -4,14 +4,17 @@
 
 	import numbro from 'numbro';
 
-
 	interface Props {
 		followers?: number;
 		following?: number;
 		isFollowing?: boolean;
 	}
 
-	let { followers = 1000, following = 2500, isFollowing = $bindable(false) }: Props = $props();
+	let {
+		followers = 1000,
+		following = 2500,
+		isFollowing = $bindable(false),
+	}: Props = $props();
 
 	// Format numbers
 	let formattedFollowers = numbro(followers)
@@ -37,8 +40,8 @@
 
 <div class="container">
 	<div class="stats">
-		<a href="/"><p><strong>{formattedFollowers}</strong> Followers</p></a>
-		<a href="/"><p><strong>{formattedFollowing}</strong> Following</p></a>
+		<a href="/"><div><strong>{formattedFollowers}</strong> Followers</div></a>
+		<a href="/"><div><strong>{formattedFollowing}</strong> Following</div></a>
 	</div>
 
 	<Button
