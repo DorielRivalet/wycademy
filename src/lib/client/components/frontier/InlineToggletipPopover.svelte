@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 	import Rotate from 'carbon-icons-svelte/lib/Rotate.svelte';
@@ -15,33 +13,16 @@
 		align = positions[positionIndex];
 	}
 
-	interface Props {
-		align?: PopoverPosition;
-		open?: boolean;
-		ref: HTMLSpanElement;
-		tag1?: string;
-		tag2?: string;
-		tag3?: string;
-		title?: string;
-		subtitle?: string;
-		description?: string;
-		link?: string;
-		image?: import('svelte').Snippet;
-	}
-
-	let {
-		align = $bindable(positions[1]),
-		open = $bindable(false),
-		ref,
-		tag1 = '',
-		tag2 = '',
-		tag3 = '',
-		title = '',
-		subtitle = '',
-		description = '',
-		link = '',
-		image
-	}: Props = $props();
+	export let align: PopoverPosition = positions[1];
+	export let open = false;
+	export let ref: HTMLSpanElement;
+	export let tag1 = '';
+	export let tag2 = '';
+	export let tag3 = '';
+	export let title = '';
+	export let subtitle = '';
+	export let description = '';
+	export let link = '';
 
 	const maxTitleLength = 35;
 	const maxSubtitleLength = 64;
@@ -66,14 +47,11 @@
 		}, millisecondsToDuration('150ms')); // Adjust this to match your transition duration
 	}
 
-	let popoverClass;
-	run(() => {
-		popoverClass = open ? 'popover visible' : 'popover invisible';
-	});
+	$: popoverClass = open ? 'popover visible' : 'popover invisible';
 
-	let tag1Info = $derived(getTag(tag1));
-	let tag2Info = $derived(getTag(tag2));
-	let tag3Info = $derived(getTag(tag3));
+	$: tag1Info = getTag(tag1);
+	$: tag2Info = getTag(tag2);
+	$: tag3Info = getTag(tag3);
 </script>
 
 <span class={popoverClass}>
@@ -89,7 +67,7 @@
 				{#if link !== ''}
 					<div class="image">
 						<a href={link}>
-							{@render image?.()}
+							<slot name="image" />
 						</a>
 					</div>
 					<div class="title link">
@@ -99,7 +77,7 @@
 					</div>
 				{:else}
 					<div class="image">
-						{@render image?.()}
+						<slot name="image" />
 					</div>
 					<div class="title">
 						{title.substring(0, maxTitleLength)}

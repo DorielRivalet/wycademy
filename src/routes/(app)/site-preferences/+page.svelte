@@ -41,10 +41,7 @@
 	import { frontierMath } from '$lib/client/modules/frontier/functions';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { browser } from '$app/environment';
-	import {
-		catppuccinColorNames,
-		catppuccinThemeMap,
-	} from '$lib/client/themes/catppuccin';
+	import { catppuccinColorNames } from '$lib/client/themes/catppuccin';
 	import {
 		authorName,
 		authorUrl,
@@ -209,10 +206,12 @@
 	run(() => {
 		diagram && renderDiagram($carbonThemeStore, mermaidTheme);
 	});
-	let EHP = $derived(`{${frontierMath.calculateEHP(
-		monsterHP,
-		defrate,
-	)}} = \\frac{${monsterHP}}{${defrate}}`);
+	let EHP = $derived(
+		`{${frontierMath.calculateEHP(
+			monsterHP,
+			defrate,
+		)}} = \\frac{${monsterHP}}{${defrate}}`,
+	);
 	const url = $page.url.toString();
 
 	onMount(() => {
@@ -324,15 +323,14 @@
 				on:select={(event) => {
 					changeCursor(event.detail.selectedId);
 				}}
-				
 			>
 				{#snippet children({ item })}
-								<div>
+					<div>
 						<img alt="Cursor Icon" src={getCursorIcon(item.id)} width="24" />
 						<strong style="vertical-align: top;">{item.text}</strong>
 					</div>
-											{/snippet}
-						</Dropdown>
+				{/snippet}
+			</Dropdown>
 		{:else}
 			<DropdownSkeleton />
 		{/if}
@@ -367,15 +365,14 @@
 					{ id: '3', text: themeOptions[3].labelText },
 				]}
 				on:select={(event) => changeTheme(event.detail.selectedId)}
-				
 			>
 				{#snippet children({ item })}
-								<div>
+					<div>
 						<img alt="Theme Icon" src={getThemeIcon(item.id)} width="24" />
 						<strong style="vertical-align: center;">{item.text}</strong>
 					</div>
-											{/snippet}
-						</Dropdown>
+				{/snippet}
+			</Dropdown>
 		{:else}
 			<DropdownSkeleton />
 		{/if}
@@ -391,12 +388,12 @@
 			subtitle="Make sure notifications are also allowed in your operating system for the browser you are using. If you accept the permission, you will receive a notification to confirm it is working."
 		/>
 		<!--TODO: Link to panel page-->
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			If you wish to change your account's notifications, visit your account's
 			<Link href="/account/settings/notifications" inline
 				>Notifications Settings.</Link
 			>
-		</p>
+		</div>
 		<div class="setting-container">
 			<Toggle
 				labelText="Notifications"
@@ -418,18 +415,18 @@
 		<div class="setting-container">
 			<Toggle toggled={true} disabled={!$notificationsStore}>
 				{#snippet labelText()}
-								<span 
+					<span
 						><TooltipDefinition>
 							Someone claimed a global overlay achievement
 							{#snippet tooltip()}
-												<span >
+								<span>
 									Notifies when an overlay achievement (found in
 									/overlay/achievements) was obtained for the first time ever.
 								</span>
-											{/snippet}
+							{/snippet}
 						</TooltipDefinition></span
 					>
-							{/snippet}
+				{/snippet}
 			</Toggle>
 		</div>
 		<div class="setting-container">

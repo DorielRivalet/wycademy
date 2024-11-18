@@ -44,17 +44,19 @@
 	}
 
 	let isConnected1 = $derived((option: string) =>
-		connections.some(([item1]) => item1 === option));
+		connections.some(([item1]) => item1 === option),
+	);
 
 	let isConnected2 = $derived((option: string) =>
-		connections.some(([, item2]) => item2 === option));
+		connections.some(([, item2]) => item2 === option),
+	);
 
 	let isSelected = $derived((option: string) => selectedOption1 === option);
 </script>
 
 <div class="connections">
 	{#each connections as connection}
-		<p class="spaced-paragraph">{connection[0]} — {connection[1]}</p>
+		<div class="spaced-paragraph">{connection[0]} — {connection[1]}</div>
 	{/each}
 </div>
 

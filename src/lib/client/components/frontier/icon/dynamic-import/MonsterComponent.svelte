@@ -731,6 +731,11 @@
 	};
 
 	async function getMonsterIconComponent(displayName: string) {
+		if (displayName === '' || !displayName) {
+			console.warn(`Icon component not found for ${currentMonster}`);
+			return monsterImports['Random']();
+		}
+
 		const monsterKey = displayName.replaceAll(' ', '').replaceAll('-', '');
 		if (monsterImports[monsterKey]) {
 			return monsterImports[monsterKey]();
@@ -741,7 +746,7 @@
 			}
 
 			console.warn(`Icon component not found for ${currentMonster}`);
-			return monsterImports['ComponentMonsterRandom']();
+			return monsterImports['Random']();
 		}
 	}
 

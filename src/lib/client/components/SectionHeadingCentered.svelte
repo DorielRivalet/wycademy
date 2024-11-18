@@ -2,9 +2,6 @@
 	// https://stackoverflow.com/questions/61303237/how-to-set-dynamic-html-tag-according-to-props-in-svelte
 	import slugify from 'slugify';
 
-	
-	
-	
 	interface Props {
 		/** The name of the section heading*/
 		title: string;
@@ -15,12 +12,7 @@
 		icon: any;
 	}
 
-	let {
-		title,
-		section,
-		level,
-		icon
-	}: Props = $props();
+	let { title, section, level, icon }: Props = $props();
 	const tag = 'h' + level;
 	//https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-one-element-is-hovered
 

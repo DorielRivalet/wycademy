@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -193,11 +193,11 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Long Sword'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The Frontier <InlineTooltip
 					tooltip="Weapon"
 					text="Long Sword"
@@ -218,7 +218,7 @@
 				step slashes similar to the fade slashes that allow for directional movement,
 				as seen since Monster Hunter Tri.
 			</p>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Frontier's Spirit Combo mechanics add depth to the <InlineTooltip
 					tooltip="Weapon"
 					text="Long Sword"
@@ -230,14 +230,14 @@
 				Release—a charge attack that changes properties depending on the attacks
 				performed and the Spirit Meter.
 			</p>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Each Spirit Combo "Block" begins with a Spirit attack, followed by one
 				of three options: another Spirit attack, a Normal slash, or a Sidestep
 				Slash. The Normal slash ends the block, allowing only a new Spirit
 				Attack to start a new block, while the Sidestep Slash can be followed by
 				a Normal slash and then a Spirit attack.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				You can perform a Spirit Release by holding down the Spirit Attack input
 				for an extended period. The damage of this attack is determined by the
 				number of Spirit Attacks executed prior and the amount of Spirit Meter
@@ -247,7 +247,7 @@
 				Attacks.
 			</p>
 
-			<p>
+			<div>
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -261,7 +261,7 @@
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Earth Style is the standard <InlineTooltip
 							tooltip="Weapon"
 							text="Long Sword"
@@ -276,19 +276,19 @@
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Heaven Style replaces the Fade Slashes with Evade Slashes, which
 						cancel any ongoing combo, similar to a roll but with an added
 						attack. Although you lose the ability to freely perform Sidestep
 						Slashes, they remain available as part of a Spirit Combo.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Storm Style builds on Heaven Style by replacing the Thrust motion
 						with a Piercing Stab. This attack's damage scales with the amount of
 						Spirit Meter you have when executing it. Although it’s a slower
@@ -309,7 +309,7 @@
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Extreme Style introduces a range of new mechanics, incorporating
 						elements from both Heaven and Storm styles. The most notable
 						addition is the Parry, allowing you to guard against attacks and
@@ -317,7 +317,7 @@
 						path and providing iframes—or a Piercing Stab, similar to the one in
 						Storm Style.
 					</p>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						A new Blade Meter is also introduced, filling up in the same way as
 						the Spirit Meter, but it also increases through the Parry action,
 						functioning similarly to the <InlineTooltip
@@ -334,7 +334,7 @@
 							iconType="component"
 						/>.
 					</p>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						While running, you can initiate a charge, dragging your sword behind
 						you. Releasing this charge unleashes a single slash that deals 18
 						motion if not fully charged but increases to 70 when fully charged.
@@ -342,13 +342,13 @@
 						makes it worthwhile. Additionally, you can perform a downslash or
 						upslash from the dash without charging.
 					</p>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Parrying is an instant guard action that can chain into various
 						actions, most notably a teleport that covers a long distance and
 						performs either a slash or a piercing stab with the same values as
 						the Storm Style move.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The Blade Release consumes your Blade Meter to perform a series of
 						slashes ending in an explosive strike. The motion values depend on
 						the meter's build-up, with a full meter resulting in a sequence of
@@ -368,7 +368,7 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div>
 						Full spirit bar buff effect increased (from +10 attack to +40
 						attack).
 					</p>
@@ -406,14 +406,12 @@
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-											
-								{#if cell.value[0] == '-'}
-									<p style:color="var(--ctp-red)">{cell.value}</p>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							
-											{/snippet}
+							{#if cell.value[0] == '-'}
+								<p style:color="var(--ctp-red)">{cell.value}</p>
+							{:else}
+								<div>{cell.value}</div>
+							{/if}
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -452,19 +450,17 @@
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'skill'}
-										<InlineTooltip
-											text={cell.value}
-											tooltip="Armor Skill"
-											iconType="component"
-											icon={getItemIcon('Jewel')}
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'skill'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Armor Skill"
+										iconType="component"
+										icon={getItemIcon('Jewel')}
+									/>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -503,24 +499,22 @@
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'sigil'}
-										<InlineTooltip
-											text={cell.value}
-											tooltip="Sigil"
-											iconType="component"
-											icon={getItemIcon('Sigil')}
-										/>
-									{:else if cell.key === 'rating'}
-										<StarRating
-											rating={Number.parseFloat(cell.value)}
-											maxRating={3}
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'sigil'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Sigil"
+										iconType="component"
+										icon={getItemIcon('Sigil')}
+									/>
+								{:else if cell.key === 'rating'}
+									<StarRating
+										rating={Number.parseFloat(cell.value)}
+										maxRating={3}
+									/>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -531,14 +525,14 @@
 				<div>
 					<UnorderedList>
 						<ListItem
-							><p>
+							><div>
 								There is no spirit level mechanic like in MH3 and later games.
 								Filling up the bar completely grants a temporary raw damage
 								bonus.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								The choice of length is largely personal preference. Keep in
 								mind that <InlineTooltip
 									tooltip="Weapon"
@@ -546,39 +540,39 @@
 									iconType="component"
 									icon={getWeaponIcon('Long Sword')}
 								/> has various slashes that attack in different directions.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Mastering the Evasion Slash is good practice, as it can also
 								reset combos. The invincibility frames start at the beginning
 								but don’t last long.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Piercing stabs from parries are powerful but require good
 								positioning to land effectively.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								You can perform an upswing from a roll. The parry from a
 								sheathed state has a different button combination (Triangle +
 								Circle) than other weapons due to the unsheathe > spirit slash
 								mechanic.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								The orange/white bar below the spirit meter charges up a
 								stronger multi-hit attack, which can be unleashed when the bar
 								is halfway filled or maxed out. Otherwise, it depletes when you
 								sheathe or are forced to (e.g., due to tremors).
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Long Sword"
@@ -590,10 +584,10 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>, but it’s still significant.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								If you really miss the Fade Slash, you might want to consider
 								using <InlineTooltip
 									tooltip="Weapon"
@@ -601,7 +595,7 @@
 									iconType="component"
 									icon={getWeaponIcon('Switch Axe F')}
 								/> instead.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -612,7 +606,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

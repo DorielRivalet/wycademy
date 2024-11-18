@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { T, useLoader, useTask } from '@threlte/core';
 	import { interactivity } from '@threlte/extras';
 	import { spring } from 'svelte/motion';
@@ -97,4 +97,4 @@
 			else parent.material = [self];
 		}}
 	/></T.Mesh
->
+> -->

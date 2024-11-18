@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -196,14 +196,14 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Tonfa'} />
 		<div>
 			<div class="video">
 				<Youtube id="J6AN4_ZogKA" />
 			</div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					tooltip="Weapon"
 					text="Tonfa"
@@ -219,8 +219,8 @@
 				/>. As an Impact-type weapon, the more attacks you make with it, the
 				more powerful it becomes. The Tonfa also offers the ability to guard and
 				dash freely. It is unlocked by reaching G Rank.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				This weapon consists of two light, swift poles equipped with a
 				propulsion system, allowing hunters to strike monsters multiple times in
 				quick succession. Due to its light weight and propulsion system, hunters
@@ -235,7 +235,7 @@
 				on sufficiently weakened parts of a monster, this move triggers explosions
 				in those areas, identified by a red, wispy aura.
 			</p>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				When using Extreme Style, the Tonfa has two gauges (blue and red) that
 				fills up when attacking monsters. The red gauge grants an attack boost,
 				while the blue gauge enables EX Evades. The red gauge has 5 levels of
@@ -258,7 +258,7 @@
 				width="100%"
 				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/tonfa-meter.webp'}
 			/>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					tooltip="Weapon"
 					text="Tonfa"
@@ -277,13 +277,13 @@
 			<section>
 				<SectionHeading level={2} title="Modes" />
 				<div>
-					<p class="spaced-paragraph">
-						<strong>Long Mode:</strong> This mode deals normal impact zone damage.
+					<div class="spaced-paragraph">
+						<strong>Long Mode:</strong> This mode deals Impact damage.
 						At the end of the main attack combo, the hunter can perform a charged
 						attack. While in midair, pressing the secondary attack button triggers
 						a spinning drop attack. All attacks in long mode deal Impact damage with
 						standard Impact damage modifiers.
-					</p>
+					</div>
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
 							<Player
@@ -294,17 +294,13 @@
 							/>
 						{/await}
 					</div>
-					<p class="spaced-paragraph">
-						<strong>Short Mode:</strong> In this mode, impact zone damage is reversed.
-						At the end of the main attack combo, the hunter can unleash a quick series
+					<div class="spaced-paragraph">
+						<strong>Short Mode:</strong>
+						focuses on meter gain. At the end of the main attack combo, the hunter can unleash a quick series
 						of swift attacks. While in midair, pressing the secondary attack button
 						triggers a rolling kick that causes the hunter to bounce back and slightly
 						upward if the attack hits a monster, allowing the hunter to stay airborne.
-						In short mode, impact zone damage modifiers are inverted—the weakest
-						Impact damage area becomes the most resistant, while the most resistant
-						becomes the weakest. All other areas receive Impact damage adjustments
-						based on the difference between the weakest and most resistant Impact
-						damage zones.
+						Short Mode has less range than Long Mode, 80% of Long Mode's Stun values, more EX recovery and more hitlag than Long Mode. For such reasons, <strong>the main mode used is Long Mode.</strong>
 					</p>
 				</div>
 			</section>
@@ -312,7 +308,7 @@
 			<section>
 				<SectionHeading level={2} title="Ryuuki Finisher" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The <InlineTooltip
 							tooltip="Weapon"
 							text="Tonfa"
@@ -333,7 +329,7 @@
 					/>
 					<UnorderedList class="spaced-list">
 						<ListItem>
-							<p>
+							<div>
 								<InlineTooltip
 									tooltip="List Item"
 									text="Head: "
@@ -370,7 +366,7 @@
 							</p>
 						</ListItem>
 						<ListItem>
-							<p>
+							<div>
 								<InlineTooltip
 									tooltip="List Item"
 									text="Body: "
@@ -387,7 +383,7 @@
 							</p>
 						</ListItem>
 						<ListItem>
-							<p>
+							<div>
 								<InlineTooltip
 									tooltip="List Item"
 									text="Tail: "
@@ -402,7 +398,7 @@
 							</p>
 						</ListItem>
 						<ListItem>
-							<p>
+							<div>
 								<InlineTooltip
 									tooltip="List Item"
 									text="Salvage: "
@@ -470,14 +466,12 @@
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-													
-									<p>{cell.value}</p>
-								
-													{/snippet}
+								<div>{cell.value}</div>
+							{/snippet}
 						</DataTable>
 					</div>
 
-					<p>
+					<div>
 						For an explanation on element damage, see our <Link
 							icon={Information}
 							href="/hunter-notes/getting-started/elements#damage"
@@ -518,7 +512,7 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div>
 						All Ryuuki finisher (i.e. explosion) effects buffed. Head: KO
 						duration from 20s to 30s. Tail: Bleeding 1.5x damage. Body:
 						Sharpness return from 15 to 20. Gunner Attack Up from 25 to 50.
@@ -557,14 +551,12 @@
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-											
-								{#if cell.value[0] == '-'}
-									<p style:color="var(--ctp-red)">{cell.value}</p>
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							
-											{/snippet}
+							{#if cell.value[0] == '-'}
+								<p style:color="var(--ctp-red)">{cell.value}</p>
+							{:else}
+								<div>{cell.value}</div>
+							{/if}
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -603,19 +595,17 @@
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'skill'}
-										<InlineTooltip
-											text={cell.value}
-											tooltip="Armor Skill"
-											iconType="component"
-											icon={getItemIcon('Jewel')}
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'skill'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Armor Skill"
+										iconType="component"
+										icon={getItemIcon('Jewel')}
+									/>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -654,24 +644,22 @@
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-													
-									{#if cell.key === 'sigil'}
-										<InlineTooltip
-											text={cell.value}
-											tooltip="Sigil"
-											iconType="component"
-											icon={getItemIcon('Sigil')}
-										/>
-									{:else if cell.key === 'rating'}
-										<StarRating
-											rating={Number.parseFloat(cell.value)}
-											maxRating={3}
-										/>
-									{:else}
-										<p>{cell.value}</p>
-									{/if}
-								
-													{/snippet}
+								{#if cell.key === 'sigil'}
+									<InlineTooltip
+										text={cell.value}
+										tooltip="Sigil"
+										iconType="component"
+										icon={getItemIcon('Sigil')}
+									/>
+								{:else if cell.key === 'rating'}
+									<StarRating
+										rating={Number.parseFloat(cell.value)}
+										maxRating={3}
+									/>
+								{:else}
+									<div>{cell.value}</div>
+								{/if}
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -682,7 +670,7 @@
 				<div>
 					<UnorderedList>
 						<ListItem
-							><p>
+							><div>
 								Accumulating 30 points in the Tonfa Tech skill adds an
 								additional bar to the <InlineTooltip
 									tooltip="Weapon"
@@ -690,20 +678,20 @@
 									iconType="component"
 									icon={getWeaponIcon('Tonfa')}
 								/> meter.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								The Earth, Heaven, and Storm Hunting Styles for the <InlineTooltip
 									tooltip="Weapon"
 									text="Tonfa"
 									iconType="component"
 									icon={getWeaponIcon('Tonfa')}
 								/> are distinct from each other, each using different types of gauges.
-							</p></ListItem
+							</div></ListItem
 						>
-						<ListItem
-							><p>
+						<!-- <ListItem
+							><div>
 								The ability to alter how you deal Impact damage makes <InlineTooltip
 									tooltip="Weapon"
 									text="Tonfas"
@@ -711,10 +699,10 @@
 									icon={getWeaponIcon('Tonfa')}
 								/>
 								highly versatile, but also more challenging for inexperienced users.
-							</p></ListItem
-						>
+							</div></ListItem
+						> -->
 						<ListItem
-							><p>
+							><div>
 								Understanding the hitzone values on monsters is crucial to
 								maximizing the effectiveness of the <InlineTooltip
 									tooltip="Weapon"
@@ -722,10 +710,10 @@
 									iconType="component"
 									icon={getWeaponIcon('Tonfa')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Tonfas"
@@ -733,10 +721,10 @@
 									icon={getWeaponIcon('Tonfa')}
 								/> can be very effective in team hunts, as well-placed finishers
 								can benefit all members.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Tonfas"
@@ -750,10 +738,10 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								The <InlineTooltip
 									tooltip="Armor Skill"
 									text="Fencing+2"
@@ -770,39 +758,39 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> an ideal skill to use.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Using the finisher move without having inflicted any Dragon
 								Spirit will result in minimal damage and leave the hunter
 								vulnerable. This move also consumes a significant amount of
 								sharpness, regardless of whether it hits anything.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								One of the ground-based attacks has a parrying ability if timed
 								correctly.
-							</p></ListItem
+							</div></ListItem
 						><ListItem
-							><p>
+							><div>
 								Consider always using Long Mode: it has a higher stun value than
 								Short Mode, whose stun value is 80% and has less range. Short
 								mode also has more hitlag and EX recovery.
-							</p></ListItem
+							</div></ListItem
 						><ListItem
-							><p>
+							><div>
 								Using <InlineTooltip
 									tooltip="Armor Skill"
 									text="Trained+2"
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> can help you stay in the air longer.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Due to the way the combo meter boosts raw damage, <InlineTooltip
 									tooltip="Weapon"
 									text="Tonfa"
@@ -810,10 +798,10 @@
 									icon={getWeaponIcon('Tonfa')}
 								/> requires a much higher My Mission attack threshold than most other
 								weapons.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Long mode is the default and deals more <InlineTooltip
 									tooltip="Ailment"
 									text="Stun"
@@ -822,10 +810,10 @@
 								/> damage. Short mode has been reworked to focus on meter gain, but
 								it has significant hitlag and isn't very effective outside of using
 								the dash attack to build meter.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Guard points exist on some attacks, but they aren't very
 								practical to use. Additionally, obtaining <InlineTooltip
 									tooltip="Armor Skill"
@@ -833,10 +821,10 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> on modern sets is quite difficult.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								The Ryuuki finisher replenishes the meters of all nearby <InlineTooltip
 									tooltip="Weapon"
 									text="Tonfa"
@@ -846,19 +834,19 @@
 								players and can also be triggered by Tonfa-wielding hunter NPCs.
 								While these bursts provide some additional benefits, most of them
 								are relatively minor.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								To maintain your combo meter, simply hit or evade enemies. The
 								timer generally slows down if the monster is performing a
 								lengthy attack during which you can't or shouldn't be attacking.
-							</p></ListItem
+							</div></ListItem
 						>
-						<ListItem><p>EX Evasion only costs meter, not stamina.</p></ListItem
+						<ListItem><div>EX Evasion only costs meter, not stamina.</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								EX Pursuit (charged jab + meter) benefits from <InlineTooltip
 									tooltip="Armor Skill"
 									text="Gunnery"
@@ -881,10 +869,10 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>, but is quite costly compared to airdash spam.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div>
 								Similar to <InlineTooltip
 									tooltip="Weapon"
 									text="Sword and Shield"
@@ -902,7 +890,7 @@
 									iconColor={getItemColor('Red')}
 									icon={getItemIcon('Jewel')}
 								/>, can boost raw damage by 300 until you get knocked back.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -913,7 +901,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

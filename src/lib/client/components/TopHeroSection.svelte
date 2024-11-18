@@ -26,7 +26,7 @@
 		secondaryButtonLink = '',
 		heroVideoBackground,
 		layout = 1,
-		starCount = 0
+		starCount = 0,
 	}: Props = $props();
 </script>
 
@@ -75,13 +75,13 @@
 				<button class="stars">
 					<a href="https://github.com/DorielRivalet/mhfz-overlay">
 						<StarFilled style="margin-right: 8px" color="#ffff00" />
-						<p>Stars</p>
+						<div>Stars</div>
 						<p class="star-count">{starCount}</p>
 					</a>
 				</button>
 			</div>
 			<a class="arrow-down" href="#demo">
-				<p>See Demo</p>
+				<div>See Demo</div>
 				<ChevronDown />
 			</a>
 		</div>

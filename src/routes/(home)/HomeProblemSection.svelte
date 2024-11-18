@@ -61,7 +61,7 @@
 	/>
 	<div class="summary">
 		<img src={EmoteQuestion} alt="Question Emote" />
-		<p class="description">
+		<div class="description paragraph-long-02">
 			<InlineTooltip
 				icon={getGameIcon('Monster Hunter Frontier Z')}
 				text="Monster Hunter Frontier Z"
@@ -70,7 +70,7 @@
 			/> is a challenging game with deep mechanics and extensive content, yet comprehensive,
 			accessible resources can be hard to find. Many existing resources are incomplete
 			or scattered, leaving players without the support they need.
-		</p>
+		</div>
 	</div>
 	<div class="problems">
 		{#each problems as problem}

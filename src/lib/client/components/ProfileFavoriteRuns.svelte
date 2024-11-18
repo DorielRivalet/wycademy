@@ -9,56 +9,58 @@
 		favoriteRuns?: any;
 	}
 
-	let { favoriteRuns = [
-		{
-			displayName: 'Burning Freezing Elzelion',
-			title: "User 2's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			displayName: 'Conquest Crimson Fatalis',
-			title: "User 2's Run #131",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			displayName: 'Supremacy Pariapuria',
-			title: "User 3's Run #132",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			displayName: 'Bombardier Bogabadorumu',
-			title: "User 4's Run #133",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			displayName: 'Ruling Guanzorumu',
-			title: "User 5's Run #134",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			displayName: 'Zenith Espinas',
-			title: "User 6's Run #135",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			displayName: 'Zenith Espinas',
-			title: "User 7's Run #136",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			displayName: 'Conquest Fatalis',
-			title: "User 8's Run #130",
-			link: '/',
-			totalFavorites: 0,
-		},
-	] }: Props = $props();
+	let {
+		favoriteRuns = [
+			{
+				displayName: 'Burning Freezing Elzelion',
+				title: "User 2's Run #130",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				displayName: 'Conquest Crimson Fatalis',
+				title: "User 2's Run #131",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				displayName: 'Supremacy Pariapuria',
+				title: "User 3's Run #132",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				displayName: 'Bombardier Bogabadorumu',
+				title: "User 4's Run #133",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				displayName: 'Ruling Guanzorumu',
+				title: "User 5's Run #134",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				displayName: 'Zenith Espinas',
+				title: "User 6's Run #135",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				displayName: 'Zenith Espinas',
+				title: "User 7's Run #136",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				displayName: 'Conquest Fatalis',
+				title: "User 8's Run #130",
+				link: '/',
+				totalFavorites: 0,
+			},
+		],
+	}: Props = $props();
 
 	const maxFavoritesToDisplay = 5;
 
@@ -98,9 +100,9 @@
 							color="var(--ctp-red)"
 						/>
 					</div>
-					<p>
+					<div>
 						{favoriteRun.totalFavorites}
-					</p>
+					</div>
 				</div>
 			</div>
 		</a>

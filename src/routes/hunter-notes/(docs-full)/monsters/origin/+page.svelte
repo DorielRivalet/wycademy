@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -19,11 +19,11 @@
 	let originsTableFilteredRowIds: string[] = $state([]);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Origin'} />
 		<div>
-			<p>
+			<div>
 				Origin monsters are natural evolutions of the Gou monsters. These are
 				required to upgrade Gou armors and weapons beyond G Supremacy level.
 			</p>
@@ -321,7 +321,7 @@
 						</span>
 									{/snippet}
 					{#snippet cell({ cell })}
-									
+
 							{#if cell.key === 'monster'}
 								<InlineTooltip
 									icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
@@ -338,9 +338,9 @@
 									text={cell.value}
 								/>
 							{:else}
-								<p>{cell.value}</p>
+								<div>{cell.value}</div>
 							{/if}
-						
+
 									{/snippet}
 				</DataTable>
 				<Pagination
@@ -355,7 +355,7 @@
 				<PageTurn pageUrlPathName={$page.url.pathname} />
 			</div>
 		</div>
-	</div></HunterNotesPage
+	</div></TableOfContentsPage
 >
 
 <style lang="scss">

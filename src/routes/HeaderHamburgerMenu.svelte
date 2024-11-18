@@ -33,12 +33,14 @@
 		{ name: 'Events', categories: [], href: '/events' },
 	];
 
-	let availableCategories =
-		$derived(selectedSection === null ? [] : sections[selectedSection].categories);
-	let availablePages =
-		$derived(selectedCategory === null || selectedSection === null
+	let availableCategories = $derived(
+		selectedSection === null ? [] : sections[selectedSection].categories,
+	);
+	let availablePages = $derived(
+		selectedCategory === null || selectedSection === null
 			? []
-			: sections[selectedSection].categories[selectedCategory].pages);
+			: sections[selectedSection].categories[selectedCategory].pages,
+	);
 </script>
 
 <div class="container">
@@ -49,14 +51,14 @@
 		kind="ghost"
 	>
 		{#snippet icon()}
-				<span >
+			<span>
 				{#if open}
 					<Close size={20} color={'var(--ctp-text)'} />
 				{:else}
 					<Menu size={20} color={'var(--ctp-text)'} />
 				{/if}
 			</span>
-			{/snippet}
+		{/snippet}
 	</Button>
 	{#if open}
 		<div

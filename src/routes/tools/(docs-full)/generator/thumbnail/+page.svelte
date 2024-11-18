@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -69,11 +67,11 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	let thumbnailElementsOrderReversed = $state(false);
+	let thumbnailElementsOrderReversed = false;
 
-	let modalOpen = $state(false);
-	let modalHeading = $state('');
-	let modalLabel = $state('');
+	let modalOpen = false;
+	let modalHeading = '';
+	let modalLabel = '';
 	let modalImage = '';
 	let modalNotes = '';
 
@@ -160,10 +158,10 @@
 		return filteredResult;
 	}
 
-	let thumbnailGeneratorSmallPreview = $state('');
+	let thumbnailGeneratorSmallPreview = '';
 	let thumbnailGeneratorSmallPreviewStatus: 'unloaded' | 'loading' | 'loaded' =
-		$state('unloaded');
-	let thumbnailGeneratorSmallPreviewSize = $state('512');
+		'unloaded';
+	let thumbnailGeneratorSmallPreviewSize = '512';
 
 	async function downloadGeneratedThumbnailImage() {
 		let node = document.getElementById('generated-thumbnail-dom');
@@ -841,59 +839,59 @@
 
 	const allFrontierColors = getAllFrontierColors();
 
-	let thumbnailImages: HTMLImgAttributes[] = $state([]);
-	let thumbnailUploadedImages: HTMLImgAttributes[] = $state([]);
-	let thumbnailTexts: HTMLParagraphElement[] = $state([]);
+	let thumbnailImages: HTMLImgAttributes[] = [];
+	let thumbnailUploadedImages: HTMLImgAttributes[] = [];
+	let thumbnailTexts: HTMLParagraphElement[] = [];
 
 	let thumbnailGeneratorImageFormat: 'Vector' | 'Raster' = 'Vector';
-	let thumbnailGeneratorImageType: FrontierImageType = $state('Monster Icon');
-	let thumbnailGeneratorImageIdFromList = $state('Abiorugu');
-	let thumbnailGeneratorImageColor = $state(allFrontierColors[0].id);
-	let thumbnailGeneratorImageBackground = $state(false);
-	let thumbnailGeneratorMonsterRenderSize: 'Small' | 'Full' = $state('Full');
+	let thumbnailGeneratorImageType: FrontierImageType = 'Monster Icon';
+	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
+	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
+	let thumbnailGeneratorImageBackground = false;
+	let thumbnailGeneratorMonsterRenderSize: 'Small' | 'Full' = 'Full';
 	let thumbnailGeneratorBackgroundGradientStartColor =
-		$state(getHexStringFromCatppuccinColor('mantle', $carbonThemeStore));
+		getHexStringFromCatppuccinColor('mantle', $carbonThemeStore);
 	let thumbnailGeneratorBackgroundGradientEndColor =
-		$state(getHexStringFromCatppuccinColor('crust', $carbonThemeStore));
-	let thumbnailGeneratorBackgroundGradientRotation = $state(45);
-	let thumbnailGeneratorBackgroundGradientLinear = $state(false);
-	let thumbnailGeneratorImageShadowColor = $state('#000000');
-	let thumbnailGeneratorImageShadowWidth = $state(4);
-	let thumbnailGeneratorImageBorderWidth = $state(0);
-	let thumbnailGeneratorImageBorderColor = $state('#000000');
-	let thumbnailGeneratorImageBorderRadius = $state(5);
+		getHexStringFromCatppuccinColor('crust', $carbonThemeStore);
+	let thumbnailGeneratorBackgroundGradientRotation = 45;
+	let thumbnailGeneratorBackgroundGradientLinear = false;
+	let thumbnailGeneratorImageShadowColor = '#000000';
+	let thumbnailGeneratorImageShadowWidth = 4;
+	let thumbnailGeneratorImageBorderWidth = 0;
+	let thumbnailGeneratorImageBorderColor = '#000000';
+	let thumbnailGeneratorImageBorderRadius = 5;
 
-	let thumbnailGeneratorBorderWidth = $state(12);
-	let thumbnailGeneratorBorderStyle = $state('outset');
-	let thumbnailGeneratorBorderColor = $state(getHexStringFromCatppuccinColor(
+	let thumbnailGeneratorBorderWidth = 12;
+	let thumbnailGeneratorBorderStyle = 'outset';
+	let thumbnailGeneratorBorderColor = getHexStringFromCatppuccinColor(
 		'red',
 		$carbonThemeStore,
-	));
-	let thumbnailGeneratorBorder = $state(false);
+	);
+	let thumbnailGeneratorBorder = false;
 
-	let thumbnailGeneratorImageFiles: ReadonlyArray<File> = $state([]);
-	let thumbnailGeneratorTemplateFiles: ReadonlyArray<File> = $state([]);
+	let thumbnailGeneratorImageFiles: ReadonlyArray<File> = [];
+	let thumbnailGeneratorTemplateFiles: ReadonlyArray<File> = [];
 
-	let thumbnailGeneratorText = $state('5 Musous No Hit SW+CS');
-	let thumbnailGeneratorTextFontSize = $state(48);
-	let thumbnailGeneratorTextColor = $state('#000000');
-	let thumbnailGeneratorTextRotation = $state(0);
-	let thumbnailGeneratorTextShadowColor = $state('#ff0000');
-	let thumbnailGeneratorTextShadowWidth = $state(1);
-	let thumbnailGeneratorTextFontFamily = $state('Arial');
-	let thumbnailGeneratorTextFontStyle = $state('italic');
-	let thumbnailGeneratorTextFontWeight = $state('bold');
-	let thumbnailGeneratorTextDecoration = $state('underline');
-	let thumbnailGeneratorTextDecorationColor = $state('#ff0000');
+	let thumbnailGeneratorText = '5 Musous No Hit SW+CS';
+	let thumbnailGeneratorTextFontSize = 48;
+	let thumbnailGeneratorTextColor = '#000000';
+	let thumbnailGeneratorTextRotation = 0;
+	let thumbnailGeneratorTextShadowColor = '#ff0000';
+	let thumbnailGeneratorTextShadowWidth = 1;
+	let thumbnailGeneratorTextFontFamily = 'Arial';
+	let thumbnailGeneratorTextFontStyle = 'italic';
+	let thumbnailGeneratorTextFontWeight = 'bold';
+	let thumbnailGeneratorTextDecoration = 'underline';
+	let thumbnailGeneratorTextDecorationColor = '#ff0000';
 
 	let thumbnailGeneratorSectionOption: 'Text' | 'Image' | 'Custom Image' =
-		$state('Image');
+		'Image';
 
-	let thumbnailGeneratorUploadedImageShadowWidth = $state(4);
-	let thumbnailGeneratorUploadedImageShadowColor = $state('#000000');
-	let thumbnailGeneratorUploadedImageBorderWidth = $state(4);
-	let thumbnailGeneratorUploadedImageBorderColor = $state('#000000');
-	let thumbnailGeneratorUploadedImageBorderRadius = $state(5);
+	let thumbnailGeneratorUploadedImageShadowWidth = 4;
+	let thumbnailGeneratorUploadedImageShadowColor = '#000000';
+	let thumbnailGeneratorUploadedImageBorderWidth = 4;
+	let thumbnailGeneratorUploadedImageBorderColor = '#000000';
+	let thumbnailGeneratorUploadedImageBorderRadius = 5;
 
 	let thumbnailGeneratorTemplateExampleImages =
 		getThumbnailGeneratorTemplateExampleImages();
@@ -910,14 +908,12 @@
 		...thumbnailGeneratorTemplateExampleTexts,
 	];
 
-	run(() => {
-		addUploadedImage(thumbnailGeneratorImageFiles);
-	});
+	$: addUploadedImage(thumbnailGeneratorImageFiles);
 
-	let thumbnailGeneratorPreviewStyle = $derived(`background: ${thumbnailGeneratorBackgroundGradientLinear ? 'linear' : 'radial'}-gradient(${thumbnailGeneratorBackgroundGradientLinear ? `${thumbnailGeneratorBackgroundGradientRotation}deg` : 'circle'}, ${thumbnailGeneratorBackgroundGradientStartColor} 0%, ${thumbnailGeneratorBackgroundGradientEndColor} 100%); border: ${thumbnailGeneratorBorder ? thumbnailGeneratorBorderWidth : '0'}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`);
+	$: thumbnailGeneratorPreviewStyle = `background: ${thumbnailGeneratorBackgroundGradientLinear ? 'linear' : 'radial'}-gradient(${thumbnailGeneratorBackgroundGradientLinear ? `${thumbnailGeneratorBackgroundGradientRotation}deg` : 'circle'}, ${thumbnailGeneratorBackgroundGradientStartColor} 0%, ${thumbnailGeneratorBackgroundGradientEndColor} 100%); border: ${thumbnailGeneratorBorder ? thumbnailGeneratorBorderWidth : '0'}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`;
 
-	let thumbnailContainer: HTMLDivElement = $state();
-	let thumbnailContainerCursorPosition = $state({ x: 0, y: 0 });
+	let thumbnailContainer: HTMLDivElement;
+	let thumbnailContainerCursorPosition = { x: 0, y: 0 };
 
 	onMount(() => {
 		thumbnailContainer.addEventListener('dragover', (e) => {
@@ -961,10 +957,10 @@
 		});
 	});
 
-	let moveableTarget = $state();
+	let moveableTarget;
 
 	let loadingTemplateStatus: 'uploading' | 'edit' | 'complete' | undefined =
-		$state('uploading');
+		'uploading';
 
 	function onThumbnailImageContainerMouseDown(
 		e: MouseEvent & { currentTarget: EventTarget & HTMLDivElement },
@@ -1083,9 +1079,9 @@
 		return result;
 	}
 
-	let thumbnailGeneratorImagesFromType = $derived(getThumbnailGeneratorImagesFromType(
+	$: thumbnailGeneratorImagesFromType = getThumbnailGeneratorImagesFromType(
 		thumbnailGeneratorImageType,
-	));
+	);
 </script>
 
 <Modal
@@ -1103,7 +1099,7 @@
 	</div>
 </Modal>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Thumbnail Generator'} />
 		<InlineNotification
@@ -1329,12 +1325,10 @@
 						{ id: 'Lucida Console', text: 'Lucida Console' },
 						{ id: 'MS Gothic', text: 'MS Gothic' },
 					]}
-					
+					let:item
 				>
-					{#snippet children({ item })}
-										<p style="font-family: {item.id}">{item.id}</p>
-														{/snippet}
-								</Dropdown>
+					<p style="font-family: {item.id}">{item.id}</p>
+				</Dropdown>
 
 				<Dropdown
 					titleText="Font Style"
@@ -1726,18 +1720,19 @@
 								alt={image.alt}
 								draggable={image.fileType === 'Habitat' ? 'false' : 'true'}
 								id={`image-${i}`}
-								ondragstart={(e) =>
+								on:dragstart={(e) =>
 									handleDragStart(e, `image-${i}`, e.offsetX, e.offsetY, i)}
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 							/>
 						{:else}
-							<!-- svelte-ignore a11y_no_static_element_interactions -->
+							<!-- svelte-ignore a11y-no-static-element-interactions -->
 							<div
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
-								onmousedown={(e) => onThumbnailImageContainerMouseDown(e, i)}
+								on:mousedown={(e) => onThumbnailImageContainerMouseDown(e, i)}
 								id={`image-${i}`}
 							>
-								<image.src.component
+								<svelte:component
+									this={image.src.component}
 									{...{
 										currentMonster: image.optionId,
 										color: image.color,
@@ -1761,7 +1756,7 @@
 								src={image.src}
 								alt={image.alt}
 								draggable={'true'}
-								ondragstart={(e) =>
+								on:dragstart={(e) =>
 									handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
 								id={`upload-${i}`}
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
@@ -1771,7 +1766,7 @@
 								src={image.src}
 								alt={image.alt}
 								draggable={'true'}
-								ondragstart={(e) =>
+								on:dragstart={(e) =>
 									handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
 								id={`upload-${i}`}
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
@@ -1783,7 +1778,7 @@
 					{#each thumbnailTexts as text, i}
 						<p
 							draggable={'true'}
-							ondragstart={(e) =>
+							on:dragstart={(e) =>
 								handleDragStart(e, `text-${i}`, e.offsetX, e.offsetY, i)}
 							id={`text-${i}`}
 							style="position: absolute; top: {text.top}px; left: {text.left}px; z-index: {text.zIndex}; opacity: {text.opacity}; font-size: {text.fontSize}px; text-shadow:
@@ -2009,7 +2004,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

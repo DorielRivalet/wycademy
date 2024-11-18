@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
@@ -19,7 +19,7 @@
 	}
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Ailments'} />
 		<!-- TODO: status effects descriptions and cures-->
@@ -240,53 +240,51 @@
 							</div>
 						</Toolbar>
 						{#snippet cell({ cell })}
-											
-								{#if cell.key === 'name'}
+							{#if cell.key === 'name'}
+								<InlineTooltip
+									icon={monsterInfo.find((e) => e.name === cell.value)?.icon}
+									tooltip={'Monster'}
+									iconType={'file'}
+									text={cell.value}
+								/>
+							{:else if cell.key === 'immunities'}
+								{#each getStatusArray(cell.value) as status}
 									<InlineTooltip
-										icon={monsterInfo.find((e) => e.name === cell.value)?.icon}
-										tooltip={'Monster'}
-										iconType={'file'}
-										text={cell.value}
+										icon={StatusIcons.find((e) => e.name === status)?.icon ??
+											''}
+										tooltip={'Status'}
+										text={`${status}`}
 									/>
-								{:else if cell.key === 'immunities'}
-									{#each getStatusArray(cell.value) as status}
-										<InlineTooltip
-											icon={StatusIcons.find((e) => e.name === status)?.icon ??
-												''}
-											tooltip={'Status'}
-											text={`${status}`}
-										/>
-									{/each}
-								{:else}
-									<p>{cell.value}</p>
-								{/if}
-							
-											{/snippet}
+								{/each}
+							{:else}
+								<div>{cell.value}</div>
+							{/if}
+						{/snippet}
 					</DataTable>
 				</div>
-				<p>
+				<div>
 					Subspecies and Zeniths are also immune, except <InlineTooltip
 						tooltip="Monster"
 						text="Doragyurosu"
 						icon={monsterInfo.find((e) => e.name === 'Doragyurosu')?.icon}
 						iconType={'file'}
 					/> which is immune to these statuses only in G Rank, and also as a Zenith.
-				</p>
-				<p>
+				</div>
+				<div>
 					Only support can inflict poison to <InlineTooltip
 						tooltip="Monster"
 						text="Raviente"
 						iconType={'file'}
 						icon={monsterInfo.find((e) => e.name === 'Raviente')?.icon}
 					/>.
-				</p>
+				</div>
 			</div>
 		</section>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

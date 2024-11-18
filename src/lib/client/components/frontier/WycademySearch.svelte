@@ -177,9 +177,11 @@
 		closeDialog();
 	});
 
-	let recentSearches = $state(!browser
-		? []
-		: JSON.parse(window.localStorage.getItem('__recent-searches') ?? '[]'));
+	let recentSearches = $state(
+		!browser
+			? []
+			: JSON.parse(window.localStorage.getItem('__recent-searches') ?? '[]'),
+	);
 
 	let recentSearchesJSON = $derived(recentSearches);
 
@@ -229,10 +231,10 @@
 <div class="button-container">
 	<Button iconDescription="Search" kind="ghost" on:click={initialize}>
 		{#snippet icon()}
-				<span >
+			<span>
 				<SearchIcon size={20} color="var(--ctp-text)" />
 			</span>
-			{/snippet}
+		{/snippet}
 	</Button>
 </div>
 
@@ -288,15 +290,13 @@
 						{#each Object.entries(groupedResults) as [category, results], i}
 							<AccordionItem open={i === 0}>
 								{#snippet title()}
-																	
-										<InlineTooltip
-											tooltip={category}
-											iconType="component"
-											text={`${category} (${results.length})`}
-											icon={getCategoryIcon(category)}
-										/>
-									
-																	{/snippet}
+									<InlineTooltip
+										tooltip={category}
+										iconType="component"
+										text={`${category} (${results.length})`}
+										icon={getCategoryIcon(category)}
+									/>
+								{/snippet}
 								<hr class="category-separator" />
 								<ol>
 									{#each results as result}

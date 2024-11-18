@@ -33,20 +33,10 @@
 		FrontierZenithSkill,
 	} from 'ezlion';
 
-	
-
-	
-
-	
-
-
 	/**
 	 * TODO Set theme to light.
 	 */
 	// export let light = false;
-
-
-
 
 	interface Props {
 		/** Truncated to 18 characters.*/
@@ -56,8 +46,8 @@
 		iconName?: string;
 		itemType?: FrontierItemType;
 		/**
-	 * tower or cuff
-	 */
+		 * tower or cuff
+		 */
 		zenithSkill?: FrontierZenithSkill;
 		cuffSkill1?: FrontierArmorSkillTree;
 		cuffSkill1Points?: number;
@@ -94,41 +84,41 @@
 		currentPage = $bindable(1),
 		colorName = 'White',
 		sigil = {
-		slot1: {
-			name: '',
-			value: 0,
+			slot1: {
+				name: '',
+				value: 0,
+			},
+			slot2: {
+				name: '',
+				value: 0,
+			},
+			slot3: {
+				name: '',
+				value: 0,
+			},
+			slot4: {
+				name: '',
+				value: 0,
+			},
 		},
-		slot2: {
-			name: '',
-			value: 0,
-		},
-		slot3: {
-			name: '',
-			value: 0,
-		},
-		slot4: {
-			name: '',
-			value: 0,
-		},
-	},
 		decoration = {
-		slot1: {
-			name: '',
-			value: 0,
+			slot1: {
+				name: '',
+				value: 0,
+			},
+			slot2: {
+				name: '',
+				value: 0,
+			},
+			slot3: {
+				name: '',
+				value: 0,
+			},
+			slot4: {
+				name: '',
+				value: 0,
+			},
 		},
-		slot2: {
-			name: '',
-			value: 0,
-		},
-		slot3: {
-			name: '',
-			value: 0,
-		},
-		slot4: {
-			name: '',
-			value: 0,
-		},
-	}
 	}: Props = $props();
 
 	function nextPage() {
@@ -163,9 +153,10 @@
 
 	let rarityColor = $derived(stringReplacements.colorFromRarity(rarity));
 	let maxPages = $derived(itemType === 'Other' || itemType === 'Sigil' ? 1 : 3);
-	let icon =
-		$derived(itemInfo.find((item) => item.name === iconName)?.icon ??
-		QuestionMarkIconWhite);
+	let icon = $derived(
+		itemInfo.find((item) => item.name === iconName)?.icon ??
+			QuestionMarkIconWhite,
+	);
 
 	let iconProps = $derived({
 		color: stringReplacements.colorFromName(colorName),
@@ -272,7 +263,7 @@
 							<p class="text-yellow">Equippable:</p>
 						</div>
 						<div class="hunter-class">
-							<p>{armorClass}</p>
+							<div>{armorClass}</div>
 						</div>
 					</div> -->
 

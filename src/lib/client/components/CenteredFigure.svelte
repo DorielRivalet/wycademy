@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { ComponentType, SvelteComponent } from 'svelte';
+	import type { Component } from 'svelte';
 	import ImageDialog from './ImageDialog.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 
@@ -9,7 +9,7 @@
 		alt: string;
 		width?: string | number;
 		height?: string | number;
-		src: string | ComponentType<SvelteComponent>;
+		src: string | Component;
 		type: 'file' | 'component';
 	}
 
@@ -19,7 +19,7 @@
 		width = 128,
 		height = 128,
 		src,
-		type
+		type,
 	}: Props = $props();
 
 	let container: HTMLElement = $state();

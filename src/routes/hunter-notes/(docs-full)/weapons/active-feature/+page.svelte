@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
@@ -35,18 +35,18 @@
 
 	let activeFeatureSelectedRowIds: string[] = $state([]);
 
-	let activeFeatureFinalBitfieldValue = $derived(getActiveFeatureFinalBitfieldValue(
-		activeFeatureSelectedRowIds,
-	));
+	let activeFeatureFinalBitfieldValue = $derived(
+		getActiveFeatureFinalBitfieldValue(activeFeatureSelectedRowIds),
+	);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<section>
 		<SectionHeadingTopLevel title={'Active Feature'} />
 
 		<div class="active-feature-section">
 			<div class="active-feature-description">
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					The <strong>Active Feature</strong> system, introduced in <InlineTooltip
 						tooltip="Game Version"
 						iconType="file"
@@ -63,7 +63,7 @@
 						icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
 						iconType={'file'}
 					/>.
-				</p>
+				</div>
 				<CenteredFigure
 					width={'100%'}
 					type="file"
@@ -79,9 +79,9 @@
 					figcaption="During a quest with active feature enabled, the weapon icon next to
 						the player name will shine."
 				/>
-				<p>
+				<div>
 					Final Bitfield Value: {activeFeatureFinalBitfieldValue}
-				</p>
+				</div>
 			</div>
 			<div class="active-feature-table">
 				<DataTable
@@ -115,20 +115,18 @@
 					</Toolbar>
 
 					{#snippet cell({ cell })}
-									
-							{#if cell.key === 'weapon'}
-								<InlineTooltip
-									text={cell.value}
-									tooltip={'Weapon'}
-									icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
-									iconSize={'2rem'}
-									gap={'0.5rem'}
-								/>
-							{:else}
-								<p>{cell.value}</p>
-							{/if}
-						
-									{/snippet}
+						{#if cell.key === 'weapon'}
+							<InlineTooltip
+								text={cell.value}
+								tooltip={'Weapon'}
+								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+								iconSize={'2rem'}
+								gap={'0.5rem'}
+							/>
+						{:else}
+							<div>{cell.value}</div>
+						{/if}
+					{/snippet}
 				</DataTable>
 			</div>
 		</div>
@@ -138,13 +136,13 @@
 			<div>
 				<UnorderedList>
 					<ListItem
-						><p>
+						><div>
 							The Taiwanese version of the game used to give x1.5 extra damage
 							to the weapon, in addition to its other Active Feature effects,
 							although the extra damage was later removed. Additionally, it gave
 							the <strong>Active Feature</strong> effect to all weapons at the same
 							time, during the last day before shutdown.
-						</p></ListItem
+						</div></ListItem
 					>
 				</UnorderedList>
 			</div>
@@ -153,7 +151,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

@@ -2347,13 +2347,15 @@
 		modalOpen = true;
 	}
 
-	let modalBlurClass = $derived(modalOpen ? 'modal-open-blur' : 'modal-open-noblur');
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
 	let formattedElapsedTime = $derived(formatTime(elapsedTime));
 	let scoreText = $derived(`Score: ${score}`);
 	let eatenText = $derived(`${snake.eaten}🍖`);
-	let roastedText = $derived(!drewRingOfFire
-		? `${snake.roasted}🔥`
-		: `${snake.roasted}🔥🔥🔥`);
+	let roastedText = $derived(
+		!drewRingOfFire ? `${snake.roasted}🔥` : `${snake.roasted}🔥🔥🔥`,
+	);
 	let zappedText = $derived(`${snake.zapped}⚡`);
 	let toastyText = $derived(`${snake.toasty}🍞`);
 	let speedText = $derived(`Speed: ${snake.speed}m/s`);

@@ -1,6 +1,10 @@
 import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
-import { flavors, flavorEntries } from '@catppuccin/palette';
-import type { TagColor, TagColors } from '../modules/frontier/types';
+import {
+	flavorEntries,
+	type ColorName,
+	type FlavorName,
+} from '@catppuccin/palette';
+import type { TagColor } from '../modules/frontier/types';
 
 type ThemeMap = {
 	[key: string]: {
@@ -9,6 +13,13 @@ type ThemeMap = {
 };
 
 export type CatppuccinFlavorName = 'mocha' | 'macchiato' | 'frappe' | 'latte';
+
+export function createThemeVariables(flavor: FlavorName) {
+	const colors = getFlavorColors(flavor);
+	return Object.entries(colors)
+		.map(([key, value]) => `--ctp-${flavor}-${key}: ${value};`)
+		.join(' ');
+}
 
 export function getCatppuccinFlavorFromThemeForShiki(
 	theme: CarbonTheme,
@@ -25,6 +36,13 @@ export function getCatppuccinFlavorFromThemeForShiki(
 		default:
 			return 'catppuccin-mocha';
 	}
+}
+
+export function getFlavorColors(flavor: FlavorName) {
+	return (
+		flavorEntries.find((e) => e[0] === flavor)?.[1].colorEntries ??
+		flavorEntries[3][1].colorEntries
+	);
 }
 
 export function getCatppuccinFlavorFromTheme(
@@ -45,17 +63,18 @@ export function getCatppuccinFlavorFromTheme(
 }
 
 export function getHexStringFromCatppuccinColor(
-	colorName: string,
+	colorName: ColorName,
 	theme: CarbonTheme,
 ): string {
 	// Determine the current flavor based on the theme
 	const flavor: CatppuccinFlavorName = getCatppuccinFlavorFromTheme(theme);
 
 	// Access the flavor object
-	const flavorObject = flavors[flavor];
+	const flavorObject =
+		flavorEntries.find((e) => e[0] === flavor) ?? flavorEntries[3];
 
 	// Iterate over the color entries for the current flavor
-	for (const [color, details] of flavorObject.colorEntries) {
+	for (const [color, details] of flavorObject[1].colorEntries) {
 		if (color === colorName) {
 			// Return the hex string for the matching color name
 			return details.hex;
@@ -66,6 +85,7 @@ export function getHexStringFromCatppuccinColor(
 	return '#ffffff';
 }
 
+/**TODO */
 export function getCatppuccinColorFromTagColor(color: TagColor): string {
 	switch (color) {
 		case 'red':
@@ -95,6 +115,7 @@ export function getCatppuccinColorFromTagColor(color: TagColor): string {
 	}
 }
 
+/**TODO? */
 export const catppuccinThemeMap: ThemeMap = {
 	default: {
 		'--ctp-rosewater': '--ctp-mocha-rosewater',

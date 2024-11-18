@@ -57,43 +57,12 @@ Does not handle decorations because sigils are optimal.
 	import { huntingHornWeaponNotesCombinations } from '$lib/client/modules/frontier/weapons';
 	import { stringReplacements } from '$lib/client/modules/frontier/strings';
 
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
 	// page 2
-
-	
 
 	/**
 	 * TODO Set theme to light.
 	 */
 	// export let light = false;
-
-
-
-
-
-
-
-
-
-	
-
-	
 
 	interface Props {
 		/** Truncated to 18 characters.*/
@@ -161,9 +130,7 @@ Does not handle decorations because sigils are optimal.
 		element = 'Fire',
 		status = 'Poison',
 		length = 'Very Long',
-		sharpnessValues = [
-		170, 170, 170, 170, 170, 200, 250, 400,
-	],
+		sharpnessValues = [170, 170, 170, 170, 170, 200, 250, 400],
 		sharpnessBoost = true,
 		elementBoost = true,
 		statusBoost = true,
@@ -178,27 +145,25 @@ Does not handle decorations because sigils are optimal.
 		phial = 'Power',
 		currentPage = $bindable(1),
 		skillNames = [
-		ezlionSkillArmorPriority[5],
-		ezlionSkillArmorPriority[25],
-		ezlionSkillArmorPriority[35],
-		ezlionSkillArmorPriority[55],
-		ezlionSkillArmorPriority[65],
-	],
+			ezlionSkillArmorPriority[5],
+			ezlionSkillArmorPriority[25],
+			ezlionSkillArmorPriority[35],
+			ezlionSkillArmorPriority[55],
+			ezlionSkillArmorPriority[65],
+		],
 		skillPoints = [0, 20, -30, 40, 50],
 		sigils = [
-		ezlionSkillSigil[25],
-		ezlionSkillSigil[5],
-		ezlionSkillSigil[15],
-		ezlionSkillSigil[5],
-		ezlionSkillSigil[15],
-		ezlionSkillSigil[5],
-		ezlionSkillSigil[15],
-		ezlionSkillSigil[5],
-		ezlionSkillSigil[15],
-	],
-		sigilPoints = [
-		15, 20, -30, 40, 50, 15, 15, -15, 12,
-	],
+			ezlionSkillSigil[25],
+			ezlionSkillSigil[5],
+			ezlionSkillSigil[15],
+			ezlionSkillSigil[5],
+			ezlionSkillSigil[15],
+			ezlionSkillSigil[5],
+			ezlionSkillSigil[15],
+			ezlionSkillSigil[5],
+			ezlionSkillSigil[15],
+		],
+		sigilPoints = [15, 20, -30, 40, 50, 15, 15, -15, 12],
 		weaponType = 'Evolution',
 		gunlanceShell = 'Normal',
 		gunlanceShellLevel = 9,
@@ -212,37 +177,37 @@ Does not handle decorations because sigils are optimal.
 		bowgunReload = 'Very Fast',
 		bowgunRecoil = 'Smaller',
 		bowgunAmmo = [
-		{ type: 'Norm S.', levelQuantity: [1, 2, 3] },
-		{ type: 'Pierce S.', levelQuantity: [1, 2, 3] },
-		{ type: 'Pellet S.', levelQuantity: [1, 2, 3] },
-		{ type: 'Crag S.', levelQuantity: [1, 2, 3] },
-		{ type: 'Cluster S.', levelQuantity: [1, 2, 3] },
-		{ type: 'Rec S.', levelQuantity: [1, 2, 0] },
-		{ type: 'Psn S.', levelQuantity: [1, 2, 0] },
-		{ type: 'Para S.', levelQuantity: [0, 0, 0] },
-		{ type: 'Slp S.', levelQuantity: [0, 0, 0] },
-		{ type: 'Flaming S', levelQuantity: [1, 2, 0] },
-		{ type: 'Water S', levelQuantity: [1, 2, 0] },
-		{ type: 'Thunder S', levelQuantity: [1, 0, 0] },
-		{ type: 'Freeze S', levelQuantity: [1, 0, 0] },
-		{ type: 'Dragon S', levelQuantity: [1, 0, 0] },
-		{ type: 'Tranq S', levelQuantity: [1, 0, 0] },
-		{ type: 'Paint S', levelQuantity: [1, 0, 0] },
-		{ type: 'Demon S.', levelQuantity: [0, 0, 0] },
-		{ type: 'Armor S.', levelQuantity: [0, 0, 0] },
-	],
+			{ type: 'Norm S.', levelQuantity: [1, 2, 3] },
+			{ type: 'Pierce S.', levelQuantity: [1, 2, 3] },
+			{ type: 'Pellet S.', levelQuantity: [1, 2, 3] },
+			{ type: 'Crag S.', levelQuantity: [1, 2, 3] },
+			{ type: 'Cluster S.', levelQuantity: [1, 2, 3] },
+			{ type: 'Rec S.', levelQuantity: [1, 2, 0] },
+			{ type: 'Psn S.', levelQuantity: [1, 2, 0] },
+			{ type: 'Para S.', levelQuantity: [0, 0, 0] },
+			{ type: 'Slp S.', levelQuantity: [0, 0, 0] },
+			{ type: 'Flaming S', levelQuantity: [1, 2, 0] },
+			{ type: 'Water S', levelQuantity: [1, 2, 0] },
+			{ type: 'Thunder S', levelQuantity: [1, 0, 0] },
+			{ type: 'Freeze S', levelQuantity: [1, 0, 0] },
+			{ type: 'Dragon S', levelQuantity: [1, 0, 0] },
+			{ type: 'Tranq S', levelQuantity: [1, 0, 0] },
+			{ type: 'Paint S', levelQuantity: [1, 0, 0] },
+			{ type: 'Demon S.', levelQuantity: [0, 0, 0] },
+			{ type: 'Armor S.', levelQuantity: [0, 0, 0] },
+		],
 		bowCoatings = {
-		power: true,
-		poison: true,
-		para: true,
-		sleep: true,
-		impact: true,
-	},
+			power: true,
+			poison: true,
+			para: true,
+			sleep: true,
+			impact: true,
+		},
 		bowCharges = [
-		{ type: 'Pierce', level: 3 },
-		{ type: 'Spread', level: 3 },
-		{ type: 'Pierce', level: 4 },
-	]
+			{ type: 'Pierce', level: 3 },
+			{ type: 'Spread', level: 3 },
+			{ type: 'Pierce', level: 4 },
+		],
 	}: Props = $props();
 
 	function nextPage() {
@@ -270,120 +235,138 @@ Does not handle decorations because sigils are optimal.
 	};
 	// TODO slots icons
 	let rarityColor = $derived(stringReplacements.colorFromRarity(rarity));
-	let affinityColor = $derived(affinityBoost
-		? frontierColorNames[2].values[1].var
-		: '--ctp-mocha-text');
+	let affinityColor = $derived(
+		affinityBoost ? frontierColorNames[2].values[1].var : '--ctp-mocha-text',
+	);
 	let weaponClass = $derived(WeaponTypes[weaponID].class);
 	let weaponTypeName = $derived(WeaponTypes[weaponID].name);
 	let maxPages = $derived(weaponClass === 'Blademaster' ? 6 : 8);
-	let normalAmmoStyle =
-		$derived(bowgunAmmo[0].levelQuantity[0] === 0 &&
-		bowgunAmmo[0].levelQuantity[1] === 0 &&
-		bowgunAmmo[0].levelQuantity[2] === 0
+	let normalAmmoStyle = $derived(
+		bowgunAmmo[0].levelQuantity[0] === 0 &&
+			bowgunAmmo[0].levelQuantity[1] === 0 &&
+			bowgunAmmo[0].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let pierceAmmoStyle =
-		$derived(bowgunAmmo[1].levelQuantity[0] === 0 &&
-		bowgunAmmo[1].levelQuantity[1] === 0 &&
-		bowgunAmmo[1].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let pierceAmmoStyle = $derived(
+		bowgunAmmo[1].levelQuantity[0] === 0 &&
+			bowgunAmmo[1].levelQuantity[1] === 0 &&
+			bowgunAmmo[1].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let pelletAmmoStyle =
-		$derived(bowgunAmmo[2].levelQuantity[0] === 0 &&
-		bowgunAmmo[2].levelQuantity[1] === 0 &&
-		bowgunAmmo[2].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let pelletAmmoStyle = $derived(
+		bowgunAmmo[2].levelQuantity[0] === 0 &&
+			bowgunAmmo[2].levelQuantity[1] === 0 &&
+			bowgunAmmo[2].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let cragAmmoStyle =
-		$derived(bowgunAmmo[3].levelQuantity[0] === 0 &&
-		bowgunAmmo[3].levelQuantity[1] === 0 &&
-		bowgunAmmo[3].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let cragAmmoStyle = $derived(
+		bowgunAmmo[3].levelQuantity[0] === 0 &&
+			bowgunAmmo[3].levelQuantity[1] === 0 &&
+			bowgunAmmo[3].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let clusterAmmoStyle =
-		$derived(bowgunAmmo[4].levelQuantity[0] === 0 &&
-		bowgunAmmo[4].levelQuantity[1] === 0 &&
-		bowgunAmmo[4].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let clusterAmmoStyle = $derived(
+		bowgunAmmo[4].levelQuantity[0] === 0 &&
+			bowgunAmmo[4].levelQuantity[1] === 0 &&
+			bowgunAmmo[4].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let recoveryAmmoStyle =
-		$derived(bowgunAmmo[5].levelQuantity[0] === 0 &&
-		bowgunAmmo[5].levelQuantity[1] === 0 &&
-		bowgunAmmo[5].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let recoveryAmmoStyle = $derived(
+		bowgunAmmo[5].levelQuantity[0] === 0 &&
+			bowgunAmmo[5].levelQuantity[1] === 0 &&
+			bowgunAmmo[5].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let poisonAmmoStyle =
-		$derived(bowgunAmmo[6].levelQuantity[0] === 0 &&
-		bowgunAmmo[6].levelQuantity[1] === 0 &&
-		bowgunAmmo[6].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let poisonAmmoStyle = $derived(
+		bowgunAmmo[6].levelQuantity[0] === 0 &&
+			bowgunAmmo[6].levelQuantity[1] === 0 &&
+			bowgunAmmo[6].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let paralysisAmmoStyle =
-		$derived(bowgunAmmo[7].levelQuantity[0] === 0 &&
-		bowgunAmmo[7].levelQuantity[1] === 0 &&
-		bowgunAmmo[7].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let paralysisAmmoStyle = $derived(
+		bowgunAmmo[7].levelQuantity[0] === 0 &&
+			bowgunAmmo[7].levelQuantity[1] === 0 &&
+			bowgunAmmo[7].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let sleepAmmoStyle =
-		$derived(bowgunAmmo[8].levelQuantity[0] === 0 &&
-		bowgunAmmo[8].levelQuantity[1] === 0 &&
-		bowgunAmmo[8].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let sleepAmmoStyle = $derived(
+		bowgunAmmo[8].levelQuantity[0] === 0 &&
+			bowgunAmmo[8].levelQuantity[1] === 0 &&
+			bowgunAmmo[8].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let flamingAmmoStyle =
-		$derived(bowgunAmmo[9].levelQuantity[0] === 0 &&
-		bowgunAmmo[9].levelQuantity[1] === 0 &&
-		bowgunAmmo[9].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let flamingAmmoStyle = $derived(
+		bowgunAmmo[9].levelQuantity[0] === 0 &&
+			bowgunAmmo[9].levelQuantity[1] === 0 &&
+			bowgunAmmo[9].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let waterAmmoStyle =
-		$derived(bowgunAmmo[10].levelQuantity[0] === 0 &&
-		bowgunAmmo[10].levelQuantity[1] === 0 &&
-		bowgunAmmo[10].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let waterAmmoStyle = $derived(
+		bowgunAmmo[10].levelQuantity[0] === 0 &&
+			bowgunAmmo[10].levelQuantity[1] === 0 &&
+			bowgunAmmo[10].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let thunderAmmoStyle =
-		$derived(bowgunAmmo[11].levelQuantity[0] === 0 &&
-		bowgunAmmo[11].levelQuantity[1] === 0 &&
-		bowgunAmmo[11].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let thunderAmmoStyle = $derived(
+		bowgunAmmo[11].levelQuantity[0] === 0 &&
+			bowgunAmmo[11].levelQuantity[1] === 0 &&
+			bowgunAmmo[11].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let freezeAmmoStyle =
-		$derived(bowgunAmmo[12].levelQuantity[0] === 0 &&
-		bowgunAmmo[12].levelQuantity[1] === 0 &&
-		bowgunAmmo[12].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let freezeAmmoStyle = $derived(
+		bowgunAmmo[12].levelQuantity[0] === 0 &&
+			bowgunAmmo[12].levelQuantity[1] === 0 &&
+			bowgunAmmo[12].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let dragonAmmoStyle =
-		$derived(bowgunAmmo[13].levelQuantity[0] === 0 &&
-		bowgunAmmo[13].levelQuantity[1] === 0 &&
-		bowgunAmmo[13].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let dragonAmmoStyle = $derived(
+		bowgunAmmo[13].levelQuantity[0] === 0 &&
+			bowgunAmmo[13].levelQuantity[1] === 0 &&
+			bowgunAmmo[13].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let tranqAmmoStyle =
-		$derived(bowgunAmmo[14].levelQuantity[0] === 0 &&
-		bowgunAmmo[14].levelQuantity[1] === 0 &&
-		bowgunAmmo[14].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let tranqAmmoStyle = $derived(
+		bowgunAmmo[14].levelQuantity[0] === 0 &&
+			bowgunAmmo[14].levelQuantity[1] === 0 &&
+			bowgunAmmo[14].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let paintAmmoStyle =
-		$derived(bowgunAmmo[15].levelQuantity[0] === 0 &&
-		bowgunAmmo[15].levelQuantity[1] === 0 &&
-		bowgunAmmo[15].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let paintAmmoStyle = $derived(
+		bowgunAmmo[15].levelQuantity[0] === 0 &&
+			bowgunAmmo[15].levelQuantity[1] === 0 &&
+			bowgunAmmo[15].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let demonAmmoStyle =
-		$derived(bowgunAmmo[16].levelQuantity[0] === 0 &&
-		bowgunAmmo[16].levelQuantity[1] === 0 &&
-		bowgunAmmo[16].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let demonAmmoStyle = $derived(
+		bowgunAmmo[16].levelQuantity[0] === 0 &&
+			bowgunAmmo[16].levelQuantity[1] === 0 &&
+			bowgunAmmo[16].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
-	let armorAmmoStyle =
-		$derived(bowgunAmmo[17].levelQuantity[0] === 0 &&
-		bowgunAmmo[17].levelQuantity[1] === 0 &&
-		bowgunAmmo[17].levelQuantity[2] === 0
+			: 'enabled-ammo',
+	);
+	let armorAmmoStyle = $derived(
+		bowgunAmmo[17].levelQuantity[0] === 0 &&
+			bowgunAmmo[17].levelQuantity[1] === 0 &&
+			bowgunAmmo[17].levelQuantity[2] === 0
 			? 'disabled-ammo'
-			: 'enabled-ammo');
+			: 'enabled-ammo',
+	);
 </script>
 
 <DecoratedBorder>
@@ -395,9 +378,7 @@ Does not handle decorations because sigils are optimal.
 					<div class="header">
 						<div class="weapon-icon-container">
 							<div class="weapon-icon">
-								<SvelteComponent
-									{...weaponIconProps}
-								/>
+								<SvelteComponent {...weaponIconProps} />
 							</div>
 							<div class="weapon-rank">
 								{#if rank === 'G'}
@@ -546,9 +527,7 @@ Does not handle decorations because sigils are optimal.
 					<div class="header">
 						<div class="weapon-icon-container">
 							<div class="weapon-icon">
-								<SvelteComponent_1
-									{...weaponIconProps}
-								/>
+								<SvelteComponent_1 {...weaponIconProps} />
 							</div>
 							<div class="weapon-rank">
 								{#if rank === 'G'}
@@ -695,9 +674,7 @@ Does not handle decorations because sigils are optimal.
 				<div class="icon">
 					<div class="weapon-icon-container">
 						<div class="weapon-icon">
-							<SvelteComponent_2
-								{...weaponIconProps}
-							/>
+							<SvelteComponent_2 {...weaponIconProps} />
 						</div>
 						<div class="weapon-rank">
 							{#if rank === 'G'}

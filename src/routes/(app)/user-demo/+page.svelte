@@ -355,54 +355,52 @@
 		<Tab label="Events" />
 
 		{#snippet content()}
-			
-				<TabContent>
+			<TabContent>
+				<section>
+					<SectionHeading level={2} title="Wardrobe" />
+					<ProfilePinnedSets bind:theme={$carbonThemeStore} />
+				</section>
+				<section>
+					<SectionHeading level={2} title="Pinned Runs" />
+					<ProfilePinnedRuns bind:theme={$carbonThemeStore} />
+				</section>
+				<section>
+					<SectionHeading level={2} title="Guild Card" />
+					<ProfileGuildCard />
+				</section>
+				<section>
+					<SectionHeading level={2} title="Recent Activity" />
+					<ProfileRecentActivity />
+				</section>
+			</TabContent>
+			<TabContent>
+				<section>
+					<SectionHeading level={2} title="Quests Stats" />
+					<ProfileHuntsCalendarGraph bind:theme={$carbonThemeStore} />
+				</section>
+				<section>
+					<ProfileHuntsGraph />
+				</section>
+				<section>
+					<ProfileRecentHunts />
+				</section>
+			</TabContent>
+			<TabContent>Achievements</TabContent>
+			<TabContent>
+				<section>
+					<SectionHeading level={2} title="Favorites" />
 					<section>
-						<SectionHeading level={2} title="Wardrobe" />
-						<ProfilePinnedSets bind:theme={$carbonThemeStore} />
+						<SectionHeading level={3} title="Runs" />
+						<ProfileFavoriteRuns />
 					</section>
 					<section>
-						<SectionHeading level={2} title="Pinned Runs" />
-						<ProfilePinnedRuns bind:theme={$carbonThemeStore} />
+						<SectionHeading level={3} title="Armor Sets" />
+						<ProfileFavoriteSets />
 					</section>
-					<section>
-						<SectionHeading level={2} title="Guild Card" />
-						<ProfileGuildCard />
-					</section>
-					<section>
-						<SectionHeading level={2} title="Recent Activity" />
-						<ProfileRecentActivity />
-					</section>
-				</TabContent>
-				<TabContent>
-					<section>
-						<SectionHeading level={2} title="Quests Stats" />
-						<ProfileHuntsCalendarGraph bind:theme={$carbonThemeStore} />
-					</section>
-					<section>
-						<ProfileHuntsGraph />
-					</section>
-					<section>
-						<ProfileRecentHunts />
-					</section>
-				</TabContent>
-				<TabContent>Achievements</TabContent>
-				<TabContent>
-					<section>
-						<SectionHeading level={2} title="Favorites" />
-						<section>
-							<SectionHeading level={3} title="Runs" />
-							<ProfileFavoriteRuns />
-						</section>
-						<section>
-							<SectionHeading level={3} title="Armor Sets" />
-							<ProfileFavoriteSets />
-						</section>
-					</section>
-				</TabContent>
-				<TabContent>Events</TabContent>
-			
-			{/snippet}
+				</section>
+			</TabContent>
+			<TabContent>Events</TabContent>
+		{/snippet}
 	</Tabs>
 
 	<section>

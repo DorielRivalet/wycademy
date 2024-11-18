@@ -5,8 +5,6 @@
 -->
 
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import Header from '../../../../../Header.svelte';
 	import ViewTransition from '../../../../../Navigation.svelte';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
@@ -29,7 +27,7 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DivaPrayerGem from '$lib/client/components/frontier/icon/DivaPrayerGem.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
@@ -212,6 +210,8 @@
 
 	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
 
+	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
+
 	const url = $page.url.toString();
 
 	onMount(() => {
@@ -342,9 +342,9 @@
 		}
 	}
 
-	let showWeaponMotionValuesSectionWarning = $state(false);
-	let showDamageCalculatorInputsJSONError = $state(false);
-	let showDamageCalculatorLegacyInputsJSONError = $state(false);
+	let showWeaponMotionValuesSectionWarning = false;
+	let showDamageCalculatorInputsJSONError = false;
+	let showDamageCalculatorLegacyInputsJSONError = false;
 	let showDivaPrayerGemsMaxTotalLevelError = false;
 
 	type MotionValueResult = {
@@ -3370,17 +3370,29 @@
 `,
 	);
 
+	$: formulaValuesOutputAttackA = `\\begin{align}{${attackA}} = ${outputLengthUpTrueRaw} +\\newline ${outputPassives} +\\newline (${inputNumberSigil1Attack} + ${inputNumberSigil2Attack} + ${inputNumberSigil3Attack}) +\\newline ${inputNumberConquestAttack} +\\newline ${outputAttackMedicine} +\\newline ${outputAttackSkill} +\\newline ${outputFoodAttack} +\\newline ${outputSeedAttack} +\\newline ${inputNumberStyleRankAttack} +\\newline ${inputNumberUnlimitedSigil} +\\newline ${outputDrugKnowledgeTotalTrueRaw} +\\newline ${outputDuremudiraAttack} +\\newline ${outputLoneWolfAttack} +\\newline ${outputCaravanAddition} +\\newline ${outputShiriagariAttack} +\\newline ${outputRoadAdvancement} +\\newline \\lfloor ${outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline ${outputConsumptionSlayerAttack} +\\newline ${outputRoadLastStandAttack} +\\newline ${outputLanceRedPhialAttack} +\\newline ${outputRoadTowerAttack} +\\newline ${outputZenithTotalAttack} +\\newline ${outputAOETotalAttack}\\end{align}
+`;
+
 	const formulaOutputAttackB =
 		display(`\\begin{align}\\text{Attack B} = \\text{outputRush} +\\newline \\text{outputStylishAssault} +\\newline \\text{outputFuriousAttack} +\\newline \\text{outputVigorousAddition} +\\newline \\text{outputCritConversionTrueRaw} +\\newline \\text{inputNumberVampirism} +\\newline \\text{outputObscurityTotal} +\\newline \\text{outputIncitement}\\end{align}
 `);
+
+	$: formulaValuesOutputAttackB = `\\begin{align}{${attackB}} = ${outputRush} +\\newline ${outputStylishAssault} +\\newline ${outputFuriousAttack} +\\newline ${outputVigorousAddition} +\\newline ${outputCritConversionTrueRaw} +\\newline ${inputNumberVampirism} +\\newline ${outputObscurityTotal} +\\newline ${outputIncitement}
+\\end{align}`;
 
 	const formulaOutputMultipliers =
 		display(`\\begin{align}\\text{Multipliers} = \\lfloor \\lfloor \\text{attackA} \\times \\text{outputHuntingHornMultiplier} + \\text{attackB} \\rfloor\\newline \\times \\text{outputAdrenaline} \\times \\text{outputCombatSupremacyAttackMultiplier} \\times \\text{outputWeaponSpecificMultiplier} \\times \\text{outputHidenMultiplier} \\times \\text{outputHammerMultiplier} \\rfloor\\end{align}
 `);
 
+	$: formulaValuesOutputMultipliers = `\\begin{align}{${outputMultipliers}} = \\lfloor \\lfloor ${attackA} \\times ${outputHuntingHornMultiplier} + ${attackB} \\rfloor\\newline \\times ${outputAdrenaline} \\times ${outputCombatSupremacyAttackMultiplier} \\times ${outputWeaponSpecificMultiplier} \\times ${outputHidenMultiplier} \\times ${outputHammerMultiplier} \\rfloor\\end{align}
+`;
+
 	const formulaOutputFlatAdditions =
 		display(`\\begin{align}\\text{Flat Additions} = \\text{outputPartnyaBond} +\\newline \\text{outputHunterBond} +\\newline \\text{outputAssist} +\\newline \\text{outputSoul} +\\newline \\text{outputArmor1} +\\newline \\text{outputArmor2} +\\newline \\text{outputArmorG} +\\newline \\text{outputSecretTech} +\\newline \\text{outputDivaPrayerGemTrueRaw}\\end{align}
 `);
+
+	$: formulaValuesOutputFlatAdditions = `\\begin{align}{${outputFlatAdditions}} = ${outputPartnyaBond} +\\newline ${outputHunterBond} +\\newline ${outputAssist} +\\newline ${outputSoul} +\\newline ${outputArmor1} +\\newline ${outputArmor2} +\\newline ${outputArmorG} +\\newline ${outputSecretTech} +\\newline ${outputDivaPrayerGemTrueRaw}
+\\end{align}`;
 
 	/*
 $: internalAttack =
@@ -3404,22 +3416,35 @@ $: internalAttack =
 		'\\begin{align}\\text{Internal Attack} = \\lfloor \\text{internalTrueRaw} \\times\\newline \\text{outputSharpnessMultiplier}\\times \\newline \\text{outputSwordAndShieldMultiplier} \\times \\newline \\text{outputOtherMultipliers} \\times \\newline \\text{outputMonsterStatusInflictedMultiplier} \\rfloor\\end{align}',
 	);
 
+	$: formulaValuesOutputInternalAttack = `\\begin{align}{${internalAttack}} = \\lfloor ${internalTrueRaw} \\times\\newline ${outputSharpnessMultiplier} \\times\\newline ${outputSwordAndShieldMultiplier} \\times\\newline ${outputOtherMultipliers} \\times\\newline ${outputMonsterStatusInflictedMultiplier} \\rfloor\\end{align}
+`;
+
 	const formulaInternalFire =
 		display(`\\begin{align}\\text{Internal Fire} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputFireMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor\\end{align}
 `);
+	$: formulaValuesInternalFire = `\\begin{align}${internalFire} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputFireMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
+`;
 
 	const formulaInternalWater =
 		display(`\\begin{align}\\text{Internal Water} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputWaterMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 \\end{align}`);
+	$: formulaValuesInternalWater = `\\begin{align}${internalWater} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputWaterMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
+`;
 	const formulaInternalThunder =
 		display(`\\begin{align}\\text{Internal Thunder} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputThunderMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 \\end{align}`);
+	$: formulaValuesInternalThunder = `\\begin{align}${internalThunder} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputThunderMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
+\\end{align}`;
 	const formulaInternalIce =
 		display(`\\begin{align}\\text{Internal Ice} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputIceMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 \\end{align}`);
+	$: formulaValuesInternalIce = `\\begin{align}${internalIce} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputIceMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
+`;
 	const formulaInternalDragon =
 		display(`\\begin{align}\\text{Internal Dragon} = \\lfloor (\\frac{(\\text{inputNumberElementalValueReplacement} + \\text{inputNumberSigil1Element} \\times 10 + \\text{inputNumberSigil2Element} \\times 10 + \\text{inputNumberSigil3Element} \\times 10 + \\text{inputNumberUnlimitedSigil} \\times 10 + \\text{outputAOETotalElement}) \\times \\text{outputDragonMultiplier} \\times \\text{outputZenithElementMultiplier} \\times \\text{outputElementalAttackMultiplier} \\times \\text{outputHHElementalSongMultiplier} \\times \\text{outputWeaponElementMultiplier} \\times \\text{outputFuriousMultiplier} \\times \\text{getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times \\text{outputSharpnessMultiplier}\\rfloor
 \\end{align}`);
+	$: formulaValuesInternalDragon = `\\begin{align}${internalDragon} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputDragonMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
+`;
 
 	const internalAffinityFunctionString = `/**This is different from total affinity. */
 function getInternalAffinity(critMode: string, totalAffinity: number) {
@@ -3499,6 +3524,19 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 \\text{outputStarvingWolfAffinity} +\\newline
 \\text{outputCeaselessAffinity} +\\newline
 \\text{outputDivaPrayerGemAffinity})\\end{align}`);
+	$: formulaValuesInternalAffinity = `\\begin{align}${internalAffinity} = \\text{getInternalAffinity}(\\text{${inputCritMode}}, ${outputIssenAffinity} +\\newline
+${outputSharpnessAffinity} +\\newline
+${inputNumberUnlimitedSigil} +\\newline
+${inputNumberSigil1Affinity} +\\newline
+${inputNumberSigil2Affinity} +\\newline
+${inputNumberSigil3Affinity} +\\newline
+${outputStyleRankAffinity} +\\newline
+${outputExpertAffinity} +\\newline
+${inputNumberNaturalAffinity} +\\newline
+${outputFlashConversionAffinity} +\\newline
+${outputStarvingWolfAffinity} +\\newline
+${outputCeaselessAffinity} +\\newline
+${outputDivaPrayerGemAffinity})\\end{align}`;
 
 	const formulaInternalStatus =
 		display(`\\begin{align} \\text{Internal Status} = \\lfloor \\lfloor
@@ -3510,6 +3548,15 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 	\\text{outputFuriousMultiplier}
 	\\rfloor \\times\\newline \\text{outputDrugKnowledgeMultiplier}
 	\\rfloor\\end{align}`);
+	$: formulaValuesInternalStatus = `\\begin{align}${internalStatus} = \\lfloor \\lfloor
+	${inputNumberStatusValue} \\times\\newline
+	${outputStatusAttackUpMultiplier} \\times\\newline
+	${outputStatusGuildPoogieMultiplier} \\times\\newline
+	${outputStatusSigilMultiplier} \\times\\newline
+	${outputWeaponStatusModifiers} \\times\\newline
+	${outputFuriousMultiplier}
+	\\rfloor \\times\\newline ${outputDrugKnowledgeMultiplier}
+	\\rfloor\\end{align}`;
 
 	const formulaOutputTotalAffinity =
 		display(`\\begin{align}\\text{outputTotalAffinity} =
@@ -3529,6 +3576,23 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 \\text{outputCeaselessAffinity} +\\newline
 \\text{outputFuriousAffinity} +\\newline
 \\text{outputAOETotalAffinity}\\end{align}`);
+	$: formulaValuesOutputTotalAffinity = `\\begin{align}${outputTotalAffinity} =
+${outputIssenAffinity} +\\newline
+${outputSharpnessAffinity} +\\newline
+${inputNumberSigil1Affinity} +\\newline
+${inputNumberSigil2Affinity} +\\newline
+${inputNumberSigil3Affinity} +\\newline
+${outputStyleRankAffinity} +\\newline
+${outputExpertAffinity} +\\newline
+${inputNumberNaturalAffinity} +\\newline
+${outputFlashConversionAffinity} +\\newline
+${outputGSActiveFeatureAffinity} +\\newline
+${outputDivaPrayerGemAffinity} +\\newline
+${outputDrinkAffinity} +\\newline
+${outputStarvingWolfAffinity} +\\newline
+${outputCeaselessAffinity} +\\newline
+${outputFuriousAffinity} +\\newline
+${outputAOETotalAffinity}\\end{align}`;
 
 	const formulaInternalTrueRaw = display(
 		`\\begin{equation*} \\text{internalTrueRaw} = \\begin{cases} \\text{maxTrueRaw} & \\text{if } \\text{outputAttackCeiling} > 180 \\\\ \\lfloor \\text{outputFlatAdditions} + \\text{outputMultipliers} \\rfloor & \\text{otherwise} \\end{cases} \\end{equation*}`,
@@ -3545,12 +3609,22 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 	outputExpertAffinity,
 	outputIssenAffinity
 )}\\end{align}`);
+	$: formulaValuesOutputCritValue = `\\begin{align}${outputCritValue} = \\text{getCritValue}(
+	${outputStarvingWolfAffinity},
+	${outputCeaselessAffinity},
+	${outputExpertAffinity},
+	${outputIssenAffinity}
+)\\end{align}`;
 
 	const formulaOutputOtherMultipliers =
 		display(`\\begin{align}\\text{outputOtherMultipliers} =
 \\text{inputNumberTranscendRawMultiplier} \\times\\newline
 \\text{inputNumberLanceImpactMultiplier} \\times\\newline
 \\text{inputNumberRavientePowerSwordCrystalsMultiplier}\\end{align}`);
+	$: formulaValuesOutputOtherMultipliers = `\\begin{align}${outputOtherMultipliers} =
+${inputNumberTranscendRawMultiplier} \\times\\newline
+${inputNumberLanceImpactMultiplier} \\times\\newline
+${inputNumberRavientePowerSwordCrystalsMultiplier}\\end{align}`;
 
 	// TODO?
 	const formulaOutputStatusUsedSA =
@@ -3563,10 +3637,21 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 \\text{outputFuriousMultiplier}
 \\rfloor \\times \\newline \\text{outputStatusValueMultiplier}
 \\rfloor\\end{align}`);
+	$: formulaValuesOutputStatusUsedSA = `\\begin{align}${outputStatusUsedSA} = \\lfloor \\lfloor
+(${inputNumberStatusValue} / 10) \\times \\newline
+${outputStatusAttackUpMultiplier} \\times \\newline
+${outputStatusGuildPoogieMultiplier} \\times \\newline
+${outputStatusSigilMultiplier} \\times \\newline
+${outputWeaponStatusModifiers} \\times \\newline
+${outputFuriousMultiplier}
+\\rfloor \\times \\newline ${outputStatusValueMultiplier}
+\\rfloor\\end{align}`;
 
 	const formulaOutputMonsterTotalDefense =
 		display(`\\begin{align} \\text{outputMonsterTotalDefense} =
 \\text{inputNumberDefenseRate} \\times\\newline \\text{inputNumberMonsterRage} \\times\\newline \\text{inputNumberHCModifiers}\\end{align}`);
+	$: formulaValuesOutputMonsterTotalDefense = `\\begin{align}${outputMonsterTotalDefense} =
+${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\newline ${inputNumberHCModifiers} \\end{align}`;
 
 	// TODO more formulas
 	// TODO gunner formulas
@@ -3611,164 +3696,1581 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 		rarity: rarity,
 	};
 
-	let inputTextImportData = $state('');
+	let inputTextImportData = '';
 
-	let modalHeading = $state('');
-	let modalLabel = $state('');
-	let modalOpen = $state(false);
-	let modalImage = $state('');
-	let modalNotes = $state('');
+	let modalHeading = '';
+	let modalLabel = '';
+	let modalOpen = false;
+	let modalImage = '';
+	let modalNotes = '';
 
-	let inputStyleRankAffinity = $state('None');
-	let inputMeleeSharpnessAffinity = $state('Below Blue or Gunners (+0%)');
-	let inputExpertSkills = $state('None');
-	let inputFlashConversion = $state('None');
-	let inputIssenSkills = $state('None or Determination');
-	let inputCeaseless = $state('None (1x)');
-	let inputStarvingWolf = $state('None (1x)');
-	let inputAffinityItems = $state('None');
-	let inputGsActiveFeature = $state('None');
-	let inputAttackSkills = $state('None');
-	let inputCaravanSkills = $state('None');
-	let inputPassiveItems = $state('None');
-	let inputFoodConsumables = $state('None');
-	let inputSeedsFlutesCat = $state('None');
-	let inputLanceHbg = $state('None');
-	let inputLoneWolf = $state('None');
-	let inputCritConversionUp = $state('None');
-	let inputStylishAssault = $state('None');
-	let inputConsumptionSlayer = $state('None');
-	let inputObscurity = $state('None');
-	let inputRush = $state('None');
-	let inputFurious = $state('None (x1 Ele & Status)');
-	let inputShiriagari = $state('None');
-	let inputIncitement = $state('None');
-	let inputLengthUp = $state('None');
-	let inputRoadAttack = $state('None');
-	let inputRoadAdvLvFlr = $state('None');
-	let inputRoadLastStand = $state('None');
-	let inputDuremudiraAttack = $state('None');
-	let inputAttackMedicine = $state('None');
-	let inputHhAttackSongs = $state('None (1x)');
-	let inputAdrenalineVigorous = $state('None (1x)');
-	let inputVigorousUp = $state('None');
-	let inputHidenSkills = $state('None (1x)');
-	let inputWeaponSpecific = $state('None (1x)');
-	let inputCombatSupremacy = $state('None (1x)');
-	let inputArmor1 = $state('None');
-	let inputOriginArmor = $state('None');
-	let inputGArmorPieces = $state('3+ G Rank Pieces (+30)');
-	let inputGsr999SecretTech = $state('None');
-	let inputRedSoul = $state('None');
-	let inputAssistance = $state('None');
-	let inputBondMaleHunter = $state('None');
-	let inputPartnyaaBond = $state('None');
-	let inputFireMultipliers = $state('None (1x)');
-	let inputWaterMultipliers = $state('None (1x)');
-	let inputThunderMultipliers = $state('None (1x)');
-	let inputIceMultipliers = $state('None (1x)');
-	let inputDragonMultipliers = $state('None (1x)');
-	let inputElementalAttackMultiplier = $state('None (1x)');
-	let inputHhElementalUp = $state('None (1x)');
-	let inputAbnormality = $state('None');
-	let inputDrugKnowledge = $state('None (1x)');
-	let inputStatusAssault = $state('None');
-	let inputStatusAttackUp = $state('None (1x)');
-	let inputGuildPoogie = $state('None (1x)');
-	let inputStatusSigil = $state('None (1x)');
-	let inputWeaponStatusModifiers = $state('None (1x)');
-	let inputWeaponType: FrontierWeaponName = $state('Sword and Shield');
-	let inputAoeAttackSigil = $state('None');
-	let inputAoeAffinitySigil = $state('None');
-	let inputCritMode = $state('All Crits');
-	let inputSharpness = $state('Cyan (1.8x)');
-	let inputFencing = $state('None');
-	let inputCriticalDistanceMultiplier = $state('1.8x LBG & Bow Crit Distance');
-	let inputBulletStrengthModifier = $state('None (1x)');
+	let inputStyleRankAffinity = 'None';
+	let inputMeleeSharpnessAffinity = 'Below Blue or Gunners (+0%)';
+	let inputExpertSkills = 'None';
+	let inputFlashConversion = 'None';
+	let inputIssenSkills = 'None or Determination';
+	let inputCeaseless = 'None (1x)';
+	let inputStarvingWolf = 'None (1x)';
+	let inputAffinityItems = 'None';
+	let inputGsActiveFeature = 'None';
+	let inputAttackSkills = 'None';
+	let inputCaravanSkills = 'None';
+	let inputPassiveItems = 'None';
+	let inputFoodConsumables = 'None';
+	let inputSeedsFlutesCat = 'None';
+	let inputLanceHbg = 'None';
+	let inputLoneWolf = 'None';
+	let inputCritConversionUp = 'None';
+	let inputStylishAssault = 'None';
+	let inputConsumptionSlayer = 'None';
+	let inputObscurity = 'None';
+	let inputRush = 'None';
+	let inputFurious = 'None (x1 Ele & Status)';
+	let inputShiriagari = 'None';
+	let inputIncitement = 'None';
+	let inputLengthUp = 'None';
+	let inputRoadAttack = 'None';
+	let inputRoadAdvLvFlr = 'None';
+	let inputRoadLastStand = 'None';
+	let inputDuremudiraAttack = 'None';
+	let inputAttackMedicine = 'None';
+	let inputHhAttackSongs = 'None (1x)';
+	let inputAdrenalineVigorous = 'None (1x)';
+	let inputVigorousUp = 'None';
+	let inputHidenSkills = 'None (1x)';
+	let inputWeaponSpecific = 'None (1x)';
+	let inputCombatSupremacy = 'None (1x)';
+	let inputArmor1 = 'None';
+	let inputOriginArmor = 'None';
+	let inputGArmorPieces = '3+ G Rank Pieces (+30)';
+	let inputGsr999SecretTech = 'None';
+	let inputRedSoul = 'None';
+	let inputAssistance = 'None';
+	let inputBondMaleHunter = 'None';
+	let inputPartnyaaBond = 'None';
+	let inputFireMultipliers = 'None (1x)';
+	let inputWaterMultipliers = 'None (1x)';
+	let inputThunderMultipliers = 'None (1x)';
+	let inputIceMultipliers = 'None (1x)';
+	let inputDragonMultipliers = 'None (1x)';
+	let inputElementalAttackMultiplier = 'None (1x)';
+	let inputHhElementalUp = 'None (1x)';
+	let inputAbnormality = 'None';
+	let inputDrugKnowledge = 'None (1x)';
+	let inputStatusAssault = 'None';
+	let inputStatusAttackUp = 'None (1x)';
+	let inputGuildPoogie = 'None (1x)';
+	let inputStatusSigil = 'None (1x)';
+	let inputWeaponStatusModifiers = 'None (1x)';
+	let inputWeaponType: FrontierWeaponName = 'Sword and Shield';
+	let inputAoeAttackSigil = 'None';
+	let inputAoeAffinitySigil = 'None';
+	let inputCritMode = 'All Crits';
+	let inputSharpness = 'Cyan (1.8x)';
+	let inputFencing = 'None';
+	let inputCriticalDistanceMultiplier = '1.8x LBG & Bow Crit Distance';
+	let inputBulletStrengthModifier = 'None (1x)';
 	/**bowgunshotmodifier*/
-	let inputShotMultiplier = $state('Just Shot (1.3x)');
+	let inputShotMultiplier = 'Just Shot (1.3x)';
 	/**HBGchargemulti*/
-	let inputHbgChargeShot = $state('Normal / Charge Lv 0 (1x)');
-	let inputCompressedShotMultiplier = $state('Not Compressed (0x)');
+	let inputHbgChargeShot = 'Normal / Charge Lv 0 (1x)';
+	let inputCompressedShotMultiplier = 'Not Compressed (0x)';
 	/**bowbottles*/
-	let inputBowCoatingsMultiplier = $state('None (1x)');
-	let inputBowCoatingsWeaponMultiplier = $state('Non-G Rank');
-	let inputBowCoatingsArmorMultiplier = $state('None');
-	let inputBowCoatingsHidenMultiplier = $state('None');
-	let inputBowChargeMultiplier = $state('Lv4 (1.85x / 1.334x)');
-	let inputQuickShot = $state('Normal (All 1.0x)');
+	let inputBowCoatingsMultiplier = 'None (1x)';
+	let inputBowCoatingsWeaponMultiplier = 'Non-G Rank';
+	let inputBowCoatingsArmorMultiplier = 'None';
+	let inputBowCoatingsHidenMultiplier = 'None';
+	let inputBowChargeMultiplier = 'Lv4 (1.85x / 1.334x)';
+	let inputQuickShot = 'Normal (All 1.0x)';
 	/**eleshottype*/
-	let inputCompressedElementShot = $state('Not Compressed');
-	let inputElement: FrontierElement = $state('None');
-	let inputAoeElementSigil = $state('None');
-	let inputWeaponElementMultipliers = $state('None (1x)');
-	let inputStatus: FrontierStatus = $state('None');
-	let inputMonsterStatus = $state('None (1x)');
-	let inputThunderClad = $state('None');
-	let inputExploitWeakness = $state('None');
-	let inputPointBreakthrough = $state('None');
-	let inputAcidShots = $state('None');
-	let inputElementalExploiter = $state('None');
-	let inputHuntingHornDebuff = $state('None');
-	let inputPrecisionSniperCritS = $state('None');
-	let inputAbsoluteDefense = $state('Active (1.0x)');
-	let inputPremiumBoost = $state('Inactive (1x)');
+	let inputCompressedElementShot = 'Not Compressed';
+	let inputElement: FrontierElement = 'None';
+	let inputAoeElementSigil = 'None';
+	let inputWeaponElementMultipliers = 'None (1x)';
+	let inputStatus: FrontierStatus = 'None';
+	let inputMonsterStatus = 'None (1x)';
+	let inputThunderClad = 'None';
+	let inputExploitWeakness = 'None';
+	let inputPointBreakthrough = 'None';
+	let inputAcidShots = 'None';
+	let inputElementalExploiter = 'None';
+	let inputHuntingHornDebuff = 'None';
+	let inputPrecisionSniperCritS = 'None';
+	let inputAbsoluteDefense = 'Active (1.0x)';
+	let inputPremiumBoost = 'Inactive (1x)';
 
-	let inputNumberRoadFloor = $state(0);
-	let inputNumberConquestAttack = $state(0);
-	let inputNumberVampirism = $state(0);
-	let inputNumberTotalMotionValue = $state(125);
-	let inputNumberHitCount = $state(1);
-	let inputNumberElementalMultiplier = $state(1);
-	let inputNumberTrueRaw = $state(550);
+	let inputNumberRoadFloor = 0;
+	let inputNumberConquestAttack = 0;
+	let inputNumberVampirism = 0;
+	let inputNumberTotalMotionValue = 125;
+	let inputNumberHitCount = 1;
+	let inputNumberElementalMultiplier = 1;
+	let inputNumberTrueRaw = 550;
 	/**TODO some outputs dont use this that maybe should?*/
-	let inputNumberUnlimitedSigil = $state(0);
-	let inputNumberStyleRankAttack = $state(100);
-	let inputNumberSigil1Attack = $state(0);
-	let inputNumberSigil2Attack = $state(0);
-	let inputNumberSigil3Attack = $state(0);
-	let inputNumberZenithAttackSigil = $state(0);
-	let inputNumberAOEAttackSigil = $state(0);
-	let inputNumberNaturalAffinity = $state(0);
-	let inputNumberSigil1Affinity = $state(0);
-	let inputNumberSigil2Affinity = $state(0);
-	let inputNumberSigil3Affinity = $state(0);
-	let inputNumberAOEAffinitySigil = $state(0);
-	let inputNumberLanceImpactMultiplier = $state(1);
-	let inputNumberTranscendRawMultiplier = $state(1);
-	let inputNumberRavientePowerSwordCrystalsMultiplier = $state(1);
+	let inputNumberUnlimitedSigil = 0;
+	let inputNumberStyleRankAttack = 100;
+	let inputNumberSigil1Attack = 0;
+	let inputNumberSigil2Attack = 0;
+	let inputNumberSigil3Attack = 0;
+	let inputNumberZenithAttackSigil = 0;
+	let inputNumberAOEAttackSigil = 0;
+	let inputNumberNaturalAffinity = 0;
+	let inputNumberSigil1Affinity = 0;
+	let inputNumberSigil2Affinity = 0;
+	let inputNumberSigil3Affinity = 0;
+	let inputNumberAOEAffinitySigil = 0;
+	let inputNumberLanceImpactMultiplier = 1;
+	let inputNumberTranscendRawMultiplier = 1;
+	let inputNumberRavientePowerSwordCrystalsMultiplier = 1;
 	/**fakeele rangedfakeelement*/
-	let inputNumberElementalValueReplacement = $state(0);
-	let inputNumberSigil1Element = $state(0);
-	let inputNumberSigil2Element = $state(0);
-	let inputNumberSigil3Element = $state(0);
-	let inputNumberZenithElementSigil = $state(0);
-	let inputNumberAOEElementSigil = $state(0);
-	let inputNumberStatusValue = $state(0);
-	let inputNumberOtherAdditional = $state(0);
-	let inputNumberCompressedShot = $state(0);
-	let inputNumberCompressedElementShot = $state(0);
-	let inputNumberDefenseRate = $state(0.3);
-	let inputNumberMonsterRage = $state(1);
-	let inputNumberHCModifiers = $state(1);
-	let inputNumberCuttingHitzone = $state(30);
-	let inputNumberImpactHitzone = $state(30);
-	let inputNumberShotHitzone = $state(30);
-	let inputNumberFireHitzone = $state(30);
-	let inputNumberWaterHitzone = $state(30);
-	let inputNumberThunderHitzone = $state(30);
-	let inputNumberIceHitzone = $state(30);
-	let inputNumberDragonHitzone = $state(30);
+	let inputNumberElementalValueReplacement = 0;
+	let inputNumberSigil1Element = 0;
+	let inputNumberSigil2Element = 0;
+	let inputNumberSigil3Element = 0;
+	let inputNumberZenithElementSigil = 0;
+	let inputNumberAOEElementSigil = 0;
+	let inputNumberStatusValue = 0;
+	let inputNumberOtherAdditional = 0;
+	let inputNumberCompressedShot = 0;
+	let inputNumberCompressedElementShot = 0;
+	let inputNumberDefenseRate = 0.3;
+	let inputNumberMonsterRage = 1;
+	let inputNumberHCModifiers = 1;
+	let inputNumberCuttingHitzone = 30;
+	let inputNumberImpactHitzone = 30;
+	let inputNumberShotHitzone = 30;
+	let inputNumberFireHitzone = 30;
+	let inputNumberWaterHitzone = 30;
+	let inputNumberThunderHitzone = 30;
+	let inputNumberIceHitzone = 30;
+	let inputNumberDragonHitzone = 30;
 
-	let inputWeaponMotionValuesSection = $state('None');
+	let inputWeaponMotionValuesSection = 'None';
 	let inputWeaponMotionValuesSectionStyle: FrontierWeaponStyle =
-		$state('Extreme Style');
+		'Extreme Style';
+
+	$: inputs = {
+		inputStyleRankAffinity: inputStyleRankAffinity,
+		inputMeleeSharpnessAffinity: inputMeleeSharpnessAffinity,
+		inputExpertSkills: inputExpertSkills,
+		inputFlashConversion: inputFlashConversion,
+		inputIssenSkills: inputIssenSkills,
+		inputCeaseless: inputCeaseless,
+		inputStarvingWolf: inputStarvingWolf,
+		inputAffinityItems: inputAffinityItems,
+		inputGsActiveFeature: inputGsActiveFeature,
+		inputAttackSkills: inputAttackSkills,
+		inputCaravanSkills: inputCaravanSkills,
+		inputPassiveItems: inputPassiveItems,
+		inputFoodConsumables: inputFoodConsumables,
+		inputSeedsFlutesCat: inputSeedsFlutesCat,
+		inputLanceHbg: inputLanceHbg,
+		inputLoneWolf: inputLoneWolf,
+		inputCritConversionUp: inputCritConversionUp,
+		inputStylishAssault: inputStylishAssault,
+		inputConsumptionSlayer: inputConsumptionSlayer,
+		inputObscurity: inputObscurity,
+		inputRush: inputRush,
+		inputFurious: inputFurious,
+		inputShiriagari: inputShiriagari,
+		inputIncitement: inputIncitement,
+		inputLengthUp: inputLengthUp,
+		inputRoadAttack: inputRoadAttack,
+		inputRoadAdvLvFlr: inputRoadAdvLvFlr,
+		inputRoadLastStand: inputRoadLastStand,
+		inputDuremudiraAttack: inputDuremudiraAttack,
+		inputAttackMedicine: inputAttackMedicine,
+		inputHhAttackSongs: inputHhAttackSongs,
+		inputAdrenalineVigorous: inputAdrenalineVigorous,
+		inputVigorousUp: inputVigorousUp,
+		inputHidenSkills: inputHidenSkills,
+		inputWeaponSpecific: inputWeaponSpecific,
+		inputCombatSupremacy: inputCombatSupremacy,
+		inputArmor1: inputArmor1,
+		inputOriginArmor: inputOriginArmor,
+		inputGArmorPieces: inputGArmorPieces,
+		inputGsr999SecretTech: inputGsr999SecretTech,
+		inputRedSoul: inputRedSoul,
+		inputAssistance: inputAssistance,
+		inputBondMaleHunter: inputBondMaleHunter,
+		inputPartnyaaBond: inputPartnyaaBond,
+		inputFireMultipliers: inputFireMultipliers,
+		inputWaterMultipliers: inputWaterMultipliers,
+		inputThunderMultipliers: inputThunderMultipliers,
+		inputIceMultipliers: inputIceMultipliers,
+		inputDragonMultipliers: inputDragonMultipliers,
+		inputElementalAttackMultiplier: inputElementalAttackMultiplier,
+		inputHhElementalUp: inputHhElementalUp,
+		inputAbnormality: inputAbnormality,
+		inputDrugKnowledge: inputDrugKnowledge,
+		inputStatusAssault: inputStatusAssault,
+		inputStatusAttackUp: inputStatusAttackUp,
+		inputGuildPoogie: inputGuildPoogie,
+		inputStatusSigil: inputStatusSigil,
+		inputWeaponStatusModifiers: inputWeaponStatusModifiers,
+		inputWeaponType: inputWeaponType,
+		inputAoeAttackSigil: inputAoeAttackSigil,
+		inputAoeAffinitySigil: inputAoeAffinitySigil,
+		inputCritMode: inputCritMode,
+		inputSharpness: inputSharpness,
+		inputFencing: inputFencing,
+		inputCriticalDistanceMultiplier: inputCriticalDistanceMultiplier,
+		inputBulletStrengthModifier: inputBulletStrengthModifier,
+		inputShotMultiplier: inputShotMultiplier,
+		inputHbgChargeShot: inputHbgChargeShot,
+		inputCompressedShotMultiplier: inputCompressedShotMultiplier,
+		inputCompressedElementShot: inputCompressedElementShot,
+		inputBowCoatingsMultiplier: inputBowCoatingsMultiplier,
+		inputBowCoatingsArmorMultiplier: inputBowCoatingsArmorMultiplier,
+		inputBowCoatingsWeaponMultiplier: inputBowCoatingsWeaponMultiplier,
+		inputBowCoatingsHidenMultiplier: inputBowCoatingsHidenMultiplier,
+		inputBowChargeMultiplier: inputBowChargeMultiplier,
+		inputQuickShot: inputQuickShot,
+		inputElement: inputElement,
+		inputAoeElementSigil: inputAoeElementSigil,
+		inputWeaponElementMultipliers: inputWeaponElementMultipliers,
+		inputStatus: inputStatus,
+		inputMonsterStatus: inputMonsterStatus,
+		inputThunderClad: inputThunderClad,
+		inputExploitWeakness: inputExploitWeakness,
+		inputPointBreakthrough: inputPointBreakthrough,
+		inputAcidShots: inputAcidShots,
+		inputElementalExploiter: inputElementalExploiter,
+		inputHuntingHornDebuff: inputHuntingHornDebuff,
+		inputPrecisionSniperCritS: inputPrecisionSniperCritS,
+		inputAbsoluteDefense: inputAbsoluteDefense,
+		inputPremiumBoost: inputPremiumBoost,
+
+		inputNumberRoadFloor: inputNumberRoadFloor,
+		inputNumberConquestAttack: inputNumberConquestAttack,
+		inputNumberVampirism: inputNumberVampirism,
+		inputNumberTotalMotionValue: inputNumberTotalMotionValue,
+		inputNumberHitCount: inputNumberHitCount,
+		inputNumberElementalMultiplier: inputNumberElementalMultiplier,
+		inputNumberTrueRaw: inputNumberTrueRaw,
+		inputNumberUnlimitedSigil: inputNumberUnlimitedSigil,
+		inputNumberStyleRankAttack: inputNumberStyleRankAttack,
+		inputNumberSigil1Attack: inputNumberSigil1Attack,
+		inputNumberSigil2Attack: inputNumberSigil2Attack,
+		inputNumberSigil3Attack: inputNumberSigil3Attack,
+		inputNumberZenithAttackSigil: inputNumberZenithAttackSigil,
+		inputNumberAOEAttackSigil: inputNumberAOEAttackSigil,
+		inputNumberNaturalAffinity: inputNumberNaturalAffinity,
+		inputNumberSigil1Affinity: inputNumberSigil1Affinity,
+		inputNumberSigil2Affinity: inputNumberSigil2Affinity,
+		inputNumberSigil3Affinity: inputNumberSigil3Affinity,
+		inputNumberAOEAffinitySigil: inputNumberAOEAffinitySigil,
+		inputNumberLanceImpactMultiplier: inputNumberLanceImpactMultiplier,
+		inputNumberTranscendRawMultiplier: inputNumberTranscendRawMultiplier,
+		inputNumberRavientePowerSwordCrystalsMultiplier:
+			inputNumberRavientePowerSwordCrystalsMultiplier,
+		inputNumberElementalValueReplacement: inputNumberElementalValueReplacement,
+		inputNumberSigil1Element: inputNumberSigil1Element,
+		inputNumberSigil2Element: inputNumberSigil2Element,
+		inputNumberSigil3Element: inputNumberSigil3Element,
+		inputNumberZenithElementSigil: inputNumberZenithElementSigil,
+		inputNumberAOEElementSigil: inputNumberAOEElementSigil,
+		inputNumberStatusValue: inputNumberStatusValue,
+		inputNumberOtherAdditional: inputNumberOtherAdditional,
+		inputNumberCompressedShot: inputNumberCompressedShot,
+		inputNumberCompressedElementShot: inputNumberCompressedElementShot,
+		inputNumberDefenseRate: inputNumberDefenseRate,
+		inputNumberMonsterRage: inputNumberMonsterRage,
+		inputNumberHCModifiers: inputNumberHCModifiers,
+		inputNumberCuttingHitzone: inputNumberCuttingHitzone,
+		inputNumberImpactHitzone: inputNumberImpactHitzone,
+		inputNumberShotHitzone: inputNumberShotHitzone,
+		inputNumberFireHitzone: inputNumberFireHitzone,
+		inputNumberWaterHitzone: inputNumberWaterHitzone,
+		inputNumberThunderHitzone: inputNumberThunderHitzone,
+		inputNumberIceHitzone: inputNumberIceHitzone,
+		inputNumberDragonHitzone: inputNumberDragonHitzone,
+
+		inputNumberDivaPrayerGemRedLevel: inputNumberDivaPrayerGemRedLevel,
+		inputNumberDivaPrayerGemYellowLevel: inputNumberDivaPrayerGemYellowLevel,
+		inputNumberDivaPrayerGemGreenLevel: inputNumberDivaPrayerGemGreenLevel,
+		inputNumberDivaPrayerGemBlueLevel: inputNumberDivaPrayerGemBlueLevel,
+
+		inputDivaPrayerGemRedName: inputDivaPrayerGemRedName,
+		inputDivaPrayerGemYellowName: inputDivaPrayerGemYellowName,
+		inputDivaPrayerGemGreenName: inputDivaPrayerGemGreenName,
+		inputDivaPrayerGemBlueName: inputDivaPrayerGemBlueName,
+
+		selectedMonster: selectedMonster,
+		selectedMonsterRankBand: selectedMonsterRankBand,
+		selectedMonsterState: selectedMonsterState,
+		selectedMonsterPart: selectedMonsterPart,
+	};
+
+	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+
+	$: weaponSectionNames = getWeaponSectionNames(
+		inputWeaponType,
+		inputWeaponMotionValuesSectionStyle,
+	);
+
+	$: weaponIcon = getWeaponIcon(inputWeaponType);
+
+	// TODO the order of reactive statements affects the calculations
+
+	$: outputDivaPrayerGemRedMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemRedName,
+	);
+
+	$: outputDivaPrayerGemYellowMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemYellowName,
+	);
+
+	$: outputDivaPrayerGemGreenMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemGreenName,
+	);
+
+	$: outputDivaPrayerGemBlueMaxLevel = getMaxDivaPrayerGemLevel(
+		inputDivaPrayerGemBlueName,
+	);
+
+	$: hasDivaPrayerGemDuplicates = hasDuplicateValues(
+		damageCalculatorSelectedDivaPrayerGems,
+		'None',
+	);
+
+	$: damageCalculatorSelectedDivaPrayerGems = {
+		Red: inputDivaPrayerGemRedName,
+		Yellow: inputDivaPrayerGemYellowName,
+		Green: inputDivaPrayerGemGreenName,
+		Blue: inputDivaPrayerGemBlueName,
+	};
+
+	// Calculate the count of gems that aren't "None"
+	$: divaPrayerGemsCount = Object.values(
+		damageCalculatorSelectedDivaPrayerGems,
+	).filter((gem) => gem !== 'None').length;
+
+	// Generate gem emojis based on the count
+	// TODO unused?
+	$: gemEmojis = '💎'.repeat(divaPrayerGemsCount);
+
+	$: outputDivaPrayerGemAffinity =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'affinity',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'affinity',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'affinity',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'affinity',
+		);
+
+	$: outputDivaPrayerGemCuttingHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'cutting',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'cutting',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'cutting',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'cutting',
+		);
+
+	$: outputDivaPrayerGemImpactHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'impact',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'impact',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'impact',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'impact',
+		);
+
+	$: outputDivaPrayerGemShotHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'shot',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'shot',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'shot',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'shot',
+		);
+
+	$: outputDivaPrayerGemElementHitzone =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'element',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'element',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'element',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'element',
+		);
+
+	$: outputDivaPrayerGemTrueRaw =
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemRedName,
+			inputNumberDivaPrayerGemRedLevel,
+			'trueRaw',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemYellowName,
+			inputNumberDivaPrayerGemYellowLevel,
+			'trueRaw',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemGreenName,
+			inputNumberDivaPrayerGemGreenLevel,
+			'trueRaw',
+		) +
+		getDivaPrayerGemValue(
+			inputDivaPrayerGemBlueName,
+			inputNumberDivaPrayerGemBlueLevel,
+			'trueRaw',
+		);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemAffinity',
+		outputDivaPrayerGemAffinity.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemCuttingHitzone',
+		outputDivaPrayerGemCuttingHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemImpactHitzone',
+		outputDivaPrayerGemImpactHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemShotHitzone',
+		outputDivaPrayerGemShotHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemElementHitzone',
+		outputDivaPrayerGemElementHitzone.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDivaPrayerGemTrueRaw',
+		outputDivaPrayerGemTrueRaw.toString(),
+	);
+
+	// TODO if a value or a reactive statement seems to be wrong by 1 past calculation, try puttign it above inputTextInputs.
+
+	$: inputTextInputs = prettyPrintJson(inputs);
+
+	$: sharedMotionValues = getWeaponSectionMotionValues(
+		inputWeaponType,
+		'Shared',
+		inputWeaponMotionValuesSectionStyle,
+		inputTextInputs,
+		true,
+	);
+
+	$: outputStarvingWolfAffinity =
+		affinityDropdownItems.find((item) => item.name === inputStarvingWolf)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStarvingWolfAffinity',
+		outputStarvingWolfAffinity.toString(),
+	);
+
+	$: outputCeaselessAffinity =
+		affinityDropdownItems.find((item) => item.name === inputCeaseless)?.value ||
+		0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCeaselessAffinity',
+		outputCeaselessAffinity.toString(),
+	);
+
+	$: outputFuriousAffinity =
+		affinityDropdownItems.find((item) => item.name === inputFurious)?.value ||
+		0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFuriousAffinity',
+		outputFuriousAffinity.toString(),
+	);
+
+	$: outputIssenAffinity =
+		affinityDropdownItems.find((item) => item.name === inputIssenSkills)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputIssenAffinity',
+		outputIssenAffinity.toString(),
+	);
+
+	$: outputSharpnessAffinity =
+		affinityDropdownItems.find(
+			(item) => item.name === inputMeleeSharpnessAffinity,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSharpnessAffinity',
+		outputSharpnessAffinity.toString(),
+	);
+
+	$: outputStyleRankAffinity =
+		affinityDropdownItems.find((item) => item.name === inputStyleRankAffinity)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStyleRankAffinity',
+		outputStyleRankAffinity.toString(),
+	);
+
+	$: outputExpertAffinity =
+		affinityDropdownItems.find((item) => item.name === inputExpertSkills)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputExpertAffinity',
+		outputExpertAffinity.toString(),
+	);
+
+	$: outputFlashConversionAffinity =
+		affinityDropdownItems.find((item) => item.name === inputFlashConversion)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFlashConversionAffinity',
+		outputFlashConversionAffinity.toString(),
+	);
+
+	$: outputGSActiveFeatureAffinity =
+		affinityDropdownItems.find((item) => item.name === inputGsActiveFeature)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGSActiveFeatureAffinity',
+		outputGSActiveFeatureAffinity.toString(),
+	);
+
+	$: outputDrinkAffinity =
+		affinityDropdownItems.find((item) => item.name === inputAffinityItems)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDrinkAffinity',
+		outputDrinkAffinity.toString(),
+	);
+
+	$: outputAOEAffinityCount =
+		sigilDropdownItems.find((item) => item.name === inputAoeAffinitySigil)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAOEAffinityCount',
+		outputAOEAffinityCount.toString(),
+	);
+
+	/** This should be the correct one, not 20 * count + 2 * value.*/
+	$: outputAOETotalAffinity =
+		outputAOEAffinityCount === 0 || inputNumberAOEAffinitySigil === 0
+			? 0
+			: (20 + inputNumberAOEAffinitySigil * 2) * outputAOEAffinityCount;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAOETotalAffinity',
+		outputAOETotalAffinity.toString(),
+	);
+
+	$: outputTotalAffinity =
+		outputIssenAffinity +
+		outputSharpnessAffinity +
+		inputNumberSigil1Affinity +
+		inputNumberSigil2Affinity +
+		inputNumberSigil3Affinity +
+		outputStyleRankAffinity +
+		outputExpertAffinity +
+		inputNumberNaturalAffinity +
+		outputFlashConversionAffinity +
+		outputGSActiveFeatureAffinity +
+		outputDivaPrayerGemAffinity +
+		outputDrinkAffinity +
+		outputStarvingWolfAffinity +
+		outputCeaselessAffinity +
+		outputFuriousAffinity +
+		outputAOETotalAffinity;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputTotalAffinity',
+		outputTotalAffinity.toString(),
+	);
+
+	$: outputWeaponTypeMultiplier =
+		WeaponTypes.find((weaponType) => weaponType.name === inputWeaponType)
+			?.bloatAttackMultiplier || 1.2;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWeaponTypeMultiplier',
+		outputWeaponTypeMultiplier.toString(),
+	);
+
+	$: outputRoadAdvLvFlr =
+		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAdvLvFlr)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputRoadAdvLvFlr',
+		outputRoadAdvLvFlr.toString(),
+	);
+
+	$: outputRoadAdvancement = getRoadAdvancementValue(
+		outputRoadAdvLvFlr,
+		inputNumberRoadFloor,
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'inputNumberRoadFloor',
+		inputNumberRoadFloor.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputRoadAdvancement',
+		outputRoadAdvancement.toString(),
+	);
+
+	$: outputVigorousUp = inputVigorousUp === 'Active (+50 Ranged, +100 Melee)';
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputVigorousUp',
+		outputVigorousUp.toString(),
+	);
+
+	$: outputAdrenaline =
+		multipliersDropdownItems.find(
+			(item) => item.name === inputAdrenalineVigorous,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAdrenaline',
+		outputAdrenaline.toString(),
+	);
+
+	$: outputVigorousAddition =
+		outputVigorousUp && outputAdrenaline === 1.15
+			? outputWeaponClass === 'Blademaster'
+				? 100
+				: 50
+			: 0;
+
+	$: outputCaravanMultiplier =
+		multipliedBaseDropdownItems.find((item) => item.name === inputCaravanSkills)
+			?.value || 0;
+
+	$: outputCaravanAddition = Math.floor(
+		inputNumberTrueRaw * outputCaravanMultiplier,
+	);
+
+	$: outputZenithTotalAttack = getZenithSigilTrueRaw(
+		inputNumberZenithAttackSigil,
+	);
+
+	$: outputAOEAttackCount =
+		sigilDropdownItems.find((item) => item.name === inputAoeAttackSigil)
+			?.value || 0;
+
+	/** This should be the correct one, not 25 * count + 5 * value.*/
+	$: outputAOETotalAttack =
+		outputAOEAttackCount === 0 || inputNumberAOEAttackSigil === 0
+			? 0
+			: getAOESigilTrueRaw(inputNumberAOEAttackSigil, outputAOEAttackCount);
+
+	$: outputAOETotalElementCount =
+		sigilDropdownItems.find((item) => item.name === inputAoeElementSigil)
+			?.value || 0;
+
+	$: outputRush =
+		multipliedBaseDropdownItems.find((item) => item.name === inputRush)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs('outputRush', outputRush.toString());
+
+	$: outputStylishAssault =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputStylishAssault,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStylishAssault',
+		outputStylishAssault.toString(),
+	);
+
+	$: outputFuriousAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputFurious)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFuriousAttack',
+		outputFuriousAttack.toString(),
+	);
+
+	/**furious ele*/
+	$: outputFuriousMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputFurious)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFuriousMultiplier',
+		outputFuriousMultiplier.toString(),
+	);
+
+	$: outputCritConversionUpMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputCritConversionUp)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCritConversionUpMultiplier',
+		outputCritConversionUpMultiplier.toString(),
+	);
+
+	$: outputCritConversionTrueRaw = getCritConversionTrueRaw(
+		outputTotalAffinity,
+		outputCritConversionUpMultiplier,
+		inputNumberNaturalAffinity,
+		outputFlashConversionAffinity,
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCritConversionTrueRaw',
+		outputCritConversionTrueRaw.toString(),
+	);
+
+	$: outputObscurityLevel =
+		multipliedBaseDropdownItems.find((item) => item.name === inputObscurity)
+			?.value || 0;
+
+	$: outputObscurityTotal = getObscurityValue(
+		inputWeaponType,
+		outputObscurityLevel,
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputObscurityTotal',
+		outputObscurityTotal.toString(),
+	);
+
+	$: outputIncitement =
+		multipliedBaseDropdownItems.find((item) => item.name === inputIncitement)
+			?.value || 0;
+
+	/** Affects truerawvalue*/
+	$: outputLengthUpTrueRaw = getLengthAttackValue(
+		inputLengthUp,
+		inputNumberTrueRaw,
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputLengthUpTrueRaw',
+		outputLengthUpTrueRaw.toString(),
+	);
+
+	/** Rush / Stylish Assault / Vampirism / Flash Conversion / Obscurity / Incitement / Furious / Vigorous Up
+does not get multiplied by horn */
+	$: attackB =
+		outputRush +
+		outputStylishAssault +
+		outputFuriousAttack +
+		outputVigorousAddition +
+		outputCritConversionTrueRaw +
+		inputNumberVampirism +
+		outputObscurityTotal +
+		outputIncitement;
+
+	$: addToDamageCalculatorHistoryLogs('attackB', attackB.toString());
+
+	$: outputAttackMedicine =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputAttackMedicine,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAttackMedicine',
+		outputAttackMedicine.toString(),
+	);
+
+	$: outputAttackSkill =
+		multipliedBaseDropdownItems.find((item) => item.name === inputAttackSkills)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAttackSkill',
+		outputAttackSkill.toString(),
+	);
+
+	$: outputFoodAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputFoodConsumables,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFoodAttack',
+		outputFoodAttack.toString(),
+	);
+
+	$: outputSeedAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputSeedsFlutesCat,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSeedAttack',
+		outputSeedAttack.toString(),
+	);
+
+	$: outputDrugKnowledgeMultiplier =
+		statusSkillsDropdownItems.find((item) => item.name === inputDrugKnowledge)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDrugKnowledgeMultiplier',
+		outputDrugKnowledgeMultiplier.toString(),
+	);
+
+	$: outputStatusGuildPoogieMultiplier =
+		statusSkillsDropdownItems.find((item) => item.name === inputGuildPoogie)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusGuildPoogieMultiplier',
+		outputStatusGuildPoogieMultiplier.toString(),
+	);
+
+	$: outputMonsterStatusInflictedMultiplier =
+		monsterStatusDropdownOptions.find(
+			(item) => item.name === inputMonsterStatus,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputMonsterStatusInflictedMultiplier',
+		outputMonsterStatusInflictedMultiplier.toString(),
+	);
+
+	$: outputDrugKnowledgeTotalTrueRaw = getDrugKnowledgeAddition(
+		outputDrugKnowledgeMultiplier,
+		inputNumberStatusValue,
+		outputStatusAttackUpMultiplier,
+		outputStatusGuildPoogieMultiplier,
+		outputStatusSigilMultiplier,
+		outputFuriousMultiplier,
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDrugKnowledgeTotalTrueRaw',
+		outputDrugKnowledgeTotalTrueRaw.toString(),
+	);
+
+	/**statusAssaultToggle statusassault? TODO unused by original? Edit: Its used but the execution makes it change to another value instantly in the original code.*/
+	$: outputStatusAssault =
+		inputDrugKnowledge !== 'None (1x)'
+			? Math.floor(
+					(outputStatusUsedSA +
+						getStatusAssault(inputWeaponType, inputStatus)) *
+						0.15 *
+						outputMonsterTotalDefense *
+						inputNumberHitCount,
+				)
+			: 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusAssault',
+		outputStatusAssault.toString(),
+	);
+
+	/**statusStatusattack*/
+	$: outputStatusAttackUpMultiplier =
+		statusSkillsDropdownItems.find((item) => item.name === inputStatusAttackUp)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusAttackUpMultiplier',
+		outputStatusAttackUpMultiplier.toString(),
+	);
+
+	$: outputPassives =
+		multipliedBaseDropdownItems.find((item) => item.name === inputPassiveItems)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputPassives',
+		outputPassives.toString(),
+	);
+
+	$: outputLoneWolfAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputLoneWolf)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputLoneWolfAttack',
+		outputLoneWolfAttack.toString(),
+	);
+
+	$: outputDuremudiraAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputDuremudiraAttack,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDuremudiraAttack',
+		outputDuremudiraAttack.toString(),
+	);
+
+	$: outputShiriagariAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputShiriagari)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputShiriagariAttack',
+		outputShiriagariAttack.toString(),
+	);
+
+	$: outputConsumptionSlayerAttack =
+		multipliedBaseDropdownItems.find(
+			(item) => item.name === inputConsumptionSlayer,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputConsumptionSlayerAttack',
+		outputConsumptionSlayerAttack.toString(),
+	);
+
+	/**bowgunshotmodifier*/
+	$: outputShotMultiplier =
+		gunnerDropdownItems.find((item) => item.name === inputShotMultiplier)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputShotMultiplier',
+		outputShotMultiplier.toString(),
+	);
+
+	$: outputCriticalDistanceMultiplier =
+		gunnerDropdownItems.find((e) => e.name === inputCriticalDistanceMultiplier)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCriticalDistanceMultiplier',
+		outputCriticalDistanceMultiplier.toString(),
+	);
+
+	/**bowbottles*/
+	$: outputBowCoatingsMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsMultiplier,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsMultiplier',
+		outputBowCoatingsMultiplier.toString(),
+	);
+
+	$: outputBowCoatingsArmorMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsArmorMultiplier,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsArmorMultiplier',
+		outputBowCoatingsArmorMultiplier.toString(),
+	);
+
+	$: outputBowCoatingsWeaponMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsWeaponMultiplier,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsWeaponMultiplier',
+		outputBowCoatingsWeaponMultiplier.toString(),
+	);
+
+	$: outputBowCoatingsHidenMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputBowCoatingsHidenMultiplier,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingsHidenMultiplier',
+		outputBowCoatingsHidenMultiplier.toString(),
+	);
+
+	/** coatingmod*/
+	$: outputBowCoatingModifier =
+		inputConsumptionSlayer === 'Active (+100)'
+			? outputBowCoatingsMultiplier +
+				0.2 +
+				outputBowCoatingsWeaponMultiplier +
+				outputBowCoatingsArmorMultiplier +
+				outputBowCoatingsHidenMultiplier
+			: outputBowCoatingsMultiplier +
+				outputBowCoatingsWeaponMultiplier +
+				outputBowCoatingsArmorMultiplier +
+				outputBowCoatingsHidenMultiplier;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputBowCoatingModifier',
+		outputBowCoatingModifier.toString(),
+	);
+
+	$: outputRoadLastStandAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputRoadLastStand)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputRoadLastStandAttack',
+		outputRoadLastStandAttack.toString(),
+	);
+
+	/**Also HBG*/
+	$: outputLanceRedPhialAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputLanceHbg)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputLanceRedPhialAttack',
+		outputLanceRedPhialAttack.toString(),
+	);
+
+	$: outputRoadTowerAttack =
+		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAttack)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputRoadTowerAttack',
+		outputRoadTowerAttack.toString(),
+	);
+
+	$: attackA =
+		outputLengthUpTrueRaw +
+		outputPassives +
+		(inputNumberSigil1Attack +
+			inputNumberSigil2Attack +
+			inputNumberSigil3Attack) +
+		inputNumberConquestAttack +
+		outputAttackMedicine +
+		outputAttackSkill +
+		outputFoodAttack +
+		outputSeedAttack +
+		inputNumberStyleRankAttack +
+		inputNumberUnlimitedSigil +
+		outputDrugKnowledgeTotalTrueRaw +
+		outputDuremudiraAttack +
+		outputLoneWolfAttack +
+		outputCaravanAddition +
+		outputShiriagariAttack +
+		outputRoadAdvancement +
+		Math.floor(outputDrugKnowledgeMultiplier * 0.025) +
+		outputConsumptionSlayerAttack +
+		outputRoadLastStandAttack +
+		outputLanceRedPhialAttack +
+		outputRoadTowerAttack +
+		outputZenithTotalAttack +
+		outputAOETotalAttack;
+
+	$: addToDamageCalculatorHistoryLogs('attackA', attackA.toString());
+
+	$: outputHuntingHornMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputHhAttackSongs)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputHuntingHornMultiplier',
+		outputHuntingHornMultiplier.toString(),
+	);
+
+	$: outputCombatSupremacyAttackMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputCombatSupremacy)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCombatSupremacyAttackMultiplier',
+		outputCombatSupremacyAttackMultiplier.toString(),
+	);
+
+	$: outputHidenMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputHidenSkills)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputHidenMultiplier',
+		outputHidenMultiplier.toString(),
+	);
+
+	$: outputWeaponSpecificMultiplier =
+		multipliersDropdownItems.find((item) => item.name === inputWeaponSpecific)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWeaponSpecificMultiplier',
+		outputWeaponSpecificMultiplier.toString(),
+	);
 
 	/**TODO legacy unused*/
 	const outputHammerMultiplier = 1;
+	// multipliersDropdownItems.find((item) => item.name === inputBowChargeMultiplier)
+	// 	?.value || 1;
+
+	/**quickshotchargemodifier and quickshotmode*/
+	$: outputQuickShotChargeModifier =
+		gunnerDropdownItems.find((item) => item.name === inputQuickShot)?.value ||
+		0;
+
+	/*bowchargelevel and elebowchargelevel. chargeLevel is bowchargemodifier*/
+	$: outputBowChargeMultiplierLevels =
+		bowChargeLevels.find(
+			(item) => item.chargeModifier === inputBowChargeMultiplier,
+		) || undefined;
+
+	$: outputMultipliers = Math.floor(
+		Math.floor(attackA * outputHuntingHornMultiplier + attackB) *
+			outputAdrenaline *
+			outputCombatSupremacyAttackMultiplier *
+			outputWeaponSpecificMultiplier *
+			outputHidenMultiplier *
+			outputHammerMultiplier,
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputMultipliers',
+		outputMultipliers.toString(),
+	);
+
+	$: outputPartnyaBond =
+		flatAdditionsDropdownItems.find((item) => item.name === inputPartnyaaBond)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputPartnyaBond',
+		outputPartnyaBond.toString(),
+	);
+
+	$: outputHunterBond =
+		flatAdditionsDropdownItems.find((item) => item.name === inputBondMaleHunter)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputHunterBond',
+		outputHunterBond.toString(),
+	);
+
+	$: outputAssist =
+		flatAdditionsDropdownItems.find((item) => item.name === inputAssistance)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs('outputAssist', outputAssist.toString());
+
+	$: outputSoul =
+		flatAdditionsDropdownItems.find((item) => item.name === inputRedSoul)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs('outputSoul', outputSoul.toString());
+
+	$: outputArmor1 =
+		flatAdditionsDropdownItems.find((item) => item.name === inputArmor1)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs('outputArmor1', outputArmor1.toString());
+
+	$: outputArmor2 =
+		flatAdditionsDropdownItems.find((item) => item.name === inputOriginArmor)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs('outputArmor2', outputArmor2.toString());
+
+	$: outputArmorG =
+		flatAdditionsDropdownItems.find((item) => item.name === inputGArmorPieces)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs('outputArmorG', outputArmorG.toString());
+
+	$: outputSecretTech =
+		flatAdditionsDropdownItems.find(
+			(item) => item.name === inputGsr999SecretTech,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSecretTech',
+		outputSecretTech.toString(),
+	);
+
+	$: outputFlatAdditions =
+		outputPartnyaBond +
+		outputHunterBond +
+		outputAssist +
+		outputSoul +
+		outputArmor1 +
+		outputArmor2 +
+		outputArmorG +
+		outputSecretTech +
+		outputDivaPrayerGemTrueRaw;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFlatAdditions',
+		outputFlatAdditions.toString(),
+	);
+
+	$: outputCompressedShotsMultiplier =
+		gunnerDropdownItems.find(
+			(item) => item.name === inputCompressedShotMultiplier,
+		)?.value || 0; // TODO
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCompressedShotsMultiplier',
+		outputCompressedShotsMultiplier.toString(),
+	);
+
+	/**compressedshotpower*/
+	$: outputCompressedShotPower = Math.floor(
+		inputNumberCompressedShot * outputCompressedShotsMultiplier,
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCompressedShotPower',
+		outputCompressedShotPower.toString(),
+	);
+
+	$: outputCritValue = getCritValue(
+		inputStarvingWolf,
+		inputCeaseless,
+		inputExpertSkills,
+		inputIssenSkills,
+		outputTotalAffinity,
+	);
+
+	$: outputCritMultiplier = Number(outputCritValue.toFixed(2));
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputCritValue',
+		outputCritValue.toString(),
+	);
+
+	$: outputSwordAndShieldMultiplier =
+		inputWeaponType === 'Sword and Shield' ? 1.25 : 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSwordAndShieldMultiplier',
+		outputSwordAndShieldMultiplier.toString(),
+	);
+
+	$: outputOtherMultipliers =
+		inputNumberTranscendRawMultiplier *
+		inputNumberLanceImpactMultiplier *
+		inputNumberRavientePowerSwordCrystalsMultiplier;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputOtherMultipliers',
+		outputOtherMultipliers.toString(),
+	);
 
 	let inputGunlanceRaw = 1;
 	let inputGunlanceShellType = 2;
+
+	$: outputGunlanceRaw = inputGunlanceRaw / 2.3;
+	$: outputGunlanceShellType = inputGunlanceShellType - 1;
+	$: outputGunlanceShellDamage =
+		outputGunlanceShellType > 18
+			? 0.09 * outputGunlanceRaw + gunlanceShellValues[outputGunlanceShellType]
+			: outputGunlanceShellType > 9
+				? 0.1 * outputGunlanceRaw + gunlanceShellValues[outputGunlanceShellType]
+				: outputGunlanceShellType > 0
+					? 0.11 * outputGunlanceRaw +
+						gunlanceShellValues[outputGunlanceShellType]
+					: 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceRaw',
+		outputGunlanceRaw.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceShellType',
+		outputGunlanceShellType.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceShellDamage',
+		outputGunlanceShellDamage.toString(),
+	);
+
+	$: outputGunlanceShell = Math.floor(outputGunlanceShellDamage);
+	$: outputGunlanceShellBoosted = Math.floor(outputGunlanceShellDamage * 1.5);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceShell',
+		outputGunlanceShell.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputGunlanceShellBoosted',
+		outputGunlanceShellBoosted.toString(),
+	);
+
+	$: outputSharpnessMultiplier =
+		blademasterDropdownItems.find((item) => item.name === inputSharpness)
+			?.value || 0;
+
+	$: outputOldSharpnessMultiplier =
+		oldBlademasterSharpness.find((item) => item.name === inputSharpness)
+			?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputSharpnessMultiplier',
+		outputSharpnessMultiplier.toString(),
+	);
+
+	$: outputElementalExploiter =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputElementalExploiter,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputElementalExploiter',
+		outputElementalExploiter.toString(),
+	);
+
+	$: outputThunderClad =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputThunderClad,
+		)?.value || 0;
+	$: addToDamageCalculatorHistoryLogs(
+		'outputThunderClad',
+		outputThunderClad.toString(),
+	);
+
+	$: outputSniper =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputPrecisionSniperCritS,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs('outputSniper', outputSniper.toString());
+
+	$: outputExploitWeakness =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputExploitWeakness,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputExploitWeakness',
+		outputExploitWeakness.toString(),
+	);
+
+	$: outputAcidShot =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputAcidShots,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAcidShot',
+		outputAcidShot.toString(),
+	);
+
+	$: outputPointBreakthrough =
+		hitzoneValueModifiersDropdownItems.find(
+			(item) => item.name === inputPointBreakthrough,
+		)?.value || 0;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputPointBreakthrough',
+		outputPointBreakthrough.toString(),
+	);
+
+	$: outputAbsoluteDefenseMultiplier =
+		otherDropdownItems.find((item) => item.name === inputAbsoluteDefense)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputAbsoluteDefenseMultiplier',
+		outputAbsoluteDefenseMultiplier.toString(),
+	);
+
+	$: outputPremiumCourseMultiplier =
+		otherDropdownItems.find((item) => item.name === inputPremiumBoost)?.value ||
+		1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputPremiumCourseMultiplier',
+		outputPremiumCourseMultiplier.toString(),
+	);
+
+	$: outputFencingMultiplier = inputFencing === '+2' ? 1.2 : 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFencingMultiplier',
+		outputFencingMultiplier.toString(),
+	);
+
+	$: outputFireMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputFireMultipliers,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputFireMultiplier',
+		outputFireMultiplier.toString(),
+	);
+
+	$: outputWaterMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputWaterMultipliers,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWaterMultiplier',
+		outputWaterMultiplier.toString(),
+	);
+
+	$: outputThunderMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputThunderMultipliers,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputThunderMultiplier',
+		outputThunderMultiplier.toString(),
+	);
+
+	$: outputIceMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputIceMultipliers,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputIceMultiplier',
+		outputIceMultiplier.toString(),
+	);
+
+	$: outputDragonMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputDragonMultipliers,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputDragonMultiplier',
+		outputDragonMultiplier.toString(),
+	);
+
+	$: outputStatusSigilMultiplier =
+		statusSkillsDropdownItems.find((item) => item.name === inputStatusSigil)
+			?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusSigilMultiplier',
+		outputStatusSigilMultiplier.toString(),
+	);
+
+	$: outputWeaponStatusModifiers =
+		statusSkillsDropdownItems.find(
+			(item) => item.name === inputWeaponStatusModifiers,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWeaponStatusModifiers',
+		outputWeaponStatusModifiers.toString(),
+	);
+
+	/**eleHalk*/
+	$: outputElementalAttackMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputElementalAttackMultiplier,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputElementalAttackMultiplier',
+		outputElementalAttackMultiplier.toString(),
+	);
+
+	/**eleHH*/
+	$: outputHHElementalSongMultiplier =
+		elementalSkillsDropdownItems.find(
+			(item) => item.name === inputHhElementalUp,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputHHElementalSongMultiplier',
+		outputHHElementalSongMultiplier.toString(),
+	);
+
+	/**eleSwaxe*/
+	$: outputWeaponElementMultiplier =
+		elementDropdownItems.find(
+			(item) => item.name === inputWeaponElementMultipliers,
+		)?.value || 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputWeaponElementMultiplier',
+		outputWeaponElementMultiplier.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'inputElementalExploiter',
+		inputElementalExploiter.toString(),
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'internalAttack',
+		internalAttack.toString(),
+	);
 
 	// let roundedResult = Math.floor(
 	// 	Math.floor(outputFlatAdditions + Math.floor(outputMultipliers)) *
@@ -3784,6 +5286,63 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 		}
 	}
 
+	/**ACtrueout. ACtrueoutHolder?*/
+	$: internalTrueRaw =
+		outputAttackCeiling > 180
+			? maxTrueRaw
+			: Math.floor(outputFlatAdditions + outputMultipliers);
+
+	$: internalTrueRawDisplay = Math.floor(
+		internalTrueRaw * outputWeaponTypeMultiplier,
+	);
+
+	$: internalAttackCeiling =
+		outputAttackCeiling < 0
+			? 0
+			: outputAttackCeiling > 110 && outputAttackCeiling < 180
+				? outputAttackCeiling
+				: outputAttackCeiling > 180
+					? 180
+					: outputAttackCeiling;
+
+	$: internalMissionsNeeded =
+		outputAttackCeiling < 0
+			? 0
+			: outputAttackCeiling > 110 && outputAttackCeiling < 180
+				? missionRequirementAttackCeilings[outputAttackCeiling - 1]
+				: outputAttackCeiling > 180
+					? 249
+					: outputAttackCeiling <= 0
+						? 0
+						: missionRequirementAttackCeilings[outputAttackCeiling - 1];
+
+	$: internalAttack =
+		outputWeaponClass === 'Blademaster'
+			? Math.floor(
+					getMaxTrueRaw(internalTrueRaw) *
+						outputSharpnessMultiplier *
+						outputSwordAndShieldMultiplier *
+						outputOtherMultipliers *
+						outputMonsterStatusInflictedMultiplier,
+				)
+			: Math.floor(
+					getMaxTrueRaw(internalTrueRaw) *
+						outputOtherMultipliers *
+						outputMonsterStatusInflictedMultiplier,
+				);
+
+	/** This should be the correct one, not 50 * count + 50 * value. aoeEle*/
+	$: outputAOETotalElement = getAOESigilElement(
+		inputNumberAOEElementSigil,
+		outputAOETotalElementCount,
+	);
+
+	$: fireValueMultiplier = getElementMultiplier('Fire', inputElement);
+	$: waterValueMultiplier = getElementMultiplier('Water', inputElement);
+	$: thunderValueMultiplier = getElementMultiplier('Thunder', inputElement);
+	$: iceValueMultiplier = getElementMultiplier('Ice', inputElement);
+	$: dragonValueMultiplier = getElementMultiplier('Dragon', inputElement);
+
 	/**This is different from total affinity. */
 	function getInternalAffinity(critMode: string, totalAffinity: number) {
 		switch (critMode) {
@@ -3796,6 +5355,179 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 		}
 	}
 
+	$: internalAffinity = getInternalAffinity(
+		inputCritMode,
+		outputIssenAffinity +
+			outputSharpnessAffinity +
+			inputNumberUnlimitedSigil +
+			inputNumberSigil1Affinity +
+			inputNumberSigil2Affinity +
+			inputNumberSigil3Affinity +
+			outputStyleRankAffinity +
+			outputExpertAffinity +
+			inputNumberNaturalAffinity +
+			outputFlashConversionAffinity +
+			outputStarvingWolfAffinity +
+			outputCeaselessAffinity,
+	);
+
+	$: internalFire = Math.floor(
+		(((inputNumberElementalValueReplacement +
+			inputNumberSigil1Element * 10 +
+			inputNumberSigil2Element * 10 +
+			inputNumberSigil3Element * 10 +
+			inputNumberUnlimitedSigil * 10 +
+			outputAOETotalElement) *
+			outputFireMultiplier *
+			outputZenithElementMultiplier *
+			outputElementalAttackMultiplier *
+			outputHHElementalSongMultiplier *
+			outputWeaponElementMultiplier *
+			outputFuriousMultiplier *
+			getElementMultiplier('Fire', inputElement)) /
+			10) *
+			outputSharpnessMultiplier,
+	);
+
+	$: internalWater = Math.floor(
+		(((inputNumberElementalValueReplacement +
+			inputNumberSigil1Element * 10 +
+			inputNumberSigil2Element * 10 +
+			inputNumberSigil3Element * 10 +
+			inputNumberUnlimitedSigil * 10 +
+			outputAOETotalElement) *
+			outputWaterMultiplier *
+			outputZenithElementMultiplier *
+			outputElementalAttackMultiplier *
+			outputHHElementalSongMultiplier *
+			outputWeaponElementMultiplier *
+			outputFuriousMultiplier *
+			getElementMultiplier('Water', inputElement)) /
+			10) *
+			outputSharpnessMultiplier,
+	);
+
+	$: internalThunder = Math.floor(
+		(((inputNumberElementalValueReplacement +
+			inputNumberSigil1Element * 10 +
+			inputNumberSigil2Element * 10 +
+			inputNumberSigil3Element * 10 +
+			inputNumberUnlimitedSigil * 10 +
+			outputAOETotalElement) *
+			outputThunderMultiplier *
+			outputZenithElementMultiplier *
+			outputElementalAttackMultiplier *
+			outputHHElementalSongMultiplier *
+			outputWeaponElementMultiplier *
+			outputFuriousMultiplier *
+			getElementMultiplier('Thunder', inputElement)) /
+			10) *
+			outputSharpnessMultiplier,
+	);
+
+	$: internalIce = Math.floor(
+		(((inputNumberElementalValueReplacement +
+			inputNumberSigil1Element * 10 +
+			inputNumberSigil2Element * 10 +
+			inputNumberSigil3Element * 10 +
+			inputNumberUnlimitedSigil * 10 +
+			outputAOETotalElement) *
+			outputIceMultiplier *
+			outputZenithElementMultiplier *
+			outputElementalAttackMultiplier *
+			outputHHElementalSongMultiplier *
+			outputWeaponElementMultiplier *
+			outputFuriousMultiplier *
+			getElementMultiplier('Ice', inputElement)) /
+			10) *
+			outputSharpnessMultiplier,
+	);
+
+	$: internalDragon = Math.floor(
+		(((inputNumberElementalValueReplacement +
+			inputNumberSigil1Element * 10 +
+			inputNumberSigil2Element * 10 +
+			inputNumberSigil3Element * 10 +
+			inputNumberUnlimitedSigil * 10 +
+			outputAOETotalElement) *
+			outputDragonMultiplier *
+			outputZenithElementMultiplier *
+			outputElementalAttackMultiplier *
+			outputHHElementalSongMultiplier *
+			outputWeaponElementMultiplier *
+			outputFuriousMultiplier *
+			getElementMultiplier('Dragon', inputElement)) /
+			10) *
+			outputSharpnessMultiplier,
+	);
+
+	$: outputZenithElementMultiplier = getZenithSigilElementMultiplier(
+		inputNumberZenithElementSigil,
+	);
+
+	$: outputAttackCeiling = Math.ceil(
+		(Math.floor(outputFlatAdditions + outputMultipliers) - 800) / 40,
+	);
+
+	$: weaponSections = getWeaponSectionMotionValues(
+		inputWeaponType,
+		inputWeaponMotionValuesSection,
+		inputWeaponMotionValuesSectionStyle,
+		inputTextInputs,
+	);
+
+	$: internalStatus = Math.floor(
+		Math.floor(
+			inputNumberStatusValue *
+				outputStatusAttackUpMultiplier *
+				outputStatusGuildPoogieMultiplier *
+				outputStatusSigilMultiplier *
+				outputWeaponStatusModifiers *
+				outputFuriousMultiplier,
+		) * outputDrugKnowledgeMultiplier,
+	);
+
+	$: addToDamageCalculatorHistoryLogs(
+		'internalStatus',
+		internalStatus.toString(),
+	);
+
+	/**StatusUsedSA*/
+	$: outputStatusUsedSA = Math.floor(
+		Math.floor(
+			(inputNumberStatusValue / 10) *
+				outputStatusAttackUpMultiplier *
+				outputStatusGuildPoogieMultiplier *
+				outputStatusSigilMultiplier *
+				outputWeaponStatusModifiers *
+				outputFuriousMultiplier,
+		) * outputStatusValueMultiplier,
+	);
+
+	// Additional including status assault
+	// Status active, poison or paralysis
+	// TODO probably fixed
+	/**statvalmult*/
+	$: outputStatusValueMultiplier =
+		inputStatusAssault === 'On (For Sleep add +10 raw hitzone)' &&
+		inputStatus !== 'None' &&
+		inputNumberStatusValue >= 10 &&
+		outputDrugKnowledgeMultiplier !== 1
+			? outputDrugKnowledgeMultiplier
+			: 1;
+
+	$: addToDamageCalculatorHistoryLogs(
+		'outputStatusValueMultiplier',
+		outputStatusValueMultiplier.toString(),
+	);
+
+	$: outputMonsterTotalDefense =
+		inputNumberDefenseRate * inputNumberMonsterRage * inputNumberHCModifiers;
+
+	/**HBGchargemulti*/
+	$: outputHBGChargeShot =
+		gunnerDropdownItems.find((e) => e.name === inputHbgChargeShot)?.value || 1;
+
 	// outputStatusAssault = Math.floor(
 	// 	(statusUsedSA + getStatusAssault(inputWeaponType, inputStatus)) *
 	// 		0.15 *
@@ -3803,7 +5535,7 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 	// 		inputNumberHitCount,
 	// );
 
-	let isShikiLoading = $state(true);
+	let isShikiLoading = true;
 
 	async function renderShiki(inputs: string, lang: BundledLanguage) {
 		if (!browser) return '';
@@ -3814,37 +5546,54 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 		return result;
 	}
 
+	// Reactive statement to watch for changes in inputTextInputs
+	$: if (inputTextInputs && $carbonThemeStore) {
+		isShikiLoading = true;
+		// Use an immediately invoked async function expression (IIFE) to handle async operations
+		(async () => {
+			inputsHTML = await renderShiki(inputTextInputs, 'json');
+			internalAffinityFunctionHTML = await renderShiki(
+				internalAffinityFunctionString,
+				'ts',
+			);
+			critValueFunctionHTML = await renderShiki(critValueFunctionString, 'ts');
+			isShikiLoading = false;
+		})();
+	}
+
 	/**the generated HTML is sanitized by shiki*/
-	let inputsHTML = $state('');
+	let inputsHTML = '';
 	/**the generated HTML is sanitized by shiki*/
-	let internalAffinityFunctionHTML = $state('');
+	let internalAffinityFunctionHTML = '';
 	/**the generated HTML is sanitized by shiki*/
-	let critValueFunctionHTML = $state('');
+	let critValueFunctionHTML = '';
+
+	$: inputStatusIcon = StatusIcons.find((e) => e.name === inputStatus)?.icon;
 
 	// TODO datatable description having weapon guide link
 
-	let modalLink = $state('');
-	let modalPopoverIconType = $state('component');
-	let modalPopoverIcon: any = $state();
-	let modalDescription = $state('');
-	let modalTag1 = $state('');
-	let modalTag1Info: { link: string; icon: any; color: TagColor } = $state({
+	let modalLink = '';
+	let modalPopoverIconType = 'component';
+	let modalPopoverIcon: any;
+	let modalDescription = '';
+	let modalTag1 = '';
+	let modalTag1Info: { link: string; icon: any; color: TagColor } = {
 		link: '',
 		icon: undefined,
 		color: 'outline',
-	});
-	let modalTag2 = $state('');
-	let modalTag2Info: { link: string; icon: any; color: TagColor } = $state({
+	};
+	let modalTag2 = '';
+	let modalTag2Info: { link: string; icon: any; color: TagColor } = {
 		link: '',
 		icon: undefined,
 		color: 'outline',
-	});
-	let modalTag3 = $state('');
-	let modalTag3Info: { link: string; icon: any; color: TagColor } = $state({
+	};
+	let modalTag3 = '';
+	let modalTag3Info: { link: string; icon: any; color: TagColor } = {
 		link: '',
 		icon: undefined,
 		color: 'outline',
-	});
+	};
 
 	function handleOpenModal(e: any) {
 		modalOpen = true;
@@ -3863,9 +5612,11 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 		modalTag3Info = e.detail.tag3Info;
 	}
 
-	let inputNumberAttackValue = $state(0);
+	let inputNumberAttackValue = 0;
 
-	let legacyCalculatorSaveSlotNumber = $state(1);
+	let legacyCalculatorSaveSlotNumber = 1;
+
+	$: outputWeaponClass = getWeaponClass(inputWeaponType);
 
 	function addToDamageCalculatorHistoryLogs(
 		variableName: string,
@@ -3881,7 +5632,7 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 		];
 	}
 
-	let damageCalculatorHistoryLogsOrderReversed = $state(true);
+	let damageCalculatorHistoryLogsOrderReversed = true;
 
 	type DamageCalculatorHistoryLogsEntry = {
 		time: string;
@@ -3889,20 +5640,14 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 		value: string;
 	};
 
-	let damageCalculatorHistoryLogs: DamageCalculatorHistoryLogsEntry[] = $state(
-		[],
-	);
+	let damageCalculatorHistoryLogs: DamageCalculatorHistoryLogsEntry[] = [];
 
 	const maxTotalDivaPrayerGemLevel = 7;
 
-	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName =
-		$state('None');
-	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName =
-		$state('None');
-	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName =
-		$state('None');
-	let inputDivaPrayerGemBlueName: FrontierDivaPrayerGemSkillName =
-		$state('None');
+	let inputDivaPrayerGemRedName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemYellowName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemGreenName: FrontierDivaPrayerGemSkillName = 'None';
+	let inputDivaPrayerGemBlueName: FrontierDivaPrayerGemSkillName = 'None';
 
 	const iconKey = 'divaPrayerGemIcon';
 
@@ -3913,12 +5658,10 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 			text: gem.name,
 		}));
 
-	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = $state(0);
-	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel =
-		$state(0);
-	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel =
-		$state(0);
-	let inputNumberDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = $state(0);
+	let inputNumberDivaPrayerGemRedLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemYellowLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemGreenLevel: FrontierDivaPrayerGemLevel = 0;
+	let inputNumberDivaPrayerGemBlueLevel: FrontierDivaPrayerGemLevel = 0;
 
 	function hasDuplicateValues(obj: Object, ignoredString: string) {
 		if (!obj) {
@@ -4044,12 +5787,11 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 		}
 	}
 
-	let selectedMonster: FrontierMonsterName = $state('Abiorugu');
-	let selectedMonsterRankBand: FrontierMonsterHitzoneRankBand =
-		$state('Default');
-	let selectedMonsterState = $state('Default');
-	let selectedMonsterPart: FrontierMonsterPart = $state('Head');
-	let selectedHitzoneType: FrontierMonsterHitzoneType = $state('Cutting');
+	let selectedMonster: FrontierMonsterName = 'Abiorugu';
+	let selectedMonsterRankBand: FrontierMonsterHitzoneRankBand = 'Default';
+	let selectedMonsterState = 'Default';
+	let selectedMonsterPart: FrontierMonsterPart = 'Head';
+	let selectedHitzoneType: FrontierMonsterHitzoneType = 'Cutting';
 
 	let uniqueMonsters = getUniqueMonsters().sort(
 		(a, b) =>
@@ -4139,6 +5881,86 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 			text: part,
 		}));
 	}
+
+	$: availableRankBands = getAvailableRankBands(selectedMonster) || [
+		{ id: 'Default', text: 'Default' },
+	];
+
+	$: availableMonsterStates = getAvailableMonsterStates(selectedMonster) || [
+		{ id: 'Default', text: 'Default' },
+	];
+
+	$: availableMonsterParts = getAvailableMonsterParts(selectedMonster) || [];
+
+	$: hitzones =
+		convertHitzoneInfo(
+			selectedMonster,
+			selectedMonsterRankBand,
+			selectedMonsterState,
+		) || [];
+
+	$: hitzoneValues = Object.entries(
+		getAllHitzoneValuesForHitzones(
+			hitzones,
+			selectedMonsterState,
+			selectedMonsterRankBand,
+		),
+	).map(([partName, hitzoneValues]) => ({
+		id: partName,
+		part: partName,
+		...Object.fromEntries(
+			Object.entries(hitzoneValues).map(([type, value]) => [
+				type.toLowerCase(),
+				value,
+			]),
+		),
+	}));
+
+	$: hitzoneHighestValues = getHitzoneValuesObject(
+		hitzones,
+		selectedMonsterState,
+		selectedMonsterRankBand,
+	);
+
+	$: inputNumberCuttingHitzone =
+		selectedMonster === undefined
+			? inputNumberCuttingHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.cutting;
+
+	$: inputNumberImpactHitzone =
+		selectedMonster === undefined
+			? inputNumberImpactHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.impact;
+
+	$: inputNumberShotHitzone =
+		selectedMonster === undefined
+			? inputNumberShotHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.shot;
+
+	$: inputNumberFireHitzone =
+		selectedMonster === undefined
+			? inputNumberFireHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.fire;
+
+	$: inputNumberWaterHitzone =
+		selectedMonster === undefined
+			? inputNumberWaterHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.water;
+
+	$: inputNumberThunderHitzone =
+		selectedMonster === undefined
+			? inputNumberThunderHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.thunder;
+
+	$: inputNumberIceHitzone =
+		selectedMonster === undefined
+			? inputNumberIceHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.ice;
+
+	$: inputNumberDragonHitzone =
+		selectedMonster === undefined
+			? inputNumberDragonHitzone
+			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.dragon;
 
 	function getMotionValuesTableHeaders(inputElement: FrontierElement) {
 		const defaultResult = [
@@ -4386,6 +6208,8 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 		}
 	}
 
+	$: motionValuesTableHeaders = getMotionValuesTableHeaders(inputElement);
+
 	/**TODO: use this for hovering, info, warnings and errors.*/
 	let statusBarText = 'Note: refreshing the page resets all values.';
 	const panel1SizeDefault = 75;
@@ -4394,17 +6218,21 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 	const panel4SizeDefault = 25;
 	const topPanelsSizeDefault = 50;
 	const bottomPanelsSizeDefault = 50;
-	let panel1Size = $state(panel1SizeDefault);
-	let panel2Size = $state(panel2SizeDefault);
-	let panel3Size = $state(panel3SizeDefault);
-	let panel4Size = $state(panel4SizeDefault);
-	let topPanelsSize = $state(topPanelsSizeDefault);
-	let bottomPanelsSize = $state(bottomPanelsSizeDefault);
+	let panel1Size = panel1SizeDefault;
+	let panel2Size = panel2SizeDefault;
+	let panel3Size = panel3SizeDefault;
+	let panel4Size = panel4SizeDefault;
+	let topPanelsSize = topPanelsSizeDefault;
+	let bottomPanelsSize = bottomPanelsSizeDefault;
 
-	let panel1TabSelected = $state(0);
-	let panel2TabSelected = $state(0);
-	let panel3TabSelected = $state(0);
-	let panel4TabSelected = $state(0);
+	let panel1TabSelected = 0;
+	let panel2TabSelected = 0;
+	let panel3TabSelected = 0;
+	let panel4TabSelected = 0;
+
+	$: currentSilhouette = silhouetteInfo.find(
+		(e) => e.displayName === selectedMonster,
+	)?.silhouette;
 
 	function resetPanelSizes() {
 		panel1Size = panel1SizeDefault;
@@ -4535,1999 +6363,6 @@ function getInternalAffinity(critMode: string, totalAffinity: number) {
 
 		driverObj.drive();
 	}
-	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
-	/** Affects truerawvalue*/
-	let outputLengthUpTrueRaw = $derived(
-		getLengthAttackValue(inputLengthUp, inputNumberTrueRaw),
-	);
-	let outputPassives = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputPassiveItems)
-			?.value || 0,
-	);
-	let outputAttackMedicine = $derived(
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputAttackMedicine,
-		)?.value || 0,
-	);
-	let outputAttackSkill = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputAttackSkills)
-			?.value || 0,
-	);
-	let outputFoodAttack = $derived(
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputFoodConsumables,
-		)?.value || 0,
-	);
-	let outputSeedAttack = $derived(
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputSeedsFlutesCat,
-		)?.value || 0,
-	);
-	let outputDrugKnowledgeMultiplier = $derived(
-		statusSkillsDropdownItems.find((item) => item.name === inputDrugKnowledge)
-			?.value || 1,
-	);
-	/**statusStatusattack*/
-	let outputStatusAttackUpMultiplier = $derived(
-		statusSkillsDropdownItems.find((item) => item.name === inputStatusAttackUp)
-			?.value || 1,
-	);
-	let outputStatusGuildPoogieMultiplier = $derived(
-		statusSkillsDropdownItems.find((item) => item.name === inputGuildPoogie)
-			?.value || 1,
-	);
-	let outputStatusSigilMultiplier = $derived(
-		statusSkillsDropdownItems.find((item) => item.name === inputStatusSigil)
-			?.value || 1,
-	);
-	/**furious ele*/
-	let outputFuriousMultiplier = $derived(
-		multipliersDropdownItems.find((item) => item.name === inputFurious)
-			?.value || 1,
-	);
-	let outputDrugKnowledgeTotalTrueRaw = $derived(
-		getDrugKnowledgeAddition(
-			outputDrugKnowledgeMultiplier,
-			inputNumberStatusValue,
-			outputStatusAttackUpMultiplier,
-			outputStatusGuildPoogieMultiplier,
-			outputStatusSigilMultiplier,
-			outputFuriousMultiplier,
-		),
-	);
-	let outputDuremudiraAttack = $derived(
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputDuremudiraAttack,
-		)?.value || 0,
-	);
-	let outputLoneWolfAttack = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputLoneWolf)
-			?.value || 0,
-	);
-	let outputCaravanMultiplier = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputCaravanSkills)
-			?.value || 0,
-	);
-	let outputCaravanAddition = $derived(
-		Math.floor(inputNumberTrueRaw * outputCaravanMultiplier),
-	);
-	let outputShiriagariAttack = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputShiriagari)
-			?.value || 0,
-	);
-	let outputRoadAdvLvFlr = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAdvLvFlr)
-			?.value || 0,
-	);
-	let outputRoadAdvancement = $derived(
-		getRoadAdvancementValue(outputRoadAdvLvFlr, inputNumberRoadFloor),
-	);
-	let outputConsumptionSlayerAttack = $derived(
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputConsumptionSlayer,
-		)?.value || 0,
-	);
-	let outputRoadLastStandAttack = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputRoadLastStand)
-			?.value || 0,
-	);
-	/**Also HBG*/
-	let outputLanceRedPhialAttack = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputLanceHbg)
-			?.value || 0,
-	);
-	let outputRoadTowerAttack = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputRoadAttack)
-			?.value || 0,
-	);
-	let outputZenithTotalAttack = $derived(
-		getZenithSigilTrueRaw(inputNumberZenithAttackSigil),
-	);
-	let outputAOEAttackCount = $derived(
-		sigilDropdownItems.find((item) => item.name === inputAoeAttackSigil)
-			?.value || 0,
-	);
-	/** This should be the correct one, not 25 * count + 5 * value.*/
-	let outputAOETotalAttack = $derived(
-		outputAOEAttackCount === 0 || inputNumberAOEAttackSigil === 0
-			? 0
-			: getAOESigilTrueRaw(inputNumberAOEAttackSigil, outputAOEAttackCount),
-	);
-	let attackA = $derived(
-		outputLengthUpTrueRaw +
-			outputPassives +
-			(inputNumberSigil1Attack +
-				inputNumberSigil2Attack +
-				inputNumberSigil3Attack) +
-			inputNumberConquestAttack +
-			outputAttackMedicine +
-			outputAttackSkill +
-			outputFoodAttack +
-			outputSeedAttack +
-			inputNumberStyleRankAttack +
-			inputNumberUnlimitedSigil +
-			outputDrugKnowledgeTotalTrueRaw +
-			outputDuremudiraAttack +
-			outputLoneWolfAttack +
-			outputCaravanAddition +
-			outputShiriagariAttack +
-			outputRoadAdvancement +
-			Math.floor(outputDrugKnowledgeMultiplier * 0.025) +
-			outputConsumptionSlayerAttack +
-			outputRoadLastStandAttack +
-			outputLanceRedPhialAttack +
-			outputRoadTowerAttack +
-			outputZenithTotalAttack +
-			outputAOETotalAttack,
-	);
-	let formulaValuesOutputAttackA =
-		$derived(`\\begin{align}{${attackA}} = ${outputLengthUpTrueRaw} +\\newline ${outputPassives} +\\newline (${inputNumberSigil1Attack} + ${inputNumberSigil2Attack} + ${inputNumberSigil3Attack}) +\\newline ${inputNumberConquestAttack} +\\newline ${outputAttackMedicine} +\\newline ${outputAttackSkill} +\\newline ${outputFoodAttack} +\\newline ${outputSeedAttack} +\\newline ${inputNumberStyleRankAttack} +\\newline ${inputNumberUnlimitedSigil} +\\newline ${outputDrugKnowledgeTotalTrueRaw} +\\newline ${outputDuremudiraAttack} +\\newline ${outputLoneWolfAttack} +\\newline ${outputCaravanAddition} +\\newline ${outputShiriagariAttack} +\\newline ${outputRoadAdvancement} +\\newline \\lfloor ${outputDrugKnowledgeMultiplier} \\times 0.025 \\rfloor +\\newline ${outputConsumptionSlayerAttack} +\\newline ${outputRoadLastStandAttack} +\\newline ${outputLanceRedPhialAttack} +\\newline ${outputRoadTowerAttack} +\\newline ${outputZenithTotalAttack} +\\newline ${outputAOETotalAttack}\\end{align}
-`);
-	let outputRush = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputRush)
-			?.value || 0,
-	);
-	let outputStylishAssault = $derived(
-		multipliedBaseDropdownItems.find(
-			(item) => item.name === inputStylishAssault,
-		)?.value || 0,
-	);
-	let outputFuriousAttack = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputFurious)
-			?.value || 0,
-	);
-	let outputVigorousUp = $derived(
-		inputVigorousUp === 'Active (+50 Ranged, +100 Melee)',
-	);
-	let outputAdrenaline = $derived(
-		multipliersDropdownItems.find(
-			(item) => item.name === inputAdrenalineVigorous,
-		)?.value || 0,
-	);
-	let outputWeaponClass = $derived(getWeaponClass(inputWeaponType));
-	let outputVigorousAddition = $derived(
-		outputVigorousUp && outputAdrenaline === 1.15
-			? outputWeaponClass === 'Blademaster'
-				? 100
-				: 50
-			: 0,
-	);
-	let outputIssenAffinity = $derived(
-		affinityDropdownItems.find((item) => item.name === inputIssenSkills)
-			?.value || 0,
-	);
-	let outputSharpnessAffinity = $derived(
-		affinityDropdownItems.find(
-			(item) => item.name === inputMeleeSharpnessAffinity,
-		)?.value || 0,
-	);
-	let outputStyleRankAffinity = $derived(
-		affinityDropdownItems.find((item) => item.name === inputStyleRankAffinity)
-			?.value || 0,
-	);
-	let outputExpertAffinity = $derived(
-		affinityDropdownItems.find((item) => item.name === inputExpertSkills)
-			?.value || 0,
-	);
-	let outputFlashConversionAffinity = $derived(
-		affinityDropdownItems.find((item) => item.name === inputFlashConversion)
-			?.value || 0,
-	);
-	let outputGSActiveFeatureAffinity = $derived(
-		affinityDropdownItems.find((item) => item.name === inputGsActiveFeature)
-			?.value || 0,
-	);
-	let outputDivaPrayerGemAffinity = $derived(
-		getDivaPrayerGemValue(
-			inputDivaPrayerGemRedName,
-			inputNumberDivaPrayerGemRedLevel,
-			'affinity',
-		) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemYellowName,
-				inputNumberDivaPrayerGemYellowLevel,
-				'affinity',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemGreenName,
-				inputNumberDivaPrayerGemGreenLevel,
-				'affinity',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemBlueName,
-				inputNumberDivaPrayerGemBlueLevel,
-				'affinity',
-			),
-	);
-	let outputDrinkAffinity = $derived(
-		affinityDropdownItems.find((item) => item.name === inputAffinityItems)
-			?.value || 0,
-	);
-	let outputStarvingWolfAffinity = $derived(
-		affinityDropdownItems.find((item) => item.name === inputStarvingWolf)
-			?.value || 0,
-	);
-	let outputCeaselessAffinity = $derived(
-		affinityDropdownItems.find((item) => item.name === inputCeaseless)?.value ||
-			0,
-	);
-	let outputFuriousAffinity = $derived(
-		affinityDropdownItems.find((item) => item.name === inputFurious)?.value ||
-			0,
-	);
-	let outputAOEAffinityCount = $derived(
-		sigilDropdownItems.find((item) => item.name === inputAoeAffinitySigil)
-			?.value || 0,
-	);
-	/** This should be the correct one, not 20 * count + 2 * value.*/
-	let outputAOETotalAffinity = $derived(
-		outputAOEAffinityCount === 0 || inputNumberAOEAffinitySigil === 0
-			? 0
-			: (20 + inputNumberAOEAffinitySigil * 2) * outputAOEAffinityCount,
-	);
-	let outputTotalAffinity = $derived(
-		outputIssenAffinity +
-			outputSharpnessAffinity +
-			inputNumberSigil1Affinity +
-			inputNumberSigil2Affinity +
-			inputNumberSigil3Affinity +
-			outputStyleRankAffinity +
-			outputExpertAffinity +
-			inputNumberNaturalAffinity +
-			outputFlashConversionAffinity +
-			outputGSActiveFeatureAffinity +
-			outputDivaPrayerGemAffinity +
-			outputDrinkAffinity +
-			outputStarvingWolfAffinity +
-			outputCeaselessAffinity +
-			outputFuriousAffinity +
-			outputAOETotalAffinity,
-	);
-	let outputCritConversionUpMultiplier = $derived(
-		multipliersDropdownItems.find((item) => item.name === inputCritConversionUp)
-			?.value || 0,
-	);
-	let outputCritConversionTrueRaw = $derived(
-		getCritConversionTrueRaw(
-			outputTotalAffinity,
-			outputCritConversionUpMultiplier,
-			inputNumberNaturalAffinity,
-			outputFlashConversionAffinity,
-		),
-	);
-	let outputObscurityLevel = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputObscurity)
-			?.value || 0,
-	);
-	let outputObscurityTotal = $derived(
-		getObscurityValue(inputWeaponType, outputObscurityLevel),
-	);
-	let outputIncitement = $derived(
-		multipliedBaseDropdownItems.find((item) => item.name === inputIncitement)
-			?.value || 0,
-	);
-	/** Rush / Stylish Assault / Vampirism / Flash Conversion / Obscurity / Incitement / Furious / Vigorous Up
-does not get multiplied by horn */
-	let attackB = $derived(
-		outputRush +
-			outputStylishAssault +
-			outputFuriousAttack +
-			outputVigorousAddition +
-			outputCritConversionTrueRaw +
-			inputNumberVampirism +
-			outputObscurityTotal +
-			outputIncitement,
-	);
-	let formulaValuesOutputAttackB =
-		$derived(`\\begin{align}{${attackB}} = ${outputRush} +\\newline ${outputStylishAssault} +\\newline ${outputFuriousAttack} +\\newline ${outputVigorousAddition} +\\newline ${outputCritConversionTrueRaw} +\\newline ${inputNumberVampirism} +\\newline ${outputObscurityTotal} +\\newline ${outputIncitement}
-\\end{align}`);
-	let outputHuntingHornMultiplier = $derived(
-		multipliersDropdownItems.find((item) => item.name === inputHhAttackSongs)
-			?.value || 1,
-	);
-	let outputCombatSupremacyAttackMultiplier = $derived(
-		multipliersDropdownItems.find((item) => item.name === inputCombatSupremacy)
-			?.value || 1,
-	);
-	let outputWeaponSpecificMultiplier = $derived(
-		multipliersDropdownItems.find((item) => item.name === inputWeaponSpecific)
-			?.value || 1,
-	);
-	let outputHidenMultiplier = $derived(
-		multipliersDropdownItems.find((item) => item.name === inputHidenSkills)
-			?.value || 1,
-	);
-	let outputMultipliers = $derived(
-		Math.floor(
-			Math.floor(attackA * outputHuntingHornMultiplier + attackB) *
-				outputAdrenaline *
-				outputCombatSupremacyAttackMultiplier *
-				outputWeaponSpecificMultiplier *
-				outputHidenMultiplier *
-				outputHammerMultiplier,
-		),
-	);
-	let formulaValuesOutputMultipliers =
-		$derived(`\\begin{align}{${outputMultipliers}} = \\lfloor \\lfloor ${attackA} \\times ${outputHuntingHornMultiplier} + ${attackB} \\rfloor\\newline \\times ${outputAdrenaline} \\times ${outputCombatSupremacyAttackMultiplier} \\times ${outputWeaponSpecificMultiplier} \\times ${outputHidenMultiplier} \\times ${outputHammerMultiplier} \\rfloor\\end{align}
-`);
-	let outputPartnyaBond = $derived(
-		flatAdditionsDropdownItems.find((item) => item.name === inputPartnyaaBond)
-			?.value || 0,
-	);
-	let outputHunterBond = $derived(
-		flatAdditionsDropdownItems.find((item) => item.name === inputBondMaleHunter)
-			?.value || 0,
-	);
-	let outputAssist = $derived(
-		flatAdditionsDropdownItems.find((item) => item.name === inputAssistance)
-			?.value || 0,
-	);
-	let outputSoul = $derived(
-		flatAdditionsDropdownItems.find((item) => item.name === inputRedSoul)
-			?.value || 0,
-	);
-	let outputArmor1 = $derived(
-		flatAdditionsDropdownItems.find((item) => item.name === inputArmor1)
-			?.value || 0,
-	);
-	let outputArmor2 = $derived(
-		flatAdditionsDropdownItems.find((item) => item.name === inputOriginArmor)
-			?.value || 0,
-	);
-	let outputArmorG = $derived(
-		flatAdditionsDropdownItems.find((item) => item.name === inputGArmorPieces)
-			?.value || 0,
-	);
-	let outputSecretTech = $derived(
-		flatAdditionsDropdownItems.find(
-			(item) => item.name === inputGsr999SecretTech,
-		)?.value || 0,
-	);
-	let outputDivaPrayerGemTrueRaw = $derived(
-		getDivaPrayerGemValue(
-			inputDivaPrayerGemRedName,
-			inputNumberDivaPrayerGemRedLevel,
-			'trueRaw',
-		) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemYellowName,
-				inputNumberDivaPrayerGemYellowLevel,
-				'trueRaw',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemGreenName,
-				inputNumberDivaPrayerGemGreenLevel,
-				'trueRaw',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemBlueName,
-				inputNumberDivaPrayerGemBlueLevel,
-				'trueRaw',
-			),
-	);
-	let outputFlatAdditions = $derived(
-		outputPartnyaBond +
-			outputHunterBond +
-			outputAssist +
-			outputSoul +
-			outputArmor1 +
-			outputArmor2 +
-			outputArmorG +
-			outputSecretTech +
-			outputDivaPrayerGemTrueRaw,
-	);
-	let formulaValuesOutputFlatAdditions =
-		$derived(`\\begin{align}{${outputFlatAdditions}} = ${outputPartnyaBond} +\\newline ${outputHunterBond} +\\newline ${outputAssist} +\\newline ${outputSoul} +\\newline ${outputArmor1} +\\newline ${outputArmor2} +\\newline ${outputArmorG} +\\newline ${outputSecretTech} +\\newline ${outputDivaPrayerGemTrueRaw}
-\\end{align}`);
-	let outputAttackCeiling = $derived(
-		Math.ceil((Math.floor(outputFlatAdditions + outputMultipliers) - 800) / 40),
-	);
-	/**ACtrueout. ACtrueoutHolder?*/
-	let internalTrueRaw = $derived(
-		outputAttackCeiling > 180
-			? maxTrueRaw
-			: Math.floor(outputFlatAdditions + outputMultipliers),
-	);
-	let outputSharpnessMultiplier = $derived(
-		blademasterDropdownItems.find((item) => item.name === inputSharpness)
-			?.value || 0,
-	);
-	let outputSwordAndShieldMultiplier = $derived(
-		inputWeaponType === 'Sword and Shield' ? 1.25 : 1,
-	);
-	let outputOtherMultipliers = $derived(
-		inputNumberTranscendRawMultiplier *
-			inputNumberLanceImpactMultiplier *
-			inputNumberRavientePowerSwordCrystalsMultiplier,
-	);
-	let outputMonsterStatusInflictedMultiplier = $derived(
-		monsterStatusDropdownOptions.find(
-			(item) => item.name === inputMonsterStatus,
-		)?.value || 1,
-	);
-	let internalAttack = $derived(
-		outputWeaponClass === 'Blademaster'
-			? Math.floor(
-					getMaxTrueRaw(internalTrueRaw) *
-						outputSharpnessMultiplier *
-						outputSwordAndShieldMultiplier *
-						outputOtherMultipliers *
-						outputMonsterStatusInflictedMultiplier,
-				)
-			: Math.floor(
-					getMaxTrueRaw(internalTrueRaw) *
-						outputOtherMultipliers *
-						outputMonsterStatusInflictedMultiplier,
-				),
-	);
-	let formulaValuesOutputInternalAttack =
-		$derived(`\\begin{align}{${internalAttack}} = \\lfloor ${internalTrueRaw} \\times\\newline ${outputSharpnessMultiplier} \\times\\newline ${outputSwordAndShieldMultiplier} \\times\\newline ${outputOtherMultipliers} \\times\\newline ${outputMonsterStatusInflictedMultiplier} \\rfloor\\end{align}
-`);
-	let outputAOETotalElementCount = $derived(
-		sigilDropdownItems.find((item) => item.name === inputAoeElementSigil)
-			?.value || 0,
-	);
-	/** This should be the correct one, not 50 * count + 50 * value. aoeEle*/
-	let outputAOETotalElement = $derived(
-		getAOESigilElement(inputNumberAOEElementSigil, outputAOETotalElementCount),
-	);
-	let outputFireMultiplier = $derived(
-		elementalSkillsDropdownItems.find(
-			(item) => item.name === inputFireMultipliers,
-		)?.value || 1,
-	);
-	let outputZenithElementMultiplier = $derived(
-		getZenithSigilElementMultiplier(inputNumberZenithElementSigil),
-	);
-	/**eleHalk*/
-	let outputElementalAttackMultiplier = $derived(
-		elementalSkillsDropdownItems.find(
-			(item) => item.name === inputElementalAttackMultiplier,
-		)?.value || 1,
-	);
-	/**eleHH*/
-	let outputHHElementalSongMultiplier = $derived(
-		elementalSkillsDropdownItems.find(
-			(item) => item.name === inputHhElementalUp,
-		)?.value || 1,
-	);
-	/**eleSwaxe*/
-	let outputWeaponElementMultiplier = $derived(
-		elementDropdownItems.find(
-			(item) => item.name === inputWeaponElementMultipliers,
-		)?.value || 1,
-	);
-	let internalFire;
-	run(() => {
-		internalFire = Math.floor(
-			(((inputNumberElementalValueReplacement +
-				inputNumberSigil1Element * 10 +
-				inputNumberSigil2Element * 10 +
-				inputNumberSigil3Element * 10 +
-				inputNumberUnlimitedSigil * 10 +
-				outputAOETotalElement) *
-				outputFireMultiplier *
-				outputZenithElementMultiplier *
-				outputElementalAttackMultiplier *
-				outputHHElementalSongMultiplier *
-				outputWeaponElementMultiplier *
-				outputFuriousMultiplier *
-				getElementMultiplier('Fire', inputElement)) /
-				10) *
-				outputSharpnessMultiplier,
-		);
-	});
-	let formulaValuesInternalFire =
-		$derived(`\\begin{align}${internalFire} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputFireMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Fire', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
-`);
-	let outputWaterMultiplier = $derived(
-		elementalSkillsDropdownItems.find(
-			(item) => item.name === inputWaterMultipliers,
-		)?.value || 1,
-	);
-	let internalWater;
-	run(() => {
-		internalWater = Math.floor(
-			(((inputNumberElementalValueReplacement +
-				inputNumberSigil1Element * 10 +
-				inputNumberSigil2Element * 10 +
-				inputNumberSigil3Element * 10 +
-				inputNumberUnlimitedSigil * 10 +
-				outputAOETotalElement) *
-				outputWaterMultiplier *
-				outputZenithElementMultiplier *
-				outputElementalAttackMultiplier *
-				outputHHElementalSongMultiplier *
-				outputWeaponElementMultiplier *
-				outputFuriousMultiplier *
-				getElementMultiplier('Water', inputElement)) /
-				10) *
-				outputSharpnessMultiplier,
-		);
-	});
-	let formulaValuesInternalWater =
-		$derived(`\\begin{align}${internalWater} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputWaterMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Water', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
-`);
-	let outputThunderMultiplier = $derived(
-		elementalSkillsDropdownItems.find(
-			(item) => item.name === inputThunderMultipliers,
-		)?.value || 1,
-	);
-	let internalThunder;
-	run(() => {
-		internalThunder = Math.floor(
-			(((inputNumberElementalValueReplacement +
-				inputNumberSigil1Element * 10 +
-				inputNumberSigil2Element * 10 +
-				inputNumberSigil3Element * 10 +
-				inputNumberUnlimitedSigil * 10 +
-				outputAOETotalElement) *
-				outputThunderMultiplier *
-				outputZenithElementMultiplier *
-				outputElementalAttackMultiplier *
-				outputHHElementalSongMultiplier *
-				outputWeaponElementMultiplier *
-				outputFuriousMultiplier *
-				getElementMultiplier('Thunder', inputElement)) /
-				10) *
-				outputSharpnessMultiplier,
-		);
-	});
-	let formulaValuesInternalThunder =
-		$derived(`\\begin{align}${internalThunder} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputThunderMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Thunder', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor
-\\end{align}`);
-	let outputIceMultiplier = $derived(
-		elementalSkillsDropdownItems.find(
-			(item) => item.name === inputIceMultipliers,
-		)?.value || 1,
-	);
-	let internalIce;
-	run(() => {
-		internalIce = Math.floor(
-			(((inputNumberElementalValueReplacement +
-				inputNumberSigil1Element * 10 +
-				inputNumberSigil2Element * 10 +
-				inputNumberSigil3Element * 10 +
-				inputNumberUnlimitedSigil * 10 +
-				outputAOETotalElement) *
-				outputIceMultiplier *
-				outputZenithElementMultiplier *
-				outputElementalAttackMultiplier *
-				outputHHElementalSongMultiplier *
-				outputWeaponElementMultiplier *
-				outputFuriousMultiplier *
-				getElementMultiplier('Ice', inputElement)) /
-				10) *
-				outputSharpnessMultiplier,
-		);
-	});
-	let formulaValuesInternalIce =
-		$derived(`\\begin{align}${internalIce} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputIceMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Ice', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
-`);
-	let outputDragonMultiplier = $derived(
-		elementalSkillsDropdownItems.find(
-			(item) => item.name === inputDragonMultipliers,
-		)?.value || 1,
-	);
-	let internalDragon;
-	run(() => {
-		internalDragon = Math.floor(
-			(((inputNumberElementalValueReplacement +
-				inputNumberSigil1Element * 10 +
-				inputNumberSigil2Element * 10 +
-				inputNumberSigil3Element * 10 +
-				inputNumberUnlimitedSigil * 10 +
-				outputAOETotalElement) *
-				outputDragonMultiplier *
-				outputZenithElementMultiplier *
-				outputElementalAttackMultiplier *
-				outputHHElementalSongMultiplier *
-				outputWeaponElementMultiplier *
-				outputFuriousMultiplier *
-				getElementMultiplier('Dragon', inputElement)) /
-				10) *
-				outputSharpnessMultiplier,
-		);
-	});
-	let formulaValuesInternalDragon =
-		$derived(`\\begin{align}${internalDragon} = \\lfloor (\\frac{(${inputNumberElementalValueReplacement} + ${inputNumberSigil1Element} \\times 10 + ${inputNumberSigil2Element} \\times 10 + ${inputNumberSigil3Element} \\times 10 + ${inputNumberUnlimitedSigil} \\times 10 + ${outputAOETotalElement}) \\times ${outputDragonMultiplier} \\times ${outputZenithElementMultiplier} \\times ${outputElementalAttackMultiplier} \\times ${outputHHElementalSongMultiplier} \\times ${outputWeaponElementMultiplier} \\times ${outputFuriousMultiplier} \\times ${getElementMultiplier('Dragon', inputElement)}}{\\text{10}}) \\times ${outputSharpnessMultiplier}\\rfloor\\end{align}
-`);
-	let internalAffinity = $derived(
-		getInternalAffinity(
-			inputCritMode,
-			outputIssenAffinity +
-				outputSharpnessAffinity +
-				inputNumberUnlimitedSigil +
-				inputNumberSigil1Affinity +
-				inputNumberSigil2Affinity +
-				inputNumberSigil3Affinity +
-				outputStyleRankAffinity +
-				outputExpertAffinity +
-				inputNumberNaturalAffinity +
-				outputFlashConversionAffinity +
-				outputStarvingWolfAffinity +
-				outputCeaselessAffinity,
-		),
-	);
-	let formulaValuesInternalAffinity =
-		$derived(`\\begin{align}${internalAffinity} = \\text{getInternalAffinity}(\\text{${inputCritMode}}, ${outputIssenAffinity} +\\newline
-${outputSharpnessAffinity} +\\newline
-${inputNumberUnlimitedSigil} +\\newline
-${inputNumberSigil1Affinity} +\\newline
-${inputNumberSigil2Affinity} +\\newline
-${inputNumberSigil3Affinity} +\\newline
-${outputStyleRankAffinity} +\\newline
-${outputExpertAffinity} +\\newline
-${inputNumberNaturalAffinity} +\\newline
-${outputFlashConversionAffinity} +\\newline
-${outputStarvingWolfAffinity} +\\newline
-${outputCeaselessAffinity} +\\newline
-${outputDivaPrayerGemAffinity})\\end{align}`);
-	let outputWeaponStatusModifiers = $derived(
-		statusSkillsDropdownItems.find(
-			(item) => item.name === inputWeaponStatusModifiers,
-		)?.value || 1,
-	);
-	let internalStatus;
-	run(() => {
-		internalStatus = Math.floor(
-			Math.floor(
-				inputNumberStatusValue *
-					outputStatusAttackUpMultiplier *
-					outputStatusGuildPoogieMultiplier *
-					outputStatusSigilMultiplier *
-					outputWeaponStatusModifiers *
-					outputFuriousMultiplier,
-			) * outputDrugKnowledgeMultiplier,
-		);
-	});
-	let formulaValuesInternalStatus =
-		$derived(`\\begin{align}${internalStatus} = \\lfloor \\lfloor
-	${inputNumberStatusValue} \\times\\newline
-	${outputStatusAttackUpMultiplier} \\times\\newline
-	${outputStatusGuildPoogieMultiplier} \\times\\newline
-	${outputStatusSigilMultiplier} \\times\\newline
-	${outputWeaponStatusModifiers} \\times\\newline
-	${outputFuriousMultiplier}
-	\\rfloor \\times\\newline ${outputDrugKnowledgeMultiplier}
-	\\rfloor\\end{align}`);
-	let formulaValuesOutputTotalAffinity =
-		$derived(`\\begin{align}${outputTotalAffinity} =
-${outputIssenAffinity} +\\newline
-${outputSharpnessAffinity} +\\newline
-${inputNumberSigil1Affinity} +\\newline
-${inputNumberSigil2Affinity} +\\newline
-${inputNumberSigil3Affinity} +\\newline
-${outputStyleRankAffinity} +\\newline
-${outputExpertAffinity} +\\newline
-${inputNumberNaturalAffinity} +\\newline
-${outputFlashConversionAffinity} +\\newline
-${outputGSActiveFeatureAffinity} +\\newline
-${outputDivaPrayerGemAffinity} +\\newline
-${outputDrinkAffinity} +\\newline
-${outputStarvingWolfAffinity} +\\newline
-${outputCeaselessAffinity} +\\newline
-${outputFuriousAffinity} +\\newline
-${outputAOETotalAffinity}\\end{align}`);
-	let outputCritValue = $derived(
-		getCritValue(
-			inputStarvingWolf,
-			inputCeaseless,
-			inputExpertSkills,
-			inputIssenSkills,
-			outputTotalAffinity,
-		),
-	);
-	let formulaValuesOutputCritValue =
-		$derived(`\\begin{align}${outputCritValue} = \\text{getCritValue}(
-	${outputStarvingWolfAffinity},
-	${outputCeaselessAffinity},
-	${outputExpertAffinity},
-	${outputIssenAffinity}
-)\\end{align}`);
-	let formulaValuesOutputOtherMultipliers =
-		$derived(`\\begin{align}${outputOtherMultipliers} =
-${inputNumberTranscendRawMultiplier} \\times\\newline
-${inputNumberLanceImpactMultiplier} \\times\\newline
-${inputNumberRavientePowerSwordCrystalsMultiplier}\\end{align}`);
-	// Additional including status assault
-	// Status active, poison or paralysis
-	// TODO probably fixed
-	/**statvalmult*/
-	let outputStatusValueMultiplier = $derived(
-		inputStatusAssault === 'On (For Sleep add +10 raw hitzone)' &&
-			inputStatus !== 'None' &&
-			inputNumberStatusValue >= 10 &&
-			outputDrugKnowledgeMultiplier !== 1
-			? outputDrugKnowledgeMultiplier
-			: 1,
-	);
-	/**StatusUsedSA*/
-	let outputStatusUsedSA = $derived(
-		Math.floor(
-			Math.floor(
-				(inputNumberStatusValue / 10) *
-					outputStatusAttackUpMultiplier *
-					outputStatusGuildPoogieMultiplier *
-					outputStatusSigilMultiplier *
-					outputWeaponStatusModifiers *
-					outputFuriousMultiplier,
-			) * outputStatusValueMultiplier,
-		),
-	);
-	let formulaValuesOutputStatusUsedSA =
-		$derived(`\\begin{align}${outputStatusUsedSA} = \\lfloor \\lfloor
-(${inputNumberStatusValue} / 10) \\times \\newline
-${outputStatusAttackUpMultiplier} \\times \\newline
-${outputStatusGuildPoogieMultiplier} \\times \\newline
-${outputStatusSigilMultiplier} \\times \\newline
-${outputWeaponStatusModifiers} \\times \\newline
-${outputFuriousMultiplier}
-\\rfloor \\times \\newline ${outputStatusValueMultiplier}
-\\rfloor\\end{align}`);
-	let outputMonsterTotalDefense = $derived(
-		inputNumberDefenseRate * inputNumberMonsterRage * inputNumberHCModifiers,
-	);
-	let formulaValuesOutputMonsterTotalDefense =
-		$derived(`\\begin{align}${outputMonsterTotalDefense} =
-${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\newline ${inputNumberHCModifiers} \\end{align}`);
-	let hitzones = $derived(
-		convertHitzoneInfo(
-			selectedMonster,
-			selectedMonsterRankBand,
-			selectedMonsterState,
-		) || [],
-	);
-	let hitzoneValues = $derived(
-		Object.entries(
-			getAllHitzoneValuesForHitzones(
-				hitzones,
-				selectedMonsterState,
-				selectedMonsterRankBand,
-			),
-		).map(([partName, hitzoneValues]) => ({
-			id: partName,
-			part: partName,
-			...Object.fromEntries(
-				Object.entries(hitzoneValues).map(([type, value]) => [
-					type.toLowerCase(),
-					value,
-				]),
-			),
-		})),
-	);
-	run(() => {
-		inputNumberCuttingHitzone =
-			selectedMonster === undefined
-				? inputNumberCuttingHitzone
-				: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.cutting;
-	});
-	run(() => {
-		inputNumberImpactHitzone =
-			selectedMonster === undefined
-				? inputNumberImpactHitzone
-				: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.impact;
-	});
-	run(() => {
-		inputNumberShotHitzone =
-			selectedMonster === undefined
-				? inputNumberShotHitzone
-				: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.shot;
-	});
-	run(() => {
-		inputNumberFireHitzone =
-			selectedMonster === undefined
-				? inputNumberFireHitzone
-				: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.fire;
-	});
-	run(() => {
-		inputNumberWaterHitzone =
-			selectedMonster === undefined
-				? inputNumberWaterHitzone
-				: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.water;
-	});
-	run(() => {
-		inputNumberThunderHitzone =
-			selectedMonster === undefined
-				? inputNumberThunderHitzone
-				: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.thunder;
-	});
-	run(() => {
-		inputNumberIceHitzone =
-			selectedMonster === undefined
-				? inputNumberIceHitzone
-				: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.ice;
-	});
-	run(() => {
-		inputNumberDragonHitzone =
-			selectedMonster === undefined
-				? inputNumberDragonHitzone
-				: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.dragon;
-	});
-	let inputs = $derived({
-		inputStyleRankAffinity: inputStyleRankAffinity,
-		inputMeleeSharpnessAffinity: inputMeleeSharpnessAffinity,
-		inputExpertSkills: inputExpertSkills,
-		inputFlashConversion: inputFlashConversion,
-		inputIssenSkills: inputIssenSkills,
-		inputCeaseless: inputCeaseless,
-		inputStarvingWolf: inputStarvingWolf,
-		inputAffinityItems: inputAffinityItems,
-		inputGsActiveFeature: inputGsActiveFeature,
-		inputAttackSkills: inputAttackSkills,
-		inputCaravanSkills: inputCaravanSkills,
-		inputPassiveItems: inputPassiveItems,
-		inputFoodConsumables: inputFoodConsumables,
-		inputSeedsFlutesCat: inputSeedsFlutesCat,
-		inputLanceHbg: inputLanceHbg,
-		inputLoneWolf: inputLoneWolf,
-		inputCritConversionUp: inputCritConversionUp,
-		inputStylishAssault: inputStylishAssault,
-		inputConsumptionSlayer: inputConsumptionSlayer,
-		inputObscurity: inputObscurity,
-		inputRush: inputRush,
-		inputFurious: inputFurious,
-		inputShiriagari: inputShiriagari,
-		inputIncitement: inputIncitement,
-		inputLengthUp: inputLengthUp,
-		inputRoadAttack: inputRoadAttack,
-		inputRoadAdvLvFlr: inputRoadAdvLvFlr,
-		inputRoadLastStand: inputRoadLastStand,
-		inputDuremudiraAttack: inputDuremudiraAttack,
-		inputAttackMedicine: inputAttackMedicine,
-		inputHhAttackSongs: inputHhAttackSongs,
-		inputAdrenalineVigorous: inputAdrenalineVigorous,
-		inputVigorousUp: inputVigorousUp,
-		inputHidenSkills: inputHidenSkills,
-		inputWeaponSpecific: inputWeaponSpecific,
-		inputCombatSupremacy: inputCombatSupremacy,
-		inputArmor1: inputArmor1,
-		inputOriginArmor: inputOriginArmor,
-		inputGArmorPieces: inputGArmorPieces,
-		inputGsr999SecretTech: inputGsr999SecretTech,
-		inputRedSoul: inputRedSoul,
-		inputAssistance: inputAssistance,
-		inputBondMaleHunter: inputBondMaleHunter,
-		inputPartnyaaBond: inputPartnyaaBond,
-		inputFireMultipliers: inputFireMultipliers,
-		inputWaterMultipliers: inputWaterMultipliers,
-		inputThunderMultipliers: inputThunderMultipliers,
-		inputIceMultipliers: inputIceMultipliers,
-		inputDragonMultipliers: inputDragonMultipliers,
-		inputElementalAttackMultiplier: inputElementalAttackMultiplier,
-		inputHhElementalUp: inputHhElementalUp,
-		inputAbnormality: inputAbnormality,
-		inputDrugKnowledge: inputDrugKnowledge,
-		inputStatusAssault: inputStatusAssault,
-		inputStatusAttackUp: inputStatusAttackUp,
-		inputGuildPoogie: inputGuildPoogie,
-		inputStatusSigil: inputStatusSigil,
-		inputWeaponStatusModifiers: inputWeaponStatusModifiers,
-		inputWeaponType: inputWeaponType,
-		inputAoeAttackSigil: inputAoeAttackSigil,
-		inputAoeAffinitySigil: inputAoeAffinitySigil,
-		inputCritMode: inputCritMode,
-		inputSharpness: inputSharpness,
-		inputFencing: inputFencing,
-		inputCriticalDistanceMultiplier: inputCriticalDistanceMultiplier,
-		inputBulletStrengthModifier: inputBulletStrengthModifier,
-		inputShotMultiplier: inputShotMultiplier,
-		inputHbgChargeShot: inputHbgChargeShot,
-		inputCompressedShotMultiplier: inputCompressedShotMultiplier,
-		inputCompressedElementShot: inputCompressedElementShot,
-		inputBowCoatingsMultiplier: inputBowCoatingsMultiplier,
-		inputBowCoatingsArmorMultiplier: inputBowCoatingsArmorMultiplier,
-		inputBowCoatingsWeaponMultiplier: inputBowCoatingsWeaponMultiplier,
-		inputBowCoatingsHidenMultiplier: inputBowCoatingsHidenMultiplier,
-		inputBowChargeMultiplier: inputBowChargeMultiplier,
-		inputQuickShot: inputQuickShot,
-		inputElement: inputElement,
-		inputAoeElementSigil: inputAoeElementSigil,
-		inputWeaponElementMultipliers: inputWeaponElementMultipliers,
-		inputStatus: inputStatus,
-		inputMonsterStatus: inputMonsterStatus,
-		inputThunderClad: inputThunderClad,
-		inputExploitWeakness: inputExploitWeakness,
-		inputPointBreakthrough: inputPointBreakthrough,
-		inputAcidShots: inputAcidShots,
-		inputElementalExploiter: inputElementalExploiter,
-		inputHuntingHornDebuff: inputHuntingHornDebuff,
-		inputPrecisionSniperCritS: inputPrecisionSniperCritS,
-		inputAbsoluteDefense: inputAbsoluteDefense,
-		inputPremiumBoost: inputPremiumBoost,
-
-		inputNumberRoadFloor: inputNumberRoadFloor,
-		inputNumberConquestAttack: inputNumberConquestAttack,
-		inputNumberVampirism: inputNumberVampirism,
-		inputNumberTotalMotionValue: inputNumberTotalMotionValue,
-		inputNumberHitCount: inputNumberHitCount,
-		inputNumberElementalMultiplier: inputNumberElementalMultiplier,
-		inputNumberTrueRaw: inputNumberTrueRaw,
-		inputNumberUnlimitedSigil: inputNumberUnlimitedSigil,
-		inputNumberStyleRankAttack: inputNumberStyleRankAttack,
-		inputNumberSigil1Attack: inputNumberSigil1Attack,
-		inputNumberSigil2Attack: inputNumberSigil2Attack,
-		inputNumberSigil3Attack: inputNumberSigil3Attack,
-		inputNumberZenithAttackSigil: inputNumberZenithAttackSigil,
-		inputNumberAOEAttackSigil: inputNumberAOEAttackSigil,
-		inputNumberNaturalAffinity: inputNumberNaturalAffinity,
-		inputNumberSigil1Affinity: inputNumberSigil1Affinity,
-		inputNumberSigil2Affinity: inputNumberSigil2Affinity,
-		inputNumberSigil3Affinity: inputNumberSigil3Affinity,
-		inputNumberAOEAffinitySigil: inputNumberAOEAffinitySigil,
-		inputNumberLanceImpactMultiplier: inputNumberLanceImpactMultiplier,
-		inputNumberTranscendRawMultiplier: inputNumberTranscendRawMultiplier,
-		inputNumberRavientePowerSwordCrystalsMultiplier:
-			inputNumberRavientePowerSwordCrystalsMultiplier,
-		inputNumberElementalValueReplacement: inputNumberElementalValueReplacement,
-		inputNumberSigil1Element: inputNumberSigil1Element,
-		inputNumberSigil2Element: inputNumberSigil2Element,
-		inputNumberSigil3Element: inputNumberSigil3Element,
-		inputNumberZenithElementSigil: inputNumberZenithElementSigil,
-		inputNumberAOEElementSigil: inputNumberAOEElementSigil,
-		inputNumberStatusValue: inputNumberStatusValue,
-		inputNumberOtherAdditional: inputNumberOtherAdditional,
-		inputNumberCompressedShot: inputNumberCompressedShot,
-		inputNumberCompressedElementShot: inputNumberCompressedElementShot,
-		inputNumberDefenseRate: inputNumberDefenseRate,
-		inputNumberMonsterRage: inputNumberMonsterRage,
-		inputNumberHCModifiers: inputNumberHCModifiers,
-		inputNumberCuttingHitzone: inputNumberCuttingHitzone,
-		inputNumberImpactHitzone: inputNumberImpactHitzone,
-		inputNumberShotHitzone: inputNumberShotHitzone,
-		inputNumberFireHitzone: inputNumberFireHitzone,
-		inputNumberWaterHitzone: inputNumberWaterHitzone,
-		inputNumberThunderHitzone: inputNumberThunderHitzone,
-		inputNumberIceHitzone: inputNumberIceHitzone,
-		inputNumberDragonHitzone: inputNumberDragonHitzone,
-
-		inputNumberDivaPrayerGemRedLevel: inputNumberDivaPrayerGemRedLevel,
-		inputNumberDivaPrayerGemYellowLevel: inputNumberDivaPrayerGemYellowLevel,
-		inputNumberDivaPrayerGemGreenLevel: inputNumberDivaPrayerGemGreenLevel,
-		inputNumberDivaPrayerGemBlueLevel: inputNumberDivaPrayerGemBlueLevel,
-
-		inputDivaPrayerGemRedName: inputDivaPrayerGemRedName,
-		inputDivaPrayerGemYellowName: inputDivaPrayerGemYellowName,
-		inputDivaPrayerGemGreenName: inputDivaPrayerGemGreenName,
-		inputDivaPrayerGemBlueName: inputDivaPrayerGemBlueName,
-
-		selectedMonster: selectedMonster,
-		selectedMonsterRankBand: selectedMonsterRankBand,
-		selectedMonsterState: selectedMonsterState,
-		selectedMonsterPart: selectedMonsterPart,
-	});
-	let modalBlurClass = $derived(
-		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
-	);
-	let weaponSectionNames = $derived(
-		getWeaponSectionNames(inputWeaponType, inputWeaponMotionValuesSectionStyle),
-	);
-	let weaponIcon = $derived(getWeaponIcon(inputWeaponType));
-	// TODO the order of reactive statements affects the calculations
-
-	let outputDivaPrayerGemRedMaxLevel;
-	run(() => {
-		outputDivaPrayerGemRedMaxLevel = getMaxDivaPrayerGemLevel(
-			inputDivaPrayerGemRedName,
-		);
-	});
-	let outputDivaPrayerGemYellowMaxLevel;
-	run(() => {
-		outputDivaPrayerGemYellowMaxLevel = getMaxDivaPrayerGemLevel(
-			inputDivaPrayerGemYellowName,
-		);
-	});
-	let outputDivaPrayerGemGreenMaxLevel;
-	run(() => {
-		outputDivaPrayerGemGreenMaxLevel = getMaxDivaPrayerGemLevel(
-			inputDivaPrayerGemGreenName,
-		);
-	});
-	let outputDivaPrayerGemBlueMaxLevel;
-	run(() => {
-		outputDivaPrayerGemBlueMaxLevel = getMaxDivaPrayerGemLevel(
-			inputDivaPrayerGemBlueName,
-		);
-	});
-	let damageCalculatorSelectedDivaPrayerGems = $derived({
-		Red: inputDivaPrayerGemRedName,
-		Yellow: inputDivaPrayerGemYellowName,
-		Green: inputDivaPrayerGemGreenName,
-		Blue: inputDivaPrayerGemBlueName,
-	});
-	let hasDivaPrayerGemDuplicates = $derived(
-		hasDuplicateValues(damageCalculatorSelectedDivaPrayerGems, 'None'),
-	);
-	// Calculate the count of gems that aren't "None"
-	let divaPrayerGemsCount = $derived(
-		Object.values(damageCalculatorSelectedDivaPrayerGems).filter(
-			(gem) => gem !== 'None',
-		).length,
-	);
-	// Generate gem emojis based on the count
-	// TODO unused?
-	let gemEmojis = $derived('💎'.repeat(divaPrayerGemsCount));
-	let outputDivaPrayerGemCuttingHitzone = $derived(
-		getDivaPrayerGemValue(
-			inputDivaPrayerGemRedName,
-			inputNumberDivaPrayerGemRedLevel,
-			'cutting',
-		) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemYellowName,
-				inputNumberDivaPrayerGemYellowLevel,
-				'cutting',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemGreenName,
-				inputNumberDivaPrayerGemGreenLevel,
-				'cutting',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemBlueName,
-				inputNumberDivaPrayerGemBlueLevel,
-				'cutting',
-			),
-	);
-	let outputDivaPrayerGemImpactHitzone = $derived(
-		getDivaPrayerGemValue(
-			inputDivaPrayerGemRedName,
-			inputNumberDivaPrayerGemRedLevel,
-			'impact',
-		) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemYellowName,
-				inputNumberDivaPrayerGemYellowLevel,
-				'impact',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemGreenName,
-				inputNumberDivaPrayerGemGreenLevel,
-				'impact',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemBlueName,
-				inputNumberDivaPrayerGemBlueLevel,
-				'impact',
-			),
-	);
-	let outputDivaPrayerGemShotHitzone = $derived(
-		getDivaPrayerGemValue(
-			inputDivaPrayerGemRedName,
-			inputNumberDivaPrayerGemRedLevel,
-			'shot',
-		) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemYellowName,
-				inputNumberDivaPrayerGemYellowLevel,
-				'shot',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemGreenName,
-				inputNumberDivaPrayerGemGreenLevel,
-				'shot',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemBlueName,
-				inputNumberDivaPrayerGemBlueLevel,
-				'shot',
-			),
-	);
-	let outputDivaPrayerGemElementHitzone = $derived(
-		getDivaPrayerGemValue(
-			inputDivaPrayerGemRedName,
-			inputNumberDivaPrayerGemRedLevel,
-			'element',
-		) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemYellowName,
-				inputNumberDivaPrayerGemYellowLevel,
-				'element',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemGreenName,
-				inputNumberDivaPrayerGemGreenLevel,
-				'element',
-			) +
-			getDivaPrayerGemValue(
-				inputDivaPrayerGemBlueName,
-				inputNumberDivaPrayerGemBlueLevel,
-				'element',
-			),
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDivaPrayerGemAffinity',
-			outputDivaPrayerGemAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDivaPrayerGemCuttingHitzone',
-			outputDivaPrayerGemCuttingHitzone.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDivaPrayerGemImpactHitzone',
-			outputDivaPrayerGemImpactHitzone.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDivaPrayerGemShotHitzone',
-			outputDivaPrayerGemShotHitzone.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDivaPrayerGemElementHitzone',
-			outputDivaPrayerGemElementHitzone.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDivaPrayerGemTrueRaw',
-			outputDivaPrayerGemTrueRaw.toString(),
-		);
-	});
-	// TODO if a value or a reactive statement seems to be wrong by 1 past calculation, try puttign it above inputTextInputs.
-
-	let inputTextInputs = $derived(prettyPrintJson(inputs));
-	let sharedMotionValues;
-	run(() => {
-		sharedMotionValues = getWeaponSectionMotionValues(
-			inputWeaponType,
-			'Shared',
-			inputWeaponMotionValuesSectionStyle,
-			inputTextInputs,
-			true,
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputStarvingWolfAffinity',
-			outputStarvingWolfAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputCeaselessAffinity',
-			outputCeaselessAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputFuriousAffinity',
-			outputFuriousAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputIssenAffinity',
-			outputIssenAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputSharpnessAffinity',
-			outputSharpnessAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputStyleRankAffinity',
-			outputStyleRankAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputExpertAffinity',
-			outputExpertAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputFlashConversionAffinity',
-			outputFlashConversionAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputGSActiveFeatureAffinity',
-			outputGSActiveFeatureAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDrinkAffinity',
-			outputDrinkAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputAOEAffinityCount',
-			outputAOEAffinityCount.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputAOETotalAffinity',
-			outputAOETotalAffinity.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputTotalAffinity',
-			outputTotalAffinity.toString(),
-		);
-	});
-	let outputWeaponTypeMultiplier = $derived(
-		WeaponTypes.find((weaponType) => weaponType.name === inputWeaponType)
-			?.bloatAttackMultiplier || 1.2,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputWeaponTypeMultiplier',
-			outputWeaponTypeMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputRoadAdvLvFlr',
-			outputRoadAdvLvFlr.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'inputNumberRoadFloor',
-			inputNumberRoadFloor.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputRoadAdvancement',
-			outputRoadAdvancement.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputVigorousUp',
-			outputVigorousUp.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputAdrenaline',
-			outputAdrenaline.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs('outputRush', outputRush.toString());
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputStylishAssault',
-			outputStylishAssault.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputFuriousAttack',
-			outputFuriousAttack.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputFuriousMultiplier',
-			outputFuriousMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputCritConversionUpMultiplier',
-			outputCritConversionUpMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputCritConversionTrueRaw',
-			outputCritConversionTrueRaw.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputObscurityTotal',
-			outputObscurityTotal.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputLengthUpTrueRaw',
-			outputLengthUpTrueRaw.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs('attackB', attackB.toString());
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputAttackMedicine',
-			outputAttackMedicine.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputAttackSkill',
-			outputAttackSkill.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputFoodAttack',
-			outputFoodAttack.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputSeedAttack',
-			outputSeedAttack.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDrugKnowledgeMultiplier',
-			outputDrugKnowledgeMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputStatusGuildPoogieMultiplier',
-			outputStatusGuildPoogieMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputMonsterStatusInflictedMultiplier',
-			outputMonsterStatusInflictedMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDrugKnowledgeTotalTrueRaw',
-			outputDrugKnowledgeTotalTrueRaw.toString(),
-		);
-	});
-	/**statusAssaultToggle statusassault? TODO unused by original? Edit: Its used but the execution makes it change to another value instantly in the original code.*/
-	let outputStatusAssault = $derived(
-		inputDrugKnowledge !== 'None (1x)'
-			? Math.floor(
-					(outputStatusUsedSA +
-						getStatusAssault(inputWeaponType, inputStatus)) *
-						0.15 *
-						outputMonsterTotalDefense *
-						inputNumberHitCount,
-				)
-			: 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputStatusAssault',
-			outputStatusAssault.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputStatusAttackUpMultiplier',
-			outputStatusAttackUpMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputPassives',
-			outputPassives.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputLoneWolfAttack',
-			outputLoneWolfAttack.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDuremudiraAttack',
-			outputDuremudiraAttack.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputShiriagariAttack',
-			outputShiriagariAttack.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputConsumptionSlayerAttack',
-			outputConsumptionSlayerAttack.toString(),
-		);
-	});
-	/**bowgunshotmodifier*/
-	let outputShotMultiplier = $derived(
-		gunnerDropdownItems.find((item) => item.name === inputShotMultiplier)
-			?.value || 1,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputShotMultiplier',
-			outputShotMultiplier.toString(),
-		);
-	});
-	let outputCriticalDistanceMultiplier = $derived(
-		gunnerDropdownItems.find((e) => e.name === inputCriticalDistanceMultiplier)
-			?.value || 1,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputCriticalDistanceMultiplier',
-			outputCriticalDistanceMultiplier.toString(),
-		);
-	});
-	/**bowbottles*/
-	let outputBowCoatingsMultiplier = $derived(
-		elementDropdownItems.find(
-			(item) => item.name === inputBowCoatingsMultiplier,
-		)?.value || 1,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputBowCoatingsMultiplier',
-			outputBowCoatingsMultiplier.toString(),
-		);
-	});
-	let outputBowCoatingsArmorMultiplier = $derived(
-		elementDropdownItems.find(
-			(item) => item.name === inputBowCoatingsArmorMultiplier,
-		)?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputBowCoatingsArmorMultiplier',
-			outputBowCoatingsArmorMultiplier.toString(),
-		);
-	});
-	let outputBowCoatingsWeaponMultiplier = $derived(
-		elementDropdownItems.find(
-			(item) => item.name === inputBowCoatingsWeaponMultiplier,
-		)?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputBowCoatingsWeaponMultiplier',
-			outputBowCoatingsWeaponMultiplier.toString(),
-		);
-	});
-	let outputBowCoatingsHidenMultiplier = $derived(
-		elementDropdownItems.find(
-			(item) => item.name === inputBowCoatingsHidenMultiplier,
-		)?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputBowCoatingsHidenMultiplier',
-			outputBowCoatingsHidenMultiplier.toString(),
-		);
-	});
-	/** coatingmod*/
-	let outputBowCoatingModifier = $derived(
-		inputConsumptionSlayer === 'Active (+100)'
-			? outputBowCoatingsMultiplier +
-					0.2 +
-					outputBowCoatingsWeaponMultiplier +
-					outputBowCoatingsArmorMultiplier +
-					outputBowCoatingsHidenMultiplier
-			: outputBowCoatingsMultiplier +
-					outputBowCoatingsWeaponMultiplier +
-					outputBowCoatingsArmorMultiplier +
-					outputBowCoatingsHidenMultiplier,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputBowCoatingModifier',
-			outputBowCoatingModifier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputRoadLastStandAttack',
-			outputRoadLastStandAttack.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputLanceRedPhialAttack',
-			outputLanceRedPhialAttack.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputRoadTowerAttack',
-			outputRoadTowerAttack.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs('attackA', attackA.toString());
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputHuntingHornMultiplier',
-			outputHuntingHornMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputCombatSupremacyAttackMultiplier',
-			outputCombatSupremacyAttackMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputHidenMultiplier',
-			outputHidenMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputWeaponSpecificMultiplier',
-			outputWeaponSpecificMultiplier.toString(),
-		);
-	});
-	// multipliersDropdownItems.find((item) => item.name === inputBowChargeMultiplier)
-	// 	?.value || 1;
-
-	/**quickshotchargemodifier and quickshotmode*/
-	let outputQuickShotChargeModifier = $derived(
-		gunnerDropdownItems.find((item) => item.name === inputQuickShot)?.value ||
-			0,
-	);
-	/*bowchargelevel and elebowchargelevel. chargeLevel is bowchargemodifier*/
-	let outputBowChargeMultiplierLevels = $derived(
-		bowChargeLevels.find(
-			(item) => item.chargeModifier === inputBowChargeMultiplier,
-		) || undefined,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputMultipliers',
-			outputMultipliers.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputPartnyaBond',
-			outputPartnyaBond.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputHunterBond',
-			outputHunterBond.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs('outputAssist', outputAssist.toString());
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs('outputSoul', outputSoul.toString());
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs('outputArmor1', outputArmor1.toString());
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs('outputArmor2', outputArmor2.toString());
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs('outputArmorG', outputArmorG.toString());
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputSecretTech',
-			outputSecretTech.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputFlatAdditions',
-			outputFlatAdditions.toString(),
-		);
-	});
-	let outputCompressedShotsMultiplier = $derived(
-		gunnerDropdownItems.find(
-			(item) => item.name === inputCompressedShotMultiplier,
-		)?.value || 0,
-	); // TODO
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputCompressedShotsMultiplier',
-			outputCompressedShotsMultiplier.toString(),
-		);
-	});
-	/**compressedshotpower*/
-	let outputCompressedShotPower = $derived(
-		Math.floor(inputNumberCompressedShot * outputCompressedShotsMultiplier),
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputCompressedShotPower',
-			outputCompressedShotPower.toString(),
-		);
-	});
-	let outputCritMultiplier = $derived(Number(outputCritValue.toFixed(2)));
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputCritValue',
-			outputCritValue.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputSwordAndShieldMultiplier',
-			outputSwordAndShieldMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputOtherMultipliers',
-			outputOtherMultipliers.toString(),
-		);
-	});
-	let outputGunlanceRaw = $derived(inputGunlanceRaw / 2.3);
-	let outputGunlanceShellType = $derived(inputGunlanceShellType - 1);
-	let outputGunlanceShellDamage = $derived(
-		outputGunlanceShellType > 18
-			? 0.09 * outputGunlanceRaw + gunlanceShellValues[outputGunlanceShellType]
-			: outputGunlanceShellType > 9
-				? 0.1 * outputGunlanceRaw + gunlanceShellValues[outputGunlanceShellType]
-				: outputGunlanceShellType > 0
-					? 0.11 * outputGunlanceRaw +
-						gunlanceShellValues[outputGunlanceShellType]
-					: 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputGunlanceRaw',
-			outputGunlanceRaw.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputGunlanceShellType',
-			outputGunlanceShellType.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputGunlanceShellDamage',
-			outputGunlanceShellDamage.toString(),
-		);
-	});
-	let outputGunlanceShell = $derived(Math.floor(outputGunlanceShellDamage));
-	let outputGunlanceShellBoosted = $derived(
-		Math.floor(outputGunlanceShellDamage * 1.5),
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputGunlanceShell',
-			outputGunlanceShell.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputGunlanceShellBoosted',
-			outputGunlanceShellBoosted.toString(),
-		);
-	});
-	let outputOldSharpnessMultiplier = $derived(
-		oldBlademasterSharpness.find((item) => item.name === inputSharpness)
-			?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputSharpnessMultiplier',
-			outputSharpnessMultiplier.toString(),
-		);
-	});
-	let outputElementalExploiter = $derived(
-		hitzoneValueModifiersDropdownItems.find(
-			(item) => item.name === inputElementalExploiter,
-		)?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputElementalExploiter',
-			outputElementalExploiter.toString(),
-		);
-	});
-	let outputThunderClad = $derived(
-		hitzoneValueModifiersDropdownItems.find(
-			(item) => item.name === inputThunderClad,
-		)?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputThunderClad',
-			outputThunderClad.toString(),
-		);
-	});
-	let outputSniper = $derived(
-		hitzoneValueModifiersDropdownItems.find(
-			(item) => item.name === inputPrecisionSniperCritS,
-		)?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs('outputSniper', outputSniper.toString());
-	});
-	let outputExploitWeakness = $derived(
-		hitzoneValueModifiersDropdownItems.find(
-			(item) => item.name === inputExploitWeakness,
-		)?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputExploitWeakness',
-			outputExploitWeakness.toString(),
-		);
-	});
-	let outputAcidShot = $derived(
-		hitzoneValueModifiersDropdownItems.find(
-			(item) => item.name === inputAcidShots,
-		)?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputAcidShot',
-			outputAcidShot.toString(),
-		);
-	});
-	let outputPointBreakthrough = $derived(
-		hitzoneValueModifiersDropdownItems.find(
-			(item) => item.name === inputPointBreakthrough,
-		)?.value || 0,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputPointBreakthrough',
-			outputPointBreakthrough.toString(),
-		);
-	});
-	let outputAbsoluteDefenseMultiplier = $derived(
-		otherDropdownItems.find((item) => item.name === inputAbsoluteDefense)
-			?.value || 1,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputAbsoluteDefenseMultiplier',
-			outputAbsoluteDefenseMultiplier.toString(),
-		);
-	});
-	let outputPremiumCourseMultiplier = $derived(
-		otherDropdownItems.find((item) => item.name === inputPremiumBoost)?.value ||
-			1,
-	);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputPremiumCourseMultiplier',
-			outputPremiumCourseMultiplier.toString(),
-		);
-	});
-	let outputFencingMultiplier = $derived(inputFencing === '+2' ? 1.2 : 1);
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputFencingMultiplier',
-			outputFencingMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputFireMultiplier',
-			outputFireMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputWaterMultiplier',
-			outputWaterMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputThunderMultiplier',
-			outputThunderMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputIceMultiplier',
-			outputIceMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputDragonMultiplier',
-			outputDragonMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputStatusSigilMultiplier',
-			outputStatusSigilMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputWeaponStatusModifiers',
-			outputWeaponStatusModifiers.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputElementalAttackMultiplier',
-			outputElementalAttackMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputHHElementalSongMultiplier',
-			outputHHElementalSongMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputWeaponElementMultiplier',
-			outputWeaponElementMultiplier.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'inputElementalExploiter',
-			inputElementalExploiter.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'internalAttack',
-			internalAttack.toString(),
-		);
-	});
-	let internalTrueRawDisplay = $derived(
-		Math.floor(internalTrueRaw * outputWeaponTypeMultiplier),
-	);
-	let internalAttackCeiling = $derived(
-		outputAttackCeiling < 0
-			? 0
-			: outputAttackCeiling > 110 && outputAttackCeiling < 180
-				? outputAttackCeiling
-				: outputAttackCeiling > 180
-					? 180
-					: outputAttackCeiling,
-	);
-	let internalMissionsNeeded = $derived(
-		outputAttackCeiling < 0
-			? 0
-			: outputAttackCeiling > 110 && outputAttackCeiling < 180
-				? missionRequirementAttackCeilings[outputAttackCeiling - 1]
-				: outputAttackCeiling > 180
-					? 249
-					: outputAttackCeiling <= 0
-						? 0
-						: missionRequirementAttackCeilings[outputAttackCeiling - 1],
-	);
-	let fireValueMultiplier = $derived(
-		getElementMultiplier('Fire', inputElement),
-	);
-	let waterValueMultiplier = $derived(
-		getElementMultiplier('Water', inputElement),
-	);
-	let thunderValueMultiplier = $derived(
-		getElementMultiplier('Thunder', inputElement),
-	);
-	let iceValueMultiplier = $derived(getElementMultiplier('Ice', inputElement));
-	let dragonValueMultiplier = $derived(
-		getElementMultiplier('Dragon', inputElement),
-	);
-	let weaponSections;
-	run(() => {
-		weaponSections = getWeaponSectionMotionValues(
-			inputWeaponType,
-			inputWeaponMotionValuesSection,
-			inputWeaponMotionValuesSectionStyle,
-			inputTextInputs,
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'internalStatus',
-			internalStatus.toString(),
-		);
-	});
-	run(() => {
-		addToDamageCalculatorHistoryLogs(
-			'outputStatusValueMultiplier',
-			outputStatusValueMultiplier.toString(),
-		);
-	});
-	/**HBGchargemulti*/
-	let outputHBGChargeShot = $derived(
-		gunnerDropdownItems.find((e) => e.name === inputHbgChargeShot)?.value || 1,
-	);
-	// Reactive statement to watch for changes in inputTextInputs
-	run(() => {
-		if (inputTextInputs && $carbonThemeStore) {
-			isShikiLoading = true;
-			// Use an immediately invoked async function expression (IIFE) to handle async operations
-			(async () => {
-				inputsHTML = await renderShiki(inputTextInputs, 'json');
-				internalAffinityFunctionHTML = await renderShiki(
-					internalAffinityFunctionString,
-					'ts',
-				);
-				critValueFunctionHTML = await renderShiki(
-					critValueFunctionString,
-					'ts',
-				);
-				isShikiLoading = false;
-			})();
-		}
-	});
-	let inputStatusIcon = $derived(
-		StatusIcons.find((e) => e.name === inputStatus)?.icon,
-	);
-	let availableRankBands = $derived(
-		getAvailableRankBands(selectedMonster) || [
-			{ id: 'Default', text: 'Default' },
-		],
-	);
-	let availableMonsterStates = $derived(
-		getAvailableMonsterStates(selectedMonster) || [
-			{ id: 'Default', text: 'Default' },
-		],
-	);
-	let availableMonsterParts = $derived(
-		getAvailableMonsterParts(selectedMonster) || [],
-	);
-	let hitzoneHighestValues = $derived(
-		getHitzoneValuesObject(
-			hitzones,
-			selectedMonsterState,
-			selectedMonsterRankBand,
-		),
-	);
-	let motionValuesTableHeaders = $derived(
-		getMotionValuesTableHeaders(inputElement),
-	);
-	let currentSilhouette = $derived(
-		silhouetteInfo.find((e) => e.displayName === selectedMonster)?.silhouette,
-	);
 </script>
 
 <Modal
@@ -6552,8 +6387,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 						<a href={modalLink}>
 							<div>
 								{#if modalPopoverIconType === 'component'}
-									{@const SvelteComponent = modalPopoverIcon}
-									<SvelteComponent />
+									<svelte:component this={modalPopoverIcon} />
 								{:else}
 									<img src={modalPopoverIcon} alt={modalHeading} />
 								{/if}
@@ -6569,8 +6403,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 					<div class="modal-mobile-image">
 						<div>
 							{#if modalPopoverIconType === 'component'}
-								{@const SvelteComponent_1 = modalPopoverIcon}
-								<SvelteComponent_1 />
+								<svelte:component this={modalPopoverIcon} />
 							{:else}
 								<img src={modalPopoverIcon} alt={modalHeading} />
 							{/if}
@@ -6666,11 +6499,9 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 						tooltipPosition="right"
 						iconDescription="Go to page version"
 					>
-						{#snippet icon()}
-							<span>
-								<PreviousOutline size={24} />
-							</span>
-						{/snippet}
+						<span slot="icon">
+							<PreviousOutline size={24} />
+						</span>
 					</Button>
 					<Button
 						class="driverjs-7"
@@ -6678,22 +6509,18 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 						tooltipPosition="right"
 						on:click={(e) => startWalkthrough()}
 						iconDescription="Walkthrough"
-						>{#snippet icon()}
-							<span>
-								<Help size={24} color="var(--ctp-green)" />
-							</span>
-						{/snippet}</Button
+						><span slot="icon">
+							<Help size={24} color="var(--ctp-green)" />
+						</span></Button
 					>
 					<Button
 						kind="ghost"
 						tooltipPosition="right"
 						on:click={(e) => resetPanelSizes()}
 						iconDescription="Reset panel sizes"
-						>{#snippet icon()}
-							<span>
-								<Reset size={24} color="var(--ctp-yellow)" />
-							</span>
-						{/snippet}</Button
+						><span slot="icon">
+							<Reset size={24} color="var(--ctp-yellow)" />
+						</span></Button
 					>
 				</div>
 			</Pane>
@@ -6710,7 +6537,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 										<Tab label="True Raw Converter" />
 										<Tab label="Help" />
 
-										{#snippet content()}
+										<svelte:fragment slot="content">
 											<TabContent>
 												<div class="container-tab-content">
 													<div class="container-inputs">
@@ -6944,11 +6771,11 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<p class="spaced-paragraph">
+																				<div class="spaced-paragraph">
 																					These are not a final multiplier but
 																					rather additional true raw damage.
-																				</p>
-																				<p>
+																				</div>
+																				<div>
 																					For example, Weapons Art Large on a
 																					600 true raw weapon would be the same
 																					as +30 Attack or Attack Up Very Large
@@ -7138,7 +6965,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<p>
+																				<div>
 																					Does not need affinity over 100% to
 																					add True Raw.
 																				</p>
@@ -7217,28 +7044,26 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				invalidText={'Value must be between 0 and 80.'}
 																				on:click={(e) => e.preventDefault()}
 																			>
-																				{#snippet label()}
-																					<span
-																						><Tooltip
-																							align="start"
-																							triggerText="Vampirism"
-																						>
-																							<p class="spaced-paragraph">
-																								Each successfully leeching
-																								attack with a weapon adds a
-																								certain amount of additional
-																								true raw up to a maximum of +80.
-																							</p>
-																							<p>Dual Swords, Tonfa, LBG: +3</p>
-																							<p>
-																								SnS, LS, Lance, Gunlance, Swaxe
-																								F, HBG, Bow: +4
-																							</p>
-																							<p>Hammer, Hunting Horn: +5</p>
-																							<p>Great Sword: +7</p>
-																						</Tooltip></span
+																				<span slot="label"
+																					><Tooltip
+																						align="start"
+																						triggerText="Vampirism"
 																					>
-																				{/snippet}
+																						<div class="spaced-paragraph">
+																							Each successfully leeching attack
+																							with a weapon adds a certain
+																							amount of additional true raw up
+																							to a maximum of +80.
+																						</div>
+																						<div>Dual Swords, Tonfa, LBG: +3</div>
+																						<div>
+																							SnS, LS, Lance, Gunlance, Swaxe F,
+																							HBG, Bow: +4
+																						</p>
+																						<div>Hammer, Hunting Horn: +5</div>
+																						<div>Great Sword: +7</div>
+																					</Tooltip></span
+																				>
 																			</NumberInput>
 																		</div>
 
@@ -7403,7 +7228,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<p>
+																				<div>
 																					Adjusts base True Raw appropriately if
 																					you are using a Length Up sigil on a G
 																					Rank weapon. This reduction does not
@@ -7479,19 +7304,17 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				bind:value={inputNumberRoadFloor}
 																				invalidText={invalidNumberValueText}
 																				on:click={(e) => e.preventDefault()}
-																				>{#snippet label()}
-																					<span
-																						><Tooltip
-																							align="start"
-																							triggerText="Road Floor"
-																						>
-																							<p>
-																								Attack rises every 5 floors,
-																								stopping at 26.
-																							</p>
-																						</Tooltip></span
+																				><span slot="label"
+																					><Tooltip
+																						align="start"
+																						triggerText="Road Floor"
 																					>
-																				{/snippet}
+																						<div>
+																							Attack rises every 5 floors,
+																							stopping at 26.
+																						</p>
+																					</Tooltip></span
+																				>
 																			</NumberInput>
 																		</div>
 
@@ -7548,29 +7371,27 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				invalidText={invalidNumberValueText}
 																				on:click={(e) => e.preventDefault()}
 																			>
-																				{#snippet label()}
-																					<span
-																						><Tooltip
-																							align="start"
-																							triggerText="Conquest Attack"
-																						>
-																							<p>
-																								The value of the skill as
-																								displayed on your SR stats if
-																								enabled. Only takes effect on
-																								standard Conquest quests.
-																								<strong
-																									>Shiten quests do not count.</strong
-																								>
-																							</p>
-																						</Tooltip></span
+																				<span slot="label"
+																					><Tooltip
+																						align="start"
+																						triggerText="Conquest Attack"
 																					>
-																				{/snippet}
+																						<div>
+																							The value of the skill as
+																							displayed on your SR stats if
+																							enabled. Only takes effect on
+																							standard Conquest quests.
+																							<strong
+																								>Shiten quests do not count.</strong
+																							>
+																						</p>
+																					</Tooltip></span
+																				>
 																			</NumberInput>
 																		</div>
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<p>
+																				<div>
 																					Toggle whether or not you have
 																					consumed a Conquest Attack Potion on a
 																					standard Conquest quest.
@@ -7761,13 +7582,13 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																	<div class="inputs-group-column">
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<p class="spaced-paragraph">
+																				<div class="spaced-paragraph">
 																					These buffs only take effect if you
 																					are using a weapon that is on a Gou
 																					tree while on a Gou, Supremacy or G
 																					Rank quest.
-																				</p>
-																				<p>
+																				</div>
+																				<div>
 																					For example: normal Lv50 weapons would
 																					get no buffs on any quests, but having
 																					a G Supremacy Weapon and 2 appropiate
@@ -7806,13 +7627,13 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<p class="spaced-paragraph">
+																				<div class="spaced-paragraph">
 																					These buffs only take effect if you
 																					are using a weapon that is on a Gou
 																					tree while on a Gou, Supremacy or G
 																					Rank quest.
-																				</p>
-																				<p>
+																				</div>
+																				<div>
 																					For example: normal Lv50 weapons would
 																					get no buffs on any quests, but having
 																					a G Supremacy Weapon and 2 appropiate
@@ -8307,20 +8128,18 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																					},
 																					{ id: 'Bow', text: 'Bow' },
 																				]}
+																				let:item
 																			>
-																				{#snippet children({ item })}
-																					{@const SvelteComponent_2 =
-																						getWeaponIcon(item.id)}
-																					<div class="option-item">
-																						<div>
-																							<SvelteComponent_2
-																								{...{ size: '32px' }}
-																							/>
-																						</div>
-
-																						<p>{item.id}</p>
+																				<div class="option-item">
+																					<div>
+																						<svelte:component
+																							this={getWeaponIcon(item.id)}
+																							{...{ size: '32px' }}
+																						/>
 																					</div>
-																				{/snippet}
+
+																					<div>{item.id}</div>
+																				</div>
 																			</Dropdown>
 																		</div>
 
@@ -8358,20 +8177,18 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				invalidText={'Invalid value. Must be between 0 and 100'}
 																				on:click={(e) => e.preventDefault()}
 																			>
-																				{#snippet label()}
-																					<span
-																						><Tooltip
-																							align="start"
-																							triggerText="SR Attack"
-																						>
-																							<p>
-																								The top most attack level as
-																								displayed on SR info. Lv MAX is
-																								100.
-																							</p>
-																						</Tooltip></span
+																				<span slot="label"
+																					><Tooltip
+																						align="start"
+																						triggerText="SR Attack"
 																					>
-																				{/snippet}
+																						<div>
+																							The top most attack level as
+																							displayed on SR info. Lv MAX is
+																							100.
+																						</p>
+																					</Tooltip></span
+																				>
 																			</NumberInput>
 																		</div>
 																		<div class="number-input-container">
@@ -8616,7 +8433,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																		<div class="inputs-group-column">
 																			<div class="dropdown-tooltip-container">
 																				<Tooltip align="start">
-																					<p>
+																					<div>
 																						You can find the graph for this
 																						multiplier in the Critical Distance
 																						section.
@@ -8940,7 +8757,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																			{#if inputWeaponType === 'Bow'}
 																				<div class="dropdown-tooltip-container">
 																					<Tooltip align="start">
-																						<p>
+																						<div>
 																							Adjusts for Consumption Slayer, a
 																							skill that causes double coating
 																							consumption for an additional
@@ -9208,20 +9025,18 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																					text: "Emperor's Roar (150% Thunder, 50% Dragon)",
 																				},
 																			]}
+																			let:item
 																		>
-																			{#snippet children({ item })}
-																				{@const SvelteComponent_3 =
-																					getElementIcon(item.id)}
-																				<div class="option-item">
-																					<div>
-																						<SvelteComponent_3
-																							{...{ size: '32px' }}
-																						/>
-																					</div>
-
-																					<p>{item.text}</p>
+																			<div class="option-item">
+																				<div>
+																					<svelte:component
+																						this={getElementIcon(item.id)}
+																						{...{ size: '32px' }}
+																					/>
 																				</div>
-																			{/snippet}
+
+																				<div>{item.text}</div>
+																			</div>
 																		</Dropdown>
 
 																		<div class="number-input-container">
@@ -9234,29 +9049,26 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				invalidText={invalidNumberValueText}
 																				on:click={(e) => e.preventDefault()}
 																			>
-																				{#snippet label()}
-																					<span
-																						><Tooltip
-																							align="start"
-																							triggerText="Element"
-																						>
-																							<p class="spaced-paragraph">
-																								For the three levels of Standard
-																								Elemental Sword Crystals you can
-																								use the values 500, 700, 900 and
-																								for the GR600 Crystals you can
-																								use the values 1300, 1500 and
-																								2100.
-																							</p>
-																							<p>
-																								This value replaces any
-																								elemental values on the weapon
-																								so set the element appropriately
-																								and use only the number above.
-																							</p>
-																						</Tooltip></span
+																				<span slot="label"
+																					><Tooltip
+																						align="start"
+																						triggerText="Element"
 																					>
-																				{/snippet}
+																						<div class="spaced-paragraph">
+																							For the three levels of Standard
+																							Elemental Sword Crystals you can
+																							use the values 500, 700, 900 and
+																							for the GR600 Crystals you can use
+																							the values 1300, 1500 and 2100.
+																						</div>
+																						<div>
+																							This value replaces any elemental
+																							values on the weapon so set the
+																							element appropriately and use only
+																							the number above.
+																						</p>
+																					</Tooltip></span
+																				>
 																			</NumberInput>
 																		</div>
 																		<div class="number-input-container">
@@ -9359,20 +9171,18 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				{ id: 'Poison', text: 'Poison' },
 																				{ id: 'Paralysis', text: 'Paralysis' },
 																			]}
+																			let:item
 																		>
-																			{#snippet children({ item })}
-																				{@const SvelteComponent_4 =
-																					getStatusIcon(item.id)}
-																				<div class="option-item">
-																					<div>
-																						<SvelteComponent_4
-																							{...{ size: '32px' }}
-																						/>
-																					</div>
-
-																					<p>{item.text}</p>
+																			<div class="option-item">
+																				<div>
+																					<svelte:component
+																						this={getStatusIcon(item.id)}
+																						{...{ size: '32px' }}
+																					/>
 																				</div>
-																			{/snippet}
+
+																				<div>{item.text}</div>
+																			</div>
 																		</Dropdown>
 
 																		<div class="number-input-container">
@@ -9401,21 +9211,19 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				invalidText={invalidNumberValueText}
 																				on:click={(e) => e.preventDefault()}
 																			>
-																				{#snippet label()}
-																					<span>
-																						<Tooltip
-																							align="start"
-																							triggerText="Additional"
-																						>
-																							<p>
-																								Enter any other additional
-																								damage to be calculated against
-																								only the defense rate, such as
-																								bombs and blast status.
-																							</p></Tooltip
-																						>
-																					</span>
-																				{/snippet}
+																				<span slot="label">
+																					<Tooltip
+																						align="start"
+																						triggerText="Additional"
+																					>
+																						<div>
+																							Enter any other additional damage
+																							to be calculated against only the
+																							defense rate, such as bombs and
+																							blast status.
+																						</p></Tooltip
+																					>
+																				</span>
 																			</NumberInput>
 																		</div>
 																	</div>
@@ -9443,17 +9251,16 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				bind:selectedId={selectedMonster}
 																				items={currentMonsters}
 																				{shouldFilterItem}
+																				let:item
 																			>
-																				{#snippet children({ item })}
-																					<div class="option-item">
-																						<img
-																							width={32}
-																							src={getMonsterIcon(item.id)}
-																							alt="Monster Icon"
-																						/>
-																						<p>{item.id}</p>
-																					</div>
-																				{/snippet}
+																				<div class="option-item">
+																					<img
+																						width={32}
+																						src={getMonsterIcon(item.id)}
+																						alt="Monster Icon"
+																					/>
+																					<div>{item.id}</div>
+																				</div>
 																			</ComboBox>
 																		</div>
 																		{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
@@ -9485,22 +9292,20 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				invalidText={invalidNumberValueText}
 																				on:click={(e) => e.preventDefault()}
 																			>
-																				{#snippet label()}
-																					<span
-																						><Tooltip
-																							align="start"
-																							triggerText="Defense Rate"
-																						>
-																							<p>
-																								You can find the defense rate
-																								using the overlay. The value in
-																								the overlay already includes the
-																								rage and hardcore modifier
-																								multiplications.
-																							</p>
-																						</Tooltip></span
+																				<span slot="label"
+																					><Tooltip
+																						align="start"
+																						triggerText="Defense Rate"
 																					>
-																				{/snippet}
+																						<div>
+																							You can find the defense rate
+																							using the overlay. The value in
+																							the overlay already includes the
+																							rage and hardcore modifier
+																							multiplications.
+																						</p>
+																					</Tooltip></span
+																				>
 																			</NumberInput>
 																		</div>
 																		<div class="number-input-container">
@@ -9537,20 +9342,20 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				disabled={selectedMonster !== undefined}
 																				on:click={(e) => e.preventDefault()}
 																			>
-																				<!-- @migration-task: migrate this slot by hand, `label` would shadow a prop on the parent component -->
-																				{#snippet label()}
-																					<Tooltip
+																				<span slot="label"
+																					><Tooltip
 																						align="start"
 																						triggerText="Cutting Hitzone"
 																					>
-																						<p>
+																						<div>
 																							If the input is disabled and you
 																							want to change it, remove the
 																							monster selected in the dropdown
 																							above. This also applies to the
 																							number inputs below.
 																						</p>
-																					</Tooltip>{/snippet}</NumberInput
+																					</Tooltip></span
+																				></NumberInput
 																			>
 																		</div>
 																		<div class="number-input-container">
@@ -10116,10 +9921,10 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 														<Tab label="Formulas" />
 														<Tab label="Monster Hitzones" />
 
-														{#snippet content()}
+														<svelte:fragment slot="content">
 															<TabContent>
 																<div class="container-tab-content">
-																	<p>
+																	<div>
 																		Welcome to Wycademy's Damage Calculator!
 																		Here you can calculate various game
 																		statistics, such as your total damage, by
@@ -10179,7 +9984,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																		<ListItem>And much more!</ListItem>
 																	</UnorderedList>
 
-																	<p class="spaced-paragraph">
+																	<div class="spaced-paragraph">
 																		You can adjust the panel sizes to your
 																		liking. Double click the splitters found on
 																		each side of a panel to expand it
@@ -10188,7 +9993,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																		toolbar, found at the top.
 																	</p>
 
-																	<p class="spaced-paragraph">
+																	<div class="spaced-paragraph">
 																		This damage calculator may not reflect the
 																		damage output you do in the game with total
 																		accuracy. In order to track and report
@@ -10203,7 +10008,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem>
-																			<p>
+																			<div>
 																				If you select an option in a dropdown
 																				exclusive to a weapon and then change
 																				weapon type thus hiding that dropdown,
@@ -10217,7 +10022,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem>
-																			<p>
+																			<div>
 																				The calculator does not include Diva
 																				Prayer Gems that do not affect it. The
 																				full list is found in our <Link
@@ -10234,13 +10039,13 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem>
-																			<p>
+																			<div>
 																				The True Raw Converter can be used to
 																				calculate from your displayed weapon
 																				attack its True Raw value, which depends
 																				on the weapon type selected in the
 																				Inputs or Weapon Motion Values sections.
-																			</p></ListItem
+																			</div></ListItem
 																		></UnorderedList
 																	>
 																</div>
@@ -10249,7 +10054,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem>
-																			<p>
+																			<div>
 																				The final output of all your
 																				calculations is in 🗡️ Final Attack,
 																				defined as Internal Attack in the
@@ -10258,7 +10063,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																		</ListItem>
 
 																		<ListItem>
-																			<p>
+																			<div>
 																				The damage from <InlineTooltip
 																					text="Zenith Sigils"
 																					tooltip="Sigil"
@@ -10285,14 +10090,14 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem
-																			><p>
+																			><div>
 																				For loading values, try clicking the
 																				refresh button in the table if the
 																				values did not load correctly.
-																			</p></ListItem
+																			</div></ListItem
 																		>
 																		<ListItem
-																			><p>
+																			><div>
 																				If you cannot find a motion value you
 																				are looking for, for example
 																				<InlineTooltip
@@ -10304,16 +10109,16 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																				<strong>Style</strong>
 																				or <strong>Section</strong> options down
 																				below.
-																			</p></ListItem
+																			</div></ListItem
 																		><ListItem>
-																			<p>
+																			<div>
 																				You can also change the table's weapon
 																				type in the Inputs section.
 																			</p>
 																		</ListItem>
 
 																		<ListItem>
-																			<p>
+																			<div>
 																				Some motion values have <InlineTooltip
 																					text="Stun"
 																					tooltip="Ailment"
@@ -10325,7 +10130,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																			</p>
 																		</ListItem>
 																		<ListItem>
-																			<p>
+																			<div>
 																				The Additional column denotes a source
 																				of damage that is separate from your
 																				True Raw limit. This includes <InlineTooltip
@@ -10348,7 +10153,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																			</p>
 																		</ListItem>
 																		<ListItem
-																			><p>
+																			><div>
 																				Due to how often the calculations round
 																				down values, enabling more skills or
 																				barely increasing your damage may not
@@ -10360,10 +10165,10 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																					iconColor={getItemColor('Red')}
 																					iconType="component"
 																				/>.
-																			</p></ListItem
+																			</div></ListItem
 																		>
 																		<ListItem>
-																			<p>
+																			<div>
 																				Motion Values comprised of multiple hits
 																				have their raw damage calculated
 																				separately by each hit value and then
@@ -10381,13 +10186,13 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																			</p>
 																		</ListItem>
 																		<ListItem>
-																			<p>
+																			<div>
 																				Extra table columns may show depending
 																				on the selected element.
 																			</p>
 																		</ListItem>
 																		<ListItem>
-																			<p>
+																			<div>
 																				There are a total of {motionValuesCount.total}
 																				motion values, including for each style and
 																				section.
@@ -10400,15 +10205,15 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem
-																			><p>
+																			><div>
 																				For loading values, try clicking the
 																				refresh button in the table if the
 																				values did not load correctly.
-																			</p></ListItem
+																			</div></ListItem
 																		>
 
 																		<ListItem>
-																			<p>
+																			<div>
 																				Motion Values comprised of multiple hits
 																				have their raw damage calculated
 																				separately by each hit value and then
@@ -10432,46 +10237,46 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem
-																			><p>
+																			><div>
 																				In regards to bug reports: if you notice
 																				an error with the damage calculator, you
 																				can send an issue on the GitHub
 																				repository with the inputs JSON file to
 																				facilitate debugging.
-																			</p></ListItem
+																			</div></ListItem
 																		>
 																		<ListItem
-																			><p>
+																			><div>
 																				Your current inputs values from the
 																				Inputs section are reflected below each
 																				formula definition.
-																			</p></ListItem
+																			</div></ListItem
 																		>
 																		<ListItem
-																			><p>
+																			><div>
 																				The final values whose formula depends
 																				on certain conditions are called <OutboundLink
 																					href="https://en.wikipedia.org/wiki/Piecewise_function"
 																					>piecewise functions.</OutboundLink
 																				>
-																			</p></ListItem
+																			</div></ListItem
 																		>
 																	</UnorderedList>
 																</div>
 															</TabContent>
 															<TabContent>
 																<div class="container-tab-content">
-																	<p class="spaced-paragraph">
+																	<div class="spaced-paragraph">
 																		The colors in the silhouette denotes the
 																		highest and lowest values for the hitzone
 																		type, while the values in bold in the table
 																		denotes the highest and second highest
 																		values for that column.
-																	</p>
-																	<p class="spaced-paragraph">
+																	</div>
+																	<div class="spaced-paragraph">
 																		The higher the hitzone value, the more
 																		damage you can deal for that damage type.
-																	</p>
+																	</div>
 																	<div class="hitzone-colors-description">
 																		<UnorderedList class="spaced-list">
 																			<ListItem>
@@ -10480,8 +10285,8 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-red)"
-																				></button>Red: Highest values for this
-																				hitzone type.</ListItem
+																				/>Red: Highest values for this hitzone
+																				type.</ListItem
 																			>
 																			<ListItem
 																				><button
@@ -10489,8 +10294,8 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-peach)"
-																				></button>Orange: Second highest values
-																				for this hitzone type.</ListItem
+																				/>Orange: Second highest values for this
+																				hitzone type.</ListItem
 																			>
 																			<ListItem
 																				><button
@@ -10498,8 +10303,8 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-yellow)"
-																				></button>Yellow: Third highest values
-																				for this hitzone type.</ListItem
+																				/>Yellow: Third highest values for this
+																				hitzone type.</ListItem
 																			>
 																			<ListItem
 																				><button
@@ -10507,8 +10312,8 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-green)"
-																				></button>Green: Values higher than 0
-																				for this hitzone type.</ListItem
+																				/>Green: Values higher than 0 for this
+																				hitzone type.</ListItem
 																			>
 																			<ListItem
 																				><button
@@ -10516,18 +10321,18 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-blue)"
-																				></button>Blue: Values lower or equal to
-																				0 for this hitzone type.</ListItem
+																				/>Blue: Values lower or equal to 0 for
+																				this hitzone type.</ListItem
 																			>
 																		</UnorderedList>
 																	</div>
 																</div>
 															</TabContent>
-														{/snippet}
+														</svelte:fragment>
 													</Tabs>
 												</div>
 											</TabContent>
-										{/snippet}
+										</svelte:fragment>
 									</Tabs>
 								</div>
 							</Pane>
@@ -10542,7 +10347,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 										<Tab label="Save/Load"><Save size={32} /></Tab>
 										<Tab label="Logs"><Time size={32} /></Tab>
 
-										{#snippet content()}
+										<svelte:fragment slot="content">
 											<TabContent>
 												<div class="container-tab-content">
 													<div class="driverjs-3">
@@ -10630,7 +10435,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 														<Tab label="Calculator" />
 														<Tab label="Overlay" />
 														<Tab label="Legacy Calculator" />
-														{#snippet content()}
+														<svelte:fragment slot="content">
 															<TabContent
 																><div class="container-tab-content">
 																	{#if showDamageCalculatorInputsJSONError}
@@ -10708,7 +10513,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 															>
 															<TabContent>
 																<div class="container-tab-content">
-																	<p>
+																	<div>
 																		To load your gear from the game <strong
 																			>(this feature is not currently available
 																			in overlay)</strong
@@ -10735,7 +10540,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 															>
 															<TabContent
 																><div class="container-tab-content">
-																	<p>
+																	<div>
 																		If you want to import the save slots from
 																		the legacy calculator:
 																	</p>
@@ -10813,7 +10618,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																	{/if}
 																</div></TabContent
 															>
-														{/snippet}
+														</svelte:fragment>
 													</Tabs>
 												</div>
 											</TabContent>
@@ -10836,9 +10641,9 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 															/></span
 														>
 													</div>
-													<p class="spaced-paragraph">
+													<div class="spaced-paragraph">
 														Entries: {damageCalculatorHistoryLogs.length}
-													</p>
+													</div>
 													<CodeSnippet
 														type="multi"
 														hideCopyButton
@@ -10848,19 +10653,19 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 															{#if damageCalculatorHistoryLogs.length > 0}
 																{#if !damageCalculatorHistoryLogsOrderReversed}
 																	{#each damageCalculatorHistoryLogs as logEntry}
-																		<p>
+																		<div>
 																			{`[${logEntry.time}] ${logEntry.variableName} changed to ${logEntry.value}`}
-																		</p>
+																		</div>
 																	{/each}
 																{:else}
 																	{#each [...damageCalculatorHistoryLogs].reverse() as logEntry}
-																		<p>
+																		<div>
 																			{`[${logEntry.time}] ${logEntry.variableName} changed to ${logEntry.value}`}
-																		</p>
+																		</div>
 																	{/each}
 																{/if}
 															{:else}
-																<p>
+																<div>
 																	No logs found. Try modifying the inputs of the
 																	damage calculator.
 																</p>
@@ -10869,7 +10674,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 													</CodeSnippet>
 												</div>
 											</TabContent>
-										{/snippet}
+										</svelte:fragment>
 									</Tabs>
 								</div>
 							</Pane>
@@ -10888,7 +10693,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 										<Tab label="Shared Motion Values" />
 										<Tab label="Formulas" />
 
-										{#snippet content()}
+										<svelte:fragment slot="content">
 											<TabContent>
 												<div class="container-tab-content">
 													{#if showWeaponMotionValuesSectionWarning}
@@ -10911,8 +10716,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 															headers={motionValuesTableHeaders}
 															rows={weaponSections}
 														>
-															<!-- @migration-task: migrate this slot by hand, `cell-header` is an invalid identifier -->
-															{#snippet header(header)}
+															<svelte:fragment slot="cell-header" let:header>
 																{#if header.key === 'fire'}
 																	<InlineTooltip
 																		tooltip="Fire"
@@ -10952,7 +10756,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																{:else}
 																	{header.value}
 																{/if}
-															{/snippet}
+															</svelte:fragment>
 
 															<Toolbar
 																><div class="toolbar driverjs-4">
@@ -10999,21 +10803,18 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																			},
 																			{ id: 'Bow', text: 'Bow' },
 																		]}
+																		let:item
 																	>
-																		{#snippet children({ item })}
-																			{@const SvelteComponent_5 = getWeaponIcon(
-																				item.id,
-																			)}
-																			<div class="option-item">
-																				<div>
-																					<SvelteComponent_5
-																						{...{ size: '32px' }}
-																					/>
-																				</div>
-
-																				<p>{item.id}</p>
+																		<div class="option-item">
+																			<div>
+																				<svelte:component
+																					this={getWeaponIcon(item.id)}
+																					{...{ size: '32px' }}
+																				/>
 																			</div>
-																		{/snippet}
+
+																			<div>{item.id}</div>
+																		</div>
 																	</Dropdown>
 																	<Dropdown
 																		titleText="Section"
@@ -11067,21 +10868,21 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																	>
 																</div>
 															</Toolbar>
-															{#snippet title()}
-																{@const SvelteComponent_6 = weaponIcon}
-																<span>
-																	<div class="data-table-title">
-																		<div class="weapon-icon">
-																			<SvelteComponent_6 {...weaponIconProps} />
-																		</div>
-																		<div>
-																			{inputWeaponType} Motion Values ({motionValuesCount
-																				.byWeapon[inputWeaponType] ?? 0})
-																		</div>
+															<span slot="title">
+																<div class="data-table-title">
+																	<div class="weapon-icon">
+																		<svelte:component
+																			this={weaponIcon}
+																			{...weaponIconProps}
+																		/>
 																	</div>
-																</span>
-															{/snippet}
-															{#snippet cell({ cell })}
+																	<div>
+																		{inputWeaponType} Motion Values ({motionValuesCount
+																			.byWeapon[inputWeaponType] ?? 0})
+																	</div>
+																</div>
+															</span>
+															<svelte:fragment slot="cell" let:cell>
 																{#if cell.key === 'name' && hasAnimation(inputWeaponType, cell, inputWeaponMotionValuesSection)}
 																	<Button
 																		on:click={() =>
@@ -11094,9 +10895,9 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																		kind="ghost">{cell.value}</Button
 																	>
 																{:else}
-																	<p>{cell.value}</p>
+																	<div>{cell.value}</div>
 																{/if}
-															{/snippet}
+															</svelte:fragment>
 														</DataTable>
 													</div>
 												</div></TabContent
@@ -11111,8 +10912,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 															headers={motionValuesTableHeaders}
 															rows={sharedMotionValues}
 														>
-															<!-- @migration-task: migrate this slot by hand, `cell-header` is an invalid identifier -->
-															{#snippet header(header)}
+															<svelte:fragment slot="cell-header" let:header>
 																{#if header.key === 'fire'}
 																	<InlineTooltip
 																		tooltip="Fire"
@@ -11152,7 +10952,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																{:else}
 																	{header.value}
 																{/if}
-															{/snippet}
+															</svelte:fragment>
 															<Toolbar
 																><div class="toolbar">
 																	<Button
@@ -11181,7 +10981,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																	>
 																</div>
 															</Toolbar>
-															{#snippet cell({ cell })}
+															<svelte:fragment slot="cell" let:cell>
 																{#if cell.key === 'name' && hasAnimation(inputWeaponType, cell, 'Shared')}
 																	<Button
 																		on:click={() => changeModal(cell, 'Shared')}
@@ -11190,9 +10990,9 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																		kind="ghost">{cell.value}</Button
 																	>
 																{:else}
-																	<p>{cell.value}</p>
+																	<div>{cell.value}</div>
 																{/if}
-															{/snippet}
+															</svelte:fragment>
 														</DataTable>
 													</div>
 												</div></TabContent
@@ -11219,7 +11019,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 															<Tab label="Other Multipliers" />
 															<Tab label="Status Assault Total" />
 															<Tab label="Monster Total Defense" />
-															{#snippet content()}
+															<svelte:fragment slot="content">
 																<TabContent
 																	><section class="tab-content">
 																		<div class="formula-container">
@@ -11237,17 +11037,17 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																		<div class="formula-container">
 																			{@html formulaInternalTrueRaw}
 																		</div>
-																		<p>internalTrueRaw: {internalTrueRaw}</p>
-																		<p>maxTrueRaw: {maxTrueRaw}</p>
-																		<p>
+																		<div>internalTrueRaw: {internalTrueRaw}</div>
+																		<div>maxTrueRaw: {maxTrueRaw}</div>
+																		<div>
 																			outputAttackCeiling: {outputAttackCeiling}
-																		</p>
-																		<p>
+																		</div>
+																		<div>
 																			outputFlatAdditions: {outputFlatAdditions}
-																		</p>
-																		<p>
+																		</div>
+																		<div>
 																			outputMultipliers: {outputMultipliers}
-																		</p>
+																		</div>
 																	</section></TabContent
 																>
 																<TabContent
@@ -11396,9 +11196,9 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																>
 																<TabContent>
 																	<section class="tab-content">
-																		<p>
+																		<div>
 																			Used for Critical Conversion calculation.
-																		</p>
+																		</div>
 																		<div class="formula-container">
 																			{@html formulaOutputTotalAffinity}
 																		</div>
@@ -11414,27 +11214,27 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																		<div class="formula-container">
 																			{@html formulaOutputDrugKnowledgeTotalTrueRaw}
 																		</div>
-																		<p>
+																		<div>
 																			outputDrugKnowledgeTotalTrueRaw: {outputDrugKnowledgeTotalTrueRaw}
-																		</p>
-																		<p>
+																		</div>
+																		<div>
 																			inputNumberStatusValue: {inputNumberStatusValue}
-																		</p>
-																		<p>
+																		</div>
+																		<div>
 																			outputStatusAttackUpMultiplier: {outputStatusAttackUpMultiplier}
-																		</p>
-																		<p>
+																		</div>
+																		<div>
 																			outputStatusGuildPoogieMultiplier: {outputStatusGuildPoogieMultiplier}
-																		</p>
-																		<p>
+																		</div>
+																		<div>
 																			outputStatusSigilMultiplier: {outputStatusSigilMultiplier}
-																		</p>
-																		<p>
+																		</div>
+																		<div>
 																			outputFuriousMultiplier: {outputFuriousMultiplier}
-																		</p>
-																		<p>
+																		</div>
+																		<div>
 																			outputDrugKnowledgeMultiplier: {outputDrugKnowledgeMultiplier}
-																		</p>
+																		</div>
 																	</section></TabContent
 																>
 																<TabContent
@@ -11501,12 +11301,12 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																		</div>
 																	</section></TabContent
 																>
-															{/snippet}
+															</svelte:fragment>
 														</Tabs>
 													</div>
 												</div></TabContent
 											>
-										{/snippet}
+										</svelte:fragment>
 									</Tabs>
 								</div>
 							</Pane>
@@ -11515,7 +11315,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 									<Tabs type="container" autoWidth>
 										<Tab label="Monster Image"><Image size={32} /></Tab>
 										<Tab label="Monster Table"><DataTableIcon size={32} /></Tab>
-										{#snippet content()}
+										<svelte:fragment slot="content">
 											<TabContent>
 												<div class="container-tab-content">
 													<div class="silhouette">
@@ -11596,20 +11396,20 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 																	</div>
 																</Toolbar>
 
-																{#snippet cell({ cell })}
+																<svelte:fragment slot="cell" let:cell>
 																	{#if hitzoneHighestValues[cell.key
 																			.charAt(0)
 																			.toUpperCase() + cell.key.slice(1)]?.find((e) => e === cell.value)}
-																		<p><strong>{cell.value}</strong></p>
+																		<div><strong>{cell.value}</strong></div>
 																	{:else}
-																		<p>{cell.value}</p>
+																		<div>{cell.value}</div>
 																	{/if}
-																{/snippet}
+																</svelte:fragment>
 															</DataTable>
 														</div>
 													{/if}
 													{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
-														<p>
+														<div>
 															See also the <Link
 																inline
 																href={`/hunter-notes/monsters/overview/${slugify(selectedMonster, { lower: true })}#hitzone-values`}
@@ -11619,7 +11419,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 													{/if}
 												</div>
 											</TabContent>
-										{/snippet}
+										</svelte:fragment>
 									</Tabs>
 								</div></Pane
 							>
@@ -11629,10 +11429,76 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 			</Pane>
 			<Pane size={6} minSize={6} maxSize={6}>
 				<div class="status-bar">
-					<p>{statusBarText}</p>
+					<div>{statusBarText}</div>
 				</div>
 			</Pane>
 		</Splitpanes>
+
+		<style global lang="scss">
+			.splitpanes.modern-theme {
+				.splitpanes__pane {
+					background-color: red;
+					overflow-y: auto;
+				}
+				.splitpanes__splitter {
+					background-color: red;
+					position: relative;
+
+					&:before {
+						content: '';
+						position: absolute;
+						left: 0;
+						top: 0;
+						transition: opacity 0.4s;
+						background-color: var(--ctp-blue);
+						opacity: 0;
+						z-index: 1;
+					}
+					&:hover:before {
+						opacity: 1;
+					}
+					&.splitpanes__splitter__active {
+						z-index: 2; /* Fix an issue of overlap fighting with a near hovered splitter */
+					}
+				}
+			}
+			.modern-theme {
+				&.splitpanes--vertical > .splitpanes__splitter:before {
+					left: -3px;
+					right: -3px;
+					height: 100%;
+					cursor: col-resize;
+				}
+				&.splitpanes--horizontal > .splitpanes__splitter:before {
+					top: -3px;
+					bottom: -3px;
+					width: 100%;
+					cursor: row-resize;
+				}
+			}
+
+			.splitpanes.no-splitter {
+				.splitpanes__pane {
+					background-color: var(--ctp-base);
+				}
+				.splitpanes__splitter {
+					background-color: var(--ctp-surface1);
+					position: relative;
+				}
+			}
+			.no-splitter {
+				&.splitpanes--horizontal > .splitpanes__splitter:before {
+					width: 0.125rem;
+					pointer-events: none;
+					cursor: none;
+				}
+				&.splitpanes--vertical > .splitpanes__splitter:before {
+					height: 0.125rem;
+					pointer-events: none;
+					cursor: none;
+				}
+			}
+		</style>
 	</div>
 </div>
 
@@ -12174,7 +12040,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 		margin-top: 2rem;
 	}
 
-	*:has(:global(> math.tml-display)) {
+	*:has(> math.tml-display) {
 		overflow-x: auto;
 		width: 100%;
 	}
@@ -12214,71 +12080,5 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 		border-color: var(--ctp-surface1);
 		border-radius: 50%;
 		border-style: solid;
-	}
-
-	:global {
-		.splitpanes.modern-theme {
-			.splitpanes__pane {
-				background-color: red;
-				overflow-y: auto;
-			}
-			.splitpanes__splitter {
-				background-color: red;
-				position: relative;
-
-				&:before {
-					content: '';
-					position: absolute;
-					left: 0;
-					top: 0;
-					transition: opacity 0.4s;
-					background-color: var(--ctp-blue);
-					opacity: 0;
-					z-index: 1;
-				}
-				&:hover:before {
-					opacity: 1;
-				}
-				&.splitpanes__splitter__active {
-					z-index: 2; /* Fix an issue of overlap fighting with a near hovered splitter */
-				}
-			}
-		}
-		.modern-theme {
-			&.splitpanes--vertical > .splitpanes__splitter:before {
-				left: -3px;
-				right: -3px;
-				height: 100%;
-				cursor: col-resize;
-			}
-			&.splitpanes--horizontal > .splitpanes__splitter:before {
-				top: -3px;
-				bottom: -3px;
-				width: 100%;
-				cursor: row-resize;
-			}
-		}
-
-		.splitpanes.no-splitter {
-			.splitpanes__pane {
-				background-color: var(--ctp-base);
-			}
-			.splitpanes__splitter {
-				background-color: var(--ctp-surface1);
-				position: relative;
-			}
-		}
-		.no-splitter {
-			&.splitpanes--horizontal > .splitpanes__splitter:before {
-				width: 0.125rem;
-				pointer-events: none;
-				cursor: none;
-			}
-			&.splitpanes--vertical > .splitpanes__splitter:before {
-				height: 0.125rem;
-				pointer-events: none;
-				cursor: none;
-			}
-		}
 	}
 </style>

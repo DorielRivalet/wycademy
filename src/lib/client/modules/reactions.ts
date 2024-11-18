@@ -1,7 +1,6 @@
-import type { ReactionType } from 'svelte-reactions';
 import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 
-export const availableReactions: ReactionType[] = [
+export const availableReactions = [
 	{
 		id: 'like',
 		reaction: '👍',

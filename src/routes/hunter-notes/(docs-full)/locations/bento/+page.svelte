@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
@@ -76,15 +76,15 @@
 	let bentoSectionValue = $derived(getBentoSectionValues(bentoSection));
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Bento'} />
 		<div>
-			<p>
+			<div>
 				Lunchboxes (or Bentos) are buffs that you set at the quest counter menu,
 				right before embarking on a quest.
 			</p>
-			<p>You can pack a Bento at the appropiate NPC:</p>
+			<div>You can pack a Bento at the appropiate NPC:</div>
 			<UnorderedList class="spaced-list">
 				<ListItem>
 					The dedicated food store in <InlineTooltip
@@ -144,7 +144,7 @@
 							</div>
 						</Toolbar>
 						{#snippet cell({ cell })}
-											
+
 								{#if cell.key === 'health' || cell.key === 'stamina' || cell.key === 'attack' || cell.key === 'defense'}
 									<span
 										style={cell.value.includes('-')
@@ -152,9 +152,9 @@
 											: ''}>{cell.value}</span
 									>
 								{:else}
-									<p>{cell.value}</p>
+									<div>{cell.value}</div>
 								{/if}
-							
+
 											{/snippet}
 					</DataTable>
 				</div>
@@ -163,7 +163,7 @@
 			<section>
 				<SectionHeading level={3} title="Food Types and Locations" />
 				<div>
-					<p>Guild Cat Store:</p>
+					<div>Guild Cat Store:</div>
 					<UnorderedList class="spaced-list">
 						<ListItem>
 							<InlineTooltip
@@ -190,7 +190,7 @@
 							/>
 						</ListItem>
 					</UnorderedList>
-					<p>Lunchbox NPC:</p>
+					<div>Lunchbox NPC:</div>
 					<UnorderedList class="spaced-list">
 						<ListItem>
 							<InlineTooltip
@@ -240,7 +240,7 @@
 							/>
 						</ListItem>
 					</UnorderedList>
-					<p>Town General Store:</p>
+					<div>Town General Store:</div>
 					<UnorderedList class="spaced-list">
 						<ListItem>
 							<InlineTooltip
@@ -258,7 +258,7 @@
 							/>
 						</ListItem>
 					</UnorderedList>
-					<p>Poogie Farm General Store Lv3:</p>
+					<div>Poogie Farm General Store Lv3:</div>
 					<UnorderedList class="spaced-list">
 						<ListItem>
 							<InlineTooltip
@@ -276,7 +276,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

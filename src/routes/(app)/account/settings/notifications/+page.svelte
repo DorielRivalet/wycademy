@@ -22,12 +22,12 @@
 	</p>
 	<section>
 		<SectionHeading level={2} title={'Push notifications'} />
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			You need to have push notifications enabled in your <Link
 				href="/site-preferences"
 				inline>Site Preferences</Link
 			> in order for these settings to work.
-		</p>
+		</div>
 		<div class="container-toggles">
 			<Toggle toggled={true}>
 				{#snippet labelText()}
@@ -78,7 +78,7 @@
 				{/snippet}
 			</Toggle>
 			<Toggle toggled={true}>
-				<!-- @migration-task: migrate this slot by hand, `labelText` would shadow a prop on the parent component -->
+				<!-- migration-task: migrate this slot by hand, `labelText` would shadow a prop on the parent component -->
 				{#snippet labelText()}
 					<TooltipDefinition>
 						My followed users submitted a run
@@ -179,7 +179,7 @@
 				{/snippet}
 			</Toggle>
 			<Toggle toggled={true}>
-				<!-- @migration-task: migrate this slot by hand, `labelText` would shadow a prop on the parent component -->
+				<!-- migration-task: migrate this slot by hand, `labelText` would shadow a prop on the parent component -->
 				{#snippet labelText()}
 					<TooltipDefinition>
 						My followed users submitted a run

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import {
 		getAOESigilElement,
@@ -16,7 +16,7 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import { onMount, type ComponentType } from 'svelte';
+	import { onMount, type Component } from 'svelte';
 	import '@carbon/charts-svelte/styles.css';
 	import {
 		LineChart,
@@ -80,10 +80,6 @@
 	const formulaSigilTrueRaw = display(
 		`\\text{Sigil Total True Raw} = \\text{outputLengthUpTrueRaw} + \\text{sigilAttack} + \\text{UnlimitedSigilAttack} + \\text{outputZenithTotalAttack} + \\text{outputAOETotalAttack}`,
 	);
-
-
-
-
 
 	function isLengthUpActive(
 		sigils: [slot1: SigilSlot, slot2: SigilSlot, slot3: SigilSlot],
@@ -830,14 +826,11 @@
 
 	let zenithAOESigilHunters = $state('1');
 
-
-
 	let weaponTrueRaw = $state(1500);
 	let weaponElement = $state(1500);
 
-
 	let sigilChartLoaded = $state(false);
-	let sigilChart: ComponentType<LineChart> = $state();
+	let sigilChart: Component<LineChart> = $state();
 
 	let selectedWeaponType: FrontierWeaponName = $state('Sword and Shield');
 	let inputNumberAttackValue = $state(2100);
@@ -853,56 +846,60 @@
 		`\\begin{equation*} \\text{Zenith Sigil True Raw} = \\begin{cases} 0 & \\text{if } x \\leq 0 \\\\ 20x + 30 & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
 
-
 	const formulaZenithSigilAOETrueRaw = display(
 		`\\begin{equation*} \\text{Zenith Sigil AOE True Raw} = \\begin{cases} 0 & \\text{if } x \\leq 0 \\\\ (5x + 25) \\times n & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
-
 
 	const formulaZenithSigilElement = display(
 		`\\begin{equation*} \\text{Zenith Sigil Element} = \\begin{cases} 0 & \\text{if } x \\leq 0 \\\\ ((0.1x + 1.3) \\times \\text{weaponElement}) - \\text{weaponElement} & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
 
-
 	const formulaZenithSigilAOEElement = display(
 		`\\begin{equation*} \\text{Zenith Sigil AOE Element} = \\begin{cases} 0 & \\text{if } x \\leq 0 \\\\ (50x + 50) \\times n & \\text{otherwise} \\end{cases} \\end{equation*}`,
 	);
-
 
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
 		sigilChart = charts.LineChart;
 		sigilChartLoaded = true;
 	});
-	let outputLengthUpTrueRaw = $derived(getLengthAttackValue(
-		isLengthUpActive(sigils),
-		weaponTrueRaw,
-	));
-	let sigilChartData = $derived(generateSigilChartData(
-		sigils,
-		questDurationInSeconds,
-		outputLengthUpTrueRaw,
-		weaponElement,
-		Number.parseInt(zenithAOESigilHunters),
-		zenithInitialDelay,
-		zenithApplyDelay,
-	));
-	let totalSigilTrueRaw =
-		$derived(sigilChartData.totalTrueRaw.lengthUpTrueRaw +
-		sigilChartData.totalTrueRaw.sigilAttack +
-		sigilChartData.totalTrueRaw.unlimitedSigilAttack +
-		sigilChartData.totalTrueRaw.zenithAttack +
-		sigilChartData.totalTrueRaw.zenithAOEAttack);
-	let formulaValuesSigilTrueRaw = $derived(`${totalSigilTrueRaw} = ${sigilChartData.totalTrueRaw.lengthUpTrueRaw} + ${sigilChartData.totalTrueRaw.sigilAttack} + ${sigilChartData.totalTrueRaw.unlimitedSigilAttack} + ${sigilChartData.totalTrueRaw.zenithAttack} + ${sigilChartData.totalTrueRaw.zenithAOEAttack}`);
-	let totalSigilElement = $derived(Math.floor(
-		((sigilChartData.totalElement.weaponElement +
-			sigilChartData.totalElement.sigilElement * 10 +
-			sigilChartData.totalElement.unlimitedSigilElement * 10 +
-			sigilChartData.totalElement.zenithAOEElement) *
-			sigilChartData.totalElement.zenithElementMultiplier) /
-			10,
-	));
-	let formulaValuesSigilElement = $derived(`${totalSigilElement} = \\lfloor \\frac{(${sigilChartData.totalElement.weaponElement} + ${sigilChartData.totalElement.sigilElement} \\times 10 + ${sigilChartData.totalElement.unlimitedSigilElement} \\times 10 + ${sigilChartData.totalElement.zenithAOEElement}) \\times ${sigilChartData.totalElement.zenithElementMultiplier}}{${10}} \\rfloor`);
+	let outputLengthUpTrueRaw = $derived(
+		getLengthAttackValue(isLengthUpActive(sigils), weaponTrueRaw),
+	);
+	let sigilChartData = $derived(
+		generateSigilChartData(
+			sigils,
+			questDurationInSeconds,
+			outputLengthUpTrueRaw,
+			weaponElement,
+			Number.parseInt(zenithAOESigilHunters),
+			zenithInitialDelay,
+			zenithApplyDelay,
+		),
+	);
+	let totalSigilTrueRaw = $derived(
+		sigilChartData.totalTrueRaw.lengthUpTrueRaw +
+			sigilChartData.totalTrueRaw.sigilAttack +
+			sigilChartData.totalTrueRaw.unlimitedSigilAttack +
+			sigilChartData.totalTrueRaw.zenithAttack +
+			sigilChartData.totalTrueRaw.zenithAOEAttack,
+	);
+	let formulaValuesSigilTrueRaw = $derived(
+		`${totalSigilTrueRaw} = ${sigilChartData.totalTrueRaw.lengthUpTrueRaw} + ${sigilChartData.totalTrueRaw.sigilAttack} + ${sigilChartData.totalTrueRaw.unlimitedSigilAttack} + ${sigilChartData.totalTrueRaw.zenithAttack} + ${sigilChartData.totalTrueRaw.zenithAOEAttack}`,
+	);
+	let totalSigilElement = $derived(
+		Math.floor(
+			((sigilChartData.totalElement.weaponElement +
+				sigilChartData.totalElement.sigilElement * 10 +
+				sigilChartData.totalElement.unlimitedSigilElement * 10 +
+				sigilChartData.totalElement.zenithAOEElement) *
+				sigilChartData.totalElement.zenithElementMultiplier) /
+				10,
+		),
+	);
+	let formulaValuesSigilElement = $derived(
+		`${totalSigilElement} = \\lfloor \\frac{(${sigilChartData.totalElement.weaponElement} + ${sigilChartData.totalElement.sigilElement} \\times 10 + ${sigilChartData.totalElement.unlimitedSigilElement} \\times 10 + ${sigilChartData.totalElement.zenithAOEElement}) \\times ${sigilChartData.totalElement.zenithElementMultiplier}}{${10}} \\rfloor`,
+	);
 	let sigilChartOptions = $derived({
 		title: 'Sigil Damage',
 		theme: $carbonThemeStore,
@@ -923,23 +920,28 @@
 			},
 		},
 	} as LineChartOptions);
-	let outputZenithSigilTrueRaw = $derived(getZenithSigilTrueRaw(
-		inputZenithSigilAttackValue,
-	));
-	let outputZenithSigilAOETrueRaw = $derived(getAOESigilTrueRaw(
-		inputZenithSigilAOEAttackValue,
-		Number.parseInt(inputZenithSigilAOEHunterCount),
-	));
-	let outputZenithSigilElement =
-		$derived(inputZenithSigilElementValue > 0
+	let outputZenithSigilTrueRaw = $derived(
+		getZenithSigilTrueRaw(inputZenithSigilAttackValue),
+	);
+	let outputZenithSigilAOETrueRaw = $derived(
+		getAOESigilTrueRaw(
+			inputZenithSigilAOEAttackValue,
+			Number.parseInt(inputZenithSigilAOEHunterCount),
+		),
+	);
+	let outputZenithSigilElement = $derived(
+		inputZenithSigilElementValue > 0
 			? (1.3 + inputZenithSigilElementValue * 0.1) *
 					inputZenithSigilWeaponElement -
-				inputZenithSigilWeaponElement
-			: 0);
-	let outputZenithSigilAOEElement = $derived(getAOESigilElement(
-		inputZenithSigilAOEElementValue,
-		Number.parseInt(inputZenithSigilAOEHunterCount),
-	));
+					inputZenithSigilWeaponElement
+			: 0,
+	);
+	let outputZenithSigilAOEElement = $derived(
+		getAOESigilElement(
+			inputZenithSigilAOEElementValue,
+			Number.parseInt(inputZenithSigilAOEHunterCount),
+		),
+	);
 </script>
 
 <svelte:head>
@@ -951,23 +953,23 @@
 	/>
 </svelte:head>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Sigils Damage Calculator'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Here you can compare sigils damage in order to decide which one to
 				equip. You can equip multiple Unlimited (UL) Sigils, but the Weapon Up
 				effect is only applied by the highest Weapon Up value and does not
 				stack. The standard sigil type minimum and maximum values are taken from
 				standard sigils and Shiten sigils.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				If you are looking to simulate sigils rolls, see our <Link
 					inline
 					href="/tools/simulator/sigil">Sigils Simulator.</Link
 				>
-			</p>
+			</div>
 			<div class="sigils">
 				{#each sigils as sigil, i}
 					<div class="sigil">
@@ -1102,7 +1104,7 @@
 					bind:value={inputNumberAttackValue}
 				/>
 				{#if isLengthUpActive(sigils) === 'Active'}
-					<p>({outputLengthUpTrueRaw} True Raw with Length Up)</p>
+					<div>({outputLengthUpTrueRaw} True Raw with Length Up)</div>
 				{/if}
 			</div>
 			<div class="extra-inputs">
@@ -1158,7 +1160,7 @@
 			</div>
 
 			<div class="results">
-				<p>
+				<div>
 					<InlineTooltip
 						text="⚔️ Total Attack:"
 						tooltip="Stat"
@@ -1169,7 +1171,7 @@
 						' | ',
 					)})
 				</p>
-				<p>
+				<div>
 					<InlineTooltip
 						text="🐲 Total Element:"
 						tooltip="Stat"
@@ -1180,7 +1182,7 @@
 						' | ',
 					)})
 				</p>
-				<p>
+				<div>
 					The Zenith Sigil values are averaged in the total, while the values in
 					parentheses are calculated as if they were constant.
 				</p>
@@ -1284,10 +1286,10 @@
 						{@html formulaZenithSigilAOEElement}
 					</div>
 					<div>
-						<p>Zenith Sigil True Raw: {outputZenithSigilTrueRaw}</p>
-						<p>Zenith Sigil Element: {outputZenithSigilElement}</p>
-						<p>Zenith Sigil AOE True Raw: {outputZenithSigilAOETrueRaw}</p>
-						<p>Zenith Sigil AOE Element: {outputZenithSigilAOEElement}</p>
+						<div>Zenith Sigil True Raw: {outputZenithSigilTrueRaw}</div>
+						<div>Zenith Sigil Element: {outputZenithSigilElement}</div>
+						<div>Zenith Sigil AOE True Raw: {outputZenithSigilAOETrueRaw}</div>
+						<div>Zenith Sigil AOE Element: {outputZenithSigilAOEElement}</div>
 					</div>
 				</div>
 			</section>
@@ -1296,7 +1298,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

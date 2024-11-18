@@ -15,11 +15,9 @@
 		{#each faq as faqEntry, i}
 			<AccordionItem open={i === 0}>
 				{#snippet title()}
-							
-						<p class="question">{faqEntry.question}</p>
-					
-							{/snippet}
-				<p class="answer">{faqEntry.answer}</p>
+					<p class="question">{faqEntry.question}</p>
+				{/snippet}
+				<p class="answer paragraph-long-02">{faqEntry.answer}</p>
 			</AccordionItem>
 		{/each}
 	</Accordion>

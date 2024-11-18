@@ -9,13 +9,7 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		value,
-		text,
-		color,
-		href,
-		children
-	}: Props = $props();
+	let { value, text, color, href, children }: Props = $props();
 </script>
 
 <div class="container">
@@ -24,9 +18,9 @@
 			{@render children?.()}
 		</button></a
 	>
-	<p class="value" style:color>
+	<div class="value" style:color>
 		<NumberTicker {value} />
-	</p>
+	</div>
 	<p class="text">{text}</p>
 </div>
 

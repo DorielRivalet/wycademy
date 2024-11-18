@@ -27,11 +27,13 @@
 		gitHubData?: GitHubData;
 	}
 
-	let { gitHubData = {
-		lastModified: '',
-		commitLink: '',
-		timesChanged: 0,
-	} }: Props = $props();
+	let {
+		gitHubData = {
+			lastModified: '',
+			commitLink: '',
+			timesChanged: 0,
+		},
+	}: Props = $props();
 	let { lastModified, commitLink, timesChanged } = gitHubData;
 </script>
 

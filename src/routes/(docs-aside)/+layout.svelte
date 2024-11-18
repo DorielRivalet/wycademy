@@ -8,11 +8,6 @@
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
-	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
-	import { onMount } from 'svelte';
-	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -45,28 +40,12 @@
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
 	interface Props {
 		data: LayoutData;
 		children?: import('svelte').Snippet;
 	}
 
 	let { data, children }: Props = $props();
-
-	onMount(() => {
-		let themeValue = $carbonThemeStore;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
-		let cursorValue = $cursorIcon;
-		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-	});
 
 	let tocVisible = $state($tocEnabledStore);
 	let isTocMoving = false;
@@ -77,31 +56,24 @@
 		tocVisible = !tocVisible;
 		tocEnabledStore.set(tocVisible ? true : false);
 
-		if (tocVisible) {
-			tocClass = 'left-column';
-			centerColumnClass = ''; // Reset to default width
-		} else {
-			tocClass = 'left-column collapsed';
-			centerColumnClass = 'expanded'; // Increase width to full
-		}
+		// if (tocVisible) {
+		// 	tocClass = 'left-column';
+		// 	centerColumnClass = ''; // Reset to default width
+		// } else {
+		// 	tocClass = 'left-column collapsed';
+		// 	centerColumnClass = 'expanded'; // Increase width to full
+		// }
 		isTocMoving = false;
 	}
 
-	let tocClass = $state(tocVisible ? 'left-column' : 'left-column collapsed');
-	let centerColumnClass = $state(tocVisible ? '' : 'expanded');
+	let tocClass = $derived(tocVisible ? 'left-column' : 'left-column collapsed');
+	let centerColumnClass = $derived(tocVisible ? '' : 'expanded');
 
-	let headerClass = $derived($stickyHeaderStore ? 'header sticky' : 'header');
+	let headerClass = $state($stickyHeaderStore ? 'header sticky' : 'header');
 </script>
 
 <LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
-
-<Theme
-	bind:theme={$carbonThemeStore}
-	persist
-	persistKey="__carbon-theme"
-	{tokens}
-/>
 
 {#if !tocVisible && $breakpointLargerThanMedium}
 	<div class="expand-TOC">
@@ -132,13 +104,11 @@
 				subtitle="This site is currently in {developmentStage}."
 			>
 				{#snippet actions()}
-							
-						<NotificationActionButton
-							on:click={() => goto('/support/website/development')}
-							>Learn more</NotificationActionButton
-						>
-					
-							{/snippet}
+					<NotificationActionButton
+						on:click={() => goto('/support/website/development')}
+						>Learn more</NotificationActionButton
+					>
+				{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
@@ -147,7 +117,7 @@
 		<div class={tocClass}>
 			<Toc blurParams={{ duration: 0 }} --toc-desktop-sticky-top={'10vh'}>
 				{#snippet title()}
-								<span >
+					<span>
 						{#if $breakpointLargerThanMedium}
 							<h2 class="toc-title toc-exclude">
 								<span
@@ -166,7 +136,7 @@
 							<h2 class="toc-title toc-exclude">On this page</h2>
 						{/if}
 					</span>
-							{/snippet}
+				{/snippet}
 			</Toc>
 		</div>
 

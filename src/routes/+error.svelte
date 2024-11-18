@@ -32,10 +32,11 @@
 	) as Writable<boolean>;
 
 	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
-	let bgClass =
-		$derived($carbonThemeStore === 'g10'
+	let bgClass = $derived(
+		$carbonThemeStore === 'g10'
 			? `background-light bg-support`
-			: `background bg-support`);
+			: `background bg-support`,
+	);
 	const errorTitles = [
 		'The Gargwa took the quest and ran away with it! 🐔',
 		"We've encountered a tiny pawblem! 👀",
@@ -60,7 +61,7 @@
 		});
 	});
 
-	let headerClass = $derived($stickyHeaderStore ? 'header sticky' : 'header');
+	let headerClass = $state($stickyHeaderStore ? 'header sticky' : 'header');
 </script>
 
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
@@ -86,13 +87,11 @@
 				subtitle="This site is currently in {developmentStage}."
 			>
 				{#snippet actions()}
-							
-						<NotificationActionButton
-							on:click={() => goto('/support/website/development')}
-							>Learn more</NotificationActionButton
-						>
-					
-							{/snippet}
+					<NotificationActionButton
+						on:click={() => goto('/support/website/development')}
+						>Learn more</NotificationActionButton
+					>
+				{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
@@ -124,7 +123,7 @@
 						{$page.error.message}
 					</span>
 				{/if}
-				<div>Want to play as Raviente?</div>
+				<p>Want to play as Raviente?</p>
 				<Link href="/offline">Try this game!</Link>
 			</div>
 		</main>
