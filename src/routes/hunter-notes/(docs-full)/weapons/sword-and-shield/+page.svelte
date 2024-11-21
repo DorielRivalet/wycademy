@@ -214,7 +214,7 @@
 					iconType="component"
 				/> is a versatile weapon known for its quick strikes, the ability to block,
 				use items with the weapon unsheathed, and overall high mobility.
-			</p>
+			</div>
 
 			<div class="spaced-paragraph">
 				While its raw damage output is lower due to modest motion values, the
@@ -226,7 +226,7 @@
 					iconType="component"
 				/> effectively, a solid understanding of hitzones is essential, as precision
 				is key to maximizing its potential.
-			</p>
+			</div>
 
 			<div class="spaced-paragraph">
 				Several attacks with the <InlineTooltip
@@ -241,9 +241,9 @@
 					iconType="component"
 				/> and Impact damage, allowing you to break parts that require impact damage.
 				However, this is often impractical in most situations.
-			</p>
+			</div>
 
-			<div>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -252,12 +252,12 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						<strong>Earth Style</strong> is the core style for <InlineTooltip
 							tooltip="Weapon"
 							text="Sword and Shield"
@@ -267,14 +267,14 @@
 						can be enhanced with a weapon sigil (boosting from 31 to 31･16), causing
 						the slash to emit a beam that strikes twice, effectively doubling the
 						elemental damage.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						<strong>Heaven Style</strong> swaps the horizontal slash for a Jump
 						Slash with a motion value of 23･20. This move is especially
 						effective for hitting tails, particularly with longer <InlineTooltip
@@ -285,21 +285,21 @@
 						/> weapons. Additionally, Heaven Style allows you to perform quick side
 						hops after attacks instead of rolls, letting you swiftly continue combos
 						while evading.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						<strong>Storm Style</strong> retains the quick side hops and Jump Slash
 						from Heaven Style but replaces the standard combo with a series of Thrust
 						Attacks. These thrusts are unique in that they carry a 140% elemental
 						modifier, enabling significant elemental damage. You can cancel out of
 						the thrusts with a hop, resetting back to the first thrust and allowing
 						for rapid elemental damage output.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -316,7 +316,7 @@
 							icon={getWeaponIcon('Sword and Shield')}
 							iconType="component"
 						/> users can run with the weapon unsheathed in this style.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						In Extreme Style, <InlineTooltip
 							tooltip="Weapon"
@@ -335,14 +335,14 @@
 							icon={getAilmentIcon('Stun')}
 							iconType="component"
 						/> damage.
-					</p>
-					<div>
+					</div>
+					<div class="paragraph-long-02">
 						Finally, Extreme Style introduces an Evade Slash, allowing you to
 						evade while attacking. This can be integrated into combo strings or
 						followed by a hop to continue evading. The Evade Slash has a motion
 						value of 17, which is lower than most attacks but still provides a
 						safe and efficient way to deal damage.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -354,7 +354,9 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<div>x1.2 Status and Element (internal).</div>
+					<div class="paragraph-long-02">
+						x1.2 Status and Element (internal).
+					</div>
 				</div>
 			</section>
 
@@ -392,7 +394,7 @@
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -441,7 +443,7 @@
 										icon={getItemIcon('Jewel')}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -495,7 +497,7 @@
 										maxRating={3}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -506,9 +508,9 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The slide attack offers a few invincibility frames (~9 with
 								<InlineTooltip
 									tooltip="Armor Skill"
@@ -519,14 +521,14 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Long length is generally a straightforward upgrade due to its
 								increased reach. Very Long is viable if you're focusing on
 								Roundslash spam but may require some spacing management.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Sword and Shield"
@@ -542,7 +544,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								You can technically customize a <InlineTooltip
 									tooltip="Buff"
 									text="Transcend"
@@ -557,20 +559,20 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Shield attacks deal impact damage and can stun, but they use
 								white sharpness at best.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The vacuum slash adds an extra hit to the roundslash without
 								hitlag or sharpness cost. It's not as significant today, but
 								still useful.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Using items while unsheathed resets <InlineTooltip
 									tooltip="Armor Skill"
 									text="Rush"
@@ -580,7 +582,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								This weapon type is very useful in <InlineTooltip
 									tooltip="Location"
 									text="Hunter's Road"
@@ -595,7 +597,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Notably, some speedrunners have found success by dropping
 								<InlineTooltip
 									tooltip="Armor Skill"
@@ -606,7 +608,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Sword and Shield’s"

@@ -26,8 +26,6 @@
 	import { Pane, Splitpanes } from 'svelte-splitpanes';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import PreviousOutline from 'carbon-icons-svelte/lib/PreviousOutline.svelte';
-	import PageTurn from '$lib/client/components/PageTurn.svelte';
-	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DivaPrayerGem from '$lib/client/components/frontier/icon/DivaPrayerGem.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
@@ -71,7 +69,6 @@
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
-	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import Upload from 'carbon-icons-svelte/lib/Upload.svelte';
 	import Restart from 'carbon-icons-svelte/lib/Restart.svelte';
 	import DocumentDownload from 'carbon-icons-svelte/lib/DocumentDownload.svelte';
@@ -6284,6 +6281,14 @@ does not get multiplied by horn */
 					},
 				},
 				{
+					element: '.driverjs-0-1',
+					popover: {
+						title: 'Panel Sizes',
+						description:
+							'In the app version, you can adjust the panel sizes to your liking. Double click the splitters found on each side of a panel to expand it automatically. If you want to reset to the default sizes, click the Reset button on the toolbar, found at the top.',
+					},
+				},
+				{
 					element: '.driverjs-1',
 					popover: {
 						title: 'Select Your Weapon',
@@ -6377,7 +6382,7 @@ does not get multiplied by horn */
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
 			<img src={modalImage} alt={'motion value animation'} />
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -6492,10 +6497,10 @@ does not get multiplied by horn */
 				<Header />
 			</Pane>
 			<Pane size={6} minSize={6} maxSize={6}>
-				<div class="top-toolbar">
+				<div class="top-toolbar driverjs-0-1">
 					<Button
-						href="/tools/calculator/damage"
 						kind="ghost"
+						href="/tools/calculator/damage"
 						tooltipPosition="right"
 						iconDescription="Go to page version"
 					>
@@ -6504,8 +6509,8 @@ does not get multiplied by horn */
 						</span>
 					</Button>
 					<Button
-						class="driverjs-7"
 						kind="ghost"
+						class="driverjs-7"
 						tooltipPosition="right"
 						on:click={(e) => startWalkthrough()}
 						iconDescription="Walkthrough"
@@ -6775,7 +6780,7 @@ does not get multiplied by horn */
 																					These are not a final multiplier but
 																					rather additional true raw damage.
 																				</div>
-																				<div>
+																				<p>
 																					For example, Weapons Art Large on a
 																					600 true raw weapon would be the same
 																					as +30 Attack or Attack Up Very Large
@@ -6965,7 +6970,7 @@ does not get multiplied by horn */
 
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<div>
+																				<p>
 																					Does not need affinity over 100% to
 																					add True Raw.
 																				</p>
@@ -7049,19 +7054,19 @@ does not get multiplied by horn */
 																						align="start"
 																						triggerText="Vampirism"
 																					>
-																						<div class="spaced-paragraph">
+																						<p class="spaced-paragraph">
 																							Each successfully leeching attack
 																							with a weapon adds a certain
 																							amount of additional true raw up
 																							to a maximum of +80.
-																						</div>
-																						<div>Dual Swords, Tonfa, LBG: +3</div>
-																						<div>
+																						</p>
+																						<p>Dual Swords, Tonfa, LBG: +3</p>
+																						<p>
 																							SnS, LS, Lance, Gunlance, Swaxe F,
 																							HBG, Bow: +4
 																						</p>
-																						<div>Hammer, Hunting Horn: +5</div>
-																						<div>Great Sword: +7</div>
+																						<p>Hammer, Hunting Horn: +5</p>
+																						<p>Great Sword: +7</p>
 																					</Tooltip></span
 																				>
 																			</NumberInput>
@@ -7228,7 +7233,7 @@ does not get multiplied by horn */
 
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<div>
+																				<p>
 																					Adjusts base True Raw appropriately if
 																					you are using a Length Up sigil on a G
 																					Rank weapon. This reduction does not
@@ -7309,7 +7314,7 @@ does not get multiplied by horn */
 																						align="start"
 																						triggerText="Road Floor"
 																					>
-																						<div>
+																						<p>
 																							Attack rises every 5 floors,
 																							stopping at 26.
 																						</p>
@@ -7376,7 +7381,7 @@ does not get multiplied by horn */
 																						align="start"
 																						triggerText="Conquest Attack"
 																					>
-																						<div>
+																						<p>
 																							The value of the skill as
 																							displayed on your SR stats if
 																							enabled. Only takes effect on
@@ -7391,7 +7396,7 @@ does not get multiplied by horn */
 																		</div>
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<div>
+																				<p>
 																					Toggle whether or not you have
 																					consumed a Conquest Attack Potion on a
 																					standard Conquest quest.
@@ -7582,13 +7587,13 @@ does not get multiplied by horn */
 																	<div class="inputs-group-column">
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<div class="spaced-paragraph">
+																				<p class="spaced-paragraph">
 																					These buffs only take effect if you
 																					are using a weapon that is on a Gou
 																					tree while on a Gou, Supremacy or G
 																					Rank quest.
-																				</div>
-																				<div>
+																				</p>
+																				<p>
 																					For example: normal Lv50 weapons would
 																					get no buffs on any quests, but having
 																					a G Supremacy Weapon and 2 appropiate
@@ -7627,13 +7632,13 @@ does not get multiplied by horn */
 
 																		<div class="dropdown-tooltip-container">
 																			<Tooltip align="start">
-																				<div class="spaced-paragraph">
+																				<p class="spaced-paragraph">
 																					These buffs only take effect if you
 																					are using a weapon that is on a Gou
 																					tree while on a Gou, Supremacy or G
 																					Rank quest.
-																				</div>
-																				<div>
+																				</p>
+																				<p>
 																					For example: normal Lv50 weapons would
 																					get no buffs on any quests, but having
 																					a G Supremacy Weapon and 2 appropiate
@@ -8182,7 +8187,7 @@ does not get multiplied by horn */
 																						align="start"
 																						triggerText="SR Attack"
 																					>
-																						<div>
+																						<p>
 																							The top most attack level as
 																							displayed on SR info. Lv MAX is
 																							100.
@@ -8433,7 +8438,7 @@ does not get multiplied by horn */
 																		<div class="inputs-group-column">
 																			<div class="dropdown-tooltip-container">
 																				<Tooltip align="start">
-																					<div>
+																					<p>
 																						You can find the graph for this
 																						multiplier in the Critical Distance
 																						section.
@@ -8757,7 +8762,7 @@ does not get multiplied by horn */
 																			{#if inputWeaponType === 'Bow'}
 																				<div class="dropdown-tooltip-container">
 																					<Tooltip align="start">
-																						<div>
+																						<p>
 																							Adjusts for Consumption Slayer, a
 																							skill that causes double coating
 																							consumption for an additional
@@ -9054,14 +9059,14 @@ does not get multiplied by horn */
 																						align="start"
 																						triggerText="Element"
 																					>
-																						<div class="spaced-paragraph">
+																						<p class="spaced-paragraph">
 																							For the three levels of Standard
 																							Elemental Sword Crystals you can
 																							use the values 500, 700, 900 and
 																							for the GR600 Crystals you can use
 																							the values 1300, 1500 and 2100.
-																						</div>
-																						<div>
+																						</p>
+																						<p>
 																							This value replaces any elemental
 																							values on the weapon so set the
 																							element appropriately and use only
@@ -9216,7 +9221,7 @@ does not get multiplied by horn */
 																						align="start"
 																						triggerText="Additional"
 																					>
-																						<div>
+																						<p>
 																							Enter any other additional damage
 																							to be calculated against only the
 																							defense rate, such as bombs and
@@ -9297,7 +9302,7 @@ does not get multiplied by horn */
 																						align="start"
 																						triggerText="Defense Rate"
 																					>
-																						<div>
+																						<p>
 																							You can find the defense rate
 																							using the overlay. The value in
 																							the overlay already includes the
@@ -9347,7 +9352,7 @@ does not get multiplied by horn */
 																						align="start"
 																						triggerText="Cutting Hitzone"
 																					>
-																						<div>
+																						<p>
 																							If the input is disabled and you
 																							want to change it, remove the
 																							monster selected in the dropdown
@@ -9924,15 +9929,14 @@ does not get multiplied by horn */
 														<svelte:fragment slot="content">
 															<TabContent>
 																<div class="container-tab-content">
-																	<div>
+																	<p>
 																		Welcome to Wycademy's Damage Calculator!
-																		Here you can calculate various game
-																		statistics, such as your total damage, by
-																		selecting the gear and weapon values. You
-																		can, for example:
+																		Calculate various game statistics, such as
+																		your total damage, by selecting the gear and
+																		weapon values. You can, for example:
 																	</p>
 																	<UnorderedList class="spaced-list">
-																		<ListItem>
+																		<ListItem class="paragraph-long-02">
 																			Select a weapon type such as <InlineToggletip
 																				title="Long Sword"
 																				subtitle="A sword from a far away land"
@@ -9948,7 +9952,7 @@ does not get multiplied by horn */
 																				on:openModal={(e) => handleOpenModal(e)}
 																			></InlineToggletip>.
 																		</ListItem>
-																		<ListItem>
+																		<ListItem class="paragraph-long-02">
 																			Compare your attack values against <InlineToggletip
 																				title="Blinking Nargacuga"
 																				subtitle="Musou"
@@ -9976,15 +9980,17 @@ does not get multiplied by horn */
 																					.icon}
 																			/> defense rate.
 																		</ListItem>
-																		<ListItem
+																		<ListItem class="paragraph-long-02"
 																			>View element damage, motion values
 																			animations and the formulas for your total
 																			damage.</ListItem
 																		>
-																		<ListItem>And much more!</ListItem>
+																		<ListItem class="paragraph-long-02"
+																			>And much more!</ListItem
+																		>
 																	</UnorderedList>
 
-																	<div class="spaced-paragraph">
+																	<p class="spaced-paragraph">
 																		You can adjust the panel sizes to your
 																		liking. Double click the splitters found on
 																		each side of a panel to expand it
@@ -9993,7 +9999,7 @@ does not get multiplied by horn */
 																		toolbar, found at the top.
 																	</p>
 
-																	<div class="spaced-paragraph">
+																	<p class="spaced-paragraph">
 																		This damage calculator may not reflect the
 																		damage output you do in the game with total
 																		accuracy. In order to track and report
@@ -10008,7 +10014,7 @@ does not get multiplied by horn */
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem>
-																			<div>
+																			<p>
 																				If you select an option in a dropdown
 																				exclusive to a weapon and then change
 																				weapon type thus hiding that dropdown,
@@ -10022,7 +10028,7 @@ does not get multiplied by horn */
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem>
-																			<div>
+																			<p>
 																				The calculator does not include Diva
 																				Prayer Gems that do not affect it. The
 																				full list is found in our <Link
@@ -10039,7 +10045,7 @@ does not get multiplied by horn */
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem>
-																			<div>
+																			<div class="paragraph-long-02">
 																				The True Raw Converter can be used to
 																				calculate from your displayed weapon
 																				attack its True Raw value, which depends
@@ -10054,7 +10060,7 @@ does not get multiplied by horn */
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem>
-																			<div>
+																			<p>
 																				The final output of all your
 																				calculations is in 🗡️ Final Attack,
 																				defined as Internal Attack in the
@@ -10063,7 +10069,7 @@ does not get multiplied by horn */
 																		</ListItem>
 
 																		<ListItem>
-																			<div>
+																			<div class="paragraph-long-02">
 																				The damage from <InlineTooltip
 																					text="Zenith Sigils"
 																					tooltip="Sigil"
@@ -10075,7 +10081,7 @@ does not get multiplied by horn */
 																					href="/tools/calculator/sigil"
 																					inline>Sigils Calculator.</Link
 																				>
-																			</p>
+																			</div>
 																		</ListItem>
 																	</UnorderedList>
 																</div>
@@ -10090,14 +10096,14 @@ does not get multiplied by horn */
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem
-																			><div>
+																			><div class="paragraph-long-02">
 																				For loading values, try clicking the
 																				refresh button in the table if the
 																				values did not load correctly.
 																			</div></ListItem
 																		>
 																		<ListItem
-																			><div>
+																			><div class="paragraph-long-02">
 																				If you cannot find a motion value you
 																				are looking for, for example
 																				<InlineTooltip
@@ -10111,14 +10117,14 @@ does not get multiplied by horn */
 																				below.
 																			</div></ListItem
 																		><ListItem>
-																			<div>
+																			<p>
 																				You can also change the table's weapon
 																				type in the Inputs section.
 																			</p>
 																		</ListItem>
 
 																		<ListItem>
-																			<div>
+																			<div class="paragraph-long-02">
 																				Some motion values have <InlineTooltip
 																					text="Stun"
 																					tooltip="Ailment"
@@ -10127,10 +10133,10 @@ does not get multiplied by horn */
 																				values. Stun/KO indicates impact portions
 																				of the motion value, which use white sharpness
 																				as the maximum multiplier.
-																			</p>
+																			</div>
 																		</ListItem>
 																		<ListItem>
-																			<div>
+																			<div class="paragraph-long-02">
 																				The Additional column denotes a source
 																				of damage that is separate from your
 																				True Raw limit. This includes <InlineTooltip
@@ -10150,10 +10156,10 @@ does not get multiplied by horn */
 																						(e) => e.name === 'White',
 																					)?.value}
 																				/>.
-																			</p>
+																			</div>
 																		</ListItem>
 																		<ListItem
-																			><div>
+																			><div class="paragraph-long-02">
 																				Due to how often the calculations round
 																				down values, enabling more skills or
 																				barely increasing your damage may not
@@ -10168,7 +10174,7 @@ does not get multiplied by horn */
 																			</div></ListItem
 																		>
 																		<ListItem>
-																			<div>
+																			<div class="paragraph-long-02">
 																				Motion Values comprised of multiple hits
 																				have their raw damage calculated
 																				separately by each hit value and then
@@ -10183,16 +10189,16 @@ does not get multiplied by horn */
 																					iconType="component"
 																				/> and then input as Custom Motion Value
 																				the value 459.
-																			</p>
+																			</div>
 																		</ListItem>
 																		<ListItem>
-																			<div>
+																			<p>
 																				Extra table columns may show depending
 																				on the selected element.
 																			</p>
 																		</ListItem>
 																		<ListItem>
-																			<div>
+																			<p>
 																				There are a total of {motionValuesCount.total}
 																				motion values, including for each style and
 																				section.
@@ -10205,7 +10211,7 @@ does not get multiplied by horn */
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem
-																			><div>
+																			><div class="paragraph-long-02">
 																				For loading values, try clicking the
 																				refresh button in the table if the
 																				values did not load correctly.
@@ -10213,7 +10219,7 @@ does not get multiplied by horn */
 																		>
 
 																		<ListItem>
-																			<div>
+																			<div class="paragraph-long-02">
 																				Motion Values comprised of multiple hits
 																				have their raw damage calculated
 																				separately by each hit value and then
@@ -10228,7 +10234,7 @@ does not get multiplied by horn */
 																					iconType="component"
 																				/> and then input as Custom Motion Value
 																				the value 459.
-																			</p>
+																			</div>
 																		</ListItem>
 																	</UnorderedList>
 																</div>
@@ -10237,7 +10243,7 @@ does not get multiplied by horn */
 																<div class="container-tab-content">
 																	<UnorderedList class="spaced-list">
 																		<ListItem
-																			><div>
+																			><div class="paragraph-long-02">
 																				In regards to bug reports: if you notice
 																				an error with the damage calculator, you
 																				can send an issue on the GitHub
@@ -10246,14 +10252,14 @@ does not get multiplied by horn */
 																			</div></ListItem
 																		>
 																		<ListItem
-																			><div>
+																			><div class="paragraph-long-02">
 																				Your current inputs values from the
 																				Inputs section are reflected below each
 																				formula definition.
 																			</div></ListItem
 																		>
 																		<ListItem
-																			><div>
+																			><div class="paragraph-long-02">
 																				The final values whose formula depends
 																				on certain conditions are called <OutboundLink
 																					href="https://en.wikipedia.org/wiki/Piecewise_function"
@@ -10279,50 +10285,50 @@ does not get multiplied by horn */
 																	</div>
 																	<div class="hitzone-colors-description">
 																		<UnorderedList class="spaced-list">
-																			<ListItem>
+																			<ListItem class="paragraph-long-02">
 																				<button
 																					type="button"
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-red)"
-																				/>Red: Highest values for this hitzone
-																				type.</ListItem
+																				></button>Red: Highest values for this
+																				hitzone type.</ListItem
 																			>
-																			<ListItem
+																			<ListItem class="paragraph-long-02"
 																				><button
 																					type="button"
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-peach)"
-																				/>Orange: Second highest values for this
-																				hitzone type.</ListItem
+																				></button>Orange: Second highest values
+																				for this hitzone type.</ListItem
 																			>
-																			<ListItem
+																			<ListItem class="paragraph-long-02"
 																				><button
 																					type="button"
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-yellow)"
-																				/>Yellow: Third highest values for this
-																				hitzone type.</ListItem
+																				></button>Yellow: Third highest values
+																				for this hitzone type.</ListItem
 																			>
-																			<ListItem
+																			<ListItem class="paragraph-long-02"
 																				><button
 																					type="button"
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-green)"
-																				/>Green: Values higher than 0 for this
-																				hitzone type.</ListItem
+																				></button>Green: Values higher than 0
+																				for this hitzone type.</ListItem
 																			>
-																			<ListItem
+																			<ListItem class="paragraph-long-02"
 																				><button
 																					type="button"
 																					class="dot"
 																					aria-label={'Color'}
 																					style="background-color: var(--ctp-blue)"
-																				/>Blue: Values lower or equal to 0 for
-																				this hitzone type.</ListItem
+																				></button>Blue: Values lower or equal to
+																				0 for this hitzone type.</ListItem
 																			>
 																		</UnorderedList>
 																	</div>
@@ -10513,24 +10519,26 @@ does not get multiplied by horn */
 															>
 															<TabContent>
 																<div class="container-tab-content">
-																	<div>
+																	<p>
 																		To load your gear from the game <strong
 																			>(this feature is not currently available
 																			in overlay)</strong
 																		>:
 																	</p>
 																	<OrderedList class="spaced-list">
-																		<ListItem>Load the overlay.</ListItem>
-																		<ListItem
+																		<ListItem class="paragraph-long-02"
+																			>Load the overlay.</ListItem
+																		>
+																		<ListItem class="paragraph-long-02"
 																			>Go into a quest and open overlay
 																			settings.</ListItem
 																		>
-																		<ListItem>
+																		<ListItem class="paragraph-long-02">
 																			Go to Hunter's Notes tab, right-click your
 																			guild card and select "Copy stats for
 																			Wycademy's Damage Calculator".
 																		</ListItem>
-																		<ListItem
+																		<ListItem class="paragraph-long-02"
 																			>Paste them into the Calculator tab here,
 																			on the Load Data text input. Then press
 																			the Update button next to it.</ListItem
@@ -10540,15 +10548,15 @@ does not get multiplied by horn */
 															>
 															<TabContent
 																><div class="container-tab-content">
-																	<div>
+																	<p>
 																		If you want to import the save slots from
 																		the legacy calculator:
 																	</p>
 																	<OrderedList class="spaced-list">
-																		<ListItem
+																		<ListItem class="paragraph-long-02"
 																			>Go to the legacy calculator.</ListItem
 																		>
-																		<ListItem
+																		<ListItem class="paragraph-long-02"
 																			>Open the Console by pressing <kbd
 																				>Ctrl</kbd
 																			>
@@ -10557,7 +10565,7 @@ does not get multiplied by horn */
 																			+
 																			<kbd>I</kbd>.</ListItem
 																		>
-																		<ListItem>
+																		<ListItem class="paragraph-long-02">
 																			To put all of your save slots into the
 																			clipboard, paste the following command and
 																			run it in the console: <CodeSnippet
@@ -10566,11 +10574,11 @@ does not get multiplied by horn */
 																				type="inline"
 																			/>
 																		</ListItem>
-																		<ListItem>
+																		<ListItem class="paragraph-long-02">
 																			With the copied clipboard text, paste it
 																			into a text editor and save as JSON file.
 																		</ListItem>
-																		<ListItem>
+																		<ListItem class="paragraph-long-02">
 																			Click the button below, specifying the
 																			slot number in the number input, in order
 																			to import the file.
@@ -10653,19 +10661,19 @@ does not get multiplied by horn */
 															{#if damageCalculatorHistoryLogs.length > 0}
 																{#if !damageCalculatorHistoryLogsOrderReversed}
 																	{#each damageCalculatorHistoryLogs as logEntry}
-																		<div>
+																		<p>
 																			{`[${logEntry.time}] ${logEntry.variableName} changed to ${logEntry.value}`}
-																		</div>
+																		</p>
 																	{/each}
 																{:else}
 																	{#each [...damageCalculatorHistoryLogs].reverse() as logEntry}
-																		<div>
+																		<p>
 																			{`[${logEntry.time}] ${logEntry.variableName} changed to ${logEntry.value}`}
-																		</div>
+																		</p>
 																	{/each}
 																{/if}
 															{:else}
-																<div>
+																<p>
 																	No logs found. Try modifying the inputs of the
 																	damage calculator.
 																</p>
@@ -10895,7 +10903,7 @@ does not get multiplied by horn */
 																		kind="ghost">{cell.value}</Button
 																	>
 																{:else}
-																	<div>{cell.value}</div>
+																	<p>{cell.value}</p>
 																{/if}
 															</svelte:fragment>
 														</DataTable>
@@ -10990,7 +10998,7 @@ does not get multiplied by horn */
 																		kind="ghost">{cell.value}</Button
 																	>
 																{:else}
-																	<div>{cell.value}</div>
+																	<p>{cell.value}</p>
 																{/if}
 															</svelte:fragment>
 														</DataTable>
@@ -11037,17 +11045,19 @@ does not get multiplied by horn */
 																		<div class="formula-container">
 																			{@html formulaInternalTrueRaw}
 																		</div>
-																		<div>internalTrueRaw: {internalTrueRaw}</div>
-																		<div>maxTrueRaw: {maxTrueRaw}</div>
-																		<div>
+																		<p>
+																			internalTrueRaw: {internalTrueRaw}
+																		</p>
+																		<p>maxTrueRaw: {maxTrueRaw}</p>
+																		<p>
 																			outputAttackCeiling: {outputAttackCeiling}
-																		</div>
-																		<div>
+																		</p>
+																		<p>
 																			outputFlatAdditions: {outputFlatAdditions}
-																		</div>
-																		<div>
+																		</p>
+																		<p>
 																			outputMultipliers: {outputMultipliers}
-																		</div>
+																		</p>
 																	</section></TabContent
 																>
 																<TabContent
@@ -11196,9 +11206,9 @@ does not get multiplied by horn */
 																>
 																<TabContent>
 																	<section class="tab-content">
-																		<div>
+																		<p>
 																			Used for Critical Conversion calculation.
-																		</div>
+																		</p>
 																		<div class="formula-container">
 																			{@html formulaOutputTotalAffinity}
 																		</div>
@@ -11214,27 +11224,27 @@ does not get multiplied by horn */
 																		<div class="formula-container">
 																			{@html formulaOutputDrugKnowledgeTotalTrueRaw}
 																		</div>
-																		<div>
+																		<p>
 																			outputDrugKnowledgeTotalTrueRaw: {outputDrugKnowledgeTotalTrueRaw}
-																		</div>
-																		<div>
+																		</p>
+																		<p>
 																			inputNumberStatusValue: {inputNumberStatusValue}
-																		</div>
-																		<div>
+																		</p>
+																		<p>
 																			outputStatusAttackUpMultiplier: {outputStatusAttackUpMultiplier}
-																		</div>
-																		<div>
+																		</p>
+																		<p>
 																			outputStatusGuildPoogieMultiplier: {outputStatusGuildPoogieMultiplier}
-																		</div>
-																		<div>
+																		</p>
+																		<p>
 																			outputStatusSigilMultiplier: {outputStatusSigilMultiplier}
-																		</div>
-																		<div>
+																		</p>
+																		<p>
 																			outputFuriousMultiplier: {outputFuriousMultiplier}
-																		</div>
-																		<div>
+																		</p>
+																		<p>
 																			outputDrugKnowledgeMultiplier: {outputDrugKnowledgeMultiplier}
-																		</div>
+																		</p>
 																	</section></TabContent
 																>
 																<TabContent
@@ -11402,14 +11412,14 @@ does not get multiplied by horn */
 																			.toUpperCase() + cell.key.slice(1)]?.find((e) => e === cell.value)}
 																		<div><strong>{cell.value}</strong></div>
 																	{:else}
-																		<div>{cell.value}</div>
+																		<p>{cell.value}</p>
 																	{/if}
 																</svelte:fragment>
 															</DataTable>
 														</div>
 													{/if}
 													{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
-														<div>
+														<p>
 															See also the <Link
 																inline
 																href={`/hunter-notes/monsters/overview/${slugify(selectedMonster, { lower: true })}#hitzone-values`}

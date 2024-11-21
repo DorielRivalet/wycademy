@@ -306,7 +306,7 @@
 						option to change later. Therefore,
 						<strong>it's crucial to select your final upgrade carefully.</strong
 						>
-					</p>
+					</div>
 					<section>
 						<SectionHeading level={3} title="Upgrading Weapons" />
 						<div>
@@ -327,7 +327,7 @@
 								Three types of gems from HR2 and HR5 are exclusively used for upgrading
 								pre-G Rank weapons, while three additional gems from G Rank can be
 								applied to both G Rank and non-G equipment upgrades.
-							</p>
+							</div>
 							<div class="spaced-paragraph">
 								You can convert gems into points by selecting the appropriate
 								option at the <InlineTooltip
@@ -336,7 +336,7 @@
 									iconType="file"
 									tooltip="Location"
 								/>.
-							</p>
+							</div>
 							<div class="spaced-paragraph">
 								Once a weapon reaches Lv100, you can upgrade it to the next
 								tier, which requires additional materials. This entire upgrade
@@ -369,11 +369,11 @@
 								grind and commitment.
 							</div>
 
-							<div class="spaced-paragraph">Example weapon progression:</p>
+							<div class="spaced-paragraph">Example weapon progression:</div>
 
 							<OrderedList class="spaced-list">
 								<ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Ophion Sword:</strong> crafted from HR2 <InlineTooltip
 											icon={getMonsterIcon('Raviente')}
 											text={'Raviente'}
@@ -388,7 +388,7 @@
 									</div></ListItem
 								>
 								<ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Ophion Sword "Flash":</strong> needs Raviente
 										materials, then upgraded with <InlineTooltip
 											icon={getCurrencyIcon('g')}
@@ -399,7 +399,7 @@
 									</div></ListItem
 								>
 								<ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Shesha Sword "Glory":</strong> needs <InlineTooltip
 											icon={getMonsterIcon('Berserk Raviente')}
 											text={'Berserk Raviente'}
@@ -415,7 +415,7 @@
 									</div></ListItem
 								>
 								<ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Apophis Sword "Clear":</strong> needs Berserk
 										Raviente and Zenith monster materials, then upgraded with <InlineTooltip
 											icon={getCurrencyIcon('Gg')}
@@ -460,12 +460,12 @@
 									</Toolbar>
 
 									{#snippet cell({ cell })}
-										<div>{cell.value}</div>
+										<p>{cell.value}</p>
 									{/snippet}
 								</DataTable>
 							</div>
 
-							<div>
+							<div class="paragraph-long-02">
 								<strong
 									>Do not use <InlineTooltip
 										icon={getCurrencyIcon('Gg')}
@@ -474,7 +474,7 @@
 										tooltip="Currency"
 									/> gems for the first two tiers of a weapon.</strong
 								>
-							</p>
+							</div>
 
 							<div class="table">
 								<DataTable
@@ -516,16 +516,19 @@
 									</Toolbar>
 
 									{#snippet cell({ cell })}
-										<div>{cell.value}</div>
+										<p>{cell.value}</p>
 									{/snippet}
 								</DataTable>
 							</div>
 
-							<div><strong>Total Gems Needed:</strong> {totalGems}</div>
-							<div>
+							<div class="paragraph-long-02">
+								<strong>Total Gems Needed:</strong>
+								{totalGems}
+							</div>
+							<div class="paragraph-long-02">
 								<strong>Total Item Slots Needed:</strong>
 								{totalItemSlotsNeeded}
-							</p>
+							</div>
 							<div class="spaced-paragraph">
 								<strong>Total Pages Needed:</strong>
 								{totalPagesNeeded}
@@ -544,7 +547,7 @@
 								Length, while the Affinity-focused weapon is Very Long. In many scenarios,
 								the Affinity-focused weapon proves to be more advantageous due to
 								its length.
-							</p>
+							</div>
 							<div class="spaced-paragraph">
 								Similar considerations apply to all weapon types, so it’s
 								essential to contemplate the skills you will be utilizing and
@@ -562,18 +565,24 @@
 							</div>
 							<UnorderedList class="spaced-list">
 								<ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Glory:</strong> focuses on a balance of stats.
 									</div></ListItem
 								>
 								<ListItem
-									><div><strong>Clear:</strong> focuses on affinity.</div></ListItem
+									><div class="paragraph-long-02">
+										<strong>Clear:</strong> focuses on affinity.
+									</div></ListItem
 								>
 								<ListItem
-									><div><strong>Shine:</strong> focuses on element.</div></ListItem
+									><div class="paragraph-long-02">
+										<strong>Shine:</strong> focuses on element.
+									</div></ListItem
 								>
 								<ListItem
-									><div><strong>Flash:</strong> focuses on raw.</div></ListItem
+									><div class="paragraph-long-02">
+										<strong>Flash:</strong> focuses on raw.
+									</div></ListItem
 								>
 							</UnorderedList>
 							<div class="spaced-paragraph">
@@ -583,7 +592,7 @@
 									text={'Gunlance'}
 									tooltip="Weapon"
 								/> you can change the shelling type.
-							</p>
+							</div>
 						</div>
 
 						<div class="spaced-paragraph">
@@ -591,7 +600,7 @@
 						</div>
 						<OrderedList class="spaced-list">
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									Obtain g or <InlineTooltip
 										icon={getCurrencyIcon('Gg')}
 										text={'Gg'}
@@ -601,7 +610,7 @@
 								</div></ListItem
 							>
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									Use that g or <InlineTooltip
 										icon={getCurrencyIcon('Gg')}
 										text={'Gg'}
@@ -612,20 +621,20 @@
 								</div></ListItem
 							>
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									Upon reaching Lv100, you can upgrade the weapon to the next
 									tier, which requires multiple upgrades—a total of 400 upgrades
 									to reach the maximum.
 								</div></ListItem
 							>
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									After completing this process 3 times, you can upgrade the
 									weapon to the Zenith tier, which is the final tier.
 								</div></ListItem
 							>
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									Upgrade the weapon to Lv100 again. The final upgrade is
 									denoted as a Z100 weapon.
 								</div></ListItem
@@ -638,7 +647,7 @@
 								>be sure to choose the correct Zenith upgrade path, as this
 								decision is permanent and cannot be changed later.</strong
 							>
-						</p>
+						</div>
 					</section>
 				</div>
 			</section>

@@ -262,7 +262,7 @@
 							/>
 						{/each}
 					{:else}
-						<div>{cell.value}</div>
+						<p>{cell.value}</p>
 					{/if}
 				{/snippet}
 			</DataTable>
@@ -298,7 +298,7 @@
 						href="/tools/calculator/damage">Damage Calculator</Link
 					> for this.
 				</div>
-				<div>
+				<div class="paragraph-long-02">
 					Although motion values typically don't impact elemental damage, the
 					<InlineTooltip
 						tooltip="Weapon"

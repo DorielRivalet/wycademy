@@ -216,7 +216,7 @@
 			The zenith skill does not need you to have over 100% affinity for it to
 			take effect.
 		</div>
-		<div>Formulas:</div>
+		<p>Formulas:</p>
 		<div class="formula-container">
 			{@html formulaFlashConversion}
 			{@html display(formulaValuesFlashConversion)}
@@ -470,8 +470,8 @@
 				]}
 			/>
 		</div>
-		<div>Total Affinity: {critConversionCalculatorTotalAffinity}</div>
-		<div>Total True Raw: {critConversionCalculatorTrueRaw}</div>
+		<p>Total Affinity: {critConversionCalculatorTotalAffinity}</p>
+		<p>Total True Raw: {critConversionCalculatorTrueRaw}</p>
 		<div>
 			{#if flashConversionChartLoaded}
 				{@const SvelteComponent = flashConversionChart}

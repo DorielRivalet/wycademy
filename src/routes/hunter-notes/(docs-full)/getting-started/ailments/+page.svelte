@@ -257,12 +257,12 @@
 									/>
 								{/each}
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
 				</div>
-				<div>
+				<div class="paragraph-long-02">
 					Subspecies and Zeniths are also immune, except <InlineTooltip
 						tooltip="Monster"
 						text="Doragyurosu"
@@ -270,7 +270,7 @@
 						iconType={'file'}
 					/> which is immune to these statuses only in G Rank, and also as a Zenith.
 				</div>
-				<div>
+				<div class="paragraph-long-02">
 					Only support can inflict poison to <InlineTooltip
 						tooltip="Monster"
 						text="Raviente"

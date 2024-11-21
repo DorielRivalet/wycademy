@@ -5,8 +5,6 @@
 -->
 
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { page } from '$app/stores';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
@@ -36,6 +34,7 @@
 		FrontierElement,
 		FrontierGeneration,
 		FrontierMonsterClass,
+		FrontierMonsterInfo,
 	} from '$lib/client/modules/frontier/types';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { getElementIcon } from '$lib/client/modules/frontier/elements';
@@ -204,7 +203,7 @@
 		selectedAilments: FrontierAilment[],
 		selectedElements: FrontierElement[],
 		orderAscending: boolean,
-	) {
+	): FrontierMonsterInfo[] {
 		let filteredMonsters = uniqueMonsters.filter((monster) => {
 			// Only apply name filter if there's a search term
 			const nameMatch =
@@ -268,7 +267,7 @@
 			filteredMonsters.reverse();
 		}
 
-		currentMonsters = filteredMonsters;
+		return filteredMonsters;
 	}
 
 	function findMonsterInfo(name: string) {
@@ -277,9 +276,9 @@
 		);
 	}
 
-	// Reactive statement to filter and sort monsters based on searchTerm, orderAscending, and dropdown selections
-	run(() => {
-		filterSearchResults(
+	//Reactive effect to filter and sort monsters based on searchTerm, orderAscending, and dropdown selections
+	$effect(() => {
+		currentMonsters = filterSearchResults(
 			searchTerm,
 			selectedSizes,
 			selectedClasses,
@@ -294,7 +293,7 @@
 	let contextSwitcherIndex = $state(0);
 </script>
 
-<!-- <Head
+<!-- <Head TODO test
 	title={customTitle}
 	{description}
 	image={pageThumbnail}
@@ -359,16 +358,18 @@
 					bind:selectedIds={selectedClasses}
 				/>
 				<!-- <Dropdown
-						titleText="Type"
-						selectedId="0"
-						type="inline"
-						items={[
-							{ id: '0', text: 'All' },
-							{ id: '1', text: 'Hardcore' },
-							{ id: '2', text: 'Unlimited' },
-							{ id: '3', text: 'Musou' },
-						]}
-					/> -->
+					titleText="Type"
+					selectedId="0"
+					type="inline"
+					items={[
+						{ id: '0', text: 'All' },
+						{ id: '1', text: 'Hardcore' },
+						{ id: '2', text: 'Unlimited' },
+						{ id: '3', text: 'Musou' },
+					]}
+				/>
+				TODO add missing single elements to each monster that has a combo element
+				-->
 				<MultiSelect
 					spellcheck="false"
 					placeholder="Select elements..."
@@ -382,16 +383,15 @@
 						};
 					})}
 					bind:selectedIds={selectedElements}
-
 				>
 					{#snippet children({ item })}
-										<InlineTooltip
+						<InlineTooltip
 							tooltip="Element"
 							text={item.id}
 							icon={getElementIcon(item.id)}
 						/>
-														{/snippet}
-								</MultiSelect>
+					{/snippet}
+				</MultiSelect>
 				<MultiSelect
 					spellcheck="false"
 					placeholder="Select ailments..."
@@ -405,16 +405,15 @@
 						};
 					})}
 					bind:selectedIds={selectedAilments}
-
 				>
 					{#snippet children({ item })}
-										<InlineTooltip
+						<InlineTooltip
 							tooltip="Ailment"
 							text={item.id}
 							icon={getAilmentIcon(item.id)}
 						/>
-														{/snippet}
-								</MultiSelect>
+					{/snippet}
+				</MultiSelect>
 				<MultiSelect
 					spellcheck="false"
 					placeholder="Select habitats..."
@@ -428,17 +427,17 @@
 						};
 					})}
 					bind:selectedIds={selectedHabitats}
-
 				>
 					{#snippet children({ item })}
-										<InlineTooltip
+						<InlineTooltip
 							tooltip="Habitat"
 							text={item.id}
 							icon={getHabitatIcon(item.id)}
 							iconType="file"
 						/>
-														{/snippet}
-								</MultiSelect>
+					{/snippet}
+				</MultiSelect>
+
 				<MultiSelect
 					type="inline"
 					label="Select generations..."
@@ -511,8 +510,8 @@
 					{/each}
 				</div>
 			{:else}
-				<div><strong>No monsters found</strong></div>
-				<div>
+				<p><strong>No monsters found</strong></p>
+				<p>
 					Try adjusting your search or filter options to find what you're
 					looking for.
 				</p>
@@ -589,94 +588,92 @@
 						</div>
 					</Toolbar>
 					{#snippet cell({ cell })}
-
-							{#if cell.key === 'name'}
-								<Link
-									href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(cell.value)?.displayName ?? '', { lower: true })}`}
-								>
-									<InlineTooltip
-										tooltip="Monster"
-										text={cell.value}
-										icon={getMonsterIcon(cell.value)}
-										iconType="file"
-									/></Link
-								>
-							{:else if cell.key === 'titles'}
-								<div>{cell.value.replaceAll(',', ', ')}</div>
-							{:else if cell.key === 'ailments'}
-								{#each [...cell.value.split(',')] as ailment}
-									<div class="table-inline-tooltip">
-										<Link href={`/hunter-notes/getting-started/ailments`}>
-											<InlineTooltip
-												tooltip="Ailment"
-												text={ailment}
-												icon={getAilmentIcon(ailment)}
-											/></Link
-										>
-									</div>
-								{/each}
-							{:else if cell.key === 'elements'}
-								{#each [...cell.value.split(',')] as element}
-									<div class="table-inline-tooltip">
-										<Link href={`/hunter-notes/getting-started/elements`}>
-											<InlineTooltip
-												tooltip="Element"
-												text={element}
-												icon={getElementIcon(element)}
-											/></Link
-										>
-									</div>
-								{/each}
-							{:else if cell.key === 'weaknesses'}
-								{#each [...cell.value.split(',')] as weakness}
-									<div class="table-inline-tooltip">
+						{#if cell.key === 'name'}
+							<Link
+								href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(cell.value)?.displayName ?? '', { lower: true })}`}
+							>
+								<InlineTooltip
+									tooltip="Monster"
+									text={cell.value}
+									icon={getMonsterIcon(cell.value)}
+									iconType="file"
+								/></Link
+							>
+						{:else if cell.key === 'titles'}
+							<div>{cell.value.replaceAll(',', ', ')}</div>
+						{:else if cell.key === 'ailments'}
+							{#each [...cell.value.split(',')] as ailment}
+								<div class="table-inline-tooltip">
+									<Link href={`/hunter-notes/getting-started/ailments`}>
 										<InlineTooltip
-											tooltip="Weakness"
-											text={weakness}
-											icon={getElementIcon(weakness) === ''
-												? getAilmentIcon(weakness)
-												: getElementIcon(weakness)}
-										/>
-									</div>
-								{/each}
-							{:else if cell.key === 'habitats'}
-								{#each [...cell.value.split(',')] as habitat}
-									<div class="table-inline-tooltip">
-										<Link href={`/hunter-notes/locations`}>
-											<InlineTooltip
-												tooltip="Habitat"
-												iconType="file"
-												text={habitat}
-												icon={getHabitatIcon(habitat)}
-											/></Link
-										>
-									</div>
-								{/each}
-							{:else if cell.key === 'related' && cell.value !== '' && cell.value !== 'None' && cell.value !== null && cell.value !== undefined && cell.value !== ' '}
-								{#each [...cell.value.split(',')] as monster}
-									<div class="table-inline-tooltip">
-										<Link
-											href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(monster)?.displayName ?? '', { lower: true })}`}
-										>
-											<InlineTooltip
-												tooltip="Monster"
-												text={monster}
-												icon={getMonsterIcon(monster)}
-												iconType="file"
-											/></Link
-										>
-									</div>
-								{/each}
-							{:else}
-								<div>{cell.value}</div>
-							{/if}
-
-											{/snippet}
+											tooltip="Ailment"
+											text={ailment}
+											icon={getAilmentIcon(ailment)}
+										/></Link
+									>
+								</div>
+							{/each}
+						{:else if cell.key === 'elements'}
+							{#each [...cell.value.split(',')] as element}
+								<div class="table-inline-tooltip">
+									<Link href={`/hunter-notes/getting-started/elements`}>
+										<InlineTooltip
+											tooltip="Element"
+											text={element}
+											icon={getElementIcon(element)}
+										/></Link
+									>
+								</div>
+							{/each}
+						{:else if cell.key === 'weaknesses'}
+							{#each [...cell.value.split(',')] as weakness}
+								<div class="table-inline-tooltip">
+									<InlineTooltip
+										tooltip="Weakness"
+										text={weakness}
+										icon={getElementIcon(weakness) === ''
+											? getAilmentIcon(weakness)
+											: getElementIcon(weakness)}
+									/>
+								</div>
+							{/each}
+						{:else if cell.key === 'habitats'}
+							{#each [...cell.value.split(',')] as habitat}
+								<div class="table-inline-tooltip">
+									<Link href={`/hunter-notes/locations`}>
+										<InlineTooltip
+											tooltip="Habitat"
+											iconType="file"
+											text={habitat}
+											icon={getHabitatIcon(habitat)}
+										/></Link
+									>
+								</div>
+							{/each}
+						{:else if cell.key === 'related' && cell.value !== '' && cell.value !== 'None' && cell.value !== null && cell.value !== undefined && cell.value !== ' '}
+							{#each [...cell.value.split(',')] as monster}
+								<div class="table-inline-tooltip">
+									<Link
+										href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(monster)?.displayName ?? '', { lower: true })}`}
+									>
+										<InlineTooltip
+											tooltip="Monster"
+											text={monster}
+											icon={getMonsterIcon(monster)}
+											iconType="file"
+										/></Link
+									>
+								</div>
+							{/each}
+						{:else}
+							<p>{cell.value}</p>
+						{/if}
+					{/snippet}
 				</DataTable>
 			</div>
 		{:else}
-			<div><strong>No monsters found</strong></div>
-			<div>
+			<p><strong>No monsters found</strong></p>
+			<p>
 				Try adjusting your search or filter options to find what you're looking
 				for.
 			</p>

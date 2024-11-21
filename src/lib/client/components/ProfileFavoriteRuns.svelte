@@ -100,14 +100,14 @@
 							color="var(--ctp-red)"
 						/>
 					</div>
-					<div>
+					<p>
 						{favoriteRun.totalFavorites}
-					</div>
+					</p>
 				</div>
 			</div>
 		</a>
 	{/each}
-	<div class="see-more">
+	<div class="see-more paragraph-long-02">
 		<ClickableTileImage
 			imageSource={Favorite}
 			title="View Favorite Runs ({favoriteRuns.length})"

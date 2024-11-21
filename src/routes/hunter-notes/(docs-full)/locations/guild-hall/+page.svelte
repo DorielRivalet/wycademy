@@ -45,8 +45,8 @@
 						iconType="file"
 					/> and is a mini-game for up to four people. Cooking can activate effects
 					independent of armor skills.
-				</p>
-				<div>
+				</div>
+				<p>
 					The skill effect from cooking lasts for 90 minutes. If a new skill is
 					obtained, it overwrites the previous effect.
 				</p>
@@ -134,7 +134,7 @@
 						icon={LocationIcons.find((e) => e.name === 'Interception')?.icon}
 						iconType="file"
 					/> Event.
-				</p>
+				</div>
 				<div class="spaced-paragraph">
 					By claiming rewards from <InlineTooltip
 						text="Diva Defense"
@@ -142,7 +142,7 @@
 						icon={LocationIcons.find((e) => e.name === 'Interception')?.icon}
 						iconType="file"
 					/>, you will obtain some materials for the Adventure Boat.
-				</p>
+				</div>
 				<div class="spaced-paragraph">
 					You can send a Felyne to a specific location using the Adventure Boat,
 					which is the only way to obtain some items for Guild Special Cooking
@@ -155,7 +155,7 @@
 						icon={getItemIcon('Ticket')}
 						iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 					/> through the NPC on land after the boat departs.
-				</p>
+				</div>
 				<div class="spaced-paragraph">
 					After the boat returns, claim rewards in front of it. Results vary
 					from plain boxes and debris to shining treasures, depending on mission
@@ -175,7 +175,7 @@
 						icon={getItemIcon('Ticket')}
 						iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 					/> options that alter the results and minigame functions.
-				</p>
+				</div>
 				<div class="spaced-paragraph">
 					Recipes exist for each status you might want, with four result states
 					from cooking: Great Failure, Failure, Success, and Great Success.
@@ -185,7 +185,7 @@
 					monsters, use the Resistance recipes; 55 resistance is required to
 					avoid extreme blights, and you can get +83 elemental resistance from a
 					combination of SR Skills and Guild Cooking.
-				</p>
+				</div>
 				<div class="spaced-paragraph">
 					Unless you are confident in consistently achieving Great Success, use
 					recipes with red ingredients and the Success Level Up cooking option
@@ -298,7 +298,7 @@
 									iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 								/>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -415,7 +415,7 @@
 										</div>
 									{/if}
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -448,7 +448,7 @@
 						iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 						icon={getItemIcon('Scale')}
 					/> from the Guild Shop.
-				</p>
+				</div>
 
 				<CenteredFigure
 					width={'100%'}
@@ -480,31 +480,42 @@
 					/> with the poogie active. The poogie only affects the top 24 Main Reward
 					slots and does not change any of the other types of rewards (Sub Objectives,
 					Additional, Breaks, Partner, etc.).
-				</p>
+				</div>
 
-				<div>Only the guild leader can purchase and change clothes.</div>
+				<p>
+					<strong>Only the guild leader can purchase and change clothes.</strong
+					>
+				</p>
 			</div>
 			<section>
 				<SectionHeading level={3} title="Guild Store Discount" />
 				<div>
-					<div>
+					<p>
 						The discount, from guild rank 5, is activated by successfully
 						completing the "pat on the head" and "it seems pretty happy"
 						responses a specified number of times.
 					</p>
 
 					<UnorderedList class="spaced-list">
-						<ListItem>5 times successful: Guild shop 5% discount.</ListItem>
-						<ListItem>10 times successful: Guild shop 10% discount.</ListItem>
-						<ListItem>15 times successful: Guild shop 15% discount.</ListItem>
+						<ListItem
+							><p>5 times successful: Guild shop 5% discount.</p></ListItem
+						>
+						<ListItem
+							><p>10 times successful: Guild shop 10% discount.</p></ListItem
+						>
+						<ListItem
+							><p>15 times successful: Guild shop 15% discount.</p></ListItem
+						>
 					</UnorderedList>
 
-					<div>The effect disappears in any of the following events:</div>
+					<p>The effect disappears in any of the following events:</p>
 					<UnorderedList class="spaced-list">
-						<ListItem>12 hours have passed.</ListItem>
-						<ListItem>Logout.</ListItem>
+						<ListItem><p>12 hours have passed.</p></ListItem>
+						<ListItem><p>Logout.</p></ListItem>
 						<ListItem
-							>Petting poogie for a long time and it getting angry.</ListItem
+							><p>
+								Petting poogie for a long time and it getting angry.
+							</p></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -773,7 +784,7 @@
 								{#if cell.key === 'image'}
 									<img src={cell.value} alt="Guild poogie" />
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -919,7 +930,7 @@
 							</Toolbar>
 
 							{#snippet cell({ cell })}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/snippet}
 						</DataTable>
 					</div>

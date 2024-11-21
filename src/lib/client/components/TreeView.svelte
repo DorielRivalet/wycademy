@@ -1,15 +1,15 @@
 <!-- TreeView.svelte -->
 <script lang="ts">
 	import TreeNode from './TreeNode.svelte';
-	import type Component from 'svelte';
+	import type { Component } from 'svelte';
 
 	interface TreeItem {
 		id: string;
 		text: string;
 		href?: string;
-		icon?: Component;
+		icon?: Component | string;
 		nodes?: TreeItem[];
-		iconProps?: Object<any>;
+		iconProps?: Object;
 	}
 
 	interface Props {

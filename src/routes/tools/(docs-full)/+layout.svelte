@@ -39,17 +39,13 @@
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import KnifeIconWhite from '$lib/client/components/frontier/icon/item/Knife_Icon_White.svelte';
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
-	import {
-		LocationIcons,
-		getLocationIcon,
-	} from '$lib/client/modules/frontier/locations';
+	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
 	import {
 		getNavigationItemFromLink,
 		toolsInfo,
 	} from '$lib/client/modules/routes';
 	import { getPageThumbnail } from '$lib/client/modules/thumbnails';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
-	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
 	import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
 	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
@@ -126,14 +122,6 @@
 	function onTOCToggleButtonPress(e: MouseEvent) {
 		tocVisible = !tocVisible;
 		hunterNotesSidebarEnabledStore.set(tocVisible ? true : false);
-
-		if (tocVisible) {
-			tocClass = 'aside';
-			centerColumnClass = ''; // Reset to default width
-		} else {
-			tocClass = 'aside collapsed';
-			centerColumnClass = 'expanded'; // Increase width to full
-		}
 	}
 
 	let breadcrumbItems: URLItem[] = $state([]);
@@ -146,7 +134,16 @@
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
 
-	const treeData = [
+	interface TreeItem {
+		id: string;
+		text: string;
+		href?: string;
+		icon?: Component | string;
+		nodes?: TreeItem[];
+		iconProps?: Object;
+	}
+
+	const treeData: TreeItem[] = [
 		{
 			id: '/tools/calculator',
 			text: 'Calculator',
@@ -167,21 +164,18 @@
 				{
 					id: '/tools/calculator/crit-conversion',
 					href: '/tools/calculator/crit-conversion',
-
 					text: 'Crit Conversion',
 					icon: JewelIconWhite,
 				},
 				{
 					id: '/tools/calculator/gunlance-shells-and-wyvernfire',
 					href: '/tools/calculator/gunlance-shells-and-wyvernfire',
-
 					text: 'Gunlance Shells & Wyvernfire',
 					icon: getWeaponIcon('Gunlance'),
 				},
 				{
 					id: '/tools/calculator/heavy-bowgun-heat-beam',
 					href: '/tools/calculator/heavy-bowgun-heat-beam',
-
 					text: 'Heavy Bowgun Heat Beam',
 					icon: getWeaponIcon('Heavy Bowgun'),
 				},
@@ -242,14 +236,12 @@
 					id: '/tools/generator/armor',
 					href: '/tools/generator/armor',
 					icon: HelmetIconWhite,
-
 					text: 'Armor',
 				},
 				{
 					id: '/tools/generator/item',
 					href: '/tools/generator/item',
 					icon: MantleIconWhite,
-
 					text: 'Item',
 				},
 				{
@@ -274,7 +266,6 @@
 			id: '/tools/external',
 			text: 'External',
 			icon: Logo,
-
 			nodes: [
 				{
 					id: '/tools/external/overlay',
@@ -300,7 +291,6 @@
 					id: '/tools/search/armor-set-searcher',
 					href: '/tools/search/armor-set-searcher',
 					icon: getArmorIcon('Stand'),
-
 					text: 'Armor Set Searcher',
 				},
 				{
@@ -561,13 +551,6 @@
 	.breadcrumb {
 		margin-bottom: var(--cds-spacing-06);
 		margin-top: var(--cds-spacing-06);
-	}
-
-	.tree-view-item {
-		display: flex;
-		gap: 0.5rem;
-		align-items: center;
-		text-decoration: none;
 	}
 
 	.expand-TOC {

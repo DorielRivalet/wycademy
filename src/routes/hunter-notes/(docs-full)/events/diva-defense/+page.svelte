@@ -83,7 +83,7 @@
 					/>, are generally always available since Level 0 skills do not require
 					you to have an active Prayer or any contributions.
 				</div>
-				<div>
+				<p>
 					If you cannot find the Diva Skills menu, check if you are in a World
 					with the Diva Defense event enabled (shown as an icon in the bottom
 					right corner).
@@ -127,15 +127,15 @@
 					<strong>The Prayer Buff provides the following benefits:</strong>
 				</div>
 				<UnorderedList class="spaced-list"
-					><ListItem><div>True Raw +45</div></ListItem>
-					<ListItem><div>Doubled Elemental Damage</div></ListItem>
+					><ListItem><p>True Raw +45</p></ListItem>
+					<ListItem><p>Doubled Elemental Damage</p></ListItem>
 					<ListItem
-						><div>Increased Weapon Handling and Movement Speed (+2)</div></ListItem
+						><p>Increased Weapon Handling and Movement Speed (+2)</p></ListItem
 					>
-					<ListItem><div>Enables the weapon type’s Active Feature</div></ListItem>
-					<ListItem><div>Sharpness is upgraded by one tier</div></ListItem>
-					<ListItem><div>Activates a unique Twin Hiden skill</div></ListItem>
-					<ListItem><div>Boosts Interception Points to 1.2x</div></ListItem>
+					<ListItem><p>Enables the weapon type’s Active Feature</p></ListItem>
+					<ListItem><p>Sharpness is upgraded by one tier</p></ListItem>
+					<ListItem><p>Activates a unique Twin Hiden skill</p></ListItem>
+					<ListItem><p>Boosts Interception Points to 1.2x</p></ListItem>
 				</UnorderedList>
 				<div class="spaced-paragraph">
 					The Twin Hiden ability remains active while the prayer effect is
@@ -246,7 +246,7 @@
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/snippet}
 					</DataTable>
 				</div>

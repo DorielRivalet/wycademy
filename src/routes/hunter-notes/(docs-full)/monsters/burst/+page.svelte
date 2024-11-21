@@ -9,10 +9,10 @@
 	<div>
 		<SectionHeadingTopLevel title={'Burst'} />
 		<div>
-			<div>
+			<div class="paragraph-long-02">
 				Burst monsters are natural evolutions of the Gou monsters. These are
 				required to upgrade Gou armors and weapons beyond G Supremacy level.
-			</p>
+			</div>
 
 			<div class="page-turn">
 				<PageTurn pageUrlPathName={$page.url.pathname} />

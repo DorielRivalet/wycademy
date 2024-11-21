@@ -39,7 +39,7 @@
 </script>
 
 <div class="container">
-	<div class="stats">
+	<div class="stats paragraph-long-02">
 		<a href="/"><div><strong>{formattedFollowers}</strong> Followers</div></a>
 		<a href="/"><div><strong>{formattedFollowing}</strong> Following</div></a>
 	</div>

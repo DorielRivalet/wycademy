@@ -515,7 +515,7 @@
 	}
 
 	let {
-		theme,
+		theme = $bindable(),
 		totalHuntsRank = Math.trunc(Math.random() * 1000),
 		totalHuntsRankPercent = Math.trunc(Math.random() * 100),
 	}: Props = $props();
@@ -552,14 +552,14 @@
 	{:else}
 		{@const SvelteComponent = chart}
 		<div class="calendar-container">
-			<div>
+			<p>
 				<strong>Total quests completed: </strong>
 				<a href="/">
 					{hunts.length} (Rank #{totalHuntsRank}, Top {totalHuntsRankPercent}%)</a
 				>
 			</p>
 			<span class="year-dropdown-container">
-				<div>
+				<p>
 					{huntCount}
 					{huntCount === 1 ? 'quest' : 'quests'} completed in
 				</p>
@@ -665,7 +665,7 @@
 						<SvelteComponent data={chartData} options={chartOptions} />
 					</div>
 					<div class="comparison">
-						<div>Compare with user:</div>
+						<p>Compare with user:</p>
 						<Dropdown
 							type="inline"
 							light={true}

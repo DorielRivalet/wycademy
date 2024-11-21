@@ -24,8 +24,6 @@
 	import slugify from 'slugify';
 	import { guildCardBackgrounds } from '../modules/frontier/guild-card';
 
-	const formattedDate = formatDateTime(date);
-
 	const totalGuildCards = guildCardBackgrounds.filter((e) => !e.unused).length;
 
 	let selectedPage = $state('page1');
@@ -125,6 +123,8 @@
 		username = 'UserDemo',
 	}: Props = $props();
 
+	const formattedDate = formatDateTime(date);
+
 	function downloadImage() {
 		if (!browser) return;
 		let node = document.getElementById('guild-card-dom');
@@ -146,7 +146,8 @@
 
 <div class="spaced-paragraph">Information from the last quest completed.</div>
 <div class="spaced-paragraph">
-	<strong>Backgrounds Unlocked: </strong><a href="/">
+	<strong>Backgrounds Unlocked:</strong>
+	<a href="/">
 		{guildCardsUnlocked}/{totalGuildCards} (Rank #{guildCardsUnlockedRank}, Top {guildCardsUnlockedRankPercent}%)</a
 	>
 </div>

@@ -19,7 +19,7 @@
 	import type { LineChartOptions, ScaleTypes } from '@carbon/charts-svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
-	// import 'svelte-reactions/global.css';
+	// import 'svelte-reactions/global.css'; TODO
 	// import { Trigger } from 'svelte-reactions';
 	import { getWeaponIcon } from '../modules/frontier/weapons';
 	import { availableReactions } from '../modules/reactions';
@@ -87,8 +87,6 @@
 		}, [] as ReactionType[]);
 	}
 
-	const displayedRuns = Object.values(runs).slice(0, maxPinnedRuns);
-
 	interface Props {
 		theme: CarbonTheme;
 		runs?: RunSummary[];
@@ -96,7 +94,7 @@
 	}
 
 	let {
-		theme,
+		theme = $bindable(),
 		runs = [
 			{
 				runID: 1,
@@ -13636,6 +13634,8 @@
 		username = 'UserDemo',
 	}: Props = $props();
 
+	const displayedRuns = Object.values(runs).slice(0, maxPinnedRuns);
+
 	function getAllReactionsCount(reactions: ReactionType[]) {
 		return reactions.reduce((total, { quantity }) => total + quantity, 0);
 	}
@@ -13799,7 +13799,7 @@
 							/></span
 						>
 					{/snippet}
-					<div>{cell.value}</div></Tooltip
+					<p>{cell.value}</p></Tooltip
 				>
 			{:else if cell.key === 'favorites'}
 				<div class="favorites">
@@ -13834,7 +13834,7 @@
 					<result.component options={chartOptions} data={result.data} />
 				{/await}
 			{:else}
-				<div>{cell.value}</div>
+				<p>{cell.value}</p>
 			{/if}
 		{/snippet}
 	</DataTable>

@@ -27,7 +27,7 @@
 					iconType={'file'}
 					text="Sky Corridor"
 				/>.
-			</p>
+			</div>
 
 			<CenteredFigure
 				width={'100%'}
@@ -44,7 +44,7 @@
 					>Tower Decorations</strong
 				>, which gives skills without using slots, making it a powerful weapon
 				when built correctly. You cannot reverse most of the attribute upgrades.
-			</p>
+			</div>
 
 			<div class="spaced-paragraph">
 				Light versions of weapons have two sigils slots and a single decoration
@@ -68,7 +68,7 @@
 					icon={getTag('Armor Skill').icon}
 				/>, then it gives you that skill when you slot it into a weapon and
 				equip it. You can have a maximum of two skills on a weapon.
-			</p>
+			</div>
 
 			<CenteredFigure
 				width={'100%'}
@@ -85,9 +85,9 @@
 					text="Twr Removal Solution"
 					icon={getItemIcon('Medicine')}
 				/>.
-			</p>
+			</div>
 
-			<div>
+			<div class="spaced-paragraph">
 				The rest of the <strong>Tower Weapon</strong> materials are available at
 				the <InlineTooltip
 					icon={LocationIcons.find((e) => e.name === 'Road')?.icon}
@@ -101,7 +101,7 @@
 					text="Pulsating Liquid"
 				/> lets you adjust the properties of Tower Hunting Horns, Bows, Bowguns and
 				Gunlances.
-			</p>
+			</div>
 
 			<div class="spaced-paragraph">
 				<strong>Tower Weapons</strong> can be crafted by talking to the Cat
@@ -111,7 +111,7 @@
 					icon={LocationIcons.find((e) => e.name === 'Blacksmith')?.icon}
 					text="Blacksmith"
 				/>.
-			</p>
+			</div>
 
 			<div class="spaced-paragraph">
 				The Blue series of the tower weapons have 3 <strong>Tower Sigil</strong>
@@ -121,7 +121,7 @@
 				<strong>they do not have the Zenith Partbreaker effect</strong>. Zenith
 				Sigils affect any skills granted (including Exotics, Hybrids and from
 				Tower Decorations).
-			</p>
+			</div>
 
 			<div class="spaced-paragraph">
 				In addition to the tower gems like <InlineTooltip
@@ -144,7 +144,7 @@
 					text="Weapon Ribbon High"
 					tooltip="Item"
 				/>.
-			</p>
+			</div>
 
 			<CenteredFigure
 				width={'100%'}
@@ -154,14 +154,14 @@
 				figcaption="Tower Weapon upgrades."
 			/>
 
-			<p>
+			<div class="paragraph-long-02">
 				If you are looking for a <strong>Tower Weapon Simulator</strong>, you
 				can find it in the <Link
 					icon={ToolKit}
 					href="/tools/simulator/tower-weapon"
 					>Tools and Utilities section.</Link
 				>
-			</p>
+			</div>
 		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />

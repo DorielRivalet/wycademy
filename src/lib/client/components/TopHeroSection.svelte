@@ -81,7 +81,7 @@
 				</button>
 			</div>
 			<a class="arrow-down" href="#demo">
-				<div>See Demo</div>
+				<p>See Demo</p>
 				<ChevronDown />
 			</a>
 		</div>

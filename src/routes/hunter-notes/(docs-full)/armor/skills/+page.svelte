@@ -25,6 +25,10 @@
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import GouBoost from '$lib/client/components/frontier/icon/GouBoost.svelte';
 
+	const MyTore = getLocationIcon('My Tore');
+	const DivaDefense = getLocationIcon('Diva Defense');
+	const GuildHall = getLocationIcon('Guild Hall');
+
 	function getArmorSkillSlots(
 		skillSlotsUpInputArmorPieces: {
 			head: FrontierArmorType;
@@ -365,11 +369,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputZenithCuff ? '1' : '0.5'}
 								>
-									<img
-										alt="Zenith Cuff"
-										style="width: 4ch;"
-										src={getLocationIcon('My Tore')}
-									/>
+									<img alt="Zenith Cuff" style="width: 4ch;" src={MyTore} />
 								</div>
 								<div>
 									<Checkbox
@@ -383,11 +383,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputTrueHidenCuff ? '1' : '0.5'}
 								>
-									<img
-										alt="True Hiden Cuff"
-										style="width: 4ch;"
-										src={getLocationIcon('My Tore')}
-									/>
+									<img alt="True Hiden Cuff" style="width: 4ch;" src={MyTore} />
 								</div>
 								<div>
 									<Checkbox
@@ -415,11 +411,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputDivaSkill ? '1' : '0.5'}
 								>
-									<img
-										alt="Diva Skill"
-										style="width: 4ch;"
-										src={getLocationIcon('Diva Defense')}
-									/>
+									<img alt="Diva Skill" style="width: 4ch;" src={DivaDefense} />
 								</div>
 								<div>
 									<Checkbox
@@ -433,11 +425,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputGuildFood ? '1' : '0.5'}
 								>
-									<img
-										alt="Guild Food"
-										style="width: 4ch;"
-										src={getLocationIcon('Guild Hall')}
-									/>
+									<img alt="Guild Food" style="width: 4ch;" src={GuildHall} />
 								</div>
 								<div>
 									<Checkbox
@@ -466,7 +454,7 @@
 					</div>
 					<div class="skill-slots-result">
 						<Tooltip align="start"
-							><div>
+							><p>
 								The Skill Slots naturally given by an armor piece. Does not
 								count Skill Slots Up.
 							</p></Tooltip
@@ -479,7 +467,7 @@
 
 					<div class="skill-slots-result">
 						<Tooltip align="start">
-							<div>
+							<p>
 								The maximum skill slots from armor pieces, including Skill Slots
 								Up.
 							</p>
@@ -492,7 +480,7 @@
 
 					<div class="skill-slots-result">
 						<Tooltip align="start">
-							<div>
+							<p>
 								The maximum skill slots a full set of gear can provide (armor,
 								weapon and cuffs).
 							</p>
@@ -505,7 +493,7 @@
 
 					<div class="skill-slots-result">
 						<Tooltip align="start">
-							<div>
+							<p>
 								Additional skill slots that can be added through buffs or other
 								means (anything that is not an armor piece).
 							</p>
@@ -518,7 +506,7 @@
 
 					<div class="skill-slots-result">
 						<Tooltip align="start">
-							<div>
+							<p>
 								The total number of skill slots available after all
 								enhancements.
 							</p>
@@ -528,7 +516,7 @@
 							{totalSkillSlots}
 						</div>
 					</div>
-					<div>
+					<p>
 						In practice, you're unlikely to create a set with 19 skills. For
 						early Z sets, a practical maximum is around 15 skills, with Gunners
 						benefiting the most since they still aim to include the single
@@ -540,7 +528,7 @@
 			<section>
 				<SectionHeading level={2} title="Skill Priority" />
 				<div>
-					<div>
+					<div class="spaced-paragraph">
 						<strong
 							>Not to be confused with what skill you should prioritize</strong
 						>; Skill Priority, or <strong>Skill Replacement Order</strong>,
@@ -594,7 +582,7 @@
 								</div>
 							</Toolbar>
 							{#snippet cell({ cell })}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/snippet}
 						</DataTable>
 					</div>

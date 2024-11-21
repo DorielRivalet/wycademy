@@ -309,7 +309,7 @@
 			</div>
 			<div class="stats-lists">
 				<div class="elements">
-					<strong>Elements: </strong>
+					<strong>Elements:</strong>
 					{#if monster.elements !== undefined && monster.elements.length > 0}
 						{#each monster.elements as element}
 							<InlineTooltip
@@ -324,7 +324,7 @@
 					{/if}
 				</div>
 				<div class="ailments">
-					<strong>Ailments: </strong>
+					<strong>Ailments:</strong>
 					{#if monster.ailments !== undefined && monster.ailments.length > 0}
 						<div class="ailments-list">
 							{#each monster.ailments as ailment}
@@ -341,7 +341,7 @@
 					{/if}
 				</div>
 				<div class="weaknesses">
-					<strong>Weaknesses: </strong>
+					<strong>Weaknesses:</strong>
 					{#if monster.weaknesses !== undefined && monster.weaknesses.length > 0}
 						<div class="weaknesses-list">
 							{#each monster.weaknesses as weakness}
@@ -366,17 +366,19 @@
 						None
 					{/if}
 				</div>
-				<div>
-					<strong>ID: </strong>{monsterID} (0x{Number.parseInt(`${monsterID}`)
+				<p>
+					<strong>ID:</strong>
+					{monsterID} (0x{Number.parseInt(`${monsterID}`)
 						.toString(16)
 						.toUpperCase()
 						.padStart(2, '0')})
 				</p>
-				<div>
-					<strong>Size Type: </strong>{monster.type}
-				</div>
-				<div>
-					<strong>Sizes: </strong>
+				<p>
+					<strong>Size Type:</strong>
+					{monster.type}
+				</p>
+				<div class="paragraph-long-02">
+					<strong>Sizes:</strong>
 					{#if monster.sizes && monster.sizes.length > 0}
 						<UnorderedList class="spaced-list">
 							{#each monster.sizes as size}
@@ -386,12 +388,13 @@
 					{:else}
 						<div>Not found.</div>
 					{/if}
-				</p>
-				<div>
-					<strong>Rank: </strong>{monster.rank}
 				</div>
-				<div>
-					<strong>Render: </strong>
+				<p>
+					<strong>Rank:</strong>
+					{monster.rank}
+				</p>
+				<div class="paragraph-long-02">
+					<strong>Render:</strong>
 					<ImageDialog
 						type="file"
 						src={monster.fullRender}
@@ -399,14 +402,15 @@
 						width={32}
 						height={32}
 					/>
-				</p>
-				<div>
-					<strong>Generation: </strong>{monster.generation}
 				</div>
+				<p>
+					<strong>Generation:</strong>
+					{monster.generation}
+				</p>
 			</div>
 			<div class="habitats">
-				<div>
-					<strong>Habitats: </strong>
+				<div class="paragraph-long-02">
+					<strong>Habitats:</strong>
 					{#if monster.habitats && monster.habitats.length > 0}
 						<UnorderedList class="spaced-list">
 							{#each monster.habitats as habitat}
@@ -429,14 +433,14 @@
 							{/each}
 						</UnorderedList>
 					{:else}
-						<div>Not found.</div>
+						<p>Not found.</p>
 					{/if}
-				</p>
+				</div>
 			</div>
 			<div class="related-monsters">
-				<div>
+				<p>
 					<strong>Related Monsters: </strong>
-				</div>
+				</p>
 
 				{#if monster.relatedMonsters && monster.relatedMonsters.length > 0}
 					<UnorderedList class="spaced-list">
@@ -473,7 +477,7 @@
 						{/each}
 					</UnorderedList>
 				{:else}
-					<div>Not found.</div>
+					<p>Not found.</p>
 				{/if}
 			</div>
 		</div>
@@ -497,7 +501,7 @@
 					</div>
 					<div class="hitzone-colors-description">
 						<UnorderedList class="spaced-list">
-							<ListItem>
+							<ListItem class="paragraph-long-02">
 								<button
 									type="button"
 									class="dot"
@@ -505,7 +509,7 @@
 									style="background-color: var(--ctp-red)"
 								></button>Red: Highest values for this hitzone type.</ListItem
 							>
-							<ListItem
+							<ListItem class="paragraph-long-02"
 								><button
 									type="button"
 									class="dot"
@@ -513,7 +517,7 @@
 									style="background-color: var(--ctp-peach)"
 								></button>Orange: Second highest values for this hitzone type.</ListItem
 							>
-							<ListItem
+							<ListItem class="paragraph-long-02"
 								><button
 									type="button"
 									class="dot"
@@ -521,7 +525,7 @@
 									style="background-color: var(--ctp-yellow)"
 								></button>Yellow: Third highest values for this hitzone type.</ListItem
 							>
-							<ListItem
+							<ListItem class="paragraph-long-02"
 								><button
 									type="button"
 									class="dot"
@@ -529,7 +533,7 @@
 									style="background-color: var(--ctp-green)"
 								></button>Green: Values higher than 0 for this hitzone type.</ListItem
 							>
-							<ListItem
+							<ListItem class="paragraph-long-02"
 								><button
 									type="button"
 									class="dot"
@@ -540,7 +544,7 @@
 							>
 						</UnorderedList>
 					</div>
-					<div>
+					<p>
 						To see how much damage you can deal to each hitzone, you can consult
 						our <Link href="/tools/calculator/damage" icon={ToolKit}
 							>Damage Calculator.</Link
@@ -668,7 +672,7 @@
 										.toUpperCase() + cell.key.slice(1)]?.find((e) => e === cell.value)}
 									<div><strong>{cell.value}</strong></div>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -707,7 +711,7 @@
 	</div>
 {:else}
 	<div class="not-found-container">
-		<div>Monster not found</div>
+		<p>Monster not found</p>
 		<img src={EspinasSleeping} alt="Espinas sleeping" width="128" />
 		<Button
 			icon={PreviousOutline}

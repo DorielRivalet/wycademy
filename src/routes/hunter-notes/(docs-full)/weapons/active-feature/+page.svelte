@@ -79,9 +79,9 @@
 					figcaption="During a quest with active feature enabled, the weapon icon next to
 						the player name will shine."
 				/>
-				<div>
+				<p>
 					Final Bitfield Value: {activeFeatureFinalBitfieldValue}
-				</div>
+				</p>
 			</div>
 			<div class="active-feature-table">
 				<DataTable
@@ -124,7 +124,7 @@
 								gap={'0.5rem'}
 							/>
 						{:else}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/if}
 					{/snippet}
 				</DataTable>
@@ -136,13 +136,13 @@
 			<div>
 				<UnorderedList>
 					<ListItem
-						><div>
+						><p>
 							The Taiwanese version of the game used to give x1.5 extra damage
 							to the weapon, in addition to its other Active Feature effects,
 							although the extra damage was later removed. Additionally, it gave
 							the <strong>Active Feature</strong> effect to all weapons at the same
 							time, during the last day before shutdown.
-						</div></ListItem
+						</p></ListItem
 					>
 				</UnorderedList>
 			</div>

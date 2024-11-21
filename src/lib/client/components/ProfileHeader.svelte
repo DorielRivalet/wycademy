@@ -10,11 +10,6 @@
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import LogoX from 'carbon-icons-svelte/lib/LogoX.svelte';
 
-	function randomChoice(arr: any[]) {
-		return arr[Math.floor(arr.length * Math.random())];
-	}
-
-	const countryName = countries[countryCode].name;
 	interface Props {
 		name?: any;
 		medal?: string;
@@ -31,6 +26,10 @@
 		badge3Rank?: any;
 	}
 
+	function randomChoice(arr: any[]) {
+		return arr[Math.floor(arr.length * Math.random())];
+	}
+
 	let {
 		name = generateRandomUsername() + `#${Math.trunc(Math.random() * 1000)}`,
 		medal = '🥇',
@@ -44,8 +43,10 @@
 		badge3Icon = randomChoice(WeaponTypes).icon,
 		badge1Rank = Math.trunc(Math.random() * 99),
 		badge2Rank = Math.trunc(Math.random() * 99),
-		badge3Rank = Math.trunc(Math.random() * 99)
+		badge3Rank = Math.trunc(Math.random() * 99),
 	}: Props = $props();
+
+	const countryName = countries[countryCode].name;
 
 	const SvelteComponent = $derived(badge1Icon);
 	const SvelteComponent_1 = $derived(badge2Icon);
@@ -62,37 +63,37 @@
 				<div class="badge">
 					<SvelteComponent />
 				</div>
-				<a href="/">#{badge1Rank}</a>
+				<a href="/leaderboard">#{badge1Rank}</a>
 			</div>
 			<div class="badge-container">
 				<div class="badge">
 					<SvelteComponent_1 />
 				</div>
-				<a href="/">#{badge2Rank}</a>
+				<a href="/leaderboard">#{badge2Rank}</a>
 			</div>
 			<div class="badge-container">
 				<div class="badge">
 					<SvelteComponent_2 />
 				</div>
-				<a href="/">#{badge3Rank}</a>
+				<a href="/leaderboard">#{badge3Rank}</a>
 			</div>
 		</div>
 	</div>
 	<h1 class="username">{name} {medal}</h1>
 	<h2 class="title">{title}</h2>
 	<div class="country">
-		<a href="/">
+		<a href="/leaderboard">
 			<span class="fi fi-{countryCode.toLowerCase()}"></span>
 			<span>{countryName}</span>
 		</a>
 	</div>
 	<div class="socials">
-		<div>
+		<p>
 			<OutboundLink href="https://x.com/{twitterName}"><LogoX /></OutboundLink>
-		</div>
-		<div>
+		</p>
+		<p>
 			<Tooltip triggerText="" icon={LogoDiscord}>{discordName}</Tooltip>
-		</div>
+		</p>
 	</div>
 </div>
 

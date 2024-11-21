@@ -209,9 +209,9 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 					icon={getAilmentIcon('Stun')}
 				/> damage and KOing monsters, while also dealing substantial damage with
 				its charged attacks.
-			</p>
+			</div>
 
-			<div>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -220,7 +220,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
@@ -234,7 +234,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 						/> base. It allows for charges that lead into either a
 						<strong>Super Pound</strong> or a <strong>Spin Attack</strong>,
 						along with all the standard and new attacks introduced in Frontier.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -252,7 +252,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							iconType="component"
 							icon={getWeaponIcon('Hammer')}
 						/>.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -274,7 +274,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							icon={getAilmentIcon('Stun')}
 						/> resistance typically around 300+). However, if you mistime the Level
 						4 charge, it will downgrade to a Level 2 charge.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -293,7 +293,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 						While dash charging, you can only perform charges while moving, and stopping
 						will cause you to lose your charge, meaning you cannot use a normal
 						<strong>Super Pound.</strong>
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						This style also adds a Level 5 charge, a front flip that deals
 						60･45･145 or 250 motion value and at least 200 <InlineTooltip
@@ -307,7 +307,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							iconType="component"
 							icon={getAilmentIcon('Stun')}
 						/> option available.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						Additionally, there is a new Swinging attack similar to the infinite
 						swipes combo. This attack does not consume stamina and leads to an
@@ -330,14 +330,14 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						x1.5 <InlineTooltip
 							text="Stun"
 							tooltip="Ailment"
 							iconType="component"
 							icon={getAilmentIcon('Stun')}
 						/> damage. Synergizes well with Sigil and Caravan Skills.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -375,7 +375,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -424,7 +424,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 										icon={getItemIcon('Jewel')}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -478,7 +478,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 										maxRating={3}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -489,9 +489,9 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Golf swing attacks are practically obsolete; it’s better to
 								focus on charging your attacks. <InlineTooltip
 									tooltip="Armor Skill"
@@ -502,7 +502,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Length preference for <InlineTooltip
 									tooltip="Weapon"
 									text="Hammer"
@@ -515,7 +515,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Three Worlds Protection"
@@ -526,7 +526,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Unlike in the mainline games, every source of additional stun/KO
 								damage (like Caravan Skill + Stun Sigil) is recommended, as they
 								stack and significantly contribute to <InlineTooltip
@@ -538,7 +538,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Due to the increased raw damage from timed charges with <InlineTooltip
 									tooltip="Armor Skill"
 									text="Hiden"
@@ -549,7 +549,7 @@ Attack x1.3 when releasing a perfectly timed charge attack for that entire combo
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								You can dodge some very low-profile attacks with the leap from
 								the Level 5 charge.
 							</div></ListItem

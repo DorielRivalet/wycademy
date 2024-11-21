@@ -195,7 +195,7 @@
 				but powerful, with charge attacks that capitalize on openings and precise
 				timing. With this weapon, <strong>raw damage</strong> reigns supreme, while
 				elemental or status effects are secondary.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				The <InlineTooltip
 					text="Great Sword"
@@ -218,9 +218,9 @@
 					icon={getMonsterIcon('Yian Kut-Ku')}
 				/> pecking, you'll take damage from each hit, potentially far exceeding the
 				damage of a single hit due to the loss of iframes from the knockdown.
-			</p>
+			</div>
 
-			<div>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -229,7 +229,7 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
@@ -243,7 +243,7 @@
 						/> moveset, similar to the one used since MH Dos. It includes a charge
 						on the vertical downswing, which you should use to hit monsters with
 						powerful strikes.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -266,7 +266,7 @@
 							icon={getItemIcon('Jewel')}
 						/> without taking chip damage. While this counter is highly effective,
 						it doesn’t offer the consistent damage output of a fully charged attack.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -283,27 +283,27 @@
 						<strong>Heaven Style</strong>, making it a more skill-based option,
 						as it removes the ability to manually guard, offering stronger
 						charges and a more dynamic guarding method instead.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						The charge levels in <strong>Storm Style</strong> are as follows:
 					</div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem>
-							<div>Lv1: 92</div>
+							<div class="paragraph-long-02">Lv1: 92</div>
 						</ListItem>
 						<ListItem>
-							<div>Lv2: 112 x1.1</div>
+							<div class="paragraph-long-02">Lv2: 112 x1.1</div>
 						</ListItem>
 						<ListItem>
-							<div>Lv3: 157 x1.2</div>
+							<div class="paragraph-long-02">Lv3: 157 x1.2</div>
 						</ListItem>
 						<ListItem>
-							<div>
+							<div class="paragraph-long-02">
 								Lv4: 200 x1.3 (downgrades to Lv2: 112 x1.1 if mistimed). <strong
 									>Proper timing for the Level 4 charge is crucial, as missing
 									it can waste up to 136 motion value.</strong
 								>
-							</p>
+							</div>
 						</ListItem>
 					</UnorderedList>
 				</div>
@@ -320,7 +320,7 @@
 						Additionally, you can build up an invisible meter to unleash a
 						<strong>Shining Sword</strong> attack, a 15-hit combo dealing around
 						455-467 total motion.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						As with the other Extreme Styles, you can run with your <InlineTooltip
 							text="Great Sword"
@@ -332,7 +332,7 @@
 						limited by its slow movement and reliance on rolls for closing distance.
 						You can perform a horizontal slash with iframes or a charged upswing
 						from a dash, providing versatility in combat.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						This style allows you to use charges from both Earth and Storm
 						Styles interchangeably and even combo them, making it particularly
@@ -353,7 +353,7 @@
 							iconType="component"
 							icon={getWeaponIcon('Great Sword')}
 						/> excels in elemental and status output.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -365,7 +365,7 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						+100% Affinity for unsheathe attacks, stacking with any existing
 						affinity. Pairs well with <InlineTooltip
 							text="Critical Conversion"
@@ -380,7 +380,7 @@
 							icon={getItemIcon('Jewel')}
 						/> (excluding the +30%) during these actions.
 						<strong>It does not activate with Shining Sword.</strong>
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -418,7 +418,7 @@
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -467,7 +467,7 @@
 										icon={getItemIcon('Jewel')}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -521,7 +521,7 @@
 										maxRating={3}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -532,9 +532,9 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								You can be a liability when it comes to friendly fire. The item <InlineTooltip
 									tooltip="Item"
 									text="Elixir of Peace"
@@ -544,7 +544,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Hold R1 before unsheathing to perform a regular overhead attack;
 								otherwise, you’ll execute a special wide slash (which can still
 								combo into any charged slash). You can also perform upswing
@@ -552,14 +552,14 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Very Long length is the most popular choice due to its vertical
 								slices and the added flexibility in maintaining distance. Long
 								length is still quite usable.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Combat Supremacy"
@@ -586,7 +586,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Great Sword"
@@ -608,13 +608,13 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The unsheathed running hop attack has a few invincibility frames
 								at the start, but it’s rarely used.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Well-timed parries with <InlineTooltip
 									tooltip="Item"
 									text="Great Sword Hiden"
@@ -635,13 +635,13 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Utilizing large amounts of hitstop can be a valid strategy for
 								avoiding certain attacks.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								If you have 30 <InlineTooltip
 									tooltip="Item"
 									text="Power Crystals"

@@ -311,7 +311,7 @@
 					{/await}
 				</div>
 			{/if}
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -342,7 +342,7 @@
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Special Items'} />
 		<div>
-			<div>
+			<div class="spaced-paragraph">
 				The following are items that either alter quest rewards when used or are
 				exclusive to <InlineTooltip
 					tooltip="Game"
@@ -421,7 +421,7 @@
 								{/if}
 							</div>
 						{:else}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/if}
 					{/snippet}
 				</DataTable>

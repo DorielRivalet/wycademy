@@ -238,7 +238,7 @@
 	<div class="category">
 		<div class="name">
 			<Book size={32} />
-			<div>{category}</div>
+			<p>{category}</p>
 		</div>
 	</div>
 	<ProgressIndicator preventChangeOnClick currentIndex={currentItemIndex}>
@@ -336,9 +336,9 @@
 			{/if}
 		</div>
 	{:else}
-		<div>
+		<p>
 			You completed the quiz! Your final score is: {currentScore}/{maxScore}
-		</div>
+		</p>
 		<div class="gauge-container">
 			<div class="gauge">
 				{#if resultsGaugeLoaded}
@@ -353,9 +353,9 @@
 			</div>
 		</div>
 		{#if currentScore === maxScore}
-			<div>Congratulations! You've obtained the perfect score.</div>
+			<p>Congratulations! You've obtained the perfect score.</p>
 		{/if}
-		<div>Would you like to retry?</div>
+		<p>Would you like to retry?</p>
 	{/if}
 	<div>
 		{#if currentItemIndex + 1 < items.length}

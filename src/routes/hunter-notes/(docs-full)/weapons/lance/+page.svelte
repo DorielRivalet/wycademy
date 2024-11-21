@@ -222,7 +222,7 @@
 					iconType="component"
 					icon={getItemIcon('Jewel')}
 				/> can help fill that gap.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Lances"
@@ -238,9 +238,9 @@
 				(which equals 25.2) is greater than 20, resulting in
 				<strong>Impact</strong> damage being dealt instead of
 				<strong>Cutting</strong>.
-			</p>
+			</div>
 
-			<div>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -249,7 +249,7 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
@@ -262,7 +262,7 @@
 							icon={getWeaponIcon('Lance')}
 						/> style, featuring the basic forward and upward thrusts along with all
 						the new original motions introduced in Frontier.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -276,7 +276,7 @@
 						<strong>Sky Stabs</strong> are vertical thrusts with a motion value of
 						38 for the first three stabs and 43 for the last, making them as powerful
 						as the final hit in a normal upthrust combo.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -301,7 +301,7 @@
 						/>, though it’s not particularly effective for that purpose. The
 						shield charge can only be followed up with either evades or a
 						<strong>Charge Thrust.</strong>
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -323,7 +323,7 @@
 						guarding frames and no knockback, followed by either a normal thrust
 						(50 motion) or a <strong>Jump Thrust</strong>, which covers more
 						distance but also has a higher motion value of 50.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						In addition to running actions, <strong>Extreme Style</strong>
 						introduces two significant new thrusts:
@@ -338,7 +338,7 @@
 						<strong>Standard Thrusts</strong>, a
 						<strong>Finishing Thrust</strong>, and an
 						<strong>Evasion Thrust</strong>.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> also features a new
 						<strong>Guard Gauge</strong> interface with three
@@ -364,7 +364,7 @@
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/>.
-					</p>
+					</div>
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
@@ -398,7 +398,7 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						<InlineTooltip
 							text="Guard"
 							tooltip="Armor Skill"
@@ -422,7 +422,7 @@
 							icon={getItemIcon('Jewel')}
 							iconColor={getItemColor('Red')}
 						/>.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -460,7 +460,7 @@
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -509,7 +509,7 @@
 										icon={getItemIcon('Jewel')}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -563,7 +563,7 @@
 										maxRating={3}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -574,15 +574,15 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Long length is the most common on Zenith Lances, although Very
 								Long length can be useful too.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Lance"
@@ -599,7 +599,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								With <InlineTooltip
 									text="Lance Hiden"
 									tooltip="Armor Skill"
@@ -632,7 +632,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Zenith-level hazards will always cause pushback unless you’re
 								using <strong>Heavy Guard</strong>,
 								<strong>Guard Advance</strong>, or
@@ -640,7 +640,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The <strong>Shield Bash</strong> while running prevents any
 								pushback from guarding and has innate <InlineTooltip
 									text="Guard+2"
@@ -652,13 +652,13 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The <strong>Ranged Guard</strong> works by blocking the hit yourself
 								to protect other players.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Blocking <InlineTooltip
 									text="Heavy Bowgun's"
 									tooltip="Weapon"
@@ -669,7 +669,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								In order to deal the most damage with <InlineTooltip
 									text="Reflect"
 									tooltip="Armor Skill"
@@ -690,25 +690,25 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<strong>Backhop thrusts</strong> return to guarding faster, and you
 								can perform them from a neutral stance.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Guard lancing can be a useful way to learn parrying with other
 								weapons.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The stamina buff varies in duration depending on how much
 								stamina you are using.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								With a <strong>Heavy Guard</strong>, <InlineTooltip
 									text="Guard+2"
 									tooltip="Armor Skill"
@@ -728,9 +728,13 @@
 								/>.
 							</div></ListItem
 						>
-						<ListItem><div>The attack buff lasts 3 minutes.</div></ListItem>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
+								The attack buff lasts 3 minutes.
+							</div></ListItem
+						>
+						<ListItem
+							><div class="paragraph-long-02">
 								The area guard can block more attacks than guard shields
 								available. It will continue blocking attacks, including after
 								all guard shields are consumed and before the animation ends.
@@ -738,7 +742,7 @@
 						>
 
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The area guard is capable of blocking the needle from <InlineTooltip
 									tooltip="Monster"
 									text="Zenith Hyujikiki"
@@ -754,7 +758,7 @@
 						>
 
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								You cannot heal <InlineTooltip
 									tooltip="Weapon"
 									text="Dual Swords"
@@ -765,7 +769,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								This weapon type is very useful in <InlineTooltip
 									tooltip="Location"
 									text="Hunter's Road"

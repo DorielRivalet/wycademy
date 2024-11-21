@@ -102,13 +102,21 @@
 					iconColor={getItemColor('Blue')}
 				/>, which grants buffs for about 1.5 hours.
 			</div>
-			<div class="spaced-paragraph">The song provides the following buffs:</p>
+			<div class="spaced-paragraph">The song provides the following buffs:</div>
 			<UnorderedList class="spaced-list">
 				<ListItem
-					><div>Extra Souls during the Hunter Festival (up to +2)</div></ListItem
+					><div class="paragraph-long-02">
+						Extra Souls during the Hunter Festival (up to +2)
+					</div></ListItem
 				>
-				<ListItem><div>Increased GRP and GSRP (up to 1.25x)</div></ListItem>
-				<ListItem><div>Divine Protection</div></ListItem>
+				<ListItem
+					><div class="paragraph-long-02">
+						Increased GRP and GSRP (up to 1.25x)
+					</div></ListItem
+				>
+				<ListItem
+					><div class="paragraph-long-02">Divine Protection</div></ListItem
+				>
 			</UnorderedList>
 			<div class="spaced-paragraph">
 				The buffs start off relatively weak, so it’s highly recommended to
@@ -217,13 +225,13 @@
 								)}
 							/>
 						{:else}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/if}
 					{/snippet}
 				</DataTable>
 			</div>
 
-			<section>
+			<section class="diva-questline">
 				<SectionHeading level={2} title="Diva Questline" />
 				<div>
 					<div class="spaced-paragraph">
@@ -483,7 +491,9 @@
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><div>Talk to the Legendary Rasta Frau</div></ListItem>
+										<ListItem
+											><div>Talk to the Legendary Rasta Frau</div></ListItem
+										>
 										<ListItem
 											><div>
 												Return to the <InlineTooltip
@@ -514,7 +524,9 @@
 												/>
 											</div></ListItem
 										>
-										<ListItem><div>Talk to the Legendary Rasta Frau</div></ListItem>
+										<ListItem
+											><div>Talk to the Legendary Rasta Frau</div></ListItem
+										>
 										<ListItem
 											><div>
 												Return to the <InlineTooltip
@@ -564,7 +576,9 @@
 												/>
 											</div></ListItem
 										>
-										<ListItem><div>Talk to the Legendary Rasta Frau</div></ListItem>
+										<ListItem
+											><div>Talk to the Legendary Rasta Frau</div></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
@@ -771,7 +785,9 @@
 										<ListItem><div>Hunt 1 Pokaradon</div></ListItem>
 										<ListItem><div>Hunt 1 Midogaron</div></ListItem>
 										<ListItem
-											><div>Talk to NPC next to Guild Hall entrance</div></ListItem
+											><div>
+												Talk to NPC next to Guild Hall entrance
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
@@ -885,7 +901,9 @@
 											</div></ListItem
 										>
 										<ListItem
-											><div>Hunt 1 Pokaradon with partner present.</div></ListItem
+											><div>
+												Hunt 1 Pokaradon with partner present.
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
@@ -897,7 +915,9 @@
 											</div></ListItem
 										>
 										<ListItem
-											><div>Hunt 1 Midogaron with partner present.</div></ListItem
+											><div>
+												Hunt 1 Midogaron with partner present.
+											</div></ListItem
 										>
 										<ListItem
 											><div>
@@ -1105,7 +1125,8 @@
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><div>Hunt 1 Anorupatisu (Preset Quest)</div></ListItem
+										<ListItem
+											><div>Hunt 1 Anorupatisu (Preset Quest)</div></ListItem
 										>
 										<ListItem
 											><div>
@@ -1119,8 +1140,11 @@
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><div>Diva Weapon Materials (1st Series)</div></ListItem>
-								<ListItem><div>(2 Gems with Hunter Challenge Reward)</div></ListItem
+								<ListItem
+									><div>Diva Weapon Materials (1st Series)</div></ListItem
+								>
+								<ListItem
+									><div>(2 Gems with Hunter Challenge Reward)</div></ListItem
 								>
 							</UnorderedList>
 						</div>
@@ -1151,7 +1175,9 @@
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><div>Speak to Leila (Tonfa Legendary)</div></ListItem>
+										<ListItem
+											><div>Speak to Leila (Tonfa Legendary)</div></ListItem
+										>
 										<ListItem><div>Solo Hunt 1 Diorex</div></ListItem>
 										<ListItem><div>Speak to Leila</div></ListItem>
 										<ListItem
@@ -1168,7 +1194,9 @@
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><div>Hunt 1 Burst Species Meraginasu</div></ListItem>
+										<ListItem
+											><div>Hunt 1 Burst Species Meraginasu</div></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
@@ -1377,7 +1405,8 @@
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><div>1 Burst (G Rank) Garuba Daora</div></ListItem>
+										<ListItem><div>1 Burst (G Rank) Garuba Daora</div></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
@@ -1398,6 +1427,8 @@
 </TableOfContentsPage>
 
 <style lang="scss">
+	@use '@carbon/type' as type;
+
 	.page-turn {
 		margin-top: 4rem;
 	}
@@ -1419,5 +1450,9 @@
 	.rewards {
 		margin-top: 2rem;
 		font-weight: bold;
+	}
+
+	.diva-questline div {
+		@include type.type-style('body-02');
 	}
 </style>

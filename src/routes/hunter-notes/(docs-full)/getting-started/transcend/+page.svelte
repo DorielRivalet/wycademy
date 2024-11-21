@@ -844,7 +844,7 @@
 					{/await}
 				</div>
 			{/if}
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -978,7 +978,7 @@
 								/>
 							</div>
 						{:else}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/if}
 					{/snippet}
 				</DataTable>
@@ -1029,7 +1029,7 @@
 								/>
 							</div>
 						{:else}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/if}
 					{/snippet}
 				</DataTable>
@@ -1101,13 +1101,13 @@
 										/>
 									</div>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
 					</div>
 
-					<div>
+					<p>
 						<strong>Ancient Hunting Books</strong> are rewarded upon reaching certain
 						milestones during these events.
 					</p>
@@ -1150,7 +1150,7 @@
 						and attacking with weapons will cause new hit animations depending on
 						the element used.
 					</div>
-					<div>
+					<p>
 						After landing enough hits, the monster is surrounded by an aura, a
 						sound will play, and the icon will change to a carving knife,
 						indicating that you can perform an <strong
@@ -1183,7 +1183,7 @@
 							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
 						/> state. Taking damage can slightly speed up the charge time.
 					</div>
-					<div>
+					<div class="paragraph-long-02">
 						The times listed for the <InlineTooltip
 							tooltip="Buff"
 							text="Transcend"
@@ -1242,7 +1242,7 @@
 										/>
 									</div>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -1373,13 +1373,13 @@
 										/></button
 									>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
 					</div>
 
-					<div>
+					<p>
 						The burst can be canceled by mistake if you barely fall off a ledge,
 						as shown below.
 					</p>
@@ -1400,9 +1400,9 @@
 			<section>
 				<SectionHeading level={2} title="Locking Buffs" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem>
-							<div>
+							<div class="paragraph-long-02">
 								You can lock certain <InlineTooltip
 									tooltip="Buff"
 									text="Transcend"
@@ -1413,13 +1413,13 @@
 							</div></ListItem
 						>
 						<ListItem>
-							<div>
+							<div class="paragraph-long-02">
 								Locking an element and using a weapon that includes it
 								<strong>does not</strong> deactivate that element's burst.
 							</div></ListItem
 						>
 						<ListItem>
-							<div>
+							<div class="paragraph-long-02">
 								Locking a buff that is applied outside the active duration, like
 								Focus,
 								<strong>does not</strong> deactivate that buff.
@@ -1432,7 +1432,7 @@
 			<section>
 				<SectionHeading level={2} title="Multiplayer" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						In multiplayer, you can extend the duration of <InlineTooltip
 							tooltip="Buff"
 							text="Transcend"

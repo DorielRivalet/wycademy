@@ -97,7 +97,7 @@
 	<div>
 		<SectionHeadingTopLevel title={'Rasta Bar'} />
 		<div>
-			<div>
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					icon={getLocationIcon('Rasta Bar')}
 					text="Rasta Bar"
@@ -114,7 +114,7 @@
 					tooltip="Location"
 					iconType="file"
 				/>.
-			</p>
+			</div>
 			<section>
 				<SectionHeading level={2} title="Legendary Rastas" />
 				<div>
@@ -133,7 +133,7 @@
 							>Note that equipment given to a Partner cannot be retrieved
 							aftewards.</strong
 						>
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						Partners can achieve DPS levels comparable to paid Premium Rastas,
 						but they excel in providing support, making them a valuable asset
@@ -144,8 +144,6 @@
 						of other players. Instead, they are personalized companions that you
 						can gear up and customize to suit your preferences.
 					</div>
-
-					<div class="spaced-paragraph"></div>
 
 					<div class="spaced-paragraph">
 						Enabling Partners allows you to have contracted NPCs accompany you
@@ -169,7 +167,7 @@
 						/> need to be unlocked separately at G Rank. If you’re unsure about a
 						Legendary Rasta's weapon, interact with them and select the second option
 						to view their gear.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						For the best performance in terms of AI behavior and DPS, <InlineTooltip
 							icon={getWeaponIcon('Dual Swords')}
@@ -188,7 +186,7 @@
 							iconType="component"
 						/> is also a decent choice, but other weapons have less effective AI
 						that tends to idle rather than actively engage with monsters.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						When you speak with the NPC of your chosen weapon type, select
 						"Partner" to begin the Partner creation process. You will first
@@ -198,7 +196,7 @@
 						recreating the Partner. Name and personality can be altered later
 						with specific rare items, though personality only affects their
 						speech style and has minimal gameplay impact.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						Once you have completed these steps, head to your <InlineTooltip
 							icon={getLocationIcon('My House')}
@@ -207,7 +205,7 @@
 							iconType="file"
 						/> where you’ll meet the NPC you selected, allowing you to customize
 						your Partner much like you did when creating your character.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						If you make a mistake during creation, you can delete the Partner by
 						speaking with the cat next to the bar. This will completely remove
@@ -216,7 +214,7 @@
 						use Premium Restyle Points. <strong
 							>The partner's gender cannot be changed later on.</strong
 						>
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						Partners offer many features, but most of them become relevant only
 						at G Rank. If you plan on spending extended time at HR5, you can
@@ -233,7 +231,7 @@
 							tooltip="Location"
 							iconType="file"
 						/>.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						You can adjust your AI Companion’s priorities in the options under
 						the NPC section (use the confirm button to reorder options).
@@ -245,7 +243,7 @@
 						<div>
 							<UnorderedList class="spaced-list"
 								><ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Status:</strong> displays the direct equivalent of the
 										Guild Card for a Partner. This displays active skills, defense
 										and attack values as well as the ranks of each weapon that is
@@ -253,12 +251,12 @@
 									</div></ListItem
 								>
 								<ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Equipment:</strong> once a Partner has received equipment,
 										it cannot be retrieved back to your equipment box.
 									</div></ListItem
 								><ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Skills:</strong> allows your Partner to have armor
 										skills such as <InlineTooltip
 											icon={getItemIcon('Jewel')}
@@ -268,7 +266,7 @@
 										/> and upgrades the maximum skill slots and skill cost available.
 									</div></ListItem
 								><ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Items:</strong> makes your Partner use items such as
 										<InlineTooltip
 											icon={getItemIcon('Sac')}
@@ -309,7 +307,7 @@
 							</div>
 							<UnorderedList class="spaced-list"
 								><ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Raw Values:</strong> These are fixed based on the
 										tier of the weapon equipped. For example, a standard G Rank <InlineTooltip
 											icon={getWeaponIcon('Lance')}
@@ -322,7 +320,7 @@
 									</div></ListItem
 								>
 								<ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Elemental Values:</strong> These scale with the
 										Partner’s Weapon Rank. For instance, at Rank 999 with <InlineTooltip
 											icon={getWeaponIcon('Tonfa')}
@@ -350,7 +348,7 @@
 									</div></ListItem
 								>
 								<ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Status Values:</strong> This is the only attribute
 										directly influenced by the weapon's original stats. The
 										value is typically 100% of what’s on the weapon, or 50% in
@@ -376,7 +374,7 @@
 									upgrade, it’s a good idea to equip it on your Partner for the
 									extra damage and the Part Destroyer effect.</strong
 								>
-							</p>
+							</div>
 							<div class="table">
 								<DataTable
 									id="partner-weapons-dom"
@@ -416,7 +414,7 @@
 									</Toolbar>
 
 									{#snippet cell({ cell })}
-										<div>{cell.value}</div>
+										<p>{cell.value}</p>
 									{/snippet}
 								</DataTable>
 							</div>
@@ -469,7 +467,7 @@
 									</Toolbar>
 
 									{#snippet cell({ cell })}
-										<div>{cell.value}</div>
+										<p>{cell.value}</p>
 									{/snippet}
 								</DataTable>
 							</div>
@@ -506,22 +504,22 @@
 									href="/tools/simulator/partner-skills"
 									>on the Partner Skills Simulator.</Link
 								>
-							</p>
+							</div>
 							<div class="spaced-paragraph">
 								The <strong>"Learn Skills"</strong> option displays a list of skills
 								you can currently purchase:
 							</div>
 							<UnorderedList class="spaced-list"
 								><ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Black</strong> skills are available for purchase.
 									</div></ListItem
 								><ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Blue</strong> skills are those you have already acquired.
 									</div></ListItem
 								><ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Gray</strong> skills are locked and cannot be purchased
 										yet.
 									</div></ListItem
@@ -545,7 +543,7 @@
 									tooltip="Currency"
 									iconType="file"
 								/> if you complete enough routes.
-							</p>
+							</div>
 							<div class="spaced-paragraph">
 								<strong>Passive skills</strong>, or Automatic Skills, require
 								your Partner to have maxed out a weapon’s rank (999) and then
@@ -559,13 +557,13 @@
 							</div>
 							<UnorderedList class="spaced-list">
 								<ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Slot Upgrades:</strong> These add an extra skill slot,
 										up to a maximum of +2 slots for a total of 12 skills. These upgrades
 										are rarely necessary.
 									</div></ListItem
 								><ListItem
-									><div>
+									><div class="paragraph-long-02">
 										<strong>Cost Upgrades:</strong> These increase the maximum skill
 										cost budget by +5, up to a total of 260. It is highly recommended
 										to get all of these upgrades as they provide significant benefits.
@@ -590,7 +588,7 @@
 									tooltip="Armor Skill"
 									iconType="component"
 								/> and other DPS enhancements.
-							</p>
+							</div>
 							<div class="spaced-paragraph">
 								Reaching MASTER level with each weapon class will add true raw
 								attack to all weapon classes, while maxing out Kaidan Rank to
@@ -616,7 +614,7 @@
 									iconType="component"
 								/> will not add their effects; instead, the weaker skill will be
 								deactivated, still consuming cost without providing additional benefits.
-							</p>
+							</div>
 						</div>
 					</section>
 
@@ -663,7 +661,7 @@
 									tooltip="Item"
 									iconType="component"
 								/> for maximum synergy.
-							</p>
+							</div>
 							<div class="spaced-paragraph">
 								Partners become highly effective when properly leveled up and
 								equipped with the right skills. They can provide team-wide buffs
