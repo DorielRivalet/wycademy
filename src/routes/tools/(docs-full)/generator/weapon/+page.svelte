@@ -1828,22 +1828,22 @@
 			{/if}
 		</div>
 
-		<UnorderedList>
+		<UnorderedList class="spaced-list">
 			<ListItem
-				><div>
+				><p>
 					The game uses integers for sharpness. The values here is how it works
 					internally. Defaults to a black bar on invalid values.
-				</div></ListItem
+				</p></ListItem
 			>
 			<ListItem
-				><div>
+				><p>
 					The game uses Medium length for Magnet Spike and Tonfa.
-				</div></ListItem
+				</p></ListItem
 			>
 			<ListItem
-				><div>
+				><p>
 					The game uses values between -127 and 127 for skill and sigil points.
-				</div></ListItem
+				</p></ListItem
 			>
 		</UnorderedList>
 

@@ -778,7 +778,7 @@
 				</div>
 
 				<div class="ice-age-formula">
-					<div>Formula:</div>
+					<p>Formula:</p>
 					<div class="formula-container">
 						{@html formulaIceAgeDamagePerSecond}
 					</div>

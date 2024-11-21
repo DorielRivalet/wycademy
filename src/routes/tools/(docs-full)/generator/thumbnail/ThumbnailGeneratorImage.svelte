@@ -56,7 +56,6 @@
 	export let optionsList: DropdownItem[] = [];
 	export let optionId: string;
 	export let src;
-	$: src = getIconBlobFromIconMetaData(fileType, optionId);
 
 	const dispatch = createEventDispatcher();
 
@@ -79,6 +78,11 @@
 		selectedIconType: FrontierImageType,
 		selectionID: string,
 	) {
+		if (!selectionID) {
+			console.error('No selection: ' + selectedIconType + ' ' + selectionID);
+			return; // TODO
+		}
+
 		// TODO return html in either the form of img if selecting PNG or
 		// svelte component if selecting SVG.
 		switch (selectedIconType) {
@@ -167,16 +171,27 @@
 	}
 
 	const allFrontierColors = getAllFrontierColors();
+	//src = getIconBlobFromIconMetaData(fileType, optionId);
 </script>
 
 <div class="container flex-column">
 	<div class="flex-row">
-		<ComboBox
+		<!-- <Dropdown
 			titleText="Icon"
 			placeholder="Select icon"
 			bind:selectedId={optionId}
 			items={optionsList}
-			{shouldFilterItem}
+		/> -->
+
+		<Dropdown
+			type="inline"
+			light={true}
+			titleText="Icon"
+			bind:selectedId={optionId}
+			items={optionsList}
+			on:select={(e) => {
+				src = getIconBlobFromIconMetaData(fileType, e.detail.selectedId);
+			}}
 		/>
 		<Button kind="danger-tertiary" icon={TrashCan} on:click={deleteElement}
 			>Delete</Button
