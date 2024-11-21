@@ -949,7 +949,7 @@ graph LR
 					{/await}
 				</div>
 			{/if}
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -992,7 +992,7 @@ graph LR
 			alt="Guild Master"
 			figcaption="The Guild Master."
 		/>
-		<div>
+		<div class="paragraph-long-02">
 			<strong>Style Rank</strong> grants several benefits, including special SR
 			Skills, two new movesets per weapon type (three in total at G Rank with
 			<strong>Extreme Style</strong>), and access to
@@ -1003,7 +1003,7 @@ graph LR
 				text="My House"
 				tooltip="Location"
 			/>.
-		</p>
+		</div>
 		<section>
 			<SectionHeading level={2} title="Weapon Styles" />
 			<div>
@@ -1144,7 +1144,7 @@ graph LR
 		<section>
 			<SectionHeading level={2} title="Hardcore Monsters" />
 			<div>
-				<div>
+				<div class="paragraph-long-02">
 					If you spend a significant amount of time at <strong>HR5</strong>, you
 					will likely need
 					<InlineTooltip
@@ -1163,11 +1163,19 @@ graph LR
 					/> based on the type of monster.
 				</div>
 
-				<UnorderedList>
-					<ListItem><div>Low Soul: HR1-2</div></ListItem>
-					<ListItem><div>Mid Soul: HR3-4</div></ListItem>
-					<ListItem><div>High Soul: HR5</div></ListItem>
-					<ListItem><div>Top Soul: Gou HR5</div></ListItem>
+				<UnorderedList class="spaced-list">
+					<ListItem
+						><div class="paragraph-long-02">Low Soul: HR1-2</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">Mid Soul: HR3-4</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">High Soul: HR5</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">Top Soul: Gou HR5</div></ListItem
+					>
 				</UnorderedList>
 
 				<div class="spaced-paragraph">
@@ -1325,11 +1333,11 @@ graph LR
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/snippet}
 					</DataTable>
 				</div>
-				<div>
+				<div class="paragraph-long-02">
 					For anything that can cause you to reroll carves, such as Caravan Gem
 					skills, you will also roll for the table on the second attempt. For
 					example, if you initially carved a <InlineTooltip
@@ -1536,7 +1544,7 @@ graph LR
 									kind="ghost">{cell.value}</Button
 								>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -1574,7 +1582,7 @@ graph LR
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/snippet}
 					</DataTable>
 				</div>
@@ -1614,7 +1622,7 @@ graph LR
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/snippet}
 					</DataTable>
 				</div>
@@ -1663,7 +1671,7 @@ graph LR
 						</Toolbar>
 
 						{#snippet cell({ cell })}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/snippet}
 					</DataTable>
 				</div>
@@ -1740,7 +1748,7 @@ graph LR
 									icon={getWeaponIcon(cell.value)}
 								/>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -1907,7 +1915,7 @@ graph LR
 											icon={getWeaponIcon(cell.value)}
 										/>
 									{:else}
-										<div>{cell.value}</div>
+										<p>{cell.value}</p>
 									{/if}
 								{/snippet}
 							</DataTable>
@@ -2023,7 +2031,7 @@ graph LR
 									icon={getWeaponIcon(cell.value)}
 								/>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -2347,56 +2355,64 @@ graph LR
 						tooltip="Item"
 					/>.
 				</div>
-				<div>
+				<p>
 					<strong>Hunter Rank:</strong>
-				</div>
-				<UnorderedList>
-					<ListItem><div>HR1-2 HC: Low Souls</div></ListItem>
-					<ListItem><div>HR3-4 HC: Mid Souls</div></ListItem>
-					<ListItem><div>HR5 HC: High Souls</div></ListItem>
-					<ListItem><div>Gou HC: Top Souls</div></ListItem>
+				</p>
+				<UnorderedList class="spaced-list">
+					<ListItem
+						><div class="paragraph-long-02">HR1-2 HC: Low Souls</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">HR3-4 HC: Mid Souls</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">HR5 HC: High Souls</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">Gou HC: Top Souls</div></ListItem
+					>
 				</UnorderedList>
-				<div>
+				<p>
 					<strong>G Style Rank:</strong>
-				</div>
-				<UnorderedList>
+				</p>
+				<UnorderedList class="spaced-list">
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>1-2 HC: Low Ribbons</span>
 						</div></ListItem
 					>
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>3-4 HC: Mid Ribbons</span>
 						</div></ListItem
 					>
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>5-8 HC: High Ribbons</span>
 						</div></ListItem
 					>
 				</UnorderedList>
-				<div>
+				<p>
 					<strong>G Rank 500:</strong>
-				</div>
-				<UnorderedList>
+				</p>
+				<UnorderedList class="spaced-list">
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>1-2: Low Merits</span>
 						</div></ListItem
 					>
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>3-4: Mid Merits</span>
 						</div></ListItem
 					>
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>5-8: High Merits</span>
 						</div></ListItem
@@ -2421,7 +2437,7 @@ graph LR
 					/>, HC carves from monsters of all ranks, and 1% carves from G Rank
 					monsters are required to completely finish a Hiden set.
 				</div>
-				<div>The progression can be demonstrated below:</div>
+				<p>The progression can be demonstrated below:</p>
 				<div class="mermaid-container">
 					<!-- TODO: not responsive-->
 					{#if !browser}
@@ -2671,15 +2687,15 @@ graph LR
 					/>, these stats are no longer per weapon but are instead global across
 					all weapons, making it a less daunting task.
 				</div>
-				<UnorderedList>
+				<UnorderedList class="spaced-list">
 					<ListItem
-						><div>
+						><div class="paragraph-long-02">
 							Damage Reduction: 20 levels. Reduces all damage taken by 10% at
 							maximum level (0.5% per level).
 						</div></ListItem
 					>
 					<ListItem
-						><div>
+						><div class="paragraph-long-02">
 							Attack Ceiling: It's easy to hit the maximum attack at G Rank, so
 							raising this stat is crucial for all <strong>G Rank</strong>
 							players. There are 180 levels, each raising the limit by 40 true raw.
@@ -2706,13 +2722,13 @@ graph LR
 						</div></ListItem
 					>
 					<ListItem
-						><div>
+						><div class="paragraph-long-02">
 							Partial HP on Hit: 25 levels. Increases the amount of red HP left
 							after taking a hit, with each level providing an extra 1% health.
 						</div></ListItem
 					>
 					<ListItem
-						><div>
+						><div class="paragraph-long-02">
 							Status Recovery: 25 levels. Reduces the duration of status effects
 							by up to 1 second, with each level reducing time by 1.5 frames (up
 							to 30 frames at 30fps).
@@ -2749,7 +2765,7 @@ graph LR
 				<section>
 					<SectionHeading level={3} title="Viewing Missions" />
 					<div>
-						<div>
+						<div class="paragraph-long-02">
 							You can view your active My Mission by checking your <strong
 								>Book of Secrets</strong
 							>, which displays the task number, target, and progress towards
@@ -2757,13 +2773,13 @@ graph LR
 							dedicated to these missions, automatically searching for relevant
 							quests that meet the requirements. You will need to manually
 							toggle HC if required.
-						</p>
+						</div>
 					</div>
 				</section>
 				<section>
 					<SectionHeading level={3} title="Level Recommendations" />
 					<div>
-						<div>
+						<div class="paragraph-long-02">
 							For endgame play, these challenges are essential. The game
 							constantly adds new skills that raise attack, making the original
 							800 True Raw limit increasingly irrelevant in G Rank play. To
@@ -2773,7 +2789,7 @@ graph LR
 							>. Enter your skills and weapon values in the left column to get
 							an accurate calculation. For estimates, enter around 500-600 as
 							base true raw for typical late to endgame numbers.
-						</p>
+						</div>
 					</div>
 				</section>
 				<section>
@@ -2788,9 +2804,9 @@ graph LR
 						<div class="spaced-paragraph">
 							There are two NPCs in this room, R and S:
 						</div>
-						<UnorderedList>
+						<UnorderedList class="spaced-list">
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									R: Gives challenges that grant medals for completion. These
 									are mostly vanity quests, but completing them all grants 30 <InlineTooltip
 										icon={getItemIcon('Ticket')}
@@ -2801,7 +2817,7 @@ graph LR
 								</div></ListItem
 							>
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									S: Gives challenges similar to R's and quests that improve the
 									stats on your <strong>Book of Secrets</strong>. These quests
 									will appear on the main Quest Giver NPCs when relevant, so you
@@ -2825,29 +2841,29 @@ graph LR
 							Talking to either S or R produces a menu with the following
 							options:
 						</div>
-						<UnorderedList>
+						<UnorderedList class="spaced-list">
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									Select Challenge: Choose one of ten challenges from your
 									current set.
 								</div></ListItem
 							>
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									Change Challenge Set: Swap challenges with another set. Each
 									set has its own decorative disc, which gets decorations added
 									as you complete the challenges.
 								</div></ListItem
 							>
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									SR Stat Mission: Missions to complete to rank up the bottom
 									four stats on your <strong>Book of Secrets</strong>. Available
 									with S and standard Quest NPCs.
 								</div></ListItem
 							>
 							<ListItem
-								><div>
+								><div class="paragraph-long-02">
 									Manual: Opens the online manual in your browser.
 								</div></ListItem
 							>
@@ -2857,7 +2873,7 @@ graph LR
 				<section>
 					<SectionHeading level={3} title="Missions and Challenges" />
 					<div>
-						<div>
+						<div class="paragraph-long-02">
 							Both Missions and Challenges have a menu listing a target to kill
 							a certain number of. After taking an SR Stat mission from S, you
 							will be asked if you want to skip it using items, accessible
@@ -2865,7 +2881,7 @@ graph LR
 							You will be prompted to use tickets or Lottery G coins, followed by
 							confirming your choice. Quests are persistent across sessions and automatically
 							marked as completed once their goal is achieved.
-						</p>
+						</div>
 					</div>
 				</section>
 			</div>
@@ -2874,7 +2890,7 @@ graph LR
 		<section>
 			<SectionHeading level={2} title="Hiden Cuffs" />
 			<div>
-				<div>
+				<div class="paragraph-long-02">
 					From the <InlineTooltip
 						icon={gameInfo.find(
 							(e) => e.name === 'Monster Hunter Frontier Z Zenith',
@@ -2900,21 +2916,21 @@ graph LR
 					alt="Hiden skill example"
 					figcaption="Hiden skill, colored yellow because it doesn't take a skill slot."
 				/>
-				<UnorderedList>
+				<UnorderedList class="spaced-list">
 					<ListItem
-						><div>
+						><div class="paragraph-long-02">
 							Basic Cuffs: Provide +6 points in a Hiden and prevent Hiden from
 							using a skill slot.
 						</div></ListItem
 					>
 					<ListItem
-						><div>
+						><div class="paragraph-long-02">
 							G Cuffs: Provide +12 points in a Hiden and prevent Hiden from
 							using a skill slot.
 						</div></ListItem
 					>
 					<ListItem
-						><div>
+						><div class="paragraph-long-02">
 							True Cuffs: Provide +12 points in a Hiden, +2 points in a Meta
 							Skill, and prevent Hiden from using a skill slot. Text colored
 							cyan in menus.
@@ -2928,21 +2944,21 @@ graph LR
 					alt="Hiden cuff example"
 					figcaption="Hiden cuff at the bottom."
 				/>
-				<div>
+				<div class="paragraph-long-02">
 					The first two levels of these cuffs use standard Hiden materials, and
 					you cannot exchange HL Hiden tickets to obtain them. The True Cuff
 					requires a single <strong>True Hiden decoration</strong>. There are 8
 					versions of these cuffs for each weapon type, and any
 					<strong>True Hiden decoration</strong> can be used to create any of the
 					cuffs.
-				</p>
+				</div>
 			</div>
 		</section>
 
 		<section>
 			<SectionHeading level={2} title="Quiz" />
 			<div>
-				<div>
+				<p>
 					You've reached the end of the page! Let's assess what you've just
 					learned.
 				</p>

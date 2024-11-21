@@ -294,7 +294,7 @@
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
 			<img src={modalImage} alt={'ice age'} />
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -384,7 +384,7 @@
 			<SectionHeadingTopLevel title={'Ice Age'} />
 			<div class="ice-age-section">
 				<div class="ice-age-descriptions">
-					<p class="ice-age-description-1">
+					<div class="paragraph-long-02 ice-age-description-1">
 						Upon hitting a monster (can be dead), the hunter becomes enveloped
 						in an icy aura, which inflicts damage on all nearby monsters while
 						providing extra skills. This aura progresses through three stages as
@@ -402,9 +402,9 @@
 							icon={getTag('Armor Skill').icon}
 						/>. Damage occurs in fixed intervals of one second rather than
 						gradually over time.
-					</p>
+					</div>
 					<div class="ice-age-description-2">
-						<div>
+						<div class="paragraph-long-02">
 							Typically, damage output ranges between 800 to 1600 per minute,
 							contingent on the level, surpassing the poison output for most G
 							Rank monsters. Within a group of four hunters equipped with <InlineTooltip
@@ -413,15 +413,15 @@
 								icon={getTag('Armor Skill').icon}
 							/>, the damage stacks and thus escalates from 800-1600 (1p) to
 							3200-6400 (4p).
-						</p>
+						</div>
 					</div>
-					<div>
+					<div class="paragraph-long-02">
 						Ice Age's attack power only comes from SR, sigils, weapon base
 						attack and G Rank armor bonus. The following buffs are ignored:
 						items (e.g Seeds, Hunter Powertalon, etc.), meals (e.g. bento, guild
 						food), skills (e.g. Adrenaline, Solid Determination). Buffs that
 						affect weapon base attack like Drug Knowledge does count.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						Ice Age's required hits can be reached faster with <InlineTooltip
 							text="Fencing+2"
@@ -681,7 +681,7 @@
 										tooltip="Weapon"
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -770,18 +770,12 @@
 										kind="ghost">{cell.value}</Button
 									>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
 					</div>
 				</div>
-
-				<TrueRawConverter
-					bind:weaponType={trueRawConverterWeaponType}
-					bind:value={trueRawConverterValue}
-					showWeapon
-				/>
 
 				<div class="ice-age-formula">
 					<div>Formula:</div>
@@ -792,6 +786,12 @@
 						{@html display(formulaValuesIceAgeDamagePerSecond)}
 					</div>
 				</div>
+
+				<TrueRawConverter
+					bind:weaponType={trueRawConverterWeaponType}
+					bind:value={trueRawConverterValue}
+					showWeapon
+				/>
 				<div class="ice-age-calculator">
 					<div>
 						<NumberInput
@@ -962,13 +962,13 @@
 							]}
 						/>
 					</div>
-					<div>
+					<p>
 						Seconds needed: {iceAgeCalculatorSecondsNeeded}
-					</div>
-					<div>
+					</p>
+					<p>
 						Max HP% Dealt: {iceAgeCalculatorMaxHPPercentDealt}
-					</div>
-					<div>
+					</p>
+					<p>
 						Total Damage: {iceAgeCalculatorTotalDamage} ({iceAgeCalculatorDamagePerSecond}
 						DPS)
 					</p>

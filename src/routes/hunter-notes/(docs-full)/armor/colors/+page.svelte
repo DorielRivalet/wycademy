@@ -261,10 +261,10 @@
 									aria-label={'Color'}
 								></button>
 							{/if}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						</div>
 					{:else}
-						<div>{cell.value}</div>
+						<p>{cell.value}</p>
 					{/if}
 				{/snippet}
 			</DataTable>

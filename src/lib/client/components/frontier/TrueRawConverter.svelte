@@ -10,7 +10,11 @@
 		showWeapon?: boolean;
 	}
 
-	let { value = $bindable(), weaponType = $bindable(), showWeapon = false }: Props = $props();
+	let {
+		value = $bindable(),
+		weaponType = $bindable(),
+		showWeapon = false,
+	}: Props = $props();
 
 	const minimumNumberValue = 0;
 	const maximumNumberValue = 99999;
@@ -18,7 +22,7 @@
 </script>
 
 <div class="true-raw-converter">
-	<div>Attack Display Value to True Raw Converter:</div>
+	<p><strong>Attack Display Value to True Raw Converter</strong></p>
 	<div class="flex-row-centered">
 		{#if showWeapon}
 			<Dropdown
@@ -46,6 +50,7 @@
 			/>{/if}
 		<div class="number-input-container">
 			<NumberInput
+				light
 				size="sm"
 				step={10}
 				min={minimumNumberValue}
@@ -55,7 +60,7 @@
 				label={'Weapon Attack Display Value'}
 			/>
 		</div>
-		<div>
+		<p>
 			True Raw: {Math.floor(
 				value /
 					(WeaponTypes.find((e) => e.name === weaponType)
@@ -67,11 +72,16 @@
 
 <style lang="scss">
 	.true-raw-converter {
+		width: max-content;
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
 		margin-bottom: 2rem;
 		margin-top: 2rem;
+		background-color: var(--ctp-surface0);
+		border: 2px solid var(--ctp-surface1);
+		border-radius: 8px;
+		padding: 1rem;
 	}
 
 	.flex-row-centered {

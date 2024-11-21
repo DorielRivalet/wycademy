@@ -198,7 +198,7 @@
 				/> (SnS) ability to block and use items for some of the highest DPS in the
 				game. While their motion values are relatively low, they excel when paired
 				with appropriate elemental or status-inflicting weapons.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Dual Swords"
@@ -209,7 +209,7 @@
 				playstyle revolving around using <strong>True Demon Mode</strong>, which
 				drains health but enhances attacks, combined with the sharpening buff
 				detailed below.
-			</p>
+			</div>
 
 			<div class="spaced-paragraph">
 				Pressing the Kick button while using <InlineTooltip
@@ -225,7 +225,7 @@
 					iconType="component"
 					icon={getWeaponIcon('Dual Swords')}
 				/> performance, as it requires constant use during combos and strategic evades.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				The sharpen buff expires as soon as a combo ends. However, as long as
 				you keep attacking, evading, or sharpening, the combo continues,
@@ -235,7 +235,7 @@
 					iconType="component"
 					icon={getItemIcon('Jewel')}
 				/> active, provided you don’t make a mistake.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading title="Demon Modes" level={2} />
@@ -252,7 +252,7 @@
 						drains Health. Both modes significantly increase motion values, but
 						<strong>True Demon Mode</strong> also introduces a fast evade that can
 						be used to extend combos and maintain the sharpening buff.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						<strong>True Demon Mode</strong> won’t directly kill you; when your health
 						reaches 1, it depletes any remaining Red Health and further boosts your
@@ -268,7 +268,7 @@
 				</div>
 			</section>
 
-			<div>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -277,7 +277,7 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
@@ -292,7 +292,7 @@
 						<strong>True Demon Mode</strong>. The main difference between this
 						style and the Heaven and Storm Styles is the
 						<strong>Demon Dance</strong> move, a long combo that locks you in place.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -311,7 +311,7 @@
 						physical damage but with two fewer elemental hits. Both the
 						<strong>Demon Dance</strong> and Flurry combos deal only 70% elemental
 						damage.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -344,7 +344,7 @@
 						/> unsheathed and adds the <strong>Sky Slash</strong>, an acrobatic
 						combo that hits five times for a total motion value of 30, ending
 						with a two-hit finisher dealing 20 motion each.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						<strong>Extreme Demon Mode</strong> is an enhanced version of
 						<strong>True Demon Mode</strong>. It consumes Green Health first,
@@ -356,7 +356,7 @@
 						<strong>Extreme Demon Mode</strong> includes a unique
 						<strong>Rising Slash</strong>, a more practical version of the
 						forward flip found in <strong>Storm Style</strong>.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -368,7 +368,7 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						Reduces the speed at which the HP bar decreases when in <strong
 							>True Demon Mode</strong
 						>. Stamina gauge depletion speed is reduced to x0.5 when in
@@ -384,7 +384,7 @@
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/> is activated, it is reduced to x0.33.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -422,7 +422,7 @@
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -471,7 +471,7 @@
 										icon={getItemIcon('Jewel')}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -525,7 +525,7 @@
 										maxRating={3}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -536,9 +536,9 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Like <InlineTooltip
 									tooltip="Weapon"
 									text="Sword and Shield"
@@ -549,7 +549,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								There’s no reason to use any demonization mode other than
 								Extreme Demon Mode nowadays. However, in this state, you cannot
 								receive any healing except from <InlineTooltip
@@ -566,7 +566,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Each sharpen in a combo increases raw damage by 1.05x, stacking
 								up to four times for a maximum of 1.20x. The attack evades in
 								True/Extreme Demon modes maintain this combo state. The overlay
@@ -574,7 +574,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								When demonized, healing is entirely blocked, with <InlineTooltip
 									tooltip="Armor Skill"
 									text="Vampirism"

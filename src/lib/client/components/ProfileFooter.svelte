@@ -13,12 +13,12 @@
 
 <div class="container">
 	<div>
-		<div><strong>Join Date:</strong></div>
-		<div>{dateJoined}</div>
+		<p><strong>Join Date:</strong></p>
+		<p>{dateJoined}</p>
 	</div>
 	<div>
-		<div><strong>Profile Views:</strong></div>
-		<div>{profileViews}</div>
+		<p><strong>Profile Views:</strong></p>
+		<p>{profileViews}</p>
 	</div>
 </div>
 

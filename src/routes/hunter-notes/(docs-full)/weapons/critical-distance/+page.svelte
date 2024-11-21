@@ -618,7 +618,7 @@
 				<section>
 					<SectionHeading level={2} title="Bowguns" />
 					<div>
-						<div>
+						<p class="spaced-paragraph">
 							<strong>Critical Distance</strong> is indicated by the shot expanding
 							fully and creating a circle indicator.
 						</p>
@@ -632,7 +632,7 @@
 							to see when you are properly spaced. This adds an extra 0.3x multiplier
 							to damage in that zone (e.g. 2.0 in first half of Normal Shot range,
 							2.3x with an Origin or Zenith Piece and G Rank Weapon, etc.).
-						</p>
+						</div>
 						<div class="dropdown">
 							<Dropdown
 								titleText="Ammo Type"
@@ -733,7 +733,7 @@
 									</div>
 								</Toolbar>
 								{#snippet cell({ cell })}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/snippet}
 							</DataTable>
 						</div>

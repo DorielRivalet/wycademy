@@ -1110,8 +1110,8 @@
 			subtitle="The ZIndex of the background should be 0."
 		/>
 		<p class="spaced-paragraph">
-			Here you can download the thumbnail generated below, with the resulting
-			size being 1280x720 pixels, perfect for things such as
+			Download the thumbnail generated below, with the resulting size being
+			1280x720 pixels, perfect for things such as
 			<span
 				><Button
 					on:click={() => changeModal('', 'YouTube')}

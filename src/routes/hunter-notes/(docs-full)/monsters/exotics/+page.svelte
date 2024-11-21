@@ -78,7 +78,7 @@
 	<div>
 		<SectionHeadingTopLevel title={'Exotics'} />
 		<div>
-			<div>
+			<p>
 				Only 1 armor piece is needed to activate the armor skill. All weapons
 				give Speed Eating. Each Exotic monster has a set of associated G Finesse
 				weapon.
@@ -110,29 +110,27 @@
 						</div>
 					</Toolbar>
 					{#snippet title()}
-										<span >
+						<span>
 							<div class="data-table-title">
 								<div>Exotic Skills</div>
 							</div>
 						</span>
-									{/snippet}
+					{/snippet}
 					{#snippet cell({ cell })}
-
-							{#if cell.key === 'name'}
-								<InlineTooltip
-									icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
-										''}
-									iconType="file"
-									tooltip={cell.value}
-									text={cell.value}
-								/>
-							{:else}
-								<div>
-									{cell.value}
-								</div>
-							{/if}
-
-									{/snippet}
+						{#if cell.key === 'name'}
+							<InlineTooltip
+								icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
+									''}
+								iconType="file"
+								tooltip={cell.value}
+								text={cell.value}
+							/>
+						{:else}
+							<p>
+								{cell.value}
+							</p>
+						{/if}
+					{/snippet}
 				</DataTable>
 			</div>
 

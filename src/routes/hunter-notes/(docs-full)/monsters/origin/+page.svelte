@@ -23,7 +23,7 @@
 	<div>
 		<SectionHeadingTopLevel title={'Origin'} />
 		<div>
-			<div>
+			<p>
 				Origin monsters are natural evolutions of the Gou monsters. These are
 				required to upgrade Gou armors and weapons beyond G Supremacy level.
 			</p>
@@ -314,34 +314,32 @@
 						</div>
 					</Toolbar>
 					{#snippet title()}
-										<span >
+						<span>
 							<div class="data-table-title">
 								<div>Recommended Origin Weapons</div>
 							</div>
 						</span>
-									{/snippet}
+					{/snippet}
 					{#snippet cell({ cell })}
-
-							{#if cell.key === 'monster'}
-								<InlineTooltip
-									icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
-										''}
-									iconType="file"
-									tooltip={cell.value}
-									text={cell.value}
-								/>
-							{:else if cell.key === 'weapon'}
-								<InlineTooltip
-									icon={WeaponTypes.find((e) => e.name === cell.value)?.icon ??
-										''}
-									tooltip={cell.value}
-									text={cell.value}
-								/>
-							{:else}
-								<div>{cell.value}</div>
-							{/if}
-
-									{/snippet}
+						{#if cell.key === 'monster'}
+							<InlineTooltip
+								icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
+									''}
+								iconType="file"
+								tooltip={cell.value}
+								text={cell.value}
+							/>
+						{:else if cell.key === 'weapon'}
+							<InlineTooltip
+								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon ??
+									''}
+								tooltip={cell.value}
+								text={cell.value}
+							/>
+						{:else}
+							<p>{cell.value}</p>
+						{/if}
+					{/snippet}
 				</DataTable>
 				<Pagination
 					pageSizes={[5, 10, 20]}

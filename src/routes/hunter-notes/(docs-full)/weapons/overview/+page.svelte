@@ -267,7 +267,7 @@
 									icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
 								/>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -442,7 +442,7 @@
 								/>
 							</div>
 						{:else}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/if}
 					{/snippet}
 				</DataTable>
@@ -466,7 +466,7 @@
 								<div class="weapon-icon">
 									<SvelteComponent {...selectedWeaponIconProps} />
 								</div>
-								<div>{selectedWeaponType} Sharpness Tables</div>
+								<p>{selectedWeaponType} Sharpness Tables</p>
 							</div>
 						</span>
 					{/snippet}
@@ -515,7 +515,7 @@
 								/>
 							</div>
 						{:else}
-							<div>{cell.value}</div>
+							<p>{cell.value}</p>
 						{/if}
 					{/snippet}
 				</DataTable>
@@ -524,7 +524,7 @@
 		<section>
 			<SectionHeading level={2} title="Quiz" />
 			<div>
-				<div>
+				<p>
 					You've reached the end of the page! Let's assess what you've just
 					learned.
 				</p>

@@ -326,7 +326,7 @@
 					icon={getWeaponIcon('Hunting Horn')}
 				/> (HH) is based on the classic MHFU moveset. While it can be challenging
 				to use effectively as an offensive weapon, it truly shines in a support role.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				However, a support role does not mean standing on a ledge playing songs.
 				You should manage your song uptime carefully, learn song durations, and
@@ -334,7 +334,7 @@
 				use performances as attacks during windows of opportunity.
 			</div>
 
-			<div>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -343,7 +343,7 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Songs" />
@@ -454,15 +454,15 @@
 									{#each cell.value.split(',') as note}
 										<HuntingHornNoteIcon size={20} color={note} />
 									{/each}
-									<div>{cell.value.replaceAll(',', ', ')}</div>
+									<p>{cell.value.replaceAll(',', ', ')}</p>
 								</span>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
 				</div>
-				<div>The durations are in seconds.</div>
+				<div class="paragraph-long-02">The durations are in seconds.</div>
 
 				<div class="table table-with-scrollbar">
 					<DataTable
@@ -517,10 +517,10 @@
 											cell.value.split(' ')[2],
 										][2]}
 									/>
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								</span>
 							{:else}
-								<div>{cell.value}</div>{/if}
+								<p>{cell.value}</p>{/if}
 						{/snippet}
 					</DataTable>
 				</div>
@@ -542,7 +542,7 @@
 							icon={getWeaponIcon('Hunting Horn')}
 						/> and allows you to perform a sonic bomb effect by pressing the Kick
 						button.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -562,7 +562,7 @@
 						you can repeat the input to infinitely spam the second part (the actual
 						upthrust), which is very effective when used correctly. The new attack
 						has a motion value of 60(24)･30(24)×n･38(30).
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -602,7 +602,7 @@
 						<strong>Attack Up Large</strong>,
 						<strong>Paralysis Immunity</strong>, and
 						<strong>Elemental Attack Up</strong>.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -621,7 +621,7 @@
 							icon={getWeaponIcon('Hunting Horn')}
 						/> unsheathed, which can be comboed into a double swing attack with a
 						40x2 motion value.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						Additionally, <strong>Extreme Style</strong> introduces a Sonic Bomb
 						that can inflict various debuffs on monsters. To unlock this, you
@@ -646,7 +646,7 @@
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/> to all players within a radius.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						The available debuffs include increasing physical hitzones by +2,
 						increasing elemental hitzones by +4, and preventing monsters from
@@ -654,7 +654,7 @@
 						it's important to maintain them as much as possible. This encourages
 						a more aggressive playstyle rather than simply staying on the
 						sidelines.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -666,7 +666,9 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<div>x2 Song duration. Synergizes well with Flute Expert.</div>
+					<div class="paragraph-long-02">
+						x2 Song duration. Synergizes well with Flute Expert.
+					</div>
 				</div>
 			</section>
 
@@ -704,7 +706,7 @@
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -753,7 +755,7 @@
 										icon={getItemIcon('Jewel')}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -807,7 +809,7 @@
 										maxRating={3}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -818,9 +820,9 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The <InlineTooltip
 									tooltip="Weapon"
 									text="Hunting Horn"
@@ -832,7 +834,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Always equip <InlineTooltip
 									tooltip="Armor Skill"
 									text="Encourage+2"
@@ -858,7 +860,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Every <InlineTooltip
 									tooltip="Weapon"
 									text="Hunting Horn"
@@ -869,7 +871,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Chaining attacks into recitals plays the notes faster than
 								usual. If you start a melody with <InlineTooltip
 									tooltip="Hunting Horn Note"
@@ -881,7 +883,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Hunting Horn"
@@ -897,7 +899,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Hunting Horn"
@@ -913,7 +915,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								If using <InlineTooltip
 									tooltip="Hunting Horn Note"
 									text="Cyan"
@@ -945,14 +947,14 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Opting for a healing-focused playstyle with items isn't
 								recommended, as you'll already be juggling buffs and damage on a
 								relatively slow weapon. It’s not worth the effort.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The sonic bomb and debuff song motions can reliably apply the
 								effects of the <InlineTooltip
 									tooltip="Armor Skill"
@@ -968,7 +970,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The benefits of <InlineTooltip
 									tooltip="Zenith Skill"
 									text="Soul Up"
@@ -1000,7 +1002,7 @@
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								This weapon type is very useful in <InlineTooltip
 									tooltip="Location"
 									text="Hunter's Road"

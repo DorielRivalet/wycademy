@@ -958,11 +958,11 @@
 		<SectionHeadingTopLevel title={'Sigils Damage Calculator'} />
 		<div>
 			<div class="spaced-paragraph">
-				Here you can compare sigils damage in order to decide which one to
-				equip. You can equip multiple Unlimited (UL) Sigils, but the Weapon Up
-				effect is only applied by the highest Weapon Up value and does not
-				stack. The standard sigil type minimum and maximum values are taken from
-				standard sigils and Shiten sigils.
+				Compare sigils damage in order to decide which one to equip. You can
+				equip multiple Unlimited (UL) Sigils, but the Weapon Up effect is only
+				applied by the highest Weapon Up value and does not stack. The standard
+				sigil type minimum and maximum values are taken from standard sigils and
+				Shiten sigils.
 			</div>
 			<div class="spaced-paragraph">
 				If you are looking to simulate sigils rolls, see our <Link
@@ -1160,7 +1160,7 @@
 			</div>
 
 			<div class="results">
-				<div>
+				<div class="paragraph-long-02">
 					<InlineTooltip
 						text="⚔️ Total Attack:"
 						tooltip="Stat"
@@ -1170,8 +1170,8 @@
 					{sigilChartData.averageAttackDamage.toFixed(2)} ({sigilChartData.sigilAttackContributions.join(
 						' | ',
 					)})
-				</p>
-				<div>
+				</div>
+				<div class="paragraph-long-02">
 					<InlineTooltip
 						text="🐲 Total Element:"
 						tooltip="Stat"
@@ -1181,8 +1181,8 @@
 					{sigilChartData.averageElementalDamage.toFixed(2)} ({sigilChartData.sigilElementContributions.join(
 						' | ',
 					)})
-				</p>
-				<div>
+				</div>
+				<p>
 					The Zenith Sigil values are averaged in the total, while the values in
 					parentheses are calculated as if they were constant.
 				</p>

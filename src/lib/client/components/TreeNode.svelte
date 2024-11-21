@@ -2,6 +2,7 @@
 	import { slide } from 'svelte/transition';
 	import Self from './TreeNode.svelte';
 	import { cubicInOut } from 'svelte/easing';
+	import type { Component } from 'svelte';
 	import { page } from '$app/stores';
 
 	interface TreeItem {
@@ -10,7 +11,7 @@
 		href?: string;
 		icon?: Component | string;
 		nodes?: TreeItem[];
-		iconProps?: Object<any>;
+		iconProps?: Object;
 	}
 
 	interface Props {

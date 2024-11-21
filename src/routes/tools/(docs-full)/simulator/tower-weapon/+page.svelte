@@ -1525,7 +1525,7 @@
 		margin-top: 1rem;
 		display: flex;
 		justify-content: center;
-		gap: 1rem;
+		gap: 0.5rem;
 		flex-direction: column;
 	}
 
@@ -1534,7 +1534,7 @@
 		align-items: end;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1rem;
+		gap: 0rem;
 		flex-direction: row;
 	}
 
@@ -1550,7 +1550,7 @@
 
 	.sharpness-bar-container {
 		display: inline-flex;
-		margin: 1rem;
+		margin: 1rem 0rem;
 	}
 
 	.tower-weapon-slots-container {
@@ -1573,7 +1573,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		margin: 2rem;
+		margin: 1rem 0rem;
 		border: 2px solid (--ctp-surface0);
 		background: var(--ctp-mantle);
 		padding: 1rem;

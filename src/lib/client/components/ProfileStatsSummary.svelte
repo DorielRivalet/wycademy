@@ -186,7 +186,7 @@
 
 <div class="stats-summary">
 	<div class="chart-container achievements">
-		<div>
+		<div class="paragraph-long-02">
 			<InlineTooltip
 				text="Achievements: "
 				icon={TrophyWhite}
@@ -211,7 +211,7 @@
 		</div>
 	</div>
 	<div class="chart-container titles">
-		<div>
+		<div class="paragraph-long-02">
 			<InlineTooltip
 				text="Titles: "
 				icon={BookIconWhite}
@@ -235,7 +235,7 @@
 		</div>
 	</div>
 	<div class="total-hunts">
-		<div>
+		<div class="paragraph-long-02">
 			<InlineTooltip
 				icon={getItemIcon('Ticket')}
 				tooltip="Quests"
@@ -246,7 +246,7 @@
 		</div>
 	</div>
 	<div class="server">
-		<div>
+		<div class="paragraph-long-02">
 			<InlineTooltip icon={MapIconWhite} tooltip="Server" text={'Server: '} /><a
 				href="/">{randomChoice(playerServers)}</a
 			>

@@ -2211,7 +2211,7 @@
 <TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Partner Skills'} />
-		<div>
+		<p>
 			An overview of Partners can be found <Link
 				inline
 				href="/hunter-notes/locations/rasta-bar#partner"
@@ -2373,7 +2373,7 @@
 											}, ) || (!equippedSkills.includes(row.skill.name.en) && wouldExceedCostLimit(row.skill.name.en, equippedSkills, skillIndex))}
 										<p class="locked-skill">{cell.value}</p>
 									{:else}
-										<div>{cell.value}</div>
+										<p>{cell.value}</p>
 									{/if}
 								{/snippet}
 							</DataTable>

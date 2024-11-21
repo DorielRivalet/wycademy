@@ -184,45 +184,47 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 					iconType="component"
 					icon={getWeaponIcon('Heavy Bowgun')}
 				/> can be leveled up to boost attack power.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				<strong>Critical Distance</strong> is a key mechanic for all ranged weapons,
 				defining the optimal range for different ammo types.
 			</div>
-			<div class="spaced-paragraph">Here’s a general breakdown:</p>
+			<div class="spaced-paragraph">Here’s a general breakdown:</div>
 			<UnorderedList class="spaced-list">
 				<ListItem>
-					<div>
+					<div class="paragraph-long-02">
 						<InlineTooltip
 							tooltip="Ammo"
 							text="Normal Shots"
 							icon={getItemIcon('Shot')}
 							iconType="component"
 						/>: Close to Mid Range
-					</p>
+					</div>
 				</ListItem>
 				<ListItem>
-					<div>
+					<div class="paragraph-long-02">
 						<InlineTooltip
 							tooltip="Ammo"
 							text="Pierce Shots"
 							icon={getItemIcon('Ammo Pierce')}
 							iconType="component"
 						/>: Mid to Far Range
-					</p>
+					</div>
 				</ListItem>
 				<ListItem>
-					<div>
+					<div class="paragraph-long-02">
 						<InlineTooltip
 							tooltip="Ammo"
 							text="Pellet Shots"
 							icon={getItemIcon('Ammo Spread')}
 							iconType="component"
 						/>: Short Range
-					</p>
+					</div>
 				</ListItem>
 				<ListItem>
-					<div>Other Shots: Fixed damage regardless of distance</div>
+					<div class="paragraph-long-02">
+						Other Shots: Fixed damage regardless of distance
+					</div>
 				</ListItem>
 			</UnorderedList>
 			<div class="spaced-paragraph">
@@ -245,7 +247,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 				/> applies a 2.3x damage modifier, while the second half applies a 2.0x modifier.
 				You’ll know you’re in the right range when the hit animation intensifies
 				significantly.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Heavy Bowguns"
@@ -271,9 +273,9 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 					icon={getItemIcon('Jewel')}
 				/>) and are generally <strong>not recommended</strong> as they can become
 				a crutch.
-			</p>
+			</div>
 
-			<div>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -282,7 +284,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
@@ -294,7 +296,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 							iconType="component"
 							icon={getWeaponIcon('Heavy Bowgun')}
 						/> style, providing a straightforward experience without much variation.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -343,7 +345,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						since reloading typically immobilizes you for a while. Firing cancels
 						the running state, and you can use the charge shot to adjust your aim
 						if needed.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> introduces a
 						<strong>Heat Gauge</strong>
@@ -356,7 +358,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						and lets you use the <strong>Blue Heat Cannon</strong> and
 						<strong>Blast Avoidance</strong>. The meter is fully extended by
 						default and doesn’t need Oils to increase its capacity.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						The <strong>Blue Heat Cannon</strong> is an enhanced version found
 						on various Gou <InlineTooltip
@@ -368,7 +370,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						can take out a large portion of a standard G Rank monster’s HP.
 						However, it locks you into a lengthy animation with a forced
 						backward movement, leaving you vulnerable, so timing is critical.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						<strong>Blast Avoidance</strong> uses a small portion of the same
 						meter as the <strong>Blue Heat Cannon</strong> to launch you in a
@@ -383,7 +385,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						the opposite direction to where you’re facing, so if you want to
 						face the monster afterward, you'll need to perform a 180° turn
 						before using this ability.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						It’s worth noting that you can have both versions of the <strong
 							>Heat Cannon</strong
@@ -391,7 +393,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						active simultaneously if you use a Sigil or weapon with the standard
 						<strong>Heat Cannon</strong>, with both gauges appearing side by
 						side.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -403,7 +405,9 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<div>+0.1x Damage increased at <strong>Critical Distance.</strong></div>
+					<div class="paragraph-long-02">
+						+0.1x Damage increased at <strong>Critical Distance.</strong>
+					</div>
 				</div>
 			</section>
 
@@ -441,7 +445,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -490,7 +494,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 										icon={getItemIcon('Jewel')}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -544,7 +548,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 										maxRating={3}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -555,9 +559,9 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								As a Gunner weapon, the <InlineTooltip
 									tooltip="Weapon"
 									text="Heavy Bowgun"
@@ -567,26 +571,26 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Compressed shots are useful against fast-moving targets, but
 								mitigating recoil requires extra effort.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Extreme style’s heat gauge doesn’t require item management.
 								Blast dodges use the meter, offering extensive i-frames, and can
 								transition into a run or roll after landing.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Charging shots helps conserve ammo, particularly effective with
 								compressed Normal 3 and Element shots.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Proper spacing increases the size of <InlineTooltip
 									tooltip="Armor Skill"
 									text="Heavy Bowgun Hiden's"
@@ -596,7 +600,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Bullet Saver"
@@ -607,7 +611,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Raviente Heavy Bowgun"
@@ -618,7 +622,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The shield addon does not benefit from <InlineTooltip
 									tooltip="Armor Skill"
 									text="Obscurity"

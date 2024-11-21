@@ -36,239 +36,244 @@
 		armorSets?: ProfilePinnedSet[];
 	}
 
-	let { theme, armorSets = [
-		{
-			setIcon: LocationIcons.find((e) => e.name === 'Road')?.icon,
-			setTags: ['Road', 'Multiplayer', 'Premium'],
-			setName: 'Armor Set 1',
-			setColor: 'red',
-			weaponType: 'Great Sword',
-			weaponName: 'Weapon',
-			head: 'Helmet',
-			chest: 'Chest',
-			arms: 'Arms',
-			waist: 'Waist',
-			legs: 'Legs',
-			cuff1: 'Cuff1',
-			cuff2: 'Cuff2',
-			style: 'Extreme Style',
-			weaponSlot1: 'Slot 1',
-			weaponSlot2: 'Slot 2',
-			weaponSlot3: 'Slot 3',
-			headSlot1: 'Slot 1',
-			headSlot2: 'Slot 2',
-			headSlot3: 'Slot 3',
-			chestSlot1: 'Slot 1',
-			chestSlot2: 'Slot 2',
-			chestSlot3: 'Slot 3',
-			armsSlot1: 'Slot 1',
-			armsSlot2: 'Slot 2',
-			armsSlot3: 'Slot 3',
-			waistSlot1: 'Slot 1',
-			waistSlot2: 'Slot 2',
-			waistSlot3: 'Slot 3',
-			legsSlot1: 'Slot 1',
-			legsSlot2: 'Slot 2',
-			legsSlot3: 'Slot 3',
-		},
-		{
-			setIcon: MonsterComponent,
-			setIconProps: {
-				currentMonster: 'Bogabadorumu',
-				background: false,
+	let {
+		theme = $bindable(),
+		armorSets = [
+			{
+				setIcon: LocationIcons.find((e) => e.name === 'Road')?.icon,
+				setTags: ['Road', 'Multiplayer', 'Premium'],
+				setName: 'Armor Set 1',
+				setColor: 'red',
+				weaponType: 'Great Sword',
+				weaponName: 'Weapon',
+				head: 'Helmet',
+				chest: 'Chest',
+				arms: 'Arms',
+				waist: 'Waist',
+				legs: 'Legs',
+				cuff1: 'Cuff1',
+				cuff2: 'Cuff2',
+				style: 'Extreme Style',
+				weaponSlot1: 'Slot 1',
+				weaponSlot2: 'Slot 2',
+				weaponSlot3: 'Slot 3',
+				headSlot1: 'Slot 1',
+				headSlot2: 'Slot 2',
+				headSlot3: 'Slot 3',
+				chestSlot1: 'Slot 1',
+				chestSlot2: 'Slot 2',
+				chestSlot3: 'Slot 3',
+				armsSlot1: 'Slot 1',
+				armsSlot2: 'Slot 2',
+				armsSlot3: 'Slot 3',
+				waistSlot1: 'Slot 1',
+				waistSlot2: 'Slot 2',
+				waistSlot3: 'Slot 3',
+				legsSlot1: 'Slot 1',
+				legsSlot2: 'Slot 2',
+				legsSlot3: 'Slot 3',
 			},
-			setTags: ['Zenith', 'Multiplayer', 'Premium'],
-			setName: 'Armor Set 2',
-			setColor: 'green',
+			{
+				setIcon: MonsterComponent,
+				setIconProps: {
+					currentMonster: 'Bogabadorumu',
+					background: false,
+				},
+				setTags: ['Zenith', 'Multiplayer', 'Premium'],
+				setName: 'Armor Set 2',
+				setColor: 'green',
 
-			weaponType: 'Long Sword',
-			weaponName: 'Weapon',
-			head: 'Helmet',
-			chest: 'Chest',
-			arms: 'Arms',
-			waist: 'Waist',
-			legs: 'Legs',
-			cuff1: 'Cuff1',
-			cuff2: 'Cuff2',
-			style: 'Extreme Style',
-			weaponSlot1: 'Slot 1',
-			weaponSlot2: 'Slot 2',
-			weaponSlot3: 'Slot 3',
-			headSlot1: 'Slot 1',
-			headSlot2: 'Slot 2',
-			headSlot3: 'Slot 3',
-			chestSlot1: 'Slot 1',
-			chestSlot2: 'Slot 2',
-			chestSlot3: 'Slot 3',
-			armsSlot1: 'Slot 1',
-			armsSlot2: 'Slot 2',
-			armsSlot3: 'Slot 3',
-			waistSlot1: 'Slot 1',
-			waistSlot2: 'Slot 2',
-			waistSlot3: 'Slot 3',
-			legsSlot1: 'Slot 1',
-			legsSlot2: 'Slot 2',
-			legsSlot3: 'Slot 3',
-		},
-		{
-			setIcon: MonsterComponent,
-			setIconProps: {
-				currentMonster: 'Howling Zinogre',
-				background: false,
+				weaponType: 'Long Sword',
+				weaponName: 'Weapon',
+				head: 'Helmet',
+				chest: 'Chest',
+				arms: 'Arms',
+				waist: 'Waist',
+				legs: 'Legs',
+				cuff1: 'Cuff1',
+				cuff2: 'Cuff2',
+				style: 'Extreme Style',
+				weaponSlot1: 'Slot 1',
+				weaponSlot2: 'Slot 2',
+				weaponSlot3: 'Slot 3',
+				headSlot1: 'Slot 1',
+				headSlot2: 'Slot 2',
+				headSlot3: 'Slot 3',
+				chestSlot1: 'Slot 1',
+				chestSlot2: 'Slot 2',
+				chestSlot3: 'Slot 3',
+				armsSlot1: 'Slot 1',
+				armsSlot2: 'Slot 2',
+				armsSlot3: 'Slot 3',
+				waistSlot1: 'Slot 1',
+				waistSlot2: 'Slot 2',
+				waistSlot3: 'Slot 3',
+				legsSlot1: 'Slot 1',
+				legsSlot2: 'Slot 2',
+				legsSlot3: 'Slot 3',
 			},
-			setTags: ['Musou', 'Multiplayer', 'Premium'],
-			setName: 'Armor Set 3',
-			setColor: 'blue',
+			{
+				setIcon: MonsterComponent,
+				setIconProps: {
+					currentMonster: 'Howling Zinogre',
+					background: false,
+				},
+				setTags: ['Musou', 'Multiplayer', 'Premium'],
+				setName: 'Armor Set 3',
+				setColor: 'blue',
 
-			weaponType: 'Magnet Spike',
-			weaponName: 'Weapon',
-			head: 'Helmet',
-			chest: 'Chest',
-			arms: 'Arms',
-			waist: 'Waist',
-			legs: 'Legs',
-			cuff1: 'Cuff1',
-			cuff2: 'Cuff2',
-			style: 'Extreme Style',
-			weaponSlot1: 'Slot 1',
-			weaponSlot2: 'Slot 2',
-			weaponSlot3: 'Slot 3',
-			headSlot1: 'Slot 1',
-			headSlot2: 'Slot 2',
-			headSlot3: 'Slot 3',
-			chestSlot1: 'Slot 1',
-			chestSlot2: 'Slot 2',
-			chestSlot3: 'Slot 3',
-			armsSlot1: 'Slot 1',
-			armsSlot2: 'Slot 2',
-			armsSlot3: 'Slot 3',
-			waistSlot1: 'Slot 1',
-			waistSlot2: 'Slot 2',
-			waistSlot3: 'Slot 3',
-			legsSlot1: 'Slot 1',
-			legsSlot2: 'Slot 2',
-			legsSlot3: 'Slot 3',
-		},
-		{
-			setIcon: MonsterComponent,
-			setIconProps: {
-				currentMonster: 'Conquest Crimson Fatalis',
-				background: false,
+				weaponType: 'Magnet Spike',
+				weaponName: 'Weapon',
+				head: 'Helmet',
+				chest: 'Chest',
+				arms: 'Arms',
+				waist: 'Waist',
+				legs: 'Legs',
+				cuff1: 'Cuff1',
+				cuff2: 'Cuff2',
+				style: 'Extreme Style',
+				weaponSlot1: 'Slot 1',
+				weaponSlot2: 'Slot 2',
+				weaponSlot3: 'Slot 3',
+				headSlot1: 'Slot 1',
+				headSlot2: 'Slot 2',
+				headSlot3: 'Slot 3',
+				chestSlot1: 'Slot 1',
+				chestSlot2: 'Slot 2',
+				chestSlot3: 'Slot 3',
+				armsSlot1: 'Slot 1',
+				armsSlot2: 'Slot 2',
+				armsSlot3: 'Slot 3',
+				waistSlot1: 'Slot 1',
+				waistSlot2: 'Slot 2',
+				waistSlot3: 'Slot 3',
+				legsSlot1: 'Slot 1',
+				legsSlot2: 'Slot 2',
+				legsSlot3: 'Slot 3',
 			},
-			setTags: ['Conquest', 'Multiplayer', 'Premium'],
-			setName: 'Armor Set 4',
-			setColor: 'yellow',
+			{
+				setIcon: MonsterComponent,
+				setIconProps: {
+					currentMonster: 'Conquest Crimson Fatalis',
+					background: false,
+				},
+				setTags: ['Conquest', 'Multiplayer', 'Premium'],
+				setName: 'Armor Set 4',
+				setColor: 'yellow',
 
-			weaponType: 'Bow',
-			weaponName: 'Weapon',
-			head: 'Helmet',
-			chest: 'Chest',
-			arms: 'Arms',
-			waist: 'Waist',
-			legs: 'Legs',
-			cuff1: 'Cuff1',
-			cuff2: 'Cuff2',
-			style: 'Extreme Style',
-			weaponSlot1: 'Slot 1',
-			weaponSlot2: 'Slot 2',
-			weaponSlot3: 'Slot 3',
-			headSlot1: 'Slot 1',
-			headSlot2: 'Slot 2',
-			headSlot3: 'Slot 3',
-			chestSlot1: 'Slot 1',
-			chestSlot2: 'Slot 2',
-			chestSlot3: 'Slot 3',
-			armsSlot1: 'Slot 1',
-			armsSlot2: 'Slot 2',
-			armsSlot3: 'Slot 3',
-			waistSlot1: 'Slot 1',
-			waistSlot2: 'Slot 2',
-			waistSlot3: 'Slot 3',
-			legsSlot1: 'Slot 1',
-			legsSlot2: 'Slot 2',
-			legsSlot3: 'Slot 3',
-		},
-		{
-			setIcon: MonsterComponent,
-			setIconProps: {
-				currentMonster: 'Blinking Nargacuga',
-				background: false,
+				weaponType: 'Bow',
+				weaponName: 'Weapon',
+				head: 'Helmet',
+				chest: 'Chest',
+				arms: 'Arms',
+				waist: 'Waist',
+				legs: 'Legs',
+				cuff1: 'Cuff1',
+				cuff2: 'Cuff2',
+				style: 'Extreme Style',
+				weaponSlot1: 'Slot 1',
+				weaponSlot2: 'Slot 2',
+				weaponSlot3: 'Slot 3',
+				headSlot1: 'Slot 1',
+				headSlot2: 'Slot 2',
+				headSlot3: 'Slot 3',
+				chestSlot1: 'Slot 1',
+				chestSlot2: 'Slot 2',
+				chestSlot3: 'Slot 3',
+				armsSlot1: 'Slot 1',
+				armsSlot2: 'Slot 2',
+				armsSlot3: 'Slot 3',
+				waistSlot1: 'Slot 1',
+				waistSlot2: 'Slot 2',
+				waistSlot3: 'Slot 3',
+				legsSlot1: 'Slot 1',
+				legsSlot2: 'Slot 2',
+				legsSlot3: 'Slot 3',
 			},
-			setTags: ['Musou', 'Solo', 'Premium'],
-			setName: 'Armor Set 5',
-			setColor: 'mauve',
+			{
+				setIcon: MonsterComponent,
+				setIconProps: {
+					currentMonster: 'Blinking Nargacuga',
+					background: false,
+				},
+				setTags: ['Musou', 'Solo', 'Premium'],
+				setName: 'Armor Set 5',
+				setColor: 'mauve',
 
-			weaponType: 'Tonfa',
-			weaponName: 'Weapon',
-			head: 'Helmet',
-			chest: 'Chest',
-			arms: 'Arms',
-			waist: 'Waist',
-			legs: 'Legs',
-			cuff1: 'Cuff1',
-			cuff2: 'Cuff2',
-			style: 'Extreme Style',
-			weaponSlot1: 'Slot 1',
-			weaponSlot2: 'Slot 2',
-			weaponSlot3: 'Slot 3',
-			headSlot1: 'Slot 1',
-			headSlot2: 'Slot 2',
-			headSlot3: 'Slot 3',
-			chestSlot1: 'Slot 1',
-			chestSlot2: 'Slot 2',
-			chestSlot3: 'Slot 3',
-			armsSlot1: 'Slot 1',
-			armsSlot2: 'Slot 2',
-			armsSlot3: 'Slot 3',
-			waistSlot1: 'Slot 1',
-			waistSlot2: 'Slot 2',
-			waistSlot3: 'Slot 3',
-			legsSlot1: 'Slot 1',
-			legsSlot2: 'Slot 2',
-			legsSlot3: 'Slot 3',
-		},
-		{
-			setIcon: MonsterComponent,
-			setIconProps: {
-				currentMonster: 'Supremacy Pariapuria',
-				background: false,
+				weaponType: 'Tonfa',
+				weaponName: 'Weapon',
+				head: 'Helmet',
+				chest: 'Chest',
+				arms: 'Arms',
+				waist: 'Waist',
+				legs: 'Legs',
+				cuff1: 'Cuff1',
+				cuff2: 'Cuff2',
+				style: 'Extreme Style',
+				weaponSlot1: 'Slot 1',
+				weaponSlot2: 'Slot 2',
+				weaponSlot3: 'Slot 3',
+				headSlot1: 'Slot 1',
+				headSlot2: 'Slot 2',
+				headSlot3: 'Slot 3',
+				chestSlot1: 'Slot 1',
+				chestSlot2: 'Slot 2',
+				chestSlot3: 'Slot 3',
+				armsSlot1: 'Slot 1',
+				armsSlot2: 'Slot 2',
+				armsSlot3: 'Slot 3',
+				waistSlot1: 'Slot 1',
+				waistSlot2: 'Slot 2',
+				waistSlot3: 'Slot 3',
+				legsSlot1: 'Slot 1',
+				legsSlot2: 'Slot 2',
+				legsSlot3: 'Slot 3',
 			},
-			setTags: ['Supremacy', 'Solo', 'Premium'],
-			setName: 'Armor Set 6',
-			setColor: 'sky',
+			{
+				setIcon: MonsterComponent,
+				setIconProps: {
+					currentMonster: 'Supremacy Pariapuria',
+					background: false,
+				},
+				setTags: ['Supremacy', 'Solo', 'Premium'],
+				setName: 'Armor Set 6',
+				setColor: 'sky',
 
-			weaponType: 'Dual Swords',
-			weaponName: 'Weapon',
-			head: 'Helmet',
-			chest: 'Chest',
-			arms: 'Arms',
-			waist: 'Waist',
-			legs: 'Legs',
-			cuff1: 'Cuff1',
-			cuff2: 'Cuff2',
-			style: 'Extreme Style',
-			weaponSlot1: 'Slot 1',
-			weaponSlot2: 'Slot 2',
-			weaponSlot3: 'Slot 3',
-			headSlot1: 'Slot 1',
-			headSlot2: 'Slot 2',
-			headSlot3: 'Slot 3',
-			chestSlot1: 'Slot 1',
-			chestSlot2: 'Slot 2',
-			chestSlot3: 'Slot 3',
-			armsSlot1: 'Slot 1',
-			armsSlot2: 'Slot 2',
-			armsSlot3: 'Slot 3',
-			waistSlot1: 'Slot 1',
-			waistSlot2: 'Slot 2',
-			waistSlot3: 'Slot 3',
-			legsSlot1: 'Slot 1',
-			legsSlot2: 'Slot 2',
-			legsSlot3: 'Slot 3',
-		},
-	] }: Props = $props();
+				weaponType: 'Dual Swords',
+				weaponName: 'Weapon',
+				head: 'Helmet',
+				chest: 'Chest',
+				arms: 'Arms',
+				waist: 'Waist',
+				legs: 'Legs',
+				cuff1: 'Cuff1',
+				cuff2: 'Cuff2',
+				style: 'Extreme Style',
+				weaponSlot1: 'Slot 1',
+				weaponSlot2: 'Slot 2',
+				weaponSlot3: 'Slot 3',
+				headSlot1: 'Slot 1',
+				headSlot2: 'Slot 2',
+				headSlot3: 'Slot 3',
+				chestSlot1: 'Slot 1',
+				chestSlot2: 'Slot 2',
+				chestSlot3: 'Slot 3',
+				armsSlot1: 'Slot 1',
+				armsSlot2: 'Slot 2',
+				armsSlot3: 'Slot 3',
+				waistSlot1: 'Slot 1',
+				waistSlot2: 'Slot 2',
+				waistSlot3: 'Slot 3',
+				legsSlot1: 'Slot 1',
+				legsSlot2: 'Slot 2',
+				legsSlot3: 'Slot 3',
+			},
+		],
+	}: Props = $props();
 
-	let selectedArmorSet = $derived(armorSets.find((e) => e.setName === selectedSetName));
+	let selectedArmorSet = $derived(
+		armorSets.find((e) => e.setName === selectedSetName),
+	);
 </script>
 
 <div class="container">
@@ -288,30 +293,31 @@
 							{#if typeof armorSet.setIcon === 'string'}
 								<Tooltip hideIcon>
 									{#snippet triggerText()}
-																		<span >
+										<span>
 											<img
 												class="set-header-image"
 												src={armorSet.setIcon}
 												alt="Armot Set Piece"
 											/></span
 										>
-																	{/snippet}
+									{/snippet}
 									<div>{armorSet.setName}</div></Tooltip
 								>
 							{:else}
 								<div class="set-header-image">
 									<Tooltip hideIcon>
 										{#snippet triggerText()}
-																				<span >
+											<span>
 												<armorSet.setIcon
 													{...{
 														size: '64px',
-														currentMonster: armorSet.setIconProps?.currentMonster,
+														currentMonster:
+															armorSet.setIconProps?.currentMonster,
 														background: armorSet.setIconProps?.background,
 													}}
 												/></span
 											>
-																			{/snippet}
+										{/snippet}
 										<div>{armorSet.setName}</div></Tooltip
 									>
 								</div>
@@ -498,8 +504,8 @@
 					kind="ghost"
 					on:click={(e) => onPieceClick(selectedArmorSet)}
 					>{#snippet icon()}
-												<span ><PreviousOutline size={24} /></span>
-											{/snippet}
+						<span><PreviousOutline size={24} /></span>
+					{/snippet}
 				</Button>
 				<h3>{selectedArmorSet.setName}</h3>
 				<div class="tags">
@@ -511,37 +517,37 @@
 						</div>
 					{/each}
 				</div>
-				<div>
+				<p>
 					<strong
 						>{selectedArmorSet.weaponName} | {selectedArmorSet.style}</strong
 					>
 				</p>
-				<div>
+				<p>
 					{selectedArmorSet.weaponSlot1} | {selectedArmorSet.weaponSlot2} | {selectedArmorSet.weaponSlot3}
-				</div>
-				<div><strong>{selectedArmorSet.head}</strong></div>
-				<div>
+				</p>
+				<p><strong>{selectedArmorSet.head}</strong></p>
+				<p>
 					{selectedArmorSet.headSlot1} | {selectedArmorSet.headSlot2} | {selectedArmorSet.headSlot3}
-				</div>
-				<div><strong>{selectedArmorSet.chest}</strong></div>
-				<div>
+				</p>
+				<p><strong>{selectedArmorSet.chest}</strong></p>
+				<p>
 					{selectedArmorSet.chestSlot1} | {selectedArmorSet.chestSlot2} | {selectedArmorSet.chestSlot3}
-				</div>
-				<div><strong>{selectedArmorSet.arms}</strong></div>
-				<div>
+				</p>
+				<p><strong>{selectedArmorSet.arms}</strong></p>
+				<p>
 					{selectedArmorSet.armsSlot1} | {selectedArmorSet.armsSlot2} | {selectedArmorSet.armsSlot3}
-				</div>
-				<div><strong>{selectedArmorSet.waist}</strong></div>
-				<div>
+				</p>
+				<p><strong>{selectedArmorSet.waist}</strong></p>
+				<p>
 					{selectedArmorSet.waistSlot1} | {selectedArmorSet.waistSlot2} | {selectedArmorSet.waistSlot3}
-				</div>
-				<div><strong>{selectedArmorSet.legs}</strong></div>
-				<div>
+				</p>
+				<p><strong>{selectedArmorSet.legs}</strong></p>
+				<p>
 					{selectedArmorSet.legsSlot1} | {selectedArmorSet.legsSlot2} | {selectedArmorSet.legsSlot3}
-				</div>
-				<div>
+				</p>
+				<p>
 					<strong>{selectedArmorSet.cuff1} | {selectedArmorSet.cuff2}</strong>
-				</div>
+				</p>
 				<!---TODO: Armor skills etc-->
 			</div>
 		</div>

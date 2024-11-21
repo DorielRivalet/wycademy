@@ -199,7 +199,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					iconType="component"
 				/> (LBG) is a highly versatile ranged weapon known for its rapid bullet output,
 				utilizing Just Shots, Rapid Fire, and Ultra Rapid Fire to maximize damage.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				The Just Shot is the primary attack method for <InlineTooltip
 					tooltip="Weapon"
@@ -210,7 +210,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 				this section allows you to fire the next shot sooner, boosting its damage
 				by 1.3x. This technique increases your DPS more effectively than either of
 				the rapid-fire methods.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				If you reload within the same window, you can reload faster, including
 				swapping ammo types if you're quick enough. Unlike the <InlineTooltip
@@ -220,7 +220,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					iconType="component"
 				/>
 				Compression Shots, missing the timing window incurs no penalty.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				Rapid Fire functions similarly to the mainline games, where you fire a
 				volley of shots while consuming a single bullet. These shots have a
@@ -229,7 +229,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 				consumed. For instance, if the first volley fires three shots, the
 				second volley fires four, the third fires five, and so on until you run
 				out of ammo.
-			</p>
+			</div>
 			<div class="spaced-paragraph">
 				<InlineTooltip
 					tooltip="Weapon"
@@ -240,7 +240,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 				recoil, and Long Barrels don’t increase attack power. Instead, Silencers
 				make you less noticeable to monsters, and Long Barrels increase the speed
 				of your shots.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Critical Distance" />
@@ -249,10 +249,10 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						Critical Distance is a shared mechanic among all ranged weapons,
 						defining the optimal range for each ammo type. Here's a breakdown:
 					</div>
-					<div class="spaced-paragraph"><strong>Earth Style</strong></p>
+					<div class="spaced-paragraph"><strong>Earth Style</strong></div>
 					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Normal Shots"
@@ -262,7 +262,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pierce Shots"
@@ -272,7 +272,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pellet Shots"
@@ -282,7 +282,9 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>Other Shots: Fixed damage regardless of distance</div></ListItem
+							><div class="paragraph-long-02">
+								Other Shots: Fixed damage regardless of distance
+							</div></ListItem
 						>
 					</UnorderedList>
 					<div class="spaced-paragraph">
@@ -290,7 +292,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					</div>
 					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Normal Shots"
@@ -300,7 +302,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pierce Shots"
@@ -310,7 +312,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pellet Shots"
@@ -320,7 +322,9 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>Other Shots: Fixed damage regardless of distance</div></ListItem
+							><div class="paragraph-long-02">
+								Other Shots: Fixed damage regardless of distance
+							</div></ListItem
 						>
 					</UnorderedList>
 					<div class="spaced-paragraph">
@@ -332,7 +336,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 				</div>
 			</section>
 
-			<div>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -341,7 +345,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
@@ -353,7 +357,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							icon={getWeaponIcon('Light Bowgun')}
 							iconType="component"
 						/> style, straightforward and effective without any notable distinctions.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -382,7 +386,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						increasing the critical multiplier to 2.0x. This can be very
 						powerful, allowing you to chain high-damage shots while moving
 						forward.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						With Ultra Rapid Fire, all shots fired as a Step Shot use the same
 						critical distance. If you evade close to a monster without getting
@@ -392,7 +396,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							icon={getItemIcon('Ammo Pierce')}
 							iconType="component"
 						/> with much higher damage.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						If you are using <InlineTooltip
 							tooltip="Armor Skill"
@@ -407,7 +411,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							icon={getItemIcon('Jewel')}
 							iconType="component"
 						/>.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -431,7 +435,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						covering a significant distance in the direction you’re moving. You
 						can stop running instantly to shoot, though adjusting your angle is
 						challenging.
-					</p>
+					</div>
 					<div class="spaced-paragraph">
 						This style also introduces Evasion Shots and Finishing Shots.
 					</div>
@@ -453,7 +457,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						/>. While Just Shots generally offer more sustained damage,
 						Finishing Shots can be powerful if you need to maximize damage
 						output with limited ammo.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -465,7 +469,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						+0.1x Damage increased at critical distance. x1.2 Status damage.
 					</div>
 				</div>
@@ -505,7 +509,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -554,7 +558,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 										icon={getItemIcon('Jewel')}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -608,7 +612,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 										maxRating={3}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -619,9 +623,9 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								As a Gunner weapon, the <InlineTooltip
 									tooltip="Weapon"
 									text="Light Bowgun"
@@ -631,7 +635,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Long barrels don’t increase raw damage; instead, they boost shot
 								speed, which may disrupt timing with <InlineTooltip
 									tooltip="Ammo"
@@ -642,13 +646,13 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Rapid Fire isn’t commonly used in modern Frontier, so newer guns
 								don’t come with it, though you can still force it using sigils.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pierce S"
@@ -658,14 +662,14 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								If you’re having trouble tracking ammo with Just Shots, consider
 								using the first-person camera with the clip display positioned
 								under the crosshairs.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Like Sword and Shield, using items while unsheathed with <InlineTooltip
 									tooltip="Armor Skill"
 									text="LBG Hiden"
@@ -680,7 +684,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Proper spacing increases the size of <InlineTooltip
 									tooltip="Armor Skill"
 									text="LBG Hiden's"
@@ -690,7 +694,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Consider building sets both with and without <InlineTooltip
 									tooltip="Armor Skill"
 									text="Combat Supremacy"
@@ -706,7 +710,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Acid S"
@@ -722,7 +726,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Combined with <InlineTooltip
 									tooltip="Armor Skill"
 									text="Caring+3"

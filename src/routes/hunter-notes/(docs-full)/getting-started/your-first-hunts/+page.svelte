@@ -30,6 +30,8 @@
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
+	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
+	import { browser } from '$app/environment';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -289,7 +291,7 @@
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
 			<img src={modalImage} alt={'caravan'} />
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -320,6 +322,13 @@
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Your First Hunts'} />
 		<div>
+			<InlineNotification
+				lowContrast
+				hideCloseButton
+				kind="info"
+				title="Info:"
+				subtitle="This section is pending an overhaul. I recommend first consulting patch and server specific guides from the community you are in."
+			/>
 			<section>
 				<SectionHeading level={2} title="Item Preset Preparation" />
 				<div>
@@ -422,7 +431,7 @@
 					<section>
 						<SectionHeading level={3} title="Stamina Items" />
 						<div>
-							<div>
+							<div class="paragraph-long-02">
 								Purchase <InlineTooltip
 									icon={getItemIcon('Herb')}
 									iconColor={getItemColor('Purple')}
@@ -489,7 +498,7 @@
 								to make Claws. This final combination will give you the benefits
 								of all four items in one item slot (Attack+15 and Defense+40).
 							</div>
-							<div>
+							<div class="paragraph-long-02">
 								The items shown in the diagram do not stack. If you want the
 								maximum possible buffs, you only need <InlineTooltip
 									icon={getItemIcon('Claw')}
@@ -499,9 +508,10 @@
 								/>.
 							</div>
 							<div class="svelte-flow-container">
+								<!-- TODO if u refresh the page it doesnt fit the view-->
 								<SvelteFlow
 									colorMode={$carbonThemeStore === 'g10' ? 'light' : 'dark'}
-									fitView
+									fitView={true}
 									{nodes}
 									{edges}
 									elementsSelectable={false}
@@ -526,20 +536,20 @@
 </TableOfContentsPage>
 
 <style lang="scss">
-	button {
-		all: unset;
-	}
+	// button {
+	// 	all: unset;
+	// }
 
-	.table-button {
-		display: flex;
-		align-items: center;
-		font-weight: bold;
-		gap: 0.25rem;
+	// .table-button {
+	// 	display: flex;
+	// 	align-items: center;
+	// 	font-weight: bold;
+	// 	gap: 0.25rem;
 
-		img {
-			max-width: 4ch;
-		}
-	}
+	// 	img {
+	// 		max-width: 4ch;
+	// 	}
+	// }
 
 	.page-turn {
 		margin-top: 4rem;

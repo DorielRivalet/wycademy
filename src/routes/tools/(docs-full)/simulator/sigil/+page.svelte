@@ -511,7 +511,7 @@
 						tooltip="Sigil"
 					/>
 				</div>
-				<div>
+				<div class="paragraph-long-02">
 					Materials needed: {#key sigil}<InlineTooltip
 							icon={materialNeededIcon}
 							iconType="component"
@@ -519,14 +519,14 @@
 							tooltip="Item"
 							iconColor={materialNeededIconColor}
 						/>{/key}
-				</p>
-				<div>
+				</div>
+				<p>
 					Best sigil found: {bestSigilStats} (roll #{bestSigilRollNumber}, score {bestSigilScore},
 					max score {sigilMaxScore})
 				</p>
 				<p class="tooltip-paragraph">
 					<Tooltip align="start">
-						<div>
+						<p>
 							Probability of getting a {sigil} sigil with {selectedRolls} available
 							rolls (Priority {priority}) with score {targetScore} or higher with
 							{confidenceLevel}% confidence and {marginOfError}% margin of

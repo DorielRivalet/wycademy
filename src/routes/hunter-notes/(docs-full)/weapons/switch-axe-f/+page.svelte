@@ -201,7 +201,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
 						?.icon}
 				/>. It is unlocked by reaching G Rank.
-			</p>
+			</div>
 
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
@@ -247,7 +247,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 				{/await}
 			</div>
 
-			<div>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -256,7 +256,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
@@ -286,7 +286,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<div>
+					<div class="paragraph-long-02">
 						{getActiveFeature('Switch Axe F')}
 					</div>
 				</div>
@@ -326,7 +326,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
-								<div>{cell.value}</div>
+								<p>{cell.value}</p>
 							{/if}
 						{/snippet}
 					</DataTable>
@@ -375,7 +375,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 										icon={getItemIcon('Jewel')}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -429,7 +429,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 										maxRating={3}
 									/>
 								{:else}
-									<div>{cell.value}</div>
+									<p>{cell.value}</p>
 								{/if}
 							{/snippet}
 						</DataTable>
@@ -440,9 +440,9 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								If you don't have <InlineTooltip
 									tooltip="Armor Skill"
 									text="Switch Axe Hiden"
@@ -457,7 +457,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								A power phial doesn't directly increase raw damage; instead, it
 								enhances the motion values of phial attacks by approximately
 								10%. It's still regarded as the best type, though it's less
@@ -470,13 +470,13 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Elemental phials are the most prevalent on Zenith weapons and
 								can still provide a significant boost in certain cases.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Having <InlineTooltip
 									tooltip="Armor Skill"
 									text="Guard+2"
@@ -511,7 +511,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								With <InlineTooltip
 									tooltip="Armor Skill"
 									text="Hiden"
@@ -527,14 +527,14 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The elemental discharge from Earth Style can still be executed
 								in Extreme Style; just tap the other button after the initial
 								thrust.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon Type"
 									text="Switch Axe F's"
@@ -550,7 +550,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Using the finisher move without having inflicted any Dragon
 								Spirit will result in minimal damage and leave the hunter
 								vulnerable. This move also consumes a significant amount of
@@ -558,7 +558,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Since <InlineTooltip
 									tooltip="Weapon Type"
 									text="Switch Axe F's"
@@ -580,21 +580,21 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Earth, Heaven and Extreme Style gauges have 100 units of energy
 								maximum. Storm and Extreme Style Light Sword gauges have 300
 								units of energy maximum.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The recovery rate of the gauge is 5 units of energy every 5
 								seconds. Extreme Style Light Sword gauge does not have natural
 								recovery of energy.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The <InlineTooltip
 									tooltip="Armor Skill"
 									text="Focus"
@@ -606,21 +606,24 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Successful parries with Light Sword gives 50 units of energy
 								with Storm Style and 75 with Extreme Style, doubled on Active
 								Feature.
 							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Attacking during Axe Mode recovers 6 units of energy.
 							</div></ListItem
 						>
-						<ListItem><div>Switch Axe running consumes phial energy.</div></ListItem
+						<ListItem
+							><div class="paragraph-long-02">
+								Switch Axe running consumes phial energy.
+							</div></ListItem
 						>
 						<ListItem
-							><div>
+							><div class="paragraph-long-02">
 								The second stage of <InlineTooltip
 									tooltip="Armor Skill"
 									text="Rush"
@@ -629,7 +632,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 								/> eliminates all meter drain while running.
 							</div></ListItem
 						><ListItem
-							><div>
+							><div class="paragraph-long-02">
 								Some monsters, like <InlineTooltip
 									tooltip="Monster"
 									text="Zenith Rukodiora"

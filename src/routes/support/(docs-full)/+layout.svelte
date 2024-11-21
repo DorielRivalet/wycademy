@@ -122,14 +122,6 @@
 	function onTOCToggleButtonPress(e: MouseEvent) {
 		tocVisible = !tocVisible;
 		hunterNotesSidebarEnabledStore.set(tocVisible ? true : false);
-
-		if (tocVisible) {
-			tocClass = 'aside';
-			centerColumnClass = ''; // Reset to default width
-		} else {
-			tocClass = 'aside collapsed';
-			centerColumnClass = 'expanded'; // Increase width to full
-		}
 	}
 
 	let breadcrumbItems: URLItem[] = $state([]);
