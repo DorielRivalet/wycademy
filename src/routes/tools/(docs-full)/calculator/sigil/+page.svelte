@@ -1,4 +1,5 @@
 <script lang="ts">
+	// TODO refreshing the page makes it error
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
@@ -1104,7 +1105,7 @@
 					bind:value={inputNumberAttackValue}
 				/>
 				{#if isLengthUpActive(sigils) === 'Active'}
-					<div>({outputLengthUpTrueRaw} True Raw with Length Up)</div>
+					<p>({outputLengthUpTrueRaw} True Raw with Length Up)</p>
 				{/if}
 			</div>
 			<div class="extra-inputs">
@@ -1286,10 +1287,10 @@
 						{@html formulaZenithSigilAOEElement}
 					</div>
 					<div>
-						<div>Zenith Sigil True Raw: {outputZenithSigilTrueRaw}</div>
-						<div>Zenith Sigil Element: {outputZenithSigilElement}</div>
-						<div>Zenith Sigil AOE True Raw: {outputZenithSigilAOETrueRaw}</div>
-						<div>Zenith Sigil AOE Element: {outputZenithSigilAOEElement}</div>
+						<p>Zenith Sigil True Raw: {outputZenithSigilTrueRaw}</p>
+						<p>Zenith Sigil Element: {outputZenithSigilElement}</p>
+						<p>Zenith Sigil AOE True Raw: {outputZenithSigilAOETrueRaw}</p>
+						<p>Zenith Sigil AOE Element: {outputZenithSigilAOEElement}</p>
 					</div>
 				</div>
 			</section>
