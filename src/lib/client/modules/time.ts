@@ -62,6 +62,26 @@ export function stringToCustomDateFormat(date: string): string {
 	return new Date(date).toISOString().substring(0, 16).replace('T', ' ');
 }
 
+export function padTo2Digits(num: number) {
+	return num.toString().padStart(2, '0');
+}
+
+export function formatDate(date: Date) {
+	return (
+		[
+			date.getFullYear(),
+			padTo2Digits(date.getMonth() + 1), // +1 because getMonth() is zero-based
+			padTo2Digits(date.getDate()),
+		].join('-') +
+		'-' +
+		[
+			padTo2Digits(date.getHours()),
+			padTo2Digits(date.getMinutes()),
+			padTo2Digits(date.getSeconds()),
+		].join('-')
+	);
+}
+
 export function formatDateWithRelativeTime(date1: Date, date2: Date): string {
 	if (!browser || !date1 || !date2) return '';
 	const diffInMs = date2.getTime() - date1.getTime();

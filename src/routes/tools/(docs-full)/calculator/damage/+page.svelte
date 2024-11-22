@@ -10048,6 +10048,26 @@ does not get multiplied by horn */
 											>
 										</div>
 									</ListItem>
+									<ListItem>
+										<div class="paragraph-long-02">
+											True Raw refers to your damage without taking into account
+											the weapon type bloat multiplier, unlike Bloat Raw.
+										</div>
+									</ListItem>
+									<ListItem>
+										<div class="paragraph-long-02">
+											Attack Ceiling denotes the minimum Style Rank Attack
+											Ceiling level you need in order to not waste damage in the
+											current setup. Likewise, My Missions denotes the required
+											amount of My Missions needed to complete in order to not
+											waste damage in the current setup. For more information,
+											see the <Link
+												inline
+												href="/hunter-notes/getting-started/style-rank"
+												>Style Rank page.</Link
+											>
+										</div>
+									</ListItem>
 								</UnorderedList></AccordionItem
 							></Accordion
 						>
@@ -10233,6 +10253,20 @@ does not get multiplied by horn */
 								</h5>
 							</svelte:fragment>
 							<UnorderedList class="spaced-list">
+								<ListItem>
+									<p>
+										A motion value is defined as the intrinsic attack power of a
+										weapon move, which can be comprised of a single or multiple
+										hits. As an example, Great Sword Shining Sword attack has a
+										motion value of 27, and its comprised of 17 hits total;
+										Magnet Spike has Magnetic Pin Finisher which has a motion
+										value of 600, composed of a single attack. The difference
+										between the motion value column and the raw column is that
+										motion value is innate to the weapon type, while raw depends
+										not only on the motion value but also on the stats of your
+										weapon, armor, etc.
+									</p>
+								</ListItem>
 								<ListItem>
 									<p>
 										You can also change the table's weapon type in the Inputs

@@ -5,8 +5,6 @@
 -->
 
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { page } from '$app/stores';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import pageThumbnail from '$lib/client/images/icon/berserk_raviente_raid.png';
@@ -48,6 +46,7 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { formatDate } from '$lib/client/modules/time';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -268,6 +267,17 @@
 		greenHunter: 'The hunter did aim for your head. 💀',
 		default: 'You died. 💀',
 	};
+
+	const EASTER_EGG_SCORE = 10_000;
+
+	const EASTER_EGG = [
+		'A Hunting Horn user has joined your lament.',
+		'He seems to be looking for a new challenge?',
+		'Maybe this snake game is not all that there is!',
+		'He left you a note:',
+		'0 0 0 0 0 0 0 0',
+		'1 1 1 1 1 1 1 1',
+	];
 
 	const startingCells = 3;
 	const poisonedMinimumCells = 3;
@@ -1380,7 +1390,6 @@
 		snake.canBurnBlueBorder = false;
 		snake.canUseUltimate = false;
 		snake.maxEnergy = snakeStartingEnergy;
-		score = 0;
 		turns = 0;
 		toastyCount = 0;
 
@@ -1415,6 +1424,14 @@
 		} else {
 			sendMessageToConsole(deathMessage);
 		}
+
+		if (score >= EASTER_EGG_SCORE) {
+			EASTER_EGG.forEach((element) => {
+				sendMessageToConsole(element);
+			});
+		}
+
+		score = 0;
 
 		gameState = 'end';
 		gameStateText = 'Restart';
@@ -2208,26 +2225,6 @@
 		}
 	}
 
-	function padTo2Digits(num: number) {
-		return num.toString().padStart(2, '0');
-	}
-
-	function formatDate(date: Date) {
-		return (
-			[
-				date.getFullYear(),
-				padTo2Digits(date.getMonth() + 1), // +1 because getMonth() is zero-based
-				padTo2Digits(date.getDate()),
-			].join('-') +
-			'-' +
-			[
-				padTo2Digits(date.getHours()),
-				padTo2Digits(date.getMinutes()),
-				padTo2Digits(date.getSeconds()),
-			].join('-')
-		);
-	}
-
 	function checkForMovementInput(key: string) {
 		// Prevent reversing the direction immediately
 		// Update the snake's direction
@@ -2359,10 +2356,12 @@
 	let zappedText = $derived(`${snake.zapped}⚡`);
 	let toastyText = $derived(`${snake.toasty}🍞`);
 	let speedText = $derived(`Speed: ${snake.speed}m/s`);
-	let snakeLengthText;
-	run(() => {
-		snakeLengthText = `${snake.cells.length}/${maxSnakeLength}🐍`;
-	});
+	let snakeLengthText = $derived(`${snake.cells.length}/${maxSnakeLength}🐍`);
+
+	// $effect(() => {
+	// 	snakeLengthText = `${snake.cells.length}/${maxSnakeLength}🐍`;
+	// });
+
 	let speedColorClass = $derived(speedColor === COLORS.red ? 'red' : 'text');
 </script>
 
