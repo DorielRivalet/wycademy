@@ -12,7 +12,7 @@
 		color,
 		isPressed = false,
 		disabled = false,
-		children
+		children,
 	}: Props = $props();
 
 	const dispatch = createEventDispatcher();

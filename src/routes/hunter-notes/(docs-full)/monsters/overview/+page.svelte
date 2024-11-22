@@ -46,6 +46,7 @@
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import PairsGame from './PairsGame.svelte';
 
 	const monsterIconSize = '256px';
 
@@ -459,7 +460,10 @@
 			/>
 			<div>Results: {currentMonsters.length}</div>
 		</div>
-		{#if contextSwitcherIndex === 0}
+
+		{#if searchTerm.toLowerCase() === 'pairs'}
+			<PairsGame />
+		{:else if contextSwitcherIndex === 0}
 			{#if currentMonsters.length > 0}
 				<div class="monster-list">
 					{#each currentMonsters as monster}

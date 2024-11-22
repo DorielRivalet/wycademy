@@ -38,7 +38,7 @@
 	import type { FrontierHuntingHornNote } from '$lib/client/modules/frontier/types';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import HuntingHornRainbowNoteIcon from '$lib/client/components/frontier/icon/HuntingHornRainbowNoteIcon.svelte';
-	import SimonGame from '$lib/client/components/SimonGame.svelte';
+	import SimonGame from './SimonGame.svelte';
 
 	function handleToggle(index: number, enabled: boolean) {
 		huntingHornSelectedNotes[index].enabled = enabled;
