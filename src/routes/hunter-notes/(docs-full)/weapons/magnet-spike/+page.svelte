@@ -1043,11 +1043,11 @@ graph LR
 						skill ceiling. While most actions are shared between both forms,
 						some offer unique options. Attacking with this weapon gradually
 						magnetizes it, entering a "Magnetic Boost" state that increases
-						attack power. Landing attacks also magnetizes monsters; once fully
-						magnetized, the "Magnetic Bind" attack can be used. This binds the
-						monster in a strong magnetic field, with the hunter sustaining the
-						field by repeatedly pressing select buttons. Holding it long enough
-						allows for a powerful finishing attack.
+						attack power for 80 seconds. Landing attacks also magnetizes
+						monsters; once fully magnetized, the "Magnetic Bind" attack can be
+						used. This binds the monster in a strong magnetic field, with the
+						hunter sustaining the field by repeatedly pressing select buttons.
+						Holding it long enough allows for a powerful finishing attack.
 					</div>
 					<div class="spaced-paragraph">
 						Magnet Spikes feature two modes: Cutting and Impact. You can switch
@@ -1272,7 +1272,22 @@ graph LR
 									><div class="paragraph-long-02">
 										Magnetic Bind is usable once a monster is fully magnetized.
 									</div>
+								</ListItem><ListItem
+									><div class="paragraph-long-02">
+										The magnetize attack boost lasts for 80 seconds, boosting
+										attack for x1.1. After the effect wears off, there is no
+										magnetic force accumulation for 100 seconds. The magnetic
+										accumulation required for reactivation needs a total motion
+										value inflicted of 1250.
+									</div>
 								</ListItem>
+								<ListItem
+									><p>
+										Magnetized values refer to motion values, required
+										accumulation values vary by monster. The threshold increases
+										each time.
+									</p></ListItem
+								>
 							</UnorderedList>
 						</div>
 					</section>

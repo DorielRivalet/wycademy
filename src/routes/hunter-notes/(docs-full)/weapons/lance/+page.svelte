@@ -580,6 +580,16 @@
 								Long length is the most common on Zenith Lances, although Very
 								Long length can be useful too.
 							</div></ListItem
+						><ListItem
+							><div class="paragraph-long-02">
+								The yellow and red phial effects only apply to yourself.
+							</div></ListItem
+						><ListItem
+							><div class="paragraph-long-02">
+								Area guard can block hits starting at 2 total, 4 with Guard+1
+								and 6 with Guard+2. You can block extra hits during the ending
+								animation. The charging period lasts 90 seconds.
+							</div></ListItem
 						>
 						<ListItem
 							><div class="paragraph-long-02">

@@ -390,6 +390,10 @@
 		dragon: string;
 		additional: string;
 		stun: string;
+		gaugeConsumption?: string;
+		guardPoint?: boolean;
+		hitCount: string;
+		elementMultiplier: string;
 	};
 
 	function downloadMotionValuesImage() {
@@ -1749,6 +1753,10 @@
 				dragon: '0',
 				additional: '0',
 				stun: '0',
+				hitCount: '0',
+				elementMultiplier: '0',
+				gaugeConsumption: '0',
+				guardPoint: false,
 			},
 		];
 
@@ -2615,6 +2623,16 @@
 				stun: Array.isArray(motionValueItem.stun)
 					? motionValueItem.stun.join('･')
 					: motionValueItem.stun.toString(),
+				hitCount: motionValueItem.hitCount.toString(),
+				elementMultiplier: motionValueItem.elementMultiplier.toString(),
+				gaugeConsumption: motionValueItem.gaugeConsumption
+					? Array.isArray(motionValueItem.gaugeConsumption)
+						? motionValueItem.gaugeConsumption.join('･')
+						: motionValueItem.gaugeConsumption.toString()
+					: '0',
+				guardPoint: motionValueItem.guardPoint
+					? motionValueItem.guardPoint
+					: false,
 			});
 		});
 
@@ -2626,7 +2644,7 @@
 		section: string,
 		motionValueName: string,
 	): FrontierMotionValue {
-		let defaultValue = {
+		let defaultValue: FrontierMotionValue = {
 			name: '',
 			animation: '',
 			values: '',
@@ -2634,6 +2652,9 @@
 			specialFlag: '',
 			hitCount: 0,
 			elementMultiplier: 0,
+			stun: 0,
+			guardPoint: false,
+			gaugeConsumption: 0,
 		};
 
 		if (section === 'Shared') {
@@ -6125,250 +6146,162 @@ does not get multiplied by horn */
 			? inputNumberDragonHitzone
 			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.dragon;
 
-	function getMotionValuesTableHeaders(inputElement: FrontierElement) {
-		const defaultResult = [
+	function getMotionValuesTableHeaders(
+		inputElement: FrontierElement,
+		inputWeaponType: FrontierWeaponName,
+	) {
+		let result: {
+			key: string;
+			value: string;
+			width?: string;
+			minWidth?: string;
+		}[] = [];
+
+		result.push(
 			{ key: 'name', value: 'Name', width: '12rem' },
 			{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 			{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 			{ key: 'element', value: 'Element', minWidth: '1rem' },
 			{ key: 'total', value: 'Total', minWidth: '1rem' },
-			{ key: 'fire', value: '🔥', minWidth: '1rem' },
-			{ key: 'water', value: '💧', minWidth: '1rem' },
-			{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-			{ key: 'ice', value: '❄️', minWidth: '1rem' },
-			{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-			{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-			{ key: 'stun', value: '💫', minWidth: '1rem' },
-		];
+		);
 
 		switch (inputElement) {
-			default:
-				return defaultResult;
+			// default:
+			// 	result.push(
+			// 		{ key: 'fire', value: '🔥', minWidth: '1rem' },
+			// 		{ key: 'water', value: '💧', minWidth: '1rem' },
+			// 		{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+			// 		{ key: 'ice', value: '❄️', minWidth: '1rem' },
+			// 		{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+			// 	);
 			case 'Fire':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'fire', value: '🔥', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'fire', value: '🔥', minWidth: '1rem' });
+				break;
 			case 'Water':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'water', value: '💧', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'water', value: '💧', minWidth: '1rem' });
+				break;
 			case 'Thunder':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'thunder', value: '⚡', minWidth: '1rem' });
+				break;
 			case 'Ice':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'ice', value: '❄️', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'ice', value: '❄️', minWidth: '1rem' });
+				break;
 			case 'Dragon':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
-			case 'None':
-			case '':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'dragon', value: '🐲', minWidth: '1rem' });
+				break;
+			// case 'None':
+			// case '':
+			// result.push(
+			// 		{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+			// 		{ key: 'stun', value: '💫', minWidth: '1rem' },
+			// 		);
 			case 'Light':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Blaze':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Tenshou':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Lightning Rod':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Okiko':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Black Flame':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Crimson Demon':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Dark':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Music':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Sound':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Wind':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Burning Zero':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case "Emperor's Roar":
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 		}
+
+		result.push(
+			{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+			{ key: 'stun', value: '💫', minWidth: '1rem' },
+		);
+
+		switch (inputWeaponType) {
+			case 'Switch Axe F':
+				result.push({
+					key: 'gaugeConsumption',
+					value: 'Gauge Consumption',
+					minWidth: '1rem',
+				});
+				break;
+		}
+
+		result.push(
+			{ key: 'hitCount', value: 'Hits', minWidth: '1rem' },
+			{
+				key: 'elementMultiplier',
+				value: 'Element Multiplier',
+				minWidth: '1rem',
+			},
+		);
+
+		return result;
 	}
 
 	let openIntroduction = false;
@@ -6376,7 +6309,10 @@ does not get multiplied by horn */
 	let openInputsSection = true;
 	let openResultsSection = true;
 
-	$: motionValuesTableHeaders = getMotionValuesTableHeaders(inputElement);
+	$: motionValuesTableHeaders = getMotionValuesTableHeaders(
+		inputElement,
+		inputWeaponType,
+	);
 
 	let interceptionIcon = getLocationIcon('Interception');
 </script>
@@ -10111,6 +10047,7 @@ does not get multiplied by horn */
 						<DataTable
 							id="motion-values-dom"
 							sortable
+							useStaticWidth
 							zebra
 							size="short"
 							headers={motionValuesTableHeaders}
@@ -10273,7 +10210,16 @@ does not get multiplied by horn */
 										section.
 									</p>
 								</ListItem>
-
+								<ListItem>
+									<div class="paragraph-long-02">
+										Depending on the selected weapon type, additional columns
+										may show. For example, selecting <InlineTooltip
+											text="Switch Axe F"
+											tooltip="Weapon"
+											icon={getWeaponIcon('Switch Axe F')}
+										/> will show the gauge consumption column.
+									</div>
+								</ListItem>
 								<ListItem>
 									<div class="paragraph-long-02">
 										Some motion values have <InlineTooltip
@@ -10364,6 +10310,7 @@ does not get multiplied by horn */
 					<DataTable
 						id="shared-motion-values-dom"
 						sortable
+						useStaticWidth
 						zebra
 						size="short"
 						headers={motionValuesTableHeaders}
@@ -10908,6 +10855,8 @@ does not get multiplied by horn */
 	}
 
 	.motion-values {
+		width: 100%;
+		background-color: var(--ctp-surface0);
 		overflow-x: auto;
 		margin-top: 2rem;
 		margin-bottom: 2rem;
