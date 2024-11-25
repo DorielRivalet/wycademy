@@ -1,100 +1,44 @@
-<!-- <script lang="ts">
+<script lang="ts">
 	import { T, useLoader, useTask } from '@threlte/core';
 	import { interactivity } from '@threlte/extras';
 	import { spring } from 'svelte/motion';
 	import { TextureLoader } from 'three';
 
-	// TODO sometimes it doesnt load
-
 	interface Props {
-		frontImage: string;
-		backImage: string;
+		frontTexture: string;
+		// backTexture: string;
 	}
 
-	let { frontImage, backImage }: Props = $props();
+	let rotation = $state(0);
+	let { frontTexture }: Props = $props();
 
-	const rotationSpeed = 0.5;
+	let frontImage = $derived(useLoader(TextureLoader).load(frontTexture));
+	// let backImage = $derived(useLoader(TextureLoader).load(backTexture));
 
 	interactivity();
 	const scale = spring(1);
-	let rotation = $state(0);
-	let hovered = $state(false);
 	useTask((delta) => {
-		if (!hovered) {
-			rotation += delta * rotationSpeed;
-		}
+		rotation += delta;
 	});
-
-	const frontTexture = useLoader(TextureLoader).load(frontImage);
-	const backTexture = useLoader(TextureLoader).load(backImage);
 </script>
 
 <T.PerspectiveCamera
 	makeDefault
 	position={[2.5, 1, 2.5]}
-	on:create={({ ref }) => {
+	oncreate={(ref) => {
 		ref.lookAt(0, 1, 0);
 	}}
 />
-
 <T.DirectionalLight position={[0, 10, 10]} />
-
 <T.Mesh
 	rotation.y={rotation}
 	position.y={1}
 	scale={$scale}
-	on:pointerenter={() => (hovered = true)}
-	on:pointerleave={() => {
-		hovered = false;
-	}}
+	onpointerenter={() => scale.set(1.25)}
+	onpointerleave={() => scale.set(1)}
 >
-	<T.BoxGeometry args={[2, 2, 0.01]} />
-	<T.MeshStandardMaterial
-		map={$frontTexture}
-		attach={(parent, self) => {
-			if (Array.isArray(parent.material))
-				parent.material = [...parent.material, self];
-			else parent.material = [self];
-		}}
-	/>
-	<T.MeshStandardMaterial
-		map={$backTexture}
-		attach={(parent, self) => {
-			if (Array.isArray(parent.material))
-				parent.material = [...parent.material, self];
-			else parent.material = [self];
-		}}
-	/>
-	<T.MeshStandardMaterial
-		map={$frontTexture}
-		attach={(parent, self) => {
-			if (Array.isArray(parent.material))
-				parent.material = [...parent.material, self];
-			else parent.material = [self];
-		}}
-	/>
-	<T.MeshStandardMaterial
-		map={$backTexture}
-		attach={(parent, self) => {
-			if (Array.isArray(parent.material))
-				parent.material = [...parent.material, self];
-			else parent.material = [self];
-		}}
-	/>
-	<T.MeshStandardMaterial
-		map={$frontTexture}
-		attach={(parent, self) => {
-			if (Array.isArray(parent.material))
-				parent.material = [...parent.material, self];
-			else parent.material = [self];
-		}}
-	/>
-	<T.MeshStandardMaterial
-		map={$backTexture}
-		attach={(parent, self) => {
-			if (Array.isArray(parent.material))
-				parent.material = [...parent.material, self];
-			else parent.material = [self];
-		}}
-	/></T.Mesh
-> -->
+	<T.BoxGeometry args={[2, 2, 0.1]} />
+	{#await $frontImage then value}
+		<T.MeshStandardMaterial map={value} />
+	{/await}
+</T.Mesh>

@@ -8055,6 +8055,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						elementMultiplier: 1,
 						motionValue: [2, 2, 2, 2, 10, 10],
 						specialFlag: '',
+						guardPoint: true,
 					},
 					{
 						name: 'Standard 1',
@@ -8065,6 +8066,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						elementMultiplier: 1,
 						motionValue: 14,
 						specialFlag: '',
+						guardPoint: true,
 					},
 					{
 						name: 'Standard 2',
@@ -8085,6 +8087,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						stun: 8, // TODO or 6?
 						motionValue: 18,
 						specialFlag: '',
+						guardPoint: true,
 					},
 					{
 						name: 'Standard 4',
@@ -8095,6 +8098,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						elementMultiplier: 1,
 						motionValue: [9, 9],
 						specialFlag: '',
+						guardPoint: true,
 					},
 					{
 						name: 'Continuous Thrust 1',
@@ -8111,6 +8115,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '10x4',
 						hitCount: 4,
+						guardPoint: true,
+
 						stun: [3, 3, 3, 3],
 						elementMultiplier: 1,
 						motionValue: [10, 10, 10, 10],
@@ -8211,8 +8217,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 1',
 						animation: '',
 						values: '15',
-						stun: 14,
+						stun: 9,
 						hitCount: 1,
+						guardPoint: true,
 						elementMultiplier: 1,
 						motionValue: 15,
 						specialFlag: '',
@@ -8221,7 +8228,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 2',
 						animation: '',
 						values: '10x2',
-						stun: 13,
+						guardPoint: true,
+						stun: [9, 9],
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [10, 10],
@@ -8230,8 +8238,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Aerial 3',
 						animation: '',
+						guardPoint: true,
+
 						values: '15[K]･16',
-						stun: [11, 11],
+						stun: [7, 7], // TODO unsure
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [15, 16],
@@ -8241,7 +8251,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 1-3 Combo',
 						animation: '',
 						values: '66 (5 hits)',
-						stun: 0,
+						stun: [9, 9, 9, 7, 7],
+						guardPoint: true,
+
 						hitCount: 5,
 						elementMultiplier: 1,
 						motionValue: 66, // TODO?
@@ -8301,6 +8313,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						hitCount: 1,
 						elementMultiplier: 1,
 						motionValue: 14,
+						guardPoint: true,
+
 						specialFlag: '',
 					},
 					{
@@ -8318,6 +8332,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '18',
 						hitCount: 1,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						stun: 8, // TODO or 6?
 						motionValue: 18,
@@ -8328,6 +8344,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '9x2',
 						stun: 7,
+						guardPoint: true,
+
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [9, 9],
@@ -8447,9 +8465,11 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 1',
 						animation: '',
 						values: '15',
-						stun: 14,
+						stun: 11,
 						hitCount: 1,
 						elementMultiplier: 1,
+						guardPoint: true,
+
 						motionValue: 15,
 						specialFlag: '',
 					},
@@ -8457,7 +8477,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 2',
 						animation: '',
 						values: '10x2',
-						stun: 13,
+						stun: [11, 11],
+						guardPoint: true,
+
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [10, 10],
@@ -8467,7 +8489,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 3',
 						animation: '',
 						values: '15[K]･16',
-						stun: [11, 11],
+						stun: [9, 9],
+						guardPoint: true,
+
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [15, 16],
@@ -8477,7 +8501,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 1-3 Combo',
 						animation: '',
 						values: '66 (5 hits)',
-						stun: 0,
+						stun: [11, 11, 11, 9, 9],
+						guardPoint: true,
+
 						hitCount: 5,
 						elementMultiplier: 1,
 						motionValue: 66, // TODO?
@@ -8536,6 +8562,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						stun: [2, 2, 2, 2, 3, 3],
 						hitCount: 6,
 						elementMultiplier: 1,
+						guardPoint: true,
+
 						motionValue: [2, 2, 2, 2, 12, 12],
 						specialFlag: '',
 					},
@@ -8547,6 +8575,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						hitCount: 1,
 						elementMultiplier: 1,
 						motionValue: 17,
+						guardPoint: true,
+
 						specialFlag: '',
 					},
 					{
@@ -8565,6 +8595,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '22',
 						hitCount: 1,
 						elementMultiplier: 1,
+						guardPoint: true,
+
 						stun: 6, // TODO or 8?
 						motionValue: 22,
 						specialFlag: '',
@@ -8572,6 +8604,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Standard 4',
 						animation: '',
+						guardPoint: true,
+
 						values: '11x2',
 						stun: [7, 7],
 						hitCount: 2,
@@ -8593,6 +8627,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Continuous Thrust 2',
 						animation: '',
 						values: '12x4',
+						guardPoint: true,
+
 						stun: [3, 3, 3, 3],
 						hitCount: 4,
 						elementMultiplier: 1,
@@ -8696,11 +8732,15 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						stun: 9,
 						hitCount: 1,
 						elementMultiplier: 1,
+						guardPoint: true,
+
 						motionValue: 15,
 						specialFlag: '',
 					},
 					{
 						name: 'Aerial 2',
+						guardPoint: true,
+
 						animation: '',
 						values: '10x2',
 						stun: [9, 9],
@@ -8715,6 +8755,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15[K]･16',
 						stun: [7, 7],
 						hitCount: 2,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: [15, 16],
 						specialFlag: '',
@@ -8723,7 +8765,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 1-3 Combo',
 						animation: '',
 						values: '66 (5 hits)',
-						stun: 0,
+						guardPoint: true,
+
+						stun: [9, 9, 9, 7, 7],
+
 						hitCount: 5,
 						elementMultiplier: 1,
 						motionValue: 66, // TODO?
@@ -8811,6 +8856,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '17',
 						stun: 8,
 						hitCount: 1,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: 17,
 						specialFlag: '',
@@ -8829,6 +8876,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Standard 3',
 						animation: '',
 						values: '22',
+						guardPoint: true,
+
 						hitCount: 1,
 						elementMultiplier: 1,
 						stun: 8, // TODO or 6?
@@ -8841,6 +8890,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11x2',
 						stun: [9, 9],
 						hitCount: 2,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: [11, 11],
 						specialFlag: '',
@@ -8964,6 +9015,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						elementMultiplier: 1,
 						motionValue: 15,
 						specialFlag: '',
+						guardPoint: true,
 					},
 					{
 						name: 'Aerial 2',
@@ -8971,6 +9023,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x2',
 						stun: [11, 11],
 						hitCount: 2,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: [10, 10],
 						specialFlag: '',
@@ -8980,6 +9034,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '15[K]･16',
 						stun: [9, 9],
+						guardPoint: true,
+
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [15, 16],
@@ -8989,7 +9045,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 1-3 Combo',
 						animation: '',
 						values: '66 (5 hits)',
-						stun: 0,
+						stun: [11, 11, 11, 9, 9],
+						guardPoint: true,
+
 						hitCount: 5,
 						elementMultiplier: 1,
 						motionValue: 66, // TODO?
@@ -9075,6 +9133,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Dash Tonfa Rotation',
 						animation: '',
 						values: '2x4･12x2',
+						guardPoint: true,
+
 						stun: [2, 2, 2, 2, 3, 3],
 						hitCount: 6,
 						elementMultiplier: 1,
@@ -9087,6 +9147,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '17',
 						stun: 6,
 						hitCount: 1,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: 17,
 						specialFlag: '',
@@ -9155,6 +9217,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Standard 3',
 						animation: '',
 						values: '22',
+						guardPoint: true,
+
 						hitCount: 1,
 						elementMultiplier: 1,
 						stun: 6,
@@ -9166,9 +9230,43 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '11x2',
 						stun: 7,
+						guardPoint: true,
+
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [11, 11],
+						specialFlag: '',
+					},
+					{
+						name: 'Continuous Thrust 1',
+						animation: '',
+						values: '13･15',
+						hitCount: 2,
+						elementMultiplier: 1,
+						stun: [3, 3],
+						motionValue: [13, 15],
+						specialFlag: '',
+					},
+					{
+						name: 'Continuous Thrust 2',
+						animation: '',
+						guardPoint: true,
+
+						values: '12x4',
+						stun: [3, 3, 3, 3],
+						hitCount: 4,
+						elementMultiplier: 1,
+						motionValue: [12, 12, 12, 12],
+						specialFlag: '',
+					},
+					{
+						name: 'Continuous Thrust 3',
+						animation: '',
+						values: '50',
+						hitCount: 1,
+						stun: 12,
+						elementMultiplier: 1,
+						motionValue: 50,
 						specialFlag: '',
 					},
 					{
@@ -9258,6 +9356,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						stun: 9,
 						hitCount: 1,
 						elementMultiplier: 1,
+						guardPoint: true,
+
 						motionValue: 15,
 						specialFlag: '',
 					},
@@ -9267,6 +9367,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '10x2',
 						stun: [9, 9],
 						hitCount: 2,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: [10, 10],
 						specialFlag: '',
@@ -9274,6 +9376,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Aerial 3',
 						animation: '',
+						guardPoint: true,
+
 						values: '15[K]･16',
 						stun: [7, 7], // TODO
 						hitCount: 2,
@@ -9285,8 +9389,11 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 1-3 Combo',
 						animation: '',
 						values: '66 (5 hits)',
-						stun: 0,
+						stun: [9, 9, 9, 7, 7],
+
 						hitCount: 5,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: 66, // TODO?
 						specialFlag: '',
@@ -9431,6 +9538,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Standard 1',
 						animation: '',
 						values: '17',
+						guardPoint: true,
+
 						stun: 8,
 						hitCount: 1,
 						elementMultiplier: 1,
@@ -9504,6 +9613,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						hitCount: 1,
 						elementMultiplier: 1,
 						stun: 8,
+						guardPoint: true,
+
 						motionValue: 22,
 						specialFlag: '',
 					},
@@ -9513,6 +9624,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '11x2',
 						stun: 9,
 						hitCount: 2,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: [11, 11],
 						specialFlag: '',
@@ -9633,6 +9746,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15',
 						stun: 11,
 						hitCount: 1,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: 15,
 						specialFlag: '',
@@ -9645,6 +9760,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [10, 10],
+						guardPoint: true,
+
 						specialFlag: '',
 					},
 					{
@@ -9652,6 +9769,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '15[K]･16',
 						stun: [9, 9],
+						guardPoint: true,
+
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [15, 16],
@@ -9661,7 +9780,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 1-3 Combo',
 						animation: '',
 						values: '66 (5 hits)',
-						stun: 0,
+						guardPoint: true,
+
+						stun: [11, 11, 11, 9, 9],
+
 						hitCount: 5,
 						elementMultiplier: 1,
 						motionValue: 66, // TODO?
@@ -9808,6 +9930,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '14',
 						stun: 8,
+						guardPoint: true,
+
 						hitCount: 1,
 						elementMultiplier: 1,
 						motionValue: 14,
@@ -9910,6 +10034,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						hitCount: 1,
 						elementMultiplier: 1,
 						stun: 8,
+						guardPoint: true,
+
 						motionValue: 18,
 						specialFlag: '',
 					},
@@ -9918,6 +10044,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '9x2',
 						stun: [9, 9],
+						guardPoint: true,
+
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [9, 9],
@@ -10079,6 +10207,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '15',
 						stun: 11,
 						hitCount: 1,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: 15,
 						specialFlag: '',
@@ -10088,6 +10218,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '10x2',
 						stun: [11, 11],
+						guardPoint: true,
+
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [10, 10],
@@ -10096,8 +10228,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Aerial 3',
 						animation: '',
+						guardPoint: true,
+
 						values: '15[K]･16',
-						stun: [11, 11],
+						stun: [9, 9],
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [15, 16],
@@ -10106,8 +10240,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 					{
 						name: 'Aerial 1-3 Combo',
 						animation: '',
+						guardPoint: true,
+
 						values: '66 (5 hits)',
-						stun: [11, 11, 11, 11, 11],
+						stun: [11, 11, 11, 9, 9],
 						hitCount: 5,
 						elementMultiplier: 1,
 						motionValue: 66, // TODO?
@@ -10609,6 +10745,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '74 (5 hits) (Orig: 116)',
 						hitCount: 5,
 						stun: 0,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: 74,
 						specialFlag: '',
@@ -10666,6 +10804,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						hitCount: 2,
 						elementMultiplier: 1,
 						stun: [11, 11],
+						guardPoint: true,
+
 						motionValue: [23, 25],
 						specialFlag: '',
 					},
@@ -10674,8 +10814,11 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '83 (5 hits) (Orig: 116)',
 						hitCount: 5,
-						stun: 0,
+						stun: [11, 11, 11, 9, 9],
+
 						elementMultiplier: 1,
+						guardPoint: true,
+
 						motionValue: 83, // TODO?
 						specialFlag: '',
 					},
@@ -10700,6 +10843,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '14',
 						hitCount: 1,
+						guardPoint: true,
+
 						stun: 6,
 						elementMultiplier: 1,
 						motionValue: 14,
@@ -10801,6 +10946,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						values: '18',
 						hitCount: 1,
 						stun: 6,
+						guardPoint: true,
+
 						elementMultiplier: 1,
 						motionValue: 18,
 						specialFlag: '',
@@ -10809,6 +10956,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Standard 4',
 						animation: '',
 						values: '9x2',
+						guardPoint: true,
+
 						hitCount: 2,
 						stun: [7, 7],
 						elementMultiplier: 1,
@@ -10829,6 +10978,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Continuous Thrust 2',
 						animation: '',
 						values: '10x4',
+						guardPoint: true,
+
 						stun: [3, 3, 3, 3],
 						hitCount: 4,
 						elementMultiplier: 1,
@@ -10984,12 +11135,15 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						elementMultiplier: 1,
 						motionValue: 22,
 						specialFlag: '',
+						guardPoint: true,
 					},
 					{
 						name: 'Aerial 2',
 						animation: '',
 						values: '10x2',
 						stun: [9, 9],
+						guardPoint: true,
+
 						hitCount: 2,
 						elementMultiplier: 1,
 						motionValue: [10, 10], // TODO?
@@ -10999,6 +11153,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						name: 'Aerial 3',
 						animation: '',
 						values: '15[K]･16',
+						guardPoint: true,
+
 						stun: [7, 7],
 						hitCount: 2,
 						elementMultiplier: 1,
@@ -11010,7 +11166,10 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '66 (5 hits)',
 						hitCount: 5,
-						stun: 37,
+						guardPoint: true,
+
+						stun: [9, 9, 9, 7, 7],
+
 						elementMultiplier: 1,
 						motionValue: 66, // todo?
 						specialFlag: '',
@@ -11452,6 +11611,8 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						hitCount: 5,
 						elementMultiplier: 1,
 						stun: 0,
+						guardPoint: true,
+
 						motionValue: 74,
 						specialFlag: '',
 					},
@@ -11508,6 +11669,7 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						hitCount: 2,
 						stun: [11, 11],
 						elementMultiplier: 1,
+						guardPoint: true,
 						motionValue: [23, 25],
 						specialFlag: '',
 					},
@@ -11516,8 +11678,9 @@ export const weaponMotionValues: FrontierMotionValues[] = [
 						animation: '',
 						values: '83 (5 hits) (Orig: 116)', // todo?
 						hitCount: 5,
+						guardPoint: true,
 						elementMultiplier: 1,
-						stun: 0,
+						stun: [9, 9, 9, 7, 7],
 						motionValue: 83,
 						specialFlag: '',
 					},

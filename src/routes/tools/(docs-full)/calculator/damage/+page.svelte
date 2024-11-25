@@ -6290,6 +6290,13 @@ does not get multiplied by horn */
 					minWidth: '1rem',
 				});
 				break;
+			case 'Tonfa':
+				result.push({
+					key: 'guardPoint',
+					value: 'Guard Point',
+					minWidth: '1rem',
+				});
+				break;
 		}
 
 		result.push(
@@ -10175,6 +10182,8 @@ does not get multiplied by horn */
 										icon={Image}
 										kind="ghost">{cell.value}</Button
 									>
+								{:else if cell.key === 'guardPoint'}
+									<p>{cell.value ? '☑️' : '❌'}</p>
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
