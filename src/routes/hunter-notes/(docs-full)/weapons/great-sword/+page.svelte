@@ -553,6 +553,17 @@
 						>
 						<ListItem
 							><div class="paragraph-long-02">
+								Shining Sword does not consume <InlineTooltip
+									tooltip="Item"
+									text="Sword Crystals"
+									iconColor={getItemColor('Red')}
+									iconType="component"
+									icon={getItemIcon('Sword Crystal')}
+								/>.
+							</div></ListItem
+						>
+						<ListItem
+							><div class="paragraph-long-02">
 								Very Long length is the most popular choice due to its vertical
 								slices and the added flexibility in maintaining distance. Long
 								length is still quite usable.

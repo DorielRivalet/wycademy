@@ -18,7 +18,7 @@
 	} from '$lib/client/modules/frontier/achievement';
 	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
-	// import { Canvas } from '@threlte/core';
+	import { Canvas } from '@threlte/core';
 	import RotatingCard from '$lib/client/components/scenes/RotatingCard.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Head from '$lib/client/components/Head.svelte';
@@ -192,14 +192,12 @@
 			</div>
 		</div>
 		<div class="preview">
-			<!-- <Canvas>
+			<Canvas>
 				{#key achievementSelected}
-					<RotatingCard
-						frontImage={achievementSelected.Image}
-						backImage={getAchievementImage(achievementSelected.Rank)}
-					/>
+					<RotatingCard frontTexture={achievementSelected.Image} />
+					<!--backTexture={getAchievementImage(achievementSelected.Rank)}-->
 				{/key}
-			</Canvas> -->
+			</Canvas>
 		</div>
 		<div class="info">
 			<img

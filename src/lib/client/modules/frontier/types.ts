@@ -627,6 +627,7 @@ export type FrontierMotionValue = {
 	notes?: string;
 	gaugeConsumption?: number | number[]; // SAF
 	guardPoint?: boolean; // Tonfa etc
+	iframes?: number; // TODO
 };
 
 export type FrontierMotionValueSection = {
