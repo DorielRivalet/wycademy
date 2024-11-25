@@ -414,7 +414,8 @@
 		weaponTrueRaw: number,
 		highestWeaponUp: number,
 	) {
-		return (
+		return Math.min(
+			maxTrueRaw,
 			sigils.reduce((sum, slot) => {
 				if (
 					slot.type === 'Standard' ||
@@ -433,8 +434,8 @@
 				}
 				return sum;
 			}, 0) +
-			weaponTrueRaw +
-			highestWeaponUp
+				weaponTrueRaw +
+				highestWeaponUp,
 		);
 	}
 
@@ -681,11 +682,24 @@
 			// Calculate Zenith sigil contribution
 			if (zenithActive) {
 				if (isAOEZenith) {
-					attackDamage += getAOESigilTrueRaw(zenithAttackValue, hunters);
+					const aoeSigilTrueRaw = getAOESigilTrueRaw(
+						zenithAttackValue,
+						hunters,
+					);
+					if (aoeSigilTrueRaw + attackDamage >= maxTrueRaw) {
+						attackDamage = maxTrueRaw;
+					} else {
+						attackDamage += aoeSigilTrueRaw;
+					}
 					elementalDamage +=
 						getAOESigilElement(zenithElementalValue, hunters) || 0;
 				} else {
-					attackDamage += getZenithSigilTrueRaw(zenithAttackValue);
+					const zenithSigilTrueRaw = getZenithSigilTrueRaw(zenithAttackValue);
+					if (zenithSigilTrueRaw + attackDamage >= maxTrueRaw) {
+						attackDamage = maxTrueRaw;
+					} else {
+						attackDamage += zenithSigilTrueRaw;
+					}
 					elementalDamage *=
 						getZenithSigilElementMultiplier(zenithElementalValue);
 				}
@@ -754,6 +768,9 @@
 	const minUnlimitedExtremeValue = 3;
 	const minUnlimitedEmperorValue = 3;
 	const minWeaponUpValue = 10;
+
+	const maxTrueRaw = 8_000;
+	const maxWeaponElement = 2550;
 
 	let allowedSigils: {
 		type: FrontierSigilRecipeType;
@@ -1113,7 +1130,7 @@
 					size="sm"
 					step={100}
 					min={0}
-					max={8000}
+					max={maxTrueRaw}
 					bind:value={weaponTrueRaw}
 					invalidText={'Invalid value.'}
 					label={`Weapon True Raw`}
@@ -1122,7 +1139,7 @@
 					size="sm"
 					step={100}
 					min={0}
-					max={2550}
+					max={maxWeaponElement}
 					bind:value={weaponElement}
 					invalidText={'Invalid value.'}
 					label={`Weapon Element`}
@@ -1168,7 +1185,7 @@
 						icon={''}
 						iconType="file"
 					/>
-					{sigilChartData.averageAttackDamage.toFixed(2)} ({sigilChartData.sigilAttackContributions.join(
+					{Math.min(maxTrueRaw, sigilChartData.averageAttackDamage).toFixed(2)} ({sigilChartData.sigilAttackContributions.join(
 						' | ',
 					)})
 				</div>

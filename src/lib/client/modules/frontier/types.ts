@@ -625,6 +625,8 @@ export type FrontierMotionValue = {
 	stun: number[] | number;
 	specialFlag: string;
 	notes?: string;
+	gaugeConsumption?: number | number[]; // SAF
+	guardPoint?: boolean; // Tonfa etc
 };
 
 export type FrontierMotionValueSection = {

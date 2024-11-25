@@ -869,6 +869,16 @@
 								extra. However, if it lacks an element, it uses the higher raw
 								Heat Blade motion value.
 							</div></ListItem
+						><ListItem
+							><div class="paragraph-long-02">
+								You can increase by x1.5 times the shell power (explosion,
+								elements, stun values) after doing a Quick Reload.
+							</div></ListItem
+						><ListItem
+							><div class="paragraph-long-02">
+								Heatblade lasts 120 seconds with a cooldown of 50 seconds (25
+								with Hiden).
+							</div></ListItem
 						>
 						<ListItem
 							><div class="paragraph-long-02">
