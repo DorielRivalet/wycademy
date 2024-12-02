@@ -108,7 +108,7 @@
 		"@octokit/webhooks": "^13.3.0",
 		"@octokit/webhooks-methods": "^5.1.0",
 		"@supabase/ssr": "^0.5.2",
-		"@supabase/supabase-js": "^2.46.1",
+		"@supabase/supabase-js": "^2.46.2",
 		"@theatre/core": "^0.7.2",
 		"@theatre/studio": "^0.7.2",
 		"@threlte/core": "^8.0.0-next.31",
