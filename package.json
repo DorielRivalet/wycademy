@@ -81,7 +81,7 @@
 		"rollup-plugin-visualizer": "^5.12.0",
 		"sass": "^1.81.0",
 		"shiki": "^1.23.0",
-		"svelte": "^5.2.2",
+		"svelte": "^5.4.0",
 		"svelte-awesome-color-picker": "^3.1.4",
 		"svelte-check": "^4.0.9",
 		"svelte-grid": "^5.1.2",
