@@ -375,27 +375,12 @@ p,
 	background-color: var(--ctp-surface1);
 }
 
-.reaction {
-	border-radius: 8px !important;
-	background-color: var(--ctp-surface1) !important;
-	min-width: 35px;
-}
-
-.trigger {
-	background-color: var(--ctp-surface2) !important;
-	color: var(--ctp-text) !important;
-}
-
-.reactions-container {
-	background-color: var(--ctp-surface0) !important;
-}
-
-.label {
-	background-color: var(--ctp-surface0) !important;
-	border-color: var(--ctp-surface1) !important;
-	border-width: 2px !important;
-	color: var(--ctp-text) !important;
-}
+// .label {
+// 	background-color: var(--ctp-surface0) !important;
+// 	border-color: var(--ctp-surface1) !important;
+// 	border-width: 2px !important;
+// 	color: var(--ctp-text) !important;
+// }
 
 .bx--tree .bx--tree-node {
 	background-color: var(--ctp-mantle) !important;

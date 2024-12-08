@@ -9,6 +9,8 @@
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import LogoX from 'carbon-icons-svelte/lib/LogoX.svelte';
+	import type { Component } from 'svelte';
+	import { browser } from '$app/environment';
 
 	interface Props {
 		name?: any;
@@ -18,9 +20,9 @@
 		twitterName?: string;
 		imageSource?: any;
 		countryCode?: TCountryCode;
-		badge1Icon?: any;
-		badge2Icon?: any;
-		badge3Icon?: any;
+		badge1Icon?: Component;
+		badge2Icon?: Component;
+		badge3Icon?: Component;
 		badge1Rank?: any;
 		badge2Rank?: any;
 		badge3Rank?: any;
@@ -47,10 +49,6 @@
 	}: Props = $props();
 
 	const countryName = countries[countryCode].name;
-
-	const SvelteComponent = $derived(badge1Icon);
-	const SvelteComponent_1 = $derived(badge2Icon);
-	const SvelteComponent_2 = $derived(badge3Icon);
 </script>
 
 <div class="container">
@@ -58,27 +56,39 @@
 		<div class="profile-picture">
 			<ImageDialog type="file" src={imageSource} alt="Avatar" />
 		</div>
-		<div class="badges">
-			<div class="badge-container">
-				<div class="badge">
-					<SvelteComponent />
+		{#if browser}
+			<div class="badges">
+				<div class="badge-container">
+					<div class="badge">
+						{#if badge1Icon}
+							{@const SvelteComponent = badge1Icon}
+							<SvelteComponent />
+						{/if}
+					</div>
+					<a href="/leaderboard">#{badge1Rank}</a>
 				</div>
-				<a href="/leaderboard">#{badge1Rank}</a>
-			</div>
-			<div class="badge-container">
-				<div class="badge">
-					<SvelteComponent_1 />
+				<div class="badge-container">
+					<div class="badge">
+						{#if badge2Icon}
+							{@const SvelteComponent = badge2Icon}
+							<SvelteComponent />
+						{/if}
+					</div>
+					<a href="/leaderboard">#{badge2Rank}</a>
 				</div>
-				<a href="/leaderboard">#{badge2Rank}</a>
-			</div>
-			<div class="badge-container">
-				<div class="badge">
-					<SvelteComponent_2 />
+				<div class="badge-container">
+					<div class="badge">
+						{#if badge3Icon}
+							{@const SvelteComponent = badge3Icon}
+							<SvelteComponent />
+						{/if}
+					</div>
+					<a href="/leaderboard">#{badge3Rank}</a>
 				</div>
-				<a href="/leaderboard">#{badge3Rank}</a>
 			</div>
-		</div>
+		{/if}
 	</div>
+
 	<h1 class="username">{name} {medal}</h1>
 	<h2 class="title">{title}</h2>
 	<div class="country">
@@ -88,12 +98,12 @@
 		</a>
 	</div>
 	<div class="socials">
-		<p>
+		<div class="paragraph-long-02">
 			<OutboundLink href="https://x.com/{twitterName}"><LogoX /></OutboundLink>
-		</p>
-		<p>
+		</div>
+		<div class="paragraph-long-02">
 			<Tooltip triggerText="" icon={LogoDiscord}>{discordName}</Tooltip>
-		</p>
+		</div>
 	</div>
 </div>
 

@@ -11,21 +11,18 @@
 	import slugify from 'slugify';
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import { formatDateTime } from '../modules/time';
-	import type { OverlayHuntRank } from '../modules/frontier/types';
-	import Favorite from 'carbon-icons-svelte/lib/Favorite.svelte';
-	import FavoriteFilled from 'carbon-icons-svelte/lib/FavoriteFilled.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 	import '@carbon/charts-svelte/styles.css';
 	import type { LineChartOptions, ScaleTypes } from '@carbon/charts-svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
-	// import 'svelte-reactions/global.css'; TODO
-	// import { Trigger } from 'svelte-reactions';
-	import { getWeaponIcon } from '../modules/frontier/weapons';
-	import { availableReactions } from '../modules/reactions';
+	import { type Reaction } from '../modules/reactions';
 	import MonsterComponent from './frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
-	import { ezlionQuest } from 'ezlion';
+	import { ezlionQuest, type FrontierWeaponName } from 'ezlion';
+	import Reactions from '$lib/client/components/Reactions.svelte';
+	import Favorites from '$lib/client/components/Favorites.svelte';
+	import { getWeaponIcon } from '../modules/frontier/weapons';
 
 	const maxPinnedRuns = 10;
 
@@ -58,34 +55,21 @@
 	// TODO add button to favorite a run
 	// TODO add button to add a reaction
 
+	// TODO supabase username
+
 	type RunSummary = {
 		runID: number;
+		weaponType: FrontierWeaponName;
 		date: string;
 		questID: number;
 		time: string;
 		videoLink: string;
 		dps: { [key: string]: number };
 		objectiveName: string;
-		rankName: OverlayHuntRank;
-		favorites: number;
-		isFavorited: boolean;
-		reactions: ReactionType[];
+		// rankName: OverlayHuntRank;
+		favorites: string[];
+		reactions: Reaction[];
 	};
-
-	function mergeReactions(reactions: any[]) {
-		return [
-			...availableReactions.map((reaction) => ({ ...reaction, quantity: 0 })),
-			...reactions,
-		].reduce((acc, reaction) => {
-			const existing = acc.find((r) => r.id === reaction.id);
-			if (existing) {
-				existing.quantity = reaction.quantity;
-			} else {
-				acc.push(reaction);
-			}
-			return acc;
-		}, [] as ReactionType[]);
-	}
 
 	interface Props {
 		theme: CarbonTheme;
@@ -101,20 +85,19 @@
 				date: '2015-06-07T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
-
+				weaponType: 'Great Sword',
 				objectiveName: 'Sparkling Zerureusu',
-				rankName: '',
+
 				videoLink: '/',
-				favorites: 0,
-				isFavorited: false,
-				reactions: mergeReactions([
+				favorites: [],
+				reactions: [
 					{
 						id: 'like',
-						reaction: '👍',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 				dps: {
 					'17398': 1.6943521594684385,
 					'17397': 1.6915422885572138,
@@ -1847,20 +1830,21 @@
 				date: '2015-06-08T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
+				weaponType: 'Long Sword',
 
 				objectiveName: 'Blinking Nargacuga',
-				rankName: '',
+
 				videoLink: '/',
-				isFavorited: false,
-				favorites: 1,
-				reactions: mergeReactions([
+				favorites: ['hunter1'],
+
+				reactions: [
 					{
 						id: 'heart',
-						reaction: '❤️',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 
 				dps: {
 					'17419': 13.838209982788296,
@@ -3546,25 +3530,25 @@
 			},
 			{
 				runID: 3,
+				weaponType: 'Dual Swords',
 
 				date: '2015-06-08T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
 
 				objectiveName: 'Burning Freezing Elzelion',
-				rankName: '',
-				isFavorited: false,
+
 				videoLink: '/',
-				reactions: mergeReactions([
+				reactions: [
 					{
 						id: 'fire',
-						reaction: '🔥',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 
-				favorites: 1,
+				favorites: ['hunter1', 'hunter2'],
 				dps: {
 					'269219': 1.0755441741357235,
 					'269217': 1.0727969348659003,
@@ -13305,24 +13289,24 @@
 			},
 			{
 				runID: 4,
+				weaponType: 'Tonfa',
 
 				date: '2015-06-08T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
 
 				objectiveName: 'UNKNOWN',
-				rankName: 'Upper Shiten ',
-				reactions: mergeReactions([
+				reactions: [
 					{
 						id: 'tada',
-						reaction: '🎉',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 
-				favorites: 1,
-				isFavorited: false,
+				favorites: ['hunter1'],
+
 				videoLink: '/',
 				dps: {
 					'89653': 34.75504322766571,
@@ -13338,25 +13322,25 @@
 			},
 			{
 				runID: 5,
+				weaponType: 'Switch Axe F',
 
 				date: '2015-06-08T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
 
 				objectiveName: 'Rukodiora',
-				rankName: 'Zenith★4 ',
 				videoLink: '/',
-				reactions: mergeReactions([
+				reactions: [
 					{
 						id: 'star',
-						reaction: '⭐',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 
-				favorites: 1,
-				isFavorited: false,
+				favorites: ['hunter1'],
+
 				dps: {
 					'89653': 34.75504322766571,
 					'89650': 34.457142857142856,
@@ -13371,25 +13355,26 @@
 			},
 			{
 				runID: 6,
+				weaponType: 'Magnet Spike',
 
 				date: '2015-06-08T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
 
 				objectiveName: 'Blitzkrieg Bogabadorumu',
-				rankName: '',
+
 				videoLink: '/',
-				reactions: mergeReactions([
+				reactions: [
 					{
 						id: 'mindblown',
-						reaction: '🤯',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 
-				favorites: 1,
-				isFavorited: false,
+				favorites: ['hunter1'],
+
 				dps: {
 					'89653': 34.75504322766571,
 					'89650': 34.457142857142856,
@@ -13404,25 +13389,26 @@
 			},
 			{
 				runID: 7,
+				weaponType: 'Hunting Horn',
 
 				date: '2015-06-08T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
 
 				objectiveName: 'Bombardier Bogabadorumu',
-				rankName: '',
-				reactions: mergeReactions([
+
+				reactions: [
 					{
 						id: 'sunglasses',
-						reaction: '😎',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 
 				videoLink: '/',
-				favorites: 1,
-				isFavorited: false,
+				favorites: ['hunter1'],
+
 				dps: {
 					'89653': 34.75504322766571,
 					'89650': 34.457142857142856,
@@ -13437,23 +13423,23 @@
 			},
 			{
 				runID: 8,
+				weaponType: 'Heavy Bowgun',
 
 				date: '2015-06-08T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
 
 				objectiveName: 'UNKNOWN',
-				rankName: 'Upper Shiten ',
-				favorites: 1,
-				isFavorited: false,
-				reactions: mergeReactions([
+				favorites: ['hunter1'],
+
+				reactions: [
 					{
 						id: 'party',
-						reaction: '🥳',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 
 				videoLink: '/',
 				dps: {
@@ -13470,24 +13456,24 @@
 			},
 			{
 				runID: 9,
+				weaponType: 'Sword and Shield',
 
 				date: '2015-06-08T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
 
 				objectiveName: 'UNKNOWN',
-				rankName: 'Upper Shiten ',
-				reactions: mergeReactions([
+				reactions: [
 					{
 						id: 'skull',
-						reaction: '💀',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 
-				favorites: 1,
-				isFavorited: false,
+				favorites: ['hunter1'],
+
 				videoLink: '/',
 				dps: {
 					'89653': 34.75504322766571,
@@ -13503,120 +13489,121 @@
 			},
 			{
 				runID: 10,
+				weaponType: 'Light Bowgun',
 
 				date: '2015-06-08T00:00:01Z',
 				questID: 1,
 				time: '02:22.23',
 
 				objectiveName: 'UNKNOWN',
-				rankName: 'Upper Shiten ',
-				reactions: mergeReactions([
+				reactions: [
 					{
 						id: '100',
-						reaction: '💯',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'clap',
-						reaction: '👏',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'eyes',
-						reaction: '👀',
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'gs',
-						reaction: getWeaponIcon('Great Sword'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'ls',
-						reaction: getWeaponIcon('Long Sword'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'ds',
-						reaction: getWeaponIcon('Dual Swords'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'sns',
-						reaction: getWeaponIcon('Sword and Shield'),
+
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'lance',
-						reaction: getWeaponIcon('Lance'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'gl',
-						reaction: getWeaponIcon('Gunlance'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'hammer',
-						reaction: getWeaponIcon('Hammer'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'hh',
-						reaction: getWeaponIcon('Hunting Horn'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'tonfa',
-						reaction: getWeaponIcon('Tonfa'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'saf',
-						reaction: getWeaponIcon('Switch Axe F'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'ms',
-						reaction: getWeaponIcon('Magnet Spike'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'lbg',
-						reaction: getWeaponIcon('Light Bowgun'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'hbg',
-						reaction: getWeaponIcon('Heavy Bowgun'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
 					{
 						id: 'bow',
-						reaction: getWeaponIcon('Bow'),
 						quantity: 100,
 						clicked: false,
+						users: ['hunter1'],
 					},
-				]),
+				],
 
-				favorites: 1,
-				isFavorited: false,
+				favorites: ['hunter1'],
+
 				videoLink: '/',
 				dps: {
 					'89653': 34.75504322766571,
@@ -13634,41 +13621,38 @@
 		username = 'UserDemo',
 	}: Props = $props();
 
-	const displayedRuns = Object.values(runs).slice(0, maxPinnedRuns);
+	let displayedRuns = $state(Object.values(runs).slice(0, maxPinnedRuns));
 
-	function getAllReactionsCount(reactions: ReactionType[]) {
+	function getAllReactionsCount(reactions: Reaction[]) {
 		return reactions.reduce((total, { quantity }) => total + quantity, 0);
 	}
 
-	function getReactionsCount(reactions: ReactionType[]): {
-		[key: string]: number;
-	} {
-		return reactions.reduce(
-			(acc, { id, quantity }) => {
-				if (acc[id]) {
-					acc[id] += quantity;
-				} else {
-					acc[id] = quantity;
-				}
-				return acc;
-			},
-			{} as { [key: string]: number },
-		);
-	}
+	function handleToggleFavorite(
+		event: CustomEvent<{ runID: number; isFavorite: boolean }>,
+	) {
+		const { runID, isFavorite } = event.detail;
 
-	let changeFavorite = $state(false);
+		let runs;
 
-	function onFavorite(id: string) {
-		let found = displayedRuns.find((e) => e.runID === Number(id));
-		if (found) {
-			found.isFavorited = !found.isFavorited;
-			if (found.isFavorited) {
-				found.favorites = found.favorites + 1;
-			} else {
-				found.favorites = Math.max(0, found.favorites - 1);
-			}
-			changeFavorite = !changeFavorite;
+		// Your logic to update favorites
+		// This might involve a API call or state management
+		if (isFavorite) {
+			// Remove favorite
+			runs = displayedRuns.map((run) =>
+				run.runID === runID
+					? { ...run, favorites: run.favorites.filter((f) => f !== username) }
+					: run,
+			);
+		} else {
+			// Add favorite
+			runs = displayedRuns.map((run) =>
+				run.runID === runID && username
+					? { ...run, favorites: [...run.favorites, username] }
+					: run,
+			);
 		}
+
+		displayedRuns = runs;
 	}
 
 	function downloadImage() {
@@ -13728,25 +13712,25 @@
 		zebra
 		useStaticWidth
 		headers={[
-			{ key: 'date', value: 'Date', minWidth: '128px' },
+			{ key: 'weaponType', value: 'Weapon' },
+			{ key: 'objectiveName', value: 'Objective', minWidth: '64px' },
 			{ key: 'quest', value: 'Quest', minWidth: '192px' },
 			{ key: 'time', value: 'Time' },
-			{ key: 'objectiveName', value: 'Objective', minWidth: '64px' },
-			{ key: 'rankName', value: 'Rank' },
 			{ key: 'videoLink', value: 'Video' },
-			{ key: 'favorites', value: 'Favorites' },
-			{ key: 'reactions', value: 'Reactions', minWidth: '192px' },
 			{ key: 'dps', value: 'DPS', minWidth: '192px' },
+			{ key: 'favorites', value: 'Favorites' },
+			{ key: 'reactions', value: 'Reactions' },
+			{ key: 'date', value: 'Date', minWidth: '128px' },
 			{ key: 'details', value: 'Run Details' },
 		]}
 		rows={displayedRuns.map((e) => {
 			return {
 				id: e.runID,
+				weaponType: e.weaponType,
 				date: formatDateTime(e.date),
 				quest: ezlionQuest[e.questID],
 				time: e.time,
 				objectiveName: e.objectiveName.replace('Blitzkrieg', 'Bombardier'),
-				rankName: e.rankName,
 				videoLink: e.videoLink,
 				favorites: e.favorites,
 				reactions: e.reactions,
@@ -13763,6 +13747,7 @@
 						displayedRuns.map((e) => {
 							return {
 								id: e.runID,
+								weaponType: e.weaponType,
 								date: formatDateTime(e.date),
 								quest: ezlionQuest[e.questID],
 								time: e.time,
@@ -13770,7 +13755,6 @@
 									'Blitzkrieg',
 									'Bombardier',
 								),
-								rankName: e.rankName,
 								videoLink: e.videoLink,
 								favorites: e.favorites,
 								reactions: getAllReactionsCount(e.reactions),
@@ -13783,7 +13767,7 @@
 				>
 			</div>
 		</Toolbar>
-		{#snippet cell({ cell, row })}
+		{#snippet cell({ cell, row, rowIndex })}
 			{#if cell.key === 'videoLink'}
 				<OutboundLink href={cell.value}>
 					<VideoPlayer size={24} color="var(--ctp-blue)" />
@@ -13801,30 +13785,18 @@
 					{/snippet}
 					<p>{cell.value}</p></Tooltip
 				>
+			{:else if cell.key === 'weaponType'}
+				{@const Weapon = getWeaponIcon(cell.value)}
+				<Weapon />
 			{:else if cell.key === 'favorites'}
-				<div class="favorites">
-					{#key changeFavorite}
-						<Button
-							iconDescription="Favorite"
-							size="field"
-							kind="ghost"
-							on:click={(e) => onFavorite(row.id)}
-						>
-							{#if displayedRuns.find((e) => e.runID === Number(row.id))?.isFavorited}
-								<FavoriteFilled color="var(--ctp-red)" />
-							{:else}
-								<Favorite color="var(--ctp-red)" />
-							{/if}
-							<p style:margin-left=".5rem">
-								{displayedRuns.find((e) => e.runID === Number(row.id))
-									?.favorites}
-							</p>
-						</Button>
-					{/key}
-				</div>
+				<Favorites
+					runID={displayedRuns[rowIndex].runID || 0}
+					favorites={cell.value}
+					{username}
+					on:toggleFavorite={handleToggleFavorite}
+				/>
 			{:else if cell.key === 'reactions'}
-				<div></div>
-				<!-- <Trigger showLabels reactions={cell.value} /> -->
+				<Reactions reactions={cell.value} {username} />
 			{:else if cell.key === 'details'}
 				<Link href={cell.value}>View Run Details</Link>
 			{:else if cell.key === 'dps'}
@@ -13844,12 +13816,6 @@
 	.container {
 		max-width: 100%;
 		overflow-x: auto;
-	}
-
-	.favorites {
-		display: flex;
-		gap: 0.5rem;
-		align-items: center;
 	}
 
 	.toolbar {
