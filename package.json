@@ -75,7 +75,7 @@
 		"mdsvex": "^0.12.3",
 		"postcss": "^8.4.49",
 		"postcss-load-config": "^6.0.1",
-		"prettier": "^3.3.3",
+		"prettier": "^3.4.1",
 		"pug": "^3.0.3",
 		"release-it": "^17.10.0",
 		"rollup-plugin-visualizer": "^5.12.0",
