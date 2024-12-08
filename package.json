@@ -115,7 +115,7 @@
 		"@threlte/extras": "^9.0.0-next.42",
 		"@threlte/theatre": "^3.0.0-next.9",
 		"@types/three": "^0.170.0",
-		"@vercel/analytics": "^1.4.0",
+		"@vercel/analytics": "^1.4.1",
 		"@xyflow/svelte": "^0.1.24",
 		"@zip.js/zip.js": "^2.7.53",
 		"alex": "^11.0.1",
