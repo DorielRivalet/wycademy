@@ -104,7 +104,7 @@
 		"@carbon/type": "^11.33.0",
 		"@catppuccin/palette": "^1.7.1",
 		"@ibm/plex": "^6.4.1",
-		"@octokit/core": "^5.2.0",
+		"@octokit/core": "^6.1.2",
 		"@octokit/webhooks": "^13.3.0",
 		"@octokit/webhooks-methods": "^5.1.0",
 		"@supabase/ssr": "^0.5.2",
