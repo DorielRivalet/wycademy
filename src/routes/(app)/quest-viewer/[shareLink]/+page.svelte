@@ -16,16 +16,11 @@
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
-	import FileUploaderDropContainer from 'carbon-components-svelte/src/FileUploader/FileUploaderDropContainer.svelte';
 
 	const customTitle = "Quest Viewer — Frontier's Wycademy";
 	const url = $page.url.toString();
 	const description =
 		'Examine your quest data and share the results with other hunters.';
-
-	let databaseFiles: ReadonlyArray<File> = $state([]);
-
-	$inspect(databaseFiles);
 </script>
 
 <Head
@@ -44,22 +39,7 @@
 
 <section>
 	<SectionHeadingTopLevel title="Quest Viewer" />
-	<div>
-		<FileUploaderDropContainer
-			accept={['.sqlite']}
-			bind:files={databaseFiles}
-			labelText="Drag and drop files here or click to upload (256MB max)"
-			validateFiles={(files) => {
-				return files.filter(
-					(file) =>
-						file.size < 256 * Math.pow(10, 6) && file.name.endsWith('.sqlite'),
-				);
-			}}
-			on:change={(e) => {
-				console.log('files', e.detail);
-			}}
-		/>
-	</div>
+	<div></div>
 </section>
 
 <style lang="scss">
