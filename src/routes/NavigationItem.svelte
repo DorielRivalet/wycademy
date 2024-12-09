@@ -1,13 +1,11 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
 
 <script lang="ts">
 	import { page } from '$app/stores';
-
-	
 
 	interface Props {
 		/**TODO: unused?*/
@@ -16,7 +14,11 @@
 		description?: string;
 	}
 
-	let { startsWith = false, path = '/', description = 'Description' }: Props = $props();
+	let {
+		startsWith = false,
+		path = '/',
+		description = 'Description',
+	}: Props = $props();
 </script>
 
 {#if startsWith}

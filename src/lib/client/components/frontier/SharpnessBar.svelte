@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -14,7 +14,7 @@
 	import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 	import Popover from 'carbon-components-svelte/src/Popover/Popover.svelte';
 
-	
+
 
 	interface Props {
 		sharpnessValues?: FrontierWeaponSharpness;
