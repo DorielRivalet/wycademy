@@ -1,35 +1,48 @@
 <script lang="ts">
-	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
-	import TrophyWhite from '$lib/client/components/frontier/icon/TrophyWhite.svelte';
-	import TrophyBronze from '$lib/client/images/achievement/bronze_trophy.webp';
-	import TrophySilver from '$lib/client/images/achievement/silver_trophy.webp';
-	import TrophyGold from '$lib/client/images/achievement/gold_trophy.webp';
-	import TrophyPlatinum from '$lib/client/images/achievement/platinum_trophy.webp';
-	import TrophySecret from '$lib/client/images/achievement/secret_trophy.webp';
-	import Achievement from '$lib/client/components/frontier/Achievement.svelte';
-	import ProgressBar from 'carbon-components-svelte/src/ProgressBar/ProgressBar.svelte';
+	import { getItemIcon } from '../modules/frontier/items';
+	import InlineTooltip from './frontier/InlineTooltip.svelte';
+	import TrophyWhite from './frontier/icon/TrophyWhite.svelte';
+	import '@carbon/charts-svelte/styles.css';
+	import { onMount, type Component } from 'svelte';
+	import {
+		type MeterChart,
+		type MeterChartOptions,
+	} from '@carbon/charts-svelte';
+	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
+	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 	import {
 		achievementsInfo,
 		getAchievementImage,
 		getAchievementRankColor,
 		type AchievementItem,
 	} from '$lib/client/modules/frontier/achievement';
-	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
-	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
+	import TrophyBronze from '$lib/client/images/achievement/bronze_trophy.webp';
+	import TrophySilver from '$lib/client/images/achievement/silver_trophy.webp';
+	import TrophyGold from '$lib/client/images/achievement/gold_trophy.webp';
+	import TrophyPlatinum from '$lib/client/images/achievement/platinum_trophy.webp';
+	import TrophySecret from '$lib/client/images/achievement/secret_trophy.webp';
+	import Achievement from '$lib/client/components/frontier/Achievement.svelte';
 	import { Canvas } from '@threlte/core';
 	import RotatingCard from '$lib/client/components/scenes/RotatingCard.svelte';
-	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import Head from '$lib/client/components/Head.svelte';
-	import {
-		overlayDescription,
-		website,
-		authorName,
-		datePublished,
-		authorUrl,
-		projectName,
-	} from '$lib/constants';
-	import pageThumbnail from '$lib/client/images/wycademy.png';
-	import { page } from '$app/stores';
+	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
+	import ProgressBar from 'carbon-components-svelte/src/ProgressBar/ProgressBar.svelte';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+
+	interface Props {
+		obtainedAchievements: {
+			PlayerAchievementsID: number;
+			CompletionDate: string;
+			AchievementID: number;
+		}[];
+	}
+
+	let { obtainedAchievements }: Props = $props();
 
 	const totalObtainableAchievements = Object.values(achievementsInfo[0]).filter(
 		(e) => !e.Unused,
@@ -53,12 +66,6 @@
 		(e) => e.IsSecret,
 	);
 
-	const breadcrumbItems = [
-		{ href: '/', text: 'Home' },
-		{ href: '/overlay', text: 'Overlay' },
-		{ href: '/overlay/achievements', text: 'Achievements' },
-	];
-
 	function onAchievementClick(achievement: AchievementItem) {
 		let foundValidAchievement = Object.values(achievementsInfo[0]).find(
 			(e) => e.Title === achievement.Title && !e.Unused,
@@ -77,71 +84,89 @@
 
 	let searchTerm = $state('');
 	let achievementSelected = $state(achievementsInfo[0]['0']);
-	// TODO let firstUsersObtained = [];
-	// TODO let totalUsersObtained = [];
-
 	let currentAchievements = $derived(
 		totalObtainableAchievements.filter((achievement) =>
 			achievement.Title.toLowerCase().includes(searchTerm.toLowerCase()),
 		),
 	);
 
-	// TODO clicking the word secret adds an achievement.
+	const achievementsMeterData = [
+		{
+			group: 'bronze',
+			value: 150,
+		},
+		{
+			group: 'silver',
+			value: 100,
+		},
+		{
+			group: 'gold',
+			value: 50,
+		},
+		{
+			group: 'platinum',
+			value: 25,
+		},
+	];
 
-	const customTitle = "Overlay Achievements — Frontier's Wycademy";
-	const url = $page.url.toString();
+	let achievementsMeter: Component<MeterChart> = $state();
+	let achievementsMeterLoaded = $state(false);
+
+	let achievementsMeterOptions = $derived({
+		toolbar: {
+			enabled: false,
+		},
+		legend: {
+			enabled: false,
+		},
+		meter: {
+			showLabels: false,
+			proportional: {
+				total: 450,
+			},
+		},
+		color: {
+			scale: {
+				bronze: getHexStringFromCatppuccinColor('maroon', $carbonThemeStore),
+				silver: getHexStringFromCatppuccinColor('lavender', $carbonThemeStore),
+				gold: getHexStringFromCatppuccinColor('yellow', $carbonThemeStore),
+				platinum: getHexStringFromCatppuccinColor('teal', $carbonThemeStore),
+			},
+		},
+		theme: $carbonThemeStore,
+	} as MeterChartOptions);
+
+	onMount(async () => {
+		const charts = await import('@carbon/charts-svelte');
+		achievementsMeter = charts.MeterChart;
+		achievementsMeterLoaded = true;
+	});
 </script>
 
-<Head
-	title={customTitle}
-	description={overlayDescription}
-	image={pageThumbnail}
-	{url}
-	{website}
-	{authorName}
-	{datePublished}
-	{authorUrl}
-	contentType="SoftwareApplication"
-	name={projectName}
-	siteName={projectName}
-/>
-
-<div class="achievements-page">
-	<div class="breadcrumb">
-		<Breadcrumb noTrailingSlash>
-			{#each breadcrumbItems as item, i}
-				<BreadcrumbItem
-					href={i === breadcrumbItems.length - 1 ? undefined : item.href}
-					isCurrentPage={i === breadcrumbItems.length - 1}
-					>{#if i !== breadcrumbItems.length - 1}
-						{item.text}
-					{/if}
-				</BreadcrumbItem>
-			{/each}
-		</Breadcrumb>
-	</div>
-	<h1>Achievements</h1>
-	<hr />
-	<div class="summary">
+<div class="stats-summary">
+	<div class="chart-container achievements">
 		<div class="paragraph-long-02">
-			There are currently {totalObtainableAchievementsCount} obtainable overlay achievements,
-			of which {obtainableSecretTrophies.length} are <InlineTooltip
-				icon={TrophySecret}
-				iconType="file"
-				text="secret"
-				tooltip="Trophy"
-			/>.
+			<InlineTooltip
+				text="Achievements: "
+				icon={TrophyWhite}
+				iconType="component"
+				tooltip="Achievements"
+			/>
+			<a href="/"
+				>{obtainedAchievements.length}/{totalObtainableAchievementsCount}</a
+			>
 		</div>
-		<p>
-			Below is a list of all achievements from the overlay. The trophy numbers
-			denote the total amount of hunters that obtained that achievement, over
-			the total number of trophies of that rank respectively.
-		</p>
-		<p>
-			Whoever obtains an achievement first has their name marked next to the
-			selected achievement title, along with the reward date. In order to
-			qualify, you have to submit at least 10 quests into leaderboards.
-		</p>
+		<div class="meter">
+			{#if achievementsMeterLoaded}
+				{@const SvelteComponent = achievementsMeter}
+				<SvelteComponent
+					data={achievementsMeterData}
+					options={achievementsMeterOptions}
+				/>
+			{:else}
+				<Loading withOverlay={false} />
+			{/if}
+		</div>
 	</div>
 	<div class="achievements-container">
 		<div class="items">
@@ -170,14 +195,19 @@
 			/>
 			<div class="progress-text">
 				<div>Progress</div>
-				<div>00.00%</div>
+				<div>
+					{Math.trunc(
+						(obtainedAchievements.length / totalObtainableAchievementsCount) *
+							100,
+					)}%
+				</div>
 			</div>
 			<div class="progress-bar">
 				<ProgressBar
-					value={0}
+					value={obtainedAchievements.length}
 					max={totalObtainableAchievementsCount}
 					hideLabel
-					helperText={`0/${totalObtainableAchievementsCount}`}
+					helperText={`${obtainedAchievements.length}/${totalObtainableAchievementsCount}`}
 				/>
 			</div>
 		</div>
@@ -238,26 +268,34 @@
 </div>
 
 <style lang="scss">
-	.achievements-page {
-		width: 100%;
-		padding-top: 2rem;
-		padding-bottom: 2rem;
+	.stats-summary {
+		display: flex;
+		padding: 1rem;
+		border-radius: 8px;
+		background-color: var(--ctp-mantle);
+		flex-direction: column;
+		gap: 1rem;
 	}
 
-	hr {
-		opacity: 1;
-		width: 100%;
-		border: none;
-		height: 1px;
-		background: radial-gradient(
-			circle,
-			color-mix(in srgb, var(--ctp-blue), transparent 50%) 0%,
-			rgba(0, 0, 0, 0) 50%
-		);
+	.chart-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		text-align: start;
 	}
 
-	h1 {
-		text-align: center;
+	.meter {
+		height: var(--cds-spacing-04);
+		margin-bottom: 1rem;
+	}
+
+	a {
+		all: unset;
+	}
+
+	a:hover {
+		text-decoration: underline;
+		color: var(--ctp-sky);
 	}
 
 	@media (min-width: 320px) {
@@ -272,7 +310,7 @@
 			border: 2px solid var(--ctp-overlay0);
 			background: var(--ctp-surface0);
 			border-radius: 8px 8px 8px 8px;
-			width: 80%;
+			width: 100%;
 			margin: auto;
 			padding: 1rem;
 			height: 100vh;
@@ -288,11 +326,11 @@
 			grid-template-areas:
 				'items search'
 				'items preview'
-				'info trophies ';
+				'info trophies';
 			border: 2px solid var(--ctp-overlay0);
 			background: var(--ctp-surface0);
 			border-radius: 8px 8px 8px 8px;
-			width: 80%;
+			width: 100%;
 			margin: auto;
 			padding: 1rem;
 			height: 85vh;
@@ -392,20 +430,5 @@
 
 	button {
 		all: unset;
-	}
-
-	.breadcrumb {
-		padding-left: 1rem;
-		padding-bottom: 1rem;
-	}
-
-	.summary {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		width: 80%;
-		margin: auto;
-		padding-top: 1rem;
-		padding-bottom: 2rem;
 	}
 </style>
