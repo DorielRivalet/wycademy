@@ -18,6 +18,7 @@
 		getAchievementImage,
 		getAchievementRankColor,
 		type AchievementItem,
+		type PlayerAchievementInfo,
 	} from '$lib/client/modules/frontier/achievement';
 	import TrophyBronze from '$lib/client/images/achievement/bronze_trophy.webp';
 	import TrophySilver from '$lib/client/images/achievement/silver_trophy.webp';
@@ -35,11 +36,7 @@
 	) as Writable<CarbonTheme>;
 
 	interface Props {
-		obtainedAchievements: {
-			PlayerAchievementsID: number;
-			CompletionDate: string;
-			AchievementID: number;
-		}[];
+		obtainedAchievements: PlayerAchievementInfo[];
 	}
 
 	let { obtainedAchievements }: Props = $props();
