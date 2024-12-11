@@ -314,7 +314,7 @@
 	}
 
 	.gauge {
-		min-height: 196px;
+		min-height: 192px;
 		margin-bottom: 1rem;
 	}
 

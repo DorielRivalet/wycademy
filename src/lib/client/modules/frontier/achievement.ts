@@ -52,6 +52,12 @@ export type AchievementObject = {
 	[key: string]: AchievementItem;
 };
 
+export interface PlayerAchievementInfo {
+	PlayerAchievementsID: number;
+	CompletionDate: Date;
+	AchievementID: number;
+}
+
 export const achievementsInfo: AchievementObject[] = [
 	{
 		'0': {

@@ -1869,7 +1869,7 @@
 	.weapon-info-values-bottom,
 	.weapon-sharpness-values {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
 		margin: 1rem;
 		gap: 1rem;
 		align-items: center;

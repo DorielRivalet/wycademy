@@ -427,7 +427,7 @@
 
 	.gauge {
 		display: flex;
-		min-width: 196px;
-		min-height: 196px;
+		min-width: 192px;
+		min-height: 192px;
 	}
 </style>

@@ -778,7 +778,14 @@
 	let caravanSkillsTablePageSize = $state(10);
 	let caravanSkillsTablePage = $state(1);
 	let caravanSkillsTableFilteredRowIds: string[] = $state([]);
-	let caravanSkillsSortKey = $state('cost');
+	let caravanSkillsSortKey:
+		| 'description'
+		| 'name'
+		| 'id'
+		| 'cost'
+		| 'pointsToUnlock'
+		| 'demo'
+		| undefined = $state('cost');
 	let caravanSkillsSortDirection:
 		| 'none'
 		| 'ascending'
