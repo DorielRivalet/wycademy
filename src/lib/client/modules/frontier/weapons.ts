@@ -85,14 +85,29 @@ import type {
 import type {
 	FrontierArmorSkillName,
 	FrontierSigil,
+	FrontierWeaponID,
 	FrontierWeaponName,
 	FrontierZenithSkill,
 } from 'ezlion';
 
-export function getWeaponIcon(weaponName: FrontierWeaponName) {
-	const icon = WeaponTypes[4].icon;
+export function getWeaponDefaultOrderFromId(id: FrontierWeaponID): number {
+	return weaponTypeInfo.find((w) => w.id === id)?.defaultOrder || 0;
+}
 
-	const found = WeaponTypes.find((w) => w.name === weaponName);
+export function getWeaponIdFromName(name: FrontierWeaponName): number {
+	return weaponTypeInfo.find((w) => w.name === name)?.id || 0;
+}
+
+export function getWeaponDefaultOrderFromName(
+	name: FrontierWeaponName,
+): number {
+	return weaponTypeInfo.find((w) => w.name === name)?.defaultOrder || 0;
+}
+
+export function getWeaponIcon(weaponName: FrontierWeaponName) {
+	const icon = weaponTypeInfo[4].icon;
+
+	const found = weaponTypeInfo.find((w) => w.name === weaponName);
 	if (!found) {
 		return icon;
 	}
@@ -101,9 +116,9 @@ export function getWeaponIcon(weaponName: FrontierWeaponName) {
 }
 
 export function getWeaponImage(weaponName: FrontierWeaponName) {
-	const image = WeaponTypes[4].image;
+	const image = weaponTypeInfo[4].image;
 
-	const found = WeaponTypes.find((w) => w.name === weaponName);
+	const found = weaponTypeInfo.find((w) => w.name === weaponName);
 	if (!found) {
 		return image;
 	}
@@ -228,10 +243,14 @@ export const defaultWeaponComponentValues = {
 	bowgunArmorAmmo: [1, 0, 0] as levelQuantity,
 } as const;
 
-// TODO change name
-export const WeaponTypes: FrontierWeapon[] = [
+export const weaponTypeDefaultOrderById: FrontierWeaponID[] = [
+	4, 6, 0, 7, 2, 8, 3, 9, 11, 12, 13, 5, 1, 10,
+];
+
+export const weaponTypeInfo: FrontierWeapon[] = [
 	{
 		id: 0,
+		defaultOrder: 2,
 		name: 'Great Sword',
 		class: 'Blademaster',
 		icon: GreatSwordIcon,
@@ -253,6 +272,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		icon: HeavyBowgunIcon,
 		smallIcon: HeavyBowgunIconSmall,
 		smallIconRed: HeavyBowgunIconSmallRed,
+		defaultOrder: 12,
 		activeFeatureValue: 2,
 		hiden: 'Gun Sage',
 		bloatAttackMultiplier: 1.2,
@@ -266,6 +286,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		id: 2,
 		name: 'Hammer',
 		class: 'Blademaster',
+		defaultOrder: 4,
 		icon: HammerIcon,
 		smallIcon: HammerIconSmall,
 		smallIconRed: HammerIconSmallRed,
@@ -283,6 +304,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Lance',
 		class: 'Blademaster',
 		icon: LanceIcon,
+		defaultOrder: 6,
 		smallIcon: LanceIconSmall,
 		smallIconRed: LanceIconSmallRed,
 		activeFeatureValue: 8,
@@ -297,6 +319,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 	{
 		id: 4,
 		name: 'Sword and Shield',
+		defaultOrder: 0,
 		class: 'Blademaster',
 		icon: SwordAndShieldIcon,
 		smallIcon: SwordAndShieldIconSmall,
@@ -321,16 +344,17 @@ export const WeaponTypes: FrontierWeapon[] = [
 		hiden: 'Gun Prodigy',
 		bloatAttackMultiplier: 1.2,
 		statusAssaultPoison: 0,
+		defaultOrder: 11,
 		statusAssaultParalysis: 0,
 		elementalExploitModifier: 10,
 		image: LightBowgunImage,
-
 		damageType: 'Shot',
 	},
 	{
 		id: 6,
 		name: 'Dual Swords',
 		class: 'Blademaster',
+		defaultOrder: 1,
 		icon: DualSwordsIcon,
 		smallIcon: DualSwordsIconSmall,
 		smallIconRed: DualSwordsIconSmallRed,
@@ -347,6 +371,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 	{
 		id: 7,
 		name: 'Long Sword',
+		defaultOrder: 3,
 		class: 'Blademaster',
 		icon: LongSwordIcon,
 		smallIcon: LongSwordIconSmall,
@@ -357,7 +382,6 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 7,
 		image: LongSwordImage,
-
 		elementalExploitModifier: 15,
 		damageType: 'Cutting',
 	},
@@ -365,6 +389,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		id: 8,
 		name: 'Hunting Horn',
 		class: 'Blademaster',
+		defaultOrder: 5,
 		icon: HuntingHornIcon,
 		smallIcon: HuntingHornIconSmall,
 		smallIconRed: HuntingHornIconSmallRed,
@@ -374,7 +399,6 @@ export const WeaponTypes: FrontierWeapon[] = [
 		statusAssaultPoison: 13,
 		statusAssaultParalysis: 7,
 		image: HuntingHornImage,
-
 		elementalExploitModifier: 15,
 		damageType: 'Impact',
 	},
@@ -383,6 +407,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Gunlance',
 		class: 'Blademaster',
 		icon: GunlanceIcon,
+		defaultOrder: 7,
 		smallIcon: GunlanceIconSmall,
 		smallIconRed: GunlanceIconSmallRed,
 		activeFeatureValue: 512,
@@ -400,11 +425,11 @@ export const WeaponTypes: FrontierWeapon[] = [
 		name: 'Bow',
 		class: 'Gunner',
 		icon: BowIcon,
+		defaultOrder: 13,
 		smallIcon: BowIconSmall,
 		smallIconRed: BowIconSmallRed,
 		activeFeatureValue: 1024,
 		image: BowImage,
-
 		hiden: 'Bow Demon',
 		bloatAttackMultiplier: 1.2,
 		statusAssaultPoison: 0,
@@ -420,6 +445,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		smallIcon: TonfaIconSmall,
 		smallIconRed: TonfaIconSmallRed,
 		activeFeatureValue: 2048,
+		defaultOrder: 8,
 		hiden: 'Piercing Phoenix',
 		bloatAttackMultiplier: 1.8,
 		statusAssaultPoison: 10,
@@ -432,6 +458,7 @@ export const WeaponTypes: FrontierWeapon[] = [
 		id: 12,
 		name: 'Switch Axe F',
 		class: 'Blademaster',
+		defaultOrder: 9,
 		icon: SwitchAxeFIcon,
 		smallIcon: SwitchAxeFIconSmall,
 		smallIconRed: SwitchAxeFIconSmallRed,
@@ -439,7 +466,6 @@ export const WeaponTypes: FrontierWeapon[] = [
 		hiden: 'Edge Marshal',
 		bloatAttackMultiplier: 5.4,
 		image: SwitchAxeFImage,
-
 		statusAssaultPoison: 11,
 		statusAssaultParalysis: 7,
 		elementalExploitModifier: 15,
@@ -449,12 +475,12 @@ export const WeaponTypes: FrontierWeapon[] = [
 		id: 13,
 		name: 'Magnet Spike',
 		class: 'Blademaster',
+		defaultOrder: 10,
 		icon: MagnetSpikeIcon,
 		smallIcon: MagnetSpikeIconSmall,
 		smallIconRed: MagnetSpikeIconSmallRed,
 		activeFeatureValue: 8192,
 		image: MagnetSpikeImage,
-
 		hiden: 'Magnetic Star',
 		bloatAttackMultiplier: 5.4,
 		statusAssaultPoison: 13,

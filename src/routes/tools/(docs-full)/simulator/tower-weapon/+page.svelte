@@ -41,7 +41,7 @@
 	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
 	import { StatusIcons } from '$lib/client/modules/frontier/ailments';
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	function onSelectTowerWeaponOption() {
@@ -812,7 +812,7 @@
 </script>
 
 <TableOfContentsPage displayTOC={false}>
-	{@const SvelteComponent_1 = WeaponTypes.find(
+	{@const SvelteComponent_1 = weaponTypeInfo.find(
 		(e) => e.name === towerWeaponSelectedWeaponType,
 	)?.icon}
 	<div>

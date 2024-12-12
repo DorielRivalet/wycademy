@@ -22,7 +22,7 @@
 	import { itemInfo, ItemColors } from '$lib/client/modules/frontier/items';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import {
 		gameInfo,
 		RarityColors,
@@ -88,8 +88,8 @@
 		switch (selectedIconType) {
 			case 'Weapon':
 				return {
-					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
-					image: WeaponTypes.find((e) => e.name === selectionID)?.smallIcon,
+					component: weaponTypeInfo.find((e) => e.name === selectionID)?.icon,
+					image: weaponTypeInfo.find((e) => e.name === selectionID)?.smallIcon,
 				};
 			case 'Monster Icon':
 				return {

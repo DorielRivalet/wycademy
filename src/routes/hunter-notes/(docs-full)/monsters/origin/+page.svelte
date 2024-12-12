@@ -12,7 +12,7 @@
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
 	import { page } from '$app/stores';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 
 	let originsTablePageSize = $state(5);
 	let originsTablePage = $state(1);
@@ -331,7 +331,7 @@
 							/>
 						{:else if cell.key === 'weapon'}
 							<InlineTooltip
-								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon ??
+								icon={weaponTypeInfo.find((e) => e.name === cell.value)?.icon ??
 									''}
 								tooltip={cell.value}
 								text={cell.value}

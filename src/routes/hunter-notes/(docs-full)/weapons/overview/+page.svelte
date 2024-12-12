@@ -15,7 +15,7 @@
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import {
 		getWeaponIcon,
-		WeaponTypes,
+		weaponTypeInfo,
 	} from '$lib/client/modules/frontier/weapons';
 	import { page } from '$app/stores';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
@@ -67,7 +67,7 @@
 	};
 
 	let selectedWeaponTypeId = $derived(
-		WeaponTypes.find((e) => e.name == selectedWeaponType)?.id,
+		weaponTypeInfo.find((e) => e.name == selectedWeaponType)?.id,
 	);
 
 	let filteredSharpnessTables = $derived(
@@ -264,7 +264,7 @@
 								<InlineTooltip
 									text={cell.value}
 									tooltip={'Weapon'}
-									icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+									icon={weaponTypeInfo.find((e) => e.name === cell.value)?.icon}
 								/>
 							{:else}
 								<p>{cell.value}</p>

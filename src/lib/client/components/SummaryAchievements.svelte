@@ -14,7 +14,9 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import {
+		achievementRankNames,
 		achievementsInfo,
+		findMatchingAchievements,
 		getAchievementImage,
 		getAchievementRankColor,
 		type AchievementItem,
@@ -30,6 +32,7 @@
 	import RotatingCard from '$lib/client/components/scenes/RotatingCard.svelte';
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import ProgressBar from 'carbon-components-svelte/src/ProgressBar/ProgressBar.svelte';
+	import { format } from 'date-fns';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -79,6 +82,46 @@
 		achievementSelected = achievement;
 	}
 
+	function getAchievementsMeterData(
+		obtainedAchievements: PlayerAchievementInfo[],
+	): { group: 'bronze' | 'silver' | 'gold' | 'platinum'; value: number }[] {
+		// Map achievement ranks to group names
+		const achievementRankNames = {
+			1: 'bronze',
+			2: 'silver',
+			3: 'gold',
+			4: 'platinum',
+		};
+
+		// Initialize counts for each rank
+		const counts = {
+			bronze: 0,
+			silver: 0,
+			gold: 0,
+			platinum: 0,
+		};
+
+		// Iterate over obtained achievements
+		obtainedAchievements.forEach((achievement) => {
+			// Find the corresponding achievement in achievementsInfo by matching the ID
+			const achievementInfo = achievementsInfo[0][achievement.AchievementID];
+
+			if (achievementInfo && !achievementInfo.Unused) {
+				// Map the rank to the group (bronze, silver, etc.)
+				const group = achievementRankNames[achievementInfo.Rank];
+				if (group) {
+					counts[group]++;
+				}
+			}
+		});
+
+		// Convert counts to the required data format for the chart
+		return Object.entries(counts).map(([group, value]) => ({
+			group: group as 'bronze' | 'silver' | 'gold' | 'platinum',
+			value,
+		}));
+	}
+
 	let searchTerm = $state('');
 	let achievementSelected = $state(achievementsInfo[0]['0']);
 	let currentAchievements = $derived(
@@ -86,25 +129,6 @@
 			achievement.Title.toLowerCase().includes(searchTerm.toLowerCase()),
 		),
 	);
-
-	const achievementsMeterData = [
-		{
-			group: 'bronze',
-			value: 150,
-		},
-		{
-			group: 'silver',
-			value: 100,
-		},
-		{
-			group: 'gold',
-			value: 50,
-		},
-		{
-			group: 'platinum',
-			value: 25,
-		},
-	];
 
 	let achievementsMeter: Component<MeterChart> = $state();
 	let achievementsMeterLoaded = $state(false);
@@ -119,7 +143,7 @@
 		meter: {
 			showLabels: false,
 			proportional: {
-				total: 450,
+				total: totalObtainableAchievementsCount,
 			},
 		},
 		color: {
@@ -132,6 +156,10 @@
 		},
 		theme: $carbonThemeStore,
 	} as MeterChartOptions);
+
+	let achievementsMeterData = $derived(
+		getAchievementsMeterData(obtainedAchievements),
+	);
 
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
@@ -174,7 +202,13 @@
 						onclick={(e) => onAchievementClick(achievement)}
 					>
 						<Achievement
-							hunterName={achievement.HunterName}
+							hunterName={obtainedAchievements.find(
+								(ach) =>
+									achievementsInfo[0][ach.AchievementID]?.Title ===
+									achievement.Title,
+							)
+								? 'Hunter'
+								: ''}
 							rank={achievement.Rank}
 							name={achievement.Title}
 							imageSource={achievement.Image}
@@ -227,7 +261,11 @@
 					class="achievement-selected-title"
 					style="color: {getAchievementRankColor(achievementSelected.Rank)}"
 				>
-					{`${achievementSelected.Title}${!achievementSelected.HunterName || achievementSelected.HunterName === '' ? ' | Unclaimed' : ` | ${achievementSelected.HunterName} obtained at ${achievementSelected.CompletionDate}`}`}
+					{#if obtainedAchievements.find((ach) => achievementsInfo[0][ach.AchievementID]?.Title === achievementSelected.Title)}
+						{`${achievementSelected.Title} | Hunter obtained at ${format(new Date(obtainedAchievements.find((ach) => achievementsInfo[0][ach.AchievementID]?.Title === achievementSelected.Title)?.CompletionDate || ''), 'yyyy-MM-dd HH:mm:ss')}`}
+					{:else}
+						{`${achievementSelected.Title} | Unclaimed`}
+					{/if}
 				</p>
 				{#if !achievementSelected.IsSecret}
 					<p class="objective">{achievementSelected.Objective}</p>
@@ -239,25 +277,29 @@
 			<div>
 				<img src={TrophyBronze} alt="Trophy" />
 				<p style:color="var(--ctp-maroon)">
-					{0}/{obtainableBronzeTrophies.length}
+					{achievementsMeterData.find((e) => e.group === 'bronze')
+						?.value}/{obtainableBronzeTrophies.length}
 				</p>
 			</div>
 			<div>
 				<img src={TrophySilver} alt="Trophy" />
 				<p style:color="var(--ctp-lavender)">
-					{0}/{obtainableSilverTrophies.length}
+					{achievementsMeterData.find((e) => e.group === 'silver')
+						?.value}/{obtainableSilverTrophies.length}
 				</p>
 			</div>
 			<div>
 				<img src={TrophyGold} alt="Trophy" />
 				<p style:color="var(--ctp-yellow)">
-					{0}/{obtainableGoldTrophies.length}
+					{achievementsMeterData.find((e) => e.group === 'gold')
+						?.value}/{obtainableGoldTrophies.length}
 				</p>
 			</div>
 			<div>
 				<img src={TrophyPlatinum} alt="Trophy" />
 				<p style:color="var(--ctp-teal)">
-					{0}/{obtainablePlatinumTrophies.length}
+					{achievementsMeterData.find((e) => e.group === 'platinum')
+						?.value}/{obtainablePlatinumTrophies.length}
 				</p>
 			</div>
 		</div>
