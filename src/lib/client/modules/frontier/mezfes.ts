@@ -1,5 +1,5 @@
 export interface MezFesInfo {
-	CreatedAt: Date;
+	CreatedAt: string;
 	CreatedBy: string;
 	Score: number;
 	MezFesMinigameID: number;

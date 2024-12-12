@@ -3,7 +3,7 @@
 	import ImageDialog from './ImageDialog.svelte';
 	import '/node_modules/flag-icons/css/flag-icons.min.css';
 	import { generateRandomUsername } from '../modules/username-generator';
-	import { WeaponTypes } from '../modules/frontier/weapons';
+	import { weaponTypeInfo } from '../modules/frontier/weapons';
 	import { countries, type TCountryCode } from 'countries-list';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
@@ -35,14 +35,14 @@
 	let {
 		name = generateRandomUsername() + `#${Math.trunc(Math.random() * 1000)}`,
 		medal = '🥇',
-		title = randomChoice(WeaponTypes).hiden,
+		title = randomChoice(weaponTypeInfo).hiden,
 		discordName = 'discordname123',
 		twitterName = 'randomTwitterName123',
 		imageSource = Transcend,
 		countryCode = randomChoice(Object.keys(countries)),
-		badge1Icon = randomChoice(WeaponTypes).icon,
-		badge2Icon = randomChoice(WeaponTypes).icon,
-		badge3Icon = randomChoice(WeaponTypes).icon,
+		badge1Icon = randomChoice(weaponTypeInfo).icon,
+		badge2Icon = randomChoice(weaponTypeInfo).icon,
+		badge3Icon = randomChoice(weaponTypeInfo).icon,
 		badge1Rank = Math.trunc(Math.random() * 99),
 		badge2Rank = Math.trunc(Math.random() * 99),
 		badge3Rank = Math.trunc(Math.random() * 99),

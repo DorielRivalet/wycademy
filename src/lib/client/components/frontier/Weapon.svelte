@@ -19,7 +19,7 @@ Does not handle decorations because sigils are optimal.
 		type FrontierWeaponID,
 		type FrontierZenithSkill,
 	} from 'ezlion';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import type {
 		FrontierBowArcShot,
 		FrontierBowAvailableCoatings,
@@ -238,8 +238,8 @@ Does not handle decorations because sigils are optimal.
 	let affinityColor = $derived(
 		affinityBoost ? frontierColorNames[2].values[1].var : '--ctp-mocha-text',
 	);
-	let weaponClass = $derived(WeaponTypes[weaponID].class);
-	let weaponTypeName = $derived(WeaponTypes[weaponID].name);
+	let weaponClass = $derived(weaponTypeInfo[weaponID].class);
+	let weaponTypeName = $derived(weaponTypeInfo[weaponID].name);
 	let maxPages = $derived(weaponClass === 'Blademaster' ? 6 : 8);
 	let normalAmmoStyle = $derived(
 		bowgunAmmo[0].levelQuantity[0] === 0 &&
@@ -373,7 +373,7 @@ Does not handle decorations because sigils are optimal.
 	<div class="container">
 		{#if currentPage === 1}
 			{#if weaponClass === 'Blademaster'}
-				{@const SvelteComponent = WeaponTypes[weaponID].icon}
+				{@const SvelteComponent = weaponTypeInfo[weaponID].icon}
 				<div class="page-1-blademaster">
 					<div class="header">
 						<div class="weapon-icon-container">
@@ -522,7 +522,7 @@ Does not handle decorations because sigils are optimal.
 					</div>
 				</div>
 			{:else}
-				{@const SvelteComponent_1 = WeaponTypes[weaponID].icon}
+				{@const SvelteComponent_1 = weaponTypeInfo[weaponID].icon}
 				<div class="page-1-gunner">
 					<div class="header">
 						<div class="weapon-icon-container">
@@ -669,7 +669,7 @@ Does not handle decorations because sigils are optimal.
 				</div>
 			{/if}
 		{:else if currentPage === 2}
-			{@const SvelteComponent_2 = WeaponTypes[weaponID].icon}
+			{@const SvelteComponent_2 = weaponTypeInfo[weaponID].icon}
 			<div class="page-2-blademaster">
 				<div class="icon">
 					<div class="weapon-icon-container">

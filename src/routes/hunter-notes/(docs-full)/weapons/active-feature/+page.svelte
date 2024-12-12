@@ -16,7 +16,7 @@
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { gameInfo } from '$lib/client/modules/frontier/objects';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import { activeFeatures } from '$lib/client/modules/frontier/active-feature';
 
@@ -25,8 +25,8 @@
 		const sumWithInitial = arr.reduce(
 			(accumulator, currentValue) =>
 				accumulator +
-				(WeaponTypes.find((e) => e.name === currentValue)?.activeFeatureValue ??
-					0),
+				(weaponTypeInfo.find((e) => e.name === currentValue)
+					?.activeFeatureValue ?? 0),
 			initialValue,
 		);
 
@@ -119,7 +119,7 @@
 							<InlineTooltip
 								text={cell.value}
 								tooltip={'Weapon'}
-								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+								icon={weaponTypeInfo.find((e) => e.name === cell.value)?.icon}
 								iconSize={'2rem'}
 								gap={'0.5rem'}
 							/>

@@ -120,7 +120,7 @@
 		bowChargeLevels,
 		gunlanceShellValues,
 		oldBlademasterSharpness,
-		WeaponTypes,
+		weaponTypeInfo,
 		getWeaponIcon,
 	} from '$lib/client/modules/frontier/weapons';
 	import { missionRequirementAttackCeilings } from '$lib/client/modules/frontier/objects';
@@ -356,7 +356,7 @@
 		weaponType: FrontierWeaponName,
 		statusType: FrontierStatus,
 	) {
-		let weapon = WeaponTypes.find((w) => w.name === weaponType);
+		let weapon = weaponTypeInfo.find((w) => w.name === weaponType);
 		if (!weapon) {
 			return 0;
 		}
@@ -1131,7 +1131,7 @@
 	// TODO unused
 	function getHitzoneValueFromWeaponType(weaponType: FrontierWeaponName) {
 		let damageType =
-			WeaponTypes.find((e) => e.name === weaponType)?.damageType || '';
+			weaponTypeInfo.find((e) => e.name === weaponType)?.damageType || '';
 		switch (damageType) {
 			default:
 				return 0;
@@ -1150,7 +1150,7 @@
 
 	function getRawHitzoneMultiplier(weaponType: FrontierWeaponName) {
 		let damageType =
-			WeaponTypes.find((e) => e.name === weaponType)?.damageType || '';
+			weaponTypeInfo.find((e) => e.name === weaponType)?.damageType || '';
 		switch (damageType) {
 			default:
 				return 1;
@@ -3408,7 +3408,7 @@
 		weaponType: FrontierWeaponName,
 		outputObscurityLevel: number,
 	) {
-		let foundWeapon = WeaponTypes.find((e) => e.name === weaponType);
+		let foundWeapon = weaponTypeInfo.find((e) => e.name === weaponType);
 
 		if (!foundWeapon) {
 			return 0;
@@ -3494,7 +3494,7 @@
 				? 4
 				: 0;
 		let modifier =
-			WeaponTypes.find((e) => e.name === weaponName)
+			weaponTypeInfo.find((e) => e.name === weaponName)
 				?.elementalExploitModifier || 0;
 
 		if (
@@ -4550,7 +4550,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	);
 
 	$: outputWeaponTypeMultiplier =
-		WeaponTypes.find((weaponType) => weaponType.name === inputWeaponType)
+		weaponTypeInfo.find((weaponType) => weaponType.name === inputWeaponType)
 			?.bloatAttackMultiplier || 1.2;
 
 	$: addToDamageCalculatorHistoryLogs(

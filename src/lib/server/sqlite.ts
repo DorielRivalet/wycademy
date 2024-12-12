@@ -159,7 +159,7 @@ function getDenormalizedSpeedrunTable(
 
 			// From Quests
 			RunID: quest['RunID'],
-			CreatedAt: new Date(quest['CreatedAt']),
+			CreatedAt: quest['CreatedAt'],
 			CreatedBy: quest['CreatedBy'],
 			QuestHash: quest['QuestHash'],
 			QuestID: quest['QuestID'],
@@ -449,13 +449,19 @@ export function streamDatabaseProcessing(
 
 		// Step 4: Filter rows based on RunID conditions
 		onProgress(3, 'Filtering rows based on RunID conditions...');
+		// TODO test
 		const speedrunRunIDs = db
 			.prepare(
 				`SELECT RunID
-				 FROM Quests
-				 WHERE ActualOverlayMode = 'Speedrun'
-				 AND PartySize = 1
-				 AND QuestID IN (${questIDWhitelist.map((q) => q.id).join(',')})`,
+        FROM Quests
+        WHERE ActualOverlayMode = 'Speedrun'
+        AND PartySize = 1
+        AND QuestID IN (${questIDWhitelist.map((q) => q.id).join(',')})
+        AND (
+            substr(CreatedBy, -7, 4) >= '0.23'
+            OR substr(CreatedBy, -7, 1) = '1'
+            OR CAST(substr(CreatedBy, -7, 1) AS INTEGER) >= 2
+        )`,
 			)
 			.all()
 			.map((row) => row.RunID);

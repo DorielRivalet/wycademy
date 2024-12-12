@@ -80,7 +80,7 @@ export interface SpeedrunInfo {
 	PlayerAmmoPouchDictionary: string; //{[index: number]: { [index: number]: number }[]}[];  time, item id, item quantity. from PlayerGear table
 	PartnyaBagDictionary: string; //{[index: number]: { [index: number]: number }[]}[];  time, item id, item quantity. from PlayerGear table
 	RunID: number; // from Quests table
-	CreatedAt: Date; // from Quests table
+	CreatedAt: string; // from Quests table
 	CreatedBy: string; // from Quests table
 	QuestHash: string; // from Quests table
 	QuestID: number; // from Quests table

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import type { FrontierWeaponName } from 'ezlion';
@@ -63,7 +63,7 @@
 		<p>
 			True Raw: {Math.floor(
 				value /
-					(WeaponTypes.find((e) => e.name === weaponType)
+					(weaponTypeInfo.find((e) => e.name === weaponType)
 						?.bloatAttackMultiplier ?? 1),
 			)}
 		</p>

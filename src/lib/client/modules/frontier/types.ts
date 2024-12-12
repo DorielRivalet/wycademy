@@ -198,6 +198,7 @@ export type FrontierDamageType =
 	| 'True Damage';
 export type FrontierWeapon = {
 	id: FrontierWeaponID;
+	defaultOrder: FrontierWeaponID;
 	name: FrontierWeaponName;
 	class: FrontierWeaponClass;
 	icon: Component;

@@ -145,6 +145,7 @@
 </script>
 
 <div class="spaced-paragraph">Information from the last quest completed.</div>
+<!-- TODO: add run ID numberinput to see different gear-->
 <div class="spaced-paragraph">
 	<strong>Backgrounds Unlocked:</strong>
 	<a href="/">

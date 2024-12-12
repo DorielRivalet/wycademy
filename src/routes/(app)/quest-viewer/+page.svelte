@@ -45,7 +45,7 @@
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import ProfileStatsSummary from '$lib/client/components/ProfileStatsSummary.svelte';
-	import AchievementsSummary from '$lib/client/components/AchievementsSummary.svelte';
+	import SummaryAchievements from '$lib/client/components/SummaryAchievements.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import ProgressIndicator from 'carbon-components-svelte/src/ProgressIndicator/ProgressIndicator.svelte';
 	import ProgressStep from 'carbon-components-svelte/src/ProgressIndicator/ProgressStep.svelte';
@@ -61,7 +61,10 @@
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
-	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+	import {
+		getWeaponIcon,
+		getWeaponIdFromName,
+	} from '$lib/client/modules/frontier/weapons';
 	import { ezlionQuest, ezlionWeaponType } from 'ezlion';
 	import { formatDateTime } from '$lib/client/modules/time';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
@@ -74,6 +77,18 @@
 	import { getHabitatIcon } from '$lib/client/modules/frontier/habitat';
 	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
+	import SummaryHuntsCalendarGraph from '$lib/client/components/SummaryHuntsCalendarGraph.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+	import SummaryWeaponUsage from '$lib/client/components/SummaryWeaponUsage.svelte';
+	import { browser } from '$app/environment';
+	import type { LineChartOptions, ScaleTypes } from '@carbon/charts-svelte';
+	import { downloadDomAsPng } from '$lib/client/modules/download';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	/**
 	 * Converts a JSON string to { [index: number]: { [index: number]: number }[] }[]
@@ -290,12 +305,12 @@
 		ds: string;
 		gs: string;
 		ls: string;
-		lance: string;
-		gl: string;
 		hammer: string;
 		hh: string;
-		saf: string;
+		lance: string;
+		gl: string;
 		tonfa: string;
+		saf: string;
 		ms: string;
 		bow: string;
 		lbg: string;
@@ -367,8 +382,8 @@
 			gl: string;
 			hammer: string;
 			hh: string;
-			saf: string;
 			tonfa: string;
+			saf: string;
 			ms: string;
 			bow: string;
 			lbg: string;
@@ -383,24 +398,66 @@
 				monster: monsterName,
 				quest: ezlionQuest[questID],
 				questID: questID,
-				sns: questBests[4] || defaultTime,
-				ds: questBests[6] || defaultTime,
-				gs: questBests[0] || defaultTime,
-				ls: questBests[7] || defaultTime,
-				lance: questBests[3] || defaultTime,
-				gl: questBests[9] || defaultTime,
-				hammer: questBests[2] || defaultTime,
-				hh: questBests[8] || defaultTime,
-				tonfa: questBests[11] || defaultTime,
-				saf: questBests[12] || defaultTime,
-				ms: questBests[13] || defaultTime,
-				lbg: questBests[5] || defaultTime,
-				hbg: questBests[1] || defaultTime,
-				bow: questBests[10] || defaultTime,
+				sns: questBests[getWeaponIdFromName('Sword and Shield')] || defaultTime,
+				ds: questBests[getWeaponIdFromName('Dual Swords')] || defaultTime,
+				gs: questBests[getWeaponIdFromName('Great Sword')] || defaultTime,
+				ls: questBests[getWeaponIdFromName('Long Sword')] || defaultTime,
+				hammer: questBests[getWeaponIdFromName('Hammer')] || defaultTime,
+				hh: questBests[getWeaponIdFromName('Hunting Horn')] || defaultTime,
+				lance: questBests[getWeaponIdFromName('Lance')] || defaultTime,
+				gl: questBests[getWeaponIdFromName('Gunlance')] || defaultTime,
+				tonfa: questBests[getWeaponIdFromName('Tonfa')] || defaultTime,
+				saf: questBests[getWeaponIdFromName('Switch Axe F')] || defaultTime,
+				ms: questBests[getWeaponIdFromName('Magnet Spike')] || defaultTime,
+				lbg: questBests[getWeaponIdFromName('Light Bowgun')] || defaultTime,
+				hbg: questBests[getWeaponIdFromName('Heavy Bowgun')] || defaultTime,
+				bow: questBests[getWeaponIdFromName('Bow')] || defaultTime,
 			});
 		});
 
 		return rows.toReversed();
+	}
+
+	async function generateSparkline(data: string) {
+		if (!browser) return;
+		try {
+			// Parse input, with error handling
+			let input: { [key: string]: number } = JSON.parse(data);
+
+			//console.log(JSON.stringify(input, null, 2));
+
+			// Validate input is not empty
+			if (Object.keys(input).length === 0) {
+				console.warn('Input data is empty');
+				return;
+			}
+
+			// Convert keys to numbers and find the highest time value
+			const timeKeys = Object.keys(input).map((key) => parseInt(key, 10));
+			const highestTime = Math.max(...timeKeys);
+
+			// Transform data with more robust mapping
+			const result = timeKeys
+				.map((time) => ({
+					group: 'Dataset 1',
+					time: (highestTime - time).toString(),
+					value: input[time.toString()],
+				}))
+				.sort((a, b) => parseInt(a.time) - parseInt(b.time));
+
+			// Dynamic import of Carbon Charts
+			const { LineChart } = await import('@carbon/charts-svelte');
+
+			console.log(JSON.stringify(result));
+
+			return {
+				component: LineChart,
+				data: result,
+			};
+		} catch (error) {
+			console.error('Error generating sparkline:', error);
+			return;
+		}
 	}
 
 	const customTitle = "Quest Viewer — Frontier's Wycademy";
@@ -415,6 +472,7 @@
 	let mezFesInfo: MezFesInfo[] = $state([]);
 	let achievementInfo: PlayerAchievementInfo[] = $state([]);
 	let loadingIndex = $state(0);
+	let selectedTabIndex = $state(0);
 
 	let questsTablePageSize = $state(10);
 	let questsTablePage = $state(1);
@@ -426,7 +484,7 @@
 		| 'objectiveName'
 		| 'quest'
 		| 'videoLink'
-		| 'dps'
+		| 'trueRaw'
 		| 'date'
 		| undefined = $state('id');
 	let questsSortDirection: 'none' | 'ascending' | 'descending' | undefined =
@@ -440,6 +498,41 @@
 			selectedRunBuffsTag,
 		),
 	);
+	let sparklineOptions = $derived({
+		points: { enabled: false },
+		axes: {
+			bottom: {
+				visible: false,
+				title: 'Time (frames)',
+				mapsTo: 'time',
+				includeZero: false,
+				scaleType: 'linear' as ScaleTypes,
+			},
+			left: {
+				visible: false,
+
+				mapsTo: 'value',
+				title: 'DPS',
+				scaleType: 'linear' as ScaleTypes,
+			},
+		},
+		tooltip: {
+			enabled: false,
+		},
+		width: '192px',
+		height: '64px',
+		resizable: false,
+		legend: {
+			enabled: false,
+		},
+		toolbar: {
+			enabled: false,
+		},
+		data: {
+			loading: false,
+		},
+		theme: $carbonThemeStore,
+	} as LineChartOptions);
 </script>
 
 <Head
@@ -488,245 +581,286 @@
 			</div>
 
 			<div>
-				<Tabs autoWidth>
+				<Tabs autoWidth bind:selected={selectedTabIndex}>
 					<Tab label="Summary" />
 					<Tab label="Quests" />
-					<Tab label="Gear" />
 					<Tab label="Achievements" />
 					<Tab label="Events" />
 					{#snippet content()}
 						<TabContent>
 							<section>
-								<div class="buttons">
-									<Dropdown
-										titleText="Run Buffs Tag"
-										bind:selectedId={selectedRunBuffsTag}
-										items={[
-											{ id: 'TA', text: 'Time Attack' },
-											{ id: 'FDS', text: 'Freestyle Diva Skill' },
-											{ id: 'FDP', text: 'Freestyle Diva Prayer' },
-											{ id: 'FST', text: 'Freestyle Secret Tech' },
-											{ id: 'FCA', text: 'Freestyle Course Attack' },
-										]}
+								<div class="table table-with-scrollbar">
+									{#if browser && speedrunInfo && speedrunInfo.length > 0 && selectedTabIndex === 0}
+										<DataTable
+											id="personal-bests-dom"
+											title="Personal Bests"
+											sortable
+											zebra
+											useStaticWidth
+											headers={[
+												{ key: 'monster', value: 'Monster' },
+												{ key: 'quest', value: 'Quest', minWidth: '192px' },
+												{ key: 'questID', value: 'Quest ID' },
+												{
+													key: 'sns',
+													value: 'Sword and Shield',
+													minWidth: '96px',
+												},
+												{ key: 'ds', value: 'Dual Swords', minWidth: '96px' },
+												{ key: 'gs', value: 'Great Sword', minWidth: '96px' },
+												{ key: 'ls', value: 'Long Sword', minWidth: '96px' },
+												{ key: 'hammer', value: 'Hammer', minWidth: '96px' },
+												{ key: 'hh', value: 'Hunting Horn', minWidth: '96px' },
+												{ key: 'lance', value: 'Lance', minWidth: '96px' },
+												{ key: 'gl', value: 'Gunlance', minWidth: '96px' },
+												{ key: 'tonfa', value: 'Tonfa', minWidth: '96px' },
+												{ key: 'saf', value: 'Switch Axe F', minWidth: '96px' },
+												{ key: 'ms', value: 'Magnet Spike', minWidth: '96px' },
+												{ key: 'lbg', value: 'Light Bowgun', minWidth: '96px' },
+												{ key: 'hbg', value: 'Heavy Bowgun', minWidth: '96px' },
+												{ key: 'bow', value: 'Bow', minWidth: '96px' },
+											]}
+											rows={personalBestsSummary}
+										>
+											<svelte:fragment slot="cell-header" let:header>
+												{#if header.key === 'sns' || header.key === 'ds' || header.key === 'gs' || header.key === 'ls' || header.key === 'lance' || header.key === 'gl' || header.key === 'hammer' || header.key === 'hh' || header.key === 'tonfa' || header.key === 'saf' || header.key === 'ms' || header.key === 'lbg' || header.key === 'hbg' || header.key === 'bow'}
+													{@const Weapon = getWeaponIcon(header.value)}
+													<Weapon />
+												{:else}
+													{header.value}
+												{/if}
+											</svelte:fragment>
+											<Toolbar
+												><div class="toolbar">
+													<CopyButton
+														iconDescription={'Copy as CSV'}
+														text={getCSVFromArray(personalBestsSummary)}
+													/>
+													<Button
+														kind="tertiary"
+														icon={Download}
+														on:click={() =>
+															downloadDomAsPng(
+																'personal-bests-dom',
+																'personal-bests',
+															)}>Download</Button
+													>
+													<Dropdown
+														titleText="Run Buffs Tag"
+														bind:selectedId={selectedRunBuffsTag}
+														items={[
+															{ id: 'TA', text: 'Time Attack' },
+															{ id: 'FDS', text: 'Freestyle Diva Skill' },
+															{ id: 'FDP', text: 'Freestyle Diva Prayer' },
+															{ id: 'FST', text: 'Freestyle Secret Tech' },
+															{ id: 'FCA', text: 'Freestyle Course Attack' },
+														]}
+													/>
+													<ToolbarSearch
+														shouldFilterRows
+														value=""
+														bind:filteredRowIds={personalBestsTableFilteredRowIds}
+													/>
+												</div>
+											</Toolbar>
+											{#snippet cell({ cell, row, rowIndex })}
+												{#if cell.key === 'monster'}
+													<Tooltip hideIcon direction="right">
+														{#snippet triggerText()}
+															{#if monsterInfo.find((e) => e.displayName === cell.value)?.unusedComponent}
+																<span
+																	><img
+																		width="100%"
+																		alt={cell.value}
+																		src={monsterInfo.find(
+																			(e) => e.displayName === cell.value,
+																		)?.icon}
+																	/></span
+																>
+															{:else}
+																<span>
+																	<MonsterComponent
+																		currentMonster={cell.value}
+																		background={false}
+																	/></span
+																>
+															{/if}
+														{/snippet}
+														<p>{cell.value}</p></Tooltip
+													>
+												{:else if cell.key === 'quest' || cell.key === 'questID'}
+													<p>{cell.value}</p>
+												{:else}
+													<p>{cell.value}</p>
+													<OutboundLink href="/">
+														<div>
+															<VideoPlayer size={24} color="var(--ctp-blue)" />
+														</div>
+													</OutboundLink>
+												{/if}
+											{/snippet}
+										</DataTable>
+									{/if}
+								</div>
+								<div class="weapon-usage">
+									<SummaryWeaponUsage
+										hunts={speedrunInfo}
+										bind:theme={$carbonThemeStore}
 									/>
 								</div>
-								<div class="table">
-									<DataTable
-										id="personal-bests-dom"
-										title="Personal Bests"
-										sortable
-										zebra
-										useStaticWidth
-										headers={[
-											{ key: 'monster', value: 'Monster' },
-											{ key: 'quest', value: 'Quest', minWidth: '192px' },
-											{ key: 'questID', value: 'Quest ID' },
-											{
-												key: 'sns',
-												value: 'Sword and Shield',
-												minWidth: '96px',
-											},
-											{ key: 'ds', value: 'Dual Swords', minWidth: '96px' },
-											{ key: 'gs', value: 'Great Sword', minWidth: '96px' },
-											{ key: 'ls', value: 'Long Sword', minWidth: '96px' },
-											{ key: 'lance', value: 'Lance', minWidth: '96px' },
-											{ key: 'gl', value: 'Gunlance', minWidth: '96px' },
-											{ key: 'hammer', value: 'Hammer', minWidth: '96px' },
-											{ key: 'hh', value: 'Hunting Horn', minWidth: '96px' },
-											{ key: 'tonfa', value: 'Tonfa', minWidth: '96px' },
-											{ key: 'saf', value: 'Switch Axe F', minWidth: '96px' },
-											{ key: 'ms', value: 'Magnet Spike', minWidth: '96px' },
-											{ key: 'lbg', value: 'Light Bowgun', minWidth: '96px' },
-											{ key: 'hbg', value: 'Heavy Bowgun', minWidth: '96px' },
-											{ key: 'bow', value: 'Bow', minWidth: '96px' },
-										]}
-										rows={personalBestsSummary}
-									>
-										<svelte:fragment slot="cell-header" let:header>
-											{#if header.key === 'sns' || header.key === 'ds' || header.key === 'gs' || header.key === 'ls' || header.key === 'lance' || header.key === 'gl' || header.key === 'hammer' || header.key === 'hh' || header.key === 'tonfa' || header.key === 'saf' || header.key === 'ms' || header.key === 'lbg' || header.key === 'hbg' || header.key === 'bow'}
-												{@const Weapon = getWeaponIcon(header.value)}
-												<Weapon size={32} />
-											{:else}
-												{header.value}
-											{/if}
-										</svelte:fragment>
-										<Toolbar
-											><div class="toolbar">
-												<CopyButton
-													iconDescription={'Copy as CSV'}
-													text={getCSVFromArray(personalBestsSummary)}
-												/>
-												<!-- <Button kind="tertiary" icon={Download} on:click={downloadImage}
-													>Download</Button
-												> -->
-												<ToolbarSearch
-													shouldFilterRows
-													value=""
-													bind:filteredRowIds={personalBestsTableFilteredRowIds}
-												/>
-											</div>
-										</Toolbar>
-										{#snippet cell({ cell, row, rowIndex })}
-											{#if cell.key === 'monster'}
-												<Tooltip hideIcon>
-													{#snippet triggerText()}
-														{#if monsterInfo.find((e) => e.displayName === cell.value)?.unusedComponent}
-															<span
-																><img
-																	width={64}
-																	alt={cell.value}
-																	src={monsterInfo.find(
-																		(e) => e.displayName === cell.value,
-																	)?.icon}
-																/></span
-															>
-														{:else}
-															<span>
-																<MonsterComponent
-																	currentMonster={cell.value}
-																	size={'64px'}
-																	background={false}
-																/></span
-															>
-														{/if}
-													{/snippet}
-													<p>{cell.value}</p></Tooltip
-												>
-											{:else if cell.key === 'quest' || cell.key === 'questID'}
-												<p>{cell.value}</p>
-											{:else}
-												<p>{cell.value}</p>
-												<OutboundLink href="/">
-													<div>
-														<VideoPlayer size={24} color="var(--ctp-blue)" />
-													</div>
-												</OutboundLink>
-											{/if}
-										{/snippet}
-									</DataTable>
+								<div class="calendar-graph">
+									<SummaryHuntsCalendarGraph
+										bind:theme={$carbonThemeStore}
+										hunts={speedrunInfo}
+									/>
 								</div>
 							</section>
 						</TabContent>
 						<TabContent>
 							<section>
 								<div class="table">
-									<DataTable
-										id="quests-dom"
-										title="Quest History"
-										pageSize={questsTablePageSize}
-										page={questsTablePage}
-										sortable
-										zebra
-										bind:sortKey={questsSortKey}
-										bind:sortDirection={questsSortDirection}
-										useStaticWidth
-										headers={[
-											{ key: 'weaponType', value: 'Weapon' },
-											{
-												key: 'objectiveName',
-												value: 'Objective',
-												minWidth: '64px',
-											},
-											{ key: 'quest', value: 'Quest', minWidth: '192px' },
-											{ key: 'time', value: 'Time' },
-											{ key: 'videoLink', value: 'Video' },
-											{ key: 'dps', value: 'DPS', minWidth: '192px' },
-											{ key: 'date', value: 'Date', minWidth: '128px' },
-											{ key: 'id', value: 'Run ID' },
-											{ key: 'questID', value: 'Quest ID' },
-											{ key: 'runBuffsTag', value: 'Run Buffs Tag' },
-										]}
-										rows={speedrunInfo.map((e) => {
-											return {
-												id: e.RunID,
-												weaponType: e.WeaponTypeID,
-												date: formatDateTime(e.CreatedAt.toString()),
-												quest: ezlionQuest[e.QuestID],
-												time: e.FinalTimeDisplay,
-												objectiveName: e.ObjectiveName.replace(
-													'Blitzkrieg',
-													'Bombardier',
-												),
-												videoLink: '/',
-												dps: e.DamagePerSecondDictionary,
-												questID: e.QuestID,
-												runBuffsTag: e.RunBuffsTag,
-											};
-										})}
-									>
-										<Toolbar
-											><div class="toolbar">
-												<CopyButton
-													iconDescription={'Copy as CSV'}
-													text={getCSVFromArray(
-														speedrunInfo.map((e) => {
-															return {
-																id: e.RunID,
-																weaponType: e.WeaponTypeID,
-																date: formatDateTime(e.CreatedAt.toString()),
-																quest: ezlionQuest[e.QuestID],
-																time: e.FinalTimeDisplay,
-																objectiveName: e.ObjectiveName.replace(
-																	'Blitzkrieg',
-																	'Bombardier',
-																),
-																videoLink: '/',
-																questID: e.QuestID,
-																runBuffsTag: e.RunBuffsTag,
-															};
-														}),
-													)}
-												/>
-												<!-- <Button kind="tertiary" icon={Download} on:click={downloadImage}
-													>Download</Button
-												> -->
-												<ToolbarSearch
-													shouldFilterRows
-													value=""
-													bind:filteredRowIds={questsTableFilteredRowIds}
-												/>
-											</div>
-										</Toolbar>
-										{#snippet cell({ cell, row, rowIndex })}
-											{#if cell.key === 'videoLink'}
-												<OutboundLink href={cell.value}>
-													<VideoPlayer size={24} color="var(--ctp-blue)" />
-												</OutboundLink>
-											{:else if cell.key === 'objectiveName'}
-												<Tooltip hideIcon>
-													{#snippet triggerText()}
-														<span>
-															<MonsterComponent
-																currentMonster={cell.value}
-																size={'64px'}
-																background={false}
-															/></span
-														>
-													{/snippet}
-													<p>{cell.value}</p></Tooltip
-												>
-											{:else if cell.key === 'weaponType'}
-												{@const Weapon = getWeaponIcon(
-													ezlionWeaponType[cell.value],
-												)}
-												<Weapon />
-											{:else if cell.key === 'dps'}
-												<!-- {#await generateSparkline(cell.value)}
-													<SkeletonPlaceholder style="height: 64px; width: 192px;" />
-												{:then result}
-													<result.component options={chartOptions} data={result.data} />
-												{/await} -->
-											{:else}
-												<p>{cell.value}</p>
-											{/if}
-										{/snippet}
-									</DataTable>
-									<Pagination
-										pageSizes={[10]}
-										bind:pageSize={questsTablePageSize}
-										bind:page={questsTablePage}
-										totalItems={questsTableFilteredRowIds.length}
-									/>
+									{#if browser && speedrunInfo && speedrunInfo.length > 0 && selectedTabIndex === 1}
+										<DataTable
+											id="quest-history-dom"
+											title="Quest History"
+											pageSize={questsTablePageSize}
+											page={questsTablePage}
+											sortable
+											zebra
+											bind:sortKey={questsSortKey}
+											bind:sortDirection={questsSortDirection}
+											useStaticWidth
+											headers={[
+												{ key: 'weaponType', value: 'Weapon' },
+												{
+													key: 'objectiveName',
+													value: 'Objective',
+													minWidth: '64px',
+												},
+												{ key: 'quest', value: 'Quest', minWidth: '192px' },
+												{ key: 'time', value: 'Time' },
+												{ key: 'videoLink', value: 'Video' },
+												{ key: 'date', value: 'Date', minWidth: '128px' },
+												{ key: 'id', value: 'Run ID' },
+												{ key: 'questID', value: 'Quest ID' },
+												{ key: 'runBuffsTag', value: 'Run Buffs Tag' },
+											]}
+											rows={speedrunInfo.map((e) => {
+												return {
+													id: e.RunID,
+													weaponType: ezlionWeaponType[e.WeaponTypeID],
+													date: formatDateTime(e.CreatedAt),
+													quest: ezlionQuest[e.QuestID],
+													time: e.FinalTimeDisplay,
+													objectiveName: e.ObjectiveName.replace(
+														'Blitzkrieg',
+														'Bombardier',
+													),
+													videoLink: '/',
+													questID: e.QuestID,
+													runBuffsTag: e.RunBuffsTag,
+												};
+											})}
+										>
+											<Toolbar
+												><div class="toolbar">
+													<CopyButton
+														iconDescription={'Copy as CSV'}
+														text={getCSVFromArray(
+															speedrunInfo.map((e) => {
+																return {
+																	id: e.RunID,
+																	weaponType: ezlionWeaponType[e.WeaponTypeID],
+																	date: formatDateTime(e.CreatedAt),
+																	quest: ezlionQuest[e.QuestID],
+																	time: e.FinalTimeDisplay,
+																	objectiveName: e.ObjectiveName.replace(
+																		'Blitzkrieg',
+																		'Bombardier',
+																	),
+																	videoLink: '/',
+																	questID: e.QuestID,
+																	runBuffsTag: e.RunBuffsTag,
+																};
+															}),
+														)}
+													/>
+													<Button
+														kind="tertiary"
+														icon={Download}
+														on:click={() =>
+															downloadDomAsPng(
+																'quest-history-dom',
+																'quest-history',
+															)}>Download</Button
+													>
+													<ToolbarSearch
+														shouldFilterRows
+														value=""
+														bind:filteredRowIds={questsTableFilteredRowIds}
+													/>
+												</div>
+											</Toolbar>
+											{#snippet cell({ cell, row, rowIndex })}
+												{#if cell.key === 'videoLink'}
+													<OutboundLink href={cell.value}>
+														<VideoPlayer size={24} color="var(--ctp-blue)" />
+													</OutboundLink>
+												{:else if cell.key === 'objectiveName'}
+													<Tooltip hideIcon>
+														{#snippet triggerText()}
+															{#if monsterInfo.find((e) => e.displayName === cell.value)?.unusedComponent}
+																<span
+																	><img
+																		width="100%"
+																		alt={cell.value}
+																		src={monsterInfo.find(
+																			(e) => e.displayName === cell.value,
+																		)?.icon}
+																	/></span
+																>
+															{:else}
+																<span>
+																	<MonsterComponent
+																		currentMonster={cell.value}
+																		background={false}
+																	/></span
+																>
+															{/if}
+														{/snippet}
+														<p>{cell.value}</p></Tooltip
+													>
+												{:else if cell.key === 'weaponType'}
+													<Tooltip hideIcon direction="right">
+														{#snippet triggerText()}
+															{@const Weapon = getWeaponIcon(cell.value)}
+															<span> <Weapon /></span>
+														{/snippet}
+														<p>{cell.value}</p></Tooltip
+													>
+												{:else if cell.key === 'trueRaw'}
+													{#await generateSparkline(cell.value)}
+														<SkeletonPlaceholder
+															style="height: 64px; width: 192px;"
+														/>
+													{:then result}
+														<result.component
+															options={sparklineOptions}
+															data={result.data}
+														/>
+													{/await}
+												{:else}
+													<p>{cell.value}</p>
+												{/if}
+											{/snippet}
+										</DataTable>
+										<Pagination
+											pageSizes={[10]}
+											bind:pageSize={questsTablePageSize}
+											bind:page={questsTablePage}
+											totalItems={questsTableFilteredRowIds.length}
+										/>
+									{/if}
 								</div>
 								<div>
 									<div class="buttons"></div>
@@ -734,15 +868,16 @@
 							</section>
 						</TabContent>
 						<TabContent>
-							<section></section>
-						</TabContent>
-						<TabContent>
 							<section>
-								<AchievementsSummary obtainedAchievements={achievementInfo} />
+								{#if browser && selectedTabIndex === 2}
+									<SummaryAchievements obtainedAchievements={achievementInfo} />
+								{/if}
 							</section>
 						</TabContent>
 						<TabContent>
-							<section></section>
+							<section>
+								<code><pre>{JSON.stringify(mezFesInfo, null, 2)}</pre></code>
+							</section>
 						</TabContent>
 					{/snippet}
 				</Tabs>
@@ -763,10 +898,6 @@
 					</div>
 				{/each}
 			</div> -->
-			<div>
-				<code><pre>{JSON.stringify(mezFesInfo, null, 2)}</pre></code>
-				<code><pre>{JSON.stringify(achievementInfo, null, 2)}</pre></code>
-			</div>
 		{:else if uploadState === 'idle'}
 			<div class="centered">
 				<FileUploaderDropContainer
@@ -816,18 +947,13 @@
 </section>
 
 <style lang="scss">
-	.table-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(512px, 1fr));
-		gap: 1rem;
+	.calendar-graph {
+		margin-bottom: 2rem;
 	}
 
-	.table-card {
-		padding: 1rem;
-		border: 1px solid var(--ctp-surface1);
-		border-radius: 8px;
-		background: var(--ctp-surface0);
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	.weapon-usage {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 
 	.top-buttons {
@@ -851,6 +977,11 @@
 	.table {
 		max-width: 100%;
 		overflow-x: auto;
+	}
+
+	.table-with-scrollbar {
+		max-height: 80vh;
+		overflow: auto;
 	}
 
 	.toolbar {

@@ -40,7 +40,7 @@
 		ColorCodes,
 		gameInfo,
 	} from '$lib/client/modules/frontier/objects';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
@@ -126,10 +126,10 @@
 			| { name: string; image: any }[];
 		switch (type) {
 			default:
-				list = WeaponTypes;
+				list = weaponTypeInfo;
 				break;
 			case 'Weapon':
-				list = WeaponTypes;
+				list = weaponTypeInfo;
 				break;
 			case 'Armor':
 				list = ArmorTypes;
@@ -208,8 +208,8 @@
 		switch (selectedIconType) {
 			case 'Weapon':
 				return {
-					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
-					image: WeaponTypes.find((e) => e.name === selectionID)?.smallIcon,
+					component: weaponTypeInfo.find((e) => e.name === selectionID)?.icon,
+					image: weaponTypeInfo.find((e) => e.name === selectionID)?.smallIcon,
 				};
 			case 'Monster Icon':
 				return {
