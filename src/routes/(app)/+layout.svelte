@@ -49,6 +49,9 @@
 			case '/arena': {
 				return 'bg-arena';
 			}
+			case '/quest-viewer': {
+				return 'bg-profile';
+			}
 			case '/site-preferences': {
 				return 'bg-equipment-box';
 			}

@@ -25,18 +25,6 @@
 	xmlns="http://www.w3.org/2000/svg"
 >
 	<defs id="defs4840" />
-	<sodipodi:namedview
-		id="base"
-		pagecolor="#ffffff"
-		bordercolor="#666666"
-		borderopacity="1.0"
-		showgrid="true"
-		units="px"
-		showguides="true"
-		type="xygrid"
-		originx="-11.740886"
-		originy="-1.90169"
-	></sodipodi:namedview>
 	<g transform="translate(-11.740886,-281.96834)"
 		><path
 			style="fill:{fill};fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1;"

@@ -25,15 +25,6 @@
 	id="svg4846"
 >
 	<defs id="defs4840" />
-	<sodipodi:namedview
-		id="base"
-		pagecolor="#ffffff"
-		bordercolor="#666666"
-		borderopacity="1.0"
-		showgrid="false"
-		units="px"
-		showguides="true"
-	></sodipodi:namedview>
 	<g id="layer1" transform="translate(0,-280.06665)">
 		<path
 			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(
