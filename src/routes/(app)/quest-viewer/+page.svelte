@@ -82,6 +82,7 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import SummaryWeaponUsage from '$lib/client/components/SummaryWeaponUsage.svelte';
+	import SummaryQuestGear from '$lib/client/components/SummaryQuestGear.svelte';
 	import { browser } from '$app/environment';
 	import type { LineChartOptions, ScaleTypes } from '@carbon/charts-svelte';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
@@ -271,6 +272,11 @@
 								speedrunInfo = result.speedrunInfo;
 								mezFesInfo = result.mezFesInfo;
 								achievementInfo = result.achievementInfo;
+
+								summaryQuestGearRunID =
+									speedrunInfo[speedrunInfo.length - 1].RunID;
+								summaryQuestGraphsRunID1 =
+									speedrunInfo[speedrunInfo.length - 1].RunID;
 								uploadState = 'done';
 								return;
 							}
@@ -533,6 +539,11 @@
 		},
 		theme: $carbonThemeStore,
 	} as LineChartOptions);
+
+	let summaryQuestGearRunID = $state(0);
+	let summaryQuestGraphsRunID1 = $state(0);
+	let summaryQuestGraphsRunID2 = $state(0);
+	let selectedQuestID = $state(0);
 </script>
 
 <Head
@@ -862,6 +873,23 @@
 										/>
 									{/if}
 								</div>
+								<section>
+									<SectionHeading level={2} title="Gear" />
+									<div>
+										<SummaryQuestGear
+											bind:runID={summaryQuestGearRunID}
+											hunt={speedrunInfo.find(
+												(e) => e.RunID === summaryQuestGearRunID,
+											)}
+										/>
+									</div>
+								</section>
+								<section>
+									<SectionHeading level={2} title="Graphs" />
+									<div>
+										<p>a</p>
+									</div>
+								</section>
 								<div>
 									<div class="buttons"></div>
 								</div>
