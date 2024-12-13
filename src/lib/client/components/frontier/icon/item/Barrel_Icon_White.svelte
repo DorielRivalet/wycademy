@@ -19,15 +19,6 @@
 
 <svg width={size} viewBox="0 0 16.933333 16.933334" version="1.1" id="svg4846">
 	<defs id="defs4840" />
-	<sodipodi:namedview
-		id="base"
-		pagecolor="#ffffff"
-		bordercolor="#666666"
-		borderopacity="1.0"
-		showgrid="false"
-		units="px"
-		showguides="true"
-	></sodipodi:namedview>
 	<g id="layer1" transform="translate(0,-280.06665)">
 		<path
 			style="display:inline;opacity:1;vector-effect:none;fill:{blendColor(

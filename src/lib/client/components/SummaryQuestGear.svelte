@@ -6,7 +6,6 @@
 	} from '../modules/frontier/quest';
 	import ContentSwitcher from 'carbon-components-svelte/src/ContentSwitcher/ContentSwitcher.svelte';
 	import Switch from 'carbon-components-svelte/src/ContentSwitcher/Switch.svelte';
-	import CharacterWholeNumber from 'carbon-icons-svelte/lib/CharacterWholeNumber.svelte';
 	import { mapCourseRightsToNames } from '../modules/frontier/bitfields';
 	import {
 		ezlionArmorHead,
@@ -14,7 +13,6 @@
 		ezlionArmorArms,
 		ezlionArmorWaist,
 		ezlionArmorLegs,
-		ezlionArmorColor,
 		ezlionSkillArmor,
 		ezlionWeaponBlademaster,
 		ezlionWeaponGunner,
@@ -31,10 +29,10 @@
 		ezlionSkillStyleRank,
 		ezlionWeaponStyle,
 		ezlionQuestToggleMode,
-		ezlionMonster,
 		ezlionLocation,
 		ezlionWeaponClass,
 		ezlionWeaponType,
+		type FrontierWeaponName,
 	} from 'ezlion';
 	import { ActiveFeature } from '../modules/frontier/active-feature';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
@@ -45,9 +43,18 @@
 	import { downloadDomAsPng } from '../modules/download';
 	import { getWeaponIcon } from '../modules/frontier/weapons';
 	import InlineTooltip from './frontier/InlineTooltip.svelte';
-	import { getItemIcon } from '../modules/frontier/items';
+	import {
+		getItemBoxColor,
+		getItemColor,
+		getItemIcon,
+	} from '../modules/frontier/items';
 	import { getArmorIcon } from '../modules/frontier/armor';
 	import { getLocationIcon } from '../modules/frontier/locations';
+	import CaravanGemRainbow from './frontier/icon/CaravanGemRainbow.svelte';
+	import { getSkillColor } from '../modules/frontier/armor-skills';
+	import { getMonsterIcon } from '../modules/frontier/monsters';
+	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
+	import { convertDictionaryIntInt } from '../modules/frontier/strings';
 
 	function getDate(input: string) {
 		try {
@@ -284,6 +291,10 @@
 		return `${decoName}${address}`;
 	}
 
+	function removeTrailingComma(input: string): string {
+		return input.replace(/,\s?$/, '');
+	}
+
 	function getAutomaticArmorSkills(
 		skill1: number,
 		skill2: number,
@@ -316,7 +327,7 @@
 			return 'None';
 		}
 
-		return armorSkillName;
+		return removeTrailingComma(armorSkillName);
 	}
 
 	function getCaravanSkills(skill1: number, skill2: number, skill3: number) {
@@ -345,7 +356,7 @@
 			return 'None';
 		}
 
-		return caravanSkillName;
+		return removeTrailingComma(caravanSkillName);
 	}
 
 	function getZenithSkills(
@@ -382,7 +393,7 @@
 			return 'None';
 		}
 
-		return armorSkillName;
+		return removeTrailingComma(armorSkillName);
 	}
 
 	function getGSRSkills(skill1: number, skill2: number) {
@@ -410,7 +421,7 @@
 			return 'None';
 		}
 
-		return styleRankSkillName;
+		return removeTrailingComma(styleRankSkillName);
 	}
 
 	// TODO
@@ -439,7 +450,7 @@
 			return 'None';
 		}
 
-		return sb;
+		return removeTrailingComma(sb);
 	}
 
 	function getRoadDureSkills(skills: number[], levels: number[]) {
@@ -464,7 +475,8 @@
 			}
 		}
 
-		return name === '' ? 'None' : name;
+		let result = name === '' ? 'None' : name;
+		return removeTrailingComma(result);
 	}
 
 	function getArmorSkills(
@@ -533,7 +545,7 @@
 			return 'None';
 		}
 
-		return armorSkillName;
+		return removeTrailingComma(armorSkillName);
 	}
 
 	function getDivaPrayerGems(run: SpeedrunInfo) {
@@ -703,12 +715,64 @@
 		return status;
 	}
 
-	function getDualSwordsDroppedCombos(run: SpeedrunInfo) {
-		let result = 'Not found';
-		/*TODO
-		weaponBuffs.DualSwordsSharpensDictionary.Count((e) => e.Value == 0);
-		*/
-		return result;
+	function getWeaponSpecificInfo(run: SpeedrunInfo): string {
+		let weapon = ezlionWeaponType[run.WeaponTypeID];
+
+		switch (weapon) {
+			default:
+				return 'Not found';
+			case 'Lance':
+				return `Lance red phials: ${getLanceRedPhials(run)}`;
+			case 'Dual Swords':
+				return `Dual Swords dropped combos: ${getDualSwordsDroppedCombos(run)}`;
+		}
+	}
+
+	function getLanceRedPhials(run: SpeedrunInfo): string {
+		if (!run.DualSwordsSharpensDictionary) {
+			return 'Not found';
+		}
+
+		// Assuming convertDictionaryIntInt returns an array of key-value pairs or objects
+		const lanceRedPhials = convertDictionaryIntInt(
+			run.DualSwordsSharpensDictionary,
+		);
+
+		const valueCount = lanceRedPhials.filter(
+			(entry) => Object.values(entry)[0] === 3,
+		).length;
+
+		return valueCount.toString();
+	}
+
+	function getDualSwordsDroppedCombos(run: SpeedrunInfo): string {
+		if (!run.DualSwordsSharpensDictionary) {
+			return 'Not found';
+		}
+
+		// Assuming convertDictionaryIntInt returns an array of key-value pairs or objects
+		const dualSwordsSharpens = convertDictionaryIntInt(
+			run.DualSwordsSharpensDictionary,
+		);
+
+		// Count entries where the value is 0
+		const zeroValueCount = dualSwordsSharpens.filter(
+			(entry) => Object.values(entry)[0] === 0,
+		).length;
+
+		return zeroValueCount.toString();
+	}
+
+	function getNumberMapFromString(items: string): number[] {
+		let parsed = JSON.parse(items);
+		let lastEntry = Object.entries(parsed)[Object.keys(parsed).length - 1];
+		return lastEntry[1].flatMap(Object.keys).map(Number);
+	}
+
+	function getQuestStartingArea(areas: string) {
+		let parsed = JSON.parse(areas);
+		let lastAreaEntry = Object.entries(parsed)[Object.keys(parsed).length - 1];
+		return lastAreaEntry[1];
 	}
 
 	function displayRunStats(
@@ -720,25 +784,11 @@
 			return 'No run information available.';
 		}
 
-		let inventory = JSON.parse(run.PlayerInventoryDictionary);
-		let ammoPouch = JSON.parse(run.PlayerAmmoPouchDictionary);
-		let partnyaBag = JSON.parse(run.PartnyaBagDictionary);
-		let areas = JSON.parse(run.AreaChangesDictionary);
+		let inventoryItems = getNumberMapFromString(run.PlayerInventoryDictionary);
+		let ammoPouchItems = getNumberMapFromString(run.PlayerAmmoPouchDictionary);
+		let partnyaBagItems = getNumberMapFromString(run.PartnyaBagDictionary);
+		let lastAreaValue = getQuestStartingArea(run.AreaChangesDictionary);
 
-		let lastInventoryEntry =
-			Object.entries(inventory)[Object.keys(inventory).length - 1];
-		let lastAmmoPouchEntry =
-			Object.entries(ammoPouch)[Object.keys(ammoPouch).length - 1];
-		let lastPartnyaBagEntry =
-			Object.entries(partnyaBag)[Object.keys(partnyaBag).length - 1];
-		let lastAreaEntry = Object.entries(areas)[Object.keys(areas).length - 1];
-
-		let inventoryItems = lastInventoryEntry[1].flatMap(Object.keys).map(Number);
-		let ammoPouchItems = lastAmmoPouchEntry[1].flatMap(Object.keys).map(Number);
-		let partnyaBagItems = lastPartnyaBagEntry[1]
-			.flatMap(Object.keys)
-			.map(Number);
-		let lastAreaValue = lastAreaEntry[1];
 		let questRestrictions = getQuestRestrictions(
 			run.QuestVariant2,
 			run.QuestVariant3,
@@ -748,7 +798,7 @@
 
 		let result = `
 Run ID: ${runID}
-${run.CreatedBy} ${ezlionWeaponClass[run.WeaponTypeID]}
+${run.CreatedBy} ${ezlionWeaponClass[run.WeaponTypeID]} | Wycademy Quest Viewer
 
 ${ezlionWeaponType[run.WeaponTypeID]}: ${
 			run.BlademasterWeaponID
@@ -957,7 +1007,7 @@ dll: ${run.mhfodllInfo}
 hddll: ${run.mhfohddllInfo}
 
 Weapon Specific:
-Dual Swords dropped combos: ${getDualSwordsDroppedCombos(run)}
+${getWeaponSpecificInfo(run)}
 
 Overlay Hash: ${run.OverlayHash ? run.OverlayHash : 'Not found'}
 High-Grade Edition: ${run.IsHighGradeEdition ? 'ON' : 'OFF'}
@@ -1016,7 +1066,7 @@ Refresh Rate: ${run.RefreshRate}
 					icon={Download}
 					on:click={() =>
 						downloadDomAsPng('gear-graphics-dom', 'gear-graphics')}
-					>Download</Button
+					>Download as Image</Button
 				>
 			</div>
 			<div class="gear-graphics" id="gear-graphics-dom">
@@ -1024,10 +1074,12 @@ Refresh Rate: ${run.RefreshRate}
 					<p><strong>Run ID:</strong> {runID}</p>
 					<p>
 						<strong
-							>{hunt.CreatedBy} | {ezlionWeaponClass[hunt.WeaponTypeID]}</strong
+							>{hunt.CreatedBy} | {ezlionWeaponClass[hunt.WeaponTypeID]} | Wycademy
+							Quest Viewer</strong
 						>
 					</p>
 				</div>
+				<hr />
 				<div class="gear-graphics-gear">
 					<div class="gear-graphics-weapon">
 						<InlineTooltip
@@ -1200,6 +1252,8 @@ Refresh Rate: ${run.RefreshRate}
 						/>
 					</div>
 				</div>
+				<hr />
+
 				<div class="gear-run-date-hash">
 					<p>
 						<strong>Run Date:</strong>
@@ -1207,36 +1261,499 @@ Refresh Rate: ${run.RefreshRate}
 						{hunt.QuestHash}
 					</p>
 				</div>
+				<hr />
+
 				<div class="gear-graphics-skills">
-					<div class="gear-zenith-skills"></div>
-					<div class="gear-automatic-skills"></div>
-					<div class="gear-active-skills"></div>
-					<div class="gear-caravan-skills"></div>
-					<div class="gear-diva"></div>
-					<div class="gear-guild"></div>
-					<div class="gear-style-rank-skills"></div>
-					<div class="gear-road-duremudira-skills"></div>
+					<div class="gear-zenith-skills">
+						<div>
+							<InlineTooltip
+								icon={getItemIcon('Jewel')}
+								iconType="component"
+								iconSize={'32px'}
+								gap={'.5rem'}
+								tooltip="Zenith Skills"
+								iconColor={getSkillColor('zenith')}
+								text={'Zenith Skills'}
+							/>
+						</div>
+						<p>
+							{getZenithSkills(
+								hunt.ZenithSkill1ID,
+								hunt.ZenithSkill2ID,
+								hunt.ZenithSkill3ID,
+								hunt.ZenithSkill4ID,
+								hunt.ZenithSkill5ID,
+								hunt.ZenithSkill6ID,
+								hunt.ZenithSkill7ID,
+							)}
+						</p>
+					</div>
+					<div class="gear-automatic-skills">
+						<div>
+							<InlineTooltip
+								icon={getItemIcon('Jewel')}
+								iconType="component"
+								iconSize={'32px'}
+								gap={'.5rem'}
+								tooltip="Automatic Skills"
+								iconColor={getSkillColor('automatic')}
+								text={'Automatic Skills'}
+							/>
+						</div>
+						<p>
+							{getAutomaticArmorSkills(
+								hunt.AutomaticSkill1ID,
+								hunt.AutomaticSkill2ID,
+								hunt.AutomaticSkill3ID,
+								hunt.AutomaticSkill4ID,
+								hunt.AutomaticSkill5ID,
+							) === 'None'
+								? 'None'
+								: getAutomaticArmorSkills(
+										hunt.AutomaticSkill1ID,
+										hunt.AutomaticSkill2ID,
+										hunt.AutomaticSkill3ID,
+										hunt.AutomaticSkill4ID,
+										hunt.AutomaticSkill5ID,
+									)}
+						</p>
+					</div>
+					<div class="gear-active-skills">
+						<div>
+							<InlineTooltip
+								icon={getItemIcon('Jewel')}
+								iconType="component"
+								iconSize={'32px'}
+								gap={'.5rem'}
+								tooltip="Active Skills"
+								text={'Active Skills'}
+							/>
+						</div>
+						<p>
+							{getArmorSkills(
+								hunt.ActiveSkill1ID,
+								hunt.ActiveSkill2ID,
+								hunt.ActiveSkill3ID,
+								hunt.ActiveSkill4ID,
+								hunt.ActiveSkill5ID,
+								hunt.ActiveSkill6ID,
+								hunt.ActiveSkill7ID,
+								hunt.ActiveSkill8ID,
+								hunt.ActiveSkill9ID,
+								hunt.ActiveSkill10ID,
+								hunt.ActiveSkill11ID,
+								hunt.ActiveSkill12ID,
+								hunt.ActiveSkill13ID,
+								hunt.ActiveSkill14ID,
+								hunt.ActiveSkill15ID,
+								hunt.ActiveSkill16ID,
+								hunt.ActiveSkill17ID,
+								hunt.ActiveSkill18ID,
+								hunt.ActiveSkill19ID,
+							)}
+						</p>
+					</div>
+					<div class="gear-caravan-skills">
+						<div>
+							<InlineTooltip
+								icon={CaravanGemRainbow}
+								iconType="component"
+								iconSize={'32px'}
+								gap={'.5rem'}
+								tooltip="Caravan Skills"
+								text={'Caravan Skills'}
+							/>
+						</div>
+						<p>
+							{getCaravanSkills(
+								hunt.CaravanSkill1ID,
+								hunt.CaravanSkill2ID,
+								hunt.CaravanSkill3ID,
+							)}
+						</p>
+					</div>
+					<div class="gear-diva">
+						<div>
+							<InlineTooltip
+								icon={getItemIcon('Jewel')}
+								iconColor={getSkillColor('diva')}
+								tooltip={'Diva Skill'}
+								iconType="component"
+								iconSize={'32px'}
+								gap={'.5rem'}
+								text={`Diva Skill: ${
+									ezlionSkillDiva[hunt.DivaSkillID] === 'None'
+										? 'No Skill'
+										: ezlionSkillDiva[hunt.DivaSkillID]
+								}${
+									getQuestRestrictions(hunt.QuestVariant2, hunt.QuestVariant3)
+										.divaSkill
+										? ' (disabled skill)'
+										: ''
+								}`}
+							/>
+						</div>
+						<div>
+							<InlineTooltip
+								icon={getLocationIcon('Prayer Fountain')}
+								iconType="file"
+								tooltip="Diva Song"
+								iconSize={'32px'}
+								gap={'.5rem'}
+								text={hunt.DivaSongBuffOn ? 'Diva Song ON' : 'Diva Song OFF'}
+							/>
+						</div>
+					</div>
+					<div class="gear-diva-prayer-gems">
+						<InlineTooltip
+							icon={getLocationIcon('Diva Defense')}
+							iconType="file"
+							tooltip="Diva Prayer Gems"
+							iconSize={'32px'}
+							gap={'.5rem'}
+							text={`Diva Prayer Gems${getQuestRestrictions(hunt.QuestVariant2, hunt.QuestVariant3).divaPrayerGem ? ' (disabled gems)' : ''}`}
+						/>
+						<pre><p>{`${getDivaPrayerGems(hunt)}`}</p></pre>
+					</div>
+
+					<div class="gear-guild">
+						<div>
+							<InlineTooltip
+								icon={getLocationIcon('Guild Hall')}
+								iconType="file"
+								tooltip="Guild Food"
+								iconSize={'32px'}
+								gap={'.5rem'}
+								text={`Guild Food: ${
+									ezlionSkillArmor[hunt.GuildFoodID] === 'None'
+										? 'None'
+										: ezlionSkillArmor[hunt.GuildFoodID]
+								}`}
+							/>
+						</div>
+						<div>
+							<InlineTooltip
+								icon={getLocationIcon('My Tore')}
+								iconType="file"
+								tooltip="Guild Poogie"
+								iconSize={'32px'}
+								gap={'.5rem'}
+								text={getGuildPoogieEffect(hunt)}
+							/>
+						</div>
+					</div>
+
+					<div class="gear-style-rank-skills">
+						<InlineTooltip
+							icon={getItemIcon('Jewel')}
+							iconType="component"
+							tooltip="Style Rank"
+							iconSize={'32px'}
+							iconColor={getSkillColor('style rank')}
+							gap={'.5rem'}
+							text={`Style Rank${getQuestRestrictions(hunt.QuestVariant2, hunt.QuestVariant3).secretTechnique ? ' (disabled secret technique)' : ''}${getQuestRestrictions(hunt.QuestVariant2, hunt.QuestVariant3).soulRevival ? ' (disabled soul revival)' : ''}${getQuestRestrictions(hunt.QuestVariant2, hunt.QuestVariant3).twinHiden ? ' (disabled twin hiden)' : ''}`}
+						/>
+						<p>
+							{getGSRSkills(hunt.StyleRankSkill1ID, hunt.StyleRankSkill2ID)}
+						</p>
+					</div>
+					<div class="gear-road-duremudira-skills">
+						<InlineTooltip
+							icon={getItemIcon('Jewel')}
+							iconType="component"
+							tooltip="Road/Duremudira Skills"
+							iconSize={'32px'}
+							iconColor={getSkillColor('road/dure')}
+							gap={'.5rem'}
+							text={`Road/Duremudira Skills`}
+						/>
+						<p>
+							{getRoadDureSkills(
+								[
+									hunt.RoadDureSkill1ID,
+									hunt.RoadDureSkill2ID,
+									hunt.RoadDureSkill3ID,
+									hunt.RoadDureSkill4ID,
+									hunt.RoadDureSkill5ID,
+									hunt.RoadDureSkill6ID,
+									hunt.RoadDureSkill7ID,
+									hunt.RoadDureSkill8ID,
+									hunt.RoadDureSkill9ID,
+									hunt.RoadDureSkill10ID,
+									hunt.RoadDureSkill11ID,
+									hunt.RoadDureSkill12ID,
+									hunt.RoadDureSkill13ID,
+									hunt.RoadDureSkill14ID,
+									hunt.RoadDureSkill15ID,
+									hunt.RoadDureSkill16ID,
+								],
+								[
+									hunt.RoadDureSkill1Level,
+									hunt.RoadDureSkill2Level,
+									hunt.RoadDureSkill3Level,
+									hunt.RoadDureSkill4Level,
+									hunt.RoadDureSkill5Level,
+									hunt.RoadDureSkill6Level,
+									hunt.RoadDureSkill7Level,
+									hunt.RoadDureSkill8Level,
+									hunt.RoadDureSkill9Level,
+									hunt.RoadDureSkill10Level,
+									hunt.RoadDureSkill11Level,
+									hunt.RoadDureSkill12Level,
+									hunt.RoadDureSkill13Level,
+									hunt.RoadDureSkill14Level,
+									hunt.RoadDureSkill15Level,
+									hunt.RoadDureSkill16Level,
+								],
+							)}
+						</p>
+					</div>
 				</div>
+				<hr />
+
 				<div class="gear-graphics-items">
-					<div class="gear-inventory"></div>
-					<div class="gear-ammo-pouch"></div>
-					<div class="gear-partnya-bag"></div>
-					<div class="gear-poogie-item"></div>
+					<div class="gear-inventory">
+						<InlineTooltip
+							icon={getItemIcon('Trap Tool')}
+							iconType="component"
+							tooltip="Inventory"
+							iconSize={'32px'}
+							iconColor={getItemBoxColor('inventory')}
+							gap={'.5rem'}
+							text={`Inventory`}
+						/>
+						<p>
+							{getItems(getNumberMapFromString(hunt.PlayerInventoryDictionary))}
+						</p>
+					</div>
+					<div class="gear-ammo-pouch">
+						<InlineTooltip
+							icon={getItemIcon('Trap Tool')}
+							iconType="component"
+							tooltip="Ammo Pouch"
+							iconSize={'32px'}
+							iconColor={getItemBoxColor('ammo')}
+							gap={'.5rem'}
+							text={`Ammo Pouch`}
+						/>
+						<p>
+							{getItems(getNumberMapFromString(hunt.PlayerAmmoPouchDictionary))}
+						</p>
+					</div>
+					<div class="gear-partnya-bag">
+						<InlineTooltip
+							icon={getItemIcon('Trap Tool')}
+							iconType="component"
+							tooltip="Partnya Bag"
+							iconSize={'32px'}
+							iconColor={getItemBoxColor('partnya')}
+							gap={'.5rem'}
+							text={`Partnya Bag`}
+						/>
+						<p>
+							{getItems(getNumberMapFromString(hunt.PartnyaBagDictionary))}
+						</p>
+					</div>
+					<div class="gear-poogie-item">
+						<InlineTooltip
+							icon={getLocationIcon('My Tore')}
+							iconType="file"
+							tooltip="Poogie Item"
+							iconSize={'32px'}
+							gap={'.5rem'}
+							text={'Poogie Item'}
+						/>
+						<p>{ezlionItem[hunt.PoogieItemID]}</p>
+					</div>
 				</div>
-				<div class="gear-graphics-quest"></div>
-				<div class="gear-graphics-courses"></div>
-				<div class="gear-graphics-halk"></div>
-				<div class="gear-graphics-game"></div>
-				<div class="gear-graphics-weapon-specific"></div>
-				<div class="gear-graphics-miscellaneous"></div>
+				<hr />
+
+				<div class="gear-graphics-quest">
+					<InlineTooltip
+						icon={getItemIcon('Ticket')}
+						iconType="component"
+						tooltip="Quest Information"
+						iconSize={'32px'}
+						gap={'.5rem'}
+						text={`Quest${getQuestRestrictions(hunt.QuestVariant2, hunt.QuestVariant3).questBonusReward ? ' (disabled bonus reward)' : ''}: ${ezlionQuest[hunt.QuestID]}`}
+					/>
+					<div>
+						{ezlionObjectiveType[hunt.ObjectiveTypeID]}
+						{hunt.ObjectiveQuantity}
+						<InlineTooltip
+							icon={getMonsterIcon(hunt.ObjectiveName)}
+							text={hunt.ObjectiveName}
+							iconType="file"
+							tooltip="Monster"
+							iconSize={'32px'}
+							gap={'.5rem'}
+						/>
+					</div>
+					<p>
+						<strong>Category:</strong>
+						{hunt.ActualOverlayMode} ({hunt.RunBuffsTag}, {hunt.RunBuffs})
+					</p>
+					<p>
+						<strong>Starting Area:</strong>
+						{ezlionLocation[getQuestStartingArea(hunt.AreaChangesDictionary)]}
+					</p>
+					<p>
+						<strong>Time:</strong>
+						{hunt.FinalTimeDisplay} ({hunt.FinalTimeValue}
+						frames)
+					</p>
+					<p><strong>Party Size:</strong> {hunt.PartySize}</p>
+					<p>
+						<strong>Mode:</strong>
+						{hunt.QuestToggleMode !== null
+							? ezlionQuestToggleMode[hunt.QuestToggleMode]
+							: 'Not found'}
+					</p>
+					<p>
+						<strong>
+							Active Feature {isActiveFeatureOn(
+								hunt.ActiveFeature,
+								hunt.WeaponTypeID,
+							)
+								? 'ON'
+								: 'OFF'}{getQuestRestrictions(
+								hunt.QuestVariant2,
+								hunt.QuestVariant3,
+							).activeFeature
+								? ' (disabled active feature)'
+								: ''}</strong
+						>
+					</p>
+				</div>
+				<hr />
+
+				<div class="gear-graphics-courses">
+					<InlineTooltip
+						icon={getItemIcon('Voucher')}
+						iconType="component"
+						tooltip="Courses"
+						iconSize={'32px'}
+						gap={'.5rem'}
+						text={`Courses${getQuestRestrictions(hunt.QuestVariant2, hunt.QuestVariant3).courseAttack ? ' (disabled course attack)' : ''}:`}
+					/>
+					<p><strong>Main:</strong> {getMainCourses(hunt.Rights)}</p>
+					<p>
+						<strong>Additional:</strong>
+						{getAdditionalCourses(hunt.Rights)}
+					</p>
+				</div>
+				<hr />
+
+				<div class="gear-graphics-halk">
+					<InlineTooltip
+						icon={getLocationIcon('My Support')}
+						iconType="file"
+						tooltip="Halk Information"
+						iconSize={'32px'}
+						gap={'.5rem'}
+						text={'Halk'}
+					/>
+					<p>
+						<strong>
+							{hunt.HalkOn ? 'Active' : 'Inactive'}{getQuestRestrictions(
+								hunt.QuestVariant2,
+								hunt.QuestVariant3,
+							).halk
+								? ' (disabled halk)'
+								: ''} LV{hunt.HalkLevel}</strong
+						>
+					</p>
+
+					<InlineTooltip
+						icon={getItemIcon('Flask')}
+						iconColor={getItemColor('Orange')}
+						iconType="component"
+						tooltip="Item"
+						iconSize={'32px'}
+						gap={'.5rem'}
+						text={`Halk Pot ${hunt.HalkPotEffectOn ? 'ON' : 'OFF'}${
+							getQuestRestrictions(hunt.QuestVariant2, hunt.QuestVariant3).sigil
+								? ' (disabled halk pot)'
+								: ''
+						}`}
+					/>
+					<p><strong>Element Type:</strong> {getHalkElement(hunt)}</p>
+					<p><strong>Status Type:</strong> {getHalkStatus(hunt)}</p>
+					<p><strong>Intimacy:</strong> {hunt.HalkIntimacy}</p>
+					<p><strong>Health:</strong> {hunt.HalkHealth}</p>
+					<p><strong>Attack:</strong> {hunt.HalkAttack}</p>
+					<p><strong>Defense:</strong> {hunt.HalkDefense}</p>
+					<p><strong>Intellect:</strong> {hunt.HalkIntellect}</p>
+
+					<div class="gear-halk-skills">
+						<InlineTooltip
+							icon={getItemIcon('Jewel')}
+							iconColor={getSkillColor('halk')}
+							iconType="component"
+							tooltip="Halk Skill 1"
+							iconSize={'32px'}
+							gap={'.5rem'}
+							text={`${hunt.HalkSkill1 ? ezlionSkillHalk[hunt.HalkSkill1] : 'None'}`}
+						/><InlineTooltip
+							icon={getItemIcon('Jewel')}
+							iconColor={getSkillColor('halk')}
+							iconType="component"
+							tooltip="Halk Skill 2"
+							iconSize={'32px'}
+							gap={'.5rem'}
+							text={`${hunt.HalkSkill2 ? ezlionSkillHalk[hunt.HalkSkill2] : 'None'}`}
+						/><InlineTooltip
+							icon={getItemIcon('Jewel')}
+							iconColor={getSkillColor('halk')}
+							iconType="component"
+							tooltip="Halk Skill 3"
+							iconSize={'32px'}
+							gap={'.5rem'}
+							text={`${hunt.HalkSkill3 ? ezlionSkillHalk[hunt.HalkSkill3] : 'None'}`}
+						/>
+					</div>
+				</div>
+				<hr />
+
+				<div class="gear-graphics-game">
+					<p><strong>Game Patch Information</strong></p>
+					<p><strong>dat:</strong> {hunt.mhfdatInfo}</p>
+					<p><strong>emd:</strong> {hunt.mhfemdInfo}</p>
+					<p><strong>dll:</strong> {hunt.mhfodllInfo}</p>
+					<p><strong>hddll:</strong> {hunt.mhfohddllInfo}</p>
+				</div>
+				<hr />
+
+				<div class="gear-graphics-weapon-specific">
+					<p><strong>Weapon Specific</strong></p>
+					<p>
+						{getWeaponSpecificInfo(hunt)}
+					</p>
+				</div>
+				<hr />
+
+				<div class="gear-graphics-miscellaneous">
+					<p>
+						<strong>Overlay Hash:</strong>
+						{hunt.OverlayHash ? hunt.OverlayHash : 'Not found'}
+					</p>
+					<p>
+						<strong>High-Grade Edition:</strong>
+						{hunt.IsHighGradeEdition ? 'ON' : 'OFF'}
+					</p>
+					<p><strong>Refresh Rate:</strong> {hunt.RefreshRate}</p>
+				</div>
 			</div>
 		{:else}
 			<div class="buttons">
 				<CopyButton iconDescription={'Copy Text'} text={gearText} />
-				<CopyButton
-					iconDescription={'Copy Text for Discord'}
-					text={`\`\`\`text\n${gearTextForDiscord}\`\`\``}
-				/>
+				<div class="copy-button-container">
+					<LogoDiscord size={32} />
+					<CopyButton
+						iconDescription={'Copy Text for Discord'}
+						text={`\`\`\`text\n${gearTextForDiscord}\`\`\``}
+					/>
+				</div>
 			</div>
 			<div class="gear-text">
 				<pre>{gearText}</pre>
@@ -1264,12 +1781,39 @@ Refresh Rate: ${run.RefreshRate}
 
 	.buttons {
 		display: flex;
-		gap: 1rem;
+		gap: 2rem;
 		margin-top: 1rem;
 		margin-bottom: 1rem;
 	}
 
 	.gear-graphics {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+
+		hr {
+			opacity: 1;
+			width: 100%;
+			border: none;
+			height: 1px;
+			background: radial-gradient(
+				circle,
+				color-mix(in srgb, var(--ctp-blue), transparent 50%) 0%,
+				rgba(0, 0, 0, 0) 50%
+			);
+			margin-bottom: 0;
+		}
+	}
+
+	.copy-button-container {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.gear-graphics-skills,
+	.gear-graphics-items,
+	.gear-graphics-gear {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
