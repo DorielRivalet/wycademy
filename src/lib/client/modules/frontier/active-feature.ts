@@ -1,5 +1,37 @@
 import type { FrontierWeaponName } from 'ezlion';
 
+export enum ActiveFeature {
+	None = 0,
+	GreatSword = 1,
+	HeavyBowgun = 2,
+	Hammer = 4,
+	Lance = 8,
+	SwordAndShield = 16,
+	LightBowgun = 32,
+	DualSwords = 64,
+	LongSword = 128,
+	HuntingHorn = 256,
+	Gunlance = 512,
+	Bow = 1024,
+	Tonfa = 2048,
+	SwitchAxeF = 4096,
+	MagnetSpike = 8192,
+	All = GreatSword |
+		HeavyBowgun |
+		Hammer |
+		Lance |
+		SwordAndShield |
+		LightBowgun |
+		DualSwords |
+		LongSword |
+		HuntingHorn |
+		Gunlance |
+		Bow |
+		Tonfa |
+		SwitchAxeF |
+		MagnetSpike,
+}
+
 export const activeFeatures = [
 	{
 		id: 'Sword and Shield',

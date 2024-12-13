@@ -20,6 +20,8 @@
 	import MonsterComponent from './frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import { getArmorIcon } from '../modules/frontier/armor';
+	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
+	import { getCSVFromArray } from '../modules/csv';
 
 	let selectedSetName = $state('');
 
@@ -372,7 +374,18 @@
 	{:else if selectedArmorSet}
 		{@const SvelteComponent_3 = getWeaponIcon(selectedArmorSet?.weaponType)}
 		<div class="selected-armor-set">
-			<div class="armor-set">
+			<div class="armor-set-top">
+				<div class="armor-set-buttons">
+					<Button
+						iconDescription={'Back'}
+						kind="ghost"
+						on:click={(e) => onPieceClick(selectedArmorSet)}
+						>{#snippet icon()}
+							<span><PreviousOutline size={32} /></span>
+						{/snippet}
+					</Button>
+					<CopyButton iconDescription={'Copy'} text={'TODO'} />
+				</div>
 				<div class="set-header">
 					<div class="set-header-image-container">
 						{#if typeof selectedArmorSet?.setIcon === 'string'}
@@ -395,128 +408,25 @@
 							</div>
 						{/if}
 					</div>
+					<h3>{selectedArmorSet.setName}</h3>
+					<div class="tags">
+						{#each selectedArmorSet.setTags as tag}
+							<div>
+								<Tag icon={getTag(tag).icon} type="red" interactive size="sm"
+									>{tag}</Tag
+								>
+							</div>
+						{/each}
+					</div>
 				</div>
-				<button
-					class="set-slot"
-					onclick={(e) => onPieceClick(selectedArmorSet)}
-					style:background-color={getHexStringFromCatppuccinColor(
-						selectedArmorSet?.setColor,
-						theme,
-					) + '80'}
-				>
-					<SvelteComponent_3
-						{...{
-							color: getHexStringFromCatppuccinColor(
-								selectedArmorSet?.setColor,
-								theme,
-							),
-						}}
-					/>
-				</button>
-				<button
-					class="set-slot"
-					onclick={(e) => onPieceClick(selectedArmorSet)}
-					style:background-color={getHexStringFromCatppuccinColor(
-						selectedArmorSet?.setColor,
-						theme,
-					) + '80'}
-					><HelmetIconWhite
-						color={getHexStringFromCatppuccinColor(
-							selectedArmorSet?.setColor,
-							theme,
-						)}
-					/></button
-				>
-				<button
-					class="set-slot"
-					onclick={(e) => onPieceClick(selectedArmorSet)}
-					style:background-color={getHexStringFromCatppuccinColor(
-						selectedArmorSet?.setColor,
-						theme,
-					) + '80'}
-					><ChestIconWhite
-						color={getHexStringFromCatppuccinColor(
-							selectedArmorSet?.setColor,
-							theme,
-						)}
-					/></button
-				>
-				<button
-					class="set-slot"
-					onclick={(e) => onPieceClick(selectedArmorSet)}
-					style:background-color={getHexStringFromCatppuccinColor(
-						selectedArmorSet?.setColor,
-						theme,
-					) + '80'}
-					><ArmIconWhite
-						color={getHexStringFromCatppuccinColor(
-							selectedArmorSet?.setColor,
-							theme,
-						)}
-					/></button
-				>
-				<button
-					class="set-slot"
-					onclick={(e) => onPieceClick(selectedArmorSet)}
-					style:background-color={getHexStringFromCatppuccinColor(
-						selectedArmorSet?.setColor,
-						theme,
-					) + '80'}
-					><WaistIconWhite
-						color={getHexStringFromCatppuccinColor(
-							selectedArmorSet?.setColor,
-							theme,
-						)}
-					/></button
-				>
-				<button
-					class="set-slot"
-					onclick={(e) => onPieceClick(selectedArmorSet)}
-					style:background-color={getHexStringFromCatppuccinColor(
-						selectedArmorSet?.setColor,
-						theme,
-					) + '80'}
-					><LegIconWhite
-						color={getHexStringFromCatppuccinColor(
-							selectedArmorSet?.setColor,
-							theme,
-						)}
-					/></button
-				>
-				<button
-					class="set-slot"
-					onclick={(e) => onPieceClick(selectedArmorSet)}
-					style:background-color={getHexStringFromCatppuccinColor(
-						selectedArmorSet?.setColor,
-						theme,
-					) + '80'}><img src={MyTore} alt="Poogie Cuff" /></button
-				>
 			</div>
 			<div
 				in:scale={{
 					duration: 150,
 					easing: cubicInOut,
 				}}
-				class="selected-armor-set-info"
+				class="armor-set-bottom"
 			>
-				<Button
-					iconDescription={'Back'}
-					kind="ghost"
-					on:click={(e) => onPieceClick(selectedArmorSet)}
-					>{#snippet icon()}
-						<span><PreviousOutline size={24} /></span>
-					{/snippet}
-				</Button>
-				<h3>{selectedArmorSet.setName}</h3>
-				<div class="tags">
-					{#each selectedArmorSet.setTags as tag}
-						<div>
-							<Tag icon={getTag(tag).icon} type="red" interactive size="sm"
-								>{tag}</Tag
-							>
-						</div>
-					{/each}
-				</div>
 				<p>
 					<strong
 						>{selectedArmorSet.weaponName} | {selectedArmorSet.style}</strong
@@ -562,6 +472,12 @@
 		background-color: var(--ctp-mantle);
 		border-radius: 8px;
 		padding: 1rem;
+	}
+
+	.armor-set-buttons {
+		gap: 1rem;
+		display: flex;
+		align-items: center;
 	}
 
 	.heading-container {
@@ -619,10 +535,18 @@
 
 	.selected-armor-set {
 		display: flex;
+		flex-direction: column;
 		gap: 2rem;
 	}
 
-	.selected-armor-set-info {
+	.armor-set-top {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.armor-set-bottom {
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;

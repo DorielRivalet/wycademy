@@ -7,6 +7,123 @@ export interface DatabaseTableInfo {
 	rows: unknown[];
 }
 
+// Enums with bitwise flags in TypeScript
+export enum QuestVariant2 {
+	None = 0,
+	Level1 = 1,
+	DisableHalkPotionCourseAttack = 2,
+	DisableHalkPoogieCuff = 4,
+	Timer = 8,
+	DisableActiveFeature = 16,
+	FixedDifficulty = 32,
+	/** no secret tech, transcend, halk pot, course atk, prayer gem, twin hiden */
+	Level9999 = 64,
+	/** no rasta, partner, partnya, halk, soul revival or similar, halk pot, diva skill, diva prayer gem */
+	Road = 128,
+	All = 255,
+}
+
+export enum QuestVariant3 {
+	None = 0,
+	DisableRewardBonus = 1,
+	RequireGRank = 2,
+	NoSimpleMode = 4,
+	/** no transcend? no diva skills */
+	NoGPSkills = 8,
+	Zenith = 16,
+	/** Interception */
+	DivaDefense = 32,
+	UNK3Course = 64,
+	DisabledSigil = 128,
+	All = 255,
+}
+
+export class QuestRestriction {
+	halkPot: boolean = false;
+	courseAttack: boolean = false;
+	halk: boolean = false;
+	poogieCuff: boolean = false;
+	activeFeature: boolean = false;
+	secretTechnique: boolean = false;
+	transcend: boolean = false;
+	divaPrayerGem: boolean = false;
+	twinHiden: boolean = false;
+	rasta: boolean = false;
+	partner: boolean = false;
+	partnya: boolean = false;
+	soulRevival: boolean = false;
+	divaSkill: boolean = false;
+	questBonusReward: boolean = false;
+	simpleMode: boolean = false;
+	gpSkill: boolean = false;
+	sigil: boolean = false;
+}
+
+export function getQuestRestrictions(
+	questVariant2: QuestVariant2 | number | null,
+	questVariant3: QuestVariant3 | number | null,
+): QuestRestriction {
+	const restrictions = new QuestRestriction();
+
+	if (questVariant2 === null || questVariant3 === null) {
+		return restrictions;
+	}
+
+	if (questVariant2 & QuestVariant2.DisableHalkPotionCourseAttack) {
+		restrictions.halkPot = true;
+		restrictions.courseAttack = true;
+	}
+
+	if (questVariant2 & QuestVariant2.DisableHalkPoogieCuff) {
+		restrictions.halk = true;
+		restrictions.poogieCuff = true;
+	}
+
+	if (questVariant2 & QuestVariant2.DisableActiveFeature) {
+		restrictions.activeFeature = true;
+	}
+
+	if (questVariant2 & QuestVariant2.Level9999) {
+		restrictions.secretTechnique = true;
+		restrictions.transcend = true;
+		restrictions.halkPot = true;
+		restrictions.courseAttack = true;
+		restrictions.divaPrayerGem = true;
+		restrictions.twinHiden = true;
+	}
+
+	if (questVariant2 & QuestVariant2.Road) {
+		restrictions.rasta = true;
+		restrictions.partner = true;
+		restrictions.partnya = true;
+		restrictions.halk = true;
+		restrictions.soulRevival = true;
+		restrictions.halkPot = true;
+		restrictions.divaSkill = true;
+		restrictions.divaPrayerGem = true;
+	}
+
+	if (questVariant3 & QuestVariant3.DisableRewardBonus) {
+		restrictions.questBonusReward = true;
+	}
+
+	if (questVariant3 & QuestVariant3.NoSimpleMode) {
+		restrictions.simpleMode = true;
+	}
+
+	if (questVariant3 & QuestVariant3.NoGPSkills) {
+		restrictions.transcend = true;
+		restrictions.gpSkill = true;
+		restrictions.divaSkill = true;
+	}
+
+	if (questVariant3 & QuestVariant3.DisabledSigil) {
+		restrictions.sigil = true;
+	}
+
+	return restrictions;
+}
+
 export interface SpeedrunInfo {
 	ActiveSkill1ID: number; // from ActiveSkills table
 	ActiveSkill2ID: number; // from ActiveSkills table
