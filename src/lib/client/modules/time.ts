@@ -122,3 +122,65 @@ export function formatDateWithRelativeTime(date1: Date, date2: Date): string {
 export const Numbers = {
 	FramesPerSecond: 30,
 };
+
+export function getDate(input: string) {
+	try {
+		// Parse the input string as a Date object
+		const inputDate = new Date(input);
+
+		// Format the date in the desired output format
+		const output = inputDate.toISOString().split('T')[0];
+
+		return output; // Output: "2023-02-04"
+	} catch (e) {
+		return '????-??-??';
+	}
+}
+
+/**30fps */
+export function getFramesFromMinutesSecondsMilliseconds(time: string) {
+	const parts = time.split(':');
+	const minutes = parseInt(parts[0], 10);
+	const secondsAndMilliseconds = parts[1].split('.');
+	const seconds = parseInt(secondsAndMilliseconds[0], 10);
+	const milliseconds = parseInt(secondsAndMilliseconds[1], 10);
+
+	const totalSeconds = minutes * 60 + seconds;
+	const totalMilliseconds = totalSeconds * 1000 + milliseconds;
+	const frames = Math.floor(totalMilliseconds / (1000 / 30)); // 30 fps
+	return frames;
+}
+
+/**30fps */
+export function getMinutesSecondsMillisecondsFromFrames(frames: number) {
+	const totalMilliseconds = frames * (1000 / 30); // 30 fps
+	const totalSeconds = totalMilliseconds / 1000;
+
+	const minutes = Math.floor(totalSeconds / 60);
+	const remainingSeconds = totalSeconds % 60;
+
+	const seconds = Math.floor(remainingSeconds);
+	const milliseconds = Math.round((remainingSeconds - seconds) * 1000);
+
+	// Format the result as a string "MM:SS.mmm"
+	const result = `${String(minutes).padStart(2, '0')}:${String(
+		seconds,
+	).padStart(2, '0')}.${String(milliseconds).padStart(3, '0')}`;
+	return result;
+}
+
+export function getMinutesSecondsFromFrames(frames: number) {
+	const totalMilliseconds = frames * (1000 / 30); // 30 fps
+	const totalSeconds = totalMilliseconds / 1000;
+
+	const minutes = Math.floor(totalSeconds / 60);
+	const remainingSeconds = totalSeconds % 60;
+
+	const seconds = Math.floor(remainingSeconds);
+
+	// Format the result as a string "MM:SS.mmm"
+	const result = `${String(minutes).padStart(2, '0')}:${String(
+		seconds,
+	).padStart(2, '0')}`;
+	return result;
+}

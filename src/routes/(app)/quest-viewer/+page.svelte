@@ -83,9 +83,17 @@
 	import type { Writable } from 'svelte/store';
 	import SummaryWeaponUsage from '$lib/client/components/SummaryWeaponUsage.svelte';
 	import SummaryQuestGear from '$lib/client/components/SummaryQuestGear.svelte';
+	import SummaryQuestGraphs from '$lib/client/components/SummaryQuestGraphs.svelte';
 	import { browser } from '$app/environment';
 	import type { LineChartOptions, ScaleTypes } from '@carbon/charts-svelte';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
+	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
+	import FetchUpload from 'carbon-icons-svelte/lib/FetchUpload.svelte';
+	import { Help } from 'carbon-icons-svelte';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
+	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import slugify from 'slugify';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -302,47 +310,83 @@
 		return rows.toReversed();
 	}
 
-	async function generateSparkline(data: string) {
-		if (!browser) return;
-		try {
-			// Parse input, with error handling
-			let input: { [key: string]: number } = JSON.parse(data);
+	// TODO filter out quests in table that cannot have specific run buffs tags eg dure etc.
+	function getCompletedQuestsForPersonalBestsTableCount(
+		personalBestsSummary: {
+			id: string;
+			monster: string;
+			quest: string;
+			questID: number;
+			sns: string;
+			ds: string;
+			gs: string;
+			ls: string;
+			hammer: string;
+			hh: string;
+			lance: string;
+			gl: string;
+			tonfa: string;
+			saf: string;
+			ms: string;
+			bow: string;
+			lbg: string;
+			hbg: string;
+		}[],
+	) {
+		let count = 0;
 
-			//console.log(JSON.stringify(input, null, 2));
+		// Count the total amount of weapon times that are not equal to "--:--.--"
+		personalBestsSummary.forEach((row) => {
+			const weapons = [
+				row.sns,
+				row.ds,
+				row.gs,
+				row.ls,
+				row.hammer,
+				row.hh,
+				row.lance,
+				row.gl,
+				row.tonfa,
+				row.saf,
+				row.ms,
+				row.bow,
+				row.lbg,
+				row.hbg,
+			];
 
-			// Validate input is not empty
-			if (Object.keys(input).length === 0) {
-				console.warn('Input data is empty');
-				return;
-			}
+			count += weapons.filter(
+				(weaponTime) => weaponTime !== '--:--.---',
+			).length;
+		});
 
-			// Convert keys to numbers and find the highest time value
-			const timeKeys = Object.keys(input).map((key) => parseInt(key, 10));
-			const highestTime = Math.max(...timeKeys);
-
-			// Transform data with more robust mapping
-			const result = timeKeys
-				.map((time) => ({
-					group: 'Dataset 1',
-					time: (highestTime - time).toString(),
-					value: input[time.toString()],
-				}))
-				.sort((a, b) => parseInt(a.time) - parseInt(b.time));
-
-			// Dynamic import of Carbon Charts
-			const { LineChart } = await import('@carbon/charts-svelte');
-
-			console.log(JSON.stringify(result));
-
-			return {
-				component: LineChart,
-				data: result,
-			};
-		} catch (error) {
-			console.error('Error generating sparkline:', error);
-			return;
-		}
+		return count;
 	}
+
+	function downloadRunAsJSON(filePrefix: string, runID: number) {
+		if (!browser) return;
+		const link = document.createElement('a');
+		link.download = `${slugify(`${filePrefix}-${runID}-${new Date().toISOString()}.json`)}`;
+		let runData = speedrunInfo.find((e) => e.RunID === runID) || {};
+
+		// Convert the runData to JSON format
+		const jsonData = JSON.stringify(runData, null, 2);
+
+		// Create a Blob object containing the JSON data
+		const blob = new Blob([jsonData], { type: 'application/json' });
+
+		// Set the href attribute of the link to the URL of the Blob
+		link.href = URL.createObjectURL(blob);
+
+		// Simulate a click event on the link to trigger the download
+		link.click();
+
+		// Clean up the Blob URL
+		setTimeout(() => {
+			URL.revokeObjectURL(link.href);
+		}, 100);
+	}
+
+	function onLoadShareURL(shareUrl: string) {}
 
 	const customTitle = "Quest Viewer — Frontier's Wycademy";
 	const url = $page.url.toString();
@@ -373,7 +417,7 @@
 		| undefined = $state('id');
 	let questsSortDirection: 'none' | 'ascending' | 'descending' | undefined =
 		$state('descending');
-	let selectedRunBuffsTag: RunBuffsTag = $state('TA');
+	let selectedRunBuffsTag: RunBuffsTag = $state('FDP');
 	let personalBestsTableFilteredRowIds: string[] = $state([]);
 	let personalBestsSummary = $derived(
 		getPersonalBestsSummary(
@@ -382,46 +426,13 @@
 			selectedRunBuffsTag,
 		),
 	);
-	let sparklineOptions = $derived({
-		points: { enabled: false },
-		axes: {
-			bottom: {
-				visible: false,
-				title: 'Time (frames)',
-				mapsTo: 'time',
-				includeZero: false,
-				scaleType: 'linear' as ScaleTypes,
-			},
-			left: {
-				visible: false,
-
-				mapsTo: 'value',
-				title: 'DPS',
-				scaleType: 'linear' as ScaleTypes,
-			},
-		},
-		tooltip: {
-			enabled: false,
-		},
-		width: '192px',
-		height: '64px',
-		resizable: false,
-		legend: {
-			enabled: false,
-		},
-		toolbar: {
-			enabled: false,
-		},
-		data: {
-			loading: false,
-		},
-		theme: $carbonThemeStore,
-	} as LineChartOptions);
 
 	let summaryQuestGearRunID = $state(0);
 	let summaryQuestGraphsRunID1 = $state(0);
 	let summaryQuestGraphsRunID2 = $state(0);
 	let selectedQuestID = $state(0);
+	let shareUrl = $state('');
+	let downloadRunID = $state(0);
 </script>
 
 <Head
@@ -447,6 +458,64 @@
 			the Share button. The share URL and its file data automatically gets
 			removed after 2 days.
 		</p>
+
+		<Accordion class="spaced-accordion">
+			<AccordionItem>
+				{#snippet title()}
+					<h5 class="accordion-title">
+						<span><Help /></span><span>Help</span>
+					</h5>
+				{/snippet}
+				<div class="spaced-paragraph">
+					You can obtain a sqlite file by using the <Link inline href="/overlay"
+						>overlay.</Link
+					> Only certain types of quests are allowed to be submitted, which are automatically
+					filtered out.
+				</div>
+				<div class="spaced-paragraph">
+					The filters and requirements for deciding which quests to allow are:
+				</div>
+				<div>
+					<UnorderedList class="spaced-list">
+						<ListItem class="paragraph-long-02">
+							<p>
+								At least one run in the latest overlay version. Speedruns on
+								overlay versions older than 0.23.0 are not submitted.
+							</p></ListItem
+						>
+						<ListItem class="paragraph-long-02">
+							<p>
+								<strong>No Unknown Files or Patches:</strong> Your game files should
+								be from a list of known patches. If unsure, stick with vanilla.
+							</p></ListItem
+						>
+						<ListItem class="paragraph-long-02">
+							<p>
+								<strong>Speedrun Overlay Mode:</strong> Your watermark should show
+								"Speedrun+".
+							</p></ListItem
+						>
+						<ListItem class="paragraph-long-02"
+							><p>
+								<strong>Has Run Buffs Tag:</strong> Next to Speedrun+, your watermark
+								should show either of these in parentheses: TA, FDS, FDP, FST, FCA.
+							</p></ListItem
+						>
+						<ListItem class="paragraph-long-02"
+							><p>
+								<strong>Solo Runs:</strong> No other players or NPCs, except Halk.
+							</p></ListItem
+						>
+						<ListItem class="paragraph-long-02"
+							><p>
+								<strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV9999,
+								2nd District Duremudira, and Upper Shiten are allowed.
+							</p>
+						</ListItem>
+					</UnorderedList>
+				</div>
+			</AccordionItem></Accordion
+		>
 
 		{#if errorMessage}
 			<InlineNotification kind="error" title="Error:" subtitle={errorMessage} />
@@ -482,7 +551,7 @@
 									{#if browser && speedrunInfo && speedrunInfo.length > 0 && selectedTabIndex === 0}
 										<DataTable
 											id="personal-bests-dom"
-											title="Personal Bests"
+											title={`Personal Bests | ${selectedRunBuffsTag} | ${getCompletedQuestsForPersonalBestsTableCount(personalBestsSummary)}/${personalBestsSummary.length * 14}`}
 											sortable
 											zebra
 											useStaticWidth
@@ -727,17 +796,6 @@
 														{/snippet}
 														<p>{cell.value}</p></Tooltip
 													>
-												{:else if cell.key === 'trueRaw'}
-													{#await generateSparkline(cell.value)}
-														<SkeletonPlaceholder
-															style="height: 64px; width: 192px;"
-														/>
-													{:then result}
-														<result.component
-															options={sparklineOptions}
-															data={result.data}
-														/>
-													{/await}
 												{:else}
 													<p>{cell.value}</p>
 												{/if}
@@ -765,12 +823,55 @@
 								<section>
 									<SectionHeading level={2} title="Graphs" />
 									<div>
+										<SummaryQuestGraphs
+											bind:runID1={summaryQuestGraphsRunID1}
+											bind:runID2={summaryQuestGraphsRunID2}
+											hunt1={speedrunInfo.find(
+												(e) => e.RunID === summaryQuestGraphsRunID1,
+											)}
+											hunt2={speedrunInfo.find(
+												(e) => e.RunID === summaryQuestGraphsRunID2,
+											)}
+											bind:theme={$carbonThemeStore}
+										/>
+									</div>
+								</section>
+								<section>
+									<SectionHeading level={2} title="Timelines" />
+									<div>
 										<p>a</p>
 									</div>
 								</section>
-								<div>
-									<div class="buttons"></div>
-								</div>
+								<section>
+									<!--TODO quest pace and personal bests-->
+									<SectionHeading level={2} title="Quest Times" />
+									<div>
+										<p>a</p>
+									</div>
+								</section>
+								<section>
+									<SectionHeading level={2} title="Download Original Data" />
+									<div>
+										<div class="buttons">
+											<NumberInput
+												size="sm"
+												min={0}
+												step={1}
+												bind:value={downloadRunID}
+												label={'Run ID'}
+											/>
+											<Button
+												kind="tertiary"
+												icon={Download}
+												on:click={() =>
+													downloadRunAsJSON(
+														'quest-viewer-run-id',
+														downloadRunID,
+													)}>Download as JSON</Button
+											>
+										</div>
+									</div>
+								</section>
 							</section>
 						</TabContent>
 						<TabContent>
@@ -805,7 +906,7 @@
 				{/each}
 			</div> -->
 		{:else if uploadState === 'idle'}
-			<div class="centered">
+			<div class="centered flex-column drop-container">
 				<FileUploaderDropContainer
 					accept={['.sqlite']}
 					bind:files={databaseFiles}
@@ -819,6 +920,17 @@
 						);
 					}}
 				/>
+				<p>or load one via shared URL:</p>
+				<div class="load-share-url">
+					<TextInput bind:value={shareUrl} labelText="Share URL" />
+					<Button
+						disabled={shareUrl === ''}
+						iconDescription="Share URL"
+						icon={FetchUpload}
+						on:click={() => onLoadShareURL(shareUrl)}
+						kind="tertiary">Load</Button
+					>
+				</div>
 			</div>
 		{:else if uploadState === 'loading'}
 			<div class="loading-container">
@@ -866,7 +978,12 @@
 		display: flex;
 		gap: 1rem;
 		margin-bottom: 2rem;
+		margin-top: 2rem;
 		flex-wrap: wrap;
+	}
+
+	.drop-container {
+		margin-top: 2rem;
 	}
 
 	.centered {
@@ -878,6 +995,7 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
+		margin-top: 2rem;
 	}
 
 	.table {
@@ -897,5 +1015,29 @@
 		gap: 1rem;
 		flex-grow: 1;
 		flex-shrink: 1;
+	}
+
+	.flex-column {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.load-share-url {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.accordion-title {
+		display: flex;
+		gap: 0.25rem;
+		align-items: start;
+		vertical-align: middle;
+	}
+
+	.buttons {
+		display: flex;
+		gap: 1rem;
 	}
 </style>
