@@ -55,52 +55,9 @@
 	import { getMonsterIcon } from '../modules/frontier/monsters';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
 	import { convertDictionaryIntInt } from '../modules/frontier/strings';
-
-	function getDate(input: string) {
-		try {
-			// Parse the input string as a Date object
-			const inputDate = new Date(input);
-
-			// Format the date in the desired output format
-			const output = inputDate.toISOString().split('T')[0];
-
-			return output; // Output: "2023-02-04"
-		} catch (e) {
-			return '????-??-??';
-		}
-	}
-
-	/**30fps */
-	function getFramesFromMinutesSecondsMilliseconds(time: string) {
-		const parts = time.split(':');
-		const minutes = parseInt(parts[0], 10);
-		const secondsAndMilliseconds = parts[1].split('.');
-		const seconds = parseInt(secondsAndMilliseconds[0], 10);
-		const milliseconds = parseInt(secondsAndMilliseconds[1], 10);
-
-		const totalSeconds = minutes * 60 + seconds;
-		const totalMilliseconds = totalSeconds * 1000 + milliseconds;
-		const frames = Math.floor(totalMilliseconds / (1000 / 30)); // 30 fps
-		return frames;
-	}
-
-	/**30fps */
-	function getMinutesSecondsMillisecondsFromFrames(frames: number) {
-		const totalMilliseconds = frames * (1000 / 30); // 30 fps
-		const totalSeconds = totalMilliseconds / 1000;
-
-		const minutes = Math.floor(totalSeconds / 60);
-		const remainingSeconds = totalSeconds % 60;
-
-		const seconds = Math.floor(remainingSeconds);
-		const milliseconds = Math.round((remainingSeconds - seconds) * 1000);
-
-		// Format the result as a string "MM:SS.mmm"
-		const result = `${String(minutes).padStart(2, '0')}:${String(
-			seconds,
-		).padStart(2, '0')}.${String(milliseconds).padStart(3, '0')}`;
-		return result;
-	}
+	import Export from 'carbon-icons-svelte/lib/Export.svelte';
+	import { browser } from '$app/environment';
+	import slugify from 'slugify';
 
 	/** Check if user input is in the format of mm:ss.fff, where the minutes can be of any length*/
 	function isValidTime(time: string) {
@@ -1025,6 +982,15 @@ Refresh Rate: ${run.RefreshRate}
 		// console.log(runLink);
 	}
 
+	function exportForDamageCalculator(filePrefix: string, data: SpeedrunInfo) {
+		// TODO
+		// if (!browser) return;
+		// const link = document.createElement('a');
+		// link.download = `${slugify(`${filePrefix}-${new Date().toISOString()}.png`)}`;
+		// link.href = dataUrl;
+		// link.click();
+	}
+
 	interface Props {
 		hunt?: SpeedrunInfo;
 		runID: number;
@@ -1067,6 +1033,11 @@ Refresh Rate: ${run.RefreshRate}
 					on:click={() =>
 						downloadDomAsPng('gear-graphics-dom', 'gear-graphics')}
 					>Download as Image</Button
+				><Button
+					kind="tertiary"
+					icon={Export}
+					on:click={() => exportForDamageCalculator('gear-graphics', hunt)}
+					>Export for Damage Calculator</Button
 				>
 			</div>
 			<div class="gear-graphics" id="gear-graphics-dom">

@@ -120,7 +120,7 @@ function getDenormalizedSpeedrunTable(
 			mhfohddllHash: folder?.['mhfohddllHash'] || '',
 			mhfexeHash: folder?.['mhfexeHash'] || '',
 			// From PlayerGear
-			PlayerGearHash: gear?.['GearHash'] || '',
+			PlayerGearHash: gear?.['PlayerGearHash'] || '',
 			StyleID: gear?.['StyleID'] || 0,
 			WeaponTypeID: gear?.['WeaponTypeID'] || 0,
 			BlademasterWeaponID: gear?.['BlademasterWeaponID'] || null,
