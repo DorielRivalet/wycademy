@@ -1,9 +1,5 @@
 import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
-import {
-	flavorEntries,
-	type ColorName,
-	type FlavorName,
-} from '@catppuccin/palette';
+import { flavorEntries, type ColorName } from '@catppuccin/palette';
 import type { TagColor } from '../modules/frontier/types';
 
 type ThemeMap = {
@@ -58,6 +54,7 @@ export function getCatppuccinFlavorFromTheme(
 		case 'g10':
 			return 'latte';
 		default:
+			console.warn(`Unexpected theme: ${theme}. Defaulting to 'mocha'.`);
 			return 'mocha';
 	}
 }
@@ -66,23 +63,27 @@ export function getHexStringFromCatppuccinColor(
 	colorName: ColorName,
 	theme: CarbonTheme,
 ): string {
-	// Determine the current flavor based on the theme
 	const flavor: CatppuccinFlavorName = getCatppuccinFlavorFromTheme(theme);
 
-	// Access the flavor object
+	if (!flavorEntries.length) {
+		throw new Error('flavorEntries is empty');
+	}
+
 	const flavorObject =
 		flavorEntries.find((e) => e[0] === flavor) ?? flavorEntries[3];
 
-	// Iterate over the color entries for the current flavor
+	if (!flavorObject || !flavorObject[1] || !flavorObject[1].colorEntries) {
+		throw new Error(`Invalid flavor object structure for ${flavor}`);
+	}
+
 	for (const [color, details] of flavorObject[1].colorEntries) {
 		if (color === colorName) {
-			// Return the hex string for the matching color name
 			return details.hex;
 		}
 	}
 
-	// If the color name is not found, return white
-	return '#ffffff';
+	console.warn(`Color '${colorName}' not found in ${flavor} theme.`);
+	return '#ffffff'; // Default to white if color not found
 }
 
 /**TODO */
