@@ -7,11 +7,7 @@
 	import '@carbon/charts-svelte/styles.css';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
-	import InlineTooltip from './frontier/InlineTooltip.svelte';
-	import {
-		getQuestRestrictions,
-		type SpeedrunInfo,
-	} from '../modules/frontier/quest';
+	import { type SpeedrunInfo } from '../modules/frontier/quest';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { onMount, type Component } from 'svelte';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
@@ -19,10 +15,7 @@
 		convertDictionaryIntInt,
 		convertDictionaryIntIntInt,
 	} from '../modules/frontier/strings';
-	import {
-		getMinutesSecondsFromFrames,
-		getMinutesSecondsMillisecondsFromFrames,
-	} from '../modules/time';
+	import { getMinutesSecondsFromFrames } from '../modules/time';
 
 	function getChartOptions(
 		dropdownOption: string,

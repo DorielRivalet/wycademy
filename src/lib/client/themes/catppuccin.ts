@@ -14,12 +14,12 @@ type ThemeMap = {
 
 export type CatppuccinFlavorName = 'mocha' | 'macchiato' | 'frappe' | 'latte';
 
-export function createThemeVariables(flavor: FlavorName) {
-	const colors = getFlavorColors(flavor);
-	return Object.entries(colors)
-		.map(([key, value]) => `--ctp-${flavor}-${key}: ${value};`)
-		.join(' ');
-}
+// export function createThemeVariables(flavor: FlavorName) {
+// 	const colors = getFlavorColors(flavor);
+// 	return Object.entries(colors)
+// 		.map(([key, value]) => `--ctp-${flavor}-${key}: ${value};`)
+// 		.join(' ');
+// }
 
 export function getCatppuccinFlavorFromThemeForShiki(
 	theme: CarbonTheme,
@@ -38,12 +38,12 @@ export function getCatppuccinFlavorFromThemeForShiki(
 	}
 }
 
-export function getFlavorColors(flavor: FlavorName) {
-	return (
-		flavorEntries.find((e) => e[0] === flavor)?.[1].colorEntries ??
-		flavorEntries[3][1].colorEntries
-	);
-}
+// export function getFlavorColors(flavor: FlavorName) {
+// 	return (
+// 		flavorEntries.find((e) => e[0] === flavor)?.[1].colorEntries ??
+// 		flavorEntries[3][1].colorEntries
+// 	);
+// }
 
 export function getCatppuccinFlavorFromTheme(
 	theme: CarbonTheme,

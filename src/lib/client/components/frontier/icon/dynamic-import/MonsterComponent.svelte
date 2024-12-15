@@ -545,7 +545,7 @@
 			import('$lib/client/components/frontier/icon/monster/Elzelion.svelte'),
 		ArrogantDuremudira: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ArrogantDuremudira.svelte'
+				'$lib/client/components/frontier/icon/monster/ArrogantDuremudira2.svelte'
 			),
 		Seregios: () =>
 			import(
