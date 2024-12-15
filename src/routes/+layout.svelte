@@ -11,10 +11,7 @@
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import type FlavorName from '@catppuccin/palette';
-	import {
-		getFlavorColors,
-		getCatppuccinFlavorFromTheme,
-	} from '$lib/client/themes/catppuccin';
+	import { getCatppuccinFlavorFromTheme } from '$lib/client/themes/catppuccin';
 	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount } from 'svelte';
 	interface Props {

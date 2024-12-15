@@ -44,7 +44,6 @@
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
-	import ProfileStatsSummary from '$lib/client/components/ProfileStatsSummary.svelte';
 	import SummaryAchievements from '$lib/client/components/SummaryAchievements.svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import ProgressIndicator from 'carbon-components-svelte/src/ProgressIndicator/ProgressIndicator.svelte';
@@ -85,7 +84,6 @@
 	import SummaryQuestGear from '$lib/client/components/SummaryQuestGear.svelte';
 	import SummaryQuestGraphs from '$lib/client/components/SummaryQuestGraphs.svelte';
 	import { browser } from '$app/environment';
-	import type { LineChartOptions, ScaleTypes } from '@carbon/charts-svelte';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import FetchUpload from 'carbon-icons-svelte/lib/FetchUpload.svelte';
@@ -889,22 +887,6 @@
 					{/snippet}
 				</Tabs>
 			</div>
-			<!-- <div class="table-grid">
-				{#each speedrunInfo as table}
-					<div class="table-card">
-						<h3>{table.name}</h3>
-						<p>Rows: {table.rowCount}</p>
-						<details>
-							<summary>Row Details</summary>
-							<ul>
-								{#each table.rows as row}
-									<li>{JSON.stringify(row, null, 2)}</li>
-								{/each}
-							</ul>
-						</details>
-					</div>
-				{/each}
-			</div> -->
 		{:else if uploadState === 'idle'}
 			<div class="centered flex-column drop-container">
 				<FileUploaderDropContainer

@@ -982,13 +982,723 @@ Refresh Rate: ${run.RefreshRate}
 		// console.log(runLink);
 	}
 
+	function getStyleRankAffinity(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+	function getMeleeSharpnessAffinity(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+	function getExpertSkills(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+	function getFlashConversion(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+	function getIssenSkills(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+	function getCeaseless(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+	function getAffinityItems(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+	function getStarvingWolf(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getGsActiveFeature(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+	function getAttackSkills(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getCalculatorCaravanSkills(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getPassiveItems(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getFoodConsumables(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getSeedsFlutesCat(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getLanceHbg(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getLoneWolf(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getCritConversionUp(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getStylishAssault(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getConsumptionSlayer(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getObscurity(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getRush(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getFurious(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getShiriagari(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getIncitement(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getLengthUp(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getRoadAttack(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getRoadAdvLvFlr(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getRoadLastStand(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getDuremudiraAttack(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getAttackMedicine(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getHhAttackSongs(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getAdrenalineVigorous(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getVigorousUp(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getHidenSkills(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getWeaponSpecific(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getCombatSupremacy(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getArmor1(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getOriginArmor(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getGArmorPieces(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getGsr999SecretTech(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getRedSoul(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getAssistance(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getBondMaleHunter(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getPartnyaaBond(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getFireMultipliers(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getWaterMultipliers(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getThunderMultipliers(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getIceMultipliers(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getDragonMultipliers(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getElementalAttackMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getHhElementalUp(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getAbnormality(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getDrugKnowledge(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getStatusAssault(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getStatusAttackUp(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getGuildPoogie(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getStatusSigil(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getWeaponStatusModifiers(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getWeaponType(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getAoeAttackSigil(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getAoeAffinitySigil(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getCritMode(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getSharpness(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getFencing(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getCriticalDistanceMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getBulletStrengthModifier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getShotMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getHbgChargeShot(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getCompressedShotMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getCompressedElementShot(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getBowCoatingsMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getBowCoatingsArmorMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getBowCoatingsWeaponMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getBowCoatingsHidenMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getBowChargeMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getQuickShot(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getElement(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getAoeElementSigil(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getWeaponElementMultipliers(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getStatus(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getMonsterStatus(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getThunderClad(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getExploitWeakness(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getPointBreakthrough(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getAcidShots(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getElementalExploiter(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getHuntingHornDebuff(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getPrecisionSniperCritS(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getAbsoluteDefense(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getPremiumBoost(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberRoadFloor(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberConquestAttack(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberVampirism(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberTotalMotionValue(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberHitCount(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberElementalMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberTrueRaw(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberUnlimitedSigil(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberStyleRankAttack(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberSigil1Attack(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberSigil2Attack(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberSigil3Attack(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberZenithAttackSigil(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberAOEAttackSigil(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberNaturalAffinity(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberSigil1Affinity(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberSigil2Affinity(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberSigil3Affinity(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberAOEAffinitySigil(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
+	function getNumberLanceImpactMultiplier(data: SpeedrunInfo) {
+		let result = '';
+		return result;
+	}
+
 	function exportForDamageCalculator(filePrefix: string, data: SpeedrunInfo) {
 		// TODO
-		// if (!browser) return;
-		// const link = document.createElement('a');
-		// link.download = `${slugify(`${filePrefix}-${new Date().toISOString()}.png`)}`;
-		// link.href = dataUrl;
-		// link.click();
+		if (!browser) return;
+		const link = document.createElement('a');
+		link.download = `${slugify(`${filePrefix}-${runID}-${new Date().toISOString()}.json`)}`;
+		let runData = data || {};
+		let inputs = {
+			inputStyleRankAffinity: getStyleRankAffinity(runData),
+			inputMeleeSharpnessAffinity: getMeleeSharpnessAffinity(runData),
+			inputExpertSkills: getExpertSkills(runData),
+			inputFlashConversion: getFlashConversion(runData),
+			inputIssenSkills: getIssenSkills(runData),
+			inputCeaseless: getCeaseless(runData),
+			inputStarvingWolf: getStarvingWolf(runData),
+			inputAffinityItems: getAffinityItems(runData),
+			inputGsActiveFeature: getGsActiveFeature(runData),
+			inputAttackSkills: getAttackSkills(runData),
+			inputCaravanSkills: getCalculatorCaravanSkills(runData),
+			inputPassiveItems: getPassiveItems(runData),
+			inputFoodConsumables: getFoodConsumables(runData),
+			inputSeedsFlutesCat: getSeedsFlutesCat(runData),
+			inputLanceHbg: getLanceHbg(runData),
+			inputLoneWolf: getLoneWolf(runData),
+			inputCritConversionUp: getCritConversionUp(runData),
+			inputStylishAssault: getStylishAssault(runData),
+			inputConsumptionSlayer: getConsumptionSlayer(runData),
+			inputObscurity: getObscurity(runData),
+			inputRush: getRush(runData),
+			inputFurious: getFurious(runData),
+			inputShiriagari: getShiriagari(runData),
+			inputIncitement: getIncitement(runData),
+			inputLengthUp: getLengthUp(runData),
+			inputRoadAttack: getRoadAttack(runData),
+			inputRoadAdvLvFlr: getRoadAdvLvFlr(runData),
+			inputRoadLastStand: getRoadLastStand(runData),
+			inputDuremudiraAttack: getStyleRankAffinity(runData),
+			inputAttackMedicine: getStyleRankAffinity(runData),
+			inputHhAttackSongs: getStyleRankAffinity(runData),
+			inputAdrenalineVigorous: getStyleRankAffinity(runData),
+			inputVigorousUp: getStyleRankAffinity(runData),
+			inputHidenSkills: getStyleRankAffinity(runData),
+			inputWeaponSpecific: getStyleRankAffinity(runData),
+			inputCombatSupremacy: getStyleRankAffinity(runData),
+			inputArmor1: getStyleRankAffinity(runData),
+			inputOriginArmor: getStyleRankAffinity(runData),
+			inputGArmorPieces: getStyleRankAffinity(runData),
+			inputGsr999SecretTech: getStyleRankAffinity(runData),
+			inputRedSoul: getStyleRankAffinity(runData),
+			inputAssistance: getStyleRankAffinity(runData),
+			inputBondMaleHunter: getStyleRankAffinity(runData),
+			inputPartnyaaBond: getStyleRankAffinity(runData),
+			inputFireMultipliers: getStyleRankAffinity(runData),
+			inputWaterMultipliers: getStyleRankAffinity(runData),
+			inputThunderMultipliers: getStyleRankAffinity(runData),
+			inputIceMultipliers: getStyleRankAffinity(runData),
+			inputDragonMultipliers: getStyleRankAffinity(runData),
+			inputElementalAttackMultiplier: getStyleRankAffinity(runData),
+			inputHhElementalUp: getStyleRankAffinity(runData),
+			inputAbnormality: getStyleRankAffinity(runData),
+			inputDrugKnowledge: getStyleRankAffinity(runData),
+			inputStatusAssault: getStyleRankAffinity(runData),
+			inputStatusAttackUp: getStyleRankAffinity(runData),
+			inputGuildPoogie: getStyleRankAffinity(runData),
+			inputStatusSigil: getStyleRankAffinity(runData),
+			inputWeaponStatusModifiers: getStyleRankAffinity(runData),
+			inputWeaponType: getStyleRankAffinity(runData),
+			inputAoeAttackSigil: getStyleRankAffinity(runData),
+			inputAoeAffinitySigil: getStyleRankAffinity(runData),
+			inputCritMode: getStyleRankAffinity(runData),
+			inputSharpness: getStyleRankAffinity(runData),
+			inputFencing: getStyleRankAffinity(runData),
+			inputCriticalDistanceMultiplier: getStyleRankAffinity(runData),
+			inputBulletStrengthModifier: getStyleRankAffinity(runData),
+			inputShotMultiplier: getStyleRankAffinity(runData),
+			inputHbgChargeShot: getStyleRankAffinity(runData),
+			inputCompressedShotMultiplier: getStyleRankAffinity(runData),
+			inputCompressedElementShot: getStyleRankAffinity(runData),
+			inputBowCoatingsMultiplier: getStyleRankAffinity(runData),
+			inputBowCoatingsArmorMultiplier: getStyleRankAffinity(runData),
+			inputBowCoatingsWeaponMultiplier: getStyleRankAffinity(runData),
+			inputBowCoatingsHidenMultiplier: getStyleRankAffinity(runData),
+			inputBowChargeMultiplier: getStyleRankAffinity(runData),
+			inputQuickShot: getStyleRankAffinity(runData),
+			inputElement: getStyleRankAffinity(runData),
+			inputAoeElementSigil: getStyleRankAffinity(runData),
+			inputWeaponElementMultipliers: getStyleRankAffinity(runData),
+			inputStatus: getStyleRankAffinity(runData),
+			inputMonsterStatus: getStyleRankAffinity(runData),
+			inputThunderClad: getStyleRankAffinity(runData),
+			inputExploitWeakness: getStyleRankAffinity(runData),
+			inputPointBreakthrough: getStyleRankAffinity(runData),
+			inputAcidShots: getStyleRankAffinity(runData),
+			inputElementalExploiter: getStyleRankAffinity(runData),
+			inputHuntingHornDebuff: getStyleRankAffinity(runData),
+			inputPrecisionSniperCritS: getStyleRankAffinity(runData),
+			inputAbsoluteDefense: getStyleRankAffinity(runData),
+			inputPremiumBoost: getStyleRankAffinity(runData),
+
+			inputNumberRoadFloor: getStyleRankAffinity(runData),
+			inputNumberConquestAttack: getStyleRankAffinity(runData),
+			inputNumberVampirism: getStyleRankAffinity(runData),
+			inputNumberTotalMotionValue: getStyleRankAffinity(runData),
+			inputNumberHitCount: getStyleRankAffinity(runData),
+			inputNumberElementalMultiplier: getStyleRankAffinity(runData),
+			inputNumberTrueRaw: getStyleRankAffinity(runData),
+			inputNumberUnlimitedSigil: getStyleRankAffinity(runData),
+			inputNumberStyleRankAttack: getStyleRankAffinity(runData),
+			inputNumberSigil1Attack: getStyleRankAffinity(runData),
+			inputNumberSigil2Attack: getStyleRankAffinity(runData),
+			inputNumberSigil3Attack: getStyleRankAffinity(runData),
+			inputNumberZenithAttackSigil: getStyleRankAffinity(runData),
+			inputNumberAOEAttackSigil: getStyleRankAffinity(runData),
+			inputNumberNaturalAffinity: getStyleRankAffinity(runData),
+			inputNumberSigil1Affinity: getStyleRankAffinity(runData),
+			inputNumberSigil2Affinity: getStyleRankAffinity(runData),
+			inputNumberSigil3Affinity: getStyleRankAffinity(runData),
+			inputNumberAOEAffinitySigil: getStyleRankAffinity(runData),
+			inputNumberLanceImpactMultiplier: getStyleRankAffinity(runData),
+			inputNumberTranscendRawMultiplier: getStyleRankAffinity(runData),
+			inputNumberRavientePowerSwordCrystalsMultiplier:
+				getStyleRankAffinity(runData),
+			inputNumberElementalValueReplacement: getStyleRankAffinity(runData),
+			inputNumberSigil1Element: getStyleRankAffinity(runData),
+			inputNumberSigil2Element: getStyleRankAffinity(runData),
+			inputNumberSigil3Element: getStyleRankAffinity(runData),
+			inputNumberZenithElementSigil: getStyleRankAffinity(runData),
+			inputNumberAOEElementSigil: getStyleRankAffinity(runData),
+			inputNumberStatusValue: getStyleRankAffinity(runData),
+			inputNumberOtherAdditional: getStyleRankAffinity(runData),
+			inputNumberCompressedShot: getStyleRankAffinity(runData),
+			inputNumberCompressedElementShot: getStyleRankAffinity(runData),
+			inputNumberDefenseRate: getStyleRankAffinity(runData),
+			inputNumberMonsterRage: getStyleRankAffinity(runData),
+			inputNumberHCModifiers: getStyleRankAffinity(runData),
+			inputNumberCuttingHitzone: getStyleRankAffinity(runData),
+			inputNumberImpactHitzone: getStyleRankAffinity(runData),
+			inputNumberShotHitzone: getStyleRankAffinity(runData),
+			inputNumberFireHitzone: getStyleRankAffinity(runData),
+			inputNumberWaterHitzone: getStyleRankAffinity(runData),
+			inputNumberThunderHitzone: getStyleRankAffinity(runData),
+			inputNumberIceHitzone: getStyleRankAffinity(runData),
+			inputNumberDragonHitzone: getStyleRankAffinity(runData),
+
+			inputNumberDivaPrayerGemRedLevel: getStyleRankAffinity(runData),
+			inputNumberDivaPrayerGemYellowLevel: getStyleRankAffinity(runData),
+			inputNumberDivaPrayerGemGreenLevel: getStyleRankAffinity(runData),
+			inputNumberDivaPrayerGemBlueLevel: getStyleRankAffinity(runData),
+
+			inputDivaPrayerGemRedName: getStyleRankAffinity(runData),
+			inputDivaPrayerGemYellowName: getStyleRankAffinity(runData),
+			inputDivaPrayerGemGreenName: getStyleRankAffinity(runData),
+			inputDivaPrayerGemBlueName: getStyleRankAffinity(runData),
+
+			selectedMonster: getStyleRankAffinity(runData),
+			selectedMonsterRankBand: getStyleRankAffinity(runData),
+			selectedMonsterState: getStyleRankAffinity(runData),
+			selectedMonsterPart: getStyleRankAffinity(runData),
+		};
+
+		// Convert the runData to JSON format
+		const jsonData = JSON.stringify(inputs, null, 2);
+
+		// Create a Blob object containing the JSON data
+		const blob = new Blob([jsonData], { type: 'application/json' });
+
+		// Set the href attribute of the link to the URL of the Blob
+		link.href = URL.createObjectURL(blob);
+
+		// Simulate a click event on the link to trigger the download
+		link.click();
+
+		// Clean up the Blob URL
+		setTimeout(() => {
+			URL.revokeObjectURL(link.href);
+		}, 100);
 	}
 
 	interface Props {
