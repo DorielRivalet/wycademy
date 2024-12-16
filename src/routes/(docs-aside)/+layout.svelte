@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -8,11 +8,6 @@
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
-	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
-	import { onMount } from 'svelte';
-	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -45,25 +40,14 @@
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
 
-	onMount(() => {
-		let themeValue = $carbonThemeStore;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
+	let { data, children }: Props = $props();
 
-		let cursorValue = $cursorIcon;
-		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-	});
-
-	let tocVisible = $tocEnabledStore;
+	let tocVisible = $state($tocEnabledStore);
 	let isTocMoving = false;
 
 	function onTOCToggleButtonPress(e: MouseEvent) {
@@ -72,31 +56,24 @@
 		tocVisible = !tocVisible;
 		tocEnabledStore.set(tocVisible ? true : false);
 
-		if (tocVisible) {
-			tocClass = 'left-column';
-			centerColumnClass = ''; // Reset to default width
-		} else {
-			tocClass = 'left-column collapsed';
-			centerColumnClass = 'expanded'; // Increase width to full
-		}
+		// if (tocVisible) {
+		// 	tocClass = 'left-column';
+		// 	centerColumnClass = ''; // Reset to default width
+		// } else {
+		// 	tocClass = 'left-column collapsed';
+		// 	centerColumnClass = 'expanded'; // Increase width to full
+		// }
 		isTocMoving = false;
 	}
 
-	let tocClass = tocVisible ? 'left-column' : 'left-column collapsed';
-	let centerColumnClass = tocVisible ? '' : 'expanded';
+	let tocClass = $derived(tocVisible ? 'left-column' : 'left-column collapsed');
+	let centerColumnClass = $derived(tocVisible ? '' : 'expanded');
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	let headerClass = $state($stickyHeaderStore ? 'header sticky' : 'header');
 </script>
 
 <LocalStorage bind:value={$tocEnabledStore} key="__toc-enabled" />
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
-
-<Theme
-	bind:theme={$carbonThemeStore}
-	persist
-	persistKey="__carbon-theme"
-	{tokens}
-/>
 
 {#if !tocVisible && $breakpointLargerThanMedium}
 	<div class="expand-TOC">
@@ -126,12 +103,12 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
+				{#snippet actions()}
 					<NotificationActionButton
 						on:click={() => goto('/support/website/development')}
 						>Learn more</NotificationActionButton
 					>
-				</svelte:fragment>
+				{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
@@ -139,30 +116,32 @@
 	<div class="container">
 		<div class={tocClass}>
 			<Toc blurParams={{ duration: 0 }} --toc-desktop-sticky-top={'10vh'}>
-				<span slot="title">
-					{#if $breakpointLargerThanMedium}
-						<h2 class="toc-title toc-exclude">
-							<span
-								>On this page <span>
-									<Button
-										iconDescription={'Close Sidebar'}
-										kind="ghost"
-										size={'small'}
-										icon={RightPanelClose}
-										on:click={onTOCToggleButtonPress}
-									/>
-								</span></span
-							>
-						</h2>
-					{:else}
-						<h2 class="toc-title toc-exclude">On this page</h2>
-					{/if}
-				</span>
+				{#snippet title()}
+					<span>
+						{#if $breakpointLargerThanMedium}
+							<h2 class="toc-title toc-exclude">
+								<span
+									>On this page <span>
+										<Button
+											iconDescription={'Close Sidebar'}
+											kind="ghost"
+											size={'small'}
+											icon={RightPanelClose}
+											on:click={onTOCToggleButtonPress}
+										/>
+									</span></span
+								>
+							</h2>
+						{:else}
+							<h2 class="toc-title toc-exclude">On this page</h2>
+						{/if}
+					</span>
+				{/snippet}
 			</Toc>
 		</div>
 
 		<main class="center-column {centerColumnClass}">
-			<slot />
+			{@render children?.()}
 		</main>
 	</div>
 

@@ -1,6 +1,10 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
-	export let size = '100%';
+	interface Props {
+		size?: string;
+	}
+
+	let { size = '100%' }: Props = $props();
 </script>
 
 <svg

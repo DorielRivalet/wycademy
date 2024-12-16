@@ -475,11 +475,21 @@
 		}
 	}
 
-	export let currentSilhouette: string;
-	export let selectedHitzoneType: FrontierMonsterHitzoneType;
-	export let selectedMonsterState: string;
-	export let selectedRankBand: FrontierMonsterHitzoneRankBand;
-	export let hitzones: FrontierMonsterPartInfo[];
+	interface Props {
+		currentSilhouette: string;
+		selectedHitzoneType: FrontierMonsterHitzoneType;
+		selectedMonsterState: string;
+		selectedRankBand: FrontierMonsterHitzoneRankBand;
+		hitzones: FrontierMonsterPartInfo[];
+	}
+
+	let {
+		currentSilhouette,
+		selectedHitzoneType,
+		selectedMonsterState,
+		selectedRankBand,
+		hitzones
+	}: Props = $props();
 </script>
 
 {#await getSilhouette(currentSilhouette)}

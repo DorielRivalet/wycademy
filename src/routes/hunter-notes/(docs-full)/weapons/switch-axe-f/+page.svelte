@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -181,14 +181,14 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Switch Axe F'} />
 		<div>
 			<div class="video">
 				<Youtube id="rXTdfrs9QjQ" />
 			</div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					tooltip="Weapon"
 					text="Switch Axe F"
@@ -201,12 +201,11 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 					icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
 						?.icon}
 				/>. It is unlocked by reaching G Rank.
-			</p>
+			</div>
 
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{
 							title: 'Switch',
 							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-switch.webm',
@@ -217,8 +216,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{
 							title: 'Run',
 							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-run.webm',
@@ -229,8 +227,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{
 							title: 'Lightsword Mode',
 							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-lightsword.webm',
@@ -241,8 +238,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
+					<Player
 						{...{
 							title: 'Elemental Release',
 							src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/saf-explosion.webm',
@@ -251,7 +247,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 				{/await}
 			</div>
 
-			<p>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -260,7 +256,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
@@ -290,9 +286,9 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						{getActiveFeature('Switch Axe F')}
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -326,13 +322,13 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -370,7 +366,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -381,7 +377,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -419,7 +415,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -435,7 +431,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -444,9 +440,9 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								If you don't have <InlineTooltip
 									tooltip="Armor Skill"
 									text="Switch Axe Hiden"
@@ -458,10 +454,10 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								A power phial doesn't directly increase raw damage; instead, it
 								enhances the motion values of phial attacks by approximately
 								10%. It's still regarded as the best type, though it's less
@@ -471,16 +467,16 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 									iconType="component"
 									icon={getWeaponIcon('Switch Axe F')}
 								/> weapons.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Elemental phials are the most prevalent on Zenith weapons and
 								can still provide a significant boost in certain cases.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Having <InlineTooltip
 									tooltip="Armor Skill"
 									text="Guard+2"
@@ -512,10 +508,10 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> stacks.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								With <InlineTooltip
 									tooltip="Armor Skill"
 									text="Hiden"
@@ -528,17 +524,17 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 									iconType="component"
 									icon={getWeaponIcon('Switch Axe F')}
 								/> Active Feature is enabled, only one parry is needed.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The elemental discharge from Earth Style can still be executed
 								in Extreme Style; just tap the other button after the initial
 								thrust.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon Type"
 									text="Switch Axe F's"
@@ -551,18 +547,18 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Using the finisher move without having inflicted any Dragon
 								Spirit will result in minimal damage and leave the hunter
 								vulnerable. This move also consumes a significant amount of
 								sharpness, regardless of whether it hits anything.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Since <InlineTooltip
 									tooltip="Weapon Type"
 									text="Switch Axe F's"
@@ -581,24 +577,24 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> can be easier to use.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Earth, Heaven and Extreme Style gauges have 100 units of energy
 								maximum. Storm and Extreme Style Light Sword gauges have 300
 								units of energy maximum.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The recovery rate of the gauge is 5 units of energy every 5
 								seconds. Extreme Style Light Sword gauge does not have natural
 								recovery of energy.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The <InlineTooltip
 									tooltip="Armor Skill"
 									text="Focus"
@@ -607,33 +603,36 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 								/> skill provides the following benefits: Increased natural recovery
 								of gauges, increase in gauge recovery from axe attacks and parries,
 								and x1.1 fill rate for gauges (x1.2 with Focus+2).
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Successful parries with Light Sword gives 50 units of energy
 								with Storm Style and 75 with Extreme Style, doubled on Active
 								Feature.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Attacking during Axe Mode recovers 6 units of energy.
-							</p></ListItem
-						>
-						<ListItem><p>Switch Axe running consumes phial energy.</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
+								Switch Axe running consumes phial energy.
+							</div></ListItem
+						>
+						<ListItem
+							><div class="paragraph-long-02">
 								The second stage of <InlineTooltip
 									tooltip="Armor Skill"
 									text="Rush"
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> eliminates all meter drain while running.
-							</p></ListItem
+							</div></ListItem
 						><ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Some monsters, like <InlineTooltip
 									tooltip="Monster"
 									text="Zenith Rukodiora"
@@ -647,7 +646,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 									iconType="component"
 									icon={getWeaponIcon('Switch Axe F')}
 								/> with the buff active, only one parry is necessary.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -658,7 +657,7 @@ Attacks utilizing the phial consume less meter (around 20% less).`,
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

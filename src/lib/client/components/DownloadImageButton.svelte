@@ -20,7 +20,11 @@ For xyflow.
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	export let fileName: string;
+	interface Props {
+		fileName: string;
+	}
+
+	let { fileName }: Props = $props();
 
 	const nodes = useNodes();
 

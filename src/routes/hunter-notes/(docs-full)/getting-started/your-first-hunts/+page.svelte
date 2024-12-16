@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import {
@@ -30,6 +30,8 @@
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
+	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
+	import { browser } from '$app/environment';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -245,13 +247,15 @@
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalNotes = '';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalNotes = $state('');
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
 
 	function changeModal(cell: DataTableCell, section: string) {
 		modalOpen = true;
@@ -287,7 +291,7 @@
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
 			<img src={modalImage} alt={'caravan'} />
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -295,7 +299,8 @@
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent = modalPopoverIcon}
+							<SvelteComponent />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -313,25 +318,32 @@
 	{/if}
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Your First Hunts'} />
 		<div>
+			<InlineNotification
+				lowContrast
+				hideCloseButton
+				kind="info"
+				title="Info:"
+				subtitle="This section is pending an overhaul. I recommend first consulting patch and server specific guides from the community you are in."
+			/>
 			<section>
 				<SectionHeading level={2} title="Item Preset Preparation" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						To create item presets, set up your character's active inventory as
 						you want it, then access any box, choose the "Item Presets" option,
 						followed by "Register Preset". Select a slot to save your preset and
 						optionally name it.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Slots 1 through 4 correspond to pressing L1/L2/R1/R2 or
 						F/Ctrl/C/Shift while interacting with a box. This means after a
 						quest, you can simply run up to a box, interact, and press L1 or F
 						to instantly equip your preset from Slot 1.
-					</p>
+					</div>
 					<CenteredFigure
 						width={'100%'}
 						type="file"
@@ -339,19 +351,19 @@
 						alt="Loaded item preset"
 						figcaption="Loaded item preset."
 					/>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						If you have a subscription, you’ll have an additional 20 preset
 						slots. Access these by going to the "Item Presets" option and
 						selecting "Equip Preset". Slots 5 through 24 don’t have keyboard or
 						controller shortcuts and must be equipped manually.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Gunners should buy all standard shots and coatings, as well as the
 						materials needed to combine into various ammo types and coatings.
 						These items are available from both the General Store NPC and the
 						Combiner NPC next to her.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The items mentioned cover <InlineTooltip
 							text="Normal"
 							icon={getItemIcon('Shot')}
@@ -379,8 +391,8 @@
 							tooltip="Ammo"
 							iconType="component"
 						/> shots unless you run out of both shots and combination materials.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						If this seems unusual based on your experience in other games, it’s
 						because elemental damage scales on a set formula based on attack,
 						while critical hits and bullet modifiers have a much greater impact
@@ -391,8 +403,8 @@
 							tooltip="Ammo"
 							iconType="component"
 						/> shots.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						If you’re having difficulty at HR5 or higher, make use of tools like
 						<InlineTooltip
 							text="Halk Pots"
@@ -404,8 +416,8 @@
 						to tank almost anything except the hardest content. You’re limited
 						to five uses per day, so use them sparingly as a crutch when truly
 						needed.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						<InlineTooltip
 							text="Halk Pots"
 							icon={getItemIcon('Flask')}
@@ -414,12 +426,12 @@
 							iconType="component"
 						/> can be obtained by claiming your Daily Quest reward from the General
 						Store NPC by selecting the last option.
-					</p>
+					</div>
 
 					<section>
 						<SectionHeading level={3} title="Stamina Items" />
 						<div>
-							<p>
+							<div class="paragraph-long-02">
 								Purchase <InlineTooltip
 									icon={getItemIcon('Herb')}
 									iconColor={getItemColor('Purple')}
@@ -446,7 +458,7 @@
 									tooltip="Item"
 									iconType="component"
 								/>.
-							</p>
+							</div>
 							<CenteredFigure
 								width={'100%'}
 								type="file"
@@ -461,15 +473,15 @@
 					<section>
 						<SectionHeading level={3} title="Charms and Talons" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								When you reach HR5, you'll receive some <InlineTooltip
 									icon={getItemIcon('Ticket')}
 									tooltip="Item"
 									text="HRP Tkt (4k)"
 								/>. You can exchange these tickets for GCP at the General Store
 								NPC.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								Your first use of GCP should be to purchase 2 <InlineTooltip
 									icon={getItemIcon('Claw')}
 									tooltip="Item"
@@ -485,8 +497,8 @@
 								Talons, and then combine those Talons with another set of Charms
 								to make Claws. This final combination will give you the benefits
 								of all four items in one item slot (Attack+15 and Defense+40).
-							</p>
-							<p>
+							</div>
+							<div class="paragraph-long-02">
 								The items shown in the diagram do not stack. If you want the
 								maximum possible buffs, you only need <InlineTooltip
 									icon={getItemIcon('Claw')}
@@ -494,11 +506,12 @@
 									iconColor={getItemColor('Purple')}
 									text="Hunter's Taloncharm"
 								/>.
-							</p>
+							</div>
 							<div class="svelte-flow-container">
+								<!-- TODO if u refresh the page it doesnt fit the view-->
 								<SvelteFlow
 									colorMode={$carbonThemeStore === 'g10' ? 'light' : 'dark'}
-									fitView
+									fitView={true}
 									{nodes}
 									{edges}
 									elementsSelectable={false}
@@ -520,23 +533,23 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
-	button {
-		all: unset;
-	}
+	// button {
+	// 	all: unset;
+	// }
 
-	.table-button {
-		display: flex;
-		align-items: center;
-		font-weight: bold;
-		gap: 0.25rem;
+	// .table-button {
+	// 	display: flex;
+	// 	align-items: center;
+	// 	font-weight: bold;
+	// 	gap: 0.25rem;
 
-		img {
-			max-width: 4ch;
-		}
-	}
+	// 	img {
+	// 		max-width: 4ch;
+	// 	}
+	// }
 
 	.page-turn {
 		margin-top: 4rem;

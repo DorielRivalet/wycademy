@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -8,11 +8,7 @@
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
-	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount } from 'svelte';
-	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -20,41 +16,27 @@
 	import { developmentStage } from '$lib/constants';
 	import { goto } from '$app/navigation';
 	import LocalStorage from 'carbon-components-svelte/src/LocalStorage/LocalStorage.svelte';
-	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
-	const carbonThemeStore = getContext(
-		Symbol.for('carbonTheme'),
-	) as Writable<CarbonTheme>;
-	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
 	const stickyHeaderStore = getContext(
 		Symbol.for('stickyHeader'),
 	) as Writable<boolean>;
 	const bannerEnabledStore = getContext(
 		Symbol.for('banner'),
 	) as Writable<boolean>;
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
 
 	onMount(() => {
-		let themeValue = $carbonThemeStore;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
-		let cursorValue = $cursorIcon;
-		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
 		window.addEventListener('scroll', handleScroll);
 	});
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	let headerClass = $state($stickyHeaderStore ? 'header sticky' : 'header');
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
 
@@ -75,12 +57,6 @@
 
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
 
-<Theme
-	bind:theme={$carbonThemeStore}
-	persist
-	persistKey="__carbon-theme"
-	{tokens}
-/>
 <div class="app">
 	<ViewTransition />
 
@@ -96,17 +72,17 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
+				{#snippet actions()}
 					<NotificationActionButton
 						on:click={() => goto('/support/website/development')}
 						>Learn more</NotificationActionButton
 					>
-				</svelte:fragment>
+				{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
 	<main>
-		<slot />
+		{@render children?.()}
 	</main>
 	{#key $page.url.pathname}
 		<Footer gitHubData={data.github} />

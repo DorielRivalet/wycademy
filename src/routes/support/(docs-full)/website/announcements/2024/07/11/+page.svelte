@@ -34,13 +34,13 @@
 		/><CiteReference number={11} />
 	</p>
 
-	<p class="spaced-paragraph">
+	<div class="spaced-paragraph">
 		YouTube has a history of being a less-than-ideal platform for archiving
 		speedruns.<CiteReference number={12} /> Therefore, we recommend using alternatives
 		such as <OutboundLink inline href="https://archive.org"
 			>archive.org</OutboundLink
 		> for this purpose.
-	</p>
+	</div>
 
 	<section>
 		<SectionHeading
@@ -48,20 +48,26 @@
 			title="Key Points from the Overlay's FAQ and Documentation"
 		/>
 		<UnorderedList>
-			<ListItem>
-				<strong>The overlay is not a mod:</strong> You can use it with either vanilla
-				or modified files, but the overlay itself does not alter gameplay behavior
-				nor provide custom in-game cosmetics.
+			<ListItem
+				><p>
+					<strong>The overlay is not a mod:</strong> You can use it with either vanilla
+					or modified files, but the overlay itself does not alter gameplay behavior
+					nor provide custom in-game cosmetics.
+				</p>
 			</ListItem>
-			<ListItem>
-				<strong>The overlay can be used as an Anti-cheating tool:</strong> The overlay
-				provides accurate records of all quest activities in a SQLite file. We also
-				offer a settings preset for speedrunning and watermarks to indicate this
-				preset when needed.
+			<ListItem
+				><p>
+					<strong>The overlay can be used as an Anti-cheating tool:</strong> The
+					overlay provides accurate records of all quest activities in a SQLite file.
+					We also offer a settings preset for speedrunning and watermarks to indicate
+					this preset when needed.
+				</p>
 			</ListItem>
-			<ListItem>
-				<strong>The overlay provides No warranties:</strong> Per the MIT license,
-				we provide no warranties for the software.
+			<ListItem
+				><p>
+					<strong>The overlay provides No warranties:</strong> Per the MIT license,
+					we provide no warranties for the software.
+				</p>
 			</ListItem>
 		</UnorderedList>
 	</section>
@@ -69,19 +75,19 @@
 	<section>
 		<SectionHeading level={2} title="Guidelines for Overlay Users" />
 
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			To minimize the risk to your YouTube account and prepare for future
 			leaderboard run submissions, please follow these guidelines. <strong
 				>Note that these guidelines may become outdated, so we recommend
 				checking the leaderboard page for the latest information.</strong
 			>
-		</p>
+		</div>
 
 		<section>
 			<SectionHeading level={3} title="Video Submission Guidelines" />
 			<UnorderedList>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<CheckmarkFilled color="var(--ctp-green)" />
 						<span
 							>Consider using platforms such as Bilibili or archive.org for
@@ -91,7 +97,7 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<CheckmarkFilled color="var(--ctp-green)" />
 						<span
 							>Provide the video link with the SQLite file. The overlay allows
@@ -100,13 +106,13 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<CheckmarkFilled color="var(--ctp-green)" />
 						<span>Make YouTube videos unlisted, not public.</span>
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<CheckmarkFilled color="var(--ctp-green)" />
 						<span
 							>Ensure your video titles, tags and descriptions are in English
@@ -115,7 +121,7 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<CheckmarkFilled color="var(--ctp-green)" />
 						<span
 							>Put your gear and weapon information in the video description.</span
@@ -123,7 +129,7 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<WarningFilled color="var(--ctp-yellow)" />
 						<span
 							>Avoid mentioning any external tools, including mods, in YouTube
@@ -132,7 +138,7 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<WarningFilled color="var(--ctp-yellow)" />
 						<span
 							>Avoid tagging your YouTube videos with games that are not Monster
@@ -141,19 +147,19 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<WarningFilled color="var(--ctp-yellow)" />
 						<span>Avoid livestreams or videos featuring custom quests.</span>
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<WarningFilled color="var(--ctp-yellow)" />
 						<span>Avoid putting music that is not part of the game.</span>
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<WarningFilled color="var(--ctp-yellow)" />
 						<span
 							>Do not show the overlay UI during videos. The UI of the overlay
@@ -169,7 +175,7 @@
 			<SectionHeading level={3} title="Criteria for Leaderboard Submissions" />
 			<UnorderedList>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<span
 							>Show all of your guild card, gear and weapon pages at the end of
 							a hunt.</span
@@ -177,7 +183,7 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<span
 							>Use the speedrun preset in overlay settings. If the overlay
 							watermark shows numbers in parentheses, those runs are not
@@ -190,14 +196,14 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<span
 							><strong>Solo Runs:</strong> No other players or NPCs, except Halk.</span
 						>
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<span
 							><strong>Speedrun Categories Only:</strong> Runs with overlay
 							watermark numbers are not submitted. See the <OutboundLink
@@ -209,7 +215,7 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<span
 							><strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV9999,
 							2nd District Duremudira, and Upper Shiten are allowed.</span
@@ -217,7 +223,7 @@
 					</div></ListItem
 				>
 				<ListItem
-					><div class="list-item">
+					><div class="list-item paragraph-long-02">
 						<span
 							><strong>Viewable Video Links:</strong> Each video link must come from
 							the player submitting the run. You cannot upload runs on behalf of
@@ -233,19 +239,19 @@
 		<SectionHeading level={2} title="Frequently Asked Questions" />
 		<Accordion>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						Am I allowed to submit my runs to YouTube/Twitch?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">Yes, but you do so at your own risk.</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						What types of videos are most likely to get copyright strikes?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">
 					Videos that mention external tools or mods, livestreams or videos
 					featuring custom quests, and videos with non-game music are more
@@ -253,11 +259,11 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						What should I do if I receive a copyright strike?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">
 					If you receive a copyright strike, review YouTube's copyright policies
 					and guidelines. You may want to appeal the strike if you believe it
@@ -266,11 +272,11 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						Can I use the overlay in private or unlisted YouTube videos?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">
 					We recommend making YouTube videos unlisted rather than public to
 					reduce the risk of copyright strikes. Private videos, which require
@@ -278,11 +284,11 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						How do I edit video links via the run ID in the overlay?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">
 					The overlay has a section where you can edit video links by entering
 					the run ID. Refer to the overlay's documentation and FAQ for detailed
@@ -290,11 +296,11 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						What should I do if my video gets removed from YouTube?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">
 					If your video is removed, consider re-uploading it to an alternative
 					platform like archive.org or Bilibili. Ensure your video complies with
@@ -302,12 +308,12 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						Are there any specific settings I should use in the overlay for
 						speedrunning?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">
 					Yes, use the speedrun preset in the overlay settings. Ensure the
 					overlay watermark does not show numbers in parentheses, as these runs
@@ -319,12 +325,12 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						Why do I need to show my guild card, gear, and weapon pages at the
 						end of a hunt?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">
 					This ensures the authenticity of your run and verifies that no
 					unauthorized modifications were used. It helps maintain the integrity
@@ -332,23 +338,23 @@
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">Can I upload runs on behalf of another player?</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">
 					No, each player must upload their own runs. Video links must come
 					directly from the player submitting the run.
 				</p>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						What are the criteria for leaderboard submissions?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<UnorderedList>
 					<ListItem
-						><div class="list-item">
+						><div class="list-item paragraph-long-02">
 							<span
 								>Show all of your guild card, gear and weapon pages at the end
 								of a hunt.</span
@@ -356,7 +362,7 @@
 						</div></ListItem
 					>
 					<ListItem
-						><div class="list-item">
+						><div class="list-item paragraph-long-02">
 							<span
 								>Use the speedrun preset in overlay settings. If the overlay
 								watermark shows numbers in parentheses, those runs are not
@@ -369,14 +375,14 @@
 						</div></ListItem
 					>
 					<ListItem
-						><div class="list-item">
+						><div class="list-item paragraph-long-02">
 							<span
 								><strong>Solo Runs:</strong> No other players or NPCs, except Halk.</span
 							>
 						</div></ListItem
 					>
 					<ListItem
-						><div class="list-item">
+						><div class="list-item paragraph-long-02">
 							<span
 								><strong>Speedrun Categories Only:</strong> Runs with overlay
 								watermark numbers are not submitted. See the <OutboundLink
@@ -388,7 +394,7 @@
 						</div></ListItem
 					>
 					<ListItem
-						><div class="list-item">
+						><div class="list-item paragraph-long-02">
 							<span
 								><strong>No Custom Quests:</strong> Only Z4, Musous, Conquest LV9999,
 								2nd District Duremudira, and Upper Shiten are allowed.</span
@@ -396,7 +402,7 @@
 						</div></ListItem
 					>
 					<ListItem
-						><div class="list-item">
+						><div class="list-item paragraph-long-02">
 							<span
 								><strong>Viewable Video Links:</strong> Each video link must come
 								from the player submitting the run. You cannot upload runs on behalf
@@ -407,11 +413,11 @@
 				</UnorderedList>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					<p class="question">
 						What platforms do you recommend for archiving speedruns?
 					</p>
-				</svelte:fragment>
+				{/snippet}
 				<p class="answer">
 					We recommend using platforms such as archive.org and Bilibili for
 					video submissions. Avoid using Twitch or YouTube due to the risk of
@@ -432,7 +438,7 @@
 
 	<section>
 		<SectionHeading level={2} title="References" />
-		<OrderedList>
+		<OrderedList class="spaced-list">
 			<CiteNote
 				href="https://web.archive.org/web/20231226052918/https://www.youtube.com/channel/UCG8wOav28pu6mT9NXRlWohw/community?lb=UgkxDTcEMtqBKCPcTmuwYHLI-3FT6jSb92Wq"
 				text="https://web.archive.org/web/20231226052918/https://www.youtube.com/channel/UCG8wOav28pu6mT9NXRlWohw/community?lb=UgkxDTcEMtqBKCPcTmuwYHLI-3FT6jSb92Wq"

@@ -1,11 +1,21 @@
 <script lang="ts">
 	import Quotes from 'carbon-icons-svelte/lib/Quotes.svelte';
 
-	export let authorName: string;
-	export let authorTitle: string;
-	export let quote: string;
-	export let authorImage: string;
-	export let authorLink = '';
+	interface Props {
+		authorName: string;
+		authorTitle: string;
+		quote: string;
+		authorImage: string;
+		authorLink?: string;
+	}
+
+	let {
+		authorName,
+		authorTitle,
+		quote,
+		authorImage,
+		authorLink = '',
+	}: Props = $props();
 </script>
 
 {#if authorLink === ''}
@@ -33,12 +43,10 @@
 		<a href={authorLink}>
 			<div class="image-container">
 				<img src={authorImage} alt={authorName} />
-				<cite class="author"
-					><a href={authorLink}>
-						<p class="author-name">{authorName}</p>
-						<p class="author-title">{authorTitle}</p>
-					</a></cite
-				>
+				<cite class="author">
+					<p class="author-name">{authorName}</p>
+					<p class="author-title">{authorTitle}</p>
+				</cite>
 			</div>
 		</a>
 		<div class="text">

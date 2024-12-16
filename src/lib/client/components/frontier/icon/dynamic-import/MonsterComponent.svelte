@@ -545,7 +545,7 @@
 			import('$lib/client/components/frontier/icon/monster/Elzelion.svelte'),
 		ArrogantDuremudira: () =>
 			import(
-				'$lib/client/components/frontier/icon/monster/ArrogantDuremudira.svelte'
+				'$lib/client/components/frontier/icon/monster/ArrogantDuremudira2.svelte'
 			),
 		Seregios: () =>
 			import(
@@ -731,6 +731,11 @@
 	};
 
 	async function getMonsterIconComponent(displayName: string) {
+		if (displayName === '' || !displayName) {
+			console.warn(`Icon component not found for ${currentMonster}`);
+			return monsterImports['Random']();
+		}
+
 		const monsterKey = displayName.replaceAll(' ', '').replaceAll('-', '');
 		if (monsterImports[monsterKey]) {
 			return monsterImports[monsterKey]();
@@ -741,13 +746,17 @@
 			}
 
 			console.warn(`Icon component not found for ${currentMonster}`);
-			return monsterImports['ComponentMonsterRandom']();
+			return monsterImports['Random']();
 		}
 	}
 
-	export let currentMonster: string;
-	export let size: string = '100%';
-	export let background: boolean = true;
+	interface Props {
+		currentMonster: string;
+		size?: string;
+		background?: boolean;
+	}
+
+	let { currentMonster, size = '100%', background = true }: Props = $props();
 </script>
 
 {#await getMonsterIconComponent(currentMonster)}

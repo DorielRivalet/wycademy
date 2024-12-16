@@ -1,7 +1,12 @@
 <script lang="ts">
-	export let width = 433;
-	export let height = 882;
-	export let src: string | undefined = undefined;
+	interface Props {
+		width?: number;
+		height?: number;
+		src?: string | undefined;
+		[key: string]: any
+	}
+
+	let { width = 433, height = 882, src = undefined, ...rest }: Props = $props();
 </script>
 
 <div class="iphone-container">
@@ -10,7 +15,7 @@
 		viewBox="0 0 {width} {height}"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
-		{...$$restProps}
+		{...rest}
 	>
 		<path
 			d="M2 73C2 32.6832 34.6832 0 75 0H357C397.317 0 430 32.6832 430 73V809C430 849.317 397.317 882 357 882H75C34.6832 882 2 849.317 2 809V73Z"

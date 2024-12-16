@@ -1,10 +1,21 @@
 <script lang="ts">
 	import DecoratedBorder from '$lib/client/components/frontier/DecoratedBorder.svelte';
 
-	export let title;
-	export let type;
-	export let hunted = 0;
-	export let description = 'Description';
+	interface Props {
+		title: any;
+		type: any;
+		hunted?: number;
+		description?: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		title,
+		type,
+		hunted = 0,
+		description = 'Description',
+		children
+	}: Props = $props();
 </script>
 
 <div style="display: flex;">
@@ -24,7 +35,7 @@
 				>{hunted} (global, rank #1)
 			</div>
 			<div class="image">
-				<slot></slot>
+				{@render children?.()}
 			</div>
 			<div class="description">{description}</div>
 			<div></div>

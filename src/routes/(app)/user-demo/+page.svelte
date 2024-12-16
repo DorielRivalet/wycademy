@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -101,10 +101,10 @@
 	const customTitle = "User Demo — Frontier's Wycademy";
 	const url = $page.url.toString();
 
-	let open = false;
-	let modalPage: 1 | 2 | 3 = 1;
-	let selectedReportOption: string | number | undefined = undefined;
-	let reportDetails = '';
+	let open = $state(false);
+	let modalPage: 1 | 2 | 3 = $state(1);
+	let selectedReportOption: string | number | undefined = $state(undefined);
+	let reportDetails = $state('');
 
 	function getPrimaryButtonText(page: 1 | 2 | 3) {
 		switch (page) {
@@ -354,7 +354,7 @@
 		<Tab label="Favorites" />
 		<Tab label="Events" />
 
-		<svelte:fragment slot="content">
+		{#snippet content()}
 			<TabContent>
 				<section>
 					<SectionHeading level={2} title="Wardrobe" />
@@ -400,7 +400,7 @@
 				</section>
 			</TabContent>
 			<TabContent>Events</TabContent>
-		</svelte:fragment>
+		{/snippet}
 	</Tabs>
 
 	<section>

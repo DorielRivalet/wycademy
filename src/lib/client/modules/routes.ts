@@ -1,4 +1,4 @@
-import type { ComponentType, SvelteComponent } from 'svelte';
+import type { Component } from 'svelte';
 import BookIconWhite from '$lib/client/components/frontier/icon/item/Book_Icon_White.svelte';
 import { LocationIcons } from './frontier/locations';
 import StygianZinogre from '$lib/client/components/frontier/icon/monster/StygianZinogre.svelte';
@@ -55,7 +55,7 @@ export type NavigationItem = {
 	name: string;
 	description: string;
 	link: string;
-	image: string | ComponentType<SvelteComponent> | undefined;
+	image: string | Component | undefined;
 };
 
 export type CategoryInfo = {

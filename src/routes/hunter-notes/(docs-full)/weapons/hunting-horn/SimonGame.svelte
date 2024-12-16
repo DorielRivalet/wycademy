@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HuntingHornNoteIcon from './frontier/icon/HuntingHornNoteIcon.svelte';
+	import HuntingHornNoteIcon from '$lib/client/components/frontier/icon/HuntingHornNoteIcon.svelte';
 	import SimonButton from './SimonButton.svelte';
 	import { onMount } from 'svelte';
 	import c4 from '$lib/client/sounds/c4.opus';
@@ -13,23 +13,33 @@
 	import { fade, fly } from 'svelte/transition';
 	import DocumentDownload from 'carbon-icons-svelte/lib/DocumentDownload.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
+	import { formatDate } from '$lib/client/modules/time';
 
-	export let simonNotes: string[];
-	export let currentSequence: string[] = [];
-	export let targetSequence: string[] = [];
-	export let simonScore: number = 0;
+	interface Props {
+		simonNotes: string[];
+		currentSequence?: string[];
+		targetSequence?: string[];
+		simonScore?: number;
+	}
+
+	let {
+		simonNotes,
+		currentSequence = $bindable([]),
+		targetSequence = $bindable([]),
+		simonScore = $bindable(0),
+	}: Props = $props();
 
 	const initialPressedDuration = 1000;
 	const finalPressedDuration = 500;
 	const durationDecrease = 20;
 
 	let currentDuration = initialPressedDuration;
-	let isPlaying = false;
-	let isShowingSequence = false;
-	let pressedButton: string | null = null;
+	let isPlaying = $state(false);
+	let isShowingSequence = $state(false);
+	let pressedButton: string | null = $state(null);
 	let currentIndex = 0;
 	let sounds: Record<string, HTMLAudioElement> = {};
-	let playedTargetSequence: string[] = [];
+	let playedTargetSequence: string[] = $state([]);
 	let lastTargetSequence: string[] = [];
 
 	const noteColors = {
@@ -130,26 +140,6 @@
 		}
 	}
 
-	function padTo2Digits(num: number) {
-		return num.toString().padStart(2, '0');
-	}
-
-	function formatDate(date: Date) {
-		return (
-			[
-				date.getFullYear(),
-				padTo2Digits(date.getMonth() + 1), // +1 because getMonth() is zero-based
-				padTo2Digits(date.getDate()),
-			].join('-') +
-			'-' +
-			[
-				padTo2Digits(date.getHours()),
-				padTo2Digits(date.getMinutes()),
-				padTo2Digits(date.getSeconds()),
-			].join('-')
-		);
-	}
-
 	function handleRelease() {
 		pressedButton = null;
 	}
@@ -161,6 +151,7 @@
 	}
 
 	function startGame() {
+		gameStateText = '';
 		isPlaying = true;
 		simonScore = 0;
 		targetSequence = [];
@@ -189,11 +180,13 @@
 		currentSequence = [];
 		playedTargetSequence = [];
 		currentDuration = initialPressedDuration;
-		// TODO
-		setTimeout(() => {
-			alert(`Game Over! Score: ${simonScore}`);
-		}, 500);
+		gameStateText = `Game Over! Score: ${simonScore}`;
 	}
+
+	let gameStateText = $state('');
+	const EASTER_EGG_SCORE = 12;
+	const EASTER_EGG =
+		'Splendid memory! Surely you can memorize weapon information, but how about monster information? A snake game and a Simon game are not the only pairs of games to find.';
 </script>
 
 <div class="simon-game">
@@ -232,10 +225,16 @@
 	</div>
 
 	<p>Score: {simonScore}</p>
+	{#if !isPlaying}
+		<p>{gameStateText}</p>
+		{#if simonScore >= EASTER_EGG_SCORE}
+			<p>{EASTER_EGG}</p>
+		{/if}
+	{/if}
 
 	{#if !isPlaying}
-		<p style:color="var(--ctp-subtext0)">Doriel's score: 12 (2024-11-08)</p>
-		<button class="start-button" on:click={startGame}> Start Game </button>
+		<p style:color="var(--ctp-subtext0)">Doriel's score: 18 (2024-11-17)</p>
+		<button class="start-button" onclick={startGame}> Start Game </button>
 		<Button
 			icon={DocumentDownload}
 			kind="tertiary"

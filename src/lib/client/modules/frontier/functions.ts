@@ -1,5 +1,5 @@
 /*
- * © 2023 Doriel Rivalet
+ * © 2024 Doriel Rivalet
  * Use of this source code is governed by a MIT license that can be
  * found in the LICENSE file.
  */
@@ -37,7 +37,7 @@ import DefenseIcon from '$lib/client/images/icon/defense_icon.webp';
 import BlastIcon from '$lib/client/images/icon/status/blast.webp';
 import type { FrontierWeaponID } from 'ezlion';
 import slugify from 'slugify';
-import { WeaponTypes } from './weapons';
+import { weaponTypeInfo } from './weapons';
 import { ArmorTypes } from './armor';
 
 export const frontierMath = {
@@ -67,7 +67,7 @@ export const frontierMappers = {
 		return mappedValues;
 	},
 	getWeaponNameById: (weaponId: number | string) => {
-		const weapon = WeaponTypes.find(
+		const weapon = weaponTypeInfo.find(
 			(weapon) => weapon.id.toString() === weaponId.toString(),
 		);
 		return weapon ? weapon.name : null;
@@ -79,7 +79,7 @@ export const frontierMappers = {
 		return result ? result.name : null;
 	},
 	getWeaponClassById: (weaponId: number | string) => {
-		const weapon = WeaponTypes.find(
+		const weapon = weaponTypeInfo.find(
 			(weapon) => weapon.id.toString() === weaponId.toString(),
 		);
 		return weapon ? weapon.class : null;

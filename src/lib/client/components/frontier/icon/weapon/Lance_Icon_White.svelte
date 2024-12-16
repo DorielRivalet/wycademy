@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -8,9 +8,13 @@
 	import { blendColor } from '$lib/client/modules/color-blend';
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 	import type { FrontierRarity } from '$lib/client/modules/frontier/types';
-	export let rarity: FrontierRarity = 1;
+	interface Props {
+		rarity?: FrontierRarity;
+	}
 
-	$: targetColor = RarityColors[rarity - 1];
+	let { rarity = 1 }: Props = $props();
+
+	let targetColor = $derived(RarityColors[rarity - 1]);
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->

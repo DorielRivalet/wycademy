@@ -1,40 +1,41 @@
 <script lang="ts">
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
 
-	const carbonThemeStore = getContext(
-		Symbol.for('carbonTheme'),
-	) as Writable<CarbonTheme>;
+	interface Props {
+		theme: CarbonTheme;
+		/**Navigate to home page on click*/
+		clickable?: boolean;
+		/**Show musou on hover*/
+		hoverable?: boolean;
+	}
 
-	/**Navigate to home page on click*/
-	export let clickable = true;
-
-	/**Show musou on hover*/
-	export let hoverable = true;
+	let { clickable = true, hoverable = true, theme }: Props = $props();
 
 	const musouColor = '#73625a';
 	const normalColor = '#f7f4fd';
 	const normalStroke = '#706873';
 	const musouStroke = '#000000';
 
-	let isHovered = false;
+	let isHovered = $state(false);
 
-	$: targetColor = isHovered && hoverable ? musouColor : normalColor;
-	$: targetStroke = isHovered && hoverable ? musouStroke : normalStroke;
-	$: textColor =
-		$carbonThemeStore === 'g10'
+	let targetColor = $derived(isHovered && hoverable ? musouColor : normalColor);
+	let targetStroke = $derived(
+		isHovered && hoverable ? musouStroke : normalStroke,
+	);
+	let textColor = $derived(
+		theme === 'g10'
 			? getHexStringFromCatppuccinColor('surface1', 'g100')
-			: getHexStringFromCatppuccinColor('text', 'g100');
-	$: link = clickable ? '/' : '#';
+			: getHexStringFromCatppuccinColor('text', 'g100'),
+	);
+	let link = $derived(clickable ? '/' : '#');
 </script>
 
 <a href={link} aria-label="Logo, back to homepage if clickable">
 	<svg
 		role="banner"
-		on:mouseenter={() => (isHovered = true)}
-		on:mouseleave={() => (isHovered = false)}
+		onmouseenter={() => (isHovered = true)}
+		onmouseleave={() => (isHovered = false)}
 		width="100%"
 		height="100%"
 		viewBox="0 0 429.69658 165.23765"

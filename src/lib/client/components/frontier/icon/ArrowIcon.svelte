@@ -1,12 +1,16 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
 
 <script lang="ts">
-	export let fill: string = '#fff';
-	export let style: string = '';
+	interface Props {
+		fill?: string;
+		style?: string;
+	}
+
+	let { fill = '#fff', style = '' }: Props = $props();
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
@@ -21,18 +25,6 @@
 	xmlns="http://www.w3.org/2000/svg"
 >
 	<defs id="defs4840" />
-	<sodipodi:namedview
-		id="base"
-		pagecolor="#ffffff"
-		bordercolor="#666666"
-		borderopacity="1.0"
-		showgrid="true"
-		units="px"
-		showguides="true"
-		type="xygrid"
-		originx="-11.740886"
-		originy="-1.90169"
-	/>
 	<g transform="translate(-11.740886,-281.96834)"
 		><path
 			style="fill:{fill};fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1;"

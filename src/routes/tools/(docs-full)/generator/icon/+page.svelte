@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -14,7 +14,6 @@
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import { browser } from '$app/environment';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
 	import type {
@@ -40,11 +39,12 @@
 		ColorCodes,
 		gameInfo,
 	} from '$lib/client/modules/frontier/objects';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -126,10 +126,10 @@
 			| { name: string; image: any }[];
 		switch (type) {
 			default:
-				list = WeaponTypes;
+				list = weaponTypeInfo;
 				break;
 			case 'Weapon':
-				list = WeaponTypes;
+				list = weaponTypeInfo;
 				break;
 			case 'Armor':
 				list = ArmorTypes;
@@ -208,8 +208,8 @@
 		switch (selectedIconType) {
 			case 'Weapon':
 				return {
-					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
-					image: WeaponTypes.find((e) => e.name === selectionID)?.smallIcon,
+					component: weaponTypeInfo.find((e) => e.name === selectionID)?.icon,
+					image: weaponTypeInfo.find((e) => e.name === selectionID)?.smallIcon,
 				};
 			case 'Monster Icon':
 				return {
@@ -300,19 +300,19 @@
 	);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Icons Preview'} />
 		<p class="spaced-paragraph">
 			This is a playground for icons, which can be useful for seeing game assets
 			and downloading your results.
 		</p>
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			You can find the image for the monster backgrounds in our <OutboundLink
 				href="https://github.com/DorielRivalet/wycademy/blob/main/src/lib/client/images/monster/bg-512.webp"
 				>repository</OutboundLink
 			>.
-		</p>
+		</div>
 		<div class="container-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadIconImage}
 				>Download</Button
@@ -454,7 +454,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -8,11 +8,7 @@
 	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
-	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
 	import { onMount } from 'svelte';
-	import { cursorVars } from '$lib/client/themes/cursor';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -27,7 +23,6 @@
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
 	const stickyHeaderStore = getContext(
 		Symbol.for('stickyHeader'),
 	) as Writable<boolean>;
@@ -35,23 +30,9 @@
 		Symbol.for('banner'),
 	) as Writable<boolean>;
 
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
 	export let data: LayoutData;
 
 	onMount(() => {
-		let themeValue = $carbonThemeStore;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
-		let cursorValue = $cursorIcon;
-		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
 		// Add event listener for scroll events
 		window.addEventListener('scroll', handleScroll);
 	});
@@ -67,6 +48,9 @@
 		switch (path) {
 			case '/arena': {
 				return 'bg-arena';
+			}
+			case '/quest-viewer': {
+				return 'bg-profile';
 			}
 			case '/site-preferences': {
 				return 'bg-equipment-box';
@@ -109,12 +93,6 @@
 
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
 
-<Theme
-	bind:theme={$carbonThemeStore}
-	persist
-	persistKey="__carbon-theme"
-	{tokens}
-/>
 <div class="app">
 	<ViewTransition />
 	<div class={headerClass}>

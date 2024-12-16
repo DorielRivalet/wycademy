@@ -2,7 +2,7 @@
 	// TODO Point Breakthrough Ceaseless Status Assault Rush Stylish Combos Sigils Skill Slots Monster Hitzones Bitfields
 
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DivaPrayerGem from '$lib/client/components/frontier/icon/DivaPrayerGem.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
@@ -55,7 +55,7 @@
 	import { display } from 'mathlifier';
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import { codeToHtml } from 'shiki';
-	import { getCatppuccinFlavorFromThemeForShiki } from '$lib/client/themes/catppuccin';
+	import { getCatppuccinFlavorFromThemeForShiki } from '$lib/catppuccin';
 	import { browser } from '$app/environment';
 	import { getDivaPrayerGemColor } from '$lib/client/modules/frontier/diva';
 	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';
@@ -120,7 +120,7 @@
 		bowChargeLevels,
 		gunlanceShellValues,
 		oldBlademasterSharpness,
-		WeaponTypes,
+		weaponTypeInfo,
 		getWeaponIcon,
 	} from '$lib/client/modules/frontier/weapons';
 	import { missionRequirementAttackCeilings } from '$lib/client/modules/frontier/objects';
@@ -356,7 +356,7 @@
 		weaponType: FrontierWeaponName,
 		statusType: FrontierStatus,
 	) {
-		let weapon = WeaponTypes.find((w) => w.name === weaponType);
+		let weapon = weaponTypeInfo.find((w) => w.name === weaponType);
 		if (!weapon) {
 			return 0;
 		}
@@ -390,6 +390,10 @@
 		dragon: string;
 		additional: string;
 		stun: string;
+		gaugeConsumption?: string;
+		guardPoint?: boolean;
+		hitCount: string;
+		elementMultiplier: string;
 	};
 
 	function downloadMotionValuesImage() {
@@ -1127,7 +1131,7 @@
 	// TODO unused
 	function getHitzoneValueFromWeaponType(weaponType: FrontierWeaponName) {
 		let damageType =
-			WeaponTypes.find((e) => e.name === weaponType)?.damageType || '';
+			weaponTypeInfo.find((e) => e.name === weaponType)?.damageType || '';
 		switch (damageType) {
 			default:
 				return 0;
@@ -1146,7 +1150,7 @@
 
 	function getRawHitzoneMultiplier(weaponType: FrontierWeaponName) {
 		let damageType =
-			WeaponTypes.find((e) => e.name === weaponType)?.damageType || '';
+			weaponTypeInfo.find((e) => e.name === weaponType)?.damageType || '';
 		switch (damageType) {
 			default:
 				return 1;
@@ -1749,6 +1753,10 @@
 				dragon: '0',
 				additional: '0',
 				stun: '0',
+				hitCount: '0',
+				elementMultiplier: '0',
+				gaugeConsumption: '0',
+				guardPoint: false,
 			},
 		];
 
@@ -2615,6 +2623,16 @@
 				stun: Array.isArray(motionValueItem.stun)
 					? motionValueItem.stun.join('･')
 					: motionValueItem.stun.toString(),
+				hitCount: motionValueItem.hitCount.toString(),
+				elementMultiplier: motionValueItem.elementMultiplier.toString(),
+				gaugeConsumption: motionValueItem.gaugeConsumption
+					? Array.isArray(motionValueItem.gaugeConsumption)
+						? motionValueItem.gaugeConsumption.join('･')
+						: motionValueItem.gaugeConsumption.toString()
+					: '0',
+				guardPoint: motionValueItem.guardPoint
+					? motionValueItem.guardPoint
+					: false,
 			});
 		});
 
@@ -2626,7 +2644,7 @@
 		section: string,
 		motionValueName: string,
 	): FrontierMotionValue {
-		let defaultValue = {
+		let defaultValue: FrontierMotionValue = {
 			name: '',
 			animation: '',
 			values: '',
@@ -2634,6 +2652,9 @@
 			specialFlag: '',
 			hitCount: 0,
 			elementMultiplier: 0,
+			stun: 0,
+			guardPoint: false,
+			gaugeConsumption: 0,
 		};
 
 		if (section === 'Shared') {
@@ -3387,7 +3408,7 @@
 		weaponType: FrontierWeaponName,
 		outputObscurityLevel: number,
 	) {
-		let foundWeapon = WeaponTypes.find((e) => e.name === weaponType);
+		let foundWeapon = weaponTypeInfo.find((e) => e.name === weaponType);
 
 		if (!foundWeapon) {
 			return 0;
@@ -3473,7 +3494,7 @@
 				? 4
 				: 0;
 		let modifier =
-			WeaponTypes.find((e) => e.name === weaponName)
+			weaponTypeInfo.find((e) => e.name === weaponName)
 				?.elementalExploitModifier || 0;
 
 		if (
@@ -4529,7 +4550,7 @@ ${inputNumberDefenseRate} \\times\\newline ${inputNumberMonsterRage} \\times\\ne
 	);
 
 	$: outputWeaponTypeMultiplier =
-		WeaponTypes.find((weaponType) => weaponType.name === inputWeaponType)
+		weaponTypeInfo.find((weaponType) => weaponType.name === inputWeaponType)
 			?.bloatAttackMultiplier || 1.2;
 
 	$: addToDamageCalculatorHistoryLogs(
@@ -6125,250 +6146,169 @@ does not get multiplied by horn */
 			? inputNumberDragonHitzone
 			: hitzoneValues.find((e) => e.part === selectedMonsterPart)?.dragon;
 
-	function getMotionValuesTableHeaders(inputElement: FrontierElement) {
-		const defaultResult = [
+	function getMotionValuesTableHeaders(
+		inputElement: FrontierElement,
+		inputWeaponType: FrontierWeaponName,
+	) {
+		let result: {
+			key: string;
+			value: string;
+			width?: string;
+			minWidth?: string;
+		}[] = [];
+
+		result.push(
 			{ key: 'name', value: 'Name', width: '12rem' },
 			{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
 			{ key: 'raw', value: 'Raw', minWidth: '1rem' },
 			{ key: 'element', value: 'Element', minWidth: '1rem' },
 			{ key: 'total', value: 'Total', minWidth: '1rem' },
-			{ key: 'fire', value: '🔥', minWidth: '1rem' },
-			{ key: 'water', value: '💧', minWidth: '1rem' },
-			{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-			{ key: 'ice', value: '❄️', minWidth: '1rem' },
-			{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-			{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-			{ key: 'stun', value: '💫', minWidth: '1rem' },
-		];
+		);
 
 		switch (inputElement) {
-			default:
-				return defaultResult;
+			// default:
+			// 	result.push(
+			// 		{ key: 'fire', value: '🔥', minWidth: '1rem' },
+			// 		{ key: 'water', value: '💧', minWidth: '1rem' },
+			// 		{ key: 'thunder', value: '⚡', minWidth: '1rem' },
+			// 		{ key: 'ice', value: '❄️', minWidth: '1rem' },
+			// 		{ key: 'dragon', value: '🐲', minWidth: '1rem' },
+			// 	);
 			case 'Fire':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'fire', value: '🔥', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'fire', value: '🔥', minWidth: '1rem' });
+				break;
 			case 'Water':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'water', value: '💧', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'water', value: '💧', minWidth: '1rem' });
+				break;
 			case 'Thunder':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'thunder', value: '⚡', minWidth: '1rem' });
+				break;
 			case 'Ice':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'ice', value: '❄️', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'ice', value: '❄️', minWidth: '1rem' });
+				break;
 			case 'Dragon':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
-			case 'None':
-			case '':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				result.push({ key: 'dragon', value: '🐲', minWidth: '1rem' });
+				break;
+			// case 'None':
+			// case '':
+			// result.push(
+			// 		{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+			// 		{ key: 'stun', value: '💫', minWidth: '1rem' },
+			// 		);
 			case 'Light':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Blaze':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Tenshou':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Lightning Rod':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Okiko':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Black Flame':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Crimson Demon':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Dark':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Music':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Sound':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'water', value: '💧', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Wind':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case 'Burning Zero':
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'fire', value: '🔥', minWidth: '1rem' },
 					{ key: 'ice', value: '❄️', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 			case "Emperor's Roar":
-				return [
-					{ key: 'name', value: 'Name', width: '12rem' },
-					{ key: 'motion', value: 'Motion Value', minWidth: '8rem' },
-					{ key: 'raw', value: 'Raw', minWidth: '1rem' },
-					{ key: 'element', value: 'Element', minWidth: '1rem' },
-					{ key: 'total', value: 'Total', minWidth: '1rem' },
+				result.push(
 					{ key: 'thunder', value: '⚡', minWidth: '1rem' },
 					{ key: 'dragon', value: '🐲', minWidth: '1rem' },
-					{ key: 'additional', value: 'Additional', minWidth: '1rem' },
-					{ key: 'stun', value: '💫', minWidth: '1rem' },
-				];
+				);
+				break;
 		}
+
+		result.push(
+			{ key: 'additional', value: 'Additional', minWidth: '1rem' },
+			{ key: 'stun', value: '💫', minWidth: '1rem' },
+		);
+
+		switch (inputWeaponType) {
+			case 'Switch Axe F':
+				result.push({
+					key: 'gaugeConsumption',
+					value: 'Gauge Consumption',
+					minWidth: '1rem',
+				});
+				break;
+			case 'Tonfa':
+				result.push({
+					key: 'guardPoint',
+					value: 'Guard Point',
+					minWidth: '1rem',
+				});
+				break;
+		}
+
+		result.push(
+			{ key: 'hitCount', value: 'Hits', minWidth: '1rem' },
+			{
+				key: 'elementMultiplier',
+				value: 'Element Multiplier',
+				minWidth: '1rem',
+			},
+		);
+
+		return result;
 	}
 
 	let openIntroduction = false;
@@ -6376,7 +6316,12 @@ does not get multiplied by horn */
 	let openInputsSection = true;
 	let openResultsSection = true;
 
-	$: motionValuesTableHeaders = getMotionValuesTableHeaders(inputElement);
+	$: motionValuesTableHeaders = getMotionValuesTableHeaders(
+		inputElement,
+		inputWeaponType,
+	);
+
+	let interceptionIcon = getLocationIcon('Interception');
 </script>
 
 <Modal
@@ -6391,7 +6336,7 @@ does not get multiplied by horn */
 	{#if modalImage !== '' && modalImage}
 		<div class="modal-content">
 			<img src={modalImage} alt={'motion value animation'} />
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -6473,7 +6418,7 @@ does not get multiplied by horn */
 	{/if}
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<div>
 			<SectionHeadingTopLevel title={'Damage Calculator'} />
@@ -6496,12 +6441,12 @@ does not get multiplied by horn */
 						</h5>
 					</svelte:fragment>
 					<p>
-						Welcome to Wycademy's Damage Calculator! Here you can calculate
-						various game statistics, such as your total damage, by selecting the
-						gear and weapon values. You can, for example:
+						Welcome to Wycademy's Damage Calculator! Calculate various game
+						statistics, such as your total damage, by selecting the gear and
+						weapon values. You can, for example:
 					</p>
 					<UnorderedList class="spaced-list">
-						<ListItem>
+						<ListItem class="paragraph-long-02">
 							Select a weapon type such as <InlineToggletip
 								title="Long Sword"
 								subtitle="A sword from a far away land"
@@ -6515,7 +6460,7 @@ does not get multiplied by horn */
 								on:openModal={(e) => handleOpenModal(e)}
 							></InlineToggletip>.
 						</ListItem>
-						<ListItem>
+						<ListItem class="paragraph-long-02">
 							Compare your attack values against <InlineToggletip
 								title="Blinking Nargacuga"
 								subtitle="Musou"
@@ -6536,21 +6481,21 @@ does not get multiplied by horn */
 								icon={getMonster('Rathalos', 'Zenith').icon}
 							/> defense rate.
 						</ListItem>
-						<ListItem
+						<ListItem class="paragraph-long-02"
 							>View element damage, motion values animations and the formulas
 							for your total damage.</ListItem
 						>
-						<ListItem>And much more!</ListItem>
+						<ListItem class="paragraph-long-02">And much more!</ListItem>
 					</UnorderedList>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						This damage calculator may not reflect the damage output you do in
 						the game with total accuracy. In order to track and report damage
 						testing, you can check <OutboundLink
 							href="https://github.com/DorielRivalet/wycademy/issues/360"
 							>the pinned issue in the repository</OutboundLink
 						>.
-					</p></AccordionItem
+					</div></AccordionItem
 				>
 			</Accordion>
 
@@ -6796,7 +6741,7 @@ does not get multiplied by horn */
 
 												<div class="dropdown-tooltip-container">
 													<Tooltip align="start">
-														<p class="spaced-paragraph">
+														<p>
 															These are not a final multiplier but rather
 															additional true raw damage.
 														</p>
@@ -7539,7 +7484,7 @@ does not get multiplied by horn */
 											<div class="inputs-group-column">
 												<div class="dropdown-tooltip-container">
 													<Tooltip align="start">
-														<p class="spaced-paragraph">
+														<p>
 															These buffs only take effect if you are using a
 															weapon that is on a Gou tree while on a Gou,
 															Supremacy or G Rank quest.
@@ -8014,7 +7959,7 @@ does not get multiplied by horn */
 																/>
 															</div>
 
-															<p>{item.id}</p>
+															<div>{item.id}</div>
 														</div>
 													</Dropdown>
 												</div>
@@ -8861,7 +8806,7 @@ does not get multiplied by horn */
 															/>
 														</div>
 
-														<p>{item.text}</p>
+														<div>{item.text}</div>
 													</div>
 												</Dropdown>
 
@@ -9002,7 +8947,7 @@ does not get multiplied by horn */
 															/>
 														</div>
 
-														<p>{item.text}</p>
+														<div>{item.text}</div>
 													</div>
 												</Dropdown>
 
@@ -9083,7 +9028,7 @@ does not get multiplied by horn */
 																src={getMonsterIcon(item.id)}
 																alt="Monster Icon"
 															/>
-															<p>{item.id}</p>
+															<div>{item.id}</div>
 														</div>
 													</ComboBox>
 												</div>
@@ -9431,11 +9376,7 @@ does not get multiplied by horn */
 							<svelte:fragment slot="title">
 								<h5 class="accordion-title">
 									<span
-										><img
-											src={getLocationIcon('Interception')}
-											alt="Diva"
-											width={16}
-										/></span
+										><img src={interceptionIcon} alt="Diva" width={16} /></span
 									><span>Diva Prayer Gems</span>
 								</h5>
 							</svelte:fragment>
@@ -9767,11 +9708,11 @@ does not get multiplied by horn */
 								</h5>
 							</svelte:fragment>
 							<div>
-								<p class="spaced-paragraph">
+								<div class="spaced-paragraph">
 									Below are instructions for saving and loading the calculator
 									inputs from various sources in case you want to reference them
 									later.
-								</p>
+								</div>
 								<div>
 									<Tabs type="container">
 										<Tab label="Calculator" />
@@ -9856,16 +9797,18 @@ does not get multiplied by horn */
 														>:
 													</p>
 													<OrderedList class="spaced-list">
-														<ListItem>Load the overlay.</ListItem>
-														<ListItem
+														<ListItem class="paragraph-long-02"
+															>Load the overlay.</ListItem
+														>
+														<ListItem class="paragraph-long-02"
 															>Go into a quest and open overlay settings.</ListItem
 														>
-														<ListItem>
+														<ListItem class="paragraph-long-02">
 															Go to Hunter's Notes tab, right-click your guild
 															card and select "Copy stats for Wycademy's Damage
 															Calculator".
 														</ListItem>
-														<ListItem
+														<ListItem class="paragraph-long-02"
 															>Paste them into the Calculator tab here, on the
 															Load Data text input. Then press the Update button
 															next to it.</ListItem
@@ -9880,14 +9823,16 @@ does not get multiplied by horn */
 														calculator:
 													</p>
 													<OrderedList class="spaced-list">
-														<ListItem>Go to the legacy calculator.</ListItem>
-														<ListItem
+														<ListItem class="paragraph-long-02"
+															>Go to the legacy calculator.</ListItem
+														>
+														<ListItem class="paragraph-long-02"
 															>Open the Console by pressing <kbd>Ctrl</kbd> +
 															<kbd>Shift</kbd>
 															+
 															<kbd>I</kbd>.</ListItem
 														>
-														<ListItem>
+														<ListItem class="paragraph-long-02">
 															To put all of your save slots into the clipboard,
 															paste the following command and run it in the
 															console: <CodeSnippet
@@ -9896,11 +9841,11 @@ does not get multiplied by horn */
 																type="inline"
 															/>
 														</ListItem>
-														<ListItem>
+														<ListItem class="paragraph-long-02">
 															With the copied clipboard text, paste it into a
 															text editor and save as JSON file.
 														</ListItem>
-														<ListItem>
+														<ListItem class="paragraph-long-02">
 															Click the button below, specifying the slot number
 															in the number input, in order to import the file.
 														</ListItem>
@@ -10008,7 +9953,7 @@ does not get multiplied by horn */
 										<span><Help /></span><span>Help</span>
 									</h5>
 								</svelte:fragment>
-								<UnorderedList>
+								<UnorderedList class="spaced-list">
 									<ListItem>
 										<p>
 											The calculator does not include Diva Prayer Gems that do
@@ -10034,7 +9979,7 @@ does not get multiplied by horn */
 										</p>
 									</ListItem>
 									<ListItem>
-										<p>
+										<div class="paragraph-long-02">
 											The damage from <InlineTooltip
 												text="Zenith Sigils"
 												tooltip="Sigil"
@@ -10044,7 +9989,27 @@ does not get multiplied by horn */
 											<Link href="/tools/calculator/sigil" inline
 												>Sigils Calculator.</Link
 											>
-										</p>
+										</div>
+									</ListItem>
+									<ListItem>
+										<div class="paragraph-long-02">
+											True Raw refers to your damage without taking into account
+											the weapon type bloat multiplier, unlike Bloat Raw.
+										</div>
+									</ListItem>
+									<ListItem>
+										<div class="paragraph-long-02">
+											Attack Ceiling denotes the minimum Style Rank Attack
+											Ceiling level you need in order to not waste damage in the
+											current setup. Likewise, My Missions denotes the required
+											amount of My Missions needed to complete in order to not
+											waste damage in the current setup. For more information,
+											see the <Link
+												inline
+												href="/hunter-notes/getting-started/style-rank"
+												>Style Rank page.</Link
+											>
+										</div>
 									</ListItem>
 								</UnorderedList></AccordionItem
 							></Accordion
@@ -10074,7 +10039,7 @@ does not get multiplied by horn */
 						/>
 					{/if}
 
-					<p>
+					<div class="paragraph-long-02">
 						If you cannot find a motion value you are looking for, for example
 						<InlineTooltip
 							icon={getWeaponIcon('Heavy Bowgun')}
@@ -10083,12 +10048,13 @@ does not get multiplied by horn */
 							iconType="component"
 						/> compressed shots, try changing the <strong>Style</strong>
 						or <strong>Section</strong> options down below.
-					</p>
+					</div>
 
 					<div class="motion-values toc-exclude">
 						<DataTable
 							id="motion-values-dom"
 							sortable
+							useStaticWidth
 							zebra
 							size="short"
 							headers={motionValuesTableHeaders}
@@ -10155,7 +10121,7 @@ does not get multiplied by horn */
 												/>
 											</div>
 
-											<p>{item.id}</p>
+											<div>{item.id}</div>
 										</div>
 									</Dropdown>
 									<Dropdown
@@ -10216,6 +10182,8 @@ does not get multiplied by horn */
 										icon={Image}
 										kind="ghost">{cell.value}</Button
 									>
+								{:else if cell.key === 'guardPoint'}
+									<p>{cell.value ? '☑️' : '❌'}</p>
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
@@ -10230,16 +10198,39 @@ does not get multiplied by horn */
 									<span><Help /></span><span>Help</span>
 								</h5>
 							</svelte:fragment>
-							<UnorderedList>
+							<UnorderedList class="spaced-list">
+								<ListItem>
+									<p>
+										A motion value is defined as the intrinsic attack power of a
+										weapon move, which can be comprised of a single or multiple
+										hits. As an example, Great Sword Shining Sword attack has a
+										motion value of 27, and its comprised of 17 hits total;
+										Magnet Spike has Magnetic Pin Finisher which has a motion
+										value of 600, composed of a single attack. The difference
+										between the motion value column and the raw column is that
+										motion value is innate to the weapon type, while raw depends
+										not only on the motion value but also on the stats of your
+										weapon, armor, etc.
+									</p>
+								</ListItem>
 								<ListItem>
 									<p>
 										You can also change the table's weapon type in the Inputs
 										section.
 									</p>
 								</ListItem>
-
 								<ListItem>
-									<p>
+									<div class="paragraph-long-02">
+										Depending on the selected weapon type, additional columns
+										may show. For example, selecting <InlineTooltip
+											text="Switch Axe F"
+											tooltip="Weapon"
+											icon={getWeaponIcon('Switch Axe F')}
+										/> will show the gauge consumption column.
+									</div>
+								</ListItem>
+								<ListItem>
+									<div class="paragraph-long-02">
 										Some motion values have <InlineTooltip
 											text="Stun"
 											tooltip="Ailment"
@@ -10247,10 +10238,10 @@ does not get multiplied by horn */
 										/>
 										values. Stun/KO indicates impact portions of the motion value,
 										which use white sharpness as the maximum multiplier.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem>
-									<p>
+									<div class="paragraph-long-02">
 										The Additional column denotes a source of damage that is
 										separate from your True Raw limit. This includes <InlineTooltip
 											text="Bombs"
@@ -10267,10 +10258,10 @@ does not get multiplied by horn */
 											iconColor={ItemColors.find((e) => e.name === 'White')
 												?.value}
 										/>.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Due to how often the calculations round down values,
 										enabling more skills or barely increasing your damage may
 										not have any effect. For example, some motion values may not
@@ -10281,10 +10272,10 @@ does not get multiplied by horn */
 											iconColor={getItemColor('Red')}
 											iconType="component"
 										/>.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem>
-									<p>
+									<div class="paragraph-long-02">
 										Motion Values comprised of multiple hits have their raw
 										damage calculated separately by each hit value and then
 										added together. To demonstrate an example of multiple small
@@ -10295,7 +10286,7 @@ does not get multiplied by horn */
 											icon={getWeaponIcon('Great Sword')}
 											iconType="component"
 										/> and then input as Custom Motion Value the value 459.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem>
 									<p>
@@ -10328,6 +10319,7 @@ does not get multiplied by horn */
 					<DataTable
 						id="shared-motion-values-dom"
 						sortable
+						useStaticWidth
 						zebra
 						size="short"
 						headers={motionValuesTableHeaders}
@@ -10402,9 +10394,9 @@ does not get multiplied by horn */
 								<span><Help /></span><span>Help</span>
 							</h5>
 						</svelte:fragment>
-						<UnorderedList>
+						<UnorderedList class="spaced-list">
 							<ListItem>
-								<p>
+								<div class="paragraph-long-02">
 									<InlineTooltip
 										text="Dual Swords"
 										iconType="component"
@@ -10436,10 +10428,10 @@ does not get multiplied by horn */
 										tooltip="Weapon"
 										icon={getWeaponIcon('Bow')}
 									/> cannot use Reflect or Perfect Guard.
-								</p>
+								</div>
 							</ListItem>
 							<ListItem>
-								<p>
+								<div class="paragraph-long-02">
 									Motion Values comprised of multiple hits have their raw damage
 									calculated separately by each hit value and then added
 									together. To demonstrate an example of multiple small hits and
@@ -10450,7 +10442,7 @@ does not get multiplied by horn */
 										icon={getWeaponIcon('Great Sword')}
 										iconType="component"
 									/> and then input as Custom Motion Value the value 459.
-								</p>
+								</div>
 							</ListItem>
 						</UnorderedList></AccordionItem
 					></Accordion
@@ -10465,10 +10457,10 @@ does not get multiplied by horn */
 					kind="info"
 					lowContrast
 				/>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Below are the formulas for the above damage calculator. Your current
 					inputs values are reflected below each formula.
-				</p>
+				</div>
 
 				<div class="driverjs-6">
 					<Tabs type="container">
@@ -10742,7 +10734,7 @@ does not get multiplied by horn */
 								<span><Help /></span><span>Help</span>
 							</h5>
 						</svelte:fragment>
-						<UnorderedList>
+						<UnorderedList class="spaced-list">
 							<ListItem>
 								<p>
 									The final values whose formula depends on certain conditions
@@ -10761,7 +10753,7 @@ does not get multiplied by horn */
 			</div>
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {
@@ -10872,6 +10864,8 @@ does not get multiplied by horn */
 	}
 
 	.motion-values {
+		width: 100%;
+		background-color: var(--ctp-surface0);
 		overflow-x: auto;
 		margin-top: 2rem;
 		margin-bottom: 2rem;

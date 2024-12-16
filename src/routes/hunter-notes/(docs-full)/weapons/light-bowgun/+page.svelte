@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -187,11 +187,11 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Light Bowgun'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					tooltip="Weapon"
 					text="Light Bowgun"
@@ -199,8 +199,8 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					iconType="component"
 				/> (LBG) is a highly versatile ranged weapon known for its rapid bullet output,
 				utilizing Just Shots, Rapid Fire, and Ultra Rapid Fire to maximize damage.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				The Just Shot is the primary attack method for <InlineTooltip
 					tooltip="Weapon"
 					text="Light Bowgun"
@@ -210,8 +210,8 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 				this section allows you to fire the next shot sooner, boosting its damage
 				by 1.3x. This technique increases your DPS more effectively than either of
 				the rapid-fire methods.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				If you reload within the same window, you can reload faster, including
 				swapping ammo types if you're quick enough. Unlike the <InlineTooltip
 					tooltip="Weapon"
@@ -220,8 +220,8 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					iconType="component"
 				/>
 				Compression Shots, missing the timing window incurs no penalty.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Rapid Fire functions similarly to the mainline games, where you fire a
 				volley of shots while consuming a single bullet. These shots have a
 				power multiplier of 0.5x. Ultra Rapid Fire is similar but allows you to
@@ -229,8 +229,8 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 				consumed. For instance, if the first volley fires three shots, the
 				second volley fires four, the third fires five, and so on until you run
 				out of ammo.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					tooltip="Weapon"
 					text="Light Bowguns"
@@ -240,99 +240,103 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 				recoil, and Long Barrels don’t increase attack power. Instead, Silencers
 				make you less noticeable to monsters, and Long Barrels increase the speed
 				of your shots.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Critical Distance" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Critical Distance is a shared mechanic among all ranged weapons,
 						defining the optimal range for each ammo type. Here's a breakdown:
-					</p>
-					<p class="spaced-paragraph"><strong>Earth Style</strong></p>
+					</div>
+					<div class="spaced-paragraph"><strong>Earth Style</strong></div>
 					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Normal Shots"
 									icon={getItemIcon('Shot')}
 									iconType="component"
 								/>: Close to Mid Range
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pierce Shots"
 									icon={getItemIcon('Ammo Pierce')}
 									iconType="component"
 								/>: Mid to Far Range
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pellet Shots"
 									icon={getItemIcon('Ammo Spread')}
 									iconType="component"
 								/>: Short Range
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>Other Shots: Fixed damage regardless of distance</p></ListItem
+							><div class="paragraph-long-02">
+								Other Shots: Fixed damage regardless of distance
+							</div></ListItem
 						>
 					</UnorderedList>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Heaven and Storm Style</strong>
-					</p>
+					</div>
 					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Normal Shots"
 									icon={getItemIcon('Shot')}
 									iconType="component"
 								/>: Close Range
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pierce Shots"
 									icon={getItemIcon('Ammo Pierce')}
 									iconType="component"
 								/>: Close to Mid Range
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pellet Shots"
 									icon={getItemIcon('Ammo Spread')}
 									iconType="component"
 								/>: Short Range
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>Other Shots: Fixed damage regardless of distance</p></ListItem
+							><div class="paragraph-long-02">
+								Other Shots: Fixed damage regardless of distance
+							</div></ListItem
 						>
 					</UnorderedList>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						A visual cue helps you identify when you're at the critical
 						distance: the shot discards its casing, followed by an expanding
 						circle. Using this cue, you can learn proper spacing and improve
 						your positioning.
-					</p>
+					</div>
 				</div>
 			</section>
 
-			<p>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -341,39 +345,39 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Earth Style is the standard <InlineTooltip
 							tooltip="Weapon"
 							text="Light Bowgun"
 							icon={getWeaponIcon('Light Bowgun')}
 							iconType="component"
 						/> style, straightforward and effective without any notable distinctions.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Heaven Style builds on Earth Style by tightening all critical
 						distances and introducing quick reloading. Quick reloading loads
 						half your ammo (rounded up) but takes only half the time. In this
 						style, critical distances are shorter and narrower, but the damage
 						multipliers are increased from 1.5x to 1.6x.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Storm Style retains the changes from Heaven Style and adds the
 						ability to perform a quick forward hop as an evasion with your
 						weapon unsheathed. This evade chains into a Step Shot, which
@@ -382,8 +386,8 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						increasing the critical multiplier to 2.0x. This can be very
 						powerful, allowing you to chain high-damage shots while moving
 						forward.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						With Ultra Rapid Fire, all shots fired as a Step Shot use the same
 						critical distance. If you evade close to a monster without getting
 						hit, you can unleash a long barrage of <InlineTooltip
@@ -392,8 +396,8 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							icon={getItemIcon('Ammo Pierce')}
 							iconType="component"
 						/> with much higher damage.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						If you are using <InlineTooltip
 							tooltip="Armor Skill"
 							text="Combat Supremacy"
@@ -407,18 +411,18 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							icon={getItemIcon('Jewel')}
 							iconType="component"
 						/>.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Extreme Style is an advanced version of Earth Style, enhancing
 						mobility and functionality.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						As with other Extreme Styles, you can run while your weapon is
 						unsheathed. For <InlineTooltip
 							tooltip="Weapon"
@@ -431,17 +435,17 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						covering a significant distance in the direction you’re moving. You
 						can stop running instantly to shoot, though adjusting your angle is
 						challenging.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						This style also introduces Evasion Shots and Finishing Shots.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Evasion Shots allow you to shoot while evading, with a damage
 						multiplier of 0.6x and iframes similar to a roll. The caveat is that
 						you must have ammo loaded and be aware enough to match the timing
 						while chaining shots.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Finishing Shots are a variant of Just Shots that deal fixed 2.0x
 						damage but cause significant recoil, ending your shot combo. After
 						firing a Finishing Shot, you can only continue into a run, making it
@@ -453,7 +457,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 						/>. While Just Shots generally offer more sustained damage,
 						Finishing Shots can be powerful if you need to maximize damage
 						output with limited ammo.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -465,9 +469,9 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						+0.1x Damage increased at critical distance. x1.2 Status damage.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -501,13 +505,13 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -545,7 +549,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -556,7 +560,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -594,7 +598,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -610,7 +614,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -619,19 +623,19 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								As a Gunner weapon, the <InlineTooltip
 									tooltip="Weapon"
 									text="Light Bowgun"
 									iconType="component"
 									icon={getWeaponIcon('Light Bowgun')}
 								/> can quickly meet the requirements for various skills.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Long barrels don’t increase raw damage; instead, they boost shot
 								speed, which may disrupt timing with <InlineTooltip
 									tooltip="Ammo"
@@ -639,33 +643,33 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 									iconType="component"
 									icon={getItemIcon('Ammo Pierce')}
 								/> hits.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Rapid Fire isn’t commonly used in modern Frontier, so newer guns
 								don’t come with it, though you can still force it using sigils.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Pierce S"
 									iconType="component"
 									icon={getItemIcon('Ammo Pierce')}
 								/> is the primary raw ammo type used.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								If you’re having trouble tracking ammo with Just Shots, consider
 								using the first-person camera with the clip display positioned
 								under the crosshairs.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Like Sword and Shield, using items while unsheathed with <InlineTooltip
 									tooltip="Armor Skill"
 									text="LBG Hiden"
@@ -677,20 +681,20 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Proper spacing increases the size of <InlineTooltip
 									tooltip="Armor Skill"
 									text="LBG Hiden's"
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> Perfect Shot window when the buff is active.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Consider building sets both with and without <InlineTooltip
 									tooltip="Armor Skill"
 									text="Combat Supremacy"
@@ -703,10 +707,10 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> offers good mobility, but some monsters may require evasion.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Ammo"
 									text="Acid S"
@@ -719,10 +723,10 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 									icon={getMonsterIcon('Raviente')}
 								/>
 								due to its multiple hitzones.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Combined with <InlineTooltip
 									tooltip="Armor Skill"
 									text="Caring+3"
@@ -740,7 +744,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 									iconType="component"
 									icon={getItemIcon('Ammo Spread')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -751,7 +755,7 @@ Perfect Shot added to Just Shot meter that deals additional damage.`,
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

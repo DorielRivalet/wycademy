@@ -5,7 +5,7 @@
 	import BookIconWhite from './frontier/icon/item/Book_Icon_White.svelte';
 	import MapIconWhite from './frontier/icon/item/Map_Icon_White.svelte';
 	import '@carbon/charts-svelte/styles.css';
-	import { onMount, type ComponentType } from 'svelte';
+	import { onMount, type Component } from 'svelte';
 	import {
 		type GaugeChart,
 		type MeterChart,
@@ -13,28 +13,42 @@
 		type GaugeChartOptions,
 	} from '@carbon/charts-svelte';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	export let huntCount = Math.trunc(Math.random() * 1000);
-	export let obtainedAchievements = Math.trunc(Math.random() * 1000);
-	export let totalAchievements =
-		obtainedAchievements + Math.trunc(Math.random() * 1000);
-	export let obtainedTitles = Math.trunc(Math.random() * 1000);
-	export let totalTitles = obtainedTitles + Math.trunc(Math.random() * 1000);
+	interface Props {
+		huntCount?: any;
+		obtainedAchievements?: any;
+		totalAchievements?: any;
+		obtainedTitles?: any;
+		totalTitles?: any;
+		huntCountRank?: any;
+		huntCountRankPercent?: any;
+		obtainedAchievementsRank?: any;
+		obtainedAchievementsRankPercent?: any;
+		titlesRank?: any;
+		titlesRankPercent?: any;
+	}
 
-	export let huntCountRank = Math.trunc(Math.random() * 1000);
-	export let huntCountRankPercent = Math.trunc(Math.random() * 100);
-	export let obtainedAchievementsRank = Math.trunc(Math.random() * 1000);
-	export let obtainedAchievementsRankPercent = Math.trunc(Math.random() * 100);
-	export let titlesRank = Math.trunc(Math.random() * 1000);
-	export let titlesRankPercent = Math.trunc(Math.random() * 100);
+	let {
+		huntCount = Math.trunc(Math.random() * 1000),
+		obtainedAchievements = Math.trunc(Math.random() * 1000),
+		totalAchievements = obtainedAchievements + Math.trunc(Math.random() * 1000),
+		obtainedTitles = Math.trunc(Math.random() * 1000),
+		totalTitles = obtainedTitles + Math.trunc(Math.random() * 1000),
+		huntCountRank = Math.trunc(Math.random() * 1000),
+		huntCountRankPercent = Math.trunc(Math.random() * 100),
+		obtainedAchievementsRank = Math.trunc(Math.random() * 1000),
+		obtainedAchievementsRankPercent = Math.trunc(Math.random() * 100),
+		titlesRank = Math.trunc(Math.random() * 1000),
+		titlesRankPercent = Math.trunc(Math.random() * 100),
+	}: Props = $props();
 
 	function randomChoice(arr: any[]) {
 		return arr[Math.floor(arr.length * Math.random())];
@@ -111,12 +125,12 @@
 		},
 	];
 
-	let achievementsMeter: ComponentType<MeterChart>;
-	let achievementsMeterLoaded = false;
-	let titlesGauge: ComponentType<GaugeChart>;
-	let titlesGaugeLoaded = false;
+	let achievementsMeter: Component<MeterChart> = $state();
+	let achievementsMeterLoaded = $state(false);
+	let titlesGauge: Component<GaugeChart> = $state();
+	let titlesGaugeLoaded = $state(false);
 
-	$: achievementsMeterOptions = {
+	let achievementsMeterOptions = $derived({
 		toolbar: {
 			enabled: false,
 		},
@@ -138,15 +152,13 @@
 			},
 		},
 		theme: $carbonThemeStore,
-	} as MeterChartOptions;
+	} as MeterChartOptions);
 
-	$: titlesGaugeColor = getGaugeColor(
-		$carbonThemeStore,
-		obtainedTitles,
-		totalTitles,
+	let titlesGaugeColor = $derived(
+		getGaugeColor($carbonThemeStore, obtainedTitles, totalTitles),
 	);
 
-	$: titlesGaugeOptions = {
+	let titlesGaugeOptions = $derived({
 		theme: $carbonThemeStore,
 		resizable: true,
 		toolbar: {
@@ -161,7 +173,7 @@
 				value: titlesGaugeColor,
 			},
 		},
-	} as GaugeChartOptions;
+	} as GaugeChartOptions);
 
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
@@ -174,7 +186,7 @@
 
 <div class="stats-summary">
 	<div class="chart-container achievements">
-		<p>
+		<div class="paragraph-long-02">
 			<InlineTooltip
 				text="Achievements: "
 				icon={TrophyWhite}
@@ -185,11 +197,11 @@
 				>{obtainedAchievements}/{totalAchievements} (Rank #{obtainedAchievementsRank},
 				Top {obtainedAchievementsRankPercent}%)</a
 			>
-		</p>
+		</div>
 		<div class="meter">
 			{#if achievementsMeterLoaded}
-				<svelte:component
-					this={achievementsMeter}
+				{@const SvelteComponent = achievementsMeter}
+				<SvelteComponent
 					data={achievementsMeterData}
 					options={achievementsMeterOptions}
 				/>
@@ -199,7 +211,7 @@
 		</div>
 	</div>
 	<div class="chart-container titles">
-		<p>
+		<div class="paragraph-long-02">
 			<InlineTooltip
 				text="Titles: "
 				icon={BookIconWhite}
@@ -209,11 +221,11 @@
 			<a href="/"
 				>{obtainedTitles}/{totalTitles} (Rank #{titlesRank}, Top {titlesRankPercent}%)</a
 			>
-		</p>
+		</div>
 		<div class="gauge">
 			{#if titlesGaugeLoaded}
-				<svelte:component
-					this={titlesGauge}
+				{@const SvelteComponent_1 = titlesGauge}
+				<SvelteComponent_1
 					data={titlesGaugeData}
 					options={titlesGaugeOptions}
 				/>
@@ -223,7 +235,7 @@
 		</div>
 	</div>
 	<div class="total-hunts">
-		<p>
+		<div class="paragraph-long-02">
 			<InlineTooltip
 				icon={getItemIcon('Ticket')}
 				tooltip="Quests"
@@ -231,14 +243,14 @@
 			/><a href="/"
 				>{huntCount} (Rank #{huntCountRank}, Top {huntCountRankPercent}%)</a
 			>
-		</p>
+		</div>
 	</div>
 	<div class="server">
-		<p>
+		<div class="paragraph-long-02">
 			<InlineTooltip icon={MapIconWhite} tooltip="Server" text={'Server: '} /><a
 				href="/">{randomChoice(playerServers)}</a
 			>
-		</p>
+		</div>
 	</div>
 </div>
 
@@ -302,7 +314,7 @@
 	}
 
 	.gauge {
-		min-height: 196px;
+		min-height: 192px;
 		margin-bottom: 1rem;
 	}
 

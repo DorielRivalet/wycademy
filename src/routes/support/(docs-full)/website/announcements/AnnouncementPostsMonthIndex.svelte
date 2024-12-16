@@ -5,8 +5,12 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 
-	export let selectedYear: number;
-	export let selectedMonth: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+	interface Props {
+		selectedYear: number;
+		selectedMonth: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+	}
+
+	let { selectedYear, selectedMonth }: Props = $props();
 </script>
 
 <div>

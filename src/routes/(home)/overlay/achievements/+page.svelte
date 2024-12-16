@@ -6,7 +6,7 @@
 	import TrophyGold from '$lib/client/images/achievement/gold_trophy.webp';
 	import TrophyPlatinum from '$lib/client/images/achievement/platinum_trophy.webp';
 	import TrophySecret from '$lib/client/images/achievement/secret_trophy.webp';
-	import Achievement from './Achievement.svelte';
+	import Achievement from '$lib/client/components/frontier/Achievement.svelte';
 	import ProgressBar from 'carbon-components-svelte/src/ProgressBar/ProgressBar.svelte';
 	import {
 		achievementsInfo,
@@ -75,26 +75,18 @@
 		achievementSelected = achievement;
 	}
 
-	let searchTerm = '';
-	let achievementSelected = achievementsInfo[0]['0'];
+	let searchTerm = $state('');
+	let achievementSelected = $state(achievementsInfo[0]['0']);
 	// TODO let firstUsersObtained = [];
 	// TODO let totalUsersObtained = [];
 
-	let currentAchievements = totalObtainableAchievements;
+	let currentAchievements = $derived(
+		totalObtainableAchievements.filter((achievement) =>
+			achievement.Title.toLowerCase().includes(searchTerm.toLowerCase()),
+		),
+	);
 
 	// TODO clicking the word secret adds an achievement.
-
-	$: {
-		let filteredAchievements = totalObtainableAchievements.filter(
-			(achievement) =>
-				achievement.Title.toLowerCase().includes(searchTerm.toLowerCase()),
-		);
-
-		// Sort alphabetically
-		// filteredAchievements.sort((a, b) => a.Title.localeCompare(b.Title));
-
-		currentAchievements = filteredAchievements;
-	}
 
 	const customTitle = "Overlay Achievements — Frontier's Wycademy";
 	const url = $page.url.toString();
@@ -131,7 +123,7 @@
 	<h1>Achievements</h1>
 	<hr />
 	<div class="summary">
-		<p>
+		<div class="paragraph-long-02">
 			There are currently {totalObtainableAchievementsCount} obtainable overlay achievements,
 			of which {obtainableSecretTrophies.length} are <InlineTooltip
 				icon={TrophySecret}
@@ -139,7 +131,7 @@
 				text="secret"
 				tooltip="Trophy"
 			/>.
-		</p>
+		</div>
 		<p>
 			Below is a list of all achievements from the overlay. The trophy numbers
 			denote the total amount of hunters that obtained that achievement, over
@@ -157,7 +149,7 @@
 				{#if !achievement.Unused}
 					<button
 						class="achievement"
-						on:click={(e) => onAchievementClick(achievement)}
+						onclick={(e) => onAchievementClick(achievement)}
 					>
 						<Achievement
 							hunterName={achievement.HunterName}
@@ -177,8 +169,8 @@
 				autocomplete={'on'}
 			/>
 			<div class="progress-text">
-				<p>Progress</p>
-				<p>00.00%</p>
+				<div>Progress</div>
+				<div>00.00%</div>
 			</div>
 			<div class="progress-bar">
 				<ProgressBar
@@ -192,10 +184,8 @@
 		<div class="preview">
 			<Canvas>
 				{#key achievementSelected}
-					<RotatingCard
-						frontImage={achievementSelected.Image}
-						backImage={getAchievementImage(achievementSelected.Rank)}
-					/>
+					<RotatingCard frontTexture={achievementSelected.Image} />
+					<!--backTexture={getAchievementImage(achievementSelected.Rank)}-->
 				{/key}
 			</Canvas>
 		</div>
@@ -266,12 +256,7 @@
 		);
 	}
 
-	.centered-paragraph {
-		text-align: center;
-	}
-
-	h1,
-	h2 {
+	h1 {
 		text-align: center;
 	}
 
@@ -335,6 +320,8 @@
 		font-size: 1.5em;
 		font-weight: bold;
 		justify-content: space-between;
+		margin-bottom: 0.5rem;
+		margin-top: 0.5rem;
 	}
 
 	.preview {

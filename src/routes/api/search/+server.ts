@@ -85,7 +85,7 @@ The Blue series of the tower weapons have 3 Tower Sigil slots. They have high en
 	{
 		title: 'Thumbnail Generator',
 		slug: '/tools/generator/thumbnail',
-		content: `Here you can download the thumbnail generated below, with the resulting size being 1280x720 pixels, perfect for things such as YouTube thumbnails. Additionally, for text, vector and raster images you can drag and drop them in order to change their position in the thumbnail, as an alternative to the number inputs.`,
+		content: `Download the thumbnail generated below, with the resulting size being 1280x720 pixels, perfect for things such as YouTube thumbnails. Additionally, for text, vector and raster images you can drag and drop them in order to change their position in the thumbnail, as an alternative to the number inputs.`,
 		id: 0,
 		hex: '0x00',
 		category: 'Tool',

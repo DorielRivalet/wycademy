@@ -1,10 +1,19 @@
 <script lang="ts">
 	import { getAchievementRankColor } from '$lib/client/modules/frontier/achievement';
 
-	export let name: string;
-	export let imageSource: string;
-	export let rank: 1 | 2 | 3 | 4;
-	export let hunterName: string | undefined;
+	interface Props {
+		name: string;
+		imageSource: string;
+		rank: 1 | 2 | 3 | 4;
+		hunterName: string | undefined;
+	}
+
+	let {
+		name,
+		imageSource,
+		rank,
+		hunterName
+	}: Props = $props();
 </script>
 
 <div

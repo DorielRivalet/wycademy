@@ -1,5 +1,5 @@
 /*
- * © 2023 Doriel Rivalet
+ * © 2024 Doriel Rivalet
  * Use of this source code is governed by a MIT license that can be
  * found in the LICENSE file.
  */
@@ -371,3 +371,121 @@ public enum QuestToggleMonsterModeOption : uint
     Unlimited = Hardcore | UNK1,
 }
 */
+
+// Enums with bitwise flags
+export enum CourseRightsFirstByte {
+	/** or netcafe? */
+	None = 0,
+	Assist = 1,
+	N = 2,
+	Hiden = 4,
+	/** or aid */
+	Support = 8,
+	NBoost = 16,
+	All = Assist | N | Hiden | Support | NBoost,
+}
+
+export enum CourseRightsSecondByte {
+	None = 0,
+	UNK1 = 1,
+	Trial = 2,
+	HunterLife = 4,
+	Extra = 8,
+	UNK2 = 16,
+	UNK3 = 32,
+	Premium = 64,
+	All = UNK1 | Trial | HunterLife | Extra | UNK2 | UNK3 | Premium,
+}
+
+/**
+ * Checks if a bitfield contains a specific flag
+ * This only works for bitfield argument values 255 and below, if you don't intend to extract bytes.
+ * Consider using bitwise AND directly if so.
+ */
+export function isBitfieldContainingFlag<T extends number>(
+	bitfield: number,
+	flag: T,
+	all: number,
+	extractByte: boolean = false,
+	bytePosition: number = 0,
+): boolean {
+	// Extract specific byte if required
+	const value = extractByte
+		? (bitfield >> (bytePosition * 8)) & 0xff
+		: bitfield;
+
+	// Validate
+	if (!isValidBitfield(value, all)) {
+		return false;
+	}
+
+	// Check if flag is set
+	return (value & flag) === flag;
+}
+
+/**
+ * Validates if the value is a valid bitfield for the given all flags
+ */
+export function isValidBitfield(value: number, all: number): boolean {
+	return (value & all) === value;
+}
+
+/**
+ * Maps course rights to their corresponding names
+ * @param rights The rights value to check
+ * @param bytePosition The byte position to extract
+ * @param enumType The enum type to use for mapping
+ * @returns An array of flag names
+ */
+export function mapCourseRightsToNames(
+	rights: number,
+	bytePosition: number,
+	enumType: 'CourseRightsFirstByte' | 'CourseRightsSecondByte',
+): string[] {
+	// Handle special cases
+	if ((rights < 0x0100 && bytePosition === 1) || rights === 0) {
+		return ['None'];
+	}
+
+	// TODO include 'All' but not 'None'?
+	const firstByteNames = ['Assist', 'N', 'Hiden', 'Support', 'NBoost', 'All'];
+	const secondByteNames = [
+		'UNK1',
+		'Trial',
+		'HunterLife',
+		'Extra',
+		'UNK2',
+		'UNK3',
+		'Premium',
+		'All',
+	];
+
+	const names =
+		enumType === 'CourseRightsFirstByte' ? firstByteNames : secondByteNames;
+
+	// Filter and map the names
+	return names.filter((name) => {
+		if (enumType === 'CourseRightsFirstByte') {
+			return isBitfieldContainingFlag(
+				rights,
+				CourseRightsFirstByte[name as keyof typeof CourseRightsFirstByte],
+				CourseRightsFirstByte.All,
+				true,
+				bytePosition,
+			);
+		} else if (enumType === 'CourseRightsSecondByte') {
+			return isBitfieldContainingFlag(
+				rights,
+				CourseRightsSecondByte[name as keyof typeof CourseRightsSecondByte],
+				CourseRightsSecondByte.All,
+				true,
+				bytePosition,
+			);
+		}
+		return false;
+	});
+}
+
+// Example usage:
+// const firstByteRights = mapCourseRightsToNames(10, 1, CourseRightsFirstByte);
+// const secondByteRights = mapCourseRightsToNames(10, 0, CourseRightsSecondByte);

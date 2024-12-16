@@ -1,4 +1,4 @@
-# © 2023 Doriel Rivalet
+# © 2024 Doriel Rivalet
 # Use of this source code is governed by a MIT license that can be
 # found in the LICENSE file.
 
@@ -21,7 +21,7 @@ updates:
       - 'DorielRivalet'
     # Raise pull requests for version updates
     # to npm against a branch
-    target-branch: 'svelte-5'
+    target-branch: 'main'
     open-pull-requests-limit: 50
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: 'github-actions'

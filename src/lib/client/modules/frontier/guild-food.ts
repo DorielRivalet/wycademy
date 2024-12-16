@@ -8,7 +8,7 @@ import SacIconWhite from '$lib/client/components/frontier/icon/item/Sac_Icon_Whi
 import SeedIconWhite from '$lib/client/components/frontier/icon/item/Seed_Icon_White.svelte';
 import VegetableIconWhite from '$lib/client/components/frontier/icon/item/Vegetable_Icon_White.svelte';
 import type { FrontierArmorSkillName } from 'ezlion';
-import type { ComponentType } from 'svelte';
+import type { Component } from 'svelte';
 import { ItemColors } from './items';
 import SteakIconWhite from '$lib/client/components/frontier/icon/item/Steak_Icon_White.svelte';
 
@@ -104,7 +104,7 @@ type Ingredient =
 
 export const ingredients: {
 	name: Ingredient;
-	icon: ComponentType;
+	icon: Component;
 	color: string;
 }[] = [
 	{

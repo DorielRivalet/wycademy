@@ -7,6 +7,8 @@
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+	import { formatDateWithRelativeTime } from '$lib/client/modules/time';
+	import { releaseNotesSummaries } from '$lib/client/modules/overlay-release-notes';
 
 	const breadCrumbItems = [
 		{ href: '/', text: 'Home' },
@@ -14,6 +16,20 @@
 		{ href: '/overlay/release-notes', text: 'Release Notes' },
 		{ href: '/overlay/release-notes/v0-41-0', text: 'v0.41.0' },
 	];
+
+	function getVersionDate(date: string) {
+		let date1 = new Date(
+			Number(date.split('-')[0]),
+			Number(date.split('-')[1]) - 1,
+			Number(date.split('-')[2]),
+		);
+		let date2 = new Date();
+		return [date1, date2];
+	}
+
+	const summaryData = releaseNotesSummaries.find(
+		(e) => e.version === 'v0-41-0',
+	);
 </script>
 
 <div class="release-notes-page">
@@ -33,15 +49,20 @@
 	<section>
 		<div class="headline">
 			<h1>v0.41.0</h1>
-			<p class="date">October 27, 2024</p>
+			<p class="date">
+				{formatDateWithRelativeTime(
+					getVersionDate(summaryData.date)[0],
+					getVersionDate(summaryData.date)[1],
+				)}
+			</p>
 			<hr />
 		</div>
 
 		<div class="summary">
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				This update brings exciting new features and improvements to the
 				overlay, plus some important bug fixes to enhance your experience.
-			</p>
+			</div>
 		</div>
 		<section>
 			<h2>New Features</h2>
@@ -110,17 +131,17 @@
 		/>
 	</section>
 	<section class="external-links-section">
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			See our upcoming changes in <OutboundLink
 				href="https://github.com/DorielRivalet/mhfz-overlay/milestones"
 				>the milestones page.</OutboundLink
 			>
-		</p>
-		<p class="spaced-paragraph">
+		</div>
+		<div class="spaced-paragraph">
 			We have a <OutboundLink href="https://forms.gle/hrAVWMcYS5HEo1v7A"
 				>Google Forms</OutboundLink
 			> where you can submit your feedback on the overlay.
-		</p>
+		</div>
 	</section>
 </div>
 
@@ -208,5 +229,6 @@
 		gap: 1rem;
 		flex-direction: column;
 		align-items: center;
+		padding: 0px var(--cds-spacing-04);
 	}
 </style>

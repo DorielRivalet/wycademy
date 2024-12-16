@@ -2,12 +2,23 @@
 	import ClickableTile from 'carbon-components-svelte/src/Tile/ClickableTile.svelte';
 	import ArrowRight from 'carbon-icons-svelte/lib/ArrowRight.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import { browser } from '$app/environment';
 
-	export let imageSource;
-	export let title;
-	export let description;
-	export let href;
-	export let rounded = true;
+	interface Props {
+		imageSource: any;
+		title: any;
+		description: any;
+		href: any;
+		rounded?: boolean;
+	}
+
+	let {
+		imageSource,
+		title,
+		description,
+		href,
+		rounded = true,
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -16,33 +27,36 @@
 	}
 </script>
 
-<div class="container">
-	<ClickableTile
-		{href}
-		style={rounded ? 'border-radius: 8px;' : ''}
-		on:click={handleClick}
-	>
-		<div class="tile-content">
-			<div class="left">
-				<p class="title">{title}</p>
-				<p class="description">{description}</p>
-			</div>
+{#if browser}
+	<div class="container">
+		<ClickableTile
+			{href}
+			style={rounded ? 'border-radius: 8px;' : ''}
+			on:click={handleClick}
+		>
+			<div class="tile-content">
+				<div class="left">
+					<p class="title">{title}</p>
+					<p class="description">{description}</p>
+				</div>
 
-			<div class="right">
-				{#if typeof imageSource === 'string'}
-					<img class="image" width="64" src={imageSource} alt="Thumbnail" />
-				{:else}
-					<div class="image">
-						<svelte:component this={imageSource} {...{ size: '64px' }} />
+				<div class="right">
+					{#if typeof imageSource === 'string'}
+						<img class="image" width="64" src={imageSource} alt="Thumbnail" />
+					{:else}
+						{@const SvelteComponent = imageSource}
+						<div class="image">
+							<SvelteComponent {...{ size: '64px' }} />
+						</div>
+					{/if}
+					<div class="arrow">
+						<ArrowRight />
 					</div>
-				{/if}
-				<div class="arrow">
-					<ArrowRight />
 				</div>
 			</div>
-		</div>
-	</ClickableTile>
-</div>
+		</ClickableTile>
+	</div>
+{/if}
 
 <style lang="scss">
 	.tile-content {

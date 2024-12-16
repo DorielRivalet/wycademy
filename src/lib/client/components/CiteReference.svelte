@@ -1,6 +1,10 @@
 <script lang="ts">
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
-	export let number: number;
+	interface Props {
+		number: number;
+	}
+
+	let { number }: Props = $props();
 </script>
 
 <sup id={'cite_ref-' + number.toString()}

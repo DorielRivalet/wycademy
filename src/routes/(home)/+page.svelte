@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -106,11 +106,11 @@
 	<div><HomeBlogSection /></div>
 	<div class="alternate-background"><HomeCallToActionSection /></div>
 	<section class="feedback alternate-background">
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			We have a <OutboundLink href="https://forms.gle/hfFG7QWNcrCHnDV67"
 				>Google Forms</OutboundLink
 			> where you can submit your feedback on the website.
-		</p>
+		</div>
 	</section>
 </div>
 
@@ -125,6 +125,6 @@
 		width: 100%;
 		display: flex;
 		justify-content: center;
-		padding: var(--cds-spacing-10) 0px;
+		padding: var(--cds-spacing-10) var(--cds-spacing-04);
 	}
 </style>

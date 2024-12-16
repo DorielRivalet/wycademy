@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { onMount, onDestroy } from 'svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
@@ -22,14 +24,24 @@
 		};
 	}
 
-	export let type: 'component' | 'file';
-	export let src: any;
-	export let alt = 'Dialog';
+	interface Props {
+		type: 'component' | 'file';
+		src: any;
+		alt?: string;
+		button?: import('svelte').Snippet;
+	}
 
-	let svgComponent: any;
+	let {
+		type,
+		src,
+		alt = 'Dialog',
+		button
+	}: Props = $props();
 
-	let dialogElement: HTMLDialogElement;
-	let showModal = false;
+	let svgComponent: any = $state();
+
+	let dialogElement: HTMLDialogElement = $state();
+	let showModal = $state(false);
 
 	function openDialog(event: MouseEvent) {
 		event.stopPropagation();
@@ -55,13 +67,13 @@
 		}
 	});
 
-	$: dialogClass = showModal ? 'dialog open' : 'dialog';
+	let dialogClass = $derived(showModal ? 'dialog open' : 'dialog');
 
-	$: {
+	run(() => {
 		if (type === 'component') {
 			svgComponent = src;
 		}
-	}
+	});
 </script>
 
 {#if showModal}
@@ -70,8 +82,8 @@
 
 <!-- TODO-->
 
-<button on:click={openDialog}>
-	<slot name="button" />
+<button onclick={openDialog}>
+	{@render button?.()}
 </button>
 
 <dialog bind:this={dialogElement} class={dialogClass}>
@@ -86,9 +98,9 @@
 			{#if type === 'file'}
 				<img {src} {alt} class="dialog-image" />
 			{:else if type === 'component'}
+				{@const SvelteComponent = svgComponent}
 				<div class="dialog-image">
-					<svelte:component
-						this={svgComponent}
+					<SvelteComponent
 						{...{ size: 'clamp(50vh, 50vw, 50%)' }}
 					/>
 				</div>

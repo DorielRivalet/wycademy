@@ -105,6 +105,51 @@ export const ItemColors: { name: FrontierItemColor; value: string }[] = [
 	{ name: 'Gray', value: '#7f7f7f' },
 ];
 
+export type FrontierItemBox =
+	| 'delivery'
+	| 'supply'
+	| 'storage'
+	| 'partnya'
+	| 'inventory'
+	| 'ammo';
+
+export const itemBoxColors: {
+	name: FrontierItemColor;
+	value: string;
+	itemBox: FrontierItemBox;
+}[] = [
+	// guild food skill: guild hall icon.
+	// caravan skill: gem icon.
+	// active feature: not a skill.
+	// hh notes: hh note icon.
+	// sigil skill: sigil icon.
+	// TODO sky corridor / tower?
+	// TODO partnya?
+	// everything else is jewel icon with these colors.
+	{ name: 'White', value: '#efefe9', itemBox: 'inventory' },
+	{ name: 'Red', value: '#ff435d', itemBox: 'delivery' },
+	{ name: 'Green', value: '#73cb8d', itemBox: 'partnya' },
+	{ name: 'Blue', value: '#96b5fd', itemBox: 'supply' },
+	{ name: 'Yellow', value: '#f3c832', itemBox: 'ammo' },
+	// { name: 'Purple', value: '#cba6fa', itemBox: 'road/dure' },
+	// { name: 'Cyan', value: '#68ecec', itemBox: 'automatic' },
+	// { name: 'Orange', value: '#ff985d' }, // unk
+	// { name: 'Pink', value: '#ed93a4' },
+	// { name: 'Brown', value: '#bf6464' }, // unk
+	{ name: 'Gray', value: '#7f7f7f', itemBox: 'storage' },
+];
+
+export function getItemBoxColor(itemBox: FrontierItemBox) {
+	const fallback = itemBoxColors[0].value;
+
+	const found = itemBoxColors.find((w) => w.itemBox === itemBox);
+	if (!found) {
+		return fallback;
+	}
+
+	return found.value;
+}
+
 export const itemInfo: { name: string; icon: any }[] = [
 	{
 		name: 'Acorn',

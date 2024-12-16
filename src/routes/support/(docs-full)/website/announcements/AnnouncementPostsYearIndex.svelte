@@ -6,7 +6,11 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 
-	export let selectedYear: number;
+	interface Props {
+		selectedYear: number;
+	}
+
+	let { selectedYear }: Props = $props();
 </script>
 
 <div>

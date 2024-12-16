@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -7,7 +7,11 @@
 <script lang="ts">
   import type { FrontierRarity } from '$lib/client/modules/frontier/types';
 
-  export let rarity: FrontierRarity = 1;
+  interface Props {
+    rarity?: FrontierRarity;
+  }
+
+  let { rarity = 1 }: Props = $props();
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->

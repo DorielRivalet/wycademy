@@ -1,24 +1,24 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Feedback'} />
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			We have a <OutboundLink href="https://forms.gle/hfFG7QWNcrCHnDV67"
 				>Google Forms</OutboundLink
 			> where you can submit your feedback on the website.
-		</p>
+		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

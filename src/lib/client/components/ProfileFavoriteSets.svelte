@@ -5,45 +5,53 @@
 	import { LocationIcons } from '../modules/frontier/locations';
 	import { monsterInfo } from '../modules/frontier/monsters';
 
-	export let favoriteSets = [
-		{
-			icon: LocationIcons.find((e) => e.name === 'Road')?.icon, // TODO?
-			title: "User 2's Set #3",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Bogabadorumu')?.icon,
-			title: "User 2's Set #3",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Howling Zinogre')?.icon,
-			title: "User 3's Set #2",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Duremudira')?.icon,
-			title: "User 4's Set #3",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Sparkling Zerureusu')
-				?.icon,
-			title: "User 5's Set #4",
-			link: '/',
-			totalFavorites: 0,
-		},
-		{
-			icon: monsterInfo.find((e) => e.displayName === 'Golden Deviljho')?.icon,
-			title: "User 6's Set #5",
-			link: '/',
-			totalFavorites: 0,
-		},
-	];
+	interface Props {
+		favoriteSets?: any;
+	}
+
+	let {
+		favoriteSets = [
+			{
+				icon: LocationIcons.find((e) => e.name === 'Road')?.icon, // TODO?
+				title: "User 2's Set #3",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Bogabadorumu')?.icon,
+				title: "User 2's Set #3",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Howling Zinogre')
+					?.icon,
+				title: "User 3's Set #2",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Duremudira')?.icon,
+				title: "User 4's Set #3",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Sparkling Zerureusu')
+					?.icon,
+				title: "User 5's Set #4",
+				link: '/',
+				totalFavorites: 0,
+			},
+			{
+				icon: monsterInfo.find((e) => e.displayName === 'Golden Deviljho')
+					?.icon,
+				title: "User 6's Set #5",
+				link: '/',
+				totalFavorites: 0,
+			},
+		],
+	}: Props = $props();
 
 	const maxFavoritesToDisplay = 5;
 
@@ -60,7 +68,7 @@
 				{#if typeof favoriteRun.icon === 'string'}
 					<img src={favoriteRun.icon} width="64" alt="Favorite Icon" />
 				{:else}
-					<svelte:component this={favoriteRun.icon} {...{ size: '64px' }} />
+					<favoriteRun.icon {...{ size: '64px' }} />
 				{/if}
 			</div>
 			<div class="text">
@@ -74,14 +82,14 @@
 							color="var(--ctp-red)"
 						/>
 					</div>
-					<p>
+					<div>
 						{favoriteRun.totalFavorites}
-					</p>
+					</div>
 				</div>
 			</div>
 		</a>
 	{/each}
-	<div class="see-more">
+	<div class="see-more paragraph-long-02">
 		<ClickableTileImage
 			imageSource={Favorite}
 			title="View Favorite Sets ({favoriteSets.length})"

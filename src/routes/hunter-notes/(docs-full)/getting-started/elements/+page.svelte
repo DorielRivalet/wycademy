@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { getTag } from '$lib/client/modules/frontier/tags';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
@@ -116,10 +116,10 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Elements'} />
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			Alongside the standard five elements, Frontier introduces combination
 			elements, which always inflict the damage of both elements simultaneously.
 			The visible element upon striking a monster will correspond to the element
@@ -151,9 +151,9 @@
 				icon={ElementIcons.find((e) => e.name === 'Fire')?.icon}
 				text="Fire"
 			/> damage visual effects would be displayed.
-		</p>
+		</div>
 
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			Combo elements function as if you have two to three elements, but at a
 			percentage of your elemental value. For visual effects, the element that
 			deals the most damage will take precedence. The <InlineTooltip
@@ -161,9 +161,9 @@
 				tooltip="Weapon"
 				icon={getWeaponIcon('Gunlance')}
 			/> heatblade alternates the effect.
-		</p>
+		</div>
 
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			With Transcendence bursts, there is a hierarchy on which elements take
 			precedence first. The order is <InlineTooltip
 				text="Fire"
@@ -186,9 +186,9 @@
 				tooltip="Element"
 				icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
 			/>.
-		</p>
+		</div>
 
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			Negative elemental hitzones will still apply their raw penalty if the
 			'wrong' element is involved. Possessing the <InlineTooltip
 				text="Solid Determination"
@@ -199,7 +199,7 @@
 				tooltip="Armor Skill"
 				icon={getTag('Armor Skill')?.icon}
 			/> modifier.
-		</p>
+		</div>
 
 		<div class="elements-table">
 			<DataTable
@@ -228,12 +228,14 @@
 						>
 					</div>
 				</Toolbar>
-				<span slot="title">
-					<div class="data-table-title">
-						<div>Combo Elements</div>
-					</div>
-				</span>
-				<svelte:fragment slot="cell" let:cell>
+				{#snippet title()}
+					<span>
+						<div class="data-table-title">
+							<div>Combo Elements</div>
+						</div>
+					</span>
+				{/snippet}
+				{#snippet cell({ cell })}
 					{#if cell.key === 'name'}
 						<InlineTooltip
 							iconType="component"
@@ -262,14 +264,14 @@
 					{:else}
 						<p>{cell.value}</p>
 					{/if}
-				</svelte:fragment>
+				{/snippet}
 			</DataTable>
 		</div>
 
 		<section>
 			<SectionHeading level={2} title="Damage" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Elemental damage functions independently of motion values. The key
 					factors affecting it are the weapon's elemental value, the number of
 					hits per attack, weapon sharpness, and the monster's elemental
@@ -287,16 +289,16 @@
 						iconType="component"
 						icon={getWeaponIcon('Sword and Shield')}
 					/> if their elemental values are identical.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					If your goal is to maximize elemental damage, focus on using the
 					correct element and consistently hitting the appropriate hitbox for
 					that element. You can check our <Link
 						icon={ToolKit}
 						href="/tools/calculator/damage">Damage Calculator</Link
 					> for this.
-				</p>
-				<p>
+				</div>
+				<div class="paragraph-long-02">
 					Although motion values typically don't impact elemental damage, the
 					<InlineTooltip
 						tooltip="Weapon"
@@ -312,7 +314,7 @@
 					>
 						Style Rank page</Link
 					> for more information about weapon styles.
-				</p>
+				</div>
 			</div>
 		</section>
 
@@ -320,7 +322,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

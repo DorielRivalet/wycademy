@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -17,6 +17,7 @@
 	} from '$lib/constants';
 	import Head from '$lib/client/components/Head.svelte';
 	import { page } from '$app/stores';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	const customTitle = "Leaderboard — Frontier's Wycademy";
 	const url = $page.url.toString();
@@ -38,7 +39,7 @@
 
 <section>
 	<SectionHeadingTopLevel title="Leaderboards" />
-	<div></div>
+	<div><Link href="/quest-viewer">Quest Viewer.</Link></div>
 </section>
 
 <style lang="scss">

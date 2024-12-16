@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -7,10 +7,14 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	export let size = '100%';
-	export let color = '#ffffff';
+	interface Props {
+		size?: string;
+		color?: string;
+	}
 
-	$: targetColor = color;
+	let { size = '100%', color = '#ffffff' }: Props = $props();
+
+	let targetColor = $derived(color);
 </script>
 
 <svg width={size} viewBox="0 0 16.933333 16.933334" version="1.1" id="svg8">

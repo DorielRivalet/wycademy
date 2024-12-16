@@ -5,15 +5,29 @@
 	import Demo from 'carbon-icons-svelte/lib/Demo.svelte';
 	import ChevronDown from 'carbon-icons-svelte/lib/ChevronDown.svelte';
 
-	export let title = 'Title';
-	export let description = 'Description';
-	export let primaryButtonText;
-	export let primaryButtonLink;
-	export let secondaryButtonText = '';
-	export let secondaryButtonLink = '';
-	export let heroVideoBackground;
-	export let layout: 1 | 2 = 1;
-	export let starCount = 0;
+	interface Props {
+		title?: string;
+		description?: string;
+		primaryButtonText: any;
+		primaryButtonLink: any;
+		secondaryButtonText?: string;
+		secondaryButtonLink?: string;
+		heroVideoBackground: any;
+		layout?: 1 | 2;
+		starCount?: number;
+	}
+
+	let {
+		title = 'Title',
+		description = 'Description',
+		primaryButtonText,
+		primaryButtonLink,
+		secondaryButtonText = '',
+		secondaryButtonLink = '',
+		heroVideoBackground,
+		layout = 1,
+		starCount = 0,
+	}: Props = $props();
 </script>
 
 {#if layout === 1}
@@ -61,7 +75,7 @@
 				<button class="stars">
 					<a href="https://github.com/DorielRivalet/mhfz-overlay">
 						<StarFilled style="margin-right: 8px" color="#ffff00" />
-						<p>Stars</p>
+						<div>Stars</div>
 						<p class="star-count">{starCount}</p>
 					</a>
 				</button>

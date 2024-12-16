@@ -16,14 +16,27 @@
 	import { onMount } from 'svelte';
 	import DownloadImageButton from './DownloadImageButton.svelte';
 
-	export let initialNodes: Node[];
-	export let initialEdges: Edge[];
-	export let colorMode: 'system' | 'light' | 'dark';
-	/**horizontal: RIGHT. vertical: DOWN*/
-	export let direction: 'RIGHT' | 'DOWN' = 'RIGHT';
-	export let nodeWidth: number = 245;
-	export let nodeHeight: number = 80;
-	export let fileName: string;
+	
+	interface Props {
+		initialNodes: Node[];
+		initialEdges: Edge[];
+		colorMode: 'system' | 'light' | 'dark';
+		/**horizontal: RIGHT. vertical: DOWN*/
+		direction?: 'RIGHT' | 'DOWN';
+		nodeWidth?: number;
+		nodeHeight?: number;
+		fileName: string;
+	}
+
+	let {
+		initialNodes,
+		initialEdges,
+		colorMode,
+		direction = 'RIGHT',
+		nodeWidth = 245,
+		nodeHeight = 80,
+		fileName
+	}: Props = $props();
 
 	const nodes = writable<Node[]>([]);
 	const edges = writable<Edge[]>([]);

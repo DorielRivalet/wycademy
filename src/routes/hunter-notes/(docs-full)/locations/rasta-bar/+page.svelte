@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
@@ -93,11 +93,11 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Rasta Bar'} />
 		<div>
-			<p>
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					icon={getLocationIcon('Rasta Bar')}
 					text="Rasta Bar"
@@ -114,17 +114,17 @@
 					tooltip="Location"
 					iconType="file"
 				/>.
-			</p>
+			</div>
 			<section>
 				<SectionHeading level={2} title="Legendary Rastas" />
 				<div>
-					<p class="spaced-paragraph"></p>
+					<div class="spaced-paragraph"></div>
 				</div>
 			</section>
 			<section>
 				<SectionHeading level={2} title="Partner" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						At <strong>HR2</strong>, you can unlock <strong>Partners</strong> by
 						first purchasing the initial house upgrade from the General Store
 						(costing 10,000z) and then interacting with the Blue NPC at the
@@ -133,21 +133,19 @@
 							>Note that equipment given to a Partner cannot be retrieved
 							aftewards.</strong
 						>
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Partners can achieve DPS levels comparable to paid Premium Rastas,
 						but they excel in providing support, making them a valuable asset
 						worth investing time in.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						While similar to Rastas, Partners differ in that they are not clones
 						of other players. Instead, they are personalized companions that you
 						can gear up and customize to suit your preferences.
-					</p>
+					</div>
 
-					<p class="spaced-paragraph"></p>
-
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Enabling Partners allows you to have contracted NPCs accompany you
 						on quests and create your own Human NPC companion. To get a Partner,
 						simply speak with the Legendary Rasta wielding the weapon type you
@@ -169,8 +167,8 @@
 						/> need to be unlocked separately at G Rank. If you’re unsure about a
 						Legendary Rasta's weapon, interact with them and select the second option
 						to view their gear.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						For the best performance in terms of AI behavior and DPS, <InlineTooltip
 							icon={getWeaponIcon('Dual Swords')}
 							text="Dual Swords"
@@ -188,8 +186,8 @@
 							iconType="component"
 						/> is also a decent choice, but other weapons have less effective AI
 						that tends to idle rather than actively engage with monsters.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						When you speak with the NPC of your chosen weapon type, select
 						"Partner" to begin the Partner creation process. You will first
 						choose a gender and then a personality type (Male on the left,
@@ -198,8 +196,8 @@
 						recreating the Partner. Name and personality can be altered later
 						with specific rare items, though personality only affects their
 						speech style and has minimal gameplay impact.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Once you have completed these steps, head to your <InlineTooltip
 							icon={getLocationIcon('My House')}
 							text="House"
@@ -207,8 +205,8 @@
 							iconType="file"
 						/> where you’ll meet the NPC you selected, allowing you to customize
 						your Partner much like you did when creating your character.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						If you make a mistake during creation, you can delete the Partner by
 						speaking with the cat next to the bar. This will completely remove
 						the Partner, allowing you to start over and change their name,
@@ -216,8 +214,8 @@
 						use Premium Restyle Points. <strong
 							>The partner's gender cannot be changed later on.</strong
 						>
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Partners offer many features, but most of them become relevant only
 						at G Rank. If you plan on spending extended time at HR5, you can
 						ignore most of these details until you reach G Rank. Once there,
@@ -233,32 +231,32 @@
 							tooltip="Location"
 							iconType="file"
 						/>.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						You can adjust your AI Companion’s priorities in the options under
 						the NPC section (use the confirm button to reorder options).
 						Additionally, you can enable or disable the messages they send
 						during quests in the Chat options.
-					</p>
+					</div>
 					<section>
 						<SectionHeading level={3} title="Partner Menu" />
 						<div>
 							<UnorderedList class="spaced-list"
 								><ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Status:</strong> displays the direct equivalent of the
 										Guild Card for a Partner. This displays active skills, defense
 										and attack values as well as the ranks of each weapon that is
 										unlocked for your partner.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Equipment:</strong> once a Partner has received equipment,
 										it cannot be retrieved back to your equipment box.
-									</p></ListItem
+									</div></ListItem
 								><ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Skills:</strong> allows your Partner to have armor
 										skills such as <InlineTooltip
 											icon={getItemIcon('Jewel')}
@@ -266,9 +264,9 @@
 											tooltip="Armor Skill"
 											iconType="component"
 										/> and upgrades the maximum skill slots and skill cost available.
-									</p></ListItem
+									</div></ListItem
 								><ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Items:</strong> makes your Partner use items such as
 										<InlineTooltip
 											icon={getItemIcon('Sac')}
@@ -293,7 +291,7 @@
 										/> (in that order, from top to bottom in the menu). Can also
 										use tickets to gain PRP, with the amount gained specified in
 										the item name.
-									</p></ListItem
+									</div></ListItem
 								></UnorderedList
 							>
 						</div>
@@ -302,14 +300,14 @@
 					<section>
 						<SectionHeading level={3} title="Partner Weapons" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Partner Weapons function differently from those used by Humans
 								or Rastas, relying on a unique system to determine their
 								attributes.
-							</p>
+							</div>
 							<UnorderedList class="spaced-list"
 								><ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Raw Values:</strong> These are fixed based on the
 										tier of the weapon equipped. For example, a standard G Rank <InlineTooltip
 											icon={getWeaponIcon('Lance')}
@@ -319,10 +317,10 @@
 										/>
 										will always have 736 Attack, whether it is at Level 1 or Level
 										50.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Elemental Values:</strong> These scale with the
 										Partner’s Weapon Rank. For instance, at Rank 999 with <InlineTooltip
 											icon={getWeaponIcon('Tonfa')}
@@ -347,10 +345,10 @@
 											iconType="component"
 										/>. This setup completely ignores the weapon's actual
 										in-game elemental stats.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Status Values:</strong> This is the only attribute
 										directly influenced by the weapon's original stats. The
 										value is typically 100% of what’s on the weapon, or 50% in
@@ -363,10 +361,10 @@
 										Burst or Origin weapons can be ideal as they don't need to
 										reach Level 50 (the max for standard G Rank weapons) to
 										achieve peak status values.
-									</p></ListItem
+									</div></ListItem
 								>
 							</UnorderedList>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Weapons that provide innate skills, such as Burst, G Finesse, or
 								Exotics, do not grant these abilities to Partners. Similarly,
 								Zenith Weapons do not pass on their Zenith Skills. However,
@@ -376,7 +374,7 @@
 									upgrade, it’s a good idea to equip it on your Partner for the
 									extra damage and the Part Destroyer effect.</strong
 								>
-							</p>
+							</div>
 							<div class="table">
 								<DataTable
 									id="partner-weapons-dom"
@@ -415,9 +413,9 @@
 										</div>
 									</Toolbar>
 
-									<svelte:fragment slot="cell" let:cell>
+									{#snippet cell({ cell })}
 										<p>{cell.value}</p>
-									</svelte:fragment>
+									{/snippet}
 								</DataTable>
 							</div>
 						</div>
@@ -426,17 +424,17 @@
 					<section>
 						<SectionHeading level={3} title="Partner Armor" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Partner Armor is simpler than weapons; it disregards all armor
 								stats except for the class. Any full set of standard G Rank
 								armor at Level 1 will provide the maximum defense possible for
 								that armor class. Crafting Burst or Origin pieces for a Partner
 								isn’t necessary, but G Exotic can be worthwhile.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								Like weapons, armor that grants innate skills, including Exotic
 								skills and Zenith buffs from Z1, will not transfer to Partners.
-							</p>
+							</div>
 							<div class="table">
 								<DataTable
 									id="partner-armor-dom"
@@ -468,9 +466,9 @@
 										</div>
 									</Toolbar>
 
-									<svelte:fragment slot="cell" let:cell>
+									{#snippet cell({ cell })}
 										<p>{cell.value}</p>
-									</svelte:fragment>
+									{/snippet}
 								</DataTable>
 							</div>
 						</div>
@@ -480,7 +478,7 @@
 						<SectionHeading level={3} title="Partner Skills" />
 						<div>
 							<!--TODO-->
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Partners can use many of the same skills available to players,
 								but unlike players, these skills are selected from a list and
 								purchased with <InlineTooltip
@@ -506,28 +504,28 @@
 									href="/tools/simulator/partner-skills"
 									>on the Partner Skills Simulator.</Link
 								>
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								The <strong>"Learn Skills"</strong> option displays a list of skills
 								you can currently purchase:
-							</p>
+							</div>
 							<UnorderedList class="spaced-list"
 								><ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Black</strong> skills are available for purchase.
-									</p></ListItem
+									</div></ListItem
 								><ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Blue</strong> skills are those you have already acquired.
-									</p></ListItem
+									</div></ListItem
 								><ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Gray</strong> skills are locked and cannot be purchased
 										yet.
-									</p></ListItem
+									</div></ListItem
 								></UnorderedList
 							>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								All Partner skills are unlocked using <InlineTooltip
 									icon={getCurrencyIcon('GCP')}
 									text="GCP"
@@ -545,34 +543,34 @@
 									tooltip="Currency"
 									iconType="file"
 								/> if you complete enough routes.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								<strong>Passive skills</strong>, or Automatic Skills, require
 								your Partner to have maxed out a weapon’s rank (999) and then
 								start Kaidan by selecting the last option with the Legendary
 								Rasta, just like when you initially unlocked a weapon or chose a
 								Partner.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								<strong>Passive skills</strong> are always active once unlocked.
 								The basic options include Additional Skill Slots and Extra Cost Budget:
-							</p>
+							</div>
 							<UnorderedList class="spaced-list">
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Slot Upgrades:</strong> These add an extra skill slot,
 										up to a maximum of +2 slots for a total of 12 skills. These upgrades
 										are rarely necessary.
-									</p></ListItem
+									</div></ListItem
 								><ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Cost Upgrades:</strong> These increase the maximum skill
 										cost budget by +5, up to a total of 260. It is highly recommended
 										to get all of these upgrades as they provide significant benefits.
-									</p></ListItem
+									</div></ListItem
 								></UnorderedList
 							>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Additionally, once your Partner’s weapon class reaches Rank 999,
 								you can unlock the ability to increase that weapon's maximum
 								attack ceiling. This does not directly increase raw attack
@@ -590,14 +588,14 @@
 									tooltip="Armor Skill"
 									iconType="component"
 								/> and other DPS enhancements.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								Reaching MASTER level with each weapon class will add true raw
 								attack to all weapon classes, while maxing out Kaidan Rank to
 								999 will further boost the true raw of the weapon class you have
 								mastered.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								The <strong>"Equip Skills"</strong> option shows a list of
 								available skills and those you have currently equipped. The
 								right column displays the cost of each skill, with the total
@@ -616,18 +614,18 @@
 									iconType="component"
 								/> will not add their effects; instead, the weaker skill will be
 								deactivated, still consuming cost without providing additional benefits.
-							</p>
+							</div>
 						</div>
 					</section>
 
 					<section>
 						<SectionHeading level={3} title="Partner Items" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Partners can only use one type of item at a time, so assigning a
 								new item will replace the previous one.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								The <strong>"Items"</strong> option allows you to set up your
 								Partner with various items to help with progression and quests.
 								The first menu includes different HRP/GRP Tickets, while the
@@ -663,13 +661,13 @@
 									tooltip="Item"
 									iconType="component"
 								/> for maximum synergy.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								Partners become highly effective when properly leveled up and
 								equipped with the right skills. They can provide team-wide buffs
 								and deal damage comparable to another human player, making them
 								a worthwhile investment.
-							</p>
+							</div>
 						</div>
 					</section>
 				</div>
@@ -679,7 +677,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

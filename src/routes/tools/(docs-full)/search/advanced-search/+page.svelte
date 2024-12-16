@@ -11,7 +11,7 @@
 	import Logo from '$lib/client/images/logo.webp';
 	import QuestionMarkIconWhite from '$lib/client/components/frontier/icon/item/Question_Mark_Icon_White.svelte';
 	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import { page } from '$app/stores';
 
@@ -91,15 +91,15 @@
 
 	// TODO url query
 
-	let scopeFilterId: SearchItemCategory = 'All';
+	let scopeFilterId: SearchItemCategory = $state('All');
 	let results = [];
-	let searchTerm = '';
+	let searchTerm = $state('');
 	let searchDuration = 0;
 
-	$: groupedResults = groupByCategory(results);
+	let groupedResults = $derived(groupByCategory(results));
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Advanced Search'} />
 		<div class="content" in:fade={{ duration: 150 }}>
@@ -141,14 +141,14 @@
 					<Accordion>
 						{#each Object.entries(groupedResults) as [category, results], i}
 							<AccordionItem open={i === 0}>
-								<svelte:fragment slot="title">
+								{#snippet title()}
 									<InlineTooltip
 										tooltip={category}
 										iconType="component"
 										text={`${category} (${results.length})`}
 										icon={getCategoryIcon(category)}
 									/>
-								</svelte:fragment>
+								{/snippet}
 								<hr class="category-separator" />
 								<ol>
 									{#each results as result}
@@ -177,7 +177,7 @@
 			</div>
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.delete-all-button {
@@ -201,6 +201,7 @@
 
 	.search-container {
 		background-color: var(--ctp-surface0);
+		width: 50%;
 		display: flex;
 	}
 
@@ -209,8 +210,7 @@
 	}
 
 	.content {
-		width: 90vw;
-		max-width: 100%;
+		width: 100%;
 		border-radius: 4px;
 		overflow: hidden;
 	}

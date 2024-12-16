@@ -4,7 +4,11 @@
 	import QuestionAnswering from 'carbon-icons-svelte/lib/QuestionAnswering.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
-	export let faq: { question: string; answer: string }[];
+	interface Props {
+		faq: { question: string; answer: string }[];
+	}
+
+	let { faq }: Props = $props();
 </script>
 
 <section class="container">

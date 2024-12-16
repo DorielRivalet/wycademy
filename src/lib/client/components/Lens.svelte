@@ -1,13 +1,25 @@
 <script lang="ts">
 	import { scale } from 'svelte/transition';
 
-	export let zoomFactor = 1.5;
-	export let lensSize = 170;
-	export let isStatic = false;
-	export let position = { x: 200, y: 150 };
-	export let hovering: boolean;
+	interface Props {
+		zoomFactor?: number;
+		lensSize?: number;
+		isStatic?: boolean;
+		position?: any;
+		hovering: boolean;
+		children?: import('svelte').Snippet;
+	}
 
-	let mousePosition = { x: 100, y: 100 };
+	let {
+		zoomFactor = 1.5,
+		lensSize = 170,
+		isStatic = false,
+		position = $bindable({ x: 200, y: 150 }),
+		hovering = $bindable(),
+		children
+	}: Props = $props();
+
+	let mousePosition = $state({ x: 100, y: 100 });
 
 	const handleMouseMove = (e: {
 		currentTarget: { getBoundingClientRect: () => any };
@@ -22,14 +34,14 @@
 	};
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	class="magnifying-container"
-	on:mouseenter={() => (hovering = true)}
-	on:mouseleave={() => (hovering = false)}
-	on:mousemove={handleMouseMove}
+	onmouseenter={() => (hovering = true)}
+	onmouseleave={() => (hovering = false)}
+	onmousemove={handleMouseMove}
 >
-	<slot></slot>
+	{@render children?.()}
 	{#if isStatic && hovering}
 		<div
 			in:scale
@@ -47,7 +59,7 @@
 				class="zoomed-content"
 				style="transform: scale({zoomFactor}); transform-origin: {position.x}px {position.y}px;"
 			>
-				<slot></slot>
+				{@render children?.()}
 			</div>
 		</div>
 	{:else if hovering}
@@ -66,7 +78,7 @@
 				class="zoomed-content"
 				style="transform: scale({zoomFactor}); transform-origin: {mousePosition.x}px {mousePosition.y}px;"
 			>
-				<slot />
+				{@render children?.()}
 			</div>
 		</div>
 	{/if}

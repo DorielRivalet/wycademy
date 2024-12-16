@@ -14,9 +14,9 @@
 	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 
-	let open = false;
-	let selectedSection: number | null = null;
-	let selectedCategory: number | null = null;
+	let open = $state(false);
+	let selectedSection: number | null = $state(null);
+	let selectedCategory: number | null = $state(null);
 
 	const sections = [
 		{ name: 'Leaderboard', categories: [], href: '/leaderboard' },
@@ -33,12 +33,14 @@
 		{ name: 'Events', categories: [], href: '/events' },
 	];
 
-	$: availableCategories =
-		selectedSection === null ? [] : sections[selectedSection].categories;
-	$: availablePages =
+	let availableCategories = $derived(
+		selectedSection === null ? [] : sections[selectedSection].categories,
+	);
+	let availablePages = $derived(
 		selectedCategory === null || selectedSection === null
 			? []
-			: sections[selectedSection].categories[selectedCategory].pages;
+			: sections[selectedSection].categories[selectedCategory].pages,
+	);
 </script>
 
 <div class="container">
@@ -48,13 +50,15 @@
 		on:click={() => (open = !open)}
 		kind="ghost"
 	>
-		<span slot="icon">
-			{#if open}
-				<Close size={20} color={'var(--ctp-text)'} />
-			{:else}
-				<Menu size={20} color={'var(--ctp-text)'} />
-			{/if}
-		</span>
+		{#snippet icon()}
+			<span>
+				{#if open}
+					<Close size={20} color={'var(--ctp-text)'} />
+				{:else}
+					<Menu size={20} color={'var(--ctp-text)'} />
+				{/if}
+			</span>
+		{/snippet}
 	</Button>
 	{#if open}
 		<div
@@ -169,7 +173,7 @@
 			</div>
 		</div>
 
-		<button on:click={() => (open = !open)} class="dark-background"></button>
+		<button onclick={() => (open = !open)} class="dark-background"></button>
 	{/if}
 </div>
 

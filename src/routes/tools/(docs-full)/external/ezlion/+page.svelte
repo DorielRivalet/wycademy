@@ -1,37 +1,36 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'EZlion'} />
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			An API used as a reference for weapons, armors, monsters, skills, etc. For
 			example, you can search IDs and names by doing a request: <CodeSnippet
 				type="inline"
-				code="curl https://yourprojectname.vercel.app/api/v0/monsters/1
-"
+				code="curl https://yourprojectname.vercel.app/api/v0/monsters/1"
 			/>, giving you <CodeSnippet
 				type="inline"
 				code={`{ id: 1, name: 'Rathian' }`}
 			/>.
-		</p>
+		</div>
 
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			For more information, see the <OutboundLink
 				href="https://ezlion.vercel.app">EZlion API Reference.</OutboundLink
 			>
-		</p>
+		</div>
 		<div class="page-turn">
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

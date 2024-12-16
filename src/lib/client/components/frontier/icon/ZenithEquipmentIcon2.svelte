@@ -2,7 +2,7 @@
 	import { blendColor } from '$lib/client/modules/color-blend';
 	import { RarityColors } from '$lib/client/modules/frontier/objects';
 
-	$: targetColor = RarityColors[11];
+	let targetColor = $derived(RarityColors[11]);
 </script>
 
 <!-- Created with Inkscape (http://www.inkscape.org/) -->

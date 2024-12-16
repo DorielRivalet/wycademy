@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -31,17 +31,22 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { replaceState } from '$app/navigation';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	/** The name of the section heading*/
-	export let title: string;
-	/** The level of the section heading*/
-	export let level: 2 | 3 | 4 | 5 | 6;
-	export let withIcon: boolean = true;
-	export let withSeparator: boolean = true;
+	interface Props {
+		/** The name of the section heading*/
+		title: string;
+		/** The level of the section heading*/
+		level: 2 | 3 | 4 | 5 | 6;
+		withIcon?: boolean;
+		withSeparator?: boolean;
+	}
+
+	let { title, level, withIcon = true, withSeparator = true }: Props = $props();
 	const tag = 'h' + level;
 	//https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-one-element-is-hovered
 
@@ -56,14 +61,14 @@ See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Ident
 			url.searchParams.set(e.key, e.value);
 		});
 
-		window.history.replaceState({}, '', url);
+		replaceState({}, '', url);
 	}
 </script>
 
 <svelte:element this={tag} id={slug}>
 	<a
 		href={'#' + slug}
-		on:click={() =>
+		onclick={() =>
 			updateQueryStringParameter([
 				{ key: 'embed', value: slug },
 				{

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
@@ -15,7 +15,7 @@
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import {
 		getWeaponIcon,
-		WeaponTypes,
+		weaponTypeInfo,
 	} from '$lib/client/modules/frontier/weapons';
 	import { page } from '$app/stores';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
@@ -32,7 +32,7 @@
 	import { confetti } from '@neoconfetti/svelte';
 	import { reduced_motion } from '$lib/client/stores/reduced-motion';
 
-	let showConfetti = false;
+	let showConfetti = $state(false);
 
 	function handlePerfectScore() {
 		showConfetti = true;
@@ -59,26 +59,26 @@
 		return sharpness;
 	}
 
-	let selectedWeaponType: FrontierWeaponName = 'Sword and Shield';
-	$: selectedWeaponIcon = getWeaponIcon(selectedWeaponType);
+	let selectedWeaponType: FrontierWeaponName = $state('Sword and Shield');
+	let selectedWeaponIcon = $derived(getWeaponIcon(selectedWeaponType));
 	let rarity: FrontierRarity = 1;
 	let selectedWeaponIconProps = {
 		rarity: rarity,
 	};
 
-	$: selectedWeaponTypeId = WeaponTypes.find(
-		(e) => e.name == selectedWeaponType,
-	)?.id;
+	let selectedWeaponTypeId = $derived(
+		weaponTypeInfo.find((e) => e.name == selectedWeaponType)?.id,
+	);
 
-	$: filteredSharpnessTables = sharpnessTables.filter(
-		(e) => e.weaponType === selectedWeaponTypeId,
+	let filteredSharpnessTables = $derived(
+		sharpnessTables.filter((e) => e.weaponType === selectedWeaponTypeId),
 	);
 
 	let multipleChoiceItems: MultipleChoiceItem[] =
 		questionBank.find((e) => e.category === 'Weapons Overview')?.items || [];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Overview'} />
 		<section>
@@ -259,28 +259,28 @@
 								>
 							</div>
 						</Toolbar>
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.key === 'weapon'}
 								<InlineTooltip
 									text={cell.value}
 									tooltip={'Weapon'}
-									icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+									icon={weaponTypeInfo.find((e) => e.name === cell.value)?.icon}
 								/>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Sharpness" />
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The multiplier applies to both raw and element. The status multiplier is
 				1. On attack bounce, the bounce multiplier is applied instead of the
 				main multiplier.
-			</p>
+			</div>
 			<div class="table">
 				<DataTable
 					title="Weapon Sharpness Multipliers"
@@ -433,7 +433,7 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
+					{#snippet cell({ cell })}
 						{#if cell.key === 'bar'}
 							<div class="sharpness-bar-container">
 								<SharpnessBar
@@ -444,7 +444,7 @@
 						{:else}
 							<p>{cell.value}</p>
 						{/if}
-					</svelte:fragment>
+					{/snippet}
 				</DataTable>
 			</div>
 			<div class="table table-with-scrollbar">
@@ -459,17 +459,17 @@
 					]}
 					rows={filteredSharpnessTables}
 				>
-					<span slot="title">
-						<div class="data-table-title">
-							<div class="weapon-icon">
-								<svelte:component
-									this={selectedWeaponIcon}
-									{...selectedWeaponIconProps}
-								/>
+					{#snippet title()}
+						{@const SvelteComponent = selectedWeaponIcon}
+						<span>
+							<div class="data-table-title">
+								<div class="weapon-icon">
+									<SvelteComponent {...selectedWeaponIconProps} />
+								</div>
+								<p>{selectedWeaponType} Sharpness Tables</p>
 							</div>
-							<div>{selectedWeaponType} Sharpness Tables</div>
-						</div>
-					</span>
+						</span>
+					{/snippet}
 					<Toolbar
 						><div class="toolbar">
 							<Dropdown
@@ -506,7 +506,7 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
+					{#snippet cell({ cell })}
 						{#if cell.key === 'sharpnessTable'}
 							<div class="sharpness-bar-container">
 								<SharpnessBar
@@ -517,7 +517,7 @@
 						{:else}
 							<p>{cell.value}</p>
 						{/if}
-					</svelte:fragment>
+					{/snippet}
 				</DataTable>
 			</div>
 		</section>
@@ -540,7 +540,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 {#if showConfetti}
 	<div
@@ -552,7 +552,7 @@
 			stageHeight: window.innerHeight,
 			colors: ['#f38ba8', '#a6e3a1', '#89b4fa'],
 		}}
-	/>
+	></div>
 {/if}
 
 <style lang="scss">

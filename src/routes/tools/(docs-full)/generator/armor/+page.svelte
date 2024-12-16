@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import Armor from '$lib/client/components/frontier/Armor.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -185,7 +185,7 @@
 	const minimumArmorSkillPoints = -127;
 	const maximumArmorSkillPoints = 127;
 
-	let currentArmorPage = 1;
+	let currentArmorPage = $state(1);
 
 	const invalidArmorSkillPointsText = `Value must be between ${minimumArmorSkillPoints} and ${maximumArmorSkillPoints}.`;
 	const invalidArmorDefenseText = `Value must be between ${minimumArmorDefense} and ${maximumArmorDefense}.`;
@@ -194,45 +194,67 @@
 	const invalidArmorGRLevelText = `Value must be between ${minimumArmorGRLevel} and ${maximumArmorGRLevel}.`;
 	const invalidWeaponRarityText = `Value must be between ${minimumRarity} and ${maximumRarity}.`;
 
-	let armorName = defaultArmorComponentValues.armorName;
-	let armorLevel: FrontierArmorLevel = defaultArmorComponentValues.armorLevel;
-	let armorGRLevel: FrontierArmorGRLevel =
-		defaultArmorComponentValues.armorGRLevel;
-	let armorDefense: number = defaultArmorComponentValues.armorDefense;
-	let armorFireResistance: number =
-		defaultArmorComponentValues.armorFireResistance;
-	let armorWaterResistance: number =
-		defaultArmorComponentValues.armorWaterResistance;
-	let armorThunderResistance: number =
-		defaultArmorComponentValues.armorThunderResistance;
-	let armorIceResistance: number =
-		defaultArmorComponentValues.armorIceResistance;
-	let armorDragonResistance: number =
-		defaultArmorComponentValues.armorDragonResistance;
-	let armorTransmog = defaultArmorComponentValues.armorTransmog;
-	let armorClass: FrontierArmorClass = defaultArmorComponentValues.armorClass;
-	let armorID = defaultArmorComponentValues.armorID;
-	let armorRank: FrontierEquipmentRank = defaultArmorComponentValues.armorRank;
-	let armorZenithSkill: FrontierZenithSkill =
-		defaultArmorComponentValues.armorZenithSkill;
-	let armorDescription: string = defaultArmorComponentValues.armorDescription;
-	let armorRarity: FrontierRarity = defaultArmorComponentValues.armorRarity;
+	let armorName = $state(defaultArmorComponentValues.armorName);
+	let armorLevel: FrontierArmorLevel = $state(
+		defaultArmorComponentValues.armorLevel,
+	);
+	let armorGRLevel: FrontierArmorGRLevel = $state(
+		defaultArmorComponentValues.armorGRLevel,
+	);
+	let armorDefense: number = $state(defaultArmorComponentValues.armorDefense);
+	let armorFireResistance: number = $state(
+		defaultArmorComponentValues.armorFireResistance,
+	);
+	let armorWaterResistance: number = $state(
+		defaultArmorComponentValues.armorWaterResistance,
+	);
+	let armorThunderResistance: number = $state(
+		defaultArmorComponentValues.armorThunderResistance,
+	);
+	let armorIceResistance: number = $state(
+		defaultArmorComponentValues.armorIceResistance,
+	);
+	let armorDragonResistance: number = $state(
+		defaultArmorComponentValues.armorDragonResistance,
+	);
+	let armorTransmog = $state(defaultArmorComponentValues.armorTransmog);
+	let armorClass: FrontierArmorClass = $state(
+		defaultArmorComponentValues.armorClass,
+	);
+	let armorID = $state(defaultArmorComponentValues.armorID);
+	let armorRank: FrontierEquipmentRank = $state(
+		defaultArmorComponentValues.armorRank,
+	);
+	let armorZenithSkill: FrontierZenithSkill = $state(
+		defaultArmorComponentValues.armorZenithSkill,
+	);
+	let armorDescription: string = $state(
+		defaultArmorComponentValues.armorDescription,
+	);
+	let armorRarity: FrontierRarity = $state(
+		defaultArmorComponentValues.armorRarity,
+	);
 
 	/** TODO Show extra icons.*/
-	let armorExtraIcons = defaultArmorComponentValues.armorExtraIcons;
+	let armorExtraIcons = $state(defaultArmorComponentValues.armorExtraIcons);
 
-	let armorSkillTreeNames: FrontierArmorSkillTree[] = [
+	let armorSkillTreeNames: FrontierArmorSkillTree[] = $state([
 		'Blazing Grace',
 		'Strong Attack',
 		'Determination',
 		'Absolute Defense',
 		'Three Worlds Protection',
-	];
-	let armorSkillPoints: FrontierEquipmentSkillPoints = [10, 20, -30, 40, 50];
-	let armorType: FrontierArmorType = defaultArmorComponentValues.armorType;
-	let armorAutomaticSkill: FrontierArmorSkillName =
-		defaultArmorComponentValues.armorAutomaticSkill;
-	let armorDecorations: FrontierEquipmentDecorations = {
+	]);
+	let armorSkillPoints: FrontierEquipmentSkillPoints = $state([
+		10, 20, -30, 40, 50,
+	]);
+	let armorType: FrontierArmorType = $state(
+		defaultArmorComponentValues.armorType,
+	);
+	let armorAutomaticSkill: FrontierArmorSkillName = $state(
+		defaultArmorComponentValues.armorAutomaticSkill,
+	);
+	let armorDecorations: FrontierEquipmentDecorations = $state({
 		slot1: {
 			name: 'Zindol BM GX1',
 			skill1: {
@@ -290,16 +312,16 @@
 				points: 5,
 			},
 		},
-	};
+	});
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Armor Generator'} />
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			This is a playground for armor, which can be useful for creating custom
 			armor and demonstrate translations.
-		</p>
+		</div>
 		<div class="container-armor-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadArmorImage}
 				>Download</Button
@@ -834,7 +856,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

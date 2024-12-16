@@ -187,64 +187,71 @@
 			(b?.displayName?.codePointAt(0) ?? 0),
 	);
 
-	let selectedMonsterIdFromList = findMonster(
-		$page.params.monster,
-	)?.displayName;
+	let selectedMonsterIdFromList = $state(
+		findMonster($page.params.monster)?.displayName,
+	);
 
 	/** TODO this changes depending on monster*/
-	let selectedRankBand: FrontierMonsterHitzoneRankBand =
-		getAvailableRankBands(selectedMonsterIdFromList)[0].id || 'Default';
-	let selectedHitzoneType: FrontierMonsterHitzoneType = 'Cutting';
-	let selectedMonsterState = 'Default';
+	let selectedRankBand: FrontierMonsterHitzoneRankBand = $state(
+		getAvailableRankBands(selectedMonsterIdFromList)[0].id || 'Default',
+	);
+	let selectedHitzoneType: FrontierMonsterHitzoneType = $state('Cutting');
+	let selectedMonsterState = $state('Default');
 
 	const currentMonsters = getCurrentMonsters();
 
-	$: monster = findMonster($page.params.monster);
-	$: monsterID = findMonsterID(monster);
+	let monster = $derived(findMonster($page.params.monster));
+	let monsterID = $derived(findMonsterID(monster));
 
-	$: hitzones =
+	let hitzones = $derived(
 		convertHitzoneInfo(
 			selectedMonsterIdFromList,
 			selectedRankBand,
 			selectedMonsterState,
-		) || [];
-
-	$: hitzoneValues = Object.entries(
-		getAllHitzoneValuesForHitzones(
-			hitzones,
-			selectedMonsterState,
-			selectedRankBand,
-		),
-	).map(([partName, hitzoneValues]) => ({
-		id: partName,
-		part: partName,
-		...Object.fromEntries(
-			Object.entries(hitzoneValues).map(([type, value]) => [
-				type.toLowerCase(),
-				value,
-			]),
-		),
-	}));
-
-	$: hitzoneHighestValues = getHitzoneValuesObject(
-		hitzones,
-		selectedMonsterState,
-		selectedRankBand,
+		) || [],
 	);
 
-	$: availableRankBands = getAvailableRankBands(selectedMonsterIdFromList) || [
-		{ id: 'Default', text: 'Default' },
-	];
+	let hitzoneValues = $derived(
+		Object.entries(
+			getAllHitzoneValuesForHitzones(
+				hitzones,
+				selectedMonsterState,
+				selectedRankBand,
+			),
+		).map(([partName, hitzoneValues]) => ({
+			id: partName,
+			part: partName,
+			...Object.fromEntries(
+				Object.entries(hitzoneValues).map(([type, value]) => [
+					type.toLowerCase(),
+					value,
+				]),
+			),
+		})),
+	);
 
-	$: availableMonsterStates = getAvailableMonsterStates(
-		selectedMonsterIdFromList,
-	) || [{ id: 'Default', text: 'Default' }];
+	let hitzoneHighestValues = $derived(
+		getHitzoneValuesObject(hitzones, selectedMonsterState, selectedRankBand),
+	);
+
+	let availableRankBands = $derived(
+		getAvailableRankBands(selectedMonsterIdFromList) || [
+			{ id: 'Default', text: 'Default' },
+		],
+	);
+
+	let availableMonsterStates = $derived(
+		getAvailableMonsterStates(selectedMonsterIdFromList) || [
+			{ id: 'Default', text: 'Default' },
+		],
+	);
 
 	// TODO remove from monster name list ones with unused svg
 
-	$: currentSilhouette = silhouetteInfo.find(
-		(e) => e.displayName === selectedMonsterIdFromList,
-	)?.silhouette;
+	let currentSilhouette = $derived(
+		silhouetteInfo.find((e) => e.displayName === selectedMonsterIdFromList)
+			?.silhouette,
+	);
 
 	/**For lens*/
 	let hovering = false;
@@ -302,7 +309,7 @@
 			</div>
 			<div class="stats-lists">
 				<div class="elements">
-					<strong>Elements: </strong>
+					<strong>Elements:</strong>
 					{#if monster.elements !== undefined && monster.elements.length > 0}
 						{#each monster.elements as element}
 							<InlineTooltip
@@ -317,7 +324,7 @@
 					{/if}
 				</div>
 				<div class="ailments">
-					<strong>Ailments: </strong>
+					<strong>Ailments:</strong>
 					{#if monster.ailments !== undefined && monster.ailments.length > 0}
 						<div class="ailments-list">
 							{#each monster.ailments as ailment}
@@ -334,7 +341,7 @@
 					{/if}
 				</div>
 				<div class="weaknesses">
-					<strong>Weaknesses: </strong>
+					<strong>Weaknesses:</strong>
 					{#if monster.weaknesses !== undefined && monster.weaknesses.length > 0}
 						<div class="weaknesses-list">
 							{#each monster.weaknesses as weakness}
@@ -360,16 +367,18 @@
 					{/if}
 				</div>
 				<p>
-					<strong>ID: </strong>{monsterID} (0x{Number.parseInt(`${monsterID}`)
+					<strong>ID:</strong>
+					{monsterID} (0x{Number.parseInt(`${monsterID}`)
 						.toString(16)
 						.toUpperCase()
 						.padStart(2, '0')})
 				</p>
 				<p>
-					<strong>Size Type: </strong>{monster.type}
+					<strong>Size Type:</strong>
+					{monster.type}
 				</p>
-				<p>
-					<strong>Sizes: </strong>
+				<div class="paragraph-long-02">
+					<strong>Sizes:</strong>
 					{#if monster.sizes && monster.sizes.length > 0}
 						<UnorderedList class="spaced-list">
 							{#each monster.sizes as size}
@@ -377,14 +386,15 @@
 							{/each}
 						</UnorderedList>
 					{:else}
-						<p>Not found.</p>
+						<div>Not found.</div>
 					{/if}
-				</p>
+				</div>
 				<p>
-					<strong>Rank: </strong>{monster.rank}
+					<strong>Rank:</strong>
+					{monster.rank}
 				</p>
-				<p>
-					<strong>Render: </strong>
+				<div class="paragraph-long-02">
+					<strong>Render:</strong>
 					<ImageDialog
 						type="file"
 						src={monster.fullRender}
@@ -392,14 +402,15 @@
 						width={32}
 						height={32}
 					/>
-				</p>
+				</div>
 				<p>
-					<strong>Generation: </strong>{monster.generation}
+					<strong>Generation:</strong>
+					{monster.generation}
 				</p>
 			</div>
 			<div class="habitats">
-				<p>
-					<strong>Habitats: </strong>
+				<div class="paragraph-long-02">
+					<strong>Habitats:</strong>
 					{#if monster.habitats && monster.habitats.length > 0}
 						<UnorderedList class="spaced-list">
 							{#each monster.habitats as habitat}
@@ -424,7 +435,7 @@
 					{:else}
 						<p>Not found.</p>
 					{/if}
-				</p>
+				</div>
 			</div>
 			<div class="related-monsters">
 				<p>
@@ -474,61 +485,62 @@
 			<SectionHeading title="Hitzone Values" level={2} />
 			<Accordion class="spaced-accordion">
 				<AccordionItem>
-					<svelte:fragment slot="title">
+					{#snippet title()}
 						<h5 class="accordion-title">
 							<span><Help /></span><span>Help</span>
 						</h5>
-					</svelte:fragment>
-					<p class="spaced-paragraph">
+					{/snippet}
+					<div class="spaced-paragraph">
 						The colors in the silhouette denotes the highest and lowest values
 						for the hitzone type, while the values in bold in the table denotes
 						the highest and second highest values for that column.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The higher the hitzone value, the more damage you can deal for that
 						damage type.
-					</p>
+					</div>
 					<div class="hitzone-colors-description">
 						<UnorderedList class="spaced-list">
-							<ListItem>
+							<ListItem class="paragraph-long-02">
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-red)"
-								/>Red: Highest values for this hitzone type.</ListItem
+								></button>Red: Highest values for this hitzone type.</ListItem
 							>
-							<ListItem
+							<ListItem class="paragraph-long-02"
 								><button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-peach)"
-								/>Orange: Second highest values for this hitzone type.</ListItem
+								></button>Orange: Second highest values for this hitzone type.</ListItem
 							>
-							<ListItem
+							<ListItem class="paragraph-long-02"
 								><button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-yellow)"
-								/>Yellow: Third highest values for this hitzone type.</ListItem
+								></button>Yellow: Third highest values for this hitzone type.</ListItem
 							>
-							<ListItem
+							<ListItem class="paragraph-long-02"
 								><button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-green)"
-								/>Green: Values higher than 0 for this hitzone type.</ListItem
+								></button>Green: Values higher than 0 for this hitzone type.</ListItem
 							>
-							<ListItem
+							<ListItem class="paragraph-long-02"
 								><button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-blue)"
-								/>Blue: Values lower or equal to 0 for this hitzone type.</ListItem
+								></button>Blue: Values lower or equal to 0 for this hitzone
+								type.</ListItem
 							>
 						</UnorderedList>
 					</div>
@@ -552,12 +564,17 @@
 					bind:selectedId={selectedMonsterIdFromList}
 					items={currentMonsters}
 					{shouldFilterItem}
-					let:item
 				>
-					<div class="option-item">
-						<img width={32} src={getMonsterIcon(item.id)} alt="Monster Icon" />
-						<p>{item.id}</p>
-					</div>
+					{#snippet children({ item })}
+						<div class="option-item">
+							<img
+								width={32}
+								src={getMonsterIcon(item.id)}
+								alt="Monster Icon"
+							/>
+							<div>{item.id}</div>
+						</div>
+					{/snippet}
 				</ComboBox>
 				{#if availableMonsterStates.length > 0 && availableRankBands.length > 0}
 					<Dropdown
@@ -649,15 +666,15 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if hitzoneHighestValues[cell.key
 										.charAt(0)
 										.toUpperCase() + cell.key.slice(1)]?.find((e) => e === cell.value)}
-									<p><strong>{cell.value}</strong></p>
+									<div><strong>{cell.value}</strong></div>
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				{/if}

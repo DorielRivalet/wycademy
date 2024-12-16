@@ -6,9 +6,19 @@
 	import { getTag } from '$lib/client/modules/frontier/tags';
 	import Card3D from '$lib/client/components/Card3D.svelte';
 
-	export let monster: FrontierMonsterInfo;
-	export let tags = ['Brute Wyvern', 'Hardcore', 'Unlimited', 'Fire'];
-	export let width: string;
+	interface Props {
+		monster: FrontierMonsterInfo;
+		tags?: any;
+		width: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		monster,
+		tags = ['Brute Wyvern', 'Hardcore', 'Unlimited', 'Fire'],
+		width,
+		children
+	}: Props = $props();
 
 	const maxTagLength = 20;
 </script>
@@ -17,7 +27,7 @@
 	<div class="card" style="width: {width};">
 		<div class="top">
 			<div class="image">
-				<slot></slot>
+				{@render children?.()}
 			</div>
 		</div>
 		<div class="bottom">

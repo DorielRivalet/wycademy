@@ -4,9 +4,13 @@
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import ChevronUp from 'carbon-icons-svelte/lib/ChevronUp.svelte';
 
-	export let text: string;
-	export let href: string;
-	export let number: number;
+	interface Props {
+		text: string;
+		href: string;
+		number: number;
+	}
+
+	let { text, href, number }: Props = $props();
 </script>
 
 <ListItem>

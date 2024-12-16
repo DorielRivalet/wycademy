@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
@@ -65,7 +65,7 @@
 		return result;
 	}
 
-	let bentoSection = 'Vigorous';
+	let bentoSection = $state('Vigorous');
 	const bentoSectionNames = [
 		{ id: 'Vigorous', text: 'Vigorous' },
 		{ id: 'Starving Wolf', text: 'Starving Wolf' },
@@ -73,10 +73,10 @@
 		{ id: 'Combo', text: 'Combo' },
 	];
 
-	$: bentoSectionValue = getBentoSectionValues(bentoSection);
+	let bentoSectionValue = $derived(getBentoSectionValues(bentoSection));
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Bento'} />
 		<div>
@@ -84,31 +84,37 @@
 				Lunchboxes (or Bentos) are buffs that you set at the quest counter menu,
 				right before embarking on a quest.
 			</p>
-			<p>You can pack a Bento at the appropiate NPC:</p>
+			<div>You can pack a Bento at the appropiate NPC:</div>
 			<UnorderedList class="spaced-list">
 				<ListItem>
-					The dedicated food store in <InlineTooltip
-						text="Mezeporta"
-						tooltip="Location"
-						icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
-						iconType={'file'}
-					/>.
+					<div class="paragraph-long-02">
+						The dedicated food store in <InlineTooltip
+							text="Mezeporta"
+							tooltip="Location"
+							icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
+							iconType={'file'}
+						/>.
+					</div>
 				</ListItem>
-				<ListItem>
-					The dedicated food store in the <InlineTooltip
-						tooltip="Location"
-						text="Caravan"
-						icon={LocationIcons.find((e) => e.name === 'Caravan')?.icon}
-						iconType={'file'}
-					/> area.
+				<ListItem
+					><div class="paragraph-long-02">
+						The dedicated food store in the <InlineTooltip
+							tooltip="Location"
+							text="Caravan"
+							icon={LocationIcons.find((e) => e.name === 'Caravan')?.icon}
+							iconType={'file'}
+						/> area.
+					</div>
 				</ListItem>
-				<ListItem>
-					The Guild Store Cat in the <InlineTooltip
-						tooltip="Location"
-						text="Guild Hall"
-						icon={LocationIcons.find((e) => e.name === 'Guild Hall')?.icon}
-						iconType={'file'}
-					/>.
+				<ListItem
+					><div class="paragraph-long-02">
+						The Guild Store Cat in the <InlineTooltip
+							tooltip="Location"
+							text="Guild Hall"
+							icon={LocationIcons.find((e) => e.name === 'Guild Hall')?.icon}
+							iconType={'file'}
+						/>.
+					</div>
 				</ListItem>
 			</UnorderedList>
 
@@ -143,7 +149,7 @@
 								/>
 							</div>
 						</Toolbar>
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.key === 'health' || cell.key === 'stamina' || cell.key === 'attack' || cell.key === 'defense'}
 								<span
 									style={cell.value.includes('-')
@@ -153,7 +159,7 @@
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -274,7 +280,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

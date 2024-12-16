@@ -179,18 +179,18 @@ export let questionBank: { category: string; items: MultipleChoiceItem[] }[] = [
 					'The possible combinations of sharpness values for a weapon, separated by weapon type (e.g. Dual Swords).',
 			},
 			{
-				stem: 'Rank from highest to lowest the weapons by the damage they would deal.',
+				stem: 'Rank from highest to lowest the weapons by their true raw.',
 				options: [
 					'1500 Attack Sword and Shield',
 					'2000 Attack Dual Swords',
-					'1000 Attack Long Sword',
-					'1000 Attack Magnet Spike',
+					'2000 Attack Long Sword',
+					'1500 Attack Magnet Spike',
 				],
 				solutions: [
-					'1000 Attack Magnet Spike',
-					'1000 Attack Long Sword',
 					'2000 Attack Dual Swords',
 					'1500 Attack Sword and Shield',
+					'2000 Attack Long Sword',
+					'1500 Attack Magnet Spike',
 				],
 				format: 'ranking',
 			},

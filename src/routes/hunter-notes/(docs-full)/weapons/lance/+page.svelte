@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -193,11 +193,11 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Lance'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					text="Lance"
 					tooltip="Weapon"
@@ -222,8 +222,8 @@
 					iconType="component"
 					icon={getItemIcon('Jewel')}
 				/> can help fill that gap.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Lances"
 					tooltip="Weapon"
@@ -238,9 +238,9 @@
 				(which equals 25.2) is greater than 20, resulting in
 				<strong>Impact</strong> damage being dealt instead of
 				<strong>Cutting</strong>.
-			</p>
+			</div>
 
-			<p>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -249,12 +249,12 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Earth Style</strong> is the standard <InlineTooltip
 							text="Lance"
 							tooltip="Weapon"
@@ -262,28 +262,28 @@
 							icon={getWeaponIcon('Lance')}
 						/> style, featuring the basic forward and upward thrusts along with all
 						the new original motions introduced in Frontier.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Heaven Style</strong> replaces the
 						<strong>Lance Charge</strong> with the <strong>Sky Stab</strong>,
 						allowing you to combo all thrusts up to four times instead of three.
 						<strong>Sky Stabs</strong> are vertical thrusts with a motion value of
 						38 for the first three stabs and 43 for the last, making them as powerful
 						as the final hit in a normal upthrust combo.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Storm Style</strong> retains the changes from
 						<strong>Heaven Style</strong>
 						but replaces the guard poke with a shield charge. The shield charge uses
@@ -301,19 +301,19 @@
 						/>, though it’s not particularly effective for that purpose. The
 						shield charge can only be followed up with either evades or a
 						<strong>Charge Thrust.</strong>
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> is an upgraded version of
 						<strong>Storm Style</strong>. It lacks the
 						<strong>Lance Charge</strong> but retains all three basic thrust types.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						While running, the <InlineTooltip
 							text="Lance"
 							tooltip="Weapon"
@@ -323,8 +323,8 @@
 						guarding frames and no knockback, followed by either a normal thrust
 						(50 motion) or a <strong>Jump Thrust</strong>, which covers more
 						distance but also has a higher motion value of 50.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						In addition to running actions, <strong>Extreme Style</strong>
 						introduces two significant new thrusts:
 						<strong>Finishing Thrusts</strong> and
@@ -338,8 +338,8 @@
 						<strong>Standard Thrusts</strong>, a
 						<strong>Finishing Thrust</strong>, and an
 						<strong>Evasion Thrust</strong>.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> also features a new
 						<strong>Guard Gauge</strong> interface with three
 						<strong>Shield Phials</strong>. These phials fill up as you guard,
@@ -364,12 +364,11 @@
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/>.
-					</p>
+					</div>
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Lance Phials',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/lance-phials.webm',
@@ -380,8 +379,7 @@
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Area Guard',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/lance-area-guard.webm',
@@ -400,7 +398,7 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						<InlineTooltip
 							text="Guard"
 							tooltip="Armor Skill"
@@ -424,7 +422,7 @@
 							icon={getItemIcon('Jewel')}
 							iconColor={getItemColor('Red')}
 						/>.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -458,13 +456,13 @@
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -502,7 +500,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -513,7 +511,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -551,7 +549,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -567,7 +565,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -576,15 +574,25 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Long length is the most common on Zenith Lances, although Very
 								Long length can be useful too.
-							</p></ListItem
+							</div></ListItem
+						><ListItem
+							><div class="paragraph-long-02">
+								The yellow and red phial effects only apply to yourself.
+							</div></ListItem
+						><ListItem
+							><div class="paragraph-long-02">
+								Area guard can block hits starting at 2 total, 4 with Guard+1
+								and 6 with Guard+2. You can block extra hits during the ending
+								animation. The charging period lasts 90 seconds.
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Lance"
@@ -598,10 +606,10 @@
 									icon={getWeaponIcon('Lance')}
 								/> uses the impact value as <strong>Cutting</strong> damage. (Carapaceons
 								are a good example of this.)
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								With <InlineTooltip
 									text="Lance Hiden"
 									tooltip="Armor Skill"
@@ -631,18 +639,18 @@
 									iconType="component"
 									icon={getAilmentIcon('Snowman')}
 								/>, etc.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Zenith-level hazards will always cause pushback unless you’re
 								using <strong>Heavy Guard</strong>,
 								<strong>Guard Advance</strong>, or
 								<strong>Running Shield Bash</strong>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The <strong>Shield Bash</strong> while running prevents any
 								pushback from guarding and has innate <InlineTooltip
 									text="Guard+2"
@@ -651,16 +659,16 @@
 									icon={getItemIcon('Jewel')}
 								/>. The only equivalent from a neutral stance is Storm’s
 								<strong>Guard Advance</strong>, which is much more rigid.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The <strong>Ranged Guard</strong> works by blocking the hit yourself
 								to protect other players.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Blocking <InlineTooltip
 									text="Heavy Bowgun's"
 									tooltip="Weapon"
@@ -668,10 +676,10 @@
 									icon={getWeaponIcon('Heavy Bowgun')}
 								/> <strong>Heat Beam</strong> can fill all of your phials almost
 								instantly.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								In order to deal the most damage with <InlineTooltip
 									text="Reflect"
 									tooltip="Armor Skill"
@@ -689,28 +697,28 @@
 									iconType="component"
 									icon={CaravanGem}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<strong>Backhop thrusts</strong> return to guarding faster, and you
 								can perform them from a neutral stance.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Guard lancing can be a useful way to learn parrying with other
 								weapons.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The stamina buff varies in duration depending on how much
 								stamina you are using.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								With a <strong>Heavy Guard</strong>, <InlineTooltip
 									text="Guard+2"
 									tooltip="Armor Skill"
@@ -728,19 +736,23 @@
 									iconType="file"
 									icon={getMonsterIcon('Stygian Zinogre')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
-						<ListItem><p>The attack buff lasts 3 minutes.</p></ListItem>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
+								The attack buff lasts 3 minutes.
+							</div></ListItem
+						>
+						<ListItem
+							><div class="paragraph-long-02">
 								The area guard can block more attacks than guard shields
 								available. It will continue blocking attacks, including after
 								all guard shields are consumed and before the animation ends.
-							</p></ListItem
+							</div></ListItem
 						>
 
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The area guard is capable of blocking the needle from <InlineTooltip
 									tooltip="Monster"
 									text="Zenith Hyujikiki"
@@ -752,11 +764,11 @@
 									iconType="file"
 									icon={getMonsterIcon('Conquest Fatalis')}
 								/> nukes, etc.
-							</p></ListItem
+							</div></ListItem
 						>
 
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								You cannot heal <InlineTooltip
 									tooltip="Weapon"
 									text="Dual Swords"
@@ -764,10 +776,10 @@
 									icon={getWeaponIcon('Dual Swords')}
 								/> users that are in <strong>Extreme Demon Mode</strong>, except
 								in periods where they got hit and thus lost the mode.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								This weapon type is very useful in <InlineTooltip
 									tooltip="Location"
 									text="Hunter's Road"
@@ -779,7 +791,7 @@
 									iconType="component"
 									icon={getWeaponIcon('Magnet Spike')}
 								/> it is not as common.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -790,7 +802,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

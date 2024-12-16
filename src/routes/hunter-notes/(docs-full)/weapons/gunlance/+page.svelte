@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -458,11 +458,11 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Gunlance'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Frontier's <InlineTooltip
 					text="Gunlance"
 					tooltip="Weapon"
@@ -478,8 +478,8 @@
 				<strong>Wyvern Fire</strong>
 				can also be enhanced by loading extra shells, transforming it into
 				<strong>Super Wyvern Fire</strong>.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Performing an upswing after a quick reload or as an unsheathed attack
 				allows you to execute a <strong>Horizontal Sweep</strong>. You can shell
 				from this position, instantly firing all shells in your <InlineTooltip
@@ -490,8 +490,8 @@
 				/>. The sweep has a naturally high motion value (51), and shelling from
 				it results in a <strong>Backhop Slash</strong> with its own motion value
 				(18 + Shelling Damage).
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					text="Gunlance"
 					tooltip="Weapon"
@@ -502,8 +502,8 @@
 				is best for general shelling, while <strong>Normal</strong> provides the
 				highest potential damage for all types of <strong>Wyvern Fire</strong>.
 				<strong>Long</strong> serves as a balanced option between the two.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Skills-wise, you can use <InlineTooltip
 					text="Load Up"
 					tooltip="Armor Skill"
@@ -520,23 +520,23 @@
 					iconType="component"
 					icon={getItemIcon('Jewel')}
 				/> to reduce the knockback from Wyvern Fire.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				There are two evasion options, with the second using the <InlineTooltip
 					text="Gunlance"
 					tooltip="Weapon"
 					iconType="component"
 					icon={getWeaponIcon('Gunlance')}
 				/> to launch you into the air.
-			</p>
+			</div>
 
 			<section>
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						In Frontier, shelling can reach Level 9 and scales with your
 						weapon's raw damage.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Factors affecting Gunlance shell damage include your SR and GSR
 						(which add +50 to +100 true raw), G Rank Raw Sigils (up to +135 with
 						three perfect sigils), and Shelling Level (with G Rank Sigils
@@ -550,11 +550,11 @@
 							>Gunlance calculator.</Link
 						>, though there may be a slight margin of error due to the numerous
 						factors involved.
-					</p>
+					</div>
 				</div>
 			</section>
 
-			<p>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -563,11 +563,11 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						<strong>Earth Style</strong> is the standard <InlineTooltip
 							text="Gunlance"
 							tooltip="Weapon"
@@ -575,14 +575,14 @@
 							icon={getWeaponIcon('Gunlance')}
 						/> moveset. It includes Wyvern Fire, which can be enhanced by loading
 						extra shells, and all the core features described above.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Heaven Style</strong> expands on the standard <InlineTooltip
 							text="Gunlance"
 							tooltip="Weapon"
@@ -613,14 +613,14 @@
 							icon={getWeaponIcon('Gunlance')}
 						/>. The power of the <strong>Heat Blade</strong> varies slightly based
 						on shell type and level but not significantly.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Storm Style</strong> incorporates all the features of
 						<strong>Heaven Style</strong>
 						but replaces shelling with <strong>Elemental Shelling</strong>.
@@ -638,19 +638,19 @@
 							icon={getWeaponIcon('Gunlance')}
 						/> in this style essentially gains a miniature
 						<strong>Wyvern Fire</strong> for normal shelling.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> is a direct upgrade to all previous
 						styles, adding enhanced mobility, a higher-tier version of
 						<strong>Wyvern Fire</strong>, and Elemental Heat Blades.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						As with all Extreme Styles, you can run with your weapon unsheathed,
 						greatly improving mobility. While running, you can reload your
 						<InlineTooltip
@@ -667,8 +667,8 @@
 							iconType="component"
 							icon={getWeaponIcon('Gunlance')}
 						/>.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						<strong>Wyvern Fire</strong> in <strong>Extreme Style</strong>
 						mirrors Earth Style's version, including
 						<strong>Super Wyvern Fire</strong>. However, you can
@@ -680,15 +680,15 @@
 						all your shells into a <strong>Super Wyvern Fire</strong>, the
 						strength of the <strong>Extreme Wyvern Fire</strong> depends directly
 						on the number of shells loaded, so maximizing shell count is crucial.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The <strong>Heat Blade</strong> in <strong>Extreme Style</strong>
 						functions similarly to <strong>Heaven Style</strong>. By pressing
 						the kick input, you enter <strong>Heat Blade</strong> mode, which adds
 						decent elemental damage if your weapon has an element and increases motion
 						value if your weapon focuses on raw damage or status effects. Hybrid
 						elements will randomly display one element per attack.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -700,7 +700,9 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>x1.5 Wyvern Fire and Shelling Damage.</p>
+					<div class="paragraph-long-02">
+						x1.5 Wyvern Fire and Shelling Damage.
+					</div>
 				</div>
 			</section>
 
@@ -734,13 +736,13 @@
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -778,7 +780,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -789,7 +791,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -827,7 +829,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -843,7 +845,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -852,24 +854,34 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Heat Blade offers numerous benefits, including a second hitzone
 								on every physical attack, extended reach, and no sharpness loss
 								until it wears off, which then causes a -100 unit drop. On
 								activation, it also restores some sharpness.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								If the weapon has a status effect, Heat Blade doesn’t inflict
 								extra. However, if it lacks an element, it uses the higher raw
 								Heat Blade motion value.
-							</p></ListItem
+							</div></ListItem
+						><ListItem
+							><div class="paragraph-long-02">
+								You can increase by x1.5 times the shell power (explosion,
+								elements, stun values) after doing a Quick Reload.
+							</div></ListItem
+						><ListItem
+							><div class="paragraph-long-02">
+								Heatblade lasts 120 seconds with a cooldown of 50 seconds (25
+								with Hiden).
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Although <InlineTooltip
 									tooltip="Weapon"
 									text="Gunlance"
@@ -887,20 +899,20 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> active.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Hit requirements for multiple skills and <InlineTooltip
 									tooltip="Buff"
 									text="Transcend"
 									iconType="file"
 									icon={getLocationIcon('Transcend')}
 								/> are easier to meet with Heat Blade activated.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Recoil"
@@ -917,10 +929,10 @@
 									iconType="component"
 									icon={getWeaponIcon('Gunlance')}
 								/> to evade after shelling.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Consumption Slayer"
@@ -934,15 +946,15 @@
 									iconColor={getItemColor('Red')}
 									icon={getItemIcon('Jewel')}
 								/> sharpness recovery.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The Super Wyvern Fire <OutboundLink
 									href="https://youtu.be/z6iM8wMHMtI?t=41"
 									>has iframes</OutboundLink
 								> in the recovery portion of the animation.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -953,7 +965,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

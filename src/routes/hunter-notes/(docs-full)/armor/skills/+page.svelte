@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -24,6 +24,10 @@
 	import type { FrontierArmorType } from '$lib/client/modules/frontier/types';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import GouBoost from '$lib/client/components/frontier/icon/GouBoost.svelte';
+
+	const MyTore = getLocationIcon('My Tore');
+	const DivaDefense = getLocationIcon('Diva Defense');
+	const GuildHall = getLocationIcon('Guild Hall');
 
 	function getArmorSkillSlots(
 		skillSlotsUpInputArmorPieces: {
@@ -157,7 +161,7 @@
 		}),
 	);
 
-	let skillsPriorityFilteredRowIds: string[] = [];
+	let skillsPriorityFilteredRowIds: string[] = $state([]);
 
 	let skillSlotsUpInputArmorPieces: {
 		head: FrontierArmorType;
@@ -165,61 +169,71 @@
 		arms: FrontierArmorType;
 		waist: FrontierArmorType;
 		legs: FrontierArmorType;
-	} = {
+	} = $state({
 		head: 'Zenith',
 		chest: 'Zenith',
 		arms: 'Zenith',
 		waist: 'Zenith',
 		legs: 'Zenith',
-	};
+	});
 
-	let skillSlotsUpInputZenithWeapon = true;
-	let skillSlotsUpInputZenithCuff = true;
-	let skillSlotsUpInputTrueHidenCuff = true;
-	let skillSlotsUpInputSkillFruit = true;
-	let skillSlotsUpInputLoginBoostGreatLuck = true;
-	let skillSlotsUpInputDivaSkill = true;
-	let skillSlotsUpInputGuildFood = true;
+	let skillSlotsUpInputZenithWeapon = $state(true);
+	let skillSlotsUpInputZenithCuff = $state(true);
+	let skillSlotsUpInputTrueHidenCuff = $state(true);
+	let skillSlotsUpInputSkillFruit = $state(true);
+	let skillSlotsUpInputLoginBoostGreatLuck = $state(true);
+	let skillSlotsUpInputDivaSkill = $state(true);
+	let skillSlotsUpInputGuildFood = $state(true);
 
-	$: totalSkillSlots = extraSkillSlots + maximumArmorSlots;
-
-	$: extraSkillSlots = getExtraSkillSlots(
-		skillSlotsUpInputZenithWeapon,
-		skillSlotsUpInputZenithCuff,
-		skillSlotsUpInputTrueHidenCuff,
-		skillSlotsUpInputSkillFruit,
-		skillSlotsUpInputLoginBoostGreatLuck,
-		skillSlotsUpInputDivaSkill,
-		skillSlotsUpInputGuildFood,
+	let extraSkillSlots = $derived(
+		getExtraSkillSlots(
+			skillSlotsUpInputZenithWeapon,
+			skillSlotsUpInputZenithCuff,
+			skillSlotsUpInputTrueHidenCuff,
+			skillSlotsUpInputSkillFruit,
+			skillSlotsUpInputLoginBoostGreatLuck,
+			skillSlotsUpInputDivaSkill,
+			skillSlotsUpInputGuildFood,
+		),
 	);
-
-	$: innateArmorSlots = getArmorSkillSlots(skillSlotsUpInputArmorPieces);
-
-	$: maximumArmorSlots = getArmorSkillSlots(skillSlotsUpInputArmorPieces, true);
-
-	$: maximumGearSlots =
+	let maximumArmorSlots = $derived(
+		getArmorSkillSlots(skillSlotsUpInputArmorPieces, true),
+	);
+	let totalSkillSlots = $derived(extraSkillSlots + maximumArmorSlots);
+	let innateArmorSlots = $derived(
+		getArmorSkillSlots(skillSlotsUpInputArmorPieces),
+	);
+	let maximumGearSlots = $derived(
 		getArmorSkillSlots(skillSlotsUpInputArmorPieces, true) +
-		(skillSlotsUpInputZenithWeapon ? 1 : 0) +
-		(skillSlotsUpInputZenithCuff ? 1 : 0) +
-		(skillSlotsUpInputTrueHidenCuff ? 1 : 0);
+			(skillSlotsUpInputZenithWeapon ? 1 : 0) +
+			(skillSlotsUpInputZenithCuff ? 1 : 0) +
+			(skillSlotsUpInputTrueHidenCuff ? 1 : 0),
+	);
 
 	// in multiplayer its more skills like encourage.
 	// TODO links to each respective skill slot source explanation (other pages).
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
+	{@const SvelteComponent = getArmorIcon('Head')}
+	{@const SvelteComponent_1 = getArmorIcon('Chest')}
+	{@const SvelteComponent_2 = getArmorIcon('Arms')}
+	{@const SvelteComponent_3 = getArmorIcon('Waist')}
+	{@const SvelteComponent_4 = getArmorIcon('Legs')}
+	{@const SvelteComponent_5 = getWeaponIcon('Great Sword')}
+	{@const SvelteComponent_6 = getItemIcon('Berry')}
 	<div>
 		<SectionHeadingTopLevel title={'Armor Skills'} />
 		<div>
 			<section>
 				<SectionHeading level={2} title="Skill Slots" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						By default you can activate up to 10 skills. Equipping 3 pieces of G
 						Rank Armor will increase your available skill slots to 11, and
 						equipping 5 pieces will increase it to 12.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Normal G, GF, GX, GS, and GP pieces all contribute to this total,
 						while Gou armors upgraded to G or GF levels do not. This means that
 						any set using a Burst piece can have a maximum of 11 skills.
@@ -231,9 +245,9 @@
 							iconType="component"
 						/> from a single Burst piece can offset the disadvantage of losing a
 						skill slot.
-					</p>
+					</div>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The Zenith Skill for <InlineTooltip
 							tooltip="Armor Skill"
 							text="Skill Slots Up"
@@ -243,18 +257,15 @@
 						Any Z, ZY, ZX, or ZP pieces all count toward the G Rank piece requirements
 						for slots. Like other Zenith skills, this can be found on Armor Pieces,
 						Weapons, and Cuffs, allowing for a maximum of 7 additional slots.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Exotic Skills do not occupy a skill slot.
-					</p>
+					</div>
 					<div class="skill-slots-up-inputs-container">
 						<div class="inputs-container">
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Head')}
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -271,10 +282,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Chest')}
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_1 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -291,10 +299,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Arms')}
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_2 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -311,10 +316,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Waist')}
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_3 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -331,10 +333,7 @@
 							</div>
 							<div class="input-container">
 								<div class="input-icon">
-									<svelte:component
-										this={getArmorIcon('Legs')}
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_4 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Dropdown
@@ -356,10 +355,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputZenithWeapon ? '1' : '0.5'}
 								>
-									<svelte:component
-										this={getWeaponIcon('Great Sword')}
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_5 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Checkbox
@@ -373,11 +369,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputZenithCuff ? '1' : '0.5'}
 								>
-									<img
-										alt="Zenith Cuff"
-										style="width: 4ch;"
-										src={getLocationIcon('My Tore')}
-									/>
+									<img alt="Zenith Cuff" style="width: 4ch;" src={MyTore} />
 								</div>
 								<div>
 									<Checkbox
@@ -391,11 +383,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputTrueHidenCuff ? '1' : '0.5'}
 								>
-									<img
-										alt="True Hiden Cuff"
-										style="width: 4ch;"
-										src={getLocationIcon('My Tore')}
-									/>
+									<img alt="True Hiden Cuff" style="width: 4ch;" src={MyTore} />
 								</div>
 								<div>
 									<Checkbox
@@ -409,10 +397,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputSkillFruit ? '1' : '0.5'}
 								>
-									<svelte:component
-										this={getItemIcon('Berry')}
-										{...{ size: '4ch' }}
-									/>
+									<SvelteComponent_6 {...{ size: '4ch' }} />
 								</div>
 								<div>
 									<Checkbox
@@ -426,11 +411,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputDivaSkill ? '1' : '0.5'}
 								>
-									<img
-										alt="Diva Skill"
-										style="width: 4ch;"
-										src={getLocationIcon('Diva Defense')}
-									/>
+									<img alt="Diva Skill" style="width: 4ch;" src={DivaDefense} />
 								</div>
 								<div>
 									<Checkbox
@@ -444,11 +425,7 @@
 									class="input-icon"
 									style:opacity={skillSlotsUpInputGuildFood ? '1' : '0.5'}
 								>
-									<img
-										alt="Guild Food"
-										style="width: 4ch;"
-										src={getLocationIcon('Guild Hall')}
-									/>
+									<img alt="Guild Food" style="width: 4ch;" src={GuildHall} />
 								</div>
 								<div>
 									<Checkbox
@@ -464,7 +441,7 @@
 										? '1'
 										: '0.5'}
 								>
-									<p>🍀</p>
+									<div>🍀</div>
 								</div>
 								<div>
 									<Checkbox
@@ -482,10 +459,10 @@
 								count Skill Slots Up.
 							</p></Tooltip
 						>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Innate Armor Skill Slots:</strong>
 							{innateArmorSlots}
-						</p>
+						</div>
 					</div>
 
 					<div class="skill-slots-result">
@@ -495,10 +472,10 @@
 								Up.
 							</p>
 						</Tooltip>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Maximum Armor Skill Slots:</strong>
 							{maximumArmorSlots}
-						</p>
+						</div>
 					</div>
 
 					<div class="skill-slots-result">
@@ -508,10 +485,10 @@
 								weapon and cuffs).
 							</p>
 						</Tooltip>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Maximum Gear Skill Slots:</strong>
 							{maximumGearSlots}
-						</p>
+						</div>
 					</div>
 
 					<div class="skill-slots-result">
@@ -521,10 +498,10 @@
 								means (anything that is not an armor piece).
 							</p>
 						</Tooltip>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Extra Skill Slots:</strong>
 							{extraSkillSlots}
-						</p>
+						</div>
 					</div>
 
 					<div class="skill-slots-result">
@@ -534,10 +511,10 @@
 								enhancements.
 							</p>
 						</Tooltip>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>Total Skill Slots:</strong>
 							{totalSkillSlots}
-						</p>
+						</div>
 					</div>
 					<p>
 						In practice, you're unlikely to create a set with 19 skills. For
@@ -551,7 +528,7 @@
 			<section>
 				<SectionHeading level={2} title="Skill Priority" />
 				<div>
-					<p>
+					<div class="spaced-paragraph">
 						<strong
 							>Not to be confused with what skill you should prioritize</strong
 						>; Skill Priority, or <strong>Skill Replacement Order</strong>,
@@ -569,7 +546,7 @@
 						overridden. <strong>Skill Replacement Order</strong> becomes noticeably
 						important when you reach the maximum possible skill slots for your gear,
 						which makes the game start prioritizing certain skills.
-					</p>
+					</div>
 					<div class="table table-with-scrollbar">
 						<DataTable
 							id="armor-skills-priority-dom"
@@ -604,9 +581,9 @@
 									/>
 								</div>
 							</Toolbar>
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								<p>{cell.value}</p>
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -616,7 +593,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

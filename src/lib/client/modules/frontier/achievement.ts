@@ -12,6 +12,13 @@ export const achievementRankColors = [
 	'var(--ctp-teal)',
 ];
 
+export const achievementRankNames = {
+	1: 'bronze',
+	2: 'silver',
+	3: 'gold',
+	4: 'platinum',
+};
+
 export function getAchievementRankColor(rank: number) {
 	if (rank >= achievementRankColors.length || rank < 0) {
 		return achievementRankColors[0];
@@ -51,6 +58,34 @@ export type AchievementItem = {
 export type AchievementObject = {
 	[key: string]: AchievementItem;
 };
+
+export interface PlayerAchievementInfo {
+	PlayerAchievementsID: number;
+	CompletionDate: string;
+	AchievementID: number;
+}
+
+export function findMatchingAchievements(
+	achievementObjects: AchievementObject[],
+	playerAchievements: PlayerAchievementInfo[],
+): { id: string; achievement: AchievementItem }[] {
+	// Flatten all AchievementItems into an array with their corresponding id as a key
+	const allAchievements = achievementObjects.flatMap((obj) =>
+		Object.entries(obj).map(([id, achievement]) => ({
+			id,
+			achievement,
+		})),
+	);
+
+	// Filter achievements where the id matches AchievementID in PlayerAchievementInfo
+	const matchingAchievements = allAchievements.filter(({ id }) =>
+		playerAchievements.some(
+			(playerAchievement) => playerAchievement.AchievementID.toString() === id,
+		),
+	);
+
+	return matchingAchievements;
+}
 
 export const achievementsInfo: AchievementObject[] = [
 	{

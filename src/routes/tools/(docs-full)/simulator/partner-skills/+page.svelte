@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import type { PartnerSkill } from '$lib/client/modules/frontier/types';
 	import Tile from 'carbon-components-svelte/src/Tile/Tile.svelte';
@@ -30,11 +30,9 @@
 	import { type Node, type Edge, SvelteFlowProvider } from '@xyflow/svelte';
 	import '@xyflow/svelte/dist/style.css';
 	import SvelteFlowElk from '$lib/client/components/SvelteFlowElk.svelte';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { tweenColor } from '$lib/client/modules/color-blend';
 	import { getRatioForValue } from '$lib/client/modules/math';
-
-	// TODO remove console statements
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -1861,14 +1859,14 @@
 	const nodeData: Node[] = skillTreeData.nodeData;
 	const edgeData: Edge[] = skillTreeData.edgeData;
 
-	let unlockedSkills = new Set<string>(['Health+10']);
-	let equippedSkills: string[] = [];
-	let currentGCP = 10;
-	let currentCost = 0;
+	let unlockedSkills = $state(new Set<string>(['Health+10']));
+	let equippedSkills: string[] = $state([]);
+	let currentGCP = $state(10);
+	let currentCost = $state(0);
 
 	// Pagination for skill list
 	let paginationPageSize = 10;
-	let paginationPage = 1;
+	let paginationPage = $state(1);
 
 	function generateSkillTreeData() {
 		const nodeData: Node[] = [];
@@ -1994,10 +1992,6 @@
 			}
 		});
 
-		// Debug: Log the calculation details
-		console.log('Required skills:', Array.from(requiredSkills));
-		console.log('Total GCP:', totalGCP);
-
 		return totalGCP;
 	}
 
@@ -2035,20 +2029,12 @@
 	}
 
 	function checkPrerequisites(skill: PartnerSkill): boolean {
-		// Debug: Log prerequisites check
-		console.log(`Checking prerequisites for ${skill.name.en}`);
-
 		// If no prerequisites, skill can be unlocked
 		if (!skill.prerequisites.length) return true;
 
 		// Check if all prerequisites are met
 		const allPrerequisitesMet = skill.prerequisites.every((skillName) =>
 			unlockedSkills.has(skillName),
-		);
-
-		// Debug: Log result of prerequisite check
-		console.log(
-			`Prerequisites for ${skill.name.en} met: ${allPrerequisitesMet}`,
 		);
 
 		return allPrerequisitesMet;
@@ -2078,9 +2064,6 @@
 	function unlockSkill(skill: PartnerSkill) {
 		if (unlockedSkills.has(skill.name.en)) return;
 
-		// Debug: Log skill unlocking
-		console.log(`Unlocking skill: ${skill.name.en}`);
-
 		// Create a new Set for reactivity
 		const newUnlockedSkills = new Set(unlockedSkills);
 		newUnlockedSkills.add(skill.name.en);
@@ -2088,23 +2071,13 @@
 		// Update the state
 		unlockedSkills = newUnlockedSkills;
 		currentGCP += skill.gcp;
-
-		// Debug: Confirm skill added to unlockedSkills
-		console.log(`Unlocked skills set updated:`, Array.from(unlockedSkills));
 	}
 
 	function lockSkill(skill: PartnerSkill) {
-		// Debug: Log locking attempt
-		console.log(`Attempting to lock skill: ${skill.name.en}`);
-
 		const dependentSkills = checkDependentSkills(skill.name.en);
 
-		// Debug: Log dependent skills check
-		console.log(
-			`Dependent skills for ${skill.name.en}: ${dependentSkills.join(', ')}`,
-		);
-
 		if (dependentSkills.length > 0) {
+			// TODO change to inline notification
 			alert(
 				`Cannot lock this skill as it is required for: ${dependentSkills.join(', ')}`,
 			);
@@ -2123,15 +2096,9 @@
 
 		// Deduct GCP
 		currentGCP -= skill.gcp;
-
-		// Debug: Log successful locking
-		console.log(`Skill ${skill.name.en} has been locked`);
 	}
 
 	function checkDependentSkills(skillName: string): string[] {
-		// Debug: Log dependent skills check initiation
-		console.log(`Checking for skills dependent on: ${skillName}`);
-
 		return skillIndex
 			.filter(
 				(skill) =>
@@ -2142,9 +2109,6 @@
 	}
 
 	function unlockAllSkills() {
-		// Debug: Log start of mass unlock
-		console.log('Starting mass unlock of all skills');
-
 		// Keep track of previously unlocked skills count to check for progress
 		let previousUnlockedCount = 0;
 		let currentUnlockedCount = unlockedSkills.size;
@@ -2163,11 +2127,6 @@
 
 			currentUnlockedCount = unlockedSkills.size;
 		}
-
-		// Debug: Log results
-		console.log(
-			`Unlock all completed. Total skills unlocked: ${unlockedSkills.size}`,
-		);
 	}
 
 	// Helper function to calculate total cost of equipped skills
@@ -2194,15 +2153,21 @@
 	};
 
 	// Modify the reactive statement to include all skills
-	$: paginatedSkills = skillIndex.slice(
-		(paginationPage - 1) * paginationPageSize,
-		paginationPage * paginationPageSize,
+	let paginatedSkills = $derived(
+		skillIndex.slice(
+			(paginationPage - 1) * paginationPageSize,
+			paginationPage * paginationPageSize,
+		),
 	);
-	$: canEquipMore = equippedSkills.length < MAX_SLOTS && currentCost < MAX_COST;
-	$: totalGCPRequired = calculateTotalGCP(equippedSkills, skillIndex);
+	let canEquipMore = $derived(
+		equippedSkills.length < MAX_SLOTS && currentCost < MAX_COST,
+	);
+	let totalGCPRequired = $derived(
+		calculateTotalGCP(equippedSkills, skillIndex),
+	);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Partner Skills'} />
 		<p>
@@ -2251,9 +2216,9 @@
 								{@const skill = skillIndex.find((s) => s.name.en === skillName)}
 								{#if skill}
 									<div class="equipped-skill">
-										<p>{skill.name.en}</p>
+										<div>{skill.name.en}</div>
 										<div>
-											<p>{skill.cost}</p>
+											<div>{skill.cost}</div>
 											<div>
 												<Button
 													size="small"
@@ -2304,7 +2269,7 @@
 									skill: skill,
 								}))}
 							>
-								<svelte:fragment slot="cell" let:row let:cell>
+								{#snippet cell({ row, cell })}
 									{#if cell.key === 'actions'}
 										<div class="skill-actions">
 											{#if !unlockedSkills.has(row.skill.name.en)}
@@ -2369,7 +2334,7 @@
 									{:else}
 										<p>{cell.value}</p>
 									{/if}
-								</svelte:fragment>
+								{/snippet}
 							</DataTable>
 						{/key}
 
@@ -2387,9 +2352,9 @@
 		<section>
 			<SectionHeading level={2} title="Skill Tree" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					You can hover over a skill in order to view its prerequisites.
-				</p>
+				</div>
 				<div>
 					<SvelteFlowProvider
 						><SvelteFlowElk
@@ -2406,7 +2371,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

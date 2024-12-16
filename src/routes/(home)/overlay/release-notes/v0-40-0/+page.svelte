@@ -36,12 +36,12 @@
 		<h1>{version}</h1>
 		<hr />
 		<div class="summary">
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				This is a hotfix patch focused on <span class="icon-text"
 					><LogoDiscord size={16} />
 					<span> Discord Rich Presence.</span></span
 				>
-			</p>
+			</div>
 		</div>
 		<section>
 			<h2>Improvements</h2>
@@ -91,11 +91,11 @@
 		/>
 	</section>
 	<section class="feedback-section">
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			We have a <OutboundLink href="https://forms.gle/hrAVWMcYS5HEo1v7A"
 				>Google Forms</OutboundLink
 			> where you can submit your feedback on the overlay.
-		</p>
+		</div>
 	</section>
 </div>
 
@@ -171,5 +171,6 @@
 	.feedback-section {
 		display: flex;
 		justify-content: center;
+		padding: 0px var(--cds-spacing-04);
 	}
 </style>

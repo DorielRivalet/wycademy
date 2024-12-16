@@ -4,6 +4,16 @@
 	import { setContext } from 'svelte';
 	import '../app.scss';
 	import ScrollToTop from './ScrollToTop.svelte';
+	import { themeTokens } from '$lib/client/themes/tokens';
+	import { cursorVars } from '$lib/client/themes/cursor';
+	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { catppuccinThemeMap } from '$lib/catppuccin';
+	import { onMount } from 'svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	// Define unique symbols for the context keys
 	const soundKey = Symbol.for('sound');
@@ -73,10 +83,44 @@
 	setContext(cursorIconKey, cursorIconStore);
 	setContext(pushNotificationsKey, pushNotificationsStore);
 	setContext(notificationsKey, notificationsStore);
+
+	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
+
+	onMount(() => {
+		let cssVarMap;
+		let themeValue = $carbonThemeStore;
+		console.log('On mount 1');
+		cssVarMap = catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		console.log('On mount 2');
+		Object.keys(cssVarMap).forEach((key) => {
+			console.log('On mount ' + key.toString());
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+
+		let cursorValue = $cursorIconStore;
+		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
+		Object.keys(cssVarMap).forEach((key) => {
+			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
+		});
+
+		// window.addEventListener('scroll', handleScroll);
+	});
+
+	//$inspect(tokens);
 </script>
 
-<slot />
+<Theme
+	bind:theme={$carbonThemeStore}
+	persist
+	persistKey="__carbon-theme"
+	{tokens}
+/>
+
+{@render children?.()}
 
 {#if $scrollToTopStore}
 	<ScrollToTop />
 {/if}
+
+<style lang="scss">
+</style>

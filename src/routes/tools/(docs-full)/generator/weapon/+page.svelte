@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
@@ -229,123 +229,178 @@
 	const invalidBowgunAttackLevelText = `Value must be between ${minimumBowgunAttackLevel} and ${maximumBowgunAttackLevel}.`;
 	const invalidBowgunAmmoText = `Value must be between ${minimumBowgunAmmo} and ${maximumBowgunAmmo}.`;
 
-	let weaponSharpness = defaultWeaponComponentValues.weaponSharpness;
-	let weaponName = defaultWeaponComponentValues.weaponName;
-	let weaponLevel = defaultWeaponComponentValues.weaponLevel;
-	let weaponRarity = defaultWeaponComponentValues.weaponRarity;
-	let weaponTypeId = defaultWeaponComponentValues.weaponTypeId;
-	let weaponRank = defaultWeaponComponentValues.weaponRank;
-	let weaponLength = defaultWeaponComponentValues.weaponLength;
-	let weaponElementBoost = defaultWeaponComponentValues.weaponElementBoost;
-	let weaponStatusBoost = defaultWeaponComponentValues.weaponStatusBoost;
-	let weaponAttackBoost = defaultWeaponComponentValues.weaponAttackBoost;
-	let weaponAttack = defaultWeaponComponentValues.weaponAttack;
-	let weaponElementValue = defaultWeaponComponentValues.weaponElementValue;
-	let weaponStatusValue = defaultWeaponComponentValues.weaponStatusValue;
-	let weaponElementType = defaultWeaponComponentValues.weaponElementType;
-	let weaponStatusType = defaultWeaponComponentValues.weaponStatusType;
-	let weaponZenithSkill = defaultWeaponComponentValues.weaponZenithSkill;
-	let weaponSharpnessBoost = defaultWeaponComponentValues.weaponSharpnessBoost;
-	let weaponDescription = defaultWeaponComponentValues.weaponDescription;
-	let weaponExtraIcons = defaultWeaponComponentValues.weaponExtraIcons;
-	let weaponType = defaultWeaponComponentValues.weaponType;
-	let weaponAffinity = defaultWeaponComponentValues.weaponAffinity;
-	let weaponSigil1Id = defaultWeaponComponentValues.weaponSigil1Id;
-	let weaponSigil2Id = defaultWeaponComponentValues.weaponSigil2Id;
-	let weaponSigil3Id = defaultWeaponComponentValues.weaponSigil3Id;
-	let weaponSigil4Id = defaultWeaponComponentValues.weaponSigil4Id;
-	let weaponSigil5Id = defaultWeaponComponentValues.weaponSigil5Id;
-	let weaponSigil6Id = defaultWeaponComponentValues.weaponSigil6Id;
-	let weaponSigil7Id = defaultWeaponComponentValues.weaponSigil7Id;
-	let weaponSigil8Id = defaultWeaponComponentValues.weaponSigil8Id;
-	let weaponSigil9Id = defaultWeaponComponentValues.weaponSigil9Id;
-	let weaponSigil1Value = defaultWeaponComponentValues.weaponSigil1Value;
-	let weaponSigil2Value = defaultWeaponComponentValues.weaponSigil2Value;
-	let weaponSigil3Value = defaultWeaponComponentValues.weaponSigil3Value;
-	let weaponSigil4Value = defaultWeaponComponentValues.weaponSigil4Value;
-	let weaponSigil5Value = defaultWeaponComponentValues.weaponSigil5Value;
-	let weaponSigil6Value = defaultWeaponComponentValues.weaponSigil6Value;
-	let weaponSigil7Value = defaultWeaponComponentValues.weaponSigil7Value;
-	let weaponSigil8Value = defaultWeaponComponentValues.weaponSigil8Value;
-	let weaponSigil9Value = defaultWeaponComponentValues.weaponSigil9Value;
-	let weaponAutomaticSkill = defaultWeaponComponentValues.weaponAutomaticSkill;
+	let weaponSharpness = $state(defaultWeaponComponentValues.weaponSharpness);
+	let weaponName = $state(defaultWeaponComponentValues.weaponName);
+	let weaponLevel = $state(defaultWeaponComponentValues.weaponLevel);
+	let weaponRarity = $state(defaultWeaponComponentValues.weaponRarity);
+	let weaponTypeId = $state(defaultWeaponComponentValues.weaponTypeId);
+	let weaponRank = $state(defaultWeaponComponentValues.weaponRank);
+	let weaponLength = $state(defaultWeaponComponentValues.weaponLength);
+	let weaponElementBoost = $state(
+		defaultWeaponComponentValues.weaponElementBoost,
+	);
+	let weaponStatusBoost = $state(
+		defaultWeaponComponentValues.weaponStatusBoost,
+	);
+	let weaponAttackBoost = $state(
+		defaultWeaponComponentValues.weaponAttackBoost,
+	);
+	let weaponAttack = $state(defaultWeaponComponentValues.weaponAttack);
+	let weaponElementValue = $state(
+		defaultWeaponComponentValues.weaponElementValue,
+	);
+	let weaponStatusValue = $state(
+		defaultWeaponComponentValues.weaponStatusValue,
+	);
+	let weaponElementType = $state(
+		defaultWeaponComponentValues.weaponElementType,
+	);
+	let weaponStatusType = $state(defaultWeaponComponentValues.weaponStatusType);
+	let weaponZenithSkill = $state(
+		defaultWeaponComponentValues.weaponZenithSkill,
+	);
+	let weaponSharpnessBoost = $state(
+		defaultWeaponComponentValues.weaponSharpnessBoost,
+	);
+	let weaponDescription = $state(
+		defaultWeaponComponentValues.weaponDescription,
+	);
+	let weaponExtraIcons = $state(defaultWeaponComponentValues.weaponExtraIcons);
+	let weaponType = $state(defaultWeaponComponentValues.weaponType);
+	let weaponAffinity = $state(defaultWeaponComponentValues.weaponAffinity);
+	let weaponSigil1Id = $state(defaultWeaponComponentValues.weaponSigil1Id);
+	let weaponSigil2Id = $state(defaultWeaponComponentValues.weaponSigil2Id);
+	let weaponSigil3Id = $state(defaultWeaponComponentValues.weaponSigil3Id);
+	let weaponSigil4Id = $state(defaultWeaponComponentValues.weaponSigil4Id);
+	let weaponSigil5Id = $state(defaultWeaponComponentValues.weaponSigil5Id);
+	let weaponSigil6Id = $state(defaultWeaponComponentValues.weaponSigil6Id);
+	let weaponSigil7Id = $state(defaultWeaponComponentValues.weaponSigil7Id);
+	let weaponSigil8Id = $state(defaultWeaponComponentValues.weaponSigil8Id);
+	let weaponSigil9Id = $state(defaultWeaponComponentValues.weaponSigil9Id);
+	let weaponSigil1Value = $state(
+		defaultWeaponComponentValues.weaponSigil1Value,
+	);
+	let weaponSigil2Value = $state(
+		defaultWeaponComponentValues.weaponSigil2Value,
+	);
+	let weaponSigil3Value = $state(
+		defaultWeaponComponentValues.weaponSigil3Value,
+	);
+	let weaponSigil4Value = $state(
+		defaultWeaponComponentValues.weaponSigil4Value,
+	);
+	let weaponSigil5Value = $state(
+		defaultWeaponComponentValues.weaponSigil5Value,
+	);
+	let weaponSigil6Value = $state(
+		defaultWeaponComponentValues.weaponSigil6Value,
+	);
+	let weaponSigil7Value = $state(
+		defaultWeaponComponentValues.weaponSigil7Value,
+	);
+	let weaponSigil8Value = $state(
+		defaultWeaponComponentValues.weaponSigil8Value,
+	);
+	let weaponSigil9Value = $state(
+		defaultWeaponComponentValues.weaponSigil9Value,
+	);
+	let weaponAutomaticSkill = $state(
+		defaultWeaponComponentValues.weaponAutomaticSkill,
+	);
 	let huntingHornNote1: FrontierHuntingHornWeaponNote =
 		defaultWeaponComponentValues.huntingHornNote1;
 	let huntingHornNote2: FrontierHuntingHornWeaponNote =
 		defaultWeaponComponentValues.huntingHornNote2;
 	let huntingHornNote3: FrontierHuntingHornWeaponNote =
 		defaultWeaponComponentValues.huntingHornNote3;
-	let huntingHornNotes = `${huntingHornNote1} ${huntingHornNote2} ${huntingHornNote3}`;
-	let safPhial: FrontierSwitchAxeFPhial = defaultWeaponComponentValues.safPhial;
-	let gunlanceShellType: FrontierGunlanceShell =
-		defaultWeaponComponentValues.gunlanceShellType;
-	let gunlanceShellLevel: FrontierGunlanceShellLevel =
-		defaultWeaponComponentValues.gunlanceShellLevel;
-	let bowArc = defaultWeaponComponentValues.bowArc;
-	let bowChargeType1 = defaultWeaponComponentValues.bowChargeType1;
-	let bowChargeLevel1 = defaultWeaponComponentValues.bowChargeLevel1;
-	let bowChargeType2 = defaultWeaponComponentValues.bowChargeType2;
-	let bowChargeLevel2 = defaultWeaponComponentValues.bowChargeLevel2;
-	let bowChargeType3 = defaultWeaponComponentValues.bowChargeType3;
-	let bowChargeLevel3 = defaultWeaponComponentValues.bowChargeLevel3;
-	let bowPoisonCoatingAvailable =
-		defaultWeaponComponentValues.bowPoisonCoatingAvailable;
-	let bowParalysisCoatingAvailable =
-		defaultWeaponComponentValues.bowParalysisCoatingAvailable;
-	let bowSleepCoatingAvailable =
-		defaultWeaponComponentValues.bowSleepCoatingAvailable;
-	let bowImpactCoatingAvailable =
-		defaultWeaponComponentValues.bowImpactCoatingAvailable;
-	let bowPowerCoatingAvailable =
-		defaultWeaponComponentValues.bowPowerCoatingAvailable;
-	let bowgunReload = defaultWeaponComponentValues.bowgunReload;
-	let bowgunRecoil = defaultWeaponComponentValues.bowgunRecoil;
-	let bowgunScope = defaultWeaponComponentValues.bowgunScope;
-	let lightBowgunUpgrade = defaultWeaponComponentValues.lightBowgunUpgrade;
-	let heavyBowgunUpgrade = defaultWeaponComponentValues.heavyBowgunUpgrade;
-	let bowgunAttackLevel = defaultWeaponComponentValues.bowgunAttackLevel;
-	let bowgunNormalAmmo: levelQuantity = [9, 9, 12];
-	let bowgunPierceAmmo: levelQuantity = [6, 6, 6];
-	let bowgunPelletAmmo: levelQuantity = [6, 6, 6];
-	let bowgunCragAmmo: levelQuantity = [2, 2, 2];
-	let bowgunClusterAmmo: levelQuantity = [0, 0, 0];
-	let bowgunRecoveryAmmo: levelQuantity = [0, 0, 0];
-	let bowgunPoisonAmmo: levelQuantity = [0, 0, 0];
-	let bowgunParalysisAmmo: levelQuantity = [0, 0, 0];
-	let bowgunSleepAmmo: levelQuantity = [0, 0, 0];
-	let bowgunFlamingAmmo: levelQuantity = [6, 0, 0];
-	let bowgunWaterAmmo: levelQuantity = [0, 0, 0];
-	let bowgunThunderAmmo: levelQuantity = [0, 0, 0];
-	let bowgunFreezeAmmo: levelQuantity = [0, 0, 0];
-	let bowgunDragonAmmo: levelQuantity = [0, 0, 0];
-	let bowgunTranqAmmo: levelQuantity = [2, 0, 0];
-	let bowgunPaintAmmo: levelQuantity = [2, 0, 0];
-	let bowgunDemonAmmo: levelQuantity = [1, 0, 0];
-	let bowgunArmorAmmo: levelQuantity = [1, 0, 0];
+	let huntingHornNotes = $state(
+		`${huntingHornNote1} ${huntingHornNote2} ${huntingHornNote3}`,
+	);
+	let safPhial: FrontierSwitchAxeFPhial = $state(
+		defaultWeaponComponentValues.safPhial,
+	);
+	let gunlanceShellType: FrontierGunlanceShell = $state(
+		defaultWeaponComponentValues.gunlanceShellType,
+	);
+	let gunlanceShellLevel: FrontierGunlanceShellLevel = $state(
+		defaultWeaponComponentValues.gunlanceShellLevel,
+	);
+	let bowArc = $state(defaultWeaponComponentValues.bowArc);
+	let bowChargeType1 = $state(defaultWeaponComponentValues.bowChargeType1);
+	let bowChargeLevel1 = $state(defaultWeaponComponentValues.bowChargeLevel1);
+	let bowChargeType2 = $state(defaultWeaponComponentValues.bowChargeType2);
+	let bowChargeLevel2 = $state(defaultWeaponComponentValues.bowChargeLevel2);
+	let bowChargeType3 = $state(defaultWeaponComponentValues.bowChargeType3);
+	let bowChargeLevel3 = $state(defaultWeaponComponentValues.bowChargeLevel3);
+	let bowPoisonCoatingAvailable = $state(
+		defaultWeaponComponentValues.bowPoisonCoatingAvailable,
+	);
+	let bowParalysisCoatingAvailable = $state(
+		defaultWeaponComponentValues.bowParalysisCoatingAvailable,
+	);
+	let bowSleepCoatingAvailable = $state(
+		defaultWeaponComponentValues.bowSleepCoatingAvailable,
+	);
+	let bowImpactCoatingAvailable = $state(
+		defaultWeaponComponentValues.bowImpactCoatingAvailable,
+	);
+	let bowPowerCoatingAvailable = $state(
+		defaultWeaponComponentValues.bowPowerCoatingAvailable,
+	);
+	let bowgunReload = $state(defaultWeaponComponentValues.bowgunReload);
+	let bowgunRecoil = $state(defaultWeaponComponentValues.bowgunRecoil);
+	let bowgunScope = $state(defaultWeaponComponentValues.bowgunScope);
+	let lightBowgunUpgrade = $state(
+		defaultWeaponComponentValues.lightBowgunUpgrade,
+	);
+	let heavyBowgunUpgrade = $state(
+		defaultWeaponComponentValues.heavyBowgunUpgrade,
+	);
+	let bowgunAttackLevel = $state(
+		defaultWeaponComponentValues.bowgunAttackLevel,
+	);
+	let bowgunNormalAmmo: levelQuantity = $state([9, 9, 12]);
+	let bowgunPierceAmmo: levelQuantity = $state([6, 6, 6]);
+	let bowgunPelletAmmo: levelQuantity = $state([6, 6, 6]);
+	let bowgunCragAmmo: levelQuantity = $state([2, 2, 2]);
+	let bowgunClusterAmmo: levelQuantity = $state([0, 0, 0]);
+	let bowgunRecoveryAmmo: levelQuantity = $state([0, 0, 0]);
+	let bowgunPoisonAmmo: levelQuantity = $state([0, 0, 0]);
+	let bowgunParalysisAmmo: levelQuantity = $state([0, 0, 0]);
+	let bowgunSleepAmmo: levelQuantity = $state([0, 0, 0]);
+	let bowgunFlamingAmmo: levelQuantity = $state([6, 0, 0]);
+	let bowgunWaterAmmo: levelQuantity = $state([0, 0, 0]);
+	let bowgunThunderAmmo: levelQuantity = $state([0, 0, 0]);
+	let bowgunFreezeAmmo: levelQuantity = $state([0, 0, 0]);
+	let bowgunDragonAmmo: levelQuantity = $state([0, 0, 0]);
+	let bowgunTranqAmmo: levelQuantity = $state([2, 0, 0]);
+	let bowgunPaintAmmo: levelQuantity = $state([2, 0, 0]);
+	let bowgunDemonAmmo: levelQuantity = $state([1, 0, 0]);
+	let bowgunArmorAmmo: levelQuantity = $state([1, 0, 0]);
 
-	$: huntingHornNotesArray = [
+	let huntingHornNotesArray = $derived([
 		huntingHornNotes.split(' ')[0],
 		huntingHornNotes.split(' ')[1],
 		huntingHornNotes.split(' ')[2],
-	] as FrontierHuntingHornWeaponNote[];
+	] as FrontierHuntingHornWeaponNote[]);
 
-	let currentWeaponPage = 1;
+	let currentWeaponPage = $state(1);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Weapon Generator'} />
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			This is a playground for weapons, which can be useful for creating custom
 			weapons and demonstrate translations.
-		</p>
+		</div>
 
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			If you are looking for a Tower Weapon Simulator, you can find it in the <Link
 				inline
 				href="/tools/simulator/tower-weapon">Simulators</Link
 			> section.
-		</p>
+		</div>
 
 		<div class="container-weapon-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadWeaponImage}
@@ -1171,7 +1226,7 @@
 						/>
 					</div>
 				{:else}
-					<div class="page-3-blademaster" />
+					<div class="page-3-blademaster"></div>
 				{/if}
 			{:else if currentWeaponPage === 4}
 				{#if frontierMappers.getWeaponNameById(weaponTypeId) === 'Bow'}
@@ -1501,7 +1556,7 @@
 				{/if}
 			{:else if currentWeaponPage === 5}
 				{#if frontierMappers.getWeaponClassById(weaponTypeId) === 'Gunner'}
-					<div class="page-5-gunner" />
+					<div class="page-5-gunner"></div>
 				{:else}
 					<div class="page-5-blademaster">
 						<div class="sigils">
@@ -1773,7 +1828,7 @@
 			{/if}
 		</div>
 
-		<UnorderedList>
+		<UnorderedList class="spaced-list">
 			<ListItem
 				><p>
 					The game uses integers for sharpness. The values here is how it works
@@ -1796,7 +1851,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {
@@ -1814,7 +1869,7 @@
 	.weapon-info-values-bottom,
 	.weapon-sharpness-values {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
 		margin: 1rem;
 		gap: 1rem;
 		align-items: center;

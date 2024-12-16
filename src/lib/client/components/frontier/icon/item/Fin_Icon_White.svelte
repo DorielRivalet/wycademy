@@ -1,14 +1,18 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
 <script lang="ts">
 	import { blendColor } from '$lib/client/modules/color-blend';
-	export let color = '#ffffff';
-	export let size = '100%';
+	interface Props {
+		color?: string;
+		size?: string;
+	}
 
-	$: targetColor = color;
+	let { color = '#ffffff', size = '100%' }: Props = $props();
+
+	let targetColor = $derived(color);
 </script>
 
 <svg width={size} viewBox="0 0 16.933333 16.933334" version="1.1" id="svg5985">
