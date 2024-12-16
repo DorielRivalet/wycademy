@@ -1,8 +1,17 @@
 <script lang="ts">
-	export let url: string = 'https://wycademy.vercel.app';
-	export let src: string = '';
-	export let width: number = 1203;
-	export let height: number = 753;
+	interface Props {
+		url?: string;
+		src?: string;
+		width?: number;
+		height?: number;
+	}
+
+	let {
+		url = 'https://wycademy.vercel.app',
+		src = '',
+		width = 1203,
+		height = 753
+	}: Props = $props();
 </script>
 
 <div class="safari-window">

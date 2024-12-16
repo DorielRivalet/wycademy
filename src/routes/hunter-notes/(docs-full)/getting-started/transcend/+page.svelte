@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import type { DataTableCell } from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -39,14 +39,16 @@
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalImageType: 'video' | 'image' = 'image';
-	let modalNotes = '';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalImageType: 'video' | 'image' = $state('image');
+	let modalNotes = $state('');
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
 
 	const transcendBuffs: {
 		id: string;
@@ -838,14 +840,11 @@
 			{:else}
 				<div>
 					{#await import('$lib/player/Player.svelte') then { default: Player }}
-						<svelte:component
-							this={Player}
-							{...{ title: modalHeading, src: modalImage }}
-						/>
+						<Player {...{ title: modalHeading, src: modalImage }} />
 					{/await}
 				</div>
 			{/if}
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -853,7 +852,8 @@
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent = modalPopoverIcon}
+							<SvelteComponent />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -871,11 +871,11 @@
 	{/if}
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Transcend'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					tooltip="Buff"
 					text="Transcend"
@@ -902,7 +902,7 @@
 					icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
 				/> state starts with little charge and must be powered up over time during
 				quests.
-			</p>
+			</div>
 			<CenteredFigure
 				width={'100%'}
 				type="file"
@@ -953,11 +953,11 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
+					{#snippet cell({ cell })}
 						{#if cell.key === 'name' && transcendBuffs.find((e) => e.name === cell.value)?.demo}
 							<button
 								class="table-button"
-								on:click={() => changeModal(cell, 'Transcend')}
+								onclick={() => changeModal(cell, 'Transcend')}
 							>
 								<img
 									src={transcendBuffs.find((e) => e.name === cell.value)?.icon}
@@ -980,7 +980,7 @@
 						{:else}
 							<p>{cell.value}</p>
 						{/if}
-					</svelte:fragment>
+					{/snippet}
 				</DataTable>
 			</div>
 
@@ -1017,7 +1017,7 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
+					{#snippet cell({ cell })}
 						{#if cell.key === 'name'}
 							<div>
 								<InlineTooltip
@@ -1031,25 +1031,25 @@
 						{:else}
 							<p>{cell.value}</p>
 						{/if}
-					</svelte:fragment>
+					{/snippet}
 				</DataTable>
 			</div>
 
 			<section>
 				<SectionHeading level={2} title="Upgrading" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						You can upgrade the various buffs in two ways: by using <strong
 							>Ancient Hunting Books</strong
 						> or by taking weapons of the appropriate elemental type on quests (Fire,
 						Water, Ice, Thunder, Dragon, Raw, and Hybrid Elements).
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						<strong>Ancient Hunting Books</strong> are obtained by participating
 						in various cycling events (Conquests, Tower, Festival, Caravan, Road).
 						These events reward different books based on their type, and each book
 						provides varying amounts of points.
-					</p>
+					</div>
 
 					<div class="table">
 						<DataTable
@@ -1083,7 +1083,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'name'}
 									<div>
 										<InlineTooltip
@@ -1103,7 +1103,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 
@@ -1117,7 +1117,7 @@
 			<section>
 				<SectionHeading level={2} title="Usage" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						When you enter a quest with <InlineTooltip
 							tooltip="Buff"
 							text="Transcend"
@@ -1131,7 +1131,7 @@
 							>This flashing icon remains visible behind all items, even if you
 							have something other than the Transcend option selected.</strong
 						>
-					</p>
+					</div>
 					<CenteredFigure
 						width={'100%'}
 						type="file"
@@ -1139,7 +1139,7 @@
 						alt="Transcend ready"
 						figcaption="Transcend ready."
 					/>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Using the "item" activates the <InlineTooltip
 							tooltip="Buff"
 							text="Transcend"
@@ -1149,7 +1149,7 @@
 						aura. While this aura is active, you'll benefit from any activated abilities,
 						and attacking with weapons will cause new hit animations depending on
 						the element used.
-					</p>
+					</div>
 					<p>
 						After landing enough hits, the monster is surrounded by an aura, a
 						sound will play, and the icon will change to a carving knife,
@@ -1174,7 +1174,7 @@
 						alt="Burst ready"
 						figcaption="Burst ready."
 					/>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						It is unclear how many variables exactly influence the charging time
 						for the <InlineTooltip
 							tooltip="Buff"
@@ -1182,8 +1182,8 @@
 							iconType="file"
 							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
 						/> state. Taking damage can slightly speed up the charge time.
-					</p>
-					<p>
+					</div>
+					<div class="paragraph-long-02">
 						The times listed for the <InlineTooltip
 							tooltip="Buff"
 							text="Transcend"
@@ -1191,7 +1191,7 @@
 							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
 						/> State to charge in the table below are based on tests where no damage
 						was taken.
-					</p>
+					</div>
 					<div class="table">
 						<DataTable
 							useStaticWidth
@@ -1230,7 +1230,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'name'}
 									<div>
 										<InlineTooltip
@@ -1244,7 +1244,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -1253,7 +1253,7 @@
 			<section>
 				<SectionHeading level={2} title="Elemental Bursts" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Elemental Bursts can be triggered on monsters after they have taken
 						enough hits with <InlineTooltip
 							tooltip="Buff"
@@ -1268,8 +1268,8 @@
 							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
 						/> state will change to a knife, allowing you to activate one of the
 						following bursts based on your weapon's element.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The burst will default to raw if the monster takes no damage from
 						the element used. Hybrid elements, such as <InlineTooltip
 							tooltip="Element"
@@ -1308,8 +1308,8 @@
 							iconType="component"
 							icon={getElementIcon('Fire')}
 						/> damage has been dealt.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Status effects will only occur if the monster can normally be
 						afflicted by them and if the burst is used during frames when the
 						monster is staggerable. For example, performing an <strong
@@ -1323,7 +1323,7 @@
 							href="/hunter-notes/getting-started/ailments#monster-status-immunities"
 							>Ailments
 						</Link> page.
-					</p>
+					</div>
 
 					<div class="table">
 						<DataTable
@@ -1356,11 +1356,11 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'name' && elementalBursts.find((e) => e.name === cell.value)?.demo}
 									<button
 										class="table-button"
-										on:click={() => changeModal(cell, 'Burst')}
+										onclick={() => changeModal(cell, 'Burst')}
 									>
 										<img
 											src={elementalBursts.find((e) => e.name === cell.value)
@@ -1375,7 +1375,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 
@@ -1386,8 +1386,7 @@
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Burst Canceled',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/burst-cancel.webm',
@@ -1401,9 +1400,9 @@
 			<section>
 				<SectionHeading level={2} title="Locking Buffs" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem>
-							<p>
+							<div class="paragraph-long-02">
 								You can lock certain <InlineTooltip
 									tooltip="Buff"
 									text="Transcend"
@@ -1411,20 +1410,20 @@
 									icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
 								/> buffs, like Vigor, in the Transcend Menu. This prevents the buff
 								from being active during a quest.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem>
-							<p>
+							<div class="paragraph-long-02">
 								Locking an element and using a weapon that includes it
 								<strong>does not</strong> deactivate that element's burst.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem>
-							<p>
+							<div class="paragraph-long-02">
 								Locking a buff that is applied outside the active duration, like
 								Focus,
 								<strong>does not</strong> deactivate that buff.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -1433,7 +1432,7 @@
 			<section>
 				<SectionHeading level={2} title="Multiplayer" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						In multiplayer, you can extend the duration of <InlineTooltip
 							tooltip="Buff"
 							text="Transcend"
@@ -1442,7 +1441,7 @@
 						/>. Example: player A activates their transcend while player B
 						doesn't, later on player B activates their transcend while player A
 						is still in transcend, player A transcend duration will be extended.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -1451,7 +1450,7 @@
 			</div>
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

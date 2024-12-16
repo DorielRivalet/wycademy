@@ -11,8 +11,12 @@
 	import UnknownPhase7 from '$lib/client/components/frontier/icon/monster/UnknownPhase7.svelte';
 	import UnknownPhase8 from '$lib/client/components/frontier/icon/monster/UnknownPhase8.svelte';
 
-	export let delay = 2000;
-	export let size = '100%';
+	interface Props {
+		delay?: number;
+		size?: string;
+	}
+
+	let { delay = 2000, size = '100%' }: Props = $props();
 	let currentPhaseIndex = 0;
 
 	const items = [
@@ -26,7 +30,7 @@
 		UnknownPhase8,
 	];
 
-	let nextItem = UnknownPhase1;
+	let nextItem = $state(UnknownPhase1);
 
 	function getNextItem() {
 		currentPhaseIndex++;
@@ -49,7 +53,8 @@
 
 <div>
 	{#if browser}
-		<svelte:component this={nextItem} {...{ background: true, size: size }} />
+		{@const SvelteComponent = nextItem}
+		<SvelteComponent {...{ background: true, size: size }} />
 	{:else}
 		<SkeletonPlaceholder style="width: {size}; height: {size};" />
 	{/if}

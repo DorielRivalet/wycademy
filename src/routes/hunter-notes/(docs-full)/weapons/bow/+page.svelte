@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -203,11 +203,11 @@ Arc-Shot can be executed at Charge Lv2.`,
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Bow'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					text="Bow"
 					tooltip="Weapon"
@@ -220,8 +220,8 @@ Arc-Shot can be executed at Charge Lv2.`,
 					iconType="component"
 					icon={getItemIcon('Coating')}
 				/> to enhance your attacks.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				<strong>Critical Distance</strong> is a mechanic shared by all ranged
 				weapons and refers to the optimal range for each type of shot. When
 				using a <InlineTooltip
@@ -231,8 +231,8 @@ Arc-Shot can be executed at Charge Lv2.`,
 					icon={getWeaponIcon('Bow')}
 				/>, a visual indicator will appear while aiming, helping you position
 				yourself at the ideal distance.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Bows typically have three levels of charge by default, but you can
 				unlock a fourth level with the <InlineTooltip
 					text="Armor Skill"
@@ -245,8 +245,8 @@ Arc-Shot can be executed at Charge Lv2.`,
 					iconType="component"
 					icon={getItemIcon('Jewel')}
 				/> skill can reduce the charge time for each shot.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				<strong>Arc Shots</strong> from the mainline games are also available,
 				with the most notable being the <strong>Cutting Shot</strong>. Although
 				it uses the weakness value for ranged attacks to calculate damage, it
@@ -256,7 +256,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 				attacks. If you hit a target in the air before the
 				<strong>Arc Shot</strong> transitions to its actual hit type, you won't trigger
 				the projectile rain effect, wasting the shot.
-			</p>
+			</div>
 
 			<p>
 				For an explanation on element damage, see our <Link
@@ -272,7 +272,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Earth Style</strong> is the fundamental <InlineTooltip
 							text="Bow"
 							tooltip="Weapon"
@@ -285,14 +285,14 @@ Arc-Shot can be executed at Charge Lv2.`,
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/> skill, and its melee attack is relatively weak.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Heaven Style</strong> is a variation of
 						<strong>Earth Style</strong> with the addition of a shoryuken-style
 						melee attack that deals cutting damage. This style is generally the
@@ -300,14 +300,14 @@ Arc-Shot can be executed at Charge Lv2.`,
 						benefits of <strong>Storm Style</strong> are debatable and it adds a
 						17% increase to charge time. <strong>Heaven Style</strong> is a
 						solid choice until you can access <strong>Extreme Style</strong>.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Storm Style</strong> retains the shoryuken attack and
 						introduces the ability to crouch, which further enhances charge
 						levels and adds a <strong>Sniper Shot</strong>. The
@@ -335,25 +335,25 @@ Arc-Shot can be executed at Charge Lv2.`,
 						time compared to Earth or Heaven Style, making
 						<strong>Heaven Style</strong> the preferred choice until you unlock
 						<strong>Extreme Style.</strong>
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Ultimately, the new features in <strong>Storm Style</strong> are
 						rarely used, making its advantages over
 						<strong>Heaven Style</strong> negligible when considering the downside
 						of increased charge times.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> builds upon
 						<strong>Storm Style</strong>, retaining the crouch shot but without
 						the extended charge times, making it a straightforward upgrade.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						This style allows you to run with your <InlineTooltip
 							text="Bow"
 							tooltip="Weapon"
@@ -381,16 +381,16 @@ Arc-Shot can be executed at Charge Lv2.`,
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/> individually.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						A new shot type, <strong>Rising Arrow</strong>, is also introduced.
 						It flies horizontally to a fixed point before switching to a
 						vertical descent. This shot ignores standard charge level properties
 						and deals fixed damage regardless of the Bow’s shot type. It is
 						about 16% weaker than a perfectly spaced Lv3 Rapid Shot at charge
 						level 4, with all arrows landing accurately.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Rising Arrow shots are always considered within <strong
 							>Critical Distance</strong
 						>
@@ -402,11 +402,11 @@ Arc-Shot can be executed at Charge Lv2.`,
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/> or individual Shot Up skills won’t apply their multipliers.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> is the best Bow style overall, and there’s
 						little reason to switch to other styles once you have access to it.
-					</p>
+					</div>
 					<div class="table">
 						<DataTable
 							useStaticWidth
@@ -436,7 +436,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'coating'}
 									<InlineTooltip
 										text={cell.value}
@@ -448,10 +448,10 @@ Arc-Shot can be executed at Charge Lv2.`,
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
-					<p>
+					<div class="paragraph-long-02">
 						To increase the Bow coating multipliers, you can use <InlineTooltip
 							tooltip="Armor Skill"
 							text="Hiden"
@@ -473,7 +473,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 							href="/tools/calculator/damage"
 							icon={ToolKit}>Damage Calculator.</Link
 						>
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -485,14 +485,14 @@ Arc-Shot can be executed at Charge Lv2.`,
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						x0.85 Charge time. Synergizes well with <InlineTooltip
 							tooltip="Armor Skill"
 							text="Auto-Reload"
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/>.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -526,13 +526,13 @@ Arc-Shot can be executed at Charge Lv2.`,
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -570,7 +570,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -581,7 +581,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -619,7 +619,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -635,7 +635,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -644,19 +644,19 @@ Arc-Shot can be executed at Charge Lv2.`,
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								As a Gunner weapon, the <InlineTooltip
 									tooltip="Weapon"
 									text="Bow"
 									iconType="component"
 									icon={getWeaponIcon('Bow')}
 								/> can quickly meet the requirements for various skills.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The <InlineTooltip
 									tooltip="Weapon"
 									text="Bow"
@@ -665,16 +665,16 @@ Arc-Shot can be executed at Charge Lv2.`,
 								/> has several aiming modes in the options, but ultimately uses 2nd
 								generation-style controls. While charging, pressing Square (or X)
 								allows you to dodge.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								While aiming, the critical distance ranges of your shot are
 								visible.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Holding down L1 while releasing a shot performs a coatingless
 								shot, which doesn’t consume or grant the benefits of the loaded
 								<InlineTooltip
@@ -683,10 +683,10 @@ Arc-Shot can be executed at Charge Lv2.`,
 									iconType="component"
 									icon={getItemIcon('Coating')}
 								/>. This technique is based on a glitch from MH2.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Rapid shot types are recommended. <InlineTooltip
 									tooltip="Ammo"
 									text="Spread"
@@ -698,10 +698,10 @@ Arc-Shot can be executed at Charge Lv2.`,
 									iconType="component"
 									icon={getItemIcon('Ammo Pierce')}
 								/> shots work well as a Level 3 charge.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Crouching shots can be tricky to use, but with the <InlineTooltip
 									tooltip="Sigil"
 									text="Piercing Shot"
@@ -709,10 +709,10 @@ Arc-Shot can be executed at Charge Lv2.`,
 									icon={getItemIcon('Sigil')}
 								/>
 								sigil, they can effectively inflict status.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Since Sniper’s critical distance bonus is included in both
 								<InlineTooltip
 									tooltip="Armor Skill"
@@ -730,7 +730,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> is sufficient.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -741,7 +741,7 @@ Arc-Shot can be executed at Charge Lv2.`,
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

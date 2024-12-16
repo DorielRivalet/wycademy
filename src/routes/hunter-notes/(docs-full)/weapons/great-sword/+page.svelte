@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -181,11 +181,11 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Great Sword'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					text="Great Sword"
 					tooltip="Weapon"
@@ -195,8 +195,8 @@
 				but powerful, with charge attacks that capitalize on openings and precise
 				timing. With this weapon, <strong>raw damage</strong> reigns supreme, while
 				elemental or status effects are secondary.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					text="Great Sword"
 					tooltip="Weapon"
@@ -218,9 +218,9 @@
 					icon={getMonsterIcon('Yian Kut-Ku')}
 				/> pecking, you'll take damage from each hit, potentially far exceeding the
 				damage of a single hit due to the loss of iframes from the knockdown.
-			</p>
+			</div>
 
-			<p>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -229,12 +229,12 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Earth Style</strong> is the classic <InlineTooltip
 							text="Great Sword"
 							tooltip="Weapon"
@@ -243,14 +243,14 @@
 						/> moveset, similar to the one used since MH Dos. It includes a charge
 						on the vertical downswing, which you should use to hit monsters with
 						powerful strikes.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Heaven Style</strong> is a unique approach that replaces all
 						charge attacks with a counter. This counter resembles a horizontal
 						slash but raises the <InlineTooltip
@@ -266,14 +266,14 @@
 							icon={getItemIcon('Jewel')}
 						/> without taking chip damage. While this counter is highly effective,
 						it doesn’t offer the consistent damage output of a fully charged attack.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Storm Style</strong> modifies the charging mechanic, placing
 						it on the upswing rather than the downswing, with a fourth level of
 						charge available. This level can deal significantly higher damage,
@@ -283,27 +283,27 @@
 						<strong>Heaven Style</strong>, making it a more skill-based option,
 						as it removes the ability to manually guard, offering stronger
 						charges and a more dynamic guarding method instead.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The charge levels in <strong>Storm Style</strong> are as follows:
-					</p>
-					<UnorderedList>
+					</div>
+					<UnorderedList class="spaced-list">
 						<ListItem>
-							<p>Lv1: 92</p>
+							<div class="paragraph-long-02">Lv1: 92</div>
 						</ListItem>
 						<ListItem>
-							<p>Lv2: 112 x1.1</p>
+							<div class="paragraph-long-02">Lv2: 112 x1.1</div>
 						</ListItem>
 						<ListItem>
-							<p>Lv3: 157 x1.2</p>
+							<div class="paragraph-long-02">Lv3: 157 x1.2</div>
 						</ListItem>
 						<ListItem>
-							<p>
+							<div class="paragraph-long-02">
 								Lv4: 200 x1.3 (downgrades to Lv2: 112 x1.1 if mistimed). <strong
 									>Proper timing for the Level 4 charge is crucial, as missing
 									it can waste up to 136 motion value.</strong
 								>
-							</p>
+							</div>
 						</ListItem>
 					</UnorderedList>
 				</div>
@@ -312,7 +312,7 @@
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> combines elements of Storm and Earth
 						Styles, replacing the <strong>Counter Slash</strong> with a
 						<strong>Parry</strong> mechanic. This allows you to chain into
@@ -320,8 +320,8 @@
 						Additionally, you can build up an invisible meter to unleash a
 						<strong>Shining Sword</strong> attack, a 15-hit combo dealing around
 						455-467 total motion.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						As with the other Extreme Styles, you can run with your <InlineTooltip
 							text="Great Sword"
 							tooltip="Weapon"
@@ -332,13 +332,13 @@
 						limited by its slow movement and reliance on rolls for closing distance.
 						You can perform a horizontal slash with iframes or a charged upswing
 						from a dash, providing versatility in combat.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						This style allows you to use charges from both Earth and Storm
 						Styles interchangeably and even combo them, making it particularly
 						<strong>effective for hitting tails</strong>.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The <strong>Parry</strong> mechanic absorbs any guardable attack
 						without consuming stamina or causing knockback. Some attacks may
 						still deal chip damage. From a parry, you can evade, perform a
@@ -353,7 +353,7 @@
 							iconType="component"
 							icon={getWeaponIcon('Great Sword')}
 						/> excels in elemental and status output.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -365,7 +365,7 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						+100% Affinity for unsheathe attacks, stacking with any existing
 						affinity. Pairs well with <InlineTooltip
 							text="Critical Conversion"
@@ -380,7 +380,7 @@
 							icon={getItemIcon('Jewel')}
 						/> (excluding the +30%) during these actions.
 						<strong>It does not activate with Shining Sword.</strong>
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -414,13 +414,13 @@
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -458,7 +458,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -469,7 +469,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -507,7 +507,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -523,7 +523,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -532,34 +532,45 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								You can be a liability when it comes to friendly fire. The item <InlineTooltip
 									tooltip="Item"
 									text="Elixir of Peace"
 									iconType="component"
 									icon={getItemIcon('Sac')}
 								/> can prevent this.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Hold R1 before unsheathing to perform a regular overhead attack;
 								otherwise, you’ll execute a special wide slash (which can still
 								combo into any charged slash). You can also perform upswing
 								charges and parries (Storm, Extreme) from a sheathed state.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
+								Shining Sword does not consume <InlineTooltip
+									tooltip="Item"
+									text="Sword Crystals"
+									iconColor={getItemColor('Red')}
+									iconType="component"
+									icon={getItemIcon('Sword Crystal')}
+								/>.
+							</div></ListItem
+						>
+						<ListItem
+							><div class="paragraph-long-02">
 								Very Long length is the most popular choice due to its vertical
 								slices and the added flexibility in maintaining distance. Long
 								length is still quite usable.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Combat Supremacy"
@@ -583,10 +594,10 @@
 									icon={getItemIcon('Jewel')}
 								/>
 								is a good alternative for continuous unsheathed play.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Great Sword"
@@ -605,16 +616,16 @@
 									icon={getMonsterIcon('Raviente')}
 								/>), although they don’t work on the shining attack.
 								Fortunately, they aren’t consumed in the process.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The unsheathed running hop attack has a few invincibility frames
 								at the start, but it’s rarely used.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Well-timed parries with <InlineTooltip
 									tooltip="Item"
 									text="Great Sword Hiden"
@@ -632,16 +643,16 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Utilizing large amounts of hitstop can be a valid strategy for
 								avoiding certain attacks.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								If you have 30 <InlineTooltip
 									tooltip="Item"
 									text="Power Crystals"
@@ -655,7 +666,7 @@
 									icon={getWeaponIcon('Great Sword')}
 								/> and the hunt isn’t over by the time they’re all used up, something
 								is wrong.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -666,7 +677,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

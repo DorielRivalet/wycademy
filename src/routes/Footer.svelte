@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -23,18 +23,24 @@
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-	export let gitHubData: GitHubData = {
-		lastModified: '',
-		commitLink: '',
-		timesChanged: 0,
-	};
+	interface Props {
+		gitHubData?: GitHubData;
+	}
+
+	let {
+		gitHubData = {
+			lastModified: '',
+			commitLink: '',
+			timesChanged: 0,
+		},
+	}: Props = $props();
 	let { lastModified, commitLink, timesChanged } = gitHubData;
 </script>
 
 <footer>
 	<div class="footer-main-content-container">
 		<div class="banner">
-			<Banner />
+			<Banner theme={$carbonThemeStore} />
 			<div class="banner-text">
 				<p>A compendium of resources for MHF-Z by</p>
 				<span class="icon-info-container">

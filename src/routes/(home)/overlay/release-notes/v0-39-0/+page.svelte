@@ -41,20 +41,20 @@
 		<h1>{version}</h1>
 		<hr />
 		<div class="summary">
-			<p class="spaced-paragraph">Hello!</p>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">Hello!</div>
+			<div class="spaced-paragraph">
 				Today we are happy to anounce the overlay now has its own pages. <OutboundLink
 					href="/overlay">Check them out!</OutboundLink
 				>
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				This update will be very fun to try for <InlineTooltip
 					icon={getWeaponIcon('Dual Swords')}
 					iconType="component"
 					tooltip="Weapon"
 					text="Dual Swords"
 				/> users, read below to see why!
-			</p>
+			</div>
 		</div>
 		<section>
 			<h2>New Features</h2>
@@ -127,9 +127,9 @@
 					</div></ListItem
 				>
 			</UnorderedList>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Here is a list of icons I had the most fun making!
-			</p>
+			</div>
 			<div class="previews">
 				<div>
 					<ImageDialog
@@ -215,14 +215,14 @@
 			<UnorderedList class="spaced-list">
 				<ListItem
 					><div class="list-item">
-						<p>
+						<div>
 							Fixed <span class="icon-text"
 								><LogoDiscord size={16} />
 								<span>Discord Rich Presence</span></span
 							>
 							character encoding. Now you can use full-width Japanese characters
 							in your hunter and guild name.
-						</p>
+						</div>
 					</div>
 				</ListItem>
 			</UnorderedList>
@@ -326,5 +326,6 @@
 	.feedback-section {
 		display: flex;
 		justify-content: center;
+		padding: 0px var(--cds-spacing-04);
 	}
 </style>

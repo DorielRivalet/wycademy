@@ -1,12 +1,20 @@
 <script lang="ts">
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import type { FrontierWeaponName } from 'ezlion';
 
-	export let value: number;
-	export let weaponType: FrontierWeaponName;
-	export let showWeapon = false;
+	interface Props {
+		value: number;
+		weaponType: FrontierWeaponName;
+		showWeapon?: boolean;
+	}
+
+	let {
+		value = $bindable(),
+		weaponType = $bindable(),
+		showWeapon = false,
+	}: Props = $props();
 
 	const minimumNumberValue = 0;
 	const maximumNumberValue = 99999;
@@ -14,7 +22,7 @@
 </script>
 
 <div class="true-raw-converter">
-	<p>Attack Display Value to True Raw Converter:</p>
+	<p><strong>Attack Display Value to True Raw Converter</strong></p>
 	<div class="flex-row-centered">
 		{#if showWeapon}
 			<Dropdown
@@ -42,6 +50,7 @@
 			/>{/if}
 		<div class="number-input-container">
 			<NumberInput
+				light
 				size="sm"
 				step={10}
 				min={minimumNumberValue}
@@ -54,7 +63,7 @@
 		<p>
 			True Raw: {Math.floor(
 				value /
-					(WeaponTypes.find((e) => e.name === weaponType)
+					(weaponTypeInfo.find((e) => e.name === weaponType)
 						?.bloatAttackMultiplier ?? 1),
 			)}
 		</p>
@@ -63,11 +72,16 @@
 
 <style lang="scss">
 	.true-raw-converter {
+		width: max-content;
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
 		margin-bottom: 2rem;
 		margin-top: 2rem;
+		background-color: var(--ctp-surface0);
+		border: 2px solid var(--ctp-surface1);
+		border-radius: 8px;
+		padding: 1rem;
 	}
 
 	.flex-row-centered {

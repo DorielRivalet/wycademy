@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -165,11 +165,11 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Heavy Bowgun'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The <InlineTooltip
 					text="Heavy Bowgun"
 					tooltip="Weapon"
@@ -184,53 +184,55 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 					iconType="component"
 					icon={getWeaponIcon('Heavy Bowgun')}
 				/> can be leveled up to boost attack power.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				<strong>Critical Distance</strong> is a key mechanic for all ranged weapons,
 				defining the optimal range for different ammo types.
-			</p>
-			<p class="spaced-paragraph">Here’s a general breakdown:</p>
+			</div>
+			<div class="spaced-paragraph">Here’s a general breakdown:</div>
 			<UnorderedList class="spaced-list">
 				<ListItem>
-					<p>
+					<div class="paragraph-long-02">
 						<InlineTooltip
 							tooltip="Ammo"
 							text="Normal Shots"
 							icon={getItemIcon('Shot')}
 							iconType="component"
 						/>: Close to Mid Range
-					</p>
+					</div>
 				</ListItem>
 				<ListItem>
-					<p>
+					<div class="paragraph-long-02">
 						<InlineTooltip
 							tooltip="Ammo"
 							text="Pierce Shots"
 							icon={getItemIcon('Ammo Pierce')}
 							iconType="component"
 						/>: Mid to Far Range
-					</p>
+					</div>
 				</ListItem>
 				<ListItem>
-					<p>
+					<div class="paragraph-long-02">
 						<InlineTooltip
 							tooltip="Ammo"
 							text="Pellet Shots"
 							icon={getItemIcon('Ammo Spread')}
 							iconType="component"
 						/>: Short Range
-					</p>
+					</div>
 				</ListItem>
 				<ListItem>
-					<p>Other Shots: Fixed damage regardless of distance</p>
+					<div class="paragraph-long-02">
+						Other Shots: Fixed damage regardless of distance
+					</div>
 				</ListItem>
 			</UnorderedList>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The game provides a visual cue for <strong>Critical Distance</strong>:
 				when a shot discards its casing, an expanding circle appears. This
 				visual indicator helps you learn proper spacing and positioning.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Hitting within the first half of <strong>Critical Distance</strong> is
 				crucial for maximizing DPS with the <InlineTooltip
 					text="Heavy Bowgun"
@@ -245,8 +247,8 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 				/> applies a 2.3x damage modifier, while the second half applies a 2.0x modifier.
 				You’ll know you’re in the right range when the hit animation intensifies
 				significantly.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Heavy Bowguns"
 					tooltip="Weapon"
@@ -271,9 +273,9 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 					icon={getItemIcon('Jewel')}
 				/>) and are generally <strong>not recommended</strong> as they can become
 				a crutch.
-			</p>
+			</div>
 
-			<p>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -282,57 +284,57 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Earth Style</strong> is the basic <InlineTooltip
 							text="Heavy Bowgun"
 							tooltip="Weapon"
 							iconType="component"
 							icon={getWeaponIcon('Heavy Bowgun')}
 						/> style, providing a straightforward experience without much variation.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Heaven Style</strong> is a slight upgrade from
 						<strong>Earth Style</strong>, adding the ability to side-step. While
 						it’s generally preferable to <strong>Earth Style</strong>, the
 						improvement is minimal.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Storm Style</strong> introduces the ability to charge your
 						shots. At Level 0, charged shots do slightly less damage than
 						uncharged shots in <strong>Heaven Style</strong>, but higher charge
 						levels offer greater damage. The charge multipliers are
 						0.95x/1.15x/1.30x/1.5x from Level 0 to Level 3.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> builds on
 						<strong>Storm Style</strong>, retaining all its features while
 						removing the damage penalty for Level 0 shots, which now deal 1.0x
 						damage instead of 0.95x.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						As with other Extreme Styles, this style allows you to run with your
 						weapon unsheathed, significantly increasing <InlineTooltip
 							text="Heavy Bowgun's"
@@ -343,8 +345,8 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						since reloading typically immobilizes you for a while. Firing cancels
 						the running state, and you can use the charge shot to adjust your aim
 						if needed.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> introduces a
 						<strong>Heat Gauge</strong>
 						meter for all <InlineTooltip
@@ -356,8 +358,8 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						and lets you use the <strong>Blue Heat Cannon</strong> and
 						<strong>Blast Avoidance</strong>. The meter is fully extended by
 						default and doesn’t need Oils to increase its capacity.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The <strong>Blue Heat Cannon</strong> is an enhanced version found
 						on various Gou <InlineTooltip
 							text="Heavy Bowguns"
@@ -368,8 +370,8 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						can take out a large portion of a standard G Rank monster’s HP.
 						However, it locks you into a lengthy animation with a forced
 						backward movement, leaving you vulnerable, so timing is critical.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						<strong>Blast Avoidance</strong> uses a small portion of the same
 						meter as the <strong>Blue Heat Cannon</strong> to launch you in a
 						manner similar to <InlineTooltip
@@ -383,15 +385,15 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 						the opposite direction to where you’re facing, so if you want to
 						face the monster afterward, you'll need to perform a 180° turn
 						before using this ability.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						It’s worth noting that you can have both versions of the <strong
 							>Heat Cannon</strong
 						>
 						active simultaneously if you use a Sigil or weapon with the standard
 						<strong>Heat Cannon</strong>, with both gauges appearing side by
 						side.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -403,7 +405,9 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>+0.1x Damage increased at <strong>Critical Distance.</strong></p>
+					<div class="paragraph-long-02">
+						+0.1x Damage increased at <strong>Critical Distance.</strong>
+					</div>
 				</div>
 			</section>
 
@@ -437,13 +441,13 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -481,7 +485,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -492,7 +496,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -530,7 +534,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -546,7 +550,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -555,48 +559,48 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								As a Gunner weapon, the <InlineTooltip
 									tooltip="Weapon"
 									text="Heavy Bowgun"
 									iconType="component"
 									icon={getWeaponIcon('Heavy Bowgun')}
 								/> can quickly meet the requirements for various skills.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Compressed shots are useful against fast-moving targets, but
 								mitigating recoil requires extra effort.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Extreme style’s heat gauge doesn’t require item management.
 								Blast dodges use the meter, offering extensive i-frames, and can
 								transition into a run or roll after landing.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Charging shots helps conserve ammo, particularly effective with
 								compressed Normal 3 and Element shots.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Proper spacing increases the size of <InlineTooltip
 									tooltip="Armor Skill"
 									text="Heavy Bowgun Hiden's"
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> 'perfect' window for compression shots when the buff is active.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Armor Skill"
 									text="Bullet Saver"
@@ -604,10 +608,10 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 									icon={getItemIcon('Jewel')}
 								/> considers every shot in a single compression shot salvo, with
 								all saved ammo retained in the clip for future use.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Raviente Heavy Bowgun"
@@ -615,17 +619,17 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 									icon={getWeaponIcon('Heavy Bowgun')}
 								/> bomb shots are generally ineffective; players use them for their
 								strong stat lines instead.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The shield addon does not benefit from <InlineTooltip
 									tooltip="Armor Skill"
 									text="Obscurity"
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -636,7 +640,7 @@ Perfectly-timed compression will result in more attack power for that one salvo.
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

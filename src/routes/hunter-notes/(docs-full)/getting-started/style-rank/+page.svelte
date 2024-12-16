@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
@@ -50,7 +52,7 @@
 	import { confetti } from '@neoconfetti/svelte';
 	import { reduced_motion } from '$lib/client/stores/reduced-motion';
 
-	let showConfetti = false;
+	let showConfetti = $state(false);
 
 	function handlePerfectScore() {
 		showConfetti = true;
@@ -63,12 +65,12 @@
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalImageType: 'video' | 'image' = 'image';
-	let modalNotes = '';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalImageType: 'video' | 'image' = $state('image');
+	let modalNotes = $state('');
 
 	const weaponUnlockGSRBonus: { id: string; unlocks: string; bonus: string }[] =
 		[
@@ -836,8 +838,6 @@ At HR5, it provides 17, at HR6 it’s 45, and at HR7 it’s 50. It progresses gr
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
-
 	function getDiagram(mermaidTheme: string) {
 		return `\
 	%%{init: {'theme':'${mermaidTheme}'}}%%
@@ -882,17 +882,14 @@ graph LR
 `;
 	}
 
-	let container: { innerHTML: string };
-	let container2: { innerHTML: string };
+	let container: { innerHTML: string } = $state();
+	let container2: { innerHTML: string } = $state();
 
 	let mermaidTheme = $carbonThemeStore === 'g10' ? 'default' : 'dark';
 
 	// The default diagram
 	let diagram = getDiagram(mermaidTheme);
 	let diagram2 = getDiagram2(mermaidTheme);
-
-	$: diagram && renderDiagram($carbonThemeStore, mermaidTheme);
-	$: diagram2 && renderDiagram2($carbonThemeStore, mermaidTheme);
 
 	onMount(() => {
 		mermaid.initialize({
@@ -921,6 +918,15 @@ graph LR
 
 	let multipleChoiceItems: MultipleChoiceItem[] =
 		questionBank.find((e) => e.category === 'Style Rank')?.items || [];
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
+	run(() => {
+		diagram && renderDiagram($carbonThemeStore, mermaidTheme);
+	});
+	run(() => {
+		diagram2 && renderDiagram2($carbonThemeStore, mermaidTheme);
+	});
 </script>
 
 <Modal
@@ -939,14 +945,11 @@ graph LR
 			{:else}
 				<div>
 					{#await import('$lib/player/Player.svelte') then { default: Player }}
-						<svelte:component
-							this={Player}
-							{...{ title: modalHeading, src: modalImage }}
-						/>
+						<Player {...{ title: modalHeading, src: modalImage }} />
 					{/await}
 				</div>
 			{/if}
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -954,7 +957,8 @@ graph LR
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent = modalPopoverIcon}
+							<SvelteComponent />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -972,15 +976,15 @@ graph LR
 	{/if}
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Style Rank'} />
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			Upon reaching <strong>HR5</strong>, you can unlock
 			<strong>Style Rank</strong>. This process is initiated automatically when
 			you approach the <strong>Guild Master</strong> after achieving
 			<strong>HR5</strong>.
-		</p>
+		</div>
 		<CenteredFigure
 			width={'100%'}
 			type="file"
@@ -988,7 +992,7 @@ graph LR
 			alt="Guild Master"
 			figcaption="The Guild Master."
 		/>
-		<p>
+		<div class="paragraph-long-02">
 			<strong>Style Rank</strong> grants several benefits, including special SR
 			Skills, two new movesets per weapon type (three in total at G Rank with
 			<strong>Extreme Style</strong>), and access to
@@ -999,11 +1003,11 @@ graph LR
 				text="My House"
 				tooltip="Location"
 			/>.
-		</p>
+		</div>
 		<section>
 			<SectionHeading level={2} title="Weapon Styles" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					To enable the new movesets, use any large box that allows you to
 					change gear, such as the one in the <InlineTooltip
 						icon={LocationIcons.find((e) => e.name === 'Blacksmith')?.icon}
@@ -1012,11 +1016,11 @@ graph LR
 						tooltip="Location"
 					/>. Go to the section where you normally choose equipment and select
 					the newly added final option.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					This will bring up a new menu where you should select your weapon
 					type, followed by the second option, and then your preferred style.
-				</p>
+				</div>
 				<CenteredFigure
 					width={'100%'}
 					type="file"
@@ -1024,13 +1028,13 @@ graph LR
 					alt="SR Status"
 					figcaption="SR Status."
 				/>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					At <strong>HR5</strong>, you will have access to
 					<strong>Heaven Style</strong> and <strong>Storm Style</strong>. For
 					most weapons at this rank, <strong>Storm Style</strong> is the best, though
 					there may be some variations. You can swap styles at any time and are not
 					locked into any of the three initially available options.
-				</p>
+				</div>
 				<div class="table">
 					<DataTable
 						useStaticWidth
@@ -1062,7 +1066,7 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.key === 'weapon'}
 								<InlineTooltip
 									text={cell.value}
@@ -1076,16 +1080,16 @@ graph LR
 									maxRating={3}
 								/>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					For more specific information about all weapon styles, refer to <Link
 						inline
 						href="/hunter-notes/weapons">the weapons category page.</Link
 					>
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Upon reaching <strong>G Rank</strong>, interact with the
 					<strong>Guild Master</strong>
 					again to unlock <strong>Extreme Style</strong>. This style
@@ -1095,24 +1099,24 @@ graph LR
 						>You should switch all weapons to this style upon reaching G Rank
 						and unlocking it.</strong
 					>
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					To use any alternative movesets, your <strong>Book of Secrets</strong>
 					must be equipped. If it is disabled, go to the SR menu and choose the first
 					option, followed by the first option again, to toggle it back on.
-				</p>
+				</div>
 			</div>
 		</section>
 
 		<section>
 			<SectionHeading level={2} title="Hardcore Mode" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					<strong>Hardcore (HC)</strong> is a toggleable option for SR quests that
 					transforms the large monsters into HC monsters. If a quest can be made
 					hardcore, it is indicated by a flame icon in the quest list at the top
 					right of its name.
-				</p>
+				</div>
 				<CenteredFigure
 					width={'100%'}
 					type="file"
@@ -1121,11 +1125,11 @@ graph LR
 					figcaption="Note that the flame icon itself does not mean the quest is in HC
 					mode; you must manually turn HC mode on."
 				/>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					You can toggle the HC option on the final screen after selecting a
 					quest, where you confirm player numbers, passwords, etc.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					<strong
 						>Keep in mind that Newbie and Return worlds do not have the HC
 						feature.</strong
@@ -1133,17 +1137,14 @@ graph LR
 					If you do not see any red flame icons, first check if you have interacted
 					with the Guild Master and then check your SR menu in your Equipment Box,
 					you may have SR disabled.
-				</p>
-				<p class="spaced-paragraph"></p>
-				<p class="spaced-paragraph"></p>
-				<p class="spaced-paragraph"></p>
+				</div>
 			</div>
 		</section>
 
 		<section>
 			<SectionHeading level={2} title="Hardcore Monsters" />
 			<div>
-				<p>
+				<div class="paragraph-long-02">
 					If you spend a significant amount of time at <strong>HR5</strong>, you
 					will likely need
 					<InlineTooltip
@@ -1160,16 +1161,24 @@ graph LR
 						text="Weapon Soul"
 						tooltip="Item"
 					/> based on the type of monster.
-				</p>
+				</div>
 
-				<UnorderedList>
-					<ListItem><p>Low Soul: HR1-2</p></ListItem>
-					<ListItem><p>Mid Soul: HR3-4</p></ListItem>
-					<ListItem><p>High Soul: HR5</p></ListItem>
-					<ListItem><p>Top Soul: Gou HR5</p></ListItem>
+				<UnorderedList class="spaced-list">
+					<ListItem
+						><div class="paragraph-long-02">Low Soul: HR1-2</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">Mid Soul: HR3-4</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">High Soul: HR5</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">Top Soul: Gou HR5</div></ListItem
+					>
 				</UnorderedList>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					<strong>Hardcore monsters</strong> are more powerful versions with new
 					skills, abilities, and appearances. Many HC monsters have enhanced
 					levels of Roars, Wind, or Quake, requiring <InlineTooltip
@@ -1188,7 +1197,7 @@ graph LR
 						text="Dragon Wind Breaker"
 						tooltip="Armor Skill"
 					/> for protection.
-				</p>
+				</div>
 				<CenteredFigure
 					width={'100%'}
 					type="file"
@@ -1196,7 +1205,7 @@ graph LR
 					alt="Hardcore monster option"
 					figcaption="Toggling HC Mode on."
 				/>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Completing an HC quest grants SR <InlineTooltip
 						icon={getItemIcon('Ticket')}
 						iconType="component"
@@ -1214,34 +1223,34 @@ graph LR
 						tooltip="Game"
 					/>, most of these multipliers are less relevant and mainly affect your
 					Partner's Rank and Weapon Rank.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					The only difference in a quest set to Hardcore is the monsters
 					themselves. If a quest has multiple large monsters, they will all
 					become their Hardcore variants.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					<strong>G Rank</strong> quests receive the same effects as normal Hunter
 					Rank HC quests, with different multipliers applying to G Rank points and
 					currency (GRP, GSRP, Gzeny).
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Hardcore Carves" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					<strong>Hardcore (HC)</strong> Carves are an additional type of carve available
 					from HC monsters. Generally, each type of monster has one HC carve per
 					tier (HR1-2, HR3-4, HR5-6, G Rank).
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					The standard way to obtain <strong>HC Carves</strong> is by killing and
 					carving a monster. However, some event quests also reward them as normal
 					rewards. The standard rate for an HC Carve is 5%, and for a GHC Carve,
 					it is 2%.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					<strong>HC Carves</strong> are commonly used across gear, serving a
 					similar role to low-percentage carves like <InlineTooltip
 						icon={getItemIcon('Ball')}
@@ -1254,15 +1263,15 @@ graph LR
 						text="Plates"
 						tooltip="Item"
 					/> introduced since Hardcore Monsters were added.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					When you carve an <strong>HC Carve</strong>, you will hear a special
 					jingle distinct from the normal carving success sound.
 					<strong>HC Carves</strong> can also be carved by your Partner and will
 					appear in the rewards after a quest (without the jingle). While on Premium,
 					the Legendary Pugi can also obtain them similarly to your Partner.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					N Points and Festival Points can be spent on <strong>HC Carves</strong
 					>, typically costing around 100 N Points or 500 Festival Points
 					minimum. The <InlineTooltip
@@ -1285,12 +1294,12 @@ graph LR
 						text="Diva Defense"
 						tooltip="Event"
 					/>.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					<strong>HC Carves</strong> are unique because they are outside the normal
 					carve pool. When you carve a monster, you first roll for the pool from
 					which you get an item and then for the item itself.
-				</p>
+				</div>
 				<div class="table">
 					<DataTable
 						useStaticWidth
@@ -1323,12 +1332,12 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							<p>{cell.value}</p>
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
-				<p>
+				<div class="paragraph-long-02">
 					For anything that can cause you to reroll carves, such as Caravan Gem
 					skills, you will also roll for the table on the second attempt. For
 					example, if you initially carved a <InlineTooltip
@@ -1352,13 +1361,13 @@ graph LR
 						tooltip="Item"
 					/>
 					(27%).
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Weapon Souls" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Weapon <InlineTooltip
 						icon={getItemIcon('Ticket')}
 						iconType="component"
@@ -1386,8 +1395,8 @@ graph LR
 						text="SnS Soul (Low)"
 						tooltip="Item"
 					/>.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Weapon <InlineTooltip
 						icon={getItemIcon('Ticket')}
 						iconType="component"
@@ -1396,13 +1405,13 @@ graph LR
 					/> are used to craft and upgrade certain weapons and armors. A lot of gear
 					during and most decent gear past <strong>HR5</strong> will require at least
 					one of these to be upgraded or crafted.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Weapon Ribbons & Merits" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					At GSR1, you gain access to <InlineTooltip
 						icon={getItemIcon('Ball')}
 						iconType="component"
@@ -1421,27 +1430,26 @@ graph LR
 						tooltip="Item"
 					/> but are gained from GHC and normal G Rank quests respectively. Both
 					are covered in depth in the Hiden section below.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Style Rank Skills" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					After achieving <strong>Style Rank</strong>, you gain access to select
 					a <strong>Style Rank Skill</strong>. These are permanently active
 					buffs similar to armor skills but do not occupy any slots. The skills
 					and instructions on how to equip them are detailed below.
-				</p>
-				<div></div>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					You can equip your first skill by going into a weapon's <strong
 						>Book of Secrets</strong
 					> menu, selecting one of the Special effects options, and then choosing
 					one of the skills. After reaching GSR100, you will be able to equip two
 					skills; until then, you can equip one.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					At <strong>HR5</strong>, you gain the basic Defense Skill. At
 					<strong>HR6</strong>, you gain various Elemental Resistance skills and
 					the first version of Sharpening Up. At
@@ -1451,8 +1459,8 @@ graph LR
 					<strong>G Style Rank</strong>, with some requiring
 					<strong>GSR999</strong> in one or multiple weapons to be unlocked or maxed
 					out.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					At <strong>G Rank</strong>, we recommend using
 					<strong>Affinity Up</strong>, which increases the affinity by +20% to
 					+26%, similar to the <InlineTooltip
@@ -1461,8 +1469,8 @@ graph LR
 						text="Expert+2"
 						tooltip="Armor Skill"
 					/> skill.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					GSR in <InlineTooltip
 						icon={getWeaponIcon('Tonfa')}
 						iconType="component"
@@ -1479,24 +1487,24 @@ graph LR
 						text="Magnet Spike"
 						tooltip="Weapon"
 					/> each add +2% affinity, reaching a maximum of +26%.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Ranking up in GSR unlocks the <strong>Conquest Attack</strong> and
 					<strong>Conquest Defense</strong> skills.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Achieving <strong>GSR999</strong> grants the
 					<strong>Passive Master</strong>
 					and <strong>Secret Technique</strong> skills.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Having 11 weapons at <strong>GSR999</strong> unlocks the
 					<strong>Soul Revival</strong> skill.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					<strong>GSR100</strong> in each weapon unlocks a second SR skill slot,
 					allowing for two skills simultaneously.
-				</p>
+				</div>
 				<div class="table table-with-scrollbar">
 					<DataTable
 						id="style-rank-skills-dom"
@@ -1527,7 +1535,7 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.key === 'skill' && styleRankSkills.find((e) => e.skill === cell.value)?.image !== undefined}
 								<Button
 									on:click={() => changeModal(cell, 'Style Rank Skills')}
@@ -1538,7 +1546,7 @@ graph LR
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -1573,9 +1581,9 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							<p>{cell.value}</p>
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -1613,9 +1621,9 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							<p>{cell.value}</p>
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -1623,14 +1631,14 @@ graph LR
 		<section>
 			<SectionHeading level={2} title="Style Rank Stats" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					The <strong>Book of Secrets</strong> status page shows everything
 					related to <strong>Style Rank</strong>. It can be accessed through the
 					<strong>Equipment Box</strong>. The most notable of these stats are
 					the
 					<strong>Attack Up</strong>
 					and <strong>Attack Ceiling</strong> skills.
-				</p>
+				</div>
 				<div class="table">
 					<DataTable
 						useStaticWidth
@@ -1662,9 +1670,9 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							<p>{cell.value}</p>
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -1672,12 +1680,12 @@ graph LR
 		<section>
 			<SectionHeading level={2} title="Attack Ceiling" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					The <strong>Attack Ceiling</strong> does not directly buff your Attack
 					but instead allows you to have higher values of attack without hitting
 					a ceiling.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					It is incredibly important that you raise the <strong
 						>Attack Ceiling</strong
 					>
@@ -1692,13 +1700,13 @@ graph LR
 					Weapons have up to 580 base True Raw and that GSR1 already adds +50 True
 					Raw and skills can instantly add +150 True Raw you will find yourself going
 					past 800 easily.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Each weapon in Monster Hunter has its own internal multiplier that is
 					applied to its True Raw value, you can divide the displayed attack on
 					a weapon to see their True Raw but every weapon has the same limits
 					based upon your <strong>Attack Ceiling</strong> level.
-				</p>
+				</div>
 				<div class="table">
 					<DataTable
 						useStaticWidth
@@ -1731,7 +1739,7 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.key === 'weapon'}
 								<InlineTooltip
 									text={cell.value}
@@ -1742,10 +1750,10 @@ graph LR
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					For example, if you had no <strong>Attack Ceiling</strong> levels
 					while using a <InlineTooltip
 						icon={getWeaponIcon('Sword and Shield')}
@@ -1757,13 +1765,13 @@ graph LR
 					only ever have 1,120 Attack or 800 True Raw. This is because it hits the
 					default 800 True Raw cap causing you to lose 1,960 Attack or 1,400 True
 					Raw.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					If you had 22 levels your ceiling 2,352 Attack or 1,680 True Raw which
 					means that in this case you would be actively losing 728 Attack or 520
 					True Raw.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Finally if you had 35 levels your ceiling would be 3,080 Attack or
 					2,200 True Raw, as this covers your 3,080 Attack perfectly you would
 					get all of it. Of course if you then used a <InlineTooltip
@@ -1774,8 +1782,8 @@ graph LR
 						iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
 					/> or were affected by a Demon Horn you would suddenly be over your ceiling
 					and would again be losing some of your attack power.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					A good starting number to aim at is around 50 levels, this will cover
 					most skills before <strong>Hiden</strong> including being buffed by <InlineTooltip
 						icon={getWeaponIcon('Hunting Horn')}
@@ -1794,32 +1802,32 @@ graph LR
 					> automatically calculates your required number of My Missions and Attack
 					Ceiling level based on values and skills you might want to utilise if you
 					want an exact number.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Increasing the value of the <strong>Attack Ceiling</strong> is done by
 					completing <strong>My Missions</strong>, these are detailed in the
 					next section below.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="My Mission" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					<strong>My Mission</strong> is a series of objectives that are
 					unlocked after you hit <strong>HR6</strong> and unlock
 					<strong>Style Rank</strong>. There are two types of these missions,
 					the first are the <strong>Medal Series</strong> that are purely optional
 					and do not have any notable effects.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					The second series is the <strong>Weapon Series</strong> which are used
 					to enhance four different skills on all weapon types.
-				</p>
+				</div>
 				<section>
 					<SectionHeading level={3} title="Medal Series" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							The <strong>Medal Series</strong> are the purely optional
 							challenges that have an associated
 							<strong>Hunter Navigation Task</strong>
@@ -1838,34 +1846,34 @@ graph LR
 							/>
 							which has a bullseye icon next to it, this unlocks at
 							<strong>HR5</strong>.
-						</p>
+						</div>
 					</div>
 				</section>
 				<section>
 					<SectionHeading level={3} title="Weapon Series" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							As mentioned the <strong>Weapon Series</strong> are global across
 							all your weapons, you can view your active
 							<strong>My Mission</strong>
 							by looking at your <strong>Book of Secrets</strong>. This will
 							display the task number you are on, the target and any progress
 							towards the goal. This progess is saved even if you log out.
-						</p>
-						<p class="spaced-paragraph">
+						</div>
+						<div class="spaced-paragraph">
 							Both the standard Hunter Rank and G Rank quest NPCs have options
 							dedicated towards these missions, selecting it will automatically
 							search for relevant quests that meet the requirements. <strong
 								>But you will still need to toggle HC manually if it is required
 								by the mission you are on.</strong
 							>
-						</p>
-						<p class="spaced-paragraph">
+						</div>
+						<div class="spaced-paragraph">
 							The number of <strong>My Missions</strong> you should realistically
 							take varies massively depending on your level of progression, the following
 							are some estimates to aim for that give you wiggle room and should
 							cover most skill sets used at that point and most play styles:
-						</p>
+						</div>
 
 						<div class="table">
 							<DataTable
@@ -1898,7 +1906,7 @@ graph LR
 									</div>
 								</Toolbar>
 
-								<svelte:fragment slot="cell" let:cell>
+								{#snippet cell({ cell })}
 									{#if cell.key === 'weapon'}
 										<InlineTooltip
 											text={cell.value}
@@ -1909,18 +1917,18 @@ graph LR
 									{:else}
 										<p>{cell.value}</p>
 									{/if}
-								</svelte:fragment>
+								{/snippet}
 							</DataTable>
 						</div>
 
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Using the <Link icon={ToolKit} href="/tools/calculator/damage"
 								>Damage Calculator</Link
 							> will provide an accurate rating based on the entered skills. The
 							previous broad estimates cover all possible scenarios to prevent losing
 							raw damage.
-						</p>
-						<p class="spaced-paragraph">
+						</div>
+						<div class="spaced-paragraph">
 							Each mission given can be skipped using certain items.
 							Specifically, you can use <InlineTooltip
 								icon={getItemIcon('Ticket')}
@@ -1928,7 +1936,7 @@ graph LR
 								text="My Mission Tickets"
 								tooltip="Item"
 							/>, which are fairly rare, or spend lottery coins.
-						</p>
+						</div>
 						<CenteredFigure
 							width={'100%'}
 							type="file"
@@ -1936,7 +1944,7 @@ graph LR
 							alt="My Mission tickets"
 							figcaption="You can find the skip option with the Guild Master from whom you get SRs and GSRs."
 						/>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Premium days will give you 40 <InlineTooltip
 								icon={getItemIcon('Ticket')}
 								iconType="component"
@@ -1944,7 +1952,7 @@ graph LR
 								tooltip="Item"
 							/>, and you can trade junk weapon tickets obtained from the
 							lottery system for them with the combination NPC.
-						</p>
+						</div>
 					</div>
 				</section>
 			</div>
@@ -1953,8 +1961,7 @@ graph LR
 		<section>
 			<SectionHeading level={2} title="Hiden" />
 			<div>
-				<div></div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					All weapons in the game have several associated Hiden Armors and
 					Decorations. These provide points in their weapon's specific Weapon
 					Tech Skill, which is tailored to each weapon type. This skill always
@@ -1965,25 +1972,25 @@ graph LR
 						tooltip="Armor Skill"
 					/> and an attack multiplier of at least 1.2x for Blademaster and 1.3x for
 					Gunner.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Having one of these skills is commonly referred to as having <strong
 						>'Hiden'</strong
 					>
 					for that weapon. Achieving <strong>Hiden</strong> means equipping at
 					least 5 decorations for that specific <strong>Hiden</strong> type. These
 					decorations are made by converting maxed-out Hiden Armors into Decorations.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Weapon Tech Skills" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					All weapon types have an associated Weapon Tech skill, which
 					significantly buffs its corresponding weapon type. These skills are
 					detailed below.
-				</p>
+				</div>
 
 				<div class="table table-with-scrollbar">
 					<DataTable
@@ -2015,7 +2022,7 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.key === 'weapon'}
 								<InlineTooltip
 									text={cell.value}
@@ -2026,27 +2033,27 @@ graph LR
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Hiden Armor granting these skills becomes available at <strong
 						>HR6</strong
 					>
 					but cannot be completed until <strong>GR500</strong>.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Hiden Decorations" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					<strong>Hiden Decorations</strong> are per-weapon enhancements that
 					grant a specific weapon type's associated Hiden Skill (e.g., Great
 					Sword Tech). These decorations are refined from
 					<strong>Hiden Armor</strong> in the same manner as other GX decorations.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					<strong>Hiden Skills</strong> provide at least a 20% increase in flat
 					Attack along with other weapon-specific buffs. Having
 					<strong>Hiden</strong>
@@ -2057,16 +2064,16 @@ graph LR
 						tooltip="Monster"
 					/> or solo runs of Z4 Zeniths. Dedicated players often have multiple sets
 					of decorations for different scenarios.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					To upgrade armor into <strong>Hiden Decorations</strong>, you can
 					choose between White (which upgrades into either White or Black) or
 					Red (which upgrades into either Red or Blue) pieces. All pieces
 					convert into the same final decorations, so a full Black set or five
 					maxed Black Helmets will result in identical decorations. The primary
 					difference is the materials needed for upgrading each piece.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					There are four colors of <strong>Hiden Decorations</strong> for each
 					weapon: <InlineTooltip
 						icon={getItemIcon('Jewel')}
@@ -2093,9 +2100,9 @@ graph LR
 						iconColor={ItemColors.find((e) => e.name === 'Blue')?.value}
 					/>. Each color grants different additional skill points and is refined
 					from its corresponding armor type.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Creating <strong>Hiden Decorations</strong> lasts until late G Rank.
 					You can start working on <strong>Hiden Armor</strong> from
 					<strong>HR5</strong>
@@ -2119,33 +2126,33 @@ graph LR
 						tooltip="Item"
 					/>. These function nearly identically to the aforementioned obtained
 					from hunting HC, GHC, and standard G Rank monsters.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Each of the four colored sets converts into different gem types: White
 					Tiger, Military Black, Crimson Bird, and Azure Dragon. There are two
 					varieties of Hiden decorations: standard Hiden and True Hiden.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					<strong>True Hiden gems</strong> are upgraded versions of the original
 					<strong>Hiden Decorations</strong>, featuring G Rank Skill Points.
 					Crafting a <strong>True Hiden gem</strong> requires one of each of the
 					four colors of standard <strong>Hiden Decorations</strong>, making the
 					process equivalent to creating four full sets of
 					<strong>Hiden decorations</strong>.
-				</p>
+				</div>
 
 				<div class="mermaid-container">
 					<!-- TODO: not responsive-->
 					{#if !browser}
 						<Loading withOverlay={false} />
 					{:else}
-						<pre><code class="mermaid2" bind:this={container2} /></pre>
+						<pre><code class="mermaid2" bind:this={container2}></code></pre>
 					{/if}
 				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Despite being superior to standard <strong>Hiden decorations</strong>,
 					<strong>True Hiden gems</strong>
 					should not be your primary focus. They are beneficial for optimizing a
@@ -2154,9 +2161,9 @@ graph LR
 						>it is recommended to have a complete Hiden set before grinding for
 						True Hiden gems</strong
 					>.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					With the introduction of <InlineTooltip
 						icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier Z')
 							?.icon}
@@ -2183,14 +2190,14 @@ graph LR
 						text="Solid Determination"
 						tooltip="Armor Skill"
 					/> sets.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					To determine the best decoration for your weapon, check the gear of
 					leaderboard runs and compare.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					For most weapons, avoid <strong>Hiden Gems</strong> that grant a
 					specific skill outright. Some skills may push out more desirable
 					skills or overlap. For instance, multiple skills can grant
@@ -2238,9 +2245,9 @@ graph LR
 						text="Auto-Reload"
 						tooltip="Armor Skill"
 					/>), making <strong>True Hiden decorations</strong> less crucial for them.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Although <InlineTooltip
 						icon={getItemIcon('Jewel')}
 						iconType="component"
@@ -2268,9 +2275,9 @@ graph LR
 						tooltip="Weapon"
 					/> decorations, consider making six instead of five to achieve optimal
 					min-maxing.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					If your weapon doesn't come with a specific skill and you're planning
 					ahead, it is sensible to obtain at least one of each of the four
 					colors. This allows you to create a <strong
@@ -2278,9 +2285,9 @@ graph LR
 					> when needed and avoids issues with fixed skills interfering with sets.
 					Alternatively, committing to three and two or similar combinations can
 					also help prevent unwanted skills.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					When crafting <strong>True Hiden Decorations</strong> and considering <InlineTooltip
 						icon={getItemIcon('Jewel')}
 						iconType="component"
@@ -2312,7 +2319,7 @@ graph LR
 						text="Determination"
 						tooltip="Armor Skill"
 					/> and becomes useless.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
@@ -2321,7 +2328,7 @@ graph LR
 				title="Grind Process: Souls, Ribbons, and Merits"
 			/>
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Whenever you hunt an HC monster, you will gain a <InlineTooltip
 						icon={getItemIcon('Ticket')}
 						iconType="component"
@@ -2334,8 +2341,8 @@ graph LR
 						iconColor={ItemColors.find((e) => e.name === 'Blue')?.value}
 						tooltip="Item"
 					/>. These are used to create the base Hiden sets.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					To fully upgrade a Hiden set, you must reach G Rank to get <InlineTooltip
 						icon={getItemIcon('Ball')}
 						iconType="component"
@@ -2347,63 +2354,71 @@ graph LR
 						text="Merits"
 						tooltip="Item"
 					/>.
-				</p>
+				</div>
 				<p>
 					<strong>Hunter Rank:</strong>
 				</p>
-				<UnorderedList>
-					<ListItem><p>HR1-2 HC: Low Souls</p></ListItem>
-					<ListItem><p>HR3-4 HC: Mid Souls</p></ListItem>
-					<ListItem><p>HR5 HC: High Souls</p></ListItem>
-					<ListItem><p>Gou HC: Top Souls</p></ListItem>
+				<UnorderedList class="spaced-list">
+					<ListItem
+						><div class="paragraph-long-02">HR1-2 HC: Low Souls</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">HR3-4 HC: Mid Souls</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">HR5 HC: High Souls</div></ListItem
+					>
+					<ListItem
+						><div class="paragraph-long-02">Gou HC: Top Souls</div></ListItem
+					>
 				</UnorderedList>
 				<p>
 					<strong>G Style Rank:</strong>
 				</p>
-				<UnorderedList>
+				<UnorderedList class="spaced-list">
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>1-2 HC: Low Ribbons</span>
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>3-4 HC: Mid Ribbons</span>
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>5-8 HC: High Ribbons</span>
-						</p></ListItem
+						</div></ListItem
 					>
 				</UnorderedList>
 				<p>
 					<strong>G Rank 500:</strong>
 				</p>
-				<UnorderedList>
+				<UnorderedList class="spaced-list">
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>1-2: Low Merits</span>
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>3-4: Mid Merits</span>
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem>
-						<p class="paragraph-with-icon">
+						<div class="paragraph-with-icon paragraph-long-02">
 							<StarFilled />
 							<span>5-8: High Merits</span>
-						</p></ListItem
+						</div></ListItem
 					>
 				</UnorderedList>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Large numbers of <InlineTooltip
 						icon={getItemIcon('Ticket')}
 						iconType="component"
@@ -2421,18 +2436,18 @@ graph LR
 						tooltip="Item"
 					/>, HC carves from monsters of all ranks, and 1% carves from G Rank
 					monsters are required to completely finish a Hiden set.
-				</p>
+				</div>
 				<p>The progression can be demonstrated below:</p>
 				<div class="mermaid-container">
 					<!-- TODO: not responsive-->
 					{#if !browser}
 						<Loading withOverlay={false} />
 					{:else}
-						<pre><code bind:this={container} /></pre>
+						<pre><code bind:this={container}></code></pre>
 					{/if}
 				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Having a Guuku allows you to convert extra HC or GHC carves into
 					additional <InlineTooltip
 						icon={getItemIcon('Ticket')}
@@ -2469,8 +2484,8 @@ graph LR
 						text="Merits"
 						tooltip="Item"
 					/> per quest, this should be considered only if you have an excess of gems.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Even if you don't use the Guuku for your first Hiden set, you can
 					still use it to quickly gather <InlineTooltip
 						icon={getItemIcon('Ticket')}
@@ -2490,8 +2505,8 @@ graph LR
 						text="Souls"
 						tooltip="Item"
 					/> of the corresponding rank.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Before starting the Hiden grind, it's important to note that there are
 					daily quests for each weapon type that reward Weapon <InlineTooltip
 						icon={getItemIcon('Ticket')}
@@ -2505,8 +2520,8 @@ graph LR
 						tooltip="Item"
 					/>. While this may not seem like a significant amount, it is
 					equivalent to one piece every 19 days, which adds up over time.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Occasionally, there are also daily quests for <InlineTooltip
 						icon={getItemIcon('Ball')}
 						iconType="component"
@@ -2531,18 +2546,18 @@ graph LR
 						tooltip="Item"
 					/>. The Ribbon daily quest is more beneficial than the Merit one, but
 					both are equivalent to 3 quests while on premium.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Although the quests might not seem great, they still amount to one
 					piece every 10 days. This makes them valuable during rare occasions
 					when 5 dailies are given out each day.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="Hiden Stones" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Since <InlineTooltip
 						icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier Z')
 							?.icon}
@@ -2569,8 +2584,8 @@ graph LR
 					Cooked in your house. As this is effectively a 2:1 ratio, you should
 					only do this with materials you have in great excess for a single
 					weapon class.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					<InlineTooltip
 						iconColor={ItemColors.find((e) => e.name === 'Orange')?.value}
 						icon={getItemIcon('Ore')}
@@ -2594,8 +2609,8 @@ graph LR
 						tooltip="Item"
 					/>. There is a stone for each type, and they each give exactly one
 					piece worth of their respective items.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					To cash in these stones, you must either take a map delivery quest or
 					deliver the stone itself. These quests are always solo and disable any
 					benefits such as <InlineTooltip
@@ -2605,8 +2620,8 @@ graph LR
 						text="Lucky Charms"
 						tooltip="Item"
 					/>.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					You can have up to three characters on an account in Frontier. Each
 					character can get a daily quest, allowing you to do the <InlineTooltip
 						icon={getMonsterIcon('Dyuragaua')}
@@ -2628,8 +2643,8 @@ graph LR
 						tooltip="Item"
 					/> every 19 days if done daily. With two characters, it becomes every 10
 					days, and with three characters, it's every 7 days.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					At 100 points per character, this option is naturally much cheaper
 					than gambling with lottery coins or buying <InlineTooltip
 						iconColor={ItemColors.find((e) => e.name === 'Orange')?.value}
@@ -2639,19 +2654,19 @@ graph LR
 						tooltip="Item"
 					/> with them, but it requires logging into multiple accounts daily to reap
 					the benefits.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Since your character slots will never disappear, you can use these
 					indefinitely for any relevant dailies. During rare events where 5
 					dailies are available each day, you can get 15 dailies per day, enough
 					to complete the Soul grind for five pieces of any single weapon.
-				</p>
+				</div>
 			</div>
 		</section>
 		<section>
 			<SectionHeading level={2} title="SR My Mission Stats" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					At the bottom of the <strong>Book of Secrets</strong>, there are four
 					stats that do not level up naturally. These stats are leveled up by
 					completing assigned targets from the <strong>My Mission</strong>
@@ -2661,8 +2676,8 @@ graph LR
 					and 25 in <strong>Status Recovery</strong>. These stats are upgraded
 					per weapon, so you will need to complete 180 missions per weapon type
 					to fully optimize them.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					As of <InlineTooltip
 						icon={gameInfo.find((e) => e.name === 'Monster Hunter Frontier G')
 							?.icon}
@@ -2671,16 +2686,16 @@ graph LR
 						tooltip="Game"
 					/>, these stats are no longer per weapon but are instead global across
 					all weapons, making it a less daunting task.
-				</p>
-				<UnorderedList>
+				</div>
+				<UnorderedList class="spaced-list">
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							Damage Reduction: 20 levels. Reduces all damage taken by 10% at
 							maximum level (0.5% per level).
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							Attack Ceiling: It's easy to hit the maximum attack at G Rank, so
 							raising this stat is crucial for all <strong>G Rank</strong>
 							players. There are 180 levels, each raising the limit by 40 true raw.
@@ -2704,20 +2719,20 @@ graph LR
 								icon={ToolKit}
 								href="/tools/calculator/damage">Damage Calculator</Link
 							>.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							Partial HP on Hit: 25 levels. Increases the amount of red HP left
 							after taking a hit, with each level providing an extra 1% health.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							Status Recovery: 25 levels. Reduces the duration of status effects
 							by up to 1 second, with each level reducing time by 1.5 frames (up
 							to 30 frames at 30fps).
-						</p></ListItem
+						</div></ListItem
 					>
 				</UnorderedList>
 			</div>
@@ -2725,7 +2740,7 @@ graph LR
 		<section>
 			<SectionHeading level={2} title="SR My Mission Challenges" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					<strong>My Mission</strong> tasks provide passive buffs and increase
 					the maximum attack ceiling beyond the default limit of 800 True Raw.
 					With G Rank weapons capable of reaching True Raw values of over 600
@@ -2746,11 +2761,11 @@ graph LR
 						inline
 						href="#attack-ceiling">Attack Ceiling table</Link
 					> for more details.
-				</p>
+				</div>
 				<section>
 					<SectionHeading level={3} title="Viewing Missions" />
 					<div>
-						<p>
+						<div class="paragraph-long-02">
 							You can view your active My Mission by checking your <strong
 								>Book of Secrets</strong
 							>, which displays the task number, target, and progress towards
@@ -2758,13 +2773,13 @@ graph LR
 							dedicated to these missions, automatically searching for relevant
 							quests that meet the requirements. You will need to manually
 							toggle HC if required.
-						</p>
+						</div>
 					</div>
 				</section>
 				<section>
 					<SectionHeading level={3} title="Level Recommendations" />
 					<div>
-						<p>
+						<div class="paragraph-long-02">
 							For endgame play, these challenges are essential. The game
 							constantly adds new skills that raise attack, making the original
 							800 True Raw limit increasingly irrelevant in G Rank play. To
@@ -2774,24 +2789,24 @@ graph LR
 							>. Enter your skills and weapon values in the left column to get
 							an accurate calculation. For estimates, enter around 500-600 as
 							base true raw for typical late to endgame numbers.
-						</p>
+						</div>
 					</div>
 				</section>
 				<section>
 					<SectionHeading level={3} title="Vanity Challenges" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Upon reaching <strong>HR5</strong> and starting
 							<strong>Style Rank</strong>, you gain access to the SR Self
 							Challenge Room, which displays all the weapons you have SR in and
 							the Hiden Sets you have crafted.
-						</p>
-						<p class="spaced-paragraph">
+						</div>
+						<div class="spaced-paragraph">
 							There are two NPCs in this room, R and S:
-						</p>
-						<UnorderedList>
+						</div>
+						<UnorderedList class="spaced-list">
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									R: Gives challenges that grant medals for completion. These
 									are mostly vanity quests, but completing them all grants 30 <InlineTooltip
 										icon={getItemIcon('Ticket')}
@@ -2799,15 +2814,15 @@ graph LR
 										text="My Mission Tickets"
 										tooltip="Item"
 									/> to skip S's stat quests.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									S: Gives challenges similar to R's and quests that improve the
 									stats on your <strong>Book of Secrets</strong>. These quests
 									will appear on the main Quest Giver NPCs when relevant, so you
 									won't need to visit this room just for stats.
-								</p></ListItem
+								</div></ListItem
 							>
 						</UnorderedList>
 						<CenteredFigure
@@ -2822,35 +2837,35 @@ graph LR
 				<section>
 					<SectionHeading level={3} title="NPC Menus" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Talking to either S or R produces a menu with the following
 							options:
-						</p>
-						<UnorderedList>
+						</div>
+						<UnorderedList class="spaced-list">
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									Select Challenge: Choose one of ten challenges from your
 									current set.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									Change Challenge Set: Swap challenges with another set. Each
 									set has its own decorative disc, which gets decorations added
 									as you complete the challenges.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									SR Stat Mission: Missions to complete to rank up the bottom
 									four stats on your <strong>Book of Secrets</strong>. Available
 									with S and standard Quest NPCs.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									Manual: Opens the online manual in your browser.
-								</p></ListItem
+								</div></ListItem
 							>
 						</UnorderedList>
 					</div>
@@ -2858,7 +2873,7 @@ graph LR
 				<section>
 					<SectionHeading level={3} title="Missions and Challenges" />
 					<div>
-						<p>
+						<div class="paragraph-long-02">
 							Both Missions and Challenges have a menu listing a target to kill
 							a certain number of. After taking an SR Stat mission from S, you
 							will be asked if you want to skip it using items, accessible
@@ -2866,7 +2881,7 @@ graph LR
 							You will be prompted to use tickets or Lottery G coins, followed by
 							confirming your choice. Quests are persistent across sessions and automatically
 							marked as completed once their goal is achieved.
-						</p>
+						</div>
 					</div>
 				</section>
 			</div>
@@ -2875,7 +2890,7 @@ graph LR
 		<section>
 			<SectionHeading level={2} title="Hiden Cuffs" />
 			<div>
-				<p>
+				<div class="paragraph-long-02">
 					From the <InlineTooltip
 						icon={gameInfo.find(
 							(e) => e.name === 'Monster Hunter Frontier Z Zenith',
@@ -2893,7 +2908,7 @@ graph LR
 						text="Hiden Cuffs"
 						tooltip="Item"
 					/> come in three levels: Basic, G, and True.
-				</p>
+				</div>
 				<CenteredFigure
 					width={'100%'}
 					type="file"
@@ -2901,25 +2916,25 @@ graph LR
 					alt="Hiden skill example"
 					figcaption="Hiden skill, colored yellow because it doesn't take a skill slot."
 				/>
-				<UnorderedList>
+				<UnorderedList class="spaced-list">
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							Basic Cuffs: Provide +6 points in a Hiden and prevent Hiden from
 							using a skill slot.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							G Cuffs: Provide +12 points in a Hiden and prevent Hiden from
 							using a skill slot.
-						</p></ListItem
+						</div></ListItem
 					>
 					<ListItem
-						><p>
+						><div class="paragraph-long-02">
 							True Cuffs: Provide +12 points in a Hiden, +2 points in a Meta
 							Skill, and prevent Hiden from using a skill slot. Text colored
 							cyan in menus.
-						</p></ListItem
+						</div></ListItem
 					>
 				</UnorderedList>
 				<CenteredFigure
@@ -2929,14 +2944,14 @@ graph LR
 					alt="Hiden cuff example"
 					figcaption="Hiden cuff at the bottom."
 				/>
-				<p>
+				<div class="paragraph-long-02">
 					The first two levels of these cuffs use standard Hiden materials, and
 					you cannot exchange HL Hiden tickets to obtain them. The True Cuff
 					requires a single <strong>True Hiden decoration</strong>. There are 8
 					versions of these cuffs for each weapon type, and any
 					<strong>True Hiden decoration</strong> can be used to create any of the
 					cuffs.
-				</p>
+				</div>
 			</div>
 		</section>
 
@@ -2960,7 +2975,7 @@ graph LR
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 {#if showConfetti}
 	<div
@@ -2972,7 +2987,7 @@ graph LR
 			stageHeight: window.innerHeight,
 			colors: ['#f38ba8', '#a6e3a1', '#89b4fa'],
 		}}
-	/>
+	></div>
 {/if}
 
 <style lang="scss">

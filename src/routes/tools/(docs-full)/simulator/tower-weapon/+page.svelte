@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import {
@@ -41,7 +41,7 @@
 	import { getItemIcon, ItemColors } from '$lib/client/modules/frontier/items';
 	import { StatusIcons } from '$lib/client/modules/frontier/ailments';
 	import { ElementIcons } from '$lib/client/modules/frontier/elements';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	function onSelectTowerWeaponOption() {
@@ -613,31 +613,33 @@
 		return result;
 	}
 
-	let towerWeaponSelectedWeaponType = towerWeapons[0].type;
-	let towerWeaponSelectedWeaponOption = towerWeapons[0].name;
-	let towerWeaponAttackValue = towerWeapons[0].attack[0][0];
-	let towerWeaponElementValue = 0;
-	let towerWeaponParalysisValue = 0;
-	let towerWeaponPoisonValue = 0;
-	let towerWeaponSleepValue = 0;
-	let towerWeaponAffinityValue = towerWeapons[0].affinity[0][0];
-	let towerWeaponSharpnessLevel = 0;
-	let towerWeaponGunlanceShellLevel = '0';
+	let towerWeaponSelectedWeaponType = $state(towerWeapons[0].type);
+	let towerWeaponSelectedWeaponOption = $state(towerWeapons[0].name);
+	let towerWeaponAttackValue = $state(towerWeapons[0].attack[0][0]);
+	let towerWeaponElementValue = $state(0);
+	let towerWeaponParalysisValue = $state(0);
+	let towerWeaponPoisonValue = $state(0);
+	let towerWeaponSleepValue = $state(0);
+	let towerWeaponAffinityValue = $state(towerWeapons[0].affinity[0][0]);
+	let towerWeaponSharpnessLevel = $state(0);
+	let towerWeaponGunlanceShellLevel = $state('0');
 
-	let towerWeaponReloadSpeedValue: FrontierBowgunReloadSpeed = 'Very Slow';
-	let towerWeaponRecoilValue: FrontierBowgunRecoil = 'Max';
-	let towerWeaponBowCharge1Level = '1';
-	let towerWeaponBowCharge2Level = '1';
-	let towerWeaponBowCharge3Level = '1';
-	let towerWeaponBowCharge4Level = '1';
+	let towerWeaponReloadSpeedValue: FrontierBowgunReloadSpeed =
+		$state('Very Slow');
+	let towerWeaponRecoilValue: FrontierBowgunRecoil = $state('Max');
+	let towerWeaponBowCharge1Level = $state('1');
+	let towerWeaponBowCharge2Level = $state('1');
+	let towerWeaponBowCharge3Level = $state('1');
+	let towerWeaponBowCharge4Level = $state('1');
 
-	let towerWeaponSelected = towerWeapons[0];
-	let towerWeaponsFromType = getTowerWeaponsByType(
-		towerWeaponSelectedWeaponType,
+	let towerWeaponSelected = $state(towerWeapons[0]);
+	let towerWeaponsFromType = $state(
+		getTowerWeaponsByType(towerWeaponSelectedWeaponType),
 	);
 
-	let towerWeaponSelectedSeriesInfo =
-		getTowerWeaponSeriesInfo(towerWeaponSelected);
+	let towerWeaponSelectedSeriesInfo = $state(
+		getTowerWeaponSeriesInfo(towerWeaponSelected),
+	);
 
 	const towerWeaponReloadSpeedOptions = [
 		{ id: 'Very Slow', text: 'Very Slow' },
@@ -655,68 +657,67 @@
 		{ id: 'Smaller', text: 'Smaller' },
 	];
 
-	$: towerWeaponSeriesColor = getTowerWeaponIconColor(
-		towerWeaponSelected.series,
+	let towerWeaponSeriesColor = $derived(
+		getTowerWeaponIconColor(towerWeaponSelected.series),
 	);
 
-	$: towerWeaponReloadSpeedIndex = towerWeaponReloadSpeedOptions.findIndex(
-		(e) => e.id === towerWeaponReloadSpeedValue,
+	let towerWeaponReloadSpeedIndex = $derived(
+		towerWeaponReloadSpeedOptions.findIndex(
+			(e) => e.id === towerWeaponReloadSpeedValue,
+		),
 	);
 
-	$: towerWeaponRecoilIndex = towerWeaponRecoilOptions.findIndex(
-		(e) => e.id === towerWeaponRecoilValue,
+	let towerWeaponRecoilIndex = $derived(
+		towerWeaponRecoilOptions.findIndex((e) => e.id === towerWeaponRecoilValue),
 	);
 
-	$: towerWeaponSharpnessLevels = getTowerWeaponSharpnessLevels(
-		towerWeaponSelected.series,
+	let towerWeaponSharpnessLevels = $derived(
+		getTowerWeaponSharpnessLevels(towerWeaponSelected.series),
 	);
 
-	$: towerWeaponAttackIndex = findClosestIndex(
-		towerWeaponSelected.attack,
-		towerWeaponAttackValue,
+	let towerWeaponAttackIndex = $derived(
+		findClosestIndex(towerWeaponSelected.attack, towerWeaponAttackValue),
 	);
 
-	$: towerWeaponElementIndex = findClosestIndex(
-		towerWeaponSelected.element,
-		towerWeaponElementValue,
+	let towerWeaponElementIndex = $derived(
+		findClosestIndex(towerWeaponSelected.element, towerWeaponElementValue),
 	);
 
-	$: towerWeaponParalysisIndex = findClosestIndex(
-		towerWeaponSelected.paralysis,
-		towerWeaponParalysisValue,
+	let towerWeaponParalysisIndex = $derived(
+		findClosestIndex(towerWeaponSelected.paralysis, towerWeaponParalysisValue),
 	);
 
-	$: towerWeaponPoisonIndex = findClosestIndex(
-		towerWeaponSelected.poison,
-		towerWeaponPoisonValue,
+	let towerWeaponPoisonIndex = $derived(
+		findClosestIndex(towerWeaponSelected.poison, towerWeaponPoisonValue),
 	);
 
-	$: towerWeaponSleepIndex = findClosestIndex(
-		towerWeaponSelected.sleep,
-		towerWeaponSleepValue,
+	let towerWeaponSleepIndex = $derived(
+		findClosestIndex(towerWeaponSelected.sleep, towerWeaponSleepValue),
 	);
 
-	$: towerWeaponAffinityIndex = findClosestIndex(
-		towerWeaponSelected.affinity,
-		towerWeaponAffinityValue,
+	let towerWeaponAffinityIndex = $derived(
+		findClosestIndex(towerWeaponSelected.affinity, towerWeaponAffinityValue),
 	);
 
-	$: towerWeaponSharpnessIndex =
+	let towerWeaponSharpnessIndex = $derived(
 		towerWeaponSharpnessLevels.findIndex(
 			(e) => e === towerWeaponSharpnessLevel,
-		) ?? 0;
+		) ?? 0,
+	);
 
-	let towerWeaponGunlanceShellLevelCost =
-		getTowerWeaponGunlanceShellLevelCost();
-	let towerWeaponReloadSpeedCost = getTowerWeaponReloadSpeedCost();
-	let towerWeaponRecoilCost = getTowerWeaponRecoilCost();
-	let towerWeaponBowCharge1Cost = getTowerWeaponBowChargeCost(1);
-	let towerWeaponBowCharge2Cost = getTowerWeaponBowChargeCost(2);
-	let towerWeaponBowCharge3Cost = getTowerWeaponBowChargeCost(3);
-	let towerWeaponBowCharge4Cost = getTowerWeaponBowChargeCost(4);
+	let towerWeaponGunlanceShellLevelCost = $state(
+		getTowerWeaponGunlanceShellLevelCost(),
+	);
+	let towerWeaponReloadSpeedCost = $state(getTowerWeaponReloadSpeedCost());
+	let towerWeaponRecoilCost = $state(getTowerWeaponRecoilCost());
+	let towerWeaponBowCharge1Cost = $state(getTowerWeaponBowChargeCost(1));
+	let towerWeaponBowCharge2Cost = $state(getTowerWeaponBowChargeCost(2));
+	let towerWeaponBowCharge3Cost = $state(getTowerWeaponBowChargeCost(3));
+	let towerWeaponBowCharge4Cost = $state(getTowerWeaponBowChargeCost(4));
 
-	$: towerWeaponGunlanceShellOptions =
-		getTowerWeaponGunlaceShellOptions(towerWeaponSelected);
+	let towerWeaponGunlanceShellOptions = $derived(
+		getTowerWeaponGunlaceShellOptions(towerWeaponSelected),
+	);
 
 	const towerWeaponBowChargeOptions = [
 		{ id: '1', text: 'LV1' },
@@ -725,80 +726,95 @@
 		{ id: '4', text: 'LV4' },
 	];
 
-	let towerWeaponSlots = getTowerWeaponSlots(towerWeaponSelectedSeriesInfo);
+	let towerWeaponSlots = $state(
+		getTowerWeaponSlots(towerWeaponSelectedSeriesInfo),
+	);
 	let towerWeaponSigilsUsed = 0;
-	let towerWeaponElementDisabled = false;
-	let towerWeaponAffinityDisabled = false;
-	let towerWeaponSleepDisabled = false;
-	let towerWeaponPoisonDisabled = false;
-	let towerWeaponParalysisDisabled = false;
+	let towerWeaponElementDisabled = $state(false);
+	let towerWeaponAffinityDisabled = $state(false);
+	let towerWeaponSleepDisabled = $state(false);
+	let towerWeaponPoisonDisabled = $state(false);
+	let towerWeaponParalysisDisabled = $state(false);
 
-	$: towerWeaponSharpnessBarValues =
+	let towerWeaponSharpnessBarValues = $derived(
 		towerWeaponSeries.find((e) => e.series === towerWeaponSelected.series)
 			?.sharpnessLevels[towerWeaponSharpnessIndex][0] ??
-		towerWeaponSeries[0].sharpnessLevels[0][0];
-
-	$: towerWeaponImage = getTowerWeaponImageSource(
-		towerWeaponSelectedWeaponOption,
+			towerWeaponSeries[0].sharpnessLevels[0][0],
 	);
 
-	$: towerWeaponTotalGems = getTowerWeaponTotalGems(
-		towerWeaponSelected,
-		towerWeaponSelected.attack[towerWeaponAttackIndex][2],
-		towerWeaponSelected.element
-			? towerWeaponSelected.element[towerWeaponElementIndex][2]
-			: 0,
-		towerWeaponSelected.poison
-			? towerWeaponSelected.poison[towerWeaponPoisonIndex][2]
-			: 0,
-		towerWeaponSelected.sleep
-			? towerWeaponSelected.sleep[towerWeaponSleepIndex][2]
-			: 0,
-		towerWeaponSelected.paralysis
-			? towerWeaponSelected.paralysis[towerWeaponParalysisIndex][2]
-			: 0,
-		towerWeaponSelected.affinity[towerWeaponAffinityIndex][2],
-		towerWeaponSelectedSeriesInfo.sharpnessLevels[towerWeaponSharpnessIndex][2],
-		parseInt(towerWeaponGunlanceShellLevel),
-		towerWeaponReloadSpeedIndex,
-		towerWeaponRecoilIndex,
-		parseInt(towerWeaponBowCharge1Level) - 1,
-		parseInt(towerWeaponBowCharge2Level) - 1,
-		parseInt(towerWeaponBowCharge3Level) - 1,
-		parseInt(towerWeaponBowCharge4Level) - 1,
+	let towerWeaponImage = $derived(
+		getTowerWeaponImageSource(towerWeaponSelectedWeaponOption),
 	);
 
-	$: towerWeaponTotalCost = getTowerWeaponTotalCost(
-		towerWeaponSelected,
-		towerWeaponSelected.attack[towerWeaponAttackIndex][1],
-		towerWeaponSelected.element
-			? towerWeaponSelected.element[towerWeaponElementIndex][1]
-			: 0,
-		towerWeaponSelected.poison
-			? towerWeaponSelected.poison[towerWeaponPoisonIndex][1]
-			: 0,
-		towerWeaponSelected.sleep
-			? towerWeaponSelected.sleep[towerWeaponSleepIndex][1]
-			: 0,
-		towerWeaponSelected.paralysis
-			? towerWeaponSelected.paralysis[towerWeaponParalysisIndex][1]
-			: 0,
-		towerWeaponSelected.affinity[towerWeaponAffinityIndex][1],
-		towerWeaponSelectedSeriesInfo.sharpnessLevels[towerWeaponSharpnessIndex][1],
-		towerWeaponGunlanceShellLevelCost,
-		towerWeaponReloadSpeedCost,
-		towerWeaponRecoilCost,
-		towerWeaponBowCharge1Cost,
-		towerWeaponBowCharge2Cost,
-		towerWeaponBowCharge3Cost,
-		towerWeaponBowCharge4Cost,
+	let towerWeaponTotalGems = $derived(
+		getTowerWeaponTotalGems(
+			towerWeaponSelected,
+			towerWeaponSelected.attack[towerWeaponAttackIndex][2],
+			towerWeaponSelected.element
+				? towerWeaponSelected.element[towerWeaponElementIndex][2]
+				: 0,
+			towerWeaponSelected.poison
+				? towerWeaponSelected.poison[towerWeaponPoisonIndex][2]
+				: 0,
+			towerWeaponSelected.sleep
+				? towerWeaponSelected.sleep[towerWeaponSleepIndex][2]
+				: 0,
+			towerWeaponSelected.paralysis
+				? towerWeaponSelected.paralysis[towerWeaponParalysisIndex][2]
+				: 0,
+			towerWeaponSelected.affinity[towerWeaponAffinityIndex][2],
+			towerWeaponSelectedSeriesInfo.sharpnessLevels[
+				towerWeaponSharpnessIndex
+			][2],
+			parseInt(towerWeaponGunlanceShellLevel),
+			towerWeaponReloadSpeedIndex,
+			towerWeaponRecoilIndex,
+			parseInt(towerWeaponBowCharge1Level) - 1,
+			parseInt(towerWeaponBowCharge2Level) - 1,
+			parseInt(towerWeaponBowCharge3Level) - 1,
+			parseInt(towerWeaponBowCharge4Level) - 1,
+		),
 	);
 
-	$: towerWeaponExceedsMaxCost =
-		towerWeaponTotalCost > towerWeaponSelectedSeriesInfo.maxTotalCost;
+	let towerWeaponTotalCost = $derived(
+		getTowerWeaponTotalCost(
+			towerWeaponSelected,
+			towerWeaponSelected.attack[towerWeaponAttackIndex][1],
+			towerWeaponSelected.element
+				? towerWeaponSelected.element[towerWeaponElementIndex][1]
+				: 0,
+			towerWeaponSelected.poison
+				? towerWeaponSelected.poison[towerWeaponPoisonIndex][1]
+				: 0,
+			towerWeaponSelected.sleep
+				? towerWeaponSelected.sleep[towerWeaponSleepIndex][1]
+				: 0,
+			towerWeaponSelected.paralysis
+				? towerWeaponSelected.paralysis[towerWeaponParalysisIndex][1]
+				: 0,
+			towerWeaponSelected.affinity[towerWeaponAffinityIndex][1],
+			towerWeaponSelectedSeriesInfo.sharpnessLevels[
+				towerWeaponSharpnessIndex
+			][1],
+			towerWeaponGunlanceShellLevelCost,
+			towerWeaponReloadSpeedCost,
+			towerWeaponRecoilCost,
+			towerWeaponBowCharge1Cost,
+			towerWeaponBowCharge2Cost,
+			towerWeaponBowCharge3Cost,
+			towerWeaponBowCharge4Cost,
+		),
+	);
+
+	let towerWeaponExceedsMaxCost = $derived(
+		towerWeaponTotalCost > towerWeaponSelectedSeriesInfo.maxTotalCost,
+	);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
+	{@const SvelteComponent_1 = weaponTypeInfo.find(
+		(e) => e.name === towerWeaponSelectedWeaponType,
+	)?.icon}
 	<div>
 		<SectionHeadingTopLevel title={'Tower Weapon Simulator'} />
 
@@ -811,13 +827,13 @@
 				subtitle="The sliders automatically adjust to the correct values once you release them."
 			/>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				If you are looking for an explanation on tower weapons, see our <Link
 					inline
 					href="/hunter-notes/weapons/tower">Hunter's Notes page.</Link
 				> This page is for checking the values of a Tower Weapon, as shown in the
 				game.
-			</p>
+			</div>
 
 			<div class="tower-weapon-simulator-preview-container">
 				<div class="container-buttons">
@@ -833,7 +849,6 @@
 				<div class="tower-weapon-simulator-weapon-container">
 					<div class="flex-centered">
 						<Dropdown
-							let:item
 							titleText="Weapon Type"
 							type="inline"
 							hideLabel
@@ -856,37 +871,42 @@
 								{ id: 'Magnet Spike', text: 'Magnet Spike' },
 							]}
 						>
-							<div>
-								<img
-									alt="Theme Icon"
-									src={getWeaponImage(item.id)}
-									width="24"
-								/>
-								<strong style="vertical-align: center;">{item.text}</strong>
-							</div>
+							{#snippet children({ item })}
+								<div>
+									<img
+										alt="Theme Icon"
+										src={getWeaponImage(item.id)}
+										width="24"
+									/>
+									<strong style="vertical-align: center;">{item.text}</strong>
+								</div>
+							{/snippet}
 						</Dropdown>
 						<Dropdown
 							titleText="Tower Weapon"
 							type="inline"
-							let:item
 							hideLabel
 							on:select={onSelectTowerWeaponOption}
 							bind:selectedId={towerWeaponSelectedWeaponOption}
 							items={towerWeaponsFromType}
 						>
-							<div>
-								<svelte:component
-									this={getWeaponIcon(towerWeaponSelectedWeaponType)}
-									{...{
-										color: getTowerWeaponIconColor(
-											towerWeapons.find((e) => e.name === item.text)?.series ||
-												'Light',
-										),
-										size: '24px',
-									}}
-								/>
-								<strong style="vertical-align: center;">{item.text}</strong>
-							</div>
+							{#snippet children({ item })}
+								{@const SvelteComponent = getWeaponIcon(
+									towerWeaponSelectedWeaponType,
+								)}
+								<div>
+									<SvelteComponent
+										{...{
+											color: getTowerWeaponIconColor(
+												towerWeapons.find((e) => e.name === item.text)
+													?.series || 'Light',
+											),
+											size: '24px',
+										}}
+									/>
+									<strong style="vertical-align: center;">{item.text}</strong>
+								</div>
+							{/snippet}
 						</Dropdown>
 					</div>
 					<div class="flex-centered flex-column">
@@ -914,10 +934,10 @@
 								? 'color: var(--ctp-red)'
 								: 'var(--ctp-text)'}
 						>
-							<p><strong>Total Cost: {towerWeaponTotalCost}</strong></p>
+							<div><strong>Total Cost: {towerWeaponTotalCost}</strong></div>
 						</div>
 						<div class="tower-weapon-gems">
-							<p>
+							<div>
 								<InlineTooltip
 									tooltip="Item"
 									text={`${towerWeaponTotalGems.courage} Courage Gems`}
@@ -925,8 +945,8 @@
 									iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
 									iconSize={'clamp(1rem, 2vw, 2rem)'}
 								/>
-							</p>
-							<p>
+							</div>
+							<div>
 								<InlineTooltip
 									tooltip="Item"
 									text={`${towerWeaponTotalGems.glittering} Glittering Gems`}
@@ -934,8 +954,8 @@
 									iconColor={RarityColors[5]}
 									iconSize={'clamp(1rem, 2vw, 2rem)'}
 								/>
-							</p>
-							<p>
+							</div>
+							<div>
 								<InlineTooltip
 									tooltip="Item"
 									text={`${towerWeaponTotalGems.divine} Divine Gems`}
@@ -943,10 +963,10 @@
 									iconColor={RarityColors[3]}
 									iconSize={'clamp(1rem, 2vw, 2rem)'}
 								/>
-							</p>
+							</div>
 						</div>
 						<div class="tower-weapon-summary">
-							<p>
+							<div>
 								<InlineTooltip
 									tooltip={'Stat'}
 									text={`${towerWeaponAttackValue} Attack (${towerWeaponAttackIndex !== towerWeaponSelected.attack.length - 1 ? towerWeaponAttackIndex : 'MAX'})`}
@@ -954,47 +974,47 @@
 									icon={getItemIcon('Knife')}
 									iconColor={ItemColors.find((e) => e.name === 'Red')?.value}
 								/>
-							</p>
+							</div>
 							{#if towerWeaponElementValue > 0}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`${towerWeaponElementValue * 10} Element (${towerWeaponElementIndex !== towerWeaponSelected.element.length - 1 ? towerWeaponElementIndex : 'MAX'})`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={ElementIcons.find((e) => e.name === 'Dragon')?.icon}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponPoisonValue > 0}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`${towerWeaponPoisonValue * 10} Status (${towerWeaponPoisonIndex !== towerWeaponSelected.poison.length - 1 ? towerWeaponPoisonIndex : 'MAX'})`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={StatusIcons.find((e) => e.name === 'Poison')?.icon}
 									/>
-								</p>
+								</div>
 							{:else if towerWeaponParalysisValue > 0}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`${towerWeaponParalysisValue * 10} Status (${towerWeaponParalysisIndex !== towerWeaponSelected.paralysis.length - 1 ? towerWeaponParalysisIndex : 'MAX'})`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={StatusIcons.find((e) => e.name === 'Paralysis')?.icon}
 									/>
-								</p>
+								</div>
 							{:else if towerWeaponSleepValue > 0}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`${towerWeaponSleepValue * 10} Status (${towerWeaponSleepIndex !== towerWeaponSelected.sleep.length - 1 ? towerWeaponSleepIndex : 'MAX'})`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={StatusIcons.find((e) => e.name === 'Sleep')?.icon}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponAffinityValue > 0}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`${towerWeaponAffinityValue}% Affinity (${towerWeaponAffinityIndex !== towerWeaponSelected.affinity.length - 1 ? towerWeaponAffinityIndex : 'MAX'})`}
@@ -1002,10 +1022,10 @@
 										icon={getItemIcon('Knife')}
 										iconColor={ItemColors.find((e) => e.name === 'Cyan')?.value}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponSharpnessLevel > 0}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`Sharpness LV${towerWeaponSharpnessIndex !== towerWeaponSelectedSeriesInfo.sharpnessLevels.length - 1 ? towerWeaponSharpnessIndex : ' MAX'}`}
@@ -1014,85 +1034,82 @@
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={getItemIcon('Whetstone')}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponGunlanceShellLevel !== '0'}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`Shell LV${parseInt(towerWeaponGunlanceShellLevel) !== 8 ? parseInt(towerWeaponGunlanceShellLevel) + 1 : ' MAX'}`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={getWeaponIcon('Gunlance')}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponReloadSpeedValue !== 'Very Slow'}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`${towerWeaponReloadSpeedValue} Reload`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={getItemIcon('Shot')}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponRecoilValue !== 'Max'}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`${towerWeaponRecoilValue} Recoil`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={getItemIcon('Shot')}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponBowCharge1Level !== '1'}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`Charge 1 LV${towerWeaponBowCharge1Level !== '4' ? towerWeaponBowCharge1Level : ' MAX'}`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={getWeaponIcon('Bow')}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponBowCharge2Level !== '1'}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`Charge 2 LV${towerWeaponBowCharge2Level !== '4' ? towerWeaponBowCharge2Level : ' MAX'}`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={getWeaponIcon('Bow')}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponBowCharge3Level !== '1'}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`Charge 3 LV${towerWeaponBowCharge3Level !== '4' ? towerWeaponBowCharge3Level : ' MAX'}`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={getWeaponIcon('Bow')}
 									/>
-								</p>
+								</div>
 							{/if}
 							{#if towerWeaponBowCharge4Level !== '1'}
-								<p>
+								<div>
 									<InlineTooltip
 										tooltip={'Stat'}
 										text={`Charge 4 LV${towerWeaponBowCharge4Level !== '4' ? towerWeaponBowCharge4Level : ' MAX'}`}
 										iconSize={'clamp(1rem, 2vw, 2rem)'}
 										icon={getWeaponIcon('Bow')}
 									/>
-								</p>
+								</div>
 							{/if}
 						</div>
 						<div class="tower-weapon-name">
 							{#key towerWeaponSeriesColor}
-								<svelte:component
-									this={WeaponTypes.find(
-										(e) => e.name === towerWeaponSelectedWeaponType,
-									)?.icon}
+								<SvelteComponent_1
 									{...{ color: towerWeaponSeriesColor, size: '64px' }}
 								/>
 
@@ -1106,7 +1123,7 @@
 					<div class="tower-weapon-property">
 						<div class="tower-weapon-slider-container">
 							<button
-								on:click={() =>
+								onclick={() =>
 									handleSliderButton(
 										towerWeaponSelected.attack,
 										'attack',
@@ -1121,15 +1138,17 @@
 								on:change={(e) =>
 									handleSliderChange(towerWeaponSelected.attack, 'attack')}
 							>
-								<span slot="labelText">
-									<p>
-										Attack Upgrade #{towerWeaponAttackIndex} Cost: {towerWeaponSelected
-											.attack[towerWeaponAttackIndex][1]}
-									</p>
-								</span>
+								{#snippet labelText()}
+									<span>
+										<div>
+											Attack Upgrade #{towerWeaponAttackIndex} Cost: {towerWeaponSelected
+												.attack[towerWeaponAttackIndex][1]}
+										</div>
+									</span>
+								{/snippet}
 							</Slider>
 							<button
-								on:click={() =>
+								onclick={() =>
 									handleSliderButton(
 										towerWeaponSelected.attack,
 										'attack',
@@ -1146,7 +1165,7 @@
 						<div class="tower-weapon-property">
 							<div class="tower-weapon-slider-container">
 								<button
-									on:click={() =>
+									onclick={() =>
 										handleSliderButton(
 											towerWeaponSelected.element,
 											'element',
@@ -1162,15 +1181,17 @@
 									on:change={(e) =>
 										handleSliderChange(towerWeaponSelected.element, 'element')}
 								>
-									<span slot="labelText">
-										<p>
-											Element Upgrade #{towerWeaponElementIndex} Cost: {towerWeaponSelected
-												.element[towerWeaponElementIndex][1]}
-										</p>
-									</span>
+									{#snippet labelText()}
+										<span>
+											<div>
+												Element Upgrade #{towerWeaponElementIndex} Cost: {towerWeaponSelected
+													.element[towerWeaponElementIndex][1]}
+											</div>
+										</span>
+									{/snippet}
 								</Slider>
 								<button
-									on:click={() =>
+									onclick={() =>
 										handleSliderButton(
 											towerWeaponSelected.element,
 											'element',
@@ -1187,7 +1208,7 @@
 					<div class="tower-weapon-property">
 						<div class="tower-weapon-slider-container">
 							<button
-								on:click={() =>
+								onclick={() =>
 									handleSliderButton(
 										towerWeaponSelected.affinity,
 										'affinity',
@@ -1203,15 +1224,17 @@
 								on:change={(e) =>
 									handleSliderChange(towerWeaponSelected.affinity, 'affinity')}
 							>
-								<span slot="labelText">
-									<p>
-										Affinity Upgrade #{towerWeaponAffinityIndex} Cost: {towerWeaponSelected
-											.affinity[towerWeaponAffinityIndex][1]}
-									</p>
-								</span>
+								{#snippet labelText()}
+									<span>
+										<div>
+											Affinity Upgrade #{towerWeaponAffinityIndex} Cost: {towerWeaponSelected
+												.affinity[towerWeaponAffinityIndex][1]}
+										</div>
+									</span>
+								{/snippet}
 							</Slider>
 							<button
-								on:click={() =>
+								onclick={() =>
 									handleSliderButton(
 										towerWeaponSelected.affinity,
 										'affinity',
@@ -1228,7 +1251,7 @@
 						<div class="tower-weapon-property">
 							<div class="tower-weapon-slider-container">
 								<button
-									on:click={() =>
+									onclick={() =>
 										handleSliderButton(
 											towerWeaponSelected.poison,
 											'poison',
@@ -1244,15 +1267,17 @@
 									on:change={(e) =>
 										handleSliderChange(towerWeaponSelected.poison, 'poison')}
 								>
-									<span slot="labelText">
-										<p>
-											Poison Upgrade #{towerWeaponPoisonIndex} Cost: {towerWeaponSelected
-												.poison[towerWeaponPoisonIndex][1]}
-										</p>
-									</span>
+									{#snippet labelText()}
+										<span>
+											<div>
+												Poison Upgrade #{towerWeaponPoisonIndex} Cost: {towerWeaponSelected
+													.poison[towerWeaponPoisonIndex][1]}
+											</div>
+										</span>
+									{/snippet}
 								</Slider>
 								<button
-									on:click={() =>
+									onclick={() =>
 										handleSliderButton(
 											towerWeaponSelected.poison,
 											'poison',
@@ -1268,7 +1293,7 @@
 						<div class="tower-weapon-property">
 							<div class="tower-weapon-slider-container">
 								<button
-									on:click={() =>
+									onclick={() =>
 										handleSliderButton(
 											towerWeaponSelected.paralysis,
 											'paralysis',
@@ -1287,15 +1312,17 @@
 											'paralysis',
 										)}
 								>
-									<span slot="labelText">
-										<p>
-											Paralysis Upgrade #{towerWeaponParalysisIndex} Cost: {towerWeaponSelected
-												.paralysis[towerWeaponParalysisIndex][1]}
-										</p>
-									</span>
+									{#snippet labelText()}
+										<span>
+											<div>
+												Paralysis Upgrade #{towerWeaponParalysisIndex} Cost: {towerWeaponSelected
+													.paralysis[towerWeaponParalysisIndex][1]}
+											</div>
+										</span>
+									{/snippet}
 								</Slider>
 								<button
-									on:click={() =>
+									onclick={() =>
 										handleSliderButton(
 											towerWeaponSelected.paralysis,
 											'paralysis',
@@ -1311,7 +1338,7 @@
 						<div class="tower-weapon-property">
 							<div class="tower-weapon-slider-container">
 								<button
-									on:click={() =>
+									onclick={() =>
 										handleSliderButton(
 											towerWeaponSelected.sleep,
 											'sleep',
@@ -1327,15 +1354,17 @@
 									on:change={(e) =>
 										handleSliderChange(towerWeaponSelected.sleep, 'sleep')}
 								>
-									<span slot="labelText">
-										<p>
-											Sleep Upgrade #{towerWeaponSleepIndex} Cost: {towerWeaponSelected
-												.sleep[towerWeaponSleepIndex][1]}
-										</p>
-									</span>
+									{#snippet labelText()}
+										<span>
+											<div>
+												Sleep Upgrade #{towerWeaponSleepIndex} Cost: {towerWeaponSelected
+													.sleep[towerWeaponSleepIndex][1]}
+											</div>
+										</span>
+									{/snippet}
 								</Slider>
 								<button
-									on:click={() =>
+									onclick={() =>
 										handleSliderButton(
 											towerWeaponSelected.sleep,
 											'sleep',
@@ -1356,12 +1385,14 @@
 								name="sharpness"
 								bind:selected={towerWeaponSharpnessLevel}
 							>
-								<span slot="legendText">
-									<p>
-										Sharpness Upgrade #{towerWeaponSharpnessIndex} Cost: {towerWeaponSelectedSeriesInfo
-											.sharpnessLevels[towerWeaponSharpnessIndex][1]}
-									</p>
-								</span>
+								{#snippet legendText()}
+									<span>
+										<div>
+											Sharpness Upgrade #{towerWeaponSharpnessIndex} Cost: {towerWeaponSelectedSeriesInfo
+												.sharpnessLevels[towerWeaponSharpnessIndex][1]}
+										</div>
+									</span>
+								{/snippet}
 
 								{#each towerWeaponSharpnessLevels as value}
 									<RadioButton labelText={`LV${value}`} {value} />
@@ -1384,9 +1415,9 @@
 								bind:selectedId={towerWeaponGunlanceShellLevel}
 								items={towerWeaponGunlanceShellOptions}
 							/>
-							<p>
+							<div>
 								Upgrade #{towerWeaponGunlanceShellLevel} Cost: {towerWeaponGunlanceShellLevelCost}
-							</p>
+							</div>
 						</div>
 					{/if}
 					{#if towerWeaponSelectedWeaponType === 'Heavy Bowgun' || towerWeaponSelectedWeaponType === 'Light Bowgun'}
@@ -1398,9 +1429,9 @@
 								bind:selectedId={towerWeaponReloadSpeedValue}
 								items={towerWeaponReloadSpeedOptions}
 							/>
-							<p>
+							<div>
 								Upgrade #{towerWeaponReloadSpeedIndex} Cost: {towerWeaponReloadSpeedCost}
-							</p>
+							</div>
 						</div>
 						<div class="tower-weapon-property">
 							<Dropdown
@@ -1410,9 +1441,9 @@
 								bind:selectedId={towerWeaponRecoilValue}
 								items={towerWeaponRecoilOptions}
 							/>
-							<p>
+							<div>
 								Upgrade #{towerWeaponRecoilIndex} Cost: {towerWeaponRecoilCost}
-							</p>
+							</div>
 						</div>
 					{/if}
 					{#if towerWeaponSelectedWeaponType === 'Bow'}
@@ -1424,9 +1455,9 @@
 								bind:selectedId={towerWeaponBowCharge1Level}
 								items={towerWeaponBowChargeOptions}
 							/>
-							<p>
+							<div>
 								Upgrade #{parseInt(towerWeaponBowCharge1Level) - 1} Cost: {towerWeaponBowCharge1Cost}
-							</p>
+							</div>
 						</div>
 						<div class="tower-weapon-property">
 							<Dropdown
@@ -1436,9 +1467,9 @@
 								bind:selectedId={towerWeaponBowCharge2Level}
 								items={towerWeaponBowChargeOptions}
 							/>
-							<p>
+							<div>
 								Upgrade #{parseInt(towerWeaponBowCharge2Level) - 1} Cost: {towerWeaponBowCharge2Cost}
-							</p>
+							</div>
 						</div>
 						<div class="tower-weapon-property">
 							<Dropdown
@@ -1448,9 +1479,9 @@
 								bind:selectedId={towerWeaponBowCharge3Level}
 								items={towerWeaponBowChargeOptions}
 							/>
-							<p>
+							<div>
 								Upgrade #{parseInt(towerWeaponBowCharge3Level) - 1} Cost: {towerWeaponBowCharge3Cost}
-							</p>
+							</div>
 						</div>
 						<div class="tower-weapon-property">
 							<Dropdown
@@ -1460,9 +1491,9 @@
 								bind:selectedId={towerWeaponBowCharge4Level}
 								items={towerWeaponBowChargeOptions}
 							/>
-							<p>
+							<div>
 								Upgrade #{parseInt(towerWeaponBowCharge4Level) - 1} Cost: {towerWeaponBowCharge4Cost}
-							</p>
+							</div>
 						</div>
 					{/if}
 				</div>
@@ -1473,7 +1504,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {
@@ -1494,7 +1525,7 @@
 		margin-top: 1rem;
 		display: flex;
 		justify-content: center;
-		gap: 1rem;
+		gap: 0.5rem;
 		flex-direction: column;
 	}
 
@@ -1503,7 +1534,7 @@
 		align-items: end;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1rem;
+		gap: 0rem;
 		flex-direction: row;
 	}
 
@@ -1519,7 +1550,7 @@
 
 	.sharpness-bar-container {
 		display: inline-flex;
-		margin: 1rem;
+		margin: 1rem 0rem;
 	}
 
 	.tower-weapon-slots-container {
@@ -1542,7 +1573,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		margin: 2rem;
+		margin: 1rem 0rem;
 		border: 2px solid (--ctp-surface0);
 		background: var(--ctp-mantle);
 		padding: 1rem;
@@ -1552,7 +1583,7 @@
 	.tower-weapon-gems {
 		display: flex;
 		gap: 1rem;
-		font-size: clamp(1rem, 2vw, 2rem);
+		font-size: clamp(1rem, 1vw, 2rem);
 		justify-content: center;
 		text-align: center;
 		flex-wrap: wrap;
@@ -1564,7 +1595,7 @@
 		justify-content: center;
 		align-items: center;
 		gap: 1rem;
-		font-size: clamp(1rem, 2vw, 2rem);
+		font-size: clamp(1rem, 1vw, 2rem);
 		text-align: center;
 		vertical-align: bottom;
 		flex-wrap: wrap;

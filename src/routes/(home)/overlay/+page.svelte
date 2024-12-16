@@ -38,7 +38,11 @@
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 	import QuestionAnswering from 'carbon-icons-svelte/lib/QuestionAnswering.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const heroTitles = [
 		'Explore the Frontier Like Never Before',
@@ -372,23 +376,23 @@ Some of Doriel's hobbies involve things such as programming and speedrunning. Or
 		<hr />
 		<FrequentlyAskedQuestions {faq} />
 		<section>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				If your question was not answered here, check our <OutboundLink
 					href="https://github.com/DorielRivalet/mhfz-overlay/blob/main/FAQ.md"
 					>FAQ file at the GitHub repository.</OutboundLink
 				>
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				We have a <OutboundLink href="https://forms.gle/hrAVWMcYS5HEo1v7A"
 					>Google Forms</OutboundLink
 				> where you can submit your feedback on the overlay.
-			</p>
-			<p>
+			</div>
+			<div class="spaced-paragraph">
 				If you are looking for a roadmap, the main developer uses a <OutboundLink
 					href="https://github.com/users/DorielRivalet/projects/1"
 					>GitHub project</OutboundLink
 				> for all issues related to the game.
-			</p>
+			</div>
 		</section>
 	</section>
 

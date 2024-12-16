@@ -2,16 +2,33 @@
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 
-	export let section = 'Section';
-	export let sectionIcon;
-	export let sectionIconProps;
-	export let title = 'Title';
-	export let description = 'Description';
-	export let imagePosition: 'left' | 'right' | 'center' = 'right';
-	export let callToActionButtonText = '';
-	export let callToActionButtonLink = '';
-	export let callToActionButtonIcon: any = undefined;
-	export let headingLevel: 2 | 3 = 3;
+	interface Props {
+		section?: string;
+		sectionIcon: any;
+		sectionIconProps: any;
+		title?: string;
+		description?: string;
+		imagePosition?: 'left' | 'right' | 'center';
+		callToActionButtonText?: string;
+		callToActionButtonLink?: string;
+		callToActionButtonIcon?: any;
+		headingLevel?: 2 | 3;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		section = 'Section',
+		sectionIcon,
+		sectionIconProps,
+		title = 'Title',
+		description = 'Description',
+		imagePosition = 'right',
+		callToActionButtonText = '',
+		callToActionButtonLink = '',
+		callToActionButtonIcon = undefined,
+		headingLevel = 3,
+		children
+	}: Props = $props();
 
 	const tag = 'h' + headingLevel;
 	const subheaderTag = 'h' + (headingLevel + 1);
@@ -21,10 +38,11 @@
 </script>
 
 {#if $breakpointLargerThanMedium && imagePosition === 'right'}
+	{@const SvelteComponent = sectionIcon}
 	<div class="landing-page-section">
 		<div class="content">
 			<svelte:element this={subheaderTag} class="header">
-				<div><svelte:component this={sectionIcon} {...sectionIconProps} /></div>
+				<div><SvelteComponent {...sectionIconProps} /></div>
 				<div class="header-text">{section}</div>
 			</svelte:element>
 			<svelte:element this={tag} class="title">{title}</svelte:element>
@@ -41,17 +59,18 @@
 			{/if}
 		</div>
 		<div class="image">
-			<slot />
+			{@render children?.()}
 		</div>
 	</div>
 {:else if $breakpointLargerThanMedium && imagePosition === 'left'}
+	{@const SvelteComponent_1 = sectionIcon}
 	<div class="landing-page-section">
 		<div class="image">
-			<slot />
+			{@render children?.()}
 		</div>
 		<div class="content">
 			<svelte:element this={subheaderTag} class="header">
-				<div><svelte:component this={sectionIcon} {...sectionIconProps} /></div>
+				<div><SvelteComponent_1 {...sectionIconProps} /></div>
 				<div class="header-text">{section}</div>
 			</svelte:element>
 			<svelte:element this={tag} class="title">{title}</svelte:element>
@@ -69,10 +88,11 @@
 		</div>
 	</div>
 {:else}
+	{@const SvelteComponent_2 = sectionIcon}
 	<div class="landing-page-section-center">
 		<div class="content">
 			<svelte:element this={subheaderTag} class="header">
-				<div><svelte:component this={sectionIcon} {...sectionIconProps} /></div>
+				<div><SvelteComponent_2 {...sectionIconProps} /></div>
 				<div class="header-text">{section}</div>
 			</svelte:element>
 			<svelte:element this={tag} class="title">{title}</svelte:element>
@@ -90,11 +110,11 @@
 		</div>
 		{#if $breakpointLargerThanMedium}
 			<div class="image-small">
-				<slot />
+				{@render children?.()}
 			</div>
 		{:else}
 			<div class="image-center">
-				<slot />
+				{@render children?.()}
 			</div>
 		{/if}
 	</div>

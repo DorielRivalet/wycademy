@@ -6,13 +6,12 @@
 	import NextOutline from 'carbon-icons-svelte/lib/NextOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import '@carbon/charts-svelte/styles.css';
-	import { createEventDispatcher, onMount, type ComponentType } from 'svelte';
+	import { createEventDispatcher, onMount, type Component } from 'svelte';
 	import {
 		type GaugeChart,
 		type GaugeChartOptions,
 	} from '@carbon/charts-svelte';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
@@ -26,6 +25,7 @@
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import RankingItem from './RankingItem.svelte';
 	import Checkbox from 'carbon-components-svelte/src/Checkbox/Checkbox.svelte';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const dispatch = createEventDispatcher();
 
@@ -172,18 +172,22 @@
 		}
 	}
 
-	export let items: MultipleChoiceItem[];
-	export let category: string;
+	interface Props {
+		items: MultipleChoiceItem[];
+		category: string;
+	}
+
+	let { items = $bindable(), category }: Props = $props();
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	let currentItemIndex = 0;
-	let currentScore = 0;
+	let currentItemIndex = $state(0);
+	let currentScore = $state(0);
 
-	let resultsGauge: ComponentType<GaugeChart>;
-	let resultsGaugeLoaded = false;
+	let resultsGauge: Component<GaugeChart> = $state();
+	let resultsGaugeLoaded = $state(false);
 
 	let currentAnswer:
 		| number
@@ -191,15 +195,20 @@
 		| string[]
 		| boolean
 		| boolean[]
-		| [string, string][] = [];
+		| [string, string][] = $state([]);
 
-	$: resultsGaugeColor = getGaugeColor(
-		$carbonThemeStore,
-		currentScore,
-		maxScore,
+	onMount(async () => {
+		const charts = await import('@carbon/charts-svelte');
+		resultsGauge = charts.GaugeChart;
+		resultsGaugeLoaded = true;
+		items = shuffleArray([...items]); // Shuffle stems on initialization
+		randomizeCurrentOptions(); // Shuffle options for the first item
+	});
+	let maxScore = $derived(items.length);
+	let resultsGaugeColor = $derived(
+		getGaugeColor($carbonThemeStore, currentScore, maxScore),
 	);
-
-	$: resultsGaugeOptions = {
+	let resultsGaugeOptions = $derived({
 		theme: $carbonThemeStore,
 		resizable: true,
 		toolbar: {
@@ -214,26 +223,15 @@
 				value: resultsGaugeColor,
 			},
 		},
-	} as GaugeChartOptions;
-
-	$: resultsGaugeData = [
+	} as GaugeChartOptions);
+	let resultsGaugeData = $derived([
 		{
 			group: 'value',
 			value: getGaugeValue(currentScore, maxScore),
 		},
-	];
-
-	$: currentItem = items[currentItemIndex] ?? undefined;
-	$: currentSolution = currentItem?.solutions ?? undefined;
-	$: maxScore = items.length;
-
-	onMount(async () => {
-		const charts = await import('@carbon/charts-svelte');
-		resultsGauge = charts.GaugeChart;
-		resultsGaugeLoaded = true;
-		items = shuffleArray([...items]); // Shuffle stems on initialization
-		randomizeCurrentOptions(); // Shuffle options for the first item
-	});
+	]);
+	let currentItem = $derived(items[currentItemIndex] ?? undefined);
+	let currentSolution = $derived(currentItem?.solutions ?? undefined);
 </script>
 
 <div class="container">
@@ -252,7 +250,7 @@
 		<div class="items">
 			<!--true/false-->
 			{#if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === undefined && currentItem.options === null && typeof currentItem.solutions === 'boolean' && typeof currentItem.stem === 'string'}
-				<p class="spaced-paragraph">{currentItem.stem}</p>
+				<div class="spaced-paragraph">{currentItem.stem}</div>
 				<RadioButtonGroup
 					required={true}
 					orientation="vertical"
@@ -264,9 +262,9 @@
 				</RadioButtonGroup>
 				<!--multiple-->
 			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === undefined && isArray(currentItem.options) && isArray(currentItem.solutions) && typeof currentItem.stem === 'string'}
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					{currentItem.stem} Select all that apply.
-				</p>
+				</div>
 
 				{#each currentItem.options as option}
 					<Checkbox
@@ -277,7 +275,7 @@
 				{/each}
 				<!--single-->
 			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === undefined && isArray(currentItem.options) && typeof currentItem.stem === 'string'}
-				<p class="spaced-paragraph">{currentItem.stem}</p>
+				<div class="spaced-paragraph">{currentItem.stem}</div>
 				<RadioButtonGroup
 					required={true}
 					orientation="vertical"
@@ -293,9 +291,9 @@
 				</RadioButtonGroup>
 				<!--best answer-->
 			{:else if currentItem !== undefined && currentItem.solutions !== undefined && currentItem.format === 'best answer' && isArray(currentItem.options) && typeof currentItem.stem === 'string'}
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					{currentItem.stem} Select the best answer.
-				</p>
+				</div>
 				<RadioButtonGroup
 					required={true}
 					orientation="vertical"
@@ -318,9 +316,9 @@
 						icon={Information}
 						align="start"
 					/>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						{currentItem.stem}
-					</p>
+					</div>
 				</div>
 				<MatchItem
 					options={currentItem.options}
@@ -328,13 +326,13 @@
 				/>
 				<!--ranking-->
 			{:else if currentItem !== undefined && currentItem.format === 'ranking'}
-				<p class="spaced-paragraph">{currentItem.stem}</p>
+				<div class="spaced-paragraph">{currentItem.stem}</div>
 				<RankingItem
 					items={currentItem.options}
 					on:change={(e) => (currentAnswer = e.detail.items)}
 				/>
 			{:else}
-				<p></p>
+				<div></div>
 			{/if}
 		</div>
 	{:else}
@@ -344,8 +342,8 @@
 		<div class="gauge-container">
 			<div class="gauge">
 				{#if resultsGaugeLoaded}
-					<svelte:component
-						this={resultsGauge}
+					{@const SvelteComponent = resultsGauge}
+					<SvelteComponent
 						data={resultsGaugeData}
 						options={resultsGaugeOptions}
 					/>
@@ -429,7 +427,7 @@
 
 	.gauge {
 		display: flex;
-		min-width: 196px;
-		min-height: 196px;
+		min-width: 192px;
+		min-height: 192px;
 	}
 </style>

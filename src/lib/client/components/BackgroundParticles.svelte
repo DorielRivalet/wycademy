@@ -1,18 +1,34 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { onMount } from 'svelte';
 
-	export let className: string = '';
-	export let quantity: number = 100;
-	export let staticity: number = 50;
-	export let ease: number = 50;
-	export let size: number = 0.4;
-	export let refresh: boolean = true;
-	export let color: string = '#ffffff';
-	export let vx: number = 0;
-	export let vy: number = 0;
+	interface Props {
+		className?: string;
+		quantity?: number;
+		staticity?: number;
+		ease?: number;
+		size?: number;
+		refresh?: boolean;
+		color?: string;
+		vx?: number;
+		vy?: number;
+	}
 
-	let canvasRef: HTMLCanvasElement;
-	let canvasContainerRef: HTMLDivElement;
+	let {
+		className = '',
+		quantity = 100,
+		staticity = 50,
+		ease = 50,
+		size = 0.4,
+		refresh = true,
+		color = '#ffffff',
+		vx = 0,
+		vy = 0
+	}: Props = $props();
+
+	let canvasRef: HTMLCanvasElement = $state();
+	let canvasContainerRef: HTMLDivElement = $state();
 	let context: CanvasRenderingContext2D | null = null;
 	let circles: any[] = [];
 	let mouse = { x: 0, y: 0 };
@@ -185,12 +201,12 @@
 		};
 	});
 
-	$: {
+	run(() => {
 		if (canvasRef) {
 			drawParticles();
 			//   animate();
 		}
-	}
+	});
 	//   Building Stage
 </script>
 

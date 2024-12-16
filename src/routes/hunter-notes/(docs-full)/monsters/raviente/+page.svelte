@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
@@ -283,14 +283,14 @@
 	const edgeData: Edge[] = weaponTreeData.edgeData;
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Raviente'} />
 		<div>
 			<section>
 				<SectionHeading level={2} title="Raviente Weapons" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Raviente weapons originate from a shared foundation crafted using
 						HR2 <InlineTooltip
 							icon={getMonsterIcon('Raviente')}
@@ -306,11 +306,11 @@
 						option to change later. Therefore,
 						<strong>it's crucial to select your final upgrade carefully.</strong
 						>
-					</p>
+					</div>
 					<section>
 						<SectionHeading level={3} title="Upgrading Weapons" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								In contrast to standard weapons, Evolution or Raviente weapons
 								feature levels and utilize <InlineTooltip
 									icon={getCurrencyIcon('g')}
@@ -327,8 +327,8 @@
 								Three types of gems from HR2 and HR5 are exclusively used for upgrading
 								pre-G Rank weapons, while three additional gems from G Rank can be
 								applied to both G Rank and non-G equipment upgrades.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								You can convert gems into points by selecting the appropriate
 								option at the <InlineTooltip
 									icon={getLocationIcon('Blacksmith')}
@@ -336,17 +336,17 @@
 									iconType="file"
 									tooltip="Location"
 								/>.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								Once a weapon reaches Lv100, you can upgrade it to the next
 								tier, which requires additional materials. This entire upgrade
 								process occurs 4 times to fully develop a G Rank Raviente weapon
 								with a Zenith Skill.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								Below is the upgrade tree, you can hover over a weapon name to
 								see the available weapon upgrades.
-							</p>
+							</div>
 							<div>
 								<SvelteFlowProvider
 									><SvelteFlowElk
@@ -357,23 +357,23 @@
 									/></SvelteFlowProvider
 								>
 							</div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Planning ahead is essential before committing to a G Rank weapon
 								path, as switching paths will require starting a new weapon from
 								HR2 Lv1.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								Fully upgraded Raviente weapons rank among the best in the game,
 								often outperforming most other weapons in terms of both Raw and
 								Elemental damage. However, obtaining them involves a significant
 								grind and commitment.
-							</p>
+							</div>
 
-							<p class="spaced-paragraph">Example weapon progression:</p>
+							<div class="spaced-paragraph">Example weapon progression:</div>
 
 							<OrderedList class="spaced-list">
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Ophion Sword:</strong> crafted from HR2 <InlineTooltip
 											icon={getMonsterIcon('Raviente')}
 											text={'Raviente'}
@@ -385,10 +385,10 @@
 											iconType="file"
 											tooltip="Currency"
 										/> points.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Ophion Sword "Flash":</strong> needs Raviente
 										materials, then upgraded with <InlineTooltip
 											icon={getCurrencyIcon('g')}
@@ -396,10 +396,10 @@
 											iconType="file"
 											tooltip="Currency"
 										/> points.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Shesha Sword "Glory":</strong> needs <InlineTooltip
 											icon={getMonsterIcon('Berserk Raviente')}
 											text={'Berserk Raviente'}
@@ -412,10 +412,10 @@
 											iconType="file"
 											tooltip="Currency"
 										/> points.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Apophis Sword "Clear":</strong> needs Berserk
 										Raviente and Zenith monster materials, then upgraded with <InlineTooltip
 											icon={getCurrencyIcon('Gg')}
@@ -423,7 +423,7 @@
 											iconType="file"
 											tooltip="Currency"
 										/> points. Grants a Zenith Skill.
-									</p></ListItem
+									</div></ListItem
 								>
 							</OrderedList>
 
@@ -459,13 +459,13 @@
 										</div>
 									</Toolbar>
 
-									<svelte:fragment slot="cell" let:cell>
+									{#snippet cell({ cell })}
 										<p>{cell.value}</p>
-									</svelte:fragment>
+									{/snippet}
 								</DataTable>
 							</div>
 
-							<p>
+							<div class="paragraph-long-02">
 								<strong
 									>Do not use <InlineTooltip
 										icon={getCurrencyIcon('Gg')}
@@ -474,7 +474,7 @@
 										tooltip="Currency"
 									/> gems for the first two tiers of a weapon.</strong
 								>
-							</p>
+							</div>
 
 							<div class="table">
 								<DataTable
@@ -515,23 +515,26 @@
 										</div>
 									</Toolbar>
 
-									<svelte:fragment slot="cell" let:cell>
+									{#snippet cell({ cell })}
 										<p>{cell.value}</p>
-									</svelte:fragment>
+									{/snippet}
 								</DataTable>
 							</div>
 
-							<p><strong>Total Gems Needed:</strong> {totalGems}</p>
-							<p>
+							<div class="paragraph-long-02">
+								<strong>Total Gems Needed:</strong>
+								{totalGems}
+							</div>
+							<div class="paragraph-long-02">
 								<strong>Total Item Slots Needed:</strong>
 								{totalItemSlotsNeeded}
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								<strong>Total Pages Needed:</strong>
 								{totalPagesNeeded}
-							</p>
+							</div>
 
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Each weapon has four distinct final upgrades, varying in
 								attributes based on weapon type. For example, the <InlineTooltip
 									icon={getWeaponIcon('Great Sword')}
@@ -544,64 +547,70 @@
 								Length, while the Affinity-focused weapon is Very Long. In many scenarios,
 								the Affinity-focused weapon proves to be more advantageous due to
 								its length.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								Similar considerations apply to all weapon types, so it’s
 								essential to contemplate the skills you will be utilizing and
 								how you will engage with monsters using those weapons.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								In practical terms, most Raviente weapons begin to exceed
 								standard G Lv50 weapons in raw power around G Lv70, and by
 								Lv100, they achieve the highest Raw values available among any
 								weapons.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								After the first tier of upgrades, your weapon name gains a
 								title:
-							</p>
+							</div>
 							<UnorderedList class="spaced-list">
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										<strong>Glory:</strong> focuses on a balance of stats.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p><strong>Clear:</strong> focuses on affinity.</p></ListItem
+									><div class="paragraph-long-02">
+										<strong>Clear:</strong> focuses on affinity.
+									</div></ListItem
 								>
 								<ListItem
-									><p><strong>Shine:</strong> focuses on element.</p></ListItem
+									><div class="paragraph-long-02">
+										<strong>Shine:</strong> focuses on element.
+									</div></ListItem
 								>
 								<ListItem
-									><p><strong>Flash:</strong> focuses on raw.</p></ListItem
+									><div class="paragraph-long-02">
+										<strong>Flash:</strong> focuses on raw.
+									</div></ListItem
 								>
 							</UnorderedList>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Depending on the weapon type, it may also modify other weapon
 								properties. For example, with <InlineTooltip
 									icon={getWeaponIcon('Gunlance')}
 									text={'Gunlance'}
 									tooltip="Weapon"
 								/> you can change the shelling type.
-							</p>
+							</div>
 						</div>
 
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							The upgrading process can be carried as follows:
-						</p>
+						</div>
 						<OrderedList class="spaced-list">
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									Obtain g or <InlineTooltip
 										icon={getCurrencyIcon('Gg')}
 										text={'Gg'}
 										iconType="file"
 										tooltip="Currency"
 									/> by converting Power Gems into the corresponding currency.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									Use that g or <InlineTooltip
 										icon={getCurrencyIcon('Gg')}
 										text={'Gg'}
@@ -609,36 +618,36 @@
 										tooltip="Currency"
 									/> (based on the tier) to level the evolution weapon from Lv1 to
 									Lv100.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									Upon reaching Lv100, you can upgrade the weapon to the next
 									tier, which requires multiple upgrades—a total of 400 upgrades
 									to reach the maximum.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									After completing this process 3 times, you can upgrade the
 									weapon to the Zenith tier, which is the final tier.
-								</p></ListItem
+								</div></ListItem
 							>
 							<ListItem
-								><p>
+								><div class="paragraph-long-02">
 									Upgrade the weapon to Lv100 again. The final upgrade is
 									denoted as a Z100 weapon.
-								</p></ListItem
+								</div></ListItem
 							>
 						</OrderedList>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							You can select any upgrade path before reaching the Zenith tier,
 							but
 							<strong
 								>be sure to choose the correct Zenith upgrade path, as this
 								decision is permanent and cannot be changed later.</strong
 							>
-						</p>
+						</div>
 					</section>
 				</div>
 			</section>
@@ -648,7 +657,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

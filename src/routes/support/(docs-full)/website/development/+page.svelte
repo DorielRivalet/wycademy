@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
@@ -9,7 +9,7 @@
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'About the Development Process'} />
 
@@ -30,18 +30,24 @@
 				any moment and everything is potentially ephemeral.
 			</p>
 			<UnorderedList class="spaced-list">
-				<ListItem>
-					<strong>Accounts: </strong>they do not provide any substantial
-					features or perks, and can be deleted at any moment, potentially right
-					after account creation.
+				<ListItem
+					><p>
+						<strong>Accounts:</strong> they do not provide any substantial features
+						or perks, and can be deleted at any moment, potentially right after account
+						creation.
+					</p>
 				</ListItem>
-				<ListItem>
-					<strong>Settings: </strong>the currently saved settings can be cleared
-					and/or not be available anymore.
+				<ListItem
+					><p>
+						<strong>Settings:</strong> the currently saved settings can be cleared
+						and/or not be available anymore.
+					</p>
 				</ListItem>
-				<ListItem>
-					<strong>Stability: </strong>the website should be considered unstable
-					and its whole structure may be different at any moment.
+				<ListItem
+					><p>
+						<strong>Stability:</strong> the website should be considered unstable
+						and its whole structure may be different at any moment.
+					</p>
 				</ListItem>
 			</UnorderedList>
 			<p>
@@ -58,14 +64,18 @@
 				unstable, and may change at any moment.
 			</p>
 			<UnorderedList class="spaced-list">
-				<ListItem>
-					Features not related to accounts should have a established structure
-					and aim to be stable.
+				<ListItem
+					><p>
+						Features not related to accounts should have a established structure
+						and aim to be stable.
+					</p>
 				</ListItem>
-				<ListItem>Major bugs from any source may still occur.</ListItem>
-				<ListItem>
-					<strong>Settings: </strong>they should be established and not be
-					cleared, if possible.
+				<ListItem><p>Major bugs from any source may still occur.</p></ListItem>
+				<ListItem
+					><p>
+						<strong>Settings:</strong> they should be established and not be cleared,
+						if possible.
+					</p>
 				</ListItem>
 			</UnorderedList>
 		</section>
@@ -81,10 +91,13 @@
 				Should major changes occur, it would become v2, and so on.
 			</p>
 			<UnorderedList class="spaced-list">
-				<ListItem>Major bugs should be fixed for the most part.</ListItem>
-				<ListItem>
-					Features related to accounts should present minor bugs at worst case
-					scenario.
+				<ListItem><p>Major bugs should be fixed for the most part.</p></ListItem
+				>
+				<ListItem
+					><p>
+						Features related to accounts should present minor bugs at worst case
+						scenario.
+					</p>
 				</ListItem>
 			</UnorderedList>
 			<p>
@@ -97,19 +110,25 @@
 		<section>
 			<SectionHeading title={'Closing Notes'} level={2} />
 			<UnorderedList class="spaced-list">
-				<ListItem>
-					In the <em>alpha</em> stage, users should expect that the site might be
-					unstable and change frequently.
+				<ListItem
+					><p>
+						In the <em>alpha</em> stage, users should expect that the site might
+						be unstable and change frequently.
+					</p>
 				</ListItem>
 
-				<ListItem>
-					In the <em>beta</em> stage, users can start using the site for regular
-					activities, but they should still expect some changes and potential issues.
+				<ListItem
+					><p>
+						In the <em>beta</em> stage, users can start using the site for regular
+						activities, but they should still expect some changes and potential issues.
+					</p>
 				</ListItem>
 
-				<ListItem>
-					In v1.0.0 and beyond, users can use the site normally and expect a
-					stable experience.
+				<ListItem
+					><p>
+						In v1.0.0 and beyond, users can use the site normally and expect a
+						stable experience.
+					</p>
 				</ListItem>
 			</UnorderedList>
 		</section>
@@ -117,7 +136,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

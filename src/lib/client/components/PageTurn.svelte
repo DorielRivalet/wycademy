@@ -5,6 +5,8 @@
 		type CategoryInfo,
 		getRoutesSection,
 	} from '../modules/routes';
+	import { browser } from '$app/environment';
+	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 
 	export let pageUrlPathName: string | null;
 
@@ -236,35 +238,39 @@
 	);
 </script>
 
-<div class="container">
-	{#if previousPage}
-		<div class="tile-wrapper">
-			<ClickableTile href={previousPage.navigationItem.link} class="tile">
-				<p class="previous">Previous</p>
-				<p class="title">
-					<strong>{previousPage.categoryInfo.category.name}</strong
-					>{previousPage.navigationItem.name ===
-					previousPage.categoryInfo.category.name
-						? ''
-						: `: ${previousPage.navigationItem.name}`}
-				</p>
-			</ClickableTile>
-		</div>
-	{/if}
-	{#if nextPage}
-		<div class="tile-wrapper">
-			<ClickableTile href={nextPage.navigationItem.link} class="tile">
-				<p class="next">Next</p>
-				<p class="title">
-					<strong>{nextPage.categoryInfo.category.name}</strong>{nextPage
-						.navigationItem.name === nextPage.categoryInfo.category.name
-						? ''
-						: `: ${nextPage.navigationItem.name}`}
-				</p>
-			</ClickableTile>
-		</div>
-	{/if}
-</div>
+{#if browser}
+	<div class="container">
+		{#if previousPage}
+			<div class="tile-wrapper">
+				<ClickableTile href={previousPage.navigationItem.link} class="tile">
+					<p class="previous">Previous</p>
+					<p class="title">
+						<strong>{previousPage.categoryInfo.category.name}</strong
+						>{previousPage.navigationItem.name ===
+						previousPage.categoryInfo.category.name
+							? ''
+							: `: ${previousPage.navigationItem.name}`}
+					</p>
+				</ClickableTile>
+			</div>
+		{/if}
+		{#if nextPage}
+			<div class="tile-wrapper">
+				<ClickableTile href={nextPage.navigationItem.link} class="tile">
+					<p class="next">Next</p>
+					<p class="title">
+						<strong>{nextPage.categoryInfo.category.name}</strong>{nextPage
+							.navigationItem.name === nextPage.categoryInfo.category.name
+							? ''
+							: `: ${nextPage.navigationItem.name}`}
+					</p>
+				</ClickableTile>
+			</div>
+		{/if}
+	</div>
+{:else}
+	<SkeletonPlaceholder style="display: flex; width: 100%; min-height: 8rem;" />
+{/if}
 
 <style lang="scss">
 	.container {

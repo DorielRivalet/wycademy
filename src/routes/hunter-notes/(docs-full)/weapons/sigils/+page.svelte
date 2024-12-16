@@ -12,7 +12,7 @@
 	} from 'ezlion';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import type { DataTableCell } from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -144,13 +144,11 @@
 
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalNotes = '';
-
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalNotes = $state('');
 
 	function changeModal(cell: DataTableCell, section: string) {
 		modalOpen = true;
@@ -228,13 +226,9 @@
 		{ id: 'Zenith', text: 'Zenith' },
 	];
 
-	let selectedCategory: FrontierSigilRecipeType = 'Standard';
-	let recipesTableFilteredRowIds: string[] = [];
-	let skillsTableFilteredRowIds: string[] = [];
-
-	$: recipesByCategory = getRecipesByCategory(selectedCategory);
-
-	$: filteredRecipes = getFilteredRecipes(recipesByCategory, selectedSkills);
+	let selectedCategory: FrontierSigilRecipeType = $state('Standard');
+	let recipesTableFilteredRowIds: string[] = $state([]);
+	let skillsTableFilteredRowIds: string[] = $state([]);
 
 	const mapSkillSigilToArray = (
 		skillSigil: SkillSigil,
@@ -246,9 +240,19 @@
 	};
 
 	// TODO idk if im confusing shiten seal with lock
-	let selectedSkills: FrontierSigil[] = ['Attack Slayer', 'Elemental Slayer'];
+	let selectedSkills: FrontierSigil[] = $state([
+		'Attack Slayer',
+		'Elemental Slayer',
+	]);
 
 	const mappedSigilSkills = mapSkillSigilToArray(ezlionSkillSigil);
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
+	let recipesByCategory = $derived(getRecipesByCategory(selectedCategory));
+	let filteredRecipes = $derived(
+		getFilteredRecipes(recipesByCategory, selectedSkills),
+	);
 </script>
 
 <Modal
@@ -264,13 +268,10 @@
 		<div class="modal-content">
 			<div>
 				{#await import('$lib/player/Player.svelte') then { default: Player }}
-					<svelte:component
-						this={Player}
-						{...{ title: modalHeading, src: modalImage }}
-					/>
+					<Player {...{ title: modalHeading, src: modalImage }} />
 				{/await}
 			</div>
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -278,7 +279,8 @@
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent = modalPopoverIcon}
+							<SvelteComponent />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -296,11 +298,11 @@
 	{/if}
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Sigils'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Sigils"
 					tooltip="Sigil"
@@ -309,7 +311,7 @@
 					iconColor={ItemColors.find((e) => e.name === 'White')?.value}
 				/> are akin to decorations but are exclusively used in G Rank weaponry, crafted
 				by the Cat Smith, who also creates random Gou weapons.
-			</p>
+			</div>
 
 			<CenteredFigure
 				width={'100%'}
@@ -319,7 +321,7 @@
 				figcaption="Cat Smith."
 			/>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Sigils"
 					tooltip="Sigil"
@@ -330,15 +332,15 @@
 				also creates random Gou weapons. They can have multiple effects, ranging
 				from simple buffs to a weapon's raw values, to granting new versions of weapon
 				moves, to allowing you to wave at the Balloon an infinite number of times.
-			</p>
+			</div>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				A list of sigil recipes is found <Link inline href="#recipes"
 					>down below.</Link
 				>
-			</p>
+			</div>
 
-			<p>
+			<div class="spaced-paragraph">
 				If you want to calculate how much damage all of your equipped sigils do
 				and compare the damage between them, check our <Link
 					inline
@@ -347,11 +349,11 @@
 					inline
 					href="/tools/simulator/sigil">Sigils Simulator.</Link
 				>
-			</p>
+			</div>
 			<section>
 				<SectionHeading level={2} title="Slots" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Sigil slots are of a diamond shape and can either replace decoration
 						slots in standard G Rank weaponry or be part of hybrid slots that
 						accommodate both <InlineTooltip
@@ -375,7 +377,7 @@
 						/>. Sigils with variable values generally stack, while those that
 						enhance abilities or motions have fixed effects regardless of the
 						number slotted.
-					</p>
+					</div>
 
 					<CenteredFigure
 						width={'100%'}
@@ -385,7 +387,7 @@
 						figcaption="Sigil slots."
 					/>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The slot shape determines what item goes in. For sigils, the slots
 						have a diamond shape. For decorations, the slots are circular. For
 						sigils or decorations on the same slot, the slot is a diamond inside
@@ -397,7 +399,7 @@
 							icon={getItemIcon('Sigil')}
 							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
 						/>.
-					</p>
+					</div>
 
 					<CenteredFigure
 						width={'100%'}
@@ -407,7 +409,7 @@
 						figcaption="Sigil slots shapes."
 					/>
 
-					<p>
+					<div class="spaced-paragraph">
 						<InlineTooltip
 							text="Sigils"
 							tooltip="Sigil"
@@ -420,13 +422,13 @@
 						full index of these skills is <Link inline href="#skills"
 							>down below.</Link
 						>
-					</p>
+					</div>
 				</div>
 			</section>
 			<section>
 				<SectionHeading level={2} title="Crafting" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						To craft a sigil, talk to the cat in the blacksmith who handles
 						Partnyaa gear. Select the Sigils option, followed by Create Sigils,
 						which will bring up a recipe list. Around the fifth page, you will
@@ -445,8 +447,8 @@
 						/>. The most immediately useful skills to look for are Attack,
 						Elemental, and Affinity. Refer to the proper section for more
 						details on other skills.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Crafting a <InlineTooltip
 							text="sigil"
 							tooltip="Sigil"
@@ -455,8 +457,8 @@
 							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
 						/> requires selecting from a list of various recipes, each biased towards
 						certain skills and grouped into three types:
-					</p>
-					<UnorderedList>
+					</div>
+					<UnorderedList class="spaced-list">
 						<ListItem
 							><p>
 								<strong>Recipe A:</strong> Costs 300Gz and uses commonly available
@@ -476,7 +478,7 @@
 							</p></ListItem
 						>
 					</UnorderedList>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						After selecting the base recipe and materials, you can add
 						additional 'filler' materials if needed. These fillers do not affect
 						the outcome of the <InlineTooltip
@@ -486,8 +488,8 @@
 							icon={getItemIcon('Sigil')}
 							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
 						/> and are only used to pad the completion percentage to 100%.
-					</p>
-					<p>
+					</div>
+					<div class="spaced-paragraph">
 						Once you've chosen the filler materials, you can craft the <InlineTooltip
 							text="sigil"
 							tooltip="Sigil"
@@ -496,11 +498,10 @@
 							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
 						/> and will be presented with the results and a relative rarity ranking
 						in stars based on the roll.
-					</p>
+					</div>
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Rare Sigil',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/rare-sigil.webm',
@@ -513,7 +514,7 @@
 			<section>
 				<SectionHeading level={2} title="Inserting" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						You can insert the crafted <InlineTooltip
 							text="sigils"
 							tooltip="Sigil"
@@ -521,13 +522,13 @@
 							icon={getItemIcon('Sigil')}
 							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
 						/> into weapons by selecting the Insert Sigils option.
-					</p>
+					</div>
 				</div>
 			</section>
 			<section>
 				<SectionHeading level={2} title="Removing" />
 				<div>
-					<p>
+					<div class="spaced-paragraph">
 						Removing a <InlineTooltip
 							text="sigil"
 							tooltip="Sigil"
@@ -542,13 +543,13 @@
 							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
 						/>. These can be obtained by using the Guuku Cooking Facilities on
 						any G Rank materials, for 12NP in the N Point Store.
-					</p>
+					</div>
 				</div>
 			</section>
 			<section>
 				<SectionHeading level={2} title="What to Choose" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Most weapons have dedicated <InlineTooltip
 							text="sigils"
 							tooltip="Sigil"
@@ -569,7 +570,7 @@
 							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
 						/>
 						less useful compared to simply buffing raw damage.
-					</p>
+					</div>
 					<CenteredFigure
 						width={'100%'}
 						type="file"
@@ -577,14 +578,14 @@
 						alt="Sigil stats"
 						figcaption="Sigil stats."
 					/>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						There are many possible outcomes for each sigil recipe, but the
 						following recipes use easily obtainable materials and have a good
 						chance of yielding desirable skills, making them ideal for players
 						starting out.
-					</p>
-					<p><strong>Generic Recipes:</strong></p>
-					<UnorderedList>
+					</div>
+					<div><strong>Generic Recipes:</strong></div>
+					<UnorderedList class="spaced-list">
 						<ListItem><p>Hypnoc A for Attack Power Sigils.</p></ListItem>
 						<ListItem
 							><p>
@@ -599,7 +600,7 @@
 						<ListItem><p>Red Khezu A for Affinity Sigils.</p></ListItem>
 					</UnorderedList>
 					<p><strong>Gunner Recipes:</strong></p>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
 							><p>
 								Rajang A and Dyuragaua A for Elder Dragon Attack and Heat Cannon
@@ -613,7 +614,7 @@
 							</p></ListItem
 						>
 					</UnorderedList>
-					<p>
+					<div class="spaced-paragraph">
 						For best results, aim for Attack or Elemental <InlineTooltip
 							text="sigils"
 							tooltip="Sigil"
@@ -622,13 +623,13 @@
 							iconColor={ItemColors.find((e) => e.name === 'White')?.value}
 						/> and one or more of your weapon's specific sigils. For Gunlance, always
 						aim for Lv9 shelling if utilizing Shelling and Wyvern Fires.
-					</p>
+					</div>
 				</div>
 			</section>
 			<section>
 				<SectionHeading level={2} title="Usage" />
 				<div>
-					<p>
+					<div class="spaced-paragraph">
 						<InlineTooltip
 							text="Sigils"
 							tooltip="Sigil"
@@ -638,7 +639,7 @@
 						/> can be inserted into normal G Rank weapons instead of decorations,
 						providing effects like flat additions to True Raw, True Elemental, and
 						Affinity, as well as buffs to weapon motions.
-					</p>
+					</div>
 					<CenteredFigure
 						width={'100%'}
 						type="file"
@@ -658,7 +659,7 @@
 			<section>
 				<SectionHeading level={2} title="Obtaining" />
 				<div>
-					<p>
+					<div class="spaced-paragraph">
 						You can obtain many <InlineTooltip
 							text="tickets"
 							tooltip="Item"
@@ -688,13 +689,13 @@
 						/> can potentially roll up to +30 attack. With up to three sigils per
 						weapon, even low rolls can quickly add up. Having 40 attack across multiple
 						sigils is still close to or above a 10% increase in your weapon's power.
-					</p>
+					</div>
 				</div>
 			</section>
 			<section>
 				<SectionHeading level={2} title="Special Weapons" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						G Supremacy, Burst, and Origin weapons do not have Sigil Slots.
 						Instead, they have standard decoration slots and grant an armor
 						skill when used. For example, Varusaburosu weapons have <InlineTooltip
@@ -706,8 +707,8 @@
 						/>, allowing you to leech health back as you attack. Despite their
 						strength, using good sigils in good weapons is often more effective
 						in practice.
-					</p>
-					<p>
+					</div>
+					<div class="spaced-paragraph">
 						Exotic Weapons are unique in that they provide the <InlineTooltip
 							text="Quick Eating"
 							tooltip="Armor Skill"
@@ -717,28 +718,28 @@
 						/>
 						skill while equipped and feature hybrid slots that accept both G Rank
 						Sigils and Decorations. Their stats are comparable to any G Lv50 weapon.
-					</p>
+					</div>
 				</div>
 			</section>
 			<section>
 				<SectionHeading level={2} title="Weapon Levels" />
 				<div>
-					<p>
+					<div class="spaced-paragraph">
 						Sigil Slots replace decoration slots in G Rank weapons. Weapons
 						start with two sigil slots and gain a third at Level 30, which
 						requires a gem from Conquests.
-					</p>
+					</div>
 				</div>
 			</section>
 			<section>
 				<SectionHeading level={2} title="Shiten Conquests" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Heavenly Conquests (Shiten) are set to Level 9999 and reward
 						exceptionally good Sigils for use in G Rank weapons.
-					</p>
+					</div>
 					<p><strong>Items:</strong></p>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
 							><InlineTooltip
 								text="Shiten Key"
@@ -749,7 +750,7 @@
 							/>
 							<UnorderedList nested>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Creates powerful general-purpose <InlineTooltip
 											text="Sigils"
 											tooltip="Sigil"
@@ -793,23 +794,23 @@
 											iconColor={ItemColors.find((e) => e.name === 'White')
 												?.value}
 										/>.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Obtained by defeating <InlineTooltip
 											text="Shiten Disufiroa"
 											tooltip="Monster"
 											iconType="file"
 											icon={getMonsterIcon('Shiten Disufiroa')}
 										/>.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Rewards: 1x fixed for quest clear, 1x fixed for no carts, 1%
 										chance of 1x extra per reward slot.
-									</p></ListItem
+									</div></ListItem
 								>
 							</UnorderedList>
 						</ListItem>
@@ -823,7 +824,7 @@
 							/>
 							<UnorderedList nested>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Creates powerful general-purpose <InlineTooltip
 											text="Sigils"
 											tooltip="Sigil"
@@ -875,23 +876,23 @@
 											iconColor={ItemColors.find((e) => e.name === 'White')
 												?.value}
 										/>.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Obtained by defeating <InlineTooltip
 											text="Shiten UNKNOWN"
 											tooltip="Monster"
 											iconType="file"
 											icon={getMonsterIcon('Shiten UNKNOWN')}
 										/>.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Rewards: 1x fixed for quest clear, 1x fixed for no carts, 1%
 										chance of 1x extra per reward slot.
-									</p></ListItem
+									</div></ListItem
 								>
 							</UnorderedList>
 						</ListItem>
@@ -905,7 +906,7 @@
 							/>
 							<UnorderedList nested>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Creates powerful general-purpose <InlineTooltip
 											text="Sigils"
 											tooltip="Sigil"
@@ -914,18 +915,18 @@
 											iconColor={ItemColors.find((e) => e.name === 'White')
 												?.value}
 										/> with slightly higher stat ranges than other Shiten Sigils.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Obtain 1 by defeating either Shiten monster in under 10
 										minutes.
-									</p></ListItem
+									</div></ListItem
 								>
 							</UnorderedList>
 						</ListItem>
 					</UnorderedList>
-					<p>
+					<div class="paragraph-long-02">
 						You can use <InlineTooltip
 							text="Lucky Charms"
 							tooltip="Item"
@@ -933,17 +934,17 @@
 							icon={getItemIcon('Sac')}
 							iconColor={ItemColors.find((e) => e.name === 'Pink')?.value}
 						/> to get extra Shiten rewards.
-					</p>
+					</div>
 					<section>
 						<SectionHeading title="Advanced Shiten" level={3} />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Advanced Shiten or Upper Shiten quests are similar to the
 								standard ones but with significantly increased health and attack
 								values.
-							</p>
-							<p><strong>Items:</strong></p>
-							<UnorderedList>
+							</div>
+							<div><strong>Items:</strong></div>
+							<UnorderedList class="spaced-list">
 								<ListItem
 									><InlineTooltip
 										text="Upper Shiten Key"
@@ -955,25 +956,25 @@
 									/>
 									<UnorderedList nested>
 										<ListItem
-											><p>
+											><div class="paragraph-long-02">
 												Creates powerful Affinity and Attack sigils.
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div class="paragraph-long-02">
 												Obtained by defeating <InlineTooltip
 													text="Upper Shiten UNKNOWN"
 													tooltip="Monster"
 													iconType="file"
 													icon={getMonsterIcon('Shiten UNKNOWN')}
 												/>.
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div class="paragraph-long-02">
 												Rewards: 2x fixed for quest clear, 1x fixed for no
 												carts, 1% chance of 2x extra per reward slot.
-											</p></ListItem
+											</div></ListItem
 										>
 									</UnorderedList>
 								</ListItem>
@@ -989,30 +990,30 @@
 									/>
 									<UnorderedList nested>
 										<ListItem
-											><p>
+											><div class="paragraph-long-02">
 												Creates powerful Elemental and Attack sigils.
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div class="paragraph-long-02">
 												Obtained by defeating <InlineTooltip
 													text="Upper Shiten Disufiroa"
 													tooltip="Monster"
 													iconType="file"
 													icon={getMonsterIcon('Shiten Disufiroa')}
 												/>.
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div class="paragraph-long-02">
 												Rewards: 2x fixed for quest clear, 1x fixed for no
 												carts, 1% chance of 2x extra per reward slot.
-											</p></ListItem
+											</div></ListItem
 										>
 									</UnorderedList>
 								</ListItem>
 							</UnorderedList>
-							<p>
+							<div class="paragraph-long-02">
 								You can use <InlineTooltip
 									text="Lucky Charms"
 									tooltip="Item"
@@ -1020,7 +1021,7 @@
 									icon={getItemIcon('Sac')}
 									iconColor={ItemColors.find((e) => e.name === 'Pink')?.value}
 								/> to get extra Shiten rewards.
-							</p>
+							</div>
 						</div>
 					</section>
 				</div>
@@ -1028,13 +1029,13 @@
 			<section>
 				<SectionHeading level={2} title="Recipes" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						There are a total of {sigilsRecipes.length} sigil recipes. For more information
 						about the recommended sigils to use for a weapon type, refer to <Link
 							inline
 							href="/hunter-notes/weapons">the weapons category page.</Link
 						>
-					</p>
+					</div>
 					<div class="table">
 						<DataTable
 							id="sigil-recipes-dom"
@@ -1081,34 +1082,34 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'rollMin' && cell.value < 0}
 									<p style:color="var(--ctp-red)">{cell.value}</p>
 								{:else if cell.key === 'rollPercentage'}
-									<p>
+									<div>
 										{cell.value}{cell.value === '-' ||
 										cell.value === 'Guaranteed'
 											? ''
 											: '%'}
-									</p>
+									</div>
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Twinhead [Top] and Twinhead [Speed] can also grant a random Tech
 								Boost skill, with a 30% and 37% chance respectively.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The AOE Zenith Sigil stats might be inaccurate, rather it may
 								first select a roll type and then rolls a stat.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -1117,13 +1118,13 @@
 				<SectionHeading level={2} title="Skills" />
 				<div>
 					<!--TODO: include totals in other pages tables-->
-					<p>
+					<div class="paragraph-long-02">
 						There are a total of {sigilsInfo.length} sigil skills. For more information
 						about the recommended sigils to use for a weapon type, refer to <Link
 							inline
 							href="/hunter-notes/weapons">the weapons category page.</Link
 						>
-					</p>
+					</div>
 					<div class="table">
 						<DataTable
 							useStaticWidth
@@ -1185,15 +1186,15 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'minimumPoints' && cell.value < 0}
 									<p style:color="var(--ctp-red)">{cell.value}</p>
 								{:else if cell.value === 0 && (cell.key === 'minimumPoints' || cell.key === 'maximumPoints')}
-									<p>-</p>
+									<div>-</div>
 								{:else if cell.key === 'name' && sigilsInfo.find((e) => e.name === cell.value)?.demo}
 									<button
 										class="table-button"
-										on:click={() => changeModal(cell, 'Sigil')}
+										onclick={() => changeModal(cell, 'Sigil')}
 									>
 										<span>{cell.value}</span><Image
 											size={20}
@@ -1203,12 +1204,12 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><p class="paragraph-long-02">
 								When using UL sigils, only one "Up" roll can be active at a
 								time. For example, if you have a +14 DS Up and a +12 DS Up
 								sigil, only the +14 will be counted, not combined to +26.
@@ -1221,7 +1222,7 @@
 			<section>
 				<SectionHeading level={2} title="Zenith Sigils" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Zenith Sigils are a new type of sigil introduced in the <InlineTooltip
 							text="ZZ update"
 							tooltip="Game"
@@ -1233,22 +1234,21 @@
 						Zenith Sigils have a base duration of 15 or 20 seconds, depending on
 						the zenith sigil type. There are two functional types: Standard
 						Zenith Sigils and AoE Zenith Sigils.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Zenith Sigils can be obtained from any rank of Zenith. Although the
 						exact drop rate is unknown, it is low and likely similar to the rare
 						carve reward rate for each Zenith tier (1%, 3%, 5%, 7%).
-					</p>
-					<p>
+					</div>
+					<div class="paragraph-long-02">
 						Both types of Zenith Sigils work in the same way: a new item icon in
 						the shape of a sigil appears on your item bar, which can be used at
 						any time, provided you are not actively performing an action, by
 						hitting the use button.
-					</p>
+					</div>
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Zenith Sigil',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/v1724366680/supplemental/animated/zenith-sigil.webm',
@@ -1259,7 +1259,7 @@
 					<section>
 						<SectionHeading level={3} title="Standard Zenith Sigils" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Activating a Standard Sigil applies several buffs to you. These
 								buffs have a fixed duration and recharge time based on the
 								values rolled on the sigil itself. The base duration is 15
@@ -1267,7 +1267,7 @@
 								(e.g., a +4 duration results in 19 seconds). The base recharge
 								time is 2 minutes (or 120 seconds), with the sigil value
 								subtracted (e.g., a +14 recharge value results in 106 seconds).
-							</p>
+							</div>
 							<div class="item-sigil">
 								<Item
 									itemType="Sigil"
@@ -1306,17 +1306,17 @@
 					<section>
 						<SectionHeading level={3} title="Area of Effect Zenith Sigils" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Activating an Area of Effect Sigil creates a dome on the ground
 								around where you activated it. This dome lasts for 20 seconds
 								and has a recharge duration of 2 minutes.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								AoE Sigils can buff Attack, Elemental, Status, All Resistance,
 								Affinity, and Stun output, as well as providing passive healing.
 								A single sigil can roll multiple types of buffs, causing the
 								dome to alternate colors to indicate which buffs are active.
-							</p>
+							</div>
 							<div class="item-sigil">
 								<Item
 									itemType="Sigil"
@@ -1344,17 +1344,16 @@
 									}}
 								/>
 							</div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Like Standard Sigils, the values on AoE Sigils do not directly
 								correlate to the actual buff amounts. For example, a sigil with
 								+1 Elemental and +14 Resistances will increase Elemental by 100
 								and All Resistances by 28. Higher rolls result in significantly
 								better buffs.
-							</p>
+							</div>
 							<div>
 								{#await import('$lib/player/Player.svelte') then { default: Player }}
-									<svelte:component
-										this={Player}
+									<Player
 										{...{
 											title: 'AoE Zenith Sigil',
 											src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/zenith-aoe.webm',
@@ -1374,7 +1373,7 @@
 			<section>
 				<SectionHeading level={2} title="Unlimited Sigils" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The main purpose of Unlimited Mode (UL) is to grant access to
 						powerful new Up Sigils for each weapon type, such as <InlineTooltip
 							text="Dual Swords Up"
@@ -1388,7 +1387,7 @@
 						sigil can have up to 75 effective points, making them highly
 						desirable for players who don't use all slots in a weapon for
 						decorations.
-					</p>
+					</div>
 					<div class="item-sigil">
 						<Item
 							itemType="Sigil"
@@ -1416,13 +1415,13 @@
 							}}
 						/>
 					</div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The materials for these sigils drop at a relatively low rate, but
 						there are three featured monsters each day that offer boosted drop
 						rates. The items are unique to each weapon, making it a long-term
 						goal to hunt many UL monsters to obtain better UL Sigils.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						In addition to Sigil materials, UL Mode monsters also drop doubled
 						Transmog Lotto points, Hiden <InlineTooltip
 							icon={getItemIcon('Ticket')}
@@ -1442,13 +1441,13 @@
 						/>. This makes UL Mode an excellent source for grinding Hiden
 						Materials, allowing you to focus on challenging content instead of
 						early HR and GR level content.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The overlay can show you if a monster is either the standard
 						variant, Hardcore (HC) or Unlimited (UL) via an icon next to the
 						name in the HP Bar.
-					</p>
-					<p>
+					</div>
+					<div class="paragraph-long-02">
 						If you want to calculate how much damage all of your equipped sigils
 						do and compare the damage between them, check our <Link
 							inline
@@ -1457,7 +1456,7 @@
 							inline
 							href="/tools/simulator/sigil">Sigils Simulator.</Link
 						>
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -1466,7 +1465,7 @@
 			</div>
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
@@ -11,7 +11,7 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import { onMount, type ComponentType } from 'svelte';
+	import { onMount, type Component } from 'svelte';
 	import {
 		ScaleTypes,
 		type LineChart,
@@ -27,9 +27,9 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	let criticalDistanceChartLoaded = false;
-	let criticalDistanceChart: ComponentType<LineChart>;
-	let criticalDistanceBowChart: ComponentType<LineChart>;
+	let criticalDistanceChartLoaded = $state(false);
+	let criticalDistanceChart: Component<LineChart> = $state();
+	let criticalDistanceBowChart: Component<LineChart> = $state();
 
 	const criticalDistanceChartAmmoTypesData = [
 		{
@@ -543,7 +543,7 @@
 		);
 	}
 
-	let criticalDistanceAmmoTypeForChart = 'Normal / Rapid Shot';
+	let criticalDistanceAmmoTypeForChart = $state('Normal / Rapid Shot');
 	let criticalDistanceChartDropdownOptions = [
 		{
 			id: 'Normal / Rapid Shot',
@@ -559,13 +559,13 @@
 		},
 	];
 
-	let criticalDistanceBowChartLoaded = false;
+	let criticalDistanceBowChartLoaded = $state(false);
 
-	$: criticalDistanceChartData = getCriticalDistanceChartData(
-		criticalDistanceAmmoTypeForChart,
+	let criticalDistanceChartData = $derived(
+		getCriticalDistanceChartData(criticalDistanceAmmoTypeForChart),
 	);
 
-	$: criticalDistanceChartOptions = {
+	let criticalDistanceChartOptions = $derived({
 		title: `Critical Distance (${criticalDistanceAmmoTypeForChart})`,
 		theme: $carbonThemeStore,
 		legend: { enabled: true, truncation: { numCharacter: 24 } },
@@ -581,9 +581,9 @@
 				scaleType: ScaleTypes.LINEAR,
 			},
 		},
-	} as LineChartOptions;
+	} as LineChartOptions);
 
-	$: criticalDistanceBowChartOptions = {
+	let criticalDistanceBowChartOptions = $derived({
 		title: 'Critical Distance (Bow)',
 		theme: $carbonThemeStore,
 		legend: { enabled: true, truncation: { numCharacter: 24 } },
@@ -599,7 +599,7 @@
 				scaleType: ScaleTypes.LINEAR,
 			},
 		},
-	} as LineChartOptions;
+	} as LineChartOptions);
 
 	onMount(async () => {
 		const charts = await import('@carbon/charts-svelte');
@@ -610,7 +610,7 @@
 	});
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Critical Distance'} />
 		<div>
@@ -618,11 +618,11 @@
 				<section>
 					<SectionHeading level={2} title="Bowguns" />
 					<div>
-						<p>
+						<p class="spaced-paragraph">
 							<strong>Critical Distance</strong> is indicated by the shot expanding
 							fully and creating a circle indicator.
 						</p>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<InlineTooltip
 								text="Heavy Bowgun"
 								icon={getWeaponIcon('Heavy Bowgun')}
@@ -632,7 +632,7 @@
 							to see when you are properly spaced. This adds an extra 0.3x multiplier
 							to damage in that zone (e.g. 2.0 in first half of Normal Shot range,
 							2.3x with an Origin or Zenith Piece and G Rank Weapon, etc.).
-						</p>
+						</div>
 						<div class="dropdown">
 							<Dropdown
 								titleText="Ammo Type"
@@ -642,8 +642,8 @@
 						</div>
 						<div class="chart">
 							{#if criticalDistanceChartLoaded}
-								<svelte:component
-									this={criticalDistanceChart}
+								{@const SvelteComponent = criticalDistanceChart}
+								<SvelteComponent
 									data={criticalDistanceChartData}
 									options={criticalDistanceChartOptions}
 								/>
@@ -656,12 +656,12 @@
 				<section>
 					<SectionHeading level={2} title="Bow" />
 					<div>
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							Holding down the aim button/key will show a rough indication of
 							<strong>Critical Distance</strong> and hits within
 							<strong>Critical Distance</strong> will do a large flash while those
 							outside of it will do a small flash.
-						</p>
+						</div>
 						<div>
 							<DataTable
 								sortable
@@ -732,16 +732,16 @@
 										/>
 									</div>
 								</Toolbar>
-								<svelte:fragment slot="cell" let:cell>
+								{#snippet cell({ cell })}
 									<p>{cell.value}</p>
-								</svelte:fragment>
+								{/snippet}
 							</DataTable>
 						</div>
 						<div class="chart">
 							<div>
 								{#if criticalDistanceBowChartLoaded}
-									<svelte:component
-										this={criticalDistanceBowChart}
+									{@const SvelteComponent_1 = criticalDistanceBowChart}
+									<SvelteComponent_1
 										data={[
 											{ group: 'Rapid', multiplier: 1, distance: 'Close' },
 											{ group: 'Rapid', multiplier: 1.5, distance: 'Mid 1' },
@@ -855,7 +855,7 @@
 				</section>
 			</div>
 		</div>
-	</div></HunterNotesPage
+	</div></TableOfContentsPage
 >
 
 <style lang="scss">

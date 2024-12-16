@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -17,6 +17,13 @@
 	import HeaderNavigationMenuButton from './HeaderNavigationMenuButton.svelte';
 	import HeaderNavigationButton from './HeaderNavigationButton.svelte';
 	import HeaderHamburgerMenu from './HeaderHamburgerMenu.svelte';
+	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
@@ -40,9 +47,9 @@
 			<HeaderHamburgerMenu />
 		{/if}
 		<div class="banner">
-			<Banner />
+			<Banner theme={$carbonThemeStore} />
 		</div>
-		<div class="banner-border" />
+		<div class="banner-border"></div>
 	</div>
 
 	<nav class="right">

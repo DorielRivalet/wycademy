@@ -1,3 +1,5 @@
+import { browser } from '$app/environment';
+
 export function formatDateTime(date: string) {
 	// Create a Date object from the ISO string
 	const dateTime = new Date(date);
@@ -60,7 +62,28 @@ export function stringToCustomDateFormat(date: string): string {
 	return new Date(date).toISOString().substring(0, 16).replace('T', ' ');
 }
 
+export function padTo2Digits(num: number) {
+	return num.toString().padStart(2, '0');
+}
+
+export function formatDate(date: Date) {
+	return (
+		[
+			date.getFullYear(),
+			padTo2Digits(date.getMonth() + 1), // +1 because getMonth() is zero-based
+			padTo2Digits(date.getDate()),
+		].join('-') +
+		'-' +
+		[
+			padTo2Digits(date.getHours()),
+			padTo2Digits(date.getMinutes()),
+			padTo2Digits(date.getSeconds()),
+		].join('-')
+	);
+}
+
 export function formatDateWithRelativeTime(date1: Date, date2: Date): string {
+	if (!browser || !date1 || !date2) return '';
 	const diffInMs = date2.getTime() - date1.getTime();
 	const diffInSeconds = Math.floor(diffInMs / 1000);
 	let relativeTime: string;
@@ -99,3 +122,65 @@ export function formatDateWithRelativeTime(date1: Date, date2: Date): string {
 export const Numbers = {
 	FramesPerSecond: 30,
 };
+
+export function getDate(input: string) {
+	try {
+		// Parse the input string as a Date object
+		const inputDate = new Date(input);
+
+		// Format the date in the desired output format
+		const output = inputDate.toISOString().split('T')[0];
+
+		return output; // Output: "2023-02-04"
+	} catch (e) {
+		return '????-??-??';
+	}
+}
+
+/**30fps */
+export function getFramesFromMinutesSecondsMilliseconds(time: string) {
+	const parts = time.split(':');
+	const minutes = parseInt(parts[0], 10);
+	const secondsAndMilliseconds = parts[1].split('.');
+	const seconds = parseInt(secondsAndMilliseconds[0], 10);
+	const milliseconds = parseInt(secondsAndMilliseconds[1], 10);
+
+	const totalSeconds = minutes * 60 + seconds;
+	const totalMilliseconds = totalSeconds * 1000 + milliseconds;
+	const frames = Math.floor(totalMilliseconds / (1000 / 30)); // 30 fps
+	return frames;
+}
+
+/**30fps */
+export function getMinutesSecondsMillisecondsFromFrames(frames: number) {
+	const totalMilliseconds = frames * (1000 / 30); // 30 fps
+	const totalSeconds = totalMilliseconds / 1000;
+
+	const minutes = Math.floor(totalSeconds / 60);
+	const remainingSeconds = totalSeconds % 60;
+
+	const seconds = Math.floor(remainingSeconds);
+	const milliseconds = Math.round((remainingSeconds - seconds) * 1000);
+
+	// Format the result as a string "MM:SS.mmm"
+	const result = `${String(minutes).padStart(2, '0')}:${String(
+		seconds,
+	).padStart(2, '0')}.${String(milliseconds).padStart(3, '0')}`;
+	return result;
+}
+
+export function getMinutesSecondsFromFrames(frames: number) {
+	const totalMilliseconds = frames * (1000 / 30); // 30 fps
+	const totalSeconds = totalMilliseconds / 1000;
+
+	const minutes = Math.floor(totalSeconds / 60);
+	const remainingSeconds = totalSeconds % 60;
+
+	const seconds = Math.floor(remainingSeconds);
+
+	// Format the result as a string "MM:SS.mmm"
+	const result = `${String(minutes).padStart(2, '0')}:${String(
+		seconds,
+	).padStart(2, '0')}`;
+	return result;
+}

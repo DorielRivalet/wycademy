@@ -2,8 +2,9 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import UpToTop from 'carbon-icons-svelte/lib/UpToTop.svelte';
 
-	export let showOnPx = 150;
-	let hidden = true;
+	/** @type {{showOnPx?: number}} */
+	let { showOnPx = 150 } = $props();
+	let hidden = $state(true);
 
 	function goTop() {
 		document.body.scrollIntoView();
@@ -26,7 +27,7 @@
 	}
 </script>
 
-<svelte:window on:scroll={handleOnScroll} />
+<svelte:window onscroll={handleOnScroll} />
 
 <div class="back-to-top" class:hidden>
 	<Button

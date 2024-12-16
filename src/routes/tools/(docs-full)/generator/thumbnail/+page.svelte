@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -25,7 +25,6 @@
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 	import ThumbnailGeneratorImage from './ThumbnailGeneratorImage.svelte';
 	import ThumbnailGeneratorText from './ThumbnailGeneratorText.svelte';
-	import type { FrontierEnumerable } from 'ezlion';
 	import type { HTMLImgAttributes } from 'svelte/elements';
 	import type {
 		FrontierArmor,
@@ -34,7 +33,6 @@
 		FrontierWeapon,
 		IconSize,
 	} from '$lib/client/modules/frontier/types';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
 	import { onMount } from 'svelte';
@@ -57,41 +55,21 @@
 		RarityColors,
 		ColorCodes,
 	} from '$lib/client/modules/frontier/objects';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
-	const carbonThemeStore = getContext(
-		Symbol.for('carbonTheme'),
-	) as Writable<CarbonTheme>;
-
-	let thumbnailElementsOrderReversed = false;
-
-	let modalOpen = false;
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalImage = '';
-	let modalNotes = '';
-
+	// this works
 	function changeModal(heading: string, section: string) {
 		modalOpen = true;
 		modalHeading = heading;
 		modalLabel = section || '';
-
-		switch (section) {
-			case 'youtube':
-				modalImage = '';
-				modalNotes = '';
-				break;
-			default:
-				modalImage = '';
-				modalNotes = '';
-				break;
-		}
 	}
 
+	// this works
 	function handleDragStart(
 		e: { dataTransfer: { setData: (arg0: string, arg1: string) => void } },
 		id: any,
@@ -103,79 +81,6 @@
 			'text/plain',
 			JSON.stringify({ id, offsetX, offsetY, index }),
 		);
-	}
-
-	function countStringOccurrences(nestedArray: string[][]) {
-		const counts = {};
-
-		function countStrings(arr: any[]) {
-			arr.forEach((item: string | number) => {
-				if (typeof item === 'string') {
-					counts[item] = (counts[item] || 0) + 1;
-				} else if (Array.isArray(item)) {
-					countStrings(item);
-				}
-			});
-		}
-
-		countStrings(nestedArray);
-		return counts;
-	}
-
-	function countStringValueOccurrencesInFrontierEnumerables(
-		inputObj: Record<string, FrontierEnumerable>,
-	): Record<string, Record<string, number>> {
-		const result: Record<string, Record<string, number>> = {};
-
-		function traverse(obj: FrontierEnumerable, currentKey: string = '') {
-			Object.values(obj).forEach((value) => {
-				if (typeof value === 'string') {
-					if (!result[currentKey]) {
-						result[currentKey] = {};
-					}
-					result[currentKey][value] = (result[currentKey][value] || 0) + 1;
-				} else if (value instanceof Object) {
-					traverse(value, currentKey);
-				}
-			});
-		}
-
-		Object.keys(inputObj).forEach((key) => {
-			traverse(inputObj[key], key);
-		});
-
-		// Filter occurrences above 1
-		const filteredResult: Record<string, Record<string, number>> = {};
-		Object.entries(result).forEach(([key, values]) => {
-			const filteredValues = Object.fromEntries(
-				Object.entries(values).filter(([_, count]) => count > 1),
-			);
-			if (Object.keys(filteredValues).length > 0) {
-				filteredResult[key] = filteredValues;
-			}
-		});
-
-		return filteredResult;
-	}
-
-	let thumbnailGeneratorSmallPreview = '';
-	let thumbnailGeneratorSmallPreviewStatus: 'unloaded' | 'loading' | 'loaded' =
-		'unloaded';
-	let thumbnailGeneratorSmallPreviewSize = '512';
-
-	async function downloadGeneratedThumbnailImage() {
-		let node = document.getElementById('generated-thumbnail-dom');
-
-		if (!node) {
-			return;
-		}
-
-		await domToPng(node, { quality: 1 }).then((dataUrl) => {
-			const link = document.createElement('a');
-			link.download = `${slugify('generated-thumbnail')}-${new Date().toISOString()}.png`;
-			link.href = dataUrl;
-			link.click();
-		});
 	}
 
 	function getThumbnailGeneratorTemplateExampleTexts() {
@@ -253,76 +158,6 @@
 				fontStyle: 'normal',
 			},
 		];
-	}
-
-	function getIconBlobFromIconMetaData(
-		selectedIconType: FrontierImageType,
-		selectionID: string,
-		size: IconSize,
-		format: 'Vector' | 'Raster',
-		color: string,
-	) {
-		// TODO return html in either the form of img if selecting PNG or
-		// svelte component if selecting SVG.
-		switch (selectedIconType) {
-			case 'Weapon':
-				return {
-					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
-					image: WeaponTypes.find((e) => e.name === selectionID)?.smallIcon,
-				};
-			case 'Monster Icon':
-				return {
-					component: MonsterComponent,
-					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
-				};
-			case 'Monster Render':
-				return {
-					full: monsterInfo.find((e) => e.displayName === selectionID)
-						?.fullRender,
-					small: monsterInfo.find((e) => e.displayName === selectionID)?.render,
-				};
-			case 'Armor':
-				return {
-					component: ArmorTypes.find((e) => e.name === selectionID)?.icon,
-					image: ArmorTypes.find((e) => e.name === selectionID)?.icon,
-				};
-			case 'Item':
-				return {
-					component: itemInfo.find((e) => e.name === selectionID)?.icon,
-					image: itemInfo.find((e) => e.name === selectionID)?.icon,
-				};
-			case 'Location':
-				return {
-					component: LocationIcons.find((e) => e.name === selectionID)?.icon,
-					image: LocationIcons.find((e) => e.name === selectionID)?.icon,
-				};
-			case 'Element':
-				return {
-					component: ElementIcons.find((e) => e.displayName === selectionID)
-						?.icon,
-					image: ElementIcons.find((e) => e.displayName === selectionID)?.icon,
-				};
-			case 'Ailment':
-				return {
-					component: AilmentIcons.find((e) => e.name === selectionID)?.icon,
-					image: AilmentIcons.find((e) => e.name === selectionID)?.icon,
-				};
-			case 'Status':
-				return {
-					component: StatusIcons.find((e) => e.name === selectionID)?.icon,
-					image: StatusIcons.find((e) => e.name === selectionID)?.icon,
-				};
-			case 'Habitat':
-				return {
-					component: Habitats.find((e) => e.name === selectionID)?.image,
-					image: Habitats.find((e) => e.name === selectionID)?.image,
-				};
-			case 'Game':
-				return {
-					component: gameInfo.find((e) => e.name === selectionID)?.icon,
-					image: gameInfo.find((e) => e.name === selectionID)?.icon,
-				};
-		}
 	}
 
 	function getThumbnailGeneratorTemplateExampleImages() {
@@ -526,34 +361,74 @@
 		];
 	}
 
-	async function loadThumbnailTemplate() {
-		if (thumbnailGeneratorTemplateFiles.length > 0) {
-			loadingTemplateStatus = 'uploading';
-			const file = thumbnailGeneratorTemplateFiles[0]; // Assuming one file is uploaded at a time
-			const reader = new FileReader();
-			reader.onload = function (event) {
-				try {
-					const jsonData = JSON.parse(event.target.result);
-					thumbnailImages = [...[]];
-					thumbnailTexts = [...[]];
-					setTimeout(() => {
-						thumbnailImages = [...jsonData.thumbnailImages];
-						thumbnailTexts = [...jsonData.thumbnailTexts];
-						loadingTemplateStatus = 'complete';
-					}, 1000);
-				} catch (error) {
-					console.error('Error parsing JSON:', error);
-					loadingTemplateStatus = 'uploading';
-				}
-			};
-			reader.onerror = function (error) {
-				console.error('Error reading file:', error);
-				loadingTemplateStatus = 'uploading';
-			};
-			reader.readAsText(file); // Read the file as text
-			loadingTemplateStatus = 'uploading';
-		} else {
-			loadingTemplateStatus = 'uploading';
+	// TODO
+	function getIconBlobFromIconMetaData(
+		selectedIconType: FrontierImageType,
+		selectionID: string,
+		size: IconSize,
+		format: 'Vector' | 'Raster',
+		color: string,
+	) {
+		// TODO return html in either the form of img if selecting PNG or
+		// svelte component if selecting SVG.
+		switch (selectedIconType) {
+			case 'Weapon':
+				return {
+					component: weaponTypeInfo.find((e) => e.name === selectionID)?.icon,
+					image: weaponTypeInfo.find((e) => e.name === selectionID)?.smallIcon,
+				};
+			case 'Monster Icon':
+				return {
+					component: MonsterComponent,
+					image: monsterInfo.find((e) => e.displayName === selectionID)?.icon,
+				};
+			case 'Monster Render':
+				return {
+					full: monsterInfo.find((e) => e.displayName === selectionID)
+						?.fullRender,
+					small: monsterInfo.find((e) => e.displayName === selectionID)?.render,
+				};
+			case 'Armor':
+				return {
+					component: ArmorTypes.find((e) => e.name === selectionID)?.icon,
+					image: ArmorTypes.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Item':
+				return {
+					component: itemInfo.find((e) => e.name === selectionID)?.icon,
+					image: itemInfo.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Location':
+				return {
+					component: LocationIcons.find((e) => e.name === selectionID)?.icon,
+					image: LocationIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Element':
+				return {
+					component: ElementIcons.find((e) => e.displayName === selectionID)
+						?.icon,
+					image: ElementIcons.find((e) => e.displayName === selectionID)?.icon,
+				};
+			case 'Ailment':
+				return {
+					component: AilmentIcons.find((e) => e.name === selectionID)?.icon,
+					image: AilmentIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Status':
+				return {
+					component: StatusIcons.find((e) => e.name === selectionID)?.icon,
+					image: StatusIcons.find((e) => e.name === selectionID)?.icon,
+				};
+			case 'Habitat':
+				return {
+					component: Habitats.find((e) => e.name === selectionID)?.image,
+					image: Habitats.find((e) => e.name === selectionID)?.image,
+				};
+			case 'Game':
+				return {
+					component: gameInfo.find((e) => e.name === selectionID)?.icon,
+					image: gameInfo.find((e) => e.name === selectionID)?.icon,
+				};
 		}
 	}
 
@@ -790,24 +665,6 @@
 		}
 	}
 
-	async function createThumbnailGeneratorSmallPreview() {
-		let node = document.getElementById('generated-thumbnail-dom');
-
-		if (!node) {
-			return;
-		}
-
-		thumbnailGeneratorSmallPreviewStatus = 'loading';
-
-		await domToPng(node, {
-			quality: 1,
-		}).then((dataUrl) => {
-			thumbnailGeneratorSmallPreview = dataUrl;
-		});
-
-		thumbnailGeneratorSmallPreviewStatus = 'loaded';
-	}
-
 	function shouldFilterItem(item: { text: string }, value: string) {
 		if (!value) return true;
 		return item.text.toLowerCase().includes(value.toLowerCase());
@@ -836,131 +693,6 @@
 
 		return uniqueResult;
 	}
-
-	const allFrontierColors = getAllFrontierColors();
-
-	let thumbnailImages: HTMLImgAttributes[] = [];
-	let thumbnailUploadedImages: HTMLImgAttributes[] = [];
-	let thumbnailTexts: HTMLParagraphElement[] = [];
-
-	let thumbnailGeneratorImageFormat: 'Vector' | 'Raster' = 'Vector';
-	let thumbnailGeneratorImageType: FrontierImageType = 'Monster Icon';
-	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
-	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
-	let thumbnailGeneratorImageBackground = false;
-	let thumbnailGeneratorMonsterRenderSize: 'Small' | 'Full' = 'Full';
-	let thumbnailGeneratorBackgroundGradientStartColor =
-		getHexStringFromCatppuccinColor('mantle', $carbonThemeStore);
-	let thumbnailGeneratorBackgroundGradientEndColor =
-		getHexStringFromCatppuccinColor('crust', $carbonThemeStore);
-	let thumbnailGeneratorBackgroundGradientRotation = 45;
-	let thumbnailGeneratorBackgroundGradientLinear = false;
-	let thumbnailGeneratorImageShadowColor = '#000000';
-	let thumbnailGeneratorImageShadowWidth = 4;
-	let thumbnailGeneratorImageBorderWidth = 0;
-	let thumbnailGeneratorImageBorderColor = '#000000';
-	let thumbnailGeneratorImageBorderRadius = 5;
-
-	let thumbnailGeneratorBorderWidth = 12;
-	let thumbnailGeneratorBorderStyle = 'outset';
-	let thumbnailGeneratorBorderColor = getHexStringFromCatppuccinColor(
-		'red',
-		$carbonThemeStore,
-	);
-	let thumbnailGeneratorBorder = false;
-
-	let thumbnailGeneratorImageFiles: ReadonlyArray<File> = [];
-	let thumbnailGeneratorTemplateFiles: ReadonlyArray<File> = [];
-
-	let thumbnailGeneratorText = '5 Musous No Hit SW+CS';
-	let thumbnailGeneratorTextFontSize = 48;
-	let thumbnailGeneratorTextColor = '#000000';
-	let thumbnailGeneratorTextRotation = 0;
-	let thumbnailGeneratorTextShadowColor = '#ff0000';
-	let thumbnailGeneratorTextShadowWidth = 1;
-	let thumbnailGeneratorTextFontFamily = 'Arial';
-	let thumbnailGeneratorTextFontStyle = 'italic';
-	let thumbnailGeneratorTextFontWeight = 'bold';
-	let thumbnailGeneratorTextDecoration = 'underline';
-	let thumbnailGeneratorTextDecorationColor = '#ff0000';
-
-	let thumbnailGeneratorSectionOption: 'Text' | 'Image' | 'Custom Image' =
-		'Image';
-
-	let thumbnailGeneratorUploadedImageShadowWidth = 4;
-	let thumbnailGeneratorUploadedImageShadowColor = '#000000';
-	let thumbnailGeneratorUploadedImageBorderWidth = 4;
-	let thumbnailGeneratorUploadedImageBorderColor = '#000000';
-	let thumbnailGeneratorUploadedImageBorderRadius = 5;
-
-	let thumbnailGeneratorTemplateExampleImages =
-		getThumbnailGeneratorTemplateExampleImages();
-	let thumbnailGeneratorTemplateExampleTexts =
-		getThumbnailGeneratorTemplateExampleTexts();
-
-	thumbnailImages = [
-		...thumbnailImages,
-		...thumbnailGeneratorTemplateExampleImages,
-	];
-
-	thumbnailTexts = [
-		...thumbnailTexts,
-		...thumbnailGeneratorTemplateExampleTexts,
-	];
-
-	$: addUploadedImage(thumbnailGeneratorImageFiles);
-
-	$: thumbnailGeneratorPreviewStyle = `background: ${thumbnailGeneratorBackgroundGradientLinear ? 'linear' : 'radial'}-gradient(${thumbnailGeneratorBackgroundGradientLinear ? `${thumbnailGeneratorBackgroundGradientRotation}deg` : 'circle'}, ${thumbnailGeneratorBackgroundGradientStartColor} 0%, ${thumbnailGeneratorBackgroundGradientEndColor} 100%); border: ${thumbnailGeneratorBorder ? thumbnailGeneratorBorderWidth : '0'}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`;
-
-	let thumbnailContainer: HTMLDivElement;
-	let thumbnailContainerCursorPosition = { x: 0, y: 0 };
-
-	onMount(() => {
-		thumbnailContainer.addEventListener('dragover', (e) => {
-			e.preventDefault(); // Necessary to allow dropping
-		});
-
-		thumbnailContainer.addEventListener('mousemove', (e) => {
-			const rect = thumbnailContainer.getBoundingClientRect();
-			thumbnailContainerCursorPosition.x = Math.round(e.clientX - rect.left);
-			thumbnailContainerCursorPosition.y = Math.round(e.clientY - rect.top);
-		});
-
-		thumbnailContainer.addEventListener('drop', (e) => {
-			e.preventDefault(); // Prevents default behavior
-			const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-			const element = document.getElementById(data.id);
-			if (element) {
-				// Calculate the correct position based on the cursor's position relative to the container
-				// and the initial offset of the dragged element
-				const rect = thumbnailContainer.getBoundingClientRect();
-				const newTop = Math.round(e.clientY - rect.top - data.offsetY);
-				const newLeft = Math.round(e.clientX - rect.left - data.offsetX);
-
-				// Update the element's position
-				element.style.top = `${newTop}px`;
-				element.style.left = `${newLeft}px`;
-
-				// Update the position in your data model here
-				// For example, if you're tracking the position in a Svelte store or a local variable, update it here
-				if (data.id.startsWith('image')) {
-					thumbnailImages[data.index].top = newTop;
-					thumbnailImages[data.index].left = newLeft;
-				} else if (data.id.startsWith('upload')) {
-					thumbnailUploadedImages[data.index].top = newTop;
-					thumbnailUploadedImages[data.index].left = newLeft;
-				} else if (data.id.startsWith('text')) {
-					thumbnailTexts[data.index].top = newTop;
-					thumbnailTexts[data.index].left = newLeft;
-				}
-			}
-		});
-	});
-
-	let moveableTarget;
-
-	let loadingTemplateStatus: 'uploading' | 'edit' | 'complete' | undefined =
-		'uploading';
 
 	function onThumbnailImageContainerMouseDown(
 		e: MouseEvent & { currentTarget: EventTarget & HTMLDivElement },
@@ -994,12 +726,6 @@
 			newLeft;
 	}
 
-	let uniqueMonsters = getUniqueMonsters().sort(
-		(a, b) =>
-			(a?.displayName?.codePointAt(0) ?? 0) -
-			(b?.displayName?.codePointAt(0) ?? 0),
-	);
-
 	function getThumbnailGeneratorImagesFromType(type: FrontierImageType) {
 		let list:
 			| FrontierWeapon[]
@@ -1009,10 +735,10 @@
 			| { name: string; image: any }[];
 		switch (type) {
 			default:
-				list = WeaponTypes;
+				list = weaponTypeInfo;
 				break;
 			case 'Weapon':
-				list = WeaponTypes;
+				list = weaponTypeInfo;
 				break;
 			case 'Armor':
 				list = ArmorTypes;
@@ -1074,14 +800,225 @@
 
 		result.sort((a, b) => a.text.localeCompare(b.text));
 
-		thumbnailGeneratorImageIdFromList = result[0].id;
+		//TODO
+		//thumbnailGeneratorImageIdFromList = result[0].id;
 
 		return result;
 	}
 
+	async function downloadGeneratedThumbnailImage() {
+		let node = document.getElementById('generated-thumbnail-dom');
+
+		if (!node) {
+			return;
+		}
+
+		await domToPng(node, { quality: 1 }).then((dataUrl) => {
+			const link = document.createElement('a');
+			link.download = `${slugify('generated-thumbnail')}-${new Date().toISOString()}.png`;
+			link.href = dataUrl;
+			link.click();
+		});
+	}
+
+	async function loadThumbnailTemplate() {
+		if (thumbnailGeneratorTemplateFiles.length > 0) {
+			loadingTemplateStatus = 'uploading';
+			const file = thumbnailGeneratorTemplateFiles[0]; // Assuming one file is uploaded at a time
+			const reader = new FileReader();
+			reader.onload = function (event) {
+				try {
+					const jsonData = JSON.parse(event.target.result);
+					thumbnailImages = [...[]];
+					thumbnailTexts = [...[]];
+					setTimeout(() => {
+						thumbnailImages = [...jsonData.thumbnailImages];
+						thumbnailTexts = [...jsonData.thumbnailTexts];
+						loadingTemplateStatus = 'complete';
+					}, 1000);
+				} catch (error) {
+					console.error('Error parsing JSON:', error);
+					loadingTemplateStatus = 'uploading';
+				}
+			};
+			reader.onerror = function (error) {
+				console.error('Error reading file:', error);
+				loadingTemplateStatus = 'uploading';
+			};
+			reader.readAsText(file); // Read the file as text
+			loadingTemplateStatus = 'uploading';
+		} else {
+			loadingTemplateStatus = 'uploading';
+		}
+	}
+
+	async function createThumbnailGeneratorSmallPreview() {
+		let node = document.getElementById('generated-thumbnail-dom');
+
+		if (!node) {
+			return;
+		}
+
+		thumbnailGeneratorSmallPreviewStatus = 'loading';
+
+		await domToPng(node, {
+			quality: 1,
+		}).then((dataUrl) => {
+			thumbnailGeneratorSmallPreview = dataUrl;
+		});
+
+		thumbnailGeneratorSmallPreviewStatus = 'loaded';
+	}
+
+	const carbonThemeStore = getContext(
+		Symbol.for('carbonTheme'),
+	) as Writable<CarbonTheme>;
+
+	const allFrontierColors = getAllFrontierColors();
+
+	let thumbnailElementsOrderReversed = false;
+
+	let modalOpen = false;
+	let modalHeading = '';
+	let modalLabel = '';
+
+	let thumbnailGeneratorSmallPreview = '';
+	let thumbnailGeneratorSmallPreviewStatus: 'unloaded' | 'loading' | 'loaded' =
+		'unloaded';
+	let thumbnailGeneratorSmallPreviewSize = '512';
+
+	let thumbnailImages: HTMLImgAttributes[] = [];
+	let thumbnailUploadedImages: HTMLImgAttributes[] = [];
+	let thumbnailTexts: HTMLParagraphElement[] = [];
+
+	let thumbnailGeneratorImageFormat: 'Vector' | 'Raster' = 'Vector';
+	let thumbnailGeneratorImageType: FrontierImageType = 'Monster Icon';
+	let thumbnailGeneratorImageIdFromList = 'Abiorugu';
+	let thumbnailGeneratorImageColor = allFrontierColors[0].id;
+	let thumbnailGeneratorImageBackground = false;
+	let thumbnailGeneratorMonsterRenderSize: 'Small' | 'Full' = 'Full';
+	let thumbnailGeneratorBackgroundGradientStartColor =
+		getHexStringFromCatppuccinColor('mantle', $carbonThemeStore);
+	let thumbnailGeneratorBackgroundGradientEndColor =
+		getHexStringFromCatppuccinColor('crust', $carbonThemeStore);
+	let thumbnailGeneratorBackgroundGradientRotation = 45;
+	let thumbnailGeneratorBackgroundGradientLinear = false;
+	let thumbnailGeneratorImageShadowColor = '#000000';
+	let thumbnailGeneratorImageShadowWidth = 4;
+	let thumbnailGeneratorImageBorderWidth = 0;
+	let thumbnailGeneratorImageBorderColor = '#000000';
+	let thumbnailGeneratorImageBorderRadius = 5;
+
+	let thumbnailGeneratorBorderWidth = 12;
+	let thumbnailGeneratorBorderStyle = 'outset';
+	let thumbnailGeneratorBorderColor = getHexStringFromCatppuccinColor(
+		'red',
+		$carbonThemeStore,
+	);
+	let thumbnailGeneratorBorder = false;
+
+	let thumbnailGeneratorImageFiles: ReadonlyArray<File> = [];
+	let thumbnailGeneratorTemplateFiles: ReadonlyArray<File> = [];
+
+	let thumbnailGeneratorText = '5 Musous No Hit SW+CS';
+	let thumbnailGeneratorTextFontSize = 48;
+	let thumbnailGeneratorTextColor = '#000000';
+	let thumbnailGeneratorTextRotation = 0;
+	let thumbnailGeneratorTextShadowColor = '#ff0000';
+	let thumbnailGeneratorTextShadowWidth = 1;
+	let thumbnailGeneratorTextFontFamily = 'Arial';
+	let thumbnailGeneratorTextFontStyle = 'italic';
+	let thumbnailGeneratorTextFontWeight = 'bold';
+	let thumbnailGeneratorTextDecoration = 'underline';
+	let thumbnailGeneratorTextDecorationColor = '#ff0000';
+
+	let thumbnailGeneratorSectionOption: 'Text' | 'Image' | 'Custom Image' =
+		'Image';
+
+	let thumbnailGeneratorUploadedImageShadowWidth = 4;
+	let thumbnailGeneratorUploadedImageShadowColor = '#000000';
+	let thumbnailGeneratorUploadedImageBorderWidth = 4;
+	let thumbnailGeneratorUploadedImageBorderColor = '#000000';
+	let thumbnailGeneratorUploadedImageBorderRadius = 5;
+
+	let thumbnailGeneratorTemplateExampleImages =
+		getThumbnailGeneratorTemplateExampleImages();
+	let thumbnailGeneratorTemplateExampleTexts =
+		getThumbnailGeneratorTemplateExampleTexts();
+
+	let thumbnailContainer: HTMLDivElement;
+	let thumbnailContainerCursorPosition = { x: 0, y: 0 };
+
+	let moveableTarget;
+
+	let loadingTemplateStatus: 'uploading' | 'edit' | 'complete' | undefined =
+		'uploading';
+
+	let uniqueMonsters = getUniqueMonsters().sort(
+		(a, b) =>
+			(a?.displayName?.codePointAt(0) ?? 0) -
+			(b?.displayName?.codePointAt(0) ?? 0),
+	);
+
+	thumbnailImages = [
+		...thumbnailImages,
+		...thumbnailGeneratorTemplateExampleImages,
+	];
+
+	thumbnailTexts = [
+		...thumbnailTexts,
+		...thumbnailGeneratorTemplateExampleTexts,
+	];
+
+	onMount(() => {
+		thumbnailContainer.addEventListener('dragover', (e) => {
+			e.preventDefault(); // Necessary to allow dropping
+		});
+
+		thumbnailContainer.addEventListener('mousemove', (e) => {
+			const rect = thumbnailContainer.getBoundingClientRect();
+			thumbnailContainerCursorPosition.x = Math.round(e.clientX - rect.left);
+			thumbnailContainerCursorPosition.y = Math.round(e.clientY - rect.top);
+		});
+
+		thumbnailContainer.addEventListener('drop', (e) => {
+			e.preventDefault(); // Prevents default behavior
+			const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+			const element = document.getElementById(data.id);
+			if (element) {
+				// Calculate the correct position based on the cursor's position relative to the container
+				// and the initial offset of the dragged element
+				const rect = thumbnailContainer.getBoundingClientRect();
+				const newTop = Math.round(e.clientY - rect.top - data.offsetY);
+				const newLeft = Math.round(e.clientX - rect.left - data.offsetX);
+
+				// Update the element's position
+				element.style.top = `${newTop}px`;
+				element.style.left = `${newLeft}px`;
+
+				// Update the position in your data model here
+				// For example, if you're tracking the position in a Svelte store or a local variable, update it here
+				if (data.id.startsWith('image')) {
+					thumbnailImages[data.index].top = newTop;
+					thumbnailImages[data.index].left = newLeft;
+				} else if (data.id.startsWith('upload')) {
+					thumbnailUploadedImages[data.index].top = newTop;
+					thumbnailUploadedImages[data.index].left = newLeft;
+				} else if (data.id.startsWith('text')) {
+					thumbnailTexts[data.index].top = newTop;
+					thumbnailTexts[data.index].left = newLeft;
+				}
+			}
+		});
+	});
+
 	$: thumbnailGeneratorImagesFromType = getThumbnailGeneratorImagesFromType(
 		thumbnailGeneratorImageType,
 	);
+
+	$: addUploadedImage(thumbnailGeneratorImageFiles);
+
+	$: thumbnailGeneratorPreviewStyle = `background: ${thumbnailGeneratorBackgroundGradientLinear ? 'linear' : 'radial'}-gradient(${thumbnailGeneratorBackgroundGradientLinear ? `${thumbnailGeneratorBackgroundGradientRotation}deg` : 'circle'}, ${thumbnailGeneratorBackgroundGradientStartColor} 0%, ${thumbnailGeneratorBackgroundGradientEndColor} 100%); border: ${thumbnailGeneratorBorder ? thumbnailGeneratorBorderWidth : '0'}px ${thumbnailGeneratorBorderStyle} ${thumbnailGeneratorBorderColor};`;
 </script>
 
 <Modal
@@ -1099,7 +1036,7 @@
 	</div>
 </Modal>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Thumbnail Generator'} />
 		<InlineNotification
@@ -1109,9 +1046,16 @@
 			title="Background:"
 			subtitle="The ZIndex of the background should be 0."
 		/>
+		<InlineNotification
+			lowContrast
+			hideCloseButton
+			kind="info"
+			title="Bugs:"
+			subtitle="You may have to click an image option twice for it to apply."
+		/>
 		<p class="spaced-paragraph">
-			Here you can download the thumbnail generated below, with the resulting
-			size being 1280x720 pixels, perfect for things such as
+			Download the thumbnail generated below, with the resulting size being
+			1280x720 pixels, perfect for things such as
 			<span
 				><Button
 					on:click={() => changeModal('', 'YouTube')}
@@ -2004,7 +1948,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {
@@ -2016,6 +1960,14 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	.container-item-buttons {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+		flex-direction: row;
+		align-items: center;
 	}
 
 	.container-buttons {

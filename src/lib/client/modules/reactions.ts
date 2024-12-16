@@ -1,161 +1,153 @@
-import type { ReactionType } from 'svelte-reactions';
 import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+import type { Component } from 'svelte';
 
-export const availableReactions: ReactionType[] = [
+export interface ReactionOption {
+	id: ReactionType;
+	reaction: string | Component;
+}
+
+export interface Reaction {
+	id: ReactionType;
+	quantity: number;
+	clicked: boolean;
+	users: string[];
+}
+
+export type ReactionType =
+	| 'like'
+	| 'heart'
+	| 'fire'
+	| 'tada'
+	| 'star'
+	| 'mindblown'
+	| 'sunglasses'
+	| 'party'
+	| 'skull'
+	| '100'
+	| 'clap'
+	| 'eyes'
+	| 'gs'
+	| 'ds'
+	| 'sns'
+	| 'ls'
+	| 'saf'
+	| 'hammer'
+	| 'tonfa'
+	| 'gl'
+	| 'lance'
+	| 'bow'
+	| 'hbg'
+	| 'lbg'
+	| 'ms'
+	| 'hh';
+
+export function getReaction(reaction: ReactionType) {
+	return availableReactions.find((e) => reaction === e.id)?.reaction;
+}
+
+export const availableReactions: ReactionOption[] = [
 	{
 		id: 'like',
 		reaction: '👍',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'heart',
 		reaction: '❤️',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'fire',
 		reaction: '🔥',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'tada',
 		reaction: '🎉',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'star',
 		reaction: '⭐',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'mindblown',
 		reaction: '🤯',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'sunglasses',
 		reaction: '😎',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'party',
 		reaction: '🥳',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'skull',
 		reaction: '💀',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: '100',
 		reaction: '💯',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'clap',
 		reaction: '👏',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'eyes',
 		reaction: '👀',
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'gs',
 		reaction: getWeaponIcon('Great Sword'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'ls',
 		reaction: getWeaponIcon('Long Sword'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'ds',
 		reaction: getWeaponIcon('Dual Swords'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'sns',
 		reaction: getWeaponIcon('Sword and Shield'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'lance',
 		reaction: getWeaponIcon('Lance'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'gl',
 		reaction: getWeaponIcon('Gunlance'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'hammer',
 		reaction: getWeaponIcon('Hammer'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'hh',
 		reaction: getWeaponIcon('Hunting Horn'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'tonfa',
 		reaction: getWeaponIcon('Tonfa'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'saf',
 		reaction: getWeaponIcon('Switch Axe F'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'ms',
 		reaction: getWeaponIcon('Magnet Spike'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'lbg',
 		reaction: getWeaponIcon('Light Bowgun'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'hbg',
 		reaction: getWeaponIcon('Heavy Bowgun'),
-		quantity: 0,
-		clicked: false,
 	},
 	{
 		id: 'bow',
 		reaction: getWeaponIcon('Bow'),
-		quantity: 0,
-		clicked: false,
 	},
 ];

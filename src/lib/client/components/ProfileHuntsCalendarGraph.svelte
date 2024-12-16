@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { onMount, type ComponentType } from 'svelte';
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
+	import { onMount, type Component } from 'svelte';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
@@ -14,8 +13,9 @@
 		type RadarChartOptions,
 	} from '@carbon/charts-svelte';
 	import type { OverlayHuntRank } from '../modules/frontier/types';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
-	let chart: ComponentType<RadarChart>;
+	let chart: Component<RadarChart> = $state();
 
 	// Type definition
 	type Hunt = {
@@ -23,27 +23,6 @@
 		rankName: OverlayHuntRank;
 		objectiveName: string;
 	};
-
-	export let theme: CarbonTheme;
-
-	$: chartOptions = {
-		title: 'Quests overview',
-		radar: {
-			axes: {
-				angle: 'type',
-				value: 'count',
-			},
-			alignment: 'center',
-		},
-		data: {
-			groupMapsTo: 'user',
-		},
-		legend: {
-			alignment: 'center',
-		},
-		theme: theme,
-		resizable: true,
-	} as RadarChartOptions;
 
 	// Original data
 	const hunts: Hunt[] = [
@@ -504,18 +483,18 @@
 		return Array.from(monthsSet);
 	}
 
-	let weeks = [];
-	let selectedYear = years[0];
-	let selectedUser = 'None';
-	let huntCount = 0;
-	let chartData: { user: string; type: string; count: number }[];
+	let weeks = $state([]);
+	let selectedYear = $state(years[0]);
+	let selectedUser = $state('None');
+	let huntCount = $state(0);
+	let chartData: { user: string; type: string; count: number }[] = $state();
 
 	function updateWeeks(year: number) {
 		weeks = organizeByWeeks(hunts, year);
 		huntCount = countHuntsForYear(hunts, year);
 	}
 
-	let chartLoaded = false;
+	let chartLoaded = $state(false);
 
 	onMount(async () => {
 		try {
@@ -529,8 +508,35 @@
 		}
 	});
 
-	export let totalHuntsRank = Math.trunc(Math.random() * 1000);
-	export let totalHuntsRankPercent = Math.trunc(Math.random() * 100);
+	interface Props {
+		theme: CarbonTheme;
+		totalHuntsRank?: any;
+		totalHuntsRankPercent?: any;
+	}
+
+	let {
+		theme = $bindable(),
+		totalHuntsRank = Math.trunc(Math.random() * 1000),
+		totalHuntsRankPercent = Math.trunc(Math.random() * 100),
+	}: Props = $props();
+	let chartOptions = $derived({
+		title: 'Quests overview',
+		radar: {
+			axes: {
+				angle: 'type',
+				value: 'count',
+			},
+			alignment: 'center',
+		},
+		data: {
+			groupMapsTo: 'user',
+		},
+		legend: {
+			alignment: 'center',
+		},
+		theme: theme,
+		resizable: true,
+	} as RadarChartOptions);
 </script>
 
 <div class="container">
@@ -544,6 +550,7 @@
 			<Loading withOverlay={false} />
 		</div>
 	{:else}
+		{@const SvelteComponent = chart}
 		<div class="calendar-container">
 			<p>
 				<strong>Total quests completed: </strong>
@@ -655,11 +662,7 @@
 				</div>
 				<div class="overview-graph-container">
 					<div class="overview-graph">
-						<svelte:component
-							this={chart}
-							data={chartData}
-							options={chartOptions}
-						/>
+						<SvelteComponent data={chartData} options={chartOptions} />
 					</div>
 					<div class="comparison">
 						<p>Compare with user:</p>

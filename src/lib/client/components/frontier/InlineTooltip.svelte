@@ -34,8 +34,7 @@ Shows text next to an icon inline. You can use either a component or a image imp
 		on:mouseenter={(e) => (open = true)}
 		on:mouseleave={(e) => (open = false)}
 		role="tooltip"
-	>
-		<Popover bind:open caret align={'top'}>
+		><Popover bind:open caret align={'top'}>
 			<div class="popover-content">
 				{tooltip}
 			</div></Popover

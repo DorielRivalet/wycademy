@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
@@ -26,18 +26,18 @@
 	import { getTag } from '$lib/client/modules/frontier/tags';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 
-	let recipesTablePageSize = 7;
-	let recipesTablePage = 1;
-	let recipesTableFilteredRowIds: string[] = [];
+	let recipesTablePageSize = $state(7);
+	let recipesTablePage = $state(1);
+	let recipesTableFilteredRowIds: string[] = $state([]);
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Guild Hall'} />
 		<section>
 			<SectionHeading level={2} title="Guild Food" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Guild cooking is available at guild rank 15 in the <InlineTooltip
 						text="Guild Hall"
 						tooltip="Location"
@@ -45,7 +45,7 @@
 						iconType="file"
 					/> and is a mini-game for up to four people. Cooking can activate effects
 					independent of armor skills.
-				</p>
+				</div>
 				<p>
 					The skill effect from cooking lasts for 90 minutes. If a new skill is
 					obtained, it overwrites the previous effect.
@@ -67,51 +67,50 @@
 					figcaption="Up to 6 dishes can be stored as leftovers for 1 hour at the cat in the cooking area."
 				/>
 
-				<p class="spaced-paragraph"></p>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph"></div>
+				<div class="spaced-paragraph">
 					Yellow ingredients are "base ingredients" and pink ingredients are
 					"auxiliary." These allow you to create dishes via the menu. Selecting
 					any other option results in a Guild's Yaminabe.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Successfully cooking Guild Food grants a skill with three levels of
 					each skill available, and a potential failure option that applies a
 					debuff instead of a buff.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					During the minigame, press confirm to keep the icon on a meter within
 					the blue or green bars. Blue produces the best results, and green
 					produces good ones. Cat stamps appear in the top right to indicate
 					your performance until the cooking time expires.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					By repeatedly pressing confirm, the cursor moves to the right.
 					Hovering over the green "Success Area" or blue "Great Success Area"
 					accumulates a stamp below the food meter. Green stamps indicate
 					success, and blue stamps indicate great success. More participants
 					increase the chance of a great success.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Upon completion, the food is sent to the Kitchen Cat, who manages
 					cooked food. You will be informed of the buff it grants or asked to
 					replace an existing meal if there are no available spots.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Cooked food is available to all guild members after being posted with
 					the Kitchen Cat for one hour. The buffs last one hour and thirty
 					minutes, giving a maximum of two hours and thirty minutes of skill
 					duration per cooking session.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					For food with random results, you can keep eating it at the Cat until
 					you get the desired skill. The skills available depend on the success
 					level, with +20 to elemental resistances in the normal success pool.
-				</p>
+				</div>
 
 				<div>
 					{#await import('$lib/player/Player.svelte') then { default: Player }}
-						<svelte:component
-							this={Player}
+						<Player
 							{...{
 								title: 'Guild Cooking',
 								src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/guild-food.webm',
@@ -120,7 +119,7 @@
 					{/await}
 				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Many ingredients can be used for cooking, obtained from the Guild
 					Store or the Adventure Boat. The Guild Store requires payment with
 					either standard Zeny or <InlineTooltip
@@ -135,16 +134,16 @@
 						icon={LocationIcons.find((e) => e.name === 'Interception')?.icon}
 						iconType="file"
 					/> Event.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					By claiming rewards from <InlineTooltip
 						text="Diva Defense"
 						tooltip="Event"
 						icon={LocationIcons.find((e) => e.name === 'Interception')?.icon}
 						iconType="file"
 					/>, you will obtain some materials for the Adventure Boat.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					You can send a Felyne to a specific location using the Adventure Boat,
 					which is the only way to obtain some items for Guild Special Cooking
 					recipes, such as those for the Caring Recipes (prevents hitting other
@@ -156,14 +155,14 @@
 						icon={getItemIcon('Ticket')}
 						iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 					/> through the NPC on land after the boat departs.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					After the boat returns, claim rewards in front of it. Results vary
 					from plain boxes and debris to shining treasures, depending on mission
 					success. The boat is out for 6 hours, and all guild members can
 					contribute and claim rewards.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					There are different cooking modes: normal mode, which doesn't cost any
 					<InlineTooltip
 						text="Guild Tickets"
@@ -176,8 +175,8 @@
 						icon={getItemIcon('Ticket')}
 						iconColor={ItemColors.find((e) => e.name === 'Green')?.value}
 					/> options that alter the results and minigame functions.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Recipes exist for each status you might want, with four result states
 					from cooking: Great Failure, Failure, Success, and Great Success.
 					These are indicated by the number of stamps collected during the
@@ -186,12 +185,12 @@
 					monsters, use the Resistance recipes; 55 resistance is required to
 					avoid extreme blights, and you can get +83 elemental resistance from a
 					combination of SR Skills and Guild Cooking.
-				</p>
-				<p class="spaced-paragraph">
+				</div>
+				<div class="spaced-paragraph">
 					Unless you are confident in consistently achieving Great Success, use
 					recipes with red ingredients and the Success Level Up cooking option
 					to upgrade success into Great Success.
-				</p>
+				</div>
 
 				<div>
 					<DataTable
@@ -290,7 +289,7 @@
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.key === 'tickets'}
 								<InlineTooltip
 									text={cell.value}
@@ -301,7 +300,7 @@
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</div>
@@ -309,12 +308,12 @@
 			<section>
 				<SectionHeading level={3} title="Recipes" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The locations to purchase guild food ingredients can vary by private
 						server. The possible locations can be: General Store, Grocery Store,
 						Road Shop, Guild Shop, Adventure Cat, Adventure Cat (Grand Voyage
 						Destinations) and Interception Rewards.
-					</p>
+					</div>
 					<div class="table table-with-pagination">
 						<DataTable
 							id="recipes-dom"
@@ -395,10 +394,10 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'base' || cell.key === 'auxiliary1' || cell.key === 'auxiliary2' || cell.key === 'auxiliary3'}
 									{#if cell.value === '[]'}
-										<p>-</p>
+										<div>-</div>
 									{:else}
 										<div class="ingredients">
 											{#each JSON.parse(cell.value) as ingredient}
@@ -418,7 +417,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 						<Pagination
 							pageSizes={[7, 32]}
@@ -433,7 +432,7 @@
 		<section>
 			<SectionHeading level={2} title="Guild Poogie" />
 			<div>
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					Guild Poogies, found in the <InlineTooltip
 						text="Guild Hall"
 						tooltip="Location"
@@ -449,7 +448,7 @@
 						iconColor={ItemColors.find((e) => e.name === 'Yellow')?.value}
 						icon={getItemIcon('Scale')}
 					/> from the Guild Shop.
-				</p>
+				</div>
 
 				<CenteredFigure
 					width={'100%'}
@@ -459,13 +458,13 @@
 					figcaption="Poogie after succesful skill activation."
 				/>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					You can only have one buff active at a time. You only need to feed
 					once per log in. You can check your current skill in the last page of
 					your equipment menu.
-				</p>
+				</div>
 
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					All poogie buffs stack with any similar skills. For example, you can
 					use the Luck effect poogie even if you have <InlineTooltip
 						text="Great Luck"
@@ -481,9 +480,12 @@
 					/> with the poogie active. The poogie only affects the top 24 Main Reward
 					slots and does not change any of the other types of rewards (Sub Objectives,
 					Additional, Breaks, Partner, etc.).
-				</p>
+				</div>
 
-				<p>Only the guild leader can purchase and change clothes.</p>
+				<p>
+					<strong>Only the guild leader can purchase and change clothes.</strong
+					>
+				</p>
 			</div>
 			<section>
 				<SectionHeading level={3} title="Guild Store Discount" />
@@ -495,17 +497,25 @@
 					</p>
 
 					<UnorderedList class="spaced-list">
-						<ListItem>5 times successful: Guild shop 5% discount.</ListItem>
-						<ListItem>10 times successful: Guild shop 10% discount.</ListItem>
-						<ListItem>15 times successful: Guild shop 15% discount.</ListItem>
+						<ListItem
+							><p>5 times successful: Guild shop 5% discount.</p></ListItem
+						>
+						<ListItem
+							><p>10 times successful: Guild shop 10% discount.</p></ListItem
+						>
+						<ListItem
+							><p>15 times successful: Guild shop 15% discount.</p></ListItem
+						>
 					</UnorderedList>
 
 					<p>The effect disappears in any of the following events:</p>
 					<UnorderedList class="spaced-list">
-						<ListItem>12 hours have passed.</ListItem>
-						<ListItem>Logout.</ListItem>
+						<ListItem><p>12 hours have passed.</p></ListItem>
+						<ListItem><p>Logout.</p></ListItem>
 						<ListItem
-							>Petting poogie for a long time and it getting angry.</ListItem
+							><p>
+								Petting poogie for a long time and it getting angry.
+							</p></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -513,11 +523,11 @@
 			<section>
 				<SectionHeading level={3} title="Guild Poogie Skills" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Guild Poogie Skills are unlocked at Guild Rank 6. Giving food and
 						triggering the alert "seems to love it!" will activate a skill
 						according to the Poogie's clothes with a probability.
-					</p>
+					</div>
 
 					<div class="table">
 						<DataTable
@@ -770,13 +780,13 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'image'}
 									<img src={cell.value} alt="Guild poogie" />
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -784,9 +794,9 @@
 			<section>
 				<SectionHeading level={3} title="Guild Poogie Clothing Materials" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Clothing materials are RARE2 and can be put in the guild box.
-					</p>
+					</div>
 					<div>
 						<DataTable
 							useStaticWidth
@@ -919,9 +929,9 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								<p>{cell.value}</p>
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -931,7 +941,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

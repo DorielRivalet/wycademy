@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
@@ -12,14 +12,14 @@
 	import ToolbarSearch from 'carbon-components-svelte/src/DataTable/ToolbarSearch.svelte';
 	import { page } from '$app/stores';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 
-	let originsTablePageSize = 5;
-	let originsTablePage = 1;
-	let originsTableFilteredRowIds: string[] = [];
+	let originsTablePageSize = $state(5);
+	let originsTablePage = $state(1);
+	let originsTableFilteredRowIds: string[] = $state([]);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Origin'} />
 		<div>
@@ -313,12 +313,14 @@
 							>
 						</div>
 					</Toolbar>
-					<span slot="title">
-						<div class="data-table-title">
-							<div>Recommended Origin Weapons</div>
-						</div>
-					</span>
-					<svelte:fragment slot="cell" let:cell>
+					{#snippet title()}
+						<span>
+							<div class="data-table-title">
+								<div>Recommended Origin Weapons</div>
+							</div>
+						</span>
+					{/snippet}
+					{#snippet cell({ cell })}
 						{#if cell.key === 'monster'}
 							<InlineTooltip
 								icon={monsterInfo.find((e) => e.name === cell.value)?.icon ??
@@ -329,7 +331,7 @@
 							/>
 						{:else if cell.key === 'weapon'}
 							<InlineTooltip
-								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon ??
+								icon={weaponTypeInfo.find((e) => e.name === cell.value)?.icon ??
 									''}
 								tooltip={cell.value}
 								text={cell.value}
@@ -337,7 +339,7 @@
 						{:else}
 							<p>{cell.value}</p>
 						{/if}
-					</svelte:fragment>
+					{/snippet}
 				</DataTable>
 				<Pagination
 					pageSizes={[5, 10, 20]}
@@ -351,7 +353,7 @@
 				<PageTurn pageUrlPathName={$page.url.pathname} />
 			</div>
 		</div>
-	</div></HunterNotesPage
+	</div></TableOfContentsPage
 >
 
 <style lang="scss">

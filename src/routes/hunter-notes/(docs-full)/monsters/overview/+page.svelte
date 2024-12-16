@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -34,6 +34,7 @@
 		FrontierElement,
 		FrontierGeneration,
 		FrontierMonsterClass,
+		FrontierMonsterInfo,
 	} from '$lib/client/modules/frontier/types';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { getElementIcon } from '$lib/client/modules/frontier/elements';
@@ -45,6 +46,7 @@
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
+	import PairsGame from './PairsGame.svelte';
 
 	const monsterIconSize = '256px';
 
@@ -59,18 +61,18 @@
 			(b?.displayName?.codePointAt(0) ?? 0),
 	);
 
-	let currentMonsters = uniqueMonsters;
+	let currentMonsters = $state(uniqueMonsters);
 
-	let orderAscending = true;
-	let searchTerm = '';
-	let selectedSizes = ['Large', 'Small']; // Default value for "Size" dropdown
-	let selectedClasses: FrontierMonsterClass[] = [];
+	let orderAscending = $state(true);
+	let searchTerm = $state('');
+	let selectedSizes = $state(['Large', 'Small']); // Default value for "Size" dropdown
+	let selectedClasses: FrontierMonsterClass[] = $state([]);
 	// TODO
 	//let selectedType = 'All';
-	let selectedElements: FrontierElement[] = [];
-	let selectedAilments: FrontierAilment[] = [];
-	let selectedGenerations: FrontierGeneration[] = [];
-	let selectedHabitats: FrontierHabitat[] = [];
+	let selectedElements: FrontierElement[] = $state([]);
+	let selectedAilments: FrontierAilment[] = $state([]);
+	let selectedGenerations: FrontierGeneration[] = $state([]);
+	let selectedHabitats: FrontierHabitat[] = $state([]);
 
 	const allClasses: FrontierMonsterClass[] = [
 		'Lynian',
@@ -202,7 +204,7 @@
 		selectedAilments: FrontierAilment[],
 		selectedElements: FrontierElement[],
 		orderAscending: boolean,
-	) {
+	): FrontierMonsterInfo[] {
 		let filteredMonsters = uniqueMonsters.filter((monster) => {
 			// Only apply name filter if there's a search term
 			const nameMatch =
@@ -266,7 +268,7 @@
 			filteredMonsters.reverse();
 		}
 
-		currentMonsters = filteredMonsters;
+		return filteredMonsters;
 	}
 
 	function findMonsterInfo(name: string) {
@@ -275,22 +277,24 @@
 		);
 	}
 
-	// Reactive statement to filter and sort monsters based on searchTerm, orderAscending, and dropdown selections
-	$: filterSearchResults(
-		searchTerm,
-		selectedSizes,
-		selectedClasses,
-		selectedHabitats,
-		selectedGenerations,
-		selectedAilments,
-		selectedElements,
-		orderAscending,
-	);
+	//Reactive effect to filter and sort monsters based on searchTerm, orderAscending, and dropdown selections
+	$effect(() => {
+		currentMonsters = filterSearchResults(
+			searchTerm,
+			selectedSizes,
+			selectedClasses,
+			selectedHabitats,
+			selectedGenerations,
+			selectedAilments,
+			selectedElements,
+			orderAscending,
+		);
+	});
 
-	let contextSwitcherIndex = 0;
+	let contextSwitcherIndex = $state(0);
 </script>
 
-<!-- <Head
+<!-- <Head TODO test
 	title={customTitle}
 	{description}
 	image={pageThumbnail}
@@ -355,16 +359,18 @@
 					bind:selectedIds={selectedClasses}
 				/>
 				<!-- <Dropdown
-						titleText="Type"
-						selectedId="0"
-						type="inline"
-						items={[
-							{ id: '0', text: 'All' },
-							{ id: '1', text: 'Hardcore' },
-							{ id: '2', text: 'Unlimited' },
-							{ id: '3', text: 'Musou' },
-						]}
-					/> -->
+					titleText="Type"
+					selectedId="0"
+					type="inline"
+					items={[
+						{ id: '0', text: 'All' },
+						{ id: '1', text: 'Hardcore' },
+						{ id: '2', text: 'Unlimited' },
+						{ id: '3', text: 'Musou' },
+					]}
+				/>
+				TODO add missing single elements to each monster that has a combo element
+				-->
 				<MultiSelect
 					spellcheck="false"
 					placeholder="Select elements..."
@@ -378,13 +384,14 @@
 						};
 					})}
 					bind:selectedIds={selectedElements}
-					let:item
 				>
-					<InlineTooltip
-						tooltip="Element"
-						text={item.id}
-						icon={getElementIcon(item.id)}
-					/>
+					{#snippet children({ item })}
+						<InlineTooltip
+							tooltip="Element"
+							text={item.id}
+							icon={getElementIcon(item.id)}
+						/>
+					{/snippet}
 				</MultiSelect>
 				<MultiSelect
 					spellcheck="false"
@@ -399,13 +406,14 @@
 						};
 					})}
 					bind:selectedIds={selectedAilments}
-					let:item
 				>
-					<InlineTooltip
-						tooltip="Ailment"
-						text={item.id}
-						icon={getAilmentIcon(item.id)}
-					/>
+					{#snippet children({ item })}
+						<InlineTooltip
+							tooltip="Ailment"
+							text={item.id}
+							icon={getAilmentIcon(item.id)}
+						/>
+					{/snippet}
 				</MultiSelect>
 				<MultiSelect
 					spellcheck="false"
@@ -420,15 +428,17 @@
 						};
 					})}
 					bind:selectedIds={selectedHabitats}
-					let:item
 				>
-					<InlineTooltip
-						tooltip="Habitat"
-						text={item.id}
-						icon={getHabitatIcon(item.id)}
-						iconType="file"
-					/>
+					{#snippet children({ item })}
+						<InlineTooltip
+							tooltip="Habitat"
+							text={item.id}
+							icon={getHabitatIcon(item.id)}
+							iconType="file"
+						/>
+					{/snippet}
 				</MultiSelect>
+
 				<MultiSelect
 					type="inline"
 					label="Select generations..."
@@ -448,9 +458,12 @@
 				labelText="Order"
 				bind:toggled={orderAscending}
 			/>
-			<p>Results: {currentMonsters.length}</p>
+			<div>Results: {currentMonsters.length}</div>
 		</div>
-		{#if contextSwitcherIndex === 0}
+
+		{#if searchTerm.toLowerCase() === 'pairs'}
+			<PairsGame />
+		{:else if contextSwitcherIndex === 0}
 			{#if currentMonsters.length > 0}
 				<div class="monster-list">
 					{#each currentMonsters as monster}
@@ -578,7 +591,7 @@
 							>
 						</div>
 					</Toolbar>
-					<svelte:fragment slot="cell" let:cell>
+					{#snippet cell({ cell })}
 						{#if cell.key === 'name'}
 							<Link
 								href={`/hunter-notes/monsters/overview/${slugify(findMonsterInfo(cell.value)?.displayName ?? '', { lower: true })}`}
@@ -591,7 +604,7 @@
 								/></Link
 							>
 						{:else if cell.key === 'titles'}
-							<p>{cell.value.replaceAll(',', ', ')}</p>
+							<div>{cell.value.replaceAll(',', ', ')}</div>
 						{:else if cell.key === 'ailments'}
 							{#each [...cell.value.split(',')] as ailment}
 								<div class="table-inline-tooltip">
@@ -659,7 +672,7 @@
 						{:else}
 							<p>{cell.value}</p>
 						{/if}
-					</svelte:fragment>
+					{/snippet}
 				</DataTable>
 			</div>
 		{:else}

@@ -3,32 +3,52 @@
 	import ImageDialog from './ImageDialog.svelte';
 	import '/node_modules/flag-icons/css/flag-icons.min.css';
 	import { generateRandomUsername } from '../modules/username-generator';
-	import { WeaponTypes } from '../modules/frontier/weapons';
+	import { weaponTypeInfo } from '../modules/frontier/weapons';
 	import { countries, type TCountryCode } from 'countries-list';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import LogoX from 'carbon-icons-svelte/lib/LogoX.svelte';
+	import type { Component } from 'svelte';
+	import { browser } from '$app/environment';
+
+	interface Props {
+		name?: any;
+		medal?: string;
+		title?: any;
+		discordName?: string;
+		twitterName?: string;
+		imageSource?: any;
+		countryCode?: TCountryCode;
+		badge1Icon?: Component;
+		badge2Icon?: Component;
+		badge3Icon?: Component;
+		badge1Rank?: any;
+		badge2Rank?: any;
+		badge3Rank?: any;
+	}
 
 	function randomChoice(arr: any[]) {
 		return arr[Math.floor(arr.length * Math.random())];
 	}
 
-	export let name =
-		generateRandomUsername() + `#${Math.trunc(Math.random() * 1000)}`;
-	export let medal = '🥇';
-	export let title = randomChoice(WeaponTypes).hiden;
-	export let discordName = 'discordname123';
-	export let twitterName = 'randomTwitterName123';
-	export let imageSource = Transcend;
-	export let countryCode: TCountryCode = randomChoice(Object.keys(countries));
+	let {
+		name = generateRandomUsername() + `#${Math.trunc(Math.random() * 1000)}`,
+		medal = '🥇',
+		title = randomChoice(weaponTypeInfo).hiden,
+		discordName = 'discordname123',
+		twitterName = 'randomTwitterName123',
+		imageSource = Transcend,
+		countryCode = randomChoice(Object.keys(countries)),
+		badge1Icon = randomChoice(weaponTypeInfo).icon,
+		badge2Icon = randomChoice(weaponTypeInfo).icon,
+		badge3Icon = randomChoice(weaponTypeInfo).icon,
+		badge1Rank = Math.trunc(Math.random() * 99),
+		badge2Rank = Math.trunc(Math.random() * 99),
+		badge3Rank = Math.trunc(Math.random() * 99),
+	}: Props = $props();
+
 	const countryName = countries[countryCode].name;
-	export let badge1Icon = randomChoice(WeaponTypes).icon;
-	export let badge2Icon = randomChoice(WeaponTypes).icon;
-	export let badge3Icon = randomChoice(WeaponTypes).icon;
-	export let badge1Rank = Math.trunc(Math.random() * 99);
-	export let badge2Rank = Math.trunc(Math.random() * 99);
-	export let badge3Rank = Math.trunc(Math.random() * 99);
 </script>
 
 <div class="container">
@@ -36,40 +56,52 @@
 		<div class="profile-picture">
 			<ImageDialog type="file" src={imageSource} alt="Avatar" />
 		</div>
-		<div class="badges">
-			<div class="badge-container">
-				<div class="badge">
-					<svelte:component this={badge1Icon} />
+		{#if browser}
+			<div class="badges">
+				<div class="badge-container">
+					<div class="badge">
+						{#if badge1Icon}
+							{@const SvelteComponent = badge1Icon}
+							<SvelteComponent />
+						{/if}
+					</div>
+					<a href="/leaderboard">#{badge1Rank}</a>
 				</div>
-				<a href="/">#{badge1Rank}</a>
-			</div>
-			<div class="badge-container">
-				<div class="badge">
-					<svelte:component this={badge2Icon} />
+				<div class="badge-container">
+					<div class="badge">
+						{#if badge2Icon}
+							{@const SvelteComponent = badge2Icon}
+							<SvelteComponent />
+						{/if}
+					</div>
+					<a href="/leaderboard">#{badge2Rank}</a>
 				</div>
-				<a href="/">#{badge2Rank}</a>
-			</div>
-			<div class="badge-container">
-				<div class="badge">
-					<svelte:component this={badge3Icon} />
+				<div class="badge-container">
+					<div class="badge">
+						{#if badge3Icon}
+							{@const SvelteComponent = badge3Icon}
+							<SvelteComponent />
+						{/if}
+					</div>
+					<a href="/leaderboard">#{badge3Rank}</a>
 				</div>
-				<a href="/">#{badge3Rank}</a>
 			</div>
-		</div>
+		{/if}
 	</div>
+
 	<h1 class="username">{name} {medal}</h1>
 	<h2 class="title">{title}</h2>
 	<div class="country">
-		<a href="/">
+		<a href="/leaderboard">
 			<span class="fi fi-{countryCode.toLowerCase()}"></span>
 			<span>{countryName}</span>
 		</a>
 	</div>
 	<div class="socials">
-		<div>
+		<div class="paragraph-long-02">
 			<OutboundLink href="https://x.com/{twitterName}"><LogoX /></OutboundLink>
 		</div>
-		<div>
+		<div class="paragraph-long-02">
 			<Tooltip triggerText="" icon={LogoDiscord}>{discordName}</Tooltip>
 		</div>
 	</div>

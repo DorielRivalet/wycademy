@@ -3,11 +3,21 @@
 	import Card3D from '$lib/client/components/Card3D.svelte';
 	import { formatDateWithRelativeTime } from '$lib/client/modules/time';
 
-	export let imageSource: string;
-	export let date: string;
-	export let title: string;
-	export let summary: string;
-	export let href: string;
+	interface Props {
+		imageSource: string;
+		date: string;
+		title: string;
+		summary: string;
+		href: string;
+	}
+
+	let {
+		imageSource,
+		date,
+		title,
+		summary,
+		href
+	}: Props = $props();
 </script>
 
 <Card3D>

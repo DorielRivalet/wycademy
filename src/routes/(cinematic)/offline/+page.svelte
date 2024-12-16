@@ -1,5 +1,5 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
@@ -19,7 +19,6 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Head from '$lib/client/components/Head.svelte';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import ToastySound from './assets/sound/toasty.mp3';
 	import GameOverSound from './assets/sound/mixkit-arcade-retro-game-over-213.wav';
 	import FireballSound from './assets/sound/flame.ogg';
@@ -46,6 +45,8 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
+	import { formatDate } from '$lib/client/modules/time';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -267,6 +268,17 @@
 		default: 'You died. 💀',
 	};
 
+	const EASTER_EGG_SCORE = 10_000;
+
+	const EASTER_EGG = [
+		'A Hunting Horn user has joined your lament.',
+		'He seems to be looking for a new challenge?',
+		'Maybe this snake game is not all that there is!',
+		'He left you a note:',
+		'0 0 0 0 0 0 0 0',
+		'1 1 1 1 1 1 1 1',
+	];
+
 	const startingCells = 3;
 	const poisonedMinimumCells = 3;
 	/** per fireball hit. Also ring of fire. */
@@ -316,10 +328,10 @@
 	/**If hitting 10 black hunters in a row with fireball, refill meter. */
 	let toastyCount = 0;
 	let canSpawnHunters = true;
-	let drewRingOfFire = false;
+	let drewRingOfFire = $state(false);
 	let drewParalysis = false;
 
-	let speedColor = COLORS.white;
+	let speedColor = $state(COLORS.white);
 
 	function createImage(url: string) {
 		let img = browser ? new Image() : { src: '' };
@@ -766,7 +778,7 @@
 		},
 	};
 
-	let soundEnabled = true;
+	let soundEnabled = $state(true);
 	let gameState: GameState = 'start';
 
 	let canvas;
@@ -796,7 +808,7 @@
 	const grid = 32;
 
 	let loopCount = 0;
-	let score = 0;
+	let score = $state(0);
 	let borderColor = COLORS.border;
 
 	const SNAKE_ACTIONS = {
@@ -823,7 +835,7 @@
 	};
 
 	// TODO class
-	let snake = {
+	let snake = $state({
 		x: 160,
 		y: 160,
 
@@ -849,7 +861,7 @@
 		canUseUltimate: false,
 		energy: 10,
 		maxEnergy: 10,
-	};
+	});
 
 	let hunters: Hunter[] = [
 		{
@@ -902,7 +914,7 @@
 
 	// Variables to keep track of the timer
 	let startTime = 0;
-	let elapsedTime = 0;
+	let elapsedTime = $state(0);
 	let timerInterval: string | number | NodeJS.Timeout | undefined;
 
 	const gridSize = 25;
@@ -1378,7 +1390,6 @@
 		snake.canBurnBlueBorder = false;
 		snake.canUseUltimate = false;
 		snake.maxEnergy = snakeStartingEnergy;
-		score = 0;
 		turns = 0;
 		toastyCount = 0;
 
@@ -1413,6 +1424,14 @@
 		} else {
 			sendMessageToConsole(deathMessage);
 		}
+
+		if (score >= EASTER_EGG_SCORE) {
+			EASTER_EGG.forEach((element) => {
+				sendMessageToConsole(element);
+			});
+		}
+
+		score = 0;
 
 		gameState = 'end';
 		gameStateText = 'Restart';
@@ -2206,26 +2225,6 @@
 		}
 	}
 
-	function padTo2Digits(num: number) {
-		return num.toString().padStart(2, '0');
-	}
-
-	function formatDate(date: Date) {
-		return (
-			[
-				date.getFullYear(),
-				padTo2Digits(date.getMonth() + 1), // +1 because getMonth() is zero-based
-				padTo2Digits(date.getDate()),
-			].join('-') +
-			'-' +
-			[
-				padTo2Digits(date.getHours()),
-				padTo2Digits(date.getMinutes()),
-				padTo2Digits(date.getSeconds()),
-			].join('-')
-		);
-	}
-
 	function checkForMovementInput(key: string) {
 		// Prevent reversing the direction immediately
 		// Update the snake's direction
@@ -2338,25 +2337,32 @@
 	}
 
 	const url = $page.url.toString();
-	let modalOpen = false;
-	let gameStateText = 'Play';
+	let modalOpen = $state(false);
+	let gameStateText = $state('Play');
 
 	function changeModal(cell) {
 		modalOpen = true;
 	}
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
-	$: formattedElapsedTime = formatTime(elapsedTime);
-	$: scoreText = `Score: ${score}`;
-	$: eatenText = `${snake.eaten}🍖`;
-	$: roastedText = !drewRingOfFire
-		? `${snake.roasted}🔥`
-		: `${snake.roasted}🔥🔥🔥`;
-	$: zappedText = `${snake.zapped}⚡`;
-	$: toastyText = `${snake.toasty}🍞`;
-	$: speedText = `Speed: ${snake.speed}m/s`;
-	$: snakeLengthText = `${snake.cells.length}/${maxSnakeLength}🐍`;
-	$: speedColorClass = speedColor === COLORS.red ? 'red' : 'text';
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
+	let formattedElapsedTime = $derived(formatTime(elapsedTime));
+	let scoreText = $derived(`Score: ${score}`);
+	let eatenText = $derived(`${snake.eaten}🍖`);
+	let roastedText = $derived(
+		!drewRingOfFire ? `${snake.roasted}🔥` : `${snake.roasted}🔥🔥🔥`,
+	);
+	let zappedText = $derived(`${snake.zapped}⚡`);
+	let toastyText = $derived(`${snake.toasty}🍞`);
+	let speedText = $derived(`Speed: ${snake.speed}m/s`);
+	let snakeLengthText = $derived(`${snake.cells.length}/${maxSnakeLength}🐍`);
+
+	// $effect(() => {
+	// 	snakeLengthText = `${snake.cells.length}/${maxSnakeLength}🐍`;
+	// });
+
+	let speedColorClass = $derived(speedColor === COLORS.red ? 'red' : 'text');
 </script>
 
 <Head
@@ -2402,7 +2408,7 @@
 		<i>Tip: Make a toast out of those hunters!</i>
 	</div>
 </Modal>
-<svelte:window on:keydown={on_key_down} on:keyup={on_key_up} />
+<svelte:window onkeydown={on_key_down} onkeyup={on_key_up} />
 <div class={modalBlurClass}>
 	<SectionHeadingTopLevel title="Solitude Island Depths" />
 	<div class="top">
@@ -2715,7 +2721,11 @@
 				rgba(0, 0, 0, 0.1) 66%,
 				transparent 66%
 			),
-			-webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)),
+			-webkit-linear-gradient(
+					top,
+					rgba(255, 255, 255, 0.25),
+					rgba(0, 0, 0, 0.25)
+				),
 			-webkit-linear-gradient(left, #f38ba8, #f9e2af);
 
 		border-radius: 2px;

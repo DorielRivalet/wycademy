@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -36,7 +38,7 @@
 	import type { FrontierHuntingHornNote } from '$lib/client/modules/frontier/types';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import HuntingHornRainbowNoteIcon from '$lib/client/components/frontier/icon/HuntingHornRainbowNoteIcon.svelte';
-	import SimonGame from '$lib/client/components/SimonGame.svelte';
+	import SimonGame from './SimonGame.svelte';
 
 	function handleToggle(index: number, enabled: boolean) {
 		huntingHornSelectedNotes[index].enabled = enabled;
@@ -237,7 +239,7 @@
 	let huntingHornSelectedNotes: {
 		color: FrontierHuntingHornNote;
 		enabled: boolean;
-	}[] = [
+	}[] = $state([
 		{ color: 'White', enabled: true },
 		{ color: 'Blue', enabled: true },
 		{ color: 'Cyan', enabled: true },
@@ -246,22 +248,22 @@
 		{ color: 'Yellow', enabled: false },
 		{ color: 'Purple', enabled: false },
 		{ color: 'Pink', enabled: true },
-	];
+	]);
 
-	let filteringStrategy: 'atLeastOne' | 'onlySelected' = 'onlySelected';
+	let filteringStrategy: 'atLeastOne' | 'onlySelected' = $state('onlySelected');
 
 	/**For simon game start/restart*/
-	let rainbowNoteState: boolean = false;
+	let rainbowNoteState: boolean = $state(false);
 	/**Player notes*/
-	let currentSequence: FrontierHuntingHornNote[] = [];
+	let currentSequence: FrontierHuntingHornNote[] = $state([]);
 	/**Requires notes to advance, grows if succeded in each sequence required.*/
-	let targetSequence: FrontierHuntingHornNote[] = [];
+	let targetSequence: FrontierHuntingHornNote[] = $state([]);
 	/**For making the start button show*/
-	let didReleaseAllNotes = false;
+	let didReleaseAllNotes = $state(false);
 	/**Fpr making the start button show*/
-	let didPressAllNotes = false;
+	let didPressAllNotes = $state(false);
 	/**Game score*/
-	let simonScore = 0;
+	let simonScore = $state(0);
 
 	/**List of available notes to play*/
 	let simonNotes: FrontierHuntingHornNote[] = [
@@ -297,23 +299,26 @@
 		return notes.every((e) => e.enabled === true);
 	}
 
-	$: huntingHornAvailableSongs = getHuntingHornAvailableSongs(
-		huntingHornSelectedNotes,
-		filteringStrategy,
+	let huntingHornAvailableSongs = $derived(
+		getHuntingHornAvailableSongs(huntingHornSelectedNotes, filteringStrategy),
 	);
 
-	$: didReleaseAllNotes = checkIfReleasedAllNotes(huntingHornSelectedNotes);
-	$: didPressAllNotes = checkIfPressedAllNotes(
-		didReleaseAllNotes,
-		huntingHornSelectedNotes,
-	);
+	run(() => {
+		didReleaseAllNotes = checkIfReleasedAllNotes(huntingHornSelectedNotes);
+	});
+	run(() => {
+		didPressAllNotes = checkIfPressedAllNotes(
+			didReleaseAllNotes,
+			huntingHornSelectedNotes,
+		);
+	});
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Hunting Horn'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Frontier's <InlineTooltip
 					text="Hunting Horn"
 					tooltip="Weapon"
@@ -321,15 +326,15 @@
 					icon={getWeaponIcon('Hunting Horn')}
 				/> (HH) is based on the classic MHFU moveset. While it can be challenging
 				to use effectively as an offensive weapon, it truly shines in a support role.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				However, a support role does not mean standing on a ledge playing songs.
 				You should manage your song uptime carefully, learn song durations, and
 				use the time between performances to attack. High-level players can even
 				use performances as attacks during windows of opportunity.
-			</p>
+			</div>
 
-			<p>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -338,13 +343,13 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Songs" />
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					There are a total of {huntingHornSongs.length} songs available.
-				</p>
+				</div>
 				<div class="dropdown">
 					<Dropdown
 						titleText="Filtering Strategy"
@@ -443,7 +448,7 @@
 								>
 							</div>
 						</Toolbar>
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.key === 'notes'}
 								<span class="hh-notes">
 									{#each cell.value.split(',') as note}
@@ -454,10 +459,10 @@
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
-				<p>The durations are in seconds.</p>
+				<div class="paragraph-long-02">The durations are in seconds.</div>
 
 				<div class="table table-with-scrollbar">
 					<DataTable
@@ -485,7 +490,7 @@
 								>
 							</div>
 						</Toolbar>
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.key === 'notes'}
 								<span class="hh-notes">
 									<HuntingHornNoteIcon
@@ -516,7 +521,7 @@
 								</span>
 							{:else}
 								<p>{cell.value}</p>{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -524,7 +529,7 @@
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Earth Style</strong> is the standard <InlineTooltip
 							text="Hunting Horn"
 							tooltip="Weapon"
@@ -537,14 +542,14 @@
 							icon={getWeaponIcon('Hunting Horn')}
 						/> and allows you to perform a sonic bomb effect by pressing the Kick
 						button.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Heaven Style</strong> replaces the ground pound with an
 						upthrust attack. This upthrust is one of the best and most reliable
 						DPS options for the
@@ -557,14 +562,14 @@
 						you can repeat the input to infinitely spam the second part (the actual
 						upthrust), which is very effective when used correctly. The new attack
 						has a motion value of 60(24)･30(24)×n･38(30).
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Storm Style</strong> retains the new upthrust attack and
 						replaces the ability to use a Sonic Bomb with a new light pink note.
 						This note adds several new songs, including ones that boost
@@ -597,18 +602,18 @@
 						<strong>Attack Up Large</strong>,
 						<strong>Paralysis Immunity</strong>, and
 						<strong>Elemental Attack Up</strong>.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> combines features from all previous styles
 						and adds extra mobility and a new debuff mechanic.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						In <strong>Extreme Style</strong>, you can run with your <InlineTooltip
 							text="Hunting Horn"
 							tooltip="Weapon"
@@ -616,8 +621,8 @@
 							icon={getWeaponIcon('Hunting Horn')}
 						/> unsheathed, which can be comboed into a double swing attack with a
 						40x2 motion value.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Additionally, <strong>Extreme Style</strong> introduces a Sonic Bomb
 						that can inflict various debuffs on monsters. To unlock this, you
 						need to attack monsters until the <InlineTooltip
@@ -641,15 +646,15 @@
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/> to all players within a radius.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The available debuffs include increasing physical hitzones by +2,
 						increasing elemental hitzones by +4, and preventing monsters from
 						fleeing. These are significant buffs, especially for team play, so
 						it's important to maintain them as much as possible. This encourages
 						a more aggressive playstyle rather than simply staying on the
 						sidelines.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -661,7 +666,9 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>x2 Song duration. Synergizes well with Flute Expert.</p>
+					<div class="paragraph-long-02">
+						x2 Song duration. Synergizes well with Flute Expert.
+					</div>
 				</div>
 			</section>
 
@@ -695,13 +702,13 @@
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -739,7 +746,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -750,7 +757,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -788,7 +795,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -804,7 +811,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -813,9 +820,9 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The <InlineTooltip
 									tooltip="Weapon"
 									text="Hunting Horn"
@@ -824,10 +831,10 @@
 								/> uses a modified version of recital mode from Monster Hunter 2.
 								The main difference is that notes are retained until you perform
 								an encore, play a debuff melody, or sheathe your weapon.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Always equip <InlineTooltip
 									tooltip="Armor Skill"
 									text="Encourage+2"
@@ -850,10 +857,10 @@
 									icon={getItemIcon('Jewel')}
 									iconColor={getItemColor('Red')}
 								/> provides party-wide stamina benefits if you have it.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Every <InlineTooltip
 									tooltip="Weapon"
 									text="Hunting Horn"
@@ -861,10 +868,10 @@
 									icon={getWeaponIcon('Hunting Horn')}
 								/> in the game has <strong>Attack Up Large</strong>, thanks to
 								Storm style's pink notes.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Chaining attacks into recitals plays the notes faster than
 								usual. If you start a melody with <InlineTooltip
 									tooltip="Hunting Horn Note"
@@ -873,10 +880,10 @@
 									icon={HuntingHornNoteIcon}
 									iconColor="Purple"
 								/>, Hilt Stab > Recital is the quickest way to begin your song.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Hunting Horn"
@@ -889,10 +896,10 @@
 									icon={getLocationIcon('Transcend')}
 								/>
 								burst attack.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<InlineTooltip
 									tooltip="Weapon"
 									text="Hunting Horn"
@@ -905,10 +912,10 @@
 									icon={getMonsterIcon('Raviente')}
 								/>
 								as part of a combat team, especially regarding animation lock.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								If using <InlineTooltip
 									tooltip="Hunting Horn Note"
 									text="Cyan"
@@ -937,17 +944,17 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Opting for a healing-focused playstyle with items isn't
 								recommended, as you'll already be juggling buffs and damage on a
 								relatively slow weapon. It’s not worth the effort.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The sonic bomb and debuff song motions can reliably apply the
 								effects of the <InlineTooltip
 									tooltip="Armor Skill"
@@ -960,10 +967,10 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> skills to other hunters.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The benefits of <InlineTooltip
 									tooltip="Zenith Skill"
 									text="Soul Up"
@@ -992,17 +999,17 @@
 									iconType="component"
 									icon={getItemIcon('Jewel')}
 								/> for extra buffs.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								This weapon type is very useful in <InlineTooltip
 									tooltip="Location"
 									text="Hunter's Road"
 									icon={getLocationIcon('Road')}
 									iconType="file"
 								/> teams due to the songs effects.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -1013,7 +1020,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

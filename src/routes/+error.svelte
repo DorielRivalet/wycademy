@@ -6,7 +6,7 @@
 	import Footer from './Footer.svelte';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
+	import { catppuccinThemeMap } from '$lib/catppuccin';
 	import { onMount } from 'svelte';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -31,11 +31,12 @@
 		Symbol.for('banner'),
 	) as Writable<boolean>;
 
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	$: bgClass =
+	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
+	let bgClass = $derived(
 		$carbonThemeStore === 'g10'
 			? `background-light bg-support`
-			: `background bg-support`;
+			: `background bg-support`,
+	);
 	const errorTitles = [
 		'The Gargwa took the quest and ran away with it! 🐔',
 		"We've encountered a tiny pawblem! 👀",
@@ -60,7 +61,7 @@
 		});
 	});
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
+	let headerClass = $state($stickyHeaderStore ? 'header sticky' : 'header');
 </script>
 
 <LocalStorage bind:value={$bannerEnabledStore} key="__banner-enabled" />
@@ -85,12 +86,12 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
+				{#snippet actions()}
 					<NotificationActionButton
 						on:click={() => goto('/support/website/development')}
 						>Learn more</NotificationActionButton
 					>
-				</svelte:fragment>
+				{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
@@ -122,7 +123,7 @@
 						{$page.error.message}
 					</span>
 				{/if}
-				<div>Want to play as Raviente?</div>
+				<p>Want to play as Raviente?</p>
 				<Link href="/offline">Try this game!</Link>
 			</div>
 		</main>

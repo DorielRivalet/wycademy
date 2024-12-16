@@ -9,10 +9,10 @@
 
 <div class="top-level-section">
 	<SectionHeadingTopLevel title={'Generators'} />
-	<p class="spaced-paragraph">
+	<div class="spaced-paragraph">
 		{toolsInfo.find((e) => e.category.name === 'Generator')?.category
 			.description}
-	</p>
+	</div>
 	<div class="container-tiles">
 		{#if pages}
 			{#each pages as page}

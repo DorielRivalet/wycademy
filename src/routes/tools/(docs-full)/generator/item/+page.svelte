@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
@@ -121,31 +121,47 @@
 	const invalidWeaponRarityText = `Value must be between ${minimumRarity} and ${maximumRarity}.`;
 	const invalidArmorSkillPointsText = `Value must be between ${minimumArmorSkillPoints} and ${maximumArmorSkillPoints}.`;
 
-	let itemName = defaultItemComponentValues.itemName;
-	let itemDescription = defaultItemComponentValues.itemDescription;
-	let itemRarity: FrontierRarity = defaultItemComponentValues.itemRarity;
-	let itemRank: FrontierItemRankType = defaultItemComponentValues.itemRank;
-	let itemIconName = defaultItemComponentValues.itemIconName;
-	let itemColorName: FrontierItemColor =
-		defaultItemComponentValues.itemColorName;
-	let itemType: FrontierItemType = defaultItemComponentValues.itemType;
-	let itemZenithSkill: FrontierZenithSkill =
-		defaultItemComponentValues.itemZenithSkill;
-	let itemCuffSkill1: FrontierArmorSkillTree =
-		defaultItemComponentValues.itemCuffSkill1;
-	let itemCuffSkill1Points = defaultItemComponentValues.itemCuffSkill1Points;
-	let itemCuffSkill2: FrontierArmorSkillTree =
-		defaultItemComponentValues.itemCuffSkill2;
-	let itemCuffSkill2Points = defaultItemComponentValues.itemCuffSkill2Points;
-	let itemTowerSkill: FrontierArmorSkillName =
-		defaultItemComponentValues.itemTowerSkill;
-	let itemArmorClass: FrontierArmorClass =
-		defaultItemComponentValues.itemArmorClass;
-	let itemWeaponClass: FrontierWeaponClass =
-		defaultItemComponentValues.itemWeaponClass;
-	let itemSlotsRequired: FrontierSlot =
-		defaultItemComponentValues.itemSlotsRequired;
-	let itemSigil: FrontierItemSigil = {
+	let itemName = $state(defaultItemComponentValues.itemName);
+	let itemDescription = $state(defaultItemComponentValues.itemDescription);
+	let itemRarity: FrontierRarity = $state(
+		defaultItemComponentValues.itemRarity,
+	);
+	let itemRank: FrontierItemRankType = $state(
+		defaultItemComponentValues.itemRank,
+	);
+	let itemIconName = $state(defaultItemComponentValues.itemIconName);
+	let itemColorName: FrontierItemColor = $state(
+		defaultItemComponentValues.itemColorName,
+	);
+	let itemType: FrontierItemType = $state(defaultItemComponentValues.itemType);
+	let itemZenithSkill: FrontierZenithSkill = $state(
+		defaultItemComponentValues.itemZenithSkill,
+	);
+	let itemCuffSkill1: FrontierArmorSkillTree = $state(
+		defaultItemComponentValues.itemCuffSkill1,
+	);
+	let itemCuffSkill1Points = $state(
+		defaultItemComponentValues.itemCuffSkill1Points,
+	);
+	let itemCuffSkill2: FrontierArmorSkillTree = $state(
+		defaultItemComponentValues.itemCuffSkill2,
+	);
+	let itemCuffSkill2Points = $state(
+		defaultItemComponentValues.itemCuffSkill2Points,
+	);
+	let itemTowerSkill: FrontierArmorSkillName = $state(
+		defaultItemComponentValues.itemTowerSkill,
+	);
+	let itemArmorClass: FrontierArmorClass = $state(
+		defaultItemComponentValues.itemArmorClass,
+	);
+	let itemWeaponClass: FrontierWeaponClass = $state(
+		defaultItemComponentValues.itemWeaponClass,
+	);
+	let itemSlotsRequired: FrontierSlot = $state(
+		defaultItemComponentValues.itemSlotsRequired,
+	);
+	let itemSigil: FrontierItemSigil = $state({
 		slot1: {
 			name: 'Attack Slayer',
 			value: 8,
@@ -162,9 +178,9 @@
 			name: 'Affinity Slayer',
 			value: -43,
 		},
-	};
+	});
 
-	let itemDecoration: FrontierItemDecoration = {
+	let itemDecoration: FrontierItemDecoration = $state({
 		slot1: {
 			name: 'Determination',
 			value: 7,
@@ -181,7 +197,7 @@
 			name: 'Sharpness',
 			value: 2,
 		},
-	};
+	});
 
 	function resetItemsValues() {
 		itemName = defaultItemComponentValues.itemName;
@@ -240,16 +256,16 @@
 		};
 	}
 
-	let currentItemPage = 1;
+	let currentItemPage = $state(1);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Item Generator'} />
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			This is a playground for items, which can be useful for creating custom
 			items and demonstrate translations.
-		</p>
+		</div>
 
 		<div class="container-item-buttons">
 			<Button kind="tertiary" icon={Download} on:click={downloadItemsImage}
@@ -580,7 +596,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

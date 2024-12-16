@@ -3,10 +3,14 @@
 	import CaravanGem from './CaravanGem.svelte';
 	import { ItemColors } from '$lib/client/modules/frontier/items';
 
-	export let colors = [...new Set(ItemColors.map((item) => item.value))];
-	export let delay = 2000;
+	interface Props {
+		colors?: any;
+		delay?: number;
+	}
 
-	let randomColor = '#ffffff';
+	let { colors = [...new Set(ItemColors.map((item) => item.value))], delay = 2000 }: Props = $props();
+
+	let randomColor = $state('#ffffff');
 
 	function getRandomItem(arr: any[]) {
 		return arr[Math.floor(Math.random() * arr.length)];

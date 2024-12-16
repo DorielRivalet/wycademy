@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
@@ -60,19 +60,19 @@
 		},
 	];
 
-	let openAccordions = false;
+	let openAccordions = $state(false);
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div>
 		<SectionHeadingTopLevel title={'Prayer Fountain'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<strong>The Diva</strong> can be found in a side area of the main town, on
 				the steps leading to the square. Completing her questline rewards you with
 				various materials to craft exclusive Diva equipment, which is exceptionally
 				powerful.
-			</p>
+			</div>
 			<CenteredFigure
 				width={'100%'}
 				type="file"
@@ -80,10 +80,10 @@
 				alt="Prayer Fountain"
 				figcaption="Prayer Fountain."
 			/>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				After fully completing the Third Chapter of the Diva Quests, you unlock
 				the ability to give gifts to the Diva and request her to perform a song.
-			</p>
+			</div>
 			<CenteredFigure
 				width={'100%'}
 				type="file"
@@ -91,7 +91,7 @@
 				alt="Prayer Fountain cat"
 				figcaption="Prayer Fountain cat."
 			/>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Gifting items to the Diva increases her hidden Affection value. The
 				higher this value, the stronger the buffs provided by the Diva Song. To
 				have her perform, you need a <InlineTooltip
@@ -101,20 +101,28 @@
 					icon={getItemIcon('Ball')}
 					iconColor={getItemColor('Blue')}
 				/>, which grants buffs for about 1.5 hours.
-			</p>
-			<p class="spaced-paragraph">The song provides the following buffs:</p>
+			</div>
+			<div class="spaced-paragraph">The song provides the following buffs:</div>
 			<UnorderedList class="spaced-list">
 				<ListItem
-					><p>Extra Souls during the Hunter Festival (up to +2)</p></ListItem
+					><div class="paragraph-long-02">
+						Extra Souls during the Hunter Festival (up to +2)
+					</div></ListItem
 				>
-				<ListItem><p>Increased GRP and GSRP (up to 1.25x)</p></ListItem>
-				<ListItem><p>Divine Protection</p></ListItem>
+				<ListItem
+					><div class="paragraph-long-02">
+						Increased GRP and GSRP (up to 1.25x)
+					</div></ListItem
+				>
+				<ListItem
+					><div class="paragraph-long-02">Divine Protection</div></ListItem
+				>
 			</UnorderedList>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The buffs start off relatively weak, so it’s highly recommended to
 				maximize the Diva's Affection to get the best benefits.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Maximizing the buff is straightforward: the maximum Affection value is
 				999, and the strongest buff is unlocked at 990. The easiest way to
 				increase Affection is by purchasing <InlineTooltip
@@ -132,8 +140,8 @@
 					iconColor={getItemColor('Orange')}
 				/> from the Hunter Guide Challenge, which should also be gifted to maximize
 				Affection.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Completing each chapter of the Diva Quests grants 10 Affection points.
 				Therefore, the minimum number of cakes needed is 87 (accounting for the
 				three required chapters and five free <InlineTooltip
@@ -144,12 +152,12 @@
 					iconColor={getItemColor('Orange')}
 				/>). This number decreases by 1 for each additional completed chapter,
 				with a minimum of 75 cakes if all chapters are finished.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				You don’t need to repeatedly gift items; the 87 cakes are a one-time
 				requirement.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Activating the buff costs 1 <InlineTooltip
 					text="Diva Song Gem"
 					tooltip="Item"
@@ -159,7 +167,7 @@
 				/> to have the Diva perform. These gems can be purchased with GCP or Tower
 				Medals. Additionally, performances (and the buffs they provide) are free
 				if you are on the VIP course.
-			</p>
+			</div>
 			<CenteredFigure
 				width={'100%'}
 				type="file"
@@ -167,10 +175,10 @@
 				alt="Diva Song"
 				figcaption="Diva Song."
 			/>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				The overlay gives you an achievement if you obtain the maximum possible
 				Affection points.
-			</p>
+			</div>
 			<div class="table">
 				<DataTable
 					id="diva-items-dom"
@@ -201,7 +209,7 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
+					{#snippet cell({ cell })}
 						{#if cell.key === 'item'}
 							<InlineTooltip
 								text={cell.value}
@@ -219,34 +227,34 @@
 						{:else}
 							<p>{cell.value}</p>
 						{/if}
-					</svelte:fragment>
+					{/snippet}
 				</DataTable>
 			</div>
 
-			<section>
+			<section class="diva-questline">
 				<SectionHeading level={2} title="Diva Questline" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Note that unless a rank is specified, the monsters can be of any
 						rank.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Your Partner needs to reach PR81 to proceed with these quests. To
 						level them up, complete the special quests for PRP and use the HRP
 						tickets obtained from your progress. You can give these tickets to
 						your Partner by selecting the final option, followed by the first
 						option, at either the smith or your house.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						If you're unable to advance, try speaking to the NPC who originally
 						assigned you the task (like the cats). Additionally, if you're stuck
 						after defeating a monster, check the quest text for monster names as
 						you might be on an earlier step than expected.
-					</p>
+					</div>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>You unlock Diva Songs at Chapter 3 completion.</strong>
-					</p>
+					</div>
 					<Button
 						kind="ghost"
 						size="field"
@@ -262,7 +270,7 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Deliver 1 <InlineTooltip
 													text="Thin Jack Mackerel"
 													tooltip="Item"
@@ -270,10 +278,10 @@
 													iconType="component"
 													iconColor={getItemColor('Blue')}
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Deliver 1 <InlineTooltip
 													text="Lazurite Jewel"
 													tooltip="Item"
@@ -281,105 +289,105 @@
 													iconType="component"
 													iconColor={getItemColor('Blue')}
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="White Monoblos"
 													tooltip="Monster"
 													icon={getMonsterIcon('White Monoblos')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Talk to the Guild Master</p></ListItem>
+										<ListItem><div>Talk to the Guild Master</div></ListItem>
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Yama Tsukami"
 													tooltip="Monster"
 													icon={getMonsterIcon('Yama Tsukami')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Talk to the Legendary Rasta Edward (Lance User)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Talk to the Guild Master</p></ListItem>
+										<ListItem><div>Talk to the Guild Master</div></ListItem>
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Chameleos"
 													tooltip="Monster"
 													icon={getMonsterIcon('Chameleos')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>Talk to the Legendary Rasta Edward</p></ListItem
+											><div>Talk to the Legendary Rasta Edward</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 5">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Talk to the Guild Master</p></ListItem>
+										<ListItem><div>Talk to the Guild Master</div></ListItem>
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Yama Tsukami"
 													tooltip="Monster"
 													icon={getMonsterIcon('Yama Tsukami')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva Armor Materials</p></ListItem>
+								<ListItem><div>Diva Armor Materials</div></ListItem>
 								<ListItem
-									><p>
+									><div>
 										Items to deliver in Chapter 2 (Hunter Challenge Reward)
-									</p></ListItem
+									</div></ListItem
 								>
 							</UnorderedList>
 						</div>
@@ -392,7 +400,7 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Deliver 30 <InlineTooltip
 													text="Kelbi Horns"
 													tooltip="Item"
@@ -400,10 +408,10 @@
 													iconType="component"
 													iconColor={getItemColor('Blue')}
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Deliver 20 <InlineTooltip
 													text="Chaos Shrooms"
 													tooltip="Item"
@@ -411,10 +419,10 @@
 													iconType="component"
 													iconColor={getItemColor('Purple')}
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Deliver 5 <InlineTooltip
 													text="Kirin Azure Horns"
 													tooltip="Item"
@@ -422,29 +430,29 @@
 													iconType="component"
 													iconColor={getItemColor('Blue')}
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Items delivered above are returned to you
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 3 <InlineTooltip
 													text="Cephadromes"
 													tooltip="Monster"
 													icon={getMonsterIcon('Cephadrome')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Deliver 10 <InlineTooltip
 													text="Dragon Seeds"
 													tooltip="Item"
@@ -452,190 +460,196 @@
 													iconType="component"
 													iconColor={getItemColor('Red')}
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Hunt 2 <InlineTooltip
 													text="Lao-Shan Lungs"
 													tooltip="Monster"
 													icon={getMonsterIcon('Lao-Shan Lung')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Talk to the Legendary Rastas Edward and Frau (DS user)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Talk to the Legendary Rasta Frau</p></ListItem>
 										<ListItem
-											><p>
+											><div>Talk to the Legendary Rasta Frau</div></ListItem
+										>
+										<ListItem
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Baruragaru"
 													tooltip="Monster"
 													icon={getMonsterIcon('Baruragaru')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
-										<ListItem><p>Talk to the Legendary Rasta Frau</p></ListItem>
 										<ListItem
-											><p>
+											><div>Talk to the Legendary Rasta Frau</div></ListItem
+										>
+										<ListItem
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva HC Armor Materials</p></ListItem>
+								<ListItem><div>Diva HC Armor Materials</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
 
 					<section>
 						<SectionHeading level={3} title="Chapter 3" />
-						<p class="spaced-paragraph">
+						<div class="spaced-paragraph">
 							<strong>This is where you unlock Diva Songs.</strong>
-						</p>
+						</div>
 						<div>
 							<Accordion class="spaced-accordion">
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Teostra"
 													tooltip="Monster"
 													icon={getMonsterIcon('Teostra')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
-										<ListItem><p>Talk to the Legendary Rasta Frau</p></ListItem>
+										<ListItem
+											><div>Talk to the Legendary Rasta Frau</div></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Go to the <InlineTooltip
 													text="Blacksmith"
 													tooltip="Location"
 													icon={getLocationIcon('Blacksmith')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Hunt 3 <InlineTooltip
 													text="Rukodioras"
 													tooltip="Monster"
 													icon={getMonsterIcon('Rukodiora')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Anorupatisu"
 													tooltip="Monster"
 													icon={getMonsterIcon('Anorupatisu')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Rebidiora"
 													tooltip="Monster"
 													icon={getMonsterIcon('Rebidiora')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva G Rank Armor Materials</p></ListItem>
-								<ListItem><p>Diva Weapon Gem (1st Series)</p></ListItem>
+								<ListItem><div>Diva G Rank Armor Materials</div></ListItem>
+								<ListItem><div>Diva Weapon Gem (1st Series)</div></ListItem>
 								<ListItem
-									><p>
+									><div>
 										5 <InlineTooltip
 											text="Diva Song Gems"
 											tooltip="Item"
@@ -643,10 +657,10 @@
 											iconType="component"
 											iconColor={getItemColor('Blue')}
 										/> (Hunter Challenge Reward)
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div>
 										5 <InlineTooltip
 											text="Warm Honey Tea"
 											tooltip="Item"
@@ -654,10 +668,10 @@
 											iconType="component"
 											iconColor={getItemColor('Orange')}
 										/> (Give the Diva a gift then Hunter Challenge Reward)
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div>
 										Completion of this unlocks the Diva Song Buff. Give her <InlineTooltip
 											text="Warm Honey Tea"
 											tooltip="Item"
@@ -671,7 +685,7 @@
 											iconType="component"
 											iconColor={getItemColor('White')}
 										/> in order to max its effects.
-									</p></ListItem
+									</div></ListItem
 								>
 							</UnorderedList>
 						</div>
@@ -684,31 +698,31 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Berukyurosu"
 													tooltip="Monster"
 													icon={getMonsterIcon('Berukyurosu')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Doragyurosu"
 													tooltip="Monster"
 													icon={getMonsterIcon('Doragyurosu')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Deliver 1 <InlineTooltip
 													text="Saint Ore"
 													tooltip="Item"
@@ -716,69 +730,71 @@
 													iconType="component"
 													iconColor={getItemColor('White')}
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Hyujikiki"
 													tooltip="Monster"
 													icon={getMonsterIcon('Hyujikiki')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 <InlineTooltip
 													text="Giaorugu"
 													tooltip="Monster"
 													icon={getMonsterIcon('Giaorugu')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Speak to the Town Square Cats three times
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Hunt 2 <InlineTooltip
 													text="Gougarfs"
 													tooltip="Monster"
 													icon={getMonsterIcon('Ray Gougarf')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Talk to NPC in Blacksmith</p></ListItem>
-										<ListItem><p>Solo Hunt 1 Gurenzeburu</p></ListItem>
+										<ListItem><div>Talk to NPC in Blacksmith</div></ListItem>
+										<ListItem><div>Solo Hunt 1 Gurenzeburu</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 5">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Talk to Guild Master</p></ListItem>
-										<ListItem><p>Hunt 1 Pokaradon</p></ListItem>
-										<ListItem><p>Hunt 1 Midogaron</p></ListItem>
+										<ListItem><div>Talk to Guild Master</div></ListItem>
+										<ListItem><div>Hunt 1 Pokaradon</div></ListItem>
+										<ListItem><div>Hunt 1 Midogaron</div></ListItem>
 										<ListItem
-											><p>Talk to NPC next to Guild Hall entrance</p></ListItem
+											><div>
+												Talk to NPC next to Guild Hall entrance
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva HC Armor Materials</p></ListItem>
+								<ListItem><div>Diva HC Armor Materials</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -789,37 +805,37 @@
 							<Accordion class="spaced-accordion">
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Farunokku</p></ListItem>
+										<ListItem><div>Hunt 1 Farunokku</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 2 Baruragaru (Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/> between the two hunts)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Rebidiora</p></ListItem>
+										<ListItem><div>Hunt 1 Rebidiora</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Zerureusu</p></ListItem>
+										<ListItem><div>Hunt 1 Zerureusu</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva Weapon Gem (1st Series)</p></ListItem>
+								<ListItem><div>Diva Weapon Gem (1st Series)</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -830,87 +846,91 @@
 							<Accordion class="spaced-accordion">
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Akantor</p></ListItem>
+										<ListItem><div>Hunt 1 Akantor</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hire a partner if you don't have one, then talk to them
 												in your house
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Talk to partner in house, return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>.
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Note: Partner must be at least PR31 to proceed
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 G Rank Yian Kut-ku with partner present.
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Note: Partner must be at least PR51 to proceed
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>Hunt 1 Pokaradon with partner present.</p></ListItem
+											><div>
+												Hunt 1 Pokaradon with partner present.
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 5">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Note: Partner must be at least PR81 to proceed
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>Hunt 1 Midogaron with partner present.</p></ListItem
+											><div>
+												Hunt 1 Midogaron with partner present.
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Talk to partner in house and return to the Prayer
 												Fountain before leaving on quest.
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva Armor Materials</p></ListItem>
+								<ListItem><div>Diva Armor Materials</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -922,42 +942,42 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Talk to Blacksmith and return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
-										<ListItem><p>Hunt 1 Rebidiora</p></ListItem>
+										<ListItem><div>Hunt 1 Rebidiora</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 2 G Rank HC Gurenzeburu (Return to the Prayer
 												Fountain between the two hunts)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Taikun Zamuza</p></ListItem>
+										<ListItem><div>Hunt 1 Taikun Zamuza</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Meraginasu</p></ListItem>
+										<ListItem><div>Hunt 1 Meraginasu</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva Weapon Gem (1st Series)</p></ListItem>
+								<ListItem><div>Diva Weapon Gem (1st Series)</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -969,21 +989,21 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Speak to Blacksmith and return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Deliver 3 <InlineTooltip
 													text="Grease Stone"
 													tooltip="Item"
@@ -997,35 +1017,35 @@
 													iconType="component"
 													iconColor={getItemColor('Blue')}
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												You can mine the ores in the G Rank Flower Field or
 												simply buy them for 235 GCP total.
-											</p></ListItem
+											</div></ListItem
 										>
-										<ListItem><p>Hunt 1 Forokururu</p></ListItem>
+										<ListItem><div>Hunt 1 Forokururu</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												You need to craft the Prototype Tonfas at this point
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>Kill 3 Aptonoth in the preset quest</p></ListItem
+											><div>Kill 3 Aptonoth in the preset quest</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 Yian Kut-Ku (Does not need to be with Tonfas)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
@@ -1033,9 +1053,9 @@
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
 								<ListItem
-									><p>
+									><div>
 										Ores spent in part 2 (Hunter Challenge Reward)
-									</p></ListItem
+									</div></ListItem
 								>
 							</UnorderedList>
 						</div>
@@ -1048,7 +1068,7 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Deliver 1 <InlineTooltip
 													text="Teostra Miracle Wing"
 													tooltip="Item"
@@ -1056,29 +1076,29 @@
 													iconType="component"
 													iconColor={getItemColor('Red')}
 												/> (Supremacy Teo)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 2 G Rank Velocidrome</p></ListItem>
+										<ListItem><div>Hunt 2 G Rank Velocidrome</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Meraginasu</p></ListItem>
+										<ListItem><div>Hunt 1 Meraginasu</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Speak to Gin (Hammer Rasta)</p></ListItem>
+										<ListItem><div>Speak to Gin (Hammer Rasta)</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva G Rank Armor Materials</p></ListItem>
+								<ListItem><div>Diva G Rank Armor Materials</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -1089,38 +1109,42 @@
 							<Accordion class="spaced-accordion">
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Talk to Guild Master</p></ListItem>
-										<ListItem><p>Hunt 1 Monoblos</p></ListItem>
+										<ListItem><div>Talk to Guild Master</div></ListItem>
+										<ListItem><div>Hunt 1 Monoblos</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Gou Lunastra</p></ListItem>
+										<ListItem><div>Hunt 1 Gou Lunastra</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Speak to the Guild Master</p></ListItem>
+										<ListItem><div>Speak to the Guild Master</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Anorupatisu (Preset Quest)</p></ListItem
+										<ListItem
+											><div>Hunt 1 Anorupatisu (Preset Quest)</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Note: Everyone must use Tonfas for this mission
 												(Restricted equipment disables AI outside of
 												Legendaries)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva Weapon Materials (1st Series)</p></ListItem>
-								<ListItem><p>(2 Gems with Hunter Challenge Reward)</p></ListItem
+								<ListItem
+									><div>Diva Weapon Materials (1st Series)</div></ListItem
+								>
+								<ListItem
+									><div>(2 Gems with Hunter Challenge Reward)</div></ListItem
 								>
 							</UnorderedList>
 						</div>
@@ -1133,48 +1157,52 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Talk to Guild Master, Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Capture 1 Forokururu</p></ListItem>
+										<ListItem><div>Capture 1 Forokururu</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Speak to Leila (Tonfa Legendary)</p></ListItem>
-										<ListItem><p>Solo Hunt 1 Diorex</p></ListItem>
-										<ListItem><p>Speak to Leila</p></ListItem>
 										<ListItem
-											><p>
+											><div>Speak to Leila (Tonfa Legendary)</div></ListItem
+										>
+										<ListItem><div>Solo Hunt 1 Diorex</div></ListItem>
+										<ListItem><div>Speak to Leila</div></ListItem>
+										<ListItem
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Burst Species Meraginasu</p></ListItem>
+										<ListItem
+											><div>Hunt 1 Burst Species Meraginasu</div></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva Armor Materials</p></ListItem>
+								<ListItem><div>Diva Armor Materials</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -1186,7 +1214,7 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 G Rank Gold Rathian, talk to cats and return to
 												the <InlineTooltip
 													text="Prayer Fountain"
@@ -1194,43 +1222,43 @@
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Speak to Leila and return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Inagami</p></ListItem>
+										<ListItem><div>Hunt 1 Inagami</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 G Rank Inagami (Preset quest with set equipment,
 												AI outside of Legendaries is disabled)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva Weapon Gem (2nd Series)</p></ListItem>
+								<ListItem><div>Diva Weapon Gem (2nd Series)</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -1241,48 +1269,48 @@
 							<Accordion class="spaced-accordion">
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Giaorugu</p></ListItem>
+										<ListItem><div>Hunt 1 Giaorugu</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 G Rank Gravios</p></ListItem>
+										<ListItem><div>Hunt 1 G Rank Gravios</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Speak to Leila and return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 										<ListItem
-											><p>
+											><div>
 												Speak to the <InlineTooltip
 													text="Blacksmith"
 													tooltip="Location"
 													icon={getLocationIcon('Blacksmith')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 G Rank Forokururu</p></ListItem>
-										<ListItem><p>Hunt 1 G Rank HC Rajang</p></ListItem>
+										<ListItem><div>Hunt 1 G Rank Forokururu</div></ListItem>
+										<ListItem><div>Hunt 1 G Rank HC Rajang</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva HC Armor Materials</p></ListItem>
+								<ListItem><div>Diva HC Armor Materials</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -1294,32 +1322,32 @@
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Hunt 1 Red Lavasioth (Training Quest on Black Quest NPC)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Speak to Flora (SnS Legendary) and return to Diva
 												Fountain
-											</p></ListItem
+											</div></ListItem
 										>
-										<ListItem><p>Hunt 1 Hyujikiki</p></ListItem>
+										<ListItem><div>Hunt 1 Hyujikiki</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Hunt 1 Inagami</p></ListItem>
+										<ListItem><div>Hunt 1 Inagami</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
 										<ListItem
-											><p>
+											><div>
 												Deliver 3 <InlineTooltip
 													text="Herbal Medicine G"
 													tooltip="Item"
@@ -1333,14 +1361,14 @@
 													iconType="component"
 													iconColor={getItemColor('Green')}
 												/>)
-											</p></ListItem
+											</div></ListItem
 										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva Weapon Gem (2nd Series)</p></ListItem>
+								<ListItem><div>Diva Weapon Gem (2nd Series)</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -1351,40 +1379,41 @@
 							<Accordion class="spaced-accordion">
 								<AccordionItem open={openAccordions} title="Part 1">
 									<OrderedList class="spaced-list">
-										<ListItem><p>Talk to Guild Master</p></ListItem>
+										<ListItem><div>Talk to Guild Master</div></ListItem>
 										<ListItem
-											><p>
+											><div>
 												Return to the <InlineTooltip
 													text="Prayer Fountain"
 													tooltip="Location"
 													icon={getLocationIcon('Prayer Fountain')}
 													iconType="file"
 												/>
-											</p></ListItem
+											</div></ListItem
 										>
-										<ListItem><p>Hunt 1 G Rank White Espinas</p></ListItem>
+										<ListItem><div>Hunt 1 G Rank White Espinas</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 2">
 									<OrderedList class="spaced-list">
-										<ListItem><p>1 G Rank Baruragaru</p></ListItem>
+										<ListItem><div>1 G Rank Baruragaru</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 3">
 									<OrderedList class="spaced-list">
-										<ListItem><p>1 G Rank Akura Jebia</p></ListItem>
+										<ListItem><div>1 G Rank Akura Jebia</div></ListItem>
 									</OrderedList>
 								</AccordionItem>
 								<AccordionItem open={openAccordions} title="Part 4">
 									<OrderedList class="spaced-list">
-										<ListItem><p>1 Burst (G Rank) Garuba Daora</p></ListItem>
+										<ListItem><div>1 Burst (G Rank) Garuba Daora</div></ListItem
+										>
 									</OrderedList>
 								</AccordionItem>
 							</Accordion>
 							<p class="spaced-paragraph rewards">Chapter rewards:</p>
 							<UnorderedList class="spaced-list">
-								<ListItem><p>Diva Armor Materials</p></ListItem>
-								<ListItem><p>Diva Weapon Gem (2nd Series)</p></ListItem>
+								<ListItem><div>Diva Armor Materials</div></ListItem>
+								<ListItem><div>Diva Weapon Gem (2nd Series)</div></ListItem>
 							</UnorderedList>
 						</div>
 					</section>
@@ -1395,9 +1424,11 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
+	@use '@carbon/type' as type;
+
 	.page-turn {
 		margin-top: 4rem;
 	}
@@ -1419,5 +1450,9 @@
 	.rewards {
 		margin-top: 2rem;
 		font-weight: bold;
+	}
+
+	.diva-questline div {
+		@include type.type-style('body-02');
 	}
 </style>

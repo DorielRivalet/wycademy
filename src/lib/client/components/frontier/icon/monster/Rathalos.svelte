@@ -1,12 +1,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import bg from '$lib/client/images/monster/bg-512.webp';
-	export let size = '128px';
-	export let background = false;
+	interface Props {
+		size?: string;
+		background?: boolean;
+	}
 
-	$: backgroundStyle = background
+	let { size = '128px', background = false }: Props = $props();
+
+	let backgroundStyle = $derived(background
 		? `width: ${size}; height: ${size}; background-image: url('${bg}'); background-size: ${size}`
-		: `width: ${size}; height: ${size};`;
+		: `width: ${size}; height: ${size};`);
 </script>
 
 <div class="container" style={backgroundStyle}>
@@ -70,8 +74,8 @@
 				/></filter
 			></defs
 		>
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<!-- svelte-ignore a11y_mouse_events_have_key_events -->
 		<g id="layer1"
 			><g
 				id="g101"
@@ -581,30 +585,30 @@
 			></g
 		><metadata id="metadata102"
 			><rdf:RDF>
-				<!-- svelte-ignore illegal-attribute-character -->
+				<!-- svelte-ignore attribute_illegal_colon -->
 				<cc:License
 					rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 					><cc:permits
 						rdf:resource="http://creativecommons.org/ns#Reproduction"
-					/><cc:permits
+					></cc:permits><cc:permits
 						rdf:resource="http://creativecommons.org/ns#Distribution"
-					/><cc:requires
+					></cc:permits><cc:requires
 						rdf:resource="http://creativecommons.org/ns#Notice"
-					/><cc:requires
+					></cc:requires><cc:requires
 						rdf:resource="http://creativecommons.org/ns#Attribution"
-					/><cc:prohibits
+					></cc:requires><cc:prohibits
 						rdf:resource="http://creativecommons.org/ns#CommercialUse"
-					/><cc:permits
+					></cc:prohibits><cc:permits
 						rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
-					/><cc:requires
+					></cc:permits><cc:requires
 						rdf:resource="http://creativecommons.org/ns#ShareAlike"
-					/></cc:License
+					></cc:requires></cc:License
 				>
-				<!-- svelte-ignore illegal-attribute-character -->
+				<!-- svelte-ignore attribute_illegal_colon -->
 				<cc:Work rdf:about=""
 					><cc:license
 						rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-					/><dc:creator
+					></cc:license><dc:creator
 						><cc:Agent><dc:title>Doriel Rivalet</dc:title></cc:Agent
 						></dc:creator
 					></cc:Work

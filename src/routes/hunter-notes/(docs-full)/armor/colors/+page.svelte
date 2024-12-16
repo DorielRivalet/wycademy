@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import DataTable from 'carbon-components-svelte/src/DataTable/DataTable.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
@@ -96,11 +96,11 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Colors'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Colors are unlocked by doing a number of different tasks. These colors
 				are also the color that is displayed behind your weapon icon in <InlineTooltip
 					text="Mezeporta"
@@ -108,12 +108,12 @@
 					icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
 					iconType={'file'}
 				/>.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Colors other than Green, Red and White require that you have reached at
 				least HR3 to be used.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				The menu to customise the color used is unlocked by creating or
 				otherwise obtaining an armor piece that lets you set its color. You can
 				do this by buying the T-Shirt that the NPC wearing glasses in the
@@ -123,7 +123,7 @@
 					icon={LocationIcons.find((e) => e.name === 'Blacksmith')?.icon}
 					iconType={'file'}
 				/> sells.
-			</p>
+			</div>
 
 			<CenteredFigure
 				width={'100%'}
@@ -133,10 +133,10 @@
 				figcaption="T-Shirt that can be of many colors."
 			/>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				If your total points for Green, Red or White pass 100, the total points
 				required of all three goes down by -30.
-			</p>
+			</div>
 		</div>
 		<div>
 			<DataTable
@@ -167,7 +167,7 @@
 					</div>
 				</Toolbar>
 
-				<svelte:fragment slot="cell" let:cell>
+				{#snippet cell({ cell })}
 					{#if cell.key === 'color'}
 						<div class="color">
 							{#if cell.value === 'Red'}
@@ -176,97 +176,97 @@
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-red)"
-								/>
+								></button>
 							{:else if cell.value === 'Green'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-green)"
-								/>
+								></button>
 							{:else if cell.value === 'White'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-latte-base)"
-								/>
+								></button>
 							{:else if cell.value === 'Green'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-green)"
-								/>
+								></button>
 							{:else if cell.value === 'Blue'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-sapphire)"
-								/>
+								></button>
 							{:else if cell.value === 'Dark Blue'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-blue)"
-								/>
+								></button>
 							{:else if cell.value === 'Light Green'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-sky)"
-								/>
+								></button>
 							{:else if cell.value === 'Purple'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-mauve)"
-								/>
+								></button>
 							{:else if cell.value === 'Orange'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-peach)"
-								/>
+								></button>
 							{:else if cell.value === 'Yellow'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-yellow)"
-								/>
+								></button>
 							{:else if cell.value === 'Gray'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-surface0)"
-								/>
+								></button>
 							{:else if cell.value === 'Pink'}
 								<button
 									type="button"
 									class="dot"
 									aria-label={'Color'}
 									style="background-color: var(--ctp-pink)"
-								/>
+								></button>
 							{:else if cell.value === 'Rainbow'}
 								<button
 									type="button"
 									class="dot rainbow-loop"
 									aria-label={'Color'}
-								/>
+								></button>
 							{/if}
 							<p>{cell.value}</p>
 						</div>
 					{:else}
 						<p>{cell.value}</p>
 					{/if}
-				</svelte:fragment>
+				{/snippet}
 			</DataTable>
 		</div>
 
@@ -274,7 +274,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

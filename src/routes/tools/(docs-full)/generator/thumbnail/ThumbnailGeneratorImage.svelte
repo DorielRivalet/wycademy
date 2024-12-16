@@ -9,7 +9,6 @@
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import ColorPicker from 'svelte-awesome-color-picker';
 	import type { FrontierImageType } from '$lib/client/modules/frontier/types';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { createEventDispatcher } from 'svelte';
 	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
 	import {
@@ -22,7 +21,7 @@
 	import { itemInfo, ItemColors } from '$lib/client/modules/frontier/items';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { monsterInfo } from '$lib/client/modules/frontier/monsters';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import {
 		gameInfo,
 		RarityColors,
@@ -32,6 +31,7 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -56,7 +56,6 @@
 	export let optionsList: DropdownItem[] = [];
 	export let optionId: string;
 	export let src;
-	$: src = getIconBlobFromIconMetaData(fileType, optionId);
 
 	const dispatch = createEventDispatcher();
 
@@ -79,13 +78,18 @@
 		selectedIconType: FrontierImageType,
 		selectionID: string,
 	) {
+		if (!selectionID) {
+			console.error('No selection: ' + selectedIconType + ' ' + selectionID);
+			return; // TODO
+		}
+
 		// TODO return html in either the form of img if selecting PNG or
 		// svelte component if selecting SVG.
 		switch (selectedIconType) {
 			case 'Weapon':
 				return {
-					component: WeaponTypes.find((e) => e.name === selectionID)?.icon,
-					image: WeaponTypes.find((e) => e.name === selectionID)?.smallIcon,
+					component: weaponTypeInfo.find((e) => e.name === selectionID)?.icon,
+					image: weaponTypeInfo.find((e) => e.name === selectionID)?.smallIcon,
 				};
 			case 'Monster Icon':
 				return {
@@ -167,16 +171,27 @@
 	}
 
 	const allFrontierColors = getAllFrontierColors();
+	//src = getIconBlobFromIconMetaData(fileType, optionId);
 </script>
 
 <div class="container flex-column">
 	<div class="flex-row">
-		<ComboBox
+		<!-- <Dropdown
 			titleText="Icon"
 			placeholder="Select icon"
 			bind:selectedId={optionId}
 			items={optionsList}
-			{shouldFilterItem}
+		/> -->
+
+		<Dropdown
+			type="inline"
+			light={true}
+			titleText="Icon"
+			bind:selectedId={optionId}
+			items={optionsList}
+			on:select={(e) => {
+				src = getIconBlobFromIconMetaData(fileType, e.detail.selectedId);
+			}}
 		/>
 		<Button kind="danger-tertiary" icon={TrashCan} on:click={deleteElement}
 			>Delete</Button

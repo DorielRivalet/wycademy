@@ -3,8 +3,12 @@
 	import type { FrontierHuntingHornNote } from '$lib/client/modules/frontier/types';
 
 	// TODO add tooltip option?
-	export let color: FrontierHuntingHornNote = 'Red';
-	export let size: number | string = 16;
+	interface Props {
+		color?: FrontierHuntingHornNote;
+		size?: number | string;
+	}
+
+	let { color = 'Red', size = 16 }: Props = $props();
 
 	function getCSSVariableFromColorName(color: FrontierHuntingHornNote) {
 		switch (color) {

@@ -1,9 +1,18 @@
 <!-- ReviewCard.svelte -->
 <script lang="ts">
-	export let img: string;
-	export let name: string;
-	export let username: string;
-	export let body: string;
+	interface Props {
+		img: string;
+		name: string;
+		username: string;
+		body: string;
+	}
+
+	let {
+		img,
+		name,
+		username,
+		body
+	}: Props = $props();
 </script>
 
 <figure class="review-card">

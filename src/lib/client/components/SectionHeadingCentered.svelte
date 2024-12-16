@@ -2,22 +2,28 @@
 	// https://stackoverflow.com/questions/61303237/how-to-set-dynamic-html-tag-according-to-props-in-svelte
 	import slugify from 'slugify';
 
-	/** The name of the section heading*/
-	export let title: string;
-	/** The name of the section tag*/
-	export let section: string;
-	/** The level of the section heading*/
-	export let level: 2 | 3 | 4 | 5 | 6;
-	export let icon: any;
+	interface Props {
+		/** The name of the section heading*/
+		title: string;
+		/** The name of the section tag*/
+		section: string;
+		/** The level of the section heading*/
+		level: 2 | 3 | 4 | 5 | 6;
+		icon: any;
+	}
+
+	let { title, section, level, icon }: Props = $props();
 	const tag = 'h' + level;
 	//https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-one-element-is-hovered
 
 	const slug = slugify(section, { lower: true });
+
+	const SvelteComponent = $derived(icon);
 </script>
 
 <div class="container">
 	<div class="subheader">
-		<svelte:component this={icon} />
+		<SvelteComponent />
 		<p>{section}</p>
 	</div>
 	<svelte:element this={tag} id={slug}>{title}</svelte:element>

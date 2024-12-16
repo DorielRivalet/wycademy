@@ -26,7 +26,11 @@ SOFTWARE.
 	import LogoImage from '$lib/client/images/logo.webp';
 	import type { SchemaOrgProps } from '$lib/schema-org-props';
 	import * as constant from '$lib/constants';
-	export let schemaOrgProps: SchemaOrgProps;
+	interface Props {
+		schemaOrgProps: SchemaOrgProps;
+	}
+
+	let { schemaOrgProps }: Props = $props();
 
 	const mainEntity = schemaOrgProps.mainEntity;
 	let jsonLd = {};

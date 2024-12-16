@@ -1,8 +1,13 @@
 <script lang="ts">
 	import { format } from 'date-fns';
 
-	export let date = '2024-01-25 01:03:37.2746702Z';
-	export let profileViews = 1000;
+	interface Props {
+		date?: string;
+		profileViews?: number;
+	}
+
+	let { date = '2024-01-25 01:03:37.2746702Z', profileViews = 1000 }: Props =
+		$props();
 	const dateJoined = format(new Date(date), 'dd/MM/yyyy');
 </script>
 

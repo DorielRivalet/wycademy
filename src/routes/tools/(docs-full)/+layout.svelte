@@ -1,18 +1,16 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
 
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Header from '../../Header.svelte';
 	import Footer from '../../Footer.svelte';
 	import ViewTransition from '../../Navigation.svelte';
-	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
-	import { onMount, SvelteComponent, type ComponentType } from 'svelte';
-	import { cursorVars } from '$lib/client/themes/cursor';
+	import { onMount, type Component } from 'svelte';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
@@ -29,10 +27,8 @@
 	import Head from '$lib/client/components/Head.svelte';
 	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
 	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
-	import TreeView, {
-		type TreeNode,
-	} from 'carbon-components-svelte/src/TreeView/TreeView.svelte';
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
+	import { getItemIcon } from '$lib/client/modules/frontier/items';
 	import HelmetIconWhite from '$lib/client/components/frontier/icon/armor/Helmet_Icon_White.svelte';
 	import JewelIconWhite from '$lib/client/components/frontier/icon/item/Jewel_Icon_White.svelte';
 	import MantleIconWhite from '$lib/client/components/frontier/icon/item/Mantle_Icon_White.svelte';
@@ -43,15 +39,13 @@
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
 	import KnifeIconWhite from '$lib/client/components/frontier/icon/item/Knife_Icon_White.svelte';
 	import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
-	import { LocationIcons } from '$lib/client/modules/frontier/locations';
+	import { getLocationIcon } from '$lib/client/modules/frontier/locations';
 	import {
 		getNavigationItemFromLink,
 		toolsInfo,
 	} from '$lib/client/modules/routes';
 	import { getPageThumbnail } from '$lib/client/modules/thumbnails';
-
 	import MonsterComponent from '$lib/client/components/frontier/icon/dynamic-import/MonsterComponent.svelte';
-	import type { FrontierMonsterNameExpanded } from '$lib/client/modules/frontier/types';
 	import Binoculars from '$lib/client/images/icon/svg/Binoculars_Icon_White.svg';
 	import { getArmorIcon } from '$lib/client/modules/frontier/armor';
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
@@ -59,11 +53,11 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import SidePanelClose from 'carbon-icons-svelte/lib/SidePanelClose.svelte';
+	import TreeView from '$lib/client/components/TreeView.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
-	const cursorIcon = getContext(Symbol.for('cursorIcon')) as Writable<string>;
 	const stickyHeaderStore = getContext(
 		Symbol.for('stickyHeader'),
 	) as Writable<boolean>;
@@ -76,8 +70,12 @@
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
-	$: tokens = themeTokens[$carbonThemeStore] || themeTokens.default;
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
 
 	type URLItem = { href: string; text: string };
 
@@ -124,52 +122,67 @@
 	function onTOCToggleButtonPress(e: MouseEvent) {
 		tocVisible = !tocVisible;
 		hunterNotesSidebarEnabledStore.set(tocVisible ? true : false);
-
-		if (tocVisible) {
-			tocClass = 'aside';
-			centerColumnClass = ''; // Reset to default width
-		} else {
-			tocClass = 'aside collapsed';
-			centerColumnClass = 'expanded'; // Increase width to full
-		}
 	}
 
-	let breadcrumbItems: URLItem[] = [];
-	let headTitle = "Tools and Utilities — Frontier's Wycademy";
-	let description =
-		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weapon simulator, generate weapon images, and much more.\n\nDeveloped by Doriel Rivalet.';
+	let breadcrumbItems: URLItem[] = $state([]);
+	let headTitle = $state("Tools and Utilities — Frontier's Wycademy");
+	let description = $state(
+		'Explore our tools and utilities of Monster Hunter Frontier Z.\n\nCalculate things such as your damage, use a tower weapon simulator, generate weapon images, and much more.\n\nDeveloped by Doriel Rivalet.',
+	);
 
 	const url = $page.url.toString();
 
 	let lastScrollTop = 0; // Variable to store the last scroll position
 
-	const children: TreeNode[] = [
+	interface TreeItem {
+		id: string;
+		text: string;
+		href?: string;
+		icon?: Component | string;
+		nodes?: TreeItem[];
+		iconProps?: Object;
+	}
+
+	const treeData: TreeItem[] = [
 		{
 			id: '/tools/calculator',
 			text: 'Calculator',
-			children: [
+			icon: KnifeIconWhite,
+			nodes: [
 				{
 					id: '/tools/calculator/damage',
+					href: '/tools/calculator/damage',
+					icon: getWeaponIcon('Great Sword'),
 					text: 'Damage',
 				},
 				{
 					id: '/tools/calculator/ice-age',
+					href: '/tools/calculator/ice-age',
+					icon: JewelIconWhite,
 					text: 'Ice Age',
 				},
 				{
 					id: '/tools/calculator/crit-conversion',
+					href: '/tools/calculator/crit-conversion',
 					text: 'Crit Conversion',
+					icon: JewelIconWhite,
 				},
 				{
 					id: '/tools/calculator/gunlance-shells-and-wyvernfire',
+					href: '/tools/calculator/gunlance-shells-and-wyvernfire',
 					text: 'Gunlance Shells & Wyvernfire',
+					icon: getWeaponIcon('Gunlance'),
 				},
 				{
 					id: '/tools/calculator/heavy-bowgun-heat-beam',
+					href: '/tools/calculator/heavy-bowgun-heat-beam',
 					text: 'Heavy Bowgun Heat Beam',
+					icon: getWeaponIcon('Heavy Bowgun'),
 				},
 				{
 					id: '/tools/calculator/sigil',
+					href: '/tools/calculator/sigil',
+					icon: getItemIcon('Sigil'),
 					text: 'Sigils',
 				},
 			],
@@ -177,17 +190,29 @@
 		{
 			id: '/tools/simulator',
 			text: 'Simulator',
-			children: [
+			icon: getLocationIcon('Blacksmith'),
+			nodes: [
 				{
 					id: '/tools/simulator/tower-weapon',
+					href: '/tools/simulator/tower-weapon',
+					icon: MonsterComponent,
+					iconProps: {
+						currentMonster: 'Duremudira',
+						background: false,
+					},
 					text: 'Tower Weapon',
 				},
 				{
 					id: '/tools/simulator/sigil',
+					href: '/tools/simulator/sigil',
+					icon: SigilIconWhite,
 					text: 'Sigils',
 				},
 				{
 					id: '/tools/simulator/partner-skills',
+					href: '/tools/simulator/partner-skills',
+					icon: JewelIconWhite,
+
 					text: 'Partner Skills',
 				},
 			],
@@ -195,25 +220,44 @@
 		{
 			id: '/tools/generator',
 			text: 'Generator',
-			children: [
+			icon: MonsterComponent,
+			iconProps: {
+				currentMonster: 'Abiorugu',
+				background: false,
+			},
+			nodes: [
 				{
 					id: '/tools/generator/weapon',
+					href: '/tools/generator/weapon',
+					icon: getWeaponIcon('Long Sword'),
 					text: 'Weapon',
 				},
 				{
 					id: '/tools/generator/armor',
+					href: '/tools/generator/armor',
+					icon: HelmetIconWhite,
 					text: 'Armor',
 				},
 				{
 					id: '/tools/generator/item',
+					href: '/tools/generator/item',
+					icon: MantleIconWhite,
 					text: 'Item',
 				},
 				{
 					id: '/tools/generator/icon',
+					href: '/tools/generator/icon',
+					icon: MonsterComponent,
+					iconProps: {
+						currentMonster: 'Supremacy Teostra',
+						background: false,
+					},
 					text: 'Icon',
 				},
 				{
 					id: '/tools/generator/thumbnail',
+					href: '/tools/generator/thumbnail',
+					icon: VideoPlayer,
 					text: 'Thumbnail',
 				},
 			],
@@ -221,148 +265,53 @@
 		{
 			id: '/tools/external',
 			text: 'External',
-			children: [
+			icon: Logo,
+			nodes: [
 				{
 					id: '/tools/external/overlay',
+					href: '/tools/external/overlay',
+					icon: Logo,
 					text: 'mhfz-overlay',
 				},
 				{
 					id: '/tools/external/ezlion',
+					href: '/tools/external/ezlion',
+					icon: 'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
 					text: 'EZlion',
 				},
 			],
 		},
 		{
 			id: '/tools/search',
+			icon: Binoculars,
+
 			text: 'Search',
-			children: [
+			nodes: [
 				{
 					id: '/tools/search/armor-set-searcher',
+					href: '/tools/search/armor-set-searcher',
+					icon: getArmorIcon('Stand'),
 					text: 'Armor Set Searcher',
 				},
 				{
 					id: '/tools/search/advanced-search',
+					href: '/tools/search/advanced-search',
+					icon: Logo,
 					text: 'Advanced Search',
 				},
 			],
 		},
 	];
 
-	const iconsMap: {
-		id: string;
-		icon: string | ComponentType<SvelteComponent>;
-		iconProps?: {
-			size?: string;
-			currentMonster?: FrontierMonsterNameExpanded;
-			background?: boolean;
-		};
-	}[] = [
-		{ id: '/tools/calculator', icon: KnifeIconWhite },
-		{
-			id: '/tools/calculator/damage',
-			icon: getWeaponIcon('Great Sword'),
-		},
-		{ id: '/tools/calculator/ice-age', icon: JewelIconWhite },
-		{ id: '/tools/calculator/crit-conversion', icon: JewelIconWhite },
-		{
-			id: '/tools/calculator/gunlance-shells-and-wyvernfire',
-			icon: getWeaponIcon('Gunlance'),
-		},
-		{
-			id: '/tools/calculator/heavy-bowgun-heat-beam',
-			icon: getWeaponIcon('Heavy Bowgun'),
-		},
-		{
-			id: '/tools/calculator/sigil',
-			icon: SigilIconWhite,
-		},
-		{
-			id: '/tools/simulator',
-			icon: LocationIcons.find((e) => e.name === 'Blacksmith')?.icon,
-		},
-		{
-			id: '/tools/simulator/tower-weapon',
-			icon: MonsterComponent,
-			iconProps: {
-				currentMonster: 'Duremudira',
-				background: false,
-			},
-		},
-		{
-			id: '/tools/simulator/sigil',
-			icon: SigilIconWhite,
-		},
-		{
-			id: '/tools/simulator/partner-skills',
-			icon: JewelIconWhite,
-		},
-		{
-			id: '/tools/generator',
-			icon: MonsterComponent,
-			iconProps: {
-				currentMonster: 'Abiorugu',
-				background: false,
-			},
-		},
-		{
-			id: '/tools/generator/weapon',
-			icon: getWeaponIcon('Long Sword'),
-		},
-		{
-			id: '/tools/generator/armor',
-			icon: HelmetIconWhite,
-		},
-		{
-			id: '/tools/generator/item',
-			icon: MantleIconWhite,
-		},
-		{
-			id: '/tools/generator/icon',
-			icon: MonsterComponent,
-			iconProps: {
-				currentMonster: 'Supremacy Teostra',
-				background: false,
-			},
-		},
-		{
-			id: '/tools/generator/thumbnail',
-			icon: VideoPlayer,
-		},
-		{
-			id: '/tools/external',
-			icon: Logo,
-		},
-		{
-			id: '/tools/external/overlay',
-			icon: Logo,
-		},
-		{
-			id: '/tools/external/ezlion',
-			icon: 'https://raw.githubusercontent.com/DorielRivalet/ezlion/main/app/src/lib/assets/logo-alt.webp',
-		},
-		{
-			id: '/tools/search',
-			icon: Binoculars,
-		},
-		{
-			id: '/tools/search/armor-set-searcher',
-			icon: getArmorIcon('Stand'),
-		},
-		{
-			id: '/tools/search/advanced-search',
-			icon: Logo,
-		},
-	];
+	let tocVisible = $state($hunterNotesSidebarEnabledStore);
 
-	let tocVisible = $hunterNotesSidebarEnabledStore;
+	let centerColumnClass = $derived(tocVisible ? '' : 'expanded');
+	let tocClass = $derived(tocVisible ? 'aside' : 'aside collapsed');
 
-	let centerColumnClass = tocVisible ? '' : 'expanded';
-	let tocClass = tocVisible ? 'aside' : 'aside collapsed';
-	let treeview: TreeView | null = null;
+	let headerClass = $state($stickyHeaderStore ? 'header sticky' : 'header');
 
-	$: headerClass = $stickyHeaderStore ? 'header sticky' : 'header';
-
-	$: {
+	// TODO unsure
+	run(() => {
 		const pageUrlPathName = $page.url.pathname || '/';
 		const { navigationItem, items } = processRoute(pageUrlPathName);
 		headTitle = navigationItem?.name
@@ -370,22 +319,9 @@
 			: "Tools and Utilities — Frontier's Wycademy";
 		description = navigationItem?.description ?? description;
 		breadcrumbItems = items;
-	}
+	});
 
 	onMount(() => {
-		let themeValue = $carbonThemeStore;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
-		let cursorValue = $cursorIcon;
-		cssVarMap = cursorVars[cursorValue] || cursorVars.default;
-		Object.keys(cssVarMap).forEach((key) => {
-			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
-		});
-
 		window.addEventListener('scroll', handleScroll);
 
 		const pageUrlPathName = $page.url.pathname || '/';
@@ -395,13 +331,6 @@
 			: "Tools and Utilities — Frontier's Wycademy";
 		description = navigationItem?.description ?? description;
 		breadcrumbItems = items;
-		const unsubscribe = page.subscribe(($page) => {
-			treeview?.showNode($page.url.pathname || '');
-		});
-
-		return () => {
-			unsubscribe(); // Clean up the subscription on unmount
-		};
 	});
 </script>
 
@@ -427,13 +356,6 @@
 	contentType="SoftwareApplication"
 	name={projectName}
 	siteName={projectName}
-/>
-
-<Theme
-	bind:theme={$carbonThemeStore}
-	persist
-	persistKey="__carbon-theme"
-	{tokens}
 />
 
 {#if !tocVisible && $breakpointLargerThanMedium}
@@ -464,62 +386,28 @@
 				on:close={() => bannerEnabledStore.set(false)}
 				subtitle="This site is currently in {developmentStage}."
 			>
-				<svelte:fragment slot="actions">
+				{#snippet actions()}
 					<NotificationActionButton
 						on:click={() => goto('/support/website/development')}
 						>Learn more</NotificationActionButton
 					>
-				</svelte:fragment>
+				{/snippet}
 			</InlineNotification>
 		{/if}
 	</div>
 	<main>
-		<aside class={tocClass}>
-			<TreeView
-				style="background-color: var(--ctp-surface0);  position: sticky; top: 10vh;"
-				{children}
-				let:node
-				bind:this={treeview}
-				><span slot="labelText">
-					<Button
-						iconDescription={'Close Sidebar'}
-						tooltipPosition="right"
-						kind="ghost"
-						size={'small'}
-						icon={SidePanelClose}
-						on:click={onTOCToggleButtonPress}
-					/></span
-				>
-				<a
-					class="tree-view-item"
-					href={node.id}
-					style:color={node.selected ? 'var(--cds-interactive-04)' : 'inherit'}
-				>
-					<div>
-						{#if typeof iconsMap.find((e) => e.id === node.id)?.icon === 'string'}
-							<img
-								width="24"
-								src={iconsMap.find((e) => e.id === node.id)?.icon}
-								alt="Tree Item Icon"
-							/>
-						{:else}
-							<svelte:component
-								this={iconsMap.find((e) => e.id === node.id)?.icon}
-								{...{
-									background: iconsMap.find((e) => e.id === node.id)?.iconProps
-										?.background,
-									size: '24px',
-									currentMonster: iconsMap.find((e) => e.id === node.id)
-										?.iconProps?.currentMonster,
-								}}
-							/>
-						{/if}
-					</div>
-					<p>
-						{node.text}
-					</p>
-				</a>
-			</TreeView>
+		<aside class={tocClass} style="background-color:var(--ctp-surface0)">
+			<div class="aside-contents">
+				<Button
+					iconDescription={'Close Sidebar'}
+					tooltipPosition="right"
+					kind="ghost"
+					size={'small'}
+					icon={SidePanelClose}
+					on:click={onTOCToggleButtonPress}
+				/>
+				<TreeView items={treeData} />
+			</div>
 		</aside>
 		<div class="body {centerColumnClass}">
 			<div class="breadcrumb">
@@ -536,7 +424,7 @@
 				</Breadcrumb>
 			</div>
 			<div class="slot">
-				<slot />
+				{@render children?.()}
 			</div>
 		</div>
 	</main>
@@ -553,6 +441,15 @@
 		flex-direction: column;
 		background-color: var(--ctp-mantle);
 		max-width: 100vw;
+	}
+
+	.aside-contents {
+		position: sticky;
+		top: 5vh;
+		padding-bottom: 2rem;
+		padding-top: 0.5rem;
+		overflow-y: auto;
+		height: 90vh;
 	}
 
 	.header {
@@ -654,13 +551,6 @@
 	.breadcrumb {
 		margin-bottom: var(--cds-spacing-06);
 		margin-top: var(--cds-spacing-06);
-	}
-
-	.tree-view-item {
-		display: flex;
-		gap: 0.5rem;
-		align-items: center;
-		text-decoration: none;
 	}
 
 	.expand-TOC {

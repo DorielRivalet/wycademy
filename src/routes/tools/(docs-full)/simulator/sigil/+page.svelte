@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
@@ -238,20 +238,17 @@
 	const minRolls = 1;
 	const maxRolls = 10_000;
 
-	let sigil = 'Advanced Shiten [Disufiroa]';
-	let selectedRolls = maxRolls;
-	let currentRolls = 0;
-	let state: 'start' | 'running' | 'end' = 'start';
+	let sigil = $state('Advanced Shiten [Disufiroa]');
+	let selectedRolls = $state(maxRolls);
+	let currentRolls = $state(0);
+	let state: 'start' | 'running' | 'end' = $state('start');
 	// example: 15 Attack, 15 Element, 15 Attack.
-	let bestSigilStats = '';
-	let bestSigilRollNumber = 0;
-	let bestSigilScore = 0;
-	let probability = 0;
-	let priority: 'Attack' | 'Element' | 'None' = 'Attack';
-	let targetScore = 45;
-
-	$: sigilMaxScore =
-		sigilsRollsStats.find((e) => e.name === sigil)?.maxScore || 0;
+	let bestSigilStats = $state('');
+	let bestSigilRollNumber = $state(0);
+	let bestSigilScore = $state(0);
+	let probability = $state(0);
+	let priority: 'Attack' | 'Element' | 'None' = $state('Attack');
+	let targetScore = $state(45);
 
 	/**
 	 * weapon emperor always has 3 skills and only one skill is weapon up.
@@ -409,12 +406,17 @@
 	const confidenceLevel = 99;
 	const marginOfError = 0.05;
 
-	$: materialNeeded = getMaterialFromSigil(sigil);
-	$: materialNeededIcon = getIconFromMaterial(materialNeeded);
-	$: materialNeededIconColor = getIconColorFromMaterial(materialNeeded);
+	let sigilMaxScore = $derived(
+		sigilsRollsStats.find((e) => e.name === sigil)?.maxScore || 0,
+	);
+	let materialNeeded = $derived(getMaterialFromSigil(sigil));
+	let materialNeededIcon = $derived(getIconFromMaterial(materialNeeded));
+	let materialNeededIconColor = $derived(
+		getIconColorFromMaterial(materialNeeded),
+	);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Sigils Rolls Simulator'} />
 		<InlineNotification
@@ -424,7 +426,7 @@
 			subtitle="Simulations may take a while to start and finish."
 		/>
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				If you are looking for an explanation on sigils, see our <Link
 					inline
 					href="/hunter-notes/weapons/sigils">Hunter's Notes page.</Link
@@ -433,13 +435,13 @@
 				perfect sigil combination (1 UL, 1 Zenith, 1 Shiten), it has an average chance
 				of {0.05 * 0.01 * 0.15 * 100}% (1:13,333 odds) with 30,000 sigil rolls
 				in total.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				If you are looking to calculate the <strong>damage</strong> of your
 				sigils, see our <Link inline href="/tools/calculator/sigil"
 					>Sigils Calculator.</Link
 				>
-			</p>
+			</div>
 
 			<div class="container-buttons">
 				<Dropdown
@@ -509,7 +511,7 @@
 						tooltip="Sigil"
 					/>
 				</div>
-				<p>
+				<div class="paragraph-long-02">
 					Materials needed: {#key sigil}<InlineTooltip
 							icon={materialNeededIcon}
 							iconType="component"
@@ -517,7 +519,7 @@
 							tooltip="Item"
 							iconColor={materialNeededIconColor}
 						/>{/key}
-				</p>
+				</div>
 				<p>
 					Best sigil found: {bestSigilStats} (roll #{bestSigilRollNumber}, score {bestSigilScore},
 					max score {sigilMaxScore})
@@ -540,7 +542,7 @@
 				<PageTurn pageUrlPathName={$page.url.pathname} />
 			</div>
 		</div>
-	</div></HunterNotesPage
+	</div></TableOfContentsPage
 >
 
 <style lang="scss">

@@ -1,15 +1,20 @@
 <script lang="ts">
 	import ClickableTile from 'carbon-components-svelte/src/Tile/ClickableTile.svelte';
-	export let pictogram;
-	export let title;
-	export let href;
+	interface Props {
+		pictogram: any;
+		title: any;
+		href: any;
+	}
+
+	let { pictogram, title, href }: Props = $props();
 </script>
 
 <div>
 	<ClickableTile {href}>
+		{@const SvelteComponent = pictogram}
 		<div class="tile-container">
 			<div>
-				<svelte:component this={pictogram} />
+				<SvelteComponent />
 			</div>
 			<div>
 				<p>{title}</p>

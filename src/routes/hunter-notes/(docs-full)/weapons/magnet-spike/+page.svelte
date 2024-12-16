@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
 	import Weapon from '$lib/client/components/frontier/Weapon.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -549,8 +551,6 @@ graph LR
 	// The default diagram
 	let diagram = getDiagram(mermaidTheme);
 
-	$: diagram && renderDiagram($carbonThemeStore, mermaidTheme);
-
 	onMount(() => {
 		mermaid.initialize({
 			startOnLoad: false,
@@ -788,16 +788,19 @@ graph LR
 
 	const nodeData: Node[] = weaponMovesetData.nodeData;
 	const edgeData: Edge[] = weaponMovesetData.edgeData;
+	run(() => {
+		diagram && renderDiagram($carbonThemeStore, mermaidTheme);
+	});
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Magnet Spike'} />
 		<div>
 			<div class="video">
 				<Youtube id="rqfFAXVW-dw" />
 			</div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				A versatile weapon, first introduced in <InlineTooltip
 					tooltip="Game"
 					text="Monster Hunter Frontier Z Zenith"
@@ -816,8 +819,8 @@ graph LR
 				inside the weapon. Despite being a large and heavy weapon, the manipulation
 				of magnetic forces lifts most of the weight, allowing for unnaturally fast
 				movement.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				Resembling the magnetic abilities of a <InlineTooltip
 					tooltip="Monster"
 					text="Rukodiora"
@@ -842,15 +845,15 @@ graph LR
 					icon={getWeaponIcon('Magnet Spike')}
 				/> can use most of its moveset in either form at any time, allowing the user
 				to choose the most useful form as needed.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				The user is also equipped with a "Magnetic Field Gun", which fires a
 				small magnetic sphere that sticks to monsters. This allows the user to
 				lock onto a specific location and use magnetic attraction to travel from
 				a much greater distance or use repulsion force for a long-distance
 				evade.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					tooltip="Weapon"
 					text="Magnet Spikes"
@@ -858,11 +861,11 @@ graph LR
 					icon={getWeaponIcon('Magnet Spike')}
 				/> do not have any non-standard elements compared to other weapons; they
 				lack phials and length. Their attack multiplier is 5.4, rounded up.
-			</p>
+			</div>
 			<section>
 				<SectionHeading level={2} title="Unlocking" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						To unlock <InlineTooltip
 							icon={getWeaponIcon('Magnet Spike')}
 							tooltip="Weapon"
@@ -872,10 +875,10 @@ graph LR
 						quests are not particularly difficult, but you might need the first
 						free GR set to finish them efficiently. Here's a brief guide to the
 						unlocking process:
-					</p>
+					</div>
 					<OrderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Talk to the <InlineTooltip
 									icon={LocationIcons.find((e) => e.name === 'Blacksmith')
 										?.icon}
@@ -883,41 +886,41 @@ graph LR
 									text="Smithy"
 									iconType="file"
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Visit the <InlineTooltip
 									icon={LocationIcons.find((e) => e.name === 'Rasta Bar')?.icon}
 									tooltip="Location"
 									text="Rasta Bar"
 									iconType="file"
 								/> and speak with the NPC equipped with a Magnet Spike, Graham.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Talk to the Apprentice Cat found at the entrance of <InlineTooltip
 									icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
 									tooltip="Location"
 									text="Mezeporta"
 									iconType="file"
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Go back and talk to Graham, then talk to the combiner in the
 								town square.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Speak with Graham again, then the combiner in the town square.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Talk to the G Rank quest receptionist, giving you a quest to
 								hunt G Rank <InlineTooltip
 									icon={monsterInfo.find((e) => e.name === 'Gougarf')?.icon}
@@ -925,15 +928,15 @@ graph LR
 									text="Gougarf"
 									iconType="file"
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Talk to Graham again then the combiner found by the store.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Hunt the <InlineTooltip
 									icon={monsterInfo.find((e) => e.displayName === 'Rebidiora')
 										?.icon}
@@ -941,10 +944,10 @@ graph LR
 									text="Rebidiora"
 									iconType="file"
 								/> at the top of the quest list.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Talk to Graham, then <InlineTooltip
 									icon={LocationIcons.find((e) => e.name === 'Blacksmith')
 										?.icon}
@@ -957,10 +960,10 @@ graph LR
 									text="Road"
 									iconType="file"
 								/> quest receptionist.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Post the GHC <InlineTooltip
 									icon={monsterInfo.find((e) => e.displayName === 'Rukodiora')
 										?.icon}
@@ -968,10 +971,10 @@ graph LR
 									text="Rukodiora"
 									iconType="file"
 								/> quest and hunt it.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Talk to Graham and then the <InlineTooltip
 									icon={LocationIcons.find((e) => e.name === 'Blacksmith')
 										?.icon}
@@ -979,10 +982,10 @@ graph LR
 									text="Smithy"
 									iconType="file"
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								After all that you’ve unlocked magnet spike! 🎉 You should get a
 								material to make the <InlineTooltip
 									icon={getWeaponIcon('Magnet Spike')}
@@ -990,7 +993,7 @@ graph LR
 									text="Protospike α"
 									iconType="component"
 								/> Magnet Spike.
-							</p></ListItem
+							</div></ListItem
 						>
 					</OrderedList>
 					<div class="weapon-container">
@@ -1035,25 +1038,25 @@ graph LR
 			<section>
 				<SectionHeading level={2} title="Usage" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The Magnet Spike's magnetism grants it high versatility and a high
 						skill ceiling. While most actions are shared between both forms,
 						some offer unique options. Attacking with this weapon gradually
 						magnetizes it, entering a "Magnetic Boost" state that increases
-						attack power. Landing attacks also magnetizes monsters; once fully
-						magnetized, the "Magnetic Bind" attack can be used. This binds the
-						monster in a strong magnetic field, with the hunter sustaining the
-						field by repeatedly pressing select buttons. Holding it long enough
-						allows for a powerful finishing attack.
-					</p>
-					<p class="spaced-paragraph">
+						attack power for 80 seconds. Landing attacks also magnetizes
+						monsters; once fully magnetized, the "Magnetic Bind" attack can be
+						used. This binds the monster in a strong magnetic field, with the
+						hunter sustaining the field by repeatedly pressing select buttons.
+						Holding it long enough allows for a powerful finishing attack.
+					</div>
+					<div class="spaced-paragraph">
 						Magnet Spikes feature two modes: Cutting and Impact. You can switch
 						between these modes at any time, even while unsheathed. Each mode
 						has its own attack style:
-					</p>
-					<UnorderedList>
+					</div>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<strong>Cutting Mode:</strong> Fast attacks and evasions similar
 								to <InlineTooltip
 									icon={getWeaponIcon('Dual Swords')}
@@ -1061,21 +1064,21 @@ graph LR
 									text="Dual Swords"
 									iconType="component"
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								<strong>Impact Mode:</strong>
 								Slower, heavy-hitting single attacks with quick swipes and a fast
 								charge.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						At any time in either mode, you can toggle aiming mode, which allows
 						you to shoot a Magnetic Marker on a monster or attract toward or
 						repel away from an already placed marker.
-					</p>
+					</div>
 
 					<CenteredFigure
 						figcaption="The markers from left to right: Unmarked, repulsion, attraction."
@@ -1091,14 +1094,14 @@ graph LR
 						width="100%"
 						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/ms-mark.webp'}
 					/>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Whether you attract or repel depends on your distance from the
 						monster. If you are too close, you can only repel (Blue). If you are
 						too far, no action is possible (White). Being at the proper distance
 						allows you to attract (Red). Attraction will chase the monster as
 						long as you follow a linear path toward it and can be canceled into
 						an evade or a powerful falling attack.
-					</p>
+					</div>
 
 					<CenteredFigure
 						figcaption="The gauges from top to bottom: repulsion, attraction, not attracted."
@@ -1108,17 +1111,16 @@ graph LR
 						src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/ms-gauges.webp'}
 					/>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Both modes charge as you use them. When their icon turns red, you
 						can magnetize the weapon, which buffs all attacks by 1.1x, similar
 						to a power phial, and adds additional hits to select attacks for 80
 						seconds.
-					</p>
+					</div>
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Parry & Magnetize',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/ms-magnetize.webm',
@@ -1127,34 +1129,33 @@ graph LR
 						{/await}
 					</div>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						After the magnetism mode expires, you will be locked out of gaining
 						progress towards it for a short period. Both modes charge
 						independently and can be left at the red charge level indefinitely,
 						to be activated whenever you wish.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						Each mode has a gauge used for actions such as evasion, attracting
 						and repelling from a monster, and initiating the Magnetic Pin attack
 						(covered below). This gauge recharges over time and while attacking
 						a monster.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The gauge also indicates if you can use the Attract and Repel
 						functions, which launch you into the air to chase the magnetic
 						marker on a monster. Every action that consumes gauge will use a
 						single bar.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						The magnetic pin is similar to a standard status effect. If you hit
 						the monster with enough attacks, it will get a moving magnetism
 						effect on its body, indicating it is ready to be pinned.
-					</p>
+					</div>
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Pin Ready',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/ms-pin-ready.webm',
@@ -1163,27 +1164,26 @@ graph LR
 						{/await}
 					</div>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						Pinning can be done from either Magnetic Double Slash or Double
 						Swipe. This causes you to leap into the air and slam down your
 						Magnet Spike, pinning the monster and initiating a Quick Time Event
 						that keeps the monster in place until you either perform the pin or
 						fail the Quick Time Event.
-					</p>
+					</div>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The Quick Time Event will indicate what you have to mash
 						directionally and button-wise. Mashing well enough will cause the
 						monster icon's face to turn red, allowing you to perform a Pin
 						Finisher. This move has a very high motion value, causes the monster
 						to fall over, and extends the time the monster is trapped due to the
 						finisher's lengthy animation.
-					</p>
+					</div>
 
 					<div>
 						{#await import('$lib/player/Player.svelte') then { default: Player }}
-							<svelte:component
-								this={Player}
+							<Player
 								{...{
 									title: 'Pin',
 									src: 'https://res.cloudinary.com/mhfz/video/upload/f_auto:video,q_auto/v1/supplemental/animated/ms-pin.webm',
@@ -1192,46 +1192,48 @@ graph LR
 						{/await}
 					</div>
 
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The finisher is notable because it targets the spot where you have
 						attached the magnetic marker. This allows you to select the best
 						hitzone or the most desirable parts to break on a monster. For
 						tails, this deals cutting damage but can only reduce a tail to 1HP,
 						allowing any single cutting damage hit to sever it immediately.
-					</p>
+					</div>
 
 					<section>
 						<SectionHeading level={3} title="Shared Traits" />
 						<div>
-							<UnorderedList>
+							<UnorderedList class="spaced-list">
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										After using the Magnetic Field Gun on a monster, hunters can
 										perform "Magnetic Field Approach" and "Magnetic Field
 										Withdrawal" actions in either form to attack or evade over
 										great distances.
-									</p></ListItem
+									</div></ListItem
 								>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Both forms can execute the "Magnetic Force Evade" for quick
 										short-distance evasion.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										"Magnetic Field Assault" is a mid-distance attack that
 										launches hunters toward a target.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>Guarding and countering are possible in either form.</p>
+									><div class="paragraph-long-02">
+										Guarding and countering are possible in either form.
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Attacking in either form contributes to entering the
 										Magnetic Boost state and magnetizing monsters.
-									</p>
+									</div>
 								</ListItem>
 							</UnorderedList>
 						</div>
@@ -1240,76 +1242,91 @@ graph LR
 					<section>
 						<SectionHeading level={3} title="Cutting Mode" />
 						<div>
-							<UnorderedList>
+							<UnorderedList class="spaced-list">
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Two standard 4-hit combos: one focused on vertical swings
 										and the other on horizontal swings.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										The Magnetic Force Evade can be used to evade and attack
 										simultaneously with a Double Slash forward or a Fade Slash
 										backward. Left and right evasions have no attack actions.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Hunters can guard at any point, automatically performing a
 										light counter hit.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Guarding a monster attack charges the Magnet Spike and
 										boosts the counter hit.
-									</p>
+									</div>
+								</ListItem>
+								<ListItem
+									><div class="paragraph-long-02">
+										Magnetic Bind is usable once a monster is fully magnetized.
+									</div>
+								</ListItem><ListItem
+									><div class="paragraph-long-02">
+										The magnetize attack boost lasts for 80 seconds, boosting
+										attack for x1.1. After the effect wears off, there is no
+										magnetic force accumulation for 100 seconds. The magnetic
+										accumulation required for reactivation needs a total motion
+										value inflicted of 1250.
+									</div>
 								</ListItem>
 								<ListItem
 									><p>
-										Magnetic Bind is usable once a monster is fully magnetized.
-									</p>
-								</ListItem>
+										Magnetized values refer to motion values, required
+										accumulation values vary by monster. The threshold increases
+										each time.
+									</p></ListItem
+								>
 							</UnorderedList>
 						</div>
 					</section>
 					<section>
 						<SectionHeading level={3} title="Impact Mode" />
 						<div>
-							<UnorderedList>
+							<UnorderedList class="spaced-list">
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										A standard 4-hit combo consisting of slow, wide swings that
 										end with a suplex, which can also be used as a standalone
 										attack.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										A triple pound attack that can be initiated from idle or
 										mid-combo.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										The Magnetic Force Evade can be used to evade and attack
 										simultaneously when performed in front of the hunter. A
 										counterattack can be launched after evading to the side or
 										behind.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Evading a monster attack charges up for a stronger
 										counterattack.
-									</p>
+									</div>
 								</ListItem>
 								<ListItem
-									><p>
+									><div class="paragraph-long-02">
 										Performing a well-timed guard charges the Magnet Spike for a
 										powerful counterattack.
-									</p>
+									</div>
 								</ListItem>
 							</UnorderedList>
 						</div>
@@ -1320,10 +1337,10 @@ graph LR
 			<section>
 				<SectionHeading level={2} title="Moveset" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						The flowchart below is based on the official manual. When hovering
 						over a move, you can see the available moves from it.
-					</p>
+					</div>
 					<div>
 						<SvelteFlowProvider
 							><SvelteFlowElk
@@ -1334,23 +1351,23 @@ graph LR
 							/></SvelteFlowProvider
 						>
 					</div>
-					<p>
+					<div class="paragraph-long-02">
 						For more information on motion values, see the <Link
 							inline
 							href="/tools/calculator/damage">Damage Calculator.</Link
 						>
-					</p>
+					</div>
 					<section>
 						<SectionHeading level={3} title="Iframes" />
 						<div>
-							<p class="spaced-paragraph">
+							<div class="spaced-paragraph">
 								Cutting Mode moves with invincibility frames: Magnetic Double
 								Slash, Retreat Slash, Magnetic Assault and Falling Downslash.
-							</p>
-							<p class="spaced-paragraph">
+							</div>
+							<div class="spaced-paragraph">
 								Impact Mode moves with invincibility frames: Guard Assault,
 								Magnetic Double Swipe, Magnetic Assault and Falling Swipe.
-							</p>
+							</div>
 							<div class="table">
 								<DataTable
 									useStaticWidth
@@ -1382,13 +1399,13 @@ graph LR
 										</div>
 									</Toolbar>
 
-									<svelte:fragment slot="cell" let:cell>
+									{#snippet cell({ cell })}
 										<p>{cell.value}</p>
-									</svelte:fragment>
+									{/snippet}
 								</DataTable>
 							</div>
 
-							<p>
+							<div class="paragraph-long-02">
 								For an explanation on element damage, see our <Link
 									icon={Information}
 									href="/hunter-notes/getting-started/elements#damage"
@@ -1397,7 +1414,7 @@ graph LR
 									icon={ToolKit}
 									href="/tools/calculator/damage">Damage Calculator</Link
 								>.
-							</p>
+							</div>
 						</div>
 					</section>
 				</div>
@@ -1411,11 +1428,11 @@ graph LR
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						Increases Pin finisher multiplier by 1.25x (from 600 motion value to
 						750 motion value). x1.1 Cutting damage to the tail in cutting mode.
 						x1.3 Stun value in impact mode.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -1450,13 +1467,13 @@ graph LR
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -1494,7 +1511,7 @@ graph LR
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -1505,7 +1522,7 @@ graph LR
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -1543,7 +1560,7 @@ graph LR
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -1559,7 +1576,7 @@ graph LR
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -1568,61 +1585,61 @@ graph LR
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The pin attack applies damage to the spot where you've placed a
 								marker on a monster, allowing for quicker part breaks.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The reliability of pinning depends on the current area host. If
 								you are not the host, there is a chance it can fail. NPCs are
 								tied to their host player in this context.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Pay attention to whether you are running unsheathed, as this can
 								limit your attack options.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Falling attacks via magnetic attraction have generous motion
 								values and invincibility frames (i-frames).
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Basic cutting attacks have a large window between each, allowing
 								for roll cancellations or delayed attacks.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The cutting mode's guard motion acts as a guard point attack. It
 								can chain into the Finishing Slash, a magnetic dodge for more
 								intangibility, or another guard attack.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The impact mode's guard has fixed knockback. The rebounding
 								attack is similar to Magnetic Assault but doesn’t chain into any
 								meter attacks. It can be roll canceled and has i-frames.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								There is an official second control bindings menu for the
 								weapon, but only the approach cancel is bound by default for PSP
 								controls in that menu.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The <InlineTooltip
 									tooltip="Weapon"
 									text="Magnet Spike"
@@ -1635,10 +1652,10 @@ graph LR
 									iconType="component"
 								/>. The skill only significantly boosts the impact charged
 								strike.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Due to the ample amount of innate i-frames, it can be practical
 								to forgo a source of <InlineTooltip
 									tooltip="Armor Skill"
@@ -1646,10 +1663,10 @@ graph LR
 									icon={getItemIcon('Jewel')}
 									iconType="component"
 								/> entirely.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								There are no Magnet Spike-specific sigils outside of Unlimited
 								(UL) sigils. The <InlineTooltip
 									tooltip="Sigil Skill"
@@ -1657,23 +1674,23 @@ graph LR
 									icon={getItemIcon('Sigil')}
 									iconType="component"
 								/> sigil can be relevant for Impact Mode centric runs.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								The Magnetic Pin Finisher attack presents the highest motion
 								value in the game, at 600 without Active Feature and 750 with
 								Active Feature.
-							</p></ListItem
+							</div></ListItem
 						><ListItem
-							><p>
+							><div class="paragraph-long-02">
 								This weapon type is generally seen in <InlineTooltip
 									tooltip="Location"
 									text="Hunter's Road"
 									icon={getLocationIcon('Road')}
 									iconType="file"
 								/> teams. It is common for teams to use multiple Magnet Spikes.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -1684,7 +1701,7 @@ graph LR
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

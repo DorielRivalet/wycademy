@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { onMount, onDestroy } from 'svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
@@ -22,16 +24,31 @@
 		};
 	}
 
-	export let type: 'component' | 'file';
-	export let src: any;
-	export let alt = 'Dialog';
-	export let componentSize = '100%';
-	export let background = true;
-	export let color = '#ffffff';
-	export let width: string | number = 0;
-	export let height: string | number = 0;
-	/**TODO*/
-	export let currentMonster = '';
+	
+	interface Props {
+		type: 'component' | 'file';
+		src: any;
+		alt?: string;
+		componentSize?: string;
+		background?: boolean;
+		color?: string;
+		width?: string | number;
+		height?: string | number;
+		/**TODO*/
+		currentMonster?: string;
+	}
+
+	let {
+		type,
+		src,
+		alt = 'Dialog',
+		componentSize = '100%',
+		background = true,
+		color = '#ffffff',
+		width = 0,
+		height = 0,
+		currentMonster = ''
+	}: Props = $props();
 
 	let componentProps = {
 		size: componentSize,
@@ -40,10 +57,10 @@
 		currentMonster: currentMonster,
 	};
 
-	let svgComponent: any;
+	let svgComponent: any = $state();
 
-	let dialogElement: HTMLDialogElement;
-	let showModal = false;
+	let dialogElement: HTMLDialogElement = $state();
+	let showModal = $state(false);
 
 	function openDialog(event: MouseEvent) {
 		event.stopPropagation();
@@ -69,20 +86,20 @@
 		}
 	});
 
-	$: dialogClass = showModal ? 'dialog open' : 'dialog';
+	let dialogClass = $derived(showModal ? 'dialog open' : 'dialog');
 
-	$: {
+	run(() => {
 		if (type === 'component') {
 			svgComponent = src;
 		}
-	}
+	});
 </script>
 
 {#if showModal}
 	<div in:fade={{ duration: 150 }} class="overlay"></div>
 {/if}
 
-<button on:click={openDialog}>
+<button onclick={openDialog}>
 	{#if type === 'file'}
 		<img
 			{src}
@@ -91,7 +108,8 @@
 			height={height !== 0 ? height : 128}
 		/>
 	{:else if type === 'component'}
-		<svelte:component this={svgComponent} {...componentProps} />
+		{@const SvelteComponent = svgComponent}
+		<SvelteComponent {...componentProps} />
 	{/if}
 </button>
 
@@ -107,9 +125,9 @@
 			{#if type === 'file'}
 				<img {src} {alt} class="dialog-image" />
 			{:else if type === 'component'}
+				{@const SvelteComponent_1 = svgComponent}
 				<div class="dialog-image">
-					<svelte:component
-						this={svgComponent}
+					<SvelteComponent_1
 						{...{
 							size: 'clamp(50vh, 50vw, 50%)',
 							currentMonster: currentMonster,

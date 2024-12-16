@@ -1,5 +1,5 @@
 /*
- * © 2023 Doriel Rivalet
+ * © 2024 Doriel Rivalet
  * Use of this source code is governed by a MIT license that can be
  * found in the LICENSE file.
  */
@@ -17,7 +17,7 @@ import type {
 	FrontierWeaponStyle,
 } from 'ezlion';
 import type { wikiaMonsters } from './monsters';
-import type { ComponentType, SvelteComponent } from 'svelte';
+import type { Component } from 'svelte';
 import type { FrontierHabitat } from './habitat';
 
 // TODO this will need to support i18n later on. same for any other strings. prefer numbers or IDs.
@@ -182,7 +182,7 @@ export type FrontierSlot = 0 | 1 | 2 | 3;
 export type FrontierArmor = {
 	id: FrontierArmorID;
 	name: FrontierArmorName | 'Set';
-	icon: ComponentType<SvelteComponent>;
+	icon: Component;
 };
 /**0 does not show. Shows in 2nd page. */
 export type FrontierArmorGRLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -198,9 +198,10 @@ export type FrontierDamageType =
 	| 'True Damage';
 export type FrontierWeapon = {
 	id: FrontierWeaponID;
+	defaultOrder: FrontierWeaponID;
 	name: FrontierWeaponName;
 	class: FrontierWeaponClass;
-	icon: ComponentType<SvelteComponent>;
+	icon: Component;
 	hiden: FrontierMaxHiden;
 	bloatAttackMultiplier: FrontierWeaponMultiplier;
 	statusAssaultPoison: number;
@@ -625,6 +626,9 @@ export type FrontierMotionValue = {
 	stun: number[] | number;
 	specialFlag: string;
 	notes?: string;
+	gaugeConsumption?: number | number[]; // SAF
+	guardPoint?: boolean; // Tonfa etc
+	iframes?: number; // TODO
 };
 
 export type FrontierMotionValueSection = {
@@ -1050,7 +1054,7 @@ export type WycademyTrophy = {
 export type ProfilePinnedSet = {
 	setName: string;
 	setColor: string;
-	setIcon: string | undefined | ComponentType<SvelteComponent>;
+	setIcon: string | undefined | Component;
 	setIconProps?: {
 		currentMonster?: FrontierMonsterNameExpanded;
 		size?: string;

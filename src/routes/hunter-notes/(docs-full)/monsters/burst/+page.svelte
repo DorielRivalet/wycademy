@@ -1,24 +1,24 @@
 <script lang="ts">
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import { page } from '$app/stores';
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Burst'} />
 		<div>
-			<p>
+			<div class="paragraph-long-02">
 				Burst monsters are natural evolutions of the Gou monsters. These are
 				required to upgrade Gou armors and weapons beyond G Supremacy level.
-			</p>
+			</div>
 
 			<div class="page-turn">
 				<PageTurn pageUrlPathName={$page.url.pathname} />
 			</div>
 		</div>
-	</div></HunterNotesPage
+	</div></TableOfContentsPage
 >
 
 <style lang="scss">

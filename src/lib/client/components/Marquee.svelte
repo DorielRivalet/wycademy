@@ -1,11 +1,24 @@
 <script lang="ts">
-	export let pauseOnHover: boolean = false;
-	export let vertical: boolean = false;
-	export let repeat: number = 4;
-	export let reverse: boolean = false;
-	let className: string = '';
-	export { className as class };
-	export let style;
+	
+	interface Props {
+		pauseOnHover?: boolean;
+		vertical?: boolean;
+		repeat?: number;
+		reverse?: boolean;
+		class?: string;
+		style: any;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		pauseOnHover = false,
+		vertical = false,
+		repeat = 4,
+		reverse = false,
+		class: className = '',
+		style,
+		children
+	}: Props = $props();
 </script>
 
 <div
@@ -21,7 +34,7 @@
       {vertical ? 'marquee-content--vertical' : 'marquee-content--horizontal'}
       {reverse ? 'reverse' : ''}"
 		>
-			<slot>Default</slot>
+			{#if children}{@render children()}{:else}Default{/if}
 		</div>
 	{/each}
 </div>

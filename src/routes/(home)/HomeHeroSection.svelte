@@ -14,31 +14,42 @@
 	import { onMount } from 'svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
 
-	export let title: string =
-		'Your Ultimate Knowledge Base for Monster Hunter Frontier Z';
-	export let description: string =
-		'With in-depth resources, leaderboards, and tools for all hunters, our open-source platform empowers the community across all servers and patches.';
-	export let primaryButtonText: string = 'Learn more';
-	export let primaryButtonLink: string = '#problem';
-	export let counterSpeedruns: number = 0;
-	export let counterUsers: number = 0;
-	export let counterGuides: number = guidesInfo.reduce(
+	interface Props {
+		title?: string;
+		description?: string;
+		primaryButtonText?: string;
+		primaryButtonLink?: string;
+		counterSpeedruns?: number;
+		counterUsers?: number;
+		counterGuides?: number;
+		counterTools?: number;
+	}
+
+	let {
+		title = 'Your Ultimate Knowledge Base for Monster Hunter Frontier Z',
+		description = 'With in-depth resources, leaderboards, and tools for all hunters, our open-source platform empowers the community across all servers and patches.',
+		primaryButtonText = 'Learn more',
+		primaryButtonLink = '#problem',
+		counterSpeedruns = 0,
+		counterUsers = 0,
+		counterGuides = guidesInfo.reduce(
 		(count, category) => count + category.pages.length,
 		0,
-	);
-	export let counterTools: number = toolsInfo.reduce(
+	),
+		counterTools = toolsInfo.reduce(
 		(count, category) => count + category.pages.length,
 		0,
-	);
+	)
+	}: Props = $props();
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	let container: HTMLDivElement;
-	let isVisible = false;
+	let container: HTMLDivElement = $state();
+	let isVisible = $state(false);
 
-	$: bgClass = $carbonThemeStore === 'g10' ? `background-light` : `background`;
+	let bgClass = $derived($carbonThemeStore === 'g10' ? `background-light` : `background`);
 
 	onMount(() => {
 		const observer = new IntersectionObserver(

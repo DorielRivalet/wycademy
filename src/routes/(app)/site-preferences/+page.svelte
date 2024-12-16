@@ -1,10 +1,12 @@
 <!--
-  ~ © 2023 Doriel Rivalet
+  ~ © 2024 Doriel Rivalet
   ~ Use of this source code is governed by a MIT license that can be
   ~ found in the LICENSE file.
 -->
 
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import {
 		getThemeIcon,
 		getThemeId,
@@ -39,10 +41,7 @@
 	import { frontierMath } from '$lib/client/modules/frontier/functions';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { browser } from '$app/environment';
-	import {
-		catppuccinColorNames,
-		catppuccinThemeMap,
-	} from '$lib/client/themes/catppuccin';
+	import { catppuccinColorNames, catppuccinThemeMap } from '$lib/catppuccin';
 	import {
 		authorName,
 		authorUrl,
@@ -194,21 +193,25 @@
 	// TODO put constants in other files
 	const monsterHPFormula = display('EHP = \\frac{THP}{DEF}');
 
-	let container: { innerHTML: string };
+	let container: { innerHTML: string } = $state();
 
-	let mermaidTheme = $carbonThemeStore === 'g10' ? 'default' : 'dark';
+	let mermaidTheme = $state($carbonThemeStore === 'g10' ? 'default' : 'dark');
 
 	// The default diagram
-	let diagram = getDiagram(mermaidTheme);
+	let diagram = $state(getDiagram(mermaidTheme));
 
-	let monsterHP = 30_000;
-	let defrate = 0.03;
+	let monsterHP = $state(30_000);
+	let defrate = $state(0.03);
 
-	$: diagram && renderDiagram($carbonThemeStore, mermaidTheme);
-	$: EHP = `{${frontierMath.calculateEHP(
-		monsterHP,
-		defrate,
-	)}} = \\frac{${monsterHP}}{${defrate}}`;
+	run(() => {
+		diagram && renderDiagram($carbonThemeStore, mermaidTheme);
+	});
+	let EHP = $derived(
+		`{${frontierMath.calculateEHP(
+			monsterHP,
+			defrate,
+		)}} = \\frac{${monsterHP}}{${defrate}}`,
+	);
 	const url = $page.url.toString();
 
 	onMount(() => {
@@ -320,12 +323,13 @@
 				on:select={(event) => {
 					changeCursor(event.detail.selectedId);
 				}}
-				let:item
 			>
-				<div>
-					<img alt="Cursor Icon" src={getCursorIcon(item.id)} width="24" />
-					<strong style="vertical-align: top;">{item.text}</strong>
-				</div>
+				{#snippet children({ item })}
+					<div>
+						<img alt="Cursor Icon" src={getCursorIcon(item.id)} width="24" />
+						<strong style="vertical-align: top;">{item.text}</strong>
+					</div>
+				{/snippet}
 			</Dropdown>
 		{:else}
 			<DropdownSkeleton />
@@ -361,12 +365,13 @@
 					{ id: '3', text: themeOptions[3].labelText },
 				]}
 				on:select={(event) => changeTheme(event.detail.selectedId)}
-				let:item
 			>
-				<div>
-					<img alt="Theme Icon" src={getThemeIcon(item.id)} width="24" />
-					<strong style="vertical-align: center;">{item.text}</strong>
-				</div>
+				{#snippet children({ item })}
+					<div>
+						<img alt="Theme Icon" src={getThemeIcon(item.id)} width="24" />
+						<strong style="vertical-align: center;">{item.text}</strong>
+					</div>
+				{/snippet}
 			</Dropdown>
 		{:else}
 			<DropdownSkeleton />
@@ -383,12 +388,12 @@
 			subtitle="Make sure notifications are also allowed in your operating system for the browser you are using. If you accept the permission, you will receive a notification to confirm it is working."
 		/>
 		<!--TODO: Link to panel page-->
-		<p class="spaced-paragraph">
+		<div class="spaced-paragraph">
 			If you wish to change your account's notifications, visit your account's
 			<Link href="/account/settings/notifications" inline
 				>Notifications Settings.</Link
 			>
-		</p>
+		</div>
 		<div class="setting-container">
 			<Toggle
 				labelText="Notifications"
@@ -409,15 +414,19 @@
 
 		<div class="setting-container">
 			<Toggle toggled={true} disabled={!$notificationsStore}>
-				<span slot="labelText"
-					><TooltipDefinition>
-						Someone claimed a global overlay achievement
-						<span slot="tooltip">
-							Notifies when an overlay achievement (found in
-							/overlay/achievements) was obtained for the first time ever.
-						</span>
-					</TooltipDefinition></span
-				>
+				{#snippet labelText()}
+					<span
+						><TooltipDefinition>
+							Someone claimed a global overlay achievement
+							{#snippet tooltip()}
+								<span>
+									Notifies when an overlay achievement (found in
+									/overlay/achievements) was obtained for the first time ever.
+								</span>
+							{/snippet}
+						</TooltipDefinition></span
+					>
+				{/snippet}
 			</Toggle>
 		</div>
 		<div class="setting-container">
@@ -481,7 +490,7 @@
 				{#if !browser}
 					<Loading withOverlay={false} />
 				{:else}
-					<pre><code bind:this={container} /></pre>
+					<pre><code bind:this={container}></code></pre>
 				{/if}
 			</div>
 		</section>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
@@ -179,11 +179,11 @@
 	];
 </script>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<section>
 		<SectionHeadingTopLevel title={'Dual Swords'} />
 		<div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Dual Swords"
 					tooltip="Weapon"
@@ -198,8 +198,8 @@
 				/> (SnS) ability to block and use items for some of the highest DPS in the
 				game. While their motion values are relatively low, they excel when paired
 				with appropriate elemental or status-inflicting weapons.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Dual Swords"
 					tooltip="Weapon"
@@ -209,9 +209,9 @@
 				playstyle revolving around using <strong>True Demon Mode</strong>, which
 				drains health but enhances attacks, combined with the sharpening buff
 				detailed below.
-			</p>
+			</div>
 
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				Pressing the Kick button while using <InlineTooltip
 					text="Dual Swords"
 					tooltip="Weapon"
@@ -225,8 +225,8 @@
 					iconType="component"
 					icon={getWeaponIcon('Dual Swords')}
 				/> performance, as it requires constant use during combos and strategic evades.
-			</p>
-			<p class="spaced-paragraph">
+			</div>
+			<div class="spaced-paragraph">
 				The sharpen buff expires as soon as a combo ends. However, as long as
 				you keep attacking, evading, or sharpening, the combo continues,
 				allowing you to maintain the 1.20x buff indefinitely without <InlineTooltip
@@ -235,12 +235,12 @@
 					iconType="component"
 					icon={getItemIcon('Jewel')}
 				/> active, provided you don’t make a mistake.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading title="Demon Modes" level={2} />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						In Frontier, <InlineTooltip
 							text="Dual Swords"
 							tooltip="Weapon"
@@ -252,23 +252,23 @@
 						drains Health. Both modes significantly increase motion values, but
 						<strong>True Demon Mode</strong> also introduces a fast evade that can
 						be used to extend combos and maintain the sharpening buff.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						<strong>True Demon Mode</strong> won’t directly kill you; when your health
 						reaches 1, it depletes any remaining Red Health and further boosts your
 						attack power.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						In terms of performance, both modes increase motion values by
 						approximately 1.25x, with <strong>True Demon Mode</strong> attacks
 						being about 1.1x faster than those in Demon Mode. However,
 						<strong>True Demon Mode</strong> also increases Red Health loss by about
 						1.375x, making it a challenging but rewarding mode for skilled players.
-					</p>
+					</div>
 				</div>
 			</section>
 
-			<p>
+			<div class="paragraph-long-02">
 				For an explanation on element damage, see our <Link
 					icon={Information}
 					href="/hunter-notes/getting-started/elements#damage"
@@ -277,12 +277,12 @@
 					icon={ToolKit}
 					href="/tools/calculator/damage">Damage Calculator</Link
 				>.
-			</p>
+			</div>
 
 			<section>
 				<SectionHeading level={2} title="Earth Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Earth Style</strong> is the base style for <InlineTooltip
 							text="Dual Swords"
 							tooltip="Weapon"
@@ -292,14 +292,14 @@
 						<strong>True Demon Mode</strong>. The main difference between this
 						style and the Heaven and Storm Styles is the
 						<strong>Demon Dance</strong> move, a long combo that locks you in place.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Heaven Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Heaven Style</strong> is similar to
 						<strong>Earth Style</strong>
 						but replaces <strong>Demon Dance</strong> with
@@ -311,31 +311,31 @@
 						physical damage but with two fewer elemental hits. Both the
 						<strong>Demon Dance</strong> and Flurry combos deal only 70% elemental
 						damage.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Storm Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Storm Style</strong> is nearly identical to
 						<strong>Heaven Style</strong>, with the main difference being the
 						replacement of the Rush Slash (unsheath action) with a forward flip.
 						This move is useful for hitting tails but can be tricky to execute.
-					</p>
+					</div>
 				</div>
 			</section>
 
 			<section>
 				<SectionHeading level={2} title="Extreme Style" />
 				<div>
-					<p class="spaced-paragraph">
+					<div class="spaced-paragraph">
 						<strong>Extreme Style</strong> builds on
 						<strong>Heaven Style</strong>, introducing new moves and the
 						powerful <strong>Extreme Demon Mode</strong>.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						This style allows you to run with your <InlineTooltip
 							text="Dual Swords"
 							tooltip="Weapon"
@@ -344,8 +344,8 @@
 						/> unsheathed and adds the <strong>Sky Slash</strong>, an acrobatic
 						combo that hits five times for a total motion value of 30, ending
 						with a two-hit finisher dealing 20 motion each.
-					</p>
-					<p class="spaced-paragraph">
+					</div>
+					<div class="spaced-paragraph">
 						<strong>Extreme Demon Mode</strong> is an enhanced version of
 						<strong>True Demon Mode</strong>. It consumes Green Health first,
 						followed by Red Health, and shares the same increased attack speed
@@ -356,7 +356,7 @@
 						<strong>Extreme Demon Mode</strong> includes a unique
 						<strong>Rising Slash</strong>, a more practical version of the
 						forward flip found in <strong>Storm Style</strong>.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -368,7 +368,7 @@
 			<section>
 				<SectionHeading level={2} title="Active Feature" />
 				<div>
-					<p>
+					<div class="paragraph-long-02">
 						Reduces the speed at which the HP bar decreases when in <strong
 							>True Demon Mode</strong
 						>. Stamina gauge depletion speed is reduced to x0.5 when in
@@ -384,7 +384,7 @@
 							iconType="component"
 							icon={getItemIcon('Jewel')}
 						/> is activated, it is reduced to x0.33.
-					</p>
+					</div>
 				</div>
 			</section>
 
@@ -418,13 +418,13 @@
 							</div>
 						</Toolbar>
 
-						<svelte:fragment slot="cell" let:cell>
+						{#snippet cell({ cell })}
 							{#if cell.value[0] == '-'}
 								<p style:color="var(--ctp-red)">{cell.value}</p>
 							{:else}
 								<p>{cell.value}</p>
 							{/if}
-						</svelte:fragment>
+						{/snippet}
 					</DataTable>
 				</div>
 			</section>
@@ -462,7 +462,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'skill'}
 									<InlineTooltip
 										text={cell.value}
@@ -473,7 +473,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -511,7 +511,7 @@
 								</div>
 							</Toolbar>
 
-							<svelte:fragment slot="cell" let:cell>
+							{#snippet cell({ cell })}
 								{#if cell.key === 'sigil'}
 									<InlineTooltip
 										text={cell.value}
@@ -527,7 +527,7 @@
 								{:else}
 									<p>{cell.value}</p>
 								{/if}
-							</svelte:fragment>
+							{/snippet}
 						</DataTable>
 					</div>
 				</div>
@@ -536,9 +536,9 @@
 			<section>
 				<SectionHeading level={2} title="Tips and Tricks" />
 				<div>
-					<UnorderedList>
+					<UnorderedList class="spaced-list">
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Like <InlineTooltip
 									tooltip="Weapon"
 									text="Sword and Shield"
@@ -546,10 +546,10 @@
 									icon={getWeaponIcon('Sword and Shield')}
 								/>, long length is generally an upgrade and is often found on
 								modern weapons.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								There’s no reason to use any demonization mode other than
 								Extreme Demon Mode nowadays. However, in this state, you cannot
 								receive any healing except from <InlineTooltip
@@ -563,18 +563,18 @@
 									iconType="component"
 									icon={getWeaponIcon('Lance')}
 								/> users cannot heal you either while its active.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								Each sharpen in a combo increases raw damage by 1.05x, stacking
 								up to four times for a maximum of 1.20x. The attack evades in
 								True/Extreme Demon modes maintain this combo state. The overlay
 								has a counter for this.
-							</p></ListItem
+							</div></ListItem
 						>
 						<ListItem
-							><p>
+							><div class="paragraph-long-02">
 								When demonized, healing is entirely blocked, with <InlineTooltip
 									tooltip="Armor Skill"
 									text="Vampirism"
@@ -588,7 +588,7 @@
 									iconType="file"
 									icon={getLocationIcon('Road')}
 								/>.
-							</p></ListItem
+							</div></ListItem
 						>
 					</UnorderedList>
 				</div>
@@ -599,7 +599,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

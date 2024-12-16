@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
@@ -16,7 +16,7 @@
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { LocationIcons } from '$lib/client/modules/frontier/locations';
 	import { gameInfo } from '$lib/client/modules/frontier/objects';
-	import { WeaponTypes } from '$lib/client/modules/frontier/weapons';
+	import { weaponTypeInfo } from '$lib/client/modules/frontier/weapons';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import { activeFeatures } from '$lib/client/modules/frontier/active-feature';
 
@@ -25,28 +25,28 @@
 		const sumWithInitial = arr.reduce(
 			(accumulator, currentValue) =>
 				accumulator +
-				(WeaponTypes.find((e) => e.name === currentValue)?.activeFeatureValue ??
-					0),
+				(weaponTypeInfo.find((e) => e.name === currentValue)
+					?.activeFeatureValue ?? 0),
 			initialValue,
 		);
 
 		return sumWithInitial;
 	}
 
-	let activeFeatureSelectedRowIds: string[] = [];
+	let activeFeatureSelectedRowIds: string[] = $state([]);
 
-	$: activeFeatureFinalBitfieldValue = getActiveFeatureFinalBitfieldValue(
-		activeFeatureSelectedRowIds,
+	let activeFeatureFinalBitfieldValue = $derived(
+		getActiveFeatureFinalBitfieldValue(activeFeatureSelectedRowIds),
 	);
 </script>
 
-<HunterNotesPage displayTOC={false}>
+<TableOfContentsPage displayTOC={false}>
 	<section>
 		<SectionHeadingTopLevel title={'Active Feature'} />
 
 		<div class="active-feature-section">
 			<div class="active-feature-description">
-				<p class="spaced-paragraph">
+				<div class="spaced-paragraph">
 					The <strong>Active Feature</strong> system, introduced in <InlineTooltip
 						tooltip="Game Version"
 						iconType="file"
@@ -63,7 +63,7 @@
 						icon={LocationIcons.find((e) => e.name === 'Mezeporta')?.icon}
 						iconType={'file'}
 					/>.
-				</p>
+				</div>
 				<CenteredFigure
 					width={'100%'}
 					type="file"
@@ -114,19 +114,19 @@
 						</div>
 					</Toolbar>
 
-					<svelte:fragment slot="cell" let:cell>
+					{#snippet cell({ cell })}
 						{#if cell.key === 'weapon'}
 							<InlineTooltip
 								text={cell.value}
 								tooltip={'Weapon'}
-								icon={WeaponTypes.find((e) => e.name === cell.value)?.icon}
+								icon={weaponTypeInfo.find((e) => e.name === cell.value)?.icon}
 								iconSize={'2rem'}
 								gap={'0.5rem'}
 							/>
 						{:else}
 							<p>{cell.value}</p>
 						{/if}
-					</svelte:fragment>
+					{/snippet}
 				</DataTable>
 			</div>
 		</div>
@@ -151,7 +151,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</section>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

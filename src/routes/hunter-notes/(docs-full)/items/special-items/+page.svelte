@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import CenteredFigure from '$lib/client/components/CenteredFigure.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import HunterNotesPage from '$lib/client/components/HunterNotesPage.svelte';
+	import TableOfContentsPage from '$lib/client/components/TableOfContentsPage.svelte';
 	import PageTurn from '$lib/client/components/PageTurn.svelte';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
@@ -21,14 +21,14 @@
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
-	import type { ComponentType, SvelteComponent } from 'svelte';
+	import type { Component } from 'svelte';
 
 	// TODO page thumbnail
 
 	const specialItems: {
 		demo?: string;
 		item: string;
-		icon: ComponentType<SvelteComponent>;
+		icon: Component;
 		iconColor: string;
 		description: string;
 		source: string;
@@ -275,18 +275,20 @@
 		}
 	}
 
-	let modalHeading = '';
-	let modalLabel = '';
-	let modalOpen = false;
-	let modalImage = '';
-	let modalNotes = '';
-	let modalImageType: 'video' | 'image' = 'image';
+	let modalHeading = $state('');
+	let modalLabel = $state('');
+	let modalOpen = $state(false);
+	let modalImage = $state('');
+	let modalNotes = $state('');
+	let modalImageType: 'video' | 'image' = $state('image');
 
 	// TODO Needed?
 	let modalPopoverIconType = 'file';
 	let modalPopoverIcon: any;
 
-	$: modalBlurClass = modalOpen ? 'modal-open-blur' : 'modal-open-noblur';
+	let modalBlurClass = $derived(
+		modalOpen ? 'modal-open-blur' : 'modal-open-noblur',
+	);
 </script>
 
 <Modal
@@ -305,14 +307,11 @@
 			{:else}
 				<div>
 					{#await import('$lib/player/Player.svelte') then { default: Player }}
-						<svelte:component
-							this={Player}
-							{...{ title: modalHeading, src: modalImage }}
-						/>
+						<Player {...{ title: modalHeading, src: modalImage }} />
 					{/await}
 				</div>
 			{/if}
-			<div>{modalNotes}</div>
+			<p>{modalNotes}</p>
 		</div>
 	{:else}
 		<div class="modal-mobile-container">
@@ -320,7 +319,8 @@
 				<div class="modal-mobile-image">
 					<div>
 						{#if modalPopoverIconType === 'component'}
-							<svelte:component this={modalPopoverIcon} />
+							{@const SvelteComponent_1 = modalPopoverIcon}
+							<SvelteComponent_1 />
 						{:else}
 							<img src={modalPopoverIcon} alt={modalHeading} />
 						{/if}
@@ -338,11 +338,11 @@
 	{/if}
 </Modal>
 
-<HunterNotesPage displayTOC={true}>
+<TableOfContentsPage displayTOC={true}>
 	<div class={modalBlurClass}>
 		<SectionHeadingTopLevel title={'Special Items'} />
 		<div>
-			<p>
+			<div class="spaced-paragraph">
 				The following are items that either alter quest rewards when used or are
 				exclusive to <InlineTooltip
 					tooltip="Game"
@@ -352,7 +352,7 @@
 					text="Monster Hunter Frontier"
 					iconType="file"
 				/>, not found in the mainline games.
-			</p>
+			</div>
 			<div class="table table-with-scrollbar">
 				<DataTable
 					id="special-items-dom"
@@ -399,7 +399,7 @@
 							>
 						</div>
 					</Toolbar>
-					<svelte:fragment slot="cell" let:cell>
+					{#snippet cell({ cell })}
 						{#if cell.key === 'item'}
 							<div class="special-item">
 								<InlineTooltip
@@ -423,10 +423,10 @@
 						{:else}
 							<p>{cell.value}</p>
 						{/if}
-					</svelte:fragment>
+					{/snippet}
 				</DataTable>
 			</div>
-			<p class="spaced-paragraph">
+			<div class="spaced-paragraph">
 				<InlineTooltip
 					text="Large Lucky Charm"
 					tooltip="Item"
@@ -447,7 +447,7 @@
 					iconType="component"
 				/> effects stack. If you use all of them in a quest, one of each will be
 				consumed per quest.
-			</p>
+			</div>
 			<CenteredFigure
 				width={'100%'}
 				type="file"
@@ -460,7 +460,7 @@
 			<PageTurn pageUrlPathName={$page.url.pathname} />
 		</div>
 	</div>
-</HunterNotesPage>
+</TableOfContentsPage>
 
 <style lang="scss">
 	.page-turn {

@@ -4,12 +4,23 @@
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
+	import { releaseNotesSummaries } from '$lib/client/modules/overlay-release-notes';
+	import { formatDateWithRelativeTime } from '$lib/client/modules/time';
+	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
 	function getLinkFromVersion(version: string) {
 		return `/overlay/release-notes/${version.replaceAll('.', '-')}`;
 	}
 
-	const releaseNotesVersions = ['v0.41.0', 'v0.40.0', 'v0.39.0'];
+	function getVersionDate(date: string) {
+		let date1 = new Date(
+			Number(date.split('-')[0]),
+			Number(date.split('-')[1]) - 1,
+			Number(date.split('-')[2]),
+		);
+		let date2 = new Date();
+		return [date1, date2];
+	}
 
 	const breadCrumbItems = [
 		{ href: '/', text: 'Home' },
@@ -44,9 +55,17 @@
 		</p>
 
 		<UnorderedList>
-			{#each releaseNotesVersions as version}
+			{#each releaseNotesSummaries as summary}
 				<ListItem>
-					<a href={getLinkFromVersion(version)}>{version}</a>
+					<Link inline href={getLinkFromVersion(summary.version)}
+						>{summary.version.replaceAll('-', '.')}:</Link
+					>
+					<span class="date">
+						{formatDateWithRelativeTime(
+							getVersionDate(summary.date)[0],
+							getVersionDate(summary.date)[1],
+						)}
+					</span>
 				</ListItem>
 			{/each}
 		</UnorderedList>
@@ -59,6 +78,10 @@
 		width: 100%;
 		padding-top: 2rem;
 		padding-bottom: 2rem;
+	}
+
+	.date {
+		color: var(--ctp-subtext0);
 	}
 
 	hr {

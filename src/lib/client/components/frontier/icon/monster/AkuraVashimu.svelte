@@ -1,12 +1,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <script lang="ts">
 	import bg from '$lib/client/images/monster/bg-512.webp';
-	export let size = '128px';
-	export let background = false;
+	interface Props {
+		size?: string;
+		background?: boolean;
+	}
 
-	$: backgroundStyle = background
+	let { size = '128px', background = false }: Props = $props();
+
+	let backgroundStyle = $derived(background
 		? `width: ${size}; height: ${size}; background-image: url('${bg}'); background-size: ${size}`
-		: `width: ${size}; height: ${size};`;
+		: `width: ${size}; height: ${size};`);
 </script>
 
 <div class="container" style={backgroundStyle}>
@@ -715,7 +719,7 @@
 				id="path129518"
 			/></g
 		><metadata id="metadata9233">
-			<!-- svelte-ignore illegal-attribute-character -->
+			<!-- svelte-ignore attribute_illegal_colon -->
 			<!-- 	data-license="https://creativecommons.org/licenses/by-nc-sa/4.0/" data-author="Doriel Rivalet"--></metadata
 		></svg
 	>

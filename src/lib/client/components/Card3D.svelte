@@ -3,15 +3,26 @@
 	import { browser } from '$app/environment';
 
 	// Optional props to customize the effect
-	export let perspective = 1500;
-	export let scale = 1.07;
-	export let rotationIntensity = 1; // Multiplier for rotation effect
-	export let glowOpacity = 0.33; // Controls the glow intensity (0-1)
+	interface Props {
+		perspective?: number;
+		scale?: number;
+		rotationIntensity?: number;
+		glowOpacity?: number;
+		children?: import('svelte').Snippet;
+	}
 
-	let wrapper: HTMLElement;
+	let {
+		perspective = 1500,
+		scale = 1.07,
+		rotationIntensity = 1,
+		glowOpacity = 0.33,
+		children
+	}: Props = $props();
+
+	let wrapper: HTMLElement = $state();
 	let bounds: DOMRect;
-	let transform = '';
-	let glowBackground = '';
+	let transform = $state('');
+	let glowBackground = $state('');
 	let mounted = false;
 
 	function rotateToMouse(e: MouseEvent) {
@@ -73,17 +84,17 @@
 </script>
 
 <div class="perspective-wrapper" style="perspective: {perspective}px">
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div
 		class="effect-wrapper"
 		bind:this={wrapper}
-		on:mouseenter={handleMouseEnter}
-		on:mouseleave={handleMouseLeave}
+		onmouseenter={handleMouseEnter}
+		onmouseleave={handleMouseLeave}
 		style="transform: {transform}"
 	>
 		<div class="content">
-			<slot />
-			<div class="glow" style="background-image: {glowBackground}" />
+			{@render children?.()}
+			<div class="glow" style="background-image: {glowBackground}"></div>
 		</div>
 	</div>
 </div>
