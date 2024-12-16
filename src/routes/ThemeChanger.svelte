@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import Sun from '$lib/client/images/icon/sun.webp';
 	import Moon from '$lib/client/images/icon/moon.webp';
 	import { getThemeNameFromId, setTheme } from '$lib/client/stores/theme';
 	import { browser } from '$app/environment';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
+	import { catppuccinThemeMap } from '$lib/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
@@ -14,10 +12,7 @@
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
-	let icon;
-	run(() => {
-		icon = $carbonThemeStore === 'g10' ? Sun : Moon;
-	});
+	let icon = $derived($carbonThemeStore === 'g10' ? Sun : Moon);
 
 	function changeTheme(themeID: string) {
 		setTheme(carbonThemeStore, themeID);
@@ -25,8 +20,8 @@
 	}
 
 	function clicked(e: MouseEvent) {
-		icon = icon === Sun ? Moon : Sun;
-		let themeID = icon === Sun ? '0' : '3';
+		let newIcon = icon === Sun ? 'moon' : 'sun';
+		let themeID = newIcon === 'sun' ? '0' : '3';
 		changeTheme(themeID);
 	}
 

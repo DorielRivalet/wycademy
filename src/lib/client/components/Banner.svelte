@@ -1,21 +1,16 @@
 <script lang="ts">
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
-
-	const carbonThemeStore = getContext(
-		Symbol.for('carbonTheme'),
-	) as Writable<CarbonTheme>;
 
 	interface Props {
+		theme: CarbonTheme;
 		/**Navigate to home page on click*/
 		clickable?: boolean;
 		/**Show musou on hover*/
 		hoverable?: boolean;
 	}
 
-	let { clickable = true, hoverable = true }: Props = $props();
+	let { clickable = true, hoverable = true, theme }: Props = $props();
 
 	const musouColor = '#73625a';
 	const normalColor = '#f7f4fd';
@@ -29,7 +24,7 @@
 		isHovered && hoverable ? musouStroke : normalStroke,
 	);
 	let textColor = $derived(
-		$carbonThemeStore === 'g10'
+		theme === 'g10'
 			? getHexStringFromCatppuccinColor('surface1', 'g100')
 			: getHexStringFromCatppuccinColor('text', 'g100'),
 	);

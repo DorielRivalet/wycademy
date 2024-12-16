@@ -55,7 +55,7 @@
 	import { display } from 'mathlifier';
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import { codeToHtml } from 'shiki';
-	import { getCatppuccinFlavorFromThemeForShiki } from '$lib/client/themes/catppuccin';
+	import { getCatppuccinFlavorFromThemeForShiki } from '$lib/catppuccin';
 	import { browser } from '$app/environment';
 	import { getDivaPrayerGemColor } from '$lib/client/modules/frontier/diva';
 	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';

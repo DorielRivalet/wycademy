@@ -33,7 +33,6 @@
 		FrontierWeapon,
 		IconSize,
 	} from '$lib/client/modules/frontier/types';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
 	import { onMount } from 'svelte';
@@ -61,6 +60,7 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	// this works
 	function changeModal(heading: string, section: string) {

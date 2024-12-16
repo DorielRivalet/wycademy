@@ -19,7 +19,6 @@
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Head from '$lib/client/components/Head.svelte';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import ToastySound from './assets/sound/toasty.mp3';
 	import GameOverSound from './assets/sound/mixkit-arcade-retro-game-over-213.wav';
 	import FireballSound from './assets/sound/flame.ogg';
@@ -47,6 +46,7 @@
 	import type { Writable } from 'svelte/store';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { formatDate } from '$lib/client/modules/time';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -2721,7 +2721,11 @@
 				rgba(0, 0, 0, 0.1) 66%,
 				transparent 66%
 			),
-			-webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)),
+			-webkit-linear-gradient(
+					top,
+					rgba(255, 255, 255, 0.25),
+					rgba(0, 0, 0, 0.25)
+				),
 			-webkit-linear-gradient(left, #f38ba8, #f9e2af);
 
 		border-radius: 2px;

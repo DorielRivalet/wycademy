@@ -7,7 +7,6 @@
 	import LegIconWhite from './frontier/icon/armor/Leg_Icon_White.svelte';
 	import MyTore from '$lib/client/images/icon/my_tore.webp';
 	import type { ProfilePinnedSet } from '$lib/client/modules/frontier/types';
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getWeaponIcon } from '../modules/frontier/weapons';
 	import { LocationIcons } from '../modules/frontier/locations';
@@ -22,6 +21,7 @@
 	import { getArmorIcon } from '../modules/frontier/armor';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import { getCSVFromArray } from '../modules/csv';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	let selectedSetName = $state('');
 
