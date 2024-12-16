@@ -20,8 +20,8 @@ updates:
     reviewers:
       - 'DorielRivalet'
     # Raise pull requests for version updates
-    # to npm against the `main` branch
-    target-branch: 'svelte-5'
+    # to npm against a branch
+    target-branch: 'main'
     open-pull-requests-limit: 50
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: 'github-actions'
