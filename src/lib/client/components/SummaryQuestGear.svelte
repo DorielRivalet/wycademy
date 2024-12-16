@@ -1744,6 +1744,7 @@ Refresh Rate: ${run.RefreshRate}
 						downloadDomAsPng('gear-graphics-dom', 'gear-graphics')}
 					>Download as Image</Button
 				><Button
+					disabled
 					kind="tertiary"
 					icon={Export}
 					on:click={() => exportForDamageCalculator('gear-graphics', hunt)}

@@ -40,7 +40,7 @@
 <footer>
 	<div class="footer-main-content-container">
 		<div class="banner">
-			<Banner />
+			<Banner theme={$carbonThemeStore} />
 			<div class="banner-text">
 				<p>A compendium of resources for MHF-Z by</p>
 				<span class="icon-info-container">

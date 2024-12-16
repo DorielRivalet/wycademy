@@ -41,7 +41,7 @@
 	import { frontierMath } from '$lib/client/modules/frontier/functions';
 	import SectionHeadingTopLevel from '$lib/client/components/SectionHeadingTopLevel.svelte';
 	import { browser } from '$app/environment';
-	import { catppuccinColorNames } from '$lib/client/themes/catppuccin';
+	import { catppuccinColorNames, catppuccinThemeMap } from '$lib/catppuccin';
 	import {
 		authorName,
 		authorUrl,

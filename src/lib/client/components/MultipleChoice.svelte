@@ -12,7 +12,6 @@
 		type GaugeChartOptions,
 	} from '@carbon/charts-svelte';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
@@ -26,6 +25,7 @@
 	import Information from 'carbon-icons-svelte/lib/Information.svelte';
 	import RankingItem from './RankingItem.svelte';
 	import Checkbox from 'carbon-components-svelte/src/Checkbox/Checkbox.svelte';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const dispatch = createEventDispatcher();
 

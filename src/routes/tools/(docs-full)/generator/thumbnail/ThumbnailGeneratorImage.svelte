@@ -9,7 +9,6 @@
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import ColorPicker from 'svelte-awesome-color-picker';
 	import type { FrontierImageType } from '$lib/client/modules/frontier/types';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { createEventDispatcher } from 'svelte';
 	import ComboBox from 'carbon-components-svelte/src/ComboBox/ComboBox.svelte';
 	import {
@@ -32,6 +31,7 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),

@@ -4,15 +4,10 @@
 	import { setContext } from 'svelte';
 	import '../app.scss';
 	import ScrollToTop from './ScrollToTop.svelte';
-	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
 	import { themeTokens } from '$lib/client/themes/tokens';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import type FlavorName from '@catppuccin/palette';
-	import { getCatppuccinFlavorFromTheme } from '$lib/client/themes/catppuccin';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
+	import { catppuccinThemeMap } from '$lib/catppuccin';
 	import { onMount } from 'svelte';
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -92,10 +87,13 @@
 	let tokens = $derived(themeTokens[$carbonThemeStore] || themeTokens.default);
 
 	onMount(() => {
+		let cssVarMap;
 		let themeValue = $carbonThemeStore;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		console.log('On mount 1');
+		cssVarMap = catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		console.log('On mount 2');
 		Object.keys(cssVarMap).forEach((key) => {
+			console.log('On mount ' + key.toString());
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});
 

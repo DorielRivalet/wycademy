@@ -9,7 +9,7 @@
 	import ViewTransition from '../../../../../Navigation.svelte';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
+	import { catppuccinThemeMap } from '$lib/catppuccin';
 	import { onMount } from 'svelte';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import MonsterSilhouette from '$lib/client/components/frontier/MonsterSilhouette.svelte';
@@ -74,7 +74,7 @@
 	import { display } from 'mathlifier';
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import { codeToHtml } from 'shiki';
-	import { getCatppuccinFlavorFromThemeForShiki } from '$lib/client/themes/catppuccin';
+	import { getCatppuccinFlavorFromThemeForShiki } from '$lib/catppuccin';
 	import { browser } from '$app/environment';
 	import { getDivaPrayerGemColor } from '$lib/client/modules/frontier/diva';
 	import InlineToggletip from '$lib/client/components/frontier/InlineToggletip.svelte';
@@ -212,8 +212,8 @@
 
 	onMount(() => {
 		let themeValue = $carbonThemeStore;
-		let cssVarMap =
-			catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
+		let cssVarMap;
+		cssVarMap = catppuccinThemeMap[themeValue] || catppuccinThemeMap.default;
 		Object.keys(cssVarMap).forEach((key) => {
 			document.documentElement.style.setProperty(key, `var(${cssVarMap[key]})`);
 		});

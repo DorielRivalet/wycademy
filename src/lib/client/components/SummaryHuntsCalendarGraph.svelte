@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
@@ -10,13 +9,14 @@
 	import SkeletonText from 'carbon-components-svelte/src/SkeletonText/SkeletonText.svelte';
 	import '@carbon/charts-svelte/styles.css';
 	import { type SpeedrunInfo } from '../modules/frontier/quest';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	interface Props {
 		theme: CarbonTheme;
 		hunts: SpeedrunInfo[];
 	}
 
-	let { theme = $bindable(), hunts }: Props = $props();
+	let { theme, hunts }: Props = $props();
 
 	const years = Array.from(
 		new Set(hunts.map((hunt) => new Date(hunt.CreatedAt).getFullYear())),

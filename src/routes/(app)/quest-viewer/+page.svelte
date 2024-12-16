@@ -666,7 +666,7 @@
 								</div>
 								<div class="calendar-graph">
 									<SummaryHuntsCalendarGraph
-										bind:theme={$carbonThemeStore}
+										theme={$carbonThemeStore}
 										hunts={speedrunInfo}
 									/>
 								</div>

@@ -6,7 +6,7 @@
 	import Footer from './Footer.svelte';
 	import Theme from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { themeTokens } from '$lib/client/themes/tokens';
-	import { catppuccinThemeMap } from '$lib/client/themes/catppuccin';
+	import { catppuccinThemeMap } from '$lib/catppuccin';
 	import { onMount } from 'svelte';
 	import { cursorVars } from '$lib/client/themes/cursor';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';

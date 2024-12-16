@@ -5,12 +5,12 @@
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import NumberInput from 'carbon-components-svelte/src/NumberInput/NumberInput.svelte';
 	import ColorPicker from 'svelte-awesome-color-picker';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { createEventDispatcher } from 'svelte';
 	import TextInput from 'carbon-components-svelte/src/TextInput/TextInput.svelte';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),

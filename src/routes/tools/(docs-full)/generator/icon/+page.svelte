@@ -14,7 +14,6 @@
 	import Toggle from 'carbon-components-svelte/src/Toggle/Toggle.svelte';
 	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import { browser } from '$app/environment';
-	import { getHexStringFromCatppuccinColor } from '$lib/client/themes/catppuccin';
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
 	import type {
@@ -45,6 +44,7 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),

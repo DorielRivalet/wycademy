@@ -9,7 +9,6 @@
 		type MeterChartOptions,
 	} from '@carbon/charts-svelte';
 	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
@@ -33,6 +32,7 @@
 	import Search from 'carbon-components-svelte/src/Search/Search.svelte';
 	import ProgressBar from 'carbon-components-svelte/src/ProgressBar/ProgressBar.svelte';
 	import { format } from 'date-fns';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount, type Component } from 'svelte';
-	import { getHexStringFromCatppuccinColor } from '../themes/catppuccin';
 	import Dropdown from 'carbon-components-svelte/src/Dropdown/Dropdown.svelte';
 	import DropdownSkeleton from 'carbon-components-svelte/src/Dropdown/DropdownSkeleton.svelte';
 	import SkeletonPlaceholder from 'carbon-components-svelte/src/SkeletonPlaceholder/SkeletonPlaceholder.svelte';
@@ -14,6 +13,7 @@
 		type RadarChartOptions,
 	} from '@carbon/charts-svelte';
 	import type { OverlayHuntRank } from '../modules/frontier/types';
+	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
 
 	let chart: Component<RadarChart> = $state();
 
