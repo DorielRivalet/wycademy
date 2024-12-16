@@ -117,7 +117,7 @@
 		"@types/better-sqlite3": "^7.6.12",
 		"@types/three": "^0.170.0",
 		"@vercel/analytics": "^1.4.1",
-		"@xyflow/svelte": "^0.1.24",
+		"@xyflow/svelte": "^0.1.25",
 		"@zip.js/zip.js": "^2.7.54",
 		"alex": "^11.0.1",
 		"better-sqlite3": "^11.7.0",
