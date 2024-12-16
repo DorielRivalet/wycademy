@@ -108,73 +108,149 @@
 
 		uploadState = 'loading';
 		loadingIndex = 0;
+		currentUserChunk = 0;
+		totalUserChunks = 0;
+
+		const file = databaseFiles[0];
+		const fileSize = file.size;
+		const chunkSize = 4 * 1024 * 1024; // 4MB per chunk
+		const totalChunks = Math.ceil(fileSize / chunkSize);
 		let accumulatedText = '';
+		let accumulatedResult = null;
 
-		const formData = new FormData();
-		formData.append('databaseFiles', databaseFiles[0]);
+		console.log(`File size: ${Math.trunc(fileSize / 1024 / 1024)}MB`);
+		console.log(`Total chunks: ${totalChunks}`);
 
-		const response = await fetch('/quest-viewer/upload', {
-			method: 'POST',
-			body: formData,
-		});
+		totalUserChunks = totalChunks;
 
-		if (!response.ok) {
-			errorMessage = 'Error uploading file.';
-			uploadState = 'idle';
-			return;
-		}
+		try {
+			// Iterate through file chunks
+			for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
+				currentUserChunk = chunkIndex + 1;
 
-		const reader = response.body?.getReader();
-		const decoder = new TextDecoder();
+				const start = chunkIndex * chunkSize;
+				const end = Math.min(fileSize, start + chunkSize);
+				const chunk = file.slice(start, end);
 
-		if (reader) {
-			while (true) {
-				const { done, value } = await reader.read();
-				if (done) break;
+				// Prepare FormData for this chunk
+				const formData = new FormData();
+				formData.append('chunk', chunk);
+				formData.append('chunkIndex', chunkIndex.toString());
+				formData.append('totalChunks', totalChunks.toString());
+				formData.append('fileName', file.name);
+				formData.append('fileSize', fileSize.toString());
 
-				accumulatedText += decoder.decode(value);
+				console.log(`Uploading client chunk ${chunkIndex + 1}/${totalChunks}`);
 
-				// Split the accumulated text into lines
-				const lines = accumulatedText.split('\n');
+				// Send the chunk to the server
+				const response = await fetch('/quest-viewer/upload', {
+					method: 'POST',
+					body: formData,
+				});
 
-				// Process each complete line
-				for (let i = 0; i < lines.length - 1; i++) {
-					const line = lines[i].trim();
-					if (line.startsWith('data:')) {
-						try {
-							const { index, message, result, error } = JSON.parse(
-								line.slice(5),
-							);
-
-							if (error) {
-								errorMessage = error;
-								uploadState = 'idle';
-								return;
-							}
-
-							if (result) {
-								speedrunInfo = result.speedrunInfo;
-								mezFesInfo = result.mezFesInfo;
-								achievementInfo = result.achievementInfo;
-
-								summaryQuestGearRunID =
-									speedrunInfo[speedrunInfo.length - 1].RunID;
-								summaryQuestGraphsRunID1 =
-									speedrunInfo[speedrunInfo.length - 1].RunID;
-								uploadState = 'done';
-								return;
-							}
-
-							loadingIndex = index;
-						} catch (err) {
-							console.error('Failed to parse JSON:', line);
-						}
-					}
+				if (!response.ok) {
+					errorMessage = `Error uploading client chunk ${chunkIndex + 1}/${totalChunks}`;
+					uploadState = 'idle';
+					currentUserChunk = 0;
+					totalUserChunks = 0;
+					console.log(
+						`Error uploading client chunk ${chunkIndex + 1}/${totalChunks}`,
+					);
+					return;
 				}
 
-				// Keep only the last (possibly incomplete) line in the buffer
-				accumulatedText = lines[lines.length - 1];
+				console.log(
+					`Processing uploaded client chunk ${chunkIndex + 1}/${totalChunks}`,
+				);
+
+				// Process the response for this chunk
+				const reader = response.body?.getReader();
+				const decoder = new TextDecoder();
+
+				if (reader) {
+					console.log('reader found');
+					while (true) {
+						const { done, value } = await reader.read();
+						if (done) break;
+
+						accumulatedText += decoder.decode(value);
+
+						// Split accumulated text into lines
+						const lines = accumulatedText.split('\n');
+
+						// Process each complete line
+						for (let i = 0; i < lines.length - 1; i++) {
+							const line = lines[i].trim();
+							if (line.startsWith('data:')) {
+								console.log('found data line');
+
+								try {
+									const { index, message, result, error } = JSON.parse(
+										line.slice(5),
+									);
+
+									if (error) {
+										errorMessage = error;
+										uploadState = 'idle';
+										currentUserChunk = 0;
+										totalUserChunks = 0;
+										console.log(error);
+										return;
+									}
+
+									// Update loading progress index
+									loadingIndex = index;
+
+									// Update state variables with the final result
+									if (result) {
+										console.log('update final result');
+										accumulatedResult = result;
+
+										// Optional: Update UI with partial results
+										// speedrunInfo = result.speedrunInfo || [];
+										// mezFesInfo = result.mezFesInfo || [];
+										// achievementInfo = result.achievementInfo || [];
+									}
+								} catch (err) {
+									console.error('Failed to parse JSON:', line);
+								}
+							}
+						}
+
+						// Keep only the last (possibly incomplete) line in the buffer
+						accumulatedText = lines[lines.length - 1];
+					}
+				} else {
+					console.log('reader not found yet');
+				}
 			}
+
+			// Final processing after all chunks
+			if (accumulatedResult) {
+				speedrunInfo = accumulatedResult.speedrunInfo || [];
+				mezFesInfo = accumulatedResult.mezFesInfo || [];
+				achievementInfo = accumulatedResult.achievementInfo || [];
+				summaryQuestGearRunID =
+					accumulatedResult.speedrunInfo[
+						accumulatedResult.speedrunInfo.length - 1
+					]?.RunID || 0;
+				summaryQuestGraphsRunID1 =
+					accumulatedResult.speedrunInfo[
+						accumulatedResult.speedrunInfo.length - 1
+					]?.RunID || 0;
+
+				console.log('done uploading');
+				uploadState = 'done';
+			} else {
+				currentUserChunk = 0;
+				totalUserChunks = 0;
+				console.log('final result not found');
+			}
+		} catch (err) {
+			errorMessage = err.message;
+			uploadState = 'idle';
+			currentUserChunk = 0;
+			totalUserChunks = 0;
 		}
 	}
 
@@ -431,6 +507,9 @@
 	let selectedQuestID = $state(0);
 	let shareUrl = $state('');
 	let downloadRunID = $state(0);
+
+	let currentUserChunk = $state(0);
+	let totalUserChunks = $state(0);
 </script>
 
 <Head
@@ -526,6 +605,8 @@
 					onclick={() => {
 						uploadState = 'idle';
 						loadingIndex = 0;
+						currentUserChunk = 0;
+						totalUserChunks = 0;
 					}}
 					icon={Restart}>Load another file</Button
 				><Button
@@ -937,10 +1018,13 @@
 					/>
 					<ProgressStep complete={loadingIndex > 5} label="Finished!" />
 				</ProgressIndicator>
-				<Loading
-					withOverlay={false}
-					description={'Loading quest database...'}
-				/>
+				<div class="loading-spin-container">
+					<Loading
+						withOverlay={false}
+						description={'Loading quest database...'}
+					/>
+					<p>Chunk {currentUserChunk}/{totalUserChunks}</p>
+				</div>
 			</div>
 		{/if}
 	</div>
@@ -978,6 +1062,12 @@
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
 		margin-top: 2rem;
+	}
+
+	.loading-spin-container {
+		display: flex;
+		gap: 1rem;
+		flex-direction: column;
 	}
 
 	.table {
