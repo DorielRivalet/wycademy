@@ -346,6 +346,10 @@
 						text: 'Affinity +20% (+20%)',
 					},
 					{
+						id: '22',
+						text: 'Affinity +22% (+22%)',
+					},
+					{
 						id: '24',
 						text: 'Affinity +24% (+24%)',
 					},

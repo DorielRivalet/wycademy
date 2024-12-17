@@ -64,7 +64,7 @@
 		getWeaponIcon,
 		getWeaponIdFromName,
 	} from '$lib/client/modules/frontier/weapons';
-	import { ezlionQuest, ezlionWeaponType } from 'ezlion';
+	import { ezlionItem, ezlionQuest, ezlionWeaponType } from 'ezlion';
 	import { formatDateTime } from '$lib/client/modules/time';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
@@ -92,6 +92,7 @@
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import slugify from 'slugify';
+	import { v4 as uuidv4 } from 'uuid';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -115,6 +116,7 @@
 		const fileSize = file.size;
 		const chunkSize = 4 * 1024 * 1024; // 4MB per chunk
 		const totalChunks = Math.ceil(fileSize / chunkSize);
+		const uploadId = uuidv4();
 		let accumulatedText = '';
 		let accumulatedResult = null;
 
@@ -139,6 +141,7 @@
 				formData.append('totalChunks', totalChunks.toString());
 				formData.append('fileName', file.name);
 				formData.append('fileSize', fileSize.toString());
+				formData.append('uploadId', uploadId.toString());
 
 				console.log(`Uploading client chunk ${chunkIndex + 1}/${totalChunks}`);
 
@@ -436,6 +439,34 @@
 		return count;
 	}
 
+	function downloadSQLiteFileAsJSON(filePrefix: string) {
+		if (!browser) return;
+		const link = document.createElement('a');
+		link.download = `${slugify(`${filePrefix}-sqlite-${new Date().toISOString()}.json`)}`;
+		let sqliteData = {
+			speedrunInfo: speedrunInfo,
+			achievementInfo: achievementInfo,
+			mezFesInfo: mezFesInfo,
+		};
+
+		// Convert the data to JSON format
+		const jsonData = JSON.stringify(sqliteData, null, 2);
+
+		// Create a Blob object containing the JSON data
+		const blob = new Blob([jsonData], { type: 'application/json' });
+
+		// Set the href attribute of the link to the URL of the Blob
+		link.href = URL.createObjectURL(blob);
+
+		// Simulate a click event on the link to trigger the download
+		link.click();
+
+		// Clean up the Blob URL
+		setTimeout(() => {
+			URL.revokeObjectURL(link.href);
+		}, 100);
+	}
+
 	function downloadRunAsJSON(filePrefix: string, runID: number) {
 		if (!browser) return;
 		const link = document.createElement('a');
@@ -626,6 +657,14 @@
 					{#snippet content()}
 						<TabContent>
 							<section>
+								<div class="buttons">
+									<Button
+										kind="tertiary"
+										icon={Download}
+										on:click={() => downloadSQLiteFileAsJSON('quest-viewer')}
+										>Download SQLite as JSON</Button
+									>
+								</div>
 								<div class="table table-with-scrollbar">
 									{#if browser && speedrunInfo && speedrunInfo.length > 0 && selectedTabIndex === 0}
 										<DataTable
@@ -1111,5 +1150,6 @@
 	.buttons {
 		display: flex;
 		gap: 1rem;
+		margin-bottom: 1rem;
 	}
 </style>
