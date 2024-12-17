@@ -33,6 +33,10 @@
 		ezlionWeaponClass,
 		ezlionWeaponType,
 		type FrontierWeaponName,
+		type FrontierArmorSkillName,
+		type FrontierZenithSkill,
+		type FrontierSigil,
+		type FrontierDivaPrayerGemSkillName,
 	} from 'ezlion';
 	import { ActiveFeature } from '../modules/frontier/active-feature';
 	import Image from 'carbon-icons-svelte/lib/Image.svelte';
@@ -47,6 +51,7 @@
 		getItemBoxColor,
 		getItemColor,
 		getItemIcon,
+		skillFruitInfo,
 	} from '../modules/frontier/items';
 	import { getArmorIcon } from '../modules/frontier/armor';
 	import { getLocationIcon } from '../modules/frontier/locations';
@@ -54,10 +59,17 @@
 	import { getSkillColor } from '../modules/frontier/armor-skills';
 	import { getMonsterIcon } from '../modules/frontier/monsters';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
-	import { convertDictionaryIntInt } from '../modules/frontier/strings';
+	import {
+		convertDictionaryIntInt,
+		convertDictionaryIntIntArray,
+	} from '../modules/frontier/strings';
 	import Export from 'carbon-icons-svelte/lib/Export.svelte';
 	import { browser } from '$app/environment';
 	import slugify from 'slugify';
+	import type {
+		FrontierDivaPrayerGem,
+		FrontierDivaPrayerGemLevel,
+	} from '../modules/frontier/types';
 
 	/** Check if user input is in the format of mm:ss.fff, where the minutes can be of any length*/
 	function isValidTime(time: string) {
@@ -69,6 +81,146 @@
 	function isValidRunID(input: string) {
 		const regex = /^(\d+\s+)*\d+$/;
 		return regex.test(input);
+	}
+
+	/**TODO doesnt take into account decos? still need to test decos+sigils combinations*/
+	function getAllSigilStats(data: SpeedrunInfo) {
+		let result: { sigil: FrontierSigil; points: number }[] = [];
+		return result;
+	}
+
+	function getAllZenithSkills(data: SpeedrunInfo) {
+		let result: FrontierZenithSkill[] = [];
+		result = [
+			ezlionSkillZenith[data.ZenithSkill1ID] || 'None',
+			ezlionSkillZenith[data.ZenithSkill2ID] || 'None',
+			ezlionSkillZenith[data.ZenithSkill3ID] || 'None',
+			ezlionSkillZenith[data.ZenithSkill4ID] || 'None',
+			ezlionSkillZenith[data.ZenithSkill5ID] || 'None',
+			ezlionSkillZenith[data.ZenithSkill6ID] || 'None',
+			ezlionSkillZenith[data.ZenithSkill7ID] || 'None',
+		];
+
+		return result;
+	}
+
+	function getAllDivaPrayerGems(data: SpeedrunInfo) {
+		let result: FrontierDivaPrayerGem[] = [];
+		result = [
+			{
+				color: 'Red',
+				skill: {
+					name: ezlionSkillDivaPrayerGem[data.DivaPrayerGemRedSkill || 0],
+					level: (data.DivaPrayerGemRedLevel ||
+						0) as FrontierDivaPrayerGemLevel,
+				},
+			},
+			{
+				color: 'Blue',
+				skill: {
+					name: ezlionSkillDivaPrayerGem[data.DivaPrayerGemBlueSkill || 0],
+					level: (data.DivaPrayerGemBlueLevel ||
+						0) as FrontierDivaPrayerGemLevel,
+				},
+			},
+			{
+				color: 'Yellow',
+				skill: {
+					name: ezlionSkillDivaPrayerGem[data.DivaPrayerGemYellowSkill || 0],
+					level: (data.DivaPrayerGemYellowLevel ||
+						0) as FrontierDivaPrayerGemLevel,
+				},
+			},
+			{
+				color: 'Green',
+				skill: {
+					name: ezlionSkillDivaPrayerGem[data.DivaPrayerGemGreenSkill || 0],
+					level: (data.DivaPrayerGemGreenLevel ||
+						0) as FrontierDivaPrayerGemLevel,
+				},
+			},
+		];
+
+		return result;
+	}
+
+	function getSkillFruitSkill(data: SpeedrunInfo): FrontierArmorSkillName {
+		let result: FrontierArmorSkillName = 'None';
+		let playerInventoryDictionary: {
+			[index: number]: {
+				[index: number]: number;
+			}[];
+		}[] = convertDictionaryIntIntArray(data.PlayerInventoryDictionary);
+
+		// Get the first entry of PlayerInventoryDictionary.
+		// the first entry is the outer index with the highest value
+		let firstEntry: { [index: number]: number }[] =
+			playerInventoryDictionary.length > 0
+				? playerInventoryDictionary[playerInventoryDictionary.length - 1]
+				: [];
+
+		// From the list of item ids, which are the indices, find the first value
+		// that can be found in the skillFruitInfo ids, get the skill name.
+		for (let inventoryDict of firstEntry) {
+			const matchedSkillFruit = skillFruitInfo.find((fruit) =>
+				Object.keys(inventoryDict).some((key) => parseInt(key) === fruit.id),
+			);
+
+			if (matchedSkillFruit) {
+				result = matchedSkillFruit.skill;
+				break;
+			}
+		}
+
+		return result;
+	}
+
+	function getAllArmorSkills(data: SpeedrunInfo) {
+		// TODO tower decos from tower weapons.
+		let result: FrontierArmorSkillName[] = [];
+
+		/**TODO*/
+		let skillFruitSkill: FrontierArmorSkillName = getSkillFruitSkill(data);
+		let automaticSkills: FrontierArmorSkillName[] = [
+			ezlionSkillArmor[data.AutomaticSkill1ID],
+			ezlionSkillArmor[data.AutomaticSkill2ID],
+			ezlionSkillArmor[data.AutomaticSkill3ID],
+			ezlionSkillArmor[data.AutomaticSkill4ID],
+			ezlionSkillArmor[data.AutomaticSkill5ID],
+			ezlionSkillArmor[data.AutomaticSkill6ID],
+		];
+		let activeSkills: FrontierArmorSkillName[] = [
+			ezlionSkillArmor[data.ActiveSkill1ID],
+			ezlionSkillArmor[data.ActiveSkill2ID],
+			ezlionSkillArmor[data.ActiveSkill3ID],
+			ezlionSkillArmor[data.ActiveSkill4ID],
+			ezlionSkillArmor[data.ActiveSkill5ID],
+			ezlionSkillArmor[data.ActiveSkill6ID],
+			ezlionSkillArmor[data.ActiveSkill7ID],
+			ezlionSkillArmor[data.ActiveSkill8ID],
+			ezlionSkillArmor[data.ActiveSkill9ID],
+			ezlionSkillArmor[data.ActiveSkill10ID],
+			ezlionSkillArmor[data.ActiveSkill11ID],
+			ezlionSkillArmor[data.ActiveSkill12ID],
+			ezlionSkillArmor[data.ActiveSkill13ID],
+			ezlionSkillArmor[data.ActiveSkill14ID],
+			ezlionSkillArmor[data.ActiveSkill15ID],
+			ezlionSkillArmor[data.ActiveSkill16ID],
+			ezlionSkillArmor[data.ActiveSkill17ID],
+			ezlionSkillArmor[data.ActiveSkill18ID],
+			ezlionSkillArmor[data.ActiveSkill19ID],
+		];
+		let divaSkill: FrontierArmorSkillName = ezlionSkillArmor[data.DivaSkillID];
+		let guildFood: FrontierArmorSkillName = ezlionSkillArmor[data.GuildFoodID];
+
+		result = [
+			...automaticSkills,
+			...activeSkills,
+			skillFruitSkill,
+			divaSkill,
+			guildFood,
+		];
+		return result;
 	}
 
 	function getArmorHeadStats(
@@ -984,8 +1136,35 @@ Refresh Rate: ${run.RefreshRate}
 
 	function getStyleRankAffinity(data: SpeedrunInfo) {
 		let result = '';
+		let skill1Name = ezlionSkillStyleRank[data.StyleRankSkill1ID];
+		let skill2Name = ezlionSkillStyleRank[data.StyleRankSkill1ID];
+
+		const options = [
+			{
+				skill: 'Affinity+20',
+				option: 'Affinity +20% (+20%)',
+			},
+			{
+				skill: 'Affinity+22',
+				option: 'Affinity +22% (+22%)',
+			},
+			{
+				skill: 'Affinity+24',
+				option: 'Affinity +24% (+24%)',
+			},
+			{
+				skill: 'Affinity+26',
+				option: 'Affinity +26% (+26%)',
+			},
+		];
+
+		result =
+			options.find((e) => e.skill === skill1Name || e.skill === skill2Name)
+				?.option || 'None';
+
 		return result;
 	}
+
 	function getMeleeSharpnessAffinity(data: SpeedrunInfo) {
 		let result = '';
 		return result;
@@ -1559,89 +1738,89 @@ Refresh Rate: ${run.RefreshRate}
 			inputRoadAttack: getRoadAttack(runData),
 			inputRoadAdvLvFlr: getRoadAdvLvFlr(runData),
 			inputRoadLastStand: getRoadLastStand(runData),
-			inputDuremudiraAttack: getStyleRankAffinity(runData),
-			inputAttackMedicine: getStyleRankAffinity(runData),
-			inputHhAttackSongs: getStyleRankAffinity(runData),
-			inputAdrenalineVigorous: getStyleRankAffinity(runData),
-			inputVigorousUp: getStyleRankAffinity(runData),
-			inputHidenSkills: getStyleRankAffinity(runData),
-			inputWeaponSpecific: getStyleRankAffinity(runData),
-			inputCombatSupremacy: getStyleRankAffinity(runData),
-			inputArmor1: getStyleRankAffinity(runData),
-			inputOriginArmor: getStyleRankAffinity(runData),
-			inputGArmorPieces: getStyleRankAffinity(runData),
-			inputGsr999SecretTech: getStyleRankAffinity(runData),
-			inputRedSoul: getStyleRankAffinity(runData),
-			inputAssistance: getStyleRankAffinity(runData),
-			inputBondMaleHunter: getStyleRankAffinity(runData),
-			inputPartnyaaBond: getStyleRankAffinity(runData),
-			inputFireMultipliers: getStyleRankAffinity(runData),
-			inputWaterMultipliers: getStyleRankAffinity(runData),
-			inputThunderMultipliers: getStyleRankAffinity(runData),
-			inputIceMultipliers: getStyleRankAffinity(runData),
-			inputDragonMultipliers: getStyleRankAffinity(runData),
-			inputElementalAttackMultiplier: getStyleRankAffinity(runData),
-			inputHhElementalUp: getStyleRankAffinity(runData),
-			inputAbnormality: getStyleRankAffinity(runData),
-			inputDrugKnowledge: getStyleRankAffinity(runData),
-			inputStatusAssault: getStyleRankAffinity(runData),
-			inputStatusAttackUp: getStyleRankAffinity(runData),
-			inputGuildPoogie: getStyleRankAffinity(runData),
-			inputStatusSigil: getStyleRankAffinity(runData),
-			inputWeaponStatusModifiers: getStyleRankAffinity(runData),
-			inputWeaponType: getStyleRankAffinity(runData),
-			inputAoeAttackSigil: getStyleRankAffinity(runData),
-			inputAoeAffinitySigil: getStyleRankAffinity(runData),
-			inputCritMode: getStyleRankAffinity(runData),
-			inputSharpness: getStyleRankAffinity(runData),
-			inputFencing: getStyleRankAffinity(runData),
-			inputCriticalDistanceMultiplier: getStyleRankAffinity(runData),
-			inputBulletStrengthModifier: getStyleRankAffinity(runData),
-			inputShotMultiplier: getStyleRankAffinity(runData),
-			inputHbgChargeShot: getStyleRankAffinity(runData),
-			inputCompressedShotMultiplier: getStyleRankAffinity(runData),
-			inputCompressedElementShot: getStyleRankAffinity(runData),
-			inputBowCoatingsMultiplier: getStyleRankAffinity(runData),
-			inputBowCoatingsArmorMultiplier: getStyleRankAffinity(runData),
-			inputBowCoatingsWeaponMultiplier: getStyleRankAffinity(runData),
-			inputBowCoatingsHidenMultiplier: getStyleRankAffinity(runData),
-			inputBowChargeMultiplier: getStyleRankAffinity(runData),
-			inputQuickShot: getStyleRankAffinity(runData),
-			inputElement: getStyleRankAffinity(runData),
-			inputAoeElementSigil: getStyleRankAffinity(runData),
-			inputWeaponElementMultipliers: getStyleRankAffinity(runData),
-			inputStatus: getStyleRankAffinity(runData),
-			inputMonsterStatus: getStyleRankAffinity(runData),
-			inputThunderClad: getStyleRankAffinity(runData),
-			inputExploitWeakness: getStyleRankAffinity(runData),
-			inputPointBreakthrough: getStyleRankAffinity(runData),
-			inputAcidShots: getStyleRankAffinity(runData),
-			inputElementalExploiter: getStyleRankAffinity(runData),
-			inputHuntingHornDebuff: getStyleRankAffinity(runData),
-			inputPrecisionSniperCritS: getStyleRankAffinity(runData),
-			inputAbsoluteDefense: getStyleRankAffinity(runData),
-			inputPremiumBoost: getStyleRankAffinity(runData),
+			inputDuremudiraAttack: getDuremudiraAttack(runData),
+			inputAttackMedicine: getAttackMedicine(runData),
+			inputHhAttackSongs: getHhAttackSongs(runData),
+			inputAdrenalineVigorous: getAdrenalineVigorous(runData),
+			inputVigorousUp: getVigorousUp(runData),
+			inputHidenSkills: getHidenSkills(runData),
+			inputWeaponSpecific: getWeaponSpecific(runData),
+			inputCombatSupremacy: getCombatSupremacy(runData),
+			inputArmor1: getArmor1(runData),
+			inputOriginArmor: getOriginArmor(runData),
+			inputGArmorPieces: getGArmorPieces(runData),
+			inputGsr999SecretTech: getGsr999SecretTech(runData),
+			inputRedSoul: getRedSoul(runData),
+			inputAssistance: getAssistance(runData),
+			inputBondMaleHunter: getBondMaleHunter(runData),
+			inputPartnyaaBond: getPartnyaaBond(runData),
+			inputFireMultipliers: getFireMultipliers(runData),
+			inputWaterMultipliers: getWaterMultipliers(runData),
+			inputThunderMultipliers: getThunderMultipliers(runData),
+			inputIceMultipliers: getIceMultipliers(runData),
+			inputDragonMultipliers: getDragonMultipliers(runData),
+			inputElementalAttackMultiplier: getElementalAttackMultiplier(runData),
+			inputHhElementalUp: getHhElementalUp(runData),
+			inputAbnormality: getAbnormality(runData),
+			inputDrugKnowledge: getDrugKnowledge(runData),
+			inputStatusAssault: getStatusAssault(runData),
+			inputStatusAttackUp: getStatusAttackUp(runData),
+			inputGuildPoogie: getGuildPoogie(runData),
+			inputStatusSigil: getStatusSigil(runData),
+			inputWeaponStatusModifiers: getWeaponStatusModifiers(runData),
+			inputWeaponType: getWeaponType(runData),
+			inputAoeAttackSigil: getAoeAttackSigil(runData),
+			inputAoeAffinitySigil: getAoeAffinitySigil(runData),
+			inputCritMode: getCritMode(runData),
+			inputSharpness: getSharpness(runData),
+			inputFencing: getFencing(runData),
+			inputCriticalDistanceMultiplier: getCriticalDistanceMultiplier(runData),
+			inputBulletStrengthModifier: getBulletStrengthModifier(runData),
+			inputShotMultiplier: getShotMultiplier(runData),
+			inputHbgChargeShot: getHbgChargeShot(runData),
+			inputCompressedShotMultiplier: getCompressedShotMultiplier(runData),
+			inputCompressedElementShot: getCompressedElementShot(runData),
+			inputBowCoatingsMultiplier: getBowCoatingsMultiplier(runData),
+			inputBowCoatingsArmorMultiplier: getBowCoatingsArmorMultiplier(runData),
+			inputBowCoatingsWeaponMultiplier: getBowCoatingsWeaponMultiplier(runData),
+			inputBowCoatingsHidenMultiplier: getBowCoatingsHidenMultiplier(runData),
+			inputBowChargeMultiplier: getBowChargeMultiplier(runData),
+			inputQuickShot: getQuickShot(runData),
+			inputElement: getElement(runData),
+			inputAoeElementSigil: getAoeElementSigil(runData),
+			inputWeaponElementMultipliers: getWeaponElementMultipliers(runData),
+			inputStatus: getStatus(runData),
+			inputMonsterStatus: getMonsterStatus(runData),
+			inputThunderClad: getThunderClad(runData),
+			inputExploitWeakness: getExploitWeakness(runData),
+			inputPointBreakthrough: getPointBreakthrough(runData),
+			inputAcidShots: getAcidShots(runData),
+			inputElementalExploiter: getElementalExploiter(runData),
+			inputHuntingHornDebuff: getHuntingHornDebuff(runData),
+			inputPrecisionSniperCritS: getPrecisionSniperCritS(runData),
+			inputAbsoluteDefense: getAbsoluteDefense(runData),
+			inputPremiumBoost: getPremiumBoost(runData),
 
-			inputNumberRoadFloor: getStyleRankAffinity(runData),
-			inputNumberConquestAttack: getStyleRankAffinity(runData),
-			inputNumberVampirism: getStyleRankAffinity(runData),
-			inputNumberTotalMotionValue: getStyleRankAffinity(runData),
-			inputNumberHitCount: getStyleRankAffinity(runData),
-			inputNumberElementalMultiplier: getStyleRankAffinity(runData),
-			inputNumberTrueRaw: getStyleRankAffinity(runData),
-			inputNumberUnlimitedSigil: getStyleRankAffinity(runData),
-			inputNumberStyleRankAttack: getStyleRankAffinity(runData),
-			inputNumberSigil1Attack: getStyleRankAffinity(runData),
-			inputNumberSigil2Attack: getStyleRankAffinity(runData),
-			inputNumberSigil3Attack: getStyleRankAffinity(runData),
-			inputNumberZenithAttackSigil: getStyleRankAffinity(runData),
-			inputNumberAOEAttackSigil: getStyleRankAffinity(runData),
-			inputNumberNaturalAffinity: getStyleRankAffinity(runData),
-			inputNumberSigil1Affinity: getStyleRankAffinity(runData),
-			inputNumberSigil2Affinity: getStyleRankAffinity(runData),
-			inputNumberSigil3Affinity: getStyleRankAffinity(runData),
-			inputNumberAOEAffinitySigil: getStyleRankAffinity(runData),
-			inputNumberLanceImpactMultiplier: getStyleRankAffinity(runData),
+			inputNumberRoadFloor: 0,
+			inputNumberConquestAttack: getNumberConquestAttack(runData),
+			inputNumberVampirism: getNumberVampirism(runData),
+			inputNumberTotalMotionValue: getNumberTotalMotionValue(runData),
+			inputNumberHitCount: getNumberHitCount(runData),
+			inputNumberElementalMultiplier: getNumberElementalMultiplier(runData),
+			inputNumberTrueRaw: 1000,
+			inputNumberUnlimitedSigil: getNumberUnlimitedSigil(runData),
+			inputNumberStyleRankAttack: 100,
+			inputNumberSigil1Attack: getNumberSigil1Attack(runData),
+			inputNumberSigil2Attack: getNumberSigil2Attack(runData),
+			inputNumberSigil3Attack: getNumberSigil3Attack(runData),
+			inputNumberZenithAttackSigil: getNumberZenithAttackSigil(runData),
+			inputNumberAOEAttackSigil: getNumberAOEAttackSigil(runData),
+			inputNumberNaturalAffinity: 0,
+			inputNumberSigil1Affinity: getNumberSigil1Affinity(runData),
+			inputNumberSigil2Affinity: getNumberSigil2Affinity(runData),
+			inputNumberSigil3Affinity: getNumberSigil3Affinity(runData),
+			inputNumberAOEAffinitySigil: getNumberAOEAffinitySigil(runData),
+			inputNumberLanceImpactMultiplier: getNumberLanceImpactMultiplier(runData),
 			inputNumberTranscendRawMultiplier: getStyleRankAffinity(runData),
 			inputNumberRavientePowerSwordCrystalsMultiplier:
 				getStyleRankAffinity(runData),
@@ -1655,9 +1834,9 @@ Refresh Rate: ${run.RefreshRate}
 			inputNumberOtherAdditional: getStyleRankAffinity(runData),
 			inputNumberCompressedShot: getStyleRankAffinity(runData),
 			inputNumberCompressedElementShot: getStyleRankAffinity(runData),
-			inputNumberDefenseRate: getStyleRankAffinity(runData),
-			inputNumberMonsterRage: getStyleRankAffinity(runData),
-			inputNumberHCModifiers: getStyleRankAffinity(runData),
+			inputNumberDefenseRate: 1,
+			inputNumberMonsterRage: 1,
+			inputNumberHCModifiers: 1,
 			inputNumberCuttingHitzone: getStyleRankAffinity(runData),
 			inputNumberImpactHitzone: getStyleRankAffinity(runData),
 			inputNumberShotHitzone: getStyleRankAffinity(runData),
@@ -1667,15 +1846,20 @@ Refresh Rate: ${run.RefreshRate}
 			inputNumberIceHitzone: getStyleRankAffinity(runData),
 			inputNumberDragonHitzone: getStyleRankAffinity(runData),
 
-			inputNumberDivaPrayerGemRedLevel: getStyleRankAffinity(runData),
-			inputNumberDivaPrayerGemYellowLevel: getStyleRankAffinity(runData),
-			inputNumberDivaPrayerGemGreenLevel: getStyleRankAffinity(runData),
-			inputNumberDivaPrayerGemBlueLevel: getStyleRankAffinity(runData),
+			inputNumberDivaPrayerGemRedLevel: runData.DivaPrayerGemRedLevel || 0,
+			inputNumberDivaPrayerGemYellowLevel:
+				runData.DivaPrayerGemYellowLevel || 0,
+			inputNumberDivaPrayerGemGreenLevel: runData.DivaPrayerGemGreenLevel || 0,
+			inputNumberDivaPrayerGemBlueLevel: runData.DivaPrayerGemBlueLevel || 0,
 
-			inputDivaPrayerGemRedName: getStyleRankAffinity(runData),
-			inputDivaPrayerGemYellowName: getStyleRankAffinity(runData),
-			inputDivaPrayerGemGreenName: getStyleRankAffinity(runData),
-			inputDivaPrayerGemBlueName: getStyleRankAffinity(runData),
+			inputDivaPrayerGemRedName:
+				ezlionSkillDivaPrayerGem[runData.DivaPrayerGemRedSkill || 0],
+			inputDivaPrayerGemYellowName:
+				ezlionSkillDivaPrayerGem[runData.DivaPrayerGemYellowSkill || 0],
+			inputDivaPrayerGemGreenName:
+				ezlionSkillDivaPrayerGem[runData.DivaPrayerGemGreenSkill || 0],
+			inputDivaPrayerGemBlueName:
+				ezlionSkillDivaPrayerGem[runData.DivaPrayerGemBlueSkill || 0],
 
 			selectedMonster: getStyleRankAffinity(runData),
 			selectedMonsterRankBand: getStyleRankAffinity(runData),

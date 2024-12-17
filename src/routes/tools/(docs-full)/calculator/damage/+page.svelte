@@ -6535,6 +6535,10 @@ does not get multiplied by horn */
 															text: 'Affinity +20% (+20%)',
 														},
 														{
+															id: 'Affinity +22% (+22%)',
+															text: 'Affinity +22% (+22%)',
+														},
+														{
 															id: 'Affinity +24% (+24%)',
 															text: 'Affinity +24% (+24%)',
 														},

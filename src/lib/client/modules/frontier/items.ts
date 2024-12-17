@@ -90,6 +90,7 @@ import WirebugIconWhite from '$lib/client/components/frontier/icon/item/Wirebug_
 
 import WoodIconWhite from '$lib/client/components/frontier/icon/item/Wood_Icon_White.svelte';
 import type { FrontierItemColor } from './types';
+import type { FrontierArmorSkillName } from 'ezlion';
 
 export const ItemColors: { name: FrontierItemColor; value: string }[] = [
 	{ name: 'White', value: '#efefe9' },
@@ -483,6 +484,195 @@ export const itemInfo: { name: string; icon: any }[] = [
 		name: 'Wood',
 		icon: WoodIconWhite,
 	},
+];
+
+export const skillFruitInfo: {
+	name: string;
+	alternativeName: string;
+	id: number;
+	skill: FrontierArmorSkillName;
+}[] = [
+	{
+		name: 'All Res Fruit',
+		alternativeName: 'All Resist Fruit',
+		id: 4745,
+		skill: 'All Res UP+20',
+	},
+	{
+		name: 'Hunger Inc. Fruit',
+		alternativeName: 'HungerIncreaseFruit',
+		id: 4746,
+		skill: 'Hunger Up Lg',
+	},
+	{
+		name: 'Rec Speed Fruit',
+		alternativeName: 'Recovery Speed Fruit',
+		id: 4747,
+		skill: 'Recovery Speed+2',
+	},
+	{
+		name: 'Anti-venom Fruit',
+		alternativeName: 'Poison Negate Fruit',
+		id: 4748,
+		skill: 'Negate Poison',
+	},
+	{
+		name: 'Capture Exp Fruit',
+		alternativeName: 'Capture Expert Fruit',
+		id: 4749,
+		skill: 'Capture Guru',
+	},
+	{
+		name: 'Fire Res Fruit',
+		alternativeName: 'Fire Resist Fruit',
+		id: 5122,
+		skill: 'Fire Res+30',
+	},
+	{
+		name: 'Water Res Fruit',
+		alternativeName: 'Water Resist Fruit',
+		id: 5123,
+		skill: 'Water Res+30',
+	},
+	{
+		name: 'Dragon Res Fruit',
+		alternativeName: 'Dragon Resist Fruit',
+		id: 5124,
+		skill: 'Ice Res+30',
+	},
+	{
+		name: 'Runner Fruit',
+		alternativeName: 'Runner Fruit',
+		id: 5125,
+		skill: 'Peerless',
+	},
+	{
+		name: 'Ele Attack Fruit',
+		alternativeName: 'Ele Attack Fruit',
+		id: 5126,
+		skill: 'Elemental Attack Up',
+	},
+	{
+		name: 'Thunder Res Fruit',
+		id: 5795,
+		alternativeName: 'Thunder Resist Fruit',
+		skill: 'Thunder Res+30',
+	},
+	{
+		name: 'Ice Res Fruit',
+		alternativeName: 'Ice Resist Fruit',
+		id: 5796,
+		skill: 'Ice Res+30',
+	},
+	{
+		name: 'Wind Res Fruit',
+		alternativeName: 'Wind Res Fruit',
+		id: 5797,
+		skill: 'Violent Wind Breaker',
+	},
+	{
+		name: 'Evasion Fruit',
+		id: 5798,
+		alternativeName: 'Evasion Fruit',
+		skill: 'Evasion+2', // TODO
+	},
+	// {
+	// 	name: 'Anti-Stun Fruit',
+	// 	alternativeName: 'Anti-Stun Fruit',
+	// 	id: 5799,
+	// 	skill: '', // TODO
+	// },
+	{
+		name: 'Fire Atk Fruit',
+		alternativeName: 'Fire Attack Fruit',
+		id: 6168,
+		skill: 'Fire Attack Large',
+	},
+	{
+		name: 'Water Atk Fruit',
+		id: 6169,
+		alternativeName: 'Water Attack Fruit',
+		skill: 'Water Attack Large',
+	},
+	{
+		name: 'Ice Atk Fruit',
+		id: 6170,
+		alternativeName: 'Ice Attack Fruit',
+		skill: 'Ice Attack Large',
+	},
+	{
+		name: 'Thunder Atk Fruit',
+		id: 6171,
+		alternativeName: 'Thunder Attack Fruit',
+		skill: 'Thunder Attack Large',
+	},
+	{
+		name: 'Dragon Atk Fruit',
+		id: 6172,
+		alternativeName: 'Dragon Attack Fruit',
+		skill: 'Dragon Attack Large',
+	},
+	{
+		name: 'Encourage Fruit',
+		id: 8026,
+		alternativeName: 'Encourage Fruit',
+		skill: 'Encourage+2',
+	},
+	{
+		name: 'Vitality Fruit',
+		id: 8027,
+		alternativeName: 'Vitality Fruit',
+		skill: 'Vitality+3',
+	},
+	{
+		name: 'Red Soul Fruit',
+		id: 8028,
+		skill: 'Red Soul',
+		alternativeName: 'Red Soul Fruit',
+	},
+	{
+		name: 'Blue Soul Fruit',
+		id: 8029,
+		skill: 'Blue Soul',
+		alternativeName: 'Blue Soul Fruit',
+	},
+	{
+		name: 'Shiriagari Fruit',
+		id: 8030,
+		alternativeName: 'Shiriagari Fruit',
+		skill: 'Shiriagari',
+	},
+	// TODO not used by speedrunners?
+	// {
+	// 	name: 'Defense Fruit',
+	// 	id: 0,
+	// 	alternativeName: 'Defense Fruit',
+	// 	skill: 'Defense+120',
+	// },
+	// {
+	// 	name: 'Ultra Earplug Fruit',
+	// 	id: 0,
+	// 	alternativeName: 'Ultra Earplug Fruit',
+	// 	skill: 'Super High-Grade Earplugs',
+	// },
+	// {
+	// 	name: 'Combo Fruit',
+	// 	id: 0,
+	// 	alternativeName: 'Combo Fruit',
+	// 	skill: 'Combination+30%',
+	// },
+	// {
+	// 	name: 'Passive Fruit',
+	// 	id: 0,
+	// 	alternativeName: 'Passive Fruit',
+	// 	skill: 'Passive',
+	// },
+	// {
+	// 	name: 'Quick-Eating Fruit',
+	// 	id: 0,
+	// 	alternativeName: 'Quick-Eating Fruit',
+	// 	skill: 'Speed Eating',
+	// },
 ];
 
 // TODO mocha pots svg

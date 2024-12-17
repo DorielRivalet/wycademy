@@ -574,6 +574,10 @@ export const affinityDropdownItems: DropdownItemOption[] = [
 		value: 20,
 	},
 	{
+		name: 'Affinity +22% (+22%)',
+		value: 22,
+	},
+	{
 		name: 'Affinity +24% (+24%)',
 		value: 24,
 	},

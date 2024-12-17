@@ -38,7 +38,7 @@
 	});
 
 	$: bgClass =
-		getBackgroundImageClass($page.url.pathname) === 'none'
+		getBackgroundImageClass($page?.url?.pathname) === 'none'
 			? 'none'
 			: $carbonThemeStore === 'g10'
 				? `background-light ${getBackgroundImageClass($page.url.pathname)}`
