@@ -24,6 +24,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		console.error(
 			`Client chunk ${chunkIndex + 1}/${totalChunks} not found for uploadId: ${uploadId}`,
 		);
+		delete uploadedChunks[uniqueKey];
 		return json(
 			{ error: `Invalid client chunk for uploadId: ${uploadId}` },
 			{ status: 400 },
@@ -61,6 +62,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			console.error(
 				`Error: Uploaded file size ${uploadedChunks[uniqueKey].length} does not match expected size ${fileSize} for uploadId: ${uploadId}.`,
 			);
+			delete uploadedChunks[uniqueKey];
 			return json(
 				{ error: `Incomplete file upload for uploadId: ${uploadId}.` },
 				{ status: 400 },
