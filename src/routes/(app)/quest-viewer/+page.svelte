@@ -143,7 +143,9 @@
 				formData.append('fileSize', fileSize.toString());
 				formData.append('uploadId', uploadId.toString());
 
-				console.log(`Uploading client chunk ${chunkIndex + 1}/${totalChunks}`);
+				console.log(
+					`Uploading client chunk ${chunkIndex + 1}/${totalChunks} with uploadId ${uploadId}`,
+				);
 
 				// Send the chunk to the server
 				const response = await fetch('/quest-viewer/upload', {
@@ -152,18 +154,18 @@
 				});
 
 				if (!response.ok) {
-					errorMessage = `Error uploading client chunk ${chunkIndex + 1}/${totalChunks}`;
+					errorMessage = `Error uploading client chunk ${chunkIndex + 1}/${totalChunks} with uploadId ${uploadId}`;
 					uploadState = 'idle';
 					currentUserChunk = 0;
 					totalUserChunks = 0;
 					console.log(
-						`Error uploading client chunk ${chunkIndex + 1}/${totalChunks}`,
+						`Error uploading client chunk ${chunkIndex + 1}/${totalChunks} with uploadId ${uploadId}`,
 					);
 					return;
 				}
 
 				console.log(
-					`Processing uploaded client chunk ${chunkIndex + 1}/${totalChunks}`,
+					`Processing uploaded client chunk ${chunkIndex + 1}/${totalChunks} with uploadId ${uploadId}`,
 				);
 
 				// Process the response for this chunk
@@ -242,12 +244,12 @@
 						accumulatedResult.speedrunInfo.length - 1
 					]?.RunID || 0;
 
-				console.log('done uploading');
+				console.log(`Done uploading, uploadId ${uploadId}`);
 				uploadState = 'done';
 			} else {
 				currentUserChunk = 0;
 				totalUserChunks = 0;
-				console.log('final result not found');
+				console.log(`Final result not found, uploadId ${uploadId}`);
 			}
 		} catch (err) {
 			errorMessage = err.message;
@@ -621,6 +623,13 @@
 							</p>
 						</ListItem>
 					</UnorderedList>
+					<p>
+						If the upload process fails, please retry at a later time. If the
+						issue persists, you can <OutboundLink
+							href="https://github.com/DorielRivalet/wycademy/issues/new?assignees=DorielRivalet&labels=bug&projects=&template=BUG-REPORT.yml&title=%5BBUG%5D+-+title"
+							>submit a bug report.</OutboundLink
+						>
+					</p>
 				</div>
 			</AccordionItem></Accordion
 		>

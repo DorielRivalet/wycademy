@@ -14,6 +14,8 @@ export const POST: RequestHandler = async ({ request }) => {
 	const totalChunks = parseInt(data.get('totalChunks') as string);
 	const uploadId = data.get('uploadId'); // Unique ID for the upload session
 
+	// TODO limit concurrent uploads to 2 users max?
+
 	console.log(
 		`Received client chunk ${chunkIndex + 1}/${totalChunks} for uploadId: ${uploadId}`,
 	);
