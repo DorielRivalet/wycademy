@@ -12,7 +12,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	const fileName = data.get('fileName') as string;
 	const chunkIndex = parseInt(data.get('chunkIndex') as string);
 	const totalChunks = parseInt(data.get('totalChunks') as string);
-	const uploadId = data.get('uploadId'); // Unique ID for the upload session
+	const uploadId = data.get('uploadId') as string; // Unique ID for the upload session
 
 	// TODO limit concurrent uploads to 2 users max?
 
@@ -58,7 +58,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		if (uploadedChunks[uniqueKey].length >= Number(fileSize)) {
 			console.log(
-				`Uploaded file size matches the expected size for uploadId: ${uploadId}.`,
+				`Uploaded file size ${uploadedChunks[uniqueKey].length} matches the expected size ${Number(fileSize)} for uploadId: ${uploadId}.`,
 			);
 		} else {
 			console.error(
@@ -91,9 +91,13 @@ export const POST: RequestHandler = async ({ request }) => {
 						controller.close();
 
 						// Clean up chunks
-						console.log(`Cleaning up chunks: length ${uploadedChunks.length}`);
+						console.log(
+							`Cleaning up chunks: length ${Object.keys(uploadedChunks).length}`,
+						);
 						delete uploadedChunks[uniqueKey];
-						console.log(`Cleaned up chunks: length ${uploadedChunks.length}`);
+						console.log(
+							`Cleaned up chunks: length ${Object.keys(uploadedChunks).length}`,
+						);
 					} catch (err) {
 						controller.enqueue(
 							`data: ${JSON.stringify({ error: err.message })}\n\n`,

@@ -44,6 +44,7 @@
 
 	let { obtainedAchievements }: Props = $props();
 
+	// TODO secret achievements giving over 100%.
 	const totalObtainableAchievements = Object.values(achievementsInfo[0]).filter(
 		(e) => !e.Unused,
 	);
@@ -177,7 +178,7 @@
 				iconType="component"
 				tooltip="Achievements"
 			/>
-			<a href="/"
+			<a href="/overlay/achievements"
 				>{obtainedAchievements.length}/{totalObtainableAchievementsCount}</a
 			>
 		</div>
