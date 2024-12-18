@@ -2965,7 +2965,7 @@ graph LR
 
 				<MultipleChoice
 					items={multipleChoiceItems}
-					on:perfectScore={handlePerfectScore}
+					perfectScore={handlePerfectScore}
 					category="Style Rank"
 				/>
 			</div>

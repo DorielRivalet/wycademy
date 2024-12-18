@@ -11,7 +11,7 @@ export type MultipleChoiceItem = {
 		| boolean
 		| boolean[]
 		| [string, string][];
-	format?: 'best answer' | 'assertion-reason' | 'matching' | 'ranking';
+	format?: 'best answer' | 'assertion-reason' | 'matching' | 'ranking'; // TODO assertion-reason
 };
 
 export let questionBank: { category: string; items: MultipleChoiceItem[] }[] = [

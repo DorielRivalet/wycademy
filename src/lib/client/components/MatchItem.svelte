@@ -1,13 +1,10 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
-
 	interface Props {
 		options: [string[], string[]];
+		change: (connections: [string, string][]) => void;
 	}
 
-	let { options }: Props = $props();
+	let { options, change }: Props = $props();
 
 	let column1Options = $derived(options[0]);
 	let column2Options = $derived(options[1]);
@@ -40,7 +37,7 @@
 
 		connections = connections;
 
-		dispatch('change', { connections });
+		change(connections);
 	}
 
 	let isConnected1 = $derived((option: string) =>
