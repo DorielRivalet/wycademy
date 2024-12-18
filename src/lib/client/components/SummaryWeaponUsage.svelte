@@ -72,7 +72,7 @@
 			enabled: true,
 		},
 		legend: {
-			enabled: false,
+			enabled: true,
 		},
 		axes: {
 			left: {
