@@ -6,7 +6,7 @@
 	import NextOutline from 'carbon-icons-svelte/lib/NextOutline.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import '@carbon/charts-svelte/styles.css';
-	import { createEventDispatcher, onMount, type Component } from 'svelte';
+	import { onMount, type Component } from 'svelte';
 	import {
 		type GaugeChart,
 		type GaugeChartOptions,
@@ -26,8 +26,6 @@
 	import RankingItem from './RankingItem.svelte';
 	import Checkbox from 'carbon-components-svelte/src/Checkbox/Checkbox.svelte';
 	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
-
-	const dispatch = createEventDispatcher();
 
 	// Utility function to shuffle an array
 	function shuffleArray<T>(array: T[]): T[] {
@@ -55,61 +53,82 @@
 			| boolean[]
 			| [string, string][],
 	) {
-		// Comparison logic for scoring
-		const isCorrect = (() => {
-			if (Array.isArray(answer) && Array.isArray(solution)) {
-				if (Array.isArray(answer[0]) && Array.isArray(solution[0])) {
-					// Sort both arrays of tuples
-					const sortedAnswer = [...answer].sort((a, b) =>
-						a[0].localeCompare(b[0]),
-					);
-					const sortedSolution = [...solution].sort((a, b) =>
-						a[0].localeCompare(b[0]),
-					);
+		console.log(`answer: ${answer}`);
 
-					// Handle tuple arrays (e.g., matching questions)
-					return sortedAnswer.every((tuple, i) => {
-						return (
-							tuple[0] === sortedSolution[i][0] &&
-							tuple[1] === sortedSolution[i][1]
+		if (!answer) {
+			console.error('Answer is null or undefined.');
+			return;
+		}
+
+		if (!solution) {
+			console.error('Solution is null or undefined.');
+			return;
+		}
+
+		if (currentItemIndex >= items.length) {
+			console.error('Invalid currentItemIndex, quiz might be completed.');
+			return;
+		}
+
+		try {
+			// Comparison logic for scoring
+			const isCorrect = (() => {
+				if (Array.isArray(answer) && Array.isArray(solution)) {
+					if (Array.isArray(answer[0]) && Array.isArray(solution[0])) {
+						// Sort both arrays of tuples
+						const sortedAnswer = [...answer].sort((a, b) =>
+							a[0].localeCompare(b[0]),
 						);
-					});
+						const sortedSolution = [...solution].sort((a, b) =>
+							a[0].localeCompare(b[0]),
+						);
+
+						// Handle tuple arrays (e.g., matching questions)
+						return sortedAnswer.every((tuple, i) => {
+							return (
+								tuple[0] === sortedSolution[i][0] &&
+								tuple[1] === sortedSolution[i][1]
+							);
+						});
+					} else {
+						// Sort arrays before comparing for multiple choice
+						const sortedAnswer = [...answer].sort();
+						const sortedSolution = [...solution].sort();
+						return (
+							JSON.stringify(sortedAnswer) === JSON.stringify(sortedSolution)
+						);
+					}
 				} else {
-					// Sort arrays before comparing for multiple choice
-					const sortedAnswer = [...answer].sort();
-					const sortedSolution = [...solution].sort();
-					return (
-						JSON.stringify(sortedAnswer) === JSON.stringify(sortedSolution)
-					);
+					// Handle number, string, boolean, etc.
+					return answer.toString() === solution.toString();
 				}
-			} else {
-				// Handle number, string, boolean, etc.
-				return answer.toString() === solution.toString();
+			})();
+
+			if (isCorrect) {
+				currentScore += 1;
 			}
-		})();
 
-		if (isCorrect) {
-			currentScore += 1;
-		}
+			currentItemIndex++;
+			currentAnswer = [];
 
-		currentItemIndex++;
-		currentAnswer = [];
+			if (currentItemIndex < items.length) {
+				randomizeCurrentOptions();
+			}
 
-		if (currentItemIndex < items.length) {
-			randomizeCurrentOptions();
-		}
-
-		// Check if quiz is complete and score is perfect
-		if (currentItemIndex === items.length && currentScore === maxScore) {
-			dispatch('perfectScore');
+			// Check if quiz is complete and score is perfect
+			if (currentItemIndex === items.length && currentScore === maxScore) {
+				perfectScore();
+			}
+		} catch (error) {
+			console.error('Error during onClickNext execution:', error);
 		}
 	}
 
 	function onClickRestart() {
+		items = shuffleArray([...items]); // Shuffle stems
 		currentItemIndex = 0;
 		currentScore = 0;
 		currentAnswer = [];
-		items = shuffleArray([...items]); // Shuffle stems
 		randomizeCurrentOptions();
 	}
 
@@ -151,9 +170,17 @@
 	}
 
 	function randomizeCurrentOptions() {
-		if (!items[currentItemIndex]?.options) return;
+		if (!items || !items[currentItemIndex]) {
+			console.error('No items available to randomize options.');
+			return;
+		}
 
-		const currentOptions = items[currentItemIndex].options;
+		const currentOptions = items[currentItemIndex]?.options;
+
+		if (!currentOptions) {
+			console.error('No options found for the current item.');
+			return;
+		}
 
 		// Check if it's a matching question (two sets of options)
 		if (
@@ -175,9 +202,10 @@
 	interface Props {
 		items: MultipleChoiceItem[];
 		category: string;
+		perfectScore: () => void;
 	}
 
-	let { items = $bindable(), category }: Props = $props();
+	let { perfectScore, items = $bindable(), category }: Props = $props();
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -322,15 +350,19 @@
 				</div>
 				<MatchItem
 					options={currentItem.options}
-					on:change={(e) => (currentAnswer = e.detail.connections)}
+					change={(connections) => (currentAnswer = connections)}
 				/>
 				<!--ranking-->
 			{:else if currentItem !== undefined && currentItem.format === 'ranking'}
 				<div class="spaced-paragraph">{currentItem.stem}</div>
 				<RankingItem
 					items={currentItem.options}
-					on:change={(e) => (currentAnswer = e.detail.items)}
+					change={(updatedItems) => {
+						console.log('RankingItem updated items:', updatedItems);
+						currentAnswer = updatedItems;
+					}}
 				/>
+				<!--TODO assertion-reason-->
 			{:else}
 				<div></div>
 			{/if}
@@ -360,25 +392,27 @@
 	<div>
 		{#if currentItemIndex + 1 < items.length}
 			<Button
-				disabled={currentAnswer === ''}
+				disabled={currentAnswer === '' ||
+					(isArray(currentAnswer) && currentAnswer.length === 0)}
 				iconDescription="Next"
 				icon={NextOutline}
-				on:click={() => onClickNext(currentAnswer, currentSolution)}
+				onclick={() => onClickNext(currentAnswer, currentSolution)}
 				kind="primary">Next</Button
 			>
 		{:else if currentItemIndex + 1 === items.length}
 			<Button
 				iconDescription="View Results"
-				disabled={currentAnswer === ''}
+				disabled={currentAnswer === '' ||
+					(isArray(currentAnswer) && currentAnswer.length === 0)}
 				icon={NextOutline}
-				on:click={() => onClickNext(currentAnswer, currentSolution)}
+				onclick={() => onClickNext(currentAnswer, currentSolution)}
 				kind="primary">View Results</Button
 			>
 		{:else}
 			<Button
 				iconDescription="Retry"
 				icon={Restart}
-				on:click={onClickRestart}
+				onclick={onClickRestart}
 				kind="primary">Restart</Button
 			>
 		{/if}

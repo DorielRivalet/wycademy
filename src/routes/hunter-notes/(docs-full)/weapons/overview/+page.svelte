@@ -531,7 +531,7 @@
 
 				<MultipleChoice
 					items={multipleChoiceItems}
-					on:perfectScore={handlePerfectScore}
+					perfectScore={handlePerfectScore}
 					category="Weapons Overview"
 				/>
 			</div>

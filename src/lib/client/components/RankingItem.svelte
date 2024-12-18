@@ -1,42 +1,54 @@
 <!-- RankingItem.svelte -->
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
+	import { send, receive } from '$lib/client/transitions/crossfade';
 
 	interface Props {
-		items?: string[];
-		selectedIndex?: number | null;
+		items: string[];
+		change: (items: string[]) => void;
 	}
 
-	let { items = $bindable([]), selectedIndex = $bindable(null) }: Props = $props();
+	let { change, items }: Props = $props();
 
-	const dispatch = createEventDispatcher();
+	// Use a local copy to avoid mutating `items` directly.
+	let currentItems: string[] = $state([...items]);
+	let selectedIndex: number | null = $state(null);
 
 	function handleItemClick(index: number) {
 		if (selectedIndex === null) {
 			selectedIndex = index;
 		} else {
-			// Swap items
-			const temp = items[selectedIndex];
-			items[selectedIndex] = items[index];
-			items[index] = temp;
+			// Swap items immutably
+			const updatedItems = [...currentItems];
+			[updatedItems[selectedIndex], updatedItems[index]] = [
+				updatedItems[index],
+				updatedItems[selectedIndex],
+			];
 
-			// Reset selection
+			// Reset selection and notify parent
 			selectedIndex = null;
-
-			// Notify parent of change
-			dispatch('change', { items });
+			currentItems = updatedItems;
+			change(updatedItems); // Notify the parent of the change
 		}
 	}
+
+	// TODO unsure to keep
+	$effect(() => {
+		if (items) {
+			currentItems = [...items];
+		}
+	});
 </script>
 
 <div class="ranking-container">
-	{#each items as item, index (item)}
+	{#each currentItems as item, index (item)}
 		<button
 			class="ranking-item"
 			class:selected={selectedIndex === index}
 			onclick={() => handleItemClick(index)}
-			transition:fade
+			in:receive={{ key: item }}
+			out:send={{ key: item }}
+			animate:flip={{ duration: 200 }}
 		>
 			<div class="item-content">
 				<span class="item-number">{index + 1}.</span>
