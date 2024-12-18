@@ -7,7 +7,7 @@ name: Add License Headers
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 0' # Run every Sunday at midnight UTC
+    - cron: '13 23 * * 0'
 
 jobs:
   add-license-header:
