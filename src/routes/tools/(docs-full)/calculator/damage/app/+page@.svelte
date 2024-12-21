@@ -6485,6 +6485,7 @@ does not get multiplied by horn */
 										<!--TODO: add quick references tab, with another tab comprised
 										of tables etc. Ideas: sharpness, multipliers, monsters, etc.-->
 										<Tab label="Help" />
+										<Tab label="References" />
 
 										<svelte:fragment slot="content">
 											<TabContent>
@@ -10337,6 +10338,24 @@ does not get multiplied by horn */
 															</TabContent>
 														</svelte:fragment>
 													</Tabs>
+												</div>
+											</TabContent>
+											<TabContent>
+												<div class="container-tab-content">
+													<OrderedList class="spaced-list">
+														<ListItem>
+															<OutboundLink
+																href="https://web.archive.org/web/20240823051619/https://yuuburo.blog.jp/archives/1068727759.html"
+																>https://web.archive.org/web/20240823051619/https://yuuburo.blog.jp/archives/1068727759.html</OutboundLink
+															>
+														</ListItem>
+														<ListItem>
+															<OutboundLink
+																href="https://web.archive.org/web/20191009194248/http://bake2sa.blog.fc2.com/blog-entry-29.html"
+																>https://web.archive.org/web/20191009194248/http://bake2sa.blog.fc2.com/blog-entry-29.html</OutboundLink
+															>
+														</ListItem>
+													</OrderedList>
 												</div>
 											</TabContent>
 										</svelte:fragment>
