@@ -10752,6 +10752,26 @@ does not get multiplied by horn */
 					></Accordion
 				>
 			</section>
+
+			<section>
+				<SectionHeading level={2} title="References" />
+				<div>
+					<OrderedList class="spaced-list">
+						<ListItem>
+							<OutboundLink
+								href="https://web.archive.org/web/20240823051619/https://yuuburo.blog.jp/archives/1068727759.html"
+								>https://web.archive.org/web/20240823051619/https://yuuburo.blog.jp/archives/1068727759.html</OutboundLink
+							>
+						</ListItem>
+						<ListItem>
+							<OutboundLink
+								href="https://web.archive.org/web/20191009194248/http://bake2sa.blog.fc2.com/blog-entry-29.html"
+								>https://web.archive.org/web/20191009194248/http://bake2sa.blog.fc2.com/blog-entry-29.html</OutboundLink
+							>
+						</ListItem>
+					</OrderedList>
+				</div>
+			</section>
 			<div class="page-turn">
 				<PageTurn pageUrlPathName={$page.url.pathname} />
 			</div>
