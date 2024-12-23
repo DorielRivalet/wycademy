@@ -57,7 +57,7 @@
 		"@typescript-eslint/eslint-plugin": "^8.14.0",
 		"@typescript-eslint/parser": "^8.14.0",
 		"@vite-pwa/sveltekit": "^0.6.6",
-		"ag-grid-community": "^32.3.3",
+		"ag-grid-community": "^33.0.3",
 		"autoprefixer": "^10.4.20",
 		"carbon-components-svelte": "^0.86.2",
 		"carbon-icons-svelte": "^12.13.0",
