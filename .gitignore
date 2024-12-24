@@ -19,3 +19,4 @@ dmg.js
 dmg.html
 .vs/
 *.local
+.snaplet/
