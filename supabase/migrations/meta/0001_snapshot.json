@@ -1,0 +1,1496 @@
+{
+  "id": "6f53a49e-1eae-4698-9187-5b3c2eb8c7a6",
+  "prevId": "bce919c8-ecb0-4b6f-aba5-3a09bfd5a213",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.countries": {
+      "name": "countries",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "countries_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.profiles": {
+      "name": "profiles",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "discord_username": {
+          "name": "discord_username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "discord_avatar": {
+          "name": "discord_avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "username": {
+          "name": "username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "twitter_username": {
+          "name": "twitter_username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "''"
+        },
+        "avatar": {
+          "name": "avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Default'"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "join_date": {
+          "name": "join_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "emblem": {
+          "name": "emblem",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'None'"
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'None'"
+        },
+        "country": {
+          "name": "country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'World'"
+        },
+        "agreed_terms": {
+          "name": "agreed_terms",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "discord_username_shown": {
+          "name": "discord_username_shown",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "twitter_username_shown": {
+          "name": "twitter_username_shown",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "theme": {
+          "name": "theme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Default'"
+        },
+        "onboarded": {
+          "name": "onboarded",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "guild_card_theme": {
+          "name": "guild_card_theme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Default'"
+        },
+        "username_set": {
+          "name": "username_set",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "profiles_id_users_id_fk": {
+          "name": "profiles_id_users_id_fk",
+          "tableFrom": "profiles",
+          "tableTo": "users",
+          "schemaTo": "auth",
+          "columnsFrom": [
+            "id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "profiles_username_unique": {
+          "name": "profiles_username_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "username"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.quests": {
+      "name": "quests",
+      "schema": "",
+      "columns": {
+        "run_id": {
+          "name": "run_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill1_id": {
+          "name": "active_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill2_id": {
+          "name": "active_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill3_id": {
+          "name": "active_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill4_id": {
+          "name": "active_skill4_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill5_id": {
+          "name": "active_skill5_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill6_id": {
+          "name": "active_skill6_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill7_id": {
+          "name": "active_skill7_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill8_id": {
+          "name": "active_skill8_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill9_id": {
+          "name": "active_skill9_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill10_id": {
+          "name": "active_skill10_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill11_id": {
+          "name": "active_skill11_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill12_id": {
+          "name": "active_skill12_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill13_id": {
+          "name": "active_skill13_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill14_id": {
+          "name": "active_skill14_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill15_id": {
+          "name": "active_skill15_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill16_id": {
+          "name": "active_skill16_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill17_id": {
+          "name": "active_skill17_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill18_id": {
+          "name": "active_skill18_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill19_id": {
+          "name": "active_skill19_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill1_id": {
+          "name": "automatic_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill2_id": {
+          "name": "automatic_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill3_id": {
+          "name": "automatic_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill4_id": {
+          "name": "automatic_skill4_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill5_id": {
+          "name": "automatic_skill5_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill6_id": {
+          "name": "automatic_skill6_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caravan_skill1_id": {
+          "name": "caravan_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caravan_skill2_id": {
+          "name": "caravan_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caravan_skill3_id": {
+          "name": "caravan_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfdat_hash": {
+          "name": "mhfdat_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfemd_hash": {
+          "name": "mhfemd_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfsqd_hash": {
+          "name": "mhfsqd_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfinf_hash": {
+          "name": "mhfinf_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfodll_hash": {
+          "name": "mhfodll_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfohddll_hash": {
+          "name": "mhfohddll_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfexe_hash": {
+          "name": "mhfexe_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "style_id": {
+          "name": "style_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "weapon_type_id": {
+          "name": "weapon_type_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "blademaster_weapon_id": {
+          "name": "blademaster_weapon_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gunner_weapon_id": {
+          "name": "gunner_weapon_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "weapon_slot1": {
+          "name": "weapon_slot1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "weapon_slot2": {
+          "name": "weapon_slot2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "weapon_slot3": {
+          "name": "weapon_slot3",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "head_id": {
+          "name": "head_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "head_slot1_id": {
+          "name": "head_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "head_slot2_id": {
+          "name": "head_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "head_slot3_id": {
+          "name": "head_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chest_id": {
+          "name": "chest_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chest_slot1_id": {
+          "name": "chest_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chest_slot2_id": {
+          "name": "chest_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chest_slot3_id": {
+          "name": "chest_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arms_id": {
+          "name": "arms_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arms_slot1_id": {
+          "name": "arms_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arms_slot2_id": {
+          "name": "arms_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arms_slot3_id": {
+          "name": "arms_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waist_id": {
+          "name": "waist_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waist_slot1_id": {
+          "name": "waist_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waist_slot2_id": {
+          "name": "waist_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waist_slot3_id": {
+          "name": "waist_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "legs_id": {
+          "name": "legs_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "legs_slot1_id": {
+          "name": "legs_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "legs_slot2_id": {
+          "name": "legs_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "legs_slot3_id": {
+          "name": "legs_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cuff1_id": {
+          "name": "cuff1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cuff2_id": {
+          "name": "cuff2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "diva_skill_id": {
+          "name": "diva_skill_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "guild_food_id": {
+          "name": "guild_food_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "poogie_item_id": {
+          "name": "poogie_item_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_inventory_dictionary": {
+          "name": "player_inventory_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_ammo_pouch_dictionary": {
+          "name": "player_ammo_pouch_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "partnya_bag_dictionary": {
+          "name": "partnya_bag_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_hash": {
+          "name": "quest_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_id": {
+          "name": "quest_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "time_left": {
+          "name": "time_left",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "final_time_value": {
+          "name": "final_time_value",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "final_time_display": {
+          "name": "final_time_display",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "objetive_type_id": {
+          "name": "objetive_type_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "objective_quantity": {
+          "name": "objective_quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "star_grade": {
+          "name": "star_grade",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rank_name": {
+          "name": "rank_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "objective_name": {
+          "name": "objective_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "attack_buff_dictionary": {
+          "name": "attack_buff_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hit_count_dictionary": {
+          "name": "hit_count_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hits_per_second_dictionary": {
+          "name": "hits_per_second_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "damage_dealt_dictionary": {
+          "name": "damage_dealt_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "damage_per_second_dictionary": {
+          "name": "damage_per_second_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "area_changes_dictionary": {
+          "name": "area_changes_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "carts_dictionary": {
+          "name": "carts_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hits_taken_blocked_dictionary": {
+          "name": "hits_taken_blocked_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hits_taken_blocked_per_second_dictionary": {
+          "name": "hits_taken_blocked_per_second_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_hp_dictionary": {
+          "name": "player_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_stamina_dictionary": {
+          "name": "player_stamina_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "keystrokes_dictionary": {
+          "name": "keystrokes_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mouse_input_dictionary": {
+          "name": "mouse_input_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gamepad_input_dictionary": {
+          "name": "gamepad_input_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "actions_per_minute_dictionary": {
+          "name": "actions_per_minute_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "overlay_mode_dictionary": {
+          "name": "overlay_mode_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "actual_overlay_mode": {
+          "name": "actual_overlay_mode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "party_size": {
+          "name": "party_size",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_hp_dictionary": {
+          "name": "monster1_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster2_hp_dictionary": {
+          "name": "monster2_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster3_hp_dictionary": {
+          "name": "monster3_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster4_hp_dictionary": {
+          "name": "monster4_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_attack_multiplier_dictionary": {
+          "name": "monster1_attack_multiplier_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_defense_rate_dictionary": {
+          "name": "monster1_defense_rate_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_size_multiplier_dictionary": {
+          "name": "monster1_size_multiplier_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_poison_threshold_dictionary": {
+          "name": "monster1_poison_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_paralysis_threshold_dictionary": {
+          "name": "monster1_paralysis_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_sleep_threshold_dictionary": {
+          "name": "monster1_sleep_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_blast_threshold_dictionary": {
+          "name": "monster1_blast_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_stun_threshold_dictionary": {
+          "name": "monster1_stun_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_part_threshold_dictionary": {
+          "name": "monster1_part_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster2_part_threshold_dictionary": {
+          "name": "monster2_part_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_high_grade_edition": {
+          "name": "is_high_grade_edition",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "refresh_rate": {
+          "name": "refresh_rate",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "party_size_dictonary": {
+          "name": "party_size_dictonary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_feature": {
+          "name": "active_feature",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rights": {
+          "name": "rights",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_song_buff_on": {
+          "name": "diva_song_buff_on",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_red_skill": {
+          "name": "diva_prayer_gem_red_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_red_level": {
+          "name": "diva_prayer_gem_red_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_yellow_skill": {
+          "name": "diva_prayer_gem_yellow_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_yellow_level": {
+          "name": "diva_prayer_gem_yellow_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_green_skill": {
+          "name": "diva_prayer_gem_green_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_green_level": {
+          "name": "diva_prayer_gem_green_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_blue_skill": {
+          "name": "diva_prayer_gem_blue_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_blue_level": {
+          "name": "diva_prayer_gem_blue_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mhfdat_info": {
+          "name": "mhfdat_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mhfemd_info": {
+          "name": "mhfemd_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mhfodll_info": {
+          "name": "mhfodll_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mhfohddll_info": {
+          "name": "mhfohddll_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "guild_poogie1_skill": {
+          "name": "guild_poogie1_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "guild_poogie2_skill": {
+          "name": "guild_poogie2_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "guild_poogie3_skill": {
+          "name": "guild_poogie3_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_on": {
+          "name": "halk_on",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_pot_effect_on": {
+          "name": "halk_pot_effect_on",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_fullness": {
+          "name": "halk_fullness",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_level": {
+          "name": "halk_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_intimacy": {
+          "name": "halk_intimacy",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_health": {
+          "name": "halk_health",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_attack": {
+          "name": "halk_attack",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_defense": {
+          "name": "halk_defense",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_intellect": {
+          "name": "halk_intellect",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_skill1": {
+          "name": "halk_skill1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_skill2": {
+          "name": "halk_skill2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_skill3": {
+          "name": "halk_skill3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_element_none": {
+          "name": "halk_element_none",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_fire": {
+          "name": "halk_fire",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_water": {
+          "name": "halk_water",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_thunder": {
+          "name": "halk_thunder",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_ice": {
+          "name": "halk_ice",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_dragon": {
+          "name": "halk_dragon",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_poison": {
+          "name": "halk_poison",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_sleep": {
+          "name": "halk_sleep",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_paralysis": {
+          "name": "halk_paralysis",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "overlay_hash": {
+          "name": "overlay_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_variant1": {
+          "name": "quest_variant1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_variant2": {
+          "name": "quest_variant2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_variant3": {
+          "name": "quest_variant3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_variant4": {
+          "name": "quest_variant4",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "run_buffs": {
+          "name": "run_buffs",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "run_buffs_tag": {
+          "name": "run_buffs_tag",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_toggle_mode": {
+          "name": "quest_toggle_mode",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dual_swords_sharpens_dictionary": {
+          "name": "dual_swords_sharpens_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill1_id": {
+          "name": "road_dure_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill1_level": {
+          "name": "road_dure_skill1_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill2_id": {
+          "name": "road_dure_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill2_level": {
+          "name": "road_dure_skill2_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill3_id": {
+          "name": "road_dure_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill3_level": {
+          "name": "road_dure_skill3_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill4_id": {
+          "name": "road_dure_skill4_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill4_level": {
+          "name": "road_dure_skill4_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill5_id": {
+          "name": "road_dure_skill5_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill5_level": {
+          "name": "road_dure_skill5_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill6_id": {
+          "name": "road_dure_skill6_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill6_level": {
+          "name": "road_dure_skill6_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill7_id": {
+          "name": "road_dure_skill7_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill7_level": {
+          "name": "road_dure_skill7_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill8_id": {
+          "name": "road_dure_skill8_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill8_level": {
+          "name": "road_dure_skill8_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill9_id": {
+          "name": "road_dure_skill9_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill9_level": {
+          "name": "road_dure_skill9_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill10_id": {
+          "name": "road_dure_skill10_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill10_level": {
+          "name": "road_dure_skill10_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill11_id": {
+          "name": "road_dure_skill11_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill11_level": {
+          "name": "road_dure_skill11_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill12_id": {
+          "name": "road_dure_skill12_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill12_level": {
+          "name": "road_dure_skill12_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill13_id": {
+          "name": "road_dure_skill13_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill13_level": {
+          "name": "road_dure_skill13_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill14_id": {
+          "name": "road_dure_skill14_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill14_level": {
+          "name": "road_dure_skill14_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill15_id": {
+          "name": "road_dure_skill15_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill15_level": {
+          "name": "road_dure_skill15_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill16_id": {
+          "name": "road_dure_skill16_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill16_level": {
+          "name": "road_dure_skill16_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "style_rank_skill1_id": {
+          "name": "style_rank_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "style_rank_skill2_id": {
+          "name": "style_rank_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill1_id": {
+          "name": "zenith_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill2_id": {
+          "name": "zenith_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill3_id": {
+          "name": "zenith_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill4_id": {
+          "name": "zenith_skill4_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill5_id": {
+          "name": "zenith_skill5_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill6_id": {
+          "name": "zenith_skill6_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill7_id": {
+          "name": "zenith_skill7_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "quests_profile_id_profiles_id_fk": {
+          "name": "quests_profile_id_profiles_id_fk",
+          "tableFrom": "quests",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "quests_run_id_profile_id_pk": {
+          "name": "quests_run_id_profile_id_pk",
+          "columns": [
+            "run_id",
+            "profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
