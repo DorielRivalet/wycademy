@@ -45,8 +45,8 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
-	import { formatDate } from '$lib/client/modules/time';
 	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
+	import { downloadLogsAsCSV } from '$lib/client/modules/csv';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
@@ -115,6 +115,7 @@
 	const consoleMessages = {
 		boardFull: 'Board is full!',
 		maxSpeed: 'You are already at maximum speed!',
+		canBurnBorder: "Let's prevent hunters from building barricades!",
 		ringOfFireReady: 'You can now unleash your ultimate attack! 🔥',
 		ringOfFireEnabled: 'You activated the ring of fire! 🔥',
 		ringOfFireTouched: 'You gained extra speed! 🔥',
@@ -268,7 +269,7 @@
 		default: 'You died. 💀',
 	};
 
-	const EASTER_EGG_SCORE = 10_000;
+	const EASTER_EGG_SCORE = 5_000;
 
 	const EASTER_EGG = [
 		'A Hunting Horn user has joined your lament.',
@@ -313,23 +314,34 @@
 		ultimateReady: UltimateReadySound,
 	};
 
-	let turns = 0;
+	let turns = $state(0);
 
 	// tiles
-	let fireballs: CanvasElement[] = [];
-	let ringOfFire: CanvasElement[] = [];
-	let paralysisTiles: CanvasElement[] = [];
-	let keyBuffer = [];
-	let historyLogs: string[] = [];
+	let fireballs: CanvasElement[] = $state([]);
+	let ringOfFire: CanvasElement[] = $state([]);
+	let paralysisTiles: CanvasElement[] = $state([]);
+	let keyBuffer = $state([]);
+	let historyLogs: {
+		turns: number;
+		elapsedTime: string;
+		score: string;
+		eaten: string;
+		roasted: string;
+		zapped: string;
+		toasty: string;
+		speed: string;
+		snakeLength: string;
+		snakeEnergy: string;
+	}[] = $state([]);
 
 	/**For color canvas */
-	let hitHunters: string[] = [];
+	let hitHunters: string[] = $state([]);
 
 	/**If hitting 10 black hunters in a row with fireball, refill meter. */
-	let toastyCount = 0;
-	let canSpawnHunters = true;
+	let toastyCount = $state(0);
+	let canSpawnHunters = $state(true);
 	let drewRingOfFire = $state(false);
-	let drewParalysis = false;
+	let drewParalysis = $state(false);
 
 	let speedColor = $state(COLORS.white);
 
@@ -379,7 +391,7 @@
 				);
 				snake.maxEnergy += HUNTER_TYPES.black.snakeEnergyMaxGain;
 				snake.energy += HUNTER_TYPES.black.snakeEnergyGain;
-				snake.energy = Math.max(snake.energy, 0);
+				snake.energy = Math.min(snake.maxEnergy, Math.max(snake.energy, 0));
 				hunters.forEach((hunter) => {
 					if (hunter) {
 						hunter.age++;
@@ -401,7 +413,7 @@
 				);
 				snake.maxEnergy += HUNTER_TYPES.yellow.snakeEnergyMaxGain;
 				snake.energy += HUNTER_TYPES.yellow.snakeEnergyGain;
-				snake.energy = Math.max(snake.energy, snake.maxEnergy);
+				snake.energy = Math.min(snake.maxEnergy, Math.max(snake.energy, 0));
 				hunters.forEach((hunter) => {
 					if (hunter) {
 						hunter.age =
@@ -427,7 +439,7 @@
 				);
 				snake.maxEnergy += HUNTER_TYPES.purple.snakeEnergyMaxGain;
 				snake.energy += HUNTER_TYPES.purple.snakeEnergyGain;
-				snake.energy = Math.max(snake.energy, 0);
+				snake.energy = Math.min(snake.maxEnergy, Math.max(snake.energy, 0));
 				hunters.forEach((hunter) => {
 					if (hunter) {
 						hunter.age += 5;
@@ -456,7 +468,7 @@
 				});
 				snake.maxEnergy += HUNTER_TYPES.orange.snakeEnergyMaxGain;
 				snake.energy += HUNTER_TYPES.orange.snakeEnergyGain;
-				snake.energy = Math.max(snake.energy, snake.maxEnergy);
+				snake.energy = Math.min(snake.maxEnergy, Math.max(snake.energy, 0));
 				score += HUNTER_TYPES.orange.score;
 				sendMessageToConsole(
 					`You can now fire ${snake.maxEnergy} fireballs! 🔥`,
@@ -743,8 +755,8 @@
 			},
 			maxHealth: 1,
 			spawnMessage: 'Reinforcements have arrived.',
-			snakeEnergyGain: 30,
-			snakeEnergyMaxGain: 5,
+			snakeEnergyGain: 20,
+			snakeEnergyMaxGain: 10,
 		},
 		green: {
 			name: 'green',
@@ -779,8 +791,9 @@
 	};
 
 	let soundEnabled = $state(true);
-	let gameState: GameState = 'start';
+	let gameState: GameState = $state('start');
 
+	// TODO add $state?
 	let canvas;
 	let context;
 	let eaten_items_canvas;
@@ -799,17 +812,17 @@
 				: undefined;
 
 			slotSize = canvas ? canvas.width / gridSize : 1;
-
+			console.log(slotSize);
 			consoleElement = document.getElementById('game-console');
 		}
 	});
 
-	/**  the canvas width & height, snake x & y, and the hunter x & y, all need to be a multiples of the grid size in order for collision detection to work (e.g. 16 * 25 = 400)*/
+	/**  the canvas width & height, snake x & y, and the hunter x & y, all need to be a multiples of the grid size in order for collision detection to work (e.g. 32px * 24 slots = 768)*/
 	const grid = 32;
 
-	let loopCount = 0;
+	let loopCount = $state(0);
 	let score = $state(0);
-	let borderColor = COLORS.border;
+	let borderColor = $state(COLORS.border);
 
 	const SNAKE_ACTIONS = {
 		bite: {
@@ -849,6 +862,7 @@
 		running: false,
 		firing: false,
 		currentDirection: 'right' as Direction,
+		lastDirection: 'up' as Direction,
 		paralysis: false,
 		eaten: 0,
 		roasted: 0,
@@ -857,13 +871,13 @@
 		action: SNAKE_ACTIONS.bite.name,
 		/**If eating purple hunter */
 		poisoned: false,
-		canBurnBlueBorder: false,
+		canBurnBorder: false,
 		canUseUltimate: false,
 		energy: 10,
 		maxEnergy: 10,
 	});
 
-	let hunters: Hunter[] = [
+	let hunters: Hunter[] = $state([
 		{
 			x: 320,
 			y: 320,
@@ -873,9 +887,9 @@
 			health: 1,
 			climbCellIndex: 0,
 		},
-	];
+	]);
 
-	let activeHunters = {
+	let activeHunters = $state({
 		red: 0,
 		blue: 0,
 		orange: 0,
@@ -884,8 +898,9 @@
 		yellow: 0,
 		purple: 0,
 		green: 0,
-	};
+	});
 
+	// TODO add $state?
 	let headRightImage = { src: '' };
 	let headLeftImage = { src: '' };
 	let bodyImage = { src: '' };
@@ -913,13 +928,13 @@
 	paralysisTileImage.src = './assets/img/paralysis.webp';
 
 	// Variables to keep track of the timer
-	let startTime = 0;
+	let startTime = $state(0);
 	let elapsedTime = $state(0);
 	let timerInterval: string | number | NodeJS.Timeout | undefined;
 
-	const gridSize = 25;
+	const gridSize = 24;
 	// TODO adjust if canvas is full
-	const maxSnakeLength = gridSize * gridSize + 1;
+	const maxSnakeLength = gridSize * gridSize;
 
 	function drawSlot(row: number, col: number, color: string) {
 		eaten_items_canvas_context.fillStyle = color;
@@ -1117,7 +1132,11 @@
 			sendMessageToConsole(HUNTER_TYPES.purple.spawnMessage);
 		}
 
-		if (turns % HUNTER_TYPES.blue.turnDelay === 0) {
+		if (
+			turns % HUNTER_TYPES.blue.turnDelay === 0 &&
+			!drewRingOfFire &&
+			borderColor !== COLORS.red
+		) {
 			hunters.push(
 				generateHunter(
 					HUNTER_TYPES.blue.minAge,
@@ -1275,10 +1294,18 @@
 					// updateGameValues();
 					drawHitHunters();
 					updateBlueBorder(countHunters());
-					let timestamp = formatTime(elapsedTime);
-					historyLogs.push(
-						`${timestamp} ${snake.cells.length}/${maxSnakeLength}🐍 ${action} ${hunterType.name}`,
-					);
+					historyLogs.push({
+						turns: turns,
+						elapsedTime: formattedElapsedTime,
+						score: scoreText,
+						eaten: eatenText,
+						roasted: roastedText,
+						zapped: zappedText,
+						toasty: toastyText,
+						speed: speedText,
+						snakeLength: snakeLengthText,
+						snakeEnergy: `${snake.energy}/${snake.maxEnergy}`,
+					});
 					return true;
 				}
 			}
@@ -1299,10 +1326,10 @@
 	// }
 
 	function updateBlueBorder(huntersCount: HunterCount) {
-		if (huntersCount.blue <= 0) {
-			snake.canBurnBlueBorder = true;
-		} else {
-			snake.canBurnBlueBorder = false;
+		if (huntersCount.blue <= 0 && borderColor === COLORS.blue) {
+			snake.canBurnBorder = true;
+			borderColor = COLORS.border;
+			sendMessageToConsole(consoleMessages.canBurnBorder);
 		}
 	}
 
@@ -1366,7 +1393,7 @@
 
 	function resetGame(deathMessage = DEATHS.default) {
 		let won = false;
-		if (snake.cells.length >= gridSize * gridSize + 1) {
+		if (snake.cells.length >= gridSize * gridSize) {
 			won = true;
 		}
 
@@ -1377,6 +1404,7 @@
 		snake.cells = [];
 		snake.maxCells = startingCells;
 		snake.currentDirection = 'right';
+		snake.lastDirection = 'up';
 		snake.extraSpeed = 0;
 		snake.speed = 0;
 		snake.running = false;
@@ -1387,7 +1415,7 @@
 		snake.zapped = 0;
 		snake.toasty = 0;
 		snake.poisoned = false;
-		snake.canBurnBlueBorder = false;
+		snake.canBurnBorder = false;
 		snake.canUseUltimate = false;
 		snake.maxEnergy = snakeStartingEnergy;
 		turns = 0;
@@ -1462,8 +1490,9 @@
 					fireball.y > canvas.height)
 			) {
 				fireballs.splice(index, 1); // remove fireball
-				if (snake.canBurnBlueBorder && borderColor === COLORS.blue) {
+				if (snake.canBurnBorder && borderColor === COLORS.border) {
 					borderColor = fireballColors.hit;
+					snake.canBurnBorder = false;
 					snake.canUseUltimate = true;
 					sendMessageToConsole(consoleMessages.ringOfFireReady);
 					playSound(SOUNDS.ultimateReady);
@@ -1659,6 +1688,7 @@
 		);
 
 		// If the grid is full, reset hitHunters
+		// TODO does this trigger?
 		if (hitHunters.length >= gridSize * gridSize * 3) {
 			hitHunters = [];
 			row = 0;
@@ -1712,7 +1742,7 @@
 		}, 1000);
 	}
 
-	function sendMessageToConsole(message) {
+	function sendMessageToConsole(message: string) {
 		let div = document.createElement('div');
 		div.textContent = message;
 		consoleElement.appendChild(div);
@@ -1721,7 +1751,7 @@
 	}
 
 	// /**For snake movement */
-	function isOppositeDirection(dir1, dir2) {
+	function isOppositeDirection(dir1: string, dir2: string) {
 		return (
 			(dir1 === 'up' && dir2 === 'down') ||
 			(dir1 === 'down' && dir2 === 'up') ||
@@ -1737,6 +1767,7 @@
 
 		// If there is a new direction and it's not opposite to the current direction, update the snake's direction
 		if (direction && !isOppositeDirection(snake.currentDirection, direction)) {
+			snake.lastDirection = snake.currentDirection;
 			snake.currentDirection = direction;
 		}
 
@@ -1827,7 +1858,7 @@
 
 	/**Handles drawing. */
 	function updateSnake() {
-		let died = false;
+		let died: string | boolean = false;
 		// draw snake one cell at a time
 		snake.cells.forEach(function (cell, index) {
 			// drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
@@ -1835,14 +1866,20 @@
 			let drewHeadTail = false;
 
 			if (snake.cells.length - 1 == index) {
-				if (snake.currentDirection === 'left') {
+				if (
+					snake.currentDirection === 'left' ||
+					snake.lastDirection === 'left'
+				) {
 					context.drawImage(tailLeftImage, cell.x, cell.y, grid - 1, grid - 1);
 				} else {
 					context.drawImage(tailRightImage, cell.x, cell.y, grid - 1, grid - 1);
 				}
 				drewHeadTail = true;
 			} else if (index === 0) {
-				if (snake.currentDirection === 'left') {
+				if (
+					snake.currentDirection === 'left' ||
+					snake.lastDirection === 'left'
+				) {
 					context.drawImage(headLeftImage, cell.x, cell.y, grid - 1, grid - 1);
 				} else {
 					context.drawImage(headRightImage, cell.x, cell.y, grid - 1, grid - 1);
@@ -1887,7 +1924,7 @@
 	}
 
 	function updateGreenHunters() {
-		let result = false;
+		let result: string | boolean = false;
 		hunters.forEach((hunter) => {
 			if (hunter) {
 				if (hunter.climbed && hunter.climbCellIndex) {
@@ -2021,7 +2058,7 @@
 					!paralysisTiles.some((t) => t[0] === tile[0] && t[1] === tile[1]) &&
 					!snake.cells.some((c) => c.x === tile[0] && c.y === tile[1])
 				) {
-					paralysisTiles.push(tile);
+					paralysisTiles.push(tile); // TODO?
 				}
 			});
 		});
@@ -2066,7 +2103,7 @@
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		// TODO is this order correct?
-		let snakeDied = false;
+		let snakeDied: string | boolean = false;
 		let currentDeathReason = '';
 
 		updateFireballs();
@@ -2095,7 +2132,7 @@
 
 	function checkForFireballInput(key: string) {
 		if (key === 'f' && !snake.firing) {
-			if (snake.cells.length > 620 || !canSpawnHunters) {
+			if (snake.cells.length > gridSize * gridSize - 5 || !canSpawnHunters) {
 				sendMessageToConsole(consoleMessages.boardFull);
 				return;
 			}
@@ -2155,7 +2192,7 @@
 
 	function checkForRingOfFireInput(key: string) {
 		if (key === 'r') {
-			if (snake.cells.length > 620 || !canSpawnHunters) {
+			if (snake.cells.length > gridSize * gridSize - 5 || !canSpawnHunters) {
 				sendMessageToConsole(consoleMessages.boardFull);
 				return;
 			}
@@ -2190,7 +2227,7 @@
 	) {
 		if (key === ' ') {
 			e.preventDefault();
-			if (snake.cells.length > 620 || !canSpawnHunters) {
+			if (snake.cells.length > gridSize * gridSize - 5 || !canSpawnHunters) {
 				sendMessageToConsole(consoleMessages.boardFull);
 				return;
 			}
@@ -2221,7 +2258,7 @@
 	function handleKeyPress(direction: string) {
 		// Prevent the same direction from being added to the buffer consecutively
 		if (keyBuffer[keyBuffer.length - 1] !== direction) {
-			keyBuffer = keyBuffer.slice(-1).concat(direction);
+			keyBuffer = keyBuffer.slice(-1).concat(direction); // TODO?
 		}
 	}
 
@@ -2325,17 +2362,6 @@
 		}
 	}
 
-	function downloadLogs() {
-		let text = historyLogs.join('\n'); // create a string from the historyLogs array, with each log on a new line
-		let blob = new Blob([text], { type: 'text/plain' }); // create a new Blob object representing the data in the specified formats
-		const url = URL.createObjectURL(blob); // create a URL representing the Blob object
-
-		let a = document.createElement('a'); // create a new <a> element
-		a.href = url; // set the href of the <a> element to the URL
-		a.download = `wycademy-snek-history-logs-${formatDate(new Date())}.txt`; // set the download attribute, so clicking the link will download the text file
-		a.click(); // programmatically click the <a> element to trigger the download
-	}
-
 	const url = $page.url.toString();
 	let modalOpen = $state(false);
 	let gameStateText = $state('Play');
@@ -2401,8 +2427,11 @@
 		</p>
 		<div class="dev-score">
 			<p>Doriel Rivalet's highscore is:</p>
-			<span id="devHighscore">11037 (17:04.70) 540/626🐍</span>
-			<div class="subtle date">2023/10/13</div>
+			<span id="devHighscore"
+				>12:38.20 (1284 turns) | Score: 6731 | 379🍖 402🔥 503⚡ 12🍞 |
+				394/576🐍 | 96/109 Energy</span
+			>
+			<div class="subtle date">2024/12/26</div>
 		</div>
 		<p>Happy eating!</p>
 		<i>Tip: Make a toast out of those hunters!</i>
@@ -2423,7 +2452,9 @@
 			<Button
 				icon={DocumentDownload}
 				kind="tertiary"
-				on:click={() => downloadLogs()}>Download History Logs</Button
+				on:click={() =>
+					downloadLogsAsCSV(historyLogs, 'wycademy-snek-history-logs')}
+				>Download History Logs</Button
 			>
 			<div class="img-container">
 				<img
@@ -2435,7 +2466,12 @@
 			<canvas width="800" height="2400" id="eaten-items" class="interface"
 			></canvas>
 		</div>
-		<canvas width="800" height="800" id="game"></canvas>
+		<canvas
+			width="768"
+			height="768"
+			id="game"
+			style="border: 8px solid {borderColor}"
+		></canvas>
 		<div class="right">
 			<div class="button-container">
 				<Button
@@ -2450,8 +2486,11 @@
 					>Sound {soundEnabled ? 'ON' : 'OFF'}</Button
 				>
 			</div>
-			<progress id="snake-energy" max={snake.maxEnergy} value={snake.energy}
-			></progress>
+			<div class="snake-energy">
+				<p>{snake.energy}/{snake.maxEnergy}</p>
+				<progress id="snake-energy" max={snake.maxEnergy} value={snake.energy}
+				></progress>
+			</div>
 
 			<div class="game-values">
 				<div id="timer">{formattedElapsedTime}</div>
@@ -2474,6 +2513,8 @@
 </div>
 
 <style lang="scss">
+	@use '@carbon/motion' as motion;
+
 	.modal-open-noblur {
 		-webkit-filter: blur(0);
 		filter: blur(0);
@@ -2491,6 +2532,13 @@
 			filter 500ms ease,
 			opacity 500ms ease,
 			-webkit-filter 500ms ease;
+	}
+
+	.snake-energy {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		align-items: center;
 	}
 
 	.modal-open-blur {
@@ -2551,10 +2599,11 @@
 	}
 
 	#game {
-		border: 8px solid #313244;
 		background-color: #40a02b;
 		border-radius: 1rem;
 		text-align: center;
+		transition: border motion.$duration-slow-02
+			motion.motion(standard, expressive);
 	}
 
 	#score,
@@ -2675,6 +2724,7 @@
 	.hit-hunters {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		gap: 0.5rem;
 		text-align: left;
 	}
 
