@@ -2,7 +2,7 @@
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-The commands are done in the root directory unless otherwise specified.
+The commands mentioned are done in the repository's root directory unless otherwise specified.
 
 ## Commits
 
@@ -19,14 +19,14 @@ npm run release
 ## Supabase
 
 - Initialize files (initial setup): `npx supabase init`
-- Start: `npx supabase start`
+- Start: `npx supabase start` (Docker Desktop must be running)
 - Stop: `npx supabase stop`
 - View info: `npx supabase status`
-- Local configuration: `supabase/config.toml`
+- Local configuration: `/supabase/config.toml`
+- Remote configuration: Dashboard -> Project Settings
 
 ### Important Tips
 
-- **Docker Desktop must be running.**
 - **Never use `auth.users` table, use `public.profiles` instead.**
 - **Use `session` to check if the user is logged in.**
 - **Use Drizzle instead of Supabase Data API for querying (disable Data API usage in Supabase settings).**
@@ -39,18 +39,41 @@ npm run release
 - **Try to not have null fields if a more sensible default can be set.**
 - **Enforce SSL: SSL enforcement can be configured via the "Enforce SSL on incoming connections" setting under the SSL Configuration section in Database Settings page of the dashboard.**
 - **Think hard about how you would abuse your service as an attacker, and mitigate.**
+- **Don't assume everything inside of session can be trusted. Don't expose your anon key and connection string to the client.**
 
 More tips at [Supabase Docs](https://supabase.com/docs/guides/deployment/going-into-prod).
 
+### Privileges Matrix
+
+|Client|RLS|Data API|Can see countries table|
+|-|-|-|-|
+|supabase-js|:x:|:x:|:x:|
+|supabase-js|:x:|:white_check_mark:|:white_check_mark:|
+|supabase-js|:white_check_mark:|:x:|:x:|
+|supabase-js|:white_check_mark:|:white_check_mark:|:x:|
+|Drizzle (Admin)|:x:|:x:|:white_check_mark:|
+|Drizzle (Admin)|:x:|:white_check_mark:|:white_check_mark:|
+|Drizzle (Admin)|:white_check_mark:|:x:|:white_check_mark:|
+|Drizzle (Admin)|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|Drizzle|:x:|:x:|?|
+|Drizzle|:x:|:white_check_mark:|?|
+|Drizzle|:white_check_mark:|:x:|?|
+|Drizzle|:white_check_mark:|:white_check_mark:|?|
+
+- RLS is enabled on the countries table without any additional policies.
+- Data API can be toggled on/off in `/supabase/config.toml` locally and Project Settings remotely.
+- Drizzle (Admin) client uses the environment variable `ADMIN_DATABASE_URL` with user `postgres`.
+- Drizzle client uses the environment variable `DATABASE_URL` with user `rls_client`. See also [Postgres Roles and Privileges](https://supabase.com/blog/postgres-roles-and-privileges).
+
 ## Drizzle (ORM)
 
-Generate migrations from `src/lib/db/schema.ts` (your source of truth) to `supabase/migrations`
+Generate migrations from `/src/lib/db/schema.ts` (your source of truth) to `/supabase/migrations`, then apply the migrations locally with `npx supabase db reset`. This corresponds to [option 5](https://orm.drizzle.team/docs/migrations#drizzle-migrations-fundamentals) of Drizzle migrations.
 
 ```bash
 npm run db:generate
 ```
 
-**You must check if Row Level Security is in the generated sql files afterwards. Use EnableRLS() at the end of table definitions in the ts file.**
+**You must check if Row Level Security is in the generated sql files afterwards. Use EnableRLS() at the end of table definitions in the `/src/lib/db/schema.ts` file.**
 
 ## Seeding
 
@@ -66,6 +89,7 @@ For seeding, we use [Snaplet](https://snaplet-seed.netlify.app/seed/integrations
 
 |Key|Usage|Environment|
 |--|--|--|
+|ADMIN_DATABASE_URL|Supabase Connection (Dashboard -> Connect -> ORMs -> Drizzle)|Vercel (Sensitive), .env, .env.development|
 |DATABASE_URL|Supabase Connection (Dashboard -> Connect -> ORMs -> Drizzle)|Vercel (Sensitive), .env, .env.development|
 |SUPABASE_AUTH_EXTERNAL_DISCORD_SECRET|Discord OAuth|Supabase, .env|
 |SUPABASE_AUTH_EXTERNAL_DISCORD_ID|Discord OAuth Client ID|Supabase, .env|
@@ -73,3 +97,5 @@ For seeding, we use [Snaplet](https://snaplet-seed.netlify.app/seed/integrations
 |PUBLIC_SUPABASE_URL|Supabase Project|Vercel, .env, .env.development|
 |WEBHOOK_SECRET_OVERLAY_RELEASE|Discord Notifications for Overlay (Verifier)|GitHub, Vercel, .env|
 |WEBHOOK_DISCORD_URL_OVERLAY_RELEASE|Discord Notifications for Overlay (Webhook URL)|GitHub, Vercel, .env|
+|PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY|Turnstile Component|.env, Vercel|
+|SECRET_CLOUDFLARE_TURNSTILE_KEY|Turnstile Component Verifier|.env, Vercel|
