@@ -5,7 +5,6 @@
 -->
 
 <script lang="ts">
-	import Header from '../Header.svelte';
 	import Footer from '../Footer.svelte';
 	import ViewTransition from '../Navigation.svelte';
 	import { page } from '$app/stores';
@@ -55,9 +54,6 @@
 			</InlineNotification>
 		{/if}
 	</div>
-	<div class="header">
-		<Header />
-	</div>
 
 	{#key $page.url.pathname}
 		<Footer gitHubData={data.github} />
@@ -92,10 +88,6 @@
 		background-color: var(--ctp-base);
 		border-left: var(--cds-spacing-01) solid var(--ctp-surface0);
 		border-right: var(--cds-spacing-01) solid var(--ctp-surface0);
-		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
-	}
-
-	.header {
 		border-bottom: var(--cds-spacing-01) solid var(--ctp-surface0);
 	}
 </style>
