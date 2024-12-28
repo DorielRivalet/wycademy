@@ -909,8 +909,7 @@
 				src={'https://res.cloudinary.com/mhfz/image/upload/f_auto,q_auto/v1/supplemental/transcend-menu.webp'}
 				alt="Transcend menu"
 				figcaption="You can access Transcend settings directly from the normal start menu.
-				To open the settings menu, select Status and then Secret Ceremony
-				Status."
+				To open the settings menu, select Status and then Transcend Status."
 			/>
 
 			<CenteredFigure
@@ -1181,7 +1180,8 @@
 							text="Transcend"
 							iconType="file"
 							icon={LocationIcons.find((e) => e.name === 'Transcend')?.icon}
-						/> state. Taking damage can slightly speed up the charge time.
+						/> state. Taking damage or attacking the monster more often can slightly
+						speed up the charge time.
 					</div>
 					<div class="paragraph-long-02">
 						The times listed for the <InlineTooltip
