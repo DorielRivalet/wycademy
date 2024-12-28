@@ -1071,7 +1071,8 @@ Only support can inflict poison to Raviente Raviente.`,
 	},
 	{
 		title: 'Policies',
-		content: 'Legal information about the website.',
+		content:
+			'Legal information about the website. Policies are enforced by the website and describe standards all users have to follow.',
 		slug: '/support/policies',
 		id: 0,
 		hex: '0x00',
@@ -1117,6 +1118,16 @@ Only support can inflict poison to Raviente Raviente.`,
 		hex: '0x00',
 		category: 'Support',
 	},
+
+	{
+		title: 'Community Standards',
+		content: 'Standards for community conduct and interactions',
+		slug: '/support/policies/community-standards',
+		id: 0,
+		hex: '0x00',
+		category: 'Support',
+	},
+
 	{
 		title: 'Wycademy Documentation',
 		content: "Documentation about the website's code and design.",

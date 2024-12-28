@@ -5,7 +5,7 @@
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import CheckmarkFilled from 'carbon-icons-svelte/lib/CheckmarkFilled.svelte';
-	import WarningFilled from 'carbon-icons-svelte/lib/WarningFilled.svelte';
+	import WarningAltFilled from 'carbon-icons-svelte/lib/WarningAltFilled.svelte';
 	import CiteReference from '$lib/client/components/CiteReference.svelte';
 	import OrderedList from 'carbon-components-svelte/src/OrderedList/OrderedList.svelte';
 	import CiteNote from '$lib/client/components/CiteNote.svelte';
@@ -130,7 +130,7 @@
 				>
 				<ListItem
 					><div class="list-item paragraph-long-02">
-						<WarningFilled color="var(--ctp-yellow)" />
+						<WarningAltFilled color="var(--ctp-yellow)" />
 						<span
 							>Avoid mentioning any external tools, including mods, in YouTube
 							descriptions. Minimize the number of links.</span
@@ -139,7 +139,7 @@
 				>
 				<ListItem
 					><div class="list-item paragraph-long-02">
-						<WarningFilled color="var(--ctp-yellow)" />
+						<WarningAltFilled color="var(--ctp-yellow)" />
 						<span
 							>Avoid tagging your YouTube videos with games that are not Monster
 							Hunter Frontier.</span
@@ -148,19 +148,19 @@
 				>
 				<ListItem
 					><div class="list-item paragraph-long-02">
-						<WarningFilled color="var(--ctp-yellow)" />
+						<WarningAltFilled color="var(--ctp-yellow)" />
 						<span>Avoid livestreams or videos featuring custom quests.</span>
 					</div></ListItem
 				>
 				<ListItem
 					><div class="list-item paragraph-long-02">
-						<WarningFilled color="var(--ctp-yellow)" />
+						<WarningAltFilled color="var(--ctp-yellow)" />
 						<span>Avoid putting music that is not part of the game.</span>
 					</div></ListItem
 				>
 				<ListItem
 					><div class="list-item paragraph-long-02">
-						<WarningFilled color="var(--ctp-yellow)" />
+						<WarningAltFilled color="var(--ctp-yellow)" />
 						<span
 							>Do not show the overlay UI during videos. The UI of the overlay
 							or other programs like LiveSplit might trigger YouTube's systems.
