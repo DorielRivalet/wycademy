@@ -19,4 +19,5 @@ We have a [Google Forms](https://forms.gle/hfFG7QWNcrCHnDV67) where you can subm
 - The typeface is [IBM Plex](https://github.com/IBM/plex). Additional fonts used is the in-game one, *MS Gothic*, and the Monster Hunter font made by [XMitsarugiX](https://www.deviantart.com/xmitsarugix/art/Monster-Hunter-Font-Type-1-and-2-380816151).
 - The combo element icons are made by [Narwhaler](https://fanonmonsterhunter.fandom.com/wiki/User:Narwhaler).
 - Weapons, Armor, Carve and Tools icons are made by [Jeremiah V10](https://fanonmonsterhunter.fandom.com/wiki/User:Jeremiah_V10).
+- The render for Golden Deviljho and Shifting Mi Ru are made by [Siroos](https://monsterhunter.fandom.com/wiki/User:Siroos)
 - Additional game icons can be found [in the Fanon Wiki](https://fanonmonsterhunter.fandom.com/wiki/Category:Icon). Icons based on these are licensed under CC-BY-SA unless otherwise specified.
