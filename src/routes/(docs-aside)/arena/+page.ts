@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit';
 
 export const load = async () => {
-	throw redirect(308, `/tools/calculator`);
+	redirect(308, `/tools/calculator`);
 };

@@ -7,5 +7,5 @@
 import { redirect } from '@sveltejs/kit';
 
 export const load = async () => {
-	throw redirect(308, `/support/website/development`);
+	redirect(308, `/support/website/development`);
 };
