@@ -138,6 +138,7 @@
 		"flag-icons": "^7.2.3",
 		"flexsearch": "^0.7.43",
 		"html-to-image": "^1.11.11",
+		"jwt-decode": "^4.0.0",
 		"mathjs": "^14.0.0",
 		"mathlifier": "^2.0.3",
 		"mermaid": "^11.4.0",
