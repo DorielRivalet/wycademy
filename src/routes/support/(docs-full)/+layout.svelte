@@ -56,6 +56,7 @@
 	import Security from 'carbon-icons-svelte/lib/Security.svelte';
 	import UserFeedback from 'carbon-icons-svelte/lib/UserFeedback.svelte';
 	import SidePanelClose from 'carbon-icons-svelte/lib/SidePanelClose.svelte';
+	import GroupSecurity from 'carbon-icons-svelte/lib/GroupSecurity.svelte';
 
 	const stickyHeaderStore = getContext(
 		Symbol.for('stickyHeader'),
@@ -275,6 +276,12 @@
 					icon: Security,
 
 					href: '/support/policies/security',
+				},
+				{
+					text: 'Community Standards',
+					id: '/support/policies/community-standards',
+					href: '/support/policies/community-standards',
+					icon: GroupSecurity,
 				},
 			],
 		},

@@ -31,6 +31,7 @@ import InformationSquare from 'carbon-icons-svelte/lib/InformationSquare.svelte'
 import VideoPlayer from 'carbon-icons-svelte/lib/VideoPlayer.svelte';
 import PiggyBank from 'carbon-icons-svelte/lib/PiggyBank.svelte';
 import QuestionAnswering from 'carbon-icons-svelte/lib/QuestionAnswering.svelte';
+import GroupSecurity from 'carbon-icons-svelte/lib/GroupSecurity.svelte';
 
 // TODO replace monster icons with monstercomponent?
 import Duremudira from '$lib/client/components/frontier/icon/monster/Duremudira.svelte';
@@ -160,7 +161,8 @@ export const supportInfo: CategoryInfo[] = [
 	{
 		category: {
 			name: 'Policies',
-			description: 'Legal information about the website.',
+			description:
+				'Legal information about the website. Policies are enforced by the website and describe standards all users have to follow.',
 			link: '/support/policies',
 			image: BookIconWhite,
 		},
@@ -194,6 +196,12 @@ export const supportInfo: CategoryInfo[] = [
 				description: 'Information about the security of the website.',
 				link: '/support/policies/security',
 				image: Security,
+			},
+			{
+				name: 'Community Standards',
+				description: 'Standards for community conduct and interactions',
+				link: '/support/policies/community-standards',
+				image: GroupSecurity,
 			},
 		],
 	},

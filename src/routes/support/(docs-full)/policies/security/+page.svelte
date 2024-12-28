@@ -19,7 +19,7 @@
 		{
 			question: 'How is my personal data protected?',
 			answer:
-				'All sensitive data is encrypted and stored securely in Supabase, which adheres to modern security standards. We also minimize data collection and storage wherever possible.',
+				'All sensitive data is stored securely in Supabase, which adheres to modern security standards. We also minimize data collection and storage wherever possible.',
 		},
 		{
 			question: "How can I help improve Wycademy's security?",
@@ -77,18 +77,9 @@
 			</div>
 		</section>
 		<section>
-			<SectionHeading level={2} title="Encryption and Data Protection" />
+			<SectionHeading level={2} title="Data Protection" />
 			<div>
 				<UnorderedList>
-					<ListItem>
-						<p>
-							<strong>Encryption of Sensitive Data:</strong> All speedrun data is
-							encrypted using a public/private key approach. When users upload their
-							speedrun data, it is encrypted client-side with a public key and then
-							stored securely on our servers. Only the intended recipient can decrypt
-							the data using a corresponding private key.
-						</p>
-					</ListItem>
 					<ListItem
 						><div class="paragraph-long-02">
 							<strong>Secure Storage with Supabase:</strong> We rely on <OutboundLink
@@ -233,7 +224,7 @@
 		<section>
 			<SectionHeading level={2} title="Frequently Asked Questions (FAQ)" />
 			<div>
-				<FrequentlyAskedQuestions {faq} minHeight={'50vh'} />
+				<FrequentlyAskedQuestions {faq} minHeight={50} />
 			</div>
 		</section>
 		<section>

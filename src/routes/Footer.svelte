@@ -107,6 +107,9 @@
 					<Link href="/support/policies/acknowledgements">Acknowledgements</Link
 					>
 					<Link href="/support/policies/security">Security</Link>
+					<Link href="/support/policies/community-standards"
+						>Community Standards</Link
+					>
 				</section>
 			</div>
 
