@@ -160,7 +160,6 @@ export interface SpeedrunInfo {
 	mhfodllHash: string; // from GameFolder table
 	mhfohddllHash: string; // from GameFolder table
 	mhfexeHash: string; // from GameFolder table
-	PlayerGearHash: string; // from PlayerGear table
 	StyleID: number; // eg extreme. From PlayerGear table
 	WeaponTypeID: number; // from PlayerGear table
 	BlademasterWeaponID: number | null; // from PlayerGear table
@@ -369,7 +368,8 @@ export interface SpeedrunInfo {
 
 export type RunBuffsTag = 'TA' | 'None' | 'FDP' | 'FDS' | 'FCA' | number | null;
 
-export interface SharedQuestData {
+// TODO
+interface SharedQuestData {
 	id?: string; // Generated unique ID
 	tables: DatabaseTableInfo[];
 	createdAt: Date;

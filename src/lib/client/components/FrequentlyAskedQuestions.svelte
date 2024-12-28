@@ -4,6 +4,7 @@
 
 	interface Props {
 		faq: { question: string; answer: string }[];
+		/**in vh*/
 		minHeight?: number;
 	}
 

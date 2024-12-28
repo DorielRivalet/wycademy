@@ -10,7 +10,7 @@
 		getHitzoneValuesObject,
 	} from '$lib/client/modules/frontier/hitzones';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
-	import { ezlionMonster, type FrontierMonsterName } from 'ezlion';
+	import { ezlionMonster } from 'ezlion';
 	import type {
 		FrontierMonsterHitzoneRankBand,
 		FrontierMonsterHitzoneType,
@@ -32,7 +32,7 @@
 	import Toolbar from 'carbon-components-svelte/src/DataTable/Toolbar.svelte';
 	import CopyButton from 'carbon-components-svelte/src/CopyButton/CopyButton.svelte';
 	import { getCSVFromArray } from '$lib/client/modules/csv';
-	import { fade } from 'svelte/transition';
+	import { fade, scale } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
 	import {
 		hitzoneInfo,
@@ -134,7 +134,7 @@
 
 	function getAvailableRankBands(
 		displayName: string,
-	): { id: string; text: string }[] {
+	): { id: FrontierMonsterHitzoneRankBand; text: string }[] {
 		// Filter HitzoneInfo by displayName and extract unique rankBands
 		const rankBands = new Set<FrontierMonsterHitzoneRankBand>();
 		hitzoneInfo.forEach((info) => {
@@ -142,11 +142,14 @@
 				rankBands.add(info.rankBand);
 			}
 		});
-		return Array.from(rankBands).map((rank) => ({ id: rank, text: rank }));
+		return Array.from(rankBands).map((rank) => ({
+			id: rank as FrontierMonsterHitzoneRankBand,
+			text: rank,
+		}));
 	}
 
 	function getAvailableMonsterStates(
-		displayName: FrontierMonsterName,
+		displayName: string,
 	): { id: string; text: string }[] {
 		// Filter HitzoneInfo by displayName and extract unique monsterStates
 		const monsterStates = new Set<string>();
@@ -181,6 +184,23 @@
 		});
 	}
 
+	function getMonsterDisplayName(monster: string) {
+		return findMonster(monster)?.displayName || 'Abiorugu';
+	}
+
+	// Handle ComboBox selection
+	function handleMonsterSelect(event: CustomEvent) {
+		const selectedMonsterId = event.detail?.selectedId;
+		if (selectedMonsterId) {
+			const monster = findMonsterInfo(selectedMonsterId);
+			if (monster) {
+				// Reset state variables
+				selectedMonsterState = availableMonsterStates[0]?.id || 'Default';
+				selectedRankBand = availableRankBands[0]?.id || 'Default';
+			}
+		}
+	}
+
 	let uniqueMonsters = getUniqueMonsters().sort(
 		(a, b) =>
 			(a?.displayName?.codePointAt(0) ?? 0) -
@@ -188,13 +208,11 @@
 	);
 
 	let selectedMonsterIdFromList = $state(
-		findMonster($page.params.monster)?.displayName,
+		getMonsterDisplayName($page.params.monster),
 	);
 
 	/** TODO this changes depending on monster*/
-	let selectedRankBand: FrontierMonsterHitzoneRankBand = $state(
-		getAvailableRankBands(selectedMonsterIdFromList)[0].id || 'Default',
-	);
+	let selectedRankBand: FrontierMonsterHitzoneRankBand = $state('Default');
 	let selectedHitzoneType: FrontierMonsterHitzoneType = $state('Cutting');
 	let selectedMonsterState = $state('Default');
 
@@ -255,6 +273,10 @@
 
 	/**For lens*/
 	let hovering = false;
+
+	$effect(() => {
+		selectedMonsterIdFromList = getMonsterDisplayName($page.params.monster);
+	});
 </script>
 
 {#if monster}
@@ -275,6 +297,7 @@
 					{#key monster.displayName}
 						<Lens {hovering}>
 							<div
+								in:scale={{ duration: 150 }}
 								class="monster-icon"
 								style:--monster-icon="monster-icon-{slugify(
 									monster.displayName,
@@ -544,21 +567,18 @@
 							>
 						</UnorderedList>
 					</div>
-					<p>
+					<div class="spaced-paragraph">
 						To see how much damage you can deal to each hitzone, you can consult
 						our <Link href="/tools/calculator/damage" icon={ToolKit}
 							>Damage Calculator.</Link
 						>
-					</p>
+					</div>
 				</AccordionItem></Accordion
 			>
 
 			<div class="hitzone-options">
 				<ComboBox
-					on:select={() => {
-						selectedMonsterState = availableMonsterStates[0]?.id || 'Default';
-						selectedRankBand = availableRankBands[0]?.id || 'Default';
-					}}
+					on:select={(e) => handleMonsterSelect(e)}
 					titleText="Monster"
 					placeholder="Select monster"
 					bind:selectedId={selectedMonsterIdFromList}

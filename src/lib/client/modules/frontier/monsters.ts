@@ -6310,6 +6310,7 @@ export const monsterInfo: FrontierMonsterInfo[] = [
 			'Abiorugu',
 			'Giaorugu',
 			'Zenith Giaorugu',
+			'Starving Deviljho',
 		],
 		generation: 'Frontier',
 	},

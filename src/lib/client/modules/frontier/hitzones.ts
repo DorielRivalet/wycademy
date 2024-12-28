@@ -1,13 +1,12 @@
 import type {
 	FrontierMonsterHitzoneRankBand,
 	FrontierMonsterHitzoneType,
-	FrontierMonsterNameExpanded,
 	FrontierMonsterPart,
 	FrontierMonsterPartInfo,
 } from './types';
 
 export function convertHitzoneInfo(
-	selectedName: FrontierMonsterNameExpanded,
+	selectedName: string,
 	selectedRankBand: FrontierMonsterHitzoneRankBand,
 	selectedMonsterState: string,
 ): FrontierMonsterPartInfo[] {
