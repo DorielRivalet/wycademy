@@ -142,7 +142,7 @@
 		"svelte-splitpanes": "^8.0.9",
 		"svelte-toc": "^0.5.9",
 		"temml": "^0.10.32",
-		"three": "^0.171.0",
+		"three": "^0.172.0",
 		"uuid": "^11.0.3",
 		"vidstack": "^1.12.12",
 		"xml2js": "^0.6.2"
