@@ -70,7 +70,7 @@
 		"d3-sankey": "^0.12.3",
 		"drizzle-kit": "^0.29.1",
 		"eslint": "^9.16.0",
-		"eslint-config-prettier": "^9.1.0",
+		"eslint-config-prettier": "^10.0.1",
 		"husky": "^9.1.7",
 		"mdsvex": "^0.12.3",
 		"postcss": "^8.4.49",
