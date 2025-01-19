@@ -10,6 +10,8 @@
 	import { page } from '$app/stores';
 	import CodeSnippet from 'carbon-components-svelte/src/CodeSnippet/CodeSnippet.svelte';
 	import Rss from 'carbon-icons-svelte/lib/Rss.svelte';
+
+	// TODO make it look like svelte's
 </script>
 
 <TableOfContentsPage displayTOC={false}>

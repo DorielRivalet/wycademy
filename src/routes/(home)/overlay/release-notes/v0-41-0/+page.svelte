@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
-	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
+	import Breadcrumb from '$lib/client/components/Breadcrumb.svelte';
+	import { page } from '$app/stores';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import CallToActionBanner from '$lib/client/components/CallToActionBanner.svelte';
@@ -9,13 +9,6 @@
 	import { getWeaponIcon } from '$lib/client/modules/frontier/weapons';
 	import { formatDateWithRelativeTime } from '$lib/client/modules/time';
 	import { releaseNotesSummaries } from '$lib/client/modules/overlay-release-notes';
-
-	const breadCrumbItems = [
-		{ href: '/', text: 'Home' },
-		{ href: '/overlay', text: 'Overlay' },
-		{ href: '/overlay/release-notes', text: 'Release Notes' },
-		{ href: '/overlay/release-notes/v0-41-0', text: 'v0.41.0' },
-	];
 
 	function getVersionDate(date: string) {
 		let date1 = new Date(
@@ -34,17 +27,7 @@
 
 <div class="release-notes-page">
 	<div class="breadcrumb">
-		<Breadcrumb noTrailingSlash>
-			{#each breadCrumbItems as item, i}
-				<BreadcrumbItem
-					href={i === breadCrumbItems.length - 1 ? undefined : item.href}
-					isCurrentPage={i === breadCrumbItems.length - 1}
-					>{#if i !== breadCrumbItems.length - 1}
-						{item.text}
-					{/if}
-				</BreadcrumbItem>
-			{/each}
-		</Breadcrumb>
+		<Breadcrumb page={$page} />
 	</div>
 	<section>
 		<div class="headline">
