@@ -49,6 +49,9 @@ supabase db reset
 
 - Deploy any local database migrations to remote: `npx supabase db push`.
 
+> [!NOTE]
+> If you run `npx supabase db reset` after updating the CLI, you may have to wait for Supabase updates to finish before applying your migrations (e.g. pulling from `supabase/postgres`).
+
 See also:
 
 - [Local Development](https://supabase.com/docs/guides/local-development/overview).

@@ -1,0 +1,3387 @@
+{
+  "id": "59911ed3-8db8-4f52-833a-1887257f6a9f",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.achievements": {
+      "name": "achievements",
+      "schema": "",
+      "columns": {
+        "achievement_id": {
+          "name": "achievement_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "completion_date": {
+          "name": "completion_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "achievements_profile_id_profiles_id_fk": {
+          "name": "achievements_profile_id_profiles_id_fk",
+          "tableFrom": "achievements",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "achievements_achievement_id_profile_id_pk": {
+          "name": "achievements_achievement_id_profile_id_pk",
+          "columns": [
+            "achievement_id",
+            "profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.countries": {
+      "name": "countries",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "countries_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.emblems": {
+      "name": "emblems",
+      "schema": "",
+      "columns": {
+        "emblem_id": {
+          "name": "emblem_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "obtained_date": {
+          "name": "obtained_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "emblems_profile_id_profiles_id_fk": {
+          "name": "emblems_profile_id_profiles_id_fk",
+          "tableFrom": "emblems",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "emblems_emblem_id_profile_id_pk": {
+          "name": "emblems_emblem_id_profile_id_pk",
+          "columns": [
+            "emblem_id",
+            "profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.favorite_quests": {
+      "name": "favorite_quests",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_hash": {
+          "name": "quest_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_profile_id": {
+          "name": "quest_profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "favorited_date": {
+          "name": "favorited_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "favorite_quests_user_id_profiles_id_fk": {
+          "name": "favorite_quests_user_id_profiles_id_fk",
+          "tableFrom": "favorite_quests",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "favorite_quests_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk": {
+          "name": "favorite_quests_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk",
+          "tableFrom": "favorite_quests",
+          "tableTo": "quests",
+          "columnsFrom": [
+            "quest_hash",
+            "quest_profile_id"
+          ],
+          "columnsTo": [
+            "quest_hash",
+            "profile_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "favorite_quests_user_id_quest_hash_quest_profile_id_pk": {
+          "name": "favorite_quests_user_id_quest_hash_quest_profile_id_pk",
+          "columns": [
+            "user_id",
+            "quest_hash",
+            "quest_profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.followers": {
+      "name": "followers",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "follower_id": {
+          "name": "follower_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "followed_date": {
+          "name": "followed_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "followers_user_id_profiles_id_fk": {
+          "name": "followers_user_id_profiles_id_fk",
+          "tableFrom": "followers",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "followers_follower_id_profiles_id_fk": {
+          "name": "followers_follower_id_profiles_id_fk",
+          "tableFrom": "followers",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "follower_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "followers_user_id_follower_id_pk": {
+          "name": "followers_user_id_follower_id_pk",
+          "columns": [
+            "user_id",
+            "follower_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.mez_fes": {
+      "name": "mez_fes",
+      "schema": "",
+      "columns": {
+        "mez_fes_minigame_id": {
+          "name": "mez_fes_minigame_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "score": {
+          "name": "score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "overlay_version": {
+          "name": "overlay_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mez_fes_updated_by_profiles_id_fk": {
+          "name": "mez_fes_updated_by_profiles_id_fk",
+          "tableFrom": "mez_fes",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "updated_by"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "mez_fes_profile_id_profiles_id_fk": {
+          "name": "mez_fes_profile_id_profiles_id_fk",
+          "tableFrom": "mez_fes",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "mez_fes_mez_fes_minigame_id_profile_id_pk": {
+          "name": "mez_fes_mez_fes_minigame_id_profile_id_pk",
+          "columns": [
+            "mez_fes_minigame_id",
+            "profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.mez_fez_video_link": {
+      "name": "mez_fez_video_link",
+      "schema": "",
+      "columns": {
+        "mez_fes_minigame_id": {
+          "name": "mez_fes_minigame_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mez_fes_profile_id": {
+          "name": "mez_fes_profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "video_link": {
+          "name": "video_link",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "''"
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "mez_fez_video_link_updated_by_profiles_id_fk": {
+          "name": "mez_fez_video_link_updated_by_profiles_id_fk",
+          "tableFrom": "mez_fez_video_link",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "updated_by"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "mez_fez_video_link_mez_fes_minigame_id_mez_fes_profile_id_mez_fes_mez_fes_minigame_id_profile_id_fk": {
+          "name": "mez_fez_video_link_mez_fes_minigame_id_mez_fes_profile_id_mez_fes_mez_fes_minigame_id_profile_id_fk",
+          "tableFrom": "mez_fez_video_link",
+          "tableTo": "mez_fes",
+          "columnsFrom": [
+            "mez_fes_minigame_id",
+            "mez_fes_profile_id"
+          ],
+          "columnsTo": [
+            "mez_fes_minigame_id",
+            "profile_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "mez_fez_video_link_mez_fes_minigame_id_mez_fes_profile_id_pk": {
+          "name": "mez_fez_video_link_mez_fes_minigame_id_mez_fes_profile_id_pk",
+          "columns": [
+            "mez_fes_minigame_id",
+            "mez_fes_profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.moderation_logs_quest": {
+      "name": "moderation_logs_quest",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "moderation_logs_quest_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "quest_hash": {
+          "name": "quest_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_profile_id": {
+          "name": "quest_profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "moderator_id": {
+          "name": "moderator_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "old_status": {
+          "name": "old_status",
+          "type": "quest_status_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "new_status": {
+          "name": "new_status",
+          "type": "quest_status_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reason": {
+          "name": "reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "moderation_logs_quest_check_reason_length": {
+          "name": "moderation_logs_quest_check_reason_length",
+          "value": "char_length(\"moderation_logs_quest\".\"reason\") >= 24"
+        },
+        "moderation_logs_quest_check_action_type": {
+          "name": "moderation_logs_quest_check_action_type",
+          "value": "\"moderation_logs_quest\".\"new_status\" IN ('verified', 'duplicate', 'disputed')"
+        }
+      },
+      "isRLSEnabled": true
+    },
+    "public.penalty_acknowledgments": {
+      "name": "penalty_acknowledgments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "penalty_id": {
+          "name": "penalty_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "acknowledgment_text": {
+          "name": "acknowledgment_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "acknowledged_at": {
+          "name": "acknowledged_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at ": {
+          "name": "created_at ",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_penalty_acknowledgments_penalty_id": {
+          "name": "idx_penalty_acknowledgments_penalty_id",
+          "columns": [
+            {
+              "expression": "penalty_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_penalty_acknowledgments_user_id": {
+          "name": "idx_penalty_acknowledgments_user_id",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "penalty_acknowledgments_penalty_id_user_penalties_id_fk": {
+          "name": "penalty_acknowledgments_penalty_id_user_penalties_id_fk",
+          "tableFrom": "penalty_acknowledgments",
+          "tableTo": "user_penalties",
+          "columnsFrom": [
+            "penalty_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.penalty_appeals": {
+      "name": "penalty_appeals",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "penalty_id": {
+          "name": "penalty_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "appeal_reason": {
+          "name": "appeal_reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "''"
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pending'"
+        },
+        "reviewed_by": {
+          "name": "reviewed_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "reviewed_at": {
+          "name": "reviewed_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "decision": {
+          "name": "decision",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_penalty_appeals_penalty_id": {
+          "name": "idx_penalty_appeals_penalty_id",
+          "columns": [
+            {
+              "expression": "penalty_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "penalty_appeals_penalty_id_user_penalties_id_fk": {
+          "name": "penalty_appeals_penalty_id_user_penalties_id_fk",
+          "tableFrom": "penalty_appeals",
+          "tableTo": "user_penalties",
+          "columnsFrom": [
+            "penalty_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.penalty_history": {
+      "name": "penalty_history",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "changed_by": {
+          "name": "changed_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "penalty_id": {
+          "name": "penalty_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "change_type": {
+          "name": "change_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "old_values": {
+          "name": "old_values",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "new_values": {
+          "name": "new_values",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "change_reason": {
+          "name": "change_reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_penalty_history_penalty_id": {
+          "name": "idx_penalty_history_penalty_id",
+          "columns": [
+            {
+              "expression": "penalty_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "penalty_history_penalty_id_user_penalties_id_fk": {
+          "name": "penalty_history_penalty_id_user_penalties_id_fk",
+          "tableFrom": "penalty_history",
+          "tableTo": "user_penalties",
+          "columnsFrom": [
+            "penalty_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.penalty_reasons": {
+      "name": "penalty_reasons",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "''"
+        },
+        "default_duration": {
+          "name": "default_duration",
+          "type": "interval",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "default_penalty_type": {
+          "name": "default_penalty_type",
+          "type": "penalty_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "severity_level": {
+          "name": "severity_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "penalty_reasons_check_severity_level": {
+          "name": "penalty_reasons_check_severity_level",
+          "value": "\"penalty_reasons\".\"severity_level\" BETWEEN 1 AND 5"
+        }
+      },
+      "isRLSEnabled": true
+    },
+    "public.penalty_type_configs": {
+      "name": "penalty_type_configs",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "penalty_type": {
+          "name": "penalty_type",
+          "type": "penalty_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "requires_acknowledgment": {
+          "name": "requires_acknowledgment",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "access_level": {
+          "name": "access_level",
+          "type": "access_restriction",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "can_browse_after_acknowledgment": {
+          "name": "can_browse_after_acknowledgment",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "penalty_type_configs_penalty_type_unique": {
+          "name": "penalty_type_configs_penalty_type_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "penalty_type"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.pinned_quests": {
+      "name": "pinned_quests",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_hash": {
+          "name": "quest_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_profile_id": {
+          "name": "quest_profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pinned_date": {
+          "name": "pinned_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "pinned_quests_user_id_profiles_id_fk": {
+          "name": "pinned_quests_user_id_profiles_id_fk",
+          "tableFrom": "pinned_quests",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "pinned_quests_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk": {
+          "name": "pinned_quests_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk",
+          "tableFrom": "pinned_quests",
+          "tableTo": "quests",
+          "columnsFrom": [
+            "quest_hash",
+            "quest_profile_id"
+          ],
+          "columnsTo": [
+            "quest_hash",
+            "profile_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "pinned_quests_user_id_quest_hash_quest_profile_id_pk": {
+          "name": "pinned_quests_user_id_quest_hash_quest_profile_id_pk",
+          "columns": [
+            "user_id",
+            "quest_hash",
+            "quest_profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.profile_audit_logs": {
+      "name": "profile_audit_logs",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "profile_audit_logs_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "action": {
+          "name": "action",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "details": {
+          "name": "details",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::json"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.profile_themes": {
+      "name": "profile_themes",
+      "schema": "",
+      "columns": {
+        "profile_theme_id": {
+          "name": "profile_theme_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "obtained_date": {
+          "name": "obtained_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "profile_themes_profile_id_profiles_id_fk": {
+          "name": "profile_themes_profile_id_profiles_id_fk",
+          "tableFrom": "profile_themes",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "profile_themes_profile_theme_id_profile_id_pk": {
+          "name": "profile_themes_profile_theme_id_profile_id_pk",
+          "columns": [
+            "profile_theme_id",
+            "profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.profiles": {
+      "name": "profiles",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "discord_username": {
+          "name": "discord_username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "discord_avatar": {
+          "name": "discord_avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "username": {
+          "name": "username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "avatar": {
+          "name": "avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Default'"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "join_date": {
+          "name": "join_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "emblem": {
+          "name": "emblem",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'None'"
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'None'"
+        },
+        "country": {
+          "name": "country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'World'"
+        },
+        "private": {
+          "name": "private",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "private_servers": {
+          "name": "private_servers",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "ARRAY[]::text[]"
+        },
+        "agreed_terms": {
+          "name": "agreed_terms",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "discord_username_shown": {
+          "name": "discord_username_shown",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "theme": {
+          "name": "theme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Default'"
+        },
+        "guild_card_theme": {
+          "name": "guild_card_theme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Default'"
+        },
+        "username_set": {
+          "name": "username_set",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "username_set_date": {
+          "name": "username_set_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "quest_published_date": {
+          "name": "quest_published_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "moderator_badge_shown": {
+          "name": "moderator_badge_shown",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "profiles_id_users_id_fk": {
+          "name": "profiles_id_users_id_fk",
+          "tableFrom": "profiles",
+          "tableTo": "users",
+          "schemaTo": "auth",
+          "columnsFrom": [
+            "id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "profiles_username_unique": {
+          "name": "profiles_username_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "username"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.quest_reactions": {
+      "name": "quest_reactions",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_hash": {
+          "name": "quest_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_profile_id": {
+          "name": "quest_profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reacted_at": {
+          "name": "reacted_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "reaction": {
+          "name": "reaction",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "quest_reactions_user_id_profiles_id_fk": {
+          "name": "quest_reactions_user_id_profiles_id_fk",
+          "tableFrom": "quest_reactions",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "quest_reactions_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk": {
+          "name": "quest_reactions_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk",
+          "tableFrom": "quest_reactions",
+          "tableTo": "quests",
+          "columnsFrom": [
+            "quest_hash",
+            "quest_profile_id"
+          ],
+          "columnsTo": [
+            "quest_hash",
+            "profile_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "quest_reactions_user_id_quest_hash_quest_profile_id_reaction_pk": {
+          "name": "quest_reactions_user_id_quest_hash_quest_profile_id_reaction_pk",
+          "columns": [
+            "user_id",
+            "quest_hash",
+            "quest_profile_id",
+            "reaction"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.quest_status": {
+      "name": "quest_status",
+      "schema": "",
+      "columns": {
+        "quest_hash": {
+          "name": "quest_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_profile_id": {
+          "name": "quest_profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "quest_status_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "quest_status_updated_by_profiles_id_fk": {
+          "name": "quest_status_updated_by_profiles_id_fk",
+          "tableFrom": "quest_status",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "updated_by"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "quest_status_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk": {
+          "name": "quest_status_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk",
+          "tableFrom": "quest_status",
+          "tableTo": "quests",
+          "columnsFrom": [
+            "quest_hash",
+            "quest_profile_id"
+          ],
+          "columnsTo": [
+            "quest_hash",
+            "profile_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "quest_status_quest_hash_quest_profile_id_pk": {
+          "name": "quest_status_quest_hash_quest_profile_id_pk",
+          "columns": [
+            "quest_hash",
+            "quest_profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.quest_video_link": {
+      "name": "quest_video_link",
+      "schema": "",
+      "columns": {
+        "quest_hash": {
+          "name": "quest_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_profile_id": {
+          "name": "quest_profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "video_link": {
+          "name": "video_link",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "''"
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "quest_video_link_updated_by_profiles_id_fk": {
+          "name": "quest_video_link_updated_by_profiles_id_fk",
+          "tableFrom": "quest_video_link",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "updated_by"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "quest_video_link_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk": {
+          "name": "quest_video_link_quest_hash_quest_profile_id_quests_quest_hash_profile_id_fk",
+          "tableFrom": "quest_video_link",
+          "tableTo": "quests",
+          "columnsFrom": [
+            "quest_hash",
+            "quest_profile_id"
+          ],
+          "columnsTo": [
+            "quest_hash",
+            "profile_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "quest_video_link_quest_hash_quest_profile_id_pk": {
+          "name": "quest_video_link_quest_hash_quest_profile_id_pk",
+          "columns": [
+            "quest_hash",
+            "quest_profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.quests": {
+      "name": "quests",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "quests_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill1_id": {
+          "name": "active_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill2_id": {
+          "name": "active_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill3_id": {
+          "name": "active_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill4_id": {
+          "name": "active_skill4_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill5_id": {
+          "name": "active_skill5_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill6_id": {
+          "name": "active_skill6_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill7_id": {
+          "name": "active_skill7_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill8_id": {
+          "name": "active_skill8_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill9_id": {
+          "name": "active_skill9_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill10_id": {
+          "name": "active_skill10_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill11_id": {
+          "name": "active_skill11_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill12_id": {
+          "name": "active_skill12_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill13_id": {
+          "name": "active_skill13_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill14_id": {
+          "name": "active_skill14_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill15_id": {
+          "name": "active_skill15_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill16_id": {
+          "name": "active_skill16_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill17_id": {
+          "name": "active_skill17_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill18_id": {
+          "name": "active_skill18_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_skill19_id": {
+          "name": "active_skill19_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill1_id": {
+          "name": "automatic_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill2_id": {
+          "name": "automatic_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill3_id": {
+          "name": "automatic_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill4_id": {
+          "name": "automatic_skill4_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill5_id": {
+          "name": "automatic_skill5_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "automatic_skill6_id": {
+          "name": "automatic_skill6_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caravan_skill1_id": {
+          "name": "caravan_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caravan_skill2_id": {
+          "name": "caravan_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caravan_skill3_id": {
+          "name": "caravan_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfdat_hash": {
+          "name": "mhfdat_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfemd_hash": {
+          "name": "mhfemd_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfsqd_hash": {
+          "name": "mhfsqd_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfinf_hash": {
+          "name": "mhfinf_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfodll_hash": {
+          "name": "mhfodll_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfohddll_hash": {
+          "name": "mhfohddll_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mhfexe_hash": {
+          "name": "mhfexe_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "style_id": {
+          "name": "style_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "weapon_type_id": {
+          "name": "weapon_type_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "blademaster_weapon_id": {
+          "name": "blademaster_weapon_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gunner_weapon_id": {
+          "name": "gunner_weapon_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "weapon_slot1": {
+          "name": "weapon_slot1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "weapon_slot2": {
+          "name": "weapon_slot2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "weapon_slot3": {
+          "name": "weapon_slot3",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "head_id": {
+          "name": "head_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "head_slot1_id": {
+          "name": "head_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "head_slot2_id": {
+          "name": "head_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "head_slot3_id": {
+          "name": "head_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chest_id": {
+          "name": "chest_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chest_slot1_id": {
+          "name": "chest_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chest_slot2_id": {
+          "name": "chest_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chest_slot3_id": {
+          "name": "chest_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arms_id": {
+          "name": "arms_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arms_slot1_id": {
+          "name": "arms_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arms_slot2_id": {
+          "name": "arms_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arms_slot3_id": {
+          "name": "arms_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waist_id": {
+          "name": "waist_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waist_slot1_id": {
+          "name": "waist_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waist_slot2_id": {
+          "name": "waist_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "waist_slot3_id": {
+          "name": "waist_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "legs_id": {
+          "name": "legs_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "legs_slot1_id": {
+          "name": "legs_slot1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "legs_slot2_id": {
+          "name": "legs_slot2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "legs_slot3_id": {
+          "name": "legs_slot3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cuff1_id": {
+          "name": "cuff1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cuff2_id": {
+          "name": "cuff2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "diva_skill_id": {
+          "name": "diva_skill_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "guild_food_id": {
+          "name": "guild_food_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "poogie_item_id": {
+          "name": "poogie_item_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_inventory_dictionary": {
+          "name": "player_inventory_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_ammo_pouch_dictionary": {
+          "name": "player_ammo_pouch_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "partnya_bag_dictionary": {
+          "name": "partnya_bag_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "overlay_version": {
+          "name": "overlay_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_hash": {
+          "name": "quest_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_id": {
+          "name": "quest_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "time_left": {
+          "name": "time_left",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "final_time_value": {
+          "name": "final_time_value",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "final_time_display": {
+          "name": "final_time_display",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "objetive_type_id": {
+          "name": "objetive_type_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "objective_quantity": {
+          "name": "objective_quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "star_grade": {
+          "name": "star_grade",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rank_name": {
+          "name": "rank_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "objective_name": {
+          "name": "objective_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "attack_buff_dictionary": {
+          "name": "attack_buff_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hit_count_dictionary": {
+          "name": "hit_count_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hits_per_second_dictionary": {
+          "name": "hits_per_second_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "damage_dealt_dictionary": {
+          "name": "damage_dealt_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "damage_per_second_dictionary": {
+          "name": "damage_per_second_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "area_changes_dictionary": {
+          "name": "area_changes_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "carts_dictionary": {
+          "name": "carts_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hits_taken_blocked_dictionary": {
+          "name": "hits_taken_blocked_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hits_taken_blocked_per_second_dictionary": {
+          "name": "hits_taken_blocked_per_second_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_hp_dictionary": {
+          "name": "player_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "player_stamina_dictionary": {
+          "name": "player_stamina_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "keystrokes_dictionary": {
+          "name": "keystrokes_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mouse_input_dictionary": {
+          "name": "mouse_input_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gamepad_input_dictionary": {
+          "name": "gamepad_input_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "actions_per_minute_dictionary": {
+          "name": "actions_per_minute_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "overlay_mode_dictionary": {
+          "name": "overlay_mode_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "actual_overlay_mode": {
+          "name": "actual_overlay_mode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "party_size": {
+          "name": "party_size",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_hp_dictionary": {
+          "name": "monster1_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster2_hp_dictionary": {
+          "name": "monster2_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster3_hp_dictionary": {
+          "name": "monster3_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster4_hp_dictionary": {
+          "name": "monster4_hp_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_attack_multiplier_dictionary": {
+          "name": "monster1_attack_multiplier_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_defense_rate_dictionary": {
+          "name": "monster1_defense_rate_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_size_multiplier_dictionary": {
+          "name": "monster1_size_multiplier_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_poison_threshold_dictionary": {
+          "name": "monster1_poison_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_paralysis_threshold_dictionary": {
+          "name": "monster1_paralysis_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_sleep_threshold_dictionary": {
+          "name": "monster1_sleep_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_blast_threshold_dictionary": {
+          "name": "monster1_blast_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_stun_threshold_dictionary": {
+          "name": "monster1_stun_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster1_part_threshold_dictionary": {
+          "name": "monster1_part_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "monster2_part_threshold_dictionary": {
+          "name": "monster2_part_threshold_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_high_grade_edition": {
+          "name": "is_high_grade_edition",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "refresh_rate": {
+          "name": "refresh_rate",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "party_size_dictonary": {
+          "name": "party_size_dictonary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_feature": {
+          "name": "active_feature",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rights": {
+          "name": "rights",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_song_buff_on": {
+          "name": "diva_song_buff_on",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_red_skill": {
+          "name": "diva_prayer_gem_red_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_red_level": {
+          "name": "diva_prayer_gem_red_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_yellow_skill": {
+          "name": "diva_prayer_gem_yellow_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_yellow_level": {
+          "name": "diva_prayer_gem_yellow_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_green_skill": {
+          "name": "diva_prayer_gem_green_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_green_level": {
+          "name": "diva_prayer_gem_green_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_blue_skill": {
+          "name": "diva_prayer_gem_blue_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "diva_prayer_gem_blue_level": {
+          "name": "diva_prayer_gem_blue_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mhfdat_info": {
+          "name": "mhfdat_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mhfemd_info": {
+          "name": "mhfemd_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mhfodll_info": {
+          "name": "mhfodll_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mhfohddll_info": {
+          "name": "mhfohddll_info",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "guild_poogie1_skill": {
+          "name": "guild_poogie1_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "guild_poogie2_skill": {
+          "name": "guild_poogie2_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "guild_poogie3_skill": {
+          "name": "guild_poogie3_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_on": {
+          "name": "halk_on",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_pot_effect_on": {
+          "name": "halk_pot_effect_on",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_fullness": {
+          "name": "halk_fullness",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_level": {
+          "name": "halk_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_intimacy": {
+          "name": "halk_intimacy",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_health": {
+          "name": "halk_health",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_attack": {
+          "name": "halk_attack",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_defense": {
+          "name": "halk_defense",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_intellect": {
+          "name": "halk_intellect",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_skill1": {
+          "name": "halk_skill1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_skill2": {
+          "name": "halk_skill2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_skill3": {
+          "name": "halk_skill3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_element_none": {
+          "name": "halk_element_none",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_fire": {
+          "name": "halk_fire",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_water": {
+          "name": "halk_water",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_thunder": {
+          "name": "halk_thunder",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_ice": {
+          "name": "halk_ice",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_dragon": {
+          "name": "halk_dragon",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_poison": {
+          "name": "halk_poison",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_sleep": {
+          "name": "halk_sleep",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "halk_paralysis": {
+          "name": "halk_paralysis",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "overlay_hash": {
+          "name": "overlay_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_variant1": {
+          "name": "quest_variant1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_variant2": {
+          "name": "quest_variant2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_variant3": {
+          "name": "quest_variant3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_variant4": {
+          "name": "quest_variant4",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "run_buffs": {
+          "name": "run_buffs",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "run_buffs_tag": {
+          "name": "run_buffs_tag",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_toggle_mode": {
+          "name": "quest_toggle_mode",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dual_swords_sharpens_dictionary": {
+          "name": "dual_swords_sharpens_dictionary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill1_id": {
+          "name": "road_dure_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill1_level": {
+          "name": "road_dure_skill1_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill2_id": {
+          "name": "road_dure_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill2_level": {
+          "name": "road_dure_skill2_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill3_id": {
+          "name": "road_dure_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill3_level": {
+          "name": "road_dure_skill3_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill4_id": {
+          "name": "road_dure_skill4_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill4_level": {
+          "name": "road_dure_skill4_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill5_id": {
+          "name": "road_dure_skill5_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill5_level": {
+          "name": "road_dure_skill5_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill6_id": {
+          "name": "road_dure_skill6_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill6_level": {
+          "name": "road_dure_skill6_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill7_id": {
+          "name": "road_dure_skill7_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill7_level": {
+          "name": "road_dure_skill7_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill8_id": {
+          "name": "road_dure_skill8_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill8_level": {
+          "name": "road_dure_skill8_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill9_id": {
+          "name": "road_dure_skill9_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill9_level": {
+          "name": "road_dure_skill9_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill10_id": {
+          "name": "road_dure_skill10_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill10_level": {
+          "name": "road_dure_skill10_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill11_id": {
+          "name": "road_dure_skill11_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill11_level": {
+          "name": "road_dure_skill11_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill12_id": {
+          "name": "road_dure_skill12_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill12_level": {
+          "name": "road_dure_skill12_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill13_id": {
+          "name": "road_dure_skill13_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill13_level": {
+          "name": "road_dure_skill13_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill14_id": {
+          "name": "road_dure_skill14_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill14_level": {
+          "name": "road_dure_skill14_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill15_id": {
+          "name": "road_dure_skill15_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill15_level": {
+          "name": "road_dure_skill15_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill16_id": {
+          "name": "road_dure_skill16_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "road_dure_skill16_level": {
+          "name": "road_dure_skill16_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "style_rank_skill1_id": {
+          "name": "style_rank_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "style_rank_skill2_id": {
+          "name": "style_rank_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill1_id": {
+          "name": "zenith_skill1_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill2_id": {
+          "name": "zenith_skill2_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill3_id": {
+          "name": "zenith_skill3_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill4_id": {
+          "name": "zenith_skill4_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill5_id": {
+          "name": "zenith_skill5_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill6_id": {
+          "name": "zenith_skill6_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zenith_skill7_id": {
+          "name": "zenith_skill7_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "quests_profile_id_profiles_id_fk": {
+          "name": "quests_profile_id_profiles_id_fk",
+          "tableFrom": "quests",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "quests_quest_hash_profile_id_pk": {
+          "name": "quests_quest_hash_profile_id_pk",
+          "columns": [
+            "quest_hash",
+            "profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.reports_profile": {
+      "name": "reports_profile",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "reports_profile_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reporter_id": {
+          "name": "reporter_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category": {
+          "name": "category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reason": {
+          "name": "reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "reports_profile_check_reason_length": {
+          "name": "reports_profile_check_reason_length",
+          "value": "char_length(\"reports_profile\".\"reason\") >= 24"
+        }
+      },
+      "isRLSEnabled": true
+    },
+    "public.reports_quest": {
+      "name": "reports_quest",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "reports_quest_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "quest_hash": {
+          "name": "quest_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quest_profile_id": {
+          "name": "quest_profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reporter_id": {
+          "name": "reporter_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category": {
+          "name": "category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reason": {
+          "name": "reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "reports_quest_check_reason_length": {
+          "name": "reports_quest_check_reason_length",
+          "value": "char_length(\"reports_quest\".\"reason\") >= 24"
+        }
+      },
+      "isRLSEnabled": true
+    },
+    "public.timeout_restrictions": {
+      "name": "timeout_restrictions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "penalty_id": {
+          "name": "penalty_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "feature_name": {
+          "name": "feature_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_restricted": {
+          "name": "is_restricted",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "restriction_reason": {
+          "name": "restriction_reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "''"
+        },
+        "created_at ": {
+          "name": "created_at ",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "timeout_restrictions_penalty_id_user_penalties_id_fk": {
+          "name": "timeout_restrictions_penalty_id_user_penalties_id_fk",
+          "tableFrom": "timeout_restrictions",
+          "tableTo": "user_penalties",
+          "columnsFrom": [
+            "penalty_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.titles": {
+      "name": "titles",
+      "schema": "",
+      "columns": {
+        "title_id": {
+          "name": "title_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "obtained_date": {
+          "name": "obtained_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "titles_profile_id_profiles_id_fk": {
+          "name": "titles_profile_id_profiles_id_fk",
+          "tableFrom": "titles",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "titles_title_id_profile_id_pk": {
+          "name": "titles_title_id_profile_id_pk",
+          "columns": [
+            "title_id",
+            "profile_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": true
+    },
+    "public.user_penalties": {
+      "name": "user_penalties",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reason_id": {
+          "name": "reason_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "penalty_type": {
+          "name": "penalty_type",
+          "type": "penalty_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "penalty_status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'pending'"
+        },
+        "notes": {
+          "name": "notes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "''"
+        },
+        "issued_by": {
+          "name": "issued_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "issued_at": {
+          "name": "issued_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "starts_at": {
+          "name": "starts_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ends_at": {
+          "name": "ends_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "actual_end_at": {
+          "name": "actual_end_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_user_penalties_user_id": {
+          "name": "idx_user_penalties_user_id",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_user_penalties_status": {
+          "name": "idx_user_penalties_status",
+          "columns": [
+            {
+              "expression": "status",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "user_penalties_reason_id_penalty_reasons_id_fk": {
+          "name": "user_penalties_reason_id_penalty_reasons_id_fk",
+          "tableFrom": "user_penalties",
+          "tableTo": "penalty_reasons",
+          "columnsFrom": [
+            "reason_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "check_penalty_dates": {
+          "name": "check_penalty_dates",
+          "value": "\"user_penalties\".\"ends_at\" > \"user_penalties\".\"starts_at\""
+        },
+        "check_actual_end": {
+          "name": "check_actual_end",
+          "value": "\"user_penalties\".\"actual_end_at\" >= \"user_penalties\".\"starts_at\""
+        }
+      },
+      "isRLSEnabled": true
+    }
+  },
+  "enums": {
+    "public.access_restriction": {
+      "name": "access_restriction",
+      "schema": "public",
+      "values": [
+        "full_block",
+        "limited_access",
+        "warning_only",
+        "none"
+      ]
+    },
+    "public.penalty_status": {
+      "name": "penalty_status",
+      "schema": "public",
+      "values": [
+        "pending",
+        "active",
+        "completed",
+        "appealed",
+        "cancelled"
+      ]
+    },
+    "public.penalty_type": {
+      "name": "penalty_type",
+      "schema": "public",
+      "values": [
+        "warning",
+        "timeout",
+        "suspension",
+        "termination"
+      ]
+    },
+    "public.quest_status_type": {
+      "name": "quest_status_type",
+      "schema": "public",
+      "values": [
+        "unverified",
+        "verified",
+        "duplicate",
+        "disputed"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
