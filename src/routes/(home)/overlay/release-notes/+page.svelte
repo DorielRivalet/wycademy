@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
-	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import { releaseNotesSummaries } from '$lib/client/modules/overlay-release-notes';
 	import { formatDateWithRelativeTime } from '$lib/client/modules/time';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
+	import Breadcrumb from '$lib/client/components/Breadcrumb.svelte';
+	import { page } from '$app/stores';
 
 	function getLinkFromVersion(version: string) {
 		return `/overlay/release-notes/${version.replaceAll('.', '-')}`;
@@ -21,27 +21,11 @@
 		let date2 = new Date();
 		return [date1, date2];
 	}
-
-	const breadCrumbItems = [
-		{ href: '/', text: 'Home' },
-		{ href: '/overlay', text: 'Overlay' },
-		{ href: '/overlay/release-notes', text: 'Release Notes' },
-	];
 </script>
 
 <div class="release-notes-page">
 	<div class="breadcrumb">
-		<Breadcrumb noTrailingSlash>
-			{#each breadCrumbItems as item, i}
-				<BreadcrumbItem
-					href={i === breadCrumbItems.length - 1 ? undefined : item.href}
-					isCurrentPage={i === breadCrumbItems.length - 1}
-					>{#if i !== breadCrumbItems.length - 1}
-						{item.text}
-					{/if}
-				</BreadcrumbItem>
-			{/each}
-		</Breadcrumb>
+		<Breadcrumb page={$page} />
 	</div>
 	<h1>Release Notes</h1>
 	<hr />

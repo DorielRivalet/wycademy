@@ -311,7 +311,24 @@
 			We reserve the right to restrict or terminate access to the Website if a
 			User violates these Terms or engages in harmful behavior.
 		</p>
-
+		<SectionHeading level={2} title="Account Inactivity" />
+		<p class="spaced-paragraph">
+			We reserve the right to remove accounts deemed inactive. An account may be
+			classified as inactive if:
+		</p>
+		<UnorderedList class="spaced-list">
+			<ListItem
+				><p>
+					The user has never submitted a quest or speedrun since account
+					creation, for a period of 3 months or longer.
+				</p></ListItem
+			>
+		</UnorderedList>
+		<p class="spaced-paragraph">
+			Inactive accounts may be removed to maintain the integrity and efficiency
+			of the platform. If your account is removed due to inactivity, you may
+			contact us to inquire about re-registration.
+		</p>
 		<SectionHeading level={2} title="Contact Information" />
 		<p class="spaced-paragraph">
 			For questions, suggestions, or issues, please contact us through our

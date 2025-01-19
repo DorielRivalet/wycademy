@@ -7,5 +7,5 @@ function getLatestVersion() {
 
 export function load() {
 	console.log('Loading redirects...');
-	throw redirect(307, getLatestVersion());
+	redirect(307, getLatestVersion());
 }

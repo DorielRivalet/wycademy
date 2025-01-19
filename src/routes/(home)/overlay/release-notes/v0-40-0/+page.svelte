@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
-	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
+	import Breadcrumb from '$lib/client/components/Breadcrumb.svelte';
+	import { page } from '$app/stores';
 	import UnorderedList from 'carbon-components-svelte/src/UnorderedList/UnorderedList.svelte';
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
@@ -9,28 +9,11 @@
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 
 	const version = 'v0.40.0';
-
-	const breadCrumbItems = [
-		{ href: '/', text: 'Home' },
-		{ href: '/overlay', text: 'Overlay' },
-		{ href: '/overlay/release-notes', text: 'Release Notes' },
-		{ href: '/overlay/release-notes/v0-40-0', text: 'v0.40.0' },
-	];
 </script>
 
 <div class="release-notes-page">
 	<div class="breadcrumb">
-		<Breadcrumb noTrailingSlash>
-			{#each breadCrumbItems as item, i}
-				<BreadcrumbItem
-					href={i === breadCrumbItems.length - 1 ? undefined : item.href}
-					isCurrentPage={i === breadCrumbItems.length - 1}
-					>{#if i !== breadCrumbItems.length - 1}
-						{item.text}
-					{/if}
-				</BreadcrumbItem>
-			{/each}
-		</Breadcrumb>
+		<Breadcrumb page={$page} />
 	</div>
 	<section>
 		<h1>{version}</h1>

@@ -16,11 +16,12 @@
 	import {
 		getQuestStatusIcon,
 		questStatusInfo,
-	} from '$lib/client/modules/supabase';
+	} from '$lib/client/modules/frontier/quest';
 	import { capitalizeFirstLetter } from '$lib/client/modules/strings';
 	import { browser } from '$app/environment';
 	import Mermaid from '$lib/client/components/Mermaid.svelte';
-	import { CheckmarkFilled, WarningAltFilled } from 'carbon-icons-svelte';
+	import CheckmarkFilled from 'carbon-icons-svelte/lib/CheckmarkFilled.svelte';
+	import WarningAltFilled from 'carbon-icons-svelte/lib/WarningAltFilled.svelte';
 	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
 	import AccordionItem from 'carbon-components-svelte/src/Accordion/AccordionItem.svelte';
 	import Accordion from 'carbon-components-svelte/src/Accordion/Accordion.svelte';
@@ -527,7 +528,7 @@
 							of time. Ownership is verified by confirming the user owns the
 							account where the VideoLink submission happened. This can be done
 							by them supplying their Wycademy username (e.g.
-							musou-valstrax#1234) in the video submission's account bio or
+							musou-valstrax-1234) in the video submission's account bio or
 							description, or the video's title or description. We also check
 							the upload date of the video.
 						</p></ListItem
@@ -543,7 +544,7 @@
 						><p>
 							Duplicate quests can only occur via the upload of another user,
 							since the primary keys are composite: profile_id and quest_hash.
-							When an user uploads multiple runs (same profile_id), if a run was
+							When a user uploads multiple runs (same profile_id), if a run was
 							already uploaded (same quest_hash) we skip this row.
 						</p></ListItem
 					>
@@ -614,7 +615,7 @@
 								><div class="list-item paragraph-long-02">
 									<CheckmarkFilled color="var(--ctp-green)" />
 									<span
-										>Put your Wycademy username (e.g. musou-valstrax#1234) in
+										>Put your Wycademy username (e.g. musou-valstrax-1234) in
 										the video description, title or channel bio.</span
 									>
 								</div></ListItem

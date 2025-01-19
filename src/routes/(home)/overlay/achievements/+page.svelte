@@ -14,8 +14,7 @@
 		getAchievementRankColor,
 		type AchievementItem,
 	} from '$lib/client/modules/frontier/achievement';
-	import Breadcrumb from 'carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte';
-	import BreadcrumbItem from 'carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte';
+	import Breadcrumb from '$lib/client/components/Breadcrumb.svelte';
 	import { Canvas } from '@threlte/core';
 	import RotatingCard from '$lib/client/components/scenes/RotatingCard.svelte';
 	import InlineTooltip from '$lib/client/components/frontier/InlineTooltip.svelte';
@@ -52,12 +51,6 @@
 	const obtainableSecretTrophies = totalObtainableAchievements.filter(
 		(e) => e.IsSecret,
 	);
-
-	const breadcrumbItems = [
-		{ href: '/', text: 'Home' },
-		{ href: '/overlay', text: 'Overlay' },
-		{ href: '/overlay/achievements', text: 'Achievements' },
-	];
 
 	function onAchievementClick(achievement: AchievementItem) {
 		let foundValidAchievement = Object.values(achievementsInfo[0]).find(
@@ -108,17 +101,7 @@
 
 <div class="achievements-page">
 	<div class="breadcrumb">
-		<Breadcrumb noTrailingSlash>
-			{#each breadcrumbItems as item, i}
-				<BreadcrumbItem
-					href={i === breadcrumbItems.length - 1 ? undefined : item.href}
-					isCurrentPage={i === breadcrumbItems.length - 1}
-					>{#if i !== breadcrumbItems.length - 1}
-						{item.text}
-					{/if}
-				</BreadcrumbItem>
-			{/each}
-		</Breadcrumb>
+		<Breadcrumb page={$page} />
 	</div>
 	<h1>Achievements</h1>
 	<hr />
