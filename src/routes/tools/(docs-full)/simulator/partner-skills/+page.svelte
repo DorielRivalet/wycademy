@@ -17,7 +17,7 @@
 	import Unlocked from 'carbon-icons-svelte/lib/Unlocked.svelte';
 	import AddAlt from 'carbon-icons-svelte/lib/AddAlt.svelte';
 	import Delete from 'carbon-icons-svelte/lib/Delete.svelte';
-	import { Download } from 'carbon-icons-svelte';
+	import Download from 'carbon-icons-svelte/lib/Download.svelte';
 	import { downloadDomAsPng } from '$lib/client/modules/download';
 	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
 	import { writable, type Writable } from 'svelte/store';

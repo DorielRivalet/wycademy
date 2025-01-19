@@ -15,16 +15,11 @@
 	import SigilIconWhite from '$lib/client/components/frontier/icon/item/Sigil_Icon_White.svelte';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
 	import InlineNotification from 'carbon-components-svelte/src/Notification/InlineNotification.svelte';
-
-	const sigilSkillsBaseScore = [
-		{ name: 'Attack Slayer', score: 1 },
-		{ name: 'Elemental Slayer', score: 1 },
-		{ name: 'Weapon Up', score: 2 },
-		{ name: 'Zenith Duration', score: 1 },
-		{ name: 'Zenith Cooldown', score: 1 },
-		{ name: 'Zenith Attack', score: 2 },
-		{ name: 'Zenith Elemental', score: 2 },
-	];
+	import SectionHeading from '$lib/client/components/SectionHeading.svelte';
+	import { getProbabilityOdds } from '$lib/client/modules/math';
+	import Loading from 'carbon-components-svelte/src/Loading/Loading.svelte';
+	import Calculator from 'carbon-icons-svelte/lib/Calculator.svelte';
+	import Play from 'carbon-icons-svelte/lib/Play.svelte';
 
 	/*
 	 * for zenith sigils, there can only be one of each skill, and there has to be at least one of zenith duration and at least one of zenith cooldown.
@@ -142,11 +137,6 @@
 		return bestSigil;
 	}
 
-	// Pre-compute skill scores in a map for faster lookup
-	const sigilSkillsBaseScoreMap = new Map(
-		sigilSkillsBaseScore.map((s) => [s.name, s.score]),
-	);
-
 	function calculateSigilScore(
 		sigil: string,
 		priority: 'None' | 'Attack' | 'Element',
@@ -178,9 +168,40 @@
 		}, 0);
 	}
 
+	async function calculateSimulationProbability() {
+		isCalculatingSimulationProbability = true;
+
+		try {
+			// Calculate probability asynchronously
+			probability = await calculateProbabilityOfScoreXOrHigher(
+				sigil,
+				targetScore,
+				selectedRolls,
+				confidenceLevel,
+				marginOfError,
+			);
+		} finally {
+			isCalculatingSimulationProbability = false; // Ensure this is reset even if the calculation errors
+		}
+	}
+
+	function resetSimulation() {
+		simulationState = 'start';
+		currentRolls = 0;
+		bestSigilStats = '';
+		bestSigilRollNumber = 0;
+		bestSigilScore = 0;
+		probability = 0;
+
+		simulationProbabilitySigilNumber = 0;
+		simulationProbabilitySigilTotal = 0;
+		sampleSize = 0;
+		isCalculatingSimulationProbability = false;
+	}
+
 	function onButtonClick() {
-		if (state === 'start') {
-			state = 'running';
+		if (simulationState === 'start') {
+			simulationState = 'running';
 			currentRolls = 0;
 			bestSigilStats = '';
 			bestSigilRollNumber = 0;
@@ -188,14 +209,6 @@
 
 			const maxScore =
 				sigilsRollsStats.find((s) => s.name === sigil)?.maxScore || 0;
-
-			probability = calculateProbabilityOfScoreXOrHigher(
-				sigil,
-				targetScore,
-				selectedRolls,
-				confidenceLevel,
-				marginOfError,
-			);
 
 			const simulationInterval = setInterval(() => {
 				if (currentRolls < selectedRolls) {
@@ -213,104 +226,18 @@
 					// Exit early if target or max score is reached
 					if (currentScore >= maxScore || currentScore >= targetScore) {
 						clearInterval(simulationInterval);
-						state = 'end';
+						simulationState = 'end';
 					}
 				} else {
 					clearInterval(simulationInterval);
-					state = 'end';
+					simulationState = 'end';
 				}
 			}, 1); // Update every 1ms for a smooth animation
-		} else if (state === 'end') {
-			currentRolls = 0;
-			bestSigilStats = '';
-			bestSigilRollNumber = 0;
-			bestSigilScore = 0;
-			probability = 0;
-			state = 'start';
+		} else if (simulationState === 'end') {
+			resetSimulation();
+			onButtonClick();
 		}
 	}
-
-	type Material =
-		| 'Upper Shiten Key'
-		| 'Zenith Sigil Stamp'
-		| 'Hiden Stamp Weapon';
-
-	const minRolls = 1;
-	const maxRolls = 10_000;
-
-	let sigil = $state('Advanced Shiten [Disufiroa]');
-	let selectedRolls = $state(maxRolls);
-	let currentRolls = $state(0);
-	let state: 'start' | 'running' | 'end' = $state('start');
-	// example: 15 Attack, 15 Element, 15 Attack.
-	let bestSigilStats = $state('');
-	let bestSigilRollNumber = $state(0);
-	let bestSigilScore = $state(0);
-	let probability = $state(0);
-	let priority: 'Attack' | 'Element' | 'None' = $state('Attack');
-	let targetScore = $state(45);
-
-	/**
-	 * weapon emperor always has 3 skills and only one skill is weapon up.
-	 *
-	 * shiten can have duplicates of attack and element. also 3 skills max.
-	 *
-	 * the zeniths have 1 of zenith duration and 1 of zenith cooldown, with the attack/element also being only 1, making it also 3 skills max.
-	 *
-	 * So its 3 skill rolls per sigil roll. if the percentage of a skill is 100, it means that there is always that skill present once and only once, for each sigil of that type.
-	 */
-	const sigilsRollsStats = [
-		{
-			name: 'Advanced Shiten [Disufiroa]',
-			maxScore: 45,
-			skills: [
-				{ name: 'Attack Slayer', percentage: 37, minimum: 3, maximum: 9 },
-				{ name: 'Attack Slayer', percentage: 8, minimum: 8, maximum: 12 },
-				{ name: 'Attack Slayer', percentage: 5, minimum: 13, maximum: 15 },
-				{ name: 'Elemental Slayer', percentage: 42, minimum: 3, maximum: 9 },
-				{ name: 'Elemental Slayer', percentage: 5, minimum: 8, maximum: 12 },
-				{ name: 'Elemental Slayer', percentage: 3, minimum: 13, maximum: 15 },
-			],
-		},
-		{
-			name: 'Weapon [Emperor]',
-			maxScore: 60,
-			skills: [
-				{ name: 'Weapon Up', percentage: 100, minimum: 10, maximum: 15 },
-				{ name: 'Attack Slayer', percentage: 75, minimum: 3, maximum: 7 },
-				{ name: 'Attack Slayer', percentage: 22, minimum: 8, maximum: 12 },
-				{ name: 'Attack Slayer', percentage: 3, minimum: 13, maximum: 15 },
-			],
-		},
-		{
-			name: 'Attack [Zenith]',
-			maxScore: 59,
-			skills: [
-				{ name: 'Zenith Duration', percentage: 85, minimum: 1, maximum: 5 },
-				{ name: 'Zenith Duration', percentage: 12, minimum: 6, maximum: 9 },
-				{ name: 'Zenith Duration', percentage: 3, minimum: 10, maximum: 12 },
-				{ name: 'Zenith Cooldown', percentage: 96, minimum: 9, maximum: 13 },
-				{ name: 'Zenith Cooldown', percentage: 4, minimum: 14, maximum: 17 },
-				{ name: 'Zenith Attack', percentage: 76, minimum: 1, maximum: 7 },
-				{ name: 'Zenith Attack', percentage: 21, minimum: 8, maximum: 11 },
-				{ name: 'Zenith Attack', percentage: 3, minimum: 12, maximum: 15 },
-			],
-		},
-		{
-			name: 'Elemental [Zenith]',
-			maxScore: 59,
-			skills: [
-				{ name: 'Zenith Duration', percentage: 85, minimum: 1, maximum: 5 },
-				{ name: 'Zenith Duration', percentage: 12, minimum: 6, maximum: 9 },
-				{ name: 'Zenith Duration', percentage: 3, minimum: 10, maximum: 12 },
-				{ name: 'Zenith Cooldown', percentage: 96, minimum: 9, maximum: 13 },
-				{ name: 'Zenith Cooldown', percentage: 4, minimum: 14, maximum: 17 },
-				{ name: 'Zenith Elemental', percentage: 80, minimum: 1, maximum: 7 },
-				{ name: 'Zenith Elemental', percentage: 18, minimum: 8, maximum: 11 },
-				{ name: 'Zenith Elemental', percentage: 2, minimum: 12, maximum: 15 },
-			],
-		},
-	];
 
 	function getMaterialFromSigil(sigil: string): Material {
 		switch (sigil) {
@@ -371,37 +298,280 @@
 		return Math.ceil((Z ** 2 * p * (1 - p)) / E ** 2);
 	}
 
-	function calculateProbabilityOfScoreXOrHigher(
+	async function calculateProbabilityOfScoreXOrHigher(
 		sigilType: string,
 		targetScore: number,
 		rolls: number,
 		confidenceLevel: number = 95,
 		marginOfError: number = 0.05,
-	): number {
-		const sampleSize = calculateSampleSize(confidenceLevel, marginOfError);
+	) {
+		sampleSize = calculateSampleSize(confidenceLevel, marginOfError);
+		simulationProbabilitySigilTotal = sampleSize * rolls;
+
+		// console.log(`sampleSize: ${sampleSize}`);
+		// console.log(`rolls: ${rolls}`);
+		// console.log(
+		// 	`simulationProbabilitySigilNumber: ${simulationProbabilitySigilNumber}`,
+		// );
 
 		let successCount = 0;
 
-		for (let i = 0; i < sampleSize; i++) {
-			let bestScore = 0;
+		// Process the samples in chunks
+		const processChunk = async (startIndex: number) => {
+			const chunkSize = 10; // Adjust this size as needed
+			for (
+				let i = startIndex;
+				i < startIndex + chunkSize && i < sampleSize;
+				i++
+			) {
+				let bestScore = 0;
 
-			for (let j = 0; j < rolls; j++) {
-				const currentSigil = rollSigil(sigilType);
-				const currentScore = calculateSigilScore(currentSigil, priority);
+				for (let j = 0; j < rolls; j++) {
+					simulationProbabilitySigilNumber++;
+					// console.log(simulationProbabilitySigilNumber);
 
-				if (currentScore >= targetScore) {
-					bestScore = currentScore;
-					break;
+					const currentSigil = rollSigil(sigilType);
+					const currentScore = calculateSigilScore(currentSigil, priority);
+
+					if (currentScore >= targetScore) {
+						bestScore = currentScore;
+						break;
+					}
+				}
+
+				if (bestScore >= targetScore) {
+					successCount++;
 				}
 			}
 
-			if (bestScore >= targetScore) {
-				successCount++;
+			// Update the UI after processing each chunk
+			await new Promise((resolve) => setTimeout(resolve, 0));
+
+			// Process the next chunk if there are more samples
+			if (startIndex + chunkSize < sampleSize) {
+				await processChunk(startIndex + chunkSize);
 			}
-		}
+		};
+
+		await processChunk(0);
+
+		// console.log(`sampleSize: ${sampleSize}`);
+		// console.log(`rolls: ${rolls}`);
+		// console.log(
+		// 	`simulationProbabilitySigilNumber: ${simulationProbabilitySigilNumber}`,
+		// );
+
+		isCalculatingSimulationProbability = false;
+		simulationProbabilitySigilNumber = 0;
+		simulationProbabilitySigilTotal = 0;
 
 		return successCount / sampleSize;
 	}
+
+	/**https://www.mathsisfun.com/data/probability-events-independent.html*/
+	function getPerfectSigilCombinationProbability(
+		shitenSigilRolls: number,
+		zenithSigilRolls: number,
+		unlimitedSigilRolls: number,
+	) {
+		// Shiten Sigils (Slot 1)
+		// { name: 'Attack Slayer', percentage: 5, minimum: 13, maximum: 15 },
+
+		const shitenSkillChance = 0.05; // 5%
+		const shitenExactValueChance = 1 / 3; // One value out of 13-15
+		const shitenProbabilityPerRoll = shitenSkillChance * shitenExactValueChance;
+		const shitenProbabilitySingle = Math.pow(shitenProbabilityPerRoll, 3); // 3 skills to roll 1 sigil.
+		const shitenProbability =
+			1 - Math.pow(1 - shitenProbabilitySingle, shitenSigilRolls); // Complement Rule for At Least One Success
+
+		// Unlimited Sigils (Slot 2)
+		/*
+				{ name: 'Weapon Up', percentage: 100, minimum: 10, maximum: 15 },
+				{ name: 'Attack Slayer', percentage: 3, minimum: 13, maximum: 15 },
+		*/
+
+		const unlimitedAttackSkillChance = 0.03; // 3%
+		const unlimitedAttackExactValueChance = 1 / 3; // One value out of 13-15
+		const unlimitedAttackProbabilityPerRoll =
+			unlimitedAttackSkillChance * unlimitedAttackExactValueChance;
+		const unlimitedAttackProbabilitySingle = Math.pow(
+			unlimitedAttackProbabilityPerRoll,
+			2,
+		); // 2 skills to roll
+
+		const unlimitedWeaponUpSkillChance = 1; // 100%
+		const unlimitedWeaponUpExactValueChance = 1 / 6; // 10 to 15 inclusive
+		const unlimitedWeaponUpProbabilitySingle =
+			unlimitedWeaponUpSkillChance * unlimitedWeaponUpExactValueChance; // only 1 roll so no need for power
+
+		const unlimitedProbabilitySingle =
+			unlimitedAttackProbabilitySingle * unlimitedWeaponUpProbabilitySingle;
+		const unlimitedProbability =
+			1 - Math.pow(1 - unlimitedProbabilitySingle, unlimitedSigilRolls);
+
+		// Zenith Sigils (Slot 3)
+		/*
+				{ name: 'Zenith Duration', percentage: 3, minimum: 10, maximum: 12 },
+				{ name: 'Zenith Cooldown', percentage: 4, minimum: 14, maximum: 17 },
+				{ name: 'Zenith Attack', percentage: 3, minimum: 12, maximum: 15 },
+ 		*/
+
+		const zenithAttackSkillChance = 0.03; // 3%
+		const zenithAttackExactValueChance = 1 / 4; // One value out of 12-15
+		const zenithAttackProbability =
+			zenithAttackSkillChance * zenithAttackExactValueChance; // Only 1 roll needed
+
+		const zenithDurationSkillChance = 0.03; // 3%
+		const zenithDurationExactValueChance = 1 / 3;
+		const zenithDurationProbability =
+			zenithDurationSkillChance * zenithDurationExactValueChance; // Only 1 roll needed
+
+		const zenithCooldownSkillChance = 0.04;
+		const zenithCooldownExactValueChance = 1 / 4;
+		const zenithCooldownProbability =
+			zenithCooldownSkillChance * zenithCooldownExactValueChance; // Only 1 roll needed
+
+		const zenithProbabilitySingle =
+			zenithAttackProbability *
+			zenithDurationProbability *
+			zenithCooldownProbability;
+
+		const zenithProbability =
+			1 - Math.pow(1 - zenithProbabilitySingle, zenithSigilRolls);
+
+		// TODO use shitenSigilRolls, zenithSigilRolls and unlimitedSigilRolls to calculate the chance to get a perfect shiten/zenith/unlimited sigil with x rolls, then calculate the total probability taking that into account,
+
+		// Total Probability
+		const totalProbability =
+			shitenProbability * unlimitedProbability * zenithProbability;
+
+		return {
+			totalProbability,
+			shitenProbability,
+			unlimitedProbability,
+			zenithProbability,
+		};
+	}
+
+	type Material =
+		| 'Upper Shiten Key'
+		| 'Zenith Sigil Stamp'
+		| 'Hiden Stamp Weapon';
+
+	const sigilSkillsBaseScore = [
+		{ name: 'Attack Slayer', score: 1 },
+		{ name: 'Elemental Slayer', score: 1 },
+		{ name: 'Weapon Up', score: 2 },
+		{ name: 'Zenith Duration', score: 1 },
+		{ name: 'Zenith Cooldown', score: 1 },
+		{ name: 'Zenith Attack', score: 2 },
+		{ name: 'Zenith Elemental', score: 2 },
+	];
+
+	// Pre-compute skill scores in a map for faster lookup
+	const sigilSkillsBaseScoreMap = new Map(
+		sigilSkillsBaseScore.map((s) => [s.name, s.score]),
+	);
+
+	const minRolls = 1;
+	const maxRolls = 10_000;
+
+	let sigil = $state('Advanced Shiten [Disufiroa]');
+	let selectedRolls = $state(maxRolls);
+	let currentRolls = $state(0);
+	let simulationState: 'start' | 'running' | 'end' = $state('start');
+	// example: 15 Attack, 15 Element, 15 Attack.
+	let bestSigilStats = $state('');
+	let bestSigilRollNumber = $state(0);
+	let bestSigilScore = $state(0);
+	/**TODO recalculate these and other chances. it might be wrong.*/
+	let probability = $state(0);
+	let priority: 'Attack' | 'Element' | 'None' = $state('Attack');
+	let targetScore = $state(45);
+
+	let perfectSigilCombinationZenithSigils = $state(10_000);
+	let perfectSigilCombinationShitenSigils = $state(10_000);
+	let perfectSigilCombinationUnlimitedSigils = $state(10_000);
+
+	let perfectSigilCombinationProbability = $derived(
+		getPerfectSigilCombinationProbability(
+			perfectSigilCombinationShitenSigils,
+			perfectSigilCombinationZenithSigils,
+			perfectSigilCombinationUnlimitedSigils,
+		),
+	);
+
+	let perfectSigilCombinationOdds = $derived(
+		getProbabilityOdds(perfectSigilCombinationProbability.totalProbability),
+	);
+
+	let isCalculatingSimulationProbability = $state(false);
+	let simulationProbabilitySigilNumber = $state(0);
+	let simulationProbabilitySigilTotal = $state(0);
+	let sampleSize = $state(0);
+
+	/**
+	 * weapon emperor always has 3 skills and only one skill is weapon up.
+	 *
+	 * shiten can have duplicates of attack and element. also 3 skills max.
+	 *
+	 * the zeniths have 1 of zenith duration and 1 of zenith cooldown, with the attack/element also being only 1, making it also 3 skills max.
+	 *
+	 * So its 3 skill rolls per sigil roll. if the percentage of a skill is 100, it means that there is always that skill present once and only once, for each sigil of that type.
+	 */
+	const sigilsRollsStats = [
+		{
+			name: 'Advanced Shiten [Disufiroa]',
+			maxScore: 45,
+			skills: [
+				{ name: 'Attack Slayer', percentage: 37, minimum: 3, maximum: 9 },
+				{ name: 'Attack Slayer', percentage: 8, minimum: 8, maximum: 12 },
+				{ name: 'Attack Slayer', percentage: 5, minimum: 13, maximum: 15 },
+				{ name: 'Elemental Slayer', percentage: 42, minimum: 3, maximum: 9 },
+				{ name: 'Elemental Slayer', percentage: 5, minimum: 8, maximum: 12 },
+				{ name: 'Elemental Slayer', percentage: 3, minimum: 13, maximum: 15 },
+			],
+		},
+		// TODO Weapon [Extreme] has different percentages for element depending on weapon.
+		{
+			name: 'Weapon [Emperor]',
+			maxScore: 60,
+			skills: [
+				{ name: 'Weapon Up', percentage: 100, minimum: 10, maximum: 15 },
+				{ name: 'Attack Slayer', percentage: 75, minimum: 3, maximum: 7 },
+				{ name: 'Attack Slayer', percentage: 22, minimum: 8, maximum: 12 },
+				{ name: 'Attack Slayer', percentage: 3, minimum: 13, maximum: 15 },
+			],
+		},
+		{
+			name: 'Attack [Zenith]',
+			maxScore: 59,
+			skills: [
+				{ name: 'Zenith Duration', percentage: 85, minimum: 1, maximum: 5 },
+				{ name: 'Zenith Duration', percentage: 12, minimum: 6, maximum: 9 },
+				{ name: 'Zenith Duration', percentage: 3, minimum: 10, maximum: 12 },
+				{ name: 'Zenith Cooldown', percentage: 96, minimum: 9, maximum: 13 },
+				{ name: 'Zenith Cooldown', percentage: 4, minimum: 14, maximum: 17 },
+				{ name: 'Zenith Attack', percentage: 76, minimum: 1, maximum: 7 },
+				{ name: 'Zenith Attack', percentage: 21, minimum: 8, maximum: 11 },
+				{ name: 'Zenith Attack', percentage: 3, minimum: 12, maximum: 15 },
+			],
+		},
+		{
+			name: 'Elemental [Zenith]',
+			maxScore: 59,
+			skills: [
+				{ name: 'Zenith Duration', percentage: 85, minimum: 1, maximum: 5 },
+				{ name: 'Zenith Duration', percentage: 12, minimum: 6, maximum: 9 },
+				{ name: 'Zenith Duration', percentage: 3, minimum: 10, maximum: 12 },
+				{ name: 'Zenith Cooldown', percentage: 96, minimum: 9, maximum: 13 },
+				{ name: 'Zenith Cooldown', percentage: 4, minimum: 14, maximum: 17 },
+				{ name: 'Zenith Elemental', percentage: 80, minimum: 1, maximum: 7 },
+				{ name: 'Zenith Elemental', percentage: 18, minimum: 8, maximum: 11 },
+				{ name: 'Zenith Elemental', percentage: 2, minimum: 12, maximum: 15 },
+			],
+		},
+	];
 
 	const confidenceLevel = 99;
 	const marginOfError = 0.05;
@@ -419,22 +589,13 @@
 <TableOfContentsPage displayTOC={false}>
 	<div>
 		<SectionHeadingTopLevel title={'Sigils Rolls Simulator'} />
-		<InlineNotification
-			kind="info"
-			lowContrast
-			title="Note:"
-			subtitle="Simulations may take a while to start and finish."
-		/>
 		<div>
 			<div class="spaced-paragraph">
 				If you are looking for an explanation on sigils, see our <Link
 					inline
 					href="/hunter-notes/weapons/sigils">Hunter's Notes page.</Link
 				> This page is simulating sigils rolls, showing how many times on average
-				you need to get certain stats and how many materials are needed. To get the
-				perfect sigil combination (1 UL, 1 Zenith, 1 Shiten), it has an average chance
-				of {0.05 * 0.01 * 0.15 * 100}% (1:13,333 odds) with 30,000 sigil rolls
-				in total.
+				you need to get certain stats and how many materials are needed.
 			</div>
 			<div class="spaced-paragraph">
 				If you are looking to calculate the <strong>damage</strong> of your
@@ -446,7 +607,7 @@
 			<div class="container-buttons">
 				<Dropdown
 					bind:selectedId={sigil}
-					disabled={state === 'running'}
+					disabled={simulationState === 'running'}
 					titleText={`Sigil`}
 					items={[
 						{
@@ -461,7 +622,7 @@
 				<div class="number-input">
 					<NumberInput
 						size="sm"
-						disabled={state === 'running'}
+						disabled={simulationState === 'running'}
 						step={100}
 						min={minRolls}
 						max={maxRolls}
@@ -472,7 +633,7 @@
 				</div>
 				<Dropdown
 					bind:selectedId={priority}
-					disabled={state === 'running'}
+					disabled={simulationState === 'running'}
 					titleText={`Priority`}
 					items={[
 						{ id: 'None', text: 'None' },
@@ -486,7 +647,7 @@
 				<div class="number-input">
 					<NumberInput
 						size="sm"
-						disabled={state === 'running'}
+						disabled={simulationState === 'running'}
 						step={1}
 						min={1}
 						max={sigilMaxScore}
@@ -495,36 +656,36 @@
 						label={`Target Score`}
 					/>
 				</div>
-				<Button disabled={state === 'running'} on:click={onButtonClick}
-					>{state === 'start' || state === 'running'
+				<Button
+					icon={Play}
+					disabled={simulationState === 'running' ||
+						isCalculatingSimulationProbability}
+					on:click={onButtonClick}
+					>{simulationState === 'start' || simulationState === 'running'
 						? 'Start'
 						: 'Restart'}</Button
 				>
 			</div>
 
-			<div class="results">
-				<div class="sigil">
-					<InlineTooltip
-						icon={SigilIconWhite}
-						iconType="component"
-						text={`${currentRolls} sigil${currentRolls > 1 || currentRolls === 0 ? 's' : ''}`}
-						tooltip="Sigil"
-					/>
-				</div>
-				<div class="paragraph-long-02">
-					Materials needed: {#key sigil}<InlineTooltip
-							icon={materialNeededIcon}
-							iconType="component"
-							text={`${currentRolls} ${materialNeeded}`}
-							tooltip="Item"
-							iconColor={materialNeededIconColor}
-						/>{/key}
-				</div>
-				<p>
-					Best sigil found: {bestSigilStats} (roll #{bestSigilRollNumber}, score {bestSigilScore},
-					max score {sigilMaxScore})
-				</p>
-				<p class="tooltip-paragraph">
+			<div class="probability-container">
+				<Button
+					icon={Calculator}
+					disabled={isCalculatingSimulationProbability ||
+						simulationState === 'running'}
+					on:click={() => calculateSimulationProbability()}
+					>{'Calculate Simulation Average Probability'}</Button
+				>
+				{#if isCalculatingSimulationProbability}
+					<div class="loading-container">
+						<Loading withOverlay={false} />
+						<p>Calculating simulation probabilities...</p>
+						<p>
+							Rolls: {simulationProbabilitySigilNumber}/{simulationProbabilitySigilTotal}
+						</p>
+						<p>Sample size: {sampleSize}</p>
+					</div>
+				{/if}
+				<div class="tooltip-paragraph">
 					<Tooltip align="start">
 						<p>
 							Probability of getting a {sigil} sigil with {selectedRolls} available
@@ -532,11 +693,109 @@
 							{confidenceLevel}% confidence and {marginOfError}% margin of
 							error: {probability * 100}%
 						</p>
-					</Tooltip>Average Probability: {(
+					</Tooltip>Simulation Average Probability: {(
 						Math.round(probability * 100 * 100) / 100
 					).toFixed(2)}%
-				</p>
+				</div>
 			</div>
+
+			{#if simulationState === 'running' || simulationState === 'end'}
+				<div class="results">
+					<div class="sigil">
+						<InlineTooltip
+							icon={SigilIconWhite}
+							iconType="component"
+							text={`${currentRolls} sigil${currentRolls > 1 || currentRolls === 0 ? 's' : ''}`}
+							tooltip="Sigil"
+						/>
+					</div>
+					<div class="paragraph-long-02">
+						Materials needed: {#key sigil}<InlineTooltip
+								icon={materialNeededIcon}
+								iconType="component"
+								text={`${currentRolls} ${materialNeeded}`}
+								tooltip="Item"
+								iconColor={materialNeededIconColor}
+							/>{/key}
+					</div>
+					<p>
+						Best sigil found: {bestSigilStats} (roll #{bestSigilRollNumber},
+						score {bestSigilScore}, max score {sigilMaxScore})
+					</p>
+				</div>
+			{/if}
+			<section>
+				<SectionHeading
+					level={2}
+					title="Perfect Sigil Combination Probability"
+				/>
+				<div>
+					<InlineNotification
+						lowContrast
+						hideCloseButton
+						kind="info"
+						title="Sigil Probabilities:"
+						subtitle="This uses the probabilities for getting Attack."
+					/>
+					<div class="number-inputs">
+						<div class="number-input">
+							<NumberInput
+								size="sm"
+								step={100}
+								min={minRolls}
+								max={maxRolls}
+								bind:value={perfectSigilCombinationShitenSigils}
+								invalidText={`Invalid value: must be between ${minRolls} and ${maxRolls}`}
+								label={`Shiten Sigil Rolls`}
+							/>
+						</div>
+						<div class="number-input">
+							<NumberInput
+								size="sm"
+								step={100}
+								min={minRolls}
+								max={maxRolls}
+								bind:value={perfectSigilCombinationZenithSigils}
+								invalidText={`Invalid value: must be between ${minRolls} and ${maxRolls}`}
+								label={`Zenith Sigil Rolls`}
+							/>
+						</div>
+						<div class="number-input">
+							<NumberInput
+								size="sm"
+								step={100}
+								min={minRolls}
+								max={maxRolls}
+								bind:value={perfectSigilCombinationUnlimitedSigils}
+								invalidText={`Invalid value: must be between ${minRolls} and ${maxRolls}`}
+								label={`Unlimited Sigil Rolls`}
+							/>
+						</div>
+					</div>
+					<p>
+						<strong>Probability of perfect Shiten sigil:</strong>
+						{perfectSigilCombinationProbability.shitenProbability * 100}%
+					</p>
+					<p>
+						<strong>Probability of perfect Zenith sigil:</strong>
+						{perfectSigilCombinationProbability.zenithProbability * 100}%
+					</p>
+					<p>
+						<strong>Probability of perfect Unlimited sigil:</strong>
+						{perfectSigilCombinationProbability.unlimitedProbability * 100}%
+					</p>
+					<p>
+						<strong>Probability of perfect combination (all 3):</strong>
+						{perfectSigilCombinationProbability.totalProbability * 100}% (1:{Math.ceil(
+							perfectSigilCombinationOdds,
+						)}
+						odds) with
+						{perfectSigilCombinationShitenSigils +
+							perfectSigilCombinationZenithSigils +
+							perfectSigilCombinationUnlimitedSigils} sigil rolls in total.
+					</p>
+				</div>
+			</section>
 
 			<div class="page-turn">
 				<PageTurn pageUrlPathName={$page.url.pathname} />
@@ -568,5 +827,25 @@
 	.tooltip-paragraph {
 		display: flex;
 		gap: 0.25rem;
+	}
+
+	.number-inputs {
+		display: flex;
+		gap: 1rem;
+		margin: 1rem 0px;
+	}
+
+	.loading-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		min-width: 192px;
+		min-height: 192px;
+	}
+
+	.probability-container {
+		display: flex;
+		gap: 1rem;
+		flex-direction: column;
 	}
 </style>
