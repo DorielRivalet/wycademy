@@ -91,7 +91,7 @@
 </svelte:head>
 
 <div class="container">
-	<div>
+	<div class="hero-section">
 		<HomeHeroSection />
 	</div>
 	<div><HomeProblemSection /></div>
@@ -115,7 +115,12 @@
 </div>
 
 <style lang="scss">
+	.hero-section {
+		view-transition-name: home-hero-section;
+	}
+
 	.container {
+		view-transition-name: home-main-section;
 		.alternate-background {
 			background-color: var(--ctp-mantle);
 		}
@@ -126,5 +131,78 @@
 		display: flex;
 		justify-content: center;
 		padding: var(--cds-spacing-10) var(--cds-spacing-04);
+	}
+
+	@view-transition {
+		navigation: auto;
+	}
+	@media (prefers-reduced-motion) {
+		@view-transition {
+			navigation: none;
+		}
+	}
+
+	@keyframes grow {
+		from {
+			transform: scale(0);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+
+	@keyframes shrink {
+		from {
+			transform: scale(1);
+		}
+		to {
+			transform: scale(0);
+		}
+	}
+
+	@keyframes move-out {
+		from {
+			transform: translateX(0%);
+		}
+
+		to {
+			transform: translateX(-100%);
+		}
+	}
+
+	@keyframes move-in {
+		from {
+			transform: translateY(-100%);
+		}
+
+		to {
+			transform: translateY(0%);
+		}
+	}
+
+	/* Apply the custom animation to the old and new page states */
+
+	// ::view-transition-old(root) {
+	// 	animation: 0.4s ease-in both move-out;
+	// }
+
+	// ::view-transition-new(root) {
+	// 	animation: 0.4s ease-in both move-in;
+	// }
+
+	::view-transition-old(home-main-section),
+	::view-transition-new(home-main-section) {
+		height: auto;
+		right: 0;
+		left: auto;
+		transform-origin: center;
+	}
+
+	::view-transition-old(home-hero-section) {
+		animation: 0.3s linear both move-out;
+	}
+
+	::view-transition-new(home-hero-section) {
+		animation: 0.15s 0.15s linear both grow;
 	}
 </style>
