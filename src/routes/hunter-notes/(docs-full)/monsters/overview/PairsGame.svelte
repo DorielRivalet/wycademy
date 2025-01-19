@@ -188,7 +188,7 @@
 				<!--TODO: easter egg different hint-->
 				<p>
 					Phew! Not only you had to memorize the pairs, but you had to do it
-					fast. You know what else is fast? A hungry Raviente!
+					fast. You know what else is fast? A flappy Rathalos!
 				</p>
 			{/if}
 		</div>
