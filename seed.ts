@@ -14,6 +14,7 @@ const main = async () => {
 	//await seed.$resetDatabase();
 
 	// Seed the database with data
+	// TODO this inserts into auth.users but the data is misconfigured.
 	await seed.users((x) => x(3));
 	await seed.countries((x) => x(3));
 

@@ -4,7 +4,7 @@ import postgres from 'postgres';
 
 export default defineConfig({
 	adapter: () => {
-		const client = postgres(process.env.DATABASE_URL);
+		const client = postgres(process.env.ADMIN_DATABASE_URL!);
 		return new SeedPostgres(client);
 	},
 	select: [
