@@ -25,7 +25,7 @@ stateDiagram-v2
 
 - Duplicated quests are automatically deleted after a certain period of time. Ownership is verified by confirming the user owns the account where the `VideoLink` submission happened. This can be done by them supplying their Wycademy username in the video submission's account bio or description, or the video's title or description. We also check the upload date of the video.
 - If a disputed quest ends up being stolen or used cheats, the user is penalized and the quest is removed; otherwise if the quest is legit, it can become verified.
-- Duplicate quests can only occur via the upload of another user, since the primary keys are composite: profile_id and quest_hash. When an user uploads multiple runs (same profile_id), if a run was already uploaded (same quest_hash) we skip this row.
+- Duplicate quests can only occur via the upload of another user, since the primary keys are composite: profile_id and quest_hash. When a user uploads multiple runs (same profile_id), if a run was already uploaded (same quest_hash) we skip this row.
 
 ## Privileges Matrix
 
