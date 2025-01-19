@@ -258,6 +258,9 @@ In short: to make RLS work correctly with Drizzle, the database must know which 
 2. Setting the token for the database session via a PostgreSQL function (e.g., `set_config`).
 3. Use a transaction to isolate the user queries.
 
+> [!NOTE]
+> When you run `npx supabase db push`, your seed files in the `/supabase/seeds` folder are not applied in the remote database. This is why we put the `*secret.sql` containing the role generation code in `/supabase/migrations` instead, so that it is automatically set up in the remote database.
+
 Database code example:
 
 ```postgres
@@ -446,6 +449,7 @@ For seeding, we use [Snaplet](https://snaplet-seed.netlify.app/seed/integrations
 2. Make sure the project is linked and your migrations are detected with `npx supabase db push --dry-run`.
 3. Run `npx supabase db push` and check your migrations in the Dashboard: Database -> Migrations. Verify your table data. If there is an error, revert and go back to testing locally.
 4. Deploy your project in Vercel. Try to update both Vercel and Supabase as soon as possible together. **Do not make schema changes in production, so we avoid using `npx supabase pull`, among other things**.
+5. Generate seeds in Supabase SQL Editor if needed (see the `/supabase/seeds` folder).
 
 > [!NOTE]
 > When using `npm run build && npm run preview` and creating a Wycademy account, you insert into the remote database `auth.users` table, not the local database from Docker Desktop.
