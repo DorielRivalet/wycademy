@@ -5,15 +5,71 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1734929931035,
-      "tag": "0000_happy_miracleman",
+      "when": 1736454840320,
+      "tag": "20250109203400_setup",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1734995335559,
-      "tag": "0001_daily_talos",
+      "when": 1736455032498,
+      "tag": "20250109203712_users",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1736503146044,
+      "tag": "20250110095906_claims",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1736511021004,
+      "tag": "20250110121021_secret",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1736831311840,
+      "tag": "20250114050831_policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1736834520705,
+      "tag": "20250114060200_fix_custom_claims",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1736989919405,
+      "tag": "20250116011159_add_missing_index",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1736993789278,
+      "tag": "20250116021629_update_index",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1737012442813,
+      "tag": "20250116072722_add_registration_codes",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1737120250528,
+      "tag": "20250117132410_update_profile_tables",
       "breakpoints": true
     }
   ]

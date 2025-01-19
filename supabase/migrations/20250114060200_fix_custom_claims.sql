@@ -1,0 +1,21 @@
+ALTER POLICY "Allow moderators to see any table row" ON "countries" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to update any table row" ON "mez_fez_video_link" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"') WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to see any table row" ON "moderation_logs_quest" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to see any table row" ON "penalty_acknowledgments" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to insert any table row" ON "penalty_acknowledgments" TO authenticated WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to see any table row" ON "penalty_appeals" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to update any table row" ON "penalty_appeals" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"') WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to see any table row" ON "penalty_history" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to see any table row" ON "penalty_reasons" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to update any table row" ON "penalty_reasons" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"') WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to insert any table row" ON "penalty_reasons" TO authenticated WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to update any table row" ON "quest_status" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"') WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to update any table row" ON "quest_video_link" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"') WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to see any table row" ON "reports_profile" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to see any table row" ON "reports_quest" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to see any table row" ON "timeout_restrictions" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to insert any table row" ON "timeout_restrictions" TO authenticated WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to update any table row" ON "timeout_restrictions" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"') WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to see any table row" ON "user_penalties" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to update any table row" ON "user_penalties" TO authenticated USING ((select get_my_claim('user_role')) = '"moderator"') WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');--> statement-breakpoint
+ALTER POLICY "Allow moderators to insert any table row" ON "user_penalties" TO authenticated WITH CHECK ((select get_my_claim('user_role')) = '"moderator"');
