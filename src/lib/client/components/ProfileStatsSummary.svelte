@@ -17,29 +17,51 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import { getHexStringFromCatppuccinColor } from '$lib/catppuccin';
+	import { frontierServers } from '$lib/client/modules/frontier/servers';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
 
 	interface Props {
-		huntCount?: any;
-		obtainedAchievements?: any;
-		totalAchievements?: any;
-		obtainedTitles?: any;
-		totalTitles?: any;
-		huntCountRank?: any;
-		huntCountRankPercent?: any;
-		obtainedAchievementsRank?: any;
-		obtainedAchievementsRankPercent?: any;
-		titlesRank?: any;
-		titlesRankPercent?: any;
+		huntCount?: number;
+		obtainedAchievements?: {
+			bronze: number;
+			silver: number;
+			gold: number;
+			platinum: number;
+		};
+		totalAchievements?: {
+			bronze: number;
+			silver: number;
+			gold: number;
+			platinum: number;
+		};
+		obtainedTitles?: number;
+		totalTitles?: number;
+		huntCountRank?: number;
+		huntCountRankPercent?: number;
+		obtainedAchievementsRank?: number;
+		obtainedAchievementsRankPercent?: number;
+		titlesRank?: number;
+		titlesRankPercent?: number;
+		profileFrontierServers: string[];
 	}
 
 	let {
 		huntCount = Math.trunc(Math.random() * 1000),
-		obtainedAchievements = Math.trunc(Math.random() * 1000),
-		totalAchievements = obtainedAchievements + Math.trunc(Math.random() * 1000),
+		obtainedAchievements = {
+			bronze: Math.trunc(Math.random() * 40),
+			silver: Math.trunc(Math.random() * 30),
+			gold: Math.trunc(Math.random() * 20),
+			platinum: Math.trunc(Math.random() * 10),
+		},
+		totalAchievements = {
+			bronze: Math.trunc(Math.random() * 40) + obtainedAchievements.bronze,
+			silver: Math.trunc(Math.random() * 30) + obtainedAchievements.silver,
+			gold: Math.trunc(Math.random() * 20) + obtainedAchievements.gold,
+			platinum: Math.trunc(Math.random() * 10) + obtainedAchievements.platinum,
+		},
 		obtainedTitles = Math.trunc(Math.random() * 1000),
 		totalTitles = obtainedTitles + Math.trunc(Math.random() * 1000),
 		huntCountRank = Math.trunc(Math.random() * 1000),
@@ -48,6 +70,7 @@
 		obtainedAchievementsRankPercent = Math.trunc(Math.random() * 100),
 		titlesRank = Math.trunc(Math.random() * 1000),
 		titlesRankPercent = Math.trunc(Math.random() * 100),
+		profileFrontierServers = frontierServers,
 	}: Props = $props();
 
 	function randomChoice(arr: any[]) {
@@ -91,30 +114,22 @@
 		return Number(truncatedResult);
 	}
 
-	const playerServers = [
-		'Rain Frontier Server',
-		'Mezelounge',
-		'Arca',
-		'Monster Hunter Frontier: Renewal',
-		'MHF-Z Ancient Server',
-	];
-
 	const achievementsMeterData = [
 		{
 			group: 'bronze',
-			value: 150,
+			value: obtainedAchievements.bronze,
 		},
 		{
 			group: 'silver',
-			value: 100,
+			value: obtainedAchievements.silver,
 		},
 		{
 			group: 'gold',
-			value: 50,
+			value: obtainedAchievements.gold,
 		},
 		{
 			group: 'platinum',
-			value: 25,
+			value: obtainedAchievements.platinum,
 		},
 	];
 
@@ -140,7 +155,11 @@
 		meter: {
 			showLabels: false,
 			proportional: {
-				total: 450,
+				total:
+					totalAchievements.bronze +
+					totalAchievements.silver +
+					totalAchievements.gold +
+					totalAchievements.platinum,
 			},
 		},
 		color: {
@@ -194,8 +213,13 @@
 				tooltip="Achievements"
 			/>
 			<a href="/"
-				>{obtainedAchievements}/{totalAchievements} (Rank #{obtainedAchievementsRank},
-				Top {obtainedAchievementsRankPercent}%)</a
+				>{obtainedAchievements.bronze +
+					obtainedAchievements.silver +
+					obtainedAchievements.gold +
+					obtainedAchievements.platinum}/{totalAchievements.bronze +
+					totalAchievements.silver +
+					totalAchievements.gold +
+					totalAchievements.platinum} (Rank #{obtainedAchievementsRank}, Top {obtainedAchievementsRankPercent}%)</a
 			>
 		</div>
 		<div class="meter">
@@ -247,9 +271,20 @@
 	</div>
 	<div class="server">
 		<div class="paragraph-long-02">
-			<InlineTooltip icon={MapIconWhite} tooltip="Server" text={'Server: '} /><a
-				href="/">{randomChoice(playerServers)}</a
-			>
+			{#if profileFrontierServers.length >= 1}
+				<InlineTooltip
+					icon={MapIconWhite}
+					tooltip="Servers"
+					text={'Servers: '}
+				/>
+				{#each profileFrontierServers as server}
+					<div>
+						<a href="/leaderboard" class="server">
+							{server}
+						</a>
+					</div>
+				{/each}
+			{/if}
 		</div>
 	</div>
 </div>

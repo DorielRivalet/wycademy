@@ -14,24 +14,28 @@
 	import ListItem from 'carbon-components-svelte/src/ListItem/ListItem.svelte';
 	import Link from 'carbon-components-svelte/src/Link/Link.svelte';
 
-	type Action =
-		| 'Submitted'
+	// TODO
+	type ProfileAction =
+		| 'Submitted Quest'
+		| 'Submitted Set'
 		| 'Followed'
 		| 'Following'
 		| 'World Record'
 		| 'Personal Best'
 		| 'Trophy'
 		| 'Achievement'
-		| 'Guild Card Background'
-		| 'Reacted'
 		| 'Title'
-		| 'Donation'
+		| 'Emblem'
+		| 'Theme'
+		| 'Profile Update'
+		| 'Reacted'
 		| 'Favorited Set'
-		| 'Favorited Run';
+		| 'Favorited Run'
+		| 'Donation';
 
-	const activitiesInfo: { action: Action; icon: any }[] = [
+	const activitiesInfo: { action: ProfileAction; icon: any }[] = [
 		{
-			action: 'Submitted',
+			action: 'Submitted Quest',
 			icon: Upload,
 		},
 		{
@@ -59,7 +63,7 @@
 			icon: Badge,
 		},
 		{
-			action: 'Guild Card Background',
+			action: 'Profile Update',
 			icon: UserIdentification,
 		},
 		{
@@ -78,7 +82,7 @@
 
 	interface Props {
 		recentActivities?: {
-			action: Action;
+			action: ProfileAction;
 			description: string;
 			date: string;
 			link: string;
@@ -88,7 +92,7 @@
 	let {
 		recentActivities = [
 			{
-				action: 'Submitted',
+				action: 'Submitted Quest',
 				description: '3',
 				date: '2024-12-10',
 				link: '/',
@@ -130,8 +134,8 @@
 				link: '/',
 			},
 			{
-				action: 'Guild Card Background',
-				description: 'Abiorugu',
+				action: 'Profile Update',
+				description: '',
 				date: '2024-12-05',
 				link: '/',
 			},
@@ -170,7 +174,7 @@
 				<div class="activity">
 					<p class="date">{activity.date}</p>
 					<div class="description paragraph-long-02">
-						{#if activity.action === 'Submitted'}
+						{#if activity.action === 'Submitted Quest'}
 							{@const SvelteComponent = activitiesInfo.find(
 								(e) => e.action === activity.action,
 							)?.icon}
@@ -232,20 +236,18 @@
 							Obtained the achievement "<Link inline href={activity.link}
 								>{activity.description}"!</Link
 							>
-						{:else if activity.action === 'Guild Card Background'}
+						{:else if activity.action === 'Profile Update'}
 							{@const SvelteComponent_7 = activitiesInfo.find(
 								(e) => e.action === activity.action,
 							)?.icon}
 							<SvelteComponent_7 />
-							Obtained the <Link inline href={activity.link}
-								>{activity.description} guild card background!</Link
-							>
+							Updated profile.
 						{:else if activity.action === 'Reacted'}
 							{@const SvelteComponent_8 = activitiesInfo.find(
 								(e) => e.action === activity.action,
 							)?.icon}
 							<SvelteComponent_8 />
-							Reacted to a run by <Link inline href={activity.link}
+							Reacted to a run from <Link inline href={activity.link}
 								>{activity.description}.</Link
 							>
 						{:else if activity.action === 'Favorited Set'}
@@ -261,7 +263,7 @@
 								(e) => e.action === activity.action,
 							)?.icon}
 							<SvelteComponent_10 />
-							Favorited a run by <Link inline href={activity.link}
+							Favorited a run from <Link inline href={activity.link}
 								>{activity.description}.</Link
 							>
 						{/if}
