@@ -681,7 +681,7 @@
 
 			let skillName = ezlionSkillDivaPrayerGem[skillId];
 
-			if (skillName && skillName != 'None' && skillName != '') {
+			if (skillName && skillName !== 'None' && skillName !== '') {
 				let gemColor = '';
 
 				switch (i) {
@@ -700,7 +700,7 @@
 				}
 
 				gems += `${gemColor} 💎 ${skillName} LV${gemLevels[i]}`;
-				if (i != gemTypes.length - 1) {
+				if (i !== gemTypes.length - 1) {
 					gems += '\n';
 				}
 			}
