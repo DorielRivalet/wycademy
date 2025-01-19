@@ -80,61 +80,50 @@
 				{/if}
 			</div>
 		</div>
-
-		<div class="footer-sections">
-			<div class="footer-sections-group">
-				<section class="section-container">
-					<h5>Frontier</h5>
-					<Link href="/leaderboard">Leaderboards</Link>
-					<Link href="/hunter-notes">Guides and Tutorials</Link>
-					<Link href="/tools">Tools and Utilities</Link>
-				</section>
-
-				<section class="section-container">
-					<h5>Support</h5>
-					<Link href="/support/website/announcements">Announcements</Link>
-					<Link href="/support/website/about">About Us</Link>
-					<Link href="/support/website/donate">Donate</Link>
-					<Link href="/support/website/faq">FAQ</Link>
-					<Link href="/support/website/feedback">Feedback</Link>
-					<Link href="/support/website/contribute">Contribute</Link>
-					<Link href="/support/website/development">Development</Link>
-					<Link href="/support/website/contact">Contact</Link>
-					<Link href="/support/policies/terms-of-service">Terms of Service</Link
-					>
-					<Link href="/support/policies/privacy-policy">Privacy Policy</Link>
-					<Link href="/support/policies/copyright">Copyright</Link>
-					<Link href="/support/policies/acknowledgements">Acknowledgements</Link
-					>
-					<Link href="/support/policies/security">Security</Link>
-					<Link href="/support/policies/community-standards"
-						>Community Standards</Link
-					>
-				</section>
-			</div>
-
-			<div class="footer-sections-group">
-				<section class="section-container">
-					<h5>Guides and Tutorials</h5>
-					<Link href="/hunter-notes/getting-started">Getting Started</Link>
-					<Link href="/hunter-notes/weapons">Weapons</Link>
-					<Link href="/hunter-notes/armor">Armor</Link>
-					<Link href="/hunter-notes/monsters">Monsters</Link>
-					<Link href="/hunter-notes/locations">Locations</Link>
-					<Link href="/hunter-notes/items">Items</Link>
-					<Link href="/hunter-notes/events">Events</Link>
-					<Link href="/hunter-notes/advanced">Advanced</Link>
-				</section>
-				<section class="section-container">
-					<h5>Tools and Utilities</h5>
-					<Link href="/tools/calculator">Calculators</Link>
-					<Link href="/tools/simulator">Simulators</Link>
-					<Link href="/tools/generator">Generators</Link>
-					<Link href="/tools/external">External</Link>
-					<Link href="/tools/search">Search</Link>
-				</section>
-			</div>
-		</div>
+		<section class="section-container">
+			<h5>Frontier</h5>
+			<Link href="/leaderboard">Leaderboards</Link>
+			<Link href="/hunter-notes">Guides and Tutorials</Link>
+			<Link href="/tools">Tools and Utilities</Link>
+		</section>
+		<section class="section-container">
+			<h5>Support</h5>
+			<Link href="/support/website/announcements">Announcements</Link>
+			<Link href="/support/website/about">About Us</Link>
+			<Link href="/support/website/donate">Donate</Link>
+			<Link href="/support/website/faq">FAQ</Link>
+			<Link href="/support/website/feedback">Feedback</Link>
+			<Link href="/support/website/contribute">Contribute</Link>
+			<Link href="/support/website/development">Development</Link>
+			<Link href="/support/website/contact">Contact</Link>
+			<Link href="/support/policies/terms-of-service">Terms of Service</Link>
+			<Link href="/support/policies/privacy-policy">Privacy Policy</Link>
+			<Link href="/support/policies/copyright">Copyright</Link>
+			<Link href="/support/policies/acknowledgements">Acknowledgements</Link>
+			<Link href="/support/policies/security">Security</Link>
+			<Link href="/support/policies/community-standards"
+				>Community Standards</Link
+			>
+		</section>
+		<section class="section-container">
+			<h5>Guides and Tutorials</h5>
+			<Link href="/hunter-notes/getting-started">Getting Started</Link>
+			<Link href="/hunter-notes/weapons">Weapons</Link>
+			<Link href="/hunter-notes/armor">Armor</Link>
+			<Link href="/hunter-notes/monsters">Monsters</Link>
+			<Link href="/hunter-notes/locations">Locations</Link>
+			<Link href="/hunter-notes/items">Items</Link>
+			<Link href="/hunter-notes/events">Events</Link>
+			<Link href="/hunter-notes/advanced">Advanced</Link>
+		</section>
+		<section class="section-container">
+			<h5>Tools and Utilities</h5>
+			<Link href="/tools/calculator">Calculators</Link>
+			<Link href="/tools/simulator">Simulators</Link>
+			<Link href="/tools/generator">Generators</Link>
+			<Link href="/tools/external">External</Link>
+			<Link href="/tools/search">Search</Link>
+		</section>
 	</div>
 
 	<div class="footer-bottom">
@@ -172,29 +161,7 @@
 </footer>
 
 <style lang="scss">
-	.icon-info-container {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.25rem;
-		align-items: center;
-	}
-
-	.footer-sections-group {
-		flex-wrap: wrap;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.banner-text {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-	}
-
-	.rounded-image {
-		border-radius: 50%;
-	}
+	//@use '$lib/client/styles/_border-all.scss';
 
 	footer {
 		padding-top: 4rem;
@@ -207,20 +174,21 @@
 		gap: 2rem;
 	}
 
-	.footer-main-content-container {
+	.icon-info-container {
 		display: flex;
 		flex-wrap: wrap;
-		flex-direction: row;
-		align-items: start;
-		gap: 2rem;
+		gap: 0.25rem;
+		align-items: center;
 	}
 
-	.footer-sections {
+	.banner-text {
 		display: flex;
 		flex-wrap: wrap;
-		align-items: start;
-		flex-direction: row;
-		gap: 1rem;
+		gap: 0.5rem;
+	}
+
+	.rounded-image {
+		border-radius: 50%;
 	}
 
 	.github-info-container {
@@ -229,13 +197,80 @@
 		gap: 0.5rem;
 	}
 
-	.section-container {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-left: var(--cds-spacing-08);
-		padding-right: var(--cds-spacing-08);
-		gap: 0.25rem;
+	@media (min-width: 320px) {
+		.footer-main-content-container {
+			display: grid;
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			justify-items: start;
+			grid-row-gap: 24px;
+			grid-column-gap: 40px;
+			grid-template-rows: auto;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.section-container {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+			grid-area: span 1 / span 1 / span 1 / span 1;
+		}
+
+		.banner {
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			gap: 0.5rem;
+			grid-area: span 1 / span 2 / span 1 / span 2;
+		}
+	}
+
+	@media (min-width: 672px) {
+		.footer-main-content-container {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			grid-row-gap: 64px;
+			grid-column-gap: 20px;
+		}
+
+		.section-container {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+			grid-area: span 1 / span 2 / span 1 / span 2;
+		}
+
+		.banner {
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			gap: 0.5rem;
+			grid-area: span 2 / span 4 / span 2 / span 4;
+		}
+	}
+
+	@media (min-width: 1056px) {
+		.footer-main-content-container {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			grid-row-gap: 20px;
+			grid-column-gap: 20px;
+			align-items: start;
+		}
+
+		.section-container {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+			grid-area: span 1 / span 2 / span 1 / span 2;
+		}
+
+		.banner {
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			gap: 0.5rem;
+			grid-area: span 1 / span 4 / span 1 / span 4;
+		}
 	}
 
 	.footer-bottom {
@@ -250,14 +285,5 @@
 		padding-bottom: 2rem;
 		background-color: var(--ctp-surface0);
 		border-top: 1px solid var(--ctp-surface1);
-	}
-
-	.banner {
-		padding-left: var(--cds-spacing-08);
-		padding-right: var(--cds-spacing-08);
-		display: flex;
-		flex-direction: column;
-		align-items: start;
-		gap: 0.5rem;
 	}
 </style>

@@ -10,9 +10,7 @@
 	import UserAvatar from 'carbon-icons-svelte/lib/UserAvatar.svelte';
 	import WycademySearch from '$lib/client/components/frontier/WycademySearch.svelte';
 	import ThemeChanger from './ThemeChanger.svelte';
-	import Notification from 'carbon-icons-svelte/lib/Notification.svelte';
 	import breakpointObserver from 'carbon-components-svelte/src/Breakpoint/breakpointObserver';
-	import NotificationNew from 'carbon-icons-svelte/lib/NotificationNew.svelte';
 	import Button from 'carbon-components-svelte/src/Button/Button.svelte';
 	import HeaderNavigationMenuButton from './HeaderNavigationMenuButton.svelte';
 	import HeaderNavigationButton from './HeaderNavigationButton.svelte';
@@ -20,24 +18,34 @@
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { type SelectProfile } from '$lib/db/schema';
+	import ProfileMenu from './ProfileMenu.svelte';
+	import NotificationsMenu from './NotificationsMenu.svelte';
 
 	const carbonThemeStore = getContext(
 		Symbol.for('carbonTheme'),
 	) as Writable<CarbonTheme>;
+
+	interface Props {
+		profile: SelectProfile | null; // TODO
+	}
+
+	let { profile }: Props = $props();
 
 	const breakpointSize = breakpointObserver();
 	const breakpointLargerThanSmall = breakpointSize.largerThan('sm');
 	const breakpointLargerThanMedium = breakpointSize.largerThan('md');
 
 	// Shared state to track which menu is open
-	let openMenu: null | MenuId = null;
+	let openMenu: MenuId = $state(null);
 
-	// TODO bugged
-	type MenuId = 'guides' | 'tools' | 'support';
+	// TODO fixed?
+	type MenuId = null | 'guides' | 'tools' | 'support';
 
-	const handleToggle = ({ detail }) => {
+	const handleToggle = (id: MenuId) => {
 		// Update openMenu based on received id
-		openMenu = detail.id !== null ? detail.id : null;
+		openMenu = id !== null ? id : null;
+		return openMenu;
 	};
 </script>
 
@@ -67,7 +75,7 @@
 						description="Guides"
 						id="guides"
 						{openMenu}
-						on:toggle={handleToggle}
+						toggle={(id) => handleToggle(id)}
 					/>
 				</div>
 				<div class="container-link">
@@ -76,7 +84,7 @@
 						description="Tools"
 						id="tools"
 						{openMenu}
-						on:toggle={handleToggle}
+						toggle={(id) => handleToggle(id)}
 					/>
 				</div>
 				<div class="container-link">
@@ -85,7 +93,7 @@
 						description="Support"
 						id="support"
 						{openMenu}
-						on:toggle={handleToggle}
+						toggle={(id) => handleToggle(id)}
 					/>
 				</div>
 				<!-- TODO only show when an event is active or recently active <div class="container-link">
@@ -98,44 +106,28 @@
 			<WycademySearch />
 		</div>
 
-		{#if $breakpointLargerThanMedium}
+		{#if $breakpointLargerThanMedium && !profile}
 			<div class="container-header-action">
 				<ThemeChanger />
 			</div>
 		{/if}
 		<div class="container-header-action">
 			<!-- TODO only show when logged in, give mini guide when logged in showing that this is
-			 for notifications, or as first notification message upon sign up.
-			<Button
-				tooltipPosition="left"
-				kind="ghost"
-				on:click={() => {
-					notificationSeenStore.set(true);
-				}}
-				iconDescription={!$notificationSeenStore &&
-				$notificationsStore &&
-				newVersionAvailable !== ''
-					? `New overlay version available')}`
-					: 'You have no unread notifications'}
-				href="/notifications"
-			>
-				<span slot="icon">
-					{#if !$notificationSeenStore && $notificationsStore && newVersionAvailable !== ''}
-						<NotificationNew size={20} color="var(--ctp-peach)" />
-					{:else}
-						<Notification size={20} color="var(--ctp-text)" />
-					{/if}</span
-				>
-			</Button> -->
+			 for notifications, or as first notification message upon sign up. -->
+			{#if profile}
+				<div class="notification-icon">
+					<NotificationsMenu {profile} />
+				</div>
+			{/if}
 		</div>
 		<!-- TODO: profile disclosure-->
-		{#if $breakpointLargerThanSmall}
+		{#if $breakpointLargerThanSmall && !profile}
 			<div class="container-header-action">
 				<Button
 					kind="ghost"
 					href="/site-preferences"
 					tooltipPosition="left"
-					iconDescription="Site Preferences"
+					iconDescription="Go to Site Preferences"
 				>
 					<span slot="icon"><Settings size={20} color="var(--ctp-text)" /></span
 					>
@@ -143,21 +135,41 @@
 			</div>
 		{/if}
 		<div class="container-header-action">
-			<Button
-				kind="ghost"
-				href="/signup"
-				tooltipPosition="left"
-				iconDescription="Account"
-				><span slot="icon">
-					<UserAvatar size={20} color="var(--ctp-text" /></span
-				>
-			</Button>
+			{#if profile}
+				<div class="avatar">
+					<ProfileMenu {profile} />
+				</div>
+			{:else}
+				<Button
+					kind="ghost"
+					href="/signup"
+					tooltipPosition="left"
+					iconDescription="Sign up"
+					><span slot="icon">
+						<UserAvatar size={20} color="var(--ctp-text)" /></span
+					>
+				</Button>
+			{/if}
 		</div>
 	</nav>
 </header>
 
 <style lang="scss">
 	@use '@carbon/type' as type;
+	@use '@carbon/motion' as motion;
+
+	.avatar {
+		height: 100%;
+		padding: 0.25rem;
+	}
+
+	.avatar:hover {
+		cursor: var(--cursor-icon-pointer);
+	}
+
+	.notification-icon {
+		height: 100%;
+	}
 
 	header {
 		display: flex;

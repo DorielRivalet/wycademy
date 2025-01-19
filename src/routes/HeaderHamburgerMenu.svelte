@@ -13,6 +13,7 @@
 	} from '$lib/client/modules/routes';
 	import ChevronLeft from 'carbon-icons-svelte/lib/ChevronLeft.svelte';
 	import ChevronRight from 'carbon-icons-svelte/lib/ChevronRight.svelte';
+	import CloseOutline from 'carbon-icons-svelte/lib/CloseOutline.svelte';
 
 	let open = $state(false);
 	let selectedSection: number | null = $state(null);
@@ -67,6 +68,19 @@
 			style="width: 100%; height: 100vh;"
 		>
 			<div class="hamburger-menu-content">
+				<Button
+					tooltipPosition="right"
+					iconDescription={'Close Menu'}
+					on:click={() => (open = false)}
+					kind="ghost"
+				>
+					{#snippet icon()}
+						<span class="close-menu">
+							<CloseOutline size={20} color={'var(--ctp-text)'} />
+							<p>Close Menu</p>
+						</span>
+					{/snippet}
+				</Button>
 				{#if selectedSection === null}
 					<div class="sections">
 						{#each sections as section, i}
@@ -173,7 +187,11 @@
 			</div>
 		</div>
 
-		<button onclick={() => (open = !open)} class="dark-background"></button>
+		<button
+			aria-label="Close"
+			onclick={() => (open = false)}
+			class="dark-background"
+		></button>
 	{/if}
 </div>
 
@@ -198,7 +216,7 @@
 
 	.hamburger-menu {
 		position: absolute;
-		top: 3rem; /* Position it right below the header */
+		top: 0;
 		left: 0;
 		background-color: var(--ctp-surface0); /* Or any color you prefer */
 		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Optional: adds shadow for depth */
@@ -213,6 +231,16 @@
 
 	button {
 		all: unset;
+	}
+
+	.close-menu {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+
+		p {
+			font-weight: bold;
+		}
 	}
 
 	.hamburger-menu-content {

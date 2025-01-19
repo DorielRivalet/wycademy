@@ -9,17 +9,17 @@
 </script>
 
 <li>
-	<Button as  kind="ghost" iconDescription="Leaderboards">
+	<Button as kind="ghost" iconDescription={description}>
 		{#snippet children({ props })}
-				<a href={path}
+			<a href={path}
 				><p {...props}>
 					<button class="button">
 						<span>{description}</span>
 					</button>
 				</p></a
 			>
-					{/snippet}
-		</Button>
+		{/snippet}
+	</Button>
 </li>
 
 <style lang="scss">
