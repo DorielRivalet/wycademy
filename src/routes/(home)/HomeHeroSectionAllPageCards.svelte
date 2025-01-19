@@ -156,21 +156,34 @@
 		return result;
 	}
 
-	const pages = shuffleArray([
+	const allPages = shuffleArray([
 		...allGuides,
 		...allTools,
 		...allWorldRecords,
 		...allHunterActivity,
 	]);
 
-	let firstRow = pages.slice(0, pages.length / 2);
-	let secondRow = pages.slice(pages.length / 2);
+	// Limit to 100 random entries (or less if fewer are available)
+	const maxEntries = 100;
+	const limitedPages =
+		allPages.length > maxEntries
+			? shuffleArray(allPages).slice(0, maxEntries)
+			: allPages;
+
+	// Shuffle the limited pages
+	const shuffledPages = shuffleArray(limitedPages);
+
+	let firstRow = shuffledPages.slice(0, shuffledPages.length / 2);
+	let secondRow = shuffledPages.slice(shuffledPages.length / 2);
 
 	const scrollSpeed = 0.33;
 </script>
 
 <div class="marquee-container">
-	<Marquee pauseOnHover style="--duration: {pages.length / scrollSpeed}s">
+	<Marquee
+		pauseOnHover
+		style="--duration: {shuffledPages.length / scrollSpeed}s"
+	>
 		{#each firstRow as item}
 			<HomeHeroSectionPageCard {...item} />
 		{/each}
@@ -179,7 +192,7 @@
 	<Marquee
 		reverse
 		pauseOnHover
-		style="--duration: {pages.length / scrollSpeed}s"
+		style="--duration: {shuffledPages.length / scrollSpeed}s"
 	>
 		{#each secondRow as item}
 			<HomeHeroSectionPageCard {...item} />

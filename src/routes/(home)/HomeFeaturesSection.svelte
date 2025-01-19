@@ -9,7 +9,7 @@
 	import type { Writable } from 'svelte/store';
 	import type { CarbonTheme } from 'carbon-components-svelte/src/Theme/Theme.svelte';
 	import SectionHeadingCentered from '$lib/client/components/SectionHeadingCentered.svelte';
-	import { ListChecked } from 'carbon-icons-svelte';
+	import ListChecked from 'carbon-icons-svelte/lib/ListChecked.svelte';
 	import HomeFeaturesSectionFeature from './HomeFeaturesSectionFeature.svelte';
 	import Application from 'carbon-icons-svelte/lib/Application.svelte';
 	import ToolsAlt from 'carbon-icons-svelte/lib/ToolsAlt.svelte';
@@ -106,7 +106,7 @@
 		{
 			title: 'Responsive Web Design',
 			description:
-				'An user interface adapted to the resolutions of many devices: phones, tablets and desktop.',
+				'a user interface adapted to the resolutions of many devices: phones, tablets and desktop.',
 			icon: Devices,
 		},
 		{
@@ -206,9 +206,7 @@
 						progressBarValue={progressBarValues[currentFeatureIndex]}
 					>
 						{@const SvelteComponent = features[currentFeatureIndex].icon}
-						<SvelteComponent
-							size={32}
-						/>
+						<SvelteComponent size={32} />
 					</HomeFeaturesSectionFeature>
 				</div>
 				{#if showMobileControls}
