@@ -42,14 +42,7 @@ Shows text next to an icon inline. You can use either a component or a image imp
 		{#if icon === ''}
 			<span></span>
 		{:else if iconType === 'file'}
-			<span
-				class="image"
-				on:mouseenter={(e) => (open = true)}
-				on:mouseleave={(e) => (open = false)}
-				role="button"
-				tabindex="0"
-				on:keypress={(e) => open != open}
-			>
+			<span class="image" role="button" tabindex="0">
 				<img
 					style="display: inline;"
 					width="64"
@@ -59,27 +52,12 @@ Shows text next to an icon inline. You can use either a component or a image imp
 				/>
 			</span>
 		{:else}
-			<span
-				class="icon"
-				style="margin-right: {gap}"
-				on:mouseenter={(e) => (open = true)}
-				on:mouseleave={(e) => (open = false)}
-				role="button"
-				tabindex="0"
-				on:keypress={(e) => open != open}
-			>
+			<span class="icon" style="margin-right: {gap}" role="button" tabindex="0">
 				<svelte:component this={icon} {...iconProps} />
 			</span>
 		{/if}
 
-		<span
-			class="description"
-			on:mouseenter={(e) => (open = true)}
-			on:mouseleave={(e) => (open = false)}
-			role="button"
-			tabindex="0"
-			on:keypress={(e) => open != open}
-		>
+		<span class="description" role="button" tabindex="0">
 			{text}
 		</span>
 	</span>

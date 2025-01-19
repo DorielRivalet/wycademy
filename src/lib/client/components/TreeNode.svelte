@@ -1,18 +1,11 @@
+<!-- TreeNode.svelte -->
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import Self from './TreeNode.svelte';
 	import { cubicInOut } from 'svelte/easing';
-	import type { Component } from 'svelte';
 	import { page } from '$app/stores';
-
-	interface TreeItem {
-		id: string;
-		text: string;
-		href?: string;
-		icon?: Component | string;
-		nodes?: TreeItem[];
-		iconProps?: Object;
-	}
+	import type { TreeItem } from '../types/tree-item';
+	import { goto } from '$app/navigation';
 
 	interface Props {
 		item: TreeItem;
@@ -43,6 +36,15 @@
 			isExpanded = true;
 		}
 	});
+
+	// Redirect if the node has an href but no child nodes
+	function handleNodeClick() {
+		if (!item.nodes?.length && item.href) {
+			goto(item.href); // Navigate to the link
+		} else {
+			toggleExpand(); // Toggle expand for nodes with children
+		}
+	}
 </script>
 
 <li class="tree-node">
@@ -50,7 +52,7 @@
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div
 		class="node-content"
-		onclick={toggleExpand}
+		onclick={handleNodeClick}
 		class:active={isActive && item.href === $page.url.pathname}
 	>
 		{#if item.nodes?.length}
@@ -82,16 +84,7 @@
 			class="tree-children"
 		>
 			{#each item.nodes as node (node.id)}
-				{#if node.href}
-					<a
-						href={node.href}
-						class:active={isNodeActive(node, $page.url.pathname)}
-					>
-						<Self item={node} {defaultExpanded} />
-					</a>
-				{:else}
-					<Self item={node} {defaultExpanded} />
-				{/if}
+				<Self item={node} {defaultExpanded} />
 			{/each}
 		</ul>
 	{/if}
@@ -137,20 +130,6 @@
 	.tree-children {
 		margin: 0;
 		padding-left: 24px;
-	}
-
-	a {
-		color: unset;
-		text-decoration: unset;
-	}
-
-	a:hover {
-		color: var(--ctp-blue);
-	}
-
-	a.active {
-		color: var(--ctp-mauve);
-		font-weight: 500;
 	}
 
 	.icon {

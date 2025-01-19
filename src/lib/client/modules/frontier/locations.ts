@@ -147,7 +147,8 @@ export type FrontierLocation =
 	| 'Tidal Island'
 	| 'Violent Raviente Raid'
 	| 'World'
-	| 'Burst';
+	| 'Burst'
+	| 'House';
 
 // TODO probably put some entries in another array
 // merge with habitat array?
@@ -176,7 +177,7 @@ export const LocationIcons: { name: FrontierLocation; icon: any }[] = [
 	{ name: 'Great Forest', icon: LocationIconGreatForest },
 	{ name: 'Guild Hall', icon: LocationIconGuildHall },
 	{ name: 'Highlands', icon: LocationIconHighlands },
-	{ name: 'My House', icon: LocationIconHouse },
+	{ name: 'House', icon: LocationIconHouse },
 	{ name: 'Hunter Contest', icon: LocationIconHunterContest },
 	{
 		name: 'Interception Monster',

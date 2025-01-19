@@ -2,6 +2,7 @@ import { frontierColorNames } from '$lib/client/themes/frontier-colors';
 import { ItemColors } from './items';
 import type { FrontierItemColor } from './types';
 
+// TODO Chalices
 export const stringReplacements = {
 	chaliceDescription: (weapon: string) =>
 		`Awarded to those who obtained the #1 spot on a Z4, Musou, Upper Shiten or Conquest Lv9999 quest with ${weapon} at the end of the month.`,
