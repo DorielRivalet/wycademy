@@ -20,3 +20,4 @@ dmg.html
 .vs/
 *.local
 .snaplet/
+*secret.sql
