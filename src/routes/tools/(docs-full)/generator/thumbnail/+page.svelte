@@ -36,7 +36,7 @@
 	import { domToPng } from 'modern-screenshot';
 	import slugify from 'slugify';
 	import { onMount } from 'svelte';
-	import Moveable from 'svelte-moveable';
+	import { movable, type MovableEventDetail } from '@svelte-put/movable';
 	import Modal from 'carbon-components-svelte/src/Modal/Modal.svelte';
 	import Youtube from 'svelte-youtube-embed';
 	import { getUniqueMonsters } from '$lib/client/modules/frontier/monsters';
@@ -67,20 +67,6 @@
 		modalOpen = true;
 		modalHeading = heading;
 		modalLabel = section || '';
-	}
-
-	// this works
-	function handleDragStart(
-		e: { dataTransfer: { setData: (arg0: string, arg1: string) => void } },
-		id: any,
-		offsetX: any,
-		offsetY: any,
-		index: number,
-	) {
-		e.dataTransfer.setData(
-			'text/plain',
-			JSON.stringify({ id, offsetX, offsetY, index }),
-		);
 	}
 
 	function getThumbnailGeneratorTemplateExampleTexts() {
@@ -694,36 +680,31 @@
 		return uniqueResult;
 	}
 
-	function onThumbnailImageContainerMouseDown(
-		e: MouseEvent & { currentTarget: EventTarget & HTMLDivElement },
-		i: number,
+	function onDragEnd(
+		e: MovableEventDetail,
+		category: 'images' | 'uploads' | 'text',
 	) {
-		if (e.target.tagName !== 'svg' && e.target.tagName !== 'div') {
-			moveableTarget = undefined;
-		} else {
-			moveableTarget = document.getElementById(`image-${i}`);
+		let { node, position } = e;
+
+		switch (category) {
+			case 'images':
+				thumbnailImages[Number(node.id.replace('image-', ''))].top =
+					position.top;
+				thumbnailImages[Number(node.id.replace('image-', ''))].left =
+					position.left;
+				break;
+			case 'uploads':
+				thumbnailUploadedImages[Number(node.id.replace('upload-', ''))].top =
+					position.top;
+				thumbnailUploadedImages[Number(node.id.replace('upload-', ''))].left =
+					position.left;
+				break;
+			case 'text':
+				thumbnailTexts[Number(node.id.replace('text-', ''))].top = position.top;
+				thumbnailTexts[Number(node.id.replace('text-', ''))].left =
+					position.left;
+				break;
 		}
-	}
-
-	function onDragEnd(e) {
-		let { target, isDrag, clientX, clientY } = e;
-		const element = moveableTarget;
-		const rect = thumbnailContainer.getBoundingClientRect();
-
-		// Adjustments for centering the element
-		const elementWidth = element.offsetWidth;
-		const elementHeight = element.offsetHeight;
-		const newTop = Math.round(clientY - rect.top - elementHeight / 2); // Subtract half the height
-		const newLeft = Math.round(clientX - rect.left - elementWidth / 2); // Subtract half the width
-
-		element.style.top = `${newTop}px`;
-		element.style.left = `${newLeft}px`;
-
-		// Update the thumbnailImages array with the new positions
-		thumbnailImages[Number(moveableTarget.id.replace('image-', ''))].top =
-			newTop;
-		thumbnailImages[Number(moveableTarget.id.replace('image-', ''))].left =
-			newLeft;
 	}
 
 	function getThumbnailGeneratorImagesFromType(type: FrontierImageType) {
@@ -949,8 +930,6 @@
 	let thumbnailContainer: HTMLDivElement;
 	let thumbnailContainerCursorPosition = { x: 0, y: 0 };
 
-	let moveableTarget;
-
 	let loadingTemplateStatus: 'uploading' | 'edit' | 'complete' | undefined =
 		'uploading';
 
@@ -971,44 +950,10 @@
 	];
 
 	onMount(() => {
-		thumbnailContainer.addEventListener('dragover', (e) => {
-			e.preventDefault(); // Necessary to allow dropping
-		});
-
 		thumbnailContainer.addEventListener('mousemove', (e) => {
 			const rect = thumbnailContainer.getBoundingClientRect();
 			thumbnailContainerCursorPosition.x = Math.round(e.clientX - rect.left);
 			thumbnailContainerCursorPosition.y = Math.round(e.clientY - rect.top);
-		});
-
-		thumbnailContainer.addEventListener('drop', (e) => {
-			e.preventDefault(); // Prevents default behavior
-			const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-			const element = document.getElementById(data.id);
-			if (element) {
-				// Calculate the correct position based on the cursor's position relative to the container
-				// and the initial offset of the dragged element
-				const rect = thumbnailContainer.getBoundingClientRect();
-				const newTop = Math.round(e.clientY - rect.top - data.offsetY);
-				const newLeft = Math.round(e.clientX - rect.left - data.offsetX);
-
-				// Update the element's position
-				element.style.top = `${newTop}px`;
-				element.style.left = `${newLeft}px`;
-
-				// Update the position in your data model here
-				// For example, if you're tracking the position in a Svelte store or a local variable, update it here
-				if (data.id.startsWith('image')) {
-					thumbnailImages[data.index].top = newTop;
-					thumbnailImages[data.index].left = newLeft;
-				} else if (data.id.startsWith('upload')) {
-					thumbnailUploadedImages[data.index].top = newTop;
-					thumbnailUploadedImages[data.index].left = newLeft;
-				} else if (data.id.startsWith('text')) {
-					thumbnailTexts[data.index].top = newTop;
-					thumbnailTexts[data.index].left = newLeft;
-				}
-			}
 		});
 	});
 
@@ -1654,7 +1599,7 @@
 			>
 				{#if thumbnailImages.length !== undefined && thumbnailImages.length > 0}
 					{#each thumbnailImages as image, i}
-						{#if image.fileType === 'Location' || image.fileType === 'Habitat' || image.fileType === 'Monster Render' || image.fileType === 'Game'}
+						{#if image.fileType === 'Location' || image.fileType === 'Monster Render' || image.fileType === 'Game'}
 							<img
 								src={image.fileType === 'Monster Render'
 									? image.monsterRenderSize === 'Small'
@@ -1662,17 +1607,29 @@
 										: image.src.full
 									: image.src.image}
 								alt={image.alt}
-								draggable={image.fileType === 'Habitat' ? 'false' : 'true'}
+								draggable="false"
 								id={`image-${i}`}
-								on:dragstart={(e) =>
-									handleDragStart(e, `image-${i}`, e.offsetX, e.offsetY, i)}
+								use:movable={{ limit: { parent: thumbnailContainer } }}
+								onmovableend={({ detail: e }) => onDragEnd(e, 'images')}
+								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
+							/>
+						{:else if image.fileType === 'Habitat'}
+							<img
+								src={image.fileType === 'Monster Render'
+									? image.monsterRenderSize === 'Small'
+										? image.src.small
+										: image.src.full
+									: image.src.image}
+								alt={image.alt}
+								id={`image-${i}`}
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 							/>
 						{:else}
 							<!-- svelte-ignore a11y-no-static-element-interactions -->
 							<div
+								use:movable={{ limit: { parent: thumbnailContainer } }}
+								onmovableend={({ detail: e }) => onDragEnd(e, 'images')}
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
-								on:mousedown={(e) => onThumbnailImageContainerMouseDown(e, i)}
 								id={`image-${i}`}
 							>
 								<svelte:component
@@ -1688,30 +1645,25 @@
 						{/if}
 					{/each}
 				{/if}
-				<Moveable
-					target={moveableTarget}
-					draggable={true}
-					on:dragEnd={({ detail: e }) => onDragEnd(e)}
-				/>
 				{#if thumbnailUploadedImages.length !== undefined && thumbnailUploadedImages.length > 0}
 					{#each thumbnailUploadedImages as image, i}
 						{#if image.fileType !== 'image/svg+xml'}
 							<img
 								src={image.src}
 								alt={image.alt}
-								draggable={'true'}
-								on:dragstart={(e) =>
-									handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
 								id={`upload-${i}`}
+								draggable="false"
+								use:movable={{ limit: { parent: thumbnailContainer } }}
+								onmovableend={({ detail: e }) => onDragEnd(e, 'uploads')}
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 							/>
 						{:else if image.fileType === 'image/svg+xml'}
 							<img
+								use:movable={{ limit: { parent: thumbnailContainer } }}
+								onmovableend={({ detail: e }) => onDragEnd(e, 'uploads')}
+								draggable="false"
 								src={image.src}
 								alt={image.alt}
-								draggable={'true'}
-								on:dragstart={(e) =>
-									handleDragStart(e, `upload-${i}`, e.offsetX, e.offsetY, i)}
 								id={`upload-${i}`}
 								style="position: absolute; top: {image.top}px; left: {image.left}px; width: {image.width}px; height: {image.height}px; z-index: {image.zindex}; opacity: {image.opacity}; filter: drop-shadow(0 0 {image.dropShadowSize}px {image.dropShadowColor}); border-color: {image.borderColor}; border-style: solid; border-radius: {image.borderRadius}px; border-width: {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px {image.borderWidth}px;"
 							/>
@@ -1721,9 +1673,8 @@
 				{#if thumbnailTexts.length !== undefined && thumbnailTexts.length > 0}
 					{#each thumbnailTexts as text, i}
 						<p
-							draggable={'true'}
-							on:dragstart={(e) =>
-								handleDragStart(e, `text-${i}`, e.offsetX, e.offsetY, i)}
+							use:movable={{ limit: { parent: thumbnailContainer } }}
+							onmovableend={({ detail: e }) => onDragEnd(e, 'text')}
 							id={`text-${i}`}
 							style="position: absolute; top: {text.top}px; left: {text.left}px; z-index: {text.zIndex}; opacity: {text.opacity}; font-size: {text.fontSize}px; text-shadow:
 						-{text.shadowWidth}px -{text.shadowWidth}px 0 {text.shadowColor},
