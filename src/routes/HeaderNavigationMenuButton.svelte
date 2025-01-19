@@ -8,28 +8,32 @@
 	import { getRoutesSection } from '$lib/client/modules/routes';
 	import ClickableTileImage from '$lib/client/components/ClickableTileImage.svelte';
 	import { cubicInOut } from 'svelte/easing';
-	import { createEventDispatcher } from 'svelte';
 
-	export let description;
-	export let path;
-	export let id; // Unique identifier for each menu button
-	export let openMenu: null | 'guides' | 'tools' | 'support'; // Receive the global openMenu state as a prop
+	type MenuId = null | 'guides' | 'tools' | 'support';
 
-	const dispatch = createEventDispatcher();
+	interface Props {
+		description: string;
+		path: string;
+		id: MenuId;
+		toggle: (id: MenuId) => MenuId;
+		openMenu: MenuId; // Receive the global openMenu state as a prop
+	}
 
-	let selectedCategory = 0;
+	let { description, path, id, toggle, openMenu }: Props = $props();
+
+	let selectedCategory = $state(0);
 
 	// Determine if this menu should be open based on global state
-	$: isOpen = openMenu === id;
+	let isOpen = $derived(openMenu === id);
 
 	// Updated toggleOpen function
 	const toggleOpen = () => {
 		if (isOpen) {
 			// If the menu is already open, close it
-			dispatch('toggle', { id: null }); // Dispatch event to close the menu
+			toggle(null); // Dispatch event to close the menu
 		} else {
 			// Otherwise, proceed to open it
-			dispatch('toggle', { id }); // Dispatch event to open the menu
+			toggle(id); // Dispatch event to open the menu
 		}
 	};
 
@@ -38,8 +42,8 @@
 
 <li class="container">
 	<Button as let:props kind="ghost" iconDescription={description}>
-		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-		<p {...props} on:click={() => toggleOpen()}>
+		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+		<p {...props} onclick={() => toggleOpen()}>
 			<button class="button">
 				<span>{description}</span>
 				{#if isOpen}
@@ -57,6 +61,7 @@
 			style="width: 100%; height: 80vh;"
 		>
 			{#if section}
+				{@const SvelteComponent = section[selectedCategory].category.image}
 				<div class="mega-menu-content">
 					<div class="categories">
 						{#each section as item, i}
@@ -80,21 +85,19 @@
 					<div class="selected-category-content">
 						<div class="selected-category-header">
 							<a
-								on:click={() => (openMenu = null)}
+								onclick={() => (openMenu = null)}
 								class="selected-category-link"
 								href={section[selectedCategory].category.link}
 							>
 								<div class="category-image">
-									{#if typeof section[selectedCategory].category.image === 'string'}
+									{#if typeof SvelteComponent === 'string'}
 										<img
-											src={section[selectedCategory].category.image}
+											src={SvelteComponent}
 											alt={section[selectedCategory].category.name}
 											width="64"
 										/>
 									{:else}
-										<svelte:component
-											this={section[selectedCategory].category.image}
-										/>
+										<SvelteComponent />
 									{/if}
 								</div>
 								<h3>{section[selectedCategory].category.name}</h3>
@@ -108,7 +111,7 @@
 						<div class="grid-container">
 							{#each section[selectedCategory].pages as page}
 								<button
-									on:click={() => (openMenu = null)}
+									onclick={() => (openMenu = null)}
 									class="page-tile-container"
 								>
 									<ClickableTileImage
@@ -126,7 +129,11 @@
 			{/if}
 		</div>
 
-		<button on:click={() => (isOpen = false)} class="dark-background"></button>
+		<button
+			aria-label="Close"
+			onclick={() => toggle(null)}
+			class="dark-background"
+		></button>
 	{/if}
 </li>
 
