@@ -3,11 +3,9 @@
 
 	interface Props {
 		date?: string;
-		profileViews?: number;
 	}
 
-	let { date = '2024-01-25 01:03:37.2746702Z', profileViews = 1000 }: Props =
-		$props();
+	let { date = '2024-01-25 01:03:37.2746702Z' }: Props = $props();
 	const dateJoined = format(new Date(date), 'dd/MM/yyyy');
 </script>
 
@@ -16,10 +14,10 @@
 		<p><strong>Join Date:</strong></p>
 		<p>{dateJoined}</p>
 	</div>
-	<div>
+	<!-- <div>
 		<p><strong>Profile Views:</strong></p>
 		<p>{profileViews}</p>
-	</div>
+	</div> -->
 </div>
 
 <style lang="scss">

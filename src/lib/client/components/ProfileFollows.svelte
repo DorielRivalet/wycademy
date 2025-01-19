@@ -8,12 +8,14 @@
 		followers?: number;
 		following?: number;
 		isFollowing?: boolean;
+		canFollow?: boolean;
 	}
 
 	let {
 		followers = 1000,
 		following = 2500,
 		isFollowing = $bindable(false),
+		canFollow = true,
 	}: Props = $props();
 
 	// Format numbers
@@ -45,6 +47,7 @@
 	</div>
 
 	<Button
+		disabled={!canFollow}
 		on:click={onFollowButtonClick}
 		icon={isFollowing ? undefined : UserFollow}
 		kind={isFollowing ? 'danger-ghost' : 'primary'}

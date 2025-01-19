@@ -18,7 +18,7 @@
 				{#snippet title()}
 					<p class="question">{faqEntry.question}</p>
 				{/snippet}
-				<p class="answer paragraph-long-02">{faqEntry.answer}</p>
+				<div class="answer paragraph-long-02">{faqEntry.answer}</div>
 			</AccordionItem>
 		{/each}
 	</Accordion>

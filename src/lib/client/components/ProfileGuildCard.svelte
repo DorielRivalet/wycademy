@@ -58,6 +58,7 @@
 		guildCardsUnlockedRankPercent?: any;
 		selectedGuildCardBackground?: string;
 		username?: string;
+		canChangeGuildCardBackground?: boolean;
 	}
 
 	let {
@@ -121,6 +122,7 @@
 		guildCardsUnlockedRankPercent = Math.trunc(Math.random() * 100),
 		selectedGuildCardBackground = $bindable('Abiorugu'),
 		username = 'UserDemo',
+		canChangeGuildCardBackground = true,
 	}: Props = $props();
 
 	const formattedDate = formatDateTime(date);
@@ -378,17 +380,19 @@
 				{ id: 'page2', text: 'Page 2' },
 			]}
 		/>
-		<Dropdown
-			bind:selectedId={selectedGuildCardBackground}
-			items={guildCardBackgrounds
-				.filter((e) => !e.unused)
-				.map((e) => {
-					return {
-						id: e.name,
-						text: e.name,
-					};
-				})}
-		/>
+		{#if canChangeGuildCardBackground}
+			<Dropdown
+				bind:selectedId={selectedGuildCardBackground}
+				items={guildCardBackgrounds
+					.filter((e) => !e.unused)
+					.map((e) => {
+						return {
+							id: e.name,
+							text: e.name,
+						};
+					})}
+			/>
+		{/if}
 	</div>
 </div>
 

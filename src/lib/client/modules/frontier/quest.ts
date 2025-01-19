@@ -1,4 +1,71 @@
 import type { FrontierMonsterNameExpanded } from './types';
+import type { Component } from 'svelte';
+import ErrorFilled from 'carbon-icons-svelte/lib/ErrorFilled.svelte';
+// import InformationFilled from 'carbon-icons-svelte/lib/InformationFilled.svelte';
+import CheckmarkFilled from 'carbon-icons-svelte/lib/CheckmarkFilled.svelte';
+import WarningAltFilled from 'carbon-icons-svelte/lib/WarningAltFilled.svelte';
+import UnknownFilled from 'carbon-icons-svelte/lib/UnknownFilled.svelte';
+
+export type QuestStatus = 'unverified' | 'verified' | 'duplicate' | 'disputed';
+
+export function getQuestStatusIcon(status: QuestStatus) {
+	return (
+		questStatusIcons.find(
+			(e) => e.status.toLowerCase() === status.toLowerCase(),
+		) || questStatusIcons[0]
+	);
+}
+
+export const questStatusIcons: {
+	status: QuestStatus;
+	icon: Component;
+	color: string;
+}[] = [
+	{ status: 'unverified', icon: UnknownFilled, color: 'var(--ctp-overlay2)' },
+	{ status: 'verified', icon: CheckmarkFilled, color: 'var(--ctp-green)' },
+	{ status: 'disputed', icon: WarningAltFilled, color: 'var(--ctp-yellow)' },
+	{ status: 'duplicate', icon: ErrorFilled, color: 'var(--ctp-red)' },
+];
+
+export const questStatusInfo: {
+	status: QuestStatus;
+	display: string;
+	notes: string;
+	shownInProfile: boolean;
+	shownInLeaderboard: boolean;
+}[] = [
+	{
+		status: 'unverified',
+		display: 'Pending moderator review',
+		notes:
+			'Default status for all newly uploaded runs that are not duplicates or possesses a blank VideoLink.',
+		shownInProfile: true,
+		shownInLeaderboard: true,
+	},
+	{
+		status: 'verified',
+		display: 'A moderator has reviewed this quest',
+		notes:
+			'Manually approved runs that meet all criteria (e.g., valid VideoLink, no duplicate issues, etc.).',
+		shownInProfile: true,
+		shownInLeaderboard: true,
+	},
+	{
+		status: 'duplicate',
+		display: 'This run is marked as a duplicate',
+		notes:
+			'Runs flagged as duplicates due to matching QuestHash with an existing submission.',
+		shownInProfile: true,
+		shownInLeaderboard: false,
+	},
+	{
+		status: 'disputed',
+		display: 'Under review due to user reports or ownership conflicts.',
+		notes: 'Flagged for manual review (e.g., cheating or ownership issues).',
+		shownInProfile: true,
+		shownInLeaderboard: false,
+	},
+];
 
 // lib/client/modules/frontier/quest.ts
 export interface DatabaseTableInfo {
