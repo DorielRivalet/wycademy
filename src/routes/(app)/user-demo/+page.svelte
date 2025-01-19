@@ -310,7 +310,7 @@
 					labelText="Submit details (optional)"
 					placeholder="Enter details..."
 					helperText="An explanation of your report helps us better understand your submission."
-					maxCount={1024}
+					maxCount={maxReportDetailsLength}
 					bind:value={reportDetails}
 				/>
 			</div>

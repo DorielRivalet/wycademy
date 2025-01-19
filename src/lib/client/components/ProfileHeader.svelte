@@ -1,31 +1,29 @@
 <script lang="ts">
 	import Transcend from '$lib/client/images/icon/transcend.webp';
 	import ImageDialog from './ImageDialog.svelte';
-	import '/node_modules/flag-icons/css/flag-icons.min.css';
-	import { generateRandomUsername } from '../modules/username-generator';
+	import 'flag-icons/css/flag-icons.min.css';
+	import { generateRandomUsername } from '../modules/profile/username';
 	import { weaponTypeInfo } from '../modules/frontier/weapons';
 	import { countries, type TCountryCode } from 'countries-list';
 	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
 	import Tooltip from 'carbon-components-svelte/src/Tooltip/Tooltip.svelte';
-	import OutboundLink from 'carbon-components-svelte/src/Link/OutboundLink.svelte';
-	import LogoX from 'carbon-icons-svelte/lib/LogoX.svelte';
 	import type { Component } from 'svelte';
 	import { browser } from '$app/environment';
+	import type { Emblem } from '../modules/profile/emblems';
 
 	interface Props {
-		name?: any;
-		medal?: string;
-		title?: any;
+		name?: string;
+		emblem?: Emblem;
+		title?: string;
 		discordName?: string;
-		twitterName?: string;
-		imageSource?: any;
-		countryCode?: TCountryCode;
-		badge1Icon?: Component;
-		badge2Icon?: Component;
-		badge3Icon?: Component;
-		badge1Rank?: any;
-		badge2Rank?: any;
-		badge3Rank?: any;
+		imageSource?: string;
+		countryCode?: TCountryCode | 'World';
+		badge1Icon?: Component | null;
+		badge2Icon?: Component | null;
+		badge3Icon?: Component | null;
+		badge1Rank?: number;
+		badge2Rank?: number;
+		badge3Rank?: number;
 	}
 
 	function randomChoice(arr: any[]) {
@@ -34,10 +32,9 @@
 
 	let {
 		name = generateRandomUsername() + `#${Math.trunc(Math.random() * 1000)}`,
-		medal = '🥇',
+		emblem = { emblem: '🥇', type: 'text', id: 'Default' },
 		title = randomChoice(weaponTypeInfo).hiden,
 		discordName = 'discordname123',
-		twitterName = 'randomTwitterName123',
 		imageSource = Transcend,
 		countryCode = randomChoice(Object.keys(countries)),
 		badge1Icon = randomChoice(weaponTypeInfo).icon,
@@ -48,7 +45,8 @@
 		badge3Rank = Math.trunc(Math.random() * 99),
 	}: Props = $props();
 
-	const countryName = countries[countryCode].name;
+	const countryName =
+		countryCode === 'World' ? 'World' : countries[countryCode].name;
 </script>
 
 <div class="container">
@@ -59,55 +57,87 @@
 		{#if browser}
 			<div class="badges">
 				<div class="badge-container">
-					<div class="badge">
-						{#if badge1Icon}
-							{@const SvelteComponent = badge1Icon}
+					{#if badge1Icon}
+						{@const SvelteComponent = badge1Icon}
+						<div class="badge">
 							<SvelteComponent />
-						{/if}
-					</div>
-					<a href="/leaderboard">#{badge1Rank}</a>
+						</div>
+					{/if}
+					{#if badge1Rank !== 0 && badge1Rank}
+						<a href="/leaderboard">#{badge1Rank}</a>
+					{/if}
 				</div>
 				<div class="badge-container">
-					<div class="badge">
-						{#if badge2Icon}
-							{@const SvelteComponent = badge2Icon}
+					{#if badge2Icon}
+						{@const SvelteComponent = badge2Icon}
+						<div class="badge">
 							<SvelteComponent />
-						{/if}
-					</div>
-					<a href="/leaderboard">#{badge2Rank}</a>
+						</div>
+					{/if}
+					{#if badge2Rank !== 0 && badge2Rank}
+						<a href="/leaderboard">#{badge2Rank}</a>
+					{/if}
 				</div>
 				<div class="badge-container">
-					<div class="badge">
-						{#if badge3Icon}
-							{@const SvelteComponent = badge3Icon}
+					{#if badge3Icon}
+						{@const SvelteComponent = badge3Icon}
+						<div class="badge">
 							<SvelteComponent />
-						{/if}
-					</div>
-					<a href="/leaderboard">#{badge3Rank}</a>
+						</div>
+					{/if}
+					{#if badge3Rank !== 0 && badge3Rank}
+						<a href="/leaderboard">#{badge3Rank}</a>
+					{/if}
 				</div>
 			</div>
 		{/if}
 	</div>
 
-	<h1 class="username">{name} {medal}</h1>
-	<h2 class="title">{title}</h2>
+	<h1 class="username">
+		{name}
+		{#if emblem.id !== 'None'}
+			{#if emblem.type === 'text'}
+				<span>{emblem.emblem}</span>
+			{:else if emblem.type === 'component' && typeof emblem.emblem !== 'string'}
+				{@const EmblemComponent = emblem.emblem}
+				<span><EmblemComponent /></span>
+			{:else if emblem.type === 'image'}
+				<!-- TODO: test-->
+				<img alt="Emblem" src={emblem.emblem as string} height="100%" />
+			{/if}
+		{/if}
+	</h1>
+	<h2 class="title">
+		{#if title && title !== 'None'}
+			{title}
+		{/if}
+	</h2>
 	<div class="country">
 		<a href="/leaderboard">
-			<span class="fi fi-{countryCode.toLowerCase()}"></span>
-			<span>{countryName}</span>
+			{#if countryCode !== 'World'}
+				<span class="fi fi-{countryCode.toLowerCase()}"></span>
+				<span>{countryName}</span>
+			{/if}
 		</a>
 	</div>
 	<div class="socials">
-		<div class="paragraph-long-02">
-			<OutboundLink href="https://x.com/{twitterName}"><LogoX /></OutboundLink>
-		</div>
-		<div class="paragraph-long-02">
-			<Tooltip triggerText="" icon={LogoDiscord}>{discordName}</Tooltip>
-		</div>
+		{#if discordName}
+			<div class="paragraph-long-02">
+				<Tooltip triggerText="">
+					{#snippet icon()}
+						<LogoDiscord size={24} />
+					{/snippet}
+					{discordName}</Tooltip
+				>
+			</div>
+		{/if}
 	</div>
 </div>
 
 <style lang="scss">
+	@use '@carbon/motion' as motion;
+	// @use '$lib/client/styles/_border-all.scss';
+
 	@media (min-width: 320px) {
 		.container {
 			display: grid;
@@ -173,6 +203,7 @@
 		gap: 1rem;
 		grid-area: socials;
 		align-items: center;
+		justify-content: start;
 		flex-wrap: wrap;
 	}
 
@@ -190,6 +221,12 @@
 		aspect-ratio: 1/1;
 		max-width: 192px;
 		margin: auto;
+		transition: filter motion.$duration-moderate-02
+			motion.motion(standard, expressive);
+	}
+
+	.profile-picture:hover {
+		filter: brightness(110%);
 	}
 
 	.badge {
